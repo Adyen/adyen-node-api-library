@@ -10,3 +10,12 @@ script:
   - npm run lint:fix
   - npm run lint
   - npm run test
+jobs:
+  include:
+    - stage: npm release
+      node_js: "stable"
+      script: echo "Deploying to npm ..."
+      deploy:
+        provider: npm
+        api_key: $NPM_API_KEY
+        on: deploy-npm-release
