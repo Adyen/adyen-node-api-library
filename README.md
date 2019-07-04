@@ -1,5 +1,5 @@
 # Adyen Node.js API Library
-[![Build Status](https://travis-ci.com/Adyen/adyen-node-api-library.svg?token=DH2YULmDqk5ustZBswwf&branch=develop)](https://travis-ci.com/Adyen/adyen-node-api-library)
+[![Build Status](https://travis-ci.org/Adyen/adyen-node-api-library.svg?branch=master)](https://travis-ci.org/Adyen/adyen-node-api-library)
 
 The Adyen API Library for NodeJS enables you to work with Adyen APIs and Hosted Payment Pages.
 
