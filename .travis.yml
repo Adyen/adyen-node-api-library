@@ -18,8 +18,5 @@ jobs:
       deploy:
         provider: npm
         api_key: $NPM_API_KEY
-        on: deploy-npm-release
-deploy:
-  on:
-    tags: true
-    branch: master
+        on: 
+	  tags: true
