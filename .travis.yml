@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - stable
+before_install:
+  - rm -rf package-lock.json node_modules
+cache:
+  directories:
+    - "node_modules"
+script:
+  - npm run lint:fix
+  - npm run lint
+  - npm run test
