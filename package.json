@@ -1,0 +1,53 @@
+{
+  "name": "adyen-node-api-library",
+  "version": "1.0.0",
+  "description": "The Adyen API Library for NodeJS enables you to work with Adyen APIs and Hosted Payment Pages.",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
+  "module": "dist/lib-esm/index.js",
+  "engines": {
+    "node": ">=8.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adyen/adyen-node-api-library.git"
+  },
+  "keywords": [
+    "adyen",
+    "api",
+    "nodejs"
+  ],
+  "bugs": {
+    "url": "https://github.com/Adyen/adyen-node-api-library/issues"
+  },
+  "homepage": "https://github.com/Adyen/adyen-node-api-library#readme",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "npm run clean && tsc && tsc -m es6 --outDir dist/lib-esm && webpack",
+    "lint": "eslint 'src/**/*.ts'",
+    "lint:fix": "eslint --fix 'src/**/*.ts'",
+    "test": "jest"
+  },
+  "author": "Ricardo Ambrogi",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-typescript": "^7.1.0",
+    "@babel/runtime": "^7.3.4",
+    "@types/jest": "^23.3.5",
+    "@types/node": "^11.13.7",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
+    "babel-loader": "^8.0.4",
+    "eslint": "^5.12.1",
+    "jest": "^24.0.0",
+    "ts-loader": "^5.4.5",
+    "typescript": "^3.4.5",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.3"
+  }
+}

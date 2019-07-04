@@ -1,0 +1,17 @@
+.src/main/test
+.vagrant
+Vagrantfile
+build
+node_modules
+.idea
+dist
+.DS_Store
+.bash_history
+.config/
+.docker/
+.npm/
+.ssh/
+.viminfo
+local/
+coverage/
+package-lock.json
