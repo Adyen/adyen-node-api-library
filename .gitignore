@@ -14,4 +14,3 @@ dist
 .viminfo
 local/
 coverage/
-package-lock.json
