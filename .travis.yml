@@ -5,19 +5,21 @@ before_install:
   - rm -rf package-lock.json node_modules
 cache:
   directories:
-    - "node_modules"
+  - node_modules
 script:
-  - npm run lint:fix
-  - npm run lint
-  - npm run test
+- npm run lint:fix
+- npm run lint
+- npm run test
 jobs:
   include:
-    - stage: npm release
-      node_js: "stable"
-      script: echo "Deploying to npm ..."
-      deploy:
-        provider: npm
-        api_key: $NPM_API_KEY
-        email: $NPM_EMAIL
-        on: 
-          tags: true
+  - stage: npm release
+    if: tag IS present
+    node_js: stable
+    script: npm run build
+    deploy:
+      provider: npm
+      email: "$NPM_EMAIL"
+      api_key: "$NPM_TOKEN"
+      skip_cleanup: true
+      on:
+        tags: true
