@@ -45,7 +45,7 @@
     "babel-loader": "8.0.6",
     "eslint": "6.0.1",
     "jest": "24.8.0",
-    "ts-loader": "5.4.5",
+    "ts-loader": "6.0.4",
     "typescript": "3.5.2",
     "webpack": "4.35.2",
     "webpack-cli": "3.3.5"
