@@ -1,5 +1,6 @@
 language: node_js
 node_js:
+  - "8"
   - stable
 before_install:
   - rm -rf package-lock.json node_modules
@@ -24,5 +25,5 @@ jobs:
       on:
         tags: true
   - stage: Produce Coverage
-    node_js: node
+    node_js: stable
     script: jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
