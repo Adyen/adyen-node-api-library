@@ -1,5 +1,6 @@
 # Adyen Node.js API Library
 [![Build Status](https://travis-ci.org/Adyen/adyen-node-api-library.svg?branch=master)](https://travis-ci.org/Adyen/adyen-node-api-library)
+[![Coverage Status](https://coveralls.io/repos/github/Adyen/adyen-node-api-library/badge.svg?branch=feature/add-coveralls)](https://coveralls.io/github/Adyen/adyen-node-api-library?branch=feature/add-coveralls)
 
 The Adyen API Library for NodeJS enables you to work with Adyen APIs and Hosted Payment Pages.
 
