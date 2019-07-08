@@ -59,7 +59,7 @@ class Client {
     public static MARKETPAY_ACCOUNT_API_VERSION: string = "v4";
     public static MARKETPAY_FUND_API_VERSION: string = "v3";
     public static MARKETPAY_NOTIFICATION_API_VERSION: string = "v1";
-    public static LIB_NAME: string = "adyen-node-api-library";
+    public static LIB_NAME: string = "api-library";
     public static LIB_VERSION: string = "1.0.0";
     public static CHECKOUT_ENDPOINT_TEST: string = "https://checkout-test.adyen.com/checkout";
     public static CHECKOUT_ENDPOINT_LIVE_SUFFIX: string = "-checkout-live.adyenpayments.com/checkout";

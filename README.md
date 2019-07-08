@@ -27,7 +27,7 @@ You can use NPM to add our library to your project
 ### NPM
 
 ```bash
-npm install --save adyen-node-api-library
+npm install --save @adyen/api-library
 ```
 
 ## Documentation
@@ -39,7 +39,7 @@ npm install --save adyen-node-api-library
 By default, NodeJS [https](https://nodejs.org/api/https.html) will be used to submit requests to the API. But you can change that by injecting your own HttpClient on your client instance. In the example below, we use `axios`:
 
 ```javascript
-const {Client, Config} = require('adyen-node-api-library');
+const {Client, Config} = require('@adyen/api-library');
 const axios = require("axios");
 ...
 const config = new Config();
