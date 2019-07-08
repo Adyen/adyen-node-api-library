@@ -429,7 +429,7 @@ export interface CheckData {
     checkNumber?: string;
     country?: string;
     trackData?: TrackData;
-    type?: CheckTypeCodeType;
+    typeCode?: CheckTypeCodeType;
 }
 export declare enum CheckTypeCodeType {
     Company = "Company",
@@ -686,7 +686,7 @@ export interface Instalment {
     cumulativeAmount?: number;
     firstAmount?: number;
     firstPaymentDate?: string;
-    instalment?: InstalmentType[];
+    instalmentType?: InstalmentType[];
     period?: number;
     periodUnit?: PeriodUnitType;
     planId?: string;
@@ -1210,7 +1210,7 @@ export interface PaymentResult {
     capturedSignature?: CapturedSignature;
     currencyConversion?: CurrencyConversion[];
     customerLanguage?: string;
-    instalment?: Instalment;
+    instalmentType?: Instalment;
     merchantOverrideFlag?: boolean;
     onlineFlag?: boolean;
     paymentAcquirerData?: PaymentAcquirerData;
