@@ -2,21 +2,17 @@ language: node_js
 node_js:
   - "8"
   - stable
-before_install:
-  - rm -rf package-lock.json node_modules
-cache:
-  directories:
-  - node_modules
+cache: yarn
 script:
-- npm run lint:fix
-- npm run lint
-- npm run test
+- yarn run lint:fix
+- yarn run lint
+- yarn run test
 jobs:
   include:
   - stage: npm release
     if: tag IS present
     node_js: stable
-    script: npm run build
+    script: yarn run build
     deploy:
       provider: npm
       email: "$NPM_EMAIL"
