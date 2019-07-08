@@ -70,7 +70,7 @@ You can configure a proxy connection by injecting your own HttpURLConnectionClie
 
 Example:
 ```javascript
-const {HttpURLConnectionClient, Client, Config} = require('adyen-node-api-library');
+const {HttpURLConnectionClient, Client, Config} = require('@adyen/api-library');
 ...
 const config = new Config();
 const client = new Client({ config });
