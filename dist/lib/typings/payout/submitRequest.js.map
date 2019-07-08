@@ -1,1 +1,0 @@
-{"version":3,"file":"submitRequest.js","sourceRoot":"","sources":["../../../../src/typings/payout/submitRequest.ts"],"names":[],"mappings":";;AAoEA,IAAiB,aAAa,CAM7B;AAND,WAAiB,aAAa;IAEb,4BAAc,GAAG;QAC1B,aAAa,EAAE,eAAiC;QAChD,OAAO,EAAE,SAA2B;KACvC,CAAC;AACN,CAAC,EANgB,aAAa,GAAb,qBAAa,KAAb,qBAAa,QAM7B"}
