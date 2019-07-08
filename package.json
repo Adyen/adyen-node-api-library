@@ -26,7 +26,10 @@
     "build": "npm run clean && tsc && tsc -m es6 --outDir dist/lib-esm && webpack",
     "lint": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint --fix 'src/**/*.ts'",
-    "test": "jest"
+    "test": "jest",
+    "preversion": "npm test",
+    "version": "npm run build && git add -A dist",
+    "postversion": "git push && git push --tags && rm -rf build/temp"
   },
   "author": "Ricardo Ambrogi",
   "license": "MIT",
