@@ -714,7 +714,7 @@ export interface CheckData {
     checkNumber?:     string;
     country?:         string;
     trackData?:       TrackData;
-    type?:            CheckTypeCodeType;
+    typeCode?:            CheckTypeCodeType;
 }
 
 export enum CheckTypeCodeType {
@@ -1005,7 +1005,7 @@ export interface Instalment {
     cumulativeAmount?:  number;
     firstAmount?:       number;
     firstPaymentDate?:  string;
-    instalment?:        InstalmentType[];
+    instalmentType?:        InstalmentType[];
     period?:            number;
     periodUnit?:        PeriodUnitType;
     planId?:            string;
@@ -1599,7 +1599,7 @@ export interface PaymentResult {
     capturedSignature?:     CapturedSignature;
     currencyConversion?:    CurrencyConversion[];
     customerLanguage?:      string;
-    instalment?:            Instalment;
+    instalmentType?:            Instalment;
     merchantOverrideFlag?:  boolean;
     onlineFlag?:            boolean;
     paymentAcquirerData?:   PaymentAcquirerData;
@@ -4210,7 +4210,7 @@ const typeMap: any = {
         { json: "CheckNumber", js: "checkNumber", typ: u(undefined, "") },
         { json: "Country", js: "country", typ: u(undefined, "") },
         { json: "TrackData", js: "trackData", typ: u(undefined, r("TrackData")) },
-        { json: "Type", js: "type", typ: u(undefined, r("CheckTypeCodeType")) },
+        { json: "TypeCode", js: "typeCode", typ: u(undefined, r("CheckTypeCodeType")) },
     ], "any"),
     "MobileData": o([
         { json: "Geolocation", js: "geolocation", typ: u(undefined, r("Geolocation")) },
@@ -4348,7 +4348,7 @@ const typeMap: any = {
     "PaymentData": o([
         { json: "CardAcquisitionReference", js: "cardAcquisitionReference", typ: u(undefined, r("TransactionIdentification")) },
         { json: "CustomerOrder", js: "customerOrder", typ: u(undefined, r("CustomerOrder")) },
-        { json: "Instalment", js: "instalment", typ: u(undefined, r("Instalment")) },
+        { json: "InstalmentType", js: "instalmentType", typ: u(undefined, r("Instalment")) },
         { json: "PaymentInstrumentData", js: "paymentInstrumentData", typ: u(undefined, r("PaymentInstrumentData")) },
         { json: "PaymentType", js: "paymentType", typ: u(undefined, r("PaymentType")) },
         { json: "RequestedValidityDate", js: "requestedValidityDate", typ: u(undefined, "") },
@@ -4359,7 +4359,7 @@ const typeMap: any = {
         { json: "CumulativeAmount", js: "cumulativeAmount", typ: u(undefined, 3.14) },
         { json: "FirstAmount", js: "firstAmount", typ: u(undefined, 3.14) },
         { json: "FirstPaymentDate", js: "firstPaymentDate", typ: u(undefined, "") },
-        { json: "Instalment", js: "instalment", typ: u(undefined, a(r("InstalmentType"))) },
+        { json: "InstalmentType", js: "instalmentType", typ: u(undefined, a(r("InstalmentType"))) },
         { json: "Period", js: "period", typ: u(undefined, 3.14) },
         { json: "PeriodUnit", js: "periodUnit", typ: u(undefined, r("PeriodUnitType")) },
         { json: "PlanID", js: "planId", typ: u(undefined, "") },
@@ -4717,7 +4717,7 @@ const typeMap: any = {
         { json: "CapturedSignature", js: "capturedSignature", typ: u(undefined, r("CapturedSignature")) },
         { json: "CurrencyConversion", js: "currencyConversion", typ: u(undefined, a(r("CurrencyConversion"))) },
         { json: "CustomerLanguage", js: "customerLanguage", typ: u(undefined, "") },
-        { json: "Instalment", js: "instalment", typ: u(undefined, r("Instalment")) },
+        { json: "InstalmentType", js: "instalmentType", typ: u(undefined, r("Instalment")) },
         { json: "MerchantOverrideFlag", js: "merchantOverrideFlag", typ: u(undefined, true) },
         { json: "OnlineFlag", js: "onlineFlag", typ: u(undefined, true) },
         { json: "PaymentAcquirerData", js: "paymentAcquirerData", typ: u(undefined, r("PaymentAcquirerData")) },
