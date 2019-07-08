@@ -89,7 +89,7 @@ export interface CardAcquisitionResponse {
 export interface CardAcquisitionTransaction {
     AllowedPaymentBrand?: string[];
     AllowedLoyaltyBrand?: string[];
-    ForceEntryMode?: ForceEntryModeType[][];
+    ForceEntryMode?: ForceEntryModeType[];
     LoyaltyHandling?: LoyaltyHandlingType;
     CustomerLanguage?: string;
     ForceCustomerSelectionFlag?: boolean;
@@ -124,7 +124,7 @@ export interface CardReaderAPDUResponse {
     CardStatusWords: any;
 }
 export interface CardReaderInitRequest {
-    ForceEntryMode?: ForceEntryModeType[][];
+    ForceEntryMode?: ForceEntryModeType[];
     DisplayOutput?: DisplayOutput;
     WarmResetFlag?: boolean;
     LeaveCardFlag?: boolean;
@@ -999,7 +999,7 @@ export interface TransactionConditions {
     AllowedPaymentBrand?: string[];
     AcquirerID?: string[];
     AllowedLoyaltyBrand?: string[];
-    ForceEntryMode?: ForceEntryModeType[][];
+    ForceEntryMode?: ForceEntryModeType[];
     DebitPreferredFlag?: boolean;
     LoyaltyHandling?: LoyaltyHandlingType;
     CustomerLanguage?: string;
