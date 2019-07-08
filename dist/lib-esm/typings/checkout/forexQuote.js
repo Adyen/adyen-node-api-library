@@ -1,1 +1,0 @@
-//# sourceMappingURL=forexQuote.js.map

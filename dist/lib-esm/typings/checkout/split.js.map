@@ -1,1 +1,0 @@
-{"version":3,"file":"split.js","sourceRoot":"","sources":["../../../../src/typings/checkout/split.ts"],"names":[],"mappings":"AAkCA,MAAM,KAAW,KAAK,CAUrB;AAVD,WAAiB,KAAK;IAEL,cAAQ,GAAG;QACpB,UAAU,EAAE,YAAwB;QACpC,OAAO,EAAE,SAAqB;QAC9B,WAAW,EAAE,aAAyB;QACtC,UAAU,EAAE,YAAwB;QACpC,GAAG,EAAE,KAAiB;QACtB,YAAY,EAAE,cAA0B;KAC3C,CAAC;AACN,CAAC,EAVgB,KAAK,KAAL,KAAK,QAUrB"}
