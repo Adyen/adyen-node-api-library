@@ -30,9 +30,8 @@ async function getJsonResponse<T, R>(
     jsonRequest: T | string,
     requestOptions: RequestOptions = {},
 ): Promise<R | string> {
-    const response = await resource.request(
-        typeof jsonRequest === "string" ? jsonRequest : JSON.stringify(jsonRequest),
-        requestOptions);
+    const request = typeof jsonRequest === "string" ? jsonRequest : JSON.stringify(jsonRequest);
+    const response = await resource.request(request, requestOptions);
     try {
         return JSON.parse(response);
     } catch (e) {
