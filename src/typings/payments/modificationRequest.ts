@@ -11,6 +11,7 @@
  */import { Amount } from './amount';
 import { Split } from './split';
 import { ThreeDSecureData } from './threeDSecureData';
+import {ApplicationInfo} from "../applicationInfo";
 
 
 export interface ModificationRequest { 
@@ -21,6 +22,7 @@ export interface ModificationRequest {
     /**
      * The merchant account that is used to process the payment.
      */
+    applicationInfo?: ApplicationInfo;
     merchantAccount: string;
     modificationAmount?: Amount;
     mpiData?: ThreeDSecureData;
