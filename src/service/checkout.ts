@@ -33,6 +33,7 @@ import PaymentsDetails from "./resource/checkout/paymentsDetails";
 import PaymentSession from "./resource/checkout/paymentSession";
 import PaymentsResult from "./resource/checkout/paymentsResult";
 import {ApplicationInfo} from "../typings/applicationInfo";
+import setApplicationInfo from "../helpers/setApplicationInfo";
 
 class Checkout extends ApiKeyAuthenticatedService {
     private readonly _payments: Payments;
@@ -50,22 +51,13 @@ class Checkout extends ApiKeyAuthenticatedService {
         this._paymentsResult = new PaymentsResult(this);
     }
 
-    private setApplicationInfo(request: PaymentRequest): PaymentRequest {
-        const hasApplicationInfo = "applicationInfo" in request;
-        if(!hasApplicationInfo) {
-            request.applicationInfo = new ApplicationInfo();
-        }
-
-        return request;
-    }
-
     public async payments(
         paymentsRequest: PaymentRequest,
         requestOptions?: RequestOptions,
     ): Promise<PaymentResponse> {
         return getJsonResponse<PaymentRequest, PaymentResponse>(
             this._payments,
-            this.setApplicationInfo(paymentsRequest),
+            setApplicationInfo(paymentsRequest),
             requestOptions,
         );
     }
