@@ -20,20 +20,12 @@
  */
 
 class NexoCryptoException implements Error {
-    private readonly _message: string;
-    private readonly _name: string;
+    public readonly message: string;
+    public readonly name: string;
 
     public constructor(message: string) {
-        this._name = "NexoCryptoException";
-        this._message = message;
-    }
-
-    public get message(): string {
-        return this._message;
-    }
-
-    public get name(): string {
-        return this._name;
+        this.name = "NexoCryptoException";
+        this.message = message;
     }
 }
 

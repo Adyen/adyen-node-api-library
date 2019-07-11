@@ -20,12 +20,12 @@
  */
 
 import Config from "../config";
-import ClientInterface from "../httpClient/clientInterface";
+import ClientInterface from "../typings/httpClient/clientInterface";
 import Service from "../service";
 import { RequestOptions } from "../typings/requestOptions";
 import ApiException from "./exception/apiException";
 
-class Resource {
+abstract class Resource {
     protected endpoint: string;
     private service: Service;
 
