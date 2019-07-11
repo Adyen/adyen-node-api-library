@@ -36,7 +36,7 @@ import {
     USER_AGENT,
 } from "../typings/constants/apiConstants";
 import { RequestOptions } from "../typings/requestOptions";
-import ClientInterface from "./clientInterface";
+import ClientInterface from "../typings/httpClient/clientInterface";
 import HttpClientException from "./httpClientException";
 
 class HttpURLConnectionClient implements ClientInterface {

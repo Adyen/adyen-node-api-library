@@ -20,7 +20,7 @@
  */
 
 import Config from "./config";
-import ClientInterface from "./httpClient/clientInterface";
+import ClientInterface from "./typings/httpClient/clientInterface";
 import HttpURLConnectionClient from "./httpClient/httpURLConnectionClient";
 import { Environment } from "./typings/enums/environment";
 
