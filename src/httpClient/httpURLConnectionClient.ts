@@ -41,12 +41,12 @@ import HttpClientException from "./httpClientException";
 
 class HttpURLConnectionClient implements ClientInterface {
     private static CHARSET: string = "utf-8";
-    private _proxy: AgentOptions;
-    private agentOptions: AgentOptions;
+    public proxy?: AgentOptions;
+    private agentOptions!: AgentOptions;
 
     public request(
         endpoint: string, json: string, config: Config, isApiRequired: boolean,
-        requestOptions: RequestOptions = {},
+        requestOptions: RequestOptions,
     ): Promise<string> {
         requestOptions.headers = {};
         requestOptions.timeout = config.connectionTimeoutMillis;
@@ -68,30 +68,30 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
         requestOptions.headers[CONTENT_TYPE] = APPLICATION_JSON_TYPE;
-        const httpConnection: ClientRequest = this.createRequest(endpoint, config.applicationName, requestOptions);
+        const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
 
         return this.doPostRequest(httpConnection, json);
     }
 
     public post(endpoint: string, postParameters: [string, string][], config: Config): Promise<string> {
         const postQuery: string = this.getQuery(postParameters);
-        const httpConnection: ClientRequest = this.createRequest(endpoint, config.applicationName, {});
+        const httpConnection: ClientRequest = this.createRequest(endpoint, {}, config.applicationName);
         return this.doPostRequest(httpConnection, postQuery);
     }
 
-    public set proxy(agentOptions: AgentOptions) {
-        this._proxy = agentOptions;
-    }
+    private createRequest(endpoint: string, requestOptions: RequestOptions, applicationName?: string): ClientRequest {
+        if (!requestOptions.headers) {
+            requestOptions.headers = {};
+        }
 
-    private createRequest(endpoint: string, applicationName: string, requestOptions: RequestOptions): ClientRequest {
         const url = new URL(endpoint);
         requestOptions.hostname = url.hostname;
         requestOptions.protocol = url.protocol;
         requestOptions.port = url.port;
         requestOptions.path = url.pathname;
 
-        if (this._proxy) {
-            this.agentOptions = {...this._proxy, ...this.agentOptions};
+        if (this.proxy) {
+            this.agentOptions = {...this.proxy, ...this.agentOptions};
         }
 
         if (requestOptions && requestOptions.idempotencyKey) {
@@ -148,15 +148,6 @@ class HttpURLConnectionClient implements ClientInterface {
             httpConnection.write(Buffer.from(json));
             httpConnection.end();
         });
-    }
-
-    private static setBasicAuthentication(httpConnection: ClientRequest, username: string, password: string): ClientRequest {
-        const authString = `${username}:${password}`;
-        const authEncBytes = new Buffer(authString);
-        const authStringEnc = authEncBytes.toString();
-
-        httpConnection.setHeader("Authorization", `Basic ${authStringEnc}`);
-        return httpConnection;
     }
 
     private installCertificateVerifier(terminalCertificatePath: string): void {
