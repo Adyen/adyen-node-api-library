@@ -26,7 +26,7 @@ import { ThreeDSecureData } from './threeDSecureData';
 import { ApplicationInfo } from "../applicationInfo";
 
 
-export class PaymentRequest {
+export interface PaymentRequest {
     applicationInfo?: ApplicationInfo;
     accountInfo?: AccountInfo;
     /**
@@ -184,13 +184,8 @@ export class PaymentRequest {
      * Set to true if the payment should be routed to a trusted MID.
      */
     trustedShopper?: boolean;
-
-    constructor() {
-        if (!this.applicationInfo) {
-            this.applicationInfo = new ApplicationInfo();
-        }
-    }
 }
+
 export namespace PaymentRequest {
     export type ChannelEnum = 'iOS' | 'Android' | 'Web';
     export const ChannelEnum = {
