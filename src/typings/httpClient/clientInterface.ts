@@ -18,8 +18,8 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
-import Config from "../config";
-import { RequestOptions } from "../typings/requestOptions";
+import Config from "../../config";
+import { RequestOptions } from "../requestOptions";
 import { AgentOptions } from "https";
 
 interface ClientInterface {
