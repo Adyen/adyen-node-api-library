@@ -1,4 +1,4 @@
-import * as crypto from "crypto";
+import {createHmac} from "crypto";
 import {NotificationRequestItem} from "../typings/notification";
 import {HMAC_SIGNATURE} from "../typings/constants/apiConstants";
 
@@ -12,7 +12,7 @@ class HmacValidator {
     public calculateHmac(data: string | NotificationRequestItem, key: string): string {
         const dataString = typeof data !== "string" ? this.getDataToSign(data) : data;
         const rawKey = Buffer.from(key, "hex");
-        return crypto.createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, rawKey).update(dataString, "utf8").digest("base64");
+        return createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, rawKey).update(dataString, "utf8").digest("base64");
     }
 
     public validateHMAC(notificationRequestItem: NotificationRequestItem, key: string): boolean {
