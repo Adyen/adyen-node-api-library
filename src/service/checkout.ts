@@ -32,7 +32,6 @@ import Payments from "./resource/checkout/payments";
 import PaymentsDetails from "./resource/checkout/paymentsDetails";
 import PaymentSession from "./resource/checkout/paymentSession";
 import PaymentsResult from "./resource/checkout/paymentsResult";
-import {ApplicationInfo} from "../typings/applicationInfo";
 import setApplicationInfo from "../helpers/setApplicationInfo";
 
 class Checkout extends ApiKeyAuthenticatedService {
