@@ -61,8 +61,7 @@ class HttpURLConnectionClient implements ClientInterface {
             requestOptions.headers[API_KEY] = apiKey;
         } else {
             const authString = `${config.username}:${config.password}`;
-            const authEncBytes = new Buffer(authString);
-            const authStringEnc = authEncBytes.toString();
+            const authStringEnc = new Buffer(authString).toString("base64");
 
             requestOptions.headers.Authorization = `Basic ${authStringEnc}`;
         }
