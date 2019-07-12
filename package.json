@@ -50,7 +50,7 @@
     "@typescript-eslint/parser": "1.11.0",
     "babel-loader": "8.0.6",
     "eslint": "6.0.1",
-    "coveralls": "3.0.4",
+    "coveralls": "3.0.5",
     "jest": "24.8.0",
     "ts-loader": "6.0.4",
     "typescript": "3.5.3",
