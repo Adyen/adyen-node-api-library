@@ -20,20 +20,12 @@
  */
 
 class InvalidSecurityKeyException implements Error {
-    private readonly _message: string;
-    private readonly  _name: string;
+    public readonly message: string;
+    public readonly  name: string;
 
     public constructor(message: string) {
-        this._message = message;
-        this._name = "InvalidSecurityKeyException";
-    }
-
-    public get message(): string {
-        return this._message;
-    }
-
-    public get name(): string {
-        return this._name;
+        this.message = message;
+        this.name = "InvalidSecurityKeyException";
     }
 }
 
