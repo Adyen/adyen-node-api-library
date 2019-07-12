@@ -29,6 +29,7 @@ import CancelOrRefund from "./resource/modification/cancelOrRefund";
 import Capture from "./resource/modification/capture";
 import Refund from "./resource/modification/refund";
 import TechnicalCancel from "./resource/modification/technicalCancel";
+import setApplicationInfo from "../helpers/setApplicationInfo";
 
 class Modification extends Service {
     private readonly _cancelOrRefund: CancelOrRefund;
@@ -54,7 +55,7 @@ class Modification extends Service {
     ): Promise<ModificationResult> {
         return await getJsonResponse<ModificationRequest, ModificationResult>(
             this._capture,
-            captureRequest,
+            setApplicationInfo(captureRequest),
             requestOptions,
         );
     }
@@ -65,7 +66,7 @@ class Modification extends Service {
     ): Promise<ModificationResult> {
         return await getJsonResponse<ModificationRequest, ModificationResult>(
             this._cancelOrRefund,
-            cancelOrRefundRequest,
+            setApplicationInfo(cancelOrRefundRequest),
             requestOptions,
         );
     }
@@ -76,7 +77,7 @@ class Modification extends Service {
     ): Promise<ModificationResult> {
         return await getJsonResponse<ModificationRequest, ModificationResult>(
             this._refund,
-            refundRequest,
+            setApplicationInfo(refundRequest),
             requestOptions,
         );
     }
@@ -87,7 +88,7 @@ class Modification extends Service {
     ): Promise<ModificationResult> {
         return await getJsonResponse<ModificationRequest, ModificationResult>(
             this._cancel,
-            cancelRequest,
+            setApplicationInfo(cancelRequest),
             requestOptions,
         );
     }
@@ -98,7 +99,7 @@ class Modification extends Service {
     ): Promise<ModificationResult> {
         return await getJsonResponse<ModificationRequest, ModificationResult>(
             this._technicalCancel,
-            technicalCancelRequest,
+            setApplicationInfo(technicalCancelRequest),
             requestOptions,
         );
     }
@@ -109,7 +110,7 @@ class Modification extends Service {
     ): Promise<ModificationResult> {
         return await getJsonResponse<ModificationRequest, ModificationResult>(
             this._adjustAuthorisation,
-            adjustAuthorisationRequest,
+            setApplicationInfo(adjustAuthorisationRequest),
             requestOptions,
         );
     }

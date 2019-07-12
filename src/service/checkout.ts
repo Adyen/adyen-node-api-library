@@ -32,6 +32,8 @@ import Payments from "./resource/checkout/payments";
 import PaymentsDetails from "./resource/checkout/paymentsDetails";
 import PaymentSession from "./resource/checkout/paymentSession";
 import PaymentsResult from "./resource/checkout/paymentsResult";
+import {ApplicationInfo} from "../typings/applicationInfo";
+import setApplicationInfo from "../helpers/setApplicationInfo";
 
 class Checkout extends ApiKeyAuthenticatedService {
     private readonly _payments: Payments;
@@ -55,7 +57,7 @@ class Checkout extends ApiKeyAuthenticatedService {
     ): Promise<PaymentResponse> {
         return getJsonResponse<PaymentRequest, PaymentResponse>(
             this._payments,
-            paymentsRequest,
+            setApplicationInfo(paymentsRequest),
             requestOptions,
         );
     }
