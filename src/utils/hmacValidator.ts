@@ -23,7 +23,7 @@ class HmacValidator {
     }
 
     private isNotificationRequestItem(item: DataToSign): item is NotificationRequestItem {
-        return !Object.values(item).every(value => typeof value === "string");
+        return !Object.values(item).every((value): boolean => typeof value === "string");
     }
 
     public getDataToSign(notificationRequestItem: DataToSign): string {
@@ -41,9 +41,9 @@ class HmacValidator {
         } else {
             const keys: string[] = [];
             const values: string[] = [];
-            const replacer = (str: string) =>
+            const replacer = (str: string): string =>
                 str.replace("\\", "\\\\").replace(":", "\\:");
-            Object.entries(notificationRequestItem).sort().forEach(([key, value]) => {
+            Object.entries(notificationRequestItem).sort().forEach(([key, value]): void => {
                 keys.push(replacer(key));
                 values.push(replacer(value));
             });
