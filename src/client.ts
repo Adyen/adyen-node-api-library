@@ -23,6 +23,7 @@ import Config from "./config";
 import ClientInterface from "./typings/httpClient/clientInterface";
 import HttpURLConnectionClient from "./httpClient/httpURLConnectionClient";
 import { Environment } from "./typings/enums/environment";
+import {version} from "../package.json";
 
 type ClientParametersOverload =
 | { config: Config }
@@ -60,7 +61,7 @@ class Client {
     public static MARKETPAY_FUND_API_VERSION: string = "v3";
     public static MARKETPAY_NOTIFICATION_API_VERSION: string = "v1";
     public static LIB_NAME: string = "adyen-node-api-library";
-    public static LIB_VERSION: string = "1.0.1";
+    public static LIB_VERSION: string = version;
     public static CHECKOUT_ENDPOINT_TEST: string = "https://checkout-test.adyen.com/checkout";
     public static CHECKOUT_ENDPOINT_LIVE_SUFFIX: string = "-checkout-live.adyenpayments.com/checkout";
     public static CHECKOUT_API_VERSION: string = "v49";
