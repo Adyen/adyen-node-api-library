@@ -7,7 +7,7 @@
     "sourceMap": true,
     "declaration": true,
     "moduleResolution": "node",
-    "rootDir": "src",
+    "rootDir": ".",
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,

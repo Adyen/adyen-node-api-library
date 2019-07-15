@@ -2,9 +2,9 @@
   "name": "@adyen/api-library",
   "version": "1.0.1",
   "description": "The Adyen API Library for NodeJS enables you to work with Adyen APIs and Hosted Payment Pages.",
-  "main": "dist/lib/index.js",
-  "types": "dist/lib/index.d.ts",
-  "module": "dist/lib-esm/index.js",
+  "main": "dist/lib/src/index.js",
+  "types": "dist/lib/src/index.d.ts",
+  "module": "dist/lib-esm/src/index.js",
   "engines": {
     "node": ">=8.1.1"
   },
