@@ -21,7 +21,7 @@
 import Client from "./client";
 import Service from "./service";
 
-class ApiKeyAuthenticatedService extends Service {
+abstract class ApiKeyAuthenticatedService extends Service {
     protected constructor(client: Client) {
         super(client);
         this.apiKeyRequired = true;

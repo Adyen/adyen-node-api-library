@@ -7,7 +7,7 @@
     "sourceMap": true,
     "declaration": true,
     "moduleResolution": "node",
-    "rootDir": "src",
+    "rootDir": ".",
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
@@ -15,6 +15,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUnusedLocals": true
   },
   "include": [
     "src"

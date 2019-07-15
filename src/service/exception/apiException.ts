@@ -22,39 +22,15 @@
 import { ApiError } from "../../typings/apiError";
 
 class ApiException implements Error {
-    private _error: ApiError;
-    private _statusCode: number;
-    private readonly _message: string;
-    private readonly _name: string;
+    public error!: ApiError;
+    public statusCode: number;
+    public readonly message: string;
+    public readonly name: string;
 
     public constructor(message: string, statusCode: number) {
-        this._name = "ApiException";
-        this._message = message;
-        this._statusCode = statusCode;
-    }
-
-    public get error(): ApiError {
-        return this._error;
-    }
-
-    public set error(error: ApiError) {
-        this._error = error;
-    }
-
-    public get statusCode(): number {
-        return this._statusCode;
-    }
-
-    public set statusCode(statusCode: number) {
-        this._statusCode = statusCode;
-    }
-
-    public get message(): string {
-        return this._message;
-    }
-
-    public get name(): string {
-        return this._name;
+        this.name = "ApiException";
+        this.message = message;
+        this.statusCode = statusCode;
     }
 }
 

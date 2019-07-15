@@ -1235,7 +1235,7 @@ export type AlignmentType = "Left" | "Right" | "Centred" | "Justified";
 
 export type AttributeType = "id-at-commonName" | "id-at-localityName" | "id-at-organizationName" | "id-at-organizationalUnitName" | "id-at-countryName";
 
-export type AuthenticationMethodType = "Bypass" | "ManualVerification" | "MerchantAuthentication" | "OfflinePIN" | "OnLinePIN" | "PaperSignature" | "SecuredChannel" | "SecureCertificate" | "SecureNoCertificate" | "SignatureCapture" | "UnknownMethod";
+export type AuthenticationMethodType = "Bypass" | "ManualVerification" | "MerchantAuthentication" | "OfflinePIN" | "OnlinePIN" | "PaperSignature" | "SecuredChannel" | "SecureCertificate" | "SecureNoCertificate" | "SignatureCapture" | "UnknownMethod";
 
 export type BarcodeType = "EAN8" | "EAN13" | "UPCA" | "Code25" | "Code128" | "PDF417" | "QRCODE";
 
