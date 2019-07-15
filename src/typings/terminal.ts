@@ -232,7 +232,7 @@
 // match the expected interface, even if the JSON is valid.
 
 export interface TerminalApiRequest {
-    saleToPoiRequest?: SaleToPoiRequest;
+    saleToPoiRequest: SaleToPoiRequest;
 }
 
 export interface SaleToPoiRequest {
@@ -1623,7 +1623,7 @@ export enum AuthenticationMethodType {
     ManualVerification = "ManualVerification",
     MerchantAuthentication = "MerchantAuthentication",
     OfflinePin = "OfflinePIN",
-    OnLinePin = "OnLinePIN",
+    OnlinePin = "OnlinePIN",
     PaperSignature = "PaperSignature",
     SecureCertificate = "SecureCertificate",
     SecureNoCertificate = "SecureNoCertificate",
@@ -1994,9 +1994,9 @@ export interface TerminalApiSecuredRequest {
 }
 
 export interface SaleToPoiSecuredMessage {
-    messageHeader?:   MessageHeader;
-    nexoBlob?:        string;
-    securityTrailer?: SecurityTrailer;
+    messageHeader:   MessageHeader;
+    nexoBlob:        string;
+    securityTrailer: SecurityTrailer;
 }
 
 export interface SecurityTrailer {
@@ -2008,7 +2008,7 @@ export interface SecurityTrailer {
 }
 
 export interface TerminalApiSecuredResponse {
-    saleToPoiResponse?: SaleToPoiSecuredMessage;
+    saleToPoiResponse: SaleToPoiSecuredMessage;
 }
 
 export interface NexoDerivedKey {
@@ -2018,10 +2018,10 @@ export interface NexoDerivedKey {
 }
 
 export interface SecurityKey {
-    adyenCryptoVersion?: number;
-    keyIdentifier?:      string;
-    keyVersion?:         number;
-    passphrase?:         string;
+    adyenCryptoVersion: number;
+    keyIdentifier:      string;
+    keyVersion:         number;
+    passphrase:         string;
 }
 
 // Converts JSON strings to/from your types
@@ -5472,7 +5472,7 @@ const typeMap: any = {
         "ManualVerification",
         "MerchantAuthentication",
         "OfflinePIN",
-        "OnLinePIN",
+        "OnlinePIN",
         "PaperSignature",
         "SecureCertificate",
         "SecureNoCertificate",

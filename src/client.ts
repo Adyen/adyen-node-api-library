@@ -20,9 +20,10 @@
  */
 
 import Config from "./config";
-import ClientInterface from "./httpClient/clientInterface";
+import ClientInterface from "./typings/httpClient/clientInterface";
 import HttpURLConnectionClient from "./httpClient/httpURLConnectionClient";
 import { Environment } from "./typings/enums/environment";
+import {version} from "../package.json";
 
 type ClientParametersOverload =
 | { config: Config }
@@ -60,7 +61,7 @@ class Client {
     public static MARKETPAY_FUND_API_VERSION: string = "v3";
     public static MARKETPAY_NOTIFICATION_API_VERSION: string = "v1";
     public static LIB_NAME: string = "adyen-node-api-library";
-    public static LIB_VERSION: string = "1.0.1";
+    public static LIB_VERSION: string = version;
     public static CHECKOUT_ENDPOINT_TEST: string = "https://checkout-test.adyen.com/checkout";
     public static CHECKOUT_ENDPOINT_LIVE_SUFFIX: string = "-checkout-live.adyenpayments.com/checkout";
     public static CHECKOUT_API_VERSION: string = "v49";
@@ -71,27 +72,27 @@ class Client {
     public static TERMINAL_API_ENDPOINT_LIVE: string = "https://terminal-api-live.adyen.com";
     public static ENDPOINT_PROTOCOL: string = "https://";
 
-    private _httpClient: ClientInterface;
-    private _config: Config;
+    private _httpClient!: ClientInterface;
+    public config: Config;
 
     public constructor(clientParameters: ClientParametersOverload);
     public constructor(options: ClientParameters) {
         if (options.config) {
-            this._config = options.config;
+            this.config = options.config;
         } else {
-            this._config = new Config();
+            this.config = new Config();
         }
 
         if (options.environment) {
             this.setEnvironment(options.environment, options.liveEndpointUrlPrefix);
             if (options.username && options.password && options.applicationName) {
-                this._config.username = options.username;
-                this._config.password = options.password;
-                this._config.applicationName = options.applicationName;
+                this.config.username = options.username;
+                this.config.password = options.password;
+                this.config.applicationName = options.applicationName;
             }
 
             if (options.apiKey) {
-                this._config.apiKey = options.apiKey;
+                this.config.apiKey = options.apiKey;
             }
         }
 
@@ -101,25 +102,25 @@ class Client {
     }
 
     public setEnvironment(environment: Environment, liveEndpointUrlPrefix?: string): void {
-        this._config.environment = environment;
+        this.config.environment = environment;
         if (environment === "TEST") {
-            this._config.endpoint = Client.ENDPOINT_TEST;
-            this._config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
-            this._config.hppEndpoint = Client.HPP_TEST;
-            this._config.checkoutEndpoint = Client.CHECKOUT_ENDPOINT_TEST;
-            this._config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
+            this.config.endpoint = Client.ENDPOINT_TEST;
+            this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
+            this.config.hppEndpoint = Client.HPP_TEST;
+            this.config.checkoutEndpoint = Client.CHECKOUT_ENDPOINT_TEST;
+            this.config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
         } else if (environment === "LIVE") {
-            this._config.endpoint = Client.ENDPOINT_LIVE;
-            this._config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_LIVE;
-            this._config.hppEndpoint = Client.HPP_LIVE;
+            this.config.endpoint = Client.ENDPOINT_LIVE;
+            this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_LIVE;
+            this.config.hppEndpoint = Client.HPP_LIVE;
             if (liveEndpointUrlPrefix) {
-                this._config.endpoint =
+                this.config.endpoint =
                     `${Client.ENDPOINT_PROTOCOL}${liveEndpointUrlPrefix}${Client.ENDPOINT_LIVE_SUFFIX}`;
-                this._config.checkoutEndpoint =
+                this.config.checkoutEndpoint =
                     `${Client.ENDPOINT_PROTOCOL}${liveEndpointUrlPrefix}${Client.CHECKOUT_ENDPOINT_LIVE_SUFFIX}`;
             } else {
-                this._config.endpoint = Client.ENDPOINT_LIVE;
-                this._config.checkoutEndpoint = undefined;
+                this.config.endpoint = Client.ENDPOINT_LIVE;
+                this.config.checkoutEndpoint = undefined;
             }
         }
     }
@@ -134,14 +135,6 @@ class Client {
 
     public set httpClient(httpClient: ClientInterface) {
         this._httpClient = httpClient;
-    }
-
-    public get config(): Config {
-        return this._config;
-    }
-
-    public set config(config: Config) {
-        this._config = config;
     }
 
     public setApplicationName(applicationName: string): void {

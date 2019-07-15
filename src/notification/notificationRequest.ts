@@ -23,36 +23,20 @@ import {Convert, Notification, NotificationItem, NotificationRequestItem} from "
 class NotificationRequest {
     public constructor(json: Notification) {
         const notification = Convert.toNotification(JSON.stringify(json));
-        this._notificationItemContainers = notification.notificationItems;
-        this._live = notification.live;
+        this.notificationItemContainers = notification.notificationItems;
+        this.live = notification.live;
     }
 
-    public get notificationItemContainers(): NotificationItem[] {
-        return this._notificationItemContainers;
-    }
-
-    public set notificationItemContainers(value: NotificationItem[]) {
-        this._notificationItemContainers = value;
-    }
-
-    public get live(): string {
-        return this._live;
-    }
-
-    public set live(value: string) {
-        this._live = value;
-    }
-
-    public get notificationItems(): NotificationRequestItem[] {
-        if (!this._notificationItemContainers) {
-            return null;
+    public get notificationItems(): NotificationRequestItem[] | undefined {
+        if (!this.notificationItemContainers) {
+            return undefined;
         }
 
-        return this._notificationItemContainers.map((container): NotificationRequestItem => container.notificationRequestItem);
+        return this.notificationItemContainers.map((container): NotificationRequestItem => container.notificationRequestItem);
     }
 
-    private _live: string;
-    private _notificationItemContainers: NotificationItem[];
+    public live: string;
+    public notificationItemContainers: NotificationItem[];
 }
 
 export default NotificationRequest;
