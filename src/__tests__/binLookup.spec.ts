@@ -66,7 +66,7 @@ describe("Bin Lookup", function (): void {
             errorCode: "901",
             message: "Invalid Merchant Account",
             errorType: "security"
-        }), {code: 403});
+        }), {statusCode: 403});
         const binLookup = new BinLookup(client);
 
         const threeDSAvailabilityRequest: ThreeDSAvailabilityRequest = {

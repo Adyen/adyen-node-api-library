@@ -50,36 +50,36 @@ class Payout extends Service {
         this._submitThirdParty = new SubmitThirdParty(this);
     }
 
-    public async storeDetailAndSubmitThirdParty(request: StoreDetailAndSubmitRequest): Promise<StoreDetailAndSubmitResponse> {
-        return await getJsonResponse<StoreDetailAndSubmitRequest, StoreDetailAndSubmitResponse>(
+    public storeDetailAndSubmitThirdParty(request: StoreDetailAndSubmitRequest): Promise<StoreDetailAndSubmitResponse> {
+        return getJsonResponse<StoreDetailAndSubmitRequest, StoreDetailAndSubmitResponse>(
             this._storeDetailAndSubmitThirdParty,
             request
         );
     }
 
-    public async confirmThirdParty(request: ModifyRequest): Promise<ModifyResponse> {
-        return await getJsonResponse<ModifyRequest, ModifyResponse>(
+    public confirmThirdParty(request: ModifyRequest): Promise<ModifyResponse> {
+        return getJsonResponse<ModifyRequest, ModifyResponse>(
             this._confirmThirdParty,
             request
         );
     }
 
-    public async declineThirdParty(request: ModifyRequest): Promise<ModifyResponse> {
-        return await getJsonResponse<ModifyRequest, ModifyResponse>(
+    public declineThirdParty(request: ModifyRequest): Promise<ModifyResponse> {
+        return getJsonResponse<ModifyRequest, ModifyResponse>(
             this._declineThirdParty,
             request
         );
     }
 
-    public async storeDetail(request: StoreDetailRequest): Promise<StoreDetailResponse> {
-        return await getJsonResponse<StoreDetailRequest, StoreDetailResponse>(
+    public storeDetail(request: StoreDetailRequest): Promise<StoreDetailResponse> {
+        return getJsonResponse<StoreDetailRequest, StoreDetailResponse>(
             this._storeDetail,
             request
         );
     }
 
-    public async submitThirdparty(request: SubmitRequest): Promise<SubmitResponse> {
-        return await getJsonResponse<SubmitRequest, SubmitResponse>(
+    public submitThirdparty(request: SubmitRequest): Promise<SubmitResponse> {
+        return getJsonResponse<SubmitRequest, SubmitResponse>(
             this._submitThirdParty,
             request
         );
