@@ -39,8 +39,8 @@ import HttpClientException from "../httpClient/httpClientException";
 
 jest.mock("../httpClient/httpURLConnectionClient");
 
-interface Options { code: number }
-export const createMockClientFromResponse = (response: string, { code }: Options = {code: 200}): Client => {
+interface Options { statusCode: number }
+export const createMockClientFromResponse = (response: string, { statusCode }: Options = {statusCode: 200}): Client => {
     const httpURLConnectionClient: HttpURLConnectionClient = new HttpURLConnectionClient();
     // @ts-ignore
     httpURLConnectionClient.request.mockImplementation(
@@ -50,11 +50,11 @@ export const createMockClientFromResponse = (response: string, { code }: Options
                 typeof json === "string" &&
                 config instanceof Config &&
                 (isApiRequired ? typeof isApiRequired === "boolean" : true) &&
-                code >= 200 && code < 300
+                statusCode >= 200 && statusCode < 300
             ) {
                 return Promise.resolve(response);
             } else {
-                return Promise.reject(new HttpClientException(response, code));
+                throw new HttpClientException(response, statusCode);
             }
         }
     );

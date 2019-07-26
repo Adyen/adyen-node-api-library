@@ -42,6 +42,7 @@ import {
     PaymentResponse,
     PaymentSetupRequest, PaymentVerificationRequest
 } from "../typings/checkout";
+import ApiException from "../service/exception/apiException";
 
 function createAmountObject(currency: string, value: number): Amount {
     return {
@@ -125,6 +126,17 @@ describe("Checkout", (): void => {
         };
         const paymentMethodsResponse = await checkout.paymentMethods(paymentMethodsRequest);
         expect(paymentMethodsResponse.paymentMethods).toBeUndefined();
+    });
+
+    it("should handle API Exception", async (): Promise<void> => {
+        try {
+            const client = createMockClientFromResponse(paymentMethodsError, {statusCode: 400});
+            const checkout: Checkout = new Checkout(client);
+            const paymentMethodsRequest: PaymentMethodsRequest = {merchantAccount: "MagentoMerchantTest"};
+            await checkout.paymentMethods(paymentMethodsRequest);
+        } catch (e) {
+            expect(e instanceof ApiException).toBeTruthy();
+        }
     });
 
     it("should have payment details", async (): Promise<void> => {
