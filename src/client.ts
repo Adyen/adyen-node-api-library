@@ -83,8 +83,9 @@ class Client {
             this.config = new Config();
         }
 
-        if (options.environment) {
-            this.setEnvironment(options.environment, options.liveEndpointUrlPrefix);
+        const environment = options.environment || this.config.environment;
+        if (environment) {
+            this.setEnvironment(environment, options.liveEndpointUrlPrefix);
             if (options.username && options.password && options.applicationName) {
                 this.config.username = options.username;
                 this.config.password = options.password;
@@ -102,7 +103,6 @@ class Client {
     }
 
     public setEnvironment(environment: Environment, liveEndpointUrlPrefix?: string): void {
-        this.config.environment = environment;
         if (environment === "TEST") {
             this.config.endpoint = Client.ENDPOINT_TEST;
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;

@@ -50,10 +50,7 @@ class Checkout extends ApiKeyAuthenticatedService {
         this._paymentsResult = new PaymentsResult(this);
     }
 
-    public async payments(
-        paymentsRequest: PaymentRequest,
-        requestOptions?: RequestOptions,
-    ): Promise<PaymentResponse> {
+    public payments(paymentsRequest: PaymentRequest, requestOptions?: RequestOptions): Promise<PaymentResponse> {
         return getJsonResponse<PaymentRequest, PaymentResponse>(
             this._payments,
             setApplicationInfo(paymentsRequest),
@@ -61,21 +58,21 @@ class Checkout extends ApiKeyAuthenticatedService {
         );
     }
 
-    public async paymentMethods(paymentMethodsRequest: PaymentMethodsRequest): Promise<PaymentMethodsResponse> {
+    public paymentMethods(paymentMethodsRequest: PaymentMethodsRequest): Promise<PaymentMethodsResponse> {
         return getJsonResponse<PaymentMethodsRequest, PaymentMethodsResponse>(
             this._paymentMethods,
             paymentMethodsRequest,
         );
     }
 
-    public async paymentsDetails(paymentsDetailsRequest: DetailsRequest): Promise<PaymentResponse> {
+    public paymentsDetails(paymentsDetailsRequest: DetailsRequest): Promise<PaymentResponse> {
         return getJsonResponse<DetailsRequest, PaymentResponse>(
             this._paymentsDetails,
             paymentsDetailsRequest,
         );
     }
 
-    public async paymentSession(
+    public paymentSession(
         paymentSessionRequest: PaymentSetupRequest,
         requestOptions?: RequestOptions,
     ): Promise<PaymentSetupResponse> {
@@ -86,7 +83,7 @@ class Checkout extends ApiKeyAuthenticatedService {
         );
     }
 
-    public async paymentResult(paymentResultRequest: PaymentVerificationRequest): Promise<PaymentVerificationResponse> {
+    public paymentResult(paymentResultRequest: PaymentVerificationRequest): Promise<PaymentVerificationResponse> {
         return getJsonResponse<PaymentVerificationRequest, PaymentVerificationResponse>(
             this._paymentsResult,
             paymentResultRequest,
