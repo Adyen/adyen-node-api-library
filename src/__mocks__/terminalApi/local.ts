@@ -1,4 +1,334 @@
-export const localRes = JSON.stringify({
+export const localSecuredRes = JSON.stringify({
+    SaleToPOIResponse: {
+        MessageHeader: {
+            MessageCategory: "Payment",
+            MessageClass: "Service",
+            MessageType: "Response",
+            POIID: "P400Plus-275039202",
+            ProtocolVersion: "3.0",
+            SaleID: "325488592",
+            ServiceID: "325488592"
+        },
+        paymentResponse: {
+            paymentReceipt: [
+                {
+                    documentQualifier: "CashierReceipt",
+                    outputContent: {
+                        outputFormat: "Text",
+                        outputText: [
+                            {
+                                characterStyle: "Bold",
+                                endOfLineFlag: true,
+                                text: "key=header1"
+                            },
+                            {
+                                characterStyle: "Bold",
+                                endOfLineFlag: true,
+                                text: "key=header2"
+                            },
+                            {
+                                characterStyle: "Bold",
+                                endOfLineFlag: true,
+                                text: "name=MERCHANT%20COPY&key=merchantTitle"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Date&value=08%2f05%2f19&key=txdate"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Time&value=15%3a25%3a15&key=txtime"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Card&value=%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a0010&key=pan"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=PAN%20seq.&value=01&key=panSeq"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Pref.%20name&value=PPC%20MCD%2001%20v2%202&key=preferredName"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Card%20type&value=mc&key=cardType"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Payment%20method&value=mc&key=paymentMethod"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Payment%20variant&value=mc&key=paymentMethodVariant"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Entry%20mode&value=Contactless%20chip&key=posEntryMode"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=AID&value=A0000000041010&key=aid"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=MID&value=1000&key=mid"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=TID&value=P400Plus-275039202&key=tid"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=PTID&value=75039202&key=ptid"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Auth.%20code&value=123456&key=authCode"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Tender&value=4r7i001557325515012&key=txRef"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Reference&value=999&key=mref"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Type&value=GOODS_SERVICES&key=txtype"
+                            },
+                            {
+                                characterStyle: "Bold",
+                                endOfLineFlag: true,
+                                text: "name=TOTAL&value=%e2%82%ac%c2%a01.00&key=totalAmount"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                characterStyle: "Bold",
+                                endOfLineFlag: true,
+                                text: "name=APPROVED&key=approved"
+                            }
+                        ]
+                    },
+                    requiredSignatureFlag: false
+                },
+                {
+                    documentQualifier: "CustomerReceipt",
+                    outputContent: {
+                        outputFormat: "Text",
+                        outputText: [
+                            {
+                                characterStyle: "Bold",
+                                endOfLineFlag: true,
+                                text: "key=header1"
+                            },
+                            {
+                                characterStyle: "Bold",
+                                endOfLineFlag: true,
+                                text: "key=header2"
+                            },
+                            {
+                                characterStyle: "Bold",
+                                endOfLineFlag: true,
+                                text: "name=CARDHOLDER%20COPY&key=cardholderHeader"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Date&value=08%2f05%2f19&key=txdate"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Time&value=15%3a25%3a15&key=txtime"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Card&value=%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a0010&key=pan"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=PAN%20seq.&value=01&key=panSeq"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Pref.%20name&value=PPC%20MCD%2001%20v2%202&key=preferredName"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Card%20type&value=mc&key=cardType"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Payment%20method&value=mc&key=paymentMethod"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Payment%20variant&value=mc&key=paymentMethodVariant"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Entry%20mode&value=Contactless%20chip&key=posEntryMode"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=AID&value=A0000000041010&key=aid"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=MID&value=1000&key=mid"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=TID&value=P400Plus-275039202&key=tid"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=PTID&value=75039202&key=ptid"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Auth.%20code&value=123456&key=authCode"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Tender&value=4r7i001557325515012&key=txRef"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Reference&value=999&key=mref"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Type&value=GOODS_SERVICES&key=txtype"
+                            },
+                            {
+                                characterStyle: "Bold",
+                                endOfLineFlag: true,
+                                text: "name=TOTAL&value=%e2%82%ac%c2%a01.00&key=totalAmount"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                characterStyle: "Bold",
+                                endOfLineFlag: true,
+                                text: "name=APPROVED&key=approved"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "key=filler"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Please%20retain%20for%20your%20records&key=retain"
+                            },
+                            {
+                                endOfLineFlag: true,
+                                text: "name=Thank%20you&key=thanks"
+                            }
+                        ]
+                    },
+                    requiredSignatureFlag: false
+                }
+            ],
+            paymentResult: {
+                amountsResp: {
+                    authorizedAmount: 1,
+                    currency: "EUR"
+                },
+                onlineFlag: true,
+                paymentAcquirerData: {
+                    acquirerPoiid: "P400Plus-275039202",
+                    acquirerTransactionId: {
+                        timeStamp: "2019-05-08T14:25:15.000Z",
+                        transactionId: "8815573255107661"
+                    },
+                    approvalCode: "123456",
+                    merchantId: "TestMerchantRenatoTest"
+                },
+                paymentInstrumentData: {
+                    cardData: {
+                        cardCountryCode: "056",
+                        entryMode: [
+                            "Contactless"
+                        ],
+                        maskedPan: "541333 **** 0010",
+                        paymentBrand: "mc",
+                        sensitiveCardData: {
+                            cardSeqNumb: "01",
+                            expiryDate: "1225"
+                        }
+                    },
+                    paymentInstrumentType: "Card"
+                }
+            },
+            poiData: {
+                poiReconciliationId: "1000",
+                poiTransactionId: {
+                    timeStamp: "2019-05-08T14:25:15.000Z",
+                    transactionId: "4r7i001557325515012.8815573255107661"
+                }
+            },
+            response: {
+                additionalResponse: "tid=75039202&AID=A0000000041010&transactionType=GOODS_SERVICES&backendGiftcardIndicator=false&expiryYear=2025&acquirerAccountCode=TestPmmAcquirerAccount&alias=K182596230843790&posOriginalAmountCurrency=EUR&giftcardIndicator=false&authorisedAmountValue=100&pspReference=8815573255107661&paymentMethodVariant=mc&cardHolderName=N%2fA&refusalReasonRaw=APPROVED&authorisationMid=1000&expiryDate=12%2f2025&applicationPreferredName=PPC%20MCD%2001%20v2%202&isCardCommercial=unknown&acquirerCode=TestPmmAcquirer&txtime=15%3a25%3a15&iso8601TxDate=2019-05-08T14%3a25%3a15.0000000%2b0000&cardType=mc&posOriginalAmountValue=100&offline=false&aliasType=Default&txdate=08-05-2019&paymentMethod=mc&cvcResult=0%20Unknown&startYear=2030&tc=A767D7547D930504&avsResult=0%20Unknown&cardIssueNumber=1&mid=1000&merchantReference=999&transactionReferenceNumber=8815573255107661&expiryMonth=12&cardSummary=0010&posTotalAmountValue=100&posAuthAmountCurrency=EUR&cardHolderVerificationMethodResults=1F0302&authCode=123456&cardIssuerCountryId=056&shopperCountry=NL&posEntryMode=CLESS_CHIP&startMonth=34&fundingSource=CREDIT&cardScheme=mc&cardBin=541333&posAuthAmountValue=100",
+                result: "Success"
+            },
+            saleData: {
+                saleTransactionId: {
+                    timeStamp: "2019-05-08T14:24:48.598Z",
+                    transactionId: "999"
+                }
+            }
+        }
+    }
+});
+
+export const localEncRes = JSON.stringify({
     SaleToPOIResponse: {
         MessageHeader: {
             MessageCategory: "Payment",

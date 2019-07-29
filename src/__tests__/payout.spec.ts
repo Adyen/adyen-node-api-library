@@ -78,7 +78,7 @@ beforeEach(() => {
 
 describe("PayoutTest", function (): void {
     it("should succeed on store detail and submit third party", async function (): Promise<void> {
-        const request: StoreDetailAndSubmitRequest = mockStoreDetailAndSubmitRequest(client.config.merchantAccount);
+        const request: StoreDetailAndSubmitRequest = mockStoreDetailAndSubmitRequest(`${client.config.merchantAccount}`);
         scope.post("/storeDetail").reply(200, storeDetailAndSubmitThirdParty);
 
         const result = await payout.storeDetail(request);
@@ -116,7 +116,7 @@ describe("PayoutTest", function (): void {
     });
 
     it("should succeed on submit third party", async function (): Promise<void> {
-        scope.post("/submitThirdParty").reply(200, storeDetailAndSubmitThirdParty)
+        scope.post("/submitThirdParty").reply(200, storeDetailAndSubmitThirdParty);
 
         const request: SubmitRequest = mockSubmitRequest("MOCKED_MERCHANT_ACC");
         const result = await payout.submitThirdparty(request);

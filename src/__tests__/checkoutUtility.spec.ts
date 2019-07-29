@@ -34,9 +34,9 @@ describe("Checkout Utility", (): void => {
             originDomains: ["www.test.com", "https://www.your-domain2.com"],
         };
 
-        nock(client.config.checkoutEndpoint)
+        nock(`${client.config.checkoutEndpoint}`)
             .post(`/${Client.CHECKOUT_UTILITY_API_VERSION}/originKeys`)
-            .reply(200, originKeysSuccess)
+            .reply(200, originKeysSuccess);
 
         const originKeysResponse = await checkoutUtility.originKeys(originKeysRequest);
         expect(originKeysResponse.originKeys["https://www.your-domain1.com"])

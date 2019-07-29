@@ -65,13 +65,11 @@ describe("Bin Lookup", function (): void {
 
         const response = await binLookup.get3dsAvailability(threeDSAvailabilityRequest);
 
-        expect(response.dsPublicKeys[0].brand).toEqual("visa");
-        expect(response.threeDS2CardRangeDetails[0].brandCode).toEqual("visa");
-        expect(response.threeDS1Supported).toEqual(true);
+        expect(response).toEqual(threeDSAvailabilitySuccess);
     });
 
     it("should fail with invalid merchant", async function (): Promise<void> {
-        const threeDSAvailabilityRequest: ThreeDSAvailabilityRequest = {
+        const threeDSAvailabilityRequest: { [key: string]: any } = {
             merchantAccount: undefined,
             cardNumber: "4111111111111",
             brands: []
@@ -81,7 +79,7 @@ describe("Bin Lookup", function (): void {
             .reply(403);
 
         try {
-            await binLookup.get3dsAvailability(threeDSAvailabilityRequest);
+            await binLookup.get3dsAvailability(threeDSAvailabilityRequest as ThreeDSAvailabilityRequest);
             fail("Expected request to fail");
         } catch (e) {
             expect(e instanceof HttpClientException).toBeTruthy();
@@ -113,10 +111,8 @@ describe("Bin Lookup", function (): void {
         scope.post("/getCostEstimate")
             .reply(200, response);
 
-        const {cardBin, resultCode, surchargeType} = await binLookup.getCostEstimate(costEstimateRequest);
+        const expected = await binLookup.getCostEstimate(costEstimateRequest);
 
-        expect(cardBin.summary).toEqual("1111");
-        expect(resultCode).toEqual("Unsupported");
-        expect(surchargeType).toEqual("ZERO");
+        expect(response).toEqual(expected);
     });
 });

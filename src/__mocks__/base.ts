@@ -21,7 +21,6 @@
 
 import Client from "../client";
 import Config from "../config";
-import HttpURLConnectionClient from "../httpClient/httpURLConnectionClient";
 import {
     AmountsReq,
     MessageCategoryType,
@@ -39,6 +38,7 @@ import {
 export const createMockClientFromResponse = (): Client => {
     const config: Config = new Config();
     config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
+    config.terminalApiLocalEndpoint = "https://mocked_local_endpoint.com";
     config.hmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
     config.endpoint = Client.ENDPOINT_TEST;
     config.checkoutEndpoint = Client.CHECKOUT_ENDPOINT_TEST;
