@@ -35,38 +35,16 @@ import {
     TerminalApiRequest,
     TransactionIdentification,
 } from "../typings/terminal";
-import HttpClientException from "../httpClient/httpClientException";
 
-jest.mock("../httpClient/httpURLConnectionClient");
-
-interface Options { statusCode: number }
-export const createMockClientFromResponse = (response: string, { statusCode }: Options = {statusCode: 200}): Client => {
-    const httpURLConnectionClient: HttpURLConnectionClient = new HttpURLConnectionClient();
-    // @ts-ignore
-    httpURLConnectionClient.request.mockImplementation(
-        (endpoint: string, json: string, config: Config, isApiRequired: boolean): Promise<string> => {
-            if (
-                typeof endpoint === "string" &&
-                typeof json === "string" &&
-                config instanceof Config &&
-                (isApiRequired ? typeof isApiRequired === "boolean" : true) &&
-                statusCode >= 200 && statusCode < 300
-            ) {
-                return Promise.resolve(response);
-            } else {
-                throw new HttpClientException(response, statusCode);
-            }
-        }
-    );
-
+export const createMockClientFromResponse = (): Client => {
     const config: Config = new Config();
     config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
     config.hmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
     config.endpoint = Client.ENDPOINT_TEST;
     config.checkoutEndpoint = Client.CHECKOUT_ENDPOINT_TEST;
+    config.apiKey = "MOCKED_API_KEY";
 
     const client: Client = new Client({ config });
-    client.httpClient = httpURLConnectionClient;
 
     return client;
 };

@@ -67,6 +67,7 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
         requestOptions.headers[CONTENT_TYPE] = APPLICATION_JSON_TYPE;
+
         const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
 
         return this.doPostRequest(httpConnection, json);
