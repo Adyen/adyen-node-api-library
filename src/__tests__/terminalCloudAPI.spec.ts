@@ -9,9 +9,9 @@ import {Convert, TerminalApiRequest, TerminalApiResponse} from "../typings/termi
 
 let client: Client;
 let terminalCloudAPI: TerminalCloudAPI;
-let scope: any;
+let scope: nock.Scope;
 
-beforeEach(() => {
+beforeEach((): void => {
     client = createMockClientFromResponse();
     terminalCloudAPI = new TerminalCloudAPI(client);
     scope = nock(`${client.config.terminalApiCloudEndpoint}`);

@@ -16,9 +16,9 @@ const createRecurringDetailsRequest = (): RecurringDetailsRequest => {
 
 let client: Client;
 let recurring: Recurring;
-let scope: any;
+let scope: nock.Scope;
 
-beforeEach(() => {
+beforeEach((): void => {
     client = createMockClientFromResponse();
     recurring = new Recurring(client);
     scope = nock(`${client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}`);

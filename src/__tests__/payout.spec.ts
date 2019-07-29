@@ -68,9 +68,9 @@ const mockStoreDetailAndSubmitRequest = (merchantAccount: string): StoreDetailAn
 
 let client: Client;
 let payout: Payout;
-let scope: any;
+let scope: nock.Scope;
 
-beforeEach(() => {
+beforeEach((): void => {
     client = createMockClientFromResponse();
     scope = nock(`${client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}`);
     payout = new Payout(client);

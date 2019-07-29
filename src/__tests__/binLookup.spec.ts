@@ -44,9 +44,9 @@ const threeDSAvailabilitySuccess = {
 
 let client: Client;
 let binLookup: BinLookup;
-let scope: any;
+let scope: nock.Scope;
 
-beforeEach(() => {
+beforeEach((): void => {
     client = createMockClientFromResponse();
     binLookup = new BinLookup(client);
     scope = nock(`${client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}${Client.BIN_LOOKUP_API_VERSION}`);
@@ -69,7 +69,7 @@ describe("Bin Lookup", function (): void {
     });
 
     it("should fail with invalid merchant", async function (): Promise<void> {
-        const threeDSAvailabilityRequest: { [key: string]: any } = {
+        const threeDSAvailabilityRequest: { [key: string]: undefined|string|[] } = {
             merchantAccount: undefined,
             cardNumber: "4111111111111",
             brands: []
@@ -79,7 +79,7 @@ describe("Bin Lookup", function (): void {
             .reply(403);
 
         try {
-            await binLookup.get3dsAvailability(threeDSAvailabilityRequest as ThreeDSAvailabilityRequest);
+            await binLookup.get3dsAvailability(threeDSAvailabilityRequest as unknown as ThreeDSAvailabilityRequest);
             fail("Expected request to fail");
         } catch (e) {
             expect(e instanceof HttpClientException).toBeTruthy();

@@ -88,9 +88,9 @@ function createPaymentSessionRequest(): PaymentSetupRequest {
 
 let client: Client;
 let checkout: Checkout;
-let scope: any;
+let scope: nock.Scope;
 
-beforeEach(() => {
+beforeEach((): void => {
     client = createMockClientFromResponse();
     scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`);
     checkout = new Checkout(client);
