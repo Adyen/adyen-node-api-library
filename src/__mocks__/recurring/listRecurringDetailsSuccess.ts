@@ -1,5 +1,5 @@
-export const listRecurringDetailsSuccess = JSON.stringify({
-    creationDate: new Date("2017-03-01T11:53:11+01:00"),
+export const listRecurringDetailsSuccess = {
+    creationDate: "2017-03-01T10:53:11.000",
     details: [
         {
             additionalData: {
@@ -16,7 +16,7 @@ export const listRecurringDetailsSuccess = JSON.stringify({
             contractTypes: [
                 "ONECLICK",
             ],
-            creationDate: new Date("2017-03-07T09:43:33+01:00"),
+            creationDate: "2017-03-01T10:53:11.000",
             firstPspReference: "8524888762135795",
             paymentMethodVariant: "visa",
             recurringDetailReference: "recurringReference",
@@ -34,7 +34,7 @@ export const listRecurringDetailsSuccess = JSON.stringify({
             contractTypes: [
                 "RECURRING",
             ],
-            creationDate: new Date("2017-10-10T08:50:02+02:00"),
+            creationDate: "2017-03-01T10:53:11.000",
             firstPspReference: "8515076181707110",
             paymentMethodVariant: "paypal",
             recurringDetailReference: "8315076181982020",
@@ -49,4 +49,4 @@ export const listRecurringDetailsSuccess = JSON.stringify({
             variant: "paypal",
         },
     ],
-});
+};
