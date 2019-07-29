@@ -49,7 +49,7 @@ let scope: any;
 beforeEach(() => {
     client = createMockClientFromResponse();
     binLookup = new BinLookup(client);
-    scope = nock(`${client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}`);
+    scope = nock(`${client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}${Client.BIN_LOOKUP_API_VERSION}`);
 });
 
 describe("Bin Lookup", function (): void {
@@ -60,7 +60,7 @@ describe("Bin Lookup", function (): void {
             cardNumber: "4111111111111111"
         };
 
-        scope.post(`/${Client.BIN_LOOKUP_API_VERSION}/get3dsAvailability`)
+        scope.post("/get3dsAvailability")
             .reply(200, threeDSAvailabilitySuccess);
 
         const response = await binLookup.get3dsAvailability(threeDSAvailabilityRequest);
@@ -77,7 +77,7 @@ describe("Bin Lookup", function (): void {
             brands: []
         };
 
-        scope.post(`/${Client.BIN_LOOKUP_API_VERSION}/get3dsAvailability`)
+        scope.post("/get3dsAvailability")
             .reply(403);
 
         try {
@@ -110,7 +110,7 @@ describe("Bin Lookup", function (): void {
             shopperInteraction: "Ecommerce"
         };
 
-        scope.post(`/${Client.BIN_LOOKUP_API_VERSION}/getCostEstimate`)
+        scope.post("/getCostEstimate")
             .reply(200, response);
 
         const {cardBin, resultCode, surchargeType} = await binLookup.getCostEstimate(costEstimateRequest);

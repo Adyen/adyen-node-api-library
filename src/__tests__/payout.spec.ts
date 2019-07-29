@@ -1,3 +1,4 @@
+import nock from "nock";
 import { createMockClientFromResponse } from "../__mocks__/base";
 import Payout from "../service/payout";
 import {
@@ -6,6 +7,7 @@ import {
     StoreDetailRequest, SubmitRequest
 } from "../typings/payout";
 import { FRAUD_MANUAL_REVIEW, FRAUD_RESULT_TYPE } from "../typings/constants/apiConstants";
+import Client from "../client";
 
 const storeDetailAndSubmitThirdParty = JSON.stringify({
     additionalData: {
@@ -64,12 +66,20 @@ const mockStoreDetailAndSubmitRequest = (merchantAccount: string): StoreDetailAn
 });
 
 
+let client: Client;
+let payout: Payout;
+let scope: any;
+
+beforeEach(() => {
+    client = createMockClientFromResponse();
+    scope = nock(`${client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}`);
+    payout = new Payout(client);
+});
+
 describe("PayoutTest", function (): void {
     it("should succeed on store detail and submit third party", async function (): Promise<void> {
-        const client = createMockClientFromResponse(storeDetailAndSubmitThirdParty);
-        const payout = new Payout(client);
-
         const request: StoreDetailAndSubmitRequest = mockStoreDetailAndSubmitRequest(client.config.merchantAccount);
+        scope.post("/storeDetail").reply(200, storeDetailAndSubmitThirdParty);
 
         const result = await payout.storeDetail(request);
         expect(result.resultCode).toEqual("[payout-submit-received]");
@@ -79,10 +89,8 @@ describe("PayoutTest", function (): void {
     });
 
     it("should succeed on store detail", async function (): Promise<void> {
-        const client = createMockClientFromResponse(storeDetail);
-        const payout = new Payout(client);
-
-        const request: StoreDetailRequest = mockStoreDetailRequest(client.config.merchantAccount);
+        scope.post("/storeDetail").reply(200, storeDetail);
+        const request: StoreDetailRequest = mockStoreDetailRequest("MOCKED_MERCHANT_ACC");
         const result = await payout.storeDetail(request);
 
         expect("Success").toEqual(result.resultCode);
@@ -91,14 +99,14 @@ describe("PayoutTest", function (): void {
     });
 
     it("should succeed on confirm third party", async function (): Promise<void> {
-        const client = createMockClientFromResponse(JSON.stringify({
-            pspReference: "8815131762537886",
-            response: "[payout-confirm-received]"
-        }));
-        const payout = new Payout(client);
+        scope.post("/confirmThirdParty")
+            .reply(200, {
+                pspReference: "8815131762537886",
+                response: "[payout-confirm-received]"
+            });
 
         const request: ModifyRequest = {
-            merchantAccount: client.config.merchantAccount,
+            merchantAccount: "MOCKED_MERCHANT_ACCOUNT",
             originalReference: "reference"
         };
         const result = await payout.confirmThirdParty(request);
@@ -108,10 +116,9 @@ describe("PayoutTest", function (): void {
     });
 
     it("should succeed on submit third party", async function (): Promise<void> {
-        const client = createMockClientFromResponse(storeDetailAndSubmitThirdParty);
-        const payout = new Payout(client);
+        scope.post("/submitThirdParty").reply(200, storeDetailAndSubmitThirdParty)
 
-        const request: SubmitRequest = mockSubmitRequest(client.config.merchantAccount);
+        const request: SubmitRequest = mockSubmitRequest("MOCKED_MERCHANT_ACC");
         const result = await payout.submitThirdparty(request);
 
         expect(result.resultCode).toEqual("[payout-submit-received]");
@@ -121,14 +128,13 @@ describe("PayoutTest", function (): void {
     });
 
     it("should succeed on decline third party", async function (): Promise<void> {
-        const client = createMockClientFromResponse(JSON.stringify({
+        scope.post("/storeDetailAndSubmitThirdParty").reply(200, {
             pspReference: "8815131762537886",
             response: "[payout-confirm-received]"
-        }));
-        const payout = new Payout(client);
+        });
 
         const request: ModifyRequest = {
-            merchantAccount: client.config.merchantAccount,
+            merchantAccount: "MOCKED_MERCHANT_ACC",
             originalReference: "reference"
         };
         const result = await payout.declineThirdParty(request);
