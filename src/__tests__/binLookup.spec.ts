@@ -18,9 +18,12 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
+import nock from "nock";
 import { createMockClientFromResponse } from "../__mocks__/base";
 import BinLookup from "../service/binLookup";
-import {CostEstimateRequest, ThreeDSAvailabilityRequest, ThreeDSAvailabilityResponse} from "../typings/binLookup";
+import {CostEstimateRequest, ThreeDSAvailabilityRequest} from "../typings/binLookup";
+import Client from "../client";
+import HttpClientException from "../httpClient/httpClientException";
 
 const threeDSAvailabilitySuccess = {
     dsPublicKeys: [{
@@ -39,58 +42,58 @@ const threeDSAvailabilitySuccess = {
     threeDS2supported: true
 };
 
+let client: Client;
+let binLookup: BinLookup;
+let scope: any;
+
+beforeEach(() => {
+    client = createMockClientFromResponse();
+    binLookup = new BinLookup(client);
+    scope = nock(`${client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}`);
+});
+
 describe("Bin Lookup", function (): void {
     it("should succeed on get 3ds availability", async function (): Promise<void> {
-        const client = createMockClientFromResponse(JSON.stringify(threeDSAvailabilitySuccess));
-        const binLookup = new BinLookup(client);
-
         const threeDSAvailabilityRequest: ThreeDSAvailabilityRequest = {
-            merchantAccount: client.config.merchantAccount,
+            merchantAccount: "MOCK_MERCHANT_ACCOUNT",
             brands: ["randomBrand"],
             cardNumber: "4111111111111111"
         };
 
-        const {
-            dsPublicKeys,
-            threeDS2CardRangeDetails,
-            threeDS1Supported
-        }: ThreeDSAvailabilityResponse = await binLookup.get3dsAvailability(threeDSAvailabilityRequest);
-        expect(dsPublicKeys[0].brand).toEqual("visa");
-        expect(threeDS2CardRangeDetails[0].brandCode).toEqual("visa");
-        expect(threeDS1Supported).toEqual(true);
+        scope.post(`/${Client.BIN_LOOKUP_API_VERSION}/get3dsAvailability`)
+            .reply(200, threeDSAvailabilitySuccess);
+
+        const response = await binLookup.get3dsAvailability(threeDSAvailabilityRequest);
+
+        expect(response.dsPublicKeys[0].brand).toEqual("visa");
+        expect(response.threeDS2CardRangeDetails[0].brandCode).toEqual("visa");
+        expect(response.threeDS1Supported).toEqual(true);
     });
 
-    it("should have invalid merchant", async function (): Promise<void> {
-        const client = createMockClientFromResponse(JSON.stringify({
-            status: 403,
-            errorCode: "901",
-            message: "Invalid Merchant Account",
-            errorType: "security"
-        }), {statusCode: 403});
-        const binLookup = new BinLookup(client);
-
+    it("should fail with invalid merchant", async function (): Promise<void> {
         const threeDSAvailabilityRequest: ThreeDSAvailabilityRequest = {
             merchantAccount: undefined,
             cardNumber: "4111111111111",
             brands: []
         };
 
+        scope.post(`/${Client.BIN_LOOKUP_API_VERSION}/get3dsAvailability`)
+            .reply(403);
+
         try {
             await binLookup.get3dsAvailability(threeDSAvailabilityRequest);
             fail("Expected request to fail");
         } catch (e) {
-            expect(e.statusCode).toEqual(403);
-            expect(JSON.parse(e.message).errorCode).toEqual("901");
+            expect(e instanceof HttpClientException).toBeTruthy();
         }
     });
 
     it("should succeed on get cost estimate", async function (): Promise<void> {
-        const client = createMockClientFromResponse(JSON.stringify({
+        const response = {
             cardBin: {summary: "1111"},
             resultCode: "Unsupported",
             surchargeType: "ZERO"
-        }));
-        const binLookup = new BinLookup(client);
+        };
         const costEstimateRequest: CostEstimateRequest = {
             amount: { currency: "EUR", value: 1000 },
             assumptions: {
@@ -98,7 +101,7 @@ describe("Bin Lookup", function (): void {
                 assume3DSecureAuthenticated: true
             },
             cardNumber: "411111111111",
-            merchantAccount: client.config.merchantAccount,
+            merchantAccount: "MOCKED_MERCHANT_ACC",
             merchantDetails: {
                 countryCode: "NL",
                 mcc: "7411",
@@ -106,6 +109,9 @@ describe("Bin Lookup", function (): void {
             },
             shopperInteraction: "Ecommerce"
         };
+
+        scope.post(`/${Client.BIN_LOOKUP_API_VERSION}/getCostEstimate`)
+            .reply(200, response);
 
         const {cardBin, resultCode, surchargeType} = await binLookup.getCostEstimate(costEstimateRequest);
 

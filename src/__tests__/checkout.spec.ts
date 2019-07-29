@@ -88,16 +88,17 @@ function createPaymentSessionRequest(): PaymentSetupRequest {
 
 let client: Client;
 let checkout: Checkout;
+let scope: any;
 
 beforeEach(() => {
     client = createMockClientFromResponse();
+    scope = nock(client.config.checkoutEndpoint);
     checkout = new Checkout(client);
 });
 
 describe("Checkout", (): void => {
     it("should make a payment", async (): Promise<void> => {
-        nock(`${client.config.checkoutEndpoint}`)
-            .post(`/${Client.CHECKOUT_API_VERSION}/payments`)
+        scope.post(`/${Client.CHECKOUT_API_VERSION}/payments`)
             .reply(200, paymentsSuccess);
 
         const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
@@ -107,8 +108,7 @@ describe("Checkout", (): void => {
 
     it("should return correct Exception", async (): Promise<void> => {
         try {
-            nock(`${client.config.checkoutEndpoint}`)
-                .post(`/${Client.CHECKOUT_API_VERSION}/payments`)
+            scope.post(`/${Client.CHECKOUT_API_VERSION}/payments`)
                 .reply(401);
 
             const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
@@ -121,8 +121,7 @@ describe("Checkout", (): void => {
     it("should have valid payment methods", async (): Promise<void> => {
         const paymentMethodsRequest: PaymentMethodsRequest = {merchantAccount: "MagentoMerchantTest"};
 
-        nock(`${client.config.checkoutEndpoint}`)
-            .post(`/${Client.CHECKOUT_API_VERSION}/paymentMethods`)
+        scope.post(`/${Client.CHECKOUT_API_VERSION}/paymentMethods`)
             .reply(200, paymentMethodsSuccess);
 
         const paymentMethodsResponse = await checkout.paymentMethods(paymentMethodsRequest);
@@ -135,8 +134,7 @@ describe("Checkout", (): void => {
     });
 
     it("should have payment details", async (): Promise<void> => {
-        nock(`${client.config.checkoutEndpoint}`)
-            .post(`/${Client.CHECKOUT_API_VERSION}/payments/details`)
+        scope.post(`/${Client.CHECKOUT_API_VERSION}/payments/details`)
             .reply(200, paymentDetailsSuccess);
 
         const paymentsResponse = await checkout.paymentsDetails(createPaymentsDetailsRequest());
@@ -145,8 +143,7 @@ describe("Checkout", (): void => {
 
     it("should have payment session success", async (): Promise<void> => {
         const client: Client = createMockClientFromResponse();
-        nock(`${client.config.checkoutEndpoint}`)
-            .post(`/${Client.CHECKOUT_API_VERSION}/paymentSession`)
+        scope.post(`/${Client.CHECKOUT_API_VERSION}/paymentSession`)
             .reply(200, paymentSessionSuccess);
         const checkout: Checkout = new Checkout(client);
         const paymentSessionRequest: PaymentSetupRequest = createPaymentSessionRequest();
@@ -156,8 +153,7 @@ describe("Checkout", (): void => {
 
     it("should have payments result", async (): Promise<void> => {
         const client = createMockClientFromResponse();
-        nock(`${client.config.checkoutEndpoint}`)
-            .post(`/${Client.CHECKOUT_API_VERSION}/paymentSession`)
+        scope.post(`/${Client.CHECKOUT_API_VERSION}/payments/result`)
             .reply(200, paymentsResultSuccess);
         const checkout = new Checkout(client);
         const paymentResultRequest: PaymentVerificationRequest = {
@@ -180,8 +176,7 @@ describe("Checkout", (): void => {
 
     it("should succeed on multibanco payment", async (): Promise<void> => {
         const client: Client = createMockClientFromResponse();
-        nock(`${client.config.checkoutEndpoint}`)
-            .post(`/${Client.CHECKOUT_API_VERSION}/payments`)
+        scope.post(`/${Client.CHECKOUT_API_VERSION}/payments`)
             .reply(200, paymentsResultMultibancoSuccess);
 
         const checkout: Checkout = new Checkout(client);
