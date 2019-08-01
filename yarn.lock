@@ -2168,11 +2168,6 @@ deep-eql@^3.0.1:
   dependencies:
     type-detect "^4.0.0"
 
-deep-equal@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
-  integrity sha1-9dJgKStmDghO/0zbyfCK0yR0SLU=
-
 deep-extend@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
@@ -4319,19 +4314,17 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-nock@11.0.0-beta.29:
-  version "11.0.0-beta.29"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-11.0.0-beta.29.tgz#9039222e48817eb43e48b2af2284eef4fb08dffe"
-  integrity sha512-WKHPedqlMqARmdy3nTGQ8/su4gxMrk4gPVJLGjQmDJMdVIq/9gulO1xeAaT3nYI8Ntl4qP0rSGnKng8JFnWvUQ==
+nock@11.0.0-beta.30:
+  version "11.0.0-beta.30"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-11.0.0-beta.30.tgz#a4893cf7cc2e3b10dfc26baa4eef944d1a54c074"
+  integrity sha512-B07PXT0Qzch87mym1ZmFb+2zl/jY24WD+a87Uip9nXbm7M0hIovvEpzSHnTXBZ1auwTLGtxhulkMH63EJQCTCw==
   dependencies:
     chai "^4.1.2"
     debug "^4.1.0"
-    deep-equal "^1.0.0"
     json-stringify-safe "^5.0.1"
     lodash "^4.17.13"
     mkdirp "^0.5.0"
     propagate "^2.0.0"
-    qs "^6.5.1"
 
 node-int64@^0.4.0:
   version "0.4.0"
@@ -4911,11 +4904,6 @@ punycode@^2.1.0, punycode@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
-
-qs@^6.5.1:
-  version "6.7.0"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
-  integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
 qs@~6.5.2:
   version "6.5.2"
