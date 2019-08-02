@@ -19,8 +19,8 @@
  * See the LICENSE file for more info.
  */
 
-import {ClientRequest, IncomingMessage} from "http";
-import { Agent, AgentOptions, request as httpRequest } from "https";
+import {ClientRequest, IncomingMessage, request as httpRequest} from "http";
+import {Agent, AgentOptions, request as httpsRequest} from "https";
 
 import * as fs from "fs";
 import {URL} from "url";
@@ -68,15 +68,55 @@ class HttpURLConnectionClient implements ClientInterface {
 
         requestOptions.headers[CONTENT_TYPE] = APPLICATION_JSON_TYPE;
 
-        const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
+        if (this.proxy) {
+            const {host, port} = this.proxy;
+            const url = new URL(endpoint);
+            const path = `${url.hostname}:${url.port || 80}${url.pathname}`;
 
-        return this.doPostRequest(httpConnection, json);
+            return new Promise((resolve, reject): void => {
+                const req = httpRequest({host, port: port || 80, method: "CONNECT", path});
+
+                return req.on("connect", (res, socket, head) => {
+                    socket.write("HTTP/1.1 Connection Established\r\n" +
+                        "Proxy-agent: Node-Proxy\r\n" +
+                        "\r\n");
+
+                    const httpConnection = this.createRequest(endpoint, {
+                        ...requestOptions,
+                        agent: false
+                    }, config.applicationName);
+                    httpConnection.write(head);
+                    httpConnection.pipe(socket);
+                    socket.pipe(httpConnection);
+
+                    this.doPostRequest(httpConnection, json, (err, data) => {
+                        if (err) reject(err);
+                        else resolve(data);
+                    });
+                }).on("error", (err) => {
+                    reject(err);
+                }).end();
+            });
+        }
+
+        const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
+        return new Promise((resolve, reject): void =>
+            this.doPostRequest(httpConnection, json, (err, data) => {
+                if (err) reject(err);
+                else resolve(data);
+            })
+        );
     }
 
     public post(endpoint: string, postParameters: [string, string][], config: Config): Promise<string> {
         const postQuery: string = this.getQuery(postParameters);
-        const httpConnection: ClientRequest = this.createRequest(endpoint, {}, config.applicationName);
-        return this.doPostRequest(httpConnection, postQuery);
+        const connectionRequest: ClientRequest = this.createRequest(endpoint, {}, config.applicationName);
+        return new Promise((resolve, reject): void =>
+            this.doPostRequest(connectionRequest, postQuery, (err, data) => {
+                if (err) reject(err);
+                else resolve(data);
+            })
+        );
     }
 
     private createRequest(endpoint: string, requestOptions: RequestOptions, applicationName?: string): ClientRequest {
@@ -90,10 +130,6 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.port = url.port;
         requestOptions.path = url.pathname;
 
-        if (this.proxy) {
-            this.agentOptions = {...this.proxy, ...this.agentOptions};
-        }
-
         if (requestOptions && requestOptions.idempotencyKey) {
             requestOptions.headers[IDEMPOTENCY_KEY] = requestOptions.idempotencyKey;
             delete requestOptions.idempotencyKey;
@@ -105,49 +141,47 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.headers[ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
         requestOptions.headers[USER_AGENT] = `${applicationName} ${Client.LIB_NAME}/${Client.LIB_VERSION}`;
 
-        return httpRequest(requestOptions);
+        return httpsRequest(requestOptions);
     }
 
     private getQuery(params: [string, string][]): string {
         return params.map(([key, value]): string => `${key}=${value}`).join("&");
     }
 
-    private doPostRequest(httpConnection: ClientRequest, json: string): Promise<string> {
-        return new Promise((resolve, reject): void => {
-            httpConnection.flushHeaders();
+    private doPostRequest(connectionRequest: ClientRequest, json: string, cb: (error: Error | null, data?: string) => void): void {
+        connectionRequest.flushHeaders();
 
-            httpConnection.on("response", (res: IncomingMessage): void => {
-                let resData = "";
-                if (res.statusCode && res.statusCode !== 200) {
-                    const exception = new HttpClientException(
-                        `HTTP Exception: ${res.statusCode}. ${res.statusMessage}`,
-                        res.statusCode,
-                        res.headers,
-                        res,
-                    );
-                    reject(exception);
+        connectionRequest.on("response", (res: IncomingMessage): void => {
+            let resData = "";
+            if (res.statusCode && res.statusCode !== 200) {
+                const exception = new HttpClientException(
+                    `HTTP Exception: ${res.statusCode}. ${res.statusMessage}`,
+                    res.statusCode,
+                    res.headers,
+                    res,
+                );
+                cb(exception);
+            }
+            res.on("data", (data): void => {
+                resData += data;
+            });
+
+            res.on("end", (): void => {
+                if (!res.complete) {
+                    cb(new Error("The connection was terminated while the message was still being sent"));
                 }
-                res.on("data", (data): void => {
-                    resData += data;
-                });
-
-                res.on("end", (): void => {
-                    if (!res.complete) {
-                        reject(new Error("The connection was terminated while the message was still being sent"));
-                    }
-                    resolve(resData);
-                });
-
-                res.on("error", reject);
+                cb(null, resData);
             });
 
-            httpConnection.on("timeout", (): void => {
-                httpConnection.abort();
-            });
-            httpConnection.on("error", reject);
-            httpConnection.write(Buffer.from(json));
-            httpConnection.end();
+            res.on("error", cb);
         });
+
+        connectionRequest.on("timeout", (): void => {
+            connectionRequest.abort();
+        });
+        connectionRequest.on("error", cb);
+        connectionRequest.write(Buffer.from(json));
+        connectionRequest.end();
     }
 
     private installCertificateVerifier(terminalCertificatePath: string): void {
