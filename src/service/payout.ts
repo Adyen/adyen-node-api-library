@@ -24,12 +24,13 @@ import DeclineThirdParty from "./resource/payout/declineThirdParty";
 import StoreDetail from "./resource/payout/storeDetail";
 import SubmitThirdParty from "./resource/payout/submitThirdParty";
 import ConfirmThirdParty from "./resource/payout/confirmThirdParty";
+import PayoutResource from "./resource/payout/payout";
 import StoreDetailAndSubmitThirdParty from "./resource/payout/storeDetailAndSubmitThirdParty";
 import {
     ModifyRequest,
     ModifyResponse,
     StoreDetailAndSubmitRequest,
-    StoreDetailAndSubmitResponse, StoreDetailRequest, StoreDetailResponse, SubmitRequest, SubmitResponse
+    StoreDetailAndSubmitResponse, StoreDetailRequest, StoreDetailResponse, SubmitRequest, SubmitResponse, PayoutRequest, PayoutResponse
 } from "../typings/payout";
 import getJsonResponse from "../helpers/getJsonResponse";
 
@@ -39,6 +40,7 @@ class Payout extends Service {
     private readonly _declineThirdParty: DeclineThirdParty;
     private readonly _storeDetail: StoreDetail;
     private readonly _submitThirdParty: SubmitThirdParty;
+		private readonly _payout: PayoutResource;
 
     public constructor(client: Client) {
         super(client);
@@ -48,6 +50,7 @@ class Payout extends Service {
         this._declineThirdParty = new DeclineThirdParty(this);
         this._storeDetail = new StoreDetail(this);
         this._submitThirdParty = new SubmitThirdParty(this);
+				this._payout = new PayoutResource(this);
     }
 
     public storeDetailAndSubmitThirdParty(request: StoreDetailAndSubmitRequest): Promise<StoreDetailAndSubmitResponse> {
@@ -82,6 +85,13 @@ class Payout extends Service {
         return getJsonResponse<SubmitRequest, SubmitResponse>(
             this._submitThirdParty,
             request
+        );
+    }
+
+    public payout(request: PayoutRequest): Promise<PayoutResponse> {
+        return getJsonResponse<PayoutRequest, PayoutResponse>(
+          this._payout,
+          request
         );
     }
 }
