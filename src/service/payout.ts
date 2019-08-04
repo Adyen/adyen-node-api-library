@@ -40,7 +40,7 @@ class Payout extends Service {
     private readonly _declineThirdParty: DeclineThirdParty;
     private readonly _storeDetail: StoreDetail;
     private readonly _submitThirdParty: SubmitThirdParty;
-		private readonly _payout: PayoutResource;
+    private readonly _payout: PayoutResource;
 
     public constructor(client: Client) {
         super(client);
@@ -50,7 +50,7 @@ class Payout extends Service {
         this._declineThirdParty = new DeclineThirdParty(this);
         this._storeDetail = new StoreDetail(this);
         this._submitThirdParty = new SubmitThirdParty(this);
-				this._payout = new PayoutResource(this);
+        this._payout = new PayoutResource(this);
     }
 
     public storeDetailAndSubmitThirdParty(request: StoreDetailAndSubmitRequest): Promise<StoreDetailAndSubmitResponse> {
