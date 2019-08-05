@@ -1,3 +1,3 @@
-export const disableSuccess = JSON.stringify({
+export const disableSuccess = {
     response: "[detail-successfully-disabled]",
-});
+};

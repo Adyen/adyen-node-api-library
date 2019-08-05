@@ -49,66 +49,66 @@ class Modification extends Service {
         this._technicalCancel = new TechnicalCancel(this);
     }
 
-    public async capture(
+    public capture(
         captureRequest: ModificationRequest,
         requestOptions?: RequestOptions,
     ): Promise<ModificationResult> {
-        return await getJsonResponse<ModificationRequest, ModificationResult>(
+        return getJsonResponse<ModificationRequest, ModificationResult>(
             this._capture,
             setApplicationInfo(captureRequest),
             requestOptions,
         );
     }
 
-    public async cancelOrRefund(
+    public cancelOrRefund(
         cancelOrRefundRequest: ModificationRequest,
         requestOptions?: RequestOptions,
     ): Promise<ModificationResult> {
-        return await getJsonResponse<ModificationRequest, ModificationResult>(
+        return getJsonResponse<ModificationRequest, ModificationResult>(
             this._cancelOrRefund,
             setApplicationInfo(cancelOrRefundRequest),
             requestOptions,
         );
     }
 
-    public async refund(
+    public refund(
         refundRequest: ModificationRequest,
         requestOptions?: RequestOptions,
     ): Promise<ModificationResult> {
-        return await getJsonResponse<ModificationRequest, ModificationResult>(
+        return getJsonResponse<ModificationRequest, ModificationResult>(
             this._refund,
             setApplicationInfo(refundRequest),
             requestOptions,
         );
     }
 
-    public async cancel(
+    public cancel(
         cancelRequest: ModificationRequest,
         requestOptions?: RequestOptions,
     ): Promise<ModificationResult> {
-        return await getJsonResponse<ModificationRequest, ModificationResult>(
+        return getJsonResponse<ModificationRequest, ModificationResult>(
             this._cancel,
             setApplicationInfo(cancelRequest),
             requestOptions,
         );
     }
 
-    public async technicalCancel(
+    public technicalCancel(
         technicalCancelRequest: ModificationRequest,
         requestOptions?: RequestOptions,
     ): Promise<ModificationResult> {
-        return await getJsonResponse<ModificationRequest, ModificationResult>(
+        return getJsonResponse<ModificationRequest, ModificationResult>(
             this._technicalCancel,
             setApplicationInfo(technicalCancelRequest),
             requestOptions,
         );
     }
 
-    public async adjustAuthorisation(
+    public adjustAuthorisation(
         adjustAuthorisationRequest: ModificationRequest,
         requestOptions?: RequestOptions,
     ): Promise<ModificationResult> {
-        return await getJsonResponse<ModificationRequest, ModificationResult>(
+        return getJsonResponse<ModificationRequest, ModificationResult>(
             this._adjustAuthorisation,
             setApplicationInfo(adjustAuthorisationRequest),
             requestOptions,

@@ -36,15 +36,15 @@ class Recurring extends Service {
         this._disable = new Disable(this);
     }
 
-    public async listRecurringDetails(request: RecurringDetailsRequest): Promise<RecurringDetailsResult> {
-        return await getJsonResponse<RecurringDetailsRequest, RecurringDetailsResult>(
+    public listRecurringDetails(request: RecurringDetailsRequest): Promise<RecurringDetailsResult> {
+        return getJsonResponse<RecurringDetailsRequest, RecurringDetailsResult>(
             this._listRecurringDetails,
             request,
         );
     }
 
-    public async disable(request: DisableRequest): Promise<DisableResult> {
-        return await getJsonResponse<DisableRequest, DisableResult>(
+    public disable(request: DisableRequest): Promise<DisableResult> {
+        return getJsonResponse<DisableRequest, DisableResult>(
             this._disable,
             request,
         );

@@ -33,7 +33,7 @@ class CheckoutUtility extends ApiKeyAuthenticatedService {
         this._originKeys = new OriginKeys(this);
     }
 
-    public async originKeys(originKeysRequest: CheckoutUtilityRequest): Promise<CheckoutUtilityResponse> {
+    public originKeys(originKeysRequest: CheckoutUtilityRequest): Promise<CheckoutUtilityResponse> {
         return getJsonResponse<CheckoutUtilityRequest, CheckoutUtilityResponse>(
             this._originKeys,
             originKeysRequest,

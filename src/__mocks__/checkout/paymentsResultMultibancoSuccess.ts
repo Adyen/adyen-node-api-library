@@ -1,5 +1,5 @@
 /* tslint:disable */
-export const paymentsResultMultibancoSuccess = JSON.stringify({
+export const paymentsResultMultibancoSuccess = {
     additionalData: {
         "cvcResult": "0",
         "avsResult": "0",
@@ -12,4 +12,4 @@ export const paymentsResultMultibancoSuccess = JSON.stringify({
     },
     pspReference: "8111111111111111",
     resultCode: "Received",
-});
+};

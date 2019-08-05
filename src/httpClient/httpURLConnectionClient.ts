@@ -20,7 +20,8 @@
  */
 
 import {ClientRequest, IncomingMessage} from "http";
-import { Agent, AgentOptions, request as httpRequest } from "https";
+import {Agent, AgentOptions, request as httpsRequest} from "https";
+import HttpsProxyAgent from "https-proxy-agent";
 
 import * as fs from "fs";
 import {URL} from "url";
@@ -67,15 +68,15 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
         requestOptions.headers[CONTENT_TYPE] = APPLICATION_JSON_TYPE;
-        const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
 
+        const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
         return this.doPostRequest(httpConnection, json);
     }
 
     public post(endpoint: string, postParameters: [string, string][], config: Config): Promise<string> {
         const postQuery: string = this.getQuery(postParameters);
-        const httpConnection: ClientRequest = this.createRequest(endpoint, {}, config.applicationName);
-        return this.doPostRequest(httpConnection, postQuery);
+        const connectionRequest: ClientRequest = this.createRequest(endpoint, {}, config.applicationName);
+        return this.doPostRequest(connectionRequest, postQuery);
     }
 
     private createRequest(endpoint: string, requestOptions: RequestOptions, applicationName?: string): ClientRequest {
@@ -89,33 +90,36 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.port = url.port;
         requestOptions.path = url.pathname;
 
-        if (this.proxy) {
-            this.agentOptions = {...this.proxy, ...this.agentOptions};
-        }
-
         if (requestOptions && requestOptions.idempotencyKey) {
             requestOptions.headers[IDEMPOTENCY_KEY] = requestOptions.idempotencyKey;
             delete requestOptions.idempotencyKey;
         }
 
-        requestOptions.agent = new Agent(this.agentOptions);
+        if (this.proxy && this.proxy.host) {
+            const { host, port, ...options } = this.proxy;
+            const agent = new HttpsProxyAgent({ host, port: port || 443, ...options });
+            requestOptions.agent = agent;
+        } else {
+            requestOptions.agent = new Agent(this.agentOptions);
+        }
+
         requestOptions.headers["Cache-Control"] = "no-cache";
         requestOptions.method = METHOD_POST;
         requestOptions.headers[ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
         requestOptions.headers[USER_AGENT] = `${applicationName} ${Client.LIB_NAME}/${Client.LIB_VERSION}`;
 
-        return httpRequest(requestOptions);
+        return httpsRequest(requestOptions);
     }
 
     private getQuery(params: [string, string][]): string {
         return params.map(([key, value]): string => `${key}=${value}`).join("&");
     }
 
-    private doPostRequest(httpConnection: ClientRequest, json: string): Promise<string> {
+    private doPostRequest(connectionRequest: ClientRequest, json: string): Promise<string> {
         return new Promise((resolve, reject): void => {
-            httpConnection.flushHeaders();
+            connectionRequest.flushHeaders();
 
-            httpConnection.on("response", (res: IncomingMessage): void => {
+            connectionRequest.on("response", (res: IncomingMessage): void => {
                 let resData = "";
                 if (res.statusCode && res.statusCode !== 200) {
                     const exception = new HttpClientException(
@@ -140,12 +144,12 @@ class HttpURLConnectionClient implements ClientInterface {
                 res.on("error", reject);
             });
 
-            httpConnection.on("timeout", (): void => {
-                httpConnection.abort();
+            connectionRequest.on("timeout", (): void => {
+                connectionRequest.abort();
             });
-            httpConnection.on("error", reject);
-            httpConnection.write(Buffer.from(json));
-            httpConnection.end();
+            connectionRequest.on("error", reject);
+            connectionRequest.write(Buffer.from(json));
+            connectionRequest.end();
         });
     }
 
@@ -165,7 +169,6 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
     }
-
 }
 
 export default HttpURLConnectionClient;

@@ -22,16 +22,16 @@
 import {IncomingHttpHeaders, IncomingMessage} from "http";
 
 class HttpClientException implements Error {
-    public code: number = 0;
+    public statusCode: number = 0;
     public responseHeaders: IncomingHttpHeaders | undefined;
     public readonly message: string;
     public readonly name: string;
     public responseBody: IncomingMessage | undefined;
 
-    public constructor(message: string, code?: number, responseHeaders?: IncomingHttpHeaders, responseBody?: IncomingMessage) {
+    public constructor(message: string, statusCode?: number, responseHeaders?: IncomingHttpHeaders, responseBody?: IncomingMessage) {
         this.name = "HttpClientException";
         this.message = message;
-        if(code) this.code = code;
+        if(statusCode) this.statusCode = statusCode;
         if(responseHeaders) this.responseHeaders = responseHeaders;
         if(responseBody) this.responseBody = responseBody;
     }
