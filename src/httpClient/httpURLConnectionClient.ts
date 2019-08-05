@@ -19,8 +19,9 @@
  * See the LICENSE file for more info.
  */
 
-import {ClientRequest, IncomingMessage, request as httpRequest} from "http";
+import {ClientRequest, IncomingMessage} from "http";
 import {Agent, AgentOptions, request as httpsRequest} from "https";
+import HttpsProxyAgent from "https-proxy-agent";
 
 import * as fs from "fs";
 import {URL} from "url";
@@ -68,37 +69,6 @@ class HttpURLConnectionClient implements ClientInterface {
 
         requestOptions.headers[CONTENT_TYPE] = APPLICATION_JSON_TYPE;
 
-        if (this.proxy) {
-            const {host, port} = this.proxy;
-            const url = new URL(endpoint);
-            const path = `${url.hostname}:${url.port || 80}${url.pathname}`;
-
-            return new Promise((resolve, reject): void => {
-                const req = httpRequest({host, port: port || 80, method: "CONNECT", path});
-
-                return req.on("connect", (res, socket, head) => {
-                    socket.write("HTTP/1.1 Connection Established\r\n" +
-                        "Proxy-agent: Node-Proxy\r\n" +
-                        "\r\n");
-
-                    const httpConnection = this.createRequest(endpoint, {
-                        ...requestOptions,
-                        agent: false
-                    }, config.applicationName);
-                    httpConnection.write(head);
-                    httpConnection.pipe(socket);
-                    socket.pipe(httpConnection);
-
-                    this.doPostRequest(httpConnection, json, (err, data) => {
-                        if (err) reject(err);
-                        else resolve(data);
-                    });
-                }).on("error", (err) => {
-                    reject(err);
-                }).end();
-            });
-        }
-
         const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
         return new Promise((resolve, reject): void =>
             this.doPostRequest(httpConnection, json, (err, data) => {
@@ -135,7 +105,14 @@ class HttpURLConnectionClient implements ClientInterface {
             delete requestOptions.idempotencyKey;
         }
 
-        requestOptions.agent = new Agent(this.agentOptions);
+        if (this.proxy && this.proxy.host) {
+            const { host, port, ...options } = this.proxy;
+            const agent = new HttpsProxyAgent({ host, port: port || 443, ...options });
+            requestOptions.agent = agent;
+        } else {
+            requestOptions.agent = new Agent(this.agentOptions);
+        }
+
         requestOptions.headers["Cache-Control"] = "no-cache";
         requestOptions.method = METHOD_POST;
         requestOptions.headers[ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
@@ -200,7 +177,6 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
     }
-
 }
 
 export default HttpURLConnectionClient;
