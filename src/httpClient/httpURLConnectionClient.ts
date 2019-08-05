@@ -70,23 +70,13 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.headers[CONTENT_TYPE] = APPLICATION_JSON_TYPE;
 
         const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
-        return new Promise((resolve, reject): void =>
-            this.doPostRequest(httpConnection, json, (err, data) => {
-                if (err) reject(err);
-                else resolve(data);
-            })
-        );
+        return this.doPostRequest(httpConnection, json);
     }
 
     public post(endpoint: string, postParameters: [string, string][], config: Config): Promise<string> {
         const postQuery: string = this.getQuery(postParameters);
         const connectionRequest: ClientRequest = this.createRequest(endpoint, {}, config.applicationName);
-        return new Promise((resolve, reject): void =>
-            this.doPostRequest(connectionRequest, postQuery, (err, data) => {
-                if (err) reject(err);
-                else resolve(data);
-            })
-        );
+        return this.doPostRequest(connectionRequest, postQuery);
     }
 
     private createRequest(endpoint: string, requestOptions: RequestOptions, applicationName?: string): ClientRequest {
@@ -125,40 +115,42 @@ class HttpURLConnectionClient implements ClientInterface {
         return params.map(([key, value]): string => `${key}=${value}`).join("&");
     }
 
-    private doPostRequest(connectionRequest: ClientRequest, json: string, cb: (error: Error | null, data?: string) => void): void {
-        connectionRequest.flushHeaders();
+    private doPostRequest(connectionRequest: ClientRequest, json: string): Promise<string> {
+        return new Promise((resolve, reject): void => {
+            connectionRequest.flushHeaders();
 
-        connectionRequest.on("response", (res: IncomingMessage): void => {
-            let resData = "";
-            if (res.statusCode && res.statusCode !== 200) {
-                const exception = new HttpClientException(
-                    `HTTP Exception: ${res.statusCode}. ${res.statusMessage}`,
-                    res.statusCode,
-                    res.headers,
-                    res,
-                );
-                cb(exception);
-            }
-            res.on("data", (data): void => {
-                resData += data;
-            });
-
-            res.on("end", (): void => {
-                if (!res.complete) {
-                    cb(new Error("The connection was terminated while the message was still being sent"));
+            connectionRequest.on("response", (res: IncomingMessage): void => {
+                let resData = "";
+                if (res.statusCode && res.statusCode !== 200) {
+                    const exception = new HttpClientException(
+                        `HTTP Exception: ${res.statusCode}. ${res.statusMessage}`,
+                        res.statusCode,
+                        res.headers,
+                        res,
+                    );
+                    reject(exception);
                 }
-                cb(null, resData);
+                res.on("data", (data): void => {
+                    resData += data;
+                });
+
+                res.on("end", (): void => {
+                    if (!res.complete) {
+                        reject(new Error("The connection was terminated while the message was still being sent"));
+                    }
+                    resolve(resData);
+                });
+
+                res.on("error", reject);
             });
 
-            res.on("error", cb);
+            connectionRequest.on("timeout", (): void => {
+                connectionRequest.abort();
+            });
+            connectionRequest.on("error", reject);
+            connectionRequest.write(Buffer.from(json));
+            connectionRequest.end();
         });
-
-        connectionRequest.on("timeout", (): void => {
-            connectionRequest.abort();
-        });
-        connectionRequest.on("error", cb);
-        connectionRequest.write(Buffer.from(json));
-        connectionRequest.end();
     }
 
     private installCertificateVerifier(terminalCertificatePath: string): void {
