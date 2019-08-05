@@ -1,7 +1,7 @@
 /* tslint:disable */
 export const paymentsError = JSON.stringify({
-    status: 422,
+    statusCode: 422,
     errorCode: "130",
-    message: "Reference Missing",
+    statusMessage: "Reference Missing",
     errorType: "validation",
 });

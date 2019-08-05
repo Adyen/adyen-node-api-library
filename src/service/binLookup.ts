@@ -40,15 +40,15 @@ class BinLookup extends ApiKeyAuthenticatedService {
         this._getCostEstimate = new GetCostEstimate(this);
     }
 
-    public async get3dsAvailability(request: ThreeDSAvailabilityRequest): Promise<ThreeDSAvailabilityResponse> {
-        return await getJsonResponse<ThreeDSAvailabilityRequest, ThreeDSAvailabilityResponse>(
+    public get3dsAvailability(request: ThreeDSAvailabilityRequest): Promise<ThreeDSAvailabilityResponse> {
+        return getJsonResponse<ThreeDSAvailabilityRequest, ThreeDSAvailabilityResponse>(
             this._get3dsAvailability,
             request
         );
     }
 
-    public async getCostEstimate(request: CostEstimateRequest): Promise<CostEstimateResponse> {
-        return await getJsonResponse<CostEstimateRequest, CostEstimateResponse>(
+    public getCostEstimate(request: CostEstimateRequest): Promise<CostEstimateResponse> {
+        return getJsonResponse<CostEstimateRequest, CostEstimateResponse>(
             this._getCostEstimate,
             request
         );
