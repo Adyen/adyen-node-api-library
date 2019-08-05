@@ -8,7 +8,7 @@ beforeEach((): void => {
 });
 
 describe("HTTP Client", function (): void {
-    it("should return ApiException when no API Key is provided", async (): void => {
+    it("should return ApiException when no API Key is provided", async (): Promise<void> => {
         const client = new Client({apiKey: "", environment: "TEST"});
         const checkout = new Checkout(client);
 
@@ -24,7 +24,7 @@ describe("HTTP Client", function (): void {
         }
     });
 
-    it("should return ApiException on request error", async (): void => {
+    it("should return ApiException on request error", async (): Promise<void> => {
         const client = new Client({apiKey: "API_KEY", environment: "TEST"});
         const checkout = new Checkout(client);
 
