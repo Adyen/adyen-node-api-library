@@ -66,25 +66,15 @@ const mockStoreDetailAndSubmitRequest = (merchantAccount: string): StoreDetailAn
 });
 
 const mockPayoutRequest = (merchantAccount: string): PayoutRequest => ({
-  ...amountAndReference,
-  ...defaultData,
-  card: {
-    expiryMonth: "10",
-    expiryYear: "2020",
-    holderName: "John Smith",
-    number: "4111111111111111",
-  },
-  merchantAccount,
-});
-
-let client: Client;
-let payout: Payout;
-let scope: nock.Scope;
-
-beforeEach((): void => {
-    client = createMockClientFromResponse();
-    scope = nock(`${client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}`);
-    payout = new Payout(client);
+    ...amountAndReference,
+    ...defaultData,
+    card: {
+        expiryMonth: "10",
+        expiryYear: "2020",
+        holderName: "John Smith",
+        number: "4111111111111111",
+    },
+    merchantAccount,
 });
 
 let client: Client;
@@ -165,15 +155,15 @@ describe("PayoutTest", function (): void {
     });
 
     it("should succeed on payout", async function (): Promise<void> {
-      scope.post("/payout").reply(200, {
-          pspReference: "8815131762537886",
-          resultCode: "Received",
-      });
+        scope.post("/payout").reply(200, {
+            pspReference: "8815131762537886",
+            resultCode: "Received",
+        });
 
-      const request = mockPayoutRequest("MOCKED_MERCHANT_ACC");
-      const result = await payout.payout(request);
+        const request = mockPayoutRequest("MOCKED_MERCHANT_ACC");
+        const result = await payout.payout(request);
 
-      expect(result.resultCode).toEqual("Received");
-      expect(result.pspReference).toEqual("8815131762537886");
+        expect(result.resultCode).toEqual("Received");
+        expect(result.pspReference).toEqual("8815131762537886");
     });
 });
