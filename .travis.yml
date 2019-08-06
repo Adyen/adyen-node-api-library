@@ -10,7 +10,7 @@ script:
 jobs:
   include:
   - stage: npm release
-    if: tag IS present
+    if: (tag IS present) AND (branch = master)
     node_js: stable
     script: yarn run build
     deploy:
