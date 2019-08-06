@@ -87,6 +87,16 @@ beforeEach((): void => {
     payout = new Payout(client);
 });
 
+let client: Client;
+let payout: Payout;
+let scope: nock.Scope;
+
+beforeEach((): void => {
+    client = createMockClientFromResponse();
+    scope = nock(`${client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}`);
+    payout = new Payout(client);
+});
+
 describe("PayoutTest", function (): void {
     it("should succeed on store detail and submit third party", async function (): Promise<void> {
         const request: StoreDetailAndSubmitRequest = mockStoreDetailAndSubmitRequest(`${client.config.merchantAccount}`);
