@@ -1,6 +1,6 @@
 import nock from "nock";
 import { createMockClientFromResponse } from "../__mocks__/base";
-import Payout from "../service/payout";
+import Payout from "../services/payout";
 import {
     ModifyRequest,
     StoreDetailAndSubmitRequest,

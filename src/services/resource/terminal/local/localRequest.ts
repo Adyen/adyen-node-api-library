@@ -20,7 +20,7 @@
  */
 
 import Service from "../../../../service";
-import Resource from "../../../resource";
+import Resource from "../../../../services/resource";
 
 class LocalRequest extends Resource {
     public constructor(service: Service) {

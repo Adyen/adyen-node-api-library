@@ -29,7 +29,7 @@ import {paymentsResultMultibancoSuccess} from "../__mocks__/checkout/paymentsRes
 import {paymentsResultSuccess} from "../__mocks__/checkout/paymentsResultSucess";
 import Client from "../client";
 import { TYPE_SCHEME } from "../typings/constants/apiConstants";
-import Checkout from "../service/checkout";
+import Checkout from "../services/checkout";
 import {
     Amount,
     DetailsRequest,
