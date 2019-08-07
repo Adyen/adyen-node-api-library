@@ -20,7 +20,7 @@
  */
 import nock from "nock";
 import { createMockClientFromResponse } from "../__mocks__/base";
-import BinLookup from "../service/binLookup";
+import BinLookup from "../services/binLookup";
 import {CostEstimateRequest, ThreeDSAvailabilityRequest} from "../typings/binLookup";
 import Client from "../client";
 import HttpClientException from "../httpClient/httpClientException";
