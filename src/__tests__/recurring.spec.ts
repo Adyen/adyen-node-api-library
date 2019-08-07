@@ -2,7 +2,7 @@ import nock from "nock";
 import { createMockClientFromResponse } from "../__mocks__/base";
 import { disableSuccess } from "../__mocks__/recurring/disableSuccess";
 import { listRecurringDetailsSuccess } from "../__mocks__/recurring/listRecurringDetailsSuccess";
-import Recurring from "../service/recurring";
+import Recurring from "../services/recurring";
 import { DisableRequest, RecurringDetailsRequest } from "../typings/recurring";
 import Client from "../client";
 

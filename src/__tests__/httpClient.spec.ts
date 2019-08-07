@@ -1,7 +1,7 @@
 import nock from "nock";
 import Client from "../client";
-import Checkout from "../service/checkout";
-import ApiException from "../service/exception/apiException";
+import Checkout from "../services/checkout";
+import ApiException from "../services/exception/apiException";
 
 beforeEach((): void => {
     nock.cleanAll();

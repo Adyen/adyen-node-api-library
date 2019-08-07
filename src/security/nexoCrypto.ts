@@ -20,7 +20,7 @@
  */
 
 import {Cipher, createCipheriv, createDecipheriv, createHmac, randomBytes} from "crypto";
-import NexoCryptoException from "../service/exception/nexoCryptoException";
+import NexoCryptoException from "../services/exception/nexoCryptoException";
 import {NEXO_IV_LENGTH} from "../typings/constants/nexoConstants";
 import {
     MessageHeader,

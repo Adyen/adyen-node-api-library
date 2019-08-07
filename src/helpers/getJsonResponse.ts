@@ -19,7 +19,7 @@
  * See the LICENSE file for more info.
  */
 
-import Resource from "../service/resource";
+import Resource from "../services/resource";
 import { RequestOptions } from "../typings/requestOptions";
 
 async function getJsonResponse<T>(resource: Resource, jsonRequest: T | string, requestOptions?: RequestOptions): Promise<string>;
