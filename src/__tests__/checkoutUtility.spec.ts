@@ -22,7 +22,7 @@
 import nock from "nock";
 import { createMockClientFromResponse } from "../__mocks__/base";
 import {originKeysSuccess} from "../__mocks__/checkoutUtility/originkeysSuccess";
-import CheckoutUtility from "../service/checkoutUtility";
+import CheckoutUtility from "../services/checkoutUtility";
 import {CheckoutUtilityRequest} from "../typings/checkoutUtility";
 import Client from "../client";
 

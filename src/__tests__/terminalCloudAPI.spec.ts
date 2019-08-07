@@ -3,7 +3,7 @@ import {createMockClientFromResponse, createTerminalAPIPaymentRequest} from "../
 import {asyncRes} from "../__mocks__/terminalApi/async";
 import {syncRes} from "../__mocks__/terminalApi/sync";
 import Client from "../client";
-import TerminalCloudAPI from "../service/terminalCloudAPI";
+import TerminalCloudAPI from "../services/terminalCloudAPI";
 import {Convert, TerminalApiRequest, TerminalApiResponse} from "../typings/terminal";
 
 

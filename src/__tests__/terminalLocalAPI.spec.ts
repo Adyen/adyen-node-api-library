@@ -2,9 +2,9 @@ import nock from "nock";
 import {createMockClientFromResponse, createTerminalAPIPaymentRequest} from "../__mocks__/base";
 import {localEncRes, localSecuredRes, wrongEncRes} from "../__mocks__/terminalApi/local";
 import Client from "../client";
-import TerminalLocalAPI from "../service/terminalLocalAPI";
+import TerminalLocalAPI from "../services/terminalLocalAPI";
 import {Convert, SecurityKey, TerminalApiRequest, TerminalApiResponse} from "../typings/terminal";
-import NexoCryptoException from "../service/exception/nexoCryptoException";
+import NexoCryptoException from "../services/exception/nexoCryptoException";
 
 let client: Client;
 let terminalLocalAPI: TerminalLocalAPI;
