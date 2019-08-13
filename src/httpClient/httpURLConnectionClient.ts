@@ -39,6 +39,7 @@ import {
 import { RequestOptions } from "../typings/requestOptions";
 import ClientInterface from "../typings/httpClient/clientInterface";
 import HttpClientException from "./httpClientException";
+import checkServerIdentity from "../helpers/checkServerIdentity";
 
 class HttpURLConnectionClient implements ClientInterface {
     private static CHARSET: string = "utf-8";
@@ -159,9 +160,7 @@ class HttpURLConnectionClient implements ClientInterface {
 
             this.agentOptions = {
                 ca: certificateInput,
-                checkServerIdentity: (): undefined => {
-                    return undefined;
-                },
+                checkServerIdentity,
             };
 
         } catch (e) {
