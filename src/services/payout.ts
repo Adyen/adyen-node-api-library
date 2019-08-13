@@ -90,8 +90,8 @@ class Payout extends Service {
 
     public payout(request: PayoutRequest): Promise<PayoutResponse> {
         return getJsonResponse<PayoutRequest, PayoutResponse>(
-          this._payout,
-          request
+            this._payout,
+            request
         );
     }
 }
