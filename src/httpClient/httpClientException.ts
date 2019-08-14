@@ -22,7 +22,7 @@
 import {IncomingHttpHeaders, IncomingMessage} from "http";
 
 class HttpClientException implements Error {
-    public statusCode: number = 0;
+    public statusCode = 500;
     public responseHeaders: IncomingHttpHeaders | undefined;
     public readonly message: string;
     public readonly name: string;

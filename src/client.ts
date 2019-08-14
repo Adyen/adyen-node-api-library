@@ -48,29 +48,29 @@ interface ClientParameters {
 }
 
 class Client {
-    public static ENDPOINT_TEST: string = "https://pal-test.adyen.com";
-    public static ENDPOINT_LIVE: string = "https://pal-live.adyen.com";
-    public static ENDPOINT_LIVE_SUFFIX: string = "-pal-live.adyenpayments.com";
-    public static HPP_TEST: string = "https://test.adyen.com/hpp";
-    public static HPP_LIVE: string = "https://live.adyen.com/hpp";
-    public static MARKETPAY_ENDPOINT_TEST: string = "https://cal-test.adyen.com/cal/services";
-    public static MARKETPAY_ENDPOINT_LIVE: string = "https://cal-live.adyen.com/cal/services";
-    public static API_VERSION: string = "v49";
-    public static RECURRING_API_VERSION: string = "v30";
-    public static MARKETPAY_ACCOUNT_API_VERSION: string = "v4";
-    public static MARKETPAY_FUND_API_VERSION: string = "v3";
-    public static MARKETPAY_NOTIFICATION_API_VERSION: string = "v1";
-    public static LIB_NAME: string = "adyen-node-api-library";
+    public static ENDPOINT_TEST = "https://pal-test.adyen.com";
+    public static ENDPOINT_LIVE = "https://pal-live.adyen.com";
+    public static ENDPOINT_LIVE_SUFFIX = "-pal-live.adyenpayments.com";
+    public static HPP_TEST = "https://test.adyen.com/hpp";
+    public static HPP_LIVE = "https://live.adyen.com/hpp";
+    public static MARKETPAY_ENDPOINT_TEST = "https://cal-test.adyen.com/cal/services";
+    public static MARKETPAY_ENDPOINT_LIVE = "https://cal-live.adyen.com/cal/services";
+    public static API_VERSION = "v49";
+    public static RECURRING_API_VERSION = "v30";
+    public static MARKETPAY_ACCOUNT_API_VERSION = "v4";
+    public static MARKETPAY_FUND_API_VERSION = "v3";
+    public static MARKETPAY_NOTIFICATION_API_VERSION = "v1";
+    public static LIB_NAME = "adyen-node-api-library";
     public static LIB_VERSION: string = version;
-    public static CHECKOUT_ENDPOINT_TEST: string = "https://checkout-test.adyen.com/checkout";
-    public static CHECKOUT_ENDPOINT_LIVE_SUFFIX: string = "-checkout-live.adyenpayments.com/checkout";
-    public static CHECKOUT_API_VERSION: string = "v49";
+    public static CHECKOUT_ENDPOINT_TEST = "https://checkout-test.adyen.com/checkout";
+    public static CHECKOUT_ENDPOINT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
+    public static CHECKOUT_API_VERSION = "v49";
     public static BIN_LOOKUP_PAL_SUFFIX = "/pal/servlet/BinLookup/";
     public static BIN_LOOKUP_API_VERSION = "v40";
-    public static CHECKOUT_UTILITY_API_VERSION: string = "v1";
-    public static TERMINAL_API_ENDPOINT_TEST: string = "https://terminal-api-test.adyen.com";
-    public static TERMINAL_API_ENDPOINT_LIVE: string = "https://terminal-api-live.adyen.com";
-    public static ENDPOINT_PROTOCOL: string = "https://";
+    public static CHECKOUT_UTILITY_API_VERSION = "v1";
+    public static TERMINAL_API_ENDPOINT_TEST = "https://terminal-api-test.adyen.com";
+    public static TERMINAL_API_ENDPOINT_LIVE = "https://terminal-api-live.adyen.com";
+    public static ENDPOINT_PROTOCOL = "https://";
 
     private _httpClient!: ClientInterface;
     public config: Config;
