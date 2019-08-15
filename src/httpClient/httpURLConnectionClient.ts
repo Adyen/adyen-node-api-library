@@ -42,7 +42,7 @@ import HttpClientException from "./httpClientException";
 import checkServerIdentity from "../helpers/checkServerIdentity";
 
 class HttpURLConnectionClient implements ClientInterface {
-    private static CHARSET: string = "utf-8";
+    private static CHARSET = "utf-8";
     public proxy?: AgentOptions;
     private agentOptions!: AgentOptions;
 
