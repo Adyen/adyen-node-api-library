@@ -76,7 +76,7 @@ describe("Bin Lookup", function (): void {
         };
 
         scope.post("/get3dsAvailability")
-            .reply(403);
+            .reply(403, JSON.stringify({status: 403, message: "fail", errorCode: "171"}));
 
         try {
             await binLookup.get3dsAvailability(threeDSAvailabilityRequest as unknown as ThreeDSAvailabilityRequest);

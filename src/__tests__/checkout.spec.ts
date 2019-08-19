@@ -57,7 +57,7 @@ function createPaymentsDetailsRequest(): DetailsRequest {
     };
 }
 
-function createPaymentsCheckoutRequest(): PaymentRequest {
+export function createPaymentsCheckoutRequest(): PaymentRequest {
     const paymentMethodDetails = {
         cvc: "737",
         expiryMonth: "10",

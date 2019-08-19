@@ -39,9 +39,11 @@ import {
 import { RequestOptions } from "../typings/requestOptions";
 import ClientInterface from "../typings/httpClient/clientInterface";
 import HttpClientException from "./httpClientException";
+import checkServerIdentity from "../helpers/checkServerIdentity";
+import {ApiError} from "../typings/apiError";
 
 class HttpURLConnectionClient implements ClientInterface {
-    private static CHARSET: string = "utf-8";
+    private static CHARSET = "utf-8";
     public proxy?: AgentOptions;
     private agentOptions!: AgentOptions;
 
@@ -121,16 +123,19 @@ class HttpURLConnectionClient implements ClientInterface {
 
             connectionRequest.on("response", (res: IncomingMessage): void => {
                 let resData = "";
-                if (res.statusCode && res.statusCode !== 200) {
-                    const exception = new HttpClientException(
-                        `HTTP Exception: ${res.statusCode}. ${res.statusMessage}`,
-                        res.statusCode,
-                        res.headers,
-                        res,
-                    );
-                    reject(exception);
-                }
                 res.on("data", (data): void => {
+                    if (res.statusCode && res.statusCode !== 200) {
+                        const formattedData: ApiError = JSON.parse(data.toString());
+                        const exception = new HttpClientException(
+                            `HTTP Exception: ${formattedData.status}. ${res.statusMessage}: ${formattedData.message}`,
+                            formattedData.status,
+                            formattedData.errorCode,
+                            res.headers,
+                            res,
+                        );
+                        return reject(exception);
+                    }
+
                     resData += data;
                 });
 
@@ -159,9 +164,7 @@ class HttpURLConnectionClient implements ClientInterface {
 
             this.agentOptions = {
                 ca: certificateInput,
-                checkServerIdentity: (): undefined => {
-                    return undefined;
-                },
+                checkServerIdentity,
             };
 
         } catch (e) {
