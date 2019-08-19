@@ -2,6 +2,7 @@ import nock from "nock";
 import Client from "../client";
 import Checkout from "../services/checkout";
 import ApiException from "../services/exception/apiException";
+import {createPaymentsCheckoutRequest} from "./checkout.spec";
 
 beforeEach((): void => {
     nock.cleanAll();
@@ -14,10 +15,10 @@ describe("HTTP Client", function (): void {
 
         nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`)
             .post("/payments")
-            .replyWithError();
+            .replyWithError("error");
 
         try {
-            await checkout.payments({});
+            await checkout.payments(createPaymentsCheckoutRequest());
         } catch (e) {
             expect(e instanceof ApiException);
             expect(e.message).toContain("x-api-key");
@@ -33,7 +34,7 @@ describe("HTTP Client", function (): void {
             .replyWithError({message: "error_message", statusCode: 500});
 
         try {
-            await checkout.payments({});
+            await checkout.payments(createPaymentsCheckoutRequest());
         } catch (e) {
             expect(e instanceof ApiException);
             expect(e.message).toEqual("error_message");
