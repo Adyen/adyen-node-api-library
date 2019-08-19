@@ -22,7 +22,7 @@
 import Client from "./client";
 
 class Service {
-    public apiKeyRequired: boolean = false;
+    public apiKeyRequired = false;
     public client: Client;
 
     protected constructor(client: Client) {
