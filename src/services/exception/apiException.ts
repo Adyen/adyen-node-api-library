@@ -27,7 +27,7 @@ class ApiException implements Error {
     public readonly message: string;
     public readonly name: string;
 
-    public constructor(message: string, statusCode: number) {
+    public constructor(message: string, statusCode = 500) {
         this.name = "ApiException";
         this.message = message;
         this.statusCode = statusCode;

@@ -41,6 +41,7 @@ import ClientInterface from "../typings/httpClient/clientInterface";
 import HttpClientException from "./httpClientException";
 import checkServerIdentity from "../helpers/checkServerIdentity";
 import {ApiError} from "../typings/apiError";
+import ApiException from "../services/exception/apiException";
 
 class HttpURLConnectionClient implements ClientInterface {
     private static CHARSET = "utf-8";
@@ -50,7 +51,7 @@ class HttpURLConnectionClient implements ClientInterface {
     public request(
         endpoint: string, json: string, config: Config, isApiRequired: boolean,
         requestOptions: RequestOptions,
-    ): Promise<string> {
+    ): Promise<string | HttpClientException | ApiException> {
         requestOptions.headers = {};
         requestOptions.timeout = config.connectionTimeoutMillis;
 
@@ -60,7 +61,11 @@ class HttpURLConnectionClient implements ClientInterface {
 
         const apiKey = config.apiKey;
 
-        if (isApiRequired || apiKey) {
+        if (isApiRequired && !apiKey) {
+            return Promise.reject(new ApiException("Invalid X-API-Key was used", 401));
+        }
+
+        if (apiKey) {
             requestOptions.headers[API_KEY] = apiKey;
         } else {
             const authString = `${config.username}:${config.password}`;
@@ -75,7 +80,7 @@ class HttpURLConnectionClient implements ClientInterface {
         return this.doPostRequest(httpConnection, json);
     }
 
-    public post(endpoint: string, postParameters: [string, string][], config: Config): Promise<string> {
+    public post(endpoint: string, postParameters: [string, string][], config: Config): Promise<HttpClientException | string> {
         const postQuery: string = this.getQuery(postParameters);
         const connectionRequest: ClientRequest = this.createRequest(endpoint, {}, config.applicationName);
         return this.doPostRequest(connectionRequest, postQuery);
@@ -99,8 +104,7 @@ class HttpURLConnectionClient implements ClientInterface {
 
         if (this.proxy && this.proxy.host) {
             const { host, port, ...options } = this.proxy;
-            const agent = new HttpsProxyAgent({ host, port: port || 443, ...options });
-            requestOptions.agent = agent;
+            requestOptions.agent = new HttpsProxyAgent({ host, port: port || 443, ...options });
         } else {
             requestOptions.agent = new Agent(this.agentOptions);
         }
@@ -117,23 +121,39 @@ class HttpURLConnectionClient implements ClientInterface {
         return params.map(([key, value]): string => `${key}=${value}`).join("&");
     }
 
-    private doPostRequest(connectionRequest: ClientRequest, json: string): Promise<string> {
+    private doPostRequest(connectionRequest: ClientRequest, json: string): Promise<HttpClientException | string> {
         return new Promise((resolve, reject): void => {
             connectionRequest.flushHeaders();
 
             connectionRequest.on("response", (res: IncomingMessage): void => {
                 let resData = "";
+                const getException = (): HttpClientException => new HttpClientException(
+                    `HTTP Exception: ${res.statusCode}. ${res.statusMessage}`,
+                    res.statusCode,
+                    undefined,
+                    res.headers,
+                    res,
+                );
+                let exception: HttpClientException = getException();
+
                 res.on("data", (data): void => {
                     if (res.statusCode && res.statusCode !== 200) {
-                        const formattedData: ApiError = JSON.parse(data.toString());
-                        const exception = new HttpClientException(
-                            `HTTP Exception: ${formattedData.status}. ${res.statusMessage}: ${formattedData.message}`,
-                            formattedData.status,
-                            formattedData.errorCode,
-                            res.headers,
-                            res,
-                        );
-                        return reject(exception);
+                        try {
+                            const formattedData: ApiError = JSON.parse(data.toString() as string);
+                            const isApiError = "status" in formattedData;
+                            const customException = new HttpClientException(
+                                `HTTP Exception: ${formattedData.status}. ${res.statusMessage}: ${formattedData.message}`,
+                                formattedData.status,
+                                formattedData.errorCode,
+                                res.headers,
+                                res,
+                            );
+                            exception = isApiError ? customException : exception;
+                        } catch (e) {
+                            reject(exception);
+                        } finally {
+                            reject(exception);
+                        }
                     }
 
                     resData += data;
@@ -152,13 +172,13 @@ class HttpURLConnectionClient implements ClientInterface {
             connectionRequest.on("timeout", (): void => {
                 connectionRequest.abort();
             });
-            connectionRequest.on("error", reject);
+            connectionRequest.on("error", (e) => reject(new ApiException(e.message)));
             connectionRequest.write(Buffer.from(json));
             connectionRequest.end();
         });
     }
 
-    private installCertificateVerifier(terminalCertificatePath: string): void {
+    private installCertificateVerifier(terminalCertificatePath: string): void | Promise<HttpClientException> {
         try {
             const certificateInput = fs.readFileSync(terminalCertificatePath);
 
@@ -168,7 +188,7 @@ class HttpURLConnectionClient implements ClientInterface {
             };
 
         } catch (e) {
-            throw new HttpClientException(`Error loading certificate from path: ${e.message}`);
+            return Promise.reject(new HttpClientException(`Error loading certificate from path: ${e.message}`));
         }
 
     }
