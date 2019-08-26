@@ -29,6 +29,11 @@ export interface ThreeDS2RequestData {
     deviceChannel: string;
     deviceRenderOptions?: DeviceRenderOptions;
     /**
+     * Required for [authentication-only integration](https://docs.adyen.com/checkout/3d-secure/native-3ds2/authentication-only). The merchant name that the issuer presents to the shopper if they get a challenge. We recommend to use the same value that you will use in the authorization. Maximum length is 40 characters.
+     * Optional for a [full 3D Secure 2 integration](https://docs.adyen.com/checkout/3d-secure/native-3ds2/api-integration). Use this field if you are enrolled for 3D Secure 2 with us and want to override the merchant name already configured on your account.
+     */
+    merchantName?: string;
+    /**
      * The `messageVersion` value indicating the 3D Secure 2 protocol version.
      */
     messageVersion?: string;
