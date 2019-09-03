@@ -134,21 +134,26 @@ class HttpURLConnectionClient implements ClientInterface {
                     res.headers,
                     res,
                 );
-                let exception: HttpClientException = getException();
+                let exception: HttpClientException | Error = getException();
 
                 res.on("data", (data): void => {
                     if (res.statusCode && res.statusCode !== 200) {
                         try {
                             const formattedData: ApiError = JSON.parse(data.toString() as string);
                             const isApiError = "status" in formattedData;
-                            const customException = new HttpClientException(
-                                `HTTP Exception: ${formattedData.status}. ${res.statusMessage}: ${formattedData.message}`,
-                                formattedData.status,
-                                formattedData.errorCode,
-                                res.headers,
-                                res,
-                            );
-                            exception = isApiError ? customException : exception;
+                            const isRequestError = "errors" in formattedData;
+
+                            if (isApiError) {
+                                exception = new HttpClientException(
+                                    `HTTP Exception: ${formattedData.status}. ${res.statusMessage}: ${formattedData.message}`,
+                                    formattedData.status,
+                                    formattedData.errorCode,
+                                    res.headers,
+                                    res,
+                                );
+                            } else if (isRequestError) {
+                                exception = new Error(data);
+                            }
                         } catch (e) {
                             reject(exception);
                         } finally {
