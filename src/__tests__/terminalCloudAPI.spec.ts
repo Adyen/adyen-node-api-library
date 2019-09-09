@@ -4,7 +4,7 @@ import {asyncRes} from "../__mocks__/terminalApi/async";
 import {syncRes} from "../__mocks__/terminalApi/sync";
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
-import {Convert, TerminalApiRequest, TerminalApiResponse} from "../typings/terminal";
+import {Convert, TerminalApiResponse} from "../typings/terminal";
 
 
 let client: Client;
@@ -21,7 +21,7 @@ describe("Terminal Cloud API", (): void => {
     it("should make an async payment request", async (): Promise<void> => {
         scope.post("/async").reply(200, asyncRes);
 
-        const terminalAPIPaymentRequest: TerminalApiRequest = createTerminalAPIPaymentRequest() as TerminalApiRequest;
+        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
         const requestResponse: string = await terminalCloudAPI.async(terminalAPIPaymentRequest);
 
@@ -32,7 +32,7 @@ describe("Terminal Cloud API", (): void => {
         const response = Convert.toTerminalApiResponse(syncRes);
         scope.post("/sync").reply(200, response);
 
-        const terminalAPIPaymentRequest: TerminalApiRequest = createTerminalAPIPaymentRequest() as TerminalApiRequest;
+        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
         const terminalAPIResponse: TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
 
         expect(terminalAPIResponse).toEqual(response);
