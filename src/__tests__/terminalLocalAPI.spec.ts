@@ -22,7 +22,7 @@ describe("Terminal Local API", (): void => {
         const response = Convert.toTerminalApiResponse(localSecuredRes);
 
         scope.post("/").reply(200, securedResponse);
-        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest() as TerminalApiRequest;
+        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
         const securityKey: SecurityKey = {
             adyenCryptoVersion: 1,
@@ -41,7 +41,7 @@ describe("Terminal Local API", (): void => {
         const securedResponse = Convert.toTerminalApiSecuredResponse(wrongEncRes);
 
         scope.post("/").reply(200, securedResponse);
-        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest() as TerminalApiRequest;
+        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
         const securityKey: SecurityKey = {
             adyenCryptoVersion: 1,
