@@ -18,7 +18,7 @@ const getResponse = async ({apiKey , environment }: { apiKey: string; environmen
     const checkout = new Checkout(client);
 
     const scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`)
-        .post("/payments")
+        .post("/payments");
     const { errorMessageContains, errorMessageEquals, errorType } = cb(scope);
     const ErrorException = errorType === "ApiException" ? ApiException : HttpClientException;
 
@@ -27,49 +27,25 @@ const getResponse = async ({apiKey , environment }: { apiKey: string; environmen
         fail("request should fail");
     } catch (e) {
         expect(e instanceof ErrorException).toBeTruthy();
-        if (errorMessageEquals) {
-            expect(e.message).toEqual(errorMessageEquals);
-        }
-        if (errorMessageContains) {
-            expect(e.message.toLowerCase()).toContain(errorMessageContains);
-        }
+        if(errorMessageEquals) expect(e.message).toEqual(errorMessageEquals);
+        if(errorMessageContains) expect(e.message.toLowerCase()).toContain(errorMessageContains);
     }
-
-}
+};
 
 describe("HTTP Client", function (): void {
-    it("should return ApiException when no API Key is provided", async (): Promise<void> => {
-        await getResponse({ apiKey: "", environment: "TEST" }, (scope) => {
-            scope.replyWithError("mocked_error_response");
-            return { errorType: "ApiException", errorMessageContains: "x-api-key" };
-        });
-    });
+    it.each`
+        apiKey               | environment    | withError | args                                                                                                 | errorType                | contains       | equals  
+        ${""}                | ${"TEST"}      | ${true}   | ${["mocked_error_response"]}                                                                         | ${"ApiException"}        | ${"x-api-key"} | ${""}
+        ${"MOCKED_API_KEY"}  | ${"TEST"}      | ${true}   | ${["some_error"]}                                                                                    | ${"ApiException"}        | ${""}          | ${"some_error"}
+        ${"API_KEY"}         | ${"TEST"}      | ${false}  | ${[401, { status: 401, message: "Invalid Request", errorCode: "171", errorType: "validationError"}]} | ${"HttpClientException"} | ${""}          | ${"HTTP Exception: 401. null: Invalid Request"}
+        ${"API_KEY"}         | ${"TEST"}      | ${false}  | ${[401, {}]}                                                                                         | ${"HttpClientException"} | ${""}          | ${"HTTP Exception: 401. null"}
+        ${"API_KEY"}         | ${"TEST"}      | ${false}  | ${[401, "fail"]}                                                                                     | ${"HttpClientException"} | ${""}          | ${"HTTP Exception: 401. null"}
+    `("Should return $errorType, $contains, $equals", async ({ apiKey, environment, withError, args, errorType, contains, equals }) => {
+        await getResponse({ apiKey, environment }, (scope) => {
+            if (withError) scope.replyWithError(args[0]);
+            else scope.reply(args[0], args[1]);
 
-    it("should return ApiException on request error", async (): Promise<void> => {
-        await getResponse({ apiKey: "", environment: "TEST" }, (scope) => {
-            scope.replyWithError("");
-            return { errorType: "ApiException", errorMessageContains: "x-api-key" };
-        });
-    });
-
-    it("should return HttpClientException on invalid request", async (): Promise<void> => {
-        await getResponse({ apiKey: "API_KEY", environment: "TEST" }, (scope) => {
-            scope.reply(401, { status: 401, message: "Invalid Request", errorCode: "171", errorType: "validationError"});
-            return { errorType: "HttpClientException", errorMessageEquals: "HTTP Exception: 401. null: Invalid Request" };
-        });
-    });
-
-    it("should return HttpClientException on invalid that is not an ApiError type", async (): Promise<void> => {
-        await getResponse({ apiKey: "API_KEY", environment: "TEST" }, (scope) => {
-            scope.reply(401, {});
-            return { errorType: "HttpClientException", errorMessageEquals: "HTTP Exception: 401. null" };
-        });
-    });
-
-    it("should return HttpClientException on invalid string error", async (): Promise<void> => {
-        await getResponse({ apiKey: "API_KEY", environment: "TEST" }, (scope) => {
-            scope.reply(401, "fail");
-            return { errorType: "HttpClientException", errorMessageEquals: "HTTP Exception: 401. null" };
+            return { errorType, errorMessageContains: contains, errorMessageEquals: equals };
         });
     });
 });
