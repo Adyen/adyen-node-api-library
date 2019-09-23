@@ -6033,7 +6033,7 @@ regjsparser@^0.6.0:
   dependencies:
     jsesc "~0.5.0"
 
-release-it@^12.4.1:
+release-it@12.4.1:
   version "12.4.1"
   resolved "https://registry.yarnpkg.com/release-it/-/release-it-12.4.1.tgz#8f19b69fa67f34935e73b9873d3355d212a36836"
   integrity sha512-aqpmBWYT1No7/s2iZQvjqoRSW5+eFec1uMW1Fw829t7yaGaMSUOhfWAewo6ExN9l0QrkVWIaFq9jYUjO4BKt0A==
