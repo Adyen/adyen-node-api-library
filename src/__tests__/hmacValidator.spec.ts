@@ -26,8 +26,8 @@ describe("HMAC Validator", function (): void {
     });
     it("should get correct data with escaped characters", function (): void {
         const hmacValidator = new HmacValidator();
-        const dataToSign = hmacValidator.getDataToSign({currencyCode: "EUR", merchantAccount: "ACC:\\"});
-        expect(dataToSign).toEqual("currencyCode:merchantAccount:EUR:ACC\\:\\\\");
+        const dataToSign = hmacValidator.getDataToSign({currencyCode: "EUR", merchantAccount: "ACC:\\", sessionValidity: "2019-09-21T11:45:24.637Z"});
+        expect(dataToSign).toEqual("currencyCode:merchantAccount:sessionValidity:EUR:ACC\\:\\\\:2019-09-21T11\\:45\\:24.637Z");
     });
     it("should encrypt correctly", function (): void {
         const data = "countryCode:currencyCode:merchantAccount:merchantReference:paymentAmount:sessionValidity:skinCode:NL:EUR:MagentoMerchantTest2:TEST-PAYMENT-2017-02-01-14\\:02\\:05:199:2017-02-02T14\\:02\\:05+01\\:00:PKz2KML1";

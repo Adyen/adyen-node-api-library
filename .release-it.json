@@ -1,0 +1,12 @@
+{
+  "git": {
+    "tagName": "v${version}",
+    "changelog": "npx auto-changelog --stdout --commit-limit false -u"
+  },
+  "github": {
+    "release": true
+  },
+  "hooks": {
+    "after:bump": "npx auto-changelog -p"
+  }
+}
