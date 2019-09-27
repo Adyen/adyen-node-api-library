@@ -3,7 +3,7 @@ import {createMockClientFromResponse, createTerminalAPIPaymentRequest} from "../
 import {localEncRes, localSecuredRes, wrongEncRes} from "../__mocks__/terminalApi/local";
 import Client from "../client";
 import TerminalLocalAPI from "../services/terminalLocalAPI";
-import {Convert, SecurityKey, TerminalApiRequest, TerminalApiResponse} from "../typings/terminal";
+import {Convert, SecurityKey, TerminalApiResponse} from "../typings/terminal";
 import NexoCryptoException from "../services/exception/nexoCryptoException";
 
 let client: Client;
