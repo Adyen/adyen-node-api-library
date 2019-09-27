@@ -42,7 +42,7 @@ class HmacValidator {
             const keys: string[] = [];
             const values: string[] = [];
             const replacer = (str: string): string =>
-                str.replace("\\", "\\\\").replace(":", "\\:");
+                str.replace(/\\/g, "\\\\").replace(/:/g, "\\:");
             Object.entries(notificationRequestItem).sort().forEach(([key, value]): void => {
                 keys.push(replacer(key));
                 values.push(replacer(value));
