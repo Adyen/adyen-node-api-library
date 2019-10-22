@@ -15,7 +15,7 @@ import { ExternalPlatform } from './externalPlatform';
 import { MerchantDevice } from './merchantDevice';
 import { ShopperInteractionDevice } from './shopperInteractionDevice';
 
-export interface ApplicationInfo {
+export class ApplicationInfo {
     'adyenLibrary'?: CommonField;
     'adyenPaymentSource'?: CommonField;
     'externalPlatform'?: ExternalPlatform;

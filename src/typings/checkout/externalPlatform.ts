@@ -11,7 +11,7 @@
  */
 
 
-export interface ExternalPlatform {
+export class ExternalPlatform {
     /**
     * External platform integrator.
     */
