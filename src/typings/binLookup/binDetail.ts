@@ -11,7 +11,7 @@
  */
 
 
-export interface BinDetail {
+export class BinDetail {
     /**
     * The country where the card was issued.
     */
