@@ -11,7 +11,7 @@
  */
 
 
-export interface MerchantDevice {
+export class MerchantDevice {
     /**
     * Operating system running on the merchant device.
     */
