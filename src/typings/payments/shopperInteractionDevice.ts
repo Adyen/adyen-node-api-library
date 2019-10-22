@@ -11,7 +11,7 @@
  */
 
 
-export interface ShopperInteractionDevice {
+export class ShopperInteractionDevice {
     /**
     * Locale on the shopper interaction device.
     */
