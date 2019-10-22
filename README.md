@@ -93,7 +93,3 @@ If you have any problems, questions or suggestions, create an issue here or send
 ## Licence
 
 MIT license. For more information, see the LICENSE file.
-
-## Other
-
-You can find examples inside the `examples` folder in this repo.
