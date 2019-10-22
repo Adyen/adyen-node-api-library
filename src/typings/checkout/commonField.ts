@@ -11,7 +11,7 @@
  */
 
 
-export interface CommonField {
+export class CommonField {
     /**
     * Name of the field. For example, Name of External Platform.
     */

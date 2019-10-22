@@ -11,7 +11,7 @@
  */
 
 
-export interface StoredPaymentMethod {
+export class StoredPaymentMethod {
     /**
     * The brand of the card.
     */
