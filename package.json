@@ -54,7 +54,7 @@
     "coveralls": "3.0.7",
     "eslint": "6.5.1",
     "jest": "24.9.0",
-    "nock": "11.4.0",
+    "nock": "11.5.0",
     "release-it": "12.4.3",
     "ts-loader": "6.2.0",
     "typescript": "3.6.4",
