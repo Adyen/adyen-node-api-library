@@ -52,7 +52,7 @@
     "@typescript-eslint/parser": "2.5.0",
     "babel-loader": "8.0.6",
     "coveralls": "3.0.7",
-    "eslint": "6.5.1",
+    "eslint": "6.6.0",
     "jest": "24.9.0",
     "nock": "11.6.0",
     "release-it": "12.4.3",
