@@ -32,7 +32,7 @@ class NotificationRequest {
             return undefined;
         }
 
-        return this.notificationItemContainers.map((container): NotificationRequestItem => container.notificationRequestItem);
+        return this.notificationItemContainers.map((container): NotificationRequestItem => container.NotificationRequestItem);
     }
 
     public live: string;

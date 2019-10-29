@@ -13,7 +13,7 @@ export interface Notification {
 }
 
 export interface NotificationItem {
-    notificationRequestItem: NotificationRequestItem;
+    NotificationRequestItem: NotificationRequestItem;
 }
 
 export interface NotificationRequestItem {
@@ -206,7 +206,7 @@ const typeMap: any = {
         { json: "notificationItems", js: "notificationItems", typ: a(r("NotificationItem")) },
     ], false),
     "NotificationItem": o([
-        { json: "NotificationRequestItem", js: "notificationRequestItem", typ: r("NotificationRequestItem") },
+        { json: "NotificationRequestItem", js: "NotificationRequestItem", typ: r("NotificationRequestItem") },
     ], false),
     "NotificationRequestItem": o([
         { json: "additionalData", js: "additionalData", typ: u(undefined, m("any")) },
