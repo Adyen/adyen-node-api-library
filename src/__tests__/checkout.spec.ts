@@ -183,9 +183,12 @@ describe("Checkout", (): void => {
         const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
         const paymentsResponse: PaymentResponse = await checkout.payments(paymentsRequest);
         expect(paymentsResponse.pspReference).toEqual("8111111111111111");
-        expect(paymentsResponse.additionalData["comprafacil.amount"]).toEqual("101.01");
-        expect(paymentsResponse.additionalData["comprafacil.deadline"]).toEqual("3");
-        expect(paymentsResponse.additionalData["comprafacil.entity"]).toEqual("12345");
+
+        if (paymentsResponse.additionalData) {
+            expect(paymentsResponse.additionalData["comprafacil.amount"]).toEqual("101.01");
+            expect(paymentsResponse.additionalData["comprafacil.deadline"]).toEqual("3");
+            expect(paymentsResponse.additionalData["comprafacil.entity"]).toEqual("12345");
+        }
     });
 });
 
