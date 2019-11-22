@@ -1,12 +1,15 @@
 import nock from "nock";
-import { createMockClientFromResponse } from "../__mocks__/base";
+import {createMockClientFromResponse} from "../__mocks__/base";
 import Payout from "../services/payout";
 import {
     ModifyRequest,
+    PayoutRequest,
+    Recurring,
     StoreDetailAndSubmitRequest,
-    StoreDetailRequest, SubmitRequest, PayoutRequest
+    StoreDetailRequest,
+    SubmitRequest
 } from "../typings/payout";
-import { FRAUD_MANUAL_REVIEW, FRAUD_RESULT_TYPE } from "../typings/constants/apiConstants";
+import {FRAUD_MANUAL_REVIEW, FRAUD_RESULT_TYPE} from "../typings/constants/apiConstants";
 import Client from "../client";
 
 const storeDetailAndSubmitThirdParty = JSON.stringify({
@@ -43,9 +46,9 @@ const defaultData = {
 
 const mockStoreDetailRequest = (merchantAccount: string): StoreDetailRequest => ({
     ...defaultData,
-    entityType: "NaturalPerson",
+    entityType: StoreDetailRequest.EntityTypeEnum.NaturalPerson,
     recurring: {
-        contract: "ONECLICK"
+        contract: Recurring.ContractEnum.ONECLICK
     },
     merchantAccount,
 });
@@ -53,7 +56,7 @@ const mockStoreDetailRequest = (merchantAccount: string): StoreDetailRequest => 
 const mockSubmitRequest = (merchantAccount: string): SubmitRequest => ({
     selectedRecurringDetailReference: "LATEST",
     recurring: {
-        contract: "ONECLICK"
+        contract: Recurring.ContractEnum.ONECLICK
     },
     ...defaultData,
     ...amountAndReference,
@@ -95,8 +98,11 @@ describe("PayoutTest", function (): void {
         const result = await payout.storeDetail(request);
         expect(result.resultCode).toEqual("[payout-submit-received]");
         expect(result.pspReference).toEqual("8515131751004933");
-        expect(result.additionalData[FRAUD_RESULT_TYPE]).toEqual("GREEN");
-        expect(result.additionalData[FRAUD_MANUAL_REVIEW]).toEqual("false");
+
+        if (result.additionalData) {
+            expect(result.additionalData[FRAUD_RESULT_TYPE]).toEqual("GREEN");
+            expect(result.additionalData[FRAUD_MANUAL_REVIEW]).toEqual("false");
+        }
     });
 
     it("should succeed on store detail", async function (): Promise<void> {
@@ -134,8 +140,11 @@ describe("PayoutTest", function (): void {
 
         expect(result.resultCode).toEqual("[payout-submit-received]");
         expect(result.pspReference).toEqual("8515131751004933");
-        expect(result.additionalData[FRAUD_RESULT_TYPE]).toEqual("GREEN");
-        expect(result.additionalData[FRAUD_MANUAL_REVIEW]).toEqual("false");
+
+        if (result.additionalData) {
+            expect(result.additionalData[FRAUD_RESULT_TYPE]).toEqual("GREEN");
+            expect(result.additionalData[FRAUD_MANUAL_REVIEW]).toEqual("false");
+        }
     });
 
     it("should succeed on decline third party", async function (): Promise<void> {

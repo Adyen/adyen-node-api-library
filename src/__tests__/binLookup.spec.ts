@@ -19,7 +19,7 @@
  * See the LICENSE file for more info.
  */
 import nock from "nock";
-import { createMockClientFromResponse } from "../__mocks__/base";
+import {createMockClientFromResponse} from "../__mocks__/base";
 import BinLookup from "../services/binLookup";
 import {CostEstimateRequest, ThreeDSAvailabilityRequest} from "../typings/binLookup";
 import Client from "../client";
@@ -105,7 +105,7 @@ describe("Bin Lookup", function (): void {
                 mcc: "7411",
                 enrolledIn3DSecure: true
             },
-            shopperInteraction: "Ecommerce"
+            shopperInteraction: CostEstimateRequest.ShopperInteractionEnum.Ecommerce
         };
 
         scope.post("/getCostEstimate")
