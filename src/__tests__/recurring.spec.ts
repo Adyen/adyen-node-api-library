@@ -1,15 +1,16 @@
 import nock from "nock";
-import { createMockClientFromResponse } from "../__mocks__/base";
-import { disableSuccess } from "../__mocks__/recurring/disableSuccess";
-import { listRecurringDetailsSuccess } from "../__mocks__/recurring/listRecurringDetailsSuccess";
+import {createMockClientFromResponse} from "../__mocks__/base";
+import {disableSuccess} from "../__mocks__/recurring/disableSuccess";
+import {listRecurringDetailsSuccess} from "../__mocks__/recurring/listRecurringDetailsSuccess";
+import {DisableRequest, Recurring as RecurringType } from "../typings/recurring";
 import Recurring from "../services/recurring";
-import { DisableRequest, RecurringDetailsRequest } from "../typings/recurring";
+import { RecurringDetailsRequest } from "../typings/recurring/recurringDetailsRequest";
 import Client from "../client";
 
 const createRecurringDetailsRequest = (): RecurringDetailsRequest => {
     return {
         merchantAccount: "MerchantAccount",
-        recurring: {contract: "ONECLICK"},
+        recurring: { contract: RecurringType.ContractEnum.ONECLICK },
         shopperReference: "test-123",
     };
 };

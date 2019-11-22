@@ -17,7 +17,8 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "suppressImplicitAnyIndexErrors": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]
