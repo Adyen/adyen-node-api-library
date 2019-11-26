@@ -1186,10 +1186,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.8.tgz#e469b4bf9d1c9832aee4907ba8a051494357c12c"
   integrity sha512-aX+gFgA5GHcDi89KG5keey2zf0WfZk/HAQotEamsK2kbey+8yGKcson0hbK8E+v0NArlCJQCqMP161YhV6ZXLg==
 
-"@types/node@11.15.2":
-  version "11.15.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.15.2.tgz#998b9cacc5f26e441d8396340818fde8e08aada5"
-  integrity sha512-BqCU9uIFkUH9Sgo2uLYbmIiFB1T+VBiM8AI/El3LIAI5KzwtckeSG+3WOYZr9aMoX4UIvRFBWBeSaOu6hFue2Q==
+"@types/node@11.15.3":
+  version "11.15.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.15.3.tgz#cb7f19846a83ac5a88fc22756b74633cdeb476a7"
+  integrity sha512-5RzvXVietaB8S4dwDjxjltAOHtTO87fiksjqjWGZih97j6KSrdCDaRfmYMNrgrLM87odGBrsTHAl6N3fLraQaw==
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
