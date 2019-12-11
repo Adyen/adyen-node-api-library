@@ -6,7 +6,7 @@
 [![Version](https://img.shields.io/npm/v/@adyen/api-library.svg)](https://www.npmjs.com/package/@adyen/api-library)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Adyen_adyen-node-api-library&metric=alert_status)](https://sonarcloud.io/dashboard?id=Adyen_adyen-node-api-library)
 
-The Adyen API Library for NodeJS enables you to work with Adyen APIs and Hosted Payment Pages.
+The Adyen API Library for NodeJS enables you to work with Adyen APIs.
 
 ## Integration
 The Library supports all APIs under the following services:
