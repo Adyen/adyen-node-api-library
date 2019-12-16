@@ -231,6 +231,8 @@
 // These functions will throw an error if the JSON doesn't
 // match the expected interface, even if the JSON is valid.
 
+import {ApplicationInfo} from "./applicationInfo";
+
 export interface TerminalApiRequest {
     saleToPoiRequest: SaleToPoiRequest;
 }
@@ -901,7 +903,7 @@ export interface SaleData {
     operatorLanguage?:   string;
     saleReferenceId?:    string;
     saleTerminalData?:   SaleTerminalData;
-    saleToAcquirerData?: string;
+    saleToAcquirerData?: SaleToAcquirerData;
     saleToIssuerData?:   SaleToIssuerData;
     saleToPoiData?:      string;
     saleTransactionId:   TransactionIdentification;
@@ -963,6 +965,10 @@ export enum ServiceProfilesType {
     Sound = "Sound",
     StoredValue = "StoredValue",
     Synchro = "Synchro",
+}
+
+export interface SaleToAcquirerData {
+    applicationInfo?: ApplicationInfo
 }
 
 export enum TerminalEnvironmentType {
@@ -4311,7 +4317,7 @@ const typeMap: any = {
         { json: "OperatorLanguage", js: "operatorLanguage", typ: u(undefined, "") },
         { json: "SaleReferenceID", js: "saleReferenceId", typ: u(undefined, "") },
         { json: "SaleTerminalData", js: "saleTerminalData", typ: u(undefined, r("SaleTerminalData")) },
-        { json: "SaleToAcquirerData", js: "saleToAcquirerData", typ: u(undefined, "") },
+        { json: "SaleToAcquirerData", js: "saleToAcquirerData", typ: u(undefined, r("SaleToAcquirerData")) },
         { json: "SaleToIssuerData", js: "saleToIssuerData", typ: u(undefined, r("SaleToIssuerData")) },
         { json: "SaleToPOIData", js: "saleToPoiData", typ: u(undefined, "") },
         { json: "SaleTransactionID", js: "saleTransactionId", typ: r("TransactionIdentification") },
