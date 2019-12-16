@@ -4331,6 +4331,9 @@ const typeMap: any = {
         { json: "TerminalEnvironment", js: "terminalEnvironment", typ: u(undefined, r("TerminalEnvironmentType")) },
         { json: "TotalsGroupID", js: "totalsGroupId", typ: u(undefined, "") },
     ], "any"),
+    "SaleToAcquirerData": o([
+        { json: "ApplicationInfo", js: "applicationInfo", typ: u(undefined, "any") },
+    ], "any"),
     "SaleProfile": o([
         { json: "GenericProfile", js: "genericProfile", typ: u(undefined, r("GenericProfileType")) },
         { json: "ServiceProfiles", js: "serviceProfiles", typ: u(undefined, a(r("ServiceProfilesType"))) },
