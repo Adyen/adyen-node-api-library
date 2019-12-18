@@ -25,6 +25,8 @@ import getJsonResponse from "../helpers/getJsonResponse";
 import {Convert, TerminalApiRequest, TerminalApiResponse} from "../typings/terminal";
 import Async from "./resource/terminal/cloud/async";
 import Sync from "./resource/terminal/cloud/sync";
+import {ApplicationInfo} from "../typings/applicationInfo";
+import mergeDeep from "../utils/mergeDeep";
 
 class TerminalCloudAPI extends ApiKeyAuthenticatedService {
     private readonly terminalApiAsync: Async;
@@ -36,17 +38,28 @@ class TerminalCloudAPI extends ApiKeyAuthenticatedService {
         this.terminalApiSync = new Sync(this);
     }
 
+    private static setApplicationInfo(request: TerminalApiRequest): TerminalApiRequest {
+        const applicationInfo = new ApplicationInfo();
+
+        const saleToAcquirerData = {applicationInfo};
+        const saleData = {saleToAcquirerData};
+        const paymentRequest = {saleData};
+        const saleToPoiRequest = {paymentRequest};
+        const newRequest = {saleToPoiRequest};
+
+        return mergeDeep(request, newRequest);
+    }
+
     public async(terminalApiRequest: TerminalApiRequest): Promise<string> {
-        return getJsonResponse<TerminalApiRequest>(
-            this.terminalApiAsync,
-            Convert.terminalApiRequestToJson(terminalApiRequest),
-        );
+        const request = TerminalCloudAPI.setApplicationInfo(terminalApiRequest);
+        return getJsonResponse<TerminalApiRequest>(this.terminalApiAsync, Convert.terminalApiRequestToJson(request));
     }
 
     public async sync(terminalApiRequest: TerminalApiRequest): Promise<TerminalApiResponse> {
+        const request = TerminalCloudAPI.setApplicationInfo(terminalApiRequest);
         const response = await getJsonResponse<TerminalApiRequest, TerminalApiResponse>(
             this.terminalApiSync,
-            Convert.terminalApiRequestToJson(terminalApiRequest),
+            Convert.terminalApiRequestToJson(request),
         );
 
         return Convert.toTerminalApiResponse(JSON.stringify(response));
