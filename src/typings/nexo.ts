@@ -1,5 +1,7 @@
 // Generated using typescript-generator version 2.14.505 on 2019-06-06 08:35:05.
 
+import {ApplicationInfo} from "./applicationInfo";
+
 export interface AbortRequest {
     MessageReference: MessageReference;
     AbortReason: string;
@@ -904,7 +906,7 @@ export interface SaleData {
     SaleTerminalData?: SaleTerminalData;
     SponsoredMerchant?: SponsoredMerchant[];
     SaleToPOIData?: string;
-    SaleToAcquirerData?: string;
+    SaleToAcquirerData?: SaleToAcquirerData;
     SaleToIssuerData?: SaleToIssuerData;
     OperatorID?: string;
     OperatorLanguage?: string;
@@ -1085,6 +1087,10 @@ export interface SponsoredMerchant {
     MerchantCountry: string;
     MerchantCategoryCode: string;
     RegistrationID: string;
+}
+
+export interface SaleToAcquirerData {
+    applicationInfo?: ApplicationInfo;
 }
 
 export interface StoredValueAccountID {
