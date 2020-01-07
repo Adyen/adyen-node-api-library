@@ -1,6 +1,6 @@
 /**
- * Adyen Checkout API
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including One-Click and 3D Secure), mobile wallets, and local payment methods (e.g. iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/checkout).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/user-management/how-to-get-the-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v51/payments ```
+ * Adyen Payment API
+ * A set of API endpoints that allow you to initiate, settle, and modify payments on the Adyen payments platform. You can use the API to accept card payments (including One-Click and 3D Secure), bank transfers, ewallets, and many other payment methods.  To learn more about the API, visit [Classic integration](https://docs.adyen.com/classic-integration).  ## Authentication To connect to the Payments API, you must use your basic authentication credentials. For this, create your web service user, as described in [How to get the WS user password](https://docs.adyen.com/user-management/how-to-get-the-web-service-ws-user-password). Then use its credentials to authenticate your request, for example:  ``` curl -U \"ws@Company.YourCompany\":\"YourWsPassword\" \\ -H \"Content-Type: application/json\" \\ ... ``` Note that when going live, you need to generate new web service user credentials to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Payments API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://pal-test.adyen.com/pal/servlet/Payment/v51/authorise ```
  *
  * The version of the OpenAPI document: 51
  * Contact: support@adyen.com
@@ -13,54 +13,37 @@
 import { AccountInfo } from './accountInfo';
 import { Address } from './address';
 import { Amount } from './amount';
+import { AnyOfAdditionalDataCommonAdditionalData3DSecureAdditionalDataAirlineAdditionalDataCarRentalAdditionalDataLevel23AdditionalDataLodgingAdditionalDataOpenInvoiceAdditionalDataRatepayAdditionalDataRetryAdditionalDataRiskAdditionalDataRiskStandaloneAdditionalDataTemporaryServicesAdditionalDataWallets } from './anyOfAdditionalDataCommonAdditionalData3DSecureAdditionalDataAirlineAdditionalDataCarRentalAdditionalDataLevel23AdditionalDataLodgingAdditionalDataOpenInvoiceAdditionalDataRatepayAdditionalDataRetryAdditionalDataRiskAdditionalDataRiskStandaloneAdditionalDataTemporaryServicesAdditionalDataWallets';
 import { ApplicationInfo } from './applicationInfo';
+import { BankAccount } from './bankAccount';
 import { BrowserInfo } from './browserInfo';
-import { Company } from './company';
+import { Card } from './card';
 import { ForexQuote } from './forexQuote';
 import { Installments } from './installments';
-import { LineItem } from './lineItem';
 import { MerchantRiskIndicator } from './merchantRiskIndicator';
 import { Name } from './name';
+import { Recurring } from './recurring';
 import { Split } from './split';
 import { ThreeDS2RequestData } from './threeDS2RequestData';
 import { ThreeDSecureData } from './threeDSecureData';
-import {AdditionalData3DSecure} from "./additionalData3DSecure";
-import {AdditionalDataAirline} from "./additionalDataAirline";
-import {AdditionalDataCommon} from "./additionalDataCommon";
-import {AdditionalDataLevel23} from "./additionalDataLevel23";
-import {AdditionalDataLodging} from "./additionalDataLodging";
-import {AdditionalDataOpenInvoice} from "./additionalDataOpenInvoice";
-import {AdditionalDataRatepay} from "./additionalDataRatepay";
-import {AdditionalDataRetry} from "./additionalDataRetry";
-import {AdditionalDataRisk} from "./additionalDataRisk";
-import {AdditionalDataRiskStandalone} from "./additionalDataRiskStandalone";
-import {AdditionalDataTemporaryServices} from "./additionalDataTemporaryServices";
-import {AdditionalDataWallets} from "./additionalDataWallets";
 
-type AdditionalData = AdditionalData3DSecure | AdditionalDataAirline | AdditionalDataCommon | AdditionalDataLevel23 | AdditionalDataLodging | AdditionalDataOpenInvoice | AdditionalDataRatepay | AdditionalDataRetry | AdditionalDataRisk | AdditionalDataRiskStandalone | AdditionalDataTemporaryServices | AdditionalDataWallets;
 export class PaymentRequest {
     'accountInfo'?: AccountInfo;
+    'additionalAmount'?: Amount;
     /**
     * This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
-    'additionalData'?: AdditionalData;
+    'additionalData'?: AnyOfAdditionalDataCommonAdditionalData3DSecureAdditionalDataAirlineAdditionalDataCarRentalAdditionalDataLevel23AdditionalDataLodgingAdditionalDataOpenInvoiceAdditionalDataRatepayAdditionalDataRetryAdditionalDataRiskAdditionalDataRiskStandaloneAdditionalDataTemporaryServicesAdditionalDataWallets;
     'amount': Amount;
     'applicationInfo'?: ApplicationInfo;
+    'bankAccount'?: BankAccount;
     'billingAddress'?: Address;
     'browserInfo'?: BrowserInfo;
     /**
     * The delay between the authorisation and scheduled auto-capture, specified in hours.
     */
     'captureDelayHours'?: number;
-    /**
-    * The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.  Possible values: * iOS * Android * Web
-    */
-    'channel'?: PaymentRequest.ChannelEnum;
-    'company'?: Company;
-    /**
-    * The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
-    */
-    'countryCode'?: string;
+    'card'?: Card;
     /**
     * The shopper\'s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
     */
@@ -76,21 +59,9 @@ export class PaymentRequest {
     */
     'deviceFingerprint'?: string;
     /**
-    * When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future one-click payments.
-    */
-    'enableOneClick'?: boolean;
-    /**
-    * When true and `shopperReference` is provided, the payment details will be tokenized for payouts.
-    */
-    'enablePayOut'?: boolean;
-    /**
     * Choose if a specific transaction should use the Real-time Account Updater, regardless of other settings.
     */
     'enableRealTimeUpdate'?: boolean;
-    /**
-    * When true and `shopperReference` is provided, the payment details will be tokenized for recurring payments.
-    */
-    'enableRecurring'?: boolean;
     /**
     * The type of the entity the payment is processed for.
     */
@@ -100,10 +71,6 @@ export class PaymentRequest {
     */
     'fraudOffset'?: number;
     'installments'?: Installments;
-    /**
-    * Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for Klarna, AfterPay, and RatePay.
-    */
-    'lineItems'?: Array<LineItem>;
     /**
     * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
     */
@@ -123,49 +90,34 @@ export class PaymentRequest {
     'metadata'?: object;
     'mpiData'?: ThreeDSecureData;
     /**
+    * The two-character country code of the shopper\'s nationality.
+    */
+    'nationality'?: string;
+    /**
     * When you are doing multiple partial (gift card) payments, this is the `pspReference` of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the `merchantOrderReference`instead.
     */
     'orderReference'?: string;
-    /**
-    * Required for the 3D Secure 2 `channel` **Web** integration.  Set this parameter to the origin URL of the page that you are loading the 3D Secure Component from.
-    */
-    'origin'?: string;
-    /**
-    * The collection that contains the type of the payment method and its specific information (e.g. `idealIssuer`).
-    */
-    'paymentMethod': object;
-    /**
-    * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
-    */
-    'recurringExpiry'?: string;
-    /**
-    * Minimum number of days between authorisations. Only for 3D Secure 2.
-    */
-    'recurringFrequency'?: string;
+    'recurring'?: Recurring;
     /**
     * Defines a recurring payment type. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – Card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – A transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
     'recurringProcessingModel'?: PaymentRequest.RecurringProcessingModelEnum;
     /**
-    * Specifies the redirect method (GET or POST) when redirecting back from the issuer.
-    */
-    'redirectFromIssuerMethod'?: string;
-    /**
-    * Specifies the redirect method (GET or POST) when redirecting to the issuer.
-    */
-    'redirectToIssuerMethod'?: string;
-    /**
     * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.
     */
     'reference': string;
     /**
-    * The URL to return to.
+    * Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * `maestro` (default), to be processed like a Maestro card, or * `bcmc`, to be processed like a Bancontact card.
     */
-    'returnUrl': string;
+    'selectedBrand'?: string;
     /**
-    * The maximum validity of the session.
+    * The `recurringDetailReference` you want to use for this payment. The value `LATEST` can be used to select the most recently stored recurring detail.
     */
-    'sessionValidity'?: string;
+    'selectedRecurringDetailReference'?: string;
+    /**
+    * A session ID used to identify a payment session.
+    */
+    'sessionId'?: string;
     /**
     * The shopper\'s email address. We recommend that you provide this data, as it is used in velocity fraud checks. > For 3D Secure 2 transactions, schemes require the `shopperEmail` for both `deviceChannel` **browser** and **app**.
     */
@@ -200,18 +152,22 @@ export class PaymentRequest {
     */
     'splits'?: Array<Split>;
     /**
-    * When true and `shopperReference` is provided, the payment details will be stored.
+    * The physical store, for which this payment is processed.
     */
-    'storePaymentMethod'?: boolean;
+    'store'?: string;
     /**
     * The shopper\'s telephone number.
     */
     'telephoneNumber'?: string;
     'threeDS2RequestData'?: ThreeDS2RequestData;
     /**
-    * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/native-3ds2/authentication-only), and not the payment authorisation.
+    * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     */
     'threeDSAuthenticationOnly'?: boolean;
+    /**
+    * The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available).
+    */
+    'totalsGroup'?: string;
     /**
     * Set to true if the payment should be routed to a trusted MID.
     */
@@ -226,9 +182,14 @@ export class PaymentRequest {
             "type": "AccountInfo"
         },
         {
+            "name": "additionalAmount",
+            "baseName": "additionalAmount",
+            "type": "Amount"
+        },
+        {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "AdditionalData"
+            "type": "AnyOfAdditionalDataCommonAdditionalData3DSecureAdditionalDataAirlineAdditionalDataCarRentalAdditionalDataLevel23AdditionalDataLodgingAdditionalDataOpenInvoiceAdditionalDataRatepayAdditionalDataRetryAdditionalDataRiskAdditionalDataRiskStandaloneAdditionalDataTemporaryServicesAdditionalDataWallets"
         },
         {
             "name": "amount",
@@ -239,6 +200,11 @@ export class PaymentRequest {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
             "type": "ApplicationInfo"
+        },
+        {
+            "name": "bankAccount",
+            "baseName": "bankAccount",
+            "type": "BankAccount"
         },
         {
             "name": "billingAddress",
@@ -256,19 +222,9 @@ export class PaymentRequest {
             "type": "number"
         },
         {
-            "name": "channel",
-            "baseName": "channel",
-            "type": "PaymentRequest.ChannelEnum"
-        },
-        {
-            "name": "company",
-            "baseName": "company",
-            "type": "Company"
-        },
-        {
-            "name": "countryCode",
-            "baseName": "countryCode",
-            "type": "string"
+            "name": "card",
+            "baseName": "card",
+            "type": "Card"
         },
         {
             "name": "dateOfBirth",
@@ -296,23 +252,8 @@ export class PaymentRequest {
             "type": "string"
         },
         {
-            "name": "enableOneClick",
-            "baseName": "enableOneClick",
-            "type": "boolean"
-        },
-        {
-            "name": "enablePayOut",
-            "baseName": "enablePayOut",
-            "type": "boolean"
-        },
-        {
             "name": "enableRealTimeUpdate",
             "baseName": "enableRealTimeUpdate",
-            "type": "boolean"
-        },
-        {
-            "name": "enableRecurring",
-            "baseName": "enableRecurring",
             "type": "boolean"
         },
         {
@@ -329,11 +270,6 @@ export class PaymentRequest {
             "name": "installments",
             "baseName": "installments",
             "type": "Installments"
-        },
-        {
-            "name": "lineItems",
-            "baseName": "lineItems",
-            "type": "Array<LineItem>"
         },
         {
             "name": "mcc",
@@ -366,29 +302,19 @@ export class PaymentRequest {
             "type": "ThreeDSecureData"
         },
         {
+            "name": "nationality",
+            "baseName": "nationality",
+            "type": "string"
+        },
+        {
             "name": "orderReference",
             "baseName": "orderReference",
             "type": "string"
         },
         {
-            "name": "origin",
-            "baseName": "origin",
-            "type": "string"
-        },
-        {
-            "name": "paymentMethod",
-            "baseName": "paymentMethod",
-            "type": "object"
-        },
-        {
-            "name": "recurringExpiry",
-            "baseName": "recurringExpiry",
-            "type": "string"
-        },
-        {
-            "name": "recurringFrequency",
-            "baseName": "recurringFrequency",
-            "type": "string"
+            "name": "recurring",
+            "baseName": "recurring",
+            "type": "Recurring"
         },
         {
             "name": "recurringProcessingModel",
@@ -396,28 +322,23 @@ export class PaymentRequest {
             "type": "PaymentRequest.RecurringProcessingModelEnum"
         },
         {
-            "name": "redirectFromIssuerMethod",
-            "baseName": "redirectFromIssuerMethod",
-            "type": "string"
-        },
-        {
-            "name": "redirectToIssuerMethod",
-            "baseName": "redirectToIssuerMethod",
-            "type": "string"
-        },
-        {
             "name": "reference",
             "baseName": "reference",
             "type": "string"
         },
         {
-            "name": "returnUrl",
-            "baseName": "returnUrl",
+            "name": "selectedBrand",
+            "baseName": "selectedBrand",
             "type": "string"
         },
         {
-            "name": "sessionValidity",
-            "baseName": "sessionValidity",
+            "name": "selectedRecurringDetailReference",
+            "baseName": "selectedRecurringDetailReference",
+            "type": "string"
+        },
+        {
+            "name": "sessionId",
+            "baseName": "sessionId",
             "type": "string"
         },
         {
@@ -466,9 +387,9 @@ export class PaymentRequest {
             "type": "Array<Split>"
         },
         {
-            "name": "storePaymentMethod",
-            "baseName": "storePaymentMethod",
-            "type": "boolean"
+            "name": "store",
+            "baseName": "store",
+            "type": "string"
         },
         {
             "name": "telephoneNumber",
@@ -486,6 +407,11 @@ export class PaymentRequest {
             "type": "boolean"
         },
         {
+            "name": "totalsGroup",
+            "baseName": "totalsGroup",
+            "type": "string"
+        },
+        {
             "name": "trustedShopper",
             "baseName": "trustedShopper",
             "type": "boolean"
@@ -497,11 +423,6 @@ export class PaymentRequest {
 }
 
 export namespace PaymentRequest {
-    export enum ChannelEnum {
-        IOS = <any> 'iOS',
-        Android = <any> 'Android',
-        Web = <any> 'Web'
-    }
     export enum EntityTypeEnum {
         NaturalPerson = <any> 'NaturalPerson',
         CompanyName = <any> 'CompanyName'

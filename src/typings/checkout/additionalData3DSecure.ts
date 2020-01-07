@@ -24,6 +24,10 @@ export class AdditionalData3DSecure {
     * In case of Secure+, this field must be set to **CUPSecurePlus**.
     */
     'mpiImplementationType'?: string;
+    /**
+    * Indicates the [exemption type](https://docs-admin.is.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction. Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** 
+    */
+    'scaExemption'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -41,6 +45,11 @@ export class AdditionalData3DSecure {
         {
             "name": "mpiImplementationType",
             "baseName": "mpiImplementationType",
+            "type": "string"
+        },
+        {
+            "name": "scaExemption",
+            "baseName": "scaExemption",
             "type": "string"
         }    ];
 
