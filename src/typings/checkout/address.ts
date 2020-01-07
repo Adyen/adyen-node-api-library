@@ -29,7 +29,7 @@ export class Address {
     */
     'postalCode': string;
     /**
-    * State or province codes as defined in ISO 3166-2. For example, **SF** in US or **ON** for Canada. > Required for the US and Canada.
+    * State or province codes as defined in ISO 3166-2. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
     */
     'stateOrProvince'?: string;
     /**

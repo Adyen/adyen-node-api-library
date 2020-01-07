@@ -13,7 +13,7 @@
 
 export class AdditionalDataRiskStandalone {
     /**
-    * Raw AVS result received from the acquirer, where available. Example: 7
+    * Raw AVS result received from the acquirer, where available. Example: D
     */
     'avsResultRaw'?: string;
     /**

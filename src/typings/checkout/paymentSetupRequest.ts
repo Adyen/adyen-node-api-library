@@ -12,6 +12,7 @@
 
 import { Address } from './address';
 import { Amount } from './amount';
+import { AnyOfAdditionalDataCommonAdditionalData3DSecureAdditionalDataAirlineAdditionalDataCarRentalAdditionalDataLevel23AdditionalDataLodgingAdditionalDataOpenInvoiceAdditionalDataRatepayAdditionalDataRetryAdditionalDataRiskAdditionalDataRiskStandaloneAdditionalDataTemporaryServices } from './anyOfAdditionalDataCommonAdditionalData3DSecureAdditionalDataAirlineAdditionalDataCarRentalAdditionalDataLevel23AdditionalDataLodgingAdditionalDataOpenInvoiceAdditionalDataRatepayAdditionalDataRetryAdditionalDataRiskAdditionalDataRiskStandaloneAdditionalDataTemporaryServices';
 import { ApplicationInfo } from './applicationInfo';
 import { Company } from './company';
 import { Configuration } from './configuration';
@@ -20,25 +21,12 @@ import { Installments } from './installments';
 import { LineItem } from './lineItem';
 import { Name } from './name';
 import { Split } from './split';
-import {AdditionalData3DSecure} from "../payments/additionalData3DSecure";
-import {AdditionalDataAirline} from "../payments/additionalDataAirline";
-import {AdditionalDataCommon} from "../payments/additionalDataCommon";
-import {AdditionalDataLevel23} from "../payments/additionalDataLevel23";
-import {AdditionalDataLodging} from "../payments/additionalDataLodging";
-import {AdditionalDataOpenInvoice} from "../payments/additionalDataOpenInvoice";
-import {AdditionalDataRatepay} from "../payments/additionalDataRatepay";
-import {AdditionalDataRetry} from "../payments/additionalDataRetry";
-import {AdditionalDataRisk} from "../payments/additionalDataRisk";
-import {AdditionalDataRiskStandalone} from "../payments/additionalDataRiskStandalone";
-import {AdditionalDataTemporaryServices} from "../payments/additionalDataTemporaryServices";
-import {AdditionalDataWallets} from "../payments/additionalDataWallets";
 
-type AdditionalData = AdditionalData3DSecure | AdditionalDataAirline | AdditionalDataCommon | AdditionalDataLevel23 | AdditionalDataLodging | AdditionalDataOpenInvoice | AdditionalDataRatepay | AdditionalDataRetry | AdditionalDataRisk | AdditionalDataRiskStandalone | AdditionalDataTemporaryServices | AdditionalDataWallets;
 export class PaymentSetupRequest {
     /**
     * This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
-    'additionalData'?: AdditionalData;
+    'additionalData'?: AnyOfAdditionalDataCommonAdditionalData3DSecureAdditionalDataAirlineAdditionalDataCarRentalAdditionalDataLevel23AdditionalDataLodgingAdditionalDataOpenInvoiceAdditionalDataRatepayAdditionalDataRetryAdditionalDataRiskAdditionalDataRiskStandaloneAdditionalDataTemporaryServices;
     /**
     * List of payments methods to be presented to the shopper. To refer to payment methods, use their `brandCode` from [Payment methods overview](https://docs.adyen.com/payment-methods).
     */
@@ -193,7 +181,7 @@ export class PaymentSetupRequest {
     */
     'telephoneNumber'?: string;
     /**
-    * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/native-3ds2/authentication-only), and not the payment authorisation.
+    * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     */
     'threeDSAuthenticationOnly'?: boolean;
     /**
@@ -211,7 +199,7 @@ export class PaymentSetupRequest {
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "AdditionalData"
+            "type": "AnyOfAdditionalDataCommonAdditionalData3DSecureAdditionalDataAirlineAdditionalDataCarRentalAdditionalDataLevel23AdditionalDataLodgingAdditionalDataOpenInvoiceAdditionalDataRatepayAdditionalDataRetryAdditionalDataRiskAdditionalDataRiskStandaloneAdditionalDataTemporaryServices"
         },
         {
             "name": "allowedPaymentMethods",
