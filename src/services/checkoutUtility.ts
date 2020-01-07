@@ -22,7 +22,6 @@
 import ApiKeyAuthenticatedService from "../apiKeyAuthenticatedService";
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
-import { CheckoutUtilityRequest, CheckoutUtilityResponse } from "../typings/checkoutUtility";
 import OriginKeys from "./resource/checkoutUtility/originKeys";
 
 class CheckoutUtility extends ApiKeyAuthenticatedService {
@@ -33,8 +32,8 @@ class CheckoutUtility extends ApiKeyAuthenticatedService {
         this._originKeys = new OriginKeys(this);
     }
 
-    public originKeys(originKeysRequest: CheckoutUtilityRequest): Promise<CheckoutUtilityResponse> {
-        return getJsonResponse<CheckoutUtilityRequest, CheckoutUtilityResponse>(
+    public originKeys(originKeysRequest: ICheckoutUtility.CheckoutUtilityRequest): Promise<ICheckoutUtility.CheckoutUtilityResponse> {
+        return getJsonResponse<ICheckoutUtility.CheckoutUtilityRequest, ICheckoutUtility.CheckoutUtilityResponse>(
             this._originKeys,
             originKeysRequest,
         );

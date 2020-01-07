@@ -1,3 +1,24 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen NodeJS API Library
+ *
+ * Copyright (c) 2019 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+
 // To parse this data:
 //
 //   import { Convert, TerminalApiRequest, TerminalApiResponse, TerminalApiSecuredRequest, TerminalApiSecuredResponse, NexoDerivedKey, SaleToPoiSecuredMessage, SecurityKey, SecurityTrailer, SaleToPoiRequest, SaleToPoiResponse, MessageHeader, AbortRequest, BalanceInquiryRequest, BatchRequest, CardAcquisitionRequest, AdminRequest, DiagnosisRequest, DisplayRequest, EnableServiceRequest, EventNotification, GetTotalsRequest, InputRequest, InputUpdate, LoginRequest, LogoutRequest, LoyaltyRequest, PaymentRequest, PinRequest, PrintRequest, CardReaderInitRequest, CardReaderApduRequest, CardReaderPowerOffRequest, ReconciliationRequest, ReversalRequest, SoundRequest, StoredValueRequest, TransactionStatusRequest, TransmitRequest, ContentInformation, BalanceInquiryResponse, BatchResponse, CardAcquisitionResponse, AdminResponse, DiagnosisResponse, DisplayResponse, EnableServiceResponse, GetTotalsResponse, InputResponse, LoginResponse, LogoutResponse, LoyaltyResponse, PaymentResponse, PinResponse, PrintResponse, CardReaderInitResponse, CardReaderApduResponse, CardReaderPowerOffResponse, ReconciliationResponse, ReversalResponse, SoundResponse, StoredValueResponse, TransactionStatusResponse, TransmitResponse, MessageReference, DisplayOutput, PaymentAccountReq, LoyaltyAccountReq, TransactionToPerform, SaleData, CardAcquisitionTransaction, TotalFilter, InputData, OutputContent, MenuEntry, SaleSoftware, SaleTerminalData, LoyaltyTransaction, LoyaltyData, PaymentTransaction, PaymentData, CardholderPin, PrintOutput, OriginalPoiTransaction, CustomerOrder, SoundContent, StoredValueData, EnvelopedData, AuthenticatedData, SignedData, DigestedData, NamedKeyEncryptedData, Response, PaymentAccountStatus, LoyaltyAccountStatus, PerformedTransaction, PoiData, PaymentInstrumentData, LoyaltyAccount, PoiStatus, HostStatus, OutputResult, TransactionTotals, InputResult, PoiSystemData, LoyaltyResult, PaymentReceipt, PaymentResult, TrackData, IccResetData, StoredValueResult, RepeatedMessageResponse, TransactionIdentification, LoyaltyAccountId, SponsoredMerchant, SaleToIssuerData, PredefinedContent, OutputText, OutputBarcode, SaleProfile, TransactionConditions, SaleItem, LoyaltyAmount, AmountsReq, Instalment, StoredValueAccountId, EncryptedContent, AlgorithmIdentifier, EncapsulatedContent, Signer, PaymentAcquirerData, CardData, CheckData, MobileData, CashHandlingDevice, PaymentTotals, LoyaltyTotals, Input, PoiSoftware, PoiTerminalData, LoyaltyAcquirerData, Rebates, AmountsResp, CurrencyConversion, CapturedSignature, StoredValueAccountStatus, RepeatedResponseMessageBody, Parameter, SignerIdentifier, SensitiveCardData, AllowedProduct, PaymentToken, Geolocation, SensitiveMobileData, CoinsOrBills, PoiProfile, SaleItemRebate, Amount, AreaSize, SignaturePoint, IssuerAndSerialNumber, GeographicCoordinates, UtmCoordinates, Issuer, RelativeDistinguishedName, MessageClassType, MessageCategoryType, MessageType, ServicesEnabledType, TransactionActionType, EventToNotifyType, TotalDetailsType, TokenRequestedType, CustomerOrderReqType, PinRequestType, PinFormatType, ForceEntryModeType, ReconciliationType, ReversalReasonType, ResponseModeType, SoundActionType, DocumentQualifierType, ContentType, EntryModeType, DeviceType, InfoQualifyType, AccountType, LoyaltyHandlingType, PaymentType, InputCommandType, OutputFormatType, MenuEntryTagType, SaleCapabilitiesType, TerminalEnvironmentType, LoyaltyTransactionType, SoundFormatType, StoredValueTransactionType, VersionType, ResultType, ErrorConditionType, LoyaltyUnitType, PaymentInstrumentType, GlobalStatusType, PrinterStatusType, AuthenticationMethodType, TrackFormatType, IdentificationType, IdentificationSupportType, ColorType, CharacterWidthType, CharacterHeightType, CharacterStyleType, AlignmentType, BarcodeType, ServiceProfilesType, GenericProfileType, UnitOfMeasureType, InstalmentType, PeriodUnitType, StoredValueAccountType, AlgorithmType, CheckTypeCodeType, TransactionType, PoiCapabilitiesType } from "./file";

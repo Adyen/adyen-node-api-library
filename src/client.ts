@@ -20,10 +20,9 @@
  */
 
 import Config from "./config";
-import ClientInterface from "./typings/httpClient/clientInterface";
 import HttpURLConnectionClient from "./httpClient/httpURLConnectionClient";
-import { Environment } from "./typings/enums/environment";
 import {version} from "../package.json";
+import ClientInterface from "./httpClient/clientInterface";
 
 type ClientParametersOverload =
 | { config: Config }
