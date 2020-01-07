@@ -32,7 +32,10 @@ import Payments from "./resource/checkout/payments";
 import PaymentsDetails from "./resource/checkout/paymentsDetails";
 import PaymentSession from "./resource/checkout/paymentSession";
 import PaymentsResult from "./resource/checkout/paymentsResult";
+import PaymentLinks from "./resource/checkout/paymentLinks";
 import setApplicationInfo from "../helpers/setApplicationInfo";
+import {CreatePaymentLinkResponse} from "../typings/checkout/createPaymentLinkResponse";
+import {CreatePaymentLinkRequest} from "../typings/checkout/createPaymentLinkRequest";
 
 class Checkout extends ApiKeyAuthenticatedService {
     private readonly _payments: Payments;
@@ -40,6 +43,7 @@ class Checkout extends ApiKeyAuthenticatedService {
     private readonly _paymentsDetails: PaymentsDetails;
     private readonly _paymentSession: PaymentSession;
     private readonly _paymentsResult: PaymentsResult;
+    private readonly _paymentLinks: PaymentLinks;
 
     public constructor(client: Client) {
         super(client);
@@ -48,6 +52,7 @@ class Checkout extends ApiKeyAuthenticatedService {
         this._paymentsDetails = new PaymentsDetails(this);
         this._paymentSession = new PaymentSession(this);
         this._paymentsResult = new PaymentsResult(this);
+        this._paymentLinks = new PaymentLinks(this);
     }
 
     public payments(paymentsRequest: PaymentRequest, requestOptions?: RequestOptions): Promise<PaymentResponse> {
@@ -62,6 +67,13 @@ class Checkout extends ApiKeyAuthenticatedService {
         return getJsonResponse<PaymentMethodsRequest, PaymentMethodsResponse>(
             this._paymentMethods,
             paymentMethodsRequest,
+        );
+    }
+
+    public paymentLinks(paymentLinkRequest: CreatePaymentLinkRequest): Promise<CreatePaymentLinkResponse> {
+        return getJsonResponse<CreatePaymentLinkRequest, CreatePaymentLinkResponse>(
+            this._paymentLinks,
+            paymentLinkRequest
         );
     }
 
