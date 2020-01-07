@@ -64,7 +64,7 @@ class Client {
     public static LIB_VERSION: string = version;
     public static CHECKOUT_ENDPOINT_TEST = "https://checkout-test.adyen.com/checkout";
     public static CHECKOUT_ENDPOINT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
-    public static CHECKOUT_API_VERSION = "v49";
+    public static CHECKOUT_API_VERSION = "v51";
     public static BIN_LOOKUP_PAL_SUFFIX = "/pal/servlet/BinLookup/";
     public static BIN_LOOKUP_API_VERSION = "v40";
     public static CHECKOUT_UTILITY_API_VERSION = "v1";

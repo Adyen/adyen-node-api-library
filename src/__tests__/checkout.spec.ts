@@ -39,6 +39,11 @@ import {
     PaymentSetupRequest, PaymentVerificationRequest
 } from "../typings/checkout";
 import HttpClientException from "../httpClient/httpClientException";
+import {CreatePaymentLinkRequest} from "../typings/payments/createPaymentLinkRequest";
+import {CreatePaymentLinkResponse} from "../typings/checkout/createPaymentLinkResponse";
+
+const merchantAccount = "MagentoMerchantTest";
+const reference = "Your order number";
 
 function createAmountObject(currency: string, value: number): Amount {
     return {
@@ -69,9 +74,9 @@ export function createPaymentsCheckoutRequest(): PaymentRequest {
 
     return {
         amount: createAmountObject("USD", 1000),
-        merchantAccount: "MagentoMerchantTest",
+        merchantAccount,
         paymentMethod: paymentMethodDetails,
-        reference: "Your order number",
+        reference,
         returnUrl: "https://your-company.com/...",
     };
 }
@@ -80,8 +85,8 @@ function createPaymentSessionRequest(): PaymentSetupRequest {
     return {
         amount: createAmountObject("USD", 1000),
         countryCode: "NL",
-        merchantAccount: "MagentoMerchantTest",
-        reference: "Your order number",
+        merchantAccount,
+        reference,
         returnUrl: "https://your-company.com/...",
     };
 }
@@ -131,6 +136,50 @@ describe("Checkout", (): void => {
         } else {
             fail();
         }
+    });
+
+    it("should have valid payment link", async (): Promise<void> => {
+        const amount = createAmountObject("BRL", 1000);
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const paymentLinkRequest: CreatePaymentLinkRequest = {
+            allowedPaymentMethods: ["scheme", "boletobancario"],
+            amount,
+            countryCode: "BR",
+            merchantAccount,
+            shopperReference: "shopperReference",
+            shopperEmail: "test@email.com",
+            shopperLocale: "pt_BR",
+            billingAddress: {
+                street: "Roque Petroni Jr",
+                postalCode: "59000060",
+                city: "São Paulo",
+                houseNumberOrName: "999",
+                country: "BR",
+                stateOrProvince: "SP"
+            },
+            deliveryAddress: {
+                street: "Roque Petroni Jr",
+                postalCode: "59000060",
+                city: "São Paulo",
+                houseNumberOrName: "999",
+                country: "BR",
+                stateOrProvince: "SP"
+            },
+            expiresAt,
+            reference
+        };
+
+        const paymentLinkSuccess: CreatePaymentLinkResponse = {
+            amount,
+            expiresAt,
+            reference,
+            url: "paymentLinkResponse.url"
+        };
+
+        scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
+
+        const paymentSuccessLinkResponse = await checkout.paymentLinks(paymentLinkRequest);
+        expect(paymentLinkSuccess).toEqual(paymentSuccessLinkResponse);
     });
 
     it("should have payment details", async (): Promise<void> => {
