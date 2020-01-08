@@ -28,26 +28,20 @@ import {paymentSessionSuccess} from "../__mocks__/checkout/paymentSessionSucess"
 import {paymentsResultMultibancoSuccess} from "../__mocks__/checkout/paymentsResultMultibancoSuccess";
 import {paymentsResultSuccess} from "../__mocks__/checkout/paymentsResultSucess";
 import Client from "../client";
-import { TYPE_SCHEME } from "../typings/constants/apiConstants";
 import Checkout from "../services/checkout";
-import {
-    Amount,
-    DetailsRequest,
-    PaymentMethodsRequest,
-    PaymentRequest,
-    PaymentResponse,
-    PaymentSetupRequest, PaymentVerificationRequest
-} from "../typings/checkout";
 import HttpClientException from "../httpClient/httpClientException";
 
-function createAmountObject(currency: string, value: number): Amount {
+const merchantAccount = "MagentoMerchantTest";
+const reference = "Your order number";
+
+function createAmountObject(currency: string, value: number): ICheckout.Amount {
     return {
         currency,
         value,
     };
 }
 
-function createPaymentsDetailsRequest(): DetailsRequest {
+function createPaymentsDetailsRequest(): ICheckout.DetailsRequest {
     return {
         details: {
             MD: "mdValue",
@@ -57,31 +51,31 @@ function createPaymentsDetailsRequest(): DetailsRequest {
     };
 }
 
-export function createPaymentsCheckoutRequest(): PaymentRequest {
+export function createPaymentsCheckoutRequest(): ICheckout.PaymentRequest {
     const paymentMethodDetails = {
         cvc: "737",
         expiryMonth: "10",
         expiryYear: "2018",
         holderName: "John Smith",
         number: "4111111111111111",
-        type: TYPE_SCHEME,
+        type: "scheme",
     };
 
     return {
         amount: createAmountObject("USD", 1000),
-        merchantAccount: "MagentoMerchantTest",
+        merchantAccount,
         paymentMethod: paymentMethodDetails,
-        reference: "Your order number",
+        reference,
         returnUrl: "https://your-company.com/...",
     };
 }
 
-function createPaymentSessionRequest(): PaymentSetupRequest {
+function createPaymentSessionRequest(): ICheckout.PaymentSetupRequest {
     return {
         amount: createAmountObject("USD", 1000),
         countryCode: "NL",
-        merchantAccount: "MagentoMerchantTest",
-        reference: "Your order number",
+        merchantAccount,
+        reference,
         returnUrl: "https://your-company.com/...",
     };
 }
@@ -101,8 +95,8 @@ describe("Checkout", (): void => {
         scope.post("/payments")
             .reply(200, paymentsSuccess);
 
-        const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
-        const paymentsResponse: PaymentResponse = await checkout.payments(paymentsRequest);
+        const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: ICheckout.PaymentResponse = await checkout.payments(paymentsRequest);
         expect(paymentsResponse.pspReference).toEqual("8535296650153317");
     });
 
@@ -111,7 +105,7 @@ describe("Checkout", (): void => {
             scope.post("/payments")
                 .reply(401);
 
-            const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
+            const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
             await checkout.payments(paymentsRequest);
         } catch (e) {
             expect(e instanceof HttpClientException).toBeTruthy();
@@ -119,7 +113,7 @@ describe("Checkout", (): void => {
     });
 
     it("should have valid payment methods", async (): Promise<void> => {
-        const paymentMethodsRequest: PaymentMethodsRequest = {merchantAccount: "MagentoMerchantTest"};
+        const paymentMethodsRequest: ICheckout.PaymentMethodsRequest = {merchantAccount: "MagentoMerchantTest"};
 
         scope.post("/paymentMethods")
             .reply(200, paymentMethodsSuccess);
@@ -131,6 +125,50 @@ describe("Checkout", (): void => {
         } else {
             fail();
         }
+    });
+
+    it("should have valid payment link", async (): Promise<void> => {
+        const amount = createAmountObject("BRL", 1000);
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const paymentLinkRequest: ICheckout.CreatePaymentLinkRequest = {
+            allowedPaymentMethods: ["scheme", "boletobancario"],
+            amount,
+            countryCode: "BR",
+            merchantAccount,
+            shopperReference: "shopperReference",
+            shopperEmail: "test@email.com",
+            shopperLocale: "pt_BR",
+            billingAddress: {
+                street: "Roque Petroni Jr",
+                postalCode: "59000060",
+                city: "São Paulo",
+                houseNumberOrName: "999",
+                country: "BR",
+                stateOrProvince: "SP"
+            },
+            deliveryAddress: {
+                street: "Roque Petroni Jr",
+                postalCode: "59000060",
+                city: "São Paulo",
+                houseNumberOrName: "999",
+                country: "BR",
+                stateOrProvince: "SP"
+            },
+            expiresAt,
+            reference
+        };
+
+        const paymentLinkSuccess: ICheckout.CreatePaymentLinkResponse = {
+            amount,
+            expiresAt,
+            reference,
+            url: "paymentLinkResponse.url"
+        };
+
+        scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
+
+        const paymentSuccessLinkResponse = await checkout.paymentLinks(paymentLinkRequest);
+        expect(paymentLinkSuccess).toEqual(paymentSuccessLinkResponse);
     });
 
     it("should have payment details", async (): Promise<void> => {
@@ -146,7 +184,7 @@ describe("Checkout", (): void => {
         scope.post("/paymentSession")
             .reply(200, paymentSessionSuccess);
         const checkout: Checkout = new Checkout(client);
-        const paymentSessionRequest: PaymentSetupRequest = createPaymentSessionRequest();
+        const paymentSessionRequest: ICheckout.PaymentSetupRequest = createPaymentSessionRequest();
         const paymentSessionResponse = await checkout.paymentSession(paymentSessionRequest);
         expect(paymentSessionResponse.paymentSession).not.toBeUndefined();
     });
@@ -156,7 +194,7 @@ describe("Checkout", (): void => {
         scope.post("/payments/result")
             .reply(200, paymentsResultSuccess);
         const checkout = new Checkout(client);
-        const paymentResultRequest: PaymentVerificationRequest = {
+        const paymentResultRequest: ICheckout.PaymentVerificationRequest = {
             payload: "This is a test payload",
         };
         const paymentResultResponse = await checkout.paymentResult(paymentResultRequest);
@@ -180,8 +218,8 @@ describe("Checkout", (): void => {
             .reply(200, paymentsResultMultibancoSuccess);
 
         const checkout: Checkout = new Checkout(client);
-        const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
-        const paymentsResponse: PaymentResponse = await checkout.payments(paymentsRequest);
+        const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: ICheckout.PaymentResponse = await checkout.payments(paymentsRequest);
         expect(paymentsResponse.pspReference).toEqual("8111111111111111");
 
         if (paymentsResponse.additionalData) {

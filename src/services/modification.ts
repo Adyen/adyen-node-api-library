@@ -21,8 +21,6 @@
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
-import { ModificationRequest, ModificationResult } from "../typings/payments";
-import { RequestOptions } from "../typings/requestOptions";
 import AdjustAuthorisation from "./resource/modification/adjustAuthorisation";
 import Cancel from "./resource/modification/cancel";
 import CancelOrRefund from "./resource/modification/cancelOrRefund";
@@ -30,6 +28,10 @@ import Capture from "./resource/modification/capture";
 import Refund from "./resource/modification/refund";
 import TechnicalCancel from "./resource/modification/technicalCancel";
 import setApplicationInfo from "../helpers/setApplicationInfo";
+import {ApplicationInfo} from "../typings/applicationInfo";
+
+interface AppInfo { applicationInfo?: ApplicationInfo }
+type GenericRequest<T> = T & AppInfo;
 
 class Modification extends Service {
     private readonly _cancelOrRefund: CancelOrRefund;
@@ -50,10 +52,10 @@ class Modification extends Service {
     }
 
     public capture(
-        captureRequest: ModificationRequest,
-        requestOptions?: RequestOptions,
-    ): Promise<ModificationResult> {
-        return getJsonResponse<ModificationRequest, ModificationResult>(
+        captureRequest: GenericRequest<IPayments.ModificationRequest>,
+        requestOptions?: IRequest.Options,
+    ): Promise<IPayments.ModificationResult> {
+        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
             this._capture,
             setApplicationInfo(captureRequest),
             requestOptions,
@@ -61,10 +63,10 @@ class Modification extends Service {
     }
 
     public cancelOrRefund(
-        cancelOrRefundRequest: ModificationRequest,
-        requestOptions?: RequestOptions,
-    ): Promise<ModificationResult> {
-        return getJsonResponse<ModificationRequest, ModificationResult>(
+        cancelOrRefundRequest: GenericRequest<IPayments.ModificationRequest>,
+        requestOptions?: IRequest.Options,
+    ): Promise<IPayments.ModificationResult> {
+        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
             this._cancelOrRefund,
             setApplicationInfo(cancelOrRefundRequest),
             requestOptions,
@@ -72,10 +74,10 @@ class Modification extends Service {
     }
 
     public refund(
-        refundRequest: ModificationRequest,
-        requestOptions?: RequestOptions,
-    ): Promise<ModificationResult> {
-        return getJsonResponse<ModificationRequest, ModificationResult>(
+        refundRequest: GenericRequest<IPayments.ModificationRequest>,
+        requestOptions?: IRequest.Options,
+    ): Promise<IPayments.ModificationResult> {
+        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
             this._refund,
             setApplicationInfo(refundRequest),
             requestOptions,
@@ -83,10 +85,10 @@ class Modification extends Service {
     }
 
     public cancel(
-        cancelRequest: ModificationRequest,
-        requestOptions?: RequestOptions,
-    ): Promise<ModificationResult> {
-        return getJsonResponse<ModificationRequest, ModificationResult>(
+        cancelRequest: GenericRequest<IPayments.ModificationRequest>,
+        requestOptions?: IRequest.Options,
+    ): Promise<IPayments.ModificationResult> {
+        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
             this._cancel,
             setApplicationInfo(cancelRequest),
             requestOptions,
@@ -94,10 +96,10 @@ class Modification extends Service {
     }
 
     public technicalCancel(
-        technicalCancelRequest: ModificationRequest,
-        requestOptions?: RequestOptions,
-    ): Promise<ModificationResult> {
-        return getJsonResponse<ModificationRequest, ModificationResult>(
+        technicalCancelRequest: GenericRequest<IPayments.ModificationRequest>,
+        requestOptions?: IRequest.Options,
+    ): Promise<IPayments.ModificationResult> {
+        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
             this._technicalCancel,
             setApplicationInfo(technicalCancelRequest),
             requestOptions,
@@ -105,10 +107,10 @@ class Modification extends Service {
     }
 
     public adjustAuthorisation(
-        adjustAuthorisationRequest: ModificationRequest,
-        requestOptions?: RequestOptions,
-    ): Promise<ModificationResult> {
-        return getJsonResponse<ModificationRequest, ModificationResult>(
+        adjustAuthorisationRequest: GenericRequest<IPayments.ModificationRequest>,
+        requestOptions?: IRequest.Options,
+    ): Promise<IPayments.ModificationResult> {
+        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
             this._adjustAuthorisation,
             setApplicationInfo(adjustAuthorisationRequest),
             requestOptions,

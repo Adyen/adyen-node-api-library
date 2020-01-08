@@ -19,4 +19,5 @@
  * See the LICENSE file for more info.
  */
 
-export type Environment = "LIVE" | "TEST";
+declare type Environment = "LIVE" | "TEST"
+

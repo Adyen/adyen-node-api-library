@@ -18,8 +18,6 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
-import { Environment } from "./typings/enums/environment";
-
 interface ConfigConstructor {
     username?: string;
     password?: string;
