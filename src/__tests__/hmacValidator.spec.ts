@@ -1,6 +1,6 @@
 import HmacValidator from "../utils/hmacValidator";
 import {NotificationRequestItem} from "../typings/notification";
-import {HMAC_SIGNATURE} from "../typings/constants/apiConstants";
+import {ApiConstants} from "../constants/apiConstants";
 
 const key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
 const expectedSign = "ipnxGCaUZ4l8TUW75a71/ghd2Fe5ffvX0pV4TLTntIc=";
@@ -15,7 +15,7 @@ const notificationRequestItem: NotificationRequestItem = {
     paymentMethod: "VISA",
     reason: "reason",
     success: "true",
-    additionalData: { [HMAC_SIGNATURE]: expectedSign },
+    additionalData: { [ApiConstants.HMAC_SIGNATURE]: expectedSign },
 };
 
 describe("HMAC Validator", function (): void {
@@ -52,7 +52,7 @@ describe("HMAC Validator", function (): void {
     it("should have invalid hmac", function (): void {
         const invalidNotification = {
             ...notificationRequestItem,
-            additionalData: { [HMAC_SIGNATURE]: "notValidSign" }
+            additionalData: { [ApiConstants.HMAC_SIGNATURE]: "notValidSign" }
         };
         const hmacValidator = new HmacValidator();
         const result = hmacValidator.validateHMAC(invalidNotification, key);

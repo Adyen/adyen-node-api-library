@@ -21,7 +21,6 @@
 import nock from "nock";
 import {createMockClientFromResponse} from "../__mocks__/base";
 import BinLookup from "../services/binLookup";
-import {CostEstimateRequest, ThreeDSAvailabilityRequest} from "../typings/binLookup";
 import Client from "../client";
 import HttpClientException from "../httpClient/httpClientException";
 
@@ -54,7 +53,7 @@ beforeEach((): void => {
 
 describe("Bin Lookup", function (): void {
     it("should succeed on get 3ds availability", async function (): Promise<void> {
-        const threeDSAvailabilityRequest: ThreeDSAvailabilityRequest = {
+        const threeDSAvailabilityRequest: IBinLookup.ThreeDSAvailabilityRequest = {
             merchantAccount: "MOCK_MERCHANT_ACCOUNT",
             brands: ["randomBrand"],
             cardNumber: "4111111111111111"
@@ -79,7 +78,7 @@ describe("Bin Lookup", function (): void {
             .reply(403, JSON.stringify({status: 403, message: "fail", errorCode: "171"}));
 
         try {
-            await binLookup.get3dsAvailability(threeDSAvailabilityRequest as unknown as ThreeDSAvailabilityRequest);
+            await binLookup.get3dsAvailability(threeDSAvailabilityRequest as unknown as IBinLookup.ThreeDSAvailabilityRequest);
             fail("Expected request to fail");
         } catch (e) {
             expect(e instanceof HttpClientException).toBeTruthy();
@@ -92,7 +91,7 @@ describe("Bin Lookup", function (): void {
             resultCode: "Unsupported",
             surchargeType: "ZERO"
         };
-        const costEstimateRequest: CostEstimateRequest = {
+        const costEstimateRequest: IBinLookup.CostEstimateRequest = {
             amount: { currency: "EUR", value: 1000 },
             assumptions: {
                 assumeLevel3Data: true,
@@ -105,7 +104,7 @@ describe("Bin Lookup", function (): void {
                 mcc: "7411",
                 enrolledIn3DSecure: true
             },
-            shopperInteraction: CostEstimateRequest.ShopperInteractionEnum.Ecommerce
+            shopperInteraction: "Ecommerce"
         };
 
         scope.post("/getCostEstimate")

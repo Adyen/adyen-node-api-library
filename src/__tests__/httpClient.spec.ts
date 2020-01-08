@@ -4,7 +4,6 @@ import Checkout from "../services/checkout";
 import ApiException from "../services/exception/apiException";
 import {createPaymentsCheckoutRequest} from "./checkout.spec";
 import HttpClientException from "../httpClient/httpClientException";
-import {Environment} from "../typings/enums/environment";
 
 beforeEach((): void => {
     nock.cleanAll();
