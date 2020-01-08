@@ -22,12 +22,6 @@ import ApiKeyAuthenticatedService from "../apiKeyAuthenticatedService";
 import Client from "../client";
 import GetCostEstimate from "./resource/binLookup/getCostEstimate";
 import Get3dsAvailability from "./resource/binLookup/get3dsAvailability";
-import {
-    CostEstimateRequest,
-    CostEstimateResponse,
-    ThreeDSAvailabilityRequest,
-    ThreeDSAvailabilityResponse
-} from "../typings/binLookup";
 import getJsonResponse from "../helpers/getJsonResponse";
 
 class BinLookup extends ApiKeyAuthenticatedService {
@@ -40,15 +34,15 @@ class BinLookup extends ApiKeyAuthenticatedService {
         this._getCostEstimate = new GetCostEstimate(this);
     }
 
-    public get3dsAvailability(request: ThreeDSAvailabilityRequest): Promise<ThreeDSAvailabilityResponse> {
-        return getJsonResponse<ThreeDSAvailabilityRequest, ThreeDSAvailabilityResponse>(
+    public get3dsAvailability(request: IBinLookup.ThreeDSAvailabilityRequest): Promise<IBinLookup.ThreeDSAvailabilityResponse> {
+        return getJsonResponse<IBinLookup.ThreeDSAvailabilityRequest, IBinLookup.ThreeDSAvailabilityResponse>(
             this._get3dsAvailability,
             request
         );
     }
 
-    public getCostEstimate(request: CostEstimateRequest): Promise<CostEstimateResponse> {
-        return getJsonResponse<CostEstimateRequest, CostEstimateResponse>(
+    public getCostEstimate(request: IBinLookup.CostEstimateRequest): Promise<IBinLookup.CostEstimateResponse> {
+        return getJsonResponse<IBinLookup.CostEstimateRequest, IBinLookup.CostEstimateResponse>(
             this._getCostEstimate,
             request
         );

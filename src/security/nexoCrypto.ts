@@ -21,7 +21,6 @@
 
 import {Cipher, createCipheriv, createDecipheriv, createHmac, randomBytes} from "crypto";
 import NexoCryptoException from "../services/exception/nexoCryptoException";
-import {NEXO_IV_LENGTH} from "../typings/constants/nexoConstants";
 import {
     MessageHeader,
     NexoDerivedKey,
@@ -31,6 +30,7 @@ import {
 } from "../typings/terminal";
 import InvalidSecurityKeyException from "./exception/invalidSecurityKeyException";
 import NexoDerivedKeyGenerator from "./nexoDerivedKeyGenerator";
+import {NexoEnum} from "../constants/nexoConstants";
 
 enum Modes {
     ENCRYPT,
@@ -91,8 +91,8 @@ class NexoCrypto {
     }
 
     private static crypt(bytes: Buffer, dk: NexoDerivedKey, ivNonce: Buffer, mode: Modes): Buffer {
-        const actualIV = Buffer.alloc(NEXO_IV_LENGTH);
-        for (let i = 0; i < NEXO_IV_LENGTH; i++) {
+        const actualIV = Buffer.alloc(NexoEnum.IV_LENGTH);
+        for (let i = 0; i < NexoEnum.IV_LENGTH; i++) {
             actualIV[i] = dk.iv[i] ^ ivNonce[i];
         }
 
@@ -111,7 +111,7 @@ class NexoCrypto {
     }
 
     private static generateRandomIvNonce(): Buffer {
-        return randomBytes(NEXO_IV_LENGTH);
+        return randomBytes(NexoEnum.IV_LENGTH);
     }
 
     private validateHmac(receivedHmac: Buffer, decryptedMessage: Buffer, derivedKey: NexoDerivedKey): void {

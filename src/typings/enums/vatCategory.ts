@@ -18,10 +18,8 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
-enum VatCategory {
+declare enum VatCategory {
     HIGH = "High",
     LOW = "Low",
     NONE = "None",
 }
-
-export default VatCategory;

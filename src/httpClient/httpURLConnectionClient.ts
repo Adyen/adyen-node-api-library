@@ -27,21 +27,12 @@ import * as fs from "fs";
 import {URL} from "url";
 import Client from "../client";
 import Config from "../config";
-import {
-    ACCEPT_CHARSET,
-    API_KEY,
-    APPLICATION_JSON_TYPE,
-    CONTENT_TYPE,
-    IDEMPOTENCY_KEY,
-    METHOD_POST,
-    USER_AGENT,
-} from "../typings/constants/apiConstants";
-import { RequestOptions } from "../typings/requestOptions";
-import ClientInterface from "../typings/httpClient/clientInterface";
 import HttpClientException from "./httpClientException";
 import checkServerIdentity from "../helpers/checkServerIdentity";
 import {ApiError} from "../typings/apiError";
 import ApiException from "../services/exception/apiException";
+import ClientInterface from "./clientInterface";
+import {ApiConstants} from "../constants/apiConstants";
 
 class HttpURLConnectionClient implements ClientInterface {
     private static CHARSET = "utf-8";
@@ -50,7 +41,7 @@ class HttpURLConnectionClient implements ClientInterface {
 
     public request(
         endpoint: string, json: string, config: Config, isApiRequired: boolean,
-        requestOptions: RequestOptions,
+        requestOptions: IRequest.Options,
     ): Promise<string | HttpClientException | ApiException> {
         requestOptions.headers = {};
         requestOptions.timeout = config.connectionTimeoutMillis;
@@ -66,7 +57,7 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
         if (apiKey) {
-            requestOptions.headers[API_KEY] = apiKey;
+            requestOptions.headers[ApiConstants.API_KEY] = apiKey;
         } else {
             const authString = `${config.username}:${config.password}`;
             const authStringEnc = new Buffer(authString).toString("base64");
@@ -74,7 +65,7 @@ class HttpURLConnectionClient implements ClientInterface {
             requestOptions.headers.Authorization = `Basic ${authStringEnc}`;
         }
 
-        requestOptions.headers[CONTENT_TYPE] = APPLICATION_JSON_TYPE;
+        requestOptions.headers[ApiConstants.CONTENT_TYPE] = ApiConstants.APPLICATION_JSON_TYPE;
 
         const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
         return this.doPostRequest(httpConnection, json);
@@ -86,7 +77,7 @@ class HttpURLConnectionClient implements ClientInterface {
         return this.doPostRequest(connectionRequest, postQuery);
     }
 
-    private createRequest(endpoint: string, requestOptions: RequestOptions, applicationName?: string): ClientRequest {
+    private createRequest(endpoint: string, requestOptions: IRequest.Options, applicationName?: string): ClientRequest {
         if (!requestOptions.headers) {
             requestOptions.headers = {};
         }
@@ -98,7 +89,7 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.path = url.pathname;
 
         if (requestOptions && requestOptions.idempotencyKey) {
-            requestOptions.headers[IDEMPOTENCY_KEY] = requestOptions.idempotencyKey;
+            requestOptions.headers[ApiConstants.IDEMPOTENCY_KEY] = requestOptions.idempotencyKey;
             delete requestOptions.idempotencyKey;
         }
 
@@ -110,9 +101,9 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
         requestOptions.headers["Cache-Control"] = "no-cache";
-        requestOptions.method = METHOD_POST;
-        requestOptions.headers[ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
-        requestOptions.headers[USER_AGENT] = `${applicationName} ${Client.LIB_NAME}/${Client.LIB_VERSION}`;
+        requestOptions.method = ApiConstants.METHOD_POST;
+        requestOptions.headers[ApiConstants.ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
+        requestOptions.headers[ApiConstants.USER_AGENT] = `${applicationName} ${Client.LIB_NAME}/${Client.LIB_VERSION}`;
 
         return httpsRequest(requestOptions);
     }

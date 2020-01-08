@@ -22,11 +22,6 @@
 import ApiKeyAuthenticatedService from "../apiKeyAuthenticatedService";
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
-import {
-    DetailsRequest, PaymentMethodsRequest, PaymentMethodsResponse, PaymentRequest, PaymentResponse, PaymentSetupRequest,
-    PaymentSetupResponse, PaymentVerificationRequest, PaymentVerificationResponse,
-} from "../typings/checkout";
-import { RequestOptions } from "../typings/requestOptions";
 import PaymentMethods from "./resource/checkout/paymentMethods";
 import Payments from "./resource/checkout/payments";
 import PaymentsDetails from "./resource/checkout/paymentsDetails";
@@ -34,8 +29,6 @@ import PaymentSession from "./resource/checkout/paymentSession";
 import PaymentsResult from "./resource/checkout/paymentsResult";
 import PaymentLinks from "./resource/checkout/paymentLinks";
 import setApplicationInfo from "../helpers/setApplicationInfo";
-import {CreatePaymentLinkResponse} from "../typings/checkout/createPaymentLinkResponse";
-import {CreatePaymentLinkRequest} from "../typings/checkout/createPaymentLinkRequest";
 
 class Checkout extends ApiKeyAuthenticatedService {
     private readonly _payments: Payments;
@@ -55,48 +48,48 @@ class Checkout extends ApiKeyAuthenticatedService {
         this._paymentLinks = new PaymentLinks(this);
     }
 
-    public payments(paymentsRequest: PaymentRequest, requestOptions?: RequestOptions): Promise<PaymentResponse> {
-        return getJsonResponse<PaymentRequest, PaymentResponse>(
+    public payments(paymentsRequest: ICheckout.PaymentRequest, requestOptions?: IRequest.Options): Promise<ICheckout.PaymentResponse> {
+        return getJsonResponse<ICheckout.PaymentRequest, ICheckout.PaymentResponse>(
             this._payments,
             setApplicationInfo(paymentsRequest),
             requestOptions,
         );
     }
 
-    public paymentMethods(paymentMethodsRequest: PaymentMethodsRequest): Promise<PaymentMethodsResponse> {
-        return getJsonResponse<PaymentMethodsRequest, PaymentMethodsResponse>(
+    public paymentMethods(paymentMethodsRequest: ICheckout.PaymentMethodsRequest): Promise<ICheckout.PaymentMethodsResponse> {
+        return getJsonResponse<ICheckout.PaymentMethodsRequest, ICheckout.PaymentMethodsResponse>(
             this._paymentMethods,
             paymentMethodsRequest,
         );
     }
 
-    public paymentLinks(paymentLinkRequest: CreatePaymentLinkRequest): Promise<CreatePaymentLinkResponse> {
-        return getJsonResponse<CreatePaymentLinkRequest, CreatePaymentLinkResponse>(
+    public paymentLinks(paymentLinkRequest: ICheckout.CreatePaymentLinkRequest): Promise<ICheckout.CreatePaymentLinkResponse> {
+        return getJsonResponse<ICheckout.CreatePaymentLinkRequest, ICheckout.CreatePaymentLinkResponse>(
             this._paymentLinks,
             paymentLinkRequest
         );
     }
 
-    public paymentsDetails(paymentsDetailsRequest: DetailsRequest): Promise<PaymentResponse> {
-        return getJsonResponse<DetailsRequest, PaymentResponse>(
+    public paymentsDetails(paymentsDetailsRequest: ICheckout.DetailsRequest): Promise<ICheckout.PaymentResponse> {
+        return getJsonResponse<ICheckout.DetailsRequest, ICheckout.PaymentResponse>(
             this._paymentsDetails,
             paymentsDetailsRequest,
         );
     }
 
     public paymentSession(
-        paymentSessionRequest: PaymentSetupRequest,
-        requestOptions?: RequestOptions,
-    ): Promise<PaymentSetupResponse> {
-        return getJsonResponse<PaymentSetupRequest, PaymentSetupResponse>(
+        paymentSessionRequest: ICheckout.PaymentSetupRequest,
+        requestOptions?: IRequest.Options,
+    ): Promise<ICheckout.PaymentSetupResponse> {
+        return getJsonResponse<ICheckout.PaymentSetupRequest, ICheckout.PaymentSetupResponse>(
             this._paymentSession,
             paymentSessionRequest,
             requestOptions,
         );
     }
 
-    public paymentResult(paymentResultRequest: PaymentVerificationRequest): Promise<PaymentVerificationResponse> {
-        return getJsonResponse<PaymentVerificationRequest, PaymentVerificationResponse>(
+    public paymentResult(paymentResultRequest: ICheckout.PaymentVerificationRequest): Promise<ICheckout.PaymentVerificationResponse> {
+        return getJsonResponse<ICheckout.PaymentVerificationRequest, ICheckout.PaymentVerificationResponse>(
             this._paymentsResult,
             paymentResultRequest,
         );
