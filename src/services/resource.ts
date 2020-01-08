@@ -20,11 +20,10 @@
  */
 
 import Config from "../config";
-import ClientInterface from "../typings/httpClient/clientInterface";
 import Service from "../service";
-import { RequestOptions } from "../typings/requestOptions";
 import HttpClientException from "../httpClient/httpClientException";
 import ApiException from "./exception/apiException";
+import ClientInterface from "../httpClient/clientInterface";
 
 abstract class Resource {
     protected endpoint: string;
@@ -35,7 +34,7 @@ abstract class Resource {
         this.endpoint = endpoint;
     }
 
-    public request(json: string, requestOptions?: RequestOptions): Promise<string | HttpClientException | ApiException> {
+    public request(json: string, requestOptions?: IRequest.Options): Promise<string | HttpClientException | ApiException> {
         const clientInterface: ClientInterface = this.service.client.httpClient;
         const config: Config = this.service.client.config;
 

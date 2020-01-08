@@ -22,7 +22,6 @@
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
-import { DisableRequest, DisableResult, RecurringDetailsRequest, RecurringDetailsResult } from "../typings/recurring";
 import Disable from "./resource/recurring/disable";
 import ListRecurringDetails from "./resource/recurring/listRecurringDetails";
 
@@ -36,15 +35,15 @@ class Recurring extends Service {
         this._disable = new Disable(this);
     }
 
-    public listRecurringDetails(request: RecurringDetailsRequest): Promise<RecurringDetailsResult> {
-        return getJsonResponse<RecurringDetailsRequest, RecurringDetailsResult>(
+    public listRecurringDetails(request: IRecurring.RecurringDetailsRequest): Promise<IRecurring.RecurringDetailsResult> {
+        return getJsonResponse<IRecurring.RecurringDetailsRequest, IRecurring.RecurringDetailsResult>(
             this._listRecurringDetails,
             request,
         );
     }
 
-    public disable(request: DisableRequest): Promise<DisableResult> {
-        return getJsonResponse<DisableRequest, DisableResult>(
+    public disable(request: IRecurring.DisableRequest): Promise<IRecurring.DisableResult> {
+        return getJsonResponse<IRecurring.DisableRequest, IRecurring.DisableResult>(
             this._disable,
             request,
         );

@@ -26,12 +26,6 @@ import SubmitThirdParty from "./resource/payout/submitThirdParty";
 import ConfirmThirdParty from "./resource/payout/confirmThirdParty";
 import PayoutResource from "./resource/payout/payout";
 import StoreDetailAndSubmitThirdParty from "./resource/payout/storeDetailAndSubmitThirdParty";
-import {
-    ModifyRequest,
-    ModifyResponse,
-    StoreDetailAndSubmitRequest,
-    StoreDetailAndSubmitResponse, StoreDetailRequest, StoreDetailResponse, SubmitRequest, SubmitResponse, PayoutRequest, PayoutResponse
-} from "../typings/payout";
 import getJsonResponse from "../helpers/getJsonResponse";
 
 class Payout extends Service {
@@ -53,43 +47,43 @@ class Payout extends Service {
         this._payout = new PayoutResource(this);
     }
 
-    public storeDetailAndSubmitThirdParty(request: StoreDetailAndSubmitRequest): Promise<StoreDetailAndSubmitResponse> {
-        return getJsonResponse<StoreDetailAndSubmitRequest, StoreDetailAndSubmitResponse>(
+    public storeDetailAndSubmitThirdParty(request: IPayouts.StoreDetailAndSubmitRequest): Promise<IPayouts.StoreDetailAndSubmitResponse> {
+        return getJsonResponse<IPayouts.StoreDetailAndSubmitRequest, IPayouts.StoreDetailAndSubmitResponse>(
             this._storeDetailAndSubmitThirdParty,
             request
         );
     }
 
-    public confirmThirdParty(request: ModifyRequest): Promise<ModifyResponse> {
-        return getJsonResponse<ModifyRequest, ModifyResponse>(
+    public confirmThirdParty(request: IPayouts.ModifyRequest): Promise<IPayouts.ModifyResponse> {
+        return getJsonResponse<IPayouts.ModifyRequest, IPayouts.ModifyResponse>(
             this._confirmThirdParty,
             request
         );
     }
 
-    public declineThirdParty(request: ModifyRequest): Promise<ModifyResponse> {
-        return getJsonResponse<ModifyRequest, ModifyResponse>(
+    public declineThirdParty(request: IPayouts.ModifyRequest): Promise<IPayouts.ModifyResponse> {
+        return getJsonResponse<IPayouts.ModifyRequest, IPayouts.ModifyResponse>(
             this._declineThirdParty,
             request
         );
     }
 
-    public storeDetail(request: StoreDetailRequest): Promise<StoreDetailResponse> {
-        return getJsonResponse<StoreDetailRequest, StoreDetailResponse>(
+    public storeDetail(request: IPayouts.StoreDetailRequest): Promise<IPayouts.StoreDetailResponse> {
+        return getJsonResponse<IPayouts.StoreDetailRequest, IPayouts.StoreDetailResponse>(
             this._storeDetail,
             request
         );
     }
 
-    public submitThirdparty(request: SubmitRequest): Promise<SubmitResponse> {
-        return getJsonResponse<SubmitRequest, SubmitResponse>(
+    public submitThirdparty(request: IPayouts.SubmitRequest): Promise<IPayouts.SubmitResponse> {
+        return getJsonResponse<IPayouts.SubmitRequest, IPayouts.SubmitResponse>(
             this._submitThirdParty,
             request
         );
     }
 
-    public payout(request: PayoutRequest): Promise<PayoutResponse> {
-        return getJsonResponse<PayoutRequest, PayoutResponse>(
+    public payout(request: IPayouts.PayoutRequest): Promise<IPayouts.PayoutResponse> {
+        return getJsonResponse<IPayouts.PayoutRequest, IPayouts.PayoutResponse>(
             this._payout,
             request
         );

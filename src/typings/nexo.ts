@@ -1,4 +1,27 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ *
+ * Adyen NodeJS API Library
+ *
+ * Copyright (c) 2019 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+
 // Generated using typescript-generator version 2.14.505 on 2019-06-06 08:35:05.
+
+import {ApplicationInfo} from "./applicationInfo";
 
 export interface AbortRequest {
     MessageReference: MessageReference;
@@ -904,7 +927,7 @@ export interface SaleData {
     SaleTerminalData?: SaleTerminalData;
     SponsoredMerchant?: SponsoredMerchant[];
     SaleToPOIData?: string;
-    SaleToAcquirerData?: string;
+    SaleToAcquirerData?: SaleToAcquirerData;
     SaleToIssuerData?: SaleToIssuerData;
     OperatorID?: string;
     OperatorLanguage?: string;
@@ -1085,6 +1108,10 @@ export interface SponsoredMerchant {
     MerchantCountry: string;
     MerchantCategoryCode: string;
     RegistrationID: string;
+}
+
+export interface SaleToAcquirerData {
+    applicationInfo?: ApplicationInfo;
 }
 
 export interface StoredValueAccountID {
