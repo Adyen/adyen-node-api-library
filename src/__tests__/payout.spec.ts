@@ -1,16 +1,9 @@
 import nock from "nock";
 import {createMockClientFromResponse} from "../__mocks__/base";
 import Payout from "../services/payout";
-import {
-    ModifyRequest,
-    PayoutRequest,
-    Recurring,
-    StoreDetailAndSubmitRequest,
-    StoreDetailRequest,
-    SubmitRequest
-} from "../typings/payout";
-import {FRAUD_MANUAL_REVIEW, FRAUD_RESULT_TYPE} from "../typings/constants/apiConstants";
 import Client from "../client";
+import StoreDetailRequest = IPayouts.StoreDetailRequest;
+import {ApiConstants} from "../constants/apiConstants";
 
 const storeDetailAndSubmitThirdParty = JSON.stringify({
     additionalData: {
@@ -38,37 +31,37 @@ const amountAndReference = {
 };
 
 const defaultData = {
-    dateOfBirth: new Date(),
+    dateOfBirth: (new Date()).toISOString(),
     nationality: "NL",
     shopperEmail: "johndoe@email.com",
     shopperReference: "shopperReference",
 };
 
-const mockStoreDetailRequest = (merchantAccount: string): StoreDetailRequest => ({
+const mockStoreDetailRequest = (merchantAccount: string): IPayouts.StoreDetailRequest => ({
     ...defaultData,
-    entityType: StoreDetailRequest.EntityTypeEnum.NaturalPerson,
+    entityType: "NaturalPerson",
     recurring: {
-        contract: Recurring.ContractEnum.ONECLICK
+        contract: "ONECLICK"
     },
     merchantAccount,
 });
 
-const mockSubmitRequest = (merchantAccount: string): SubmitRequest => ({
+const mockSubmitRequest = (merchantAccount: string): IPayouts.SubmitRequest => ({
     selectedRecurringDetailReference: "LATEST",
     recurring: {
-        contract: Recurring.ContractEnum.ONECLICK
+        contract: "ONECLICK"
     },
     ...defaultData,
     ...amountAndReference,
     merchantAccount,
 });
 
-const mockStoreDetailAndSubmitRequest = (merchantAccount: string): StoreDetailAndSubmitRequest => ({
+const mockStoreDetailAndSubmitRequest = (merchantAccount: string): IPayouts.StoreDetailAndSubmitRequest => ({
     ...amountAndReference,
     ...(mockStoreDetailRequest(merchantAccount)),
 });
 
-const mockPayoutRequest = (merchantAccount: string): PayoutRequest => ({
+const mockPayoutRequest = (merchantAccount: string): IPayouts.PayoutRequest => ({
     ...amountAndReference,
     ...defaultData,
     card: {
@@ -92,7 +85,7 @@ beforeEach((): void => {
 
 describe("PayoutTest", function (): void {
     it("should succeed on store detail and submit third party", async function (): Promise<void> {
-        const request: StoreDetailAndSubmitRequest = mockStoreDetailAndSubmitRequest(`${client.config.merchantAccount}`);
+        const request: IPayouts.StoreDetailAndSubmitRequest = mockStoreDetailAndSubmitRequest(`${client.config.merchantAccount}`);
         scope.post("/storeDetail").reply(200, storeDetailAndSubmitThirdParty);
 
         const result = await payout.storeDetail(request);
@@ -100,8 +93,8 @@ describe("PayoutTest", function (): void {
         expect(result.pspReference).toEqual("8515131751004933");
 
         if (result.additionalData) {
-            expect(result.additionalData[FRAUD_RESULT_TYPE]).toEqual("GREEN");
-            expect(result.additionalData[FRAUD_MANUAL_REVIEW]).toEqual("false");
+            expect(result.additionalData[ApiConstants.FRAUD_RESULT_TYPE]).toEqual("GREEN");
+            expect(result.additionalData[ApiConstants.FRAUD_MANUAL_REVIEW]).toEqual("false");
         }
     });
 
@@ -122,7 +115,7 @@ describe("PayoutTest", function (): void {
                 response: "[payout-confirm-received]"
             });
 
-        const request: ModifyRequest = {
+        const request: IPayouts.ModifyRequest = {
             merchantAccount: "MOCKED_MERCHANT_ACCOUNT",
             originalReference: "reference"
         };
@@ -135,15 +128,15 @@ describe("PayoutTest", function (): void {
     it("should succeed on submit third party", async function (): Promise<void> {
         scope.post("/submitThirdParty").reply(200, storeDetailAndSubmitThirdParty);
 
-        const request: SubmitRequest = mockSubmitRequest("MOCKED_MERCHANT_ACC");
+        const request: IPayouts.SubmitRequest = mockSubmitRequest("MOCKED_MERCHANT_ACC");
         const result = await payout.submitThirdparty(request);
 
         expect(result.resultCode).toEqual("[payout-submit-received]");
         expect(result.pspReference).toEqual("8515131751004933");
 
         if (result.additionalData) {
-            expect(result.additionalData[FRAUD_RESULT_TYPE]).toEqual("GREEN");
-            expect(result.additionalData[FRAUD_MANUAL_REVIEW]).toEqual("false");
+            expect(result.additionalData[ApiConstants.FRAUD_RESULT_TYPE]).toEqual("GREEN");
+            expect(result.additionalData[ApiConstants.FRAUD_MANUAL_REVIEW]).toEqual("false");
         }
     });
 
@@ -153,7 +146,7 @@ describe("PayoutTest", function (): void {
             response: "[payout-confirm-received]"
         });
 
-        const request: ModifyRequest = {
+        const request: IPayouts.ModifyRequest = {
             merchantAccount: "MOCKED_MERCHANT_ACC",
             originalReference: "reference"
         };
