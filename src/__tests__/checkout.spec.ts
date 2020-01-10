@@ -180,20 +180,16 @@ describe("Checkout", (): void => {
     });
 
     it("should have payment session success", async (): Promise<void> => {
-        const client: Client = createMockClientFromResponse();
         scope.post("/paymentSession")
             .reply(200, paymentSessionSuccess);
-        const checkout: Checkout = new Checkout(client);
         const paymentSessionRequest: ICheckout.PaymentSetupRequest = createPaymentSessionRequest();
         const paymentSessionResponse = await checkout.paymentSession(paymentSessionRequest);
         expect(paymentSessionResponse.paymentSession).not.toBeUndefined();
     });
 
     it("should have payments result", async (): Promise<void> => {
-        const client = createMockClientFromResponse();
         scope.post("/payments/result")
             .reply(200, paymentsResultSuccess);
-        const checkout = new Checkout(client);
         const paymentResultRequest: ICheckout.PaymentVerificationRequest = {
             payload: "This is a test payload",
         };
@@ -202,10 +198,10 @@ describe("Checkout", (): void => {
     });
 
     it("should have missing identifier on live", async (): Promise<void> => {
-        const client = createMockClientFromResponse();
         client.setEnvironment("LIVE");
         try {
             new Checkout(client);
+            fail();
         } catch (e) {
             expect(e.message).toEqual("Please provide your unique live url prefix on the setEnvironment() call on the Client or provide checkoutEndpoint in your config object.");
         }
@@ -213,11 +209,9 @@ describe("Checkout", (): void => {
 
 
     it("should succeed on multibanco payment", async (): Promise<void> => {
-        const client: Client = createMockClientFromResponse();
         scope.post("/payments")
             .reply(200, paymentsResultMultibancoSuccess);
 
-        const checkout: Checkout = new Checkout(client);
         const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
         const paymentsResponse: ICheckout.PaymentResponse = await checkout.payments(paymentsRequest);
         expect(paymentsResponse.pspReference).toEqual("8111111111111111");
