@@ -18,8 +18,15 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noUnusedLocals": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "typeRoots": [
+      ".src/typings/"
+    ],
+    "types": []
   },
   "include": ["src"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/__tests__"],
+  "files": [
+    "src/typings/index.d.ts"
+  ]
 }
