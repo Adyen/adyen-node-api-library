@@ -22,6 +22,7 @@ import { AgentOptions } from "https";
 import HttpClientException from "./httpClientException";
 import ApiException from "../services/exception/apiException";
 import {Config} from "../index";
+import {IRequest} from "../typings/requestOptions";
 
 interface ClientInterface {
     request(

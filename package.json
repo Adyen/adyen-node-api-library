@@ -1,9 +1,9 @@
 {
   "name": "@adyen/api-library",
-  "version": "2.2.0",
+  "version": "2.2.1-rc.0",
   "description": "The Adyen API Library for NodeJS enables you to work with Adyen APIs.",
   "main": "dist/lib/src/index.js",
-  "types": "dist/lib/src/index.d.ts",
+  "types": "dist/lib/src/typings/index.d.ts",
   "module": "dist/lib-esm/src/index.js",
   "engines": {
     "node": ">=8.1.1"
@@ -48,7 +48,6 @@
     "@babel/runtime": "7.8.3",
     "@types/jest": "24.0.25",
     "@types/nock": "10.0.3",
-    "@types/node": "13.1.7",
     "@typescript-eslint/eslint-plugin": "2.16.0",
     "@typescript-eslint/parser": "2.16.0",
     "babel-loader": "8.0.6",
@@ -64,6 +63,7 @@
     "webpack-cli": "3.3.10"
   },
   "dependencies": {
+    "@types/node": "13.1.7",
     "https-proxy-agent": "4.0.0"
   }
 }
