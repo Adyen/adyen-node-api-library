@@ -29,6 +29,7 @@ import Refund from "./resource/modification/refund";
 import TechnicalCancel from "./resource/modification/technicalCancel";
 import setApplicationInfo from "../helpers/setApplicationInfo";
 import {ApplicationInfo} from "../typings/applicationInfo";
+import {IRequest} from "../typings/requestOptions";
 
 interface AppInfo { applicationInfo?: ApplicationInfo }
 type GenericRequest<T> = T & AppInfo;

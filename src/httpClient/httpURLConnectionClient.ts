@@ -33,6 +33,7 @@ import {ApiError} from "../typings/apiError";
 import ApiException from "../services/exception/apiException";
 import ClientInterface from "./clientInterface";
 import {ApiConstants} from "../constants/apiConstants";
+import {IRequest} from "../typings/requestOptions";
 
 class HttpURLConnectionClient implements ClientInterface {
     private static CHARSET = "utf-8";
