@@ -20,8 +20,13 @@
  */
 
 // Generated using typescript-generator version 2.14.505 on 2019-06-03 16:13:35.
-declare namespace IRequest {
-    export type Options = HttpsRequestOptions & {
+
+/// <reference types="node"/>
+
+import * as https from "https";
+
+export namespace IRequest {
+    export type Options = https.RequestOptions & {
         idempotencyKey?: string;
     }
 }
