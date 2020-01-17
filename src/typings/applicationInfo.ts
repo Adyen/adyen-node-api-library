@@ -40,22 +40,22 @@ export class ApplicationInfo {
     }
 }
 
-export interface CommonField {
+declare interface CommonField {
     name?: string;
     version?: string;
 }
 
-export interface ExternalPlatform extends CommonField {
+declare interface ExternalPlatform extends CommonField {
     integrator?: string;
 }
 
-export interface MerchantDevice {
+declare interface MerchantDevice {
     os?: string;
     osVersion?: string;
     reference?: string;
 }
 
-export interface ShopperInteractionDevice {
+declare interface ShopperInteractionDevice {
     os?: string;
     osVersion?: string;
     locale?: string;

@@ -22,6 +22,7 @@
 import Resource from "../services/resource";
 import HttpClientException from "../httpClient/httpClientException";
 import ApiException from "../services/exception/apiException";
+import {IRequest} from "../typings/requestOptions";
 
 async function getJsonResponse<T>(resource: Resource, jsonRequest: T | string, requestOptions?: IRequest.Options): Promise<string>;
 async function getJsonResponse<T, R>(resource: Resource, jsonRequest: T | string, requestOptions?: IRequest.Options): Promise<R>;
