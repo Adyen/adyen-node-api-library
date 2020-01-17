@@ -19,6 +19,8 @@
  * See the LICENSE file for more info.
  */
 
+import "./typings";
+
 export { default as Client } from "./client";
 export { default as Config } from "./config";
 export * from "./services/";

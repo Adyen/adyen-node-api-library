@@ -29,6 +29,7 @@ import PaymentSession from "./resource/checkout/paymentSession";
 import PaymentsResult from "./resource/checkout/paymentsResult";
 import PaymentLinks from "./resource/checkout/paymentLinks";
 import setApplicationInfo from "../helpers/setApplicationInfo";
+import {IRequest} from "../typings/requestOptions";
 
 class Checkout extends ApiKeyAuthenticatedService {
     private readonly _payments: Payments;

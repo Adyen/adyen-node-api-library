@@ -24,6 +24,7 @@ import Service from "../service";
 import HttpClientException from "../httpClient/httpClientException";
 import ApiException from "./exception/apiException";
 import ClientInterface from "../httpClient/clientInterface";
+import {IRequest} from "../typings/requestOptions";
 
 abstract class Resource {
     protected endpoint: string;
