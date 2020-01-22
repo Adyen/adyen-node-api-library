@@ -47,8 +47,8 @@
     "@babel/preset-typescript": "7.8.3",
     "@babel/runtime": "7.8.3",
     "@types/nock": "10.0.3",
-    "@typescript-eslint/eslint-plugin": "2.16.0",
-    "@typescript-eslint/parser": "2.16.0",
+    "@typescript-eslint/eslint-plugin": "2.17.0",
+    "@typescript-eslint/parser": "2.17.0",
     "babel-loader": "8.0.6",
     "coveralls": "3.0.9",
     "eslint": "6.8.0",
@@ -62,7 +62,7 @@
     "webpack-cli": "3.3.10"
   },
   "dependencies": {
-    "@types/node": "13.1.7",
+    "@types/node": "13.1.8",
     "@types/jest": "24.0.25",
     "https-proxy-agent": "4.0.0"
   }
