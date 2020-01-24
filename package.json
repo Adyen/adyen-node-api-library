@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "@types/node": "13.5.0",
-    "@types/jest": "24.0.25",
+    "@types/jest": "24.9.1",
     "https-proxy-agent": "4.0.0"
   }
 }
