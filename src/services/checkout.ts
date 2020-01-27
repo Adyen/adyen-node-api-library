@@ -71,10 +71,11 @@ class Checkout extends ApiKeyAuthenticatedService {
         );
     }
 
-    public paymentsDetails(paymentsDetailsRequest: ICheckout.DetailsRequest): Promise<ICheckout.PaymentResponse> {
+    public paymentsDetails(paymentsDetailsRequest: ICheckout.DetailsRequest, requestOptions?: IRequest.Options): Promise<ICheckout.PaymentResponse> {
         return getJsonResponse<ICheckout.DetailsRequest, ICheckout.PaymentResponse>(
             this._paymentsDetails,
             paymentsDetailsRequest,
+            requestOptions
         );
     }
 
