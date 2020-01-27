@@ -22,7 +22,7 @@ The Library supports all APIs under the following services:
 
 ## Requirements
 
-* Node 8.1.1 or higher
+* Node 10 or higher
 
 ## Installation
 
