@@ -1,11 +1,10 @@
 language: node_js
 node_js:
   - "10"
-  - stable
+  - node
   - "12"
   - "13"
-  - "14"
-  - latest
+  - lts/*
 cache: yarn
 script:
 - yarn run lint:fix
