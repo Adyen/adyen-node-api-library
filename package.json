@@ -63,7 +63,7 @@
     "webpack-cli": "3.3.10"
   },
   "dependencies": {
-    "@types/node": "13.5.0",
+    "@types/node": "13.5.1",
     "https-proxy-agent": "4.0.0"
   }
 }
