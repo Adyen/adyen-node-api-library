@@ -46,7 +46,7 @@
     "@babel/preset-env": "7.8.4",
     "@babel/preset-typescript": "7.8.3",
     "@babel/runtime": "7.8.4",
-    "@types/jest": "25.1.1",
+    "@types/jest": "25.1.2",
     "@types/nock": "11.1.0",
     "@typescript-eslint/eslint-plugin": "2.19.0",
     "@typescript-eslint/parser": "2.19.0",
