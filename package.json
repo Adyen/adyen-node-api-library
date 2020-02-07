@@ -64,6 +64,6 @@
   },
   "dependencies": {
     "@types/node": "13.7.0",
-    "https-proxy-agent": "4.0.0"
+    "https-proxy-agent": "5.0.0"
   }
 }
