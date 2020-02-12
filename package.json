@@ -51,7 +51,7 @@
     "ts-loader": "6.2.1",
     "typescript": "3.7.5",
     "webpack": "4.41.6",
-    "webpack-cli": "3.3.10"
+    "webpack-cli": "3.3.11"
   },
   "dependencies": {
     "@types/node": "13.7.1",
