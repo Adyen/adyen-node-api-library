@@ -20,6 +20,8 @@ jobs:
       run: |
         npm install
         npm run test:coverage
+      env:
+        CI: true
 
     - name: Coveralls Parallel
       uses: coverallsapp/github-action@master
