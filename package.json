@@ -30,6 +30,7 @@
     "lint": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint --fix 'src/**/*.ts'",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "preversion": "npm test",
     "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags && rm -rf build/temp",
