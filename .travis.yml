@@ -13,6 +13,3 @@ jobs:
       skip_cleanup: true
       on:
         tags: true
-  - stage: Produce Coverage
-    node_js: stable
-    script: jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
