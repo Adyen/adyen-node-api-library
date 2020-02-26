@@ -12,7 +12,7 @@ beforeEach((): void => {
 type errorType = "HttpClientException" | "ApiException";
 type testOptions = { errorType: errorType; errorMessageContains?: string; errorMessageEquals?: string };
 
-const getResponse = async ({apiKey , environment }: { apiKey: string; environment: Environment}, cb: (scope: Interceptor) => testOptions) => {
+const getResponse = async ({apiKey , environment }: { apiKey: string; environment: Environment}, cb: (scope: Interceptor) => testOptions): Promise<void> => {
     const client = new Client({ apiKey, environment });
     const checkout = new Checkout(client);
 
