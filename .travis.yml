@@ -1,15 +1,5 @@
 language: node_js
-node_js:
-  - "10"
-  - node
-  - "12"
-  - "13"
-  - lts/*
 cache: yarn
-script:
-- yarn run lint:fix
-- yarn run lint
-- yarn run test
 jobs:
   include:
   - stage: npm release
