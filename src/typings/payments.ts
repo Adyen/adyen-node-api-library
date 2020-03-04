@@ -1712,7 +1712,7 @@ declare namespace IPayments {
         /**
          * Indicates if the modification request has been received for processing.
          */
-        response?: "[capture-received]" | "[cancel-received]" | "[refund-received]" | "[cancelOrRefund-received]";
+        response?: "[capture-received]" | "[cancel-received]" | "[refund-received]" | "[cancelOrRefund-received]" | "[adjustAuthorisation-received]";
     }
     export interface Name {
         /**
