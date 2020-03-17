@@ -30,6 +30,7 @@
     "lint": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint --fix 'src/**/*.ts'",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "preversion": "npm test",
     "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags && rm -rf build/temp",
@@ -38,23 +39,23 @@
   "author": "Ricardo Ambrogi",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "25.1.2",
+    "@types/jest": "25.1.4",
     "@types/nock": "11.1.0",
-    "@typescript-eslint/eslint-plugin": "2.19.2",
-    "@typescript-eslint/parser": "2.19.2",
+    "@typescript-eslint/eslint-plugin": "2.24.0",
+    "@typescript-eslint/parser": "2.24.0",
     "coveralls": "3.0.9",
     "eslint": "6.8.0",
     "jest": "25.1.0",
-    "nock": "12.0.0",
-    "release-it": "12.4.3",
-    "ts-jest": "25.2.0",
+    "nock": "12.0.2",
+    "release-it": "13.1.1",
+    "ts-jest": "25.2.1",
     "ts-loader": "6.2.1",
-    "typescript": "3.7.5",
-    "webpack": "4.41.6",
+    "typescript": "3.8.3",
+    "webpack": "4.42.0",
     "webpack-cli": "3.3.11"
   },
   "dependencies": {
-    "@types/node": "13.7.1",
+    "@types/node": "13.9.1",
     "https-proxy-agent": "5.0.0"
   }
 }
