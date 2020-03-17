@@ -1,5 +1,5 @@
 # Adyen Node.js API Library
-[![Build Status](https://travis-ci.org/Adyen/adyen-node-api-library.svg?branch=master)](https://travis-ci.org/Adyen/adyen-node-api-library)
+![Node.js CI](https://github.com/Adyen/adyen-node-api-library/workflows/Node.js%20CI/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/Adyen/adyen-node-api-library/badge.svg?branch=master)](https://coveralls.io/github/Adyen/adyen-node-api-library?branch=master)
 [![Downloads](https://img.shields.io/npm/dm/@adyen/api-library.svg)](https://www.npmjs.com/package/@adyen/api-library)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@adyen/api-library.svg)
