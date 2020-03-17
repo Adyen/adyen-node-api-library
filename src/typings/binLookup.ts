@@ -291,7 +291,7 @@ declare namespace IBinLookup {
         /**
          * This field contains additional data, which may be required for a particular request.
          * 
-         * The `additionalData` object consists of entries, each of which includes the key and value. For more information on possible key-value pairs, refer to the [additionalData section](https://docs.adyen.com/api-reference/payments-api/paymentrequest/paymentrequest-additionaldata).
+         * The `additionalData` object consists of entries, each of which includes the key and value.
          */
         additionalData?: {
         };

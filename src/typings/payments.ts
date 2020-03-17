@@ -15,7 +15,7 @@
  *
  * Adyen NodeJS API Library
  *
- * Version of Payments: v51
+ * Version of Payments: v52
  *
  * Copyright (c) 2019 Adyen B.V.
  * This file is open source and available under the MIT license.
@@ -170,7 +170,7 @@ declare namespace IPayments {
          * * minLength: 1
          * * maxLength: 49
          */
-        "airline.passenger_name"?: string;
+        "airline.passenger_name": string;
         /**
          * The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket.
          * * Format: alphanumeric.
@@ -251,6 +251,14 @@ declare namespace IPayments {
          * * maxLength: 18
          */
         "airline.boarding_fee"?: string;
+        /**
+         * Optional 2-digit code; alphanumeric. It identifies the type of product of the transaction. The description of the code may appear on credit card statements.
+         * * Format: 2-digit code
+         * * Example: Passenger ticket = 01
+         * * minLength: 2
+         * * maxLength: 2
+         */
+        "airline.document_type"?: string;
         /**
          * Alphabetical identifier of the departure airport.
          * This field is required if the airline data includes leg details.
@@ -791,10 +799,6 @@ declare namespace IPayments {
          */
         "openinvoicedata.merchantData"?: string;
         /**
-         * Required for the Klarna account, identifying an installment plan. Include Klarna’s `pclassid` for the installment plan.
-         */
-        "openinvoicedata.installmentConfigurationKey"?: string;
-        /**
          * The three-character ISO currency code.
          */
         "openinvoicedata.line[itemNr].currencyCode"?: string;
@@ -827,7 +831,7 @@ declare namespace IPayments {
          */
         "openinvoicedata.line[itemNr].numberOfItems"?: number;
         /**
-         * The country-specific VAT category a product falls under.
+         * Required for AfterPay. The country-specific VAT category a product falls under.
          * 
          * Allowed values:
          * * High
@@ -889,142 +893,9 @@ declare namespace IPayments {
     }
     export interface AdditionalDataRisk {
         /**
-         * The method to deliver the goods to the shopper.
-         * 
-         * Used in [Delivery Method](https://docs.adyen.com/risk-management/configure-standard-risk-rules/consistency-rules#delivery-method) check.
+         * The data for your custom risk field. For more information, refer to [Create custom risk fields](https://docs.adyen.com/risk-management/configure-custom-risk-rules#step-1-create-custom-risk-fields).
          */
-        "riskdata.deliveryMethod"?: string;
-        /**
-         * The creation date of a shopper account on the merchant's platform.
-         * * Format: `yyyy-MM-dd HH:mm:ss`
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules). 
-         */
-        "riskdata.accountCreationDate"?: string;
-        /**
-         * This specifies the date when the shopper's account was created.
-         * * Format: `yyyy-MM-dd HH:mm:ss.sssZ`
-         * 
-         * Used in [Shopper Account Age check](https://docs.adyen.com/risk-management/configure-standard-risk-rules/consistency-rules#shopper-account-age).
-         */
-        "riskdata.shopperAccountCreationDate"?: string;
-        /**
-         * A risk score coming from a system external to Adyen.
-         * * Format: Numeric (when used in custom risk checks)
-         * 
-         * Used in [External Risk Score check](https://docs.adyen.com/risk-management/configure-standard-risk-rules/external-risk-rules#external-risk-score-generic).
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.externalRiskScore"?: string;
-        /**
-         * Usually a boolean representing the fraud risk assessment coming from a system external to Adyen.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.externalSuspectedFraud"?: string;
-        /**
-         * A code corresponding to a telecom network operator
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.operatorCode"?: string;
-        /**
-         * Country corresponding to the telecom network operator. Usually a two letter country code.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.operatorCountry"?: {
-        };
-        /**
-         * Name of a telecom network operator e.g. Vodafone, Orange etc.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.operatorName"?: string;
-        /**
-         * Product code of a telecom product.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.operatorProductCode"?: string;
-        /**
-         * Represents the payment method as it is understood by the merchant. Does not necessarily have to coincide with the payment method determined by Adyen.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         * 
-         * For visacheckout, masterpass, and paywithgoogle, use `riskdata.paymentDataSource` instead.
-         */
-        "riskdata.paymentMethod"?: string;
-        /**
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules) for visacheckout, masterpass, and paywithgoogle.
-         */
-        "riskdata.paymentDataSource"?: string;
-        /**
-         * The number of previous non-fraudulent orders made by a shopper.
-         * * Format: Numeric
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.previousSuccessfulOrders"?: string;
-        /**
-         * The referral method/reason for joining the merchant's platform.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.referralMethod"?: string;
-        /**
-         * The user name of a member who referred somebody to the merchant's platform.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.referrerUserName"?: string;
-        /**
-         * The id of the risk profile to use instead of the merchant account's currently set risk profile.
-         */
-        "riskdata.riskProfileId"?: string;
-        /**
-         * A secondary phone number for a user of the merchant's platform.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.secondaryPhoneNumber"?: {
-        };
-        /**
-         * Name of the shipping method.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.shippingMethod"?: string;
-        /**
-         * The shopper country as determined by the merchant, usually as a 2 letter country code. Does not have to coincide with the Adyen determined shopper country.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.shopperCountry"?: string;
-        /**
-         * Usually a SIM distribution company name e.g. Core, Elite, GK Tel etc.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.simDistributor"?: string;
-        /**
-         * User name of an account on the merchant's platform.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.userName"?: string;
-        /**
-         * Usually a user's loyalty status e.g. Gold, Silver etc.
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.userStatus"?: string;
-        /**
-         * Name of the browser language used by the shopper. Usually a two letter country code (e.g. NL, FR, US etc.)
-         * 
-         * Used in [Custom risk checks](https://docs.adyen.com/risk-management/configure-custom-risk-rules).
-         */
-        "riskdata.browserLanguage"?: string;
+        "riskdata.[customFieldName]"?: string;
         /**
          * ID of the item.
          */
@@ -1106,7 +977,7 @@ declare namespace IPayments {
          */
         avsResultRaw?: string;
         /**
-         * The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](/risk-management/standalone-risk#tokenised-pan-request).
+         * The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/risk-management/standalone-risk#tokenised-pan-request).
          */
         bin?: string;
         /**
@@ -1687,7 +1558,7 @@ declare namespace IPayments {
          */
         reference?: string;
         /**
-         * The details of how the payment should be split when distributing a payment to a Marketpay Marketplace and its Accounts.
+         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/marketpay/processing-payments#providing-split-information).
          */
         splits?: IPayments.Split[];
         /**
@@ -1712,7 +1583,7 @@ declare namespace IPayments {
         /**
          * Indicates if the modification request has been received for processing.
          */
-        response?: "[capture-received]" | "[cancel-received]" | "[refund-received]" | "[cancelOrRefund-received]";
+        response?: "[capture-received]" | "[cancel-received]" | "[refund-received]" | "[cancelOrRefund-received]" | "[adjustAuthorisation-received]" | "[technical-cancel-received]" | "[voidPendingRefund-received]";
     }
     export interface Name {
         /**
@@ -1752,7 +1623,7 @@ declare namespace IPayments {
          */
         additionalData?: IPayments.AdditionalDataCommon | IPayments.AdditionalData3DSecure | IPayments.AdditionalDataAirline | IPayments.AdditionalDataCarRental | IPayments.AdditionalDataLevel23 | IPayments.AdditionalDataLodging | IPayments.AdditionalDataOpenInvoice | IPayments.AdditionalDataRatepay | IPayments.AdditionalDataRetry | IPayments.AdditionalDataRisk | IPayments.AdditionalDataRiskStandalone | IPayments.AdditionalDataTemporaryServices | IPayments.AdditionalDataWallets;
         /**
-         * The amount information for the transaction. For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
+         * The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
          */
         amount: IPayments.Amount;
         /**
@@ -1822,7 +1693,14 @@ declare namespace IPayments {
          */
         fraudOffset?: number; // int32
         /**
-         * Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/installment-payments).
+         * How to process combo card (for some Brazilian cards only).
+         * Allowed values:
+         * * debit
+         * * credit
+         */
+        fundingSource?: "debit" | "credit";
+        /**
+         * Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/cards/credit-card-installments).
          */
         installments?: IPayments.Installments;
         /**
@@ -1940,7 +1818,7 @@ declare namespace IPayments {
          */
         socialSecurityNumber?: string;
         /**
-         * The details of how the payment should be split when distributing a payment to a MarketPay Marketplace and its Accounts.
+         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/marketpay/processing-payments#providing-split-information).
          */
         splits?: IPayments.Split[];
         /**
@@ -1986,7 +1864,7 @@ declare namespace IPayments {
          */
         additionalData?: IPayments.AdditionalDataCommon | IPayments.AdditionalData3DSecure | IPayments.AdditionalDataAirline | IPayments.AdditionalDataCarRental | IPayments.AdditionalDataLevel23 | IPayments.AdditionalDataLodging | IPayments.AdditionalDataOpenInvoice | IPayments.AdditionalDataRatepay | IPayments.AdditionalDataRetry | IPayments.AdditionalDataRisk | IPayments.AdditionalDataRiskStandalone | IPayments.AdditionalDataTemporaryServices | IPayments.AdditionalDataWallets;
         /**
-         * The amount information for the transaction. For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
+         * The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
          */
         amount?: IPayments.Amount;
         /**
@@ -2042,7 +1920,7 @@ declare namespace IPayments {
          */
         fraudOffset?: number; // int32
         /**
-         * Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/installment-payments).
+         * Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/cards/credit-card-installments).
          */
         installments?: IPayments.Installments;
         /**
@@ -2160,7 +2038,7 @@ declare namespace IPayments {
          */
         socialSecurityNumber?: string;
         /**
-         * The details of how the payment should be split when distributing a payment to a MarketPay Marketplace and its Accounts.
+         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/marketpay/processing-payments#providing-split-information).
          */
         splits?: IPayments.Split[];
         /**
@@ -2206,7 +2084,7 @@ declare namespace IPayments {
          */
         additionalData?: IPayments.AdditionalDataCommon | IPayments.AdditionalData3DSecure | IPayments.AdditionalDataAirline | IPayments.AdditionalDataCarRental | IPayments.AdditionalDataLevel23 | IPayments.AdditionalDataLodging | IPayments.AdditionalDataOpenInvoice | IPayments.AdditionalDataRatepay | IPayments.AdditionalDataRetry | IPayments.AdditionalDataRisk | IPayments.AdditionalDataRiskStandalone | IPayments.AdditionalDataTemporaryServices | IPayments.AdditionalDataWallets;
         /**
-         * The amount information for the transaction. For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
+         * The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
          */
         amount: IPayments.Amount;
         /**
@@ -2262,7 +2140,7 @@ declare namespace IPayments {
          */
         fraudOffset?: number; // int32
         /**
-         * Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/installment-payments).
+         * Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/cards/credit-card-installments).
          */
         installments?: IPayments.Installments;
         /**
@@ -2372,7 +2250,7 @@ declare namespace IPayments {
          */
         socialSecurityNumber?: string;
         /**
-         * The details of how the payment should be split when distributing a payment to a MarketPay Marketplace and its Accounts.
+         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/marketpay/processing-payments#providing-split-information).
          */
         splits?: IPayments.Split[];
         /**
@@ -2410,9 +2288,9 @@ declare namespace IPayments {
     }
     export interface PaymentResult {
         /**
-         * This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs**.
+         * This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**.
          */
-        additionalData?: IPayments.ResponseAdditionalDataCommon | IPayments.ResponseAdditionalDataBillingAddress | IPayments.ResponseAdditionalDataCard | IPayments.ResponseAdditionalDataDeliveryAddress | IPayments.ResponseAdditionalDataInstallments;
+        additionalData?: IPayments.ResponseAdditionalDataCommon | IPayments.ResponseAdditionalDataBillingAddress | IPayments.ResponseAdditionalDataCard | IPayments.ResponseAdditionalDataDeliveryAddress | IPayments.ResponseAdditionalDataInstallments | IPayments.ResponseAdditionalDataNetworkTokens | IPayments.ResponseAdditionalDataPayPal | IPayments.ResponseAdditionalDataSepa;
         /**
          * Authorisation code:
          * * When the payment is authorised successfully, this field holds the authorisation code for the payment.
@@ -2714,6 +2592,7 @@ declare namespace IPayments {
          * 
          * Possible values:
          * * 3D Secure Mandated
+         * * Closed Account
          * * ContAuth Not Supported
          * * CVC Mandated
          * * Ecommerce Not Allowed
@@ -2729,6 +2608,11 @@ declare namespace IPayments {
          * Example: JP
          */
         issuerCountry?: string;
+        /**
+         * The `mcBankNetReferenceNumber`, is a minimum of six characters and a maximum of nine characters long.
+         * > Contact Support Team to enable this field.
+         */
+        mcBankNetReferenceNumber?: string;
         /**
          * Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.
          * 
@@ -2767,6 +2651,101 @@ declare namespace IPayments {
          * * "U" (unknown)
          */
         payoutEligible?: string;
+        /**
+         * The response code from the Real Time Account Updater service.
+         * 
+         * Possible return values are:
+         * * CardChanged
+         * * CardExpiryChanged
+         * * CloseAccount
+         * * ContactCardAccountHolder
+         */
+        realtimeAccountUpdaterStatus?: string;
+        /**
+         * Message to be displayed on the terminal.
+         */
+        receiptFreeText?: string;
+        /**
+         * The `pspReference`, of the first recurring payment that created the recurring detail.
+         * 
+         * This functionality requires additional configuration on Adyen's end. To enable it, contact the Support Team.
+         */
+        "recurring.firstPspReference"?: string;
+        /**
+         * The reference that uniquely identifies the recurring transaction.
+         */
+        "recurring.recurringDetailReference"?: string;
+        /**
+         * If the payment is referred, this field is set to true.
+         * 
+         * This field is unavailable if the payment is referred and is usually not returned with ecommerce transactions.
+         * 
+         * Example: true
+         */
+        referred?: string;
+        /**
+         * Raw refusal reason received from the acquirer, where available.
+         * 
+         * Example: AUTHORISED
+         */
+        refusalReasonRaw?: string;
+        /**
+         * The shopper interaction type of the payment request.
+         * 
+         * Example: Ecommerce
+         */
+        shopperInteraction?: string;
+        /**
+         * The shopperReference passed in the payment request.
+         * 
+         * Example: AdyenTestShopperXX
+         */
+        shopperReference?: string;
+        /**
+         * The terminal ID used in a point-of-sale payment.
+         * 
+         * Example: 06022622
+         */
+        terminalId?: string;
+        /**
+         * A Boolean value indicating whether 3DS authentication was completed on this payment.
+         * 
+         * Example: true
+         */
+        threeDAuthenticated?: string;
+        /**
+         * The raw 3DS authentication result from the card issuer.
+         * 
+         * Example: N
+         */
+        threeDAuthenticatedResponse?: string;
+        /**
+         * A Boolean value indicating whether 3DS was offered for this payment.
+         * 
+         * Example: true
+         */
+        threeDOffered?: string;
+        /**
+         * The raw enrollment result from the 3DS directory services of the card schemes.
+         * 
+         * Example: Y
+         */
+        threeDOfferedResponse?: string;
+        /**
+         * The 3D Secure 2 version.
+         */
+        threeDSVersion?: string;
+        /**
+         * The `visaTransactionId`, has a fixed length of 15 numeric characters.
+         * > Contact Support Team to enable this field.
+         */
+        visaTransactionId?: string;
+        /**
+         * The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse 'N' or 'Y'. If you want to submit the xid in your 3D Secure 1 request, use the `mpiData.xid`, field.
+         * 
+         * Example: ODgxNDc2MDg2MDExODk5MAAAAAA=
+         */
+        xid?: string;
     }
     export interface ResponseAdditionalDataDeliveryAddress {
         /**
@@ -2855,6 +2834,74 @@ declare namespace IPayments {
          * Total amount in minor units.
          */
         "installmentPaymentData.option[itemNr].totalAmountDue"?: string;
+    }
+    export interface ResponseAdditionalDataNetworkTokens {
+        /**
+         * Indicates whether a network token is available for the specified card.
+         */
+        "networkToken.available"?: string;
+        /**
+         * The Bank Identification Number of a tokenized card, which is the first six digits of a card number.
+         */
+        "networkToken.bin"?: string;
+        /**
+         * The last four digits of a card number.
+         */
+        "networkToken.tokenSummary"?: string;
+    }
+    export interface ResponseAdditionalDataPayPal {
+        /**
+         * The status of the buyer's PayPal account.
+         * 
+         * Example: unverified
+         */
+        paypalPayerStatus?: string;
+        /**
+         * The buyer's country of residence.
+         * 
+         * Example: NL
+         */
+        paypalPayerResidenceCountry?: string;
+        /**
+         * The buyer's PayPal ID.
+         * 
+         * Example: LF5HCWWBRV2KL
+         */
+        paypalPayerId?: string;
+        /**
+         * The buyer's PayPal account email address.
+         * 
+         * Example: paypaltest@adyen.com
+         */
+        paypalEmail?: string;
+        /**
+         * The eligibility for PayPal Seller Protection for this payment.
+         * 
+         * Example: Ineligible
+         */
+        paypalProtectionEligibility?: string;
+    }
+    export interface ResponseAdditionalDataSepa {
+        /**
+         * The transaction signature date.
+         * 
+         * Format: yyyy-MM-dd
+         */
+        "sepadirectdebit.dateOfSignature"?: string;
+        /**
+         * Its value corresponds to the  pspReference value of the transaction.
+         */
+        "sepadirectdebit.mandateId"?: string;
+        /**
+         * This field can take one of the following values:
+         * * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.
+         * * First: (FRST) Initial/first collection in a series of direct debit instructions.
+         * * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor.
+         * * Final: (FNAL) Last/final collection in a series of direct debit instructions.
+         * 
+         * Example: OOFF
+         */
+        "sepadirectdebit.sequenceType"?: string;
     }
     export interface SDKEphemPubKey {
         /**
