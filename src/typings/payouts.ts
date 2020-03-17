@@ -15,7 +15,7 @@
  *
  * Adyen NodeJS API Library
  *
- * Version of Payouts: v51
+ * Version of Payouts: v52
  *
  * Copyright (c) 2019 Adyen B.V.
  * This file is open source and available under the MIT license.
@@ -133,6 +133,984 @@ declare namespace IPayouts {
          * Shopper's work phone number (including the country code).
          */
         workPhone?: string;
+    }
+    export interface AdditionalData3DSecure {
+        /**
+         * This parameter indicates that you are able to process 3D Secure 2 transactions natively on your payment page. Send this field when you are using `/payments` endpoint with any of our [native 3D Secure 2 solutions](https://docs.adyen.com/checkout/3d-secure/native-3ds2), such as Components or Drop-in. Possible values:
+         * * **true** - Ready to support native 3D Secure 2 authentication. Setting this to true does not mean always applying 3D Secure 2. Adyen still selects the version of 3D Secure based on configuration to optimize authorisation rates and improve the shopper's experience.
+         * * **false** – Not ready to support native 3D Secure 2 authentication. Adyen will not offer 3D Secure 2 to your shopper regardless of your configuration.
+         * > This parameter only indicates your readiness to support 3D Secure 2 natively on Drop-in or Components. To specify that you want to perform 3D Secure on a transaction, use Dynamic 3D Secure or send the executeThreeD parameter.
+         */
+        allow3DS2?: string;
+        /**
+         * This parameter indicates if you want to perform 3D Secure authentication on a transaction or not. Allowed values:
+         * * **true** – Perform 3D Secure authentication.
+         * * **false** – Don't perform 3D Secure authentication.
+         * > Alternatively, you can also use Dynamic 3D Secure to configure rules for applying 3D Secure.
+         */
+        executeThreeD?: string;
+        /**
+         * In case of Secure+, this field must be set to **CUPSecurePlus**.
+         */
+        mpiImplementationType?: string;
+        /**
+         * Indicates the [exemption type](https://docs-admin.is.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction. Possible values:
+         * * **lowValue** 
+         * * **secureCorporate** 
+         * * **trustedBeneficiary** 
+         * * **transactionRiskAnalysis** 
+         */
+        scaExemption?: string;
+    }
+    export interface AdditionalDataAirline {
+        /**
+         * Passenger name, initials, and a title.
+         * * Format: last name + first name or initials + title.
+         * * Example: *FLYER / MARY MS*.
+         * * minLength: 1
+         * * maxLength: 49
+         */
+        "airline.passenger_name"?: string;
+        /**
+         * The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket.
+         * * Format: alphanumeric.
+         * * minLength: 4
+         * * maxLength: 4
+         */
+        "airline.computerized_reservation_system"?: string;
+        /**
+         * [IATA](https://www.iata.org/services/pages/codes.aspx) 3-digit accounting code (PAX); numeric. It identifies the carrier.
+         * * Format: IATA 3-digit accounting code (PAX)
+         * * Example: KLM = 074
+         * * minLength: 3
+         * * maxLength: 3
+         */
+        "airline.airline_code"?: string;
+        /**
+         * The ticket's unique identifier.
+         * * minLength: 1
+         * * maxLength: 150
+         */
+        "airline.ticket_number"?: string;
+        /**
+         * Flight departure date. Local time `(HH:mm)` is optional.
+         * * Date format: `yyyy-MM-dd`
+         * * Date and time format: `yyyy-MM-dd HH:mm`
+         * * minLength: 10
+         * * maxLength: 16
+         */
+        "airline.flight_date"?: string;
+        /**
+         * Reference number; alphanumeric.
+         * * minLength: 0
+         * * maxLength: 20
+         */
+        "airline.customer_reference_number"?: string;
+        /**
+         * Address of the place/agency that issued the ticket.
+         * * minLength: 0
+         * * maxLength: 16
+         */
+        "airline.ticket_issue_address"?: string;
+        /**
+         * [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier.
+         * * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter airline code
+         * * Example: KLM = KL
+         * * minLength: 2
+         * * maxLength: 2
+         */
+        "airline.airline_designator_code"?: string;
+        /**
+         * IATA number, also ARC number or ARC/IATA number. Unique identifier number for travel agencies.
+         * * minLength: 1
+         * * maxLength: 8
+         */
+        "airline.travel_agency_code"?: string;
+        /**
+         * The name of the travel agency.
+         * * minLength: 1
+         * * maxLength: 25
+         */
+        "airline.travel_agency_name"?: string;
+        /**
+         * 2-letter agency plan identifier; alphabetical.
+         * * minLength: 2
+         * * maxLength: 2
+         */
+        "airline.agency_plan_name"?: string;
+        /**
+         * Reference number for the invoice, issued by the agency.
+         * * minLength: 1
+         * * maxLength: 6
+         */
+        "airline.agency_invoice_number"?: string;
+        /**
+         * Chargeable amount for boarding the plane.
+         * The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
+         * * minLength: 1
+         * * maxLength: 18
+         */
+        "airline.boarding_fee"?: string;
+        /**
+         * Optional 2-digit code; alphanumeric. It identifies the type of product of the transaction. The description of the code may appear on credit card statements.
+         * * Format: 2-digit code
+         * * Example: Passenger ticket = 01
+         * * minLength: 2
+         * * maxLength: 2
+         */
+        "airline.document_type"?: string;
+        /**
+         * Alphabetical identifier of the departure airport.
+         * This field is required if the airline data includes leg details.
+         * * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code.
+         * * Example: Amsterdam = AMS
+         * * minLength: 3
+         * * maxLength: 3
+         */
+        "airline.leg.depart_airport"?: string;
+        /**
+         * The flight identifier.
+         * * minLength: 1
+         * * maxLength: 5
+         */
+        "airline.leg.flight_number"?: string;
+        /**
+         * [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier.
+         * This field is required/mandatory if the airline data includes leg details.
+         * * Format: IATA 2-letter airline code
+         * * Example: KLM = KL
+         * * minLength: 2
+         * * maxLength: 2
+         */
+        "airline.leg.carrier_code"?: string;
+        /**
+         * [Fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code); alphanumeric.
+         * * minLength: 1
+         * * maxLength: 7
+         */
+        "airline.leg.fare_base_code"?: string;
+        /**
+         * 1-letter travel class identifier; alphabetical. There is no standard; however, the following codes are used rather consistently:
+         * * F: first class
+         * * J: business class
+         * * Y: economy class
+         * * W: premium economy
+         * 
+         * Limitations:
+         * * minLength: 1
+         * * maxLength: 1
+         */
+        "airline.leg.class_of_travel"?: string;
+        /**
+         * 1-letter code that indicates whether the passenger is entitled to make a stopover. Only two types of characters are allowed:
+         * * O: Stopover allowed
+         * * X: Stopover not allowed
+         * 
+         * Limitations:
+         * * minLength: 1
+         * * maxLength: 1
+         */
+        "airline.leg.stop_over_code"?: string;
+        /**
+         * Alphabetical identifier of the destination/arrival airport.
+         * This field is required/mandatory if the airline data includes leg details.
+         * * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code.
+         * * Example: Amsterdam = AMS
+         * * minLength: 3
+         * * maxLength: 3
+         */
+        "airline.leg.destination_code"?: string;
+        /**
+         * 	
+         * Date and time of travel. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-compliant.
+         * * Format: `yyyy-MM-dd HH:mm`
+         * * minLength: 16
+         * * maxLength: 16
+         */
+        "airline.leg.date_of_travel"?: string;
+        /**
+         * [Departure tax](https://en.wikipedia.org/wiki/Departure_tax). Amount charged by a country to an individual upon their leaving. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
+         * * minLength: 1
+         * * maxLength: 12
+         */
+        "airline.leg.depart_tax"?: string;
+        /**
+         * Passenger first name/given name.
+         * > This field is required/mandatory if the airline data includes passenger details or leg details.
+         */
+        "airline.passenger.first_name"?: string;
+        /**
+         * Passenger last name/family name.
+         * > This field is required/mandatory if the airline data includes passenger details or leg details.
+         */
+        "airline.passenger.last_name"?: string;
+        /**
+         * Passenger type code (PTC). IATA PTC values are 3-letter alphabetical. Example: ADT, SRC, CNN, INS.
+         * 
+         * However, several carriers use non-standard codes that can be up to 5 alphanumeric characters.
+         * * minLength: 3
+         * * maxLength: 6
+         */
+        "airline.passenger.traveller_type"?: string;
+        /**
+         * Telephone number of the passenger, including country code. This is an alphanumeric field that can include the '+' and '-' signs.
+         * * minLength: 3
+         * * maxLength: 30
+         */
+        "airline.passenger.telephone_number"?: string;
+        /**
+         * Date of birth of the passenger.
+         * 
+         * Date format: `yyyy-MM-dd`
+         * * minLength: 10
+         * * maxLength: 10
+         */
+        "airline.passenger.date_of_birth"?: string;
+    }
+    export interface AdditionalDataCarRental {
+        /**
+         * The rental agreement number associated with this car rental.
+         * * Format: Alphanumeric
+         * * maxLength: 14
+         */
+        "carRental.rentalAgreementNumber"?: string;
+        /**
+         * The name of the person renting the car.
+         * * Format: Alphanumeric
+         * * maxLength: 26
+         */
+        "carRental.renterName"?: string;
+        /**
+         * The city where the car must be returned.
+         * * Format: Alphanumeric
+         * * maxLength: 18
+         */
+        "carRental.returnCity"?: string;
+        /**
+         * The state or province where the car must be returned.
+         * * Format: Alphanumeric
+         * * maxLength: 3
+         */
+        "carRental.returnStateProvince"?: string;
+        /**
+         * The country where the car must be returned.
+         * * Format: Alphanumeric
+         * * maxLength: 2
+         */
+        "carRental.returnCountry"?: string;
+        /**
+         * Agency code, phone number, or address abbreviation
+         * * Format: Alphanumeric
+         * * maxLength: 10
+         */
+        "carRental.returnLocationId"?: string;
+        /**
+         * The last date to return the car by.
+         * * Date format: `yyyyMMdd`
+         */
+        "carRental.returnDate"?: string;
+        /**
+         * Pick-up date.
+         * * Date format: `yyyyMMdd`
+         */
+        "carRental.checkOutDate"?: string;
+        /**
+         * The customer service phone number of the car rental company.
+         * * Format: Alphanumeric
+         * * maxLength: 17
+         */
+        "carRental.customerServiceTollFreeNumber"?: string;
+        /**
+         * Daily rental rate.
+         * * Format: Alphanumeric
+         * * maxLength: 12
+         */
+        "carRental.rate"?: string;
+        /**
+         * Specifies whether the given rate is applied daily or weekly.
+         * * D - Daily rate.
+         * * W - Weekly rate.
+         */
+        "carRental.rateIndicator"?: string;
+        /**
+         * The location from which the car is rented.
+         * * Format: Alphanumeric
+         * * maxLength: 18
+         */
+        "carRental.locationCity"?: string;
+        /**
+         * Pick-up date.
+         * * Date format: `yyyyMMdd`
+         */
+        "carRental.locationStateProvince"?: string;
+        /**
+         * The customer service phone number of the car rental company.
+         * * Format: Alphanumeric
+         * * maxLength: 17
+         */
+        "carRental.locationCountry"?: string;
+        /**
+         * Daily rental rate.
+         * * Format: Alphanumeric
+         * * maxLength: 12
+         */
+        "carRental.rentalClassId"?: string;
+        /**
+         * Specifies whether the given rate is applied daily or weekly.
+         * * D - Daily rate.
+         * * W - Weekly rate.
+         */
+        "carRental.daysRented"?: string;
+        /**
+         * Indicates whether the goods or services were tax-exempt, or tax was not collected.
+         * 
+         * Values:
+         * * 0 - Tax was not collected
+         * * 1 - Goods or services were tax exempt
+         */
+        "carRental.taxExemptIndicator"?: string;
+        /**
+         * Indicates what market-specific dataset will be submitted or is being submitted. Value should be "A" for Car rental. This should be included in the auth message.
+         * * Format: Alphanumeric
+         * * maxLength: 1
+         */
+        "travelEntertainmentAuthData.market"?: string;
+        /**
+         * Number of nights.  This should be included in the auth message.
+         * * Format: Numeric
+         * * maxLength: 2
+         */
+        "travelEntertainmentAuthData.duration"?: string;
+        /**
+         * Any fuel charges associated with the rental.
+         * * Format: Numeric
+         * * maxLength: 12
+         */
+        "carRental.fuelCharges"?: string;
+        /**
+         * Any insurance charges associated with the rental.
+         * * Format: Numeric
+         * * maxLength: 12
+         */
+        "carRental.insuranceCharges"?: string;
+        /**
+         * Indicates if the customer was a "no-show" (neither keeps nor cancels their booking).
+         * * 0 - Not applicable.
+         * * 1 - Customer was a no show.
+         */
+        "carRental.noShowIndicator"?: string;
+        /**
+         * Charge associated with not returning a vehicle to the original rental location.
+         */
+        "carRental.oneWayDropOffCharges"?: string;
+    }
+    export interface AdditionalDataCommon {
+        /**
+         * Flags a card payment request for either pre-authorisation or final authorisation. For more information, refer to [Authorisation types](https://docs.adyen.com/checkout/adjust-authorisation#authorisation-types).
+         * 
+         * Allowed values:
+         * * **PreAuth** – flags the payment request to be handled as a pre-authorisation.
+         * * **FinalAuth** – flags the payment request to be handled as a final authorisation.
+         */
+        authorisationType?: string;
+        /**
+         * Allows you to determine or override the acquirer account that should be used for the transaction.
+         * 
+         * If you need to process a payment with an acquirer different from a default one, you can set up a corresponding configuration on the Adyen payments platform. Then you can pass a custom routing flag in a payment request's additional data to target a specific acquirer.
+         * 
+         * To enable this functionality, contact [Support](https://support.adyen.com/hc/en-us/requests/new).
+         */
+        customRoutingFlag?: string;
+        /**
+         * Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain. This field is required for token-based transactions where Adyen does not tokenize the card.
+         * 
+         * Transaction identifier from card schemes, for example, Mastercard Trace ID or the Visa Transaction ID.
+         * 
+         * Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.
+         * 
+         * Make sure you are sending `shopperInteraction` **ContAuth** and `recurringProcessingModel` **Subscription** or **UnscheduledCardonFile** to ensure that the transaction is classified as MIT.
+         */
+        networkTxReference?: string;
+        /**
+         * Boolean indicator that can be optionally used for performing debit transactions on combo cards (for example, combo cards in Brazil). This is not mandatory but we recommend that you set this to true if you want to use the `selectedBrand` value to specify how to process the transaction.
+         */
+        overwriteBrand?: string;
+        /**
+         * Triggers test scenarios that allow to replicate certain communication errors.
+         * 
+         * Allowed values:
+         * * **NO_CONNECTION_AVAILABLE** – There wasn't a connection available to service the outgoing communication.
+         * This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request.
+         * * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response.
+         * This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response.
+         */
+        RequestedTestErrorResponseCode?: string;
+        /**
+         * This field contains an identifier of the actual merchant when a transaction is submitted via a payment facilitator. The payment facilitator must send in this unique ID, which is used by schemes to identify the merchant.
+         * 
+         * A unique identifier per submerchant that is required if the transaction is performed by a registered payment facilitator.
+         * * Format: alpha-numeric.
+         * * Fixed length: 15 characters.
+         */
+        subMerchantID?: string;
+    }
+    export interface AdditionalDataLevel23 {
+        /**
+         * Customer code, if supplied by a customer.
+         * Encoding: ASCII.
+         * Max length: 25 characters.
+         * > Required for Level 2 and Level 3 data.
+         */
+        "enhancedSchemeData.customerReference"?: string;
+        /**
+         * Total tax amount, in minor units.
+         * 
+         * For example, 2000 means USD 20.00.
+         * Max length: 12 characters.
+         * > Required for Level 2 and Level 3 data.
+         */
+        "enhancedSchemeData.totalTaxAmount"?: number;
+        /**
+         * Shipping amount, in minor units.
+         * 
+         * For example, 2000 means USD 20.00.
+         * Max length: 12 characters.
+         */
+        "enhancedSchemeData.freightAmount"?: number;
+        /**
+         * Duty amount, in minor units.
+         * 
+         * For example, 2000 means USD 20.00.
+         * Max length: 12 characters.
+         */
+        "enhancedSchemeData.dutyAmount"?: number;
+        /**
+         * The postal code of a destination address.
+         * 
+         * Encoding: ASCII.
+         * Max length: 10 characters.
+         * > Required for American Express.
+         */
+        "enhancedSchemeData.destinationPostalCode"?: string;
+        /**
+         * Destination state or province code.
+         * 
+         * Encoding: ASCII.Max length: 3 characters.
+         */
+        "enhancedSchemeData.destinationStateProvinceCode"?: string;
+        /**
+         * The postal code of a "ship-from" address.
+         * 
+         * Encoding: ASCII.
+         * Max length: 10 characters.
+         */
+        "enhancedSchemeData.shipFromPostalCode"?: string;
+        /**
+         * Destination country code.
+         * 
+         * Encoding: ASCII.
+         * Max length: 3 characters.
+         */
+        "enhancedSchemeData.destinationCountryCode"?: string;
+        /**
+         * Order date.
+         * * Format: `ddMMyy`
+         * 
+         * Encoding: ASCII.
+         * Max length: 6 characters.
+         */
+        "enhancedSchemeData.orderDate"?: string;
+        /**
+         * Item commodity code.
+         * Encoding: ASCII.
+         * Max length: 12 characters.
+         */
+        "enhancedSchemeData.itemDetailLine[itemNr].commodityCode"?: string;
+        /**
+         * Item description.
+         * Encoding: ASCII.
+         * Max length: 26 characters.
+         */
+        "enhancedSchemeData.itemDetailLine[itemNr].description"?: string;
+        /**
+         * Product code.
+         * Encoding: ASCII.
+         * Max length: 12 characters.
+         */
+        "enhancedSchemeData.itemDetailLine[itemNr].productCode"?: string;
+        /**
+         * Quantity, specified as an integer value.
+         * Value must be greater than 0.
+         * Max length: 12 characters.
+         */
+        "enhancedSchemeData.itemDetailLine[itemNr].quantity"?: number;
+        /**
+         * Item unit of measurement.
+         * Encoding: ASCII.
+         * Max length: 3 characters.
+         */
+        "enhancedSchemeData.itemDetailLine[itemNr].unitOfMeasure"?: string;
+        /**
+         * Unit price, specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+         * Max length: 12 characters.
+         */
+        "enhancedSchemeData.itemDetailLine[itemNr].unitPrice"?: number;
+        /**
+         * Discount amount, in minor units.
+         * 
+         * For example, 2000 means USD 20.00.
+         * Max length: 12 characters.
+         */
+        "enhancedSchemeData.itemDetailLine[itemNr].discountAmount"?: number;
+        /**
+         * Total amount, in minor units.
+         * For example, 2000 means USD 20.00.
+         * Max length: 12 characters.
+         */
+        "enhancedSchemeData.itemDetailLine[itemNr].totalAmount"?: number;
+    }
+    export interface AdditionalDataLodging {
+        /**
+         * The toll free phone number for the hotel/lodgings.
+         * * Format: Alphanumeric
+         * * maxLength: 17
+         */
+        "lodging.customerServiceTollFreeNumber"?: string;
+        /**
+         * The arrival date.
+         * * Date format: `yyyyMMdd`
+         */
+        "lodging.checkInDate"?: string;
+        /**
+         * The departure date.
+         * * Date format: `yyyyMMdd`
+         */
+        "lodging.checkOutDate"?: string;
+        /**
+         * Card acceptor’s internal invoice or billing ID reference number.
+         * * Format: Alphanumeric
+         * * maxLength: 25
+         */
+        "lodging.folioNumber"?: string;
+        /**
+         * Identifies specific lodging property location by its local phone number.
+         * * Format: Alphanumeric
+         * * maxLength: 17
+         */
+        "lodging.propertyPhoneNumber"?: string;
+        /**
+         * The rate of the room.
+         * * Format: Numeric
+         * * maxLength: 12
+         */
+        "lodging.room1.rate"?: string;
+        /**
+         * The total amount of tax to be paid.
+         * * Format: Numeric
+         * * maxLength: 12
+         */
+        "lodging.room1.tax"?: string;
+        /**
+         * Total number of nights the room will be rented.
+         * * Format: Numeric
+         * * maxLength: 4
+         */
+        "lodging.room1.numberOfNights"?: string;
+        /**
+         * Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: 'Y' or 'N'.
+         * * Format: Alphabetic
+         * * maxLength: 1
+         */
+        "lodging.fireSafetyActIndicator"?: string;
+        /**
+         * Indicates what market-specific dataset will be submitted or is being submitted. Value should be "H" for Hotel. This should be included in the auth message.
+         * * Format: Alphanumeric
+         * * maxLength: 1
+         */
+        "travelEntertainmentAuthData.market"?: string;
+        /**
+         * Number of nights.  This should be included in the auth message.
+         * * Format: Numeric
+         * * maxLength: 2
+         */
+        "travelEntertainmentAuthData.duration"?: string;
+        /**
+         * The folio cash advances.
+         * * Format: Numeric
+         * * maxLength: 12
+         */
+        "lodging.folioCashAdvances"?: string;
+        /**
+         * Any charges for food and beverages associated with the booking.
+         * * Format: Numeric
+         * * maxLength: 12
+         */
+        "lodging.foodBeverageCharges"?: string;
+        /**
+         * Indicates if the customer was a "no-show" (neither keeps nor cancels their booking).
+         * 
+         * Value should be Y or N.
+         * * Format: Numeric
+         * * maxLength: 1
+         */
+        "lodging.noShowIndicator"?: string;
+        /**
+         * Prepaid expenses for the booking.
+         * * Format: Numeric
+         * * maxLength: 12
+         */
+        "lodging.prepaidExpenses"?: string;
+        /**
+         * Total tax amount.
+         * * Format: Numeric
+         * * maxLength: 12
+         */
+        "lodging.totalTax"?: string;
+        /**
+         * Total room tax amount.
+         * * Format: Numeric
+         * * maxLength: 12
+         */
+        "lodging.totalRoomTax"?: string;
+    }
+    export interface AdditionalDataModifications {
+        /**
+         * This is the installment option selected by the shopper. It is required only if specified by the user.
+         */
+        "installmentPaymentData.selectedInstallmentOption"?: string;
+    }
+    export interface AdditionalDataOpenInvoice {
+        /**
+         * The number of invoice lines included in `openinvoicedata`.
+         * 
+         * There needs to be at least one line, so `numberOfLines` needs to be at least 1.
+         */
+        "openinvoicedata.numberOfLines"?: number;
+        /**
+         * Holds different merchant data points like product, purchase, customer, and so on. It takes data in a Base64 encoded string.
+         * 
+         * The `merchantData` parameter needs to be added to the `openinvoicedata` signature at the end.
+         * 
+         * Since the field is optional, if it's not included it does not impact computing the merchant signature.
+         * 
+         * Applies only to Klarna.
+         * 
+         * You can contact Klarna for the format and structure of the string.
+         */
+        "openinvoicedata.merchantData"?: string;
+        /**
+         * The three-character ISO currency code.
+         */
+        "openinvoicedata.line[itemNr].currencyCode"?: string;
+        /**
+         * A text description of the product the invoice line refers to.
+         */
+        "openinvoicedata.line[itemNr].description"?: string;
+        /**
+         * The price for one item in the invoice line, represented in minor units.
+         * 
+         * The due amount for the item, VAT excluded.
+         */
+        "openinvoicedata.line[itemNr].itemAmount"?: number;
+        /**
+         * The VAT due for one item in the invoice line, represented in minor units.
+         */
+        "openinvoicedata.line[itemNr].itemVatAmount"?: number;
+        /**
+         * The VAT percentage for one item in the invoice line, represented in minor units.
+         * 
+         * For example, 19% VAT is specified as 1900.
+         */
+        "openinvoicedata.line[itemNr].itemVatPercentage"?: number;
+        /**
+         * A unique id for this item. Required for RatePay if the description of each item is not unique.
+         */
+        "openinvoicedata.line[itemNr].itemId"?: string;
+        /**
+         * The number of units purchased of a specific product.
+         */
+        "openinvoicedata.line[itemNr].numberOfItems"?: number;
+        /**
+         * Required for AfterPay. The country-specific VAT category a product falls under.
+         * 
+         * Allowed values:
+         * * High
+         * * Low
+         * * None.
+         */
+        "openinvoicedata.line[itemNr].vatCategory"?: string;
+    }
+    export interface AdditionalDataRatepay {
+        /**
+         * Amount the customer has to pay each month.
+         */
+        "ratepay.installmentAmount"?: number;
+        /**
+         * Amount of the last installment.
+         */
+        "ratepay.lastInstallmentAmount"?: number;
+        /**
+         * Interest rate of this installment. Double
+         */
+        "ratepay.interestRate"?: number;
+        /**
+         * Calendar day of the first payment.
+         */
+        "ratepay.paymentFirstday"?: number;
+        /**
+         * Identification name or number for the invoice, defined by the merchant.
+         */
+        "ratepaydata.invoiceId"?: string;
+        /**
+         * Invoice date, defined by the merchant. If not included, the invoice date is set to the delivery date.
+         */
+        "ratepaydata.invoiceDate"?: string;
+        /**
+         * Date the merchant delivered the goods to the customer.
+         */
+        "ratepaydata.deliveryDate"?: string;
+        /**
+         * Date by which the customer must settle the payment.
+         */
+        "ratepaydata.dueDate"?: string;
+    }
+    export interface AdditionalDataRetry {
+        /**
+         * The number of times the transaction (not order) has been retried between different payment service providers. For instance, the `chainAttemptNumber` set to 2 means that this transaction has been recently tried on another provider before being sent to Adyen.
+         * > If you submit `retry.chainAttemptNumber`, `retry.orderAttemptNumber`, and `retry.skipRetry` values, we also recommend you provide the `merchantOrderReference` to facilitate linking payment attempts together.
+         */
+        "retry.chainAttemptNumber"?: number;
+        /**
+         * The index of the attempt to bill a particular order, which is identified by the `merchantOrderReference` field. For example, if a recurring transaction fails and is retried one day later, then the order number for these attempts would be 1 and 2, respectively.
+         * > If you submit `retry.chainAttemptNumber`, `retry.orderAttemptNumber`, and `retry.skipRetry` values, we also recommend you provide the `merchantOrderReference` to facilitate linking payment attempts together.
+         */
+        "retry.orderAttemptNumber"?: number;
+        /**
+         * The Boolean value indicating whether Adyen should skip or retry this transaction, if possible.
+         * > If you submit `retry.chainAttemptNumber`, `retry.orderAttemptNumber`, and `retry.skipRetry` values, we also recommend you provide the `merchantOrderReference` to facilitate linking payment attempts together.
+         */
+        "retry.skipRetry"?: boolean;
+    }
+    export interface AdditionalDataRisk {
+        /**
+         * The data for your custom risk field. For more information, refer to [Create custom risk fields](https://docs.adyen.com/risk-management/configure-custom-risk-rules#step-1-create-custom-risk-fields).
+         */
+        "riskdata.[customFieldName]"?: string;
+        /**
+         * ID of the item.
+         */
+        "riskdata.basket.item[itemNr].itemID"?: string;
+        /**
+         * A text description of the product the invoice line refers to.
+         */
+        "riskdata.basket.item[itemNr].productTitle"?: string;
+        /**
+         * The price of item in the basket, represented in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+         */
+        "riskdata.basket.item[itemNr].amountPerItem"?: string;
+        /**
+         * The three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).
+         */
+        "riskdata.basket.item[itemNr].currency"?: string;
+        /**
+         * [Universal Product Code](https://en.wikipedia.org/wiki/Universal_Product_Code).
+         */
+        "riskdata.basket.item[itemNr].upc"?: string;
+        /**
+         * [Stock keeping unit](https://en.wikipedia.org/wiki/Stock_keeping_unit).
+         */
+        "riskdata.basket.item[itemNr].sku"?: string;
+        /**
+         * Brand of the item.
+         */
+        "riskdata.basket.item[itemNr].brand"?: string;
+        /**
+         * Manufacturer of the item.
+         */
+        "riskdata.basket.item[itemNr].manufacturer"?: string;
+        /**
+         * Category of the item.
+         */
+        "riskdata.basket.item[itemNr].category"?: string;
+        /**
+         * Color of the item.
+         */
+        "riskdata.basket.item[itemNr].color"?: string;
+        /**
+         * Size of the item.
+         */
+        "riskdata.basket.item[itemNr].size"?: string;
+        /**
+         * Quantity of the item purchased.
+         */
+        "riskdata.basket.item[itemNr].quantity"?: string;
+        /**
+         * Email associated with the given product in the basket (usually in electronic gift cards).
+         */
+        "riskdata.basket.item[itemNr].receiverEmail"?: string;
+        /**
+         * Code of the promotion.
+         */
+        "riskdata.promotions.promotion[itemNr].promotionCode"?: string;
+        /**
+         * Name of the promotion.
+         */
+        "riskdata.promotions.promotion[itemNr].promotionName"?: string;
+        /**
+         * The discount amount of the promotion, represented in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+         */
+        "riskdata.promotions.promotion[itemNr].promotionDiscountAmount"?: string;
+        /**
+         * The three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).
+         */
+        "riskdata.promotions.promotion[itemNr].promotionDiscountCurrency"?: string;
+        /**
+         * Promotion's percentage discount. It is represented in percentage value and there is no need to include the '%' sign.
+         * 
+         * e.g. for a promotion discount of 30%, the value of the field should be 30.
+         */
+        "riskdata.promotions.promotion[itemNr].promotionDiscountPercentage"?: string;
+    }
+    export interface AdditionalDataRiskStandalone {
+        /**
+         * Raw AVS result received from the acquirer, where available. Example: D
+         */
+        avsResultRaw?: string;
+        /**
+         * The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/risk-management/standalone-risk#tokenised-pan-request).
+         */
+        bin?: string;
+        /**
+         * Raw CVC result received from the acquirer, where available. Example: 1
+         */
+        cvcResultRaw?: string;
+        /**
+         * Unique identifier or token for the shopper's card details.
+         */
+        "risk.token"?: string;
+        /**
+         * A Boolean value indicating whether 3DS authentication was completed on this payment. Example: true
+         */
+        threeDAuthenticated?: string;
+        /**
+         * A Boolean value indicating whether 3DS was offered for this payment. Example: true
+         */
+        threeDOffered?: string;
+        /**
+         * Required for PayPal payments only. The only supported value is: **paypal**.
+         */
+        tokenDataType?: string;
+        /**
+         * Allowed values:
+         * * **Eligible** — Merchant is protected by PayPal's Seller Protection Policy for Unauthorized Payments and Item Not Received.
+         * * **PartiallyEligible** — Merchant is protected by PayPal's Seller Protection Policy for Item Not Received.
+         * * **Ineligible** — Merchant is not protected under the Seller Protection Policy.
+         */
+        "PayPal.ProtectionEligibility"?: string;
+        /**
+         * Unique PayPal Customer Account identification number. Character length and limitations: 13 single-byte alphanumeric characters.
+         */
+        "PayPal.PayerId"?: string;
+        /**
+         * Unique transaction ID of the payment.
+         */
+        "PayPal.TransactionId"?: string;
+        /**
+         * Shopper's country of residence in the form of ISO standard 3166 2-character country codes.
+         */
+        "PayPal.CountryCode"?: string;
+        /**
+         * Shopper's first name.
+         */
+        "PayPal.FirstName"?: string;
+        /**
+         * Shopper's last name.
+         */
+        "PayPal.LastName"?: string;
+        /**
+         * Shopper's phone number.
+         */
+        "PayPal.Phone"?: string;
+        /**
+         * Shopper's email.
+         */
+        "PayPal.EmailId"?: string;
+    }
+    export interface AdditionalDataTemporaryServices {
+        /**
+         * Customer code, if supplied by a customer.
+         * * Encoding: ASCII
+         * * maxLength: 25
+         */
+        "enhancedSchemeData.customerReference"?: string;
+        /**
+         * Total tax amount, in minor units. For example, 2000 means USD 20.00
+         * * maxLength: 12
+         */
+        "enhancedSchemeData.totalTaxAmount"?: string;
+        /**
+         * Name or ID associated with the individual working in a temporary capacity.
+         * * maxLength: 40
+         */
+        "enhancedSchemeData.employeeName"?: string;
+        /**
+         * Description of the job or task of the individual working in a temporary capacity.
+         * * maxLength: 40
+         */
+        "enhancedSchemeData.jobDescription"?: string;
+        /**
+         * Date for the beginning of the pay period.
+         * * Format: ddMMyy
+         * * maxLength: 6
+         */
+        "enhancedSchemeData.tempStartDate"?: string;
+        /**
+         * Date of the end of the billing cycle.
+         * * Format: ddMMyy
+         * * maxLength: 6
+         */
+        "enhancedSchemeData.tempWeekEnding"?: string;
+        /**
+         * Name of the individual requesting temporary services.
+         * * maxLength: 40
+         */
+        "enhancedSchemeData.requestName"?: string;
+        /**
+         * Amount of time worked during a normal operation for the task or job.
+         * * maxLength: 7
+         */
+        "enhancedSchemeData.regularHoursWorked"?: string;
+        /**
+         * Amount paid per regular hours worked, minor units.
+         * * maxLength: 7
+         */
+        "enhancedSchemeData.regularHoursRate"?: string;
+    }
+    export interface AdditionalDataWallets {
+        /**
+         * The Android Pay token retrieved from the SDK.
+         */
+        "androidpay.token"?: string;
+        /**
+         * The Mastercard Masterpass Transaction ID retrieved from the SDK.
+         */
+        "masterpass.transactionId"?: string;
+        /**
+         * The Apple Pay token retrieved from the SDK.
+         */
+        "payment.token"?: string;
+        /**
+         * The Google Pay token retrieved from the SDK.
+         */
+        "paywithgoogle.token"?: string;
+        /**
+         * The Samsung Pay token retrieved from the SDK.
+         */
+        "samsungpay.token"?: string;
+        /**
+         * The Visa Checkout Call ID retrieved from the SDK.
+         */
+        "visacheckout.callId"?: string;
     }
     export interface Address {
         /**
@@ -617,12 +1595,11 @@ declare namespace IPayouts {
         /**
          * This field contains additional data, which may be required for a particular payment request.
          * 
-         * The `additionalData` object consists of entries, each of which includes the key and value. For more information on possible key-value pairs, refer to the [additionalData section](https://docs.adyen.com/api-reference/payments-api/paymentrequest/paymentrequest-additionaldata).
+         * The `additionalData` object consists of entries, each of which includes the key and value.
          */
-        additionalData?: {
-        };
+        additionalData?: IPayouts.AdditionalDataCommon | IPayouts.AdditionalDataModifications | IPayouts.AdditionalData3DSecure | IPayouts.AdditionalDataAirline | IPayouts.AdditionalDataCarRental | IPayouts.AdditionalDataLevel23 | IPayouts.AdditionalDataLodging | IPayouts.AdditionalDataOpenInvoice | IPayouts.AdditionalDataRatepay | IPayouts.AdditionalDataRetry | IPayouts.AdditionalDataRisk | IPayouts.AdditionalDataRiskStandalone | IPayouts.AdditionalDataTemporaryServices | IPayouts.AdditionalDataWallets;
         /**
-         * The amount information for the transaction. For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
+         * The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
          */
         amount: IPayouts.Amount;
         /**
@@ -696,7 +1673,14 @@ declare namespace IPayouts {
          */
         fundSource?: IPayouts.FundSource;
         /**
-         * Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/installment-payments).
+         * How to process combo card (for some Brazilian cards only).
+         * Allowed values:
+         * * debit
+         * * credit
+         */
+        fundingSource?: "debit" | "credit";
+        /**
+         * Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/cards/credit-card-installments).
          */
         installments?: IPayouts.Installments;
         /**
@@ -814,7 +1798,7 @@ declare namespace IPayouts {
          */
         socialSecurityNumber?: string;
         /**
-         * The details of how the payment should be split when distributing a payment to a MarketPay Marketplace and its Accounts.
+         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/marketpay/processing-payments#providing-split-information).
          */
         splits?: IPayouts.Split[];
         /**
@@ -844,7 +1828,7 @@ declare namespace IPayouts {
     }
     export interface PayoutResponse {
         /**
-         * This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs**.
+         * This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**.
          */
         additionalData?: {
         };
@@ -1106,6 +2090,10 @@ declare namespace IPayouts {
          * The shopper's social security number.
          */
         socialSecurityNumber?: string;
+        /**
+         * The shopper's phone number.
+         */
+        telephoneNumber?: string;
     }
     export interface StoreDetailAndSubmitResponse {
         /**
@@ -1204,6 +2192,10 @@ declare namespace IPayouts {
          * The shopper's social security number.
          */
         socialSecurityNumber?: string;
+        /**
+         * The shopper's phone number.
+         */
+        telephoneNumber?: string;
     }
     export interface StoreDetailResponse {
         /**
