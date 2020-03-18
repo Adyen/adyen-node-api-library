@@ -1,0 +1,1 @@
+{"version":3,"file":"paymentsResultErrorInvalidDataPayload422.js","sourceRoot":"","sources":["../../../../../src/__mocks__/checkout/paymentsResultErrorInvalidDataPayload422.ts"],"names":[],"mappings":";;AAAA,oBAAoB;AACP,QAAA,mBAAmB,GAAG,IAAI,CAAC,SAAS,CAAC;IAC9C,UAAU,EAAE,GAAG;IACf,SAAS,EAAE,QAAQ;IACnB,OAAO,EAAE,0BAA0B;IACnC,SAAS,EAAE,YAAY;CAC1B,CAAC,CAAC"}
