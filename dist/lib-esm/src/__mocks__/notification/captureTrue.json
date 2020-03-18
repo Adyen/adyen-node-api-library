@@ -1,0 +1,25 @@
+{
+    "live": "false",
+    "notificationItems": [
+        {
+            "NotificationRequestItem": {
+                "additionalData": {
+                    "hmacSignature": "qvS6I3Gdi1jx+jSh7IopAgcHtMoxvXlNL7DYQ+j1hd0="
+                },
+                "amount": {
+                    "currency": "USD",
+                    "value": 23623
+                },
+                "eventCode": "CAPTURE",
+                "eventDate": "2017-01-25T18:08:19+01:00",
+                "merchantAccountCode": "MagentoMerchantTest2",
+                "merchantReference": "00000001",
+                "originalReference": "ORIGINAL_PSP",
+                "paymentMethod": "visa",
+                "pspReference": "PSP_REFERENCE",
+                "reason": "",
+                "success": "true"
+            }
+        }
+    ]
+}
