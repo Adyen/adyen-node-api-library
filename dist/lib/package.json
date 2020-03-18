@@ -1,0 +1,61 @@
+{
+    "name": "@adyen/api-library",
+    "version": "3.1.1",
+    "description": "The Adyen API Library for NodeJS enables you to work with Adyen APIs.",
+    "main": "dist/lib/src/index.js",
+    "types": "dist/lib/src/index.d.ts",
+    "module": "dist/lib-esm/src/index.js",
+    "engines": {
+        "node": ">=10"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Adyen/adyen-node-api-library.git"
+    },
+    "keywords": [
+        "adyen",
+        "api",
+        "nodejs"
+    ],
+    "bugs": {
+        "url": "https://github.com/Adyen/adyen-node-api-library/issues"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "homepage": "https://github.com/Adyen/adyen-node-api-library#readme",
+    "scripts": {
+        "clean": "rm -rf ./dist",
+        "build": "npm run clean && tsc && tsc -m es6 --outDir dist/lib-esm && webpack",
+        "lint": "eslint 'src/**/*.ts'",
+        "lint:fix": "eslint --fix 'src/**/*.ts'",
+        "test": "jest",
+        "test:coverage": "jest --coverage",
+        "preversion": "npm test",
+        "version": "npm run build && git add -A dist",
+        "postversion": "git push && git push --tags && rm -rf build/temp",
+        "release": "release-it --no-npm.publish"
+    },
+    "author": "Ricardo Ambrogi",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/jest": "25.1.4",
+        "@types/nock": "11.1.0",
+        "@typescript-eslint/eslint-plugin": "2.24.0",
+        "@typescript-eslint/parser": "2.24.0",
+        "coveralls": "3.0.9",
+        "eslint": "6.8.0",
+        "jest": "25.1.0",
+        "nock": "12.0.3",
+        "release-it": "13.1.1",
+        "ts-jest": "25.2.1",
+        "ts-loader": "6.2.1",
+        "typescript": "3.8.3",
+        "webpack": "4.42.0",
+        "webpack-cli": "3.3.11"
+    },
+    "dependencies": {
+        "@types/node": "13.9.1",
+        "https-proxy-agent": "5.0.0"
+    }
+}

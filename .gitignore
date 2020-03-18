@@ -11,4 +11,3 @@ node_modules
 .ssh/
 .viminfo
 coverage/
-dist/
