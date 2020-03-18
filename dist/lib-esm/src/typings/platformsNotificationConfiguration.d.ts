@@ -1,9 +1,9 @@
-declare namespace IMarketPayNotificationConfiguration {
+declare namespace IPlatformsNotificationConfiguration {
     interface CreateNotificationConfigurationRequest {
         /**
          * Details of the prospective notification subscription configuration.
          */
-        configurationDetails: IMarketPayNotificationConfiguration.NotificationConfigurationDetails;
+        configurationDetails: IPlatformsNotificationConfiguration.NotificationConfigurationDetails;
     }
     interface DeleteNotificationConfigurationRequest {
         /**
@@ -24,7 +24,7 @@ declare namespace IMarketPayNotificationConfiguration {
         /**
          * The type of error field.
          */
-        fieldType?: IMarketPayNotificationConfiguration.FieldType;
+        fieldType?: IPlatformsNotificationConfiguration.FieldType;
     }
     interface ExchangeMessage {
         messageCode?: string;
@@ -38,7 +38,7 @@ declare namespace IMarketPayNotificationConfiguration {
         /**
          * The type of the field.
          */
-        fieldName?: "accountCode" | "accountHolderCode" | "accountHolderDetails" | "accountNumber" | "accountStateType" | "accountStatus" | "accountType" | "address" | "bankAccount" | "bankAccountCode" | "bankAccountName" | "bankAccountUUID" | "bankBicSwift" | "bankCity" | "bankCode" | "bankName" | "bankStatement" | "branchCode" | "businessContact" | "cardToken" | "checkCode" | "city" | "country" | "countryCode" | "currency" | "currencyCode" | "dateOfBirth" | "description" | "destinationAccountCode" | "document" | "documentExpirationDate" | "documentIssuerCountry" | "documentIssuerState" | "documentName" | "documentNumber" | "documentType" | "doingBusinessAs" | "drivingLicence" | "drivingLicenceBack" | "drivingLicense" | "email" | "firstName" | "fullPhoneNumber" | "gender" | "hopWebserviceUser" | "houseNumberOrName" | "iban" | "idCard" | "idCardBack" | "idCardFront" | "idNumber" | "identityDocument" | "individualDetails" | "lastName" | "legalBusinessName" | "legalEntity" | "legalEntityType" | "merchantAccount" | "merchantCategoryCode" | "merchantReference" | "microDeposit" | "name" | "nationality" | "originalReference" | "ownerCity" | "ownerCountryCode" | "ownerHouseNumberOrName" | "ownerName" | "ownerPostalCode" | "ownerState" | "ownerStreet" | "passport" | "passportNumber" | "payoutMethodCode" | "personalData" | "phoneCountryCode" | "phoneNumber" | "postalCode" | "primaryCurrency" | "reason" | "registrationNumber" | "returnUrl" | "schedule" | "shareholder" | "shareholderCode" | "socialSecurityNumber" | "sourceAccountCode" | "stateOrProvince" | "status" | "store" | "storeDetail" | "storeName" | "storeReference" | "street" | "taxId" | "tier" | "tierNumber" | "transferCode" | "unknown" | "value" | "virtualAccount" | "visaNumber" | "webAddress";
+        fieldName?: "accountCode" | "accountHolderCode" | "accountHolderDetails" | "accountNumber" | "accountStateType" | "accountStatus" | "accountType" | "address" | "bankAccount" | "bankAccountCode" | "bankAccountName" | "bankAccountUUID" | "bankBicSwift" | "bankCity" | "bankCode" | "bankName" | "bankStatement" | "branchCode" | "businessContact" | "cardToken" | "checkCode" | "city" | "companyRegistration" | "country" | "countryCode" | "currency" | "currencyCode" | "dateOfBirth" | "description" | "destinationAccountCode" | "document" | "documentExpirationDate" | "documentIssuerCountry" | "documentIssuerState" | "documentName" | "documentNumber" | "documentType" | "doingBusinessAs" | "drivingLicence" | "drivingLicenceBack" | "drivingLicense" | "email" | "firstName" | "fullPhoneNumber" | "gender" | "hopWebserviceUser" | "houseNumberOrName" | "iban" | "idCard" | "idCardBack" | "idCardFront" | "idNumber" | "identityDocument" | "individualDetails" | "lastName" | "legalBusinessName" | "legalEntity" | "legalEntityType" | "merchantAccount" | "merchantCategoryCode" | "merchantReference" | "microDeposit" | "name" | "nationality" | "originalReference" | "ownerCity" | "ownerCountryCode" | "ownerHouseNumberOrName" | "ownerName" | "ownerPostalCode" | "ownerState" | "ownerStreet" | "passport" | "passportNumber" | "payoutMethodCode" | "personalData" | "phoneCountryCode" | "phoneNumber" | "postalCode" | "primaryCurrency" | "reason" | "registrationNumber" | "returnUrl" | "schedule" | "shareholder" | "shareholderCode" | "socialSecurityNumber" | "sourceAccountCode" | "stateOrProvince" | "status" | "store" | "storeDetail" | "storeName" | "storeReference" | "street" | "taxId" | "tier" | "tierNumber" | "transferCode" | "unknown" | "value" | "virtualAccount" | "visaNumber" | "webAddress";
         /**
          * The code of the shareholder that the field belongs to. If empty, the field belongs to an account holder.
          */
@@ -48,7 +48,7 @@ declare namespace IMarketPayNotificationConfiguration {
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IMarketPayNotificationConfiguration.ErrorFieldType[];
+        invalidFields?: IPlatformsNotificationConfiguration.ErrorFieldType[];
         /**
          * The reference of a request.  Can be used to uniquely identify the request.
          */
@@ -62,11 +62,11 @@ declare namespace IMarketPayNotificationConfiguration {
         /**
          * Details of the notification subscription configurations.
          */
-        configurations: IMarketPayNotificationConfiguration.NotificationConfigurationDetails[];
+        configurations: IPlatformsNotificationConfiguration.NotificationConfigurationDetails[];
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IMarketPayNotificationConfiguration.ErrorFieldType[];
+        invalidFields?: IPlatformsNotificationConfiguration.ErrorFieldType[];
         /**
          * The reference of a request.  Can be used to uniquely identify the request.
          */
@@ -86,11 +86,11 @@ declare namespace IMarketPayNotificationConfiguration {
         /**
          * Details of the notification subscription configuration.
          */
-        configurationDetails: IMarketPayNotificationConfiguration.NotificationConfigurationDetails;
+        configurationDetails: IPlatformsNotificationConfiguration.NotificationConfigurationDetails;
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IMarketPayNotificationConfiguration.ErrorFieldType[];
+        invalidFields?: IPlatformsNotificationConfiguration.ErrorFieldType[];
         /**
          * The reference of a request.  Can be used to uniquely identify the request.
          */
@@ -117,7 +117,7 @@ declare namespace IMarketPayNotificationConfiguration {
         /**
          * The types of events whose notifications apply to this configuration.
          */
-        eventConfigs: IMarketPayNotificationConfiguration.NotificationEventConfiguration[];
+        eventConfigs: IPlatformsNotificationConfiguration.NotificationEventConfiguration[];
         /**
          * A string with which to salt the notification(s) before hashing. If this field is provided, a hash value will be included under the notification header `HmacSignature` and the hash protocol will be included under the notification header `Protocol`. A notification body along with its `hmacSignatureKey` and `Protocol` can be used to calculate a hash value; matching this hash value with the `HmacSignature` will ensure that the notification body has not been tampered with or corrupted.
          *
@@ -164,9 +164,9 @@ declare namespace IMarketPayNotificationConfiguration {
         includeMode: "EXCLUDE" | "INCLUDE";
     }
     namespace Post {
-        type RequestBody = IMarketPayNotificationConfiguration.UpdateNotificationConfigurationRequest;
+        type RequestBody = IPlatformsNotificationConfiguration.UpdateNotificationConfigurationRequest;
         namespace Responses {
-            type $200 = IMarketPayNotificationConfiguration.GetNotificationConfigurationResponse;
+            type $200 = IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse;
         }
     }
     interface TestNotificationConfigurationRequest {
@@ -193,11 +193,11 @@ declare namespace IMarketPayNotificationConfiguration {
         /**
          * The notification message and related response messages.
          */
-        exchangeMessages: IMarketPayNotificationConfiguration.ExchangeMessage[];
+        exchangeMessages: IPlatformsNotificationConfiguration.ExchangeMessage[];
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IMarketPayNotificationConfiguration.ErrorFieldType[];
+        invalidFields?: IPlatformsNotificationConfiguration.ErrorFieldType[];
         /**
          * The ID of the notification subscription configuration.
          */
@@ -219,6 +219,6 @@ declare namespace IMarketPayNotificationConfiguration {
         /**
          * Details of the notification subscription configuration to be updated.
          */
-        configurationDetails: IMarketPayNotificationConfiguration.NotificationConfigurationDetails;
+        configurationDetails: IPlatformsNotificationConfiguration.NotificationConfigurationDetails;
     }
 }
