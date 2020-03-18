@@ -15,7 +15,7 @@
  *
  * Adyen NodeJS API Library
  *
- * Version of Payouts: v51
+ * Version of Payouts: v52
  *
  * Copyright (c) 2019 Adyen B.V.
  * This file is open source and available under the MIT license.

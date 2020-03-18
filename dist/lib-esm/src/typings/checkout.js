@@ -15,7 +15,7 @@
  *
  * Adyen NodeJS API Library
  *
- * Version of Checkout: v51
+ * Version of Checkout: v52
  *
  * Copyright (c) 2019 Adyen B.V.
  * This file is open source and available under the MIT license.
