@@ -38,7 +38,7 @@ npm install --save @adyen/api-library
 
 ## Documentation
 * https://docs.adyen.com/developers/development-resources/libraries
-* https://docs.adyen.com/developers/checkout/api-integration
+* https://docs.adyen.com/developers/checkout
 
 ## HTTP Client Configuration
 
