@@ -24,7 +24,6 @@ import {Agent, AgentOptions, request as httpsRequest} from "https";
 import { HttpsProxyAgent } from "https-proxy-agent";
 
 import * as fs from "fs";
-import {URL} from "url";
 import Client from "../client";
 import Config from "../config";
 import HttpClientException from "./httpClientException";
