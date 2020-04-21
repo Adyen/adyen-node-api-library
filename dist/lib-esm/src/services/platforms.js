@@ -1,4 +1,3 @@
-"use strict";
 /*
  *                       ######
  *                       ######
@@ -32,56 +31,52 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var service_1 = __importDefault(require("../service"));
-var account_1 = __importDefault(require("./resource/platforms/account"));
-var getJsonResponse_1 = __importDefault(require("./../helpers/getJsonResponse"));
-var fund_1 = __importDefault(require("./resource/platforms/fund"));
-var hop_1 = __importDefault(require("./resource/platforms/hop"));
-var notificationConfiguration_1 = __importDefault(require("./resource/platforms/notificationConfiguration"));
+import Service from "../service";
+import PlatformsAccount from "./resource/platforms/account";
+import getJsonResponse from "./../helpers/getJsonResponse";
+import PlatformsFund from "./resource/platforms/fund";
+import PlatformsHostedOnboardingPage from "./resource/platforms/hop";
+import PlatformsNotificationConfiguration from "./resource/platforms/notificationConfiguration";
 var Platforms = /** @class */ (function (_super) {
     __extends(Platforms, _super);
     function Platforms(client) {
         var _this = _super.call(this, client) || this;
         _this.createRequest = function (service) {
-            return function (request) { return getJsonResponse_1.default(service, request); };
+            return function (request) { return getJsonResponse(service, request); };
         };
         // Account
-        _this._closeAccount = new account_1.default(_this, "/closeAccount");
-        _this._updateAccount = new account_1.default(_this, "/updateAccount");
-        _this._createAccount = new account_1.default(_this, "/createAccount");
-        _this._uploadDocument = new account_1.default(_this, "/uploadDocument");
-        _this._getUploadedDocuments = new account_1.default(_this, "/getUploadedDocuments");
-        _this._deleteBankAccounts = new account_1.default(_this, "/deleteBankAccounts");
-        _this._deletePayoutMethods = new account_1.default(_this, "/deletePayoutMethods");
-        _this._deleteShareholders = new account_1.default(_this, "/deleteShareholders");
-        _this._checkAccountHolder = new account_1.default(_this, "/checkAccountHolder");
-        _this._createAccountHolder = new account_1.default(_this, "/createAccountHolder");
-        _this._getAccountHolder = new account_1.default(_this, "/getAccountHolder");
-        _this._updateAccountHolder = new account_1.default(_this, "/updateAccountHolder");
-        _this._suspendAccountHolder = new account_1.default(_this, "/suspendAccountHolder");
-        _this._unSuspendAccountHolder = new account_1.default(_this, "/unSuspendAccountHolder");
-        _this._closeAccountHolder = new account_1.default(_this, "/closeAccountHolder");
+        _this._closeAccount = new PlatformsAccount(_this, "/closeAccount");
+        _this._updateAccount = new PlatformsAccount(_this, "/updateAccount");
+        _this._createAccount = new PlatformsAccount(_this, "/createAccount");
+        _this._uploadDocument = new PlatformsAccount(_this, "/uploadDocument");
+        _this._getUploadedDocuments = new PlatformsAccount(_this, "/getUploadedDocuments");
+        _this._deleteBankAccounts = new PlatformsAccount(_this, "/deleteBankAccounts");
+        _this._deletePayoutMethods = new PlatformsAccount(_this, "/deletePayoutMethods");
+        _this._deleteShareholders = new PlatformsAccount(_this, "/deleteShareholders");
+        _this._checkAccountHolder = new PlatformsAccount(_this, "/checkAccountHolder");
+        _this._createAccountHolder = new PlatformsAccount(_this, "/createAccountHolder");
+        _this._getAccountHolder = new PlatformsAccount(_this, "/getAccountHolder");
+        _this._updateAccountHolder = new PlatformsAccount(_this, "/updateAccountHolder");
+        _this._suspendAccountHolder = new PlatformsAccount(_this, "/suspendAccountHolder");
+        _this._unSuspendAccountHolder = new PlatformsAccount(_this, "/unSuspendAccountHolder");
+        _this._closeAccountHolder = new PlatformsAccount(_this, "/closeAccountHolder");
         // Fund
-        _this._accountHolderBalance = new fund_1.default(_this, "/accountHolderBalance");
-        _this._accountHolderTransactionList = new fund_1.default(_this, "/accountHolderTransactionList");
-        _this._payoutAccountHolder = new fund_1.default(_this, "/payoutAccountHolder");
-        _this._transferFunds = new fund_1.default(_this, "/transferFunds");
-        _this._refundFundsTransfer = new fund_1.default(_this, "/refundFundsTransfer");
-        _this._setupBeneficiary = new fund_1.default(_this, "/setupBeneficiary");
-        _this._refundNotPaidOutTransfers = new fund_1.default(_this, "/refundNotPaidOutTransfers");
+        _this._accountHolderBalance = new PlatformsFund(_this, "/accountHolderBalance");
+        _this._accountHolderTransactionList = new PlatformsFund(_this, "/accountHolderTransactionList");
+        _this._payoutAccountHolder = new PlatformsFund(_this, "/payoutAccountHolder");
+        _this._transferFunds = new PlatformsFund(_this, "/transferFunds");
+        _this._refundFundsTransfer = new PlatformsFund(_this, "/refundFundsTransfer");
+        _this._setupBeneficiary = new PlatformsFund(_this, "/setupBeneficiary");
+        _this._refundNotPaidOutTransfers = new PlatformsFund(_this, "/refundNotPaidOutTransfers");
         // HOP
-        _this._getOnboardingUrl = new hop_1.default(_this, "/getOnboardingUrl");
+        _this._getOnboardingUrl = new PlatformsHostedOnboardingPage(_this, "/getOnboardingUrl");
         // Notification Configuration
-        _this._createNotificationConfiguration = new notificationConfiguration_1.default(_this, "/createNotificationConfiguration");
-        _this._getNotificationConfiguration = new notificationConfiguration_1.default(_this, "/getNotificationConfiguration");
-        _this._getNotificationConfigurationList = new notificationConfiguration_1.default(_this, "/getNotificationConfigurationList");
-        _this._testNotificationConfiguration = new notificationConfiguration_1.default(_this, "/testNotificationConfiguration");
-        _this._updateNotificationConfiguration = new notificationConfiguration_1.default(_this, "/updateNotificationConfiguration");
-        _this._deleteNotificationConfiguration = new notificationConfiguration_1.default(_this, "/deleteNotificationConfigurations");
+        _this._createNotificationConfiguration = new PlatformsNotificationConfiguration(_this, "/createNotificationConfiguration");
+        _this._getNotificationConfiguration = new PlatformsNotificationConfiguration(_this, "/getNotificationConfiguration");
+        _this._getNotificationConfigurationList = new PlatformsNotificationConfiguration(_this, "/getNotificationConfigurationList");
+        _this._testNotificationConfiguration = new PlatformsNotificationConfiguration(_this, "/testNotificationConfiguration");
+        _this._updateNotificationConfiguration = new PlatformsNotificationConfiguration(_this, "/updateNotificationConfiguration");
+        _this._deleteNotificationConfiguration = new PlatformsNotificationConfiguration(_this, "/deleteNotificationConfigurations");
         return _this;
     }
     Object.defineProperty(Platforms.prototype, "Account", {
@@ -145,6 +140,6 @@ var Platforms = /** @class */ (function (_super) {
         configurable: true
     });
     return Platforms;
-}(service_1.default));
-exports.default = Platforms;
+}(Service));
+export default Platforms;
 //# sourceMappingURL=platforms.js.map

@@ -38,10 +38,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var client_1 = __importDefault(require("../../../client"));
 var resource_1 = __importDefault(require("../../resource"));
-var Endpoints;
-(function (Endpoints) {
-    Endpoints["getOnboardingUrl"] = "/getOnboardingUrl";
-})(Endpoints || (Endpoints = {}));
 var PlatformsHostedOnboardingPage = /** @class */ (function (_super) {
     __extends(PlatformsHostedOnboardingPage, _super);
     function PlatformsHostedOnboardingPage(service, endpoint) {

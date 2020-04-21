@@ -54,6 +54,7 @@ declare class Client {
     static RECURRING_API_VERSION: string;
     static MARKETPAY_ACCOUNT_API_VERSION: string;
     static MARKETPAY_FUND_API_VERSION: string;
+    static MARKETPAY_HOP_API_VERSION: string;
     static MARKETPAY_NOTIFICATION_API_VERSION: string;
     static LIB_NAME: string;
     static LIB_VERSION: string;
