@@ -38,15 +38,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var client_1 = __importDefault(require("../../../client"));
 var resource_1 = __importDefault(require("../../resource"));
-var Endpoints;
-(function (Endpoints) {
-    Endpoints["create"] = "/createNotificationConfiguration";
-    Endpoints["get"] = "/getNotificationConfiguration";
-    Endpoints["getList"] = "/getNotificationConfigurationList";
-    Endpoints["test"] = "/testNotificationConfiguration";
-    Endpoints["update"] = "/updateNotificationConfiguration";
-    Endpoints["delete"] = "/deleteNotificaitonConfigurations";
-})(Endpoints || (Endpoints = {}));
 var PlatformsNotificationConfiguration = /** @class */ (function (_super) {
     __extends(PlatformsNotificationConfiguration, _super);
     function PlatformsNotificationConfiguration(service, endpoint) {

@@ -1,4 +1,3 @@
-"use strict";
 /*
  *                       ######
  *                       ######
@@ -32,18 +31,20 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var client_1 = __importDefault(require("../../../client"));
-var resource_1 = __importDefault(require("../../resource"));
-var PlatformsFund = /** @class */ (function (_super) {
-    __extends(PlatformsFund, _super);
-    function PlatformsFund(service, endpoint) {
-        return _super.call(this, service, service.client.config.marketPayEndpoint + "/Fund/" + client_1.default.MARKETPAY_FUND_API_VERSION + "/" + endpoint) || this;
+import Client from "../../../client";
+import Resource from "../../resource";
+export var AccountTypesEnum;
+(function (AccountTypesEnum) {
+    AccountTypesEnum["AccountHolders"] = "AccountHolders";
+    AccountTypesEnum["Accounts"] = "Accounts";
+    AccountTypesEnum["Verification"] = "Verification";
+})(AccountTypesEnum || (AccountTypesEnum = {}));
+var PlatformsAccount = /** @class */ (function (_super) {
+    __extends(PlatformsAccount, _super);
+    function PlatformsAccount(service, endpoint) {
+        return _super.call(this, service, service.client.config.marketPayEndpoint + "/Account/" + Client.MARKETPAY_ACCOUNT_API_VERSION + "/" + endpoint) || this;
     }
-    return PlatformsFund;
-}(resource_1.default));
-exports.default = PlatformsFund;
-//# sourceMappingURL=fund.js.map
+    return PlatformsAccount;
+}(Resource));
+export default PlatformsAccount;
+//# sourceMappingURL=account.js.map
