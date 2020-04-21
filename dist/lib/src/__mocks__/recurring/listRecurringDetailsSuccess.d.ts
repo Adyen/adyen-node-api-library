@@ -36,8 +36,8 @@ export declare const listRecurringDetailsSuccess: {
         recurringDetailReference: string;
         tokenDetails: {
             tokenData: {
-                "BillingAgreementId": string;
-                "EmailId": string;
+                BillingAgreementId: string;
+                EmailId: string;
                 "PayPal.PayerId": string;
             };
             tokenDataType: string;
