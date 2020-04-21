@@ -19,12 +19,19 @@
  * See the LICENSE file for more info.
  */
 
-export { default as TerminalLocalAPI } from "./terminalLocalAPI";
-export { default as TerminalCloudAPI } from "./terminalCloudAPI";
-export { default as CheckoutAPI } from "./checkout";
-export { default as CheckoutUtility } from "./checkoutUtility";
-export { default as Recurring } from "./recurring";
-export { default as Modification } from "./modification";
-export { default as BinLookup } from "./binLookup";
-export { default as Payout } from "./payout";
-export { default as Platforms } from "./platforms"
+import Client from "../../../client";
+import Service from "../../../service";
+import Resource from "../../resource";
+
+type Endpoints = "/getOnboardingUrl"
+
+class PlatformsHostedOnboardingPage extends Resource {
+    public constructor(service: Service, endpoint: Endpoints) {
+        super(
+            service,
+            `${service.client.config.marketPayEndpoint}/Hop/${Client.MARKETPAY_HOP_API_VERSION}/${endpoint}`,
+        );
+    }
+}
+
+export default PlatformsHostedOnboardingPage;

@@ -19,12 +19,27 @@
  * See the LICENSE file for more info.
  */
 
-export { default as TerminalLocalAPI } from "./terminalLocalAPI";
-export { default as TerminalCloudAPI } from "./terminalCloudAPI";
-export { default as CheckoutAPI } from "./checkout";
-export { default as CheckoutUtility } from "./checkoutUtility";
-export { default as Recurring } from "./recurring";
-export { default as Modification } from "./modification";
-export { default as BinLookup } from "./binLookup";
-export { default as Payout } from "./payout";
-export { default as Platforms } from "./platforms"
+import Client from "../../../client";
+import Service from "../../../service";
+import Resource from "../../resource";
+
+type Endpoints =
+     "/accountHolderBalance" |
+     "/accountHolderTransactionList" |
+     "/payoutAccountHolder"|
+     "/transferFunds"|
+     "/refundFundsTransfer"|
+     "/setupBeneficiary"|
+     "/refundNotPaidOutTransfers"
+
+
+class PlatformsFund extends Resource {
+    public constructor(service: Service, endpoint: Endpoints) {
+        super(
+            service,
+            `${service.client.config.marketPayEndpoint}/Fund/${Client.MARKETPAY_FUND_API_VERSION}/${endpoint}`,
+        );
+    }
+}
+
+export default PlatformsFund;

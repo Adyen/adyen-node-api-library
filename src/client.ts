@@ -58,6 +58,7 @@ class Client {
     public static RECURRING_API_VERSION = "v49";
     public static MARKETPAY_ACCOUNT_API_VERSION = "v5";
     public static MARKETPAY_FUND_API_VERSION = "v5";
+    public static MARKETPAY_HOP_API_VERSION = "v1"
     public static MARKETPAY_NOTIFICATION_API_VERSION = "v5";
     public static LIB_NAME = "adyen-node-api-library";
     public static LIB_VERSION: string = version;
