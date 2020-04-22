@@ -124,11 +124,9 @@ class Platforms extends Service {
         return (request: U): Promise<V> => getJsonResponse<U, V>(service, request);
     }
 
-    public get Account(): {
-        accountHolders: { unSuspendAccountHolder: (request: IPlatformsAccount.UnSuspendAccountHolderRequest) => Promise<IPlatformsAccount.UnSuspendAccountHolderResponse>; getAccountHolder: (request: IPlatformsAccount.GetAccountHolderRequest) => Promise<IPlatformsAccount.GetAccountHolderResponse>; suspendAccountHolder: (request: IPlatformsAccount.SuspendAccountHolderRequest) => Promise<IPlatformsAccount.SuspendAccountHolderResponse>; createAccountHolder: (request: IPlatformsAccount.CreateAccountRequest) => Promise<IPlatformsAccount.CreateAccountHolderResponse>; updateAccountHolder: (request: IPlatformsAccount.UpdateAccountHolderRequest) => Promise<IPlatformsAccount.UpdateAccountHolderResponse>; closeAccountHolder: (request: IPlatformsAccount.CloseAccountHolderRequest) => Promise<IPlatformsAccount.CloseAccountHolderResponse> }; accounts: { closeAccount: (request: IPlatformsAccount.CloseAccountRequest) => Promise<IPlatformsAccount.CloseAccountResponse>; createAccount: (request: IPlatformsAccount.CreateAccountRequest) => Promise<IPlatformsAccount.CreateAccountResponse>; updateAccount: (request: IPlatformsAccount.UpdateAccountRequest) => Promise<IPlatformsAccount.UpdateAccountHolderResponse> }; verification: { getUploadedDocuments: (request: IPlatformsAccount.GetUploadedDocumentsRequest) => Promise<IPlatformsAccount.GetUploadedDocumentsResponse>; deleteShareholders: (request: IPlatformsAccount.DeleteShareholderRequest) => Promise<IPlatformsAccount.GenericResponse>; deleteBankAccounts: (request: IPlatformsAccount.DeleteBankAccountRequest) => Promise<IPlatformsAccount.GenericResponse>; deletePayoutMethods: (request: IPlatformsAccount.DeletePayoutMethodRequest) => Promise<IPlatformsAccount.GenericResponse>; checkAccountHolder: (request: IPlatformsAccount.PerformVerificationRequest) => Promise<IPlatformsAccount.GenericResponse>; uploadDocument: (request: IPlatformsAccount.UploadDocumentRequest) => Promise<IPlatformsAccount.GetUploadedDocumentsResponse> };
-    } {
+    public get Account() {
         const closeAccount = this.createRequest<AccountsAccount, IPlatformsAccount.CloseAccountRequest, IPlatformsAccount.CloseAccountResponse>(this._closeAccount);
-        const updateAccount = this.createRequest<AccountsAccount, IPlatformsAccount.UpdateAccountRequest, IPlatformsAccount.UpdateAccountHolderResponse>(this._updateAccount);
+        const updateAccount = this.createRequest<AccountsAccount, IPlatformsAccount.UpdateAccountRequest, IPlatformsAccount.UpdateAccountResponse>(this._updateAccount);
         const createAccount = this.createRequest<AccountsAccount, IPlatformsAccount.CreateAccountRequest, IPlatformsAccount.CreateAccountResponse>(this._createAccount);
         
         const uploadDocument = this.createRequest<AccountsVerification, IPlatformsAccount.UploadDocumentRequest, IPlatformsAccount.GetUploadedDocumentsResponse>(this._uploadDocument);
@@ -152,7 +150,7 @@ class Platforms extends Service {
         return { accounts, verification, accountHolders };
     }
 
-    public get Fund(): { refundNotPaidOutTransfers: (request: IPlatformsFund.RefundNotPaidOutTransfersRequest) => Promise<IPlatformsFund.RefundNotPaidOutTransfersResponse>; accountHolderTransactionList: (request: IPlatformsFund.AccountHolderTransactionListRequest) => Promise<IPlatformsFund.AccountHolderTransactionListResponse>; setupBeneficiary: (request: IPlatformsFund.SetupBeneficiaryRequest) => Promise<IPlatformsFund.SetupBeneficiaryResponse>; transferFunds: (request: IPlatformsFund.TransferFundsRequest) => Promise<IPlatformsFund.TransferFundsResponse>; refundFundsTransfer: (request: IPlatformsFund.RefundFundsTransferRequest) => Promise<IPlatformsFund.RefundFundsTransferResponse>; payoutAccountHolder: (request: IPlatformsFund.PayoutAccountHolderRequest) => Promise<IPlatformsFund.PayoutAccountHolderResponse>; accountHolderBalance: (request: IPlatformsFund.AccountHolderBalanceRequest) => Promise<IPlatformsFund.AccountHolderBalanceResponse> } {
+    public get Fund() {
         const accountHolderBalance = this.createRequest<PlatformsFund, IPlatformsFund.AccountHolderBalanceRequest, IPlatformsFund.AccountHolderBalanceResponse>(this._accountHolderBalance);
         const accountHolderTransactionList = this.createRequest<PlatformsFund, IPlatformsFund.AccountHolderTransactionListRequest, IPlatformsFund.AccountHolderTransactionListResponse>(this._accountHolderTransactionList);
         const payoutAccountHolder = this.createRequest<PlatformsFund, IPlatformsFund.PayoutAccountHolderRequest, IPlatformsFund.PayoutAccountHolderResponse>(this._payoutAccountHolder);
@@ -170,17 +168,15 @@ class Platforms extends Service {
         return { getOnboardingUrl };
     }
 
-    public get NotificationConfiguration(): {
-        createNotificationConfiguration: (request: IPlatformsNotificationConfiguration.CreateNotificationConfigurationRequest) => Promise<IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse>; updateNotificationConfiguration: (request: IPlatformsNotificationConfiguration.UpdateNotificationConfigurationRequest) => Promise<IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse>; getNotificationConfiguration: (request: IPlatformsNotificationConfiguration.GetNotificationConfigurationRequest) => Promise<IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse>; deleteNotificationConfiguration: (request: IPlatformsNotificationConfiguration.DeleteNotificationConfigurationRequest) => Promise<IPlatformsNotificationConfiguration.GenericResponse>; testNotificationConfiguration: (request: IPlatformsNotificationConfiguration.TestNotificationConfigurationRequest) => Promise<IPlatformsNotificationConfiguration.TestNotificationConfigurationResponse>; getNotificationConfigurationList: (request: null) => Promise<IPlatformsNotificationConfiguration.GetNotificationConfigurationListResponse>;
-    } {
+    public get NotificationConfiguration()  {
         const createNotificationConfiguration = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsNotificationConfiguration.CreateNotificationConfigurationRequest, IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse>(this._createNotificationConfiguration);
         const getNotificationConfiguration = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsNotificationConfiguration.GetNotificationConfigurationRequest, IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse>(this._getNotificationConfiguration);
         const getNotificationConfigurationList = this.createRequest<PlatformsHostedOnboardingPage, null, IPlatformsNotificationConfiguration.GetNotificationConfigurationListResponse>(this._getNotificationConfigurationList);
         const testNotificationConfiguration = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsNotificationConfiguration.TestNotificationConfigurationRequest, IPlatformsNotificationConfiguration.TestNotificationConfigurationResponse>(this._testNotificationConfiguration);
         const updateNotificationConfiguration = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsNotificationConfiguration.UpdateNotificationConfigurationRequest, IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse>(this._updateNotificationConfiguration);
-        const deleteNotificationConfiguration = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsNotificationConfiguration.DeleteNotificationConfigurationRequest, IPlatformsNotificationConfiguration.GenericResponse>(this._deleteNotificationConfiguration);
+        const deleteNotificationConfigurations = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsNotificationConfiguration.DeleteNotificationConfigurationRequest, IPlatformsNotificationConfiguration.GenericResponse>(this._deleteNotificationConfiguration);
 
-        return { createNotificationConfiguration, getNotificationConfiguration, getNotificationConfigurationList, testNotificationConfiguration, updateNotificationConfiguration, deleteNotificationConfiguration, };
+        return { createNotificationConfiguration, getNotificationConfiguration, getNotificationConfigurationList, testNotificationConfiguration, updateNotificationConfiguration, deleteNotificationConfigurations };
     }
 }
 

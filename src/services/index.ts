@@ -27,4 +27,4 @@ export { default as Recurring } from "./recurring";
 export { default as Modification } from "./modification";
 export { default as BinLookup } from "./binLookup";
 export { default as Payout } from "./payout";
-export { default as Platforms } from "./platforms"
+export { default as Platforms } from "./platforms";
