@@ -28,6 +28,7 @@ module.exports = {
     coveragePathIgnorePatterns: [
         "<rootDir>/src/typings"
     ],
+    setupFiles: ["<rootDir>config.ts"],
     unmockedModulePathPatterns: [
         "/dist"
     ],
@@ -37,5 +38,13 @@ module.exports = {
     testPathIgnorePatterns : [
         "/node_modules",
         "/dist"
-    ]
+    ],
+    transform: {
+        ".ts": "ts-jest"
+    },
+    globals: {
+        "ts-jest": {
+            compiler: "ttypescript"
+        }
+    }
 };

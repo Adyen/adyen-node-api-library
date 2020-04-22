@@ -18,7 +18,8 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noUnusedLocals": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "plugins": [{ "transform":  "ts-auto-mock/transformer", "cacheBetweenTests":  false }]
   },
   "include": ["src"],
   "exclude": ["node_modules"]
