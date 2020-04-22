@@ -43,6 +43,7 @@ export const createMockClientFromResponse = (): Client => {
     config.endpoint = Client.ENDPOINT_TEST;
     config.checkoutEndpoint = Client.CHECKOUT_ENDPOINT_TEST;
     config.apiKey = "MOCKED_API_KEY";
+    config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
 
     const client: Client = new Client({ config });
 
