@@ -100,6 +100,7 @@ var Client = /** @class */ (function () {
     Client.RECURRING_API_VERSION = "v49";
     Client.MARKETPAY_ACCOUNT_API_VERSION = "v5";
     Client.MARKETPAY_FUND_API_VERSION = "v5";
+    Client.MARKETPAY_HOP_API_VERSION = "v1";
     Client.MARKETPAY_NOTIFICATION_API_VERSION = "v5";
     Client.LIB_NAME = "adyen-node-api-library";
     Client.LIB_VERSION = version;
