@@ -36,4 +36,6 @@ var binLookup_1 = require("./binLookup");
 exports.BinLookup = binLookup_1.default;
 var payout_1 = require("./payout");
 exports.Payout = payout_1.default;
+var platforms_1 = require("./platforms");
+exports.Platforms = platforms_1.default;
 //# sourceMappingURL=index.js.map
