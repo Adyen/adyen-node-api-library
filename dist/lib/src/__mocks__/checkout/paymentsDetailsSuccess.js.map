@@ -1,0 +1,1 @@
+{"version":3,"file":"paymentsDetailsSuccess.js","sourceRoot":"","sources":["../../../../../src/__mocks__/checkout/paymentsDetailsSuccess.ts"],"names":[],"mappings":";;AAAA,oBAAoB;AACP,QAAA,qBAAqB,GAAG,IAAI,CAAC,SAAS,CAAC;IAChD,YAAY,EAAE,kBAAkB;IAChC,UAAU,EAAE,YAAY;IACxB,cAAc,EAAE;QACZ,cAAc,EAAE,MAAM;QACtB,gBAAgB,EAAE,YAAY;KACjC;CACJ,CAAC,CAAC"}

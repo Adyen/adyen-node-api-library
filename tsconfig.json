@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/lib",
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es6"],
+    "sourceMap": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "plugins": [{ "transform":  "ts-auto-mock/transformer", "cacheBetweenTests":  false }]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

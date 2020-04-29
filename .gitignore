@@ -1,0 +1,14 @@
+.src/main/test
+.vagrant
+Vagrantfile
+node_modules
+.idea
+.DS_Store
+.bash_history
+.config/
+.docker/
+.npm/
+.ssh/
+.viminfo
+coverage/
+.env
