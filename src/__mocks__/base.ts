@@ -35,7 +35,7 @@ import {
     TransactionIdentification,
 } from "../typings/terminal";
 
-export const createClient = (): Client => {
+export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     const config: Config = new Config();
     config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
     config.terminalApiLocalEndpoint = "https://mocked_local_endpoint.com";
@@ -43,7 +43,7 @@ export const createClient = (): Client => {
     config.endpoint = Client.ENDPOINT_TEST;
     config.checkoutEndpoint = Client.CHECKOUT_ENDPOINT_TEST;
     config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
-    config.apiKey = process.env.ADYEN_API_KEY;
+    config.apiKey = apiKey;
     config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
 
     const client: Client = new Client({ config });
