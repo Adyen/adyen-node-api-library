@@ -7,7 +7,7 @@ import Client from "../client";
 
 const createRecurringDetailsRequest = (): IRecurring.RecurringDetailsRequest => {
     return {
-        merchantAccount: "MerchantAccount",
+        merchantAccount: process.env.ADYEN_MERCHANT!,
         recurring: { contract: "ONECLICK" },
         shopperReference: "test-123",
     };
@@ -18,32 +18,49 @@ let recurring: Recurring;
 let scope: nock.Scope;
 
 beforeEach((): void => {
+    if (!nock.isActive()){
+        nock.activate();
+    }
     client = createClient();
     recurring = new Recurring(client);
     scope = nock(`${client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}`);
 });
+
+afterEach(() => {
+    nock.cleanAll();
+});
+
 describe("Recurring", (): void => {
-    it("should test have recurring details list", async (): Promise<void> => {
+    test.each([false, true])("should test have recurring details list, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
         scope.post("/listRecurringDetails")
             .reply(200, listRecurringDetailsSuccess);
 
         const request = createRecurringDetailsRequest();
-        const result = await recurring.listRecurringDetails(request);
-
-        expect(result).toEqual(listRecurringDetailsSuccess);
+        try {
+            const result = await recurring.listRecurringDetails(request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e.message);
+        }
     });
 
-    it("should disable", async (): Promise<void> => {
+    test.each([false, true])("should disable, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
         scope.post("/disable")
             .reply(200, disableSuccess);
 
         const request: IRecurring.DisableRequest = {
-            merchantAccount: "MerchantAccount",
+            merchantAccount: process.env.ADYEN_MERCHANT!,
             recurringDetailReference: "reference",
             shopperReference: "test-123",
         };
 
-        const result = await recurring.disable(request);
-        expect(result).toEqual(disableSuccess);
+        try {
+            const result = await recurring.disable(request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e.message);
+        }
     });
 });
