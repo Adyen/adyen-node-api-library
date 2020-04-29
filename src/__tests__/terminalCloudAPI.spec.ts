@@ -1,5 +1,5 @@
 import nock from "nock";
-import {createMockClientFromResponse, createTerminalAPIPaymentRequest} from "../__mocks__/base";
+import {createClient, createTerminalAPIPaymentRequest} from "../__mocks__/base";
 import {asyncRes} from "../__mocks__/terminalApi/async";
 import {syncRes} from "../__mocks__/terminalApi/sync";
 import Client from "../client";
@@ -12,7 +12,7 @@ let terminalCloudAPI: TerminalCloudAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    client = createMockClientFromResponse();
+    client = createClient();
     terminalCloudAPI = new TerminalCloudAPI(client);
     scope = nock(`${client.config.terminalApiCloudEndpoint}`);
 });

@@ -1,5 +1,5 @@
 import nock from "nock";
-import {createMockClientFromResponse} from "../__mocks__/base";
+import {createClient} from "../__mocks__/base";
 import Payout from "../services/payout";
 import Client from "../client";
 import StoreDetailRequest = IPayouts.StoreDetailRequest;
@@ -78,7 +78,7 @@ let payout: Payout;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    client = createMockClientFromResponse();
+    client = createClient();
     scope = nock(`${client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}`);
     payout = new Payout(client);
 });

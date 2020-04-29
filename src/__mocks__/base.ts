@@ -35,14 +35,15 @@ import {
     TransactionIdentification,
 } from "../typings/terminal";
 
-export const createMockClientFromResponse = (): Client => {
+export const createClient = (): Client => {
     const config: Config = new Config();
     config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
     config.terminalApiLocalEndpoint = "https://mocked_local_endpoint.com";
     config.hmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
     config.endpoint = Client.ENDPOINT_TEST;
     config.checkoutEndpoint = Client.CHECKOUT_ENDPOINT_TEST;
-    config.apiKey = "MOCKED_API_KEY";
+    config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
+    config.apiKey = process.env.ADYEN_API_KEY;
     config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
 
     const client: Client = new Client({ config });
