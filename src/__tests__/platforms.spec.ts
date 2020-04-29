@@ -1,6 +1,6 @@
 import nock from "nock";
 import {createMock} from "ts-auto-mock";
-import {createMockClientFromResponse} from "../__mocks__/base";
+import {createClient} from "../__mocks__/base";
 import {Client, Platforms} from "../index";
 
 import A = IPlatformsAccount
@@ -13,7 +13,7 @@ let platforms: Platforms;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    client = createMockClientFromResponse();
+    client = createClient();
     platforms = new Platforms(client);
     scope = nock(client.config.marketPayEndpoint!);
 });

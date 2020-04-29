@@ -1,5 +1,5 @@
 import nock from "nock";
-import {createMockClientFromResponse} from "../__mocks__/base";
+import {createClient} from "../__mocks__/base";
 import {disableSuccess} from "../__mocks__/recurring/disableSuccess";
 import {listRecurringDetailsSuccess} from "../__mocks__/recurring/listRecurringDetailsSuccess";
 import Recurring from "../services/recurring";
@@ -18,7 +18,7 @@ let recurring: Recurring;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    client = createMockClientFromResponse();
+    client = createClient();
     recurring = new Recurring(client);
     scope = nock(`${client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}`);
 });
