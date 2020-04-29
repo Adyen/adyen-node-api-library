@@ -182,8 +182,11 @@ describe("Checkout", (): void => {
         expect(paymentSuccessLinkResponse).toBeTruthy();
     });
 
-    test.each([false, true])("should have payment details", async (isMock): Promise<void> => {
-        !isMock && test.skip;
+    test.each([false, true])("should have payment details, isMock: %p", async (isMock): Promise<void> => {
+        if (!isMock) {
+            console.warn("Cannot perform /payments/details without manual user validation. Skipping test.");
+            return;
+        }
         scope.post("/payments/details")
             .reply(200, paymentDetailsSuccess);
 
@@ -191,7 +194,7 @@ describe("Checkout", (): void => {
         expect(paymentsResponse.resultCode).toEqual("Authorised");
     });
 
-    test.each([false, true])("should have payment session success", async (isMock): Promise<void> => {
+    test.each([false, true])("should have payment session success, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/paymentSession")
             .reply(200, paymentSessionSuccess);
@@ -200,8 +203,11 @@ describe("Checkout", (): void => {
         expect(paymentSessionResponse.paymentSession).not.toBeUndefined();
     });
 
-    test.each([false, true])("should have payments result", async (isMock): Promise<void> => {
-        !isMock && test.skip;
+    test.each([false, true])("should have payments result, isMock: %p", async (isMock): Promise<void> => {
+        if (!isMock) {
+            console.warn("Cannot perform /payments/result without payload. Skipping test.");
+            return;
+        }
         scope.post("/payments/result")
             .reply(200, paymentsResultSuccess);
         const paymentResultRequest: ICheckout.PaymentVerificationRequest = {
@@ -211,7 +217,7 @@ describe("Checkout", (): void => {
         expect(paymentResultResponse.resultCode).toEqual("Authorised");
     });
 
-    test.each([false, true])("should have missing identifier on live", async (isMock): Promise<void> => {
+    test.each([false, true])("should have missing identifier on live, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         client.setEnvironment("LIVE");
         try {
@@ -223,7 +229,7 @@ describe("Checkout", (): void => {
     });
 
 
-    test.each([false, true])("should succeed on multibanco payment", async (isMock): Promise<void> => {
+    test.each([false, true])("should succeed on multibanco payment, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/payments")
             .reply(200, paymentsResultMultibancoSuccess);
