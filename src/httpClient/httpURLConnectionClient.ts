@@ -19,9 +19,9 @@
  * See the LICENSE file for more info.
  */
 
-import {ClientRequest, IncomingMessage} from "http";
+import {ClientRequest, IncomingHttpHeaders, IncomingMessage} from "http";
 import {Agent, AgentOptions, request as httpsRequest} from "https";
-import { HttpsProxyAgent } from "https-proxy-agent";
+import {HttpsProxyAgent} from "https-proxy-agent";
 
 import * as fs from "fs";
 import {URL} from "url";
@@ -61,7 +61,7 @@ class HttpURLConnectionClient implements ClientInterface {
             requestOptions.headers[ApiConstants.API_KEY] = apiKey;
         } else {
             const authString = `${config.username}:${config.password}`;
-            const authStringEnc = new Buffer(authString).toString("base64");
+            const authStringEnc = Buffer.from(authString, "utf8").toString("base64");
 
             requestOptions.headers.Authorization = `Basic ${authStringEnc}`;
         }
@@ -118,33 +118,54 @@ class HttpURLConnectionClient implements ClientInterface {
             connectionRequest.flushHeaders();
 
             connectionRequest.on("response", (res: IncomingMessage): void => {
-                let resData = "";
-                const getException = (): HttpClientException => new HttpClientException(
-                    `HTTP Exception: ${res.statusCode}. ${res.statusMessage}`,
-                    res.statusCode,
-                    undefined,
-                    res.headers,
-                    res,
-                );
-                let exception: HttpClientException | Error = getException();
+                const response: { headers: IncomingHttpHeaders; body: (string | Buffer)[] | string; statusCode: number | undefined } = {
+                    statusCode: res.statusCode,
+                    headers: res.headers,
+                    body: []
+                };
+                
+                const getException = (responseBody: string): HttpClientException => new HttpClientException({
+                    message: `HTTP Exception: ${response.statusCode}. ${res.statusMessage}`,
+                    statusCode: response.statusCode,
+                    errorCode: undefined,
+                    responseHeaders: response.headers,
+                    responseBody,
+                });
 
-                res.on("data", (data): void => {
+                let exception: HttpClientException | Error = getException(response.body.toString());
+
+                res.on("data", (data: string | Buffer): void => {
+                    (response.body as (string | Buffer)[]).push(data);
+                });
+
+                res.on("end", (): void => {
+                    if (!res.complete) {
+                        reject(new Error("The connection was terminated while the message was still being sent"));
+                    }
+
+                    if (response.body.length) {
+                        response.body = (response.body as []).join();
+                    }
+
                     if (res.statusCode && res.statusCode !== 200) {
                         try {
-                            const formattedData: ApiError = JSON.parse(data.toString() as string);
+                            const dataString = response.body.toString();
+                            const formattedData: ApiError | {[key: string]: any} = JSON.parse(dataString);
                             const isApiError = "status" in formattedData;
                             const isRequestError = "errors" in formattedData;
 
                             if (isApiError) {
-                                exception = new HttpClientException(
-                                    `HTTP Exception: ${formattedData.status}. ${res.statusMessage}: ${formattedData.message}`,
-                                    formattedData.status,
-                                    formattedData.errorCode,
-                                    res.headers,
-                                    res,
-                                );
+                                exception = new HttpClientException({
+                                    message: `HTTP Exception: ${formattedData.status}. ${res.statusMessage}: ${formattedData.message}`,
+                                    statusCode: formattedData.status,
+                                    errorCode: formattedData.errorCode,
+                                    responseHeaders: res.headers,
+                                    responseBody: dataString,
+                                });
                             } else if (isRequestError) {
-                                exception = new Error(data);
+                                exception = new Error(dataString);
+                            } else {
+                                exception = getException(dataString);
                             }
                         } catch (e) {
                             reject(exception);
@@ -153,14 +174,7 @@ class HttpURLConnectionClient implements ClientInterface {
                         }
                     }
 
-                    resData += data;
-                });
-
-                res.on("end", (): void => {
-                    if (!res.complete) {
-                        reject(new Error("The connection was terminated while the message was still being sent"));
-                    }
-                    resolve(resData);
+                    resolve(response.body as string);
                 });
 
                 res.on("error", reject);
@@ -185,7 +199,7 @@ class HttpURLConnectionClient implements ClientInterface {
             };
 
         } catch (e) {
-            return Promise.reject(new HttpClientException(`Error loading certificate from path: ${e.message}`));
+            return Promise.reject(new HttpClientException({ message: `Error loading certificate from path: ${e.message}` }));
         }
 
     }
