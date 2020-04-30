@@ -51,6 +51,17 @@ export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     return client;
 };
 
+export const createBasicAuthClient = (): Client => {
+    const client: Client = new Client({
+        username: process.env.ADYEN_USER!,
+        password: process.env.ADYEN_PASSWORD!,
+        environment: "TEST",
+        applicationName: "adyen-node-api-library"
+    });
+
+    return client;
+};
+
 export const createTerminalAPIPaymentRequest = (): TerminalApiRequest => {
 
     const messageHeader: MessageHeader = {

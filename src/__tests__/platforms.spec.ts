@@ -1,6 +1,6 @@
 import nock from "nock";
 import {createMock} from "ts-auto-mock";
-import {createClient} from "../__mocks__/base";
+import {createBasicAuthClient} from "../__mocks__/base";
 import {Client, Platforms} from "../index";
 
 import A = IPlatformsAccount
@@ -13,9 +13,19 @@ let platforms: Platforms;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    client = createClient();
+    if (!nock.isActive()) {
+        nock.activate();
+    }
+    client = createBasicAuthClient();
+    client.config.password = process.env.ADYEN_MARKETPLACE_PASSWORD;
+    client.config.username = process.env.ADYEN_MARKETPLACE_USER;
+
     platforms = new Platforms(client);
     scope = nock(client.config.marketPayEndpoint!);
+});
+
+afterEach(() => {
+    nock.cleanAll();
 });
 
 describe("Platforms Test", function(): void {
@@ -48,6 +58,34 @@ describe("Platforms Test", function(): void {
                     expect(result).toMatchObject(args[2]);
                 }
             );
+
+            it("should create account holder", async function() {
+                nock.restore();
+                try {
+                    const result = await platforms.Account.accountHolders.createAccountHolder({
+                        accountHolderCode: Date.now().toString(2),
+                        accountHolderDetails: {
+                            email: "random_email@example.com",
+                            fullPhoneNumber: "312030291928",
+                            webAddress: "http://example.com",
+                            individualDetails: {
+                                name: {
+                                    firstName: "John",
+                                    gender: "MALE",
+                                    lastName: "Smith"
+                                }
+                            },
+                            address: {
+                                country: "NL"
+                            }
+                        },
+                        legalEntity: "Individual",
+                    });
+                    expect(result.pspReference).toBeDefined();
+                } catch (e) {
+                    fail(e.responseBody);
+                }
+            });
         });
     });
     describe("Fund", function () {

@@ -237,7 +237,6 @@ describe("Checkout", (): void => {
         const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
         const paymentsResponse: ICheckout.PaymentResponse = await checkout.payments(paymentsRequest);
 
-        console.log(paymentsResponse);
         expect(paymentsResponse.pspReference).toBeTruthy();
         expect(paymentsResponse.additionalData).toBeTruthy();
     });

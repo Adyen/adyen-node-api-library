@@ -25,6 +25,8 @@ jobs:
           ADYEN_STOREPAYOUT_PASSWORD: ${{ secrets.ADYEN_STOREPAYOUT_PASSWORD }}
           ADYEN_STOREPAYOUT_USER: ${{ secrets.ADYEN_STOREPAYOUT_USER }}
           ADYEN_USER: ${{ secrets.ADYEN_USER }}
+          ADYEN_MARKETPLACE_USER: ${{ secrets.ADYEN_MARKETPLACE_USER }}
+          ADYEN_MARKETPLACE_PASSWORD: ${{ secrets.ADYEN_MARKETPLACE_PASSWORD }}
       - run: yarn run build
 
   publish-npm:

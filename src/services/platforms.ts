@@ -136,7 +136,7 @@ class Platforms extends Service {
         const deleteShareholders = this.createRequest<AccountsVerification, IPlatformsAccount.DeleteShareholderRequest, IPlatformsAccount.GenericResponse>(this._deleteShareholders);
         const checkAccountHolder = this.createRequest<AccountsVerification, IPlatformsAccount.PerformVerificationRequest, IPlatformsAccount.GenericResponse>(this._checkAccountHolder);
 
-        const createAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.CreateAccountRequest, IPlatformsAccount.CreateAccountHolderResponse>(this._createAccountHolder);
+        const createAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.CreateAccountHolderRequest, IPlatformsAccount.CreateAccountHolderResponse>(this._createAccountHolder);
         const getAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.GetAccountHolderRequest, IPlatformsAccount.GetAccountHolderResponse>(this._getAccountHolder);
         const updateAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.UpdateAccountHolderRequest, IPlatformsAccount.UpdateAccountHolderResponse>(this._updateAccountHolder);
         const suspendAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.SuspendAccountHolderRequest, IPlatformsAccount.SuspendAccountHolderResponse>(this._suspendAccountHolder);
