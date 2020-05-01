@@ -8,8 +8,8 @@ import Client from "../client";
 const createRecurringDetailsRequest = (): IRecurring.RecurringDetailsRequest => {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
-        recurring: { contract: "ONECLICK" },
-        shopperReference: "test-123",
+        recurring: { contract: "RECURRING" },
+        shopperReference: "shopperReference",
     };
 };
 
@@ -52,8 +52,7 @@ describe("Recurring", (): void => {
 
         const request: IRecurring.DisableRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
-            recurringDetailReference: "reference",
-            shopperReference: "test-123",
+            shopperReference: "shopperReference",
         };
 
         try {

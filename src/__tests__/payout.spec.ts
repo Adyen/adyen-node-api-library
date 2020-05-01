@@ -47,7 +47,7 @@ const mockStoreDetailRequest = (merchantAccount: string = process.env.ADYEN_MERC
     },
     entityType: "NaturalPerson",
     recurring: {
-        contract: "ONECLICK"
+        contract: "RECURRING"
     },
     merchantAccount,
 });
