@@ -4,10 +4,10 @@ export const syncRes = JSON.stringify({
             MessageCategory: "Payment",
             MessageClass: "Service",
             MessageType: "Response",
-            POIID: "P400Plus-123456789",
+            POIID: process.env.ADYEN_TERMINAL_POIID,
             ProtocolVersion: "3.0",
             SaleID: "001",
-            ServiceID: "1234567890",
+            ServiceID: "001",
         },
         PaymentResponse: {
             POIData: {
