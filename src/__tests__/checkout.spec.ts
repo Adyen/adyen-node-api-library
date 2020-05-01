@@ -54,8 +54,8 @@ function createPaymentsDetailsRequest(): ICheckout.DetailsRequest {
 export function createPaymentsCheckoutRequest(): ICheckout.PaymentRequest {
     const paymentMethodDetails = {
         cvc: "737",
-        expiryMonth: "10",
-        expiryYear: "2018",
+        expiryMonth: "03",
+        expiryYear: "2030",
         holderName: "John Smith",
         number: "4111111111111111",
         type: "scheme",
@@ -67,6 +67,8 @@ export function createPaymentsCheckoutRequest(): ICheckout.PaymentRequest {
         paymentMethod: paymentMethodDetails,
         reference,
         returnUrl: "https://your-company.com/...",
+        enableRecurring: true,
+        shopperReference: "shopperReference"
     };
 }
 
