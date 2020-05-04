@@ -68,7 +68,7 @@ export const createTerminalAPIPaymentRequest = (): TerminalApiRequest => {
         messageCategory: MessageCategoryType.Payment,
         messageClass: MessageClassType.Service,
         messageType: MessageType.Request,
-        poiid: "P400Plus-123456789",
+        poiid: process.env.ADYEN_TERMINAL_POIID!,
         protocolVersion: "3.0",
         saleId: "001",
         serviceId: "001",

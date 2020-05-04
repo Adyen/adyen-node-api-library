@@ -15,6 +15,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn run test
         env:
+          CI: true
           ADYEN_API_KEY: ${{ secrets.ADYEN_API_KEY }}
           ADYEN_MERCHANT: ${{ secrets.ADYEN_MERCHANT }}
           ADYEN_PASSWORD: ${{ secrets.ADYEN_PASSWORD }}
@@ -27,6 +28,9 @@ jobs:
           ADYEN_USER: ${{ secrets.ADYEN_USER }}
           ADYEN_MARKETPLACE_USER: ${{ secrets.ADYEN_MARKETPLACE_USER }}
           ADYEN_MARKETPLACE_PASSWORD: ${{ secrets.ADYEN_MARKETPLACE_PASSWORD }}
+          ADYEN_TERMINAL_APIKEY: ${{ secrets.ADYEN_TERMINAL_APIKEY }}
+          ADYEN_TERMINAL_POIID: ${{ secrets.ADYEN_TERMINAL_POIID }}
+          ADYEN_TERMINAL_MERCHANT: ${{ secrets.ADYEN_TERMINAL_MERCHANT }}
       - run: yarn run build
 
   publish-npm:
