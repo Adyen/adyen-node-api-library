@@ -9,6 +9,7 @@ import F = IPlatformsFund
 import N = IPlatformsNotificationConfiguration
 import H = IPlatformsHostedOnboardingPage
 import AccountHolderDetails = A.AccountHolderDetails;
+import NotificationConfigurationDetails = N.NotificationConfigurationDetails;
 import HttpClientException from "../httpClient/httpClientException";
 
 let client: Client;
@@ -16,9 +17,11 @@ let platforms: Platforms;
 let scope: nock.Scope;
 let accountHolder: A.CreateAccountHolderResponse;
 let account: A.CreateAccountResponse;
-let accountToSuspend: A.CreateAccountResponse;
+let accountHolderToSuspend: A.CreateAccountHolderResponse;
 let accountToClose: A.CreateAccountResponse;
-let accountToUnSuspend: A.CreateAccountResponse;
+let accountHolderToUnSuspend: A.CreateAccountHolderResponse;
+let accountHolderToClose: A.CreateAccountHolderResponse;
+let notificationConfigurationToRetrieve: N.GetNotificationConfigurationResponse;
 
 const generateRandomCode = () => Math.floor(Math.random() * Date.now()).toString();
 const accountHolderDetails: AccountHolderDetails = {
@@ -36,6 +39,17 @@ const accountHolderDetails: AccountHolderDetails = {
         country: "NL"
     },
 };
+const notificationConfigurationDetails: NotificationConfigurationDetails = {
+        active: true,
+    notifyURL: "https://www.adyen.com/notification-handler",
+    eventConfigs: [
+            {
+                eventType: "ACCOUNT_HOLDER_VERIFICATION",
+                includeMode: "INCLUDE"
+            }
+        ],
+        sslProtocol: "SSL"
+    };
 
 const assertError = (e: HttpClientException): void => {
     console.log(e);
@@ -46,6 +60,7 @@ const assertError = (e: HttpClientException): void => {
 };
 
 beforeAll(async (done) => {
+    jest.setTimeout(20000);
     client = createBasicAuthClient();
     client.config.password = process.env.ADYEN_MARKETPLACE_PASSWORD;
     client.config.username = process.env.ADYEN_MARKETPLACE_USER;
@@ -65,11 +80,10 @@ beforeAll(async (done) => {
         payoutSchedule: "WEEKLY"
     });
 
-    accountToSuspend = await platforms.Account.createAccount({
+    accountHolderToSuspend = await platforms.Account.createAccountHolder({
         accountHolderCode: generateRandomCode(),
-        description: "This is a new account",
-        metadata: {meta: "data"},
-        payoutSchedule: "WEEKLY"
+        accountHolderDetails,
+        legalEntity: "Individual"
     });
 
     accountToClose = await platforms.Account.createAccount({
@@ -79,13 +93,26 @@ beforeAll(async (done) => {
         payoutSchedule: "WEEKLY"
     });
 
-    accountToUnSuspend = await platforms.Account.createAccount({
+    accountHolderToUnSuspend = await platforms.Account.createAccountHolder({
         accountHolderCode: generateRandomCode(),
-        description: "This is a new account",
-        metadata: {meta: "data"},
-        payoutSchedule: "WEEKLY"
+        accountHolderDetails,
+        legalEntity: "Individual"
     });
-    done();
+
+    accountHolderToClose = await platforms.Account.createAccountHolder({
+        accountHolderCode: generateRandomCode(),
+        accountHolderDetails,
+        legalEntity: "Individual"
+    });
+
+    notificationConfigurationToRetrieve = await platforms.NotificationConfiguration.createNotificationConfiguration({
+        configurationDetails: {
+            ...notificationConfigurationDetails,
+            description: `${generateRandomCode()}`
+        }
+    });
+
+    setTimeout(() => {done();}, 11000);
 });
 
 beforeEach((): void => {
@@ -232,7 +259,7 @@ describe("Platforms Test", function(): void {
                 nock.restore();
                 try {
                     const result = await platforms.Account.closeAccount({
-                        accountCode: accountToClose.accountHolderCode
+                        accountCode: accountToClose.accountCode
                     });
                     expect(result.status).toEqual("Closed");
                 } catch (e) {
@@ -243,10 +270,10 @@ describe("Platforms Test", function(): void {
             it("should suspend account holder", async function() {
                 nock.restore();
                 try {
-                    const result = await platforms.Account.suspendAccountHolder({
-                        accountHolderCode: accountToSuspend.accountHolderCode,
-                    });
-                    expect(result.accountHolderStatus.status).toEqual("Suspended");
+                        const result = await platforms.Account.suspendAccountHolder({
+                            accountHolderCode: accountHolderToSuspend.accountHolderCode,
+                        });
+                        expect(result.accountHolderStatus.status).toEqual("Suspended");
                 } catch (e) {
                     assertError(e);
                 }
@@ -255,10 +282,11 @@ describe("Platforms Test", function(): void {
             it("should unsuspend account holder", async function() {
                 nock.restore();
                 try {
-                    await platforms.Account.suspendAccountHolder({ accountHolderCode: accountToUnSuspend.accountHolderCode, });
-                    const result = await platforms.Account.unSuspendAccountHolder({ accountHolderCode: accountToUnSuspend.accountHolderCode });
-                    console.log(result);
-                    expect(result.accountHolderStatus.status).toEqual("Active");
+                    await platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode, });
+                    setTimeout(async () => {
+                        const result = await platforms.Account.unSuspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode });
+                        expect(result.accountHolderStatus.status).toEqual("Active");
+                    }, 10000);
                 } catch (e) {
                     assertError(e);
                 }
@@ -278,35 +306,11 @@ describe("Platforms Test", function(): void {
                 }
             });
 
-            it("should delete payout methods", async function() {
-                //function missing
-            });
-
-            it("should delete bank accounts", async function() {
-                //Awaiting bank account verification
-                // nock.restore();
-                // try {
-                //     const result = await platforms.Account.verification.deleteBankAccounts({
-                //         accountHolderCode: "GENERATE_CODE4",
-                //         bankAccountUUIDs: ["123e4567-e89b-12d3-a456-426655440000"]
-                //     });
-                //     console.log(result);
-                //     expect(result.pspReference).toBeDefined();
-                // } catch (e) {
-                //     fail(e.responseBody);
-                // }
-            });
-
             it("should close account holder", async function() {
                 nock.restore();
                 try {
-                    const account = await platforms.Account.createAccountHolder({
-                        accountHolderCode: generateRandomCode(),
-                        accountHolderDetails,
-                        legalEntity: "Individual",
-                    });
                     const result = await platforms.Account.closeAccountHolder({
-                        accountHolderCode: account.accountHolderCode
+                        accountHolderCode: accountHolderToClose.accountHolderCode
                     });
                     expect(result.accountHolderStatus.status).toEqual("Closed");
                 } catch (e) {
@@ -356,7 +360,6 @@ describe("Platforms Test", function(): void {
                 const result = await platforms.Fund.accountHolderTransactionList({
                     accountHolderCode: generateRandomCode()
                 });
-                console.log(result);
                 expect(result.accountTransactionLists![0].transactions).toBeDefined();
             } catch (e) {
                 assertError(e);
@@ -405,25 +408,26 @@ describe("Platforms Test", function(): void {
             }
         );
 
+        it("should retrieve all Notification Configurations", async function() {
+            nock.restore();
+            try {
+                const result = await platforms.NotificationConfiguration.getNotificationConfigurationList({});
+                expect(result.pspReference).toBeDefined();
+            } catch (e) {
+                assertError(e);
+            }
+        });
+
         it("should create a Notification Configuration", async function() {
             nock.restore();
             try {
                 const result = await platforms.NotificationConfiguration.createNotificationConfiguration({
                     configurationDetails: {
-                        active: true,
-                        description: `${generateRandomCode()} test`,
-                        eventConfigs: [
-                            {
-                                eventType: "ACCOUNT_HOLDER_VERIFICATION",
-                                includeMode: "INCLUDE"
-                            }
-                        ],
-                        notifyURL: "https://www.adyen.com/notification-handler",
-                        sslProtocol: "SSL"
+                        ...notificationConfigurationDetails,
+                        description: `${generateRandomCode()}`
                     }
                 });
                 console.log(result);
-                configurationID = result.configurationDetails.notificationId!;
                 expect(result.configurationDetails.active).toBeTruthy();
             } catch (e) {
                 assertError(e);
@@ -433,22 +437,12 @@ describe("Platforms Test", function(): void {
         it("should retrieve a Notification Configuration", async function() {
             nock.restore();
             try {
+                configurationID = notificationConfigurationToRetrieve.configurationDetails.notificationId!;
                 const result = await platforms.NotificationConfiguration.getNotificationConfiguration({
                     notificationId: configurationID
                 });
                 console.log(result);
                 expect(result.configurationDetails.notifyURL).toEqual("https://www.adyen.com/notification-handler");
-            } catch (e) {
-                assertError(e);
-            }
-        });
-
-        it("should retrieve all Notification Configurations", async function() {
-            nock.restore();
-            try {
-                const result = await platforms.NotificationConfiguration.getNotificationConfigurationList({});
-                console.log(result);
-                expect(result.pspReference).toBeDefined();
             } catch (e) {
                 assertError(e);
             }
@@ -473,7 +467,6 @@ describe("Platforms Test", function(): void {
                         notificationId: configurationID
                     }
                 });
-                console.log(result.configurationDetails.eventConfigs);
                 const accountHolderVerification = result.configurationDetails.eventConfigs.filter(event => event.eventType === "ACCOUNT_HOLDER_VERIFICATION")[0];
                 expect(accountHolderVerification.includeMode).toEqual("EXCLUDE");
             } catch (e) {
@@ -487,7 +480,6 @@ describe("Platforms Test", function(): void {
             notificationIds.push(configurationID);
             try {
                 const result = await platforms.NotificationConfiguration.deleteNotificationConfigurations({notificationIds});
-                console.log(result);
                 expect(result.pspReference).toBeDefined();
             } catch (e) {
                 assertError(e);
@@ -509,19 +501,5 @@ describe("Platforms Test", function(): void {
                 expect(result).toMatchObject(args[2]);
             }
         );
-
-        it("should get a new onboarding URL", async function() {
-            nock.restore();
-            try {
-                const result = await platforms.HostedOnboardingPage.getOnboardingUrl({
-                    accountHolderCode: generateRandomCode(),
-                    returnUrl: "https://your.return-url.com/"
-                });
-                console.log(result);
-                // expect(result.pspReference).toBeDefined();
-            } catch (e) {
-                assertError(e);
-            }
-        });
     });
 });
