@@ -150,7 +150,7 @@ class Platforms extends Service {
         const verification = { uploadDocument, getUploadedDocuments, deleteBankAccounts, deletePayoutMethods, deleteShareholders };
         const accountHolders = { createAccountHolder, getAccountHolder, updateAccountHolder, updateAccountHolderState, suspendAccountHolder, unSuspendAccountHolder, closeAccountHolder, checkAccountHolder};
 
-        return { accounts, verification, accountHolders };
+        return { ...accounts, ...verification, ...accountHolders };
     }
 
     public get Fund() {
@@ -165,7 +165,7 @@ class Platforms extends Service {
         return { accountHolderBalance, accountHolderTransactionList, payoutAccountHolder, refundFundsTransfer, transferFunds, setupBeneficiary, refundNotPaidOutTransfers };
     }
 
-    public get HostedOnboardingPage(): { getOnboardingUrl: (request: IPlatformsHostedOnboardingPage.GetOnboardingUrlRequest) => Promise<IPlatformsHostedOnboardingPage.GetOnboardingUrlResponse> } {
+    public get HostedOnboardingPage() {
         const getOnboardingUrl = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsHostedOnboardingPage.GetOnboardingUrlRequest, IPlatformsHostedOnboardingPage.GetOnboardingUrlResponse>(this._getOnboardingUrl);
 
         return { getOnboardingUrl };
