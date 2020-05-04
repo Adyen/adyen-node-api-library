@@ -147,7 +147,7 @@ class HttpURLConnectionClient implements ClientInterface {
                         response.body = (response.body as []).join();
                     }
 
-                    if (res.statusCode && res.statusCode !== 200) {
+                    if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
                         try {
                             const dataString = response.body.toString();
                             const formattedData: ApiError | {[key: string]: any} = JSON.parse(dataString);
