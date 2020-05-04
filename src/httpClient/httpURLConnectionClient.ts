@@ -129,7 +129,7 @@ class HttpURLConnectionClient implements ClientInterface {
                 let exception: HttpClientException | Error = getException();
 
                 res.on("data", (data): void => {
-                    if (res.statusCode && res.statusCode !== 200) {
+                    if (res.statusCode && ![200, 201, 202].includes(res.statusCode)) {
                         try {
                             const formattedData: ApiError = JSON.parse(data.toString() as string);
                             const isApiError = "status" in formattedData;

@@ -54,6 +54,7 @@ class Platforms extends Service {
     private readonly _createAccountHolder: PlatformsAccount<AccountHoldersType>;
     private readonly _getAccountHolder: PlatformsAccount<AccountHoldersType>;
     private readonly _updateAccountHolder: PlatformsAccount<AccountHoldersType>;
+    private readonly _updateAccountHolderState: PlatformsAccount<AccountHoldersType>;
     private readonly _suspendAccountHolder: PlatformsAccount<AccountHoldersType>;
     private readonly _unSuspendAccountHolder: PlatformsAccount<AccountHoldersType>;
     private readonly _closeAccountHolder: PlatformsAccount<AccountHoldersType>;
@@ -75,7 +76,7 @@ class Platforms extends Service {
     private readonly _getNotificationConfiguration: PlatformsNotificationConfiguration
     private readonly _getNotificationConfigurationList:  PlatformsNotificationConfiguration
     private readonly _testNotificationConfiguration: PlatformsNotificationConfiguration
-    private readonly _updateNotificationConfiguration: PlatformsNotificationConfiguration 
+    private readonly _updateNotificationConfiguration: PlatformsNotificationConfiguration
     private readonly _deleteNotificationConfiguration: PlatformsNotificationConfiguration
 
 
@@ -95,6 +96,7 @@ class Platforms extends Service {
         this._createAccountHolder = new PlatformsAccount<AccountHoldersType>(this, "/createAccountHolder");
         this._getAccountHolder = new PlatformsAccount<AccountHoldersType>(this, "/getAccountHolder");
         this._updateAccountHolder = new PlatformsAccount<AccountHoldersType>(this, "/updateAccountHolder");
+        this._updateAccountHolderState = new PlatformsAccount<AccountHoldersType>(this, "/updateAccountHolderState");
         this._suspendAccountHolder = new PlatformsAccount<AccountHoldersType>(this, "/suspendAccountHolder");
         this._unSuspendAccountHolder = new PlatformsAccount<AccountHoldersType>(this, "/unSuspendAccountHolder");
         this._closeAccountHolder = new PlatformsAccount<AccountHoldersType>(this, "/closeAccountHolder");
@@ -107,7 +109,7 @@ class Platforms extends Service {
         this._refundFundsTransfer = new PlatformsFund(this, "/refundFundsTransfer");
         this._setupBeneficiary = new PlatformsFund(this, "/setupBeneficiary");
         this._refundNotPaidOutTransfers = new PlatformsFund(this, "/refundNotPaidOutTransfers");
-        
+
         // HOP
         this._getOnboardingUrl = new PlatformsHostedOnboardingPage(this, "/getOnboardingUrl");
 
@@ -128,24 +130,25 @@ class Platforms extends Service {
         const closeAccount = this.createRequest<AccountsAccount, IPlatformsAccount.CloseAccountRequest, IPlatformsAccount.CloseAccountResponse>(this._closeAccount);
         const updateAccount = this.createRequest<AccountsAccount, IPlatformsAccount.UpdateAccountRequest, IPlatformsAccount.UpdateAccountResponse>(this._updateAccount);
         const createAccount = this.createRequest<AccountsAccount, IPlatformsAccount.CreateAccountRequest, IPlatformsAccount.CreateAccountResponse>(this._createAccount);
-        
+
         const uploadDocument = this.createRequest<AccountsVerification, IPlatformsAccount.UploadDocumentRequest, IPlatformsAccount.GetUploadedDocumentsResponse>(this._uploadDocument);
         const getUploadedDocuments = this.createRequest<AccountsVerification, IPlatformsAccount.GetUploadedDocumentsRequest, IPlatformsAccount.GetUploadedDocumentsResponse>(this._getUploadedDocuments);
         const deleteBankAccounts = this.createRequest<AccountsVerification, IPlatformsAccount.DeleteBankAccountRequest, IPlatformsAccount.GenericResponse>(this._deleteBankAccounts);
         const deletePayoutMethods = this.createRequest<AccountsVerification, IPlatformsAccount.DeletePayoutMethodRequest, IPlatformsAccount.GenericResponse>(this._deletePayoutMethods);
         const deleteShareholders = this.createRequest<AccountsVerification, IPlatformsAccount.DeleteShareholderRequest, IPlatformsAccount.GenericResponse>(this._deleteShareholders);
-        const checkAccountHolder = this.createRequest<AccountsVerification, IPlatformsAccount.PerformVerificationRequest, IPlatformsAccount.GenericResponse>(this._checkAccountHolder);
 
         const createAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.CreateAccountHolderRequest, IPlatformsAccount.CreateAccountHolderResponse>(this._createAccountHolder);
         const getAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.GetAccountHolderRequest, IPlatformsAccount.GetAccountHolderResponse>(this._getAccountHolder);
         const updateAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.UpdateAccountHolderRequest, IPlatformsAccount.UpdateAccountHolderResponse>(this._updateAccountHolder);
+        const updateAccountHolderState = this.createRequest<AccountsAccountHolders, IPlatformsAccount.UpdateAccountHolderStateRequest, IPlatformsAccount.UpdateAccountHolderStateResponse>(this._updateAccountHolderState);
         const suspendAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.SuspendAccountHolderRequest, IPlatformsAccount.SuspendAccountHolderResponse>(this._suspendAccountHolder);
         const unSuspendAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.UnSuspendAccountHolderRequest, IPlatformsAccount.UnSuspendAccountHolderResponse>(this._unSuspendAccountHolder);
         const closeAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.CloseAccountHolderRequest, IPlatformsAccount.CloseAccountHolderResponse>(this._closeAccountHolder);
+        const checkAccountHolder = this.createRequest<AccountsVerification, IPlatformsAccount.PerformVerificationRequest, IPlatformsAccount.GenericResponse>(this._checkAccountHolder);
 
         const accounts = { closeAccount, updateAccount, createAccount };
-        const verification = { uploadDocument, getUploadedDocuments, deleteBankAccounts, deletePayoutMethods, deleteShareholders, checkAccountHolder };
-        const accountHolders = { createAccountHolder, getAccountHolder, updateAccountHolder, suspendAccountHolder, unSuspendAccountHolder, closeAccountHolder };
+        const verification = { uploadDocument, getUploadedDocuments, deleteBankAccounts, deletePayoutMethods, deleteShareholders };
+        const accountHolders = { createAccountHolder, getAccountHolder, updateAccountHolder, updateAccountHolderState, suspendAccountHolder, unSuspendAccountHolder, closeAccountHolder, checkAccountHolder};
 
         return { accounts, verification, accountHolders };
     }
@@ -171,7 +174,7 @@ class Platforms extends Service {
     public get NotificationConfiguration()  {
         const createNotificationConfiguration = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsNotificationConfiguration.CreateNotificationConfigurationRequest, IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse>(this._createNotificationConfiguration);
         const getNotificationConfiguration = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsNotificationConfiguration.GetNotificationConfigurationRequest, IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse>(this._getNotificationConfiguration);
-        const getNotificationConfigurationList = this.createRequest<PlatformsHostedOnboardingPage, null, IPlatformsNotificationConfiguration.GetNotificationConfigurationListResponse>(this._getNotificationConfigurationList);
+        const getNotificationConfigurationList = this.createRequest<PlatformsHostedOnboardingPage, {}, IPlatformsNotificationConfiguration.GetNotificationConfigurationListResponse>(this._getNotificationConfigurationList);
         const testNotificationConfiguration = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsNotificationConfiguration.TestNotificationConfigurationRequest, IPlatformsNotificationConfiguration.TestNotificationConfigurationResponse>(this._testNotificationConfiguration);
         const updateNotificationConfiguration = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsNotificationConfiguration.UpdateNotificationConfigurationRequest, IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse>(this._updateNotificationConfiguration);
         const deleteNotificationConfigurations = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsNotificationConfiguration.DeleteNotificationConfigurationRequest, IPlatformsNotificationConfiguration.GenericResponse>(this._deleteNotificationConfiguration);

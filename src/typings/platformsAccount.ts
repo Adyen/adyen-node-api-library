@@ -21,7 +21,7 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
- 
+
 
 declare namespace IPlatformsAccount {
     export interface Account {
@@ -207,7 +207,7 @@ declare namespace IPlatformsAccount {
         currency: string;
         /**
          * The payable amount that can be charged for the transaction.
-         * 
+         *
          * The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
          */
         value: number; // int64
@@ -222,7 +222,7 @@ declare namespace IPlatformsAccount {
          * The type of bank account.
          * Only applicable to bank accounts held in the USA.
          * The permitted values are: `checking`, `savings`.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         accountType?: string;
@@ -237,13 +237,13 @@ declare namespace IPlatformsAccount {
         /**
          * The unique identifier (UUID) of the Bank Account.
          * >If, during an account holder create or update request, this field is left blank (but other fields provided), a new Bank Account will be created with a procedurally-generated UUID.
-         * 
+         *
          * >If, during an account holder create request, a UUID is provided, the creation of the Bank Account will fail while the creation of the account holder will continue.
-         * 
+         *
          * >If, during an account holder update request, a UUID that is not correlated with an existing Bank Account is provided, the update of the account holder will fail.
-         * 
+         *
          * >If, during an account holder update request, a UUID that is correlated with an existing Bank Account is provided, the existing Bank Account will be updated.
-         * 
+         *
          */
         bankAccountUUID?: string;
         /**
@@ -253,19 +253,19 @@ declare namespace IPlatformsAccount {
         bankBicSwift?: string;
         /**
          * The city in which the bank branch is located.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         bankCity?: string;
         /**
          * The bank code of the banking institution with which the bank account is registered.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         bankCode?: string;
         /**
          * The name of the banking institution with which the bank account is held.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         bankName?: string;
@@ -279,28 +279,28 @@ declare namespace IPlatformsAccount {
         branchCode?: string;
         /**
          * The check code of the bank account.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         checkCode?: string;
         /**
          * The two-letter country code in which the bank account is registered.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         countryCode?: string;
         /**
          * The currency in which the bank account deals.
          * >The permitted currency codes are defined in ISO-4217 (e.g. 'EUR').
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         currencyCode?: string;
         /**
          * The international bank account number.
          * >The IBAN standard is defined in ISO-13616.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         iban?: string;
@@ -312,13 +312,13 @@ declare namespace IPlatformsAccount {
         /**
          * The country code of the country of residence of the bank account owner.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         ownerCountryCode?: string;
         /**
          * The date of birth of the bank account owner.
-         * 
+         *
          */
         ownerDateOfBirth?: string;
         /**
@@ -334,7 +334,7 @@ declare namespace IPlatformsAccount {
         /**
          * The country code of the country of nationality of the bank account owner.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         ownerNationality?: string;
@@ -359,14 +359,14 @@ declare namespace IPlatformsAccount {
         primaryAccount?: boolean;
         /**
          * The tax ID number.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         taxId?: string;
         /**
          * The URL to be used for bank account verification.
          * This may be generated on bank account creation.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         urlForVerification?: string;
@@ -469,9 +469,9 @@ declare namespace IPlatformsAccount {
         /**
          * The entity type.
          * Permitted values: `Business`, `Individual`
-         * 
+         *
          * If an account holder is 'Business', then `accountHolderDetails.businessDetails` must be provided, as well as at least one entry in the `accountHolderDetails.businessDetails.shareholders` list.
-         * 
+         *
          * If an account holder is 'Individual', then `accountHolderDetails.individualDetails` must be provided.
          */
         legalEntity: "Business" | "Individual" | "NonProfit" | "Partnership" | "PublicCompany";
@@ -633,7 +633,7 @@ declare namespace IPlatformsAccount {
         /**
          * The unique ID of the Bank Account to which the document applies.
          * >Required if the documentType is `BANK_STATEMENT` (i.e., a document is being submitted in order to verify a bank account).
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on when a document should be submitted in order to verify a bank account.
          */
         bankAccountUUID?: string;
@@ -649,7 +649,7 @@ declare namespace IPlatformsAccount {
          * * `ID_CARD_BACK` denotes an image containing only the back of the ID card. In order for a document to be usable, both the `ID_CARD_FRONT` and `ID_CARD_BACK` must be submitted.
          * * `DRIVING_LICENCE_FRONT` denotes an image containing only the front of the driving licence. In order for a document to be usable, both the `DRIVING_LICENCE_FRONT` and `DRIVING_LICENCE_BACK` must be submitted.
          * * `DRIVING_LICENCE_BACK` denotes an image containing only the back of the driving licence. In order for a document to be usable, both the `DRIVING_LICENCE_FRONT` and `DRIVING_LICENCE_FRONT` must be submitted.
-         * 
+         *
          * >Please refer to [Verification checks](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks) for details on when each document type should be submitted.
          */
         documentType: "BANK_STATEMENT" | "BSN" | "COMPANY_REGISTRATION_SCREENING" | "DRIVING_LICENCE" | "DRIVING_LICENCE_BACK" | "DRIVING_LICENCE_FRONT" | "ID_CARD" | "ID_CARD_BACK" | "ID_CARD_FRONT" | "PASSPORT" | "SSN" | "SUPPORTING_DOCUMENTS";
@@ -660,7 +660,7 @@ declare namespace IPlatformsAccount {
         /**
          * The code of the shareholder, to which the document applies.
          * >Required if the account holder referred to by the `accountHolderCode` has a `legalEntity` of type `Business` and the `documentType` is either `PASSPORT`, `ID_CARD_FRONT`, `ID_CARD_BACK`, `DRIVING_LICENCE_FRONT`, `DRIVING_LICENCE_BACK` (i.e. a document is being submitted in order to verify a shareholder).
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on when a document should be submitted in order to verify a shareholder.
          */
         shareholderCode?: string;
@@ -1001,13 +1001,13 @@ declare namespace IPlatformsAccount {
         /**
          * The unique identifier (UUID) of the Shareholder.
          * >**If, during an Account Holder create or update request, this field is left blank (but other fields provided), a new Shareholder will be created with a procedurally-generated UUID.**
-         * 
+         *
          * >**If, during an Account Holder create request, a UUID is provided, the creation of the Shareholder will fail while the creation of the Account Holder will continue.**
-         * 
+         *
          * >**If, during an Account Holder update request, a UUID that is not correlated with an existing Shareholder is provided, the update of the Shareholder will fail.**
-         * 
+         *
          * >**If, during an Account Holder update request, a UUID that is correlated with an existing Shareholder is provided, the existing Shareholder will be updated.**
-         * 
+         *
          */
         shareholderCode?: string;
         /**
@@ -1074,7 +1074,7 @@ declare namespace IPlatformsAccount {
         accountHolderCode: string;
         /**
          * The details to which the Account Holder should be updated.
-         * 
+         *
          * Required if a processingTier is not provided.
          */
         accountHolderDetails?: IPlatformsAccount.AccountHolderDetails;
@@ -1085,9 +1085,9 @@ declare namespace IPlatformsAccount {
         /**
          * The entity type.
          * Permitted values: `Business`, `Individual`
-         * 
+         *
          * If an account holder is 'Business', then `accountHolderDetails.businessDetails` must be provided, as well as at least one entry in the `accountHolderDetails.businessDetails.shareholders` list.
-         * 
+         *
          * If an account holder is 'Individual', then `accountHolderDetails.individualDetails` must be provided.
          */
         legalEntity?: "Business" | "Individual" | "NonProfit" | "Partnership" | "PublicCompany";
@@ -1098,7 +1098,7 @@ declare namespace IPlatformsAccount {
         /**
          * The processing tier to which the Account Holder should be updated.
          * >The processing tier can not be lowered through this request.
-         * 
+         *
          * >Required if accountHolderDetails are not provided.
          */
         processingTier?: number; // int32
@@ -1215,6 +1215,28 @@ declare namespace IPlatformsAccount {
          */
         resultCode?: string;
     }
+    export interface UpdateAccountHolderStateResponse {
+        /**
+         * The account holder code.
+         */
+        accountHolderCode: string;
+        /**
+         * The account holder status.
+         */
+        accountHolderStatus: string;
+        /**
+         * A list of fields that caused the `/updateAccount` request to fail.
+         */
+        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        /**
+         * The reference of a request.  Can be used to uniquely identify the request.
+         */
+        pspReference: string;
+        /**
+         * The result code.
+         */
+        resultCode?: string;
+    }
     export interface UpdatePayoutScheduleRequest {
         /**
          * Direction on how to handle any payouts that have already been scheduled.
@@ -1239,7 +1261,7 @@ declare namespace IPlatformsAccount {
     export interface UploadDocumentRequest {
         /**
          * The content of the document as represented by a Base64-encoded string.
-         * 
+         *
          * To learn about requirements, see [Bank account check](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks/bank-account-check#requirements) and [Photo ID check](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks/photo-id-check#requirements).
          */
         documentContent: string; // byte

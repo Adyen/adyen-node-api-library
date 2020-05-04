@@ -27,6 +27,7 @@ type AccountHoldersEndpoints =
     "/createAccountHolder"|
     "/getAccountHolder"|
     "/updateAccountHolder"|
+    "/updateAccountHolderState"|
     "/suspendAccountHolder"|
     "/unSuspendAccountHolder"|
     "/closeAccountHolder"
