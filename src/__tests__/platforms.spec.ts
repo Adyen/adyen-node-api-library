@@ -98,6 +98,7 @@ beforeAll(async (done) => {
         accountHolderDetails,
         legalEntity: "Individual"
     });
+    await platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode});
 
     accountHolderToClose = await platforms.Account.createAccountHolder({
         accountHolderCode: generateRandomCode(),
@@ -282,11 +283,8 @@ describe("Platforms Test", function(): void {
             it("should unsuspend account holder", async function() {
                 nock.restore();
                 try {
-                    await platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode, });
-                    setTimeout(async () => {
-                        const result = await platforms.Account.unSuspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode });
-                        expect(result.accountHolderStatus.status).toEqual("Active");
-                    }, 10000);
+                    const result = await platforms.Account.unSuspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode });
+                    expect(result.accountHolderStatus.status).toEqual("Active");
                 } catch (e) {
                     assertError(e);
                 }
