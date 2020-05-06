@@ -39,15 +39,19 @@ class TerminalCloudAPI extends ApiKeyAuthenticatedService {
     }
 
     private static setApplicationInfo(request: TerminalApiRequest): TerminalApiRequest {
-        const applicationInfo = new ApplicationInfo();
+        if (request.saleToPoiRequest.paymentRequest) {
+            const applicationInfo = Buffer.from(JSON.stringify(new ApplicationInfo())).toString("base64");
 
-        const saleToAcquirerData = {applicationInfo};
-        const saleData = {saleToAcquirerData};
-        const paymentRequest = {saleData};
-        const saleToPoiRequest = {paymentRequest};
-        const newRequest = {saleToPoiRequest};
+            const saleToAcquirerData = {applicationInfo};
+            const saleData = {saleToAcquirerData};
+            const paymentRequest = {saleData};
+            const saleToPoiRequest = {paymentRequest};
+            const newRequest = {saleToPoiRequest};
 
-        return mergeDeep(request, newRequest);
+            return mergeDeep(request, newRequest);
+        }
+
+        return request;
     }
 
     public async(terminalApiRequest: TerminalApiRequest): Promise<string> {

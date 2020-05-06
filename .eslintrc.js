@@ -22,9 +22,9 @@ module.exports = {
     "plugin:@typescript-eslint/recommended"
   ],
   rules: {
-    "max-len": ["warn", { code: 140 }],
     quotes: ["error", "double"],
-    semi: ["error", "always"]
+    semi: ["error", "always"],
+    "no-non-null-assertion": 0
   },
   overrides: [
     {
