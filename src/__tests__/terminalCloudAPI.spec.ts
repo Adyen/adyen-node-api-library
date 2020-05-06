@@ -1,7 +1,7 @@
 import nock from "nock";
-import {createClient, createTerminalAPIPaymentRequest} from "../__mocks__/base";
+import {createClient, createTerminalAPIPaymentRequest, createTerminalAPIRefundRequest} from "../__mocks__/base";
 import {asyncRes} from "../__mocks__/terminalApi/async";
-import {syncRes} from "../__mocks__/terminalApi/sync";
+import {syncRefund, syncRes} from "../__mocks__/terminalApi/sync";
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
 import {Convert, TerminalApiResponse} from "../typings/terminal";
@@ -48,5 +48,22 @@ describe("Terminal Cloud API", (): void => {
 
         expect(terminalAPIResponse.saleToPoiResponse?.paymentResponse).toBeDefined();
         expect(terminalAPIResponse.saleToPoiResponse?.messageHeader).toBeDefined();
+    });
+
+    test.each([isCI, true])("should make an async refund request, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const response = Convert.toTerminalApiResponse(syncRes);
+        scope.post("/sync").reply(200, response);
+
+        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+        const terminalAPIResponse: TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+
+        const refundResponse = Convert.toTerminalApiResponse(syncRefund);
+        scope.post("/sync").reply(200, refundResponse);
+
+        const terminalAPIRefundRequest = createTerminalAPIRefundRequest(terminalAPIResponse.saleToPoiResponse?.paymentResponse?.poiData.poiTransactionId!);
+        const terminalAPIRefundResponse = await terminalCloudAPI.sync(terminalAPIRefundRequest);
+
+        expect(terminalAPIRefundResponse.saleToPoiResponse?.reversalResponse).toBeDefined();
     });
 });

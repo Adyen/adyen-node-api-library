@@ -29,6 +29,8 @@ import {
     MessageType,
     PaymentRequest,
     PaymentTransaction,
+    ReversalReasonType,
+    ReversalRequest,
     SaleData,
     SaleToPoiRequest,
     TerminalApiRequest,
@@ -62,50 +64,65 @@ export const createBasicAuthClient = (): Client => {
     return client;
 };
 
+const id = Math.floor(Math.random() * Math.floor(10000000)).toString();
+const getMessageHeader = ({ messageCategory = MessageCategoryType.Payment }: { messageCategory?: MessageCategoryType } = {}): MessageHeader => ({
+    messageCategory,
+    messageClass: MessageClassType.Service,
+    messageType: MessageType.Request,
+    poiid: process.env.ADYEN_TERMINAL_POIID!,
+    protocolVersion: "3.0",
+    saleId: id,
+    serviceId: id,
+});
+
+const timestamp = (): string => new Date().toISOString();
+const transactionIdentification: TransactionIdentification = {
+    timeStamp: timestamp(),
+    transactionId: id,
+};
+
+const saleData: SaleData = {
+    saleTransactionId: transactionIdentification,
+};
+
+const amountsReq: AmountsReq = {
+    currency: "EUR",
+    requestedAmount: 1,
+};
+
+const paymentTransaction: PaymentTransaction = {
+    amountsReq: amountsReq,
+};
+
+const paymentRequest: PaymentRequest = {
+    paymentTransaction: paymentTransaction,
+    saleData: saleData,
+};
+
+const getReversalRequest = (poiTransaction: TransactionIdentification): ReversalRequest => ({
+    originalPoiTransaction: {
+        poiTransactionId: {
+            transactionId: poiTransaction.transactionId,
+            timeStamp: poiTransaction.timeStamp
+        },
+    },
+    reversalReason: ReversalReasonType.MerchantCancel
+});
+
+const getSaleToPOIRequest = (messageHeader: MessageHeader, request: Partial<SaleToPoiRequest>): SaleToPoiRequest => ({
+    messageHeader: messageHeader,
+    ...request
+});
+
+
 export const createTerminalAPIPaymentRequest = (): TerminalApiRequest => {
+    const messageHeader = getMessageHeader();
+    const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { paymentRequest });
+    return { saleToPoiRequest: saleToPOIRequest };
+};
 
-    const messageHeader: MessageHeader = {
-        messageCategory: MessageCategoryType.Payment,
-        messageClass: MessageClassType.Service,
-        messageType: MessageType.Request,
-        poiid: process.env.ADYEN_TERMINAL_POIID!,
-        protocolVersion: "3.0",
-        saleId: "001",
-        serviceId: "001",
-    };
-
-    const timestamp = new Date().toISOString();
-    const transactionIdentification: TransactionIdentification = {
-        timeStamp: timestamp,
-        transactionId: "001",
-    };
-
-    const saleData: SaleData = {
-        saleTransactionId: transactionIdentification,
-    };
-
-    const amountsReq: AmountsReq = {
-        currency: "EUR",
-        requestedAmount: 1,
-    };
-
-    const paymentTransaction: PaymentTransaction = {
-        amountsReq: amountsReq,
-    };
-
-    const paymentRequest: PaymentRequest = {
-        paymentTransaction: paymentTransaction,
-        saleData: saleData,
-    };
-
-    const saleToPOIRequest: SaleToPoiRequest = {
-        messageHeader: messageHeader,
-        paymentRequest: paymentRequest,
-    };
-
-    const terminalApiRequest: TerminalApiRequest = {
-        saleToPoiRequest: saleToPOIRequest,
-    };
-
-    return terminalApiRequest;
+export const createTerminalAPIRefundRequest = (transactionIdentification: TransactionIdentification): TerminalApiRequest => {
+    const messageHeader = getMessageHeader({ messageCategory: MessageCategoryType.Reversal });
+    const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { reversalRequest: getReversalRequest(transactionIdentification) });
+    return { saleToPoiRequest: saleToPOIRequest };
 };

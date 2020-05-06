@@ -52,7 +52,7 @@ const notificationConfigurationDetails: NotificationConfigurationDetails = {
     };
 
 const assertError = (e: HttpClientException): void => {
-    console.error(e);
+    console.log(e);
     if (e.responseBody?.includes("Account code does not exist or invalid") || e.responseBody?.includes("Failed to retrieve account holder")) {
         return;
     }
@@ -152,7 +152,7 @@ describe("Platforms Test", function(): void {
                 async (...args) => {
                     const service = platforms.Account;
                     scope.post(`/Account/${Client.MARKETPAY_ACCOUNT_API_VERSION}//${args[0]}`).reply(200, args[2]);
-                    const result = await service[args[0] as string](args[1] as any);
+                    const result = await service[args[0] as string](args[1] as never);
                     expect(result).toMatchObject(args[2]);
                 }
             );
@@ -336,7 +336,7 @@ describe("Platforms Test", function(): void {
                 const fund = platforms.Fund;
                 scope.post(`/Fund/${Client.MARKETPAY_FUND_API_VERSION}//${args[0]}`).reply(200, args[2]);
 
-                const result = await fund[args[0] as string](args[1] as any);
+                const result = await fund[args[0] as string](args[1] as never);
                 expect(result).toMatchObject(args[2]);
             }
         );
@@ -401,7 +401,7 @@ describe("Platforms Test", function(): void {
                 const notificationConfiguration = platforms.NotificationConfiguration;
                 scope.post(`/Notification/${Client.MARKETPAY_NOTIFICATION_API_VERSION}//${args[0]}`).reply(200, args[2]);
 
-                const result = await notificationConfiguration[args[0] as string](args[1] as any);
+                const result = await notificationConfiguration[args[0] as string](args[1] as never);
                 expect(result).toMatchObject(args[2]);
             }
         );
@@ -494,7 +494,7 @@ describe("Platforms Test", function(): void {
                 const hostedOnboardingPage = platforms.HostedOnboardingPage;
                 scope.post(`/Hop/${Client.MARKETPAY_HOP_API_VERSION}//${args[0]}`).reply(200, args[2]);
 
-                const result = await hostedOnboardingPage[args[0] as string](args[1] as any);
+                const result = await hostedOnboardingPage[args[0] as string](args[1] as never);
                 expect(result).toMatchObject(args[2]);
             }
         );

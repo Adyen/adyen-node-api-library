@@ -41,8 +41,8 @@
   "devDependencies": {
     "@types/jest": "25.2.1",
     "@types/nock": "11.1.0",
-    "@typescript-eslint/eslint-plugin": "2.30.0",
-    "@typescript-eslint/parser": "2.30.0",
+    "@typescript-eslint/eslint-plugin": "2.31.0",
+    "@typescript-eslint/parser": "2.31.0",
     "acorn": "^7.1.1",
     "coveralls": "3.1.0",
     "dotenv": "^8.2.0",
@@ -62,7 +62,7 @@
     "webpack-cli": "3.3.11"
   },
   "dependencies": {
-    "@types/node": "13.13.4",
+    "@types/node": "13.13.5",
     "https-proxy-agent": "5.0.0"
   }
 }
