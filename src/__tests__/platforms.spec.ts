@@ -142,6 +142,7 @@ describe("Platforms Test", function(): void {
                 ["createAccountHolder", createMock<A.CreateAccountRequest>(), createMock<A.CreateAccountHolderRequest>()],
                 ["getAccountHolder", createMock<A.GetAccountHolderRequest>(), createMock<A.GetAccountHolderRequest>()],
                 ["updateAccountHolder", createMock<A.UpdateAccountHolderRequest>(), createMock<A.UpdateAccountHolderResponse>()],
+                ["updateAccountHolderState", createMock<A.UpdateAccountHolderStateRequest>(), createMock<A.UpdateAccountHolderStateResponse>()],
                 ["suspendAccountHolder", createMock<A.SuspendAccountHolderRequest>(), createMock<A.SuspendAccountHolderResponse>()],
                 ["unSuspendAccountHolder", createMock<A.UnSuspendAccountHolderRequest>(), createMock<A.UnSuspendAccountHolderResponse>()],
                 ["closeAccountHolder", createMock<A.CloseAccountHolderRequest>(), createMock<A.CloseAccountResponse>()],
