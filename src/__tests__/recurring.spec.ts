@@ -56,7 +56,7 @@ describe("Recurring", (): void => {
             .reply(200, paymentsSuccess);
 
         const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
-        await checkout.payments(paymentsRequest);
+        const res = await checkout.payments(paymentsRequest);
 
         scope.post("/disable")
             .reply(200, disableSuccess);
@@ -64,6 +64,7 @@ describe("Recurring", (): void => {
         const request: IRecurring.DisableRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             shopperReference: "shopperReference",
+            recurringDetailReference: res.additionalData!["recurring.recurringDetailReference"]
         };
 
         try {
