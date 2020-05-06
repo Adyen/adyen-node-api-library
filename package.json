@@ -41,28 +41,28 @@
   "devDependencies": {
     "@types/jest": "25.2.1",
     "@types/nock": "11.1.0",
-    "@typescript-eslint/eslint-plugin": "2.30.0",
-    "@typescript-eslint/parser": "2.30.0",
+    "@typescript-eslint/eslint-plugin": "2.31.0",
+    "@typescript-eslint/parser": "2.31.0",
     "acorn": "^7.1.1",
     "coveralls": "3.1.0",
     "dotenv": "^8.2.0",
     "eslint": "6.8.0",
-    "jest": "25.5.0",
+    "jest": "25.5.4",
     "jest-ts-auto-mock": "^1.0.11",
     "kind-of": "^6.0.3",
     "minimist": ">=1.2.3",
     "nock": "12.0.3",
-    "release-it": "13.5.7",
+    "release-it": "13.5.8",
     "ts-auto-mock": "^1.6.0",
     "ts-jest": "25.4.0",
-    "ts-loader": "7.0.1",
+    "ts-loader": "7.0.2",
     "ttypescript": "^1.5.10",
     "typescript": "3.8.3",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11"
   },
   "dependencies": {
-    "@types/node": "13.13.4",
+    "@types/node": "13.13.5",
     "https-proxy-agent": "5.0.0"
   }
 }
