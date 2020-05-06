@@ -411,7 +411,8 @@ describe("Platforms Test", function(): void {
             nock.restore();
             try {
                 const result = await platforms.NotificationConfiguration.getNotificationConfigurationList({});
-                expect(result.pspReference).toBeDefined();
+                const resultStr = JSON.stringify(result);
+                expect(resultStr.includes("pspReference")).toBeTruthy();
             } catch (e) {
                 assertError(e);
             }
