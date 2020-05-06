@@ -40,7 +40,7 @@ const accountHolderDetails: AccountHolderDetails = {
     },
 };
 const notificationConfigurationDetails: NotificationConfigurationDetails = {
-        active: true,
+    active: true,
     notifyURL: "https://www.adyen.com/notification-handler",
     eventConfigs: [
             {
@@ -52,7 +52,7 @@ const notificationConfigurationDetails: NotificationConfigurationDetails = {
     };
 
 const assertError = (e: HttpClientException): void => {
-    console.log(e);
+    console.error(e);
     if (e.responseBody?.includes("Account code does not exist or invalid") || e.responseBody?.includes("Failed to retrieve account holder")) {
         return;
     }
@@ -113,7 +113,7 @@ beforeAll(async (done) => {
         }
     });
 
-    setTimeout(() => {done();}, 11000);
+    setTimeout(() => {done();}, 14000);
 });
 
 beforeEach((): void => {
@@ -377,8 +377,7 @@ describe("Platforms Test", function(): void {
                     },
                     transferCode: "SUBSCRIPTION"
                 });
-                console.log(result);
-                // expect(result.accountTransactionLists![0].transactions).toBeDefined();
+                expect(result.pspReference).toBeDefined();
             } catch (e) {
                 assertError(e);
             }
@@ -427,7 +426,6 @@ describe("Platforms Test", function(): void {
                         description: `${generateRandomCode()}`
                     }
                 });
-                console.log(result);
                 expect(result.configurationDetails.active).toBeTruthy();
             } catch (e) {
                 assertError(e);
@@ -441,7 +439,6 @@ describe("Platforms Test", function(): void {
                 const result = await platforms.NotificationConfiguration.getNotificationConfiguration({
                     notificationId: configurationID
                 });
-                console.log(result);
                 expect(result.configurationDetails.notifyURL).toEqual("https://www.adyen.com/notification-handler");
             } catch (e) {
                 assertError(e);
