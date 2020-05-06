@@ -123,7 +123,7 @@ class HttpURLConnectionClient implements ClientInterface {
                     headers: res.headers,
                     body: []
                 };
-                
+
                 const getException = (responseBody: string): HttpClientException => new HttpClientException({
                     message: `HTTP Exception: ${response.statusCode}. ${res.statusMessage}`,
                     statusCode: response.statusCode,
@@ -150,7 +150,7 @@ class HttpURLConnectionClient implements ClientInterface {
                     if (res.statusCode && res.statusCode !== 200) {
                         try {
                             const dataString = response.body.toString();
-                            const formattedData: ApiError | {[key: string]: any} = JSON.parse(dataString);
+                            const formattedData: ApiError | {[key: string]: never} = JSON.parse(dataString);
                             const isApiError = "status" in formattedData;
                             const isRequestError = "errors" in formattedData;
 
