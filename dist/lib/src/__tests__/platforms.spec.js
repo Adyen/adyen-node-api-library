@@ -94,7 +94,6 @@ var notificationConfigurationDetails = {
 };
 var assertError = function (e) {
     var _a, _b;
-    console.log(e);
     if (((_a = e.responseBody) === null || _a === void 0 ? void 0 : _a.includes("Account code does not exist or invalid")) || ((_b = e.responseBody) === null || _b === void 0 ? void 0 : _b.includes("Failed to retrieve account holder"))) {
         return;
     }
@@ -104,7 +103,6 @@ beforeAll(function (done) { return __awaiter(void 0, void 0, void 0, function ()
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                jest.setTimeout(20000);
                 client = base_1.createBasicAuthClient();
                 client.config.password = process.env.ADYEN_MARKETPLACE_PASSWORD;
                 client.config.username = process.env.ADYEN_MARKETPLACE_USER;
@@ -162,7 +160,7 @@ beforeAll(function (done) { return __awaiter(void 0, void 0, void 0, function ()
                     })];
             case 8:
                 notificationConfigurationToRetrieve = _a.sent();
-                setTimeout(function () { done(); }, 14000);
+                done();
                 return [2 /*return*/];
         }
     });
@@ -440,7 +438,7 @@ describe("Platforms Test", function () {
                                     })];
                             case 2:
                                 result = _a.sent();
-                                expect(result.accountHolderStatus.status).toEqual("Suspended");
+                                expect(result.pspReference).toBeDefined();
                                 return [3 /*break*/, 4];
                             case 3:
                                 e_7 = _a.sent();
@@ -464,7 +462,7 @@ describe("Platforms Test", function () {
                                 return [4 /*yield*/, platforms.Account.unSuspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode })];
                             case 2:
                                 result = _a.sent();
-                                expect(result.accountHolderStatus.status).toEqual("Active");
+                                expect(result.pspReference).toBeDefined();
                                 return [3 /*break*/, 4];
                             case 3:
                                 e_8 = _a.sent();
@@ -518,7 +516,7 @@ describe("Platforms Test", function () {
                                     })];
                             case 2:
                                 result = _a.sent();
-                                expect(result.accountHolderStatus.status).toEqual("Closed");
+                                expect(result.pspReference).toBeDefined();
                                 return [3 /*break*/, 4];
                             case 3:
                                 e_10 = _a.sent();
