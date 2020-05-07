@@ -26,7 +26,7 @@ class DeclineThirdParty extends Resource {
     public constructor(service: Service) {
         super(
             service,
-            `${service.client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}/storeDetailAndSubmitThirdParty`
+            `${service.client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}/declineThirdParty`
         );
     }
 }

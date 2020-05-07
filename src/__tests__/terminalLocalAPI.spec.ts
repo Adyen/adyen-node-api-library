@@ -1,5 +1,5 @@
 import nock from "nock";
-import {createMockClientFromResponse, createTerminalAPIPaymentRequest} from "../__mocks__/base";
+import {createClient, createTerminalAPIPaymentRequest} from "../__mocks__/base";
 import {localEncRes, localSecuredRes, wrongEncRes} from "../__mocks__/terminalApi/local";
 import Client from "../client";
 import TerminalLocalAPI from "../services/terminalLocalAPI";
@@ -11,7 +11,7 @@ let terminalLocalAPI: TerminalLocalAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    client = createMockClientFromResponse();
+    client = createClient();
     terminalLocalAPI = new TerminalLocalAPI(client);
     scope = nock(client.config.terminalApiLocalEndpoint + ":8443/nexo");
 });

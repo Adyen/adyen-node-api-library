@@ -1,49 +1,77 @@
 import nock from "nock";
-import {createMockClientFromResponse} from "../__mocks__/base";
+import {createClient} from "../__mocks__/base";
 import {disableSuccess} from "../__mocks__/recurring/disableSuccess";
 import {listRecurringDetailsSuccess} from "../__mocks__/recurring/listRecurringDetailsSuccess";
 import Recurring from "../services/recurring";
 import Client from "../client";
+import {paymentsSuccess} from "../__mocks__/checkout/paymentsSuccess";
+import {createPaymentsCheckoutRequest} from "./checkout.spec";
+import Checkout from "../services/checkout";
 
 const createRecurringDetailsRequest = (): IRecurring.RecurringDetailsRequest => {
     return {
-        merchantAccount: "MerchantAccount",
-        recurring: { contract: "ONECLICK" },
-        shopperReference: "test-123",
+        merchantAccount: process.env.ADYEN_MERCHANT!,
+        recurring: { contract: "RECURRING" },
+        shopperReference: "shopperReference",
     };
 };
 
 let client: Client;
 let recurring: Recurring;
+let checkout: Checkout;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    client = createMockClientFromResponse();
+    if (!nock.isActive()){
+        nock.activate();
+    }
+    client = createClient();
     recurring = new Recurring(client);
+    checkout = new Checkout(client);
     scope = nock(`${client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}`);
 });
+
+afterEach(() => {
+    nock.cleanAll();
+});
+
 describe("Recurring", (): void => {
-    it("should test have recurring details list", async (): Promise<void> => {
+    test.each([false, true])("should test have recurring details list, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
         scope.post("/listRecurringDetails")
             .reply(200, listRecurringDetailsSuccess);
 
         const request = createRecurringDetailsRequest();
-        const result = await recurring.listRecurringDetails(request);
-
-        expect(result).toEqual(listRecurringDetailsSuccess);
+        try {
+            const result = await recurring.listRecurringDetails(request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e.message);
+        }
     });
 
-    it("should disable", async (): Promise<void> => {
+    test.each([false, true])("should disable, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        scope.post("/payments")
+            .reply(200, paymentsSuccess);
+
+        const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
+        const res = await checkout.payments(paymentsRequest);
+
         scope.post("/disable")
             .reply(200, disableSuccess);
 
         const request: IRecurring.DisableRequest = {
-            merchantAccount: "MerchantAccount",
-            recurringDetailReference: "reference",
-            shopperReference: "test-123",
+            merchantAccount: process.env.ADYEN_MERCHANT!,
+            shopperReference: "shopperReference",
+            recurringDetailReference: res.additionalData!["recurring.recurringDetailReference"]
         };
 
-        const result = await recurring.disable(request);
-        expect(result).toEqual(disableSuccess);
+        try {
+            const result = await recurring.disable(request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e.message);
+        }
     });
 });

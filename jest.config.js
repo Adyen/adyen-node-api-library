@@ -28,7 +28,7 @@ module.exports = {
     coveragePathIgnorePatterns: [
         "<rootDir>/src/typings"
     ],
-    setupFiles: ["<rootDir>config.ts"],
+    setupFiles: ["<rootDir>config.ts", "dotenv/config"],
     unmockedModulePathPatterns: [
         "/dist"
     ],

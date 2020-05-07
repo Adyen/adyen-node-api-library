@@ -10,6 +10,7 @@ export const paymentsSuccess = JSON.stringify({
         alias: "H167852639363479",
         cardPaymentMethod: "visa",
         cardIssuingCountry: "NL",
+        "recurring.recurringDetailReference": "8415883203388055",
     },
     fraudResult: {
         accountScore: 0,

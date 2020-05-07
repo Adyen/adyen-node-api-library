@@ -20,17 +20,18 @@
  */
 
 import nock from "nock";
-import { createMockClientFromResponse } from "../__mocks__/base";
+import { createClient } from "../__mocks__/base";
 import {originKeysSuccess} from "../__mocks__/checkoutUtility/originkeysSuccess";
 import CheckoutUtility from "../services/checkoutUtility";
 import Client from "../client";
 
 describe("Checkout Utility", (): void => {
-    it("should get origin keys", async (): Promise<void> => {
-        const client = createMockClientFromResponse();
+    test.each([false,true])("should get origin keys. isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const client = createClient();
         const checkoutUtility = new CheckoutUtility(client);
         const originKeysRequest: ICheckoutUtility.CheckoutUtilityRequest = {
-            originDomains: ["www.test.com", "https://www.your-domain2.com"],
+            originDomains: ["https://www.your-domain.com"],
         };
 
         nock(`${client.config.checkoutEndpoint}`)
@@ -39,8 +40,7 @@ describe("Checkout Utility", (): void => {
 
         const originKeysResponse = await checkoutUtility.originKeys(originKeysRequest);
         if (originKeysResponse.originKeys) {
-            return expect(originKeysResponse.originKeys["https://www.your-domain1.com"])
-                .toEqual("pub.v2.7814286629520534.aHR0cHM6Ly93d3cueW91ci1kb21haW4xLmNvbQ.UEwIBmW9-c_uXo5wSEr2w8Hz8hVIpujXPHjpcEse3xI");
+            return expect(originKeysResponse.originKeys["https://www.your-domain.com"].startsWith("pub.v2")).toBeTruthy();
         }
         fail("Error: originKeysResponse.originKeys is empty");
     });
