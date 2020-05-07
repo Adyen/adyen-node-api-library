@@ -45,55 +45,90 @@ var disableSuccess_1 = require("../__mocks__/recurring/disableSuccess");
 var listRecurringDetailsSuccess_1 = require("../__mocks__/recurring/listRecurringDetailsSuccess");
 var recurring_1 = __importDefault(require("../services/recurring"));
 var client_1 = __importDefault(require("../client"));
+var paymentsSuccess_1 = require("../__mocks__/checkout/paymentsSuccess");
+var checkout_spec_1 = require("./checkout.spec");
+var checkout_1 = __importDefault(require("../services/checkout"));
 var createRecurringDetailsRequest = function () {
     return {
-        merchantAccount: "MerchantAccount",
-        recurring: { contract: "ONECLICK" },
-        shopperReference: "test-123",
+        merchantAccount: process.env.ADYEN_MERCHANT,
+        recurring: { contract: "RECURRING" },
+        shopperReference: "shopperReference",
     };
 };
 var client;
 var recurring;
+var checkout;
 var scope;
 beforeEach(function () {
-    client = base_1.createMockClientFromResponse();
+    if (!nock_1.default.isActive()) {
+        nock_1.default.activate();
+    }
+    client = base_1.createClient();
     recurring = new recurring_1.default(client);
+    checkout = new checkout_1.default(client);
     scope = nock_1.default(client.config.endpoint + "/pal/servlet/Recurring/" + client_1.default.RECURRING_API_VERSION);
 });
+afterEach(function () {
+    nock_1.default.cleanAll();
+});
 describe("Recurring", function () {
-    it("should test have recurring details list", function () { return __awaiter(void 0, void 0, void 0, function () {
-        var request, result;
+    test.each([false, true])("should test have recurring details list, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
+        var request, result, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    !isMock && nock_1.default.restore();
                     scope.post("/listRecurringDetails")
                         .reply(200, listRecurringDetailsSuccess_1.listRecurringDetailsSuccess);
                     request = createRecurringDetailsRequest();
-                    return [4 /*yield*/, recurring.listRecurringDetails(request)];
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, recurring.listRecurringDetails(request)];
+                case 2:
                     result = _a.sent();
-                    expect(result).toEqual(listRecurringDetailsSuccess_1.listRecurringDetailsSuccess);
-                    return [2 /*return*/];
+                    expect(result).toBeTruthy();
+                    return [3 /*break*/, 4];
+                case 3:
+                    e_1 = _a.sent();
+                    fail(e_1.message);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     }); });
-    it("should disable", function () { return __awaiter(void 0, void 0, void 0, function () {
-        var request, result;
+    test.each([false, true])("should disable, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
+        var paymentsRequest, res, request, result, e_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    !isMock && nock_1.default.restore();
+                    scope.post("/payments")
+                        .reply(200, paymentsSuccess_1.paymentsSuccess);
+                    paymentsRequest = checkout_spec_1.createPaymentsCheckoutRequest();
+                    return [4 /*yield*/, checkout.payments(paymentsRequest)];
+                case 1:
+                    res = _a.sent();
                     scope.post("/disable")
                         .reply(200, disableSuccess_1.disableSuccess);
                     request = {
-                        merchantAccount: "MerchantAccount",
-                        recurringDetailReference: "reference",
-                        shopperReference: "test-123",
+                        merchantAccount: process.env.ADYEN_MERCHANT,
+                        shopperReference: "shopperReference",
+                        recurringDetailReference: res.additionalData["recurring.recurringDetailReference"]
                     };
+                    _a.label = 2;
+                case 2:
+                    _a.trys.push([2, 4, , 5]);
                     return [4 /*yield*/, recurring.disable(request)];
-                case 1:
+                case 3:
                     result = _a.sent();
-                    expect(result).toEqual(disableSuccess_1.disableSuccess);
-                    return [2 /*return*/];
+                    expect(result).toBeTruthy();
+                    return [3 /*break*/, 5];
+                case 4:
+                    e_2 = _a.sent();
+                    fail(e_2.message);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     }); });

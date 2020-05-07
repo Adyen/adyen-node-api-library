@@ -49,7 +49,7 @@ var client;
 var terminalLocalAPI;
 var scope;
 beforeEach(function () {
-    client = base_1.createMockClientFromResponse();
+    client = base_1.createClient();
     terminalLocalAPI = new terminalLocalAPI_1.default(client);
     scope = nock_1.default(client.config.terminalApiLocalEndpoint + ":8443/nexo");
 });

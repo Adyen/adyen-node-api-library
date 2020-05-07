@@ -88,13 +88,16 @@ var TerminalCloudAPI = /** @class */ (function (_super) {
         return _this;
     }
     TerminalCloudAPI.setApplicationInfo = function (request) {
-        var applicationInfo = new applicationInfo_1.ApplicationInfo();
-        var saleToAcquirerData = { applicationInfo: applicationInfo };
-        var saleData = { saleToAcquirerData: saleToAcquirerData };
-        var paymentRequest = { saleData: saleData };
-        var saleToPoiRequest = { paymentRequest: paymentRequest };
-        var newRequest = { saleToPoiRequest: saleToPoiRequest };
-        return mergeDeep_1.default(request, newRequest);
+        if (request.saleToPoiRequest.paymentRequest) {
+            var applicationInfo = Buffer.from(JSON.stringify(new applicationInfo_1.ApplicationInfo())).toString("base64");
+            var saleToAcquirerData = { applicationInfo: applicationInfo };
+            var saleData = { saleToAcquirerData: saleToAcquirerData };
+            var paymentRequest = { saleData: saleData };
+            var saleToPoiRequest = { paymentRequest: paymentRequest };
+            var newRequest = { saleToPoiRequest: saleToPoiRequest };
+            return mergeDeep_1.default(request, newRequest);
+        }
+        return request;
     };
     TerminalCloudAPI.prototype.async = function (terminalApiRequest) {
         var request = TerminalCloudAPI.setApplicationInfo(terminalApiRequest);

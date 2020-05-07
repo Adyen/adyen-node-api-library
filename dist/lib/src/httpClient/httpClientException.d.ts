@@ -1,12 +1,19 @@
 /// <reference types="node" />
-import { IncomingHttpHeaders, IncomingMessage } from "http";
+import { IncomingHttpHeaders } from "http";
+interface ExceptionInterface {
+    message: string;
+    statusCode?: number;
+    errorCode?: string;
+    responseHeaders?: IncomingHttpHeaders;
+    responseBody?: string;
+}
 declare class HttpClientException implements Error {
     statusCode: number;
-    errorCode: string | undefined;
-    responseHeaders: IncomingHttpHeaders | undefined;
+    errorCode?: string;
+    responseHeaders?: IncomingHttpHeaders;
     readonly message: string;
     readonly name: string;
-    responseBody: IncomingMessage | undefined;
-    constructor(message: string, statusCode?: number, errorCode?: string, responseHeaders?: IncomingHttpHeaders, responseBody?: IncomingMessage);
+    responseBody?: string;
+    constructor(props: ExceptionInterface);
 }
 export default HttpClientException;

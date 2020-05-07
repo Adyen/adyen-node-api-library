@@ -1,6 +1,6 @@
 import Service from "../../../service";
 import Resource from "../../resource";
-declare type AccountHoldersEndpoints = "/createAccountHolder" | "/getAccountHolder" | "/updateAccountHolder" | "/suspendAccountHolder" | "/unSuspendAccountHolder" | "/closeAccountHolder";
+declare type AccountHoldersEndpoints = "/createAccountHolder" | "/getAccountHolder" | "/updateAccountHolder" | "/updateAccountHolderState" | "/suspendAccountHolder" | "/unSuspendAccountHolder" | "/closeAccountHolder";
 declare type VerificationEndpoints = "/uploadDocument" | "/getUploadedDocuments" | "/deleteBankAccounts" | "/deletePayoutMethods" | "/deleteShareholders" | "/checkAccountHolder";
 declare type AccountsEndpoints = "/createAccount" | "/updateAccount" | "/closeAccount";
 export declare enum AccountTypesEnum {

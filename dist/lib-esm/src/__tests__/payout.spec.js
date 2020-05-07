@@ -46,7 +46,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import nock from "nock";
-import { createMockClientFromResponse } from "../__mocks__/base";
+import { createClient } from "../__mocks__/base";
 import Payout from "../services/payout";
 import Client from "../client";
 import { ApiConstants } from "../constants/apiConstants";
@@ -65,7 +65,7 @@ var storeDetail = JSON.stringify({
 });
 var amountAndReference = {
     amount: {
-        value: 1000,
+        value: 1,
         currency: "USD"
     },
     reference: "randomReference",
@@ -76,107 +76,142 @@ var defaultData = {
     shopperEmail: "johndoe@email.com",
     shopperReference: "shopperReference",
 };
-var mockStoreDetailRequest = function (merchantAccount) { return (__assign(__assign({}, defaultData), { entityType: "NaturalPerson", recurring: {
-        contract: "ONECLICK"
-    }, merchantAccount: merchantAccount })); };
-var mockSubmitRequest = function (merchantAccount) { return (__assign(__assign(__assign({ selectedRecurringDetailReference: "LATEST", recurring: {
-        contract: "ONECLICK"
-    } }, defaultData), amountAndReference), { merchantAccount: merchantAccount })); };
+var mockStoreDetailRequest = function (merchantAccount) {
+    if (merchantAccount === void 0) { merchantAccount = process.env.ADYEN_MERCHANT; }
+    return (__assign(__assign({}, defaultData), { card: {
+            cvc: "737",
+            expiryMonth: "03",
+            expiryYear: "2020",
+            number: "4111111111111111",
+            holderName: "John Smith"
+        }, entityType: "NaturalPerson", recurring: {
+            contract: "RECURRING"
+        }, merchantAccount: merchantAccount }));
+};
+var mockSubmitRequest = function (merchantAccount) {
+    if (merchantAccount === void 0) { merchantAccount = process.env.ADYEN_MERCHANT; }
+    return (__assign(__assign(__assign({ selectedRecurringDetailReference: "LATEST", recurring: {
+            contract: "RECURRING"
+        } }, defaultData), amountAndReference), { merchantAccount: merchantAccount }));
+};
 var mockStoreDetailAndSubmitRequest = function (merchantAccount) { return (__assign(__assign({}, amountAndReference), (mockStoreDetailRequest(merchantAccount)))); };
-var mockPayoutRequest = function (merchantAccount) { return (__assign(__assign(__assign({}, amountAndReference), defaultData), { card: {
-        expiryMonth: "10",
-        expiryYear: "2020",
-        holderName: "John Smith",
-        number: "4111111111111111",
-    }, merchantAccount: merchantAccount })); };
+var mockPayoutRequest = function (merchantAccount) {
+    if (merchantAccount === void 0) { merchantAccount = process.env.ADYEN_MERCHANT; }
+    return (__assign(__assign(__assign({}, amountAndReference), defaultData), { card: {
+            expiryMonth: "10",
+            expiryYear: "2020",
+            holderName: "John Smith",
+            number: "4111111111111111",
+        }, merchantAccount: merchantAccount }));
+};
 var client;
+var clientStore;
+var clientReview;
 var payout;
 var scope;
 beforeEach(function () {
-    client = createMockClientFromResponse();
+    if (!nock.isActive()) {
+        nock.activate();
+    }
+    client = createClient();
+    clientStore = createClient(process.env.ADYEN_STOREPAYOUT_APIKEY);
+    clientReview = createClient(process.env.ADYEN_REVIEWPAYOUT_APIKEY);
     scope = nock(client.config.endpoint + "/pal/servlet/Payout/" + Client.API_VERSION);
     payout = new Payout(client);
 });
+afterEach(function () {
+    nock.cleanAll();
+});
 describe("PayoutTest", function () {
-    it("should succeed on store detail and submit third party", function () {
+    test.each([false, true])("should succeed on store detail and submit third party, isMock: %p", function (isMock) {
         return __awaiter(this, void 0, void 0, function () {
             var request, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        request = mockStoreDetailAndSubmitRequest("" + client.config.merchantAccount);
-                        scope.post("/storeDetail").reply(200, storeDetailAndSubmitThirdParty);
-                        return [4 /*yield*/, payout.storeDetail(request)];
+                        !isMock && nock.restore();
+                        payout = new Payout(clientStore);
+                        request = mockStoreDetailAndSubmitRequest();
+                        scope.post("/storeDetailAndSubmitThirdParty").reply(200, storeDetailAndSubmitThirdParty);
+                        return [4 /*yield*/, payout.storeDetailAndSubmitThirdParty(request)];
                     case 1:
                         result = _a.sent();
                         expect(result.resultCode).toEqual("[payout-submit-received]");
-                        expect(result.pspReference).toEqual("8515131751004933");
-                        if (result.additionalData) {
-                            expect(result.additionalData[ApiConstants.FRAUD_RESULT_TYPE]).toEqual("GREEN");
-                            expect(result.additionalData[ApiConstants.FRAUD_MANUAL_REVIEW]).toEqual("false");
-                        }
+                        expect(result.pspReference).toBeTruthy();
                         return [2 /*return*/];
                 }
             });
         });
     });
-    it("should succeed on store detail", function () {
+    test.each([false, true])("should succeed on store detail, isMock: %p", function (isMock) {
         return __awaiter(this, void 0, void 0, function () {
             var request, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        !isMock && nock.restore();
+                        payout = new Payout(clientStore);
                         scope.post("/storeDetail").reply(200, storeDetail);
-                        request = mockStoreDetailRequest("MOCKED_MERCHANT_ACC");
+                        request = mockStoreDetailRequest();
                         return [4 /*yield*/, payout.storeDetail(request)];
                     case 1:
                         result = _a.sent();
                         expect("Success").toEqual(result.resultCode);
-                        expect("8515136787207087").toEqual(result.pspReference);
-                        expect("8415088571022720").toEqual(result.recurringDetailReference);
+                        expect(result.pspReference).toBeTruthy();
+                        expect(result.recurringDetailReference).toBeTruthy();
                         return [2 /*return*/];
                 }
             });
         });
     });
-    it("should succeed on confirm third party", function () {
+    test.each([false, true])("should succeed on confirm third party, isMock: %p", function (isMock) {
         return __awaiter(this, void 0, void 0, function () {
-            var request, result;
+            var storeRequest, storeResult, request, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        !isMock && nock.restore();
+                        payout = new Payout(clientStore);
+                        scope.post("/storeDetail").reply(200, storeDetail);
+                        storeRequest = mockStoreDetailRequest();
+                        return [4 /*yield*/, payout.storeDetail(storeRequest)];
+                    case 1:
+                        storeResult = _a.sent();
+                        payout = new Payout(clientReview);
                         scope.post("/confirmThirdParty")
                             .reply(200, {
                             pspReference: "8815131762537886",
                             response: "[payout-confirm-received]"
                         });
                         request = {
-                            merchantAccount: "MOCKED_MERCHANT_ACCOUNT",
-                            originalReference: "reference"
+                            merchantAccount: process.env.ADYEN_MERCHANT,
+                            originalReference: storeResult.pspReference
                         };
                         return [4 /*yield*/, payout.confirmThirdParty(request)];
-                    case 1:
+                    case 2:
                         result = _a.sent();
                         expect(result.response).toEqual("[payout-confirm-received]");
-                        expect(result.pspReference).toEqual("8815131762537886");
+                        expect(result.pspReference).toBeTruthy();
                         return [2 /*return*/];
                 }
             });
         });
     });
-    it("should succeed on submit third party", function () {
+    test.each([false, true])("should succeed on submit third party, isMock: %p", function (isMock) {
         return __awaiter(this, void 0, void 0, function () {
             var request, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        !isMock && nock.restore();
+                        payout = new Payout(clientStore);
                         scope.post("/submitThirdParty").reply(200, storeDetailAndSubmitThirdParty);
-                        request = mockSubmitRequest("MOCKED_MERCHANT_ACC");
+                        request = mockSubmitRequest();
                         return [4 /*yield*/, payout.submitThirdparty(request)];
                     case 1:
                         result = _a.sent();
                         expect(result.resultCode).toEqual("[payout-submit-received]");
-                        expect(result.pspReference).toEqual("8515131751004933");
+                        expect(result.pspReference).toBeTruthy();
                         if (result.additionalData) {
                             expect(result.additionalData[ApiConstants.FRAUD_RESULT_TYPE]).toEqual("GREEN");
                             expect(result.additionalData[ApiConstants.FRAUD_MANUAL_REVIEW]).toEqual("false");
@@ -186,46 +221,56 @@ describe("PayoutTest", function () {
             });
         });
     });
-    it("should succeed on decline third party", function () {
+    test.each([false, true])("should succeed on decline third party, isMock: %p", function (isMock) {
         return __awaiter(this, void 0, void 0, function () {
-            var request, result;
+            var storeRequest, storeResult, request, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        scope.post("/storeDetailAndSubmitThirdParty").reply(200, {
-                            pspReference: "8815131762537886",
-                            response: "[payout-confirm-received]"
-                        });
-                        request = {
-                            merchantAccount: "MOCKED_MERCHANT_ACC",
-                            originalReference: "reference"
-                        };
-                        return [4 /*yield*/, payout.declineThirdParty(request)];
+                        !isMock && nock.restore();
+                        payout = new Payout(clientStore);
+                        scope.post("/storeDetail").reply(200, storeDetail);
+                        storeRequest = mockStoreDetailRequest();
+                        return [4 /*yield*/, payout.storeDetail(storeRequest)];
                     case 1:
+                        storeResult = _a.sent();
+                        payout = new Payout(clientReview);
+                        request = {
+                            merchantAccount: process.env.ADYEN_MERCHANT,
+                            originalReference: storeResult.pspReference
+                        };
+                        scope.post("/declineThirdParty")
+                            .reply(200, {
+                            pspReference: "8815131762537886",
+                            response: "[payout-decline-received]"
+                        });
+                        return [4 /*yield*/, payout.declineThirdParty(request)];
+                    case 2:
                         result = _a.sent();
-                        expect(result.response).toEqual("[payout-confirm-received]");
-                        expect(result.pspReference).toEqual("8815131762537886");
+                        expect(result.response).toEqual("[payout-decline-received]");
+                        expect(result.pspReference).toBeTruthy();
                         return [2 /*return*/];
                 }
             });
         });
     });
-    it("should succeed on payout", function () {
+    test.each([false, true])("should succeed on payout, isMock: %p", function (isMock) {
         return __awaiter(this, void 0, void 0, function () {
             var request, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        !isMock && nock.restore();
                         scope.post("/payout").reply(200, {
                             pspReference: "8815131762537886",
                             resultCode: "Received",
                         });
-                        request = mockPayoutRequest("MOCKED_MERCHANT_ACC");
+                        request = mockPayoutRequest();
                         return [4 /*yield*/, payout.payout(request)];
                     case 1:
                         result = _a.sent();
                         expect(result.resultCode).toEqual("Received");
-                        expect(result.pspReference).toEqual("8815131762537886");
+                        expect(result.pspReference).toBeTruthy();
                         return [2 /*return*/];
                 }
             });

@@ -21,18 +21,18 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var HttpClientException = /** @class */ (function () {
-    function HttpClientException(message, statusCode, errorCode, responseHeaders, responseBody) {
+    function HttpClientException(props) {
         this.statusCode = 500;
         this.name = "HttpClientException";
-        this.message = message;
-        if (errorCode)
-            this.errorCode = errorCode;
-        if (statusCode)
-            this.statusCode = statusCode;
-        if (responseHeaders)
-            this.responseHeaders = responseHeaders;
-        if (responseBody)
-            this.responseBody = responseBody;
+        this.message = props.message;
+        if (props.responseHeaders)
+            this.responseHeaders = props.responseHeaders;
+        if (props.responseBody)
+            this.responseBody = props.responseBody;
+        if (props.errorCode)
+            this.errorCode = props.errorCode;
+        if (props.statusCode)
+            this.statusCode = props.statusCode;
     }
     return HttpClientException;
 }());

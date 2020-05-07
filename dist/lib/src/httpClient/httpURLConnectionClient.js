@@ -79,7 +79,7 @@ var HttpURLConnectionClient = /** @class */ (function () {
         }
         else {
             var authString = config.username + ":" + config.password;
-            var authStringEnc = new Buffer(authString).toString("base64");
+            var authStringEnc = Buffer.from(authString, "utf8").toString("base64");
             requestOptions.headers.Authorization = "Basic " + authStringEnc;
         }
         requestOptions.headers[apiConstants_1.ApiConstants.CONTENT_TYPE] = apiConstants_1.ApiConstants.APPLICATION_JSON_TYPE;
@@ -127,20 +127,49 @@ var HttpURLConnectionClient = /** @class */ (function () {
         return new Promise(function (resolve, reject) {
             connectionRequest.flushHeaders();
             connectionRequest.on("response", function (res) {
-                var resData = "";
-                var getException = function () { return new httpClientException_1.default("HTTP Exception: " + res.statusCode + ". " + res.statusMessage, res.statusCode, undefined, res.headers, res); };
-                var exception = getException();
+                var response = {
+                    statusCode: res.statusCode,
+                    headers: res.headers,
+                    body: []
+                };
+                var getException = function (responseBody) { return new httpClientException_1.default({
+                    message: "HTTP Exception: " + response.statusCode + ". " + res.statusMessage,
+                    statusCode: response.statusCode,
+                    errorCode: undefined,
+                    responseHeaders: response.headers,
+                    responseBody: responseBody,
+                }); };
+                var exception = getException(response.body.toString());
                 res.on("data", function (data) {
-                    if (res.statusCode && res.statusCode !== 200) {
+                    response.body.push(data);
+                });
+                res.on("end", function () {
+                    if (!res.complete) {
+                        reject(new Error("The connection was terminated while the message was still being sent"));
+                    }
+                    if (response.body.length) {
+                        response.body = response.body.join();
+                    }
+                    if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
                         try {
-                            var formattedData = JSON.parse(data.toString());
+                            var dataString = response.body.toString();
+                            var formattedData = JSON.parse(dataString);
                             var isApiError = "status" in formattedData;
                             var isRequestError = "errors" in formattedData;
                             if (isApiError) {
-                                exception = new httpClientException_1.default("HTTP Exception: " + formattedData.status + ". " + res.statusMessage + ": " + formattedData.message, formattedData.status, formattedData.errorCode, res.headers, res);
+                                exception = new httpClientException_1.default({
+                                    message: "HTTP Exception: " + formattedData.status + ". " + res.statusMessage + ": " + formattedData.message,
+                                    statusCode: formattedData.status,
+                                    errorCode: formattedData.errorCode,
+                                    responseHeaders: res.headers,
+                                    responseBody: dataString,
+                                });
                             }
                             else if (isRequestError) {
-                                exception = new Error(data);
+                                exception = new Error(dataString);
+                            }
+                            else {
+                                exception = getException(dataString);
                             }
                         }
                         catch (e) {
@@ -150,13 +179,7 @@ var HttpURLConnectionClient = /** @class */ (function () {
                             reject(exception);
                         }
                     }
-                    resData += data;
-                });
-                res.on("end", function () {
-                    if (!res.complete) {
-                        reject(new Error("The connection was terminated while the message was still being sent"));
-                    }
-                    resolve(resData);
+                    resolve(response.body);
                 });
                 res.on("error", reject);
             });
@@ -177,7 +200,7 @@ var HttpURLConnectionClient = /** @class */ (function () {
             };
         }
         catch (e) {
-            return Promise.reject(new httpClientException_1.default("Error loading certificate from path: " + e.message));
+            return Promise.reject(new httpClientException_1.default({ message: "Error loading certificate from path: " + e.message }));
         }
     };
     HttpURLConnectionClient.CHARSET = "utf-8";
