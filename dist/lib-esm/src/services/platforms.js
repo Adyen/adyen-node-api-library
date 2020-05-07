@@ -31,6 +31,17 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 import Service from "../service";
 import PlatformsAccount from "./resource/platforms/account";
 import getJsonResponse from "./../helpers/getJsonResponse";
@@ -57,6 +68,7 @@ var Platforms = /** @class */ (function (_super) {
         _this._createAccountHolder = new PlatformsAccount(_this, "/createAccountHolder");
         _this._getAccountHolder = new PlatformsAccount(_this, "/getAccountHolder");
         _this._updateAccountHolder = new PlatformsAccount(_this, "/updateAccountHolder");
+        _this._updateAccountHolderState = new PlatformsAccount(_this, "/updateAccountHolderState");
         _this._suspendAccountHolder = new PlatformsAccount(_this, "/suspendAccountHolder");
         _this._unSuspendAccountHolder = new PlatformsAccount(_this, "/unSuspendAccountHolder");
         _this._closeAccountHolder = new PlatformsAccount(_this, "/closeAccountHolder");
@@ -89,17 +101,18 @@ var Platforms = /** @class */ (function (_super) {
             var deleteBankAccounts = this.createRequest(this._deleteBankAccounts);
             var deletePayoutMethods = this.createRequest(this._deletePayoutMethods);
             var deleteShareholders = this.createRequest(this._deleteShareholders);
-            var checkAccountHolder = this.createRequest(this._checkAccountHolder);
             var createAccountHolder = this.createRequest(this._createAccountHolder);
             var getAccountHolder = this.createRequest(this._getAccountHolder);
             var updateAccountHolder = this.createRequest(this._updateAccountHolder);
+            var updateAccountHolderState = this.createRequest(this._updateAccountHolderState);
             var suspendAccountHolder = this.createRequest(this._suspendAccountHolder);
             var unSuspendAccountHolder = this.createRequest(this._unSuspendAccountHolder);
             var closeAccountHolder = this.createRequest(this._closeAccountHolder);
+            var checkAccountHolder = this.createRequest(this._checkAccountHolder);
             var accounts = { closeAccount: closeAccount, updateAccount: updateAccount, createAccount: createAccount };
             var verification = { uploadDocument: uploadDocument, getUploadedDocuments: getUploadedDocuments, deleteBankAccounts: deleteBankAccounts, deletePayoutMethods: deletePayoutMethods, deleteShareholders: deleteShareholders, checkAccountHolder: checkAccountHolder };
-            var accountHolders = { createAccountHolder: createAccountHolder, getAccountHolder: getAccountHolder, updateAccountHolder: updateAccountHolder, suspendAccountHolder: suspendAccountHolder, unSuspendAccountHolder: unSuspendAccountHolder, closeAccountHolder: closeAccountHolder };
-            return { accounts: accounts, verification: verification, accountHolders: accountHolders };
+            var accountHolders = { createAccountHolder: createAccountHolder, getAccountHolder: getAccountHolder, updateAccountHolder: updateAccountHolder, updateAccountHolderState: updateAccountHolderState, suspendAccountHolder: suspendAccountHolder, unSuspendAccountHolder: unSuspendAccountHolder, closeAccountHolder: closeAccountHolder };
+            return __assign(__assign(__assign({}, accounts), verification), accountHolders);
         },
         enumerable: true,
         configurable: true
@@ -133,8 +146,8 @@ var Platforms = /** @class */ (function (_super) {
             var getNotificationConfigurationList = this.createRequest(this._getNotificationConfigurationList);
             var testNotificationConfiguration = this.createRequest(this._testNotificationConfiguration);
             var updateNotificationConfiguration = this.createRequest(this._updateNotificationConfiguration);
-            var deleteNotificationConfiguration = this.createRequest(this._deleteNotificationConfiguration);
-            return { createNotificationConfiguration: createNotificationConfiguration, getNotificationConfiguration: getNotificationConfiguration, getNotificationConfigurationList: getNotificationConfigurationList, testNotificationConfiguration: testNotificationConfiguration, updateNotificationConfiguration: updateNotificationConfiguration, deleteNotificationConfiguration: deleteNotificationConfiguration, };
+            var deleteNotificationConfigurations = this.createRequest(this._deleteNotificationConfiguration);
+            return { createNotificationConfiguration: createNotificationConfiguration, getNotificationConfiguration: getNotificationConfiguration, getNotificationConfigurationList: getNotificationConfigurationList, testNotificationConfiguration: testNotificationConfiguration, updateNotificationConfiguration: updateNotificationConfiguration, deleteNotificationConfigurations: deleteNotificationConfigurations };
         },
         enumerable: true,
         configurable: true

@@ -52,7 +52,6 @@ const notificationConfigurationDetails: NotificationConfigurationDetails = {
     };
 
 const assertError = (e: HttpClientException): void => {
-    console.log(e);
     if (e.responseBody?.includes("Account code does not exist or invalid") || e.responseBody?.includes("Failed to retrieve account holder")) {
         return;
     }
