@@ -29,6 +29,7 @@ var createMockedCertificate = function (CN) { return ({
     valid_from: "Nov 19 15:03:32 2018 GMT",
     valid_to: "Nov 11 15:03:32 2048 GMT",
     fingerprint: "MOCKED_FINGERPRINT",
+    fingerprint256: "MOCKED_FINGERPRINT_256",
     ext_key_usage: ["1.2.3.4.5.6.7.8"],
     serialNumber: "1000",
     raw: Buffer.from("test")

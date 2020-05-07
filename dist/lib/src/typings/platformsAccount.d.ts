@@ -1186,6 +1186,28 @@ declare namespace IPlatformsAccount {
          */
         resultCode?: string;
     }
+    interface UpdateAccountHolderStateResponse {
+        /**
+         * The account holder code.
+         */
+        accountHolderCode: string;
+        /**
+         * The account holder status.
+         */
+        accountHolderStatus: string;
+        /**
+         * A list of fields that caused the `/updateAccount` request to fail.
+         */
+        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        /**
+         * The reference of a request.  Can be used to uniquely identify the request.
+         */
+        pspReference: string;
+        /**
+         * The result code.
+         */
+        resultCode?: string;
+    }
     interface UpdatePayoutScheduleRequest {
         /**
          * Direction on how to handle any payouts that have already been scheduled.

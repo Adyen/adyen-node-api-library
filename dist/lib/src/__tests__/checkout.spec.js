@@ -70,7 +70,7 @@ var paymentsResultSucess_1 = require("../__mocks__/checkout/paymentsResultSucess
 var client_1 = __importDefault(require("../client"));
 var checkout_1 = __importDefault(require("../services/checkout"));
 var httpClientException_1 = __importDefault(require("../httpClient/httpClientException"));
-var merchantAccount = "MagentoMerchantTest";
+var merchantAccount = process.env.ADYEN_MERCHANT;
 var reference = "Your order number";
 function createAmountObject(currency, value) {
     return {
@@ -90,8 +90,8 @@ function createPaymentsDetailsRequest() {
 function createPaymentsCheckoutRequest() {
     var paymentMethodDetails = {
         cvc: "737",
-        expiryMonth: "10",
-        expiryYear: "2018",
+        expiryMonth: "03",
+        expiryYear: "2030",
         holderName: "John Smith",
         number: "4111111111111111",
         type: "scheme",
@@ -102,6 +102,10 @@ function createPaymentsCheckoutRequest() {
         paymentMethod: paymentMethodDetails,
         reference: reference,
         returnUrl: "https://your-company.com/...",
+        enableRecurring: true,
+        enableOneClick: true,
+        shopperReference: "shopperReference",
+        storePaymentMethod: true
     };
 }
 exports.createPaymentsCheckoutRequest = createPaymentsCheckoutRequest;
@@ -112,59 +116,72 @@ function createPaymentSessionRequest() {
         merchantAccount: merchantAccount,
         reference: reference,
         returnUrl: "https://your-company.com/...",
+        channel: "Web",
+        sdkVersion: "3.7.0"
     };
 }
 var client;
 var checkout;
 var scope;
 beforeEach(function () {
-    client = base_1.createMockClientFromResponse();
+    if (!nock_1.default.isActive()) {
+        nock_1.default.activate();
+    }
+    client = base_1.createClient();
     scope = nock_1.default(client.config.checkoutEndpoint + "/" + client_1.default.CHECKOUT_API_VERSION);
     checkout = new checkout_1.default(client);
 });
+afterEach(function () {
+    nock_1.default.cleanAll();
+});
 describe("Checkout", function () {
-    it("should make a payment", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([false, true])("should make a payment. isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var paymentsRequest, paymentsResponse;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    !isMock && nock_1.default.restore();
                     scope.post("/payments")
                         .reply(200, paymentsSuccess_1.paymentsSuccess);
                     paymentsRequest = createPaymentsCheckoutRequest();
                     return [4 /*yield*/, checkout.payments(paymentsRequest)];
                 case 1:
                     paymentsResponse = _a.sent();
-                    expect(paymentsResponse.pspReference).toEqual("8535296650153317");
+                    expect(paymentsResponse.pspReference).toBeTruthy();
                     return [2 /*return*/];
             }
         });
     }); });
-    it("should return correct Exception", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([false, true])("should return correct Exception, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var paymentsRequest, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    !isMock && nock_1.default.restore();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
                     scope.post("/payments")
                         .reply(401);
                     paymentsRequest = createPaymentsCheckoutRequest();
                     return [4 /*yield*/, checkout.payments(paymentsRequest)];
-                case 1:
-                    _a.sent();
-                    return [3 /*break*/, 3];
                 case 2:
+                    _a.sent();
+                    return [3 /*break*/, 4];
+                case 3:
                     e_1 = _a.sent();
                     expect(e_1 instanceof httpClientException_1.default).toBeTruthy();
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     }); });
-    it("should have valid payment methods", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([false, true])("should have valid payment methods, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var paymentMethodsRequest, paymentMethodsResponse;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    !isMock && nock_1.default.restore();
                     paymentMethodsRequest = { merchantAccount: "MagentoMerchantTest" };
                     scope.post("/paymentMethods")
                         .reply(200, paymentMethodsSuccess_1.paymentMethodsSuccess);
@@ -172,8 +189,7 @@ describe("Checkout", function () {
                 case 1:
                     paymentMethodsResponse = _a.sent();
                     if (paymentMethodsResponse && paymentMethodsResponse.paymentMethods) {
-                        expect(paymentMethodsResponse.paymentMethods.length).toEqual(65);
-                        expect(paymentMethodsResponse.paymentMethods[0].name).toEqual("AliPay");
+                        expect(paymentMethodsResponse.paymentMethods.length).toBeGreaterThan(0);
                     }
                     else {
                         fail();
@@ -182,11 +198,12 @@ describe("Checkout", function () {
             }
         });
     }); });
-    it("should have valid payment link", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([false, true])("should have valid payment link, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var amount, expiresAt, paymentLinkRequest, paymentLinkSuccess, paymentSuccessLinkResponse;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    !isMock && nock_1.default.restore();
                     amount = createAmountObject("BRL", 1000);
                     expiresAt = "2019-12-17T10:05:29Z";
                     paymentLinkRequest = {
@@ -213,7 +230,6 @@ describe("Checkout", function () {
                             country: "BR",
                             stateOrProvince: "SP"
                         },
-                        expiresAt: expiresAt,
                         reference: reference
                     };
                     paymentLinkSuccess = {
@@ -226,16 +242,20 @@ describe("Checkout", function () {
                     return [4 /*yield*/, checkout.paymentLinks(paymentLinkRequest)];
                 case 1:
                     paymentSuccessLinkResponse = _a.sent();
-                    expect(paymentLinkSuccess).toEqual(paymentSuccessLinkResponse);
+                    expect(paymentSuccessLinkResponse).toBeTruthy();
                     return [2 /*return*/];
             }
         });
     }); });
-    it("should have payment details", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([false, true])("should have payment details, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var paymentsResponse;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    if (!isMock) {
+                        console.warn("Cannot perform /payments/details without manual user validation. Skipping test.");
+                        return [2 /*return*/];
+                    }
                     scope.post("/payments/details")
                         .reply(200, paymentsDetailsSuccess_1.paymentDetailsSuccess);
                     return [4 /*yield*/, checkout.paymentsDetails(createPaymentsDetailsRequest())];
@@ -246,11 +266,12 @@ describe("Checkout", function () {
             }
         });
     }); });
-    it("should have payment session success", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([false, true])("should have payment session success, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var paymentSessionRequest, paymentSessionResponse;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    !isMock && nock_1.default.restore();
                     scope.post("/paymentSession")
                         .reply(200, paymentSessionSucess_1.paymentSessionSuccess);
                     paymentSessionRequest = createPaymentSessionRequest();
@@ -262,11 +283,15 @@ describe("Checkout", function () {
             }
         });
     }); });
-    it("should have payments result", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([false, true])("should have payments result, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var paymentResultRequest, paymentResultResponse;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    if (!isMock) {
+                        console.warn("Cannot perform /payments/result without payload. Skipping test.");
+                        return [2 /*return*/];
+                    }
                     scope.post("/payments/result")
                         .reply(200, paymentsResultSucess_1.paymentsResultSuccess);
                     paymentResultRequest = {
@@ -280,8 +305,9 @@ describe("Checkout", function () {
             }
         });
     }); });
-    it("should have missing identifier on live", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([false, true])("should have missing identifier on live, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
+            !isMock && nock_1.default.restore();
             client.setEnvironment("LIVE");
             try {
                 new checkout_1.default(client);
@@ -293,23 +319,20 @@ describe("Checkout", function () {
             return [2 /*return*/];
         });
     }); });
-    it("should succeed on multibanco payment", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([false, true])("should succeed on multibanco payment, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var paymentsRequest, paymentsResponse;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    !isMock && nock_1.default.restore();
                     scope.post("/payments")
                         .reply(200, paymentsResultMultibancoSuccess_1.paymentsResultMultibancoSuccess);
                     paymentsRequest = createPaymentsCheckoutRequest();
                     return [4 /*yield*/, checkout.payments(paymentsRequest)];
                 case 1:
                     paymentsResponse = _a.sent();
-                    expect(paymentsResponse.pspReference).toEqual("8111111111111111");
-                    if (paymentsResponse.additionalData) {
-                        expect(paymentsResponse.additionalData["comprafacil.amount"]).toEqual("101.01");
-                        expect(paymentsResponse.additionalData["comprafacil.deadline"]).toEqual("3");
-                        expect(paymentsResponse.additionalData["comprafacil.entity"]).toEqual("12345");
-                    }
+                    expect(paymentsResponse.pspReference).toBeTruthy();
+                    expect(paymentsResponse.additionalData).toBeTruthy();
                     return [2 /*return*/];
             }
         });

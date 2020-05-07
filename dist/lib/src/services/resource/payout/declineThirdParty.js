@@ -41,7 +41,7 @@ var client_1 = __importDefault(require("../../../client"));
 var DeclineThirdParty = /** @class */ (function (_super) {
     __extends(DeclineThirdParty, _super);
     function DeclineThirdParty(service) {
-        return _super.call(this, service, service.client.config.endpoint + "/pal/servlet/Payout/" + client_1.default.API_VERSION + "/storeDetailAndSubmitThirdParty") || this;
+        return _super.call(this, service, service.client.config.endpoint + "/pal/servlet/Payout/" + client_1.default.API_VERSION + "/declineThirdParty") || this;
     }
     return DeclineThirdParty;
 }(resource_1.default));

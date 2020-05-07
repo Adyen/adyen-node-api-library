@@ -35,25 +35,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import nock from "nock";
-import { createMockClientFromResponse, createTerminalAPIPaymentRequest } from "../__mocks__/base";
+import { createClient, createTerminalAPIPaymentRequest, createTerminalAPIRefundRequest } from "../__mocks__/base";
 import { asyncRes } from "../__mocks__/terminalApi/async";
-import { syncRes } from "../__mocks__/terminalApi/sync";
+import { syncRefund, syncRes } from "../__mocks__/terminalApi/sync";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
 import { Convert } from "../typings/terminal";
 var client;
 var terminalCloudAPI;
 var scope;
 beforeEach(function () {
-    client = createMockClientFromResponse();
+    if (!nock.isActive()) {
+        nock.activate();
+    }
+    client = createClient(process.env.ADYEN_TERMINAL_APIKEY);
+    client.config.merchantAccount = process.env.ADYEN_TERMINAL_MERCHANT;
     terminalCloudAPI = new TerminalCloudAPI(client);
     scope = nock("" + client.config.terminalApiCloudEndpoint);
 });
+afterEach(function () {
+    nock.cleanAll();
+});
+var isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 describe("Terminal Cloud API", function () {
-    it("should make an async payment request", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([isCI, true])("should make an async payment request, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var terminalAPIPaymentRequest, requestResponse;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    !isMock && nock.restore();
                     scope.post("/async").reply(200, asyncRes);
                     terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
                     return [4 /*yield*/, terminalCloudAPI.async(terminalAPIPaymentRequest)];
@@ -64,18 +73,45 @@ describe("Terminal Cloud API", function () {
             }
         });
     }); });
-    it("should make a sync payment request", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([isCI, true])("should make a sync payment request, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var response, terminalAPIPaymentRequest, terminalAPIResponse;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, _b;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
                 case 0:
+                    !isMock && nock.restore();
                     response = Convert.toTerminalApiResponse(syncRes);
                     scope.post("/sync").reply(200, response);
                     terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
                     return [4 /*yield*/, terminalCloudAPI.sync(terminalAPIPaymentRequest)];
                 case 1:
-                    terminalAPIResponse = _a.sent();
-                    expect(terminalAPIResponse).toEqual(response);
+                    terminalAPIResponse = _c.sent();
+                    expect((_a = terminalAPIResponse.saleToPoiResponse) === null || _a === void 0 ? void 0 : _a.paymentResponse).toBeDefined();
+                    expect((_b = terminalAPIResponse.saleToPoiResponse) === null || _b === void 0 ? void 0 : _b.messageHeader).toBeDefined();
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    test.each([isCI, true])("should make an async refund request, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
+        var response, terminalAPIPaymentRequest, terminalAPIResponse, refundResponse, terminalAPIRefundRequest, terminalAPIRefundResponse;
+        var _a, _b, _c;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
+                case 0:
+                    !isMock && nock.restore();
+                    response = Convert.toTerminalApiResponse(syncRes);
+                    scope.post("/sync").reply(200, response);
+                    terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+                    return [4 /*yield*/, terminalCloudAPI.sync(terminalAPIPaymentRequest)];
+                case 1:
+                    terminalAPIResponse = _d.sent();
+                    refundResponse = Convert.toTerminalApiResponse(syncRefund);
+                    scope.post("/sync").reply(200, refundResponse);
+                    terminalAPIRefundRequest = createTerminalAPIRefundRequest((_b = (_a = terminalAPIResponse.saleToPoiResponse) === null || _a === void 0 ? void 0 : _a.paymentResponse) === null || _b === void 0 ? void 0 : _b.poiData.poiTransactionId);
+                    return [4 /*yield*/, terminalCloudAPI.sync(terminalAPIRefundRequest)];
+                case 2:
+                    terminalAPIRefundResponse = _d.sent();
+                    expect((_c = terminalAPIRefundResponse.saleToPoiResponse) === null || _c === void 0 ? void 0 : _c.reversalResponse).toBeDefined();
                     return [2 /*return*/];
             }
         });

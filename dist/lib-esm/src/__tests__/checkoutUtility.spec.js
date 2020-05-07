@@ -55,20 +55,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import nock from "nock";
-import { createMockClientFromResponse } from "../__mocks__/base";
+import { createClient } from "../__mocks__/base";
 import { originKeysSuccess } from "../__mocks__/checkoutUtility/originkeysSuccess";
 import CheckoutUtility from "../services/checkoutUtility";
 import Client from "../client";
 describe("Checkout Utility", function () {
-    it("should get origin keys", function () { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([false, true])("should get origin keys. isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var client, checkoutUtility, originKeysRequest, originKeysResponse;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    client = createMockClientFromResponse();
+                    !isMock && nock.restore();
+                    client = createClient();
                     checkoutUtility = new CheckoutUtility(client);
                     originKeysRequest = {
-                        originDomains: ["www.test.com", "https://www.your-domain2.com"],
+                        originDomains: ["https://www.your-domain.com"],
                     };
                     nock("" + client.config.checkoutEndpoint)
                         .post("/" + Client.CHECKOUT_UTILITY_API_VERSION + "/originKeys")
@@ -77,8 +78,7 @@ describe("Checkout Utility", function () {
                 case 1:
                     originKeysResponse = _a.sent();
                     if (originKeysResponse.originKeys) {
-                        return [2 /*return*/, expect(originKeysResponse.originKeys["https://www.your-domain1.com"])
-                                .toEqual("pub.v2.7814286629520534.aHR0cHM6Ly93d3cueW91ci1kb21haW4xLmNvbQ.UEwIBmW9-c_uXo5wSEr2w8Hz8hVIpujXPHjpcEse3xI")];
+                        return [2 /*return*/, expect(originKeysResponse.originKeys["https://www.your-domain.com"].startsWith("pub.v2")).toBeTruthy()];
                     }
                     fail("Error: originKeysResponse.originKeys is empty");
                     return [2 /*return*/];

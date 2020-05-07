@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import nock from "nock";
-import { createMockClientFromResponse, createTerminalAPIPaymentRequest } from "../__mocks__/base";
+import { createClient, createTerminalAPIPaymentRequest } from "../__mocks__/base";
 import { localEncRes, localSecuredRes, wrongEncRes } from "../__mocks__/terminalApi/local";
 import TerminalLocalAPI from "../services/terminalLocalAPI";
 import { Convert } from "../typings/terminal";
@@ -44,7 +44,7 @@ var client;
 var terminalLocalAPI;
 var scope;
 beforeEach(function () {
-    client = createMockClientFromResponse();
+    client = createClient();
     terminalLocalAPI = new TerminalLocalAPI(client);
     scope = nock(client.config.terminalApiLocalEndpoint + ":8443/nexo");
 });

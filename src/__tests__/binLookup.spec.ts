@@ -19,26 +19,18 @@
  * See the LICENSE file for more info.
  */
 import nock from "nock";
-import {createMockClientFromResponse} from "../__mocks__/base";
+import {createClient} from "../__mocks__/base";
 import BinLookup from "../services/binLookup";
 import Client from "../client";
 import HttpClientException from "../httpClient/httpClientException";
 
 const threeDSAvailabilitySuccess = {
-    dsPublicKeys: [{
-        brand: "visa",
-        directoryServerId: "F013371337",
-        publicKey: "eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsIm4iOiI4VFBxZkFOWk4xSUEzcHFuMkdhUVZjZ1g4LUpWZ1Y0M2diWURtYmdTY0N5SkVSN3lPWEJqQmQyaTBEcVFBQWpVUVBXVUxZU1FsRFRKYm91bVB1aXVoeVMxUHN2NTM4UHBRRnEySkNaSERkaV85WThVZG9hbmlrU095c2NHQWtBVmJJWHA5cnVOSm1wTTBwZ0s5VGxJSWVHYlE3ZEJaR01OQVJLQXRKeTY3dVlvbVpXV0ZBbWpwM2d4SDVzNzdCR2xkaE9RUVlQTFdybDdyS0pLQlUwNm1tZlktUDNpazk5MmtPUTNEak02bHR2WmNvLThET2RCR0RKYmdWRGFmb29LUnVNd2NUTXhDdTRWYWpyNmQyZkppVXlqNUYzcVBrYng4WDl6a1c3UmlxVno2SU1qdE54NzZicmg3aU9Vd2JiWmoxYWF6VG1GQ2xEb0dyY2JxOV80Nnc9PSJ9"
-    }],
+    binDetails: {
+        issuerCountry: "NL"
+    },
     threeDS1Supported: true,
-    threeDS2CardRangeDetails: [{
-        brandCode: "visa",
-        endRange: "411111111111",
-        startRange: "411111111111",
-        threeDS2Version: "2.1.0",
-        threeDSMethodURL: "https://pal-test.adyen.com/threeds2simulator/acs/startMethod.shtml"
-    }],
-    threeDS2supported: true
+    threeDS2CardRangeDetails: [],
+    threeDS2supported: false
 };
 
 let client: Client;
@@ -46,15 +38,23 @@ let binLookup: BinLookup;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    client = createMockClientFromResponse();
+    if (!nock.isActive()) {
+        nock.activate();
+    }
+    client = createClient();
     binLookup = new BinLookup(client);
     scope = nock(`${client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}${Client.BIN_LOOKUP_API_VERSION}`);
 });
 
+afterEach((): void => {
+    nock.cleanAll();
+});
+
 describe("Bin Lookup", function (): void {
-    it("should succeed on get 3ds availability", async function (): Promise<void> {
+    test.each([false, true])("should succeed on get 3ds availability. isMock: %p", async function (isMock): Promise<void> {
+        !isMock && nock.restore();
         const threeDSAvailabilityRequest: IBinLookup.ThreeDSAvailabilityRequest = {
-            merchantAccount: "MOCK_MERCHANT_ACCOUNT",
+            merchantAccount: process.env.ADYEN_MERCHANT!,
             brands: ["randomBrand"],
             cardNumber: "4111111111111111"
         };
@@ -64,10 +64,11 @@ describe("Bin Lookup", function (): void {
 
         const response = await binLookup.get3dsAvailability(threeDSAvailabilityRequest);
 
-        expect(response).toEqual(threeDSAvailabilitySuccess);
+        expect(response).toEqual<IBinLookup.ThreeDSAvailabilityResponse>(threeDSAvailabilitySuccess);
     });
 
-    it("should fail with invalid merchant", async function (): Promise<void> {
+    test.each([false, true])("should fail with invalid merchant. isMock: %p", async function (isMock): Promise<void> {
+        !isMock && nock.restore();
         const threeDSAvailabilityRequest: { [key: string]: undefined|string|[] } = {
             merchantAccount: undefined,
             cardNumber: "4111111111111",
@@ -85,9 +86,13 @@ describe("Bin Lookup", function (): void {
         }
     });
 
-    it("should succeed on get cost estimate", async function (): Promise<void> {
-        const response = {
-            cardBin: {summary: "1111"},
+    test.each([false, true])("should succeed on get cost estimate. isMock: %p", async function (isMock): Promise<void> {
+        !isMock && nock.restore();
+        const expected = {
+            costEstimateAmount: {
+                currency: "EUR",
+                value: 10
+            },
             resultCode: "Unsupported",
             surchargeType: "ZERO"
         };
@@ -98,7 +103,7 @@ describe("Bin Lookup", function (): void {
                 assume3DSecureAuthenticated: true
             },
             cardNumber: "411111111111",
-            merchantAccount: "MOCKED_MERCHANT_ACC",
+            merchantAccount: process.env.ADYEN_MERCHANT!,
             merchantDetails: {
                 countryCode: "NL",
                 mcc: "7411",
@@ -108,9 +113,9 @@ describe("Bin Lookup", function (): void {
         };
 
         scope.post("/getCostEstimate")
-            .reply(200, response);
+            .reply(200, expected);
 
-        const expected = await binLookup.getCostEstimate(costEstimateRequest);
+        const response = await binLookup.getCostEstimate(costEstimateRequest);
 
         expect(response).toEqual(expected);
     });

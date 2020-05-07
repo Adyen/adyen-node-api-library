@@ -23,7 +23,8 @@ module.exports = {
   ],
   rules: {
     quotes: ["error", "double"],
-    semi: ["error", "always"]
+    semi: ["error", "always"],
+    "@typescript-eslint/no-non-null-assertion": 0
   },
   overrides: [
     {
