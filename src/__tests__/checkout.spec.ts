@@ -188,6 +188,7 @@ describe("Checkout", (): void => {
     });
 
     test.each([isCI, true])("should have payment details, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
         scope.post("/payments/details")
             .reply(200, paymentDetailsSuccess);
 
@@ -205,6 +206,7 @@ describe("Checkout", (): void => {
     });
 
     test.each([isCI, true])("should have payments result, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
         scope.post("/payments/result")
             .reply(200, paymentsResultSuccess);
         const paymentResultRequest: ICheckout.PaymentVerificationRequest = {
