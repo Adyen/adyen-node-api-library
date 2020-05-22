@@ -23,7 +23,7 @@ let accountHolderToUnSuspend: A.CreateAccountHolderResponse;
 let accountHolderToClose: A.CreateAccountHolderResponse;
 let notificationConfigurationToRetrieve: N.GetNotificationConfigurationResponse;
 
-const generateRandomCode = () => Math.floor(Math.random() * Date.now()).toString();
+const generateRandomCode = (): string => Math.floor(Math.random() * Date.now()).toString();
 const accountHolderDetails: AccountHolderDetails = {
     email: "random_email@example.com",
     fullPhoneNumber: "312030291928",

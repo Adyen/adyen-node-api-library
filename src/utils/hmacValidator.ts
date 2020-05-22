@@ -1,5 +1,5 @@
 import {createHmac} from "crypto";
-import {NotificationRequestItem} from "../typings/notification";
+import {NotificationRequestItem} from "../typings/notification/models";
 import {ApiConstants} from "../constants/apiConstants";
 
 type DataToSign = NotificationRequestItem | { [key: string]: string }
@@ -16,7 +16,7 @@ class HmacValidator {
 
     public validateHMAC(notificationRequestItem: NotificationRequestItem, key: string): boolean {
         const expectedSign = this.calculateHmac(notificationRequestItem, key);
-        const merchantSign = notificationRequestItem.additionalData[ApiConstants.HMAC_SIGNATURE];
+        const merchantSign = notificationRequestItem.additionalData?.[ApiConstants.HMAC_SIGNATURE];
 
         return expectedSign === merchantSign;
     }

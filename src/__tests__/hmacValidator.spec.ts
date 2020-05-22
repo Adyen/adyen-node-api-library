@@ -1,21 +1,21 @@
 import HmacValidator from "../utils/hmacValidator";
-import {NotificationRequestItem} from "../typings/notification";
+import {AdditionalData, NotificationRequestItem} from "../typings/notification/models";
 import {ApiConstants} from "../constants/apiConstants";
 
 const key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
-const expectedSign = "ipnxGCaUZ4l8TUW75a71/ghd2Fe5ffvX0pV4TLTntIc=";
+const expectedSign = "xhpHvYq2u2Np0rstbZ6QjLGu7JWhvf7Iwaa6EviJSX0=";
 const notificationRequestItem: NotificationRequestItem = {
     pspReference: "pspReference",
     originalReference: "originalReference",
     merchantAccountCode: "merchantAccount",
     merchantReference: "reference",
     amount: {currency: "EUR", value: 1000},
-    eventCode: "EVENT",
-    eventDate: new Date("01-01-1970"),
+    eventCode: NotificationRequestItem.EventCodeEnum.CAPTURE,
+    eventDate: new Date("01-01-1970").toISOString(),
     paymentMethod: "VISA",
     reason: "reason",
-    success: "true",
-    additionalData: { [ApiConstants.HMAC_SIGNATURE]: expectedSign },
+    success: NotificationRequestItem.SuccessEnum.True,
+    additionalData: { [ApiConstants.HMAC_SIGNATURE as keyof AdditionalData]: expectedSign },
 };
 
 describe("HMAC Validator", function (): void {
@@ -39,7 +39,7 @@ describe("HMAC Validator", function (): void {
     });
     it("should get correct data to sign", function (): void {
         const data = hmacValidator.getDataToSign(notificationRequestItem);
-        expect(data).toEqual("pspReference:originalReference:merchantAccount:reference:1000:EUR:EVENT:true");
+        expect(data).toEqual("pspReference:originalReference:merchantAccount:reference:1000:EUR:CAPTURE:true");
     });
 
     it("should have valid hmac", function (): void {
@@ -51,7 +51,7 @@ describe("HMAC Validator", function (): void {
     it("should have invalid hmac", function (): void {
         const invalidNotification = {
             ...notificationRequestItem,
-            additionalData: { [ApiConstants.HMAC_SIGNATURE]: "notValidSign" }
+            additionalData: { [ApiConstants.HMAC_SIGNATURE as keyof NotificationRequestItem]: "notValidSign" }
         };
         const result = hmacValidator.validateHMAC(invalidNotification, key);
         expect(result).toBeFalsy();
