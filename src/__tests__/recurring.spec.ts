@@ -15,6 +15,7 @@ const createRecurringDetailsRequest = (): IRecurring.RecurringDetailsRequest => 
         shopperReference: "shopperReference",
     };
 };
+const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 
 let client: Client;
 let recurring: Recurring;
@@ -50,7 +51,7 @@ describe("Recurring", (): void => {
         }
     });
 
-    test.each([false, true])("should disable, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI, true])("should disable, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/payments")
             .reply(200, paymentsSuccess);
