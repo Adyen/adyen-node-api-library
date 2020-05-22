@@ -12,16 +12,12 @@
  *                                      ######
  *                               #############
  *                               ############
- *
  * Adyen NodeJS API Library
- *
- * Version of BinLookup: v50
- *
- * Copyright (c) 2019 Adyen B.V.
+ * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
- 
+
 
 declare namespace IBinLookup {
     export interface Amount {
@@ -31,7 +27,7 @@ declare namespace IBinLookup {
         currency: string;
         /**
          * The payable amount that can be charged for the transaction.
-         * 
+         *
          * The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
          */
         value: number; // int64
@@ -65,11 +61,11 @@ declare namespace IBinLookup {
         fundingSource?: string;
         /**
          * Indicates availability of funds.
-         * 
+         *
          * Visa:
          * * "I" (fast funds are supported)
          * * "N" (otherwise)
-         * 
+         *
          * Mastercard:
          * * "I" (product type is Prepaid or Debit, or issuing country is in CEE/HGEM list)
          * * "N" (otherwise)
@@ -94,11 +90,11 @@ declare namespace IBinLookup {
         paymentMethod?: string;
         /**
          * Indicates whether a payout is eligible or not for this card.
-         * 
+         *
          * Visa:
          * * "Y"
          * * "N"
-         * 
+         *
          * Mastercard:
          * * "Y" (domestic and cross-border)
          * * "D" (only domestic)
@@ -137,13 +133,13 @@ declare namespace IBinLookup {
         assumptions?: IBinLookup.CostEstimateAssumptions;
         /**
          * The card number (4-19 characters) for PCI compliant use cases. Do not use any separators.
-         * 
+         *
          * > Either the `cardNumber` or `encryptedCard` field must be provided in a payment request.
          */
         cardNumber?: string;
         /**
          * Encrypted data that stores card information for non PCI-compliant use cases. The encrypted data must be created with the Checkout Card Component or Secured Fields Component, and must contain the `encryptedCardNumber` field.
-         * 
+         *
          * > Either the `cardNumber` or `encryptedCard` field must be provided in a payment request.
          */
         encryptedCard?: string;
@@ -166,7 +162,7 @@ declare namespace IBinLookup {
         /**
          * Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer.
          * For the web service API, Adyen assumes Ecommerce shopper interaction by default.
-         * 
+         *
          * This field has the following possible values:
          * * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request.
          * * `ContAuth` - Card on file and/or subscription transactions, where the card holder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment).
@@ -227,7 +223,7 @@ declare namespace IBinLookup {
         enrolledIn3DSecure?: boolean;
         /**
          * The merchant category code (MCC) is a four-digit number which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
-         * 
+         *
          * The list of MCCs can be found [here](https://en.wikipedia.org/wiki/Merchant_category_code).
          */
         mcc?: string;
@@ -290,7 +286,7 @@ declare namespace IBinLookup {
     export interface ThreeDSAvailabilityRequest {
         /**
          * This field contains additional data, which may be required for a particular request.
-         * 
+         *
          * The `additionalData` object consists of entries, each of which includes the key and value.
          */
         additionalData?: {

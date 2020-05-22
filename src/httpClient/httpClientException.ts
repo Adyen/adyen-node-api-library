@@ -11,10 +11,8 @@
  *                                      ######
  *                               #############
  *                               ############
- *
  * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
+ * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
@@ -22,9 +20,9 @@
 import {IncomingHttpHeaders} from "http";
 
 interface ExceptionInterface {
-    message: string; 
-    statusCode?: number; 
-    errorCode?: string; 
+    message: string;
+    statusCode?: number;
+    errorCode?: string;
     responseHeaders?: IncomingHttpHeaders;
     responseBody?: string;
 }

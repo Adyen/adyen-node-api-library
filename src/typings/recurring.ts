@@ -12,16 +12,12 @@
  *                                      ######
  *                               #############
  *                               ############
- *
  * Adyen NodeJS API Library
- *
- * Version of Recurring: v49
- *
- * Copyright (c) 2019 Adyen B.V.
+ * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
- 
+
 
 declare namespace IRecurring {
     export interface Address {
@@ -76,7 +72,7 @@ declare namespace IRecurring {
         bic?: string;
         /**
          * Country code where the bank is located.
-         * 
+         *
          * A valid value is an ISO two-character country code (e.g. 'NL').
          */
         countryCode?: string;
@@ -150,7 +146,7 @@ declare namespace IRecurring {
     export interface DisableRequest {
         /**
          * Specify the contract if you only want to disable a specific use.
-         * 
+         *
          * This field can be set to one of the following values, or to their combination (comma-separated):
          * * ONECLICK
          * * RECURRING
@@ -163,13 +159,13 @@ declare namespace IRecurring {
         merchantAccount: string;
         /**
          * The ID that uniquely identifies the recurring detail reference.
-         * 
+         *
          * If it is not provided, the whole recurring contract of the `shopperReference` will be disabled, which includes all recurring details.
          */
         recurringDetailReference?: string;
         /**
          * The ID that uniquely identifies the shopper.
-         * 
+         *
          * This `shopperReference` must be the same as the `shopperReference` used in the initial payment.
          */
         shopperReference: string;
@@ -236,20 +232,20 @@ declare namespace IRecurring {
     export interface RecurringDetail {
         /**
          * This field contains additional data, which may be returned in a particular response.
-         * 
+         *
          * The additionalData object consists of entries, each of which includes the key and value.
          */
         additionalData?: {
         };
         /**
          * The alias of the credit card number.
-         * 
+         *
          * Applies only to recurring contracts storing credit card details
          */
         alias?: string;
         /**
          * The alias type of the credit card number.
-         * 
+         *
          * Applies only to recurring contracts storing credit card details.
          */
         aliasType?: string;
@@ -309,7 +305,7 @@ declare namespace IRecurring {
         merchantAccount: string;
         /**
          * A container for the type of a recurring contract to be retrieved.
-         * 
+         *
          * The contract value needs to match the contract value submitted in the payment transaction used to create a recurring contract.
          * However, if `ONECLICK,RECURRING` is the original contract definition in the initial payment, then `contract` should take either `ONECLICK` or `RECURRING`, depending on whether or not you want the shopper to enter their card's security code when they finalize their purchase.
          */
@@ -345,7 +341,7 @@ declare namespace IRecurring {
         };
         /**
          * A container for credit card data.
-         * 
+         *
          * Optional if `shopperReference` and `selectedRecurringDetailReference` are provided.
          */
         card?: IRecurring.Card;
@@ -359,13 +355,13 @@ declare namespace IRecurring {
         reference: string;
         /**
          * The selected detail recurring reference.
-         * 
+         *
          * Optional if `card` is provided.
          */
         selectedRecurringDetailReference?: string;
         /**
          * The reference of the shopper that owns the recurring contract.
-         * 
+         *
          * Optional if `card` is provided.
          */
         shopperReference?: string;

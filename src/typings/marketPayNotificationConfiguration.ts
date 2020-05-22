@@ -12,16 +12,12 @@
  *                                      ######
  *                               #############
  *                               ############
- *
  * Adyen NodeJS API Library
- *
- * Version of MarketPay Notification Configuration: v5
- *
- * Copyright (c) 2019 Adyen B.V.
+ * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
- 
+
 
 declare namespace IMarketPayNotificationConfiguration {
     export interface CreateNotificationConfigurationRequest {
@@ -145,9 +141,9 @@ declare namespace IMarketPayNotificationConfiguration {
         eventConfigs: IMarketPayNotificationConfiguration.NotificationEventConfiguration[];
         /**
          * A string with which to salt the notification(s) before hashing. If this field is provided, a hash value will be included under the notification header `HmacSignature` and the hash protocol will be included under the notification header `Protocol`. A notification body along with its `hmacSignatureKey` and `Protocol` can be used to calculate a hash value; matching this hash value with the `HmacSignature` will ensure that the notification body has not been tampered with or corrupted.
-         * 
+         *
          * >Must be a 32-byte hex-encoded string (i.e. a string containing 64 hexadecimal characters; e.g. "b0ea55c2fe60d4d1d605e9c385e0e7f7e6cafbb939ce07010f31a327a0871f27").
-         * 
+         *
          * The omission of this field will preclude the provision of the `HmacSignature` and `Protocol` headers in notification(s).
          */
         hmacSignatureKey?: string;
