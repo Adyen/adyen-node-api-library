@@ -19,7 +19,8 @@
     "strict": true,
     "noUnusedLocals": true,
     "suppressImplicitAnyIndexErrors": true,
-    "plugins": [{ "transform":  "ts-auto-mock/transformer", "cacheBetweenTests":  false }]
+    "plugins": [{ "transform":  "ts-auto-mock/transformer", "cacheBetweenTests":  false }],
+    "removeComments": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

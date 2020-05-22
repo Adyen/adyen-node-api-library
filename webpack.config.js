@@ -18,6 +18,7 @@
  */
 
 const path = require("path");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     context: process.cwd(),
@@ -34,7 +35,16 @@ module.exports = {
     optimization: {
         splitChunks: {
             chunks: "all"
-        }
+        },
+        minimizer: [
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    output: {
+                        comments: false,
+                    },
+                },
+            }),
+        ],
     },
     module: {
         rules: [
