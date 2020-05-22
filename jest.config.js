@@ -27,22 +27,17 @@ module.exports = {
         "<rootDir>/src/typings"
     ],
     setupFiles: ["<rootDir>config.ts", "dotenv/config"],
-    unmockedModulePathPatterns: [
-        "/dist"
-    ],
     testMatch: [
-        "**/__tests__/*.ts"
+        "**/src/__tests__/**/*.spec.ts"
     ],
-    testPathIgnorePatterns : [
-        "/node_modules",
-        "/dist"
-    ],
+    roots: ['<rootDir>/src'],
     transform: {
         ".ts": "ts-jest"
     },
     globals: {
         "ts-jest": {
-            compiler: "ttypescript"
+            compiler: "ttypescript",
+            transformIgnorePatterns: ['^.+\\\\.js$']
         }
-    }
+    },
 };

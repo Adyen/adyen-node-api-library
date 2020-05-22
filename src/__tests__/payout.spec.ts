@@ -24,6 +24,7 @@ import Client from "../client";
 import StoreDetailRequest = IPayouts.StoreDetailRequest;
 import {ApiConstants} from "../constants/apiConstants";
 
+const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 const storeDetailAndSubmitThirdParty = JSON.stringify({
     additionalData: {
         fraudResultType: "GREEN",
@@ -167,7 +168,7 @@ describe("PayoutTest", function (): void {
         expect(result.pspReference).toBeTruthy();
     });
 
-    test.each([false, true])("should succeed on submit third party, isMock: %p", async function (isMock): Promise<void> {
+    test.each([isCI, true])("should succeed on submit third party, isMock: %p", async function (isMock): Promise<void> {
         !isMock && nock.restore();
         payout = new Payout(clientStore);
         scope.post("/submitThirdParty").reply(200, storeDetailAndSubmitThirdParty);

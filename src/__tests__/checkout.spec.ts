@@ -31,6 +31,7 @@ import HttpClientException from "../httpClient/httpClientException";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
 const reference = "Your order number";
+const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 
 function createAmountObject(currency: string, value: number): ICheckout.Amount {
     return {
@@ -184,11 +185,8 @@ describe("Checkout", (): void => {
         expect(paymentSuccessLinkResponse).toBeTruthy();
     });
 
-    test.each([false, true])("should have payment details, isMock: %p", async (isMock): Promise<void> => {
-        if (!isMock) {
-            console.warn("Cannot perform /payments/details without manual user validation. Skipping test.");
-            return;
-        }
+    test.each([isCI, true])("should have payment details, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
         scope.post("/payments/details")
             .reply(200, paymentDetailsSuccess);
 
@@ -205,11 +203,8 @@ describe("Checkout", (): void => {
         expect(paymentSessionResponse.paymentSession).not.toBeUndefined();
     });
 
-    test.each([false, true])("should have payments result, isMock: %p", async (isMock): Promise<void> => {
-        if (!isMock) {
-            console.warn("Cannot perform /payments/result without payload. Skipping test.");
-            return;
-        }
+    test.each([isCI, true])("should have payments result, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
         scope.post("/payments/result")
             .reply(200, paymentsResultSuccess);
         const paymentResultRequest: ICheckout.PaymentVerificationRequest = {
