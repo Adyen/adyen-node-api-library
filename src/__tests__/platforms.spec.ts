@@ -1,3 +1,22 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+
 import nock from "nock";
 import {createMock} from "ts-auto-mock";
 import {createBasicAuthClient} from "../__mocks__/base";
@@ -23,7 +42,7 @@ let accountHolderToUnSuspend: A.CreateAccountHolderResponse;
 let accountHolderToClose: A.CreateAccountHolderResponse;
 let notificationConfigurationToRetrieve: N.GetNotificationConfigurationResponse;
 
-const generateRandomCode = () => Math.floor(Math.random() * Date.now()).toString();
+const generateRandomCode = (): string => Math.floor(Math.random() * Date.now()).toString();
 const accountHolderDetails: AccountHolderDetails = {
     email: "random_email@example.com",
     fullPhoneNumber: "312030291928",
