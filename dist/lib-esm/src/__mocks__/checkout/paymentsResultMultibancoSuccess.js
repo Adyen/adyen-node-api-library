@@ -1,4 +1,3 @@
-/* tslint:disable */
 export var paymentsResultMultibancoSuccess = {
     additionalData: {
         "cvcResult": "0",

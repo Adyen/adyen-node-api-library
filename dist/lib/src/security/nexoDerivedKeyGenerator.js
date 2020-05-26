@@ -1,28 +1,8 @@
 "use strict";
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 Object.defineProperty(exports, "__esModule", { value: true });
 var crypto_1 = require("crypto");
 var nexoConstants_1 = require("../constants/nexoConstants");
-var NexoDerivedKeyGenerator = /** @class */ (function () {
+var NexoDerivedKeyGenerator = (function () {
     function NexoDerivedKeyGenerator() {
     }
     NexoDerivedKeyGenerator.deriveKeyMaterial = function (passphrase) {

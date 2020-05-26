@@ -18,7 +18,6 @@
  */
 
 const path = require("path");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     context: process.cwd(),
@@ -28,23 +27,14 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "dist", "es5"),
         filename: "[name].js",
-        library: "AdyenTerminalApi",
+        library: "Adyen",
         libraryTarget: "umd",
         umdNamedDefine: true
     },
     optimization: {
         splitChunks: {
             chunks: "all"
-        },
-        minimizer: [
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    output: {
-                        comments: false,
-                    },
-                },
-            }),
-        ],
+        }
     },
     module: {
         rules: [

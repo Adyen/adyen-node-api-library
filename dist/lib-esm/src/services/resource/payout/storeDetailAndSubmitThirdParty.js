@@ -11,29 +11,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 import Resource from "../../resource";
 import Client from "../../../client";
-var StoreDetailAndSubmitThirdParty = /** @class */ (function (_super) {
+var StoreDetailAndSubmitThirdParty = (function (_super) {
     __extends(StoreDetailAndSubmitThirdParty, _super);
     function StoreDetailAndSubmitThirdParty(service) {
         return _super.call(this, service, service.client.config.endpoint + "/pal/servlet/Payout/" + Client.API_VERSION + "/storeDetailAndSubmitThirdParty") || this;

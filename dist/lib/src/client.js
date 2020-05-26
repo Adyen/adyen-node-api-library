@@ -1,24 +1,4 @@
 "use strict";
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -26,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var config_1 = __importDefault(require("./config"));
 var httpURLConnectionClient_1 = __importDefault(require("./httpClient/httpURLConnectionClient"));
 var package_json_1 = require("../package.json");
-var Client = /** @class */ (function () {
+var Client = (function () {
     function Client(options) {
         if (options.config) {
             this.config = options.config;
@@ -84,7 +64,7 @@ var Client = /** @class */ (function () {
         set: function (httpClient) {
             this._httpClient = httpClient;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Client.prototype.setApplicationName = function (applicationName) {

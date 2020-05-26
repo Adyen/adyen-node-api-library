@@ -1,24 +1,4 @@
 "use strict";
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -38,7 +18,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var resource_1 = __importDefault(require("../../resource"));
 var client_1 = __importDefault(require("../../../client"));
-var Get3dsAvailability = /** @class */ (function (_super) {
+var Get3dsAvailability = (function (_super) {
     __extends(Get3dsAvailability, _super);
     function Get3dsAvailability(service) {
         return _super.call(this, service, "" + service.client.config.endpoint + client_1.default.BIN_LOOKUP_PAL_SUFFIX + client_1.default.BIN_LOOKUP_API_VERSION + "/get3dsAvailability") || this;

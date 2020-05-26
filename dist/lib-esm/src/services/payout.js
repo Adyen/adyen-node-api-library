@@ -19,7 +19,7 @@ import ConfirmThirdParty from "./resource/payout/confirmThirdParty";
 import PayoutResource from "./resource/payout/payout";
 import StoreDetailAndSubmitThirdParty from "./resource/payout/storeDetailAndSubmitThirdParty";
 import getJsonResponse from "../helpers/getJsonResponse";
-var Payout = /** @class */ (function (_super) {
+var Payout = (function (_super) {
     __extends(Payout, _super);
     function Payout(client) {
         var _this = _super.call(this, client) || this;

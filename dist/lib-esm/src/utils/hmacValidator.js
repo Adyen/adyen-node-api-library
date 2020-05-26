@@ -7,7 +7,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 };
 import { createHmac } from "crypto";
 import { ApiConstants } from "../constants/apiConstants";
-var HmacValidator = /** @class */ (function () {
+var HmacValidator = (function () {
     function HmacValidator() {
     }
     HmacValidator.prototype.calculateHmac = function (data, key) {
@@ -16,8 +16,9 @@ var HmacValidator = /** @class */ (function () {
         return createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, rawKey).update(dataString, "utf8").digest("base64");
     };
     HmacValidator.prototype.validateHMAC = function (notificationRequestItem, key) {
+        var _a;
         var expectedSign = this.calculateHmac(notificationRequestItem, key);
-        var merchantSign = notificationRequestItem.additionalData[ApiConstants.HMAC_SIGNATURE];
+        var merchantSign = (_a = notificationRequestItem.additionalData) === null || _a === void 0 ? void 0 : _a[ApiConstants.HMAC_SIGNATURE];
         return expectedSign === merchantSign;
     };
     HmacValidator.prototype.isNotificationRequestItem = function (item) {

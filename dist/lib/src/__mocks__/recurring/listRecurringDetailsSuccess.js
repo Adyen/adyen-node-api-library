@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.listRecurringDetailsSuccess = void 0;
 exports.listRecurringDetailsSuccess = {
     creationDate: "2017-03-01T10:53:11.000",
     details: [

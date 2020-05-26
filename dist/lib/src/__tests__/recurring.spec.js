@@ -55,6 +55,7 @@ var createRecurringDetailsRequest = function () {
         shopperReference: "shopperReference",
     };
 };
+var isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 var client;
 var recurring;
 var checkout;
@@ -84,20 +85,20 @@ describe("Recurring", function () {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, recurring.listRecurringDetails(request)];
+                    return [4, recurring.listRecurringDetails(request)];
                 case 2:
                     result = _a.sent();
                     expect(result).toBeTruthy();
-                    return [3 /*break*/, 4];
+                    return [3, 4];
                 case 3:
                     e_1 = _a.sent();
                     fail(e_1.message);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3, 4];
+                case 4: return [2];
             }
         });
     }); });
-    test.each([false, true])("should disable, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([isCI, true])("should disable, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var paymentsRequest, res, request, result, e_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -106,7 +107,7 @@ describe("Recurring", function () {
                     scope.post("/payments")
                         .reply(200, paymentsSuccess_1.paymentsSuccess);
                     paymentsRequest = checkout_spec_1.createPaymentsCheckoutRequest();
-                    return [4 /*yield*/, checkout.payments(paymentsRequest)];
+                    return [4, checkout.payments(paymentsRequest)];
                 case 1:
                     res = _a.sent();
                     scope.post("/disable")
@@ -119,16 +120,16 @@ describe("Recurring", function () {
                     _a.label = 2;
                 case 2:
                     _a.trys.push([2, 4, , 5]);
-                    return [4 /*yield*/, recurring.disable(request)];
+                    return [4, recurring.disable(request)];
                 case 3:
                     result = _a.sent();
                     expect(result).toBeTruthy();
-                    return [3 /*break*/, 5];
+                    return [3, 5];
                 case 4:
                     e_2 = _a.sent();
                     fail(e_2.message);
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                    return [3, 5];
+                case 5: return [2];
             }
         });
     }); });

@@ -11,20 +11,21 @@ var __assign = (this && this.__assign) || function () {
 };
 var _a;
 import HmacValidator from "../utils/hmacValidator";
+import { NotificationRequestItem } from "../typings/notification/models";
 import { ApiConstants } from "../constants/apiConstants";
 var key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
-var expectedSign = "ipnxGCaUZ4l8TUW75a71/ghd2Fe5ffvX0pV4TLTntIc=";
+var expectedSign = "xhpHvYq2u2Np0rstbZ6QjLGu7JWhvf7Iwaa6EviJSX0=";
 var notificationRequestItem = {
     pspReference: "pspReference",
     originalReference: "originalReference",
     merchantAccountCode: "merchantAccount",
     merchantReference: "reference",
     amount: { currency: "EUR", value: 1000 },
-    eventCode: "EVENT",
-    eventDate: new Date("01-01-1970"),
+    eventCode: NotificationRequestItem.EventCodeEnum.CAPTURE,
+    eventDate: new Date("01-01-1970").toISOString(),
     paymentMethod: "VISA",
     reason: "reason",
-    success: "true",
+    success: NotificationRequestItem.SuccessEnum.True,
     additionalData: (_a = {}, _a[ApiConstants.HMAC_SIGNATURE] = expectedSign, _a),
 };
 describe("HMAC Validator", function () {
@@ -47,7 +48,7 @@ describe("HMAC Validator", function () {
     });
     it("should get correct data to sign", function () {
         var data = hmacValidator.getDataToSign(notificationRequestItem);
-        expect(data).toEqual("pspReference:originalReference:merchantAccount:reference:1000:EUR:EVENT:true");
+        expect(data).toEqual("pspReference:originalReference:merchantAccount:reference:1000:EUR:CAPTURE:true");
     });
     it("should have valid hmac", function () {
         var encrypted = hmacValidator.calculateHmac(notificationRequestItem, key);

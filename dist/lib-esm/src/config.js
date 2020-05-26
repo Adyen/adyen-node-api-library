@@ -1,4 +1,4 @@
-var Config = /** @class */ (function () {
+var Config = (function () {
     function Config(options) {
         if (options === void 0) { options = {}; }
         if (options.username)
@@ -49,7 +49,7 @@ var Config = /** @class */ (function () {
         set: function (checkoutEndpoint) {
             this._checkoutEndpoint = checkoutEndpoint;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return Config;

@@ -9,7 +9,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var crypto_1 = require("crypto");
 var apiConstants_1 = require("../constants/apiConstants");
-var HmacValidator = /** @class */ (function () {
+var HmacValidator = (function () {
     function HmacValidator() {
     }
     HmacValidator.prototype.calculateHmac = function (data, key) {
@@ -18,8 +18,9 @@ var HmacValidator = /** @class */ (function () {
         return crypto_1.createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, rawKey).update(dataString, "utf8").digest("base64");
     };
     HmacValidator.prototype.validateHMAC = function (notificationRequestItem, key) {
+        var _a;
         var expectedSign = this.calculateHmac(notificationRequestItem, key);
-        var merchantSign = notificationRequestItem.additionalData[apiConstants_1.ApiConstants.HMAC_SIGNATURE];
+        var merchantSign = (_a = notificationRequestItem.additionalData) === null || _a === void 0 ? void 0 : _a[apiConstants_1.ApiConstants.HMAC_SIGNATURE];
         return expectedSign === merchantSign;
     };
     HmacValidator.prototype.isNotificationRequestItem = function (item) {

@@ -108,14 +108,14 @@ beforeAll(function (done) { return __awaiter(void 0, void 0, void 0, function ()
                 client.config.username = process.env.ADYEN_MARKETPLACE_USER;
                 scope = nock_1.default(client.config.marketPayEndpoint);
                 platforms = new index_1.Platforms(client);
-                return [4 /*yield*/, platforms.Account.createAccountHolder({
+                return [4, platforms.Account.createAccountHolder({
                         accountHolderCode: generateRandomCode(),
                         accountHolderDetails: accountHolderDetails,
                         legalEntity: "Individual",
                     })];
             case 1:
                 accountHolder = _a.sent();
-                return [4 /*yield*/, platforms.Account.createAccount({
+                return [4, platforms.Account.createAccount({
                         accountHolderCode: generateRandomCode(),
                         description: "This is a new account",
                         metadata: { meta: "data" },
@@ -123,14 +123,14 @@ beforeAll(function (done) { return __awaiter(void 0, void 0, void 0, function ()
                     })];
             case 2:
                 account = _a.sent();
-                return [4 /*yield*/, platforms.Account.createAccountHolder({
+                return [4, platforms.Account.createAccountHolder({
                         accountHolderCode: generateRandomCode(),
                         accountHolderDetails: accountHolderDetails,
                         legalEntity: "Individual"
                     })];
             case 3:
                 accountHolderToSuspend = _a.sent();
-                return [4 /*yield*/, platforms.Account.createAccount({
+                return [4, platforms.Account.createAccount({
                         accountHolderCode: generateRandomCode(),
                         description: "This is a new account",
                         metadata: { meta: "data" },
@@ -138,30 +138,30 @@ beforeAll(function (done) { return __awaiter(void 0, void 0, void 0, function ()
                     })];
             case 4:
                 accountToClose = _a.sent();
-                return [4 /*yield*/, platforms.Account.createAccountHolder({
+                return [4, platforms.Account.createAccountHolder({
                         accountHolderCode: generateRandomCode(),
                         accountHolderDetails: accountHolderDetails,
                         legalEntity: "Individual"
                     })];
             case 5:
                 accountHolderToUnSuspend = _a.sent();
-                return [4 /*yield*/, platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode })];
+                return [4, platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode })];
             case 6:
                 _a.sent();
-                return [4 /*yield*/, platforms.Account.createAccountHolder({
+                return [4, platforms.Account.createAccountHolder({
                         accountHolderCode: generateRandomCode(),
                         accountHolderDetails: accountHolderDetails,
                         legalEntity: "Individual"
                     })];
             case 7:
                 accountHolderToClose = _a.sent();
-                return [4 /*yield*/, platforms.NotificationConfiguration.createNotificationConfiguration({
+                return [4, platforms.NotificationConfiguration.createNotificationConfiguration({
                         configurationDetails: __assign(__assign({}, notificationConfigurationDetails), { description: "" + generateRandomCode() })
                     })];
             case 8:
                 notificationConfigurationToRetrieve = _a.sent();
                 done();
-                return [2 /*return*/];
+                return [2];
         }
     });
 }); });
@@ -207,11 +207,11 @@ describe("Platforms Test", function () {
                             case 0:
                                 service = platforms.Account;
                                 scope.post("/Account/" + index_1.Client.MARKETPAY_ACCOUNT_API_VERSION + "//" + args[0]).reply(200, args[2]);
-                                return [4 /*yield*/, service[args[0]](args[1])];
+                                return [4, service[args[0]](args[1])];
                             case 1:
                                 result = _a.sent();
                                 expect(result).toMatchObject(args[2]);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 });
@@ -226,7 +226,7 @@ describe("Platforms Test", function () {
                         catch (e) {
                             assertError(e);
                         }
-                        return [2 /*return*/];
+                        return [2];
                     });
                 });
             });
@@ -240,18 +240,18 @@ describe("Platforms Test", function () {
                                 _a.label = 1;
                             case 1:
                                 _a.trys.push([1, 3, , 4]);
-                                return [4 /*yield*/, platforms.Account.getAccountHolder({
+                                return [4, platforms.Account.getAccountHolder({
                                         accountHolderCode: accountHolder.accountHolderCode,
                                     })];
                             case 2:
                                 result = _a.sent();
                                 expect(result.accountHolderDetails.email).toEqual("random_email@example.com");
-                                return [3 /*break*/, 4];
+                                return [3, 4];
                             case 3:
                                 e_1 = _a.sent();
                                 assertError(e_1);
-                                return [3 /*break*/, 4];
-                            case 4: return [2 /*return*/];
+                                return [3, 4];
+                            case 4: return [2];
                         }
                     });
                 });
@@ -267,7 +267,7 @@ describe("Platforms Test", function () {
                                 _b.label = 1;
                             case 1:
                                 _b.trys.push([1, 3, , 4]);
-                                return [4 /*yield*/, platforms.Account.updateAccountHolder({
+                                return [4, platforms.Account.updateAccountHolder({
                                         accountHolderCode: accountHolder.accountHolderCode,
                                         accountHolderDetails: __assign(__assign({}, accountHolderDetails), { address: {
                                                 country: "BE"
@@ -276,12 +276,12 @@ describe("Platforms Test", function () {
                             case 2:
                                 result = _b.sent();
                                 expect((_a = result.accountHolderDetails.address) === null || _a === void 0 ? void 0 : _a.country).toEqual("BE");
-                                return [3 /*break*/, 4];
+                                return [3, 4];
                             case 3:
                                 e_2 = _b.sent();
                                 assertError(e_2);
-                                return [3 /*break*/, 4];
-                            case 4: return [2 /*return*/];
+                                return [3, 4];
+                            case 4: return [2];
                         }
                     });
                 });
@@ -296,7 +296,7 @@ describe("Platforms Test", function () {
                                 _a.label = 1;
                             case 1:
                                 _a.trys.push([1, 3, , 4]);
-                                return [4 /*yield*/, platforms.Account.checkAccountHolder({
+                                return [4, platforms.Account.checkAccountHolder({
                                         accountHolderCode: accountHolder.accountHolderCode,
                                         accountStateType: "Processing",
                                         tier: 2
@@ -304,12 +304,12 @@ describe("Platforms Test", function () {
                             case 2:
                                 result = _a.sent();
                                 expect(result.resultCode).toEqual("Success");
-                                return [3 /*break*/, 4];
+                                return [3, 4];
                             case 3:
                                 e_3 = _a.sent();
                                 assertError(e_3);
-                                return [3 /*break*/, 4];
-                            case 4: return [2 /*return*/];
+                                return [3, 4];
+                            case 4: return [2];
                         }
                     });
                 });
@@ -324,7 +324,7 @@ describe("Platforms Test", function () {
                         catch (e) {
                             assertError(e);
                         }
-                        return [2 /*return*/];
+                        return [2];
                     });
                 });
             });
@@ -338,7 +338,7 @@ describe("Platforms Test", function () {
                                 _a.label = 1;
                             case 1:
                                 _a.trys.push([1, 3, , 4]);
-                                return [4 /*yield*/, platforms.Account.uploadDocument({
+                                return [4, platforms.Account.uploadDocument({
                                         documentContent: documentContent_1.documentContent,
                                         documentDetail: {
                                             accountHolderCode: account.accountHolderCode,
@@ -350,12 +350,12 @@ describe("Platforms Test", function () {
                             case 2:
                                 result = _a.sent();
                                 expect(result.pspReference).toBeDefined();
-                                return [3 /*break*/, 4];
+                                return [3, 4];
                             case 3:
                                 e_4 = _a.sent();
                                 assertError(e_4);
-                                return [3 /*break*/, 4];
-                            case 4: return [2 /*return*/];
+                                return [3, 4];
+                            case 4: return [2];
                         }
                     });
                 });
@@ -370,7 +370,7 @@ describe("Platforms Test", function () {
                                 _a.label = 1;
                             case 1:
                                 _a.trys.push([1, 4, , 5]);
-                                return [4 /*yield*/, platforms.Account.uploadDocument({
+                                return [4, platforms.Account.uploadDocument({
                                         documentContent: documentContent_1.documentContent,
                                         documentDetail: {
                                             accountHolderCode: account.accountHolderCode,
@@ -381,18 +381,18 @@ describe("Platforms Test", function () {
                                     })];
                             case 2:
                                 _a.sent();
-                                return [4 /*yield*/, platforms.Account.getUploadedDocuments({
+                                return [4, platforms.Account.getUploadedDocuments({
                                         accountHolderCode: account.accountHolderCode,
                                     })];
                             case 3:
                                 result = _a.sent();
                                 expect(result.documentDetails[0].filename).toEqual("IDCardFront.png");
-                                return [3 /*break*/, 5];
+                                return [3, 5];
                             case 4:
                                 e_5 = _a.sent();
                                 assertError(e_5);
-                                return [3 /*break*/, 5];
-                            case 5: return [2 /*return*/];
+                                return [3, 5];
+                            case 5: return [2];
                         }
                     });
                 });
@@ -407,18 +407,18 @@ describe("Platforms Test", function () {
                                 _a.label = 1;
                             case 1:
                                 _a.trys.push([1, 3, , 4]);
-                                return [4 /*yield*/, platforms.Account.closeAccount({
+                                return [4, platforms.Account.closeAccount({
                                         accountCode: accountToClose.accountCode
                                     })];
                             case 2:
                                 result = _a.sent();
                                 expect(result.status).toEqual("Closed");
-                                return [3 /*break*/, 4];
+                                return [3, 4];
                             case 3:
                                 e_6 = _a.sent();
                                 assertError(e_6);
-                                return [3 /*break*/, 4];
-                            case 4: return [2 /*return*/];
+                                return [3, 4];
+                            case 4: return [2];
                         }
                     });
                 });
@@ -433,18 +433,18 @@ describe("Platforms Test", function () {
                                 _a.label = 1;
                             case 1:
                                 _a.trys.push([1, 3, , 4]);
-                                return [4 /*yield*/, platforms.Account.suspendAccountHolder({
+                                return [4, platforms.Account.suspendAccountHolder({
                                         accountHolderCode: accountHolderToSuspend.accountHolderCode,
                                     })];
                             case 2:
                                 result = _a.sent();
                                 expect(result.pspReference).toBeDefined();
-                                return [3 /*break*/, 4];
+                                return [3, 4];
                             case 3:
                                 e_7 = _a.sent();
                                 assertError(e_7);
-                                return [3 /*break*/, 4];
-                            case 4: return [2 /*return*/];
+                                return [3, 4];
+                            case 4: return [2];
                         }
                     });
                 });
@@ -459,16 +459,16 @@ describe("Platforms Test", function () {
                                 _a.label = 1;
                             case 1:
                                 _a.trys.push([1, 3, , 4]);
-                                return [4 /*yield*/, platforms.Account.unSuspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode })];
+                                return [4, platforms.Account.unSuspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode })];
                             case 2:
                                 result = _a.sent();
                                 expect(result.pspReference).toBeDefined();
-                                return [3 /*break*/, 4];
+                                return [3, 4];
                             case 3:
                                 e_8 = _a.sent();
                                 assertError(e_8);
-                                return [3 /*break*/, 4];
-                            case 4: return [2 /*return*/];
+                                return [3, 4];
+                            case 4: return [2];
                         }
                     });
                 });
@@ -483,7 +483,7 @@ describe("Platforms Test", function () {
                                 _a.label = 1;
                             case 1:
                                 _a.trys.push([1, 3, , 4]);
-                                return [4 /*yield*/, platforms.Account.updateAccountHolderState({
+                                return [4, platforms.Account.updateAccountHolderState({
                                         accountHolderCode: accountHolder.accountHolderCode,
                                         disable: false,
                                         stateType: "Payout"
@@ -491,12 +491,12 @@ describe("Platforms Test", function () {
                             case 2:
                                 result = _a.sent();
                                 expect(result.pspReference).toBeDefined();
-                                return [3 /*break*/, 4];
+                                return [3, 4];
                             case 3:
                                 e_9 = _a.sent();
                                 assertError(e_9);
-                                return [3 /*break*/, 4];
-                            case 4: return [2 /*return*/];
+                                return [3, 4];
+                            case 4: return [2];
                         }
                     });
                 });
@@ -511,18 +511,18 @@ describe("Platforms Test", function () {
                                 _a.label = 1;
                             case 1:
                                 _a.trys.push([1, 3, , 4]);
-                                return [4 /*yield*/, platforms.Account.closeAccountHolder({
+                                return [4, platforms.Account.closeAccountHolder({
                                         accountHolderCode: accountHolderToClose.accountHolderCode
                                     })];
                             case 2:
                                 result = _a.sent();
                                 expect(result.pspReference).toBeDefined();
-                                return [3 /*break*/, 4];
+                                return [3, 4];
                             case 3:
                                 e_10 = _a.sent();
                                 assertError(e_10);
-                                return [3 /*break*/, 4];
-                            case 4: return [2 /*return*/];
+                                return [3, 4];
+                            case 4: return [2];
                         }
                     });
                 });
@@ -552,11 +552,11 @@ describe("Platforms Test", function () {
                         case 0:
                             fund = platforms.Fund;
                             scope.post("/Fund/" + index_1.Client.MARKETPAY_FUND_API_VERSION + "//" + args[0]).reply(200, args[2]);
-                            return [4 /*yield*/, fund[args[0]](args[1])];
+                            return [4, fund[args[0]](args[1])];
                         case 1:
                             result = _a.sent();
                             expect(result).toMatchObject(args[2]);
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });
@@ -571,18 +571,18 @@ describe("Platforms Test", function () {
                             _a.label = 1;
                         case 1:
                             _a.trys.push([1, 3, , 4]);
-                            return [4 /*yield*/, platforms.Fund.accountHolderBalance({
+                            return [4, platforms.Fund.accountHolderBalance({
                                     accountHolderCode: generateRandomCode()
                                 })];
                         case 2:
                             result = _a.sent();
                             expect(result.balancePerAccount[0].detailBalance).toBeDefined();
-                            return [3 /*break*/, 4];
+                            return [3, 4];
                         case 3:
                             e_11 = _a.sent();
                             assertError(e_11);
-                            return [3 /*break*/, 4];
-                        case 4: return [2 /*return*/];
+                            return [3, 4];
+                        case 4: return [2];
                     }
                 });
             });
@@ -597,18 +597,18 @@ describe("Platforms Test", function () {
                             _a.label = 1;
                         case 1:
                             _a.trys.push([1, 3, , 4]);
-                            return [4 /*yield*/, platforms.Fund.accountHolderTransactionList({
+                            return [4, platforms.Fund.accountHolderTransactionList({
                                     accountHolderCode: generateRandomCode()
                                 })];
                         case 2:
                             result = _a.sent();
                             expect(result.accountTransactionLists[0].transactions).toBeDefined();
-                            return [3 /*break*/, 4];
+                            return [3, 4];
                         case 3:
                             e_12 = _a.sent();
                             assertError(e_12);
-                            return [3 /*break*/, 4];
-                        case 4: return [2 /*return*/];
+                            return [3, 4];
+                        case 4: return [2];
                     }
                 });
             });
@@ -623,7 +623,7 @@ describe("Platforms Test", function () {
                             _a.label = 1;
                         case 1:
                             _a.trys.push([1, 3, , 4]);
-                            return [4 /*yield*/, platforms.Fund.transferFunds({
+                            return [4, platforms.Fund.transferFunds({
                                     sourceAccountCode: "8515883280985939",
                                     destinationAccountCode: "8815883278206345",
                                     amount: {
@@ -635,12 +635,12 @@ describe("Platforms Test", function () {
                         case 2:
                             result = _a.sent();
                             expect(result.pspReference).toBeDefined();
-                            return [3 /*break*/, 4];
+                            return [3, 4];
                         case 3:
                             e_13 = _a.sent();
                             assertError(e_13);
-                            return [3 /*break*/, 4];
-                        case 4: return [2 /*return*/];
+                            return [3, 4];
+                        case 4: return [2];
                     }
                 });
             });
@@ -669,11 +669,11 @@ describe("Platforms Test", function () {
                         case 0:
                             notificationConfiguration = platforms.NotificationConfiguration;
                             scope.post("/Notification/" + index_1.Client.MARKETPAY_NOTIFICATION_API_VERSION + "//" + args[0]).reply(200, args[2]);
-                            return [4 /*yield*/, notificationConfiguration[args[0]](args[1])];
+                            return [4, notificationConfiguration[args[0]](args[1])];
                         case 1:
                             result = _a.sent();
                             expect(result).toMatchObject(args[2]);
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });
@@ -688,17 +688,17 @@ describe("Platforms Test", function () {
                             _a.label = 1;
                         case 1:
                             _a.trys.push([1, 3, , 4]);
-                            return [4 /*yield*/, platforms.NotificationConfiguration.getNotificationConfigurationList({})];
+                            return [4, platforms.NotificationConfiguration.getNotificationConfigurationList({})];
                         case 2:
                             result = _a.sent();
                             resultStr = JSON.stringify(result);
                             expect(resultStr.includes("pspReference")).toBeTruthy();
-                            return [3 /*break*/, 4];
+                            return [3, 4];
                         case 3:
                             e_14 = _a.sent();
                             assertError(e_14);
-                            return [3 /*break*/, 4];
-                        case 4: return [2 /*return*/];
+                            return [3, 4];
+                        case 4: return [2];
                     }
                 });
             });
@@ -713,18 +713,18 @@ describe("Platforms Test", function () {
                             _a.label = 1;
                         case 1:
                             _a.trys.push([1, 3, , 4]);
-                            return [4 /*yield*/, platforms.NotificationConfiguration.createNotificationConfiguration({
+                            return [4, platforms.NotificationConfiguration.createNotificationConfiguration({
                                     configurationDetails: __assign(__assign({}, notificationConfigurationDetails), { description: "" + generateRandomCode() })
                                 })];
                         case 2:
                             result = _a.sent();
                             expect(result.configurationDetails.active).toBeTruthy();
-                            return [3 /*break*/, 4];
+                            return [3, 4];
                         case 3:
                             e_15 = _a.sent();
                             assertError(e_15);
-                            return [3 /*break*/, 4];
-                        case 4: return [2 /*return*/];
+                            return [3, 4];
+                        case 4: return [2];
                     }
                 });
             });
@@ -740,18 +740,18 @@ describe("Platforms Test", function () {
                         case 1:
                             _a.trys.push([1, 3, , 4]);
                             configurationID = notificationConfigurationToRetrieve.configurationDetails.notificationId;
-                            return [4 /*yield*/, platforms.NotificationConfiguration.getNotificationConfiguration({
+                            return [4, platforms.NotificationConfiguration.getNotificationConfiguration({
                                     notificationId: configurationID
                                 })];
                         case 2:
                             result = _a.sent();
                             expect(result.configurationDetails.notifyURL).toEqual("https://www.adyen.com/notification-handler");
-                            return [3 /*break*/, 4];
+                            return [3, 4];
                         case 3:
                             e_16 = _a.sent();
                             assertError(e_16);
-                            return [3 /*break*/, 4];
-                        case 4: return [2 /*return*/];
+                            return [3, 4];
+                        case 4: return [2];
                     }
                 });
             });
@@ -766,7 +766,7 @@ describe("Platforms Test", function () {
                             _a.label = 1;
                         case 1:
                             _a.trys.push([1, 3, , 4]);
-                            return [4 /*yield*/, platforms.NotificationConfiguration.updateNotificationConfiguration({
+                            return [4, platforms.NotificationConfiguration.updateNotificationConfiguration({
                                     configurationDetails: {
                                         eventConfigs: [
                                             {
@@ -786,12 +786,12 @@ describe("Platforms Test", function () {
                             result = _a.sent();
                             accountHolderVerification = result.configurationDetails.eventConfigs.filter(function (event) { return event.eventType === "ACCOUNT_HOLDER_VERIFICATION"; })[0];
                             expect(accountHolderVerification.includeMode).toEqual("EXCLUDE");
-                            return [3 /*break*/, 4];
+                            return [3, 4];
                         case 3:
                             e_17 = _a.sent();
                             assertError(e_17);
-                            return [3 /*break*/, 4];
-                        case 4: return [2 /*return*/];
+                            return [3, 4];
+                        case 4: return [2];
                     }
                 });
             });
@@ -808,16 +808,16 @@ describe("Platforms Test", function () {
                             _a.label = 1;
                         case 1:
                             _a.trys.push([1, 3, , 4]);
-                            return [4 /*yield*/, platforms.NotificationConfiguration.deleteNotificationConfigurations({ notificationIds: notificationIds })];
+                            return [4, platforms.NotificationConfiguration.deleteNotificationConfigurations({ notificationIds: notificationIds })];
                         case 2:
                             result = _a.sent();
                             expect(result.pspReference).toBeDefined();
-                            return [3 /*break*/, 4];
+                            return [3, 4];
                         case 3:
                             e_18 = _a.sent();
                             assertError(e_18);
-                            return [3 /*break*/, 4];
-                        case 4: return [2 /*return*/];
+                            return [3, 4];
+                        case 4: return [2];
                     }
                 });
             });
@@ -840,11 +840,11 @@ describe("Platforms Test", function () {
                         case 0:
                             hostedOnboardingPage = platforms.HostedOnboardingPage;
                             scope.post("/Hop/" + index_1.Client.MARKETPAY_HOP_API_VERSION + "//" + args[0]).reply(200, args[2]);
-                            return [4 /*yield*/, hostedOnboardingPage[args[0]](args[1])];
+                            return [4, hostedOnboardingPage[args[0]](args[1])];
                         case 1:
                             result = _a.sent();
                             expect(result).toMatchObject(args[2]);
-                            return [2 /*return*/];
+                            return [2];
                     }
                 });
             });

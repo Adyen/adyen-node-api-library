@@ -1,29 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-var notification_1 = require("../typings/notification");
-var NotificationRequest = /** @class */ (function () {
+var models_1 = require("../typings/notification/models");
+var NotificationRequest = (function () {
     function NotificationRequest(json) {
-        var notification = notification_1.Convert.toNotification(JSON.stringify(json));
+        var notification = models_1.ObjectSerializer.deserialize(json, "Notification");
         this.notificationItemContainers = notification.notificationItems;
         this.live = notification.live;
     }
@@ -32,9 +12,9 @@ var NotificationRequest = /** @class */ (function () {
             if (!this.notificationItemContainers) {
                 return undefined;
             }
-            return this.notificationItemContainers.map(function (container) { return container.NotificationRequestItem; });
+            return this.notificationItemContainers.map(function (container) { return container.notificationRequestItem; });
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return NotificationRequest;

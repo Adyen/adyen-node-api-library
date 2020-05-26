@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* tslint:disable */
+exports.paymentsResultMultibancoSuccess = void 0;
 exports.paymentsResultMultibancoSuccess = {
     additionalData: {
         "cvcResult": "0",

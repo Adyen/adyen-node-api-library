@@ -1,23 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -33,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import Resource from "../../resource";
 import Client from "../../../client";
-var GetCostEstimate = /** @class */ (function (_super) {
+var GetCostEstimate = (function (_super) {
     __extends(GetCostEstimate, _super);
     function GetCostEstimate(service) {
         return _super.call(this, service, "" + service.client.config.endpoint + Client.BIN_LOOKUP_PAL_SUFFIX + Client.BIN_LOOKUP_API_VERSION + "/getCostEstimate") || this;

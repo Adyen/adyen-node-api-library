@@ -1,4 +1,4 @@
-import { NotificationRequestItem } from "../typings/notification";
+import { NotificationRequestItem } from "../typings/notification/models";
 declare type DataToSign = NotificationRequestItem | {
     [key: string]: string;
 };

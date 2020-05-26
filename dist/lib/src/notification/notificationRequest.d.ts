@@ -1,8 +1,8 @@
-import { Notification, NotificationItem, NotificationRequestItem } from "../typings/notification";
+import { Notification, NotificationItem, NotificationRequestItem } from "../typings/notification/models";
 declare class NotificationRequest {
     constructor(json: Notification);
-    get notificationItems(): NotificationRequestItem[] | undefined;
+    get notificationItems(): Array<NotificationRequestItem> | undefined;
     live: string;
-    notificationItemContainers: NotificationItem[];
+    notificationItemContainers: Array<NotificationItem>;
 }
 export default NotificationRequest;

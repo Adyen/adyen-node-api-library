@@ -68,11 +68,11 @@ var getResponse = function (_a, cb) {
                     _c.label = 1;
                 case 1:
                     _c.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, checkout.payments(checkout_spec_1.createPaymentsCheckoutRequest())];
+                    return [4, checkout.payments(checkout_spec_1.createPaymentsCheckoutRequest())];
                 case 2:
                     _c.sent();
                     fail("request should fail");
-                    return [3 /*break*/, 4];
+                    return [3, 4];
                 case 3:
                     e_1 = _c.sent();
                     expect(e_1 instanceof ErrorException).toBeTruthy();
@@ -80,8 +80,8 @@ var getResponse = function (_a, cb) {
                         expect(e_1.message).toEqual(errorMessageEquals);
                     if (errorMessageContains)
                         expect(e_1.message.toLowerCase()).toContain(errorMessageContains);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3, 4];
+                case 4: return [2];
             }
         });
     });
@@ -93,7 +93,7 @@ describe("HTTP Client", function () {
         return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
-                    case 0: return [4 /*yield*/, getResponse({ apiKey: apiKey, environment: environment }, function (scope) {
+                    case 0: return [4, getResponse({ apiKey: apiKey, environment: environment }, function (scope) {
                             if (withError)
                                 scope.replyWithError(args[0]);
                             else
@@ -102,7 +102,7 @@ describe("HTTP Client", function () {
                         })];
                     case 1:
                         _b.sent();
-                        return [2 /*return*/];
+                        return [2];
                 }
             });
         });
