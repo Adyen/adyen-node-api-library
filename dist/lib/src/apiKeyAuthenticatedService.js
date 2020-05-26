@@ -17,7 +17,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var service_1 = __importDefault(require("./service"));
-var ApiKeyAuthenticatedService = /** @class */ (function (_super) {
+var ApiKeyAuthenticatedService = (function (_super) {
     __extends(ApiKeyAuthenticatedService, _super);
     function ApiKeyAuthenticatedService(client) {
         var _this = _super.call(this, client) || this;

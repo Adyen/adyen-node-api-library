@@ -1,26 +1,6 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 import { pbkdf2Sync } from "crypto";
 import { NexoEnum } from "../constants/nexoConstants";
-var NexoDerivedKeyGenerator = /** @class */ (function () {
+var NexoDerivedKeyGenerator = (function () {
     function NexoDerivedKeyGenerator() {
     }
     NexoDerivedKeyGenerator.deriveKeyMaterial = function (passphrase) {

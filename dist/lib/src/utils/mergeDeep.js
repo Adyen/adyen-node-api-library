@@ -1,8 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mergeDeep(target, source) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     var isObject = function (obj) { return obj && typeof obj === "object"; };
     if (!isObject(target) || !isObject(source)) {
         return source;

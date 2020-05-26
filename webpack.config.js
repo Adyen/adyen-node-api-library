@@ -1,3 +1,22 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+
 const path = require("path");
 
 module.exports = {
@@ -8,7 +27,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "dist", "es5"),
         filename: "[name].js",
-        library: "AdyenTerminalApi",
+        library: "Adyen",
         libraryTarget: "umd",
         umdNamedDefine: true
     },

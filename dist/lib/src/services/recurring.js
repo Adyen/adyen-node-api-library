@@ -1,24 +1,4 @@
 "use strict";
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -40,7 +20,7 @@ var getJsonResponse_1 = __importDefault(require("../helpers/getJsonResponse"));
 var service_1 = __importDefault(require("../service"));
 var disable_1 = __importDefault(require("./resource/recurring/disable"));
 var listRecurringDetails_1 = __importDefault(require("./resource/recurring/listRecurringDetails"));
-var Recurring = /** @class */ (function (_super) {
+var Recurring = (function (_super) {
     __extends(Recurring, _super);
     function Recurring(client) {
         var _this = _super.call(this, client) || this;

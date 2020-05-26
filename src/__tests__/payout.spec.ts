@@ -1,3 +1,22 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+
 import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import Payout from "../services/payout";
@@ -5,6 +24,7 @@ import Client from "../client";
 import StoreDetailRequest = IPayouts.StoreDetailRequest;
 import {ApiConstants} from "../constants/apiConstants";
 
+const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 const storeDetailAndSubmitThirdParty = JSON.stringify({
     additionalData: {
         fraudResultType: "GREEN",
@@ -148,7 +168,7 @@ describe("PayoutTest", function (): void {
         expect(result.pspReference).toBeTruthy();
     });
 
-    test.each([false, true])("should succeed on submit third party, isMock: %p", async function (isMock): Promise<void> {
+    test.each([isCI, true])("should succeed on submit third party, isMock: %p", async function (isMock): Promise<void> {
         !isMock && nock.restore();
         payout = new Payout(clientStore);
         scope.post("/submitThirdParty").reply(200, storeDetailAndSubmitThirdParty);

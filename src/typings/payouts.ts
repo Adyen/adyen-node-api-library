@@ -12,16 +12,12 @@
  *                                      ######
  *                               #############
  *                               ############
- *
  * Adyen NodeJS API Library
- *
- * Version of Payouts: v52
- *
- * Copyright (c) 2019 Adyen B.V.
+ * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
- 
+
 
 declare namespace IPayouts {
     export interface AccountInfo {
@@ -155,10 +151,10 @@ declare namespace IPayouts {
         mpiImplementationType?: string;
         /**
          * Indicates the [exemption type](https://docs-admin.is.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction. Possible values:
-         * * **lowValue** 
-         * * **secureCorporate** 
-         * * **trustedBeneficiary** 
-         * * **transactionRiskAnalysis** 
+         * * **lowValue**
+         * * **secureCorporate**
+         * * **trustedBeneficiary**
+         * * **transactionRiskAnalysis**
          */
         scaExemption?: string;
     }
@@ -295,7 +291,7 @@ declare namespace IPayouts {
          * * J: business class
          * * Y: economy class
          * * W: premium economy
-         * 
+         *
          * Limitations:
          * * minLength: 1
          * * maxLength: 1
@@ -305,7 +301,7 @@ declare namespace IPayouts {
          * 1-letter code that indicates whether the passenger is entitled to make a stopover. Only two types of characters are allowed:
          * * O: Stopover allowed
          * * X: Stopover not allowed
-         * 
+         *
          * Limitations:
          * * minLength: 1
          * * maxLength: 1
@@ -321,7 +317,7 @@ declare namespace IPayouts {
          */
         "airline.leg.destination_code"?: string;
         /**
-         * 	
+         *
          * Date and time of travel. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-compliant.
          * * Format: `yyyy-MM-dd HH:mm`
          * * minLength: 16
@@ -346,7 +342,7 @@ declare namespace IPayouts {
         "airline.passenger.last_name"?: string;
         /**
          * Passenger type code (PTC). IATA PTC values are 3-letter alphabetical. Example: ADT, SRC, CNN, INS.
-         * 
+         *
          * However, several carriers use non-standard codes that can be up to 5 alphanumeric characters.
          * * minLength: 3
          * * maxLength: 6
@@ -360,7 +356,7 @@ declare namespace IPayouts {
         "airline.passenger.telephone_number"?: string;
         /**
          * Date of birth of the passenger.
-         * 
+         *
          * Date format: `yyyy-MM-dd`
          * * minLength: 10
          * * maxLength: 10
@@ -463,7 +459,7 @@ declare namespace IPayouts {
         "carRental.daysRented"?: string;
         /**
          * Indicates whether the goods or services were tax-exempt, or tax was not collected.
-         * 
+         *
          * Values:
          * * 0 - Tax was not collected
          * * 1 - Goods or services were tax exempt
@@ -507,7 +503,7 @@ declare namespace IPayouts {
     export interface AdditionalDataCommon {
         /**
          * Flags a card payment request for either pre-authorisation or final authorisation. For more information, refer to [Authorisation types](https://docs.adyen.com/checkout/adjust-authorisation#authorisation-types).
-         * 
+         *
          * Allowed values:
          * * **PreAuth** – flags the payment request to be handled as a pre-authorisation.
          * * **FinalAuth** – flags the payment request to be handled as a final authorisation.
@@ -515,19 +511,19 @@ declare namespace IPayouts {
         authorisationType?: string;
         /**
          * Allows you to determine or override the acquirer account that should be used for the transaction.
-         * 
+         *
          * If you need to process a payment with an acquirer different from a default one, you can set up a corresponding configuration on the Adyen payments platform. Then you can pass a custom routing flag in a payment request's additional data to target a specific acquirer.
-         * 
+         *
          * To enable this functionality, contact [Support](https://support.adyen.com/hc/en-us/requests/new).
          */
         customRoutingFlag?: string;
         /**
          * Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain. This field is required for token-based transactions where Adyen does not tokenize the card.
-         * 
+         *
          * Transaction identifier from card schemes, for example, Mastercard Trace ID or the Visa Transaction ID.
-         * 
+         *
          * Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.
-         * 
+         *
          * Make sure you are sending `shopperInteraction` **ContAuth** and `recurringProcessingModel` **Subscription** or **UnscheduledCardonFile** to ensure that the transaction is classified as MIT.
          */
         networkTxReference?: string;
@@ -537,7 +533,7 @@ declare namespace IPayouts {
         overwriteBrand?: string;
         /**
          * Triggers test scenarios that allow to replicate certain communication errors.
-         * 
+         *
          * Allowed values:
          * * **NO_CONNECTION_AVAILABLE** – There wasn't a connection available to service the outgoing communication.
          * This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request.
@@ -547,7 +543,7 @@ declare namespace IPayouts {
         RequestedTestErrorResponseCode?: string;
         /**
          * This field contains an identifier of the actual merchant when a transaction is submitted via a payment facilitator. The payment facilitator must send in this unique ID, which is used by schemes to identify the merchant.
-         * 
+         *
          * A unique identifier per submerchant that is required if the transaction is performed by a registered payment facilitator.
          * * Format: alpha-numeric.
          * * Fixed length: 15 characters.
@@ -564,7 +560,7 @@ declare namespace IPayouts {
         "enhancedSchemeData.customerReference"?: string;
         /**
          * Total tax amount, in minor units.
-         * 
+         *
          * For example, 2000 means USD 20.00.
          * Max length: 12 characters.
          * > Required for Level 2 and Level 3 data.
@@ -572,21 +568,21 @@ declare namespace IPayouts {
         "enhancedSchemeData.totalTaxAmount"?: number;
         /**
          * Shipping amount, in minor units.
-         * 
+         *
          * For example, 2000 means USD 20.00.
          * Max length: 12 characters.
          */
         "enhancedSchemeData.freightAmount"?: number;
         /**
          * Duty amount, in minor units.
-         * 
+         *
          * For example, 2000 means USD 20.00.
          * Max length: 12 characters.
          */
         "enhancedSchemeData.dutyAmount"?: number;
         /**
          * The postal code of a destination address.
-         * 
+         *
          * Encoding: ASCII.
          * Max length: 10 characters.
          * > Required for American Express.
@@ -594,20 +590,20 @@ declare namespace IPayouts {
         "enhancedSchemeData.destinationPostalCode"?: string;
         /**
          * Destination state or province code.
-         * 
+         *
          * Encoding: ASCII.Max length: 3 characters.
          */
         "enhancedSchemeData.destinationStateProvinceCode"?: string;
         /**
          * The postal code of a "ship-from" address.
-         * 
+         *
          * Encoding: ASCII.
          * Max length: 10 characters.
          */
         "enhancedSchemeData.shipFromPostalCode"?: string;
         /**
          * Destination country code.
-         * 
+         *
          * Encoding: ASCII.
          * Max length: 3 characters.
          */
@@ -615,7 +611,7 @@ declare namespace IPayouts {
         /**
          * Order date.
          * * Format: `ddMMyy`
-         * 
+         *
          * Encoding: ASCII.
          * Max length: 6 characters.
          */
@@ -657,7 +653,7 @@ declare namespace IPayouts {
         "enhancedSchemeData.itemDetailLine[itemNr].unitPrice"?: number;
         /**
          * Discount amount, in minor units.
-         * 
+         *
          * For example, 2000 means USD 20.00.
          * Max length: 12 characters.
          */
@@ -748,7 +744,7 @@ declare namespace IPayouts {
         "lodging.foodBeverageCharges"?: string;
         /**
          * Indicates if the customer was a "no-show" (neither keeps nor cancels their booking).
-         * 
+         *
          * Value should be Y or N.
          * * Format: Numeric
          * * maxLength: 1
@@ -782,19 +778,19 @@ declare namespace IPayouts {
     export interface AdditionalDataOpenInvoice {
         /**
          * The number of invoice lines included in `openinvoicedata`.
-         * 
+         *
          * There needs to be at least one line, so `numberOfLines` needs to be at least 1.
          */
         "openinvoicedata.numberOfLines"?: number;
         /**
          * Holds different merchant data points like product, purchase, customer, and so on. It takes data in a Base64 encoded string.
-         * 
+         *
          * The `merchantData` parameter needs to be added to the `openinvoicedata` signature at the end.
-         * 
+         *
          * Since the field is optional, if it's not included it does not impact computing the merchant signature.
-         * 
+         *
          * Applies only to Klarna.
-         * 
+         *
          * You can contact Klarna for the format and structure of the string.
          */
         "openinvoicedata.merchantData"?: string;
@@ -808,7 +804,7 @@ declare namespace IPayouts {
         "openinvoicedata.line[itemNr].description"?: string;
         /**
          * The price for one item in the invoice line, represented in minor units.
-         * 
+         *
          * The due amount for the item, VAT excluded.
          */
         "openinvoicedata.line[itemNr].itemAmount"?: number;
@@ -818,7 +814,7 @@ declare namespace IPayouts {
         "openinvoicedata.line[itemNr].itemVatAmount"?: number;
         /**
          * The VAT percentage for one item in the invoice line, represented in minor units.
-         * 
+         *
          * For example, 19% VAT is specified as 1900.
          */
         "openinvoicedata.line[itemNr].itemVatPercentage"?: number;
@@ -832,7 +828,7 @@ declare namespace IPayouts {
         "openinvoicedata.line[itemNr].numberOfItems"?: number;
         /**
          * Required for AfterPay. The country-specific VAT category a product falls under.
-         * 
+         *
          * Allowed values:
          * * High
          * * Low
@@ -966,7 +962,7 @@ declare namespace IPayouts {
         "riskdata.promotions.promotion[itemNr].promotionDiscountCurrency"?: string;
         /**
          * Promotion's percentage discount. It is represented in percentage value and there is no need to include the '%' sign.
-         * 
+         *
          * e.g. for a promotion discount of 30%, the value of the field should be 30.
          */
         "riskdata.promotions.promotion[itemNr].promotionDiscountPercentage"?: string;
@@ -1148,7 +1144,7 @@ declare namespace IPayouts {
         currency: string;
         /**
          * The payable amount that can be charged for the transaction.
-         * 
+         *
          * The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
          */
         value: number; // int64
@@ -1202,7 +1198,7 @@ declare namespace IPayouts {
         bic?: string;
         /**
          * Country code where the bank is located.
-         * 
+         *
          * A valid value is an ISO two-character country code (e.g. 'NL').
          */
         countryCode?: string;
@@ -1459,7 +1455,7 @@ declare namespace IPayouts {
     export interface Installments {
         /**
          * Defines the number of installments. Its value needs to be greater than zero.
-         * 
+         *
          * Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.
          */
         value: number; // int32
@@ -1589,12 +1585,12 @@ declare namespace IPayouts {
         accountInfo?: IPayouts.AccountInfo;
         /**
          * If you want a [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) request to use a non-zero value, assign this value to `additionalAmount` (while the amount must be still set to 0 to trigger BIN or card verification).
-         * Required to be in the same currency as the `amount`. 
+         * Required to be in the same currency as the `amount`.
          */
         additionalAmount?: IPayouts.Amount;
         /**
          * This field contains additional data, which may be required for a particular payment request.
-         * 
+         *
          * The `additionalData` object consists of entries, each of which includes the key and value.
          */
         additionalData?: IPayouts.AdditionalDataCommon | IPayouts.AdditionalDataModifications | IPayouts.AdditionalData3DSecure | IPayouts.AdditionalDataAirline | IPayouts.AdditionalDataCarRental | IPayouts.AdditionalDataLevel23 | IPayouts.AdditionalDataLodging | IPayouts.AdditionalDataOpenInvoice | IPayouts.AdditionalDataRatepay | IPayouts.AdditionalDataRetry | IPayouts.AdditionalDataRisk | IPayouts.AdditionalDataRiskStandalone | IPayouts.AdditionalDataTemporaryServices | IPayouts.AdditionalDataWallets;
@@ -1632,7 +1628,7 @@ declare namespace IPayouts {
         card?: IPayouts.Card;
         /**
          * The shopper's date of birth.
-         * 
+         *
          * Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
          */
         dateOfBirth?: string; // date-time
@@ -1646,9 +1642,9 @@ declare namespace IPayouts {
         deliveryAddress?: IPayouts.Address;
         /**
          * The date and time the purchased goods should be delivered.
-         * 
+         *
          * Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD
-         * 
+         *
          * Example: 2017-07-17T13:42:40.428+01:00
          */
         deliveryDate?: string; // date-time
@@ -1730,7 +1726,7 @@ declare namespace IPayouts {
          * * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.
          * * `CardOnFile` – Card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.
          * * `UnscheduledCardOnFile` – A transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
-         * 
+         *
          */
         recurringProcessingModel?: "CardOnFile" | "Subscription" | "UnscheduledCardOnFile";
         /**
@@ -1741,7 +1737,7 @@ declare namespace IPayouts {
         reference: string;
         /**
          * Some payment methods require defining a value for this field to specify how to process the transaction.
-         * 
+         *
          * For the Bancontact payment method, it can be set to:
          * * `maestro` (default), to be processed like a Maestro card, or
          * * `bcmc`, to be processed like a Bancontact card.
@@ -1768,7 +1764,7 @@ declare namespace IPayouts {
         /**
          * Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer.
          * For the web service API, Adyen assumes Ecommerce shopper interaction by default.
-         * 
+         *
          * This field has the following possible values:
          * * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request.
          * * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment).
@@ -1863,25 +1859,25 @@ declare namespace IPayouts {
         md?: string;
         /**
          * The 3D request data for the issuer.
-         * 
+         *
          * If the value is **CUPSecurePlus-CollectSMSVerificationCode**, collect an SMS code from the shopper and pass it in the `/authorise3D` request. For more information, see [3D Secure](https://docs.adyen.com/classic-integration/3d-secure).
          */
         paRequest?: string;
         /**
          * Adyen's 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
-         * 
+         *
          * > `pspReference` is returned only for non-redirect payment methods.
          */
         pspReference?: string;
         /**
          * If the payment's authorisation is refused or an error occurs during authorisation, this field holds Adyen's mapped reason for the refusal or a description of the error.
-         * 
+         *
          * When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.
          */
         refusalReason?: string;
         /**
          * The result of the payment. Possible values:
-         * 
+         *
          * * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions.
          * * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state.
          * * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state.
@@ -1964,7 +1960,7 @@ declare namespace IPayouts {
     export interface Split {
         /**
          * The account to which this split applies.
-         * 
+         *
          * >Required if the type is `MarketPlace`.
          */
         account?: string;
@@ -1978,13 +1974,13 @@ declare namespace IPayouts {
         description?: string;
         /**
          * The reference of this split. Used to link other operations (e.g. captures and refunds) to this split.
-         * 
+         *
          * >Required if the type is `MarketPlace`.
          */
         reference?: string;
         /**
          * The type of this split.
-         * 
+         *
          * >Permitted values: `Default`, `PaymentFee`, `VAT`, `Commission`, `MarketPlace`, `BalanceAccount`.
          */
         type: "BalanceAccount" | "Commission" | "Default" | "MarketPlace" | "PaymentFee" | "VAT" | "Verification";
@@ -1992,13 +1988,13 @@ declare namespace IPayouts {
     export interface SplitAmount {
         /**
          * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
-         * 
+         *
          * If this value is not provided, the currency in which the payment is made will be used.
          */
         currency?: string;
         /**
          * The payable amount that can be charged for the transaction.
-         * 
+         *
          * The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
          */
         value: number; // int64
@@ -2048,13 +2044,13 @@ declare namespace IPayouts {
         merchantAccount: string;
         /**
          * The shopper's nationality.
-         * 
+         *
          * A valid value is an ISO 2-character country code (e.g. 'NL').
          */
         nationality: string;
         /**
          * A container for the type of recurring contract to be retrieved.
-         * 
+         *
          * The recurring.contract must be set to `PAYOUT`
          */
         recurring: IPayouts.Recurring;
@@ -2064,7 +2060,7 @@ declare namespace IPayouts {
         reference: string;
         /**
          * The name of the brand to make a payout to.
-         * 
+         *
          * For Paysafecard it must be set to `paysafecard`.
          */
         selectedBrand?: string;
@@ -2074,7 +2070,7 @@ declare namespace IPayouts {
         shopperEmail: string;
         /**
          * The shopper's name.
-         * 
+         *
          * When the `entityType` is `Company`, the `shopperName.lastName` must contain the company name.
          */
         shopperName?: IPayouts.Name;
@@ -2111,7 +2107,7 @@ declare namespace IPayouts {
         refusalReason?: string;
         /**
          * The response:
-         * 
+         *
          * * In case of success is payout-submit-received.
          * * In case of an error, an informational message is returned.
          */
@@ -2158,19 +2154,19 @@ declare namespace IPayouts {
         merchantAccount: string;
         /**
          * The shopper's nationality.
-         * 
+         *
          * A valid value is an ISO 2-character country code (e.g. 'NL').
          */
         nationality: string;
         /**
          * A container for the type of recurring contract to be retrieved.
-         * 
+         *
          * The recurring.contract must be set to `PAYOUT`
          */
         recurring: IPayouts.Recurring;
         /**
          * The name of the brand to make a payout to.
-         * 
+         *
          * For Paysafecard it must be set to `paysafecard`.
          */
         selectedBrand?: string;
@@ -2180,7 +2176,7 @@ declare namespace IPayouts {
         shopperEmail: string;
         /**
          * The shopper's name.
-         * 
+         *
          * When the `entityType` is `Company`, the `shopperName.lastName` must contain the company name.
          */
         shopperName?: IPayouts.Name;
@@ -2229,16 +2225,16 @@ declare namespace IPayouts {
         /**
          * The date of birth.
          * Format: ISO-8601; example: YYYY-MM-DD
-         * 
+         *
          * For Paysafecard it must be the same as used when registering the Paysafecard account.
-         * 
-         * > This field is mandatory for natural persons. 
+         *
+         * > This field is mandatory for natural persons.
          * > This field is required to update the existing `dateOfBirth` that is associated with this recurring contract.
          */
         dateOfBirth?: string; // date-time
         /**
          * The type of the entity the payout is processed for.
-         * 
+         *
          * Allowed values:
          * * NaturalPerson
          * * Company
@@ -2255,15 +2251,15 @@ declare namespace IPayouts {
         merchantAccount: string;
         /**
          * The shopper's nationality.
-         * 
+         *
          * A valid value is an ISO 2-character country code (e.g. 'NL').
-         * 
+         *
          * > This field is required to update the existing nationality that is associated with this recurring contract.
          */
         nationality?: string;
         /**
          * A container for the type of recurring contract to be retrieved.
-         * 
+         *
          * The `recurring.contract` must be set to "PAYOUT".
          */
         recurring: IPayouts.Recurring;
@@ -2273,7 +2269,7 @@ declare namespace IPayouts {
         reference: string;
         /**
          * This is the `recurringDetailReference` you want to use for this payout.
-         * 
+         *
          * You can use the value LATEST to select the most recently used recurring detail.
          */
         selectedRecurringDetailReference: string;
@@ -2283,9 +2279,9 @@ declare namespace IPayouts {
         shopperEmail: string;
         /**
          * The shopper's name.
-         * 
+         *
          * In case the `entityType` is `Company`, the `shopperName.lastName` must contain the company name.
-         * 
+         *
          * > This field is required to update the existing `shopperName` associated with a recurring contract.
          */
         shopperName?: IPayouts.Name;
@@ -2343,7 +2339,7 @@ declare namespace IPayouts {
          * * `requestNoChallenge`
          * * `requestChallenge`
          * * `requestChallengeAsMandate`
-         * 
+         *
          */
         challengeIndicator?: "noPreference" | "requestNoChallenge" | "requestChallenge" | "requestChallengeAsMandate";
         /**
@@ -2433,7 +2429,7 @@ declare namespace IPayouts {
     export interface ThreeDSecureData {
         /**
          * In 3D Secure 1, the authentication response if the shopper was redirected.
-         * 
+         *
          * In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, set this value to **Y**.
          */
         authenticationResponse?: "Y" | "N" | "U" | "A";
@@ -2447,7 +2443,7 @@ declare namespace IPayouts {
         cavvAlgorithm?: string;
         /**
          * In 3D Secure 1, this is the enrollment response from the 3D directory server.
-         * 
+         *
          * In 3D Secure 2, this is the `transStatus` from the `ARes`. The possible values are **A** or **Y** for a frictionless flow, or **C** for a challenge flow.
          */
         directoryResponse?: "A" | "C" | "D" | "I" | "N" | "R" | "U" | "Y";

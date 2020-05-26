@@ -1,4 +1,3 @@
-/* tslint:disable */
 export var paymentMethodsSuccess = JSON.stringify({
     paymentMethods: [
         {

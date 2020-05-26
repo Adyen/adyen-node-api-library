@@ -1,3 +1,22 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2020 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+
 import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import {disableSuccess} from "../__mocks__/recurring/disableSuccess";
@@ -15,6 +34,7 @@ const createRecurringDetailsRequest = (): IRecurring.RecurringDetailsRequest => 
         shopperReference: "shopperReference",
     };
 };
+const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 
 let client: Client;
 let recurring: Recurring;
@@ -50,7 +70,7 @@ describe("Recurring", (): void => {
         }
     });
 
-    test.each([false, true])("should disable, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI, true])("should disable, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/payments")
             .reply(200, paymentsSuccess);

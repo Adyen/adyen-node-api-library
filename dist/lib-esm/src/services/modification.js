@@ -20,7 +20,7 @@ import Capture from "./resource/modification/capture";
 import Refund from "./resource/modification/refund";
 import TechnicalCancel from "./resource/modification/technicalCancel";
 import setApplicationInfo from "../helpers/setApplicationInfo";
-var Modification = /** @class */ (function (_super) {
+var Modification = (function (_super) {
     __extends(Modification, _super);
     function Modification(client) {
         var _this = _super.call(this, client) || this;

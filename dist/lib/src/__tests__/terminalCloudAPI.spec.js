@@ -70,11 +70,11 @@ describe("Terminal Cloud API", function () {
                     !isMock && nock_1.default.restore();
                     scope.post("/async").reply(200, async_1.asyncRes);
                     terminalAPIPaymentRequest = base_1.createTerminalAPIPaymentRequest();
-                    return [4 /*yield*/, terminalCloudAPI.async(terminalAPIPaymentRequest)];
+                    return [4, terminalCloudAPI.async(terminalAPIPaymentRequest)];
                 case 1:
                     requestResponse = _a.sent();
                     expect(requestResponse).toEqual("ok");
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });
@@ -88,12 +88,12 @@ describe("Terminal Cloud API", function () {
                     response = terminal_1.Convert.toTerminalApiResponse(sync_1.syncRes);
                     scope.post("/sync").reply(200, response);
                     terminalAPIPaymentRequest = base_1.createTerminalAPIPaymentRequest();
-                    return [4 /*yield*/, terminalCloudAPI.sync(terminalAPIPaymentRequest)];
+                    return [4, terminalCloudAPI.sync(terminalAPIPaymentRequest)];
                 case 1:
                     terminalAPIResponse = _c.sent();
                     expect((_a = terminalAPIResponse.saleToPoiResponse) === null || _a === void 0 ? void 0 : _a.paymentResponse).toBeDefined();
                     expect((_b = terminalAPIResponse.saleToPoiResponse) === null || _b === void 0 ? void 0 : _b.messageHeader).toBeDefined();
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });
@@ -107,17 +107,17 @@ describe("Terminal Cloud API", function () {
                     response = terminal_1.Convert.toTerminalApiResponse(sync_1.syncRes);
                     scope.post("/sync").reply(200, response);
                     terminalAPIPaymentRequest = base_1.createTerminalAPIPaymentRequest();
-                    return [4 /*yield*/, terminalCloudAPI.sync(terminalAPIPaymentRequest)];
+                    return [4, terminalCloudAPI.sync(terminalAPIPaymentRequest)];
                 case 1:
                     terminalAPIResponse = _d.sent();
                     refundResponse = terminal_1.Convert.toTerminalApiResponse(sync_1.syncRefund);
                     scope.post("/sync").reply(200, refundResponse);
                     terminalAPIRefundRequest = base_1.createTerminalAPIRefundRequest((_b = (_a = terminalAPIResponse.saleToPoiResponse) === null || _a === void 0 ? void 0 : _a.paymentResponse) === null || _b === void 0 ? void 0 : _b.poiData.poiTransactionId);
-                    return [4 /*yield*/, terminalCloudAPI.sync(terminalAPIRefundRequest)];
+                    return [4, terminalCloudAPI.sync(terminalAPIRefundRequest)];
                 case 2:
                     terminalAPIRefundResponse = _d.sent();
                     expect((_c = terminalAPIRefundResponse.saleToPoiResponse) === null || _c === void 0 ? void 0 : _c.reversalResponse).toBeDefined();
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });

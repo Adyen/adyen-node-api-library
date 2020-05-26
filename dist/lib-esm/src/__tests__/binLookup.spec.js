@@ -34,26 +34,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
 import BinLookup from "../services/binLookup";
@@ -96,11 +76,11 @@ describe("Bin Lookup", function () {
                         };
                         scope.post("/get3dsAvailability")
                             .reply(200, threeDSAvailabilitySuccess);
-                        return [4 /*yield*/, binLookup.get3dsAvailability(threeDSAvailabilityRequest)];
+                        return [4, binLookup.get3dsAvailability(threeDSAvailabilityRequest)];
                     case 1:
                         response = _a.sent();
                         expect(response).toEqual(threeDSAvailabilitySuccess);
-                        return [2 /*return*/];
+                        return [2];
                 }
             });
         });
@@ -122,16 +102,16 @@ describe("Bin Lookup", function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, binLookup.get3dsAvailability(threeDSAvailabilityRequest)];
+                        return [4, binLookup.get3dsAvailability(threeDSAvailabilityRequest)];
                     case 2:
                         _a.sent();
                         fail("Expected request to fail");
-                        return [3 /*break*/, 4];
+                        return [3, 4];
                     case 3:
                         e_1 = _a.sent();
                         expect(e_1 instanceof HttpClientException).toBeTruthy();
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                        return [3, 4];
+                    case 4: return [2];
                 }
             });
         });
@@ -168,11 +148,11 @@ describe("Bin Lookup", function () {
                         };
                         scope.post("/getCostEstimate")
                             .reply(200, expected);
-                        return [4 /*yield*/, binLookup.getCostEstimate(costEstimateRequest)];
+                        return [4, binLookup.getCostEstimate(costEstimateRequest)];
                     case 1:
                         response = _a.sent();
                         expect(response).toEqual(expected);
-                        return [2 /*return*/];
+                        return [2];
                 }
             });
         });

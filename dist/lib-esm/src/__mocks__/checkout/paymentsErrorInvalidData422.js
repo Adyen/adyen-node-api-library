@@ -1,4 +1,3 @@
-/* tslint:disable */
 export var paymentsError = JSON.stringify({
     statusCode: 422,
     errorCode: "130",

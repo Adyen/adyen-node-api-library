@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* tslint:disable */
+exports.paymentsSuccess = void 0;
 exports.paymentsSuccess = JSON.stringify({
     additionalData: {
         expiryDate: "8/2018",

@@ -1,24 +1,4 @@
 "use strict";
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -59,6 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createPaymentsCheckoutRequest = void 0;
 var nock_1 = __importDefault(require("nock"));
 var base_1 = require("../__mocks__/base");
 var paymentMethodsSuccess_1 = require("../__mocks__/checkout/paymentMethodsSuccess");
@@ -72,6 +53,7 @@ var checkout_1 = __importDefault(require("../services/checkout"));
 var httpClientException_1 = __importDefault(require("../httpClient/httpClientException"));
 var merchantAccount = process.env.ADYEN_MERCHANT;
 var reference = "Your order number";
+var isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 function createAmountObject(currency, value) {
     return {
         currency: currency,
@@ -144,11 +126,11 @@ describe("Checkout", function () {
                     scope.post("/payments")
                         .reply(200, paymentsSuccess_1.paymentsSuccess);
                     paymentsRequest = createPaymentsCheckoutRequest();
-                    return [4 /*yield*/, checkout.payments(paymentsRequest)];
+                    return [4, checkout.payments(paymentsRequest)];
                 case 1:
                     paymentsResponse = _a.sent();
                     expect(paymentsResponse.pspReference).toBeTruthy();
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });
@@ -164,15 +146,15 @@ describe("Checkout", function () {
                     scope.post("/payments")
                         .reply(401);
                     paymentsRequest = createPaymentsCheckoutRequest();
-                    return [4 /*yield*/, checkout.payments(paymentsRequest)];
+                    return [4, checkout.payments(paymentsRequest)];
                 case 2:
                     _a.sent();
-                    return [3 /*break*/, 4];
+                    return [3, 4];
                 case 3:
                     e_1 = _a.sent();
                     expect(e_1 instanceof httpClientException_1.default).toBeTruthy();
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3, 4];
+                case 4: return [2];
             }
         });
     }); });
@@ -185,7 +167,7 @@ describe("Checkout", function () {
                     paymentMethodsRequest = { merchantAccount: "MagentoMerchantTest" };
                     scope.post("/paymentMethods")
                         .reply(200, paymentMethodsSuccess_1.paymentMethodsSuccess);
-                    return [4 /*yield*/, checkout.paymentMethods(paymentMethodsRequest)];
+                    return [4, checkout.paymentMethods(paymentMethodsRequest)];
                 case 1:
                     paymentMethodsResponse = _a.sent();
                     if (paymentMethodsResponse && paymentMethodsResponse.paymentMethods) {
@@ -194,7 +176,7 @@ describe("Checkout", function () {
                     else {
                         fail();
                     }
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });
@@ -239,30 +221,27 @@ describe("Checkout", function () {
                         url: "paymentLinkResponse.url"
                     };
                     scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
-                    return [4 /*yield*/, checkout.paymentLinks(paymentLinkRequest)];
+                    return [4, checkout.paymentLinks(paymentLinkRequest)];
                 case 1:
                     paymentSuccessLinkResponse = _a.sent();
                     expect(paymentSuccessLinkResponse).toBeTruthy();
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });
-    test.each([false, true])("should have payment details, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([isCI, true])("should have payment details, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var paymentsResponse;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!isMock) {
-                        console.warn("Cannot perform /payments/details without manual user validation. Skipping test.");
-                        return [2 /*return*/];
-                    }
+                    !isMock && nock_1.default.restore();
                     scope.post("/payments/details")
                         .reply(200, paymentsDetailsSuccess_1.paymentDetailsSuccess);
-                    return [4 /*yield*/, checkout.paymentsDetails(createPaymentsDetailsRequest())];
+                    return [4, checkout.paymentsDetails(createPaymentsDetailsRequest())];
                 case 1:
                     paymentsResponse = _a.sent();
                     expect(paymentsResponse.resultCode).toEqual("Authorised");
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });
@@ -275,33 +254,30 @@ describe("Checkout", function () {
                     scope.post("/paymentSession")
                         .reply(200, paymentSessionSucess_1.paymentSessionSuccess);
                     paymentSessionRequest = createPaymentSessionRequest();
-                    return [4 /*yield*/, checkout.paymentSession(paymentSessionRequest)];
+                    return [4, checkout.paymentSession(paymentSessionRequest)];
                 case 1:
                     paymentSessionResponse = _a.sent();
                     expect(paymentSessionResponse.paymentSession).not.toBeUndefined();
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });
-    test.each([false, true])("should have payments result, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([isCI, true])("should have payments result, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var paymentResultRequest, paymentResultResponse;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!isMock) {
-                        console.warn("Cannot perform /payments/result without payload. Skipping test.");
-                        return [2 /*return*/];
-                    }
+                    !isMock && nock_1.default.restore();
                     scope.post("/payments/result")
                         .reply(200, paymentsResultSucess_1.paymentsResultSuccess);
                     paymentResultRequest = {
                         payload: "This is a test payload",
                     };
-                    return [4 /*yield*/, checkout.paymentResult(paymentResultRequest)];
+                    return [4, checkout.paymentResult(paymentResultRequest)];
                 case 1:
                     paymentResultResponse = _a.sent();
                     expect(paymentResultResponse.resultCode).toEqual("Authorised");
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });
@@ -316,7 +292,7 @@ describe("Checkout", function () {
             catch (e) {
                 expect(e.message).toEqual("Please provide your unique live url prefix on the setEnvironment() call on the Client or provide checkoutEndpoint in your config object.");
             }
-            return [2 /*return*/];
+            return [2];
         });
     }); });
     test.each([false, true])("should succeed on multibanco payment, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
@@ -328,12 +304,12 @@ describe("Checkout", function () {
                     scope.post("/payments")
                         .reply(200, paymentsResultMultibancoSuccess_1.paymentsResultMultibancoSuccess);
                     paymentsRequest = createPaymentsCheckoutRequest();
-                    return [4 /*yield*/, checkout.payments(paymentsRequest)];
+                    return [4, checkout.payments(paymentsRequest)];
                 case 1:
                     paymentsResponse = _a.sent();
                     expect(paymentsResponse.pspReference).toBeTruthy();
                     expect(paymentsResponse.additionalData).toBeTruthy();
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });

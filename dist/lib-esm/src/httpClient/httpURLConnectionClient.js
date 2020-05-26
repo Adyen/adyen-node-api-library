@@ -1,23 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -49,7 +29,7 @@ import HttpClientException from "./httpClientException";
 import checkServerIdentity from "../helpers/checkServerIdentity";
 import ApiException from "../services/exception/apiException";
 import { ApiConstants } from "../constants/apiConstants";
-var HttpURLConnectionClient = /** @class */ (function () {
+var HttpURLConnectionClient = (function () {
     function HttpURLConnectionClient() {
     }
     HttpURLConnectionClient.prototype.request = function (endpoint, json, config, isApiRequired, requestOptions) {

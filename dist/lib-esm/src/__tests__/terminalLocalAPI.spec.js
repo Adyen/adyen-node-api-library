@@ -64,11 +64,11 @@ describe("Terminal Local API", function () {
                         keyVersion: 1,
                         passphrase: "p@ssw0rd123456",
                     };
-                    return [4 /*yield*/, terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey)];
+                    return [4, terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey)];
                 case 1:
                     terminalApiResponse = _a.sent();
                     expect(response).toEqual(terminalApiResponse);
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });
@@ -89,16 +89,16 @@ describe("Terminal Local API", function () {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey)];
+                    return [4, terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey)];
                 case 2:
                     _a.sent();
-                    return [3 /*break*/, 4];
+                    return [3, 4];
                 case 3:
                     e_1 = _a.sent();
                     expect(e_1 instanceof NexoCryptoException);
                     expect(e_1.message).toEqual("Hmac validation failed");
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3, 4];
+                case 4: return [2];
             }
         });
     }); });

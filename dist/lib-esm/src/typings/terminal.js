@@ -1,23 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 export var DeviceType;
 (function (DeviceType) {
     DeviceType["CashierDisplay"] = "CashierDisplay";
@@ -585,9 +565,7 @@ export var PoiCapabilitiesType;
     PoiCapabilitiesType["PrinterReceipt"] = "PrinterReceipt";
     PoiCapabilitiesType["PrinterVoucher"] = "PrinterVoucher";
 })(PoiCapabilitiesType || (PoiCapabilitiesType = {}));
-// Converts JSON strings to/from your types
-// and asserts the results of JSON.parse at runtime
-var Convert = /** @class */ (function () {
+var Convert = (function () {
     function Convert() {
     }
     Convert.toTerminalApiRequest = function (json) {
@@ -1969,7 +1947,6 @@ function transform(val, typ, getProps) {
         return invalidValue(typ, val);
     }
     function transformUnion(typs, val) {
-        // val must validate against one typ in typs
         var l = typs.length;
         for (var i = 0; i < l; i++) {
             var typ = typs[i];
@@ -1986,7 +1963,6 @@ function transform(val, typ, getProps) {
         return invalidValue(cases, val);
     }
     function transformArray(typ, val) {
-        // val must be an array with no invalid elements
         if (!Array.isArray(val))
             return invalidValue("array", val);
         return val.map(function (el) { return transform(el, typ, getProps); });
@@ -2038,7 +2014,6 @@ function transform(val, typ, getProps) {
                 : typ.hasOwnProperty("props") ? transformObject(getProps(typ), typ.additional, val)
                     : invalidValue(typ, val);
     }
-    // Numbers can be parsed by Date but shouldn't be.
     if (typ === Date && typeof val !== "number")
         return transformDate(typ, val);
     return transformPrimitive(typ, val);
@@ -2063,7 +2038,6 @@ function o(props, additional) {
     return { props: props, additional: additional };
 }
 function m(additional) {
-    // @ts-ignore
     return { props: [], additional: additional };
 }
 function r(name) {

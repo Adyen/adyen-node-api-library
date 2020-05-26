@@ -1,4 +1,3 @@
-/* tslint:disable */
 export var paymentsSuccess = JSON.stringify({
     additionalData: {
         expiryDate: "8/2018",

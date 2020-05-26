@@ -12,16 +12,12 @@
  *                                      ######
  *                               #############
  *                               ############
- *
  * Adyen NodeJS API Library
- *
- * Version of MarketPay Fund: v5
- *
- * Copyright (c) 2019 Adyen B.V.
+ * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
- 
+
 
 declare namespace IMarketPayFund {
     export interface AccountDetailBalance {
@@ -134,7 +130,7 @@ declare namespace IMarketPayFund {
         currency: string;
         /**
          * The payable amount that can be charged for the transaction.
-         * 
+         *
          * The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
          */
         value: number; // int64
@@ -149,7 +145,7 @@ declare namespace IMarketPayFund {
          * The type of bank account.
          * Only applicable to bank accounts held in the USA.
          * The permitted values are: `checking`, `savings`.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         accountType?: string;
@@ -164,13 +160,13 @@ declare namespace IMarketPayFund {
         /**
          * The unique identifier (UUID) of the Bank Account.
          * >If, during an account holder create or update request, this field is left blank (but other fields provided), a new Bank Account will be created with a procedurally-generated UUID.
-         * 
+         *
          * >If, during an account holder create request, a UUID is provided, the creation of the Bank Account will fail while the creation of the account holder will continue.
-         * 
+         *
          * >If, during an account holder update request, a UUID that is not correlated with an existing Bank Account is provided, the update of the account holder will fail.
-         * 
+         *
          * >If, during an account holder update request, a UUID that is correlated with an existing Bank Account is provided, the existing Bank Account will be updated.
-         * 
+         *
          */
         bankAccountUUID?: string;
         /**
@@ -180,19 +176,19 @@ declare namespace IMarketPayFund {
         bankBicSwift?: string;
         /**
          * The city in which the bank branch is located.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         bankCity?: string;
         /**
          * The bank code of the banking institution with which the bank account is registered.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         bankCode?: string;
         /**
          * The name of the banking institution with which the bank account is held.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         bankName?: string;
@@ -206,28 +202,28 @@ declare namespace IMarketPayFund {
         branchCode?: string;
         /**
          * The check code of the bank account.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         checkCode?: string;
         /**
          * The two-letter country code in which the bank account is registered.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         countryCode?: string;
         /**
          * The currency in which the bank account deals.
          * >The permitted currency codes are defined in ISO-4217 (e.g. 'EUR').
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         currencyCode?: string;
         /**
          * The international bank account number.
          * >The IBAN standard is defined in ISO-13616.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         iban?: string;
@@ -239,13 +235,13 @@ declare namespace IMarketPayFund {
         /**
          * The country code of the country of residence of the bank account owner.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         ownerCountryCode?: string;
         /**
          * The date of birth of the bank account owner.
-         * 
+         *
          */
         ownerDateOfBirth?: string;
         /**
@@ -261,7 +257,7 @@ declare namespace IMarketPayFund {
         /**
          * The country code of the country of nationality of the bank account owner.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         ownerNationality?: string;
@@ -286,14 +282,14 @@ declare namespace IMarketPayFund {
         primaryAccount?: boolean;
         /**
          * The tax ID number.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         taxId?: string;
         /**
          * The URL to be used for bank account verification.
          * This may be generated on bank account creation.
-         * 
+         *
          * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
          */
         urlForVerification?: string;

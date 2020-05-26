@@ -16,29 +16,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var resource_1 = __importDefault(require("../../resource"));
 var client_1 = __importDefault(require("../../../client"));
-var TechnicalCancel = /** @class */ (function (_super) {
+var TechnicalCancel = (function (_super) {
     __extends(TechnicalCancel, _super);
     function TechnicalCancel(service) {
         return _super.call(this, service, service.client.config.endpoint + "/pal/servlet/Payment/" + client_1.default.API_VERSION + "/technicalCancel") || this;

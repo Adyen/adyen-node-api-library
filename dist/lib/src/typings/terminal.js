@@ -1,25 +1,6 @@
 "use strict";
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Convert = exports.PoiCapabilitiesType = exports.TransactionType = exports.PrinterStatusType = exports.GlobalStatusType = exports.AuthenticationMethodType = exports.ResultType = exports.ErrorConditionType = exports.StoredValueTransactionType = exports.StoredValueAccountType = exports.SoundFormatType = exports.SoundActionType = exports.ReconciliationType = exports.ResponseModeType = exports.DocumentQualifierType = exports.PinRequestType = exports.PinFormatType = exports.MessageType = exports.MessageClassType = exports.InputCommandType = exports.TotalDetailsType = exports.EventToNotifyType = exports.TransactionActionType = exports.ServicesEnabledType = exports.ReversalReasonType = exports.PaymentType = exports.PeriodUnitType = exports.InstalmentType = exports.TerminalEnvironmentType = exports.ServiceProfilesType = exports.GenericProfileType = exports.SaleCapabilitiesType = exports.CustomerOrderReqType = exports.LoyaltyHandlingType = exports.ForceEntryModeType = exports.UnitOfMeasureType = exports.LoyaltyTransactionType = exports.LoyaltyUnitType = exports.PaymentInstrumentType = exports.CheckTypeCodeType = exports.TrackFormatType = exports.VersionType = exports.AlgorithmType = exports.ContentType = exports.TokenRequestedType = exports.AccountType = exports.IdentificationType = exports.IdentificationSupportType = exports.EntryModeType = exports.MessageCategoryType = exports.BarcodeType = exports.ColorType = exports.CharacterWidthType = exports.CharacterStyleType = exports.CharacterHeightType = exports.AlignmentType = exports.OutputFormatType = exports.MenuEntryTagType = exports.InfoQualifyType = exports.DeviceType = void 0;
 var DeviceType;
 (function (DeviceType) {
     DeviceType["CashierDisplay"] = "CashierDisplay";
@@ -587,9 +568,7 @@ var PoiCapabilitiesType;
     PoiCapabilitiesType["PrinterReceipt"] = "PrinterReceipt";
     PoiCapabilitiesType["PrinterVoucher"] = "PrinterVoucher";
 })(PoiCapabilitiesType = exports.PoiCapabilitiesType || (exports.PoiCapabilitiesType = {}));
-// Converts JSON strings to/from your types
-// and asserts the results of JSON.parse at runtime
-var Convert = /** @class */ (function () {
+var Convert = (function () {
     function Convert() {
     }
     Convert.toTerminalApiRequest = function (json) {
@@ -1971,7 +1950,6 @@ function transform(val, typ, getProps) {
         return invalidValue(typ, val);
     }
     function transformUnion(typs, val) {
-        // val must validate against one typ in typs
         var l = typs.length;
         for (var i = 0; i < l; i++) {
             var typ = typs[i];
@@ -1988,7 +1966,6 @@ function transform(val, typ, getProps) {
         return invalidValue(cases, val);
     }
     function transformArray(typ, val) {
-        // val must be an array with no invalid elements
         if (!Array.isArray(val))
             return invalidValue("array", val);
         return val.map(function (el) { return transform(el, typ, getProps); });
@@ -2040,7 +2017,6 @@ function transform(val, typ, getProps) {
                 : typ.hasOwnProperty("props") ? transformObject(getProps(typ), typ.additional, val)
                     : invalidValue(typ, val);
     }
-    // Numbers can be parsed by Date but shouldn't be.
     if (typ === Date && typeof val !== "number")
         return transformDate(typ, val);
     return transformPrimitive(typ, val);
@@ -2065,7 +2041,6 @@ function o(props, additional) {
     return { props: props, additional: additional };
 }
 function m(additional) {
-    // @ts-ignore
     return { props: [], additional: additional };
 }
 function r(name) {

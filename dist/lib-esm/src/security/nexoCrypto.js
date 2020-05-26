@@ -1,23 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 import { createCipheriv, createDecipheriv, createHmac, randomBytes } from "crypto";
 import NexoCryptoException from "../services/exception/nexoCryptoException";
 import InvalidSecurityKeyException from "./exception/invalidSecurityKeyException";
@@ -28,7 +8,7 @@ var Modes;
     Modes[Modes["ENCRYPT"] = 0] = "ENCRYPT";
     Modes[Modes["DECRYPT"] = 1] = "DECRYPT";
 })(Modes || (Modes = {}));
-var NexoCrypto = /** @class */ (function () {
+var NexoCrypto = (function () {
     function NexoCrypto() {
     }
     NexoCrypto.encrypt = function (messageHeader, saleToPoiMessageJson, securityKey) {
