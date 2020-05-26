@@ -1,24 +1,4 @@
 "use strict";
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -33,7 +13,7 @@ var Modes;
     Modes[Modes["ENCRYPT"] = 0] = "ENCRYPT";
     Modes[Modes["DECRYPT"] = 1] = "DECRYPT";
 })(Modes || (Modes = {}));
-var NexoCrypto = /** @class */ (function () {
+var NexoCrypto = (function () {
     function NexoCrypto() {
     }
     NexoCrypto.encrypt = function (messageHeader, saleToPoiMessageJson, securityKey) {

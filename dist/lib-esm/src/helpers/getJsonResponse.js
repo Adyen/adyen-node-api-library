@@ -1,23 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -62,16 +42,16 @@ function getJsonResponse(resource, jsonRequest, requestOptions) {
             switch (_a.label) {
                 case 0:
                     request = typeof jsonRequest === "string" ? jsonRequest : JSON.stringify(jsonRequest);
-                    return [4 /*yield*/, resource.request(request, requestOptions)];
+                    return [4, resource.request(request, requestOptions)];
                 case 1:
                     response = _a.sent();
                     try {
-                        return [2 /*return*/, typeof response === "string" ? JSON.parse(response) : response];
+                        return [2, typeof response === "string" ? JSON.parse(response) : response];
                     }
                     catch (e) {
-                        return [2 /*return*/, response];
+                        return [2, response];
                     }
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     });

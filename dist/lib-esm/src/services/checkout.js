@@ -1,23 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -40,7 +20,7 @@ import PaymentSession from "./resource/checkout/paymentSession";
 import PaymentsResult from "./resource/checkout/paymentsResult";
 import PaymentLinks from "./resource/checkout/paymentLinks";
 import setApplicationInfo from "../helpers/setApplicationInfo";
-var Checkout = /** @class */ (function (_super) {
+var Checkout = (function (_super) {
     __extends(Checkout, _super);
     function Checkout(client) {
         var _this = _super.call(this, client) || this;

@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import Service from "./service";
-var ApiKeyAuthenticatedService = /** @class */ (function (_super) {
+var ApiKeyAuthenticatedService = (function (_super) {
     __extends(ApiKeyAuthenticatedService, _super);
     function ApiKeyAuthenticatedService(client) {
         var _this = _super.call(this, client) || this;

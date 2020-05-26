@@ -1,23 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -39,7 +19,7 @@ export var AccountTypesEnum;
     AccountTypesEnum["Accounts"] = "Accounts";
     AccountTypesEnum["Verification"] = "Verification";
 })(AccountTypesEnum || (AccountTypesEnum = {}));
-var PlatformsAccount = /** @class */ (function (_super) {
+var PlatformsAccount = (function (_super) {
     __extends(PlatformsAccount, _super);
     function PlatformsAccount(service, endpoint) {
         return _super.call(this, service, service.client.config.marketPayEndpoint + "/Account/" + Client.MARKETPAY_ACCOUNT_API_VERSION + "/" + endpoint) || this;

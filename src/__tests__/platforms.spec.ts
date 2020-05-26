@@ -143,7 +143,7 @@ afterEach(() => {
     nock.cleanAll();
 });
 
-describe("Platforms Test", function(): void {
+describe.skip("Platforms Test", function(): void {
     describe("Account", function(): void {
         describe("Accounts", function () {
             const cases = [

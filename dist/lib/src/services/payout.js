@@ -24,7 +24,7 @@ var confirmThirdParty_1 = __importDefault(require("./resource/payout/confirmThir
 var payout_1 = __importDefault(require("./resource/payout/payout"));
 var storeDetailAndSubmitThirdParty_1 = __importDefault(require("./resource/payout/storeDetailAndSubmitThirdParty"));
 var getJsonResponse_1 = __importDefault(require("../helpers/getJsonResponse"));
-var Payout = /** @class */ (function (_super) {
+var Payout = (function (_super) {
     __extends(Payout, _super);
     function Payout(client) {
         var _this = _super.call(this, client) || this;

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import checkServerIdentity from "../helpers/checkServerIdentity";
 var createMockedCertificate = function (CN) { return ({
     subjectaltname: "Adyen B.V",

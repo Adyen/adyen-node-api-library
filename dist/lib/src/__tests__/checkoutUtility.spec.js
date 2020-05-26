@@ -1,24 +1,4 @@
 "use strict";
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -79,14 +59,14 @@ describe("Checkout Utility", function () {
                     nock_1.default("" + client.config.checkoutEndpoint)
                         .post("/" + client_1.default.CHECKOUT_UTILITY_API_VERSION + "/originKeys")
                         .reply(200, originkeysSuccess_1.originKeysSuccess);
-                    return [4 /*yield*/, checkoutUtility.originKeys(originKeysRequest)];
+                    return [4, checkoutUtility.originKeys(originKeysRequest)];
                 case 1:
                     originKeysResponse = _a.sent();
                     if (originKeysResponse.originKeys) {
-                        return [2 /*return*/, expect(originKeysResponse.originKeys["https://www.your-domain.com"].startsWith("pub.v2")).toBeTruthy()];
+                        return [2, expect(originKeysResponse.originKeys["https://www.your-domain.com"].startsWith("pub.v2")).toBeTruthy()];
                     }
                     fail("Error: originKeysResponse.originKeys is empty");
-                    return [2 /*return*/];
+                    return [2];
             }
         });
     }); });

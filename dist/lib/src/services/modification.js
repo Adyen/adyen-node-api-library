@@ -25,7 +25,7 @@ var capture_1 = __importDefault(require("./resource/modification/capture"));
 var refund_1 = __importDefault(require("./resource/modification/refund"));
 var technicalCancel_1 = __importDefault(require("./resource/modification/technicalCancel"));
 var setApplicationInfo_1 = __importDefault(require("../helpers/setApplicationInfo"));
-var Modification = /** @class */ (function (_super) {
+var Modification = (function (_super) {
     __extends(Modification, _super);
     function Modification(client) {
         var _this = _super.call(this, client) || this;

@@ -16,29 +16,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var resource_1 = __importDefault(require("../../resource"));
 var client_1 = __importDefault(require("../../../client"));
-var ConfirmThirdParty = /** @class */ (function (_super) {
+var ConfirmThirdParty = (function (_super) {
     __extends(ConfirmThirdParty, _super);
     function ConfirmThirdParty(service) {
         return _super.call(this, service, service.client.config.endpoint + "/pal/servlet/Payout/" + client_1.default.API_VERSION + "/confirmThirdParty") || this;

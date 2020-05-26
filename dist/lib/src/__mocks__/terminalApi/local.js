@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.wrongEncRes = exports.localEncRes = exports.localSecuredRes = void 0;
 exports.localSecuredRes = JSON.stringify({
     SaleToPOIResponse: {
         MessageHeader: {

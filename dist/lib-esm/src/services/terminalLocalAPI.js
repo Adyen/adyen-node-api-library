@@ -1,23 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -72,7 +52,7 @@ import getJsonResponse from "../helpers/getJsonResponse";
 import NexoCrypto from "../security/nexoCrypto";
 import { Convert, } from "../typings/terminal";
 import LocalRequest from "./resource/terminal/local/localRequest";
-var TerminalLocalAPI = /** @class */ (function (_super) {
+var TerminalLocalAPI = (function (_super) {
     __extends(TerminalLocalAPI, _super);
     function TerminalLocalAPI(client) {
         var _this = _super.call(this, client) || this;
@@ -90,12 +70,12 @@ var TerminalLocalAPI = /** @class */ (function (_super) {
                         securedPaymentRequest = {
                             saleToPoiRequest: saleToPoiSecuredMessage,
                         };
-                        return [4 /*yield*/, getJsonResponse(this.localRequest, Convert.terminalApiSecuredRequestToJson(securedPaymentRequest))];
+                        return [4, getJsonResponse(this.localRequest, Convert.terminalApiSecuredRequestToJson(securedPaymentRequest))];
                     case 1:
                         jsonResponse = _a.sent();
                         terminalApiSecuredResponse = Convert.toTerminalApiSecuredResponse(JSON.stringify(jsonResponse));
                         response = this.nexoCrypto.decrypt(terminalApiSecuredResponse.saleToPoiResponse, securityKey);
-                        return [2 /*return*/, Convert.toTerminalApiResponse(response)];
+                        return [2, Convert.toTerminalApiResponse(response)];
                 }
             });
         });

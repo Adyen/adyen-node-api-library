@@ -1,4 +1,3 @@
-/* tslint:disable */
 export var paymentSessionError = {
     statusCode: 422,
     errorCode: "14_012",

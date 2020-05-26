@@ -1,23 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -48,14 +28,13 @@ import getJsonResponse from "./../helpers/getJsonResponse";
 import PlatformsFund from "./resource/platforms/fund";
 import PlatformsHostedOnboardingPage from "./resource/platforms/hop";
 import PlatformsNotificationConfiguration from "./resource/platforms/notificationConfiguration";
-var Platforms = /** @class */ (function (_super) {
+var Platforms = (function (_super) {
     __extends(Platforms, _super);
     function Platforms(client) {
         var _this = _super.call(this, client) || this;
         _this.createRequest = function (service) {
             return function (request) { return getJsonResponse(service, request); };
         };
-        // Account
         _this._closeAccount = new PlatformsAccount(_this, "/closeAccount");
         _this._updateAccount = new PlatformsAccount(_this, "/updateAccount");
         _this._createAccount = new PlatformsAccount(_this, "/createAccount");
@@ -72,7 +51,6 @@ var Platforms = /** @class */ (function (_super) {
         _this._suspendAccountHolder = new PlatformsAccount(_this, "/suspendAccountHolder");
         _this._unSuspendAccountHolder = new PlatformsAccount(_this, "/unSuspendAccountHolder");
         _this._closeAccountHolder = new PlatformsAccount(_this, "/closeAccountHolder");
-        // Fund
         _this._accountHolderBalance = new PlatformsFund(_this, "/accountHolderBalance");
         _this._accountHolderTransactionList = new PlatformsFund(_this, "/accountHolderTransactionList");
         _this._payoutAccountHolder = new PlatformsFund(_this, "/payoutAccountHolder");
@@ -80,9 +58,7 @@ var Platforms = /** @class */ (function (_super) {
         _this._refundFundsTransfer = new PlatformsFund(_this, "/refundFundsTransfer");
         _this._setupBeneficiary = new PlatformsFund(_this, "/setupBeneficiary");
         _this._refundNotPaidOutTransfers = new PlatformsFund(_this, "/refundNotPaidOutTransfers");
-        // HOP
         _this._getOnboardingUrl = new PlatformsHostedOnboardingPage(_this, "/getOnboardingUrl");
-        // Notification Configuration
         _this._createNotificationConfiguration = new PlatformsNotificationConfiguration(_this, "/createNotificationConfiguration");
         _this._getNotificationConfiguration = new PlatformsNotificationConfiguration(_this, "/getNotificationConfiguration");
         _this._getNotificationConfigurationList = new PlatformsNotificationConfiguration(_this, "/getNotificationConfigurationList");
@@ -114,7 +90,7 @@ var Platforms = /** @class */ (function (_super) {
             var accountHolders = { createAccountHolder: createAccountHolder, getAccountHolder: getAccountHolder, updateAccountHolder: updateAccountHolder, updateAccountHolderState: updateAccountHolderState, suspendAccountHolder: suspendAccountHolder, unSuspendAccountHolder: unSuspendAccountHolder, closeAccountHolder: closeAccountHolder };
             return __assign(__assign(__assign({}, accounts), verification), accountHolders);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(Platforms.prototype, "Fund", {
@@ -128,7 +104,7 @@ var Platforms = /** @class */ (function (_super) {
             var refundNotPaidOutTransfers = this.createRequest(this._refundNotPaidOutTransfers);
             return { accountHolderBalance: accountHolderBalance, accountHolderTransactionList: accountHolderTransactionList, payoutAccountHolder: payoutAccountHolder, refundFundsTransfer: refundFundsTransfer, transferFunds: transferFunds, setupBeneficiary: setupBeneficiary, refundNotPaidOutTransfers: refundNotPaidOutTransfers };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(Platforms.prototype, "HostedOnboardingPage", {
@@ -136,7 +112,7 @@ var Platforms = /** @class */ (function (_super) {
             var getOnboardingUrl = this.createRequest(this._getOnboardingUrl);
             return { getOnboardingUrl: getOnboardingUrl };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(Platforms.prototype, "NotificationConfiguration", {
@@ -149,7 +125,7 @@ var Platforms = /** @class */ (function (_super) {
             var deleteNotificationConfigurations = this.createRequest(this._deleteNotificationConfiguration);
             return { createNotificationConfiguration: createNotificationConfiguration, getNotificationConfiguration: getNotificationConfiguration, getNotificationConfigurationList: getNotificationConfigurationList, testNotificationConfiguration: testNotificationConfiguration, updateNotificationConfiguration: updateNotificationConfiguration, deleteNotificationConfigurations: deleteNotificationConfigurations };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return Platforms;

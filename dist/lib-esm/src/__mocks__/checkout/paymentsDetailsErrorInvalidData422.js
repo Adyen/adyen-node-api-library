@@ -1,4 +1,3 @@
-/* tslint:disable */
 export var paymentDetailsError = {
     statusCode: 422,
     errorCode: "101",

@@ -1,24 +1,4 @@
 "use strict";
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Copyright (c) 2019 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -79,7 +59,7 @@ var async_1 = __importDefault(require("./resource/terminal/cloud/async"));
 var sync_1 = __importDefault(require("./resource/terminal/cloud/sync"));
 var mergeDeep_1 = __importDefault(require("../utils/mergeDeep"));
 var applicationInfo_1 = require("../typings/applicationInfo");
-var TerminalCloudAPI = /** @class */ (function (_super) {
+var TerminalCloudAPI = (function (_super) {
     __extends(TerminalCloudAPI, _super);
     function TerminalCloudAPI(client) {
         var _this = _super.call(this, client) || this;
@@ -110,10 +90,10 @@ var TerminalCloudAPI = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         request = TerminalCloudAPI.setApplicationInfo(terminalApiRequest);
-                        return [4 /*yield*/, getJsonResponse_1.default(this.terminalApiSync, terminal_1.Convert.terminalApiRequestToJson(request))];
+                        return [4, getJsonResponse_1.default(this.terminalApiSync, terminal_1.Convert.terminalApiRequestToJson(request))];
                     case 1:
                         response = _a.sent();
-                        return [2 /*return*/, terminal_1.Convert.toTerminalApiResponse(JSON.stringify(response))];
+                        return [2, terminal_1.Convert.toTerminalApiResponse(JSON.stringify(response))];
                 }
             });
         });

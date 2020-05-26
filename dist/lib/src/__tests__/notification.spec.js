@@ -9,15 +9,17 @@ var captureFalse_json_1 = __importDefault(require("../__mocks__/notification/cap
 var refundTrue_json_1 = __importDefault(require("../__mocks__/notification/refundTrue.json"));
 var refundFalse_json_1 = __importDefault(require("../__mocks__/notification/refundFalse.json"));
 var notificationRequest_1 = __importDefault(require("../notification/notificationRequest"));
-var notification_1 = require("../typings/notification");
+var models_1 = require("../typings/notification/models");
+var NotificationEnum = models_1.NotificationRequestItem.EventCodeEnum;
+var SuccessEnum = models_1.NotificationRequestItem.SuccessEnum;
 describe("Notification Test", function () {
     it("should return authorisation success", function () {
         var notificationRequest = new notificationRequest_1.default(authorisationTrue_json_1.default);
         expect(notificationRequest.notificationItems).toHaveLength(1);
         if (notificationRequest.notificationItems) {
             var notificationRequestItem = notificationRequest.notificationItems[0];
-            expect(notification_1.NotificationEnum.EVENT_CODE_AUTHORISATION).toEqual(notificationRequestItem.eventCode);
-            expect(notificationRequestItem.success === "true").toBeTruthy();
+            expect(NotificationEnum.AUTHORISATION).toEqual(notificationRequestItem.eventCode);
+            expect(notificationRequestItem.success === SuccessEnum.True).toBeTruthy();
             expect(notificationRequestItem.pspReference).toEqual("123456789");
         }
         else {
@@ -29,8 +31,8 @@ describe("Notification Test", function () {
         expect(notificationRequest.notificationItems).toHaveLength(1);
         if (notificationRequest.notificationItems) {
             var notificationRequestItem = notificationRequest.notificationItems[0];
-            expect(notification_1.NotificationEnum.EVENT_CODE_CAPTURE).toEqual(notificationRequestItem.eventCode);
-            expect(notificationRequestItem.success === "true").toBeTruthy();
+            expect(NotificationEnum.CAPTURE).toEqual(notificationRequestItem.eventCode);
+            expect(notificationRequestItem.success === SuccessEnum.True).toBeTruthy();
             expect(notificationRequestItem.pspReference).toEqual("PSP_REFERENCE");
             expect(notificationRequestItem.originalReference).toEqual("ORIGINAL_PSP");
         }
@@ -43,8 +45,8 @@ describe("Notification Test", function () {
         expect(notificationRequest.notificationItems).toHaveLength(1);
         if (notificationRequest.notificationItems) {
             var notificationRequestItem = notificationRequest.notificationItems[0];
-            expect(notification_1.NotificationEnum.EVENT_CODE_CAPTURE).toEqual(notificationRequestItem.eventCode);
-            expect(notificationRequestItem.success === "true").toBeFalsy();
+            expect(NotificationEnum.CAPTURE).toEqual(notificationRequestItem.eventCode);
+            expect(notificationRequestItem.success === SuccessEnum.True).toBeFalsy();
             expect(notificationRequestItem.pspReference).toEqual("PSP_REFERENCE");
             expect(notificationRequestItem.originalReference).toEqual("ORIGINAL_PSP");
         }
@@ -57,8 +59,8 @@ describe("Notification Test", function () {
         expect(notificationRequest.notificationItems).toHaveLength(1);
         if (notificationRequest.notificationItems) {
             var notificationRequestItem = notificationRequest.notificationItems[0];
-            expect(notification_1.NotificationEnum.EVENT_CODE_REFUND).toEqual(notificationRequestItem.eventCode);
-            expect(notificationRequestItem.success === "true").toBeTruthy();
+            expect(NotificationEnum.REFUND).toEqual(notificationRequestItem.eventCode);
+            expect(notificationRequestItem.success === SuccessEnum.True).toBeTruthy();
             expect(notificationRequestItem.pspReference).toEqual("PSP_REFERENCE");
             expect(notificationRequestItem.originalReference).toEqual("ORIGINAL_PSP");
             expect(notificationRequestItem.eventDate).toBeDefined();
@@ -72,8 +74,8 @@ describe("Notification Test", function () {
         expect(notificationRequest.notificationItems).toHaveLength(1);
         if (notificationRequest.notificationItems) {
             var notificationRequestItem = notificationRequest.notificationItems[0];
-            expect(notification_1.NotificationEnum.EVENT_CODE_REFUND).toEqual(notificationRequestItem.eventCode);
-            expect(notificationRequestItem.success === "true").toBeFalsy();
+            expect(NotificationEnum.REFUND).toEqual(notificationRequestItem.eventCode);
+            expect(notificationRequestItem.success === SuccessEnum.True).toBeFalsy();
             expect(notificationRequestItem.pspReference).toEqual("PSP_REFERENCE");
             expect(notificationRequestItem.originalReference).toEqual("ORIGINAL_PSP");
             expect(notificationRequestItem.eventDate).toBeDefined();

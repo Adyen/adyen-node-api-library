@@ -55,6 +55,7 @@ var base_1 = require("../__mocks__/base");
 var payout_1 = __importDefault(require("../services/payout"));
 var client_1 = __importDefault(require("../client"));
 var apiConstants_1 = require("../constants/apiConstants");
+var isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 var storeDetailAndSubmitThirdParty = JSON.stringify({
     additionalData: {
         fraudResultType: "GREEN",
@@ -138,12 +139,12 @@ describe("PayoutTest", function () {
                         payout = new payout_1.default(clientStore);
                         request = mockStoreDetailAndSubmitRequest();
                         scope.post("/storeDetailAndSubmitThirdParty").reply(200, storeDetailAndSubmitThirdParty);
-                        return [4 /*yield*/, payout.storeDetailAndSubmitThirdParty(request)];
+                        return [4, payout.storeDetailAndSubmitThirdParty(request)];
                     case 1:
                         result = _a.sent();
                         expect(result.resultCode).toEqual("[payout-submit-received]");
                         expect(result.pspReference).toBeTruthy();
-                        return [2 /*return*/];
+                        return [2];
                 }
             });
         });
@@ -158,13 +159,13 @@ describe("PayoutTest", function () {
                         payout = new payout_1.default(clientStore);
                         scope.post("/storeDetail").reply(200, storeDetail);
                         request = mockStoreDetailRequest();
-                        return [4 /*yield*/, payout.storeDetail(request)];
+                        return [4, payout.storeDetail(request)];
                     case 1:
                         result = _a.sent();
                         expect("Success").toEqual(result.resultCode);
                         expect(result.pspReference).toBeTruthy();
                         expect(result.recurringDetailReference).toBeTruthy();
-                        return [2 /*return*/];
+                        return [2];
                 }
             });
         });
@@ -179,7 +180,7 @@ describe("PayoutTest", function () {
                         payout = new payout_1.default(clientStore);
                         scope.post("/storeDetail").reply(200, storeDetail);
                         storeRequest = mockStoreDetailRequest();
-                        return [4 /*yield*/, payout.storeDetail(storeRequest)];
+                        return [4, payout.storeDetail(storeRequest)];
                     case 1:
                         storeResult = _a.sent();
                         payout = new payout_1.default(clientReview);
@@ -192,17 +193,17 @@ describe("PayoutTest", function () {
                             merchantAccount: process.env.ADYEN_MERCHANT,
                             originalReference: storeResult.pspReference
                         };
-                        return [4 /*yield*/, payout.confirmThirdParty(request)];
+                        return [4, payout.confirmThirdParty(request)];
                     case 2:
                         result = _a.sent();
                         expect(result.response).toEqual("[payout-confirm-received]");
                         expect(result.pspReference).toBeTruthy();
-                        return [2 /*return*/];
+                        return [2];
                 }
             });
         });
     });
-    test.each([false, true])("should succeed on submit third party, isMock: %p", function (isMock) {
+    test.each([isCI, true])("should succeed on submit third party, isMock: %p", function (isMock) {
         return __awaiter(this, void 0, void 0, function () {
             var request, result;
             return __generator(this, function (_a) {
@@ -212,7 +213,7 @@ describe("PayoutTest", function () {
                         payout = new payout_1.default(clientStore);
                         scope.post("/submitThirdParty").reply(200, storeDetailAndSubmitThirdParty);
                         request = mockSubmitRequest();
-                        return [4 /*yield*/, payout.submitThirdparty(request)];
+                        return [4, payout.submitThirdparty(request)];
                     case 1:
                         result = _a.sent();
                         expect(result.resultCode).toEqual("[payout-submit-received]");
@@ -221,7 +222,7 @@ describe("PayoutTest", function () {
                             expect(result.additionalData[apiConstants_1.ApiConstants.FRAUD_RESULT_TYPE]).toEqual("GREEN");
                             expect(result.additionalData[apiConstants_1.ApiConstants.FRAUD_MANUAL_REVIEW]).toEqual("false");
                         }
-                        return [2 /*return*/];
+                        return [2];
                 }
             });
         });
@@ -236,7 +237,7 @@ describe("PayoutTest", function () {
                         payout = new payout_1.default(clientStore);
                         scope.post("/storeDetail").reply(200, storeDetail);
                         storeRequest = mockStoreDetailRequest();
-                        return [4 /*yield*/, payout.storeDetail(storeRequest)];
+                        return [4, payout.storeDetail(storeRequest)];
                     case 1:
                         storeResult = _a.sent();
                         payout = new payout_1.default(clientReview);
@@ -249,12 +250,12 @@ describe("PayoutTest", function () {
                             pspReference: "8815131762537886",
                             response: "[payout-decline-received]"
                         });
-                        return [4 /*yield*/, payout.declineThirdParty(request)];
+                        return [4, payout.declineThirdParty(request)];
                     case 2:
                         result = _a.sent();
                         expect(result.response).toEqual("[payout-decline-received]");
                         expect(result.pspReference).toBeTruthy();
-                        return [2 /*return*/];
+                        return [2];
                 }
             });
         });
@@ -271,12 +272,12 @@ describe("PayoutTest", function () {
                             resultCode: "Received",
                         });
                         request = mockPayoutRequest();
-                        return [4 /*yield*/, payout.payout(request)];
+                        return [4, payout.payout(request)];
                     case 1:
                         result = _a.sent();
                         expect(result.resultCode).toEqual("Received");
                         expect(result.pspReference).toBeTruthy();
-                        return [2 /*return*/];
+                        return [2];
                 }
             });
         });
