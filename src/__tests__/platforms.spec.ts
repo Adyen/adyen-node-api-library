@@ -77,73 +77,25 @@ const assertError = (e: HttpClientException): void => {
     fail(e);
 };
 
-beforeAll(async (done) => {
+
+beforeEach((): void => {
+    if (!nock.isActive()) {
+        nock.activate();
+    }
+
     client = createBasicAuthClient();
     client.config.password = process.env.ADYEN_MARKETPLACE_PASSWORD;
     client.config.username = process.env.ADYEN_MARKETPLACE_USER;
 
     scope = nock(client.config.marketPayEndpoint!);
     platforms = new Platforms(client);
-    accountHolder = await platforms.Account.createAccountHolder({
-        accountHolderCode: generateRandomCode(),
-        accountHolderDetails,
-        legalEntity: "Individual",
-    });
-
-    account = await platforms.Account.createAccount({
-        accountHolderCode: generateRandomCode(),
-        description: "This is a new account",
-        metadata: {meta: "data"},
-        payoutSchedule: "WEEKLY"
-    });
-
-    accountHolderToSuspend = await platforms.Account.createAccountHolder({
-        accountHolderCode: generateRandomCode(),
-        accountHolderDetails,
-        legalEntity: "Individual"
-    });
-
-    accountToClose = await platforms.Account.createAccount({
-        accountHolderCode: generateRandomCode(),
-        description: "This is a new account",
-        metadata: {meta: "data"},
-        payoutSchedule: "WEEKLY"
-    });
-
-    accountHolderToUnSuspend = await platforms.Account.createAccountHolder({
-        accountHolderCode: generateRandomCode(),
-        accountHolderDetails,
-        legalEntity: "Individual"
-    });
-    await platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode});
-
-    accountHolderToClose = await platforms.Account.createAccountHolder({
-        accountHolderCode: generateRandomCode(),
-        accountHolderDetails,
-        legalEntity: "Individual"
-    });
-
-    notificationConfigurationToRetrieve = await platforms.NotificationConfiguration.createNotificationConfiguration({
-        configurationDetails: {
-            ...notificationConfigurationDetails,
-            description: `${generateRandomCode()}`
-        }
-    });
-
-    done();
-});
-
-beforeEach((): void => {
-    if (!nock.isActive()) {
-        nock.activate();
-    }
 });
 
 afterEach(() => {
     nock.cleanAll();
 });
 
-describe.skip("Platforms Test", function(): void {
+describe("Platforms Test", function () {
     describe("Account", function(): void {
         describe("Accounts", function () {
             const cases = [
@@ -173,7 +125,122 @@ describe.skip("Platforms Test", function(): void {
                     expect(result).toMatchObject(args[2]);
                 }
             );
+        });
+    });
 
+    describe("Fund", function () {
+        const cases = [
+            ["accountHolderBalance", createMock<F.AccountHolderBalanceRequest>(), createMock<F.AccountHolderBalanceResponse>()],
+            ["accountHolderTransactionList", createMock<F.AccountHolderTransactionListRequest>(), createMock<F.AccountHolderTransactionListResponse>()],
+            ["payoutAccountHolder", createMock<F.PayoutAccountHolderRequest>(), createMock<F.PayoutAccountHolderResponse>()],
+            ["transferFunds", createMock<F.TransferFundsRequest>(), createMock<F.TransferFundsResponse>()],
+            ["refundFundsTransfer", createMock<F.RefundFundsTransferRequest>(), createMock<F.RefundFundsTransferResponse>()],
+            ["setupBeneficiary", createMock<F.SetupBeneficiaryRequest>(), createMock<F.SetupBeneficiaryResponse>()],
+            ["refundNotPaidOutTransfers", createMock<F.RefundNotPaidOutTransfersRequest>(), createMock<F.RefundNotPaidOutTransfersResponse>()],
+        ];
+        test.each(cases)(
+            "should %p",
+            async (...args) => {
+                const fund = platforms.Fund;
+                scope.post(`/Fund/${Client.MARKETPAY_FUND_API_VERSION}//${args[0]}`).reply(200, args[2]);
+
+                const result = await fund[args[0] as string](args[1] as never);
+                expect(result).toMatchObject(args[2]);
+            }
+        );
+    });
+
+    describe("Notification Configuration", function() {
+        const cases = [
+            ["createNotificationConfiguration", createMock<N.CreateNotificationConfigurationRequest>(), createMock<N.GetNotificationConfigurationResponse>()],
+            ["getNotificationConfiguration", createMock<N.GetNotificationConfigurationRequest>(), createMock<N.GetNotificationConfigurationResponse>()],
+            ["getNotificationConfigurationList", {}, createMock<N.GetNotificationConfigurationListResponse>()],
+            ["testNotificationConfiguration", createMock<N.TestNotificationConfigurationRequest>(), createMock<N.TestNotificationConfigurationResponse>()],
+            ["updateNotificationConfiguration", createMock<N.UpdateNotificationConfigurationRequest>(), createMock<N.GetNotificationConfigurationResponse>()],
+            ["deleteNotificationConfigurations", createMock<N.DeleteNotificationConfigurationRequest>(), createMock<N.GenericResponse>()],
+        ];
+
+        test.each(cases)(
+            "should %p",
+            async (...args) => {
+                const notificationConfiguration = platforms.NotificationConfiguration;
+                scope.post(`/Notification/${Client.MARKETPAY_NOTIFICATION_API_VERSION}//${args[0]}`).reply(200, args[2]);
+
+                const result = await notificationConfiguration[args[0] as string](args[1] as never);
+                expect(result).toMatchObject(args[2]);
+            }
+        );
+    });
+
+    describe("Hop", function () {
+        const cases = [
+            ["getOnboardingUrl", createMock<H.GetOnboardingUrlRequest>(), createMock<H.GetOnboardingUrlResponse>()]
+        ];
+        test.each(cases)(
+            "should %p",
+            async (...args) => {
+                const hostedOnboardingPage = platforms.HostedOnboardingPage;
+                scope.post(`/Hop/${Client.MARKETPAY_HOP_API_VERSION}//${args[0]}`).reply(200, args[2]);
+
+                const result = await hostedOnboardingPage[args[0] as string](args[1] as never);
+                expect(result).toMatchObject(args[2]);
+            }
+        );
+    });
+});
+
+describe.skip("Platforms Test E2E", function(): void {
+    beforeAll(async (done) => {
+        accountHolder = await platforms.Account.createAccountHolder({
+            accountHolderCode: generateRandomCode(),
+            accountHolderDetails,
+            legalEntity: "Individual",
+        });
+
+        account = await platforms.Account.createAccount({
+            accountHolderCode: generateRandomCode(),
+            description: "This is a new account",
+            metadata: {meta: "data"},
+            payoutSchedule: "WEEKLY"
+        });
+
+        accountHolderToSuspend = await platforms.Account.createAccountHolder({
+            accountHolderCode: generateRandomCode(),
+            accountHolderDetails,
+            legalEntity: "Individual"
+        });
+
+        accountToClose = await platforms.Account.createAccount({
+            accountHolderCode: generateRandomCode(),
+            description: "This is a new account",
+            metadata: {meta: "data"},
+            payoutSchedule: "WEEKLY"
+        });
+
+        accountHolderToUnSuspend = await platforms.Account.createAccountHolder({
+            accountHolderCode: generateRandomCode(),
+            accountHolderDetails,
+            legalEntity: "Individual"
+        });
+        await platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode});
+
+        accountHolderToClose = await platforms.Account.createAccountHolder({
+            accountHolderCode: generateRandomCode(),
+            accountHolderDetails,
+            legalEntity: "Individual"
+        });
+
+        notificationConfigurationToRetrieve = await platforms.NotificationConfiguration.createNotificationConfiguration({
+            configurationDetails: {
+                ...notificationConfigurationDetails,
+                description: `${generateRandomCode()}`
+            }
+        });
+
+        done();
+    });
+    describe("Account", function(): void {
+        describe("Accounts E2E", function () {
             it("should create account holder", async function() {
                 nock.restore();
                 try {
@@ -338,26 +405,6 @@ describe.skip("Platforms Test", function(): void {
         });
     });
     describe("Fund", function () {
-        const cases = [
-            ["accountHolderBalance", createMock<F.AccountHolderBalanceRequest>(), createMock<F.AccountHolderBalanceResponse>()],
-            ["accountHolderTransactionList", createMock<F.AccountHolderTransactionListRequest>(), createMock<F.AccountHolderTransactionListResponse>()],
-            ["payoutAccountHolder", createMock<F.PayoutAccountHolderRequest>(), createMock<F.PayoutAccountHolderResponse>()],
-            ["transferFunds", createMock<F.TransferFundsRequest>(), createMock<F.TransferFundsResponse>()],
-            ["refundFundsTransfer", createMock<F.RefundFundsTransferRequest>(), createMock<F.RefundFundsTransferResponse>()],
-            ["setupBeneficiary", createMock<F.SetupBeneficiaryRequest>(), createMock<F.SetupBeneficiaryResponse>()],
-            ["refundNotPaidOutTransfers", createMock<F.RefundNotPaidOutTransfersRequest>(), createMock<F.RefundNotPaidOutTransfersResponse>()],
-        ];
-        test.each(cases)(
-            "should %p",
-            async (...args) => {
-                const fund = platforms.Fund;
-                scope.post(`/Fund/${Client.MARKETPAY_FUND_API_VERSION}//${args[0]}`).reply(200, args[2]);
-
-                const result = await fund[args[0] as string](args[1] as never);
-                expect(result).toMatchObject(args[2]);
-            }
-        );
-
         it("should retrieve the balance of an account holder", async function() {
             nock.restore();
             try {
@@ -402,26 +449,7 @@ describe.skip("Platforms Test", function(): void {
 
     });
     describe("Notification Configuration", function () {
-        const cases = [
-            ["createNotificationConfiguration", createMock<N.CreateNotificationConfigurationRequest>(), createMock<N.GetNotificationConfigurationResponse>()],
-            ["getNotificationConfiguration", createMock<N.GetNotificationConfigurationRequest>(), createMock<N.GetNotificationConfigurationResponse>()],
-            ["getNotificationConfigurationList", {}, createMock<N.GetNotificationConfigurationListResponse>()],
-            ["testNotificationConfiguration", createMock<N.TestNotificationConfigurationRequest>(), createMock<N.TestNotificationConfigurationResponse>()],
-            ["updateNotificationConfiguration", createMock<N.UpdateNotificationConfigurationRequest>(), createMock<N.GetNotificationConfigurationResponse>()],
-            ["deleteNotificationConfigurations", createMock<N.DeleteNotificationConfigurationRequest>(), createMock<N.GenericResponse>()],
-        ];
         let configurationID: number;
-
-        test.each(cases)(
-            "should %p",
-            async (...args) => {
-                const notificationConfiguration = platforms.NotificationConfiguration;
-                scope.post(`/Notification/${Client.MARKETPAY_NOTIFICATION_API_VERSION}//${args[0]}`).reply(200, args[2]);
-
-                const result = await notificationConfiguration[args[0] as string](args[1] as never);
-                expect(result).toMatchObject(args[2]);
-            }
-        );
 
         it("should retrieve all Notification Configurations", async function() {
             nock.restore();
@@ -500,20 +528,5 @@ describe.skip("Platforms Test", function(): void {
             }
         });
 
-    });
-    describe("Hop", function () {
-        const cases = [
-            ["getOnboardingUrl", createMock<H.GetOnboardingUrlRequest>(), createMock<H.GetOnboardingUrlResponse>()]
-        ];
-        test.each(cases)(
-            "should %p",
-            async (...args) => {
-                const hostedOnboardingPage = platforms.HostedOnboardingPage;
-                scope.post(`/Hop/${Client.MARKETPAY_HOP_API_VERSION}//${args[0]}`).reply(200, args[2]);
-
-                const result = await hostedOnboardingPage[args[0] as string](args[1] as never);
-                expect(result).toMatchObject(args[2]);
-            }
-        );
     });
 });
