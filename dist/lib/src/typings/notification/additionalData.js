@@ -43,6 +43,11 @@ var AdditionalData = (function () {
             "name": "authorisedAmountCurrency",
             "baseName": "authorisedAmountCurrency",
             "type": "string"
+        },
+        {
+            "name": "hmacSignature",
+            "baseName": "hmacSignature",
+            "type": "string"
         }
     ];
     return AdditionalData;

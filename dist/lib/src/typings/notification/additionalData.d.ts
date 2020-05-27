@@ -6,6 +6,7 @@ export declare class AdditionalData {
     'expiryDate'?: string;
     'authorisedAmountValue'?: string;
     'authorisedAmountCurrency'?: string;
+    'hmacSignature'?: string;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;

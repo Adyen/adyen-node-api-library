@@ -94,76 +94,15 @@ var assertError = function (e) {
     }
     fail(e);
 };
-beforeAll(function (done) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                client = createBasicAuthClient();
-                client.config.password = process.env.ADYEN_MARKETPLACE_PASSWORD;
-                client.config.username = process.env.ADYEN_MARKETPLACE_USER;
-                scope = nock(client.config.marketPayEndpoint);
-                platforms = new Platforms(client);
-                return [4, platforms.Account.createAccountHolder({
-                        accountHolderCode: generateRandomCode(),
-                        accountHolderDetails: accountHolderDetails,
-                        legalEntity: "Individual",
-                    })];
-            case 1:
-                accountHolder = _a.sent();
-                return [4, platforms.Account.createAccount({
-                        accountHolderCode: generateRandomCode(),
-                        description: "This is a new account",
-                        metadata: { meta: "data" },
-                        payoutSchedule: "WEEKLY"
-                    })];
-            case 2:
-                account = _a.sent();
-                return [4, platforms.Account.createAccountHolder({
-                        accountHolderCode: generateRandomCode(),
-                        accountHolderDetails: accountHolderDetails,
-                        legalEntity: "Individual"
-                    })];
-            case 3:
-                accountHolderToSuspend = _a.sent();
-                return [4, platforms.Account.createAccount({
-                        accountHolderCode: generateRandomCode(),
-                        description: "This is a new account",
-                        metadata: { meta: "data" },
-                        payoutSchedule: "WEEKLY"
-                    })];
-            case 4:
-                accountToClose = _a.sent();
-                return [4, platforms.Account.createAccountHolder({
-                        accountHolderCode: generateRandomCode(),
-                        accountHolderDetails: accountHolderDetails,
-                        legalEntity: "Individual"
-                    })];
-            case 5:
-                accountHolderToUnSuspend = _a.sent();
-                return [4, platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode })];
-            case 6:
-                _a.sent();
-                return [4, platforms.Account.createAccountHolder({
-                        accountHolderCode: generateRandomCode(),
-                        accountHolderDetails: accountHolderDetails,
-                        legalEntity: "Individual"
-                    })];
-            case 7:
-                accountHolderToClose = _a.sent();
-                return [4, platforms.NotificationConfiguration.createNotificationConfiguration({
-                        configurationDetails: __assign(__assign({}, notificationConfigurationDetails), { description: "" + generateRandomCode() })
-                    })];
-            case 8:
-                notificationConfigurationToRetrieve = _a.sent();
-                done();
-                return [2];
-        }
-    });
-}); });
 beforeEach(function () {
     if (!nock.isActive()) {
         nock.activate();
     }
+    client = createBasicAuthClient();
+    client.config.password = process.env.ADYEN_MARKETPLACE_PASSWORD;
+    client.config.username = process.env.ADYEN_MARKETPLACE_USER;
+    scope = nock(client.config.marketPayEndpoint);
+    platforms = new Platforms(client);
 });
 afterEach(function () {
     nock.cleanAll();
@@ -211,6 +150,165 @@ describe("Platforms Test", function () {
                     });
                 });
             });
+        });
+    });
+    describe("Fund", function () {
+        var _this = this;
+        var cases = [
+            ["accountHolderBalance", createMock(), createMock()],
+            ["accountHolderTransactionList", createMock(), createMock()],
+            ["payoutAccountHolder", createMock(), createMock()],
+            ["transferFunds", createMock(), createMock()],
+            ["refundFundsTransfer", createMock(), createMock()],
+            ["setupBeneficiary", createMock(), createMock()],
+            ["refundNotPaidOutTransfers", createMock(), createMock()],
+        ];
+        test.each(cases)("should %p", function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return __awaiter(_this, void 0, void 0, function () {
+                var fund, result;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            fund = platforms.Fund;
+                            scope.post("/Fund/" + Client.MARKETPAY_FUND_API_VERSION + "//" + args[0]).reply(200, args[2]);
+                            return [4, fund[args[0]](args[1])];
+                        case 1:
+                            result = _a.sent();
+                            expect(result).toMatchObject(args[2]);
+                            return [2];
+                    }
+                });
+            });
+        });
+    });
+    describe("Notification Configuration", function () {
+        var _this = this;
+        var cases = [
+            ["createNotificationConfiguration", createMock(), createMock()],
+            ["getNotificationConfiguration", createMock(), createMock()],
+            ["getNotificationConfigurationList", {}, createMock()],
+            ["testNotificationConfiguration", createMock(), createMock()],
+            ["updateNotificationConfiguration", createMock(), createMock()],
+            ["deleteNotificationConfigurations", createMock(), createMock()],
+        ];
+        test.each(cases)("should %p", function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return __awaiter(_this, void 0, void 0, function () {
+                var notificationConfiguration, result;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            notificationConfiguration = platforms.NotificationConfiguration;
+                            scope.post("/Notification/" + Client.MARKETPAY_NOTIFICATION_API_VERSION + "//" + args[0]).reply(200, args[2]);
+                            return [4, notificationConfiguration[args[0]](args[1])];
+                        case 1:
+                            result = _a.sent();
+                            expect(result).toMatchObject(args[2]);
+                            return [2];
+                    }
+                });
+            });
+        });
+    });
+    describe("Hop", function () {
+        var _this = this;
+        var cases = [
+            ["getOnboardingUrl", createMock(), createMock()]
+        ];
+        test.each(cases)("should %p", function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return __awaiter(_this, void 0, void 0, function () {
+                var hostedOnboardingPage, result;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            hostedOnboardingPage = platforms.HostedOnboardingPage;
+                            scope.post("/Hop/" + Client.MARKETPAY_HOP_API_VERSION + "//" + args[0]).reply(200, args[2]);
+                            return [4, hostedOnboardingPage[args[0]](args[1])];
+                        case 1:
+                            result = _a.sent();
+                            expect(result).toMatchObject(args[2]);
+                            return [2];
+                    }
+                });
+            });
+        });
+    });
+});
+describe.skip("Platforms Test E2E", function () {
+    var _this = this;
+    beforeAll(function (done) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, platforms.Account.createAccountHolder({
+                        accountHolderCode: generateRandomCode(),
+                        accountHolderDetails: accountHolderDetails,
+                        legalEntity: "Individual",
+                    })];
+                case 1:
+                    accountHolder = _a.sent();
+                    return [4, platforms.Account.createAccount({
+                            accountHolderCode: generateRandomCode(),
+                            description: "This is a new account",
+                            metadata: { meta: "data" },
+                            payoutSchedule: "WEEKLY"
+                        })];
+                case 2:
+                    account = _a.sent();
+                    return [4, platforms.Account.createAccountHolder({
+                            accountHolderCode: generateRandomCode(),
+                            accountHolderDetails: accountHolderDetails,
+                            legalEntity: "Individual"
+                        })];
+                case 3:
+                    accountHolderToSuspend = _a.sent();
+                    return [4, platforms.Account.createAccount({
+                            accountHolderCode: generateRandomCode(),
+                            description: "This is a new account",
+                            metadata: { meta: "data" },
+                            payoutSchedule: "WEEKLY"
+                        })];
+                case 4:
+                    accountToClose = _a.sent();
+                    return [4, platforms.Account.createAccountHolder({
+                            accountHolderCode: generateRandomCode(),
+                            accountHolderDetails: accountHolderDetails,
+                            legalEntity: "Individual"
+                        })];
+                case 5:
+                    accountHolderToUnSuspend = _a.sent();
+                    return [4, platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode })];
+                case 6:
+                    _a.sent();
+                    return [4, platforms.Account.createAccountHolder({
+                            accountHolderCode: generateRandomCode(),
+                            accountHolderDetails: accountHolderDetails,
+                            legalEntity: "Individual"
+                        })];
+                case 7:
+                    accountHolderToClose = _a.sent();
+                    return [4, platforms.NotificationConfiguration.createNotificationConfiguration({
+                            configurationDetails: __assign(__assign({}, notificationConfigurationDetails), { description: "" + generateRandomCode() })
+                        })];
+                case 8:
+                    notificationConfigurationToRetrieve = _a.sent();
+                    done();
+                    return [2];
+            }
+        });
+    }); });
+    describe("Account", function () {
+        describe("Accounts E2E", function () {
             it("should create account holder", function () {
                 return __awaiter(this, void 0, void 0, function () {
                     return __generator(this, function (_a) {
@@ -525,37 +623,6 @@ describe("Platforms Test", function () {
         });
     });
     describe("Fund", function () {
-        var _this = this;
-        var cases = [
-            ["accountHolderBalance", createMock(), createMock()],
-            ["accountHolderTransactionList", createMock(), createMock()],
-            ["payoutAccountHolder", createMock(), createMock()],
-            ["transferFunds", createMock(), createMock()],
-            ["refundFundsTransfer", createMock(), createMock()],
-            ["setupBeneficiary", createMock(), createMock()],
-            ["refundNotPaidOutTransfers", createMock(), createMock()],
-        ];
-        test.each(cases)("should %p", function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return __awaiter(_this, void 0, void 0, function () {
-                var fund, result;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            fund = platforms.Fund;
-                            scope.post("/Fund/" + Client.MARKETPAY_FUND_API_VERSION + "//" + args[0]).reply(200, args[2]);
-                            return [4, fund[args[0]](args[1])];
-                        case 1:
-                            result = _a.sent();
-                            expect(result).toMatchObject(args[2]);
-                            return [2];
-                    }
-                });
-            });
-        });
         it("should retrieve the balance of an account holder", function () {
             return __awaiter(this, void 0, void 0, function () {
                 var result, e_11;
@@ -642,37 +709,7 @@ describe("Platforms Test", function () {
         });
     });
     describe("Notification Configuration", function () {
-        var _this = this;
-        var cases = [
-            ["createNotificationConfiguration", createMock(), createMock()],
-            ["getNotificationConfiguration", createMock(), createMock()],
-            ["getNotificationConfigurationList", {}, createMock()],
-            ["testNotificationConfiguration", createMock(), createMock()],
-            ["updateNotificationConfiguration", createMock(), createMock()],
-            ["deleteNotificationConfigurations", createMock(), createMock()],
-        ];
         var configurationID;
-        test.each(cases)("should %p", function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return __awaiter(_this, void 0, void 0, function () {
-                var notificationConfiguration, result;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            notificationConfiguration = platforms.NotificationConfiguration;
-                            scope.post("/Notification/" + Client.MARKETPAY_NOTIFICATION_API_VERSION + "//" + args[0]).reply(200, args[2]);
-                            return [4, notificationConfiguration[args[0]](args[1])];
-                        case 1:
-                            result = _a.sent();
-                            expect(result).toMatchObject(args[2]);
-                            return [2];
-                    }
-                });
-            });
-        });
         it("should retrieve all Notification Configurations", function () {
             return __awaiter(this, void 0, void 0, function () {
                 var result, resultStr, e_14;
@@ -813,33 +850,6 @@ describe("Platforms Test", function () {
                             assertError(e_18);
                             return [3, 4];
                         case 4: return [2];
-                    }
-                });
-            });
-        });
-    });
-    describe("Hop", function () {
-        var _this = this;
-        var cases = [
-            ["getOnboardingUrl", createMock(), createMock()]
-        ];
-        test.each(cases)("should %p", function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return __awaiter(_this, void 0, void 0, function () {
-                var hostedOnboardingPage, result;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            hostedOnboardingPage = platforms.HostedOnboardingPage;
-                            scope.post("/Hop/" + Client.MARKETPAY_HOP_API_VERSION + "//" + args[0]).reply(200, args[2]);
-                            return [4, hostedOnboardingPage[args[0]](args[1])];
-                        case 1:
-                            result = _a.sent();
-                            expect(result).toMatchObject(args[2]);
-                            return [2];
                     }
                 });
             });

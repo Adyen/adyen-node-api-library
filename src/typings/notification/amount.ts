@@ -29,7 +29,6 @@
  * Do not edit the class manually.
  */
 
-
 /**
 * A container object for the payable amount information for the transaction.For HTTP POST notifications, currency and value are returned as URL parameters.
 */
