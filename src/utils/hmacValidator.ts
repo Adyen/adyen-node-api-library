@@ -34,10 +34,12 @@ class HmacValidator {
     }
 
     public validateHMAC(notificationRequestItem: NotificationRequestItem, key: string): boolean {
-        const expectedSign = this.calculateHmac(notificationRequestItem, key);
-        const merchantSign = notificationRequestItem.additionalData?.[ApiConstants.HMAC_SIGNATURE];
-
-        return expectedSign === merchantSign;
+        if (notificationRequestItem.additionalData?.[ApiConstants.HMAC_SIGNATURE]) {
+            const expectedSign = this.calculateHmac(notificationRequestItem, key);
+            const merchantSign = notificationRequestItem.additionalData?.[ApiConstants.HMAC_SIGNATURE];
+            return expectedSign === merchantSign;
+        }
+        throw Error(`Missing ${ApiConstants.HMAC_SIGNATURE}`);
     }
 
     private isNotificationRequestItem(item: DataToSign): item is NotificationRequestItem {

@@ -61,6 +61,10 @@ export class AdditionalData {
     * Currency of the authorised amount.
     */
     'authorisedAmountCurrency'?: string;
+    /**
+    * HMAC Key from customer area
+    */
+    'hmacSignature'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -98,6 +102,11 @@ export class AdditionalData {
         {
             "name": "authorisedAmountCurrency",
             "baseName": "authorisedAmountCurrency",
+            "type": "string"
+        },
+        {
+            "name": "hmacSignature",
+            "baseName": "hmacSignature",
             "type": "string"
         }    ];
 
