@@ -30,10 +30,10 @@ import {
     ReversalReasonType,
     ReversalRequest,
     SaleData,
-    SaleToPoiRequest,
+    SaleToPOIRequest,
     TerminalApiRequest,
-    TransactionIdentification,
-} from "../typings/terminal";
+    TransactionIdentification
+} from "../typings/terminal/models";
 
 export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     const config: Config = new Config();
@@ -67,20 +67,20 @@ const getMessageHeader = ({ messageCategory = MessageCategoryType.Payment }: { m
     messageCategory,
     messageClass: MessageClassType.Service,
     messageType: MessageType.Request,
-    poiid: process.env.ADYEN_TERMINAL_POIID!,
+    pOIID: process.env.ADYEN_TERMINAL_POIID!,
     protocolVersion: "3.0",
-    saleId: id,
-    serviceId: id,
+    saleID: id,
+    serviceID: id,
 });
 
 const timestamp = (): string => new Date().toISOString();
 const transactionIdentification: TransactionIdentification = {
     timeStamp: timestamp(),
-    transactionId: id,
+    transactionID: id,
 };
 
 const saleData: SaleData = {
-    saleTransactionId: transactionIdentification,
+    saleTransactionID: transactionIdentification,
 };
 
 const amountsReq: AmountsReq = {
@@ -98,16 +98,16 @@ const paymentRequest: PaymentRequest = {
 };
 
 const getReversalRequest = (poiTransaction: TransactionIdentification): ReversalRequest => ({
-    originalPoiTransaction: {
-        poiTransactionId: {
-            transactionId: poiTransaction.transactionId,
+    originalPOITransaction: {
+        pOITransactionID: {
+            transactionID: poiTransaction.transactionID,
             timeStamp: poiTransaction.timeStamp
         },
     },
     reversalReason: ReversalReasonType.MerchantCancel
 });
 
-const getSaleToPOIRequest = (messageHeader: MessageHeader, request: Partial<SaleToPoiRequest>): SaleToPoiRequest => ({
+const getSaleToPOIRequest = (messageHeader: MessageHeader, request: Partial<SaleToPOIRequest>): SaleToPOIRequest => ({
     messageHeader: messageHeader,
     ...request
 });
@@ -116,11 +116,11 @@ const getSaleToPOIRequest = (messageHeader: MessageHeader, request: Partial<Sale
 export const createTerminalAPIPaymentRequest = (): TerminalApiRequest => {
     const messageHeader = getMessageHeader();
     const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { paymentRequest });
-    return { saleToPoiRequest: saleToPOIRequest };
+    return { saleToPOIRequest: saleToPOIRequest };
 };
 
 export const createTerminalAPIRefundRequest = (transactionIdentification: TransactionIdentification): TerminalApiRequest => {
     const messageHeader = getMessageHeader({ messageCategory: MessageCategoryType.Reversal });
     const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { reversalRequest: getReversalRequest(transactionIdentification) });
-    return { saleToPoiRequest: saleToPOIRequest };
+    return { saleToPOIRequest: saleToPOIRequest };
 };

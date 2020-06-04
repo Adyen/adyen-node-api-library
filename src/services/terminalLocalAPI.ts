@@ -21,14 +21,16 @@ import ApiKeyAuthenticatedService from "../apiKeyAuthenticatedService";
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import NexoCrypto from "../security/nexoCrypto";
-import {
-    Convert,
-    SaleToPoiSecuredMessage,
-    SecurityKey,
-    TerminalApiRequest, TerminalApiResponse,
-    TerminalApiSecuredRequest,
-} from "../typings/terminal";
 import LocalRequest from "./resource/terminal/local/localRequest";
+import {
+    ObjectSerializer,
+    SecurityKey,
+    TerminalApiRequest,
+    TerminalApiResponse,
+    SaleToPOISecuredMessage,
+    TerminalApiSecuredRequest,
+    TerminalApiSecuredResponse
+} from "../typings/terminal/models";
 
 class TerminalLocalAPI extends ApiKeyAuthenticatedService {
     private readonly localRequest: LocalRequest;
@@ -44,29 +46,30 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
         terminalApiRequest: TerminalApiRequest,
         securityKey: SecurityKey,
     ): Promise<TerminalApiResponse> {
-        const saleToPoiSecuredMessage: SaleToPoiSecuredMessage = NexoCrypto.encrypt(
-            terminalApiRequest.saleToPoiRequest.messageHeader,
-            Convert.terminalApiRequestToJson(terminalApiRequest),
+        const saleToPoiSecuredMessage: SaleToPOISecuredMessage = NexoCrypto.encrypt(
+            terminalApiRequest.saleToPOIRequest.messageHeader,
+            JSON.stringify(ObjectSerializer.serialize(terminalApiRequest, "TerminalApiRequest")),
             securityKey,
         );
 
-        const securedPaymentRequest: TerminalApiSecuredRequest = {
-            saleToPoiRequest: saleToPoiSecuredMessage,
-        };
+        const securedPaymentRequest: TerminalApiSecuredRequest = ObjectSerializer.serialize({
+            saleToPOIRequest: saleToPoiSecuredMessage,
+        }, "TerminalApiSecuredRequest");
 
         const jsonResponse = await getJsonResponse<TerminalApiSecuredRequest, TerminalApiResponse>(
             this.localRequest,
-            Convert.terminalApiSecuredRequestToJson(securedPaymentRequest),
+            securedPaymentRequest
         );
 
-        const terminalApiSecuredResponse = Convert.toTerminalApiSecuredResponse(JSON.stringify(jsonResponse));
+        const terminalApiSecuredResponse: TerminalApiSecuredResponse =
+            ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
 
         const response = this.nexoCrypto.decrypt(
-            terminalApiSecuredResponse.saleToPoiResponse,
+            terminalApiSecuredResponse.saleToPOIResponse,
             securityKey,
         );
 
-        return Convert.toTerminalApiResponse(response);
+        return ObjectSerializer.deserialize(JSON.parse(response), "TerminalApiResponse");
     }
 }
 
