@@ -122,7 +122,7 @@ var HttpURLConnectionClient = (function () {
                 var response = {
                     statusCode: res.statusCode,
                     headers: res.headers,
-                    body: []
+                    body: ""
                 };
                 var getException = function (responseBody) { return new httpClientException_1.default({
                     message: "HTTP Exception: " + response.statusCode + ". " + res.statusMessage,
@@ -132,20 +132,16 @@ var HttpURLConnectionClient = (function () {
                     responseBody: responseBody,
                 }); };
                 var exception = getException(response.body.toString());
-                res.on("data", function (data) {
-                    response.body.push(data);
+                res.on("data", function (chunk) {
+                    response.body += chunk;
                 });
                 res.on("end", function () {
                     if (!res.complete) {
                         reject(new Error("The connection was terminated while the message was still being sent"));
                     }
-                    if (response.body.length) {
-                        response.body = response.body.join();
-                    }
                     if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
                         try {
-                            var dataString = response.body.toString();
-                            var formattedData = JSON.parse(dataString);
+                            var formattedData = JSON.parse(response.body);
                             var isApiError = "status" in formattedData;
                             var isRequestError = "errors" in formattedData;
                             if (isApiError) {
@@ -154,14 +150,14 @@ var HttpURLConnectionClient = (function () {
                                     statusCode: formattedData.status,
                                     errorCode: formattedData.errorCode,
                                     responseHeaders: res.headers,
-                                    responseBody: dataString,
+                                    responseBody: response.body,
                                 });
                             }
                             else if (isRequestError) {
-                                exception = new Error(dataString);
+                                exception = new Error(response.body);
                             }
                             else {
-                                exception = getException(dataString);
+                                exception = getException(response.body);
                             }
                         }
                         catch (e) {
