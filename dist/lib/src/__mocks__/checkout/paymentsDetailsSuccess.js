@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.paymentDetailsSuccess = void 0;
 /* tslint:disable */
 exports.paymentDetailsSuccess = JSON.stringify({
     pspReference: "8515232733321252",

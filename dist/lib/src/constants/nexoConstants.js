@@ -20,6 +20,7 @@
  * See the LICENSE file for more info.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.NexoEnum = void 0;
 var NexoEnum;
 (function (NexoEnum) {
     NexoEnum[NexoEnum["HMAC_KEY_LENGTH"] = 32] = "HMAC_KEY_LENGTH";

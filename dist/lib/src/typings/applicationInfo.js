@@ -23,6 +23,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ApplicationInfo = void 0;
 // Generated using typescript-generator version 2.14.505 on 2019-06-11 10:28:22.
 var client_1 = __importDefault(require("../client"));
 var ApplicationInfo = /** @class */ (function () {

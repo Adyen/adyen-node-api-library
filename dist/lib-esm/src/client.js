@@ -79,7 +79,7 @@ var Client = /** @class */ (function () {
         set: function (httpClient) {
             this._httpClient = httpClient;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Client.prototype.setApplicationName = function (applicationName) {

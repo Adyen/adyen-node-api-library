@@ -20,6 +20,7 @@
  * See the LICENSE file for more info.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Convert = exports.NotificationEnum = void 0;
 var NotificationEnum;
 (function (NotificationEnum) {
     NotificationEnum["EVENT_CODE_AUTHORISATION"] = "AUTHORISATION";

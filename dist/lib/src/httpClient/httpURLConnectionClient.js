@@ -30,6 +30,25 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -40,13 +59,6 @@ var __rest = (this && this.__rest) || function (s, e) {
                 t[p[i]] = s[p[i]];
         }
     return t;
-};
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -130,7 +142,7 @@ var HttpURLConnectionClient = /** @class */ (function () {
                 var response = {
                     statusCode: res.statusCode,
                     headers: res.headers,
-                    body: []
+                    body: ""
                 };
                 var getException = function (responseBody) { return new httpClientException_1.default({
                     message: "HTTP Exception: " + response.statusCode + ". " + res.statusMessage,
@@ -140,20 +152,16 @@ var HttpURLConnectionClient = /** @class */ (function () {
                     responseBody: responseBody,
                 }); };
                 var exception = getException(response.body.toString());
-                res.on("data", function (data) {
-                    response.body.push(data);
+                res.on("data", function (chunk) {
+                    response.body += chunk;
                 });
                 res.on("end", function () {
                     if (!res.complete) {
                         reject(new Error("The connection was terminated while the message was still being sent"));
                     }
-                    if (response.body.length) {
-                        response.body = response.body.join();
-                    }
                     if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
                         try {
-                            var dataString = response.body.toString();
-                            var formattedData = JSON.parse(dataString);
+                            var formattedData = JSON.parse(response.body);
                             var isApiError = "status" in formattedData;
                             var isRequestError = "errors" in formattedData;
                             if (isApiError) {
@@ -162,14 +170,14 @@ var HttpURLConnectionClient = /** @class */ (function () {
                                     statusCode: formattedData.status,
                                     errorCode: formattedData.errorCode,
                                     responseHeaders: res.headers,
-                                    responseBody: dataString,
+                                    responseBody: response.body,
                                 });
                             }
                             else if (isRequestError) {
-                                exception = new Error(dataString);
+                                exception = new Error(response.body);
                             }
                             else {
-                                exception = getException(dataString);
+                                exception = getException(response.body);
                             }
                         }
                         catch (e) {

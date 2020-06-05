@@ -59,6 +59,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createPaymentsCheckoutRequest = void 0;
 var nock_1 = __importDefault(require("nock"));
 var base_1 = require("../__mocks__/base");
 var paymentMethodsSuccess_1 = require("../__mocks__/checkout/paymentMethodsSuccess");

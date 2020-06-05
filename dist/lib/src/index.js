@@ -19,18 +19,25 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./typings");
 var client_1 = require("./client");
-exports.Client = client_1.default;
+Object.defineProperty(exports, "Client", { enumerable: true, get: function () { return client_1.default; } });
 var config_1 = require("./config");
-exports.Config = config_1.default;
-__export(require("./services/"));
+Object.defineProperty(exports, "Config", { enumerable: true, get: function () { return config_1.default; } });
+__exportStar(require("./services/"), exports);
 var utils_1 = require("./utils");
-exports.hmacValidator = utils_1.hmacValidator;
+Object.defineProperty(exports, "hmacValidator", { enumerable: true, get: function () { return utils_1.hmacValidator; } });
 var httpURLConnectionClient_1 = require("./httpClient/httpURLConnectionClient");
-exports.HttpURLConnectionClient = httpURLConnectionClient_1.default;
+Object.defineProperty(exports, "HttpURLConnectionClient", { enumerable: true, get: function () { return httpURLConnectionClient_1.default; } });
 //# sourceMappingURL=index.js.map

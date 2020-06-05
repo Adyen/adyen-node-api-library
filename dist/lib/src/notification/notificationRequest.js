@@ -34,7 +34,7 @@ var NotificationRequest = /** @class */ (function () {
             }
             return this.notificationItemContainers.map(function (container) { return container.NotificationRequestItem; });
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return NotificationRequest;

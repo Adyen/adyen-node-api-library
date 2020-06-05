@@ -119,7 +119,7 @@ var Platforms = /** @class */ (function (_super) {
             var accountHolders = { createAccountHolder: createAccountHolder, getAccountHolder: getAccountHolder, updateAccountHolder: updateAccountHolder, updateAccountHolderState: updateAccountHolderState, suspendAccountHolder: suspendAccountHolder, unSuspendAccountHolder: unSuspendAccountHolder, closeAccountHolder: closeAccountHolder };
             return __assign(__assign(__assign({}, accounts), verification), accountHolders);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(Platforms.prototype, "Fund", {
@@ -133,7 +133,7 @@ var Platforms = /** @class */ (function (_super) {
             var refundNotPaidOutTransfers = this.createRequest(this._refundNotPaidOutTransfers);
             return { accountHolderBalance: accountHolderBalance, accountHolderTransactionList: accountHolderTransactionList, payoutAccountHolder: payoutAccountHolder, refundFundsTransfer: refundFundsTransfer, transferFunds: transferFunds, setupBeneficiary: setupBeneficiary, refundNotPaidOutTransfers: refundNotPaidOutTransfers };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(Platforms.prototype, "HostedOnboardingPage", {
@@ -141,7 +141,7 @@ var Platforms = /** @class */ (function (_super) {
             var getOnboardingUrl = this.createRequest(this._getOnboardingUrl);
             return { getOnboardingUrl: getOnboardingUrl };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(Platforms.prototype, "NotificationConfiguration", {
@@ -154,7 +154,7 @@ var Platforms = /** @class */ (function (_super) {
             var deleteNotificationConfigurations = this.createRequest(this._deleteNotificationConfiguration);
             return { createNotificationConfiguration: createNotificationConfiguration, getNotificationConfiguration: getNotificationConfiguration, getNotificationConfigurationList: getNotificationConfigurationList, testNotificationConfiguration: testNotificationConfiguration, updateNotificationConfiguration: updateNotificationConfiguration, deleteNotificationConfigurations: deleteNotificationConfigurations };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return Platforms;

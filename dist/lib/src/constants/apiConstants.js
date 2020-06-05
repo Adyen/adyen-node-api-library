@@ -20,6 +20,7 @@
  * See the LICENSE file for more info.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ApiConstants = void 0;
 var ApiConstants;
 (function (ApiConstants) {
     ApiConstants["TRANSACTION_NOT_PERMITTED"] = "Transaction Not Permitted";

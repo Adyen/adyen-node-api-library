@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.paymentsResultError = void 0;
 /* tslint:disable */
 exports.paymentsResultError = JSON.stringify({
     statusCode: 422,

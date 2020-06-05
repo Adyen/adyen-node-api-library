@@ -49,7 +49,7 @@ var Config = /** @class */ (function () {
         set: function (checkoutEndpoint) {
             this._checkoutEndpoint = checkoutEndpoint;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return Config;

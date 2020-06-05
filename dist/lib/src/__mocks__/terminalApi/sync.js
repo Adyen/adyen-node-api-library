@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.syncRefund = exports.syncRes = void 0;
 exports.syncRes = JSON.stringify({
     SaleToPOIResponse: {
         MessageHeader: {

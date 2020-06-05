@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.paymentMethodsSuccess = void 0;
 /* tslint:disable */
 exports.paymentMethodsSuccess = JSON.stringify({
     paymentMethods: [

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.paymentDetailsError = void 0;
 /* tslint:disable */
 exports.paymentDetailsError = {
     statusCode: 422,
