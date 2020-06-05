@@ -118,10 +118,10 @@ class HttpURLConnectionClient implements ClientInterface {
             connectionRequest.flushHeaders();
 
             connectionRequest.on("response", (res: IncomingMessage): void => {
-                const response: { headers: IncomingHttpHeaders; body: (string | Buffer)[] | string; statusCode: number | undefined } = {
+                const response: { headers: IncomingHttpHeaders; body: string; statusCode: number | undefined } = {
                     statusCode: res.statusCode,
                     headers: res.headers,
-                    body: []
+                    body: ""
                 };
 
                 const getException = (responseBody: string): HttpClientException => new HttpClientException({
@@ -134,8 +134,8 @@ class HttpURLConnectionClient implements ClientInterface {
 
                 let exception: HttpClientException | Error = getException(response.body.toString());
 
-                res.on("data", (data: string | Buffer): void => {
-                    (response.body as (string | Buffer)[]).push(data);
+                res.on("data", (chunk: string): void => {
+                    response.body += chunk;
                 });
 
                 res.on("end", (): void => {
@@ -143,14 +143,9 @@ class HttpURLConnectionClient implements ClientInterface {
                         reject(new Error("The connection was terminated while the message was still being sent"));
                     }
 
-                    if (response.body.length) {
-                        response.body = (response.body as []).join();
-                    }
-
                     if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
                         try {
-                            const dataString = response.body.toString();
-                            const formattedData: ApiError | {[key: string]: never} = JSON.parse(dataString);
+                            const formattedData: ApiError | {[key: string]: never} = JSON.parse(response.body);
                             const isApiError = "status" in formattedData;
                             const isRequestError = "errors" in formattedData;
 
@@ -160,12 +155,12 @@ class HttpURLConnectionClient implements ClientInterface {
                                     statusCode: formattedData.status,
                                     errorCode: formattedData.errorCode,
                                     responseHeaders: res.headers,
-                                    responseBody: dataString,
+                                    responseBody: response.body,
                                 });
                             } else if (isRequestError) {
-                                exception = new Error(dataString);
+                                exception = new Error(response.body);
                             } else {
-                                exception = getException(dataString);
+                                exception = getException(response.body);
                             }
                         } catch (e) {
                             reject(exception);
