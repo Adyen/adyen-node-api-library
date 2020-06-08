@@ -19,10 +19,10 @@
 
 import nock from "nock";
 import {createClient, createTerminalAPIPaymentRequest} from "../__mocks__/base";
-import {localEncRes, localSecuredRes, wrongEncRes} from "../__mocks__/terminalApi/local";
+import {localEncRes, wrongEncRes} from "../__mocks__/terminalApi/local";
 import Client from "../client";
 import TerminalLocalAPI from "../services/terminalLocalAPI";
-import {Convert, SecurityKey, TerminalApiResponse} from "../typings/terminal";
+import {SecurityKey, TerminalApiResponse} from "../typings/terminal/models";
 import NexoCryptoException from "../services/exception/nexoCryptoException";
 
 let client: Client;
@@ -30,17 +30,25 @@ let terminalLocalAPI: TerminalLocalAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
+    if (!nock.isActive()){
+        nock.activate();
+    }
+
     client = createClient();
     terminalLocalAPI = new TerminalLocalAPI(client);
     scope = nock(client.config.terminalApiLocalEndpoint + ":8443/nexo");
 });
 
-describe("Terminal Local API", (): void => {
-    it("should make a local payment", async (): Promise<void> => {
-        const securedResponse = Convert.toTerminalApiSecuredResponse(localEncRes);
-        const response = Convert.toTerminalApiResponse(localSecuredRes);
+afterEach((): void => {
+    nock.cleanAll();
+});
 
-        scope.post("/").reply(200, securedResponse);
+const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
+
+describe("Terminal Local API", (): void => {
+    test.each([isCI, true])("should make a local payment", async (isMock: boolean): Promise<void> => {
+        !isMock && nock.restore();
+        scope.post("/").reply(200, localEncRes);
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
         const securityKey: SecurityKey = {
@@ -53,13 +61,13 @@ describe("Terminal Local API", (): void => {
         const terminalApiResponse: TerminalApiResponse =
             await terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey);
 
-        expect(response).toEqual(terminalApiResponse);
+        expect(terminalApiResponse.saleToPOIResponse?.paymentResponse).toBeDefined();
+        expect(terminalApiResponse.saleToPOIResponse?.messageHeader).toBeDefined();
     });
 
-    it("should return NexoCryptoException", async (): Promise<void> => {
-        const securedResponse = Convert.toTerminalApiSecuredResponse(wrongEncRes);
-
-        scope.post("/").reply(200, securedResponse);
+    test.each([isCI, true])("should return NexoCryptoException", async (isMock: boolean): Promise<void> => {
+        !isMock && nock.restore();
+        scope.post("/").reply(200, wrongEncRes);
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
         const securityKey: SecurityKey = {

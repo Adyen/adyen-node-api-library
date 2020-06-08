@@ -18,7 +18,7 @@
  */
 
 import {pbkdf2Sync} from "crypto";
-import { NexoDerivedKey } from "../typings/terminal";
+import { NexoDerivedKey } from "../typings/terminal/models";
 import {NexoEnum} from "../constants/nexoConstants";
 
 class NexoDerivedKeyGenerator {

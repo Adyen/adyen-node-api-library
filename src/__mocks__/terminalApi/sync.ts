@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 
-export const syncRes = JSON.stringify({
+export const syncRes = {
     SaleToPOIResponse: {
         MessageHeader: {
             MessageCategory: "Payment",
@@ -345,9 +345,9 @@ export const syncRes = JSON.stringify({
             },
         },
     },
-});
+};
 
-export const syncRefund = JSON.stringify({
+export const syncRefund = {
     SaleToPOIResponse: {
         MessageHeader: {
             MessageCategory: "Payment",
@@ -364,4 +364,4 @@ export const syncRefund = JSON.stringify({
             }
         }
     }
-});
+};
