@@ -1,6 +1,6 @@
 {
   "name": "@adyen/api-library",
-  "version": "4.0.1",
+  "version": "4.0.3",
   "description": "The Adyen API Library for NodeJS enables you to work with Adyen APIs.",
   "main": "dist/lib/src/index.js",
   "types": "dist/lib/src/index.d.ts",
@@ -57,7 +57,7 @@
     "ts-jest": "25.5.1",
     "ts-loader": "7.0.5",
     "ttypescript": "^1.5.10",
-    "typescript": "3.9.3",
+    "typescript": "3.9.5",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11"
   },
