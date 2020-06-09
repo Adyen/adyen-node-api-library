@@ -1,6 +1,6 @@
 import ApiKeyAuthenticatedService from "../apiKeyAuthenticatedService";
 import Client from "../client";
-import { TerminalApiRequest, TerminalApiResponse } from "../typings/terminal";
+import { TerminalApiRequest, TerminalApiResponse } from "../typings/terminal/models";
 declare class TerminalCloudAPI extends ApiKeyAuthenticatedService {
     private readonly terminalApiAsync;
     private readonly terminalApiSync;

@@ -36,27 +36,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import nock from "nock";
 import { createClient, createTerminalAPIPaymentRequest } from "../__mocks__/base";
-import { localEncRes, localSecuredRes, wrongEncRes } from "../__mocks__/terminalApi/local";
+import { localEncRes, wrongEncRes } from "../__mocks__/terminalApi/local";
 import TerminalLocalAPI from "../services/terminalLocalAPI";
-import { Convert } from "../typings/terminal";
 import NexoCryptoException from "../services/exception/nexoCryptoException";
 var client;
 var terminalLocalAPI;
 var scope;
 beforeEach(function () {
+    if (!nock.isActive()) {
+        nock.activate();
+    }
     client = createClient();
     terminalLocalAPI = new TerminalLocalAPI(client);
     scope = nock(client.config.terminalApiLocalEndpoint + ":8443/nexo");
 });
+afterEach(function () {
+    nock.cleanAll();
+});
+var isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 describe("Terminal Local API", function () {
-    it("should make a local payment", function () { return __awaiter(void 0, void 0, void 0, function () {
-        var securedResponse, response, terminalAPIPaymentRequest, securityKey, terminalApiResponse;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+    test.each([isCI, true])("should make a local payment", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
+        var terminalAPIPaymentRequest, securityKey, terminalApiResponse;
+        var _a, _b;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
                 case 0:
-                    securedResponse = Convert.toTerminalApiSecuredResponse(localEncRes);
-                    response = Convert.toTerminalApiResponse(localSecuredRes);
-                    scope.post("/").reply(200, securedResponse);
+                    !isMock && nock.restore();
+                    scope.post("/").reply(200, localEncRes);
                     terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
                     securityKey = {
                         adyenCryptoVersion: 1,
@@ -66,19 +72,20 @@ describe("Terminal Local API", function () {
                     };
                     return [4, terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey)];
                 case 1:
-                    terminalApiResponse = _a.sent();
-                    expect(response).toEqual(terminalApiResponse);
+                    terminalApiResponse = _c.sent();
+                    expect((_a = terminalApiResponse.saleToPOIResponse) === null || _a === void 0 ? void 0 : _a.paymentResponse).toBeDefined();
+                    expect((_b = terminalApiResponse.saleToPOIResponse) === null || _b === void 0 ? void 0 : _b.messageHeader).toBeDefined();
                     return [2];
             }
         });
     }); });
-    it("should return NexoCryptoException", function () { return __awaiter(void 0, void 0, void 0, function () {
-        var securedResponse, terminalAPIPaymentRequest, securityKey, e_1;
+    test.each([isCI, true])("should return NexoCryptoException", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
+        var terminalAPIPaymentRequest, securityKey, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    securedResponse = Convert.toTerminalApiSecuredResponse(wrongEncRes);
-                    scope.post("/").reply(200, securedResponse);
+                    !isMock && nock.restore();
+                    scope.post("/").reply(200, wrongEncRes);
                     terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
                     securityKey = {
                         adyenCryptoVersion: 1,

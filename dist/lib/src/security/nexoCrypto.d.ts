@@ -1,7 +1,7 @@
-import { MessageHeader, SaleToPoiSecuredMessage, SecurityKey } from "../typings/terminal";
+import { MessageHeader, SaleToPOISecuredMessage, SecurityKey } from "../typings/terminal/models";
 declare class NexoCrypto {
-    static encrypt(messageHeader: MessageHeader, saleToPoiMessageJson: string, securityKey: SecurityKey): SaleToPoiSecuredMessage;
-    decrypt(saleToPoiSecureMessage: SaleToPoiSecuredMessage, securityKey: SecurityKey): string;
+    static encrypt(messageHeader: MessageHeader, saleToPoiMessageJson: string, securityKey: SecurityKey): SaleToPOISecuredMessage;
+    decrypt(saleToPoiSecureMessage: SaleToPOISecuredMessage, securityKey: SecurityKey): string;
     private static validateSecurityKey;
     private static crypt;
     private static hmac;

@@ -1,4 +1,4 @@
-export var syncRes = JSON.stringify({
+export var syncRes = {
     SaleToPOIResponse: {
         MessageHeader: {
             MessageCategory: "Payment",
@@ -316,8 +316,8 @@ export var syncRes = JSON.stringify({
             },
         },
     },
-});
-export var syncRefund = JSON.stringify({
+};
+export var syncRefund = {
     SaleToPOIResponse: {
         MessageHeader: {
             MessageCategory: "Payment",
@@ -334,5 +334,5 @@ export var syncRefund = JSON.stringify({
             }
         }
     }
-});
+};
 //# sourceMappingURL=sync.js.map

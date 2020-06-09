@@ -1,0 +1,19 @@
+export declare enum ErrorConditionType {
+    Aborted,
+    Busy,
+    Cancel,
+    DeviceOut,
+    InProgress,
+    InsertedCard,
+    InvalidCard,
+    LoggedOut,
+    MessageFormat,
+    NotAllowed,
+    NotFound,
+    PaymentRestriction,
+    Refusal,
+    UnavailableDevice,
+    UnavailableService,
+    UnreachableHost,
+    WrongPIN
+}
