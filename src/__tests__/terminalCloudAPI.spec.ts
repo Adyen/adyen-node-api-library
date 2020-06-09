@@ -23,7 +23,7 @@ import {asyncRes} from "../__mocks__/terminalApi/async";
 import {syncRefund, syncRes} from "../__mocks__/terminalApi/sync";
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
-import {Convert, TerminalApiResponse} from "../typings/terminal";
+import {TerminalApiResponse} from "../typings/terminal/models";
 
 let client: Client;
 let terminalCloudAPI: TerminalCloudAPI;
@@ -59,30 +59,27 @@ describe("Terminal Cloud API", (): void => {
 
     test.each([isCI, true])("should make a sync payment request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        const response = Convert.toTerminalApiResponse(syncRes);
-        scope.post("/sync").reply(200, response);
+        scope.post("/sync").reply(200, syncRes);
 
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
         const terminalAPIResponse: TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
 
-        expect(terminalAPIResponse.saleToPoiResponse?.paymentResponse).toBeDefined();
-        expect(terminalAPIResponse.saleToPoiResponse?.messageHeader).toBeDefined();
+        expect(terminalAPIResponse.saleToPOIResponse?.paymentResponse).toBeDefined();
+        expect(terminalAPIResponse.saleToPOIResponse?.messageHeader).toBeDefined();
     });
 
     test.each([isCI, true])("should make an async refund request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        const response = Convert.toTerminalApiResponse(syncRes);
-        scope.post("/sync").reply(200, response);
+        scope.post("/sync").reply(200, syncRes);
 
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
         const terminalAPIResponse: TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
 
-        const refundResponse = Convert.toTerminalApiResponse(syncRefund);
-        scope.post("/sync").reply(200, refundResponse);
+        scope.post("/sync").reply(200, syncRefund);
 
-        const terminalAPIRefundRequest = createTerminalAPIRefundRequest(terminalAPIResponse.saleToPoiResponse?.paymentResponse?.poiData.poiTransactionId!);
+        const terminalAPIRefundRequest = createTerminalAPIRefundRequest(terminalAPIResponse.saleToPOIResponse?.paymentResponse?.pOIData.pOITransactionID!);
         const terminalAPIRefundResponse = await terminalCloudAPI.sync(terminalAPIRefundRequest);
 
-        expect(terminalAPIRefundResponse.saleToPoiResponse?.reversalResponse).toBeDefined();
+        expect(terminalAPIRefundResponse.saleToPOIResponse?.reversalResponse).toBeDefined();
     });
 });

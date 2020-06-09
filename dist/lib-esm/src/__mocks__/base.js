@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
 };
 import Client from "../client";
 import Config from "../config";
-import { MessageCategoryType, MessageClassType, MessageType, ReversalReasonType, } from "../typings/terminal";
+import { MessageCategoryType, MessageClassType, MessageType, ReversalReasonType } from "../typings/terminal/models";
 export var createClient = function (apiKey) {
     if (apiKey === void 0) { apiKey = process.env.ADYEN_API_KEY; }
     var config = new Config();
@@ -42,19 +42,19 @@ var getMessageHeader = function (_a) {
         messageCategory: messageCategory,
         messageClass: MessageClassType.Service,
         messageType: MessageType.Request,
-        poiid: process.env.ADYEN_TERMINAL_POIID,
+        pOIID: process.env.ADYEN_TERMINAL_POIID,
         protocolVersion: "3.0",
-        saleId: id,
-        serviceId: id,
+        saleID: id,
+        serviceID: id,
     });
 };
 var timestamp = function () { return new Date().toISOString(); };
 var transactionIdentification = {
     timeStamp: timestamp(),
-    transactionId: id,
+    transactionID: id,
 };
 var saleData = {
-    saleTransactionId: transactionIdentification,
+    saleTransactionID: transactionIdentification,
 };
 var amountsReq = {
     currency: "EUR",
@@ -68,9 +68,9 @@ var paymentRequest = {
     saleData: saleData,
 };
 var getReversalRequest = function (poiTransaction) { return ({
-    originalPoiTransaction: {
-        poiTransactionId: {
-            transactionId: poiTransaction.transactionId,
+    originalPOITransaction: {
+        pOITransactionID: {
+            transactionID: poiTransaction.transactionID,
             timeStamp: poiTransaction.timeStamp
         },
     },
@@ -80,11 +80,11 @@ var getSaleToPOIRequest = function (messageHeader, request) { return (__assign({
 export var createTerminalAPIPaymentRequest = function () {
     var messageHeader = getMessageHeader();
     var saleToPOIRequest = getSaleToPOIRequest(messageHeader, { paymentRequest: paymentRequest });
-    return { saleToPoiRequest: saleToPOIRequest };
+    return { saleToPOIRequest: saleToPOIRequest };
 };
 export var createTerminalAPIRefundRequest = function (transactionIdentification) {
     var messageHeader = getMessageHeader({ messageCategory: MessageCategoryType.Reversal });
     var saleToPOIRequest = getSaleToPOIRequest(messageHeader, { reversalRequest: getReversalRequest(transactionIdentification) });
-    return { saleToPoiRequest: saleToPOIRequest };
+    return { saleToPOIRequest: saleToPOIRequest };
 };
 //# sourceMappingURL=base.js.map

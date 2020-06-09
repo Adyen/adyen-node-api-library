@@ -39,7 +39,6 @@ import { createClient, createTerminalAPIPaymentRequest, createTerminalAPIRefundR
 import { asyncRes } from "../__mocks__/terminalApi/async";
 import { syncRefund, syncRes } from "../__mocks__/terminalApi/sync";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
-import { Convert } from "../typings/terminal";
 var client;
 var terminalCloudAPI;
 var scope;
@@ -74,44 +73,41 @@ describe("Terminal Cloud API", function () {
         });
     }); });
     test.each([isCI, true])("should make a sync payment request, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
-        var response, terminalAPIPaymentRequest, terminalAPIResponse;
+        var terminalAPIPaymentRequest, terminalAPIResponse;
         var _a, _b;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
                     !isMock && nock.restore();
-                    response = Convert.toTerminalApiResponse(syncRes);
-                    scope.post("/sync").reply(200, response);
+                    scope.post("/sync").reply(200, syncRes);
                     terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
                     return [4, terminalCloudAPI.sync(terminalAPIPaymentRequest)];
                 case 1:
                     terminalAPIResponse = _c.sent();
-                    expect((_a = terminalAPIResponse.saleToPoiResponse) === null || _a === void 0 ? void 0 : _a.paymentResponse).toBeDefined();
-                    expect((_b = terminalAPIResponse.saleToPoiResponse) === null || _b === void 0 ? void 0 : _b.messageHeader).toBeDefined();
+                    expect((_a = terminalAPIResponse.saleToPOIResponse) === null || _a === void 0 ? void 0 : _a.paymentResponse).toBeDefined();
+                    expect((_b = terminalAPIResponse.saleToPOIResponse) === null || _b === void 0 ? void 0 : _b.messageHeader).toBeDefined();
                     return [2];
             }
         });
     }); });
     test.each([isCI, true])("should make an async refund request, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
-        var response, terminalAPIPaymentRequest, terminalAPIResponse, refundResponse, terminalAPIRefundRequest, terminalAPIRefundResponse;
+        var terminalAPIPaymentRequest, terminalAPIResponse, terminalAPIRefundRequest, terminalAPIRefundResponse;
         var _a, _b, _c;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
                     !isMock && nock.restore();
-                    response = Convert.toTerminalApiResponse(syncRes);
-                    scope.post("/sync").reply(200, response);
+                    scope.post("/sync").reply(200, syncRes);
                     terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
                     return [4, terminalCloudAPI.sync(terminalAPIPaymentRequest)];
                 case 1:
                     terminalAPIResponse = _d.sent();
-                    refundResponse = Convert.toTerminalApiResponse(syncRefund);
-                    scope.post("/sync").reply(200, refundResponse);
-                    terminalAPIRefundRequest = createTerminalAPIRefundRequest((_b = (_a = terminalAPIResponse.saleToPoiResponse) === null || _a === void 0 ? void 0 : _a.paymentResponse) === null || _b === void 0 ? void 0 : _b.poiData.poiTransactionId);
+                    scope.post("/sync").reply(200, syncRefund);
+                    terminalAPIRefundRequest = createTerminalAPIRefundRequest((_b = (_a = terminalAPIResponse.saleToPOIResponse) === null || _a === void 0 ? void 0 : _a.paymentResponse) === null || _b === void 0 ? void 0 : _b.pOIData.pOITransactionID);
                     return [4, terminalCloudAPI.sync(terminalAPIRefundRequest)];
                 case 2:
                     terminalAPIRefundResponse = _d.sent();
-                    expect((_c = terminalAPIRefundResponse.saleToPoiResponse) === null || _c === void 0 ? void 0 : _c.reversalResponse).toBeDefined();
+                    expect((_c = terminalAPIRefundResponse.saleToPOIResponse) === null || _c === void 0 ? void 0 : _c.reversalResponse).toBeDefined();
                     return [2];
             }
         });

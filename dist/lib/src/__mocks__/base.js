@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createTerminalAPIRefundRequest = exports.createTerminalAPIPaymentRequest = exports.createBasicAuthClient = exports.createClient = void 0;
 var client_1 = __importDefault(require("../client"));
 var config_1 = __importDefault(require("../config"));
-var terminal_1 = require("../typings/terminal");
+var models_1 = require("../typings/terminal/models");
 exports.createClient = function (apiKey) {
     if (apiKey === void 0) { apiKey = process.env.ADYEN_API_KEY; }
     var config = new config_1.default();
@@ -43,24 +43,24 @@ exports.createBasicAuthClient = function () {
 };
 var id = Math.floor(Math.random() * Math.floor(10000000)).toString();
 var getMessageHeader = function (_a) {
-    var _b = (_a === void 0 ? {} : _a).messageCategory, messageCategory = _b === void 0 ? terminal_1.MessageCategoryType.Payment : _b;
+    var _b = (_a === void 0 ? {} : _a).messageCategory, messageCategory = _b === void 0 ? models_1.MessageCategoryType.Payment : _b;
     return ({
         messageCategory: messageCategory,
-        messageClass: terminal_1.MessageClassType.Service,
-        messageType: terminal_1.MessageType.Request,
-        poiid: process.env.ADYEN_TERMINAL_POIID,
+        messageClass: models_1.MessageClassType.Service,
+        messageType: models_1.MessageType.Request,
+        pOIID: process.env.ADYEN_TERMINAL_POIID,
         protocolVersion: "3.0",
-        saleId: id,
-        serviceId: id,
+        saleID: id,
+        serviceID: id,
     });
 };
 var timestamp = function () { return new Date().toISOString(); };
 var transactionIdentification = {
     timeStamp: timestamp(),
-    transactionId: id,
+    transactionID: id,
 };
 var saleData = {
-    saleTransactionId: transactionIdentification,
+    saleTransactionID: transactionIdentification,
 };
 var amountsReq = {
     currency: "EUR",
@@ -74,23 +74,23 @@ var paymentRequest = {
     saleData: saleData,
 };
 var getReversalRequest = function (poiTransaction) { return ({
-    originalPoiTransaction: {
-        poiTransactionId: {
-            transactionId: poiTransaction.transactionId,
+    originalPOITransaction: {
+        pOITransactionID: {
+            transactionID: poiTransaction.transactionID,
             timeStamp: poiTransaction.timeStamp
         },
     },
-    reversalReason: terminal_1.ReversalReasonType.MerchantCancel
+    reversalReason: models_1.ReversalReasonType.MerchantCancel
 }); };
 var getSaleToPOIRequest = function (messageHeader, request) { return (__assign({ messageHeader: messageHeader }, request)); };
 exports.createTerminalAPIPaymentRequest = function () {
     var messageHeader = getMessageHeader();
     var saleToPOIRequest = getSaleToPOIRequest(messageHeader, { paymentRequest: paymentRequest });
-    return { saleToPoiRequest: saleToPOIRequest };
+    return { saleToPOIRequest: saleToPOIRequest };
 };
 exports.createTerminalAPIRefundRequest = function (transactionIdentification) {
-    var messageHeader = getMessageHeader({ messageCategory: terminal_1.MessageCategoryType.Reversal });
+    var messageHeader = getMessageHeader({ messageCategory: models_1.MessageCategoryType.Reversal });
     var saleToPOIRequest = getSaleToPOIRequest(messageHeader, { reversalRequest: getReversalRequest(transactionIdentification) });
-    return { saleToPoiRequest: saleToPOIRequest };
+    return { saleToPOIRequest: saleToPOIRequest };
 };
 //# sourceMappingURL=base.js.map

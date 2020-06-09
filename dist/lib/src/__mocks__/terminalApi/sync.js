@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.syncRefund = exports.syncRes = void 0;
-exports.syncRes = JSON.stringify({
+exports.syncRes = {
     SaleToPOIResponse: {
         MessageHeader: {
             MessageCategory: "Payment",
@@ -319,8 +319,8 @@ exports.syncRes = JSON.stringify({
             },
         },
     },
-});
-exports.syncRefund = JSON.stringify({
+};
+exports.syncRefund = {
     SaleToPOIResponse: {
         MessageHeader: {
             MessageCategory: "Payment",
@@ -337,5 +337,5 @@ exports.syncRefund = JSON.stringify({
             }
         }
     }
-});
+};
 //# sourceMappingURL=sync.js.map

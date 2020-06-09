@@ -49,11 +49,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import ApiKeyAuthenticatedService from "../apiKeyAuthenticatedService";
 import getJsonResponse from "../helpers/getJsonResponse";
-import { Convert } from "../typings/terminal";
 import Async from "./resource/terminal/cloud/async";
 import Sync from "./resource/terminal/cloud/sync";
 import mergeDeep from "../utils/mergeDeep";
 import { ApplicationInfo } from "../typings/applicationInfo";
+import { ObjectSerializer } from "../typings/terminal/models";
 var TerminalCloudAPI = (function (_super) {
     __extends(TerminalCloudAPI, _super);
     function TerminalCloudAPI(client) {
@@ -63,20 +63,24 @@ var TerminalCloudAPI = (function (_super) {
         return _this;
     }
     TerminalCloudAPI.setApplicationInfo = function (request) {
-        if (request.saleToPoiRequest.paymentRequest) {
-            var applicationInfo = Buffer.from(JSON.stringify(new ApplicationInfo())).toString("base64");
+        if (request.saleToPOIRequest.paymentRequest) {
+            var applicationInfo = new ApplicationInfo();
             var saleToAcquirerData = { applicationInfo: applicationInfo };
             var saleData = { saleToAcquirerData: saleToAcquirerData };
             var paymentRequest = { saleData: saleData };
-            var saleToPoiRequest = { paymentRequest: paymentRequest };
-            var newRequest = { saleToPoiRequest: saleToPoiRequest };
-            return mergeDeep(request, newRequest);
+            var saleToPOIRequest = { paymentRequest: paymentRequest };
+            var reqWithAppInfo = { saleToPOIRequest: saleToPOIRequest };
+            mergeDeep(request, reqWithAppInfo);
+            var formattedRequest = ObjectSerializer.serialize(request, "TerminalApiRequest");
+            var dataString = JSON.stringify(formattedRequest.SaleToPOIRequest.PaymentRequest.SaleData.SaleToAcquirerData);
+            formattedRequest.SaleToPOIRequest.PaymentRequest.SaleData.SaleToAcquirerData = Buffer.from(dataString).toString("base64");
+            return formattedRequest;
         }
-        return request;
+        return ObjectSerializer.serialize(request, "TerminalApiRequest");
     };
     TerminalCloudAPI.prototype.async = function (terminalApiRequest) {
         var request = TerminalCloudAPI.setApplicationInfo(terminalApiRequest);
-        return getJsonResponse(this.terminalApiAsync, Convert.terminalApiRequestToJson(request));
+        return getJsonResponse(this.terminalApiAsync, request);
     };
     TerminalCloudAPI.prototype.sync = function (terminalApiRequest) {
         return __awaiter(this, void 0, void 0, function () {
@@ -85,10 +89,10 @@ var TerminalCloudAPI = (function (_super) {
                 switch (_a.label) {
                     case 0:
                         request = TerminalCloudAPI.setApplicationInfo(terminalApiRequest);
-                        return [4, getJsonResponse(this.terminalApiSync, Convert.terminalApiRequestToJson(request))];
+                        return [4, getJsonResponse(this.terminalApiSync, request)];
                     case 1:
                         response = _a.sent();
-                        return [2, Convert.toTerminalApiResponse(JSON.stringify(response))];
+                        return [2, ObjectSerializer.deserialize(response, "TerminalApiResponse")];
                 }
             });
         });

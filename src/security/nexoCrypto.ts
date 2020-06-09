@@ -22,10 +22,10 @@ import NexoCryptoException from "../services/exception/nexoCryptoException";
 import {
     MessageHeader,
     NexoDerivedKey,
-    SaleToPoiSecuredMessage,
+    SaleToPOISecuredMessage,
     SecurityKey,
     SecurityTrailer,
-} from "../typings/terminal";
+} from "../typings/terminal/models";
 import InvalidSecurityKeyException from "./exception/invalidSecurityKeyException";
 import NexoDerivedKeyGenerator from "./nexoDerivedKeyGenerator";
 import {NexoEnum} from "../constants/nexoConstants";
@@ -40,7 +40,7 @@ class NexoCrypto {
         messageHeader: MessageHeader,
         saleToPoiMessageJson: string,
         securityKey: SecurityKey,
-    ): SaleToPoiSecuredMessage {
+    ): SaleToPOISecuredMessage {
         const derivedKey: NexoDerivedKey = NexoDerivedKeyGenerator.deriveKeyMaterial(securityKey.passphrase);
         const saleToPoiMessageByteArray = Buffer.from(saleToPoiMessageJson, "ascii");
         const ivNonce = NexoCrypto.generateRandomIvNonce();
@@ -62,7 +62,7 @@ class NexoCrypto {
         };
     }
 
-    public decrypt(saleToPoiSecureMessage: SaleToPoiSecuredMessage, securityKey: SecurityKey): string {
+    public decrypt(saleToPoiSecureMessage: SaleToPOISecuredMessage, securityKey: SecurityKey): string {
         NexoCrypto.validateSecurityKey(securityKey);
 
         const encryptedSaleToPoiMessageByteArray = Buffer.from(saleToPoiSecureMessage.nexoBlob, "base64");
