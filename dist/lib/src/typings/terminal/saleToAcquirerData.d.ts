@@ -1,8 +1,6 @@
-import { AnyType } from './anyType';
+import { ApplicationInfo } from './applicationInfo';
 export declare class SaleToAcquirerData {
-    'applicationInfo'?: {
-        [key: string]: AnyType;
-    };
+    'applicationInfo'?: ApplicationInfo;
     'shopperEmail'?: string;
     'shopperReference'?: string;
     'recurringContract'?: string;

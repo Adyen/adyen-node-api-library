@@ -49,8 +49,8 @@ var NexoCrypto = (function () {
         var isValid = securityKey
             && securityKey.passphrase
             && securityKey.keyIdentifier
-            && securityKey.keyVersion
-            && securityKey.adyenCryptoVersion;
+            && !isNaN(securityKey.keyVersion)
+            && !isNaN(securityKey.adyenCryptoVersion);
         if (!isValid) {
             throw new invalidSecurityKeyException_1.default("Invalid Security Key");
         }

@@ -33,7 +33,7 @@
 
 export class OutputBarcode {
     'barcodeType'?: OutputBarcode.BarcodeTypeEnum;
-    'value'?: string;
+    'barcodeValue'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -44,8 +44,8 @@ export class OutputBarcode {
             "type": "OutputBarcode.BarcodeTypeEnum"
         },
         {
-            "name": "value",
-            "baseName": "Value",
+            "name": "barcodeValue",
+            "baseName": "BarcodeValue",
             "type": "string"
         }    ];
 
@@ -61,7 +61,7 @@ export namespace OutputBarcode {
         EAN13 = <any> 'EAN13',
         EAN8 = <any> 'EAN8',
         PDF417 = <any> 'PDF417',
-        QRCODE = <any> 'QRCODE',
+        QRCode = <any> 'QRCode',
         UPCA = <any> 'UPCA'
     }
 }

@@ -55,6 +55,14 @@ var transactionIdentification = {
 };
 var saleData = {
     saleTransactionID: transactionIdentification,
+    saleToAcquirerData: {
+        applicationInfo: {
+            merchantApplication: {
+                version: "1",
+                name: "test"
+            }
+        }
+    }
 };
 var amountsReq = {
     currency: "EUR",

@@ -81,8 +81,8 @@ class NexoCrypto {
         const isValid = securityKey
             && securityKey.passphrase
             && securityKey.keyIdentifier
-            && securityKey.keyVersion
-            && securityKey.adyenCryptoVersion;
+            && !isNaN(securityKey.keyVersion)
+            && !isNaN(securityKey.adyenCryptoVersion);
         if (!isValid) {
             throw new InvalidSecurityKeyException("Invalid Security Key");
         }

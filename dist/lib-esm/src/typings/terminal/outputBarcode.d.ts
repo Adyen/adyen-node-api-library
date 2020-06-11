@@ -1,6 +1,6 @@
 export declare class OutputBarcode {
     'barcodeType'?: OutputBarcode.BarcodeTypeEnum;
-    'value'?: string;
+    'barcodeValue'?: string;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;
@@ -20,7 +20,7 @@ export declare namespace OutputBarcode {
         EAN13,
         EAN8,
         PDF417,
-        QRCODE,
+        QRCode,
         UPCA
     }
 }
