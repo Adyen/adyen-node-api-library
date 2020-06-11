@@ -60,7 +60,7 @@ afterEach(function () {
 });
 var isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 describe("Terminal Local API", function () {
-    test.each([isCI, true])("should make a local payment", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([isCI, true])("should make a local payment, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var terminalAPIPaymentRequest, securityKey, terminalApiResponse;
         var _a, _b;
         return __generator(this, function (_c) {
@@ -70,9 +70,9 @@ describe("Terminal Local API", function () {
                     scope.post("/").reply(200, local_1.localEncRes);
                     terminalAPIPaymentRequest = base_1.createTerminalAPIPaymentRequest();
                     securityKey = {
-                        adyenCryptoVersion: 1,
+                        adyenCryptoVersion: 0,
                         keyIdentifier: "CryptoKeyIdentifier12345",
-                        keyVersion: 1,
+                        keyVersion: 0,
                         passphrase: "p@ssw0rd123456",
                     };
                     return [4, terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey)];
@@ -84,7 +84,7 @@ describe("Terminal Local API", function () {
             }
         });
     }); });
-    test.each([isCI, true])("should return NexoCryptoException", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
+    test.each([isCI, true])("should return NexoCryptoException, isMock: %p", function (isMock) { return __awaiter(void 0, void 0, void 0, function () {
         var terminalAPIPaymentRequest, securityKey, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -93,9 +93,9 @@ describe("Terminal Local API", function () {
                     scope.post("/").reply(200, local_1.wrongEncRes);
                     terminalAPIPaymentRequest = base_1.createTerminalAPIPaymentRequest();
                     securityKey = {
-                        adyenCryptoVersion: 1,
+                        adyenCryptoVersion: 0,
                         keyIdentifier: "CryptoKeyIdentifier12345",
-                        keyVersion: 1,
+                        keyVersion: 0,
                         passphrase: "p@ssw0rd123456",
                     };
                     _a.label = 1;

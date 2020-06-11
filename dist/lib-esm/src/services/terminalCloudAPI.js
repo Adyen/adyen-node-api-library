@@ -63,6 +63,7 @@ var TerminalCloudAPI = (function (_super) {
         return _this;
     }
     TerminalCloudAPI.setApplicationInfo = function (request) {
+        var _a, _b, _c;
         if (request.saleToPOIRequest.paymentRequest) {
             var applicationInfo = new ApplicationInfo();
             var saleToAcquirerData = { applicationInfo: applicationInfo };
@@ -72,8 +73,10 @@ var TerminalCloudAPI = (function (_super) {
             var reqWithAppInfo = { saleToPOIRequest: saleToPOIRequest };
             mergeDeep(request, reqWithAppInfo);
             var formattedRequest = ObjectSerializer.serialize(request, "TerminalApiRequest");
-            var dataString = JSON.stringify(formattedRequest.SaleToPOIRequest.PaymentRequest.SaleData.SaleToAcquirerData);
-            formattedRequest.SaleToPOIRequest.PaymentRequest.SaleData.SaleToAcquirerData = Buffer.from(dataString).toString("base64");
+            if ((_c = (_b = (_a = formattedRequest.SaleToPOIRequest) === null || _a === void 0 ? void 0 : _a.PaymentRequest) === null || _b === void 0 ? void 0 : _b.SaleData) === null || _c === void 0 ? void 0 : _c.SaleToAcquirerData) {
+                var dataString = JSON.stringify(formattedRequest.SaleToPOIRequest.PaymentRequest.SaleData.SaleToAcquirerData);
+                formattedRequest.SaleToPOIRequest.PaymentRequest.SaleData.SaleToAcquirerData = Buffer.from(dataString).toString("base64");
+            }
             return formattedRequest;
         }
         return ObjectSerializer.serialize(request, "TerminalApiRequest");

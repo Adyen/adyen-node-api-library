@@ -9,7 +9,7 @@ var SaleToAcquirerData = (function () {
         {
             "name": "applicationInfo",
             "baseName": "ApplicationInfo",
-            "type": "{ [key: string]: AnyType; }"
+            "type": "ApplicationInfo"
         },
         {
             "name": "shopperEmail",

@@ -61,18 +61,24 @@ var TerminalLocalAPI = (function (_super) {
         return _this;
     }
     TerminalLocalAPI.prototype.request = function (terminalApiRequest, securityKey) {
+        var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
-            var saleToPoiSecuredMessage, securedPaymentRequest, jsonResponse, terminalApiSecuredResponse, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var formattedRequest, dataString, saleToPoiSecuredMessage, securedPaymentRequest, jsonResponse, terminalApiSecuredResponse, response;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
                     case 0:
-                        saleToPoiSecuredMessage = NexoCrypto.encrypt(terminalApiRequest.saleToPOIRequest.messageHeader, JSON.stringify(ObjectSerializer.serialize(terminalApiRequest, "TerminalApiRequest")), securityKey);
+                        formattedRequest = ObjectSerializer.serialize(terminalApiRequest, "TerminalApiRequest");
+                        if ((_c = (_b = (_a = formattedRequest.SaleToPOIRequest) === null || _a === void 0 ? void 0 : _a.PaymentRequest) === null || _b === void 0 ? void 0 : _b.SaleData) === null || _c === void 0 ? void 0 : _c.SaleToAcquirerData) {
+                            dataString = JSON.stringify(formattedRequest.SaleToPOIRequest.PaymentRequest.SaleData.SaleToAcquirerData);
+                            formattedRequest.SaleToPOIRequest.PaymentRequest.SaleData.SaleToAcquirerData = Buffer.from(dataString).toString("base64");
+                        }
+                        saleToPoiSecuredMessage = NexoCrypto.encrypt(terminalApiRequest.saleToPOIRequest.messageHeader, JSON.stringify(formattedRequest), securityKey);
                         securedPaymentRequest = ObjectSerializer.serialize({
                             saleToPOIRequest: saleToPoiSecuredMessage,
                         }, "TerminalApiSecuredRequest");
                         return [4, getJsonResponse(this.localRequest, securedPaymentRequest)];
                     case 1:
-                        jsonResponse = _a.sent();
+                        jsonResponse = _d.sent();
                         terminalApiSecuredResponse = ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
                         response = this.nexoCrypto.decrypt(terminalApiSecuredResponse.saleToPOIResponse, securityKey);
                         return [2, ObjectSerializer.deserialize(JSON.parse(response), "TerminalApiResponse")];

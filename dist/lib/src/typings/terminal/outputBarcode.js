@@ -15,8 +15,8 @@ var OutputBarcode = (function () {
             "type": "OutputBarcode.BarcodeTypeEnum"
         },
         {
-            "name": "value",
-            "baseName": "Value",
+            "name": "barcodeValue",
+            "baseName": "BarcodeValue",
             "type": "string"
         }
     ];
@@ -31,7 +31,7 @@ exports.OutputBarcode = OutputBarcode;
         BarcodeTypeEnum[BarcodeTypeEnum["EAN13"] = 'EAN13'] = "EAN13";
         BarcodeTypeEnum[BarcodeTypeEnum["EAN8"] = 'EAN8'] = "EAN8";
         BarcodeTypeEnum[BarcodeTypeEnum["PDF417"] = 'PDF417'] = "PDF417";
-        BarcodeTypeEnum[BarcodeTypeEnum["QRCODE"] = 'QRCODE'] = "QRCODE";
+        BarcodeTypeEnum[BarcodeTypeEnum["QRCode"] = 'QRCode'] = "QRCode";
         BarcodeTypeEnum[BarcodeTypeEnum["UPCA"] = 'UPCA'] = "UPCA";
     })(BarcodeTypeEnum = OutputBarcode.BarcodeTypeEnum || (OutputBarcode.BarcodeTypeEnum = {}));
 })(OutputBarcode = exports.OutputBarcode || (exports.OutputBarcode = {}));
