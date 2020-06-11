@@ -30,10 +30,10 @@
  */
 
 
-import { AnyType } from './anyType';
+import { ApplicationInfo } from './applicationInfo';
 
 export class SaleToAcquirerData {
-    'applicationInfo'?: { [key: string]: AnyType; };
+    'applicationInfo'?: ApplicationInfo;
     'shopperEmail'?: string;
     'shopperReference'?: string;
     'recurringContract'?: string;
@@ -51,7 +51,7 @@ export class SaleToAcquirerData {
         {
             "name": "applicationInfo",
             "baseName": "ApplicationInfo",
-            "type": "{ [key: string]: AnyType; }"
+            "type": "ApplicationInfo"
         },
         {
             "name": "shopperEmail",

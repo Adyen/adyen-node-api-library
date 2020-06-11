@@ -46,20 +46,16 @@ export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     config.apiKey = apiKey;
     config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
 
-    const client: Client = new Client({ config });
-
-    return client;
+    return new Client({ config });
 };
 
 export const createBasicAuthClient = (): Client => {
-    const client: Client = new Client({
+    return new Client({
         username: process.env.ADYEN_USER!,
         password: process.env.ADYEN_PASSWORD!,
         environment: "TEST",
         applicationName: "adyen-node-api-library"
     });
-
-    return client;
 };
 
 const id = Math.floor(Math.random() * Math.floor(10000000)).toString();
@@ -81,6 +77,14 @@ const transactionIdentification: TransactionIdentification = {
 
 const saleData: SaleData = {
     saleTransactionID: transactionIdentification,
+    saleToAcquirerData: {
+        applicationInfo: {
+            merchantApplication: {
+                version: "1",
+                name: "test"
+            }
+        }
+    }
 };
 
 const amountsReq: AmountsReq = {

@@ -46,15 +46,15 @@ afterEach((): void => {
 const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 
 describe("Terminal Local API", (): void => {
-    test.each([isCI, true])("should make a local payment", async (isMock: boolean): Promise<void> => {
+    test.each([isCI, true])("should make a local payment, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/").reply(200, localEncRes);
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
         const securityKey: SecurityKey = {
-            adyenCryptoVersion: 1,
+            adyenCryptoVersion: 0,
             keyIdentifier: "CryptoKeyIdentifier12345",
-            keyVersion: 1,
+            keyVersion: 0,
             passphrase: "p@ssw0rd123456",
         };
 
@@ -65,15 +65,15 @@ describe("Terminal Local API", (): void => {
         expect(terminalApiResponse.saleToPOIResponse?.messageHeader).toBeDefined();
     });
 
-    test.each([isCI, true])("should return NexoCryptoException", async (isMock: boolean): Promise<void> => {
+    test.each([isCI, true])("should return NexoCryptoException, isMock: %p", async (isMock: boolean): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/").reply(200, wrongEncRes);
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
         const securityKey: SecurityKey = {
-            adyenCryptoVersion: 1,
+            adyenCryptoVersion: 0,
             keyIdentifier: "CryptoKeyIdentifier12345",
-            keyVersion: 1,
+            keyVersion: 0,
             passphrase: "p@ssw0rd123456",
         };
 

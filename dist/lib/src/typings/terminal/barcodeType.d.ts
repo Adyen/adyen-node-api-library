@@ -4,6 +4,6 @@ export declare enum BarcodeType {
     EAN13,
     EAN8,
     PDF417,
-    QRCODE,
+    QRCode,
     UPCA
 }
