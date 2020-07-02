@@ -51,7 +51,7 @@
     "jest-ts-auto-mock": "^1.0.11",
     "kind-of": "^6.0.3",
     "minimist": ">=1.2.3",
-    "nock": "13.0.1",
+    "nock": "13.0.2",
     "release-it": "13.6.4",
     "ts-auto-mock": "^1.6.0",
     "ts-jest": "25.5.1",
