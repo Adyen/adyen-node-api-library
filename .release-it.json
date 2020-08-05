@@ -1,12 +1,24 @@
 {
   "git": {
     "tagName": "v${version}",
-    "changelog": "npx auto-changelog --stdout --commit-limit false -u"
+    "changelog": "npx auto-changelog --hide-credit --stdout --commit-limit false --unreleased-only -t keepachangelog",
+    "commitMessage": "Release ${version}",
+    "tag": true,
+    "requireCleanWorkingDir": false
   },
   "github": {
-    "release": true
+    "release": true,
+    "releaseName": "Release ${version}"
   },
   "hooks": {
-    "after:bump": "npx auto-changelog -p"
+    "before:init": [
+      "npm run lint",
+      "npm run test"
+    ],
+    "after:bump": [
+      "npm run build",
+      "npx auto-changelog -p"
+    ],
+    "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
   }
 }
