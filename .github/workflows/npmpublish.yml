@@ -3,6 +3,9 @@ name: Node.js Package
 on:
   workflow_dispatch:
     inputs:
+      releaseType:
+        description: "Release type (major/minor/patch)"
+        required: true
       releaseArgs:
         description: "Additional arguments to be appended to the `release-it` CLI command"
 
@@ -20,7 +23,7 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           git config --global user.name 'GitHub'
           git config --global user.email 'noreply@github.com'
-          npm run release -- --ci ${{ github.event.inputs.releaseArgs }}
+          npm run release -- ${{ github.event.inputs.releaseType }} --ci ${{ github.event.inputs.releaseArgs }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
