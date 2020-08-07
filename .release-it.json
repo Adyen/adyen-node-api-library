@@ -8,7 +8,7 @@
   },
   "github": {
     "release": true,
-    "releaseName": "Release ${version}"
+    "releaseName": "Adyen Node API Library v${version}"
   },
   "hooks": {
     "before:init": [
