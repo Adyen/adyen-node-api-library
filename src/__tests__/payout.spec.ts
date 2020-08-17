@@ -43,8 +43,8 @@ const storeDetail = JSON.stringify({
 
 const amountAndReference = {
     amount: {
-        value: 1,
-        currency: "USD"
+        value: 100,
+        currency: "EUR"
     },
     reference: "randomReference",
 };
@@ -65,9 +65,9 @@ const mockStoreDetailRequest = (merchantAccount: string = process.env.ADYEN_MERC
         number: "4111111111111111",
         holderName: "John Smith"
     },
-    entityType: "NaturalPerson",
+    entityType: "Company",
     recurring: {
-        contract: "RECURRING"
+        contract: "PAYOUT"
     },
     merchantAccount,
 });
@@ -75,7 +75,7 @@ const mockStoreDetailRequest = (merchantAccount: string = process.env.ADYEN_MERC
 const mockSubmitRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): IPayouts.SubmitRequest => ({
     selectedRecurringDetailReference: "LATEST",
     recurring: {
-        contract: "RECURRING"
+        contract: "PAYOUT"
     },
     ...defaultData,
     ...amountAndReference,
@@ -91,8 +91,8 @@ const mockPayoutRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!
     ...amountAndReference,
     ...defaultData,
     card: {
-        expiryMonth: "10",
-        expiryYear: "2020",
+        expiryMonth: "03",
+        expiryYear: "2030",
         holderName: "John Smith",
         number: "4111111111111111",
     },
@@ -121,7 +121,7 @@ afterEach((): void => {
 });
 
 describe("PayoutTest", function (): void {
-    test.each([false, true])("should succeed on store detail and submit third party, isMock: %p", async function (isMock): Promise<void> {
+    test.each([isCI, true])("should succeed on store detail and submit third party, isMock: %p", async function (isMock): Promise<void> {
         !isMock && nock.restore();
         payout = new Payout(clientStore);
         const request: IPayouts.StoreDetailAndSubmitRequest = mockStoreDetailAndSubmitRequest();
@@ -144,7 +144,7 @@ describe("PayoutTest", function (): void {
         expect(result.recurringDetailReference).toBeTruthy();
     });
 
-    test.each([false, true])("should succeed on confirm third party, isMock: %p", async function (isMock): Promise<void> {
+    test.each([isCI, true])("should succeed on confirm third party, isMock: %p", async function (isMock): Promise<void> {
         !isMock && nock.restore();
         payout = new Payout(clientStore);
         scope.post("/storeDetail").reply(200, storeDetail);
@@ -208,7 +208,7 @@ describe("PayoutTest", function (): void {
         expect(result.pspReference).toBeTruthy();
     });
 
-    test.each([false, true])("should succeed on payout, isMock: %p", async function (isMock): Promise<void> {
+    test.each([isCI, true])("should succeed on payout, isMock: %p", async function (isMock): Promise<void> {
         !isMock && nock.restore();
         scope.post("/payout").reply(200, {
             pspReference: "8815131762537886",
