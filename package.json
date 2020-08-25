@@ -51,7 +51,7 @@
     "release-it": "13.6.9",
     "ts-auto-mock": "^1.6.0",
     "ts-jest": "25.5.1",
-    "ts-loader": "8.0.2",
+    "ts-loader": "8.0.3",
     "ttypescript": "^1.5.10",
     "typescript": "3.9.7"
   },
