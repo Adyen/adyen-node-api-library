@@ -48,7 +48,7 @@
     "kind-of": "^6.0.3",
     "minimist": ">=1.2.3",
     "nock": "13.0.3",
-    "release-it": "13.6.9",
+    "release-it": "13.7.0",
     "ts-auto-mock": "^1.6.0",
     "ts-jest": "25.5.1",
     "ts-loader": "8.0.3",
