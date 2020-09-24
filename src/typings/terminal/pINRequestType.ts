@@ -32,7 +32,7 @@
 
 
 export enum PINRequestType {
-    PINEnter = <any> 'PINEnter',
-    PINVerify = <any> 'PINVerify',
-    PINVerifyOnly = <any> 'PINVerifyOnly'
+    PINEnter = "PINEnter" as any,
+    PINVerify = "PINVerify" as any,
+    PINVerifyOnly = "PINVerifyOnly" as any
 }

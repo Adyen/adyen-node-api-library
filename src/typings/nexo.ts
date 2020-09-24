@@ -19,7 +19,7 @@
 
 // Generated using typescript-generator version 2.14.505 on 2019-06-06 08:35:05.
 
-import {ApplicationInfo} from "./applicationInfo";
+import { ApplicationInfo } from "./applicationInfo";
 
 export interface AbortRequest {
     MessageReference: MessageReference;

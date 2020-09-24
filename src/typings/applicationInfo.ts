@@ -34,7 +34,7 @@ export class ApplicationInfo {
         this.adyenLibrary = {
             name: Client.LIB_NAME,
             version: Client.LIB_VERSION,
-        }
+        };
     }
 }
 

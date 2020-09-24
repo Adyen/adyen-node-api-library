@@ -30,25 +30,25 @@
  */
 
 
-import { CustomerOrder } from './customerOrder';
-import { LoyaltyAccount } from './loyaltyAccount';
-import { POIData } from './pOIData';
-import { PaymentInstrumentData } from './paymentInstrumentData';
-import { Response } from './response';
-import { SaleData } from './saleData';
+import { CustomerOrder } from "./customerOrder";
+import { LoyaltyAccount } from "./loyaltyAccount";
+import { POIData } from "./pOIData";
+import { PaymentInstrumentData } from "./paymentInstrumentData";
+import { Response } from "./response";
+import { SaleData } from "./saleData";
 
 export class CardAcquisitionResponse {
-    'customerOrder'?: Array<CustomerOrder>;
-    'loyaltyAccount'?: Array<LoyaltyAccount>;
-    'paymentBrand'?: Array<string>;
-    'paymentInstrumentData'?: PaymentInstrumentData;
-    'pOIData': POIData;
-    'response': Response;
-    'saleData': SaleData;
+    "customerOrder"?: CustomerOrder[];
+    "loyaltyAccount"?: LoyaltyAccount[];
+    "paymentBrand"?: string[];
+    "paymentInstrumentData"?: PaymentInstrumentData;
+    "pOIData": POIData;
+    "response": Response;
+    "saleData": SaleData;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "customerOrder",
             "baseName": "CustomerOrder",

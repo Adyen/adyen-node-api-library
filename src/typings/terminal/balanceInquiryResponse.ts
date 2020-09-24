@@ -30,18 +30,18 @@
  */
 
 
-import { LoyaltyAccountStatus } from './loyaltyAccountStatus';
-import { PaymentAccountStatus } from './paymentAccountStatus';
-import { Response } from './response';
+import { LoyaltyAccountStatus } from "./loyaltyAccountStatus";
+import { PaymentAccountStatus } from "./paymentAccountStatus";
+import { Response } from "./response";
 
 export class BalanceInquiryResponse {
-    'loyaltyAccountStatus'?: LoyaltyAccountStatus;
-    'paymentAccountStatus'?: PaymentAccountStatus;
-    'response': Response;
+    "loyaltyAccountStatus"?: LoyaltyAccountStatus;
+    "paymentAccountStatus"?: PaymentAccountStatus;
+    "response": Response;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "loyaltyAccountStatus",
             "baseName": "LoyaltyAccountStatus",

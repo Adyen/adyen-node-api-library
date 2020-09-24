@@ -32,19 +32,19 @@
 
 
 export class CardAcquisitionTransaction {
-    'allowedLoyaltyBrand'?: Array<string>;
-    'allowedPaymentBrand'?: Array<string>;
-    'cashBackFlag'?: boolean;
-    'customerLanguage'?: string;
-    'forceCustomerSelectionFlag'?: boolean;
-    'forceEntryMode'?: Array<Array<CardAcquisitionTransaction.ForceEntryModeEnum>>;
-    'loyaltyHandling'?: CardAcquisitionTransaction.LoyaltyHandlingEnum;
-    'paymentType'?: CardAcquisitionTransaction.PaymentTypeEnum;
-    'totalAmount'?: number;
+    "allowedLoyaltyBrand"?: string[];
+    "allowedPaymentBrand"?: string[];
+    "cashBackFlag"?: boolean;
+    "customerLanguage"?: string;
+    "forceCustomerSelectionFlag"?: boolean;
+    "forceEntryMode"?: CardAcquisitionTransaction.ForceEntryModeEnum[][];
+    "loyaltyHandling"?: CardAcquisitionTransaction.LoyaltyHandlingEnum;
+    "paymentType"?: CardAcquisitionTransaction.PaymentTypeEnum;
+    "totalAmount"?: number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "allowedLoyaltyBrand",
             "baseName": "AllowedLoyaltyBrand",
@@ -98,37 +98,37 @@ export class CardAcquisitionTransaction {
 
 export namespace CardAcquisitionTransaction {
     export enum ForceEntryModeEnum {
-        CheckReader = <any> 'CheckReader',
-        Contactless = <any> 'Contactless',
-        File = <any> 'File',
-        ICC = <any> 'ICC',
-        Keyed = <any> 'Keyed',
-        MagStripe = <any> 'MagStripe',
-        Manual = <any> 'Manual',
-        RFID = <any> 'RFID',
-        Scanned = <any> 'Scanned',
-        SynchronousICC = <any> 'SynchronousICC',
-        Tapped = <any> 'Tapped'
+        CheckReader = "CheckReader" as any,
+        Contactless = "Contactless" as any,
+        File = "File" as any,
+        ICC = "ICC" as any,
+        Keyed = "Keyed" as any,
+        MagStripe = "MagStripe" as any,
+        Manual = "Manual" as any,
+        RFID = "RFID" as any,
+        Scanned = "Scanned" as any,
+        SynchronousICC = "SynchronousICC" as any,
+        Tapped = "Tapped" as any
     }
     export enum LoyaltyHandlingEnum {
-        Allowed = <any> 'Allowed',
-        Forbidden = <any> 'Forbidden',
-        Processed = <any> 'Processed',
-        Proposed = <any> 'Proposed',
-        Required = <any> 'Required'
+        Allowed = "Allowed" as any,
+        Forbidden = "Forbidden" as any,
+        Processed = "Processed" as any,
+        Proposed = "Proposed" as any,
+        Required = "Required" as any
     }
     export enum PaymentTypeEnum {
-        CashAdvance = <any> 'CashAdvance',
-        CashDeposit = <any> 'CashDeposit',
-        Completion = <any> 'Completion',
-        FirstReservation = <any> 'FirstReservation',
-        Instalment = <any> 'Instalment',
-        IssuerInstalment = <any> 'IssuerInstalment',
-        Normal = <any> 'Normal',
-        OneTimeReservation = <any> 'OneTimeReservation',
-        PaidOut = <any> 'PaidOut',
-        Recurring = <any> 'Recurring',
-        Refund = <any> 'Refund',
-        UpdateReservation = <any> 'UpdateReservation'
+        CashAdvance = "CashAdvance" as any,
+        CashDeposit = "CashDeposit" as any,
+        Completion = "Completion" as any,
+        FirstReservation = "FirstReservation" as any,
+        Instalment = "Instalment" as any,
+        IssuerInstalment = "IssuerInstalment" as any,
+        Normal = "Normal" as any,
+        OneTimeReservation = "OneTimeReservation" as any,
+        PaidOut = "PaidOut" as any,
+        Recurring = "Recurring" as any,
+        Refund = "Refund" as any,
+        UpdateReservation = "UpdateReservation" as any
     }
 }

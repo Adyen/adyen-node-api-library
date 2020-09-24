@@ -30,16 +30,16 @@
  */
 
 
-import { CardAcquisitionTransaction } from './cardAcquisitionTransaction';
-import { SaleData } from './saleData';
+import { CardAcquisitionTransaction } from "./cardAcquisitionTransaction";
+import { SaleData } from "./saleData";
 
 export class CardAcquisitionRequest {
-    'cardAcquisitionTransaction': CardAcquisitionTransaction;
-    'saleData': SaleData;
+    "cardAcquisitionTransaction": CardAcquisitionTransaction;
+    "saleData": SaleData;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "cardAcquisitionTransaction",
             "baseName": "CardAcquisitionTransaction",

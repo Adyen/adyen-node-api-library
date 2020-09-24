@@ -32,6 +32,6 @@
 
 
 export enum CheckTypeCodeType {
-    Company = <any> 'Company',
-    Personal = <any> 'Personal'
+    Company = "Company" as any,
+    Personal = "Personal" as any
 }

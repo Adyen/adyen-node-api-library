@@ -30,17 +30,17 @@
  */
 
 
-import { AnyType } from './anyType';
+import { AnyType } from "./anyType";
 
 export class TransmitRequest {
-    'destinationAddress': string;
-    'maximumTransmitTime': number;
-    'message': AnyType;
-    'waitResponseFlag'?: boolean;
+    "destinationAddress": string;
+    "maximumTransmitTime": number;
+    "message": AnyType;
+    "waitResponseFlag"?: boolean;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "destinationAddress",
             "baseName": "DestinationAddress",

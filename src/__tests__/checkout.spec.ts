@@ -19,13 +19,13 @@
 
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess";
-import {paymentsSuccess} from "../__mocks__/checkout/paymentsSuccess";
-import {paymentDetailsSuccess} from "../__mocks__/checkout/paymentsDetailsSuccess";
-import {paymentSessionSuccess} from "../__mocks__/checkout/paymentSessionSucess";
-import {originKeysSuccess} from "../__mocks__/checkout/originkeysSuccess";
-import {paymentsResultMultibancoSuccess} from "../__mocks__/checkout/paymentsResultMultibancoSuccess";
-import {paymentsResultSuccess} from "../__mocks__/checkout/paymentsResultSucess";
+import { paymentMethodsSuccess } from "../__mocks__/checkout/paymentMethodsSuccess";
+import { paymentsSuccess } from "../__mocks__/checkout/paymentsSuccess";
+import { paymentDetailsSuccess } from "../__mocks__/checkout/paymentsDetailsSuccess";
+import { paymentSessionSuccess } from "../__mocks__/checkout/paymentSessionSucess";
+import { originKeysSuccess } from "../__mocks__/checkout/originkeysSuccess";
+import { paymentsResultMultibancoSuccess } from "../__mocks__/checkout/paymentsResultMultibancoSuccess";
+import { paymentsResultSuccess } from "../__mocks__/checkout/paymentsResultSucess";
 import Client from "../client";
 import Checkout from "../services/checkout";
 import HttpClientException from "../httpClient/httpClientException";
@@ -242,7 +242,7 @@ describe("Checkout", (): void => {
         expect(paymentsResponse.additionalData).toBeTruthy();
     });
 
-    test.each([false,true])("should get origin keys. isMock: %p", async (isMock): Promise<void> => {
+    test.each([false, true])("should get origin keys. isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const checkoutUtility = new Checkout(client);
         const originKeysRequest: ICheckout.CheckoutUtilityRequest = {

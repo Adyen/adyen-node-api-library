@@ -32,14 +32,14 @@
 
 
 export class POISoftware {
-    'applicationName': string;
-    'certificationCode': string;
-    'manufacturerID': string;
-    'softwareVersion': string;
+    "applicationName": string;
+    "certificationCode": string;
+    "manufacturerID": string;
+    "softwareVersion": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "applicationName",
             "baseName": "ApplicationName",

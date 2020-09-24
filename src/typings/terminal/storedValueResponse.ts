@@ -30,20 +30,20 @@
  */
 
 
-import { POIData } from './pOIData';
-import { Response } from './response';
-import { SaleData } from './saleData';
-import { StoredValueResult } from './storedValueResult';
+import { POIData } from "./pOIData";
+import { Response } from "./response";
+import { SaleData } from "./saleData";
+import { StoredValueResult } from "./storedValueResult";
 
 export class StoredValueResponse {
-    'pOIData': POIData;
-    'response': Response;
-    'saleData': SaleData;
-    'storedValueResult'?: Array<StoredValueResult>;
+    "pOIData": POIData;
+    "response": Response;
+    "saleData": SaleData;
+    "storedValueResult"?: StoredValueResult[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "pOIData",
             "baseName": "POIData",

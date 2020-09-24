@@ -30,23 +30,23 @@
  */
 
 
-import { OriginalPOITransaction } from './originalPOITransaction';
-import { StoredValueAccountId } from './storedValueAccountId';
-import { StoredValueTransactionType } from './storedValueTransactionType';
+import { OriginalPOITransaction } from "./originalPOITransaction";
+import { StoredValueAccountId } from "./storedValueAccountId";
+import { StoredValueTransactionType } from "./storedValueTransactionType";
 
 export class StoredValueData {
-    'currency': string;
-    'eanUpc'?: string;
-    'itemAmount': number;
-    'originalPOITransaction'?: OriginalPOITransaction;
-    'productCode'?: string;
-    'storedValueAccountID'?: StoredValueAccountId;
-    'storedValueProvider'?: string;
-    'storedValueTransactionType': StoredValueTransactionType;
+    "currency": string;
+    "eanUpc"?: string;
+    "itemAmount": number;
+    "originalPOITransaction"?: OriginalPOITransaction;
+    "productCode"?: string;
+    "storedValueAccountID"?: StoredValueAccountId;
+    "storedValueProvider"?: string;
+    "storedValueTransactionType": StoredValueTransactionType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "currency",
             "baseName": "Currency",

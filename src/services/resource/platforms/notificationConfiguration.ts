@@ -29,7 +29,7 @@ type Endpoints =
      "/getNotificationConfigurationList"|
      "/testNotificationConfiguration"|
      "/updateNotificationConfiguration"|
-     "/deleteNotificationConfigurations"
+     "/deleteNotificationConfigurations";
 
 class PlatformsNotificationConfiguration extends Resource {
     public constructor(service: Service, endpoint: Endpoints) {

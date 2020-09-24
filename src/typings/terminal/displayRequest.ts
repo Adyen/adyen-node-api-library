@@ -30,14 +30,14 @@
  */
 
 
-import { DisplayOutput } from './displayOutput';
+import { DisplayOutput } from "./displayOutput";
 
 export class DisplayRequest {
-    'displayOutput': Array<DisplayOutput>;
+    "displayOutput": DisplayOutput[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "displayOutput",
             "baseName": "DisplayOutput",

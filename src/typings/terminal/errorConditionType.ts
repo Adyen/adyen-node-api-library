@@ -32,21 +32,21 @@
 
 
 export enum ErrorConditionType {
-    Aborted = <any> 'Aborted',
-    Busy = <any> 'Busy',
-    Cancel = <any> 'Cancel',
-    DeviceOut = <any> 'DeviceOut',
-    InProgress = <any> 'InProgress',
-    InsertedCard = <any> 'InsertedCard',
-    InvalidCard = <any> 'InvalidCard',
-    LoggedOut = <any> 'LoggedOut',
-    MessageFormat = <any> 'MessageFormat',
-    NotAllowed = <any> 'NotAllowed',
-    NotFound = <any> 'NotFound',
-    PaymentRestriction = <any> 'PaymentRestriction',
-    Refusal = <any> 'Refusal',
-    UnavailableDevice = <any> 'UnavailableDevice',
-    UnavailableService = <any> 'UnavailableService',
-    UnreachableHost = <any> 'UnreachableHost',
-    WrongPIN = <any> 'WrongPIN'
+    Aborted = "Aborted" as any,
+    Busy = "Busy" as any,
+    Cancel = "Cancel" as any,
+    DeviceOut = "DeviceOut" as any,
+    InProgress = "InProgress" as any,
+    InsertedCard = "InsertedCard" as any,
+    InvalidCard = "InvalidCard" as any,
+    LoggedOut = "LoggedOut" as any,
+    MessageFormat = "MessageFormat" as any,
+    NotAllowed = "NotAllowed" as any,
+    NotFound = "NotFound" as any,
+    PaymentRestriction = "PaymentRestriction" as any,
+    Refusal = "Refusal" as any,
+    UnavailableDevice = "UnavailableDevice" as any,
+    UnavailableService = "UnavailableService" as any,
+    UnreachableHost = "UnreachableHost" as any,
+    WrongPIN = "WrongPIN" as any
 }

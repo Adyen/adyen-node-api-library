@@ -30,17 +30,17 @@
  */
 
 
-import { AnyType } from './anyType';
-import { TokenRequestedType } from './tokenRequestedType';
+import { AnyType } from "./anyType";
+import { TokenRequestedType } from "./tokenRequestedType";
 
 export class PaymentToken {
-    'expiryDateTime'?: { [key: string]: AnyType; };
-    'tokenRequestedType': TokenRequestedType;
-    'tokenValue': string;
+    "expiryDateTime"?: { [key: string]: AnyType; };
+    "tokenRequestedType": TokenRequestedType;
+    "tokenValue": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "expiryDateTime",
             "baseName": "ExpiryDateTime",

@@ -30,16 +30,16 @@
  */
 
 
-import { TransactionType } from './transactionType';
+import { TransactionType } from "./transactionType";
 
 export class PaymentTotals {
-    'transactionAmount': number;
-    'transactionCount': number;
-    'transactionType': TransactionType;
+    "transactionAmount": number;
+    "transactionCount": number;
+    "transactionType": TransactionType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "transactionAmount",
             "baseName": "TransactionAmount",

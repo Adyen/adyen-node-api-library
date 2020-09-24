@@ -30,30 +30,30 @@
  */
 
 
-import { LoyaltyTotals } from './loyaltyTotals';
-import { PaymentInstrumentType } from './paymentInstrumentType';
-import { PaymentTotals } from './paymentTotals';
+import { LoyaltyTotals } from "./loyaltyTotals";
+import { PaymentInstrumentType } from "./paymentInstrumentType";
+import { PaymentTotals } from "./paymentTotals";
 
 export class TransactionTotals {
-    'acquirerID'?: string;
-    'cardBrand'?: string;
-    'errorCondition'?: TransactionTotals.ErrorConditionEnum;
-    'hostReconciliationID'?: string;
-    'loyaltyCurrency'?: string;
-    'loyaltyTotals'?: Array<LoyaltyTotals>;
-    'loyaltyUnit'?: TransactionTotals.LoyaltyUnitEnum;
-    'operatorID'?: string;
-    'paymentCurrency'?: string;
-    'paymentInstrumentType': PaymentInstrumentType;
-    'paymentTotals'?: Array<PaymentTotals>;
-    'pOIID'?: string;
-    'saleID'?: string;
-    'shiftNumber'?: string;
-    'totalsGroupID'?: string;
+    "acquirerID"?: string;
+    "cardBrand"?: string;
+    "errorCondition"?: TransactionTotals.ErrorConditionEnum;
+    "hostReconciliationID"?: string;
+    "loyaltyCurrency"?: string;
+    "loyaltyTotals"?: LoyaltyTotals[];
+    "loyaltyUnit"?: TransactionTotals.LoyaltyUnitEnum;
+    "operatorID"?: string;
+    "paymentCurrency"?: string;
+    "paymentInstrumentType": PaymentInstrumentType;
+    "paymentTotals"?: PaymentTotals[];
+    "pOIID"?: string;
+    "saleID"?: string;
+    "shiftNumber"?: string;
+    "totalsGroupID"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "acquirerID",
             "baseName": "AcquirerID",
@@ -137,26 +137,26 @@ export class TransactionTotals {
 
 export namespace TransactionTotals {
     export enum ErrorConditionEnum {
-        Aborted = <any> 'Aborted',
-        Busy = <any> 'Busy',
-        Cancel = <any> 'Cancel',
-        DeviceOut = <any> 'DeviceOut',
-        InProgress = <any> 'InProgress',
-        InsertedCard = <any> 'InsertedCard',
-        InvalidCard = <any> 'InvalidCard',
-        LoggedOut = <any> 'LoggedOut',
-        MessageFormat = <any> 'MessageFormat',
-        NotAllowed = <any> 'NotAllowed',
-        NotFound = <any> 'NotFound',
-        PaymentRestriction = <any> 'PaymentRestriction',
-        Refusal = <any> 'Refusal',
-        UnavailableDevice = <any> 'UnavailableDevice',
-        UnavailableService = <any> 'UnavailableService',
-        UnreachableHost = <any> 'UnreachableHost',
-        WrongPIN = <any> 'WrongPIN'
+        Aborted = "Aborted" as any,
+        Busy = "Busy" as any,
+        Cancel = "Cancel" as any,
+        DeviceOut = "DeviceOut" as any,
+        InProgress = "InProgress" as any,
+        InsertedCard = "InsertedCard" as any,
+        InvalidCard = "InvalidCard" as any,
+        LoggedOut = "LoggedOut" as any,
+        MessageFormat = "MessageFormat" as any,
+        NotAllowed = "NotAllowed" as any,
+        NotFound = "NotFound" as any,
+        PaymentRestriction = "PaymentRestriction" as any,
+        Refusal = "Refusal" as any,
+        UnavailableDevice = "UnavailableDevice" as any,
+        UnavailableService = "UnavailableService" as any,
+        UnreachableHost = "UnreachableHost" as any,
+        WrongPIN = "WrongPIN" as any
     }
     export enum LoyaltyUnitEnum {
-        Monetary = <any> 'Monetary',
-        Point = <any> 'Point'
+        Monetary = "Monetary" as any,
+        Point = "Point" as any
     }
 }

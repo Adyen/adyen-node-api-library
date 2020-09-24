@@ -30,16 +30,16 @@
  */
 
 
-import { SaleItemRebate } from './saleItemRebate';
+import { SaleItemRebate } from "./saleItemRebate";
 
 export class Rebates {
-    'rebateLabel'?: string;
-    'saleItemRebate'?: Array<SaleItemRebate>;
-    'totalRebate'?: number;
+    "rebateLabel"?: string;
+    "saleItemRebate"?: SaleItemRebate[];
+    "totalRebate"?: number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "rebateLabel",
             "baseName": "RebateLabel",

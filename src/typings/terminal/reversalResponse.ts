@@ -30,22 +30,22 @@
  */
 
 
-import { OriginalPOITransaction } from './originalPOITransaction';
-import { POIData } from './pOIData';
-import { PaymentReceipt } from './paymentReceipt';
-import { Response } from './response';
+import { OriginalPOITransaction } from "./originalPOITransaction";
+import { POIData } from "./pOIData";
+import { PaymentReceipt } from "./paymentReceipt";
+import { Response } from "./response";
 
 export class ReversalResponse {
-    'customerOrderID'?: string;
-    'originalPOITransaction'?: OriginalPOITransaction;
-    'paymentReceipt'?: Array<PaymentReceipt>;
-    'pOIData'?: POIData;
-    'response': Response;
-    'reversedAmount'?: number;
+    "customerOrderID"?: string;
+    "originalPOITransaction"?: OriginalPOITransaction;
+    "paymentReceipt"?: PaymentReceipt[];
+    "pOIData"?: POIData;
+    "response": Response;
+    "reversedAmount"?: number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "customerOrderID",
             "baseName": "CustomerOrderID",

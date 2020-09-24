@@ -23,7 +23,7 @@ import Client from "../../../client";
 import Service from "../../../service";
 import Resource from "../../resource";
 
-type Endpoints = "/getOnboardingUrl"
+type Endpoints = "/getOnboardingUrl";
 
 class PlatformsHostedOnboardingPage extends Resource {
     public constructor(service: Service, endpoint: Endpoints) {

@@ -30,14 +30,14 @@
  */
 
 
-import { IssuerAndSerialNumber } from './issuerAndSerialNumber';
+import { IssuerAndSerialNumber } from "./issuerAndSerialNumber";
 
 export class SignerIdentifier {
-    'issuerAndSerialNumber': IssuerAndSerialNumber;
+    "issuerAndSerialNumber": IssuerAndSerialNumber;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "issuerAndSerialNumber",
             "baseName": "IssuerAndSerialNumber",

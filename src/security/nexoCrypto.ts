@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 
-import {Cipher, createCipheriv, createDecipheriv, createHmac, randomBytes} from "crypto";
+import { Cipher, createCipheriv, createDecipheriv, createHmac, randomBytes } from "crypto";
 import NexoCryptoException from "../services/exception/nexoCryptoException";
 import {
     MessageHeader,
@@ -28,7 +28,7 @@ import {
 } from "../typings/terminal/models";
 import InvalidSecurityKeyException from "./exception/invalidSecurityKeyException";
 import NexoDerivedKeyGenerator from "./nexoDerivedKeyGenerator";
-import {NexoEnum} from "../constants/nexoConstants";
+import { NexoEnum } from "../constants/nexoConstants";
 
 enum Modes {
     ENCRYPT,
@@ -58,7 +58,7 @@ class NexoCrypto {
         return {
             messageHeader,
             nexoBlob: encryptedSaleToPoiMessage.toString("base64"),
-            securityTrailer: securityTrailer,
+            securityTrailer,
         };
     }
 

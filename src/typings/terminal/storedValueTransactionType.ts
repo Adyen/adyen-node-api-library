@@ -32,10 +32,10 @@
 
 
 export enum StoredValueTransactionType {
-    Activate = <any> 'Activate',
-    Duplicate = <any> 'Duplicate',
-    Load = <any> 'Load',
-    Reserve = <any> 'Reserve',
-    Reverse = <any> 'Reverse',
-    Unload = <any> 'Unload'
+    Activate = "Activate" as any,
+    Duplicate = "Duplicate" as any,
+    Load = "Load" as any,
+    Reserve = "Reserve" as any,
+    Reverse = "Reverse" as any,
+    Unload = "Unload" as any
 }

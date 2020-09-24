@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 
-import {IncomingHttpHeaders} from "http";
+import { IncomingHttpHeaders } from "http";
 
 interface ExceptionInterface {
     message: string;
@@ -38,10 +38,10 @@ class HttpClientException implements Error {
     public constructor(props: ExceptionInterface) {
         this.name = "HttpClientException";
         this.message = props.message;
-        if(props.responseHeaders) this.responseHeaders = props.responseHeaders;
-        if(props.responseBody) this.responseBody = props.responseBody;
-        if(props.errorCode) this.errorCode = props.errorCode;
-        if(props.statusCode) this.statusCode = props.statusCode;
+        if (props.responseHeaders) this.responseHeaders = props.responseHeaders;
+        if (props.responseBody) this.responseBody = props.responseBody;
+        if (props.errorCode) this.errorCode = props.errorCode;
+        if (props.statusCode) this.statusCode = props.statusCode;
     }
 }
 

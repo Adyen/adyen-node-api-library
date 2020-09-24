@@ -30,22 +30,22 @@
  */
 
 
-import { AnyType } from './anyType';
-import { DocumentQualifierType } from './documentQualifierType';
-import { OutputContent } from './outputContent';
-import { ResponseModeType } from './responseModeType';
+import { AnyType } from "./anyType";
+import { DocumentQualifierType } from "./documentQualifierType";
+import { OutputContent } from "./outputContent";
+import { ResponseModeType } from "./responseModeType";
 
 export class PrintOutput {
-    'documentQualifier': DocumentQualifierType;
-    'integratedPrintFlag'?: boolean;
-    'outputContent': OutputContent;
-    'outputSignature'?: AnyType;
-    'requiredSignatureFlag'?: boolean;
-    'responseMode': ResponseModeType;
+    "documentQualifier": DocumentQualifierType;
+    "integratedPrintFlag"?: boolean;
+    "outputContent": OutputContent;
+    "outputSignature"?: AnyType;
+    "requiredSignatureFlag"?: boolean;
+    "responseMode": ResponseModeType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "documentQualifier",
             "baseName": "DocumentQualifier",

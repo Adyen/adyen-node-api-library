@@ -32,13 +32,13 @@
 
 
 export class LoyaltyAmount {
-    'currency'?: string;
-    'loyaltyUnit'?: LoyaltyAmount.LoyaltyUnitEnum;
-    'value'?: number;
+    "currency"?: string;
+    "loyaltyUnit"?: LoyaltyAmount.LoyaltyUnitEnum;
+    "value"?: number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "currency",
             "baseName": "Currency",
@@ -62,7 +62,7 @@ export class LoyaltyAmount {
 
 export namespace LoyaltyAmount {
     export enum LoyaltyUnitEnum {
-        Monetary = <any> 'Monetary',
-        Point = <any> 'Point'
+        Monetary = "Monetary" as any,
+        Point = "Point" as any
     }
 }

@@ -32,13 +32,13 @@
 
 
 export class SensitiveMobileData {
-    'iMEI'?: string;
-    'iMSI'?: string;
-    'mSISDN': string;
+    "iMEI"?: string;
+    "iMSI"?: string;
+    "mSISDN": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "iMEI",
             "baseName": "IMEI",

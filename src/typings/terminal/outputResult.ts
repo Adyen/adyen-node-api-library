@@ -30,18 +30,18 @@
  */
 
 
-import { DeviceType } from './deviceType';
-import { InfoQualifyType } from './infoQualifyType';
-import { Response } from './response';
+import { DeviceType } from "./deviceType";
+import { InfoQualifyType } from "./infoQualifyType";
+import { Response } from "./response";
 
 export class OutputResult {
-    'device': DeviceType;
-    'infoQualify': InfoQualifyType;
-    'response': Response;
+    "device": DeviceType;
+    "infoQualify": InfoQualifyType;
+    "response": Response;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "device",
             "baseName": "Device",

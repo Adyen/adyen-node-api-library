@@ -17,20 +17,20 @@
  * See the LICENSE file for more info.
  */
 
-export * from './additionalData';
-export * from './amount';
-export * from './notification';
-export * from './notificationItem';
-export * from './notificationRequestItem';
+export * from "./additionalData";
+export * from "./amount";
+export * from "./notification";
+export * from "./notificationItem";
+export * from "./notificationRequestItem";
 
-import { AdditionalData } from './additionalData';
-import { Amount } from './amount';
-import { Notification } from './notification';
-import { NotificationItem } from './notificationItem';
-import { NotificationRequestItem } from './notificationRequestItem';
+import { AdditionalData } from "./additionalData";
+import { Amount } from "./amount";
+import { Notification } from "./notification";
+import { NotificationItem } from "./notificationItem";
+import { NotificationRequestItem } from "./notificationRequestItem";
 
 /* tslint:disable:no-unused-variable */
-let primitives = [
+const primitives = [
                     "string",
                     "boolean",
                     "double",
@@ -41,19 +41,19 @@ let primitives = [
                     "any"
                  ];
 
-let enumsMap: {[index: string]: any} = {
+const enumsMap: {[index: string]: any} = {
         "NotificationRequestItem.EventCodeEnum": NotificationRequestItem.EventCodeEnum,
         "NotificationRequestItem.OperationsEnum": NotificationRequestItem.OperationsEnum,
         "NotificationRequestItem.SuccessEnum": NotificationRequestItem.SuccessEnum,
-}
+};
 
-let typeMap: {[index: string]: any} = {
+const typeMap: {[index: string]: any} = {
     "AdditionalData": AdditionalData,
     "Amount": Amount,
     "Notification": Notification,
     "NotificationItem": NotificationItem,
     "NotificationRequestItem": NotificationRequestItem,
-}
+};
 
 export class ObjectSerializer {
     public static findCorrectType(data: any, expectedType: string) {
@@ -73,13 +73,13 @@ export class ObjectSerializer {
             }
 
             // Check the discriminator
-            let discriminatorProperty = typeMap[expectedType].discriminator;
-            if (discriminatorProperty == null) {
+            const discriminatorProperty = typeMap[expectedType].discriminator;
+            if (discriminatorProperty == undefined) {
                 return expectedType; // the type does not have a discriminator. use it.
             } else {
                 if (data[discriminatorProperty]) {
-                    var discriminatorType = data[discriminatorProperty];
-                    if(typeMap[discriminatorType]){
+                    const discriminatorType = data[discriminatorProperty];
+                    if (typeMap[discriminatorType]) {
                         return discriminatorType; // use the type given in the discriminator
                     } else {
                         return expectedType; // discriminator did not map to a type
@@ -99,9 +99,9 @@ export class ObjectSerializer {
         } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
             let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
             subType = subType.substring(0, subType.length - 1); // Type> => Type
-            let transformedData: any[] = [];
-            for (let index in data) {
-                let date = data[index];
+            const transformedData: any[] = [];
+            for (const index in data) {
+                const date = data[index];
                 transformedData.push(ObjectSerializer.serialize(date, subType));
             }
             return transformedData;
@@ -119,10 +119,10 @@ export class ObjectSerializer {
             type = this.findCorrectType(data, type);
 
             // get the map for the correct type.
-            let attributeTypes = typeMap[type].getAttributeTypeMap();
-            let instance: {[index: string]: any} = {};
-            for (let index in attributeTypes) {
-                let attributeType = attributeTypes[index];
+            const attributeTypes = typeMap[type].getAttributeTypeMap();
+            const instance: {[index: string]: any} = {};
+            for (const index in attributeTypes) {
+                const attributeType = attributeTypes[index];
                 instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type);
             }
             return instance;
@@ -139,9 +139,9 @@ export class ObjectSerializer {
         } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
             let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
             subType = subType.substring(0, subType.length - 1); // Type> => Type
-            let transformedData: any[] = [];
-            for (let index in data) {
-                let date = data[index];
+            const transformedData: any[] = [];
+            for (const index in data) {
+                const date = data[index];
                 transformedData.push(ObjectSerializer.deserialize(date, subType));
             }
             return transformedData;
@@ -155,10 +155,10 @@ export class ObjectSerializer {
             if (!typeMap[type]) { // dont know the type
                 return data;
             }
-            let instance = new typeMap[type]();
-            let attributeTypes = typeMap[type].getAttributeTypeMap();
-            for (let index in attributeTypes) {
-                let attributeType = attributeTypes[index];
+            const instance = new typeMap[type]();
+            const attributeTypes = typeMap[type].getAttributeTypeMap();
+            for (const index in attributeTypes) {
+                const attributeType = attributeTypes[index];
                 instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type);
             }
             return instance;

@@ -30,16 +30,16 @@
  */
 
 
-import { POISystemData } from './pOISystemData';
-import { Response } from './response';
+import { POISystemData } from "./pOISystemData";
+import { Response } from "./response";
 
 export class LoginResponse {
-    'pOISystemData'?: POISystemData;
-    'response': Response;
+    "pOISystemData"?: POISystemData;
+    "response": Response;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "pOISystemData",
             "baseName": "POISystemData",

@@ -30,20 +30,20 @@
  */
 
 
-import { AmountsReq } from './amountsReq';
-import { OriginalPOITransaction } from './originalPOITransaction';
-import { SaleItem } from './saleItem';
-import { TransactionConditions } from './transactionConditions';
+import { AmountsReq } from "./amountsReq";
+import { OriginalPOITransaction } from "./originalPOITransaction";
+import { SaleItem } from "./saleItem";
+import { TransactionConditions } from "./transactionConditions";
 
 export class PaymentTransaction {
-    'amountsReq': AmountsReq;
-    'originalPOITransaction'?: OriginalPOITransaction;
-    'saleItem'?: Array<SaleItem>;
-    'transactionConditions'?: TransactionConditions;
+    "amountsReq": AmountsReq;
+    "originalPOITransaction"?: OriginalPOITransaction;
+    "saleItem"?: SaleItem[];
+    "transactionConditions"?: TransactionConditions;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "amountsReq",
             "baseName": "AmountsReq",

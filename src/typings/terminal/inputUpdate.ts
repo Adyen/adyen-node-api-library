@@ -30,23 +30,23 @@
  */
 
 
-import { AnyType } from './anyType';
-import { MenuEntry } from './menuEntry';
-import { MessageReference } from './messageReference';
-import { OutputContent } from './outputContent';
+import { AnyType } from "./anyType";
+import { MenuEntry } from "./menuEntry";
+import { MessageReference } from "./messageReference";
+import { OutputContent } from "./outputContent";
 
 export class InputUpdate {
-    'maxDecimalLength'?: number;
-    'maxLength'?: number;
-    'menuEntry'?: Array<MenuEntry>;
-    'messageReference': MessageReference;
-    'minLength'?: number;
-    'outputContent': OutputContent;
-    'outputSignature'?: AnyType;
+    "maxDecimalLength"?: number;
+    "maxLength"?: number;
+    "menuEntry"?: MenuEntry[];
+    "messageReference": MessageReference;
+    "minLength"?: number;
+    "outputContent": OutputContent;
+    "outputSignature"?: AnyType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "maxDecimalLength",
             "baseName": "MaxDecimalLength",

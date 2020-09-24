@@ -30,15 +30,15 @@
  */
 
 
-import { StoredValueAccountId } from './storedValueAccountId';
+import { StoredValueAccountId } from "./storedValueAccountId";
 
 export class StoredValueAccountStatus {
-    'currentBalance'?: number;
-    'storedValueAccountID': StoredValueAccountId;
+    "currentBalance"?: number;
+    "storedValueAccountID": StoredValueAccountId;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "currentBalance",
             "baseName": "CurrentBalance",

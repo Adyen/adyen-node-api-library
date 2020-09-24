@@ -36,39 +36,39 @@ export class AdditionalData {
     /**
     * The ID that uniquely identifies the shopper. This shopperReference is the same as the shopperReference used in the initial payment.
     */
-    'shopperReference'?: string;
+    "shopperReference"?: string;
     /**
     *   The shopper\'s email address.
     */
-    'shopperEmail'?: string;
+    "shopperEmail"?: string;
     /**
     * Authorisation code: When the payment is authorised successfully, this field holds the authorisation code for the payment. When the payment is not authorised, this field is empty.
     */
-    'authCode'?: string;
+    "authCode"?: string;
     /**
     * Returns the last 4 digits of the credit card.
     */
-    'cardSummary'?: string;
+    "cardSummary"?: string;
     /**
     * Returns the card expiry date.
     */
-    'expiryDate'?: string;
+    "expiryDate"?: string;
     /**
     * Value of the amount authorised.
     */
-    'authorisedAmountValue'?: string;
+    "authorisedAmountValue"?: string;
     /**
     * Currency of the authorised amount.
     */
-    'authorisedAmountCurrency'?: string;
+    "authorisedAmountCurrency"?: string;
     /**
     * HMAC Key from customer area
     */
-    'hmacSignature'?: string;
+    "hmacSignature"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "shopperReference",
             "baseName": "shopperReference",

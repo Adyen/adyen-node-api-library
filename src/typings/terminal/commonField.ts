@@ -32,12 +32,12 @@
 
 
 export class CommonField {
-    'name'?: string;
-    'version'?: string;
+    "name"?: string;
+    "version"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "name",
             "baseName": "name",

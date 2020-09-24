@@ -30,28 +30,28 @@
  */
 
 
-import { AllowedProduct } from './allowedProduct';
-import { ContentInformation } from './contentInformation';
-import { CustomerOrder } from './customerOrder';
-import { PaymentToken } from './paymentToken';
-import { SensitiveCardData } from './sensitiveCardData';
+import { AllowedProduct } from "./allowedProduct";
+import { ContentInformation } from "./contentInformation";
+import { CustomerOrder } from "./customerOrder";
+import { PaymentToken } from "./paymentToken";
+import { SensitiveCardData } from "./sensitiveCardData";
 
 export class CardData {
-    'allowedProduct'?: Array<AllowedProduct>;
-    'allowedProductCode'?: Array<string>;
-    'cardCountryCode'?: string;
-    'customerOrder'?: Array<CustomerOrder>;
-    'entryMode'?: Array<CardData.EntryModeEnum>;
-    'maskedPAN'?: string;
-    'paymentAccountRef'?: string;
-    'paymentBrand'?: string;
-    'paymentToken'?: PaymentToken;
-    'protectedCardData'?: ContentInformation;
-    'sensitiveCardData'?: SensitiveCardData;
+    "allowedProduct"?: AllowedProduct[];
+    "allowedProductCode"?: string[];
+    "cardCountryCode"?: string;
+    "customerOrder"?: CustomerOrder[];
+    "entryMode"?: CardData.EntryModeEnum[];
+    "maskedPAN"?: string;
+    "paymentAccountRef"?: string;
+    "paymentBrand"?: string;
+    "paymentToken"?: PaymentToken;
+    "protectedCardData"?: ContentInformation;
+    "sensitiveCardData"?: SensitiveCardData;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "allowedProduct",
             "baseName": "AllowedProduct",
@@ -115,16 +115,16 @@ export class CardData {
 
 export namespace CardData {
     export enum EntryModeEnum {
-        Contactless = <any> 'Contactless',
-        File = <any> 'File',
-        ICC = <any> 'ICC',
-        Keyed = <any> 'Keyed',
-        MagStripe = <any> 'MagStripe',
-        Manual = <any> 'Manual',
-        Mobile = <any> 'Mobile',
-        RFID = <any> 'RFID',
-        Scanned = <any> 'Scanned',
-        SynchronousICC = <any> 'SynchronousICC',
-        Tapped = <any> 'Tapped'
+        Contactless = "Contactless" as any,
+        File = "File" as any,
+        ICC = "ICC" as any,
+        Keyed = "Keyed" as any,
+        MagStripe = "MagStripe" as any,
+        Manual = "Manual" as any,
+        Mobile = "Mobile" as any,
+        RFID = "RFID" as any,
+        Scanned = "Scanned" as any,
+        SynchronousICC = "SynchronousICC" as any,
+        Tapped = "Tapped" as any
     }
 }

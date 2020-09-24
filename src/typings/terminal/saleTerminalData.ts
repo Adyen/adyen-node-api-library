@@ -30,17 +30,17 @@
  */
 
 
-import { SaleProfile } from './saleProfile';
+import { SaleProfile } from "./saleProfile";
 
 export class SaleTerminalData {
-    'saleCapabilities'?: Array<SaleTerminalData.SaleCapabilitiesEnum>;
-    'saleProfile'?: SaleProfile;
-    'terminalEnvironment'?: SaleTerminalData.TerminalEnvironmentEnum;
-    'totalsGroupID'?: string;
+    "saleCapabilities"?: SaleTerminalData.SaleCapabilitiesEnum[];
+    "saleProfile"?: SaleProfile;
+    "terminalEnvironment"?: SaleTerminalData.TerminalEnvironmentEnum;
+    "totalsGroupID"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "saleCapabilities",
             "baseName": "SaleCapabilities",
@@ -69,25 +69,25 @@ export class SaleTerminalData {
 
 export namespace SaleTerminalData {
     export enum SaleCapabilitiesEnum {
-        CashierDisplay = <any> 'CashierDisplay',
-        CashierError = <any> 'CashierError',
-        CashierInput = <any> 'CashierInput',
-        CashierStatus = <any> 'CashierStatus',
-        CustomerAssistance = <any> 'CustomerAssistance',
-        CustomerDisplay = <any> 'CustomerDisplay',
-        CustomerError = <any> 'CustomerError',
-        CustomerInput = <any> 'CustomerInput',
-        EMVContactless = <any> 'EMVContactless',
-        ICC = <any> 'ICC',
-        MagStripe = <any> 'MagStripe',
-        POIReplication = <any> 'POIReplication',
-        PrinterDocument = <any> 'PrinterDocument',
-        PrinterReceipt = <any> 'PrinterReceipt',
-        PrinterVoucher = <any> 'PrinterVoucher'
+        CashierDisplay = "CashierDisplay" as any,
+        CashierError = "CashierError" as any,
+        CashierInput = "CashierInput" as any,
+        CashierStatus = "CashierStatus" as any,
+        CustomerAssistance = "CustomerAssistance" as any,
+        CustomerDisplay = "CustomerDisplay" as any,
+        CustomerError = "CustomerError" as any,
+        CustomerInput = "CustomerInput" as any,
+        EMVContactless = "EMVContactless" as any,
+        ICC = "ICC" as any,
+        MagStripe = "MagStripe" as any,
+        POIReplication = "POIReplication" as any,
+        PrinterDocument = "PrinterDocument" as any,
+        PrinterReceipt = "PrinterReceipt" as any,
+        PrinterVoucher = "PrinterVoucher" as any
     }
     export enum TerminalEnvironmentEnum {
-        Attended = <any> 'Attended',
-        SemiAttended = <any> 'SemiAttended',
-        Unattended = <any> 'Unattended'
+        Attended = "Attended" as any,
+        SemiAttended = "SemiAttended" as any,
+        Unattended = "Unattended" as any
     }
 }

@@ -32,7 +32,7 @@
 
 
 export enum CharacterHeightType {
-    DoubleHeight = <any> 'DoubleHeight',
-    HalfHeight = <any> 'HalfHeight',
-    SingleHeight = <any> 'SingleHeight'
+    DoubleHeight = "DoubleHeight" as any,
+    HalfHeight = "HalfHeight" as any,
+    SingleHeight = "SingleHeight" as any
 }

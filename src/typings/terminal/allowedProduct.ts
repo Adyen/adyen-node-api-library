@@ -32,14 +32,14 @@
 
 
 export class AllowedProduct {
-    'additionalProductInfo'?: string;
-    'eanUpc'?: string;
-    'productCode': string;
-    'productLabel'?: string;
+    "additionalProductInfo"?: string;
+    "eanUpc"?: string;
+    "productCode": string;
+    "productLabel"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "additionalProductInfo",
             "baseName": "AdditionalProductInfo",

@@ -30,14 +30,14 @@
  */
 
 
-import { RelativeDistinguishedName } from './relativeDistinguishedName';
+import { RelativeDistinguishedName } from "./relativeDistinguishedName";
 
 export class Issuer {
-    'relativeDistinguishedName': Array<RelativeDistinguishedName>;
+    "relativeDistinguishedName": RelativeDistinguishedName[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "relativeDistinguishedName",
             "baseName": "RelativeDistinguishedName",

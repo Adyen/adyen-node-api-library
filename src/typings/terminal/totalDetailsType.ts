@@ -32,9 +32,9 @@
 
 
 export enum TotalDetailsType {
-    OperatorID = <any> 'OperatorID',
-    POIID = <any> 'POIID',
-    SaleID = <any> 'SaleID',
-    ShiftNumber = <any> 'ShiftNumber',
-    TotalsGroupID = <any> 'TotalsGroupID'
+    OperatorID = "OperatorID" as any,
+    POIID = "POIID" as any,
+    SaleID = "SaleID" as any,
+    ShiftNumber = "ShiftNumber" as any,
+    TotalsGroupID = "TotalsGroupID" as any
 }

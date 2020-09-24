@@ -30,22 +30,22 @@
  */
 
 
-import { LoyaltyResult } from './loyaltyResult';
-import { POIData } from './pOIData';
-import { PaymentReceipt } from './paymentReceipt';
-import { Response } from './response';
-import { SaleData } from './saleData';
+import { LoyaltyResult } from "./loyaltyResult";
+import { POIData } from "./pOIData";
+import { PaymentReceipt } from "./paymentReceipt";
+import { Response } from "./response";
+import { SaleData } from "./saleData";
 
 export class LoyaltyResponse {
-    'loyaltyResult'?: Array<LoyaltyResult>;
-    'paymentReceipt'?: Array<PaymentReceipt>;
-    'pOIData': POIData;
-    'response': Response;
-    'saleData': SaleData;
+    "loyaltyResult"?: LoyaltyResult[];
+    "paymentReceipt"?: PaymentReceipt[];
+    "pOIData": POIData;
+    "response": Response;
+    "saleData": SaleData;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "loyaltyResult",
             "baseName": "LoyaltyResult",

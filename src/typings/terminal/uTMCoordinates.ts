@@ -32,13 +32,13 @@
 
 
 export class UTMCoordinates {
-    'uTMEastward': string;
-    'uTMNorthward': string;
-    'uTMZone': string;
+    "uTMEastward": string;
+    "uTMNorthward": string;
+    "uTMZone": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "uTMEastward",
             "baseName": "UTMEastward",

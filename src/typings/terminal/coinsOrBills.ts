@@ -32,12 +32,12 @@
 
 
 export class CoinsOrBills {
-    'number': number;
-    'unitValue': number;
+    "number": number;
+    "unitValue": number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "number",
             "baseName": "Number",

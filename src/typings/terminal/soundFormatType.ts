@@ -32,7 +32,7 @@
 
 
 export enum SoundFormatType {
-    MessageRef = <any> 'MessageRef',
-    SoundRef = <any> 'SoundRef',
-    Text = <any> 'Text'
+    MessageRef = "MessageRef" as any,
+    SoundRef = "SoundRef" as any,
+    Text = "Text" as any
 }

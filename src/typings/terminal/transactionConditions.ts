@@ -32,19 +32,19 @@
 
 
 export class TransactionConditions {
-    'acquirerID'?: Array<string>;
-    'allowedLoyaltyBrand'?: Array<string>;
-    'allowedPaymentBrand'?: Array<string>;
-    'customerLanguage'?: string;
-    'debitPreferredFlag'?: boolean;
-    'forceEntryMode'?: Array<Array<TransactionConditions.ForceEntryModeEnum>>;
-    'forceOnlineFlag'?: boolean;
-    'loyaltyHandling'?: TransactionConditions.LoyaltyHandlingEnum;
-    'merchantCategoryCode'?: string;
+    "acquirerID"?: string[];
+    "allowedLoyaltyBrand"?: string[];
+    "allowedPaymentBrand"?: string[];
+    "customerLanguage"?: string;
+    "debitPreferredFlag"?: boolean;
+    "forceEntryMode"?: TransactionConditions.ForceEntryModeEnum[][];
+    "forceOnlineFlag"?: boolean;
+    "loyaltyHandling"?: TransactionConditions.LoyaltyHandlingEnum;
+    "merchantCategoryCode"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "acquirerID",
             "baseName": "AcquirerID",
@@ -98,23 +98,23 @@ export class TransactionConditions {
 
 export namespace TransactionConditions {
     export enum ForceEntryModeEnum {
-        CheckReader = <any> 'CheckReader',
-        Contactless = <any> 'Contactless',
-        File = <any> 'File',
-        ICC = <any> 'ICC',
-        Keyed = <any> 'Keyed',
-        MagStripe = <any> 'MagStripe',
-        Manual = <any> 'Manual',
-        RFID = <any> 'RFID',
-        Scanned = <any> 'Scanned',
-        SynchronousICC = <any> 'SynchronousICC',
-        Tapped = <any> 'Tapped'
+        CheckReader = "CheckReader" as any,
+        Contactless = "Contactless" as any,
+        File = "File" as any,
+        ICC = "ICC" as any,
+        Keyed = "Keyed" as any,
+        MagStripe = "MagStripe" as any,
+        Manual = "Manual" as any,
+        RFID = "RFID" as any,
+        Scanned = "Scanned" as any,
+        SynchronousICC = "SynchronousICC" as any,
+        Tapped = "Tapped" as any
     }
     export enum LoyaltyHandlingEnum {
-        Allowed = <any> 'Allowed',
-        Forbidden = <any> 'Forbidden',
-        Processed = <any> 'Processed',
-        Proposed = <any> 'Proposed',
-        Required = <any> 'Required'
+        Allowed = "Allowed" as any,
+        Forbidden = "Forbidden" as any,
+        Processed = "Processed" as any,
+        Proposed = "Proposed" as any,
+        Required = "Required" as any
     }
 }

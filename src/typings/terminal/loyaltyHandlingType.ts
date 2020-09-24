@@ -32,9 +32,9 @@
 
 
 export enum LoyaltyHandlingType {
-    Allowed = <any> 'Allowed',
-    Forbidden = <any> 'Forbidden',
-    Processed = <any> 'Processed',
-    Proposed = <any> 'Proposed',
-    Required = <any> 'Required'
+    Allowed = "Allowed" as any,
+    Forbidden = "Forbidden" as any,
+    Processed = "Processed" as any,
+    Proposed = "Proposed" as any,
+    Required = "Required" as any
 }

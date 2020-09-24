@@ -32,11 +32,11 @@
 
 
 export enum BarcodeType {
-    Code128 = <any> 'Code128',
-    Code25 = <any> 'Code25',
-    EAN13 = <any> 'EAN13',
-    EAN8 = <any> 'EAN8',
-    PDF417 = <any> 'PDF417',
-    QRCode = <any> 'QRCode',
-    UPCA = <any> 'UPCA'
+    Code128 = "Code128" as any,
+    Code25 = "Code25" as any,
+    EAN13 = "EAN13" as any,
+    EAN8 = "EAN8" as any,
+    PDF417 = "PDF417" as any,
+    QRCode = "QRCode" as any,
+    UPCA = "UPCA" as any
 }

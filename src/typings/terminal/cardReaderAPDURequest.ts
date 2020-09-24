@@ -30,19 +30,19 @@
  */
 
 
-import { AnyType } from './anyType';
+import { AnyType } from "./anyType";
 
 export class CardReaderAPDURequest {
-    'aPDUClass': AnyType;
-    'aPDUData'?: AnyType;
-    'aPDUExpectedLength'?: AnyType;
-    'aPDUInstruction': AnyType;
-    'aPDUPar1': AnyType;
-    'aPDUPar2': AnyType;
+    "aPDUClass": AnyType;
+    "aPDUData"?: AnyType;
+    "aPDUExpectedLength"?: AnyType;
+    "aPDUInstruction": AnyType;
+    "aPDUPar1": AnyType;
+    "aPDUPar2": AnyType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "aPDUClass",
             "baseName": "APDUClass",

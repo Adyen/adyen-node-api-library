@@ -32,15 +32,15 @@
 
 
 export enum EntryModeType {
-    Contactless = <any> 'Contactless',
-    File = <any> 'File',
-    ICC = <any> 'ICC',
-    Keyed = <any> 'Keyed',
-    MagStripe = <any> 'MagStripe',
-    Manual = <any> 'Manual',
-    Mobile = <any> 'Mobile',
-    RFID = <any> 'RFID',
-    Scanned = <any> 'Scanned',
-    SynchronousICC = <any> 'SynchronousICC',
-    Tapped = <any> 'Tapped'
+    Contactless = "Contactless" as any,
+    File = "File" as any,
+    ICC = "ICC" as any,
+    Keyed = "Keyed" as any,
+    MagStripe = "MagStripe" as any,
+    Manual = "Manual" as any,
+    Mobile = "Mobile" as any,
+    RFID = "RFID" as any,
+    Scanned = "Scanned" as any,
+    SynchronousICC = "SynchronousICC" as any,
+    Tapped = "Tapped" as any
 }

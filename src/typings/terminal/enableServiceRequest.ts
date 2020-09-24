@@ -30,17 +30,17 @@
  */
 
 
-import { DisplayOutput } from './displayOutput';
-import { TransactionActionType } from './transactionActionType';
+import { DisplayOutput } from "./displayOutput";
+import { TransactionActionType } from "./transactionActionType";
 
 export class EnableServiceRequest {
-    'displayOutput'?: DisplayOutput;
-    'servicesEnabled'?: Array<EnableServiceRequest.ServicesEnabledEnum>;
-    'transactionAction': TransactionActionType;
+    "displayOutput"?: DisplayOutput;
+    "servicesEnabled"?: EnableServiceRequest.ServicesEnabledEnum[];
+    "transactionAction": TransactionActionType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "displayOutput",
             "baseName": "DisplayOutput",
@@ -64,8 +64,8 @@ export class EnableServiceRequest {
 
 export namespace EnableServiceRequest {
     export enum ServicesEnabledEnum {
-        CardAcquisition = <any> 'CardAcquisition',
-        Loyalty = <any> 'Loyalty',
-        Payment = <any> 'Payment'
+        CardAcquisition = "CardAcquisition" as any,
+        Loyalty = "Loyalty" as any,
+        Payment = "Payment" as any
     }
 }

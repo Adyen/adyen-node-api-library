@@ -32,10 +32,10 @@
 
 
 export enum TrackFormatType {
-    AAMVA = <any> 'AAMVA',
-    CMC7 = <any> 'CMC-7',
-    E13B = <any> 'E-13B',
-    ISO = <any> 'ISO',
-    JISI = <any> 'JIS-I',
-    JISII = <any> 'JIS-II'
+    AAMVA = "AAMVA" as any,
+    CMC7 = "CMC-7" as any,
+    E13B = "E-13B" as any,
+    ISO = "ISO" as any,
+    JISI = "JIS-I" as any,
+    JISII = "JIS-II" as any
 }

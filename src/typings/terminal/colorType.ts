@@ -32,12 +32,12 @@
 
 
 export enum ColorType {
-    Black = <any> 'Black',
-    Blue = <any> 'Blue',
-    Cyan = <any> 'Cyan',
-    Green = <any> 'Green',
-    Magenta = <any> 'Magenta',
-    Red = <any> 'Red',
-    White = <any> 'White',
-    Yellow = <any> 'Yellow'
+    Black = "Black" as any,
+    Blue = "Blue" as any,
+    Cyan = "Cyan" as any,
+    Green = "Green" as any,
+    Magenta = "Magenta" as any,
+    Red = "Red" as any,
+    White = "White" as any,
+    Yellow = "Yellow" as any
 }

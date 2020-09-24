@@ -30,14 +30,14 @@
  */
 
 
-import { AnyType } from './anyType';
+import { AnyType } from "./anyType";
 
 export class Parameter {
-    'initialisationVector'?: AnyType;
+    "initialisationVector"?: AnyType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "initialisationVector",
             "baseName": "InitialisationVector",

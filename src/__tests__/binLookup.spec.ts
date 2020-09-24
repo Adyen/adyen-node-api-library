@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 import nock from "nock";
-import {createClient} from "../__mocks__/base";
+import { createClient } from "../__mocks__/base";
 import BinLookup from "../services/binLookup";
 import Client from "../client";
 import HttpClientException from "../httpClient/httpClientException";

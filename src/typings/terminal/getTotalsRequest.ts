@@ -30,15 +30,15 @@
  */
 
 
-import { TotalFilter } from './totalFilter';
+import { TotalFilter } from "./totalFilter";
 
 export class GetTotalsRequest {
-    'totalDetails'?: Array<GetTotalsRequest.TotalDetailsEnum>;
-    'totalFilter'?: TotalFilter;
+    "totalDetails"?: GetTotalsRequest.TotalDetailsEnum[];
+    "totalFilter"?: TotalFilter;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "totalDetails",
             "baseName": "TotalDetails",
@@ -57,10 +57,10 @@ export class GetTotalsRequest {
 
 export namespace GetTotalsRequest {
     export enum TotalDetailsEnum {
-        OperatorID = <any> 'OperatorID',
-        POIID = <any> 'POIID',
-        SaleID = <any> 'SaleID',
-        ShiftNumber = <any> 'ShiftNumber',
-        TotalsGroupID = <any> 'TotalsGroupID'
+        OperatorID = "OperatorID" as any,
+        POIID = "POIID" as any,
+        SaleID = "SaleID" as any,
+        ShiftNumber = "ShiftNumber" as any,
+        TotalsGroupID = "TotalsGroupID" as any
     }
 }

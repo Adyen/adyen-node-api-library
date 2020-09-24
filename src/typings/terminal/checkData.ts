@@ -30,20 +30,20 @@
  */
 
 
-import { TrackData } from './trackData';
+import { TrackData } from "./trackData";
 
 export class CheckData {
-    'accountNumber'?: string;
-    'bankID'?: string;
-    'checkCardNumber'?: string;
-    'checkNumber'?: string;
-    'country'?: string;
-    'trackData'?: TrackData;
-    'typeCode'?: CheckData.TypeCodeEnum;
+    "accountNumber"?: string;
+    "bankID"?: string;
+    "checkCardNumber"?: string;
+    "checkNumber"?: string;
+    "country"?: string;
+    "trackData"?: TrackData;
+    "typeCode"?: CheckData.TypeCodeEnum;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "accountNumber",
             "baseName": "AccountNumber",
@@ -87,7 +87,7 @@ export class CheckData {
 
 export namespace CheckData {
     export enum TypeCodeEnum {
-        Company = <any> 'Company',
-        Personal = <any> 'Personal'
+        Company = "Company" as any,
+        Personal = "Personal" as any
     }
 }

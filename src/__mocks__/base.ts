@@ -93,12 +93,12 @@ const amountsReq: AmountsReq = {
 };
 
 const paymentTransaction: PaymentTransaction = {
-    amountsReq: amountsReq,
+    amountsReq,
 };
 
 const paymentRequest: PaymentRequest = {
-    paymentTransaction: paymentTransaction,
-    saleData: saleData,
+    paymentTransaction,
+    saleData,
 };
 
 const getReversalRequest = (poiTransaction: TransactionIdentification): ReversalRequest => ({
@@ -112,7 +112,7 @@ const getReversalRequest = (poiTransaction: TransactionIdentification): Reversal
 });
 
 const getSaleToPOIRequest = (messageHeader: MessageHeader, request: Partial<SaleToPOIRequest>): SaleToPOIRequest => ({
-    messageHeader: messageHeader,
+    messageHeader,
     ...request
 });
 
@@ -120,11 +120,11 @@ const getSaleToPOIRequest = (messageHeader: MessageHeader, request: Partial<Sale
 export const createTerminalAPIPaymentRequest = (): TerminalApiRequest => {
     const messageHeader = getMessageHeader();
     const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { paymentRequest });
-    return { saleToPOIRequest: saleToPOIRequest };
+    return { saleToPOIRequest };
 };
 
 export const createTerminalAPIRefundRequest = (transactionIdentification: TransactionIdentification): TerminalApiRequest => {
     const messageHeader = getMessageHeader({ messageCategory: MessageCategoryType.Reversal });
     const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { reversalRequest: getReversalRequest(transactionIdentification) });
-    return { saleToPOIRequest: saleToPOIRequest };
+    return { saleToPOIRequest };
 };

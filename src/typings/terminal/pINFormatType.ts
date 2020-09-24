@@ -32,8 +32,8 @@
 
 
 export enum PINFormatType {
-    ISO0 = <any> 'ISO0',
-    ISO1 = <any> 'ISO1',
-    ISO2 = <any> 'ISO2',
-    ISO3 = <any> 'ISO3'
+    ISO0 = "ISO0" as any,
+    ISO1 = "ISO1" as any,
+    ISO2 = "ISO2" as any,
+    ISO3 = "ISO3" as any
 }

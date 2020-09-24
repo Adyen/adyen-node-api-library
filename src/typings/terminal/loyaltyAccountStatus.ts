@@ -30,17 +30,17 @@
  */
 
 
-import { LoyaltyAccount } from './loyaltyAccount';
+import { LoyaltyAccount } from "./loyaltyAccount";
 
 export class LoyaltyAccountStatus {
-    'currency'?: string;
-    'currentBalance'?: number;
-    'loyaltyAccount': LoyaltyAccount;
-    'loyaltyUnit'?: LoyaltyAccountStatus.LoyaltyUnitEnum;
+    "currency"?: string;
+    "currentBalance"?: number;
+    "loyaltyAccount": LoyaltyAccount;
+    "loyaltyUnit"?: LoyaltyAccountStatus.LoyaltyUnitEnum;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "currency",
             "baseName": "Currency",
@@ -69,7 +69,7 @@ export class LoyaltyAccountStatus {
 
 export namespace LoyaltyAccountStatus {
     export enum LoyaltyUnitEnum {
-        Monetary = <any> 'Monetary',
-        Point = <any> 'Point'
+        Monetary = "Monetary" as any,
+        Point = "Point" as any
     }
 }

@@ -17,5 +17,5 @@
  * See the LICENSE file for more info.
  */
 
-declare type Environment = "LIVE" | "TEST"
+declare type Environment = "LIVE" | "TEST";
 

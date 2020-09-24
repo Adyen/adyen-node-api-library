@@ -30,17 +30,17 @@
  */
 
 
-import { SaleData } from './saleData';
-import { StoredValueData } from './storedValueData';
+import { SaleData } from "./saleData";
+import { StoredValueData } from "./storedValueData";
 
 export class StoredValueRequest {
-    'customerLanguage'?: string;
-    'saleData': SaleData;
-    'storedValueData': Array<StoredValueData>;
+    "customerLanguage"?: string;
+    "saleData": SaleData;
+    "storedValueData": StoredValueData[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "customerLanguage",
             "baseName": "CustomerLanguage",

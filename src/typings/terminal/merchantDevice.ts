@@ -32,13 +32,13 @@
 
 
 export class MerchantDevice {
-    'os'?: string;
-    'osVersion'?: string;
-    'reference'?: string;
+    "os"?: string;
+    "osVersion"?: string;
+    "reference"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "os",
             "baseName": "os",

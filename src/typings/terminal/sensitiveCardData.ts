@@ -30,17 +30,17 @@
  */
 
 
-import { TrackData } from './trackData';
+import { TrackData } from "./trackData";
 
 export class SensitiveCardData {
-    'cardSeqNumb'?: string;
-    'expiryDate'?: string;
-    'pAN'?: string;
-    'trackData'?: Array<TrackData>;
+    "cardSeqNumb"?: string;
+    "expiryDate"?: string;
+    "pAN"?: string;
+    "trackData"?: TrackData[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "cardSeqNumb",
             "baseName": "CardSeqNumb",

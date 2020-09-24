@@ -30,22 +30,22 @@
  */
 
 
-import { StoredValueAccountStatus } from './storedValueAccountStatus';
-import { StoredValueTransactionType } from './storedValueTransactionType';
-import { TransactionIdentification } from './transactionIdentification';
+import { StoredValueAccountStatus } from "./storedValueAccountStatus";
+import { StoredValueTransactionType } from "./storedValueTransactionType";
+import { TransactionIdentification } from "./transactionIdentification";
 
 export class StoredValueResult {
-    'currency': string;
-    'eanUpc'?: string;
-    'hostTransactionID'?: TransactionIdentification;
-    'itemAmount': number;
-    'productCode': string;
-    'storedValueAccountStatus': StoredValueAccountStatus;
-    'storedValueTransactionType': StoredValueTransactionType;
+    "currency": string;
+    "eanUpc"?: string;
+    "hostTransactionID"?: TransactionIdentification;
+    "itemAmount": number;
+    "productCode": string;
+    "storedValueAccountStatus": StoredValueAccountStatus;
+    "storedValueTransactionType": StoredValueTransactionType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "currency",
             "baseName": "Currency",

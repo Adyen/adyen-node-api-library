@@ -32,6 +32,6 @@
 
 
 export enum LoyaltyUnitType {
-    Monetary = <any> 'Monetary',
-    Point = <any> 'Point'
+    Monetary = "Monetary" as any,
+    Point = "Point" as any
 }

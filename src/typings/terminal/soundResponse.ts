@@ -30,14 +30,14 @@
  */
 
 
-import { Response } from './response';
+import { Response } from "./response";
 
 export class SoundResponse {
-    'response': Response;
+    "response": Response;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "response",
             "baseName": "Response",

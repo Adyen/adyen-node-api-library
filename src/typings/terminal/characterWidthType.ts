@@ -32,6 +32,6 @@
 
 
 export enum CharacterWidthType {
-    DoubleWidth = <any> 'DoubleWidth',
-    SingleWidth = <any> 'SingleWidth'
+    DoubleWidth = "DoubleWidth" as any,
+    SingleWidth = "SingleWidth" as any
 }

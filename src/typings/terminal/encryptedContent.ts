@@ -30,18 +30,18 @@
  */
 
 
-import { AlgorithmIdentifier } from './algorithmIdentifier';
-import { AnyType } from './anyType';
-import { ContentType } from './contentType';
+import { AlgorithmIdentifier } from "./algorithmIdentifier";
+import { AnyType } from "./anyType";
+import { ContentType } from "./contentType";
 
 export class EncryptedContent {
-    'contentEncryptionAlgorithm': AlgorithmIdentifier;
-    'contentType': ContentType;
-    'encryptedData': AnyType;
+    "contentEncryptionAlgorithm": AlgorithmIdentifier;
+    "contentType": ContentType;
+    "encryptedData": AnyType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "contentEncryptionAlgorithm",
             "baseName": "ContentEncryptionAlgorithm",

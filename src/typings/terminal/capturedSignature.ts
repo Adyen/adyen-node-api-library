@@ -30,16 +30,16 @@
  */
 
 
-import { AreaSize } from './areaSize';
-import { SignaturePoint } from './signaturePoint';
+import { AreaSize } from "./areaSize";
+import { SignaturePoint } from "./signaturePoint";
 
 export class CapturedSignature {
-    'areaSize'?: AreaSize;
-    'signaturePoint': Array<SignaturePoint>;
+    "areaSize"?: AreaSize;
+    "signaturePoint": SignaturePoint[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "areaSize",
             "baseName": "AreaSize",

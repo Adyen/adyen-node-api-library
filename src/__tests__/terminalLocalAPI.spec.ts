@@ -18,11 +18,11 @@
  */
 
 import nock from "nock";
-import {createClient, createTerminalAPIPaymentRequest} from "../__mocks__/base";
-import {localEncRes, wrongEncRes} from "../__mocks__/terminalApi/local";
+import { createClient, createTerminalAPIPaymentRequest } from "../__mocks__/base";
+import { localEncRes, wrongEncRes } from "../__mocks__/terminalApi/local";
 import Client from "../client";
 import TerminalLocalAPI from "../services/terminalLocalAPI";
-import {SecurityKey, TerminalApiResponse} from "../typings/terminal/models";
+import { SecurityKey, TerminalApiResponse } from "../typings/terminal/models";
 import NexoCryptoException from "../services/exception/nexoCryptoException";
 
 let client: Client;
@@ -30,7 +30,7 @@ let terminalLocalAPI: TerminalLocalAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    if (!nock.isActive()){
+    if (!nock.isActive()) {
         nock.activate();
     }
 

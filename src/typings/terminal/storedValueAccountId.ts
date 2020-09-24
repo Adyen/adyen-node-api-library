@@ -30,21 +30,21 @@
  */
 
 
-import { IdentificationType } from './identificationType';
-import { StoredValueAccountType } from './storedValueAccountType';
+import { IdentificationType } from "./identificationType";
+import { StoredValueAccountType } from "./storedValueAccountType";
 
 export class StoredValueAccountId {
-    'entryMode': Array<StoredValueAccountId.EntryModeEnum>;
-    'expiryDate'?: string;
-    'identificationType': IdentificationType;
-    'ownerName'?: string;
-    'storedValueAccountType': StoredValueAccountType;
-    'storedValueProvider'?: string;
-    'value'?: string;
+    "entryMode": StoredValueAccountId.EntryModeEnum[];
+    "expiryDate"?: string;
+    "identificationType": IdentificationType;
+    "ownerName"?: string;
+    "storedValueAccountType": StoredValueAccountType;
+    "storedValueProvider"?: string;
+    "value"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "entryMode",
             "baseName": "EntryMode",
@@ -88,16 +88,16 @@ export class StoredValueAccountId {
 
 export namespace StoredValueAccountId {
     export enum EntryModeEnum {
-        Contactless = <any> 'Contactless',
-        File = <any> 'File',
-        ICC = <any> 'ICC',
-        Keyed = <any> 'Keyed',
-        MagStripe = <any> 'MagStripe',
-        Manual = <any> 'Manual',
-        Mobile = <any> 'Mobile',
-        RFID = <any> 'RFID',
-        Scanned = <any> 'Scanned',
-        SynchronousICC = <any> 'SynchronousICC',
-        Tapped = <any> 'Tapped'
+        Contactless = "Contactless" as any,
+        File = "File" as any,
+        ICC = "ICC" as any,
+        Keyed = "Keyed" as any,
+        MagStripe = "MagStripe" as any,
+        Manual = "Manual" as any,
+        Mobile = "Mobile" as any,
+        RFID = "RFID" as any,
+        Scanned = "Scanned" as any,
+        SynchronousICC = "SynchronousICC" as any,
+        Tapped = "Tapped" as any
     }
 }
