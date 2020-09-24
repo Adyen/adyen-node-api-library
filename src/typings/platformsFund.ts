@@ -12,12 +12,16 @@
  *                                      ######
  *                               #############
  *                               ############
+ *
  * Adyen NodeJS API Library
+ *
+ * Version of Platforms Fund: v6
+ *
  * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
-
+ 
 
 declare namespace IPlatformsFund {
     export interface AccountDetailBalance {
@@ -28,7 +32,7 @@ declare namespace IPlatformsFund {
         /**
          * Details of the balance held by the account.
          */
-        detailBalance?: IPlatformsFund.DetailBalance;
+        detailBalance?: DetailBalance;
     }
     export interface AccountHolderBalanceRequest {
         /**
@@ -40,15 +44,15 @@ declare namespace IPlatformsFund {
         /**
          * A list of each account and their balances.
          */
-        balancePerAccount?: IPlatformsFund.AccountDetailBalance[];
+        balancePerAccount?: AccountDetailBalance[];
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsFund.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -56,7 +60,7 @@ declare namespace IPlatformsFund {
         /**
          * The total balance of the account holder.
          */
-        totalBalance?: IPlatformsFund.DetailBalance;
+        totalBalance?: DetailBalance;
     }
     export interface AccountHolderTransactionListRequest {
         /**
@@ -66,7 +70,7 @@ declare namespace IPlatformsFund {
         /**
          * A list of accounts to include in the transaction list. If left blank, the last fifty (50) transactions for all accounts of the account holder will be included.
          */
-        transactionListsPerAccount?: IPlatformsFund.TransactionListForAccount[];
+        transactionListsPerAccount?: TransactionListForAccount[];
         /**
          * A list of statuses to include in the transaction list. If left blank, all transactions will be included.
          * >Permitted values:
@@ -74,6 +78,8 @@ declare namespace IPlatformsFund {
          * >* `CreditFailed` - a pending credit failure; the balance will not be credited.
          * >* `Credited` - a credited balance.
          * >* `PendingDebit` - a pending balance debit (e.g., a refund).
+         * >* `CreditClosed` - a pending credit closed; the balance will not be credited.
+         * >* `CreditSuspended` - a pending credit closed; the balance will not be credited.
          * >* `DebitFailed` - a pending debit failure; the balance will not be debited.
          * >* `Debited` - a debited balance (e.g., a refund).
          * >* `DebitReversedReceived` - a pending refund reversal.
@@ -89,21 +95,21 @@ declare namespace IPlatformsFund {
          * >* `PendingFundTransfer` - a pending transfer of funds from one account to another.
          * >* `FundTransfer` - a transfer of funds from one account to another.
          */
-        transactionStatuses?: ("Chargeback" | "ChargebackCorrection" | "ChargebackCorrectionReceived" | "ChargebackReceived" | "ChargebackReversed" | "ChargebackReversedReceived" | "Converted" | "CreditFailed" | "CreditReversed" | "CreditReversedReceived" | "Credited" | "DebitFailed" | "DebitReversedReceived" | "Debited" | "DebitedReversed" | "Fee" | "FundTransfer" | "FundTransferReversed" | "ManualCorrected" | "Payout" | "PayoutReversed" | "PendingCredit" | "PendingDebit" | "PendingFundTransfer" | "SecondChargeback" | "SecondChargebackReceived")[];
+        transactionStatuses?: ("Chargeback" | "ChargebackCorrection" | "ChargebackCorrectionReceived" | "ChargebackReceived" | "ChargebackReversed" | "ChargebackReversedCorrection" | "ChargebackReversedCorrectionReceived" | "ChargebackReversedReceived" | "Converted" | "CreditClosed" | "CreditFailed" | "CreditReversed" | "CreditReversedReceived" | "CreditSuspended" | "Credited" | "DebitFailed" | "DebitReversedReceived" | "Debited" | "DebitedReversed" | "Fee" | "FundTransfer" | "FundTransferReversed" | "ManualCorrected" | "Payout" | "PayoutReversed" | "PendingCredit" | "PendingDebit" | "PendingFundTransfer" | "SecondChargeback" | "SecondChargebackReceived")[];
     }
     export interface AccountHolderTransactionListResponse {
         /**
          * A list of the transactions.
          */
-        accountTransactionLists?: IPlatformsFund.AccountTransactionList[];
+        accountTransactionLists?: AccountTransactionList[];
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsFund.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -121,7 +127,7 @@ declare namespace IPlatformsFund {
         /**
          * The list of transactions.
          */
-        transactions?: IPlatformsFund.Transaction[];
+        transactions?: Transaction[];
     }
     export interface Amount {
         /**
@@ -138,7 +144,7 @@ declare namespace IPlatformsFund {
     export interface BankAccountDetail {
         /**
          * The bank account number (without separators).
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         accountNumber?: string;
         /**
@@ -146,7 +152,7 @@ declare namespace IPlatformsFund {
          * Only applicable to bank accounts held in the USA.
          * The permitted values are: `checking`, `savings`.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         accountType?: string;
         /**
@@ -171,25 +177,25 @@ declare namespace IPlatformsFund {
         bankAccountUUID?: string;
         /**
          * The bank identifier code.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         bankBicSwift?: string;
         /**
          * The city in which the bank branch is located.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         bankCity?: string;
         /**
          * The bank code of the banking institution with which the bank account is registered.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         bankCode?: string;
         /**
          * The name of the banking institution with which the bank account is held.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         bankName?: string;
         /**
@@ -197,46 +203,46 @@ declare namespace IPlatformsFund {
          * * United States - Routing number
          * * United Kingdom - Sort code
          * * Germany - Bankleitzahl
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         branchCode?: string;
         /**
          * The check code of the bank account.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         checkCode?: string;
         /**
          * The two-letter country code in which the bank account is registered.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         countryCode?: string;
         /**
          * The currency in which the bank account deals.
          * >The permitted currency codes are defined in ISO-4217 (e.g. 'EUR').
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         currencyCode?: string;
         /**
          * The international bank account number.
          * >The IBAN standard is defined in ISO-13616.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         iban?: string;
         /**
          * The city of residence of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerCity?: string;
         /**
          * The country code of the country of residence of the bank account owner.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerCountryCode?: string;
         /**
@@ -246,34 +252,34 @@ declare namespace IPlatformsFund {
         ownerDateOfBirth?: string;
         /**
          * The house name or number of the residence of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerHouseNumberOrName?: string;
         /**
          * The name of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerName?: string;
         /**
          * The country code of the country of nationality of the bank account owner.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerNationality?: string;
         /**
          * The postal code of the residence of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerPostalCode?: string;
         /**
          * The state of residence of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerState?: string;
         /**
          * The street name of the residence of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerStreet?: string;
         /**
@@ -283,14 +289,14 @@ declare namespace IPlatformsFund {
         /**
          * The tax ID number.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         taxId?: string;
         /**
          * The URL to be used for bank account verification.
          * This may be generated on bank account creation.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         urlForVerification?: string;
     }
@@ -298,15 +304,15 @@ declare namespace IPlatformsFund {
         /**
          * The list of balances held by the account.
          */
-        balance?: IPlatformsFund.Amount[];
+        balance?: Amount[];
         /**
          * The list of on hold balances held by the account.
          */
-        onHoldBalance?: IPlatformsFund.Amount[];
+        onHoldBalance?: Amount[];
         /**
          * The list of pending balances held by the account.
          */
-        pendingBalance?: IPlatformsFund.Amount[];
+        pendingBalance?: Amount[];
     }
     export interface ErrorFieldType {
         /**
@@ -320,7 +326,7 @@ declare namespace IPlatformsFund {
         /**
          * The type of error field.
          */
-        fieldType?: IPlatformsFund.FieldType;
+        fieldType?: FieldType;
     }
     export interface FieldType {
         /**
@@ -330,7 +336,7 @@ declare namespace IPlatformsFund {
         /**
          * The type of the field.
          */
-        fieldName?: "accountCode" | "accountHolderCode" | "accountHolderDetails" | "accountNumber" | "accountStateType" | "accountStatus" | "accountType" | "address" | "bankAccount" | "bankAccountCode" | "bankAccountName" | "bankAccountUUID" | "bankBicSwift" | "bankCity" | "bankCode" | "bankName" | "bankStatement" | "branchCode" | "businessContact" | "cardToken" | "checkCode" | "city" | "companyRegistration" | "country" | "countryCode" | "currency" | "currencyCode" | "dateOfBirth" | "description" | "destinationAccountCode" | "document" | "documentExpirationDate" | "documentIssuerCountry" | "documentIssuerState" | "documentName" | "documentNumber" | "documentType" | "doingBusinessAs" | "drivingLicence" | "drivingLicenceBack" | "drivingLicense" | "email" | "firstName" | "fullPhoneNumber" | "gender" | "hopWebserviceUser" | "houseNumberOrName" | "iban" | "idCard" | "idCardBack" | "idCardFront" | "idNumber" | "identityDocument" | "individualDetails" | "lastName" | "legalBusinessName" | "legalEntity" | "legalEntityType" | "merchantAccount" | "merchantCategoryCode" | "merchantReference" | "microDeposit" | "name" | "nationality" | "originalReference" | "ownerCity" | "ownerCountryCode" | "ownerHouseNumberOrName" | "ownerName" | "ownerPostalCode" | "ownerState" | "ownerStreet" | "passport" | "passportNumber" | "payoutMethodCode" | "personalData" | "phoneCountryCode" | "phoneNumber" | "postalCode" | "primaryCurrency" | "reason" | "registrationNumber" | "returnUrl" | "schedule" | "shareholder" | "shareholderCode" | "socialSecurityNumber" | "sourceAccountCode" | "stateOrProvince" | "status" | "store" | "storeDetail" | "storeName" | "storeReference" | "street" | "taxId" | "tier" | "tierNumber" | "transferCode" | "unknown" | "value" | "virtualAccount" | "visaNumber" | "webAddress";
+        fieldName?: "accountCode" | "accountHolderCode" | "accountHolderDetails" | "accountNumber" | "accountStateType" | "accountStatus" | "accountType" | "address" | "bankAccount" | "bankAccountCode" | "bankAccountName" | "bankAccountUUID" | "bankBicSwift" | "bankCity" | "bankCode" | "bankName" | "bankStatement" | "branchCode" | "businessContact" | "cardToken" | "checkCode" | "city" | "companyRegistration" | "country" | "countryCode" | "currency" | "currencyCode" | "dateOfBirth" | "description" | "destinationAccountCode" | "document" | "documentExpirationDate" | "documentIssuerCountry" | "documentIssuerState" | "documentName" | "documentNumber" | "documentType" | "doingBusinessAs" | "drivingLicence" | "drivingLicenceBack" | "drivingLicense" | "email" | "firstName" | "fullPhoneNumber" | "gender" | "hopWebserviceUser" | "houseNumberOrName" | "iban" | "idCard" | "idCardBack" | "idCardFront" | "idNumber" | "identityDocument" | "individualDetails" | "lastName" | "legalBusinessName" | "legalEntity" | "legalEntityType" | "merchantAccount" | "merchantCategoryCode" | "merchantReference" | "microDeposit" | "name" | "nationality" | "originalReference" | "ownerCity" | "ownerCountryCode" | "ownerHouseNumberOrName" | "ownerName" | "ownerPostalCode" | "ownerState" | "ownerStreet" | "passport" | "passportNumber" | "payoutMethodCode" | "personalData" | "phoneCountryCode" | "phoneNumber" | "postalCode" | "primaryCurrency" | "reason" | "registrationNumber" | "returnUrl" | "schedule" | "shareholder" | "shareholderCode" | "socialSecurityNumber" | "sourceAccountCode" | "stateOrProvince" | "status" | "stockExchange" | "stockNumber" | "stockTicker" | "store" | "storeDetail" | "storeName" | "storeReference" | "street" | "taxId" | "tier" | "tierNumber" | "transferCode" | "unknown" | "value" | "virtualAccount" | "visaNumber" | "webAddress";
         /**
          * The code of the shareholder that the field belongs to. If empty, the field belongs to an account holder.
          */
@@ -349,7 +355,7 @@ declare namespace IPlatformsFund {
         /**
          * The amount to pay out.
          */
-        amount: IPlatformsFund.Amount;
+        amount: Amount;
         /**
          * The unique ID of the Bank Account held by the Account Holder to which the payout is to be made.
          * If left blank, a bank account is automatically selected.
@@ -369,6 +375,10 @@ declare namespace IPlatformsFund {
          * If left blank, a payout instrument is automatically selected.
          */
         payoutMethodCode?: string;
+        /**
+         * Speed with which payouts for this account are processed. Permitted values: `STANDARD`, `SAME_DAY`.
+         */
+        payoutSpeed?: "SAME_DAY" | "STANDARD";
     }
     export interface PayoutAccountHolderResponse {
         /**
@@ -378,31 +388,29 @@ declare namespace IPlatformsFund {
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsFund.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
          * The value supplied by the executing user when initiating the transfer; may be used to link multiple transactions.
          */
         merchantReference?: string;
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * Speed with which payouts for this account are processed. Permitted values: `STANDARD`, `SAME_DAY`.
          */
-        pspReference: string;
+        payoutSpeed?: "SAME_DAY" | "STANDARD";
+        /**
+         * The reference of a request. Can be used to uniquely identify the request.
+         */
+        pspReference?: string;
         /**
          * The result code.
          */
         resultCode?: string;
     }
-    namespace Post {
-        export type RequestBody = IPlatformsFund.TransferFundsRequest;
-        namespace Responses {
-            export type $200 = IPlatformsFund.TransferFundsResponse;
-        }
-    }
     export interface RefundFundsTransferRequest {
         /**
          * The amount to be transferred.
          */
-        amount: IPlatformsFund.Amount;
+        amount: Amount;
         /**
          * A value that can be supplied at the discretion of the executing user in order to link multiple transactions to one another.
          */
@@ -416,7 +424,7 @@ declare namespace IPlatformsFund {
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsFund.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
          * The value supplied by the executing user when initiating the transfer refund; may be used to link multiple transactions.
          */
@@ -427,9 +435,9 @@ declare namespace IPlatformsFund {
          */
         originalReference?: string;
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -449,11 +457,11 @@ declare namespace IPlatformsFund {
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsFund.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -467,7 +475,7 @@ declare namespace IPlatformsFund {
         /**
          * A value that can be supplied at the discretion of the executing user.
          */
-        merchantReference: string;
+        merchantReference?: string;
         /**
          * The benefactor account.
          */
@@ -477,11 +485,11 @@ declare namespace IPlatformsFund {
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsFund.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -491,11 +499,11 @@ declare namespace IPlatformsFund {
         /**
          * The amount of the transaction.
          */
-        amount?: IPlatformsFund.Amount;
+        amount?: Amount;
         /**
          * The details of the bank account to where a payout was made.
          */
-        bankAccountDetail?: IPlatformsFund.BankAccountDetail;
+        bankAccountDetail?: BankAccountDetail;
         /**
          * The merchant reference of a related capture.
          */
@@ -546,9 +554,9 @@ declare namespace IPlatformsFund {
         sourceAccountCode?: string;
         /**
          * The status of the transaction.
-         * >Permitted values: `PendingCredit`, `CreditFailed`, `Credited`, `Converted`, `PendingDebit`, `DebitFailed`, `Debited`, `DebitReversedReceived`, `DebitedReversed`, `ChargebackReceived`, `Chargeback`, `ChargebackReversedReceived`, `ChargebackReversed`, `Payout`, `PayoutReversed`, `FundTransfer`, `PendingFundTransfer`, `ManualCorrected`.
+         * >Permitted values: `PendingCredit`, `CreditFailed`, `CreditClosed`, `CreditSuspended`, `Credited`, `Converted`, `PendingDebit`, `DebitFailed`, `Debited`, `DebitReversedReceived`, `DebitedReversed`, `ChargebackReceived`, `Chargeback`, `ChargebackReversedReceived`, `ChargebackReversed`, `Payout`, `PayoutReversed`, `FundTransfer`, `PendingFundTransfer`, `ManualCorrected`.
          */
-        transactionStatus?: "Chargeback" | "ChargebackCorrection" | "ChargebackCorrectionReceived" | "ChargebackReceived" | "ChargebackReversed" | "ChargebackReversedReceived" | "Converted" | "CreditFailed" | "CreditReversed" | "CreditReversedReceived" | "Credited" | "DebitFailed" | "DebitReversedReceived" | "Debited" | "DebitedReversed" | "Fee" | "FundTransfer" | "FundTransferReversed" | "ManualCorrected" | "Payout" | "PayoutReversed" | "PendingCredit" | "PendingDebit" | "PendingFundTransfer" | "SecondChargeback" | "SecondChargebackReceived";
+        transactionStatus?: "Chargeback" | "ChargebackCorrection" | "ChargebackCorrectionReceived" | "ChargebackReceived" | "ChargebackReversed" | "ChargebackReversedCorrection" | "ChargebackReversedCorrectionReceived" | "ChargebackReversedReceived" | "Converted" | "CreditClosed" | "CreditFailed" | "CreditReversed" | "CreditReversedReceived" | "CreditSuspended" | "Credited" | "DebitFailed" | "DebitReversedReceived" | "Debited" | "DebitedReversed" | "Fee" | "FundTransfer" | "FundTransferReversed" | "ManualCorrected" | "Payout" | "PayoutReversed" | "PendingCredit" | "PendingDebit" | "PendingFundTransfer" | "SecondChargeback" | "SecondChargebackReceived";
         /**
          * The transfer code of the transaction.
          */
@@ -569,7 +577,7 @@ declare namespace IPlatformsFund {
         /**
          * The amount to be transferred.
          */
-        amount: IPlatformsFund.Amount;
+        amount: Amount;
         /**
          * The code of the account to which the funds are to be credited.
          * >The state of the Account Holder of this account must be Active.
@@ -594,18 +602,132 @@ declare namespace IPlatformsFund {
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsFund.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
          * The value supplied by the executing user when initiating the transfer; may be used to link multiple transactions.
          */
         merchantReference?: string;
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
         resultCode?: string;
+    }
+}
+declare namespace Paths {
+    namespace PostAccountHolderBalance {
+        export type RequestBody = IPlatformsFund.AccountHolderBalanceRequest;
+        namespace Responses {
+            export type $200 = IPlatformsFund.AccountHolderBalanceResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostAccountHolderTransactionList {
+        export type RequestBody = IPlatformsFund.AccountHolderTransactionListRequest;
+        namespace Responses {
+            export type $200 = IPlatformsFund.AccountHolderTransactionListResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostPayoutAccountHolder {
+        export type RequestBody = IPlatformsFund.PayoutAccountHolderRequest;
+        namespace Responses {
+            export type $200 = IPlatformsFund.PayoutAccountHolderResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostRefundFundsTransfer {
+        export type RequestBody = IPlatformsFund.RefundFundsTransferRequest;
+        namespace Responses {
+            export type $200 = IPlatformsFund.RefundFundsTransferResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostRefundNotPaidOutTransfers {
+        export type RequestBody = IPlatformsFund.RefundNotPaidOutTransfersRequest;
+        namespace Responses {
+            export type $200 = IPlatformsFund.RefundNotPaidOutTransfersResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostSetupBeneficiary {
+        export type RequestBody = IPlatformsFund.SetupBeneficiaryRequest;
+        namespace Responses {
+            export type $200 = IPlatformsFund.SetupBeneficiaryResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostTransferFunds {
+        export type RequestBody = IPlatformsFund.TransferFundsRequest;
+        namespace Responses {
+            export type $200 = IPlatformsFund.TransferFundsResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
     }
 }

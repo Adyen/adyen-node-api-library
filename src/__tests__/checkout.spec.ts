@@ -23,6 +23,7 @@ import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess
 import {paymentsSuccess} from "../__mocks__/checkout/paymentsSuccess";
 import {paymentDetailsSuccess} from "../__mocks__/checkout/paymentsDetailsSuccess";
 import {paymentSessionSuccess} from "../__mocks__/checkout/paymentSessionSucess";
+import {originKeysSuccess} from "../__mocks__/checkout/originkeysSuccess";
 import {paymentsResultMultibancoSuccess} from "../__mocks__/checkout/paymentsResultMultibancoSuccess";
 import {paymentsResultSuccess} from "../__mocks__/checkout/paymentsResultSucess";
 import Client from "../client";
@@ -172,11 +173,14 @@ describe("Checkout", (): void => {
             reference
         };
 
-        const paymentLinkSuccess: ICheckout.CreatePaymentLinkResponse = {
+        const paymentLinkSuccess: ICheckout.PaymentLinkResource = {
             amount,
             expiresAt,
             reference,
-            url: "paymentLinkResponse.url"
+            url: "paymentLinkResponse.url",
+            id: "mocked_id",
+            merchantAccount,
+            status: "active"
         };
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
@@ -236,6 +240,24 @@ describe("Checkout", (): void => {
 
         expect(paymentsResponse.pspReference).toBeTruthy();
         expect(paymentsResponse.additionalData).toBeTruthy();
+    });
+
+    test.each([false,true])("should get origin keys. isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const checkoutUtility = new Checkout(client);
+        const originKeysRequest: ICheckout.CheckoutUtilityRequest = {
+            originDomains: ["https://www.your-domain.com"],
+        };
+
+        nock(`${client.config.checkoutEndpoint}`)
+            .post(`/${Client.CHECKOUT_API_VERSION}/originKeys`)
+            .reply(200, originKeysSuccess);
+
+        const originKeysResponse = await checkoutUtility.originKeys(originKeysRequest);
+        if (originKeysResponse.originKeys) {
+            return expect(originKeysResponse.originKeys["https://www.your-domain.com"].startsWith("pub.v2")).toBeTruthy();
+        }
+        fail("Error: originKeysResponse.originKeys is empty");
     });
 });
 

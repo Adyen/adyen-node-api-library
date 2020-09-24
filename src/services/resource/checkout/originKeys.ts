@@ -25,7 +25,7 @@ class OriginKeys extends Resource {
     public constructor(service: Service) {
         super(
             service,
-            `${service.client.config.checkoutEndpoint}/${Client.CHECKOUT_UTILITY_API_VERSION}/originKeys`,
+            `${service.client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}/originKeys`,
         );
     }
 }

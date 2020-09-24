@@ -18,13 +18,13 @@
  */
 
 import nock from "nock";
-import {createClient} from "../__mocks__/base";
-import {disableSuccess} from "../__mocks__/recurring/disableSuccess";
-import {listRecurringDetailsSuccess} from "../__mocks__/recurring/listRecurringDetailsSuccess";
+import { createClient } from "../__mocks__/base";
+import { disableSuccess } from "../__mocks__/recurring/disableSuccess";
+import { listRecurringDetailsSuccess } from "../__mocks__/recurring/listRecurringDetailsSuccess";
 import Recurring from "../services/recurring";
 import Client from "../client";
-import {paymentsSuccess} from "../__mocks__/checkout/paymentsSuccess";
-import {createPaymentsCheckoutRequest} from "./checkout.spec";
+import { paymentsSuccess } from "../__mocks__/checkout/paymentsSuccess";
+import { createPaymentsCheckoutRequest } from "./checkout.spec";
 import Checkout from "../services/checkout";
 
 const createRecurringDetailsRequest = (): IRecurring.RecurringDetailsRequest => {
@@ -42,7 +42,7 @@ let checkout: Checkout;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    if (!nock.isActive()){
+    if (!nock.isActive()) {
         nock.activate();
     }
     client = createClient();

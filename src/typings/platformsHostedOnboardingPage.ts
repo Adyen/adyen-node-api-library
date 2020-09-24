@@ -12,12 +12,16 @@
  *                                      ######
  *                               #############
  *                               ############
+ *
  * Adyen NodeJS API Library
+ *
+ * Version of Platforms Hosted Onboarding Page: v6
+ *
  * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
-
+ 
 
 declare namespace IPlatformsHostedOnboardingPage {
     export interface ErrorFieldType {
@@ -32,7 +36,7 @@ declare namespace IPlatformsHostedOnboardingPage {
         /**
          * The type of error field.
          */
-        fieldType?: IPlatformsHostedOnboardingPage.FieldType;
+        fieldType?: FieldType;
     }
     export interface FieldType {
         /**
@@ -42,7 +46,7 @@ declare namespace IPlatformsHostedOnboardingPage {
         /**
          * The type of the field.
          */
-        fieldName?: "accountCode" | "accountHolderCode" | "accountHolderDetails" | "accountNumber" | "accountStateType" | "accountStatus" | "accountType" | "address" | "bankAccount" | "bankAccountCode" | "bankAccountName" | "bankAccountUUID" | "bankBicSwift" | "bankCity" | "bankCode" | "bankName" | "bankStatement" | "branchCode" | "businessContact" | "cardToken" | "checkCode" | "city" | "companyRegistration" | "country" | "countryCode" | "currency" | "currencyCode" | "dateOfBirth" | "description" | "destinationAccountCode" | "document" | "documentExpirationDate" | "documentIssuerCountry" | "documentIssuerState" | "documentName" | "documentNumber" | "documentType" | "doingBusinessAs" | "drivingLicence" | "drivingLicenceBack" | "drivingLicense" | "email" | "firstName" | "fullPhoneNumber" | "gender" | "hopWebserviceUser" | "houseNumberOrName" | "iban" | "idCard" | "idCardBack" | "idCardFront" | "idNumber" | "identityDocument" | "individualDetails" | "lastName" | "legalBusinessName" | "legalEntity" | "legalEntityType" | "merchantAccount" | "merchantCategoryCode" | "merchantReference" | "microDeposit" | "name" | "nationality" | "originalReference" | "ownerCity" | "ownerCountryCode" | "ownerHouseNumberOrName" | "ownerName" | "ownerPostalCode" | "ownerState" | "ownerStreet" | "passport" | "passportNumber" | "payoutMethodCode" | "personalData" | "phoneCountryCode" | "phoneNumber" | "postalCode" | "primaryCurrency" | "reason" | "registrationNumber" | "returnUrl" | "schedule" | "shareholder" | "shareholderCode" | "socialSecurityNumber" | "sourceAccountCode" | "stateOrProvince" | "status" | "store" | "storeDetail" | "storeName" | "storeReference" | "street" | "taxId" | "tier" | "tierNumber" | "transferCode" | "unknown" | "value" | "virtualAccount" | "visaNumber" | "webAddress";
+        fieldName?: "accountCode" | "accountHolderCode" | "accountHolderDetails" | "accountNumber" | "accountStateType" | "accountStatus" | "accountType" | "address" | "bankAccount" | "bankAccountCode" | "bankAccountName" | "bankAccountUUID" | "bankBicSwift" | "bankCity" | "bankCode" | "bankName" | "bankStatement" | "branchCode" | "businessContact" | "cardToken" | "checkCode" | "city" | "companyRegistration" | "country" | "countryCode" | "currency" | "currencyCode" | "dateOfBirth" | "description" | "destinationAccountCode" | "document" | "documentExpirationDate" | "documentIssuerCountry" | "documentIssuerState" | "documentName" | "documentNumber" | "documentType" | "doingBusinessAs" | "drivingLicence" | "drivingLicenceBack" | "drivingLicense" | "email" | "firstName" | "fullPhoneNumber" | "gender" | "hopWebserviceUser" | "houseNumberOrName" | "iban" | "idCard" | "idCardBack" | "idCardFront" | "idNumber" | "identityDocument" | "individualDetails" | "lastName" | "legalBusinessName" | "legalEntity" | "legalEntityType" | "merchantAccount" | "merchantCategoryCode" | "merchantReference" | "microDeposit" | "name" | "nationality" | "originalReference" | "ownerCity" | "ownerCountryCode" | "ownerHouseNumberOrName" | "ownerName" | "ownerPostalCode" | "ownerState" | "ownerStreet" | "passport" | "passportNumber" | "payoutMethodCode" | "personalData" | "phoneCountryCode" | "phoneNumber" | "postalCode" | "primaryCurrency" | "reason" | "registrationNumber" | "returnUrl" | "schedule" | "shareholder" | "shareholderCode" | "socialSecurityNumber" | "sourceAccountCode" | "stateOrProvince" | "status" | "stockExchange" | "stockNumber" | "stockTicker" | "store" | "storeDetail" | "storeName" | "storeReference" | "street" | "taxId" | "tier" | "tierNumber" | "transferCode" | "unknown" | "value" | "virtualAccount" | "visaNumber" | "webAddress";
         /**
          * The code of the shareholder that the field belongs to. If empty, the field belongs to an account holder.
          */
@@ -53,6 +57,10 @@ declare namespace IPlatformsHostedOnboardingPage {
          * The account holder code you provided when you created the account holder.
          */
         accountHolderCode: string;
+        /**
+         * Allows editing checks even if all the checks have passed.
+         */
+        editMode?: boolean;
         /**
          * The platform name which will show up in the welcome page.
          */
@@ -66,11 +74,11 @@ declare namespace IPlatformsHostedOnboardingPage {
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsHostedOnboardingPage.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The URL to the Hosted Onboarding Page where you should redirect your sub-merchant. This URL must be used within 15 seconds and can only be used once.
          */
@@ -79,18 +87,23 @@ declare namespace IPlatformsHostedOnboardingPage {
          * The result code.
          */
         resultCode?: string;
-        /**
-         * Indicates whether the request is processed synchronously or asynchronously.  Depending on the request's platform settings, the following scenarios may be applied:
-         * * **sync:** The processing of the request is immediately attempted; it may result in an error if the providing service is unavailable.
-         * * **async:** The request is queued and will be executed when the providing service is available in the order in which the requests are received.
-         * * **asyncOnError:** The processing of the request is immediately attempted, but if the providing service is unavailable, the request is scheduled in a queue.
-         */
-        submittedAsync: boolean;
     }
-    namespace Post {
+}
+declare namespace Paths {
+    namespace PostGetOnboardingUrl {
         export type RequestBody = IPlatformsHostedOnboardingPage.GetOnboardingUrlRequest;
         namespace Responses {
             export type $200 = IPlatformsHostedOnboardingPage.GetOnboardingUrlResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
         }
     }
 }

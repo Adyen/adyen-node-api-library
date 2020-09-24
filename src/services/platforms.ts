@@ -26,14 +26,14 @@ import PlatformsFund from "./resource/platforms/fund";
 import PlatformsHostedOnboardingPage from "./resource/platforms/hop";
 import PlatformsNotificationConfiguration from "./resource/platforms/notificationConfiguration";
 
-type AccountType = AccountTypesEnum.Accounts
-type VerificationType = AccountTypesEnum.Verification
-type AccountHoldersType = AccountTypesEnum.AccountHolders
+type AccountType = AccountTypesEnum.Accounts;
+type VerificationType = AccountTypesEnum.Verification;
+type AccountHoldersType = AccountTypesEnum.AccountHolders;
 
-type AccountsAccount = PlatformsAccount<AccountType>
-type AccountsVerification = PlatformsAccount<VerificationType>
-type AccountsAccountHolders = PlatformsAccount<AccountHoldersType>
-type PlatformsTypes = AccountsAccount | AccountsVerification | AccountsAccountHolders | PlatformsFund | PlatformsHostedOnboardingPage
+type AccountsAccount = PlatformsAccount<AccountType>;
+type AccountsVerification = PlatformsAccount<VerificationType>;
+type AccountsAccountHolders = PlatformsAccount<AccountHoldersType>;
+type PlatformsTypes = AccountsAccount | AccountsVerification | AccountsAccountHolders | PlatformsFund | PlatformsHostedOnboardingPage;
 
 class Platforms extends Service {
     /* PlatformsAccount */
@@ -58,24 +58,24 @@ class Platforms extends Service {
     private readonly _closeAccountHolder: PlatformsAccount<AccountHoldersType>;
 
     /* PlatformsFund */
-    private readonly _accountHolderBalance: PlatformsFund
-    private readonly _accountHolderTransactionList: PlatformsFund
-    private readonly _payoutAccountHolder: PlatformsFund
-    private readonly _transferFunds: PlatformsFund
-    private readonly _refundFundsTransfer: PlatformsFund
-    private readonly _setupBeneficiary: PlatformsFund
-    private readonly _refundNotPaidOutTransfers: PlatformsFund
+    private readonly _accountHolderBalance: PlatformsFund;
+    private readonly _accountHolderTransactionList: PlatformsFund;
+    private readonly _payoutAccountHolder: PlatformsFund;
+    private readonly _transferFunds: PlatformsFund;
+    private readonly _refundFundsTransfer: PlatformsFund;
+    private readonly _setupBeneficiary: PlatformsFund;
+    private readonly _refundNotPaidOutTransfers: PlatformsFund;
 
     /* HOP */
-    private readonly _getOnboardingUrl: PlatformsHostedOnboardingPage
+    private readonly _getOnboardingUrl: PlatformsHostedOnboardingPage;
 
     /* Notification Configuration */
-    private readonly _createNotificationConfiguration: PlatformsNotificationConfiguration
-    private readonly _getNotificationConfiguration: PlatformsNotificationConfiguration
-    private readonly _getNotificationConfigurationList:  PlatformsNotificationConfiguration
-    private readonly _testNotificationConfiguration: PlatformsNotificationConfiguration
-    private readonly _updateNotificationConfiguration: PlatformsNotificationConfiguration
-    private readonly _deleteNotificationConfiguration: PlatformsNotificationConfiguration
+    private readonly _createNotificationConfiguration: PlatformsNotificationConfiguration;
+    private readonly _getNotificationConfiguration: PlatformsNotificationConfiguration;
+    private readonly _getNotificationConfigurationList: PlatformsNotificationConfiguration;
+    private readonly _testNotificationConfiguration: PlatformsNotificationConfiguration;
+    private readonly _updateNotificationConfiguration: PlatformsNotificationConfiguration;
+    private readonly _deleteNotificationConfiguration: PlatformsNotificationConfiguration;
 
 
     public constructor(client: Client) {
@@ -140,7 +140,7 @@ class Platforms extends Service {
         updateAccountHolder: (request: IPlatformsAccount.UpdateAccountHolderRequest) => Promise<IPlatformsAccount.UpdateAccountHolderResponse>;
         deleteShareholders: (request: IPlatformsAccount.DeleteShareholderRequest) => Promise<IPlatformsAccount.GenericResponse>;
         checkAccountHolder: (request: IPlatformsAccount.PerformVerificationRequest) => Promise<IPlatformsAccount.GenericResponse>;
-        updateAccountHolderState: (request: IPlatformsAccount.UpdateAccountHolderStateRequest) => Promise<IPlatformsAccount.UpdateAccountHolderStateResponse>;
+        updateAccountHolderState: (request: IPlatformsAccount.UpdateAccountHolderStateRequest) => Promise<IPlatformsAccount.GetAccountHolderStatusResponse>;
     } {
         const closeAccount = this.createRequest<AccountsAccount, IPlatformsAccount.CloseAccountRequest, IPlatformsAccount.CloseAccountResponse>(this._closeAccount);
         const updateAccount = this.createRequest<AccountsAccount, IPlatformsAccount.UpdateAccountRequest, IPlatformsAccount.UpdateAccountResponse>(this._updateAccount);
@@ -155,7 +155,7 @@ class Platforms extends Service {
         const createAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.CreateAccountHolderRequest, IPlatformsAccount.CreateAccountHolderResponse>(this._createAccountHolder);
         const getAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.GetAccountHolderRequest, IPlatformsAccount.GetAccountHolderResponse>(this._getAccountHolder);
         const updateAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.UpdateAccountHolderRequest, IPlatformsAccount.UpdateAccountHolderResponse>(this._updateAccountHolder);
-        const updateAccountHolderState = this.createRequest<AccountsAccountHolders, IPlatformsAccount.UpdateAccountHolderStateRequest, IPlatformsAccount.UpdateAccountHolderStateResponse>(this._updateAccountHolderState);
+        const updateAccountHolderState = this.createRequest<AccountsAccountHolders, IPlatformsAccount.UpdateAccountHolderStateRequest, IPlatformsAccount.GetAccountHolderStatusResponse>(this._updateAccountHolderState);
         const suspendAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.SuspendAccountHolderRequest, IPlatformsAccount.SuspendAccountHolderResponse>(this._suspendAccountHolder);
         const unSuspendAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.UnSuspendAccountHolderRequest, IPlatformsAccount.UnSuspendAccountHolderResponse>(this._unSuspendAccountHolder);
         const closeAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.CloseAccountHolderRequest, IPlatformsAccount.CloseAccountHolderResponse>(this._closeAccountHolder);

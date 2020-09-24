@@ -12,12 +12,16 @@
  *                                      ######
  *                               #############
  *                               ############
+ *
  * Adyen NodeJS API Library
+ *
+ * Version of Platforms Account: v6
+ *
  * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
-
+ 
 
 declare namespace IPlatformsAccount {
     export interface Account {
@@ -43,11 +47,16 @@ declare namespace IPlatformsAccount {
          * > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
          */
         metadata?: {
+            [name: string]: string;
         };
         /**
          * The account's payout schedule.
          */
-        payoutSchedule?: IPlatformsAccount.PayoutScheduleResponse;
+        payoutSchedule?: PayoutScheduleResponse;
+        /**
+         * Speed with which payouts for this account are processed. Permitted values: `STANDARD`, `SAME_DAY`.
+         */
+        payoutSpeed?: "SAME_DAY" | "STANDARD";
         /**
          * The status of the account. Possible values: `Active`, `Inactive`, `Suspended`, `Closed`.
          */
@@ -57,7 +66,7 @@ declare namespace IPlatformsAccount {
         /**
          * The event.
          * >Permitted values: `InactivateAccount`, `RefundNotPaidOutTransfers`.
-         * For more information, refer to [Verification checks](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks).
+         * For more information, refer to [Verification checks](https://docs.adyen.com/platforms/onboarding-and-verification/verification-checks).
          */
         event: "InactivateAccount" | "RefundNotPaidOutTransfers";
         /**
@@ -73,19 +82,23 @@ declare namespace IPlatformsAccount {
         /**
          * The address of the account holder.
          */
-        address?: IPlatformsAccount.ViasAddress;
+        address?: ViasAddress;
         /**
          * Each of the bank accounts associated with the account holder.
          * > Each array entry should represent one bank account.
-         * > For comprehensive detail regarding the required `BankAccountDetail` fields, please refer to the [KYC Verification documentation](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks).
+         * > For comprehensive detail regarding the required `BankAccountDetail` fields, please refer to the [KYC Verification documentation](https://docs.adyen.com/platforms/onboarding-and-verification/verification-checks).
          */
-        bankAccountDetails?: IPlatformsAccount.BankAccountDetail[];
+        bankAccountDetails?: BankAccountDetail[];
+        /**
+         * The opaque reference value returned by the Adyen API during bank account login.
+         */
+        bankAggregatorDataReference?: string;
         /**
          * Details applicable to `Business` legal entities.
          * Populated only if the account holder's legal entity is of type `Business`.
          * > Required when being used in a `/createAccountHolder` request in which the legal entity is `Business`.
          */
-        businessDetails?: IPlatformsAccount.BusinessDetails;
+        businessDetails?: BusinessDetails;
         /**
          * The email address of the account holder.
          */
@@ -100,7 +113,7 @@ declare namespace IPlatformsAccount {
          * Populated only if the account holder's legal entity is of type `Individual`.
          * > Required when being used in a `/createAccountHolder` request in which the legal entity is `Individual`.
          */
-        individualDetails?: IPlatformsAccount.IndividualDetails;
+        individualDetails?: IndividualDetails;
         /**
          * The Merchant Category Code of the account holder.
          * > If not specified in the request, this will be derived from the platform account (which is configured by Adyen).
@@ -113,13 +126,14 @@ declare namespace IPlatformsAccount {
          * > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
          */
         metadata?: {
+            [name: string]: string;
         };
         /**
          * Each of the card tokens associated with the account holder.
          * > Each array entry should represent one card token.
-         * > For comprehensive detail regarding the required `CardToken` fields, please refer to the [KYC Verification documentation](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks).
+         * > For comprehensive detail regarding the required `CardToken` fields, please refer to the [KYC Verification documentation](https://docs.adyen.com/platforms/onboarding-and-verification/verification-checks).
          */
-        payoutMethods?: IPlatformsAccount.PayoutMethod[];
+        payoutMethods?: PayoutMethod[];
         /**
          * The URL of the website of the account holder.
          */
@@ -129,15 +143,15 @@ declare namespace IPlatformsAccount {
         /**
          * A list of events scheduled for the account holder.
          */
-        events: IPlatformsAccount.AccountEvent[];
+        events?: AccountEvent[];
         /**
          * The payout state of the account holder.
          */
-        payoutState: IPlatformsAccount.AccountPayoutState;
+        payoutState?: AccountPayoutState;
         /**
          * The processing state of the account holder.
          */
-        processingState: IPlatformsAccount.AccountProcessingState;
+        processingState?: AccountProcessingState;
         /**
          * The status of the account holder.
          * >Permitted values: `Active`, `Inactive`, `Suspended`, `Closed`.
@@ -146,55 +160,55 @@ declare namespace IPlatformsAccount {
         /**
          * The reason why the status was assigned to the account holder.
          */
-        statusReason: string;
+        statusReason?: string;
     }
     export interface AccountPayoutState {
         /**
          * Indicates whether payouts are allowed. This field is the overarching payout status, and is the aggregate of multiple conditions (e.g., KYC status, disabled flag, etc). If this field is false, no payouts will be permitted for any of the account holder's accounts. If this field is true, payouts will be permitted for any of the account holder's accounts.
          */
-        allowPayout: boolean;
+        allowPayout?: boolean;
         /**
          * The reason why payouts (to all of the account holder's accounts) have been disabled (by the platform). If the `disabled` field is true, this field can be used to explain why.
          */
-        disableReason: string;
+        disableReason?: string;
         /**
          * Indicates whether payouts have been disabled (by the platform) for all of the account holder's accounts. A platform may enable and disable this field at their discretion. If this field is true, `allowPayout` will be false and no payouts will be permitted for any of the account holder's accounts. If this field is false, `allowPayout` may or may not be enabled, depending on other factors.
          */
-        disabled: boolean;
+        disabled?: boolean;
         /**
          * The reason why payouts (to all of the account holder's accounts) have been disabled (by Adyen). If payouts have been disabled by Adyen, this field will explain why. If this field is blank, payouts have not been disabled by Adyen.
          */
-        notAllowedReason: string;
+        notAllowedReason?: string;
         /**
          * The maximum amount that payouts are limited to. Only applies if payouts are allowed but limited.
          */
-        payoutLimit: IPlatformsAccount.Amount;
+        payoutLimit?: Amount;
         /**
          * The payout tier that the account holder occupies.
          */
-        tierNumber: number; // int32
+        tierNumber?: number; // int32
     }
     export interface AccountProcessingState {
         /**
          * The reason why processing has been disabled.
          */
-        disableReason: string;
+        disableReason?: string;
         /**
          * Indicates whether the processing of payments is allowed.
          */
-        disabled: boolean;
+        disabled?: boolean;
         /**
          * The lower bound of the processing tier (i.e., an account holder must have processed at least this amount of money in order to be placed into this tier).
          */
-        processedFrom: IPlatformsAccount.Amount;
+        processedFrom?: Amount;
         /**
          * The upper bound of the processing tier (i.e., an account holder must have processed less than this amount of money in order to be placed into this tier).
          */
-        processedTo: IPlatformsAccount.Amount;
+        processedTo?: Amount;
         /**
          * The processing tier that the account holder occupies.
          */
-        tierNumber: number; // int32
+        tierNumber?: number; // int32
     }
     export interface Amount {
         /**
@@ -211,7 +225,7 @@ declare namespace IPlatformsAccount {
     export interface BankAccountDetail {
         /**
          * The bank account number (without separators).
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         accountNumber?: string;
         /**
@@ -219,7 +233,7 @@ declare namespace IPlatformsAccount {
          * Only applicable to bank accounts held in the USA.
          * The permitted values are: `checking`, `savings`.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         accountType?: string;
         /**
@@ -244,25 +258,25 @@ declare namespace IPlatformsAccount {
         bankAccountUUID?: string;
         /**
          * The bank identifier code.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         bankBicSwift?: string;
         /**
          * The city in which the bank branch is located.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         bankCity?: string;
         /**
          * The bank code of the banking institution with which the bank account is registered.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         bankCode?: string;
         /**
          * The name of the banking institution with which the bank account is held.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         bankName?: string;
         /**
@@ -270,46 +284,46 @@ declare namespace IPlatformsAccount {
          * * United States - Routing number
          * * United Kingdom - Sort code
          * * Germany - Bankleitzahl
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         branchCode?: string;
         /**
          * The check code of the bank account.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         checkCode?: string;
         /**
          * The two-letter country code in which the bank account is registered.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         countryCode?: string;
         /**
          * The currency in which the bank account deals.
          * >The permitted currency codes are defined in ISO-4217 (e.g. 'EUR').
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         currencyCode?: string;
         /**
          * The international bank account number.
          * >The IBAN standard is defined in ISO-13616.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         iban?: string;
         /**
          * The city of residence of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerCity?: string;
         /**
          * The country code of the country of residence of the bank account owner.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerCountryCode?: string;
         /**
@@ -319,34 +333,34 @@ declare namespace IPlatformsAccount {
         ownerDateOfBirth?: string;
         /**
          * The house name or number of the residence of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerHouseNumberOrName?: string;
         /**
          * The name of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerName?: string;
         /**
          * The country code of the country of nationality of the bank account owner.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerNationality?: string;
         /**
          * The postal code of the residence of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerPostalCode?: string;
         /**
          * The state of residence of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerState?: string;
         /**
          * The street name of the residence of the bank account owner.
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         ownerStreet?: string;
         /**
@@ -356,14 +370,14 @@ declare namespace IPlatformsAccount {
         /**
          * The tax ID number.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         taxId?: string;
         /**
          * The URL to be used for bank account verification.
          * This may be generated on bank account creation.
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on field requirements.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
          */
         urlForVerification?: string;
     }
@@ -384,7 +398,19 @@ declare namespace IPlatformsAccount {
          * Each of the shareholders associated with the company.
          * Each array entry should represent one shareholder.
          */
-        shareholders?: IPlatformsAccount.ShareholderContact[];
+        shareholders?: ShareholderContact[];
+        /**
+         * Market Identifier Code (MIC).
+         */
+        stockExchange?: string;
+        /**
+         * International Securities Identification Number (ISIN).
+         */
+        stockNumber?: string;
+        /**
+         * Stock Ticker symbol.
+         */
+        stockTicker?: string;
         /**
          * The tax ID of the company.
          */
@@ -400,15 +426,15 @@ declare namespace IPlatformsAccount {
         /**
          * The new status of the Account Holder.
          */
-        accountHolderStatus: IPlatformsAccount.AccountHolderStatus;
+        accountHolderStatus: AccountHolderStatus;
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -428,11 +454,11 @@ declare namespace IPlatformsAccount {
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -452,7 +478,7 @@ declare namespace IPlatformsAccount {
         /**
          * The details of the prospective account holder.
          */
-        accountHolderDetails: IPlatformsAccount.AccountHolderDetails;
+        accountHolderDetails: AccountHolderDetails;
         /**
          * If set to true, an account with the default options is created for this account holder.
          * **Default Value:** true
@@ -476,9 +502,13 @@ declare namespace IPlatformsAccount {
          */
         primaryCurrency?: string;
         /**
-         * The starting [processing tier](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks#tiers) for the prospective account holder.
+         * The starting [processing tier](https://docs.adyen.com/platforms/onboarding-and-verification/precheck-kyc-information) for the prospective account holder.
          */
         processingTier?: number; // int32
+        /**
+         * The identifier of the profile that applies to this entity.
+         */
+        verificationProfile?: string;
     }
     export interface CreateAccountHolderResponse {
         /**
@@ -492,11 +522,11 @@ declare namespace IPlatformsAccount {
         /**
          * Details of the new account holder.
          */
-        accountHolderDetails: IPlatformsAccount.AccountHolderDetails;
+        accountHolderDetails: AccountHolderDetails;
         /**
          * The status of the new account holder.
          */
-        accountHolderStatus: IPlatformsAccount.AccountHolderStatus;
+        accountHolderStatus: AccountHolderStatus;
         /**
          * The description of the new account holder.
          */
@@ -504,7 +534,7 @@ declare namespace IPlatformsAccount {
         /**
          * A list of fields that caused the `/createAccountHolder` request to fail.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
          * The type of legal entity of the new account holder.
          */
@@ -514,9 +544,9 @@ declare namespace IPlatformsAccount {
          */
         primaryCurrency?: string;
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -524,13 +554,21 @@ declare namespace IPlatformsAccount {
         /**
          * The details of KYC Verification of the account holder.
          */
-        verification: IPlatformsAccount.KYCVerificationResult;
+        verification: KYCVerificationResult;
+        /**
+         * The identifier of the profile that applies to this entity.
+         */
+        verificationProfile?: string;
     }
     export interface CreateAccountRequest {
         /**
          * The code of Account Holder under which to create the account.
          */
         accountHolderCode: string;
+        /**
+         * The bankAccountUUID of the bank account held by the account holder to couple the account with. Scheduled payouts in currencies matching the currency of this bank account will be sent to this bank account. Payouts in different currencies will be sent to a matching bank account of the account holder.
+         */
+        bankAccountUUID?: string;
         /**
          * A description of the account.
          */
@@ -541,6 +579,7 @@ declare namespace IPlatformsAccount {
          * > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
          */
         metadata?: {
+            [name: string]: string;
         };
         /**
          * The payout schedule of the prospective account.
@@ -552,6 +591,10 @@ declare namespace IPlatformsAccount {
          * >Required if the payoutSchedule is `HOLD`.
          */
         payoutScheduleReason?: string;
+        /**
+         * Speed with which payouts for this account are processed. Permitted values: `STANDARD`, `SAME_DAY`.
+         */
+        payoutSpeed?: "SAME_DAY" | "STANDARD";
     }
     export interface CreateAccountResponse {
         /**
@@ -563,24 +606,32 @@ declare namespace IPlatformsAccount {
          */
         accountHolderCode: string;
         /**
+         * The bankAccountUUID of the bank account held by the account holder to couple the account with. Scheduled payouts in currencies matching the currency of this bank account will be sent to this bank account. Payouts in different currencies will be sent to a matching bank account of the account holder.
+         */
+        bankAccountUUID?: string;
+        /**
          * The description of the account.
          */
         description?: string;
         /**
          * A list of fields that caused the `/createAccount` request to fail.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         metadata?: {
             [name: string]: string;
         };
         /**
          * The payout schedule of the account.
          */
-        payoutSchedule?: IPlatformsAccount.PayoutScheduleResponse;
+        payoutSchedule?: PayoutScheduleResponse;
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * Speed with which payouts for this account are processed. Permitted values: `STANDARD`, `SAME_DAY`.
          */
-        pspReference: string;
+        payoutSpeed?: "SAME_DAY" | "STANDARD";
+        /**
+         * The reference of a request. Can be used to uniquely identify the request.
+         */
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -630,7 +681,7 @@ declare namespace IPlatformsAccount {
          * The unique ID of the Bank Account to which the document applies.
          * >Required if the documentType is `BANK_STATEMENT` (i.e., a document is being submitted in order to verify a bank account).
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on when a document should be submitted in order to verify a bank account.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on when a document should be submitted in order to verify a bank account.
          */
         bankAccountUUID?: string;
         /**
@@ -646,7 +697,7 @@ declare namespace IPlatformsAccount {
          * * `DRIVING_LICENCE_FRONT` denotes an image containing only the front of the driving licence. In order for a document to be usable, both the `DRIVING_LICENCE_FRONT` and `DRIVING_LICENCE_BACK` must be submitted.
          * * `DRIVING_LICENCE_BACK` denotes an image containing only the back of the driving licence. In order for a document to be usable, both the `DRIVING_LICENCE_FRONT` and `DRIVING_LICENCE_FRONT` must be submitted.
          *
-         * >Please refer to [Verification checks](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks) for details on when each document type should be submitted.
+         * >Please refer to [Verification checks](https://docs.adyen.com/platforms/onboarding-and-verification/verification-checks) for details on when each document type should be submitted.
          */
         documentType: "BANK_STATEMENT" | "BSN" | "COMPANY_REGISTRATION_SCREENING" | "DRIVING_LICENCE" | "DRIVING_LICENCE_BACK" | "DRIVING_LICENCE_FRONT" | "ID_CARD" | "ID_CARD_BACK" | "ID_CARD_FRONT" | "PASSPORT" | "SSN" | "SUPPORTING_DOCUMENTS";
         /**
@@ -657,7 +708,7 @@ declare namespace IPlatformsAccount {
          * The code of the shareholder, to which the document applies.
          * >Required if the account holder referred to by the `accountHolderCode` has a `legalEntity` of type `Business` and the `documentType` is either `PASSPORT`, `ID_CARD_FRONT`, `ID_CARD_BACK`, `DRIVING_LICENCE_FRONT`, `DRIVING_LICENCE_BACK` (i.e. a document is being submitted in order to verify a shareholder).
          *
-         * >Refer to the [Onboarding and verification](https://docs.adyen.com/marketpay/onboarding-and-verification) section for details on when a document should be submitted in order to verify a shareholder.
+         * >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on when a document should be submitted in order to verify a shareholder.
          */
         shareholderCode?: string;
     }
@@ -673,7 +724,7 @@ declare namespace IPlatformsAccount {
         /**
          * The type of error field.
          */
-        fieldType?: IPlatformsAccount.FieldType;
+        fieldType?: FieldType;
     }
     export interface FieldType {
         /**
@@ -683,7 +734,7 @@ declare namespace IPlatformsAccount {
         /**
          * The type of the field.
          */
-        fieldName?: "accountCode" | "accountHolderCode" | "accountHolderDetails" | "accountNumber" | "accountStateType" | "accountStatus" | "accountType" | "address" | "bankAccount" | "bankAccountCode" | "bankAccountName" | "bankAccountUUID" | "bankBicSwift" | "bankCity" | "bankCode" | "bankName" | "bankStatement" | "branchCode" | "businessContact" | "cardToken" | "checkCode" | "city" | "companyRegistration" | "country" | "countryCode" | "currency" | "currencyCode" | "dateOfBirth" | "description" | "destinationAccountCode" | "document" | "documentExpirationDate" | "documentIssuerCountry" | "documentIssuerState" | "documentName" | "documentNumber" | "documentType" | "doingBusinessAs" | "drivingLicence" | "drivingLicenceBack" | "drivingLicense" | "email" | "firstName" | "fullPhoneNumber" | "gender" | "hopWebserviceUser" | "houseNumberOrName" | "iban" | "idCard" | "idCardBack" | "idCardFront" | "idNumber" | "identityDocument" | "individualDetails" | "lastName" | "legalBusinessName" | "legalEntity" | "legalEntityType" | "merchantAccount" | "merchantCategoryCode" | "merchantReference" | "microDeposit" | "name" | "nationality" | "originalReference" | "ownerCity" | "ownerCountryCode" | "ownerHouseNumberOrName" | "ownerName" | "ownerPostalCode" | "ownerState" | "ownerStreet" | "passport" | "passportNumber" | "payoutMethodCode" | "personalData" | "phoneCountryCode" | "phoneNumber" | "postalCode" | "primaryCurrency" | "reason" | "registrationNumber" | "returnUrl" | "schedule" | "shareholder" | "shareholderCode" | "socialSecurityNumber" | "sourceAccountCode" | "stateOrProvince" | "status" | "store" | "storeDetail" | "storeName" | "storeReference" | "street" | "taxId" | "tier" | "tierNumber" | "transferCode" | "unknown" | "value" | "virtualAccount" | "visaNumber" | "webAddress";
+        fieldName?: "accountCode" | "accountHolderCode" | "accountHolderDetails" | "accountNumber" | "accountStateType" | "accountStatus" | "accountType" | "address" | "bankAccount" | "bankAccountCode" | "bankAccountName" | "bankAccountUUID" | "bankBicSwift" | "bankCity" | "bankCode" | "bankName" | "bankStatement" | "branchCode" | "businessContact" | "cardToken" | "checkCode" | "city" | "companyRegistration" | "country" | "countryCode" | "currency" | "currencyCode" | "dateOfBirth" | "description" | "destinationAccountCode" | "document" | "documentExpirationDate" | "documentIssuerCountry" | "documentIssuerState" | "documentName" | "documentNumber" | "documentType" | "doingBusinessAs" | "drivingLicence" | "drivingLicenceBack" | "drivingLicense" | "email" | "firstName" | "fullPhoneNumber" | "gender" | "hopWebserviceUser" | "houseNumberOrName" | "iban" | "idCard" | "idCardBack" | "idCardFront" | "idNumber" | "identityDocument" | "individualDetails" | "lastName" | "legalBusinessName" | "legalEntity" | "legalEntityType" | "merchantAccount" | "merchantCategoryCode" | "merchantReference" | "microDeposit" | "name" | "nationality" | "originalReference" | "ownerCity" | "ownerCountryCode" | "ownerHouseNumberOrName" | "ownerName" | "ownerPostalCode" | "ownerState" | "ownerStreet" | "passport" | "passportNumber" | "payoutMethodCode" | "personalData" | "phoneCountryCode" | "phoneNumber" | "postalCode" | "primaryCurrency" | "reason" | "registrationNumber" | "returnUrl" | "schedule" | "shareholder" | "shareholderCode" | "socialSecurityNumber" | "sourceAccountCode" | "stateOrProvince" | "status" | "stockExchange" | "stockNumber" | "stockTicker" | "store" | "storeDetail" | "storeName" | "storeReference" | "street" | "taxId" | "tier" | "tierNumber" | "transferCode" | "unknown" | "value" | "virtualAccount" | "visaNumber" | "webAddress";
         /**
          * The code of the shareholder that the field belongs to. If empty, the field belongs to an account holder.
          */
@@ -693,11 +744,11 @@ declare namespace IPlatformsAccount {
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -727,15 +778,15 @@ declare namespace IPlatformsAccount {
         /**
          * Details of the account holder.
          */
-        accountHolderDetails: IPlatformsAccount.AccountHolderDetails;
+        accountHolderDetails: AccountHolderDetails;
         /**
          * The status of the account holder.
          */
-        accountHolderStatus: IPlatformsAccount.AccountHolderStatus;
+        accountHolderStatus: AccountHolderStatus;
         /**
          * A list of the accounts under the account holder.
          */
-        accounts?: IPlatformsAccount.Account[];
+        accounts?: Account[];
         /**
          * The description of the account holder.
          */
@@ -743,7 +794,7 @@ declare namespace IPlatformsAccount {
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
          * The legal entity of the account holder.
          */
@@ -753,9 +804,9 @@ declare namespace IPlatformsAccount {
          */
         primaryCurrency?: string;
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -767,7 +818,11 @@ declare namespace IPlatformsAccount {
         /**
          * The details of KYC Verification of the account holder.
          */
-        verification: IPlatformsAccount.KYCVerificationResult;
+        verification: KYCVerificationResult;
+        /**
+         * The identifier of the profile that applies to this entity.
+         */
+        verificationProfile?: string;
     }
     export interface GetAccountHolderStatusResponse {
         /**
@@ -777,15 +832,15 @@ declare namespace IPlatformsAccount {
         /**
          * The status of the Account Holder.
          */
-        accountHolderStatus: IPlatformsAccount.AccountHolderStatus;
+        accountHolderStatus: AccountHolderStatus;
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -809,15 +864,15 @@ declare namespace IPlatformsAccount {
         /**
          * A list of the documents and their details.
          */
-        documentDetails?: IPlatformsAccount.DocumentDetail[];
+        documentDetails?: DocumentDetail[];
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -828,33 +883,23 @@ declare namespace IPlatformsAccount {
          * The name of the individual.
          * >Make sure your account holder registers using the name shown on their Photo ID.
          */
-        name?: IPlatformsAccount.ViasName;
+        name?: ViasName;
         /**
          * Personal information of the individual.
          */
-        personalData?: IPlatformsAccount.ViasPersonalData;
-    }
-    export interface KYCBankAccountCheckResult {
-        /**
-         * The unique ID of the bank account to which the check applies.
-         */
-        bankAccountUUID: string;
-        /**
-         * A list of the checks and their statuses.
-         */
-        checks: IPlatformsAccount.KYCCheckStatusData[];
+        personalData?: ViasPersonalData;
     }
     export interface KYCCheckResult {
         /**
          * A list of the checks and their statuses.
          */
-        checks: IPlatformsAccount.KYCCheckStatusData[];
+        checks?: KYCCheckStatusData[];
     }
     export interface KYCCheckStatusData {
         /**
          * A list of the fields required for execution of the check.
          */
-        requiredFields: string[];
+        requiredFields?: string[];
         /**
          * The status of the check.
          * >Permitted Values: `DATA_PROVIDED`, `PASSED`, `PENDING`, `AWAITING_DATA`, `RETRY_LIMIT_REACHED`, `INVALID_DATA`, `FAILED`.
@@ -863,12 +908,12 @@ declare namespace IPlatformsAccount {
         /**
          * A summary of the execution of the check.
          */
-        summary: IPlatformsAccount.KYCCheckSummary;
+        summary?: KYCCheckSummary;
         /**
          * The type of check.
-         * >Permitted Values: `COMPANY_VERIFICATION`, `IDENTITY_VERIFICATION`, `PASSPORT_VERIFICATION`, `BANK_ACCOUNT_VERIFICATION`, `NONPROFIT_VERIFICATION`.
+         * >Permitted Values: `COMPANY_VERIFICATION`, `IDENTITY_VERIFICATION`, `PASSPORT_VERIFICATION`, `BANK_ACCOUNT_VERIFICATION`, `NONPROFIT_VERIFICATION`, `CARD_VERIFICATION`.
          */
-        type: "BANK_ACCOUNT_VERIFICATION" | "COMPANY_VERIFICATION" | "IDENTITY_VERIFICATION" | "NONPROFIT_VERIFICATION" | "PASSPORT_VERIFICATION";
+        type: "BANK_ACCOUNT_VERIFICATION" | "CARD_VERIFICATION" | "COMPANY_VERIFICATION" | "IDENTITY_VERIFICATION" | "NONPROFIT_VERIFICATION" | "PASSPORT_VERIFICATION" | "PAYOUT_METHOD_VERIFICATION";
     }
     export interface KYCCheckSummary {
         /**
@@ -880,29 +925,39 @@ declare namespace IPlatformsAccount {
          */
         kycCheckDescription?: string;
     }
+    export interface KYCPayoutMethodCheckResult {
+        /**
+         * A list of the checks and their statuses.
+         */
+        checks?: KYCCheckStatusData[];
+        /**
+         * The unique ID of the payoput method to which the check applies.
+         */
+        payoutMethodCode?: string;
+    }
     export interface KYCShareholderCheckResult {
         /**
          * A list of the checks and their statuses.
          */
-        checks: IPlatformsAccount.KYCCheckStatusData[];
+        checks?: KYCCheckStatusData[];
         /**
          * The code of the shareholder to which the check applies.
          */
-        shareholderCode: string;
+        shareholderCode?: string;
     }
     export interface KYCVerificationResult {
         /**
          * The result(s) of the checks on the account holder.
          */
-        accountHolder: IPlatformsAccount.KYCCheckResult;
+        accountHolder?: KYCCheckResult;
         /**
-         * The result(s) of the checks on the bank account(s).
+         * The result(s) of the checks on the payout method(s).
          */
-        bankAccounts: IPlatformsAccount.KYCBankAccountCheckResult[];
+        payoutMethods?: KYCPayoutMethodCheckResult[];
         /**
          * The result(s) of the checks on the shareholder(s).
          */
-        shareholders: IPlatformsAccount.KYCShareholderCheckResult[];
+        shareholders?: KYCShareholderCheckResult[];
     }
     export interface PayoutMethod {
         merchantAccount: string;
@@ -955,24 +1010,18 @@ declare namespace IPlatformsAccount {
         /**
          * The number of the document. Delete the given type if the value empty.
          */
-        number: string;
+        number?: string;
         /**
          * The type of the document. More then one item pert type does not allowed.
          * Valid values: ID, PASSPORT, VISA, DRIVINGLICENSE
          */
         type: "DRIVINGLICENSE" | "ID" | "PASSPORT" | "SOCIALSECURITY" | "VISA";
     }
-    namespace Post {
-        export type RequestBody = IPlatformsAccount.UploadDocumentRequest;
-        namespace Responses {
-            export type $200 = IPlatformsAccount.UpdateAccountHolderResponse;
-        }
-    }
     export interface ShareholderContact {
         /**
          * The address of the contact.
          */
-        address?: IPlatformsAccount.ViasAddress;
+        address?: ViasAddress;
         /**
          * The e-mail address of the contact.
          */
@@ -985,15 +1034,15 @@ declare namespace IPlatformsAccount {
         /**
          * The name of the contact.
          */
-        name?: IPlatformsAccount.ViasName;
+        name?: ViasName;
         /**
          * Personal data of the Shareholder.
          */
-        personalData?: IPlatformsAccount.ViasPersonalData;
+        personalData?: ViasPersonalData;
         /**
          * The phone number of the contact.
          */
-        phoneNumber?: IPlatformsAccount.ViasPhoneNumber;
+        phoneNumber?: ViasPhoneNumber;
         /**
          * The unique identifier (UUID) of the Shareholder.
          * >**If, during an Account Holder create or update request, this field is left blank (but other fields provided), a new Shareholder will be created with a procedurally-generated UUID.**
@@ -1025,15 +1074,15 @@ declare namespace IPlatformsAccount {
         /**
          * The new status of the Account Holder.
          */
-        accountHolderStatus: IPlatformsAccount.AccountHolderStatus;
+        accountHolderStatus: AccountHolderStatus;
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -1049,15 +1098,15 @@ declare namespace IPlatformsAccount {
         /**
          * The new status of the Account Holder.
          */
-        accountHolderStatus: IPlatformsAccount.AccountHolderStatus;
+        accountHolderStatus: AccountHolderStatus;
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -1073,7 +1122,7 @@ declare namespace IPlatformsAccount {
          *
          * Required if a processingTier is not provided.
          */
-        accountHolderDetails?: IPlatformsAccount.AccountHolderDetails;
+        accountHolderDetails?: AccountHolderDetails;
         /**
          * The description to which the Account Holder should be updated.
          */
@@ -1098,6 +1147,10 @@ declare namespace IPlatformsAccount {
          * >Required if accountHolderDetails are not provided.
          */
         processingTier?: number; // int32
+        /**
+         * The identifier of the profile that applies to this entity.
+         */
+        verificationProfile?: string;
     }
     export interface UpdateAccountHolderResponse {
         /**
@@ -1107,11 +1160,11 @@ declare namespace IPlatformsAccount {
         /**
          * Details of the account holder.
          */
-        accountHolderDetails?: IPlatformsAccount.AccountHolderDetails;
+        accountHolderDetails?: AccountHolderDetails;
         /**
          * The new status of the account holder.
          */
-        accountHolderStatus: IPlatformsAccount.AccountHolderStatus;
+        accountHolderStatus: AccountHolderStatus;
         /**
          * The description of the account holder.
          */
@@ -1119,7 +1172,7 @@ declare namespace IPlatformsAccount {
         /**
          * in case the account holder has not been updated, contains account holder fields, that did not pass the validation.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
          * The legal entity of the account holder.
          */
@@ -1129,9 +1182,9 @@ declare namespace IPlatformsAccount {
          */
         primaryCurrency?: string;
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -1139,7 +1192,11 @@ declare namespace IPlatformsAccount {
         /**
          * The details of KYC Verification of the account holder.
          */
-        verification: IPlatformsAccount.KYCVerificationResult;
+        verification: KYCVerificationResult;
+        /**
+         * The identifier of the profile that applies to this entity.
+         */
+        verificationProfile?: string;
     }
     export interface UpdateAccountHolderStateRequest {
         /**
@@ -1167,6 +1224,10 @@ declare namespace IPlatformsAccount {
          */
         accountCode: string;
         /**
+         * The bankAccountUUID of the bank account held by the account holder to couple the account with. Scheduled payouts in currencies matching the currency of this bank account will be sent to this bank account. Payouts in different currencies will be sent to a matching bank account of the account holder.
+         */
+        bankAccountUUID?: string;
+        /**
          * A description of the account.
          */
         description?: string;
@@ -1176,11 +1237,16 @@ declare namespace IPlatformsAccount {
          * > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
          */
         metadata?: {
+            [name: string]: string;
         };
         /**
          * The details of the payout schedule, to which the account should be updated.
          */
-        payoutSchedule?: IPlatformsAccount.UpdatePayoutScheduleRequest;
+        payoutSchedule?: UpdatePayoutScheduleRequest;
+        /**
+         * Speed with which payouts for this account are processed. Permitted values: `STANDARD`, `SAME_DAY`.
+         */
+        payoutSpeed?: "SAME_DAY" | "STANDARD";
     }
     export interface UpdateAccountResponse {
         /**
@@ -1188,46 +1254,32 @@ declare namespace IPlatformsAccount {
          */
         accountCode: string;
         /**
+         * The bankAccountUUID of the bank account held by the account holder to couple the account with. Scheduled payouts in currencies matching the currency of this bank account will be sent to this bank account. Payouts in different currencies will be sent to a matching bank account of the account holder.
+         */
+        bankAccountUUID?: string;
+        /**
          * The description of the account.
          */
         description?: string;
         /**
          * A list of fields that caused the `/updateAccount` request to fail.
          */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         metadata?: {
             [name: string]: string;
         };
         /**
          * The payout schedule of the account.
          */
-        payoutSchedule: IPlatformsAccount.PayoutScheduleResponse;
+        payoutSchedule?: PayoutScheduleResponse;
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * Speed with which payouts for this account are processed. Permitted values: `STANDARD`, `SAME_DAY`.
          */
-        pspReference: string;
+        payoutSpeed?: "SAME_DAY" | "STANDARD";
         /**
-         * The result code.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        resultCode?: string;
-    }
-    export interface UpdateAccountHolderStateResponse {
-        /**
-         * The account holder code.
-         */
-        accountHolderCode: string;
-        /**
-         * The account holder status.
-         */
-        accountHolderStatus: string;
-        /**
-         * A list of fields that caused the `/updateAccount` request to fail.
-         */
-        invalidFields?: IPlatformsAccount.ErrorFieldType[];
-        /**
-         * The reference of a request.  Can be used to uniquely identify the request.
-         */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -1258,13 +1310,13 @@ declare namespace IPlatformsAccount {
         /**
          * The content of the document as represented by a Base64-encoded string.
          *
-         * To learn about requirements, see [Bank account check](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks/bank-account-check#requirements) and [Photo ID check](https://docs.adyen.com/marketpay/onboarding-and-verification/verification-checks/photo-id-check#requirements).
+         * To learn about requirements, see [Bank account check](https://docs.adyen.com/platforms/onboarding-and-verification/verification-checks/bank-account-check#requirements) and [Photo ID check](https://docs.adyen.com/platforms/onboarding-and-verification/verification-checks/photo-id-check#requirements).
          */
         documentContent: string; // byte
         /**
          * Details of the document being submitted.
          */
-        documentDetail: IPlatformsAccount.DocumentDetail;
+        documentDetail: DocumentDetail;
     }
     export interface ViasAddress {
         /**
@@ -1329,7 +1381,7 @@ declare namespace IPlatformsAccount {
         /**
          * Key value pairs of document type and identify numbers
          */
-        documentData?: IPlatformsAccount.PersonalDocumentData[];
+        documentData?: PersonalDocumentData[];
         /**
          * The nationality of the person represented by a two-character country code.
          * >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. 'NL').
@@ -1352,5 +1404,263 @@ declare namespace IPlatformsAccount {
          * >The following values are permitted: `Landline`, `Mobile`, `SIP`, `Fax`.
          */
         phoneType?: "Fax" | "Landline" | "Mobile" | "SIP";
+    }
+}
+declare namespace Paths {
+    namespace PostCheckAccountHolder {
+        export type RequestBody = IPlatformsAccount.PerformVerificationRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.GenericResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostCloseAccount {
+        export type RequestBody = IPlatformsAccount.CloseAccountRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.CloseAccountResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostCloseAccountHolder {
+        export type RequestBody = IPlatformsAccount.CloseAccountHolderRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.CloseAccountHolderResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostCreateAccount {
+        export type RequestBody = IPlatformsAccount.CreateAccountRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.CreateAccountResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostCreateAccountHolder {
+        export type RequestBody = IPlatformsAccount.CreateAccountHolderRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.CreateAccountHolderResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostDeleteBankAccounts {
+        export type RequestBody = IPlatformsAccount.DeleteBankAccountRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.GenericResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostDeletePayoutMethods {
+        export type RequestBody = IPlatformsAccount.DeletePayoutMethodRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.GenericResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostDeleteShareholders {
+        export type RequestBody = IPlatformsAccount.DeleteShareholderRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.GenericResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostGetAccountHolder {
+        export type RequestBody = IPlatformsAccount.GetAccountHolderRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.GetAccountHolderResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostGetUploadedDocuments {
+        export type RequestBody = IPlatformsAccount.GetUploadedDocumentsRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.GetUploadedDocumentsResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostSuspendAccountHolder {
+        export type RequestBody = IPlatformsAccount.SuspendAccountHolderRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.SuspendAccountHolderResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostUnSuspendAccountHolder {
+        export type RequestBody = IPlatformsAccount.UnSuspendAccountHolderRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.UnSuspendAccountHolderResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostUpdateAccount {
+        export type RequestBody = IPlatformsAccount.UpdateAccountRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.UpdateAccountResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostUpdateAccountHolder {
+        export type RequestBody = IPlatformsAccount.UpdateAccountHolderRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.UpdateAccountHolderResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostUpdateAccountHolderState {
+        export type RequestBody = IPlatformsAccount.UpdateAccountHolderStateRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.GetAccountHolderStatusResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostUploadDocument {
+        export type RequestBody = IPlatformsAccount.UploadDocumentRequest;
+        namespace Responses {
+            export type $200 = IPlatformsAccount.UpdateAccountHolderResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
     }
 }
