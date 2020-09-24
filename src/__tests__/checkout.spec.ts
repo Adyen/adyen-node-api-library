@@ -291,4 +291,71 @@ describe("Checkout", (): void => {
         }
         fail("Error: originKeysResponse.originKeys is empty");
     });
+
+    // TODO: add gift card to PaymentMethod and unmock test
+    test.each([true, true])("should get payment methods balance", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const paymentMethodsRequest: ICheckout.CheckoutBalanceCheckRequest = {
+            merchantAccount,
+            amount: createAmountObject("USD", 1000),
+            paymentMethod: { },
+            reference: "mocked_reference"
+        };
+
+        const paymentMethodsBalanceResponse: ICheckout.CheckoutBalanceCheckResponse = { balance: {currency: "USD", value: 1000}};
+        scope.post("/paymentMethods/balance")
+            .reply(200,  paymentMethodsBalanceResponse);
+
+        const paymentsResponse: ICheckout.CheckoutBalanceCheckResponse = await checkout.paymentMethodsBalance(paymentMethodsRequest);
+        expect(paymentsResponse.balance.value).toEqual(1000);
+    });
+
+    test.each([false, true])("should create order", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const orderRequest: ICheckout.CheckoutCreateOrderRequest = {
+            amount: createAmountObject("USD", 1000),
+            merchantAccount,
+            reference
+        };
+
+        const orderResponse: ICheckout.CheckoutCreateOrderResponse = {expiresAt, orderData: "mocked_order_data", remainingAmount: {currency: "USD", value: 500} };
+        scope.post("/orders")
+            .reply(200,  orderResponse);
+
+        const response: ICheckout.CheckoutCreateOrderResponse = await checkout.orders(orderRequest);
+        expect(response).toBeTruthy();
+    });
+
+    test.each([false, true])("should cancel order", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const orderRequest: ICheckout.CheckoutCreateOrderRequest = {
+            amount: createAmountObject("USD", 1000),
+            merchantAccount,
+            reference
+        };
+
+        const orderResponse: ICheckout.CheckoutCreateOrderResponse = {expiresAt, orderData: "mocked_order_data", remainingAmount: {currency: "USD", value: 500} };
+        scope.post("/orders")
+            .reply(200,  orderResponse);
+
+        const createOrderResponse: ICheckout.CheckoutCreateOrderResponse = await checkout.orders(orderRequest);
+        
+        const orderCancelResponse: ICheckout.CheckoutCancelOrderResponse = {
+            pspReference: "mocked_psp_ref",
+            resultCode: "CANCELLED"
+        };
+        scope.post("/orders/cancel")
+            .reply(200,  orderCancelResponse);
+
+        const response: ICheckout.CheckoutCancelOrderResponse = await checkout.ordersCancel({
+            order: {
+                orderData: createOrderResponse.orderData,
+                pspReference: createOrderResponse.pspReference!
+            },
+            merchantAccount
+        });
+        expect(response).toBeTruthy();
+    });
 });
