@@ -94,4 +94,35 @@ describe("Recurring", (): void => {
             fail(e.message);
         }
     });
+
+
+    // TODO: register account for AccountUpdater and unmock test
+    test.each([true])("should schedule account updater, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const scheduleAccountUpdaterSuccess: IRecurring.ScheduleAccountUpdaterResult = {
+            pspReference: "mocked_psp",
+            result: "SUCCESS"
+        };
+
+        scope.post("/scheduleAccountUpdater")
+            .reply(200, scheduleAccountUpdaterSuccess);
+
+        const request: IRecurring.ScheduleAccountUpdaterRequest = {
+            merchantAccount: process.env.ADYEN_MERCHANT!,
+            reference: "ref",
+            card: {
+                expiryMonth: "03",
+                expiryYear: "2030",
+                holderName: "John Smith",
+                number: "4111111111111111"
+            }
+        };
+
+        try {
+            const result = await recurring.scheduleAccountUpdater(request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e.message);
+        }
+    });
 });
