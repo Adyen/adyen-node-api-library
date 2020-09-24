@@ -100,7 +100,11 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
         requestOptions.headers["Cache-Control"] = "no-cache";
-        requestOptions.method = ApiConstants.METHOD_POST;
+
+        if (!requestOptions.method) {
+            requestOptions.method = ApiConstants.METHOD_POST;
+        }
+
         requestOptions.headers[ApiConstants.ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
         requestOptions.headers[ApiConstants.USER_AGENT] = `${applicationName} ${Client.LIB_NAME}/${Client.LIB_VERSION}`;
 

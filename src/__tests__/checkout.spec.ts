@@ -85,6 +85,46 @@ function createPaymentSessionRequest(): ICheckout.PaymentSetupRequest {
         sdkVersion: "3.7.0"
     };
 }
+function getPaymentLinkSuccess(expiresAt: string): ICheckout.PaymentLinkResource {
+    return {
+        amount: createAmountObject("USD", 1000),
+        expiresAt,
+        reference,
+        url: "paymentLinkResponse.url",
+        id: "mocked_id",
+        merchantAccount,
+        status: "active"
+    };
+}
+
+function createPaymentLinkRequest(): ICheckout.CreatePaymentLinkRequest {
+    return {
+        allowedPaymentMethods: ["scheme", "boletobancario"],
+        amount: createAmountObject("USD", 1000),
+        countryCode: "BR",
+        merchantAccount,
+        shopperReference: "shopperReference",
+        shopperEmail: "test@email.com",
+        shopperLocale: "pt_BR",
+        billingAddress: {
+            street: "Roque Petroni Jr",
+            postalCode: "59000060",
+            city: "São Paulo",
+            houseNumberOrName: "999",
+            country: "BR",
+            stateOrProvince: "SP"
+        },
+        deliveryAddress: {
+            street: "Roque Petroni Jr",
+            postalCode: "59000060",
+            city: "São Paulo",
+            houseNumberOrName: "999",
+            country: "BR",
+            stateOrProvince: "SP"
+        },
+        reference
+    };
+}
 
 let client: Client;
 let checkout: Checkout;
@@ -144,49 +184,41 @@ describe("Checkout", (): void => {
 
     test.each([false, true])("should have valid payment link, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        const amount = createAmountObject("BRL", 1000);
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkRequest: ICheckout.CreatePaymentLinkRequest = {
-            allowedPaymentMethods: ["scheme", "boletobancario"],
-            amount,
-            countryCode: "BR",
-            merchantAccount,
-            shopperReference: "shopperReference",
-            shopperEmail: "test@email.com",
-            shopperLocale: "pt_BR",
-            billingAddress: {
-                street: "Roque Petroni Jr",
-                postalCode: "59000060",
-                city: "São Paulo",
-                houseNumberOrName: "999",
-                country: "BR",
-                stateOrProvince: "SP"
-            },
-            deliveryAddress: {
-                street: "Roque Petroni Jr",
-                postalCode: "59000060",
-                city: "São Paulo",
-                houseNumberOrName: "999",
-                country: "BR",
-                stateOrProvince: "SP"
-            },
-            reference
-        };
-
-        const paymentLinkSuccess: ICheckout.PaymentLinkResource = {
-            amount,
-            expiresAt,
-            reference,
-            url: "paymentLinkResponse.url",
-            id: "mocked_id",
-            merchantAccount,
-            status: "active"
-        };
+        const paymentLinkSuccess: ICheckout.PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
-        const paymentSuccessLinkResponse = await checkout.paymentLinks(paymentLinkRequest);
+        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
         expect(paymentSuccessLinkResponse).toBeTruthy();
+    });
+
+    test.each([isCI, true])("should get payment link, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const paymentLinkSuccess: ICheckout.PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
+
+        scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
+
+        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
+
+        scope.get(`/paymentLinks/${paymentSuccessLinkResponse.id}`).reply(200, paymentLinkSuccess);
+        const paymentLink = await checkout.getPaymentLinks(paymentSuccessLinkResponse.id);
+        expect(paymentLink).toBeTruthy();
+    });
+
+    test.each([isCI, true])("should patch payment link, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const paymentLinkSuccess: ICheckout.PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
+
+        scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
+
+        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
+
+        scope.patch(`/paymentLinks/${paymentSuccessLinkResponse.id}`).reply(200, { ...paymentLinkSuccess, status: "expired" });
+        const paymentLink = await checkout.updatePaymentLinks(paymentSuccessLinkResponse.id, "expired");
+        expect(paymentLink.status).toEqual("expired");
     });
 
     test.each([isCI, true])("should have payment details, isMock: %p", async (isMock): Promise<void> => {
@@ -260,4 +292,3 @@ describe("Checkout", (): void => {
         fail("Error: originKeysResponse.originKeys is empty");
     });
 });
-

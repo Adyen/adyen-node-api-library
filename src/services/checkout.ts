@@ -29,6 +29,7 @@ import PaymentLinks from "./resource/checkout/paymentLinks";
 import OriginKeys from "./resource/checkout/originKeys";
 import setApplicationInfo from "../helpers/setApplicationInfo";
 import { IRequest } from "../typings/requestOptions";
+import PaymentLinksId from "./resource/checkout/paymentLinksId";
 
 class Checkout extends ApiKeyAuthenticatedService {
     private readonly _payments: Payments;
@@ -37,6 +38,7 @@ class Checkout extends ApiKeyAuthenticatedService {
     private readonly _paymentSession: PaymentSession;
     private readonly _paymentsResult: PaymentsResult;
     private readonly _paymentLinks: PaymentLinks;
+    private readonly _paymentLinksId: PaymentLinksId;
     private readonly _originKeys: OriginKeys;
 
     public constructor(client: Client) {
@@ -47,6 +49,7 @@ class Checkout extends ApiKeyAuthenticatedService {
         this._paymentSession = new PaymentSession(this);
         this._paymentsResult = new PaymentsResult(this);
         this._paymentLinks = new PaymentLinks(this);
+        this._paymentLinksId = new PaymentLinksId(this);
         this._originKeys = new OriginKeys(this);
     }
 
@@ -69,6 +72,24 @@ class Checkout extends ApiKeyAuthenticatedService {
         return getJsonResponse<ICheckout.CreatePaymentLinkRequest, ICheckout.PaymentLinkResource>(
             this._paymentLinks,
             paymentLinkRequest
+        );
+    }
+
+    public getPaymentLinks(linkId: string): Promise<ICheckout.PaymentLinkResource> {
+        this._paymentLinksId.id = linkId;
+        return getJsonResponse<{}, ICheckout.PaymentLinkResource>(
+            this._paymentLinksId,
+            {},
+            { method: "GET" }
+        );
+    }
+
+    public updatePaymentLinks(linkId: string, status: "expired"): Promise<ICheckout.PaymentLinkResource> {
+        this._paymentLinksId.id = linkId;
+        return getJsonResponse<{}, ICheckout.PaymentLinkResource>(
+            this._paymentLinksId,
+            { status },
+            { method: "PATCH" }
         );
     }
 
