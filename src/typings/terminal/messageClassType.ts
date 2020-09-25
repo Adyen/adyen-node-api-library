@@ -32,7 +32,7 @@
 
 
 export enum MessageClassType {
-    Device = <any> 'Device',
-    Event = <any> 'Event',
-    Service = <any> 'Service'
+    Device = "Device" as any,
+    Event = "Event" as any,
+    Service = "Service" as any
 }

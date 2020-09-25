@@ -32,7 +32,7 @@
 
 
 export enum TerminalEnvironmentType {
-    Attended = <any> 'Attended',
-    SemiAttended = <any> 'SemiAttended',
-    Unattended = <any> 'Unattended'
+    Attended = "Attended" as any,
+    SemiAttended = "SemiAttended" as any,
+    Unattended = "Unattended" as any
 }

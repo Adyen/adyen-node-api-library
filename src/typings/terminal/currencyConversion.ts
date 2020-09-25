@@ -30,19 +30,19 @@
  */
 
 
-import { Amount } from './amount';
+import { Amount } from "./amount";
 
 export class CurrencyConversion {
-    'commission'?: number;
-    'convertedAmount': Amount;
-    'customerApprovedFlag'?: boolean;
-    'declaration'?: string;
-    'markup'?: number;
-    'rate'?: number;
+    "commission"?: number;
+    "convertedAmount": Amount;
+    "customerApprovedFlag"?: boolean;
+    "declaration"?: string;
+    "markup"?: number;
+    "rate"?: number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "commission",
             "baseName": "Commission",

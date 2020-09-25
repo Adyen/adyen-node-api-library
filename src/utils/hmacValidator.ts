@@ -17,11 +17,11 @@
  * See the LICENSE file for more info.
  */
 
-import {createHmac} from "crypto";
-import {NotificationRequestItem} from "../typings/notification/models";
-import {ApiConstants} from "../constants/apiConstants";
+import { createHmac } from "crypto";
+import { NotificationRequestItem } from "../typings/notification/models";
+import { ApiConstants } from "../constants/apiConstants";
 
-type DataToSign = NotificationRequestItem | { [key: string]: string }
+type DataToSign = NotificationRequestItem | { [key: string]: string };
 
 class HmacValidator {
     public static HMAC_SHA256_ALGORITHM = "sha256";

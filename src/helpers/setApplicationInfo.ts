@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 
-import {ApplicationInfo} from "../typings/applicationInfo";
+import { ApplicationInfo } from "../typings/applicationInfo";
 
 interface AppInfo { applicationInfo?: ApplicationInfo }
 

@@ -30,20 +30,20 @@
  */
 
 
-import { CardData } from './cardData';
-import { CheckData } from './checkData';
-import { MobileData } from './mobileData';
-import { PaymentInstrumentType } from './paymentInstrumentType';
+import { CardData } from "./cardData";
+import { CheckData } from "./checkData";
+import { MobileData } from "./mobileData";
+import { PaymentInstrumentType } from "./paymentInstrumentType";
 
 export class PaymentInstrumentData {
-    'cardData'?: CardData;
-    'checkData'?: CheckData;
-    'mobileData'?: MobileData;
-    'paymentInstrumentType': PaymentInstrumentType;
+    "cardData"?: CardData;
+    "checkData"?: CheckData;
+    "mobileData"?: MobileData;
+    "paymentInstrumentType": PaymentInstrumentType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "cardData",
             "baseName": "CardData",

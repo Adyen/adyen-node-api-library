@@ -30,15 +30,15 @@
  */
 
 
-import { LoyaltyAccountId } from './loyaltyAccountId';
+import { LoyaltyAccountId } from "./loyaltyAccountId";
 
 export class LoyaltyAccount {
-    'loyaltyAccountID': LoyaltyAccountId;
-    'loyaltyBrand'?: string;
+    "loyaltyAccountID": LoyaltyAccountId;
+    "loyaltyBrand"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "loyaltyAccountID",
             "baseName": "LoyaltyAccountID",

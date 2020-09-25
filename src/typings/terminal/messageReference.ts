@@ -32,15 +32,15 @@
 
 
 export class MessageReference {
-    'deviceID'?: string;
-    'messageCategory'?: MessageReference.MessageCategoryEnum;
-    'pOIID'?: string;
-    'saleID'?: string;
-    'serviceID'?: string;
+    "deviceID"?: string;
+    "messageCategory"?: MessageReference.MessageCategoryEnum;
+    "pOIID"?: string;
+    "saleID"?: string;
+    "serviceID"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "deviceID",
             "baseName": "DeviceID",
@@ -74,32 +74,32 @@ export class MessageReference {
 
 export namespace MessageReference {
     export enum MessageCategoryEnum {
-        Abort = <any> 'Abort',
-        Admin = <any> 'Admin',
-        BalanceInquiry = <any> 'BalanceInquiry',
-        Batch = <any> 'Batch',
-        CardAcquisition = <any> 'CardAcquisition',
-        CardReaderAPDU = <any> 'CardReaderAPDU',
-        CardReaderInit = <any> 'CardReaderInit',
-        CardReaderPowerOff = <any> 'CardReaderPowerOff',
-        Diagnosis = <any> 'Diagnosis',
-        Display = <any> 'Display',
-        EnableService = <any> 'EnableService',
-        Event = <any> 'Event',
-        GetTotals = <any> 'GetTotals',
-        Input = <any> 'Input',
-        InputUpdate = <any> 'InputUpdate',
-        Login = <any> 'Login',
-        Logout = <any> 'Logout',
-        Loyalty = <any> 'Loyalty',
-        PIN = <any> 'PIN',
-        Payment = <any> 'Payment',
-        Print = <any> 'Print',
-        Reconciliation = <any> 'Reconciliation',
-        Reversal = <any> 'Reversal',
-        Sound = <any> 'Sound',
-        StoredValue = <any> 'StoredValue',
-        TransactionStatus = <any> 'TransactionStatus',
-        Transmit = <any> 'Transmit'
+        Abort = "Abort" as any,
+        Admin = "Admin" as any,
+        BalanceInquiry = "BalanceInquiry" as any,
+        Batch = "Batch" as any,
+        CardAcquisition = "CardAcquisition" as any,
+        CardReaderAPDU = "CardReaderAPDU" as any,
+        CardReaderInit = "CardReaderInit" as any,
+        CardReaderPowerOff = "CardReaderPowerOff" as any,
+        Diagnosis = "Diagnosis" as any,
+        Display = "Display" as any,
+        EnableService = "EnableService" as any,
+        Event = "Event" as any,
+        GetTotals = "GetTotals" as any,
+        Input = "Input" as any,
+        InputUpdate = "InputUpdate" as any,
+        Login = "Login" as any,
+        Logout = "Logout" as any,
+        Loyalty = "Loyalty" as any,
+        PIN = "PIN" as any,
+        Payment = "Payment" as any,
+        Print = "Print" as any,
+        Reconciliation = "Reconciliation" as any,
+        Reversal = "Reversal" as any,
+        Sound = "Sound" as any,
+        StoredValue = "StoredValue" as any,
+        TransactionStatus = "TransactionStatus" as any,
+        Transmit = "Transmit" as any
     }
 }

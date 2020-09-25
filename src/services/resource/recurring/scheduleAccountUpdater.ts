@@ -21,13 +21,13 @@ import Client from "../../../client";
 import Service from "../../../service";
 import Resource from "../../resource";
 
-class OriginKeys extends Resource {
+class ScheduleAccountUpdater extends Resource {
     public constructor(service: Service) {
         super(
             service,
-            `${service.client.config.checkoutEndpoint}/${Client.CHECKOUT_UTILITY_API_VERSION}/originKeys`,
+            `${service.client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}/scheduleAccountUpdater`,
         );
     }
 }
 
-export default OriginKeys;
+export default ScheduleAccountUpdater;

@@ -32,14 +32,14 @@
 
 
 export enum InfoQualifyType {
-    CustomerAssistance = <any> 'CustomerAssistance',
-    Display = <any> 'Display',
-    Document = <any> 'Document',
-    Error = <any> 'Error',
-    Input = <any> 'Input',
-    POIReplication = <any> 'POIReplication',
-    Receipt = <any> 'Receipt',
-    Sound = <any> 'Sound',
-    Status = <any> 'Status',
-    Voucher = <any> 'Voucher'
+    CustomerAssistance = "CustomerAssistance" as any,
+    Display = "Display" as any,
+    Document = "Document" as any,
+    Error = "Error" as any,
+    Input = "Input" as any,
+    POIReplication = "POIReplication" as any,
+    Receipt = "Receipt" as any,
+    Sound = "Sound" as any,
+    Status = "Status" as any,
+    Voucher = "Voucher" as any
 }

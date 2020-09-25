@@ -29,21 +29,21 @@
  * Do not edit the class manually.
  */
 
-import { NotificationItem } from './notificationItem';
+import { NotificationItem } from "./notificationItem";
 
 export class Notification {
     /**
     * Informs about the origin of the notification: - true: the notification originated from the live environment. - false: the notification originated from the test environment.
     */
-    'live': string;
+    "live": string;
     /**
     * A container object for the details included in the notification.
     */
-    'notificationItems': Array<NotificationItem>;
+    "notificationItems": NotificationItem[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "live",
             "baseName": "live",

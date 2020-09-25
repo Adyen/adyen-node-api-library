@@ -32,8 +32,8 @@
 
 
 export enum CharacterStyleType {
-    Bold = <any> 'Bold',
-    Italic = <any> 'Italic',
-    Normal = <any> 'Normal',
-    Underlined = <any> 'Underlined'
+    Bold = "Bold" as any,
+    Italic = "Italic" as any,
+    Normal = "Normal" as any,
+    Underlined = "Underlined" as any
 }

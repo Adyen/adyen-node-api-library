@@ -32,13 +32,13 @@
 
 
 export class DiagnosisRequest {
-    'acquirerID'?: Array<string>;
-    'hostDiagnosisFlag'?: boolean;
-    'pOIID'?: string;
+    "acquirerID"?: string[];
+    "hostDiagnosisFlag"?: boolean;
+    "pOIID"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "acquirerID",
             "baseName": "AcquirerID",

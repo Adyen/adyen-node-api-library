@@ -32,8 +32,8 @@
 
 
 export enum AlignmentType {
-    Centred = <any> 'Centred',
-    Justified = <any> 'Justified',
-    Left = <any> 'Left',
-    Right = <any> 'Right'
+    Centred = "Centred" as any,
+    Justified = "Justified" as any,
+    Left = "Left" as any,
+    Right = "Right" as any
 }

@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 
-import {PeerCertificate} from "tls";
+import { PeerCertificate } from "tls";
 
 export default function checkServerIdentity(host: string, cert: PeerCertificate): Error | undefined {
     const { subject: { CN }} = cert;

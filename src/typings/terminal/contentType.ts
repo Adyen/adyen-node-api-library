@@ -32,10 +32,10 @@
 
 
 export enum ContentType {
-    CtAuthData = <any> 'Id-ct-authData',
-    Data = <any> 'Id-data',
-    DigestedData = <any> 'Id-digestedData',
-    EncryptedData = <any> 'Id-encryptedData',
-    EnvelopedData = <any> 'Id-envelopedData',
-    SignedData = <any> 'Id-signedData'
+    CtAuthData = "Id-ct-authData" as any,
+    Data = "Id-data" as any,
+    DigestedData = "Id-digestedData" as any,
+    EncryptedData = "Id-encryptedData" as any,
+    EnvelopedData = "Id-envelopedData" as any,
+    SignedData = "Id-signedData" as any
 }

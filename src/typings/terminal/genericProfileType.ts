@@ -32,7 +32,7 @@
 
 
 export enum GenericProfileType {
-    Basic = <any> 'Basic',
-    Extended = <any> 'Extended',
-    Standard = <any> 'Standard'
+    Basic = "Basic" as any,
+    Extended = "Extended" as any,
+    Standard = "Standard" as any
 }

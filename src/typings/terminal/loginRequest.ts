@@ -30,25 +30,25 @@
  */
 
 
-import { AnyType } from './anyType';
-import { SaleSoftware } from './saleSoftware';
-import { SaleTerminalData } from './saleTerminalData';
+import { AnyType } from "./anyType";
+import { SaleSoftware } from "./saleSoftware";
+import { SaleTerminalData } from "./saleTerminalData";
 
 export class LoginRequest {
-    'customerOrderReq'?: Array<LoginRequest.CustomerOrderReqEnum>;
-    'dateTime': { [key: string]: AnyType; };
-    'operatorID'?: string;
-    'operatorLanguage': string;
-    'pOISerialNumber'?: string;
-    'saleSoftware': SaleSoftware;
-    'saleTerminalData'?: SaleTerminalData;
-    'shiftNumber'?: string;
-    'tokenRequestedType'?: LoginRequest.TokenRequestedTypeEnum;
-    'trainingModeFlag'?: boolean;
+    "customerOrderReq"?: LoginRequest.CustomerOrderReqEnum[];
+    "dateTime": { [key: string]: AnyType; };
+    "operatorID"?: string;
+    "operatorLanguage": string;
+    "pOISerialNumber"?: string;
+    "saleSoftware": SaleSoftware;
+    "saleTerminalData"?: SaleTerminalData;
+    "shiftNumber"?: string;
+    "tokenRequestedType"?: LoginRequest.TokenRequestedTypeEnum;
+    "trainingModeFlag"?: boolean;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "customerOrderReq",
             "baseName": "CustomerOrderReq",
@@ -107,12 +107,12 @@ export class LoginRequest {
 
 export namespace LoginRequest {
     export enum CustomerOrderReqEnum {
-        Both = <any> 'Both',
-        Closed = <any> 'Closed',
-        Open = <any> 'Open'
+        Both = "Both" as any,
+        Closed = "Closed" as any,
+        Open = "Open" as any
     }
     export enum TokenRequestedTypeEnum {
-        Customer = <any> 'Customer',
-        Transaction = <any> 'Transaction'
+        Customer = "Customer" as any,
+        Transaction = "Transaction" as any
     }
 }

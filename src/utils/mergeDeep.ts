@@ -33,7 +33,7 @@ function mergeDeep<T>(target: T, source: object | any): T {
         if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
             target[key] = targetValue.concat(sourceValue);
         } else if (isObject(targetValue) && isObject(sourceValue)) {
-            target[key] = mergeDeep(Object.assign({}, targetValue), sourceValue);
+            target[key] = mergeDeep({...targetValue}, sourceValue);
         } else {
             target[key] = sourceValue;
         }

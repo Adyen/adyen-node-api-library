@@ -32,9 +32,9 @@
 
 
 export enum PaymentInstrumentType {
-    Card = <any> 'Card',
-    Cash = <any> 'Cash',
-    Check = <any> 'Check',
-    Mobile = <any> 'Mobile',
-    StoredValue = <any> 'StoredValue'
+    Card = "Card" as any,
+    Cash = "Cash" as any,
+    Check = "Check" as any,
+    Mobile = "Mobile" as any,
+    StoredValue = "StoredValue" as any
 }

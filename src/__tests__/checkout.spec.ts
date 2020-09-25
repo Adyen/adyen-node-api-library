@@ -19,12 +19,13 @@
 
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess";
-import {paymentsSuccess} from "../__mocks__/checkout/paymentsSuccess";
-import {paymentDetailsSuccess} from "../__mocks__/checkout/paymentsDetailsSuccess";
-import {paymentSessionSuccess} from "../__mocks__/checkout/paymentSessionSucess";
-import {paymentsResultMultibancoSuccess} from "../__mocks__/checkout/paymentsResultMultibancoSuccess";
-import {paymentsResultSuccess} from "../__mocks__/checkout/paymentsResultSucess";
+import { paymentMethodsSuccess } from "../__mocks__/checkout/paymentMethodsSuccess";
+import { paymentsSuccess } from "../__mocks__/checkout/paymentsSuccess";
+import { paymentDetailsSuccess } from "../__mocks__/checkout/paymentsDetailsSuccess";
+import { paymentSessionSuccess } from "../__mocks__/checkout/paymentSessionSucess";
+import { originKeysSuccess } from "../__mocks__/checkout/originkeysSuccess";
+import { paymentsResultMultibancoSuccess } from "../__mocks__/checkout/paymentsResultMultibancoSuccess";
+import { paymentsResultSuccess } from "../__mocks__/checkout/paymentsResultSucess";
 import Client from "../client";
 import Checkout from "../services/checkout";
 import HttpClientException from "../httpClient/httpClientException";
@@ -82,6 +83,46 @@ function createPaymentSessionRequest(): ICheckout.PaymentSetupRequest {
         returnUrl: "https://your-company.com/...",
         channel: "Web",
         sdkVersion: "3.7.0"
+    };
+}
+function getPaymentLinkSuccess(expiresAt: string): ICheckout.PaymentLinkResource {
+    return {
+        amount: createAmountObject("USD", 1000),
+        expiresAt,
+        reference,
+        url: "paymentLinkResponse.url",
+        id: "mocked_id",
+        merchantAccount,
+        status: "active"
+    };
+}
+
+function createPaymentLinkRequest(): ICheckout.CreatePaymentLinkRequest {
+    return {
+        allowedPaymentMethods: ["scheme", "boletobancario"],
+        amount: createAmountObject("USD", 1000),
+        countryCode: "BR",
+        merchantAccount,
+        shopperReference: "shopperReference",
+        shopperEmail: "test@email.com",
+        shopperLocale: "pt_BR",
+        billingAddress: {
+            street: "Roque Petroni Jr",
+            postalCode: "59000060",
+            city: "São Paulo",
+            houseNumberOrName: "999",
+            country: "BR",
+            stateOrProvince: "SP"
+        },
+        deliveryAddress: {
+            street: "Roque Petroni Jr",
+            postalCode: "59000060",
+            city: "São Paulo",
+            houseNumberOrName: "999",
+            country: "BR",
+            stateOrProvince: "SP"
+        },
+        reference
     };
 }
 
@@ -143,46 +184,41 @@ describe("Checkout", (): void => {
 
     test.each([false, true])("should have valid payment link, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        const amount = createAmountObject("BRL", 1000);
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkRequest: ICheckout.CreatePaymentLinkRequest = {
-            allowedPaymentMethods: ["scheme", "boletobancario"],
-            amount,
-            countryCode: "BR",
-            merchantAccount,
-            shopperReference: "shopperReference",
-            shopperEmail: "test@email.com",
-            shopperLocale: "pt_BR",
-            billingAddress: {
-                street: "Roque Petroni Jr",
-                postalCode: "59000060",
-                city: "São Paulo",
-                houseNumberOrName: "999",
-                country: "BR",
-                stateOrProvince: "SP"
-            },
-            deliveryAddress: {
-                street: "Roque Petroni Jr",
-                postalCode: "59000060",
-                city: "São Paulo",
-                houseNumberOrName: "999",
-                country: "BR",
-                stateOrProvince: "SP"
-            },
-            reference
-        };
-
-        const paymentLinkSuccess: ICheckout.CreatePaymentLinkResponse = {
-            amount,
-            expiresAt,
-            reference,
-            url: "paymentLinkResponse.url"
-        };
+        const paymentLinkSuccess: ICheckout.PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
-        const paymentSuccessLinkResponse = await checkout.paymentLinks(paymentLinkRequest);
+        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
         expect(paymentSuccessLinkResponse).toBeTruthy();
+    });
+
+    test.each([isCI, true])("should get payment link, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const paymentLinkSuccess: ICheckout.PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
+
+        scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
+
+        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
+
+        scope.get(`/paymentLinks/${paymentSuccessLinkResponse.id}`).reply(200, paymentLinkSuccess);
+        const paymentLink = await checkout.getPaymentLinks(paymentSuccessLinkResponse.id);
+        expect(paymentLink).toBeTruthy();
+    });
+
+    test.each([isCI, true])("should patch payment link, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const paymentLinkSuccess: ICheckout.PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
+
+        scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
+
+        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
+
+        scope.patch(`/paymentLinks/${paymentSuccessLinkResponse.id}`).reply(200, { ...paymentLinkSuccess, status: "expired" });
+        const paymentLink = await checkout.updatePaymentLinks(paymentSuccessLinkResponse.id, "expired");
+        expect(paymentLink.status).toEqual("expired");
     });
 
     test.each([isCI, true])("should have payment details, isMock: %p", async (isMock): Promise<void> => {
@@ -237,5 +273,89 @@ describe("Checkout", (): void => {
         expect(paymentsResponse.pspReference).toBeTruthy();
         expect(paymentsResponse.additionalData).toBeTruthy();
     });
-});
 
+    test.each([false, true])("should get origin keys. isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const checkoutUtility = new Checkout(client);
+        const originKeysRequest: ICheckout.CheckoutUtilityRequest = {
+            originDomains: ["https://www.your-domain.com"],
+        };
+
+        nock(`${client.config.checkoutEndpoint}`)
+            .post(`/${Client.CHECKOUT_API_VERSION}/originKeys`)
+            .reply(200, originKeysSuccess);
+
+        const originKeysResponse = await checkoutUtility.originKeys(originKeysRequest);
+        if (originKeysResponse.originKeys) {
+            return expect(originKeysResponse.originKeys["https://www.your-domain.com"].startsWith("pub.v2")).toBeTruthy();
+        }
+        fail("Error: originKeysResponse.originKeys is empty");
+    });
+
+    // TODO: add gift card to PaymentMethod and unmock test
+    test.each([true, true])("should get payment methods balance", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const paymentMethodsRequest: ICheckout.CheckoutBalanceCheckRequest = {
+            merchantAccount,
+            amount: createAmountObject("USD", 1000),
+            paymentMethod: { },
+            reference: "mocked_reference"
+        };
+
+        const paymentMethodsBalanceResponse: ICheckout.CheckoutBalanceCheckResponse = { balance: {currency: "USD", value: 1000}};
+        scope.post("/paymentMethods/balance")
+            .reply(200,  paymentMethodsBalanceResponse);
+
+        const paymentsResponse: ICheckout.CheckoutBalanceCheckResponse = await checkout.paymentMethodsBalance(paymentMethodsRequest);
+        expect(paymentsResponse.balance.value).toEqual(1000);
+    });
+
+    test.each([false, true])("should create order", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const orderRequest: ICheckout.CheckoutCreateOrderRequest = {
+            amount: createAmountObject("USD", 1000),
+            merchantAccount,
+            reference
+        };
+
+        const orderResponse: ICheckout.CheckoutCreateOrderResponse = {expiresAt, orderData: "mocked_order_data", remainingAmount: {currency: "USD", value: 500} };
+        scope.post("/orders")
+            .reply(200,  orderResponse);
+
+        const response: ICheckout.CheckoutCreateOrderResponse = await checkout.orders(orderRequest);
+        expect(response).toBeTruthy();
+    });
+
+    test.each([false, true])("should cancel order", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const orderRequest: ICheckout.CheckoutCreateOrderRequest = {
+            amount: createAmountObject("USD", 1000),
+            merchantAccount,
+            reference
+        };
+
+        const orderResponse: ICheckout.CheckoutCreateOrderResponse = {expiresAt, orderData: "mocked_order_data", remainingAmount: {currency: "USD", value: 500} };
+        scope.post("/orders")
+            .reply(200,  orderResponse);
+
+        const createOrderResponse: ICheckout.CheckoutCreateOrderResponse = await checkout.orders(orderRequest);
+        
+        const orderCancelResponse: ICheckout.CheckoutCancelOrderResponse = {
+            pspReference: "mocked_psp_ref",
+            resultCode: "CANCELLED"
+        };
+        scope.post("/orders/cancel")
+            .reply(200,  orderCancelResponse);
+
+        const response: ICheckout.CheckoutCancelOrderResponse = await checkout.ordersCancel({
+            order: {
+                orderData: createOrderResponse.orderData,
+                pspReference: createOrderResponse.pspReference!
+            },
+            merchantAccount
+        });
+        expect(response).toBeTruthy();
+    });
+});

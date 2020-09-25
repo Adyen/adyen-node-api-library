@@ -30,7 +30,7 @@ type AccountHoldersEndpoints =
     "/updateAccountHolderState"|
     "/suspendAccountHolder"|
     "/unSuspendAccountHolder"|
-    "/closeAccountHolder"
+    "/closeAccountHolder";
 
 type VerificationEndpoints =
     "/uploadDocument"|
@@ -38,9 +38,9 @@ type VerificationEndpoints =
     "/deleteBankAccounts"|
     "/deletePayoutMethods"|
     "/deleteShareholders"|
-    "/checkAccountHolder"
+    "/checkAccountHolder";
 
-type AccountsEndpoints = "/createAccount" | "/updateAccount" | "/closeAccount"
+type AccountsEndpoints = "/createAccount" | "/updateAccount" | "/closeAccount";
 
 export enum AccountTypesEnum {
     AccountHolders= "AccountHolders",
@@ -50,7 +50,7 @@ export enum AccountTypesEnum {
 
 export interface AccountTypes {
     [AccountTypesEnum.AccountHolders]: AccountHoldersEndpoints;
-    [AccountTypesEnum.Accounts]:  AccountsEndpoints;
+    [AccountTypesEnum.Accounts]: AccountsEndpoints;
     [AccountTypesEnum.Verification]: VerificationEndpoints;
 }
 

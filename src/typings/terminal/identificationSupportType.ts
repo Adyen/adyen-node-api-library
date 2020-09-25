@@ -32,8 +32,8 @@
 
 
 export enum IdentificationSupportType {
-    HybridCard = <any> 'HybridCard',
-    LinkedCard = <any> 'LinkedCard',
-    LoyaltyCard = <any> 'LoyaltyCard',
-    NoCard = <any> 'NoCard'
+    HybridCard = "HybridCard" as any,
+    LinkedCard = "LinkedCard" as any,
+    LoyaltyCard = "LoyaltyCard" as any,
+    NoCard = "NoCard" as any
 }

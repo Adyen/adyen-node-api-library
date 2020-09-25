@@ -32,15 +32,15 @@
 
 
 export class TotalFilter {
-    'operatorID'?: string;
-    'pOIID'?: string;
-    'saleID'?: string;
-    'shiftNumber'?: string;
-    'totalsGroupID'?: string;
+    "operatorID"?: string;
+    "pOIID"?: string;
+    "saleID"?: string;
+    "shiftNumber"?: string;
+    "totalsGroupID"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "operatorID",
             "baseName": "OperatorID",

@@ -32,6 +32,6 @@
 
 
 export enum TransactionActionType {
-    AbortTransaction = <any> 'AbortTransaction',
-    StartTransaction = <any> 'StartTransaction'
+    AbortTransaction = "AbortTransaction" as any,
+    StartTransaction = "StartTransaction" as any
 }

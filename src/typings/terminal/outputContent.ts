@@ -30,22 +30,22 @@
  */
 
 
-import { AnyType } from './anyType';
-import { OutputBarcode } from './outputBarcode';
-import { OutputFormatType } from './outputFormatType';
-import { OutputText } from './outputText';
-import { PredefinedContent } from './predefinedContent';
+import { AnyType } from "./anyType";
+import { OutputBarcode } from "./outputBarcode";
+import { OutputFormatType } from "./outputFormatType";
+import { OutputText } from "./outputText";
+import { PredefinedContent } from "./predefinedContent";
 
 export class OutputContent {
-    'outputBarcode'?: OutputBarcode;
-    'outputFormat': OutputFormatType;
-    'outputText'?: Array<OutputText>;
-    'outputXHTML'?: AnyType;
-    'predefinedContent'?: PredefinedContent;
+    "outputBarcode"?: OutputBarcode;
+    "outputFormat": OutputFormatType;
+    "outputText"?: OutputText[];
+    "outputXHTML"?: AnyType;
+    "predefinedContent"?: PredefinedContent;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "outputBarcode",
             "baseName": "OutputBarcode",

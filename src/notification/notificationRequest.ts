@@ -30,7 +30,7 @@ class NotificationRequest {
         this.live = notification.live;
     }
 
-    public get notificationItems(): Array<NotificationRequestItem> | undefined {
+    public get notificationItems(): NotificationRequestItem[] | undefined {
         if (!this.notificationItemContainers) {
             return undefined;
         }
@@ -39,7 +39,7 @@ class NotificationRequest {
     }
 
     public live: string;
-    public notificationItemContainers: Array<NotificationItem>;
+    public notificationItemContainers: NotificationItem[];
 }
 
 export default NotificationRequest;

@@ -30,17 +30,17 @@
  */
 
 
-import { TransactionIdentification } from './transactionIdentification';
+import { TransactionIdentification } from "./transactionIdentification";
 
 export class LoyaltyAcquirerData {
-    'approvalCode'?: string;
-    'hostReconciliationID'?: string;
-    'loyaltyAcquirerID'?: string;
-    'loyaltyTransactionID'?: TransactionIdentification;
+    "approvalCode"?: string;
+    "hostReconciliationID"?: string;
+    "loyaltyAcquirerID"?: string;
+    "loyaltyTransactionID"?: TransactionIdentification;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "approvalCode",
             "baseName": "ApprovalCode",

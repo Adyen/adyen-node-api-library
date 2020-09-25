@@ -30,14 +30,14 @@
  */
 
 
-import { SaleToPOIRequest } from './saleToPOIRequest';
+import { SaleToPOIRequest } from "./saleToPOIRequest";
 
 export class TerminalApiRequest {
-    'saleToPOIRequest': SaleToPOIRequest;
+    "saleToPOIRequest": SaleToPOIRequest;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "saleToPOIRequest",
             "baseName": "SaleToPOIRequest",

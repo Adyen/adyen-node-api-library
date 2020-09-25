@@ -32,12 +32,12 @@
 
 
 export class AreaSize {
-    'x': string;
-    'y': string;
+    "x": string;
+    "y": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "x",
             "baseName": "X",

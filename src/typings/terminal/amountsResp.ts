@@ -32,16 +32,16 @@
 
 
 export class AmountsResp {
-    'authorizedAmount': number;
-    'cashBackAmount'?: number;
-    'currency'?: string;
-    'tipAmount'?: number;
-    'totalFeesAmount'?: number;
-    'totalRebatesAmount'?: number;
+    "authorizedAmount": number;
+    "cashBackAmount"?: number;
+    "currency"?: string;
+    "tipAmount"?: number;
+    "totalFeesAmount"?: number;
+    "totalRebatesAmount"?: number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "authorizedAmount",
             "baseName": "AuthorizedAmount",

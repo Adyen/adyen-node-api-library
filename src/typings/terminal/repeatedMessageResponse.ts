@@ -30,16 +30,16 @@
  */
 
 
-import { MessageHeader } from './messageHeader';
-import { RepeatedResponseMessageBody } from './repeatedResponseMessageBody';
+import { MessageHeader } from "./messageHeader";
+import { RepeatedResponseMessageBody } from "./repeatedResponseMessageBody";
 
 export class RepeatedMessageResponse {
-    'messageHeader': MessageHeader;
-    'repeatedResponseMessageBody': RepeatedResponseMessageBody;
+    "messageHeader": MessageHeader;
+    "repeatedResponseMessageBody": RepeatedResponseMessageBody;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "messageHeader",
             "baseName": "MessageHeader",

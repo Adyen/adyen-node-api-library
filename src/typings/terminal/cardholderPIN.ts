@@ -30,17 +30,17 @@
  */
 
 
-import { ContentInformation } from './contentInformation';
-import { PINFormatType } from './pINFormatType';
+import { ContentInformation } from "./contentInformation";
+import { PINFormatType } from "./pINFormatType";
 
 export class CardholderPIN {
-    'additionalInput'?: string;
-    'encrPINBlock': ContentInformation;
-    'pINFormat': PINFormatType;
+    "additionalInput"?: string;
+    "encrPINBlock": ContentInformation;
+    "pINFormat": PINFormatType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "additionalInput",
             "baseName": "AdditionalInput",

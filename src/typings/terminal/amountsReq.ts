@@ -32,18 +32,18 @@
 
 
 export class AmountsReq {
-    'cashBackAmount'?: number;
-    'currency': string;
-    'maximumCashBackAmount'?: number;
-    'minimumAmountToDeliver'?: number;
-    'minimumSplitAmount'?: number;
-    'paidAmount'?: number;
-    'requestedAmount'?: number;
-    'tipAmount'?: number;
+    "cashBackAmount"?: number;
+    "currency": string;
+    "maximumCashBackAmount"?: number;
+    "minimumAmountToDeliver"?: number;
+    "minimumSplitAmount"?: number;
+    "paidAmount"?: number;
+    "requestedAmount"?: number;
+    "tipAmount"?: number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "cashBackAmount",
             "baseName": "CashBackAmount",

@@ -29,13 +29,13 @@ type Endpoints =
      "/getNotificationConfigurationList"|
      "/testNotificationConfiguration"|
      "/updateNotificationConfiguration"|
-     "/deleteNotificationConfigurations"
+     "/deleteNotificationConfigurations";
 
 class PlatformsNotificationConfiguration extends Resource {
     public constructor(service: Service, endpoint: Endpoints) {
         super(
             service,
-            `${service.client.config.marketPayEndpoint}/Notification/${Client.MARKETPAY_NOTIFICATION_API_VERSION}/${endpoint}`,
+            `${service.client.config.marketPayEndpoint}/Notification/${Client.MARKETPAY_NOTIFICATION_CONFIGURATION_API_VERSION}/${endpoint}`,
         );
     }
 }

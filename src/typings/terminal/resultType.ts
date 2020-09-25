@@ -32,7 +32,7 @@
 
 
 export enum ResultType {
-    Failure = <any> 'Failure',
-    Partial = <any> 'Partial',
-    Success = <any> 'Success'
+    Failure = "Failure" as any,
+    Partial = "Partial" as any,
+    Success = "Success" as any
 }

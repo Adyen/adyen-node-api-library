@@ -30,16 +30,16 @@
  */
 
 
-import { DisplayOutput } from './displayOutput';
-import { InputData } from './inputData';
+import { DisplayOutput } from "./displayOutput";
+import { InputData } from "./inputData";
 
 export class InputRequest {
-    'displayOutput'?: DisplayOutput;
-    'inputData': InputData;
+    "displayOutput"?: DisplayOutput;
+    "inputData": InputData;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "displayOutput",
             "baseName": "DisplayOutput",

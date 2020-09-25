@@ -32,8 +32,8 @@
 
 
 export enum PeriodUnitType {
-    Annual = <any> 'Annual',
-    Daily = <any> 'Daily',
-    Monthly = <any> 'Monthly',
-    Weekly = <any> 'Weekly'
+    Annual = "Annual" as any,
+    Daily = "Daily" as any,
+    Monthly = "Monthly" as any,
+    Weekly = "Weekly" as any
 }

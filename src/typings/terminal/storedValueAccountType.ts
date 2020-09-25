@@ -32,7 +32,7 @@
 
 
 export enum StoredValueAccountType {
-    GiftCard = <any> 'GiftCard',
-    Other = <any> 'Other',
-    PhoneCard = <any> 'PhoneCard'
+    GiftCard = "GiftCard" as any,
+    Other = "Other" as any,
+    PhoneCard = "PhoneCard" as any
 }

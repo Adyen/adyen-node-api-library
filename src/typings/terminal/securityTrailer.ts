@@ -30,18 +30,18 @@
  */
 
 
-import { AnyType } from './anyType';
+import { AnyType } from "./anyType";
 
 export class SecurityTrailer {
-    'adyenCryptoVersion'?: number;
-    'hmac'?: AnyType;
-    'keyIdentifier'?: string;
-    'keyVersion'?: number;
-    'nonce'?: AnyType;
+    "adyenCryptoVersion"?: number;
+    "hmac"?: AnyType;
+    "keyIdentifier"?: string;
+    "keyVersion"?: number;
+    "nonce"?: AnyType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "adyenCryptoVersion",
             "baseName": "AdyenCryptoVersion",

@@ -30,21 +30,21 @@
  */
 
 
-import { TransactionIdentification } from './transactionIdentification';
+import { TransactionIdentification } from "./transactionIdentification";
 
 export class OriginalPOITransaction {
-    'acquirerID'?: string;
-    'approvalCode'?: string;
-    'customerLanguage'?: string;
-    'hostTransactionID'?: TransactionIdentification;
-    'pOIID'?: string;
-    'pOITransactionID'?: TransactionIdentification;
-    'reuseCardDataFlag'?: boolean;
-    'saleID'?: string;
+    "acquirerID"?: string;
+    "approvalCode"?: string;
+    "customerLanguage"?: string;
+    "hostTransactionID"?: TransactionIdentification;
+    "pOIID"?: string;
+    "pOITransactionID"?: TransactionIdentification;
+    "reuseCardDataFlag"?: boolean;
+    "saleID"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "acquirerID",
             "baseName": "AcquirerID",

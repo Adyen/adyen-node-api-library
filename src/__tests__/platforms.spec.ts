@@ -18,15 +18,15 @@
  */
 
 import nock from "nock";
-import {createMock} from "ts-auto-mock";
-import {createBasicAuthClient} from "../__mocks__/base";
+import { createMock } from "ts-auto-mock";
+import { createBasicAuthClient } from "../__mocks__/base";
 import { documentContent } from "../__mocks__/platforms/documentContent";
-import {Client, Platforms} from "../index";
+import { Client, Platforms } from "../index";
 
-import A = IPlatformsAccount
-import F = IPlatformsFund
-import N = IPlatformsNotificationConfiguration
-import H = IPlatformsHostedOnboardingPage
+import A = IPlatformsAccount;
+import F = IPlatformsFund;
+import N = IPlatformsNotificationConfiguration;
+import H = IPlatformsHostedOnboardingPage;
 import AccountHolderDetails = A.AccountHolderDetails;
 import NotificationConfigurationDetails = N.NotificationConfigurationDetails;
 import HttpClientException from "../httpClient/httpClientException";
@@ -67,7 +67,7 @@ const notificationConfigurationDetails: NotificationConfigurationDetails = {
                 includeMode: "INCLUDE"
             }
         ],
-        sslProtocol: "SSL"
+    sslProtocol: "SSL"
     };
 
 const assertError = (e: HttpClientException): void => {
@@ -111,7 +111,7 @@ describe("Platforms Test", function () {
                 ["createAccountHolder", createMock<A.CreateAccountRequest>(), createMock<A.CreateAccountHolderRequest>()],
                 ["getAccountHolder", createMock<A.GetAccountHolderRequest>(), createMock<A.GetAccountHolderRequest>()],
                 ["updateAccountHolder", createMock<A.UpdateAccountHolderRequest>(), createMock<A.UpdateAccountHolderResponse>()],
-                ["updateAccountHolderState", createMock<A.UpdateAccountHolderStateRequest>(), createMock<A.UpdateAccountHolderStateResponse>()],
+                ["updateAccountHolderState", createMock<A.UpdateAccountHolderStateRequest>(), createMock<A.GetAccountHolderStatusResponse>()],
                 ["suspendAccountHolder", createMock<A.SuspendAccountHolderRequest>(), createMock<A.SuspendAccountHolderResponse>()],
                 ["unSuspendAccountHolder", createMock<A.UnSuspendAccountHolderRequest>(), createMock<A.UnSuspendAccountHolderResponse>()],
                 ["closeAccountHolder", createMock<A.CloseAccountHolderRequest>(), createMock<A.CloseAccountResponse>()],
@@ -164,7 +164,7 @@ describe("Platforms Test", function () {
             "should %p",
             async (...args) => {
                 const notificationConfiguration = platforms.NotificationConfiguration;
-                scope.post(`/Notification/${Client.MARKETPAY_NOTIFICATION_API_VERSION}//${args[0]}`).reply(200, args[2]);
+                scope.post(`/Notification/${Client.MARKETPAY_NOTIFICATION_CONFIGURATION_API_VERSION}//${args[0]}`).reply(200, args[2]);
 
                 const result = await notificationConfiguration[args[0] as string](args[1] as never);
                 expect(result).toMatchObject(args[2]);
@@ -263,20 +263,20 @@ describe.skip("Platforms Test E2E", function(): void {
 
             it("should update account holder", async function() {
                 nock.restore();
-                    try {
-                        const result = await platforms.Account.updateAccountHolder({
-                            accountHolderCode: accountHolder.accountHolderCode,
-                            accountHolderDetails: {
-                                ...accountHolderDetails,
-                                address: {
-                                    country: "BE"
-                                }
+                try {
+                    const result = await platforms.Account.updateAccountHolder({
+                        accountHolderCode: accountHolder.accountHolderCode,
+                        accountHolderDetails: {
+                            ...accountHolderDetails,
+                            address: {
+                                country: "BE"
                             }
-                        });
-                        expect(result.accountHolderDetails!.address?.country).toEqual("BE");
-                    } catch (e) {
-                        assertError(e);
-                    }
+                        }
+                    });
+                    expect(result.accountHolderDetails!.address?.country).toEqual("BE");
+                } catch (e) {
+                    assertError(e);
+                }
             });
 
             it("should check account holder", async function() {
@@ -306,7 +306,7 @@ describe.skip("Platforms Test E2E", function(): void {
                 nock.restore();
                 try {
                     const result = await platforms.Account.uploadDocument({
-                        documentContent: documentContent,
+                        documentContent,
                         documentDetail: {
                             accountHolderCode: account.accountHolderCode,
                             documentType: "ID_CARD_FRONT",
@@ -324,7 +324,7 @@ describe.skip("Platforms Test E2E", function(): void {
                 nock.restore();
                 try {
                     await platforms.Account.uploadDocument({
-                        documentContent: documentContent,
+                        documentContent,
                         documentDetail: {
                             accountHolderCode: account.accountHolderCode,
                             documentType: "ID_CARD_FRONT",

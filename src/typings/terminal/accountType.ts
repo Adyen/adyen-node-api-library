@@ -32,12 +32,12 @@
 
 
 export enum AccountType {
-    CardTotals = <any> 'CardTotals',
-    Checking = <any> 'Checking',
-    CreditCard = <any> 'CreditCard',
-    Default = <any> 'Default',
-    EpurseCard = <any> 'EpurseCard',
-    Investment = <any> 'Investment',
-    Savings = <any> 'Savings',
-    Universal = <any> 'Universal'
+    CardTotals = "CardTotals" as any,
+    Checking = "Checking" as any,
+    CreditCard = "CreditCard" as any,
+    Default = "Default" as any,
+    EpurseCard = "EpurseCard" as any,
+    Investment = "Investment" as any,
+    Savings = "Savings" as any,
+    Universal = "Universal" as any
 }

@@ -30,19 +30,19 @@
  */
 
 
-import { ReconciliationType } from './reconciliationType';
-import { Response } from './response';
-import { TransactionTotals } from './transactionTotals';
+import { ReconciliationType } from "./reconciliationType";
+import { Response } from "./response";
+import { TransactionTotals } from "./transactionTotals";
 
 export class ReconciliationResponse {
-    'pOIReconciliationID'?: string;
-    'reconciliationType': ReconciliationType;
-    'response': Response;
-    'transactionTotals'?: Array<TransactionTotals>;
+    "pOIReconciliationID"?: string;
+    "reconciliationType": ReconciliationType;
+    "response": Response;
+    "transactionTotals"?: TransactionTotals[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "pOIReconciliationID",
             "baseName": "POIReconciliationID",

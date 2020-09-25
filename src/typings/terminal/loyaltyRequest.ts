@@ -30,18 +30,18 @@
  */
 
 
-import { LoyaltyData } from './loyaltyData';
-import { LoyaltyTransaction } from './loyaltyTransaction';
-import { SaleData } from './saleData';
+import { LoyaltyData } from "./loyaltyData";
+import { LoyaltyTransaction } from "./loyaltyTransaction";
+import { SaleData } from "./saleData";
 
 export class LoyaltyRequest {
-    'loyaltyData'?: Array<LoyaltyData>;
-    'loyaltyTransaction': LoyaltyTransaction;
-    'saleData': SaleData;
+    "loyaltyData"?: LoyaltyData[];
+    "loyaltyTransaction": LoyaltyTransaction;
+    "saleData": SaleData;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "loyaltyData",
             "baseName": "LoyaltyData",

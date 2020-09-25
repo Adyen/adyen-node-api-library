@@ -30,18 +30,18 @@
  */
 
 
-import { DisplayOutput } from './displayOutput';
+import { DisplayOutput } from "./displayOutput";
 
 export class CardReaderInitRequest {
-    'displayOutput'?: DisplayOutput;
-    'forceEntryMode'?: Array<Array<CardReaderInitRequest.ForceEntryModeEnum>>;
-    'leaveCardFlag'?: boolean;
-    'maxWaitingTime'?: number;
-    'warmResetFlag'?: boolean;
+    "displayOutput"?: DisplayOutput;
+    "forceEntryMode"?: CardReaderInitRequest.ForceEntryModeEnum[][];
+    "leaveCardFlag"?: boolean;
+    "maxWaitingTime"?: number;
+    "warmResetFlag"?: boolean;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "displayOutput",
             "baseName": "DisplayOutput",
@@ -75,16 +75,16 @@ export class CardReaderInitRequest {
 
 export namespace CardReaderInitRequest {
     export enum ForceEntryModeEnum {
-        CheckReader = <any> 'CheckReader',
-        Contactless = <any> 'Contactless',
-        File = <any> 'File',
-        ICC = <any> 'ICC',
-        Keyed = <any> 'Keyed',
-        MagStripe = <any> 'MagStripe',
-        Manual = <any> 'Manual',
-        RFID = <any> 'RFID',
-        Scanned = <any> 'Scanned',
-        SynchronousICC = <any> 'SynchronousICC',
-        Tapped = <any> 'Tapped'
+        CheckReader = "CheckReader" as any,
+        Contactless = "Contactless" as any,
+        File = "File" as any,
+        ICC = "ICC" as any,
+        Keyed = "Keyed" as any,
+        MagStripe = "MagStripe" as any,
+        Manual = "Manual" as any,
+        RFID = "RFID" as any,
+        Scanned = "Scanned" as any,
+        SynchronousICC = "SynchronousICC" as any,
+        Tapped = "Tapped" as any
     }
 }

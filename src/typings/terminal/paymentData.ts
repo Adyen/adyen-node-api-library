@@ -30,23 +30,23 @@
  */
 
 
-import { CustomerOrder } from './customerOrder';
-import { Instalment } from './instalment';
-import { PaymentInstrumentData } from './paymentInstrumentData';
-import { TransactionIdentification } from './transactionIdentification';
+import { CustomerOrder } from "./customerOrder";
+import { Instalment } from "./instalment";
+import { PaymentInstrumentData } from "./paymentInstrumentData";
+import { TransactionIdentification } from "./transactionIdentification";
 
 export class PaymentData {
-    'cardAcquisitionReference'?: TransactionIdentification;
-    'customerOrder'?: CustomerOrder;
-    'instalment'?: Instalment;
-    'paymentInstrumentData'?: PaymentInstrumentData;
-    'paymentType'?: PaymentData.PaymentTypeEnum;
-    'requestedValidityDate'?: string;
-    'splitPaymentFlag'?: boolean;
+    "cardAcquisitionReference"?: TransactionIdentification;
+    "customerOrder"?: CustomerOrder;
+    "instalment"?: Instalment;
+    "paymentInstrumentData"?: PaymentInstrumentData;
+    "paymentType"?: PaymentData.PaymentTypeEnum;
+    "requestedValidityDate"?: string;
+    "splitPaymentFlag"?: boolean;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "cardAcquisitionReference",
             "baseName": "CardAcquisitionReference",
@@ -90,17 +90,17 @@ export class PaymentData {
 
 export namespace PaymentData {
     export enum PaymentTypeEnum {
-        CashAdvance = <any> 'CashAdvance',
-        CashDeposit = <any> 'CashDeposit',
-        Completion = <any> 'Completion',
-        FirstReservation = <any> 'FirstReservation',
-        Instalment = <any> 'Instalment',
-        IssuerInstalment = <any> 'IssuerInstalment',
-        Normal = <any> 'Normal',
-        OneTimeReservation = <any> 'OneTimeReservation',
-        PaidOut = <any> 'PaidOut',
-        Recurring = <any> 'Recurring',
-        Refund = <any> 'Refund',
-        UpdateReservation = <any> 'UpdateReservation'
+        CashAdvance = "CashAdvance" as any,
+        CashDeposit = "CashDeposit" as any,
+        Completion = "Completion" as any,
+        FirstReservation = "FirstReservation" as any,
+        Instalment = "Instalment" as any,
+        IssuerInstalment = "IssuerInstalment" as any,
+        Normal = "Normal" as any,
+        OneTimeReservation = "OneTimeReservation" as any,
+        PaidOut = "PaidOut" as any,
+        Recurring = "Recurring" as any,
+        Refund = "Refund" as any,
+        UpdateReservation = "UpdateReservation" as any
     }
 }

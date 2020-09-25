@@ -18,19 +18,19 @@
  */
 
 import nock from "nock";
-import {createClient, createTerminalAPIPaymentRequest, createTerminalAPIRefundRequest} from "../__mocks__/base";
-import {asyncRes} from "../__mocks__/terminalApi/async";
-import {syncRefund, syncRes} from "../__mocks__/terminalApi/sync";
+import { createClient, createTerminalAPIPaymentRequest, createTerminalAPIRefundRequest } from "../__mocks__/base";
+import { asyncRes } from "../__mocks__/terminalApi/async";
+import { syncRefund, syncRes } from "../__mocks__/terminalApi/sync";
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
-import {TerminalApiResponse} from "../typings/terminal/models";
+import { TerminalApiResponse } from "../typings/terminal/models";
 
 let client: Client;
 let terminalCloudAPI: TerminalCloudAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    if (!nock.isActive()){
+    if (!nock.isActive()) {
         nock.activate();
     }
     client = createClient(process.env.ADYEN_TERMINAL_APIKEY);

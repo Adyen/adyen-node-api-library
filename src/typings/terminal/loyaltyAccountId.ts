@@ -30,17 +30,17 @@
  */
 
 
-import { IdentificationType } from './identificationType';
+import { IdentificationType } from "./identificationType";
 
 export class LoyaltyAccountId {
-    'entryMode': Array<LoyaltyAccountId.EntryModeEnum>;
-    'identificationSupport'?: LoyaltyAccountId.IdentificationSupportEnum;
-    'identificationType': IdentificationType;
-    'value'?: string;
+    "entryMode": LoyaltyAccountId.EntryModeEnum[];
+    "identificationSupport"?: LoyaltyAccountId.IdentificationSupportEnum;
+    "identificationType": IdentificationType;
+    "value"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "entryMode",
             "baseName": "EntryMode",
@@ -69,22 +69,22 @@ export class LoyaltyAccountId {
 
 export namespace LoyaltyAccountId {
     export enum EntryModeEnum {
-        Contactless = <any> 'Contactless',
-        File = <any> 'File',
-        ICC = <any> 'ICC',
-        Keyed = <any> 'Keyed',
-        MagStripe = <any> 'MagStripe',
-        Manual = <any> 'Manual',
-        Mobile = <any> 'Mobile',
-        RFID = <any> 'RFID',
-        Scanned = <any> 'Scanned',
-        SynchronousICC = <any> 'SynchronousICC',
-        Tapped = <any> 'Tapped'
+        Contactless = "Contactless" as any,
+        File = "File" as any,
+        ICC = "ICC" as any,
+        Keyed = "Keyed" as any,
+        MagStripe = "MagStripe" as any,
+        Manual = "Manual" as any,
+        Mobile = "Mobile" as any,
+        RFID = "RFID" as any,
+        Scanned = "Scanned" as any,
+        SynchronousICC = "SynchronousICC" as any,
+        Tapped = "Tapped" as any
     }
     export enum IdentificationSupportEnum {
-        HybridCard = <any> 'HybridCard',
-        LinkedCard = <any> 'LinkedCard',
-        LoyaltyCard = <any> 'LoyaltyCard',
-        NoCard = <any> 'NoCard'
+        HybridCard = "HybridCard" as any,
+        LinkedCard = "LinkedCard" as any,
+        LoyaltyCard = "LoyaltyCard" as any,
+        NoCard = "NoCard" as any
     }
 }

@@ -32,20 +32,20 @@
 
 
 export class Instalment {
-    'charges'?: number;
-    'cumulativeAmount'?: number;
-    'firstAmount'?: number;
-    'firstPaymentDate'?: string;
-    'instalmentType'?: Array<Instalment.InstalmentTypeEnum>;
-    'period'?: number;
-    'periodUnit'?: Instalment.PeriodUnitEnum;
-    'planID'?: string;
-    'sequenceNumber'?: number;
-    'totalNbOfPayments'?: number;
+    "charges"?: number;
+    "cumulativeAmount"?: number;
+    "firstAmount"?: number;
+    "firstPaymentDate"?: string;
+    "instalmentType"?: Instalment.InstalmentTypeEnum[];
+    "period"?: number;
+    "periodUnit"?: Instalment.PeriodUnitEnum;
+    "planID"?: string;
+    "sequenceNumber"?: number;
+    "totalNbOfPayments"?: number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "charges",
             "baseName": "Charges",
@@ -104,14 +104,14 @@ export class Instalment {
 
 export namespace Instalment {
     export enum InstalmentTypeEnum {
-        DeferredInstalments = <any> 'DeferredInstalments',
-        EqualInstalments = <any> 'EqualInstalments',
-        InequalInstalments = <any> 'InequalInstalments'
+        DeferredInstalments = "DeferredInstalments" as any,
+        EqualInstalments = "EqualInstalments" as any,
+        InequalInstalments = "InequalInstalments" as any
     }
     export enum PeriodUnitEnum {
-        Annual = <any> 'Annual',
-        Daily = <any> 'Daily',
-        Monthly = <any> 'Monthly',
-        Weekly = <any> 'Weekly'
+        Annual = "Annual" as any,
+        Daily = "Daily" as any,
+        Monthly = "Monthly" as any,
+        Weekly = "Weekly" as any
     }
 }

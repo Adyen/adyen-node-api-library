@@ -30,64 +30,64 @@
  */
 
 
-import { AdminResponse } from './adminResponse';
-import { BalanceInquiryResponse } from './balanceInquiryResponse';
-import { BatchResponse } from './batchResponse';
-import { CardAcquisitionResponse } from './cardAcquisitionResponse';
-import { CardReaderAPDUResponse } from './cardReaderAPDUResponse';
-import { CardReaderInitResponse } from './cardReaderInitResponse';
-import { CardReaderPowerOffResponse } from './cardReaderPowerOffResponse';
-import { ContentInformation } from './contentInformation';
-import { DiagnosisResponse } from './diagnosisResponse';
-import { DisplayResponse } from './displayResponse';
-import { EnableServiceResponse } from './enableServiceResponse';
-import { GetTotalsResponse } from './getTotalsResponse';
-import { InputResponse } from './inputResponse';
-import { LoginResponse } from './loginResponse';
-import { LogoutResponse } from './logoutResponse';
-import { LoyaltyResponse } from './loyaltyResponse';
-import { MessageHeader } from './messageHeader';
-import { PINResponse } from './pINResponse';
-import { PaymentResponse } from './paymentResponse';
-import { PrintResponse } from './printResponse';
-import { ReconciliationResponse } from './reconciliationResponse';
-import { ReversalResponse } from './reversalResponse';
-import { SoundResponse } from './soundResponse';
-import { StoredValueResponse } from './storedValueResponse';
-import { TransactionStatusResponse } from './transactionStatusResponse';
-import { TransmitResponse } from './transmitResponse';
+import { AdminResponse } from "./adminResponse";
+import { BalanceInquiryResponse } from "./balanceInquiryResponse";
+import { BatchResponse } from "./batchResponse";
+import { CardAcquisitionResponse } from "./cardAcquisitionResponse";
+import { CardReaderAPDUResponse } from "./cardReaderAPDUResponse";
+import { CardReaderInitResponse } from "./cardReaderInitResponse";
+import { CardReaderPowerOffResponse } from "./cardReaderPowerOffResponse";
+import { ContentInformation } from "./contentInformation";
+import { DiagnosisResponse } from "./diagnosisResponse";
+import { DisplayResponse } from "./displayResponse";
+import { EnableServiceResponse } from "./enableServiceResponse";
+import { GetTotalsResponse } from "./getTotalsResponse";
+import { InputResponse } from "./inputResponse";
+import { LoginResponse } from "./loginResponse";
+import { LogoutResponse } from "./logoutResponse";
+import { LoyaltyResponse } from "./loyaltyResponse";
+import { MessageHeader } from "./messageHeader";
+import { PINResponse } from "./pINResponse";
+import { PaymentResponse } from "./paymentResponse";
+import { PrintResponse } from "./printResponse";
+import { ReconciliationResponse } from "./reconciliationResponse";
+import { ReversalResponse } from "./reversalResponse";
+import { SoundResponse } from "./soundResponse";
+import { StoredValueResponse } from "./storedValueResponse";
+import { TransactionStatusResponse } from "./transactionStatusResponse";
+import { TransmitResponse } from "./transmitResponse";
 
 export class SaleToPOIResponse {
-    'adminResponse'?: AdminResponse;
-    'balanceInquiryResponse'?: BalanceInquiryResponse;
-    'batchResponse'?: BatchResponse;
-    'cardAcquisitionResponse'?: CardAcquisitionResponse;
-    'cardReaderAPDUResponse'?: CardReaderAPDUResponse;
-    'cardReaderInitResponse'?: CardReaderInitResponse;
-    'cardReaderPowerOffResponse'?: CardReaderPowerOffResponse;
-    'diagnosisResponse'?: DiagnosisResponse;
-    'displayResponse'?: DisplayResponse;
-    'enableServiceResponse'?: EnableServiceResponse;
-    'getTotalsResponse'?: GetTotalsResponse;
-    'inputResponse'?: InputResponse;
-    'loginResponse'?: LoginResponse;
-    'logoutResponse'?: LogoutResponse;
-    'loyaltyResponse'?: LoyaltyResponse;
-    'messageHeader': MessageHeader;
-    'paymentResponse'?: PaymentResponse;
-    'pINResponse'?: PINResponse;
-    'printResponse'?: PrintResponse;
-    'reconciliationResponse'?: ReconciliationResponse;
-    'reversalResponse'?: ReversalResponse;
-    'securityTrailer'?: ContentInformation;
-    'soundResponse'?: SoundResponse;
-    'storedValueResponse'?: StoredValueResponse;
-    'transactionStatusResponse'?: TransactionStatusResponse;
-    'transmitResponse'?: TransmitResponse;
+    "adminResponse"?: AdminResponse;
+    "balanceInquiryResponse"?: BalanceInquiryResponse;
+    "batchResponse"?: BatchResponse;
+    "cardAcquisitionResponse"?: CardAcquisitionResponse;
+    "cardReaderAPDUResponse"?: CardReaderAPDUResponse;
+    "cardReaderInitResponse"?: CardReaderInitResponse;
+    "cardReaderPowerOffResponse"?: CardReaderPowerOffResponse;
+    "diagnosisResponse"?: DiagnosisResponse;
+    "displayResponse"?: DisplayResponse;
+    "enableServiceResponse"?: EnableServiceResponse;
+    "getTotalsResponse"?: GetTotalsResponse;
+    "inputResponse"?: InputResponse;
+    "loginResponse"?: LoginResponse;
+    "logoutResponse"?: LogoutResponse;
+    "loyaltyResponse"?: LoyaltyResponse;
+    "messageHeader": MessageHeader;
+    "paymentResponse"?: PaymentResponse;
+    "pINResponse"?: PINResponse;
+    "printResponse"?: PrintResponse;
+    "reconciliationResponse"?: ReconciliationResponse;
+    "reversalResponse"?: ReversalResponse;
+    "securityTrailer"?: ContentInformation;
+    "soundResponse"?: SoundResponse;
+    "storedValueResponse"?: StoredValueResponse;
+    "transactionStatusResponse"?: TransactionStatusResponse;
+    "transmitResponse"?: TransmitResponse;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "adminResponse",
             "baseName": "AdminResponse",

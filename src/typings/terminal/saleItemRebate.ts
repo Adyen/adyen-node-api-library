@@ -32,17 +32,17 @@
 
 
 export class SaleItemRebate {
-    'eanUpc'?: string;
-    'itemAmount'?: number;
-    'itemID': number;
-    'productCode': string;
-    'quantity'?: number;
-    'rebateLabel'?: string;
-    'unitOfMeasure'?: SaleItemRebate.UnitOfMeasureEnum;
+    "eanUpc"?: string;
+    "itemAmount"?: number;
+    "itemID": number;
+    "productCode": string;
+    "quantity"?: number;
+    "rebateLabel"?: string;
+    "unitOfMeasure"?: SaleItemRebate.UnitOfMeasureEnum;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "eanUpc",
             "baseName": "EanUpc",
@@ -86,24 +86,24 @@ export class SaleItemRebate {
 
 export namespace SaleItemRebate {
     export enum UnitOfMeasureEnum {
-        Case = <any> 'Case',
-        Centilitre = <any> 'Centilitre',
-        Centimetre = <any> 'Centimetre',
-        Foot = <any> 'Foot',
-        Gram = <any> 'Gram',
-        Inch = <any> 'Inch',
-        Kilogram = <any> 'Kilogram',
-        Kilometre = <any> 'Kilometre',
-        Litre = <any> 'Litre',
-        Meter = <any> 'Meter',
-        Mile = <any> 'Mile',
-        Other = <any> 'Other',
-        Ounce = <any> 'Ounce',
-        Pint = <any> 'Pint',
-        Pound = <any> 'Pound',
-        Quart = <any> 'Quart',
-        UKGallon = <any> 'UKGallon',
-        USGallon = <any> 'USGallon',
-        Yard = <any> 'Yard'
+        Case = "Case" as any,
+        Centilitre = "Centilitre" as any,
+        Centimetre = "Centimetre" as any,
+        Foot = "Foot" as any,
+        Gram = "Gram" as any,
+        Inch = "Inch" as any,
+        Kilogram = "Kilogram" as any,
+        Kilometre = "Kilometre" as any,
+        Litre = "Litre" as any,
+        Meter = "Meter" as any,
+        Mile = "Mile" as any,
+        Other = "Other" as any,
+        Ounce = "Ounce" as any,
+        Pint = "Pint" as any,
+        Pound = "Pound" as any,
+        Quart = "Quart" as any,
+        UKGallon = "UKGallon" as any,
+        USGallon = "USGallon" as any,
+        Yard = "Yard" as any
     }
 }

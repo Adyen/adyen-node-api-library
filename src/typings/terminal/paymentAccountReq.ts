@@ -30,17 +30,17 @@
  */
 
 
-import { PaymentInstrumentData } from './paymentInstrumentData';
-import { TransactionIdentification } from './transactionIdentification';
+import { PaymentInstrumentData } from "./paymentInstrumentData";
+import { TransactionIdentification } from "./transactionIdentification";
 
 export class PaymentAccountReq {
-    'accountType'?: PaymentAccountReq.AccountTypeEnum;
-    'cardAcquisitionReference'?: TransactionIdentification;
-    'paymentInstrumentData'?: PaymentInstrumentData;
+    "accountType"?: PaymentAccountReq.AccountTypeEnum;
+    "cardAcquisitionReference"?: TransactionIdentification;
+    "paymentInstrumentData"?: PaymentInstrumentData;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "accountType",
             "baseName": "AccountType",
@@ -64,13 +64,13 @@ export class PaymentAccountReq {
 
 export namespace PaymentAccountReq {
     export enum AccountTypeEnum {
-        CardTotals = <any> 'CardTotals',
-        Checking = <any> 'Checking',
-        CreditCard = <any> 'CreditCard',
-        Default = <any> 'Default',
-        EpurseCard = <any> 'EpurseCard',
-        Investment = <any> 'Investment',
-        Savings = <any> 'Savings',
-        Universal = <any> 'Universal'
+        CardTotals = "CardTotals" as any,
+        Checking = "Checking" as any,
+        CreditCard = "CreditCard" as any,
+        Default = "Default" as any,
+        EpurseCard = "EpurseCard" as any,
+        Investment = "Investment" as any,
+        Savings = "Savings" as any,
+        Universal = "Universal" as any
     }
 }

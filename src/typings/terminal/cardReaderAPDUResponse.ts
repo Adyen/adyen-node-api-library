@@ -30,17 +30,17 @@
  */
 
 
-import { AnyType } from './anyType';
-import { Response } from './response';
+import { AnyType } from "./anyType";
+import { Response } from "./response";
 
 export class CardReaderAPDUResponse {
-    'aPDUData'?: AnyType;
-    'cardStatusWords': AnyType;
-    'response': Response;
+    "aPDUData"?: AnyType;
+    "cardStatusWords": AnyType;
+    "response": Response;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "aPDUData",
             "baseName": "APDUData",

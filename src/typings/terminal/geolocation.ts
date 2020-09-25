@@ -30,16 +30,16 @@
  */
 
 
-import { GeographicCoordinates } from './geographicCoordinates';
-import { UTMCoordinates } from './uTMCoordinates';
+import { GeographicCoordinates } from "./geographicCoordinates";
+import { UTMCoordinates } from "./uTMCoordinates";
 
 export class Geolocation {
-    'geographicCoordinates'?: GeographicCoordinates;
-    'uTMCoordinates'?: UTMCoordinates;
+    "geographicCoordinates"?: GeographicCoordinates;
+    "uTMCoordinates"?: UTMCoordinates;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "geographicCoordinates",
             "baseName": "GeographicCoordinates",

@@ -30,17 +30,17 @@
  */
 
 
-import { DisplayOutput } from './displayOutput';
-import { MessageReference } from './messageReference';
+import { DisplayOutput } from "./displayOutput";
+import { MessageReference } from "./messageReference";
 
 export class AbortRequest {
-    'abortReason': string;
-    'displayOutput'?: DisplayOutput;
-    'messageReference': MessageReference;
+    "abortReason": string;
+    "displayOutput"?: DisplayOutput;
+    "messageReference": MessageReference;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "abortReason",
             "baseName": "AbortReason",

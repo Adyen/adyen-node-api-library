@@ -32,8 +32,8 @@
 
 
 export enum ReconciliationType {
-    AcquirerReconciliation = <any> 'AcquirerReconciliation',
-    AcquirerSynchronisation = <any> 'AcquirerSynchronisation',
-    PreviousReconciliation = <any> 'PreviousReconciliation',
-    SaleReconciliation = <any> 'SaleReconciliation'
+    AcquirerReconciliation = "AcquirerReconciliation" as any,
+    AcquirerSynchronisation = "AcquirerSynchronisation" as any,
+    PreviousReconciliation = "PreviousReconciliation" as any,
+    SaleReconciliation = "SaleReconciliation" as any
 }

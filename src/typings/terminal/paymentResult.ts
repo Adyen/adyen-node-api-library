@@ -30,32 +30,32 @@
  */
 
 
-import { AmountsResp } from './amountsResp';
-import { CapturedSignature } from './capturedSignature';
-import { ContentInformation } from './contentInformation';
-import { CurrencyConversion } from './currencyConversion';
-import { Instalment } from './instalment';
-import { PaymentAcquirerData } from './paymentAcquirerData';
-import { PaymentInstrumentData } from './paymentInstrumentData';
+import { AmountsResp } from "./amountsResp";
+import { CapturedSignature } from "./capturedSignature";
+import { ContentInformation } from "./contentInformation";
+import { CurrencyConversion } from "./currencyConversion";
+import { Instalment } from "./instalment";
+import { PaymentAcquirerData } from "./paymentAcquirerData";
+import { PaymentInstrumentData } from "./paymentInstrumentData";
 
 export class PaymentResult {
-    'amountsResp'?: AmountsResp;
-    'authenticationMethod'?: Array<PaymentResult.AuthenticationMethodEnum>;
-    'capturedSignature'?: CapturedSignature;
-    'currencyConversion'?: Array<CurrencyConversion>;
-    'customerLanguage'?: string;
-    'instalmentType'?: Instalment;
-    'merchantOverrideFlag'?: boolean;
-    'onlineFlag'?: boolean;
-    'paymentAcquirerData'?: PaymentAcquirerData;
-    'paymentInstrumentData'?: PaymentInstrumentData;
-    'paymentType'?: PaymentResult.PaymentTypeEnum;
-    'protectedSignature'?: ContentInformation;
-    'validityDate'?: string;
+    "amountsResp"?: AmountsResp;
+    "authenticationMethod"?: PaymentResult.AuthenticationMethodEnum[];
+    "capturedSignature"?: CapturedSignature;
+    "currencyConversion"?: CurrencyConversion[];
+    "customerLanguage"?: string;
+    "instalmentType"?: Instalment;
+    "merchantOverrideFlag"?: boolean;
+    "onlineFlag"?: boolean;
+    "paymentAcquirerData"?: PaymentAcquirerData;
+    "paymentInstrumentData"?: PaymentInstrumentData;
+    "paymentType"?: PaymentResult.PaymentTypeEnum;
+    "protectedSignature"?: ContentInformation;
+    "validityDate"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "amountsResp",
             "baseName": "AmountsResp",
@@ -129,30 +129,30 @@ export class PaymentResult {
 
 export namespace PaymentResult {
     export enum AuthenticationMethodEnum {
-        Bypass = <any> 'Bypass',
-        ManualVerification = <any> 'ManualVerification',
-        MerchantAuthentication = <any> 'MerchantAuthentication',
-        OfflinePIN = <any> 'OfflinePIN',
-        OnlinePIN = <any> 'OnlinePIN',
-        PaperSignature = <any> 'PaperSignature',
-        SecureCertificate = <any> 'SecureCertificate',
-        SecureNoCertificate = <any> 'SecureNoCertificate',
-        SecuredChannel = <any> 'SecuredChannel',
-        SignatureCapture = <any> 'SignatureCapture',
-        UnknownMethod = <any> 'UnknownMethod'
+        Bypass = "Bypass" as any,
+        ManualVerification = "ManualVerification" as any,
+        MerchantAuthentication = "MerchantAuthentication" as any,
+        OfflinePIN = "OfflinePIN" as any,
+        OnlinePIN = "OnlinePIN" as any,
+        PaperSignature = "PaperSignature" as any,
+        SecureCertificate = "SecureCertificate" as any,
+        SecureNoCertificate = "SecureNoCertificate" as any,
+        SecuredChannel = "SecuredChannel" as any,
+        SignatureCapture = "SignatureCapture" as any,
+        UnknownMethod = "UnknownMethod" as any
     }
     export enum PaymentTypeEnum {
-        CashAdvance = <any> 'CashAdvance',
-        CashDeposit = <any> 'CashDeposit',
-        Completion = <any> 'Completion',
-        FirstReservation = <any> 'FirstReservation',
-        Instalment = <any> 'Instalment',
-        IssuerInstalment = <any> 'IssuerInstalment',
-        Normal = <any> 'Normal',
-        OneTimeReservation = <any> 'OneTimeReservation',
-        PaidOut = <any> 'PaidOut',
-        Recurring = <any> 'Recurring',
-        Refund = <any> 'Refund',
-        UpdateReservation = <any> 'UpdateReservation'
+        CashAdvance = "CashAdvance" as any,
+        CashDeposit = "CashDeposit" as any,
+        Completion = "Completion" as any,
+        FirstReservation = "FirstReservation" as any,
+        Instalment = "Instalment" as any,
+        IssuerInstalment = "IssuerInstalment" as any,
+        Normal = "Normal" as any,
+        OneTimeReservation = "OneTimeReservation" as any,
+        PaidOut = "PaidOut" as any,
+        Recurring = "Recurring" as any,
+        Refund = "Refund" as any,
+        UpdateReservation = "UpdateReservation" as any
     }
 }

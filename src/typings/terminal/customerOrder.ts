@@ -30,22 +30,22 @@
  */
 
 
-import { AnyType } from './anyType';
+import { AnyType } from "./anyType";
 
 export class CustomerOrder {
-    'accessedBy'?: string;
-    'additionalInformation'?: string;
-    'currency'?: string;
-    'currentAmount': number;
-    'customerOrderID': string;
-    'endDate'?: { [key: string]: AnyType; };
-    'forecastedAmount': number;
-    'openOrderState'?: boolean;
-    'startDate': { [key: string]: AnyType; };
+    "accessedBy"?: string;
+    "additionalInformation"?: string;
+    "currency"?: string;
+    "currentAmount": number;
+    "customerOrderID": string;
+    "endDate"?: { [key: string]: AnyType; };
+    "forecastedAmount": number;
+    "openOrderState"?: boolean;
+    "startDate": { [key: string]: AnyType; };
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "accessedBy",
             "baseName": "AccessedBy",

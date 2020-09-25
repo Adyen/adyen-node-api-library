@@ -12,7 +12,11 @@
  *                                      ######
  *                               #############
  *                               ############
+ *
  * Adyen NodeJS API Library
+ *
+ * Version of Checkout: v64
+ *
  * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
@@ -130,12 +134,52 @@ declare namespace ICheckout {
          */
         workPhone?: string;
     }
+    export interface AchDetails {
+        /**
+         * The bank account number (without separators).
+         */
+        bankAccountNumber: string;
+        /**
+         * The bank routing number of the account. The field value is `nil` in most cases.
+         */
+        bankLocationId?: string;
+        /**
+         * Encrypted bank account number. The bank account number (without separators).
+         */
+        encryptedBankAccountNumber?: string;
+        /**
+         * Encrypted location id. The bank routing number of the account. The field value is `nil` in most cases.
+         */
+        encryptedBankLocationId?: string;
+        /**
+         * The name of the bank account holder.
+         * If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example:
+         * * χ12 is converted to ch12.
+         * * üA is converted to euA.
+         * * Peter Møller is converted to Peter Mller, because banks don't accept 'ø'.
+         * After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example:
+         * * John17 - allowed.
+         * * J17 - allowed.
+         * * 171 - not allowed.
+         * * John-7 - allowed.
+         * > If provided details don't match the required format, the response returns the error message: 203 'Invalid bank account holder name'.
+         */
+        ownerName?: string;
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        /**
+         * **ach**
+         */
+        type: string;
+    }
     export interface AdditionalData3DSecure {
         /**
          * This parameter indicates that you are able to process 3D Secure 2 transactions natively on your payment page. Send this field when you are using `/payments` endpoint with any of our [native 3D Secure 2 solutions](https://docs.adyen.com/checkout/3d-secure/native-3ds2), such as Components or Drop-in. Possible values:
          * * **true** - Ready to support native 3D Secure 2 authentication. Setting this to true does not mean always applying 3D Secure 2. Adyen still selects the version of 3D Secure based on configuration to optimize authorisation rates and improve the shopper's experience.
          * * **false** – Not ready to support native 3D Secure 2 authentication. Adyen will not offer 3D Secure 2 to your shopper regardless of your configuration.
-         * > This parameter only indicates your readiness to support 3D Secure 2 natively on Drop-in or Components. To specify that you want to perform 3D Secure on a transaction, use Dynamic 3D Secure or send the executeThreeD parameter.
+         * > This parameter only indicates your readiness to support 3D Secure 2 natively on Drop-in or Components. To specify that you want to perform 3D Secure on a transaction, use Dynamic 3D Secure or send the `executeThreeD` parameter.
          */
         allow3DS2?: string;
         /**
@@ -150,7 +194,7 @@ declare namespace ICheckout {
          */
         mpiImplementationType?: string;
         /**
-         * Indicates the [exemption type](https://docs-admin.is.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction. Possible values:
+         * Indicates the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction. Possible values:
          * * **lowValue**
          * * **secureCorporate**
          * * **trustedBeneficiary**
@@ -160,20 +204,17 @@ declare namespace ICheckout {
     }
     export interface AdditionalDataAirline {
         /**
-         * Passenger name, initials, and a title.
-         * * Format: last name + first name or initials + title.
-         * * Example: *FLYER / MARY MS*.
+         * Reference number for the invoice, issued by the agency.
          * * minLength: 1
-         * * maxLength: 49
+         * * maxLength: 6
          */
-        "airline.passenger_name": string;
+        "airline.agency_invoice_number"?: string;
         /**
-         * The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket.
-         * * Format: alphanumeric.
-         * * minLength: 4
-         * * maxLength: 4
+         * 2-letter agency plan identifier; alphabetical.
+         * * minLength: 2
+         * * maxLength: 2
          */
-        "airline.computerized_reservation_system"?: string;
+        "airline.agency_plan_name"?: string;
         /**
          * [IATA](https://www.iata.org/services/pages/codes.aspx) 3-digit accounting code (PAX); numeric. It identifies the carrier.
          * * Format: IATA 3-digit accounting code (PAX)
@@ -183,32 +224,6 @@ declare namespace ICheckout {
          */
         "airline.airline_code"?: string;
         /**
-         * The ticket's unique identifier.
-         * * minLength: 1
-         * * maxLength: 150
-         */
-        "airline.ticket_number"?: string;
-        /**
-         * Flight departure date. Local time `(HH:mm)` is optional.
-         * * Date format: `yyyy-MM-dd`
-         * * Date and time format: `yyyy-MM-dd HH:mm`
-         * * minLength: 10
-         * * maxLength: 16
-         */
-        "airline.flight_date"?: string;
-        /**
-         * Reference number; alphanumeric.
-         * * minLength: 0
-         * * maxLength: 20
-         */
-        "airline.customer_reference_number"?: string;
-        /**
-         * Address of the place/agency that issued the ticket.
-         * * minLength: 0
-         * * maxLength: 16
-         */
-        "airline.ticket_issue_address"?: string;
-        /**
          * [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier.
          * * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter airline code
          * * Example: KLM = KL
@@ -217,36 +232,25 @@ declare namespace ICheckout {
          */
         "airline.airline_designator_code"?: string;
         /**
-         * IATA number, also ARC number or ARC/IATA number. Unique identifier number for travel agencies.
-         * * minLength: 1
-         * * maxLength: 8
-         */
-        "airline.travel_agency_code"?: string;
-        /**
-         * The name of the travel agency.
-         * * minLength: 1
-         * * maxLength: 25
-         */
-        "airline.travel_agency_name"?: string;
-        /**
-         * 2-letter agency plan identifier; alphabetical.
-         * * minLength: 2
-         * * maxLength: 2
-         */
-        "airline.agency_plan_name"?: string;
-        /**
-         * Reference number for the invoice, issued by the agency.
-         * * minLength: 1
-         * * maxLength: 6
-         */
-        "airline.agency_invoice_number"?: string;
-        /**
          * Chargeable amount for boarding the plane.
          * The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
          * * minLength: 1
          * * maxLength: 18
          */
         "airline.boarding_fee"?: string;
+        /**
+         * The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket.
+         * * Format: alphanumeric.
+         * * minLength: 4
+         * * maxLength: 4
+         */
+        "airline.computerized_reservation_system"?: string;
+        /**
+         * Reference number; alphanumeric.
+         * * minLength: 0
+         * * maxLength: 20
+         */
+        "airline.customer_reference_number"?: string;
         /**
          * Optional 2-digit code; alphanumeric. It identifies the type of product of the transaction. The description of the code may appear on credit card statements.
          * * Format: 2-digit code
@@ -256,20 +260,13 @@ declare namespace ICheckout {
          */
         "airline.document_type"?: string;
         /**
-         * Alphabetical identifier of the departure airport.
-         * This field is required if the airline data includes leg details.
-         * * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code.
-         * * Example: Amsterdam = AMS
-         * * minLength: 3
-         * * maxLength: 3
+         * Flight departure date. Local time `(HH:mm)` is optional.
+         * * Date format: `yyyy-MM-dd`
+         * * Date and time format: `yyyy-MM-dd HH:mm`
+         * * minLength: 10
+         * * maxLength: 16
          */
-        "airline.leg.depart_airport"?: string;
-        /**
-         * The flight identifier.
-         * * minLength: 1
-         * * maxLength: 5
-         */
-        "airline.leg.flight_number"?: string;
+        "airline.flight_date"?: string;
         /**
          * [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier.
          * This field is required/mandatory if the airline data includes leg details.
@@ -279,12 +276,6 @@ declare namespace ICheckout {
          * * maxLength: 2
          */
         "airline.leg.carrier_code"?: string;
-        /**
-         * [Fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code); alphanumeric.
-         * * minLength: 1
-         * * maxLength: 7
-         */
-        "airline.leg.fare_base_code"?: string;
         /**
          * 1-letter travel class identifier; alphabetical. There is no standard; however, the following codes are used rather consistently:
          * * F: first class
@@ -298,15 +289,28 @@ declare namespace ICheckout {
          */
         "airline.leg.class_of_travel"?: string;
         /**
-         * 1-letter code that indicates whether the passenger is entitled to make a stopover. Only two types of characters are allowed:
-         * * O: Stopover allowed
-         * * X: Stopover not allowed
          *
-         * Limitations:
-         * * minLength: 1
-         * * maxLength: 1
+         * Date and time of travel. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-compliant.
+         * * Format: `yyyy-MM-dd HH:mm`
+         * * minLength: 16
+         * * maxLength: 16
          */
-        "airline.leg.stop_over_code"?: string;
+        "airline.leg.date_of_travel"?: string;
+        /**
+         * Alphabetical identifier of the departure airport.
+         * This field is required if the airline data includes leg details.
+         * * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code.
+         * * Example: Amsterdam = AMS
+         * * minLength: 3
+         * * maxLength: 3
+         */
+        "airline.leg.depart_airport"?: string;
+        /**
+         * [Departure tax](https://en.wikipedia.org/wiki/Departure_tax). Amount charged by a country to an individual upon their leaving. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
+         * * minLength: 1
+         * * maxLength: 12
+         */
+        "airline.leg.depart_tax"?: string;
         /**
          * Alphabetical identifier of the destination/arrival airport.
          * This field is required/mandatory if the airline data includes leg details.
@@ -317,19 +321,35 @@ declare namespace ICheckout {
          */
         "airline.leg.destination_code"?: string;
         /**
-         *
-         * Date and time of travel. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-compliant.
-         * * Format: `yyyy-MM-dd HH:mm`
-         * * minLength: 16
-         * * maxLength: 16
-         */
-        "airline.leg.date_of_travel"?: string;
-        /**
-         * [Departure tax](https://en.wikipedia.org/wiki/Departure_tax). Amount charged by a country to an individual upon their leaving. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
+         * [Fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code); alphanumeric.
          * * minLength: 1
-         * * maxLength: 12
+         * * maxLength: 7
          */
-        "airline.leg.depart_tax"?: string;
+        "airline.leg.fare_base_code"?: string;
+        /**
+         * The flight identifier.
+         * * minLength: 1
+         * * maxLength: 5
+         */
+        "airline.leg.flight_number"?: string;
+        /**
+         * 1-letter code that indicates whether the passenger is entitled to make a stopover. Only two types of characters are allowed:
+         * * O: Stopover allowed
+         * * X: Stopover not allowed
+         *
+         * Limitations:
+         * * minLength: 1
+         * * maxLength: 1
+         */
+        "airline.leg.stop_over_code"?: string;
+        /**
+         * Date of birth of the passenger.
+         *
+         * Date format: `yyyy-MM-dd`
+         * * minLength: 10
+         * * maxLength: 10
+         */
+        "airline.passenger.date_of_birth"?: string;
         /**
          * Passenger first name/given name.
          * > This field is required/mandatory if the airline data includes passenger details or leg details.
@@ -341,6 +361,12 @@ declare namespace ICheckout {
          */
         "airline.passenger.last_name"?: string;
         /**
+         * Telephone number of the passenger, including country code. This is an alphanumeric field that can include the '+' and '-' signs.
+         * * minLength: 3
+         * * maxLength: 30
+         */
+        "airline.passenger.telephone_number"?: string;
+        /**
          * Passenger type code (PTC). IATA PTC values are 3-letter alphabetical. Example: ADT, SRC, CNN, INS.
          *
          * However, several carriers use non-standard codes that can be up to 5 alphanumeric characters.
@@ -349,62 +375,39 @@ declare namespace ICheckout {
          */
         "airline.passenger.traveller_type"?: string;
         /**
-         * Telephone number of the passenger, including country code. This is an alphanumeric field that can include the '+' and '-' signs.
-         * * minLength: 3
-         * * maxLength: 30
+         * Passenger name, initials, and a title.
+         * * Format: last name + first name or initials + title.
+         * * Example: *FLYER / MARY MS*.
+         * * minLength: 1
+         * * maxLength: 49
          */
-        "airline.passenger.telephone_number"?: string;
+        "airline.passenger_name": string;
         /**
-         * Date of birth of the passenger.
-         *
-         * Date format: `yyyy-MM-dd`
-         * * minLength: 10
-         * * maxLength: 10
+         * Address of the place/agency that issued the ticket.
+         * * minLength: 0
+         * * maxLength: 16
          */
-        "airline.passenger.date_of_birth"?: string;
+        "airline.ticket_issue_address"?: string;
+        /**
+         * The ticket's unique identifier.
+         * * minLength: 1
+         * * maxLength: 150
+         */
+        "airline.ticket_number"?: string;
+        /**
+         * IATA number, also ARC number or ARC/IATA number. Unique identifier number for travel agencies.
+         * * minLength: 1
+         * * maxLength: 8
+         */
+        "airline.travel_agency_code"?: string;
+        /**
+         * The name of the travel agency.
+         * * minLength: 1
+         * * maxLength: 25
+         */
+        "airline.travel_agency_name"?: string;
     }
     export interface AdditionalDataCarRental {
-        /**
-         * The rental agreement number associated with this car rental.
-         * * Format: Alphanumeric
-         * * maxLength: 14
-         */
-        "carRental.rentalAgreementNumber"?: string;
-        /**
-         * The name of the person renting the car.
-         * * Format: Alphanumeric
-         * * maxLength: 26
-         */
-        "carRental.renterName"?: string;
-        /**
-         * The city where the car must be returned.
-         * * Format: Alphanumeric
-         * * maxLength: 18
-         */
-        "carRental.returnCity"?: string;
-        /**
-         * The state or province where the car must be returned.
-         * * Format: Alphanumeric
-         * * maxLength: 3
-         */
-        "carRental.returnStateProvince"?: string;
-        /**
-         * The country where the car must be returned.
-         * * Format: Alphanumeric
-         * * maxLength: 2
-         */
-        "carRental.returnCountry"?: string;
-        /**
-         * Agency code, phone number, or address abbreviation
-         * * Format: Alphanumeric
-         * * maxLength: 10
-         */
-        "carRental.returnLocationId"?: string;
-        /**
-         * The last date to return the car by.
-         * * Date format: `yyyyMMdd`
-         */
-        "carRental.returnDate"?: string;
         /**
          * Pick-up date.
          * * Date format: `yyyyMMdd`
@@ -417,66 +420,11 @@ declare namespace ICheckout {
          */
         "carRental.customerServiceTollFreeNumber"?: string;
         /**
-         * Daily rental rate.
-         * * Format: Alphanumeric
-         * * maxLength: 12
-         */
-        "carRental.rate"?: string;
-        /**
-         * Specifies whether the given rate is applied daily or weekly.
-         * * D - Daily rate.
-         * * W - Weekly rate.
-         */
-        "carRental.rateIndicator"?: string;
-        /**
-         * The location from which the car is rented.
-         * * Format: Alphanumeric
-         * * maxLength: 18
-         */
-        "carRental.locationCity"?: string;
-        /**
-         * Pick-up date.
-         * * Date format: `yyyyMMdd`
-         */
-        "carRental.locationStateProvince"?: string;
-        /**
-         * The customer service phone number of the car rental company.
-         * * Format: Alphanumeric
-         * * maxLength: 17
-         */
-        "carRental.locationCountry"?: string;
-        /**
-         * Daily rental rate.
-         * * Format: Alphanumeric
-         * * maxLength: 12
-         */
-        "carRental.rentalClassId"?: string;
-        /**
-         * Specifies whether the given rate is applied daily or weekly.
-         * * D - Daily rate.
-         * * W - Weekly rate.
+         * Number of days for which the car is being rented.
+         * * Format: Numeric
+         * * maxLength: 19
          */
         "carRental.daysRented"?: string;
-        /**
-         * Indicates whether the goods or services were tax-exempt, or tax was not collected.
-         *
-         * Values:
-         * * 0 - Tax was not collected
-         * * 1 - Goods or services were tax exempt
-         */
-        "carRental.taxExemptIndicator"?: string;
-        /**
-         * Indicates what market-specific dataset will be submitted or is being submitted. Value should be "A" for Car rental. This should be included in the auth message.
-         * * Format: Alphanumeric
-         * * maxLength: 1
-         */
-        "travelEntertainmentAuthData.market"?: string;
-        /**
-         * Number of nights.  This should be included in the auth message.
-         * * Format: Numeric
-         * * maxLength: 2
-         */
-        "travelEntertainmentAuthData.duration"?: string;
         /**
          * Any fuel charges associated with the rental.
          * * Format: Numeric
@@ -490,17 +438,124 @@ declare namespace ICheckout {
          */
         "carRental.insuranceCharges"?: string;
         /**
+         * The city from which the car is rented.
+         * * Format: Alphanumeric
+         * * maxLength: 18
+         */
+        "carRental.locationCity"?: string;
+        /**
+         * The country from which the car is rented.
+         * * Format: Alphanumeric
+         * * maxLength: 2
+         */
+        "carRental.locationCountry"?: string;
+        /**
+         * The state or province from where the car is rented.
+         * * Format: Alphanumeric
+         * * maxLength: 3
+         */
+        "carRental.locationStateProvince"?: string;
+        /**
          * Indicates if the customer was a "no-show" (neither keeps nor cancels their booking).
-         * * 0 - Not applicable.
-         * * 1 - Customer was a no show.
+         * * Y - Customer was a no show.
+         * * N - Not applicable.
          */
         "carRental.noShowIndicator"?: string;
         /**
          * Charge associated with not returning a vehicle to the original rental location.
          */
         "carRental.oneWayDropOffCharges"?: string;
+        /**
+         * Daily rental rate.
+         * * Format: Alphanumeric
+         * * maxLength: 12
+         */
+        "carRental.rate"?: string;
+        /**
+         * Specifies whether the given rate is applied daily or weekly.
+         * * D - Daily rate.
+         * * W - Weekly rate.
+         */
+        "carRental.rateIndicator"?: string;
+        /**
+         * The rental agreement number associated with this car rental.
+         * * Format: Alphanumeric
+         * * maxLength: 9
+         */
+        "carRental.rentalAgreementNumber"?: string;
+        /**
+         * Daily rental rate.
+         * * Format: Alphanumeric
+         * * maxLength: 12
+         */
+        "carRental.rentalClassId"?: string;
+        /**
+         * The name of the person renting the car.
+         * * Format: Alphanumeric
+         * * maxLength: 26
+         */
+        "carRental.renterName"?: string;
+        /**
+         * The city where the car must be returned.
+         * * Format: Alphanumeric
+         * * maxLength: 18
+         */
+        "carRental.returnCity"?: string;
+        /**
+         * The country where the car must be returned.
+         * * Format: Alphanumeric
+         * * maxLength: 2
+         */
+        "carRental.returnCountry"?: string;
+        /**
+         * The last date to return the car by.
+         * * Date format: `yyyyMMdd`
+         */
+        "carRental.returnDate"?: string;
+        /**
+         * Agency code, phone number, or address abbreviation
+         * * Format: Alphanumeric
+         * * maxLength: 10
+         */
+        "carRental.returnLocationId"?: string;
+        /**
+         * The state or province where the car must be returned.
+         * * Format: Alphanumeric
+         * * maxLength: 3
+         */
+        "carRental.returnStateProvince"?: string;
+        /**
+         * Indicates whether the goods or services were tax-exempt, or tax was not collected.
+         *
+         * Values:
+         * * Y - Goods or services were tax exempt
+         * * N - Tax was not collected
+         */
+        "carRental.taxExemptIndicator"?: string;
+        /**
+         * Number of nights.  This should be included in the auth message.
+         * * Format: Numeric
+         * * maxLength: 2
+         */
+        "travelEntertainmentAuthData.duration"?: string;
+        /**
+         * Indicates what market-specific dataset will be submitted or is being submitted. Value should be "A" for Car rental. This should be included in the auth message.
+         * * Format: Alphanumeric
+         * * maxLength: 1
+         */
+        "travelEntertainmentAuthData.market"?: string;
     }
     export interface AdditionalDataCommon {
+        /**
+         * Triggers test scenarios that allow to replicate certain communication errors.
+         *
+         * Allowed values:
+         * * **NO_CONNECTION_AVAILABLE** – There wasn't a connection available to service the outgoing communication.
+         * This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request.
+         * * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response.
+         * This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response.
+         */
+        RequestedTestErrorResponseCode?: string;
         /**
          * Flags a card payment request for either pre-authorisation or final authorisation. For more information, refer to [Authorisation types](https://docs.adyen.com/checkout/adjust-authorisation#authorisation-types).
          *
@@ -524,7 +579,7 @@ declare namespace ICheckout {
          *
          * Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.
          *
-         * Make sure you are sending `shopperInteraction` **ContAuth** and `recurringProcessingModel` **Subscription** or **UnscheduledCardonFile** to ensure that the transaction is classified as MIT.
+         * Make sure you are sending `shopperInteraction` **ContAuth** and `recurringProcessingModel` **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT.
          */
         networkTxReference?: string;
         /**
@@ -532,59 +587,82 @@ declare namespace ICheckout {
          */
         overwriteBrand?: string;
         /**
-         * Triggers test scenarios that allow to replicate certain communication errors.
-         *
-         * Allowed values:
-         * * **NO_CONNECTION_AVAILABLE** – There wasn't a connection available to service the outgoing communication.
-         * This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request.
-         * * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response.
-         * This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response.
+         * This field is required if the transaction is performed by a registered payment facilitator. This field must contain the city of the actual merchant's address.
+         * * Format: alpha-numeric.
+         * * Maximum length: 13 characters.
          */
-        RequestedTestErrorResponseCode?: string;
+        subMerchantCity?: string;
         /**
-         * This field contains an identifier of the actual merchant when a transaction is submitted via a payment facilitator. The payment facilitator must send in this unique ID, which is used by schemes to identify the merchant.
+         * This field is required if the transaction is performed by a registered payment facilitator. This field must contain the three-letter country code of the actual merchant's address.
+         * * Format: alpha-numeric.
+         * * Fixed length: 3 characters.
+         */
+        subMerchantCountry?: string;
+        /**
+         * This field contains an identifier of the actual merchant when a transaction is submitted via a payment facilitator. The payment facilitator must send in this unique ID.
          *
          * A unique identifier per submerchant that is required if the transaction is performed by a registered payment facilitator.
          * * Format: alpha-numeric.
          * * Fixed length: 15 characters.
          */
         subMerchantID?: string;
+        /**
+         * This field is required if the transaction is performed by a registered payment facilitator. This field must contain the name of the actual merchant.
+         * * Format: alpha-numeric.
+         * * Maximum length: 22 characters.
+         */
+        subMerchantName?: string;
+        /**
+         * This field is required if the transaction is performed by a registered payment facilitator. This field must contain the postal code of the actual merchant's address.
+         * * Format: alpha-numeric.
+         * * Maximum length: 10 characters.
+         */
+        subMerchantPostalCode?: string;
+        /**
+         * This field is required if the transaction is performed by a registered payment facilitator, and if applicable to the country. This field must contain the state code of the actual merchant's address.
+         * * Format: alpha-numeric.
+         * * Maximum length: 3 characters.
+         */
+        subMerchantState?: string;
+        /**
+         * This field is required if the transaction is performed by a registered payment facilitator. This field must contain the street of the actual merchant's address.
+         * * Format: alpha-numeric.
+         * * Maximum length: 60 characters.
+         */
+        subMerchantStreet?: string;
+        /**
+         * This field is required if the transaction is performed by a registered payment facilitator. This field must contain the tax ID of the actual merchant.
+         * * Format: alpha-numeric.
+         * * Fixed length: 11 or 14 characters.
+         */
+        subMerchantTaxId?: string;
     }
     export interface AdditionalDataLevel23 {
         /**
          * Customer code, if supplied by a customer.
+         *
          * Encoding: ASCII.
+         *
          * Max length: 25 characters.
+         *
          * > Required for Level 2 and Level 3 data.
          */
         "enhancedSchemeData.customerReference"?: string;
         /**
-         * Total tax amount, in minor units.
+         * Destination country code.
          *
-         * For example, 2000 means USD 20.00.
-         * Max length: 12 characters.
-         * > Required for Level 2 and Level 3 data.
-         */
-        "enhancedSchemeData.totalTaxAmount"?: number;
-        /**
-         * Shipping amount, in minor units.
+         * Encoding: ASCII.
          *
-         * For example, 2000 means USD 20.00.
-         * Max length: 12 characters.
+         * Max length: 3 characters.
          */
-        "enhancedSchemeData.freightAmount"?: number;
-        /**
-         * Duty amount, in minor units.
-         *
-         * For example, 2000 means USD 20.00.
-         * Max length: 12 characters.
-         */
-        "enhancedSchemeData.dutyAmount"?: number;
+        "enhancedSchemeData.destinationCountryCode"?: string;
         /**
          * The postal code of a destination address.
          *
          * Encoding: ASCII.
+         *
          * Max length: 10 characters.
+         *
          * > Required for American Express.
          */
         "enhancedSchemeData.destinationPostalCode"?: string;
@@ -595,83 +673,112 @@ declare namespace ICheckout {
          */
         "enhancedSchemeData.destinationStateProvinceCode"?: string;
         /**
-         * The postal code of a "ship-from" address.
+         * Duty amount, in minor units.
          *
-         * Encoding: ASCII.
-         * Max length: 10 characters.
+         * For example, 2000 means USD 20.00.
+         *
+         * Max length: 12 characters.
          */
-        "enhancedSchemeData.shipFromPostalCode"?: string;
+        "enhancedSchemeData.dutyAmount"?: string;
         /**
-         * Destination country code.
+         * Shipping amount, in minor units.
          *
-         * Encoding: ASCII.
-         * Max length: 3 characters.
-         */
-        "enhancedSchemeData.destinationCountryCode"?: string;
-        /**
-         * Order date.
-         * * Format: `ddMMyy`
+         * For example, 2000 means USD 20.00.
          *
-         * Encoding: ASCII.
-         * Max length: 6 characters.
+         * Max length: 12 characters.
          */
-        "enhancedSchemeData.orderDate"?: string;
+        "enhancedSchemeData.freightAmount"?: string;
         /**
          * Item commodity code.
+         *
          * Encoding: ASCII.
+         *
          * Max length: 12 characters.
          */
         "enhancedSchemeData.itemDetailLine[itemNr].commodityCode"?: string;
         /**
          * Item description.
+         *
          * Encoding: ASCII.
+         *
          * Max length: 26 characters.
          */
         "enhancedSchemeData.itemDetailLine[itemNr].description"?: string;
         /**
+         * Discount amount, in minor units.
+         *
+         * For example, 2000 means USD 20.00.
+         *
+         * Max length: 12 characters.
+         */
+        "enhancedSchemeData.itemDetailLine[itemNr].discountAmount"?: string;
+        /**
          * Product code.
+         *
          * Encoding: ASCII.
+         *
          * Max length: 12 characters.
          */
         "enhancedSchemeData.itemDetailLine[itemNr].productCode"?: string;
         /**
          * Quantity, specified as an integer value.
+         *
          * Value must be greater than 0.
+         *
          * Max length: 12 characters.
          */
-        "enhancedSchemeData.itemDetailLine[itemNr].quantity"?: number;
+        "enhancedSchemeData.itemDetailLine[itemNr].quantity"?: string;
+        /**
+         * Total amount, in minor units.
+         *
+         * For example, 2000 means USD 20.00.
+         *
+         * Max length: 12 characters.
+         */
+        "enhancedSchemeData.itemDetailLine[itemNr].totalAmount"?: string;
         /**
          * Item unit of measurement.
+         *
          * Encoding: ASCII.
+         *
          * Max length: 3 characters.
          */
         "enhancedSchemeData.itemDetailLine[itemNr].unitOfMeasure"?: string;
         /**
          * Unit price, specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+         *
          * Max length: 12 characters.
          */
-        "enhancedSchemeData.itemDetailLine[itemNr].unitPrice"?: number;
+        "enhancedSchemeData.itemDetailLine[itemNr].unitPrice"?: string;
         /**
-         * Discount amount, in minor units.
+         * Order date.
+         * * Format: `ddMMyy`
+         *
+         * Encoding: ASCII.
+         *
+         * Max length: 6 characters.
+         */
+        "enhancedSchemeData.orderDate"?: string;
+        /**
+         * The postal code of a "ship-from" address.
+         *
+         * Encoding: ASCII.
+         *
+         * Max length: 10 characters.
+         */
+        "enhancedSchemeData.shipFromPostalCode"?: string;
+        /**
+         * Total tax amount, in minor units.
          *
          * For example, 2000 means USD 20.00.
+         *
          * Max length: 12 characters.
+         *
+         * > Required for Level 2 and Level 3 data.
          */
-        "enhancedSchemeData.itemDetailLine[itemNr].discountAmount"?: number;
-        /**
-         * Total amount, in minor units.
-         * For example, 2000 means USD 20.00.
-         * Max length: 12 characters.
-         */
-        "enhancedSchemeData.itemDetailLine[itemNr].totalAmount"?: number;
+        "enhancedSchemeData.totalTaxAmount"?: string;
     }
     export interface AdditionalDataLodging {
-        /**
-         * The toll free phone number for the hotel/lodgings.
-         * * Format: Alphanumeric
-         * * maxLength: 17
-         */
-        "lodging.customerServiceTollFreeNumber"?: string;
         /**
          * The arrival date.
          * * Date format: `yyyyMMdd`
@@ -683,35 +790,11 @@ declare namespace ICheckout {
          */
         "lodging.checkOutDate"?: string;
         /**
-         * Card acceptor’s internal invoice or billing ID reference number.
-         * * Format: Alphanumeric
-         * * maxLength: 25
-         */
-        "lodging.folioNumber"?: string;
-        /**
-         * Identifies specific lodging property location by its local phone number.
+         * The toll free phone number for the hotel/lodgings.
          * * Format: Alphanumeric
          * * maxLength: 17
          */
-        "lodging.propertyPhoneNumber"?: string;
-        /**
-         * The rate of the room.
-         * * Format: Numeric
-         * * maxLength: 12
-         */
-        "lodging.room1.rate"?: string;
-        /**
-         * The total amount of tax to be paid.
-         * * Format: Numeric
-         * * maxLength: 12
-         */
-        "lodging.room1.tax"?: string;
-        /**
-         * Total number of nights the room will be rented.
-         * * Format: Numeric
-         * * maxLength: 4
-         */
-        "lodging.room1.numberOfNights"?: string;
+        "lodging.customerServiceTollFreeNumber"?: string;
         /**
          * Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: 'Y' or 'N'.
          * * Format: Alphabetic
@@ -719,23 +802,17 @@ declare namespace ICheckout {
          */
         "lodging.fireSafetyActIndicator"?: string;
         /**
-         * Indicates what market-specific dataset will be submitted or is being submitted. Value should be "H" for Hotel. This should be included in the auth message.
-         * * Format: Alphanumeric
-         * * maxLength: 1
-         */
-        "travelEntertainmentAuthData.market"?: string;
-        /**
-         * Number of nights.  This should be included in the auth message.
-         * * Format: Numeric
-         * * maxLength: 2
-         */
-        "travelEntertainmentAuthData.duration"?: string;
-        /**
          * The folio cash advances.
          * * Format: Numeric
          * * maxLength: 12
          */
         "lodging.folioCashAdvances"?: string;
+        /**
+         * Card acceptor’s internal invoice or billing ID reference number.
+         * * Format: Alphanumeric
+         * * maxLength: 25
+         */
+        "lodging.folioNumber"?: string;
         /**
          * Any charges for food and beverages associated with the booking.
          * * Format: Numeric
@@ -757,25 +834,56 @@ declare namespace ICheckout {
          */
         "lodging.prepaidExpenses"?: string;
         /**
-         * Total tax amount.
+         * Identifies specific lodging property location by its local phone number.
+         * * Format: Alphanumeric
+         * * maxLength: 17
+         */
+        "lodging.propertyPhoneNumber"?: string;
+        /**
+         * Total number of nights the room will be rented.
+         * * Format: Numeric
+         * * maxLength: 4
+         */
+        "lodging.room1.numberOfNights"?: string;
+        /**
+         * The rate of the room.
          * * Format: Numeric
          * * maxLength: 12
          */
-        "lodging.totalTax"?: string;
+        "lodging.room1.rate"?: string;
+        /**
+         * The total amount of tax to be paid.
+         * * Format: Numeric
+         * * maxLength: 12
+         */
+        "lodging.room1.tax"?: string;
         /**
          * Total room tax amount.
          * * Format: Numeric
          * * maxLength: 12
          */
         "lodging.totalRoomTax"?: string;
+        /**
+         * Total tax amount.
+         * * Format: Numeric
+         * * maxLength: 12
+         */
+        "lodging.totalTax"?: string;
+        /**
+         * Number of nights. This should be included in the auth message.
+         * * Format: Numeric
+         * * maxLength: 2
+         */
+        "travelEntertainmentAuthData.duration"?: string;
+        /**
+         * Indicates what market-specific dataset will be submitted or is being submitted. Value should be "H" for Hotel. This should be included in the auth message.
+         *
+         * * Format: Alphanumeric
+         * * maxLength: 1
+         */
+        "travelEntertainmentAuthData.market"?: string;
     }
     export interface AdditionalDataOpenInvoice {
-        /**
-         * The number of invoice lines included in `openinvoicedata`.
-         *
-         * There needs to be at least one line, so `numberOfLines` needs to be at least 1.
-         */
-        "openinvoicedata.numberOfLines"?: number;
         /**
          * Holds different merchant data points like product, purchase, customer, and so on. It takes data in a Base64 encoded string.
          *
@@ -789,37 +897,43 @@ declare namespace ICheckout {
          */
         "openinvoicedata.merchantData"?: string;
         /**
+         * The number of invoice lines included in `openinvoicedata`.
+         *
+         * There needs to be at least one line, so `numberOfLines` needs to be at least 1.
+         */
+        "openinvoicedata.numberOfLines"?: string;
+        /**
          * The three-character ISO currency code.
          */
-        "openinvoicedata.line[itemNr].currencyCode"?: string;
+        "openinvoicedataLine[itemNr].currencyCode"?: string;
         /**
          * A text description of the product the invoice line refers to.
          */
-        "openinvoicedata.line[itemNr].description"?: string;
+        "openinvoicedataLine[itemNr].description"?: string;
         /**
          * The price for one item in the invoice line, represented in minor units.
          *
          * The due amount for the item, VAT excluded.
          */
-        "openinvoicedata.line[itemNr].itemAmount"?: number;
+        "openinvoicedataLine[itemNr].itemAmount"?: string;
+        /**
+         * A unique id for this item. Required for RatePay if the description of each item is not unique.
+         */
+        "openinvoicedataLine[itemNr].itemId"?: string;
         /**
          * The VAT due for one item in the invoice line, represented in minor units.
          */
-        "openinvoicedata.line[itemNr].itemVatAmount"?: number;
+        "openinvoicedataLine[itemNr].itemVatAmount"?: string;
         /**
          * The VAT percentage for one item in the invoice line, represented in minor units.
          *
          * For example, 19% VAT is specified as 1900.
          */
-        "openinvoicedata.line[itemNr].itemVatPercentage"?: number;
-        /**
-         * A unique id for this item. Required for RatePay if the description of each item is not unique.
-         */
-        "openinvoicedata.line[itemNr].itemId"?: string;
+        "openinvoicedataLine[itemNr].itemVatPercentage"?: string;
         /**
          * The number of units purchased of a specific product.
          */
-        "openinvoicedata.line[itemNr].numberOfItems"?: number;
+        "openinvoicedataLine[itemNr].numberOfItems"?: string;
         /**
          * Required for AfterPay. The country-specific VAT category a product falls under.
          *
@@ -828,33 +942,25 @@ declare namespace ICheckout {
          * * Low
          * * None.
          */
-        "openinvoicedata.line[itemNr].vatCategory"?: string;
+        "openinvoicedataLine[itemNr].vatCategory"?: string;
     }
     export interface AdditionalDataRatepay {
         /**
          * Amount the customer has to pay each month.
          */
-        "ratepay.installmentAmount"?: number;
+        "ratepay.installmentAmount"?: string;
+        /**
+         * Interest rate of this installment.
+         */
+        "ratepay.interestRate"?: string;
         /**
          * Amount of the last installment.
          */
-        "ratepay.lastInstallmentAmount"?: number;
-        /**
-         * Interest rate of this installment. Double
-         */
-        "ratepay.interestRate"?: number;
+        "ratepay.lastInstallmentAmount"?: string;
         /**
          * Calendar day of the first payment.
          */
-        "ratepay.paymentFirstday"?: number;
-        /**
-         * Identification name or number for the invoice, defined by the merchant.
-         */
-        "ratepaydata.invoiceId"?: string;
-        /**
-         * Invoice date, defined by the merchant. If not included, the invoice date is set to the delivery date.
-         */
-        "ratepaydata.invoiceDate"?: string;
+        "ratepay.paymentFirstday"?: string;
         /**
          * Date the merchant delivered the goods to the customer.
          */
@@ -863,23 +969,34 @@ declare namespace ICheckout {
          * Date by which the customer must settle the payment.
          */
         "ratepaydata.dueDate"?: string;
+        /**
+         * Invoice date, defined by the merchant. If not included, the invoice date is set to the delivery date.
+         */
+        "ratepaydata.invoiceDate"?: string;
+        /**
+         * Identification name or number for the invoice, defined by the merchant.
+         */
+        "ratepaydata.invoiceId"?: string;
     }
     export interface AdditionalDataRetry {
         /**
          * The number of times the transaction (not order) has been retried between different payment service providers. For instance, the `chainAttemptNumber` set to 2 means that this transaction has been recently tried on another provider before being sent to Adyen.
+         *
          * > If you submit `retry.chainAttemptNumber`, `retry.orderAttemptNumber`, and `retry.skipRetry` values, we also recommend you provide the `merchantOrderReference` to facilitate linking payment attempts together.
          */
-        "retry.chainAttemptNumber"?: number;
+        "retry.chainAttemptNumber"?: string;
         /**
          * The index of the attempt to bill a particular order, which is identified by the `merchantOrderReference` field. For example, if a recurring transaction fails and is retried one day later, then the order number for these attempts would be 1 and 2, respectively.
+         *
          * > If you submit `retry.chainAttemptNumber`, `retry.orderAttemptNumber`, and `retry.skipRetry` values, we also recommend you provide the `merchantOrderReference` to facilitate linking payment attempts together.
          */
-        "retry.orderAttemptNumber"?: number;
+        "retry.orderAttemptNumber"?: string;
         /**
          * The Boolean value indicating whether Adyen should skip or retry this transaction, if possible.
+         *
          * > If you submit `retry.chainAttemptNumber`, `retry.orderAttemptNumber`, and `retry.skipRetry` values, we also recommend you provide the `merchantOrderReference` to facilitate linking payment attempts together.
          */
-        "retry.skipRetry"?: boolean;
+        "retry.skipRetry"?: string;
     }
     export interface AdditionalDataRisk {
         /**
@@ -887,37 +1004,13 @@ declare namespace ICheckout {
          */
         "riskdata.[customFieldName]"?: string;
         /**
-         * ID of the item.
-         */
-        "riskdata.basket.item[itemNr].itemID"?: string;
-        /**
-         * A text description of the product the invoice line refers to.
-         */
-        "riskdata.basket.item[itemNr].productTitle"?: string;
-        /**
          * The price of item in the basket, represented in [minor units](https://docs.adyen.com/development-resources/currency-codes).
          */
         "riskdata.basket.item[itemNr].amountPerItem"?: string;
         /**
-         * The three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        "riskdata.basket.item[itemNr].currency"?: string;
-        /**
-         * [Universal Product Code](https://en.wikipedia.org/wiki/Universal_Product_Code).
-         */
-        "riskdata.basket.item[itemNr].upc"?: string;
-        /**
-         * [Stock keeping unit](https://en.wikipedia.org/wiki/Stock_keeping_unit).
-         */
-        "riskdata.basket.item[itemNr].sku"?: string;
-        /**
          * Brand of the item.
          */
         "riskdata.basket.item[itemNr].brand"?: string;
-        /**
-         * Manufacturer of the item.
-         */
-        "riskdata.basket.item[itemNr].manufacturer"?: string;
         /**
          * Category of the item.
          */
@@ -927,9 +1020,21 @@ declare namespace ICheckout {
          */
         "riskdata.basket.item[itemNr].color"?: string;
         /**
-         * Size of the item.
+         * The three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        "riskdata.basket.item[itemNr].size"?: string;
+        "riskdata.basket.item[itemNr].currency"?: string;
+        /**
+         * ID of the item.
+         */
+        "riskdata.basket.item[itemNr].itemID"?: string;
+        /**
+         * Manufacturer of the item.
+         */
+        "riskdata.basket.item[itemNr].manufacturer"?: string;
+        /**
+         * A text description of the product the invoice line refers to.
+         */
+        "riskdata.basket.item[itemNr].productTitle"?: string;
         /**
          * Quantity of the item purchased.
          */
@@ -939,13 +1044,21 @@ declare namespace ICheckout {
          */
         "riskdata.basket.item[itemNr].receiverEmail"?: string;
         /**
+         * Size of the item.
+         */
+        "riskdata.basket.item[itemNr].size"?: string;
+        /**
+         * [Stock keeping unit](https://en.wikipedia.org/wiki/Stock_keeping_unit).
+         */
+        "riskdata.basket.item[itemNr].sku"?: string;
+        /**
+         * [Universal Product Code](https://en.wikipedia.org/wiki/Universal_Product_Code).
+         */
+        "riskdata.basket.item[itemNr].upc"?: string;
+        /**
          * Code of the promotion.
          */
         "riskdata.promotions.promotion[itemNr].promotionCode"?: string;
-        /**
-         * Name of the promotion.
-         */
-        "riskdata.promotions.promotion[itemNr].promotionName"?: string;
         /**
          * The discount amount of the promotion, represented in [minor units](https://docs.adyen.com/development-resources/currency-codes).
          */
@@ -960,8 +1073,49 @@ declare namespace ICheckout {
          * e.g. for a promotion discount of 30%, the value of the field should be 30.
          */
         "riskdata.promotions.promotion[itemNr].promotionDiscountPercentage"?: string;
+        /**
+         * Name of the promotion.
+         */
+        "riskdata.promotions.promotion[itemNr].promotionName"?: string;
     }
     export interface AdditionalDataRiskStandalone {
+        /**
+         * Shopper's country of residence in the form of ISO standard 3166 2-character country codes.
+         */
+        "PayPal.CountryCode"?: string;
+        /**
+         * Shopper's email.
+         */
+        "PayPal.EmailId"?: string;
+        /**
+         * Shopper's first name.
+         */
+        "PayPal.FirstName"?: string;
+        /**
+         * Shopper's last name.
+         */
+        "PayPal.LastName"?: string;
+        /**
+         * Unique PayPal Customer Account identification number. Character length and limitations: 13 single-byte alphanumeric characters.
+         */
+        "PayPal.PayerId"?: string;
+        /**
+         * Shopper's phone number.
+         */
+        "PayPal.Phone"?: string;
+        /**
+         * Allowed values:
+         * * **Eligible** — Merchant is protected by PayPal's Seller Protection Policy for Unauthorized Payments and Item Not Received.
+         *
+         * * **PartiallyEligible** — Merchant is protected by PayPal's Seller Protection Policy for Item Not Received.
+         *
+         * * **Ineligible** — Merchant is not protected under the Seller Protection Policy.
+         */
+        "PayPal.ProtectionEligibility"?: string;
+        /**
+         * Unique transaction ID of the payment.
+         */
+        "PayPal.TransactionId"?: string;
         /**
          * Raw AVS result received from the acquirer, where available. Example: D
          */
@@ -977,7 +1131,7 @@ declare namespace ICheckout {
         /**
          * Unique identifier or token for the shopper's card details.
          */
-        "risk.token"?: string;
+        riskToken?: string;
         /**
          * A Boolean value indicating whether 3DS authentication was completed on this payment. Example: true
          */
@@ -990,41 +1144,6 @@ declare namespace ICheckout {
          * Required for PayPal payments only. The only supported value is: **paypal**.
          */
         tokenDataType?: string;
-        /**
-         * Allowed values:
-         * * **Eligible** — Merchant is protected by PayPal's Seller Protection Policy for Unauthorized Payments and Item Not Received.
-         * * **PartiallyEligible** — Merchant is protected by PayPal's Seller Protection Policy for Item Not Received.
-         * * **Ineligible** — Merchant is not protected under the Seller Protection Policy.
-         */
-        "PayPal.ProtectionEligibility"?: string;
-        /**
-         * Unique PayPal Customer Account identification number. Character length and limitations: 13 single-byte alphanumeric characters.
-         */
-        "PayPal.PayerId"?: string;
-        /**
-         * Unique transaction ID of the payment.
-         */
-        "PayPal.TransactionId"?: string;
-        /**
-         * Shopper's country of residence in the form of ISO standard 3166 2-character country codes.
-         */
-        "PayPal.CountryCode"?: string;
-        /**
-         * Shopper's first name.
-         */
-        "PayPal.FirstName"?: string;
-        /**
-         * Shopper's last name.
-         */
-        "PayPal.LastName"?: string;
-        /**
-         * Shopper's phone number.
-         */
-        "PayPal.Phone"?: string;
-        /**
-         * Shopper's email.
-         */
-        "PayPal.EmailId"?: string;
     }
     export interface AdditionalDataTemporaryServices {
         /**
@@ -1033,11 +1152,6 @@ declare namespace ICheckout {
          * * maxLength: 25
          */
         "enhancedSchemeData.customerReference"?: string;
-        /**
-         * Total tax amount, in minor units. For example, 2000 means USD 20.00
-         * * maxLength: 12
-         */
-        "enhancedSchemeData.totalTaxAmount"?: string;
         /**
          * Name or ID associated with the individual working in a temporary capacity.
          * * maxLength: 40
@@ -1048,6 +1162,21 @@ declare namespace ICheckout {
          * * maxLength: 40
          */
         "enhancedSchemeData.jobDescription"?: string;
+        /**
+         * Amount paid per regular hours worked, minor units.
+         * * maxLength: 7
+         */
+        "enhancedSchemeData.regularHoursRate"?: string;
+        /**
+         * Amount of time worked during a normal operation for the task or job.
+         * * maxLength: 7
+         */
+        "enhancedSchemeData.regularHoursWorked"?: string;
+        /**
+         * Name of the individual requesting temporary services.
+         * * maxLength: 40
+         */
+        "enhancedSchemeData.requestName"?: string;
         /**
          * Date for the beginning of the pay period.
          * * Format: ddMMyy
@@ -1061,20 +1190,10 @@ declare namespace ICheckout {
          */
         "enhancedSchemeData.tempWeekEnding"?: string;
         /**
-         * Name of the individual requesting temporary services.
-         * * maxLength: 40
+         * Total tax amount, in minor units. For example, 2000 means USD 20.00
+         * * maxLength: 12
          */
-        "enhancedSchemeData.requestName"?: string;
-        /**
-         * Amount of time worked during a normal operation for the task or job.
-         * * maxLength: 7
-         */
-        "enhancedSchemeData.regularHoursWorked"?: string;
-        /**
-         * Amount paid per regular hours worked, minor units.
-         * * maxLength: 7
-         */
-        "enhancedSchemeData.regularHoursRate"?: string;
+        "enhancedSchemeData.totalTaxAmount"?: string;
     }
     export interface AdditionalDataWallets {
         /**
@@ -1131,6 +1250,14 @@ declare namespace ICheckout {
          */
         street: string;
     }
+    export interface AmazonPayDetails {
+        amazonPayToken?: string;
+        checkoutSessionId?: string;
+        /**
+         * **amazonpay**
+         */
+        type: string;
+    }
     export interface Amount {
         /**
          * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
@@ -1143,31 +1270,56 @@ declare namespace ICheckout {
          */
         value: number; // int64
     }
+    export interface AndroidPayDetails {
+        /**
+         *
+         */
+        androidPayToken: string;
+        /**
+         * **androidpay**
+         */
+        type: string;
+    }
+    export interface ApplePayDetails {
+        /**
+         *
+         */
+        applePayToken: string;
+        fundingSource?: "credit" | "debit";
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        /**
+         * **applepay**
+         */
+        type: string;
+    }
     export interface ApplicationInfo {
         /**
          * Adyen-developed software, such as libraries and plugins, used to interact with the Adyen API. For example, Magento plugin, Java API library, etc.
          */
-        adyenLibrary?: ICheckout.CommonField;
+        adyenLibrary?: CommonField;
         /**
          * Adyen-developed software to get payment details. For example, Checkout SDK, Secured Fields SDK, etc.
          */
-        adyenPaymentSource?: ICheckout.CommonField;
+        adyenPaymentSource?: CommonField;
         /**
          * Third-party developed platform used to initiate payment requests. For example, Magento, Zuora, etc.
          */
-        externalPlatform?: ICheckout.ExternalPlatform;
+        externalPlatform?: ExternalPlatform;
         /**
          * Merchant developed software, such as cashier application, used to interact with the Adyen API.
          */
-        merchantApplication?: ICheckout.CommonField;
+        merchantApplication?: CommonField;
         /**
          * Merchant device information.
          */
-        merchantDevice?: ICheckout.MerchantDevice;
+        merchantDevice?: MerchantDevice;
         /**
          * Shopper interaction device, such as terminal, mobile device or web browser, to initiate payment requests.
          */
-        shopperInteractionDevice?: ICheckout.ShopperInteractionDevice;
+        shopperInteractionDevice?: ShopperInteractionDevice;
     }
     export interface Avs {
         /**
@@ -1234,13 +1386,43 @@ declare namespace ICheckout {
          */
         taxId?: string;
     }
+    export interface BillDeskOnlineDetails {
+        /**
+         * The issuer id of the shopper's selected bank.
+         */
+        issuer: string;
+        /**
+         * **billdesk_online**
+         */
+        type: string;
+    }
+    export interface BillDeskWalletDetails {
+        /**
+         * The issuer id of the shopper's selected bank.
+         */
+        issuer: string;
+        /**
+         * **billdesk_wallet**
+         */
+        type: string;
+    }
+    export interface BlikDetails {
+        /**
+         * BLIK code consisting of 6 digits.
+         */
+        blikCode?: string;
+        /**
+         * **blik**
+         */
+        type: string;
+    }
     export interface BrowserInfo {
         /**
          * The accept header value of the shopper's browser.
          */
         acceptHeader: string;
         /**
-         * The color depth of the shopper's browser in bits per pixel. This should be obtained by using the browser's `screen.colorDepth` property. Accepted values: 1, 4, 8, 15, 16, 24, 32 or 48 bit color depth.
+         * The color depth of the shopper's browser in bits per pixel. This should be obtained by using the browser's `screen.colorDepth` property. Accepted values: 1, 4, 8, 15, 16, 24, 30, 32 or 48 bit color depth.
          */
         colorDepth: number; // int32
         /**
@@ -1316,16 +1498,605 @@ declare namespace ICheckout {
          */
         startYear?: string;
     }
-    export interface CheckoutPaymentsAction {
+    export interface CardDetails {
+        "cupsecureplus.smscode"?: string;
+        cvc?: string;
+        /**
+         *
+         */
+        encryptedCardNumber: string;
+        /**
+         *
+         */
+        encryptedExpiryMonth: string;
+        /**
+         *
+         */
+        encryptedExpiryYear: string;
+        expiryMonth?: string;
+        expiryYear?: string;
+        fundingSource?: "credit" | "debit";
+        holderName?: string;
+        number?: string;
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        /**
+         * **scheme**
+         */
+        type: string;
+    }
+    export interface CheckoutAwaitAction {
+        /**
+         * When non-empty, contains a value that you must submit to the `/payments/details` endpoint. In some cases, required for polling.
+         */
+        paymentData?: string;
+        /**
+         * Specifies the payment method.
+         */
+        paymentMethodType?: string;
+        /**
+         * Specifies the URL to redirect to.
+         */
+        url?: string;
+    }
+    export interface CheckoutBalanceCheckRequest {
+        /**
+         * Shopper account information for 3D Secure 2.
+         * > For 3D Secure 2 transactions, we recommend that you include this object to increase the chances of achieving a frictionless flow.
+         */
+        accountInfo?: AccountInfo;
+        /**
+         * If you want a [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) request to use a non-zero value, assign this value to `additionalAmount` (while the amount must be still set to 0 to trigger BIN or card verification).
+         * Required to be in the same currency as the `amount`.
+         */
+        additionalAmount?: Amount;
+        /**
+         * This field contains additional data, which may be required for a particular payment request.
+         *
+         * The `additionalData` object consists of entries, each of which includes the key and value.
+         */
+        additionalData?: /**
+         * This field contains additional data, which may be required for a particular payment request.
+         *
+         * The `additionalData` object consists of entries, each of which includes the key and value.
+         */
+        AdditionalDataCommon | AdditionalData3DSecure | AdditionalDataAirline | AdditionalDataCarRental | AdditionalDataLevel23 | AdditionalDataLodging | AdditionalDataOpenInvoice | AdditionalDataRatepay | AdditionalDataRetry | AdditionalDataRisk | AdditionalDataRiskStandalone | AdditionalDataTemporaryServices | AdditionalDataWallets;
+        /**
+         * The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
+         */
+        amount: Amount;
+        /**
+         * Information about your application. For more details, see [Building Adyen solutions](https://docs.adyen.com/development-resources/building-adyen-solutions).
+         */
+        applicationInfo?: ApplicationInfo;
+        /**
+         * The address where to send the invoice.
+         * > For 3D Secure 2 transactions, schemes require the `billingAddress` for both `deviceChannel` **browser** and **app**. Include all of the fields within this object.
+         */
+        billingAddress?: Address;
+        /**
+         * The shopper's browser information.
+         * > For 3D Secure transactions, `browserInfo` is required for `channel` **web** (or `deviceChannel` **browser**).
+         */
+        browserInfo?: BrowserInfo;
+        /**
+         * The delay between the authorisation and scheduled auto-capture, specified in hours.
+         */
+        captureDelayHours?: number; // int32
+        /**
+         * The shopper's date of birth.
+         *
+         * Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
+         */
+        dateOfBirth?: string; // date-time
+        /**
+         * The forex quote as returned in the response of the forex service.
+         */
+        dccQuote?: ForexQuote;
+        /**
+         * The address where the purchased goods should be delivered.
+         */
+        deliveryAddress?: Address;
+        /**
+         * The date and time the purchased goods should be delivered.
+         *
+         * Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD
+         *
+         * Example: 2017-07-17T13:42:40.428+01:00
+         */
+        deliveryDate?: string; // date-time
+        /**
+         * A string containing the shopper's device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).
+         */
+        deviceFingerprint?: string;
+        /**
+         * Choose if a specific transaction should use the Real-time Account Updater, regardless of other settings.
+         */
+        enableRealTimeUpdate?: boolean;
+        /**
+         * An integer value that is added to the normal fraud score. The value can be either positive or negative.
+         */
+        fraudOffset?: number; // int32
+        /**
+         * Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/cards/credit-card-installments).
+         */
+        installments?: Installments;
+        /**
+         * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
+         */
+        mcc?: string;
+        /**
+         * The merchant account identifier, with which you want to process the transaction.
+         */
+        merchantAccount: string;
+        /**
+         * This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle.
+         * The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations.
+         * > We strongly recommend you send the `merchantOrderReference` value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide `retry.orderAttemptNumber`, `retry.chainAttemptNumber`, and `retry.skipRetry` values in `PaymentRequest.additionalData`.
+         */
+        merchantOrderReference?: string;
+        /**
+         * Additional risk fields for 3D Secure 2.
+         * > For 3D Secure 2 transactions, we recommend that you include this object to increase the chances of achieving a frictionless flow.
+         */
+        merchantRiskIndicator?: MerchantRiskIndicator;
+        /**
+         * Metadata consists of entries, each of which includes a key and a value.
+         * Limitations: Maximum 20 key-value pairs per request. When exceeding, the "177" error occurs: "Metadata size exceeds limit".
+         */
+        metadata?: {
+            [name: string]: string;
+        };
+        /**
+         * When you are doing multiple partial (gift card) payments, this is the `pspReference` of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the `merchantOrderReference`instead.
+         */
+        orderReference?: string;
+        /**
+         * The collection that contains the type of the payment method and its specific information.
+         */
+        paymentMethod: {
+            [name: string]: string;
+        };
+        /**
+         * The recurring settings for the payment. Use this property when you want to enable [recurring payments](https://docs.adyen.com/classic-integration/recurring-payments).
+         */
+        recurring?: Recurring;
+        /**
+         * Defines a recurring payment type.
+         * Allowed values:
+         * * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.
+         * * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.
+         * * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
+         *
+         */
+        recurringProcessingModel?: "CardOnFile" | "Subscription" | "UnscheduledCardOnFile";
+        /**
+         * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement.
+         * If you need to provide multiple references for a transaction, separate them with hyphens ("-").
+         * Maximum length: 80 characters.
+         */
+        reference: string;
+        /**
+         * Some payment methods require defining a value for this field to specify how to process the transaction.
+         *
+         * For the Bancontact payment method, it can be set to:
+         * * `maestro` (default), to be processed like a Maestro card, or
+         * * `bcmc`, to be processed like a Bancontact card.
+         */
+        selectedBrand?: string;
+        /**
+         * The `recurringDetailReference` you want to use for this payment. The value `LATEST` can be used to select the most recently stored recurring detail.
+         */
+        selectedRecurringDetailReference?: string;
+        /**
+         * A session ID used to identify a payment session.
+         */
+        sessionId?: string;
+        /**
+         * The shopper's email address. We recommend that you provide this data, as it is used in velocity fraud checks.
+         * > For 3D Secure 2 transactions, schemes require the `shopperEmail` for both `deviceChannel` **browser** and **app**.
+         */
+        shopperEmail?: string;
+        /**
+         * The shopper's IP address. In general, we recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks).
+         * > Required for 3D Secure 2 transactions. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://support.adyen.com/hc/en-us/requests/new).
+         */
+        shopperIP?: string;
+        /**
+         * Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer.
+         * For the web service API, Adyen assumes Ecommerce shopper interaction by default.
+         *
+         * This field has the following possible values:
+         * * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request.
+         * * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment).
+         * * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone.
+         * * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
+         */
+        shopperInteraction?: "Ecommerce" | "ContAuth" | "Moto" | "POS";
+        /**
+         * The combination of a language code and a country code to specify the language to be used in the payment.
+         */
+        shopperLocale?: string;
+        /**
+         * The shopper's full name and gender (if specified).
+         */
+        shopperName?: Name;
+        /**
+         * The shopper's reference to uniquely identify this shopper (e.g. user ID or account ID).
+         * > This field is required for recurring payments.
+         */
+        shopperReference?: string;
+        /**
+         * The text to be shown on the shopper's bank statement. To enable this field, contact our [Support Team](https://support.adyen.com/hc/en-us/requests/new).
+         *  We recommend sending a maximum of 25 characters, otherwise banks might truncate the string.
+         */
+        shopperStatement?: string;
+        /**
+         * The shopper's social security number.
+         */
+        socialSecurityNumber?: string;
+        /**
+         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information).
+         */
+        splits?: Split[];
+        /**
+         * The physical store, for which this payment is processed.
+         */
+        store?: string;
+        /**
+         * The shopper's telephone number.
+         */
+        telephoneNumber?: string;
+        /**
+         * Request fields for 3D Secure 2.
+         */
+        threeDS2RequestData?: ThreeDS2RequestData;
+        /**
+         * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
+         */
+        threeDSAuthenticationOnly?: boolean;
+        /**
+         * The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available).
+         */
+        totalsGroup?: string;
+        /**
+         * Set to true if the payment should be routed to a trusted MID.
+         */
+        trustedShopper?: boolean;
+    }
+    export interface CheckoutBalanceCheckResponse {
+        /**
+         * This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**.
+         */
+        additionalData?: /* This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**. */ ResponseAdditionalDataCommon | ResponseAdditionalDataBillingAddress | ResponseAdditionalDataCard | ResponseAdditionalDataDeliveryAddress | ResponseAdditionalDataInstallments | ResponseAdditionalDataNetworkTokens | ResponseAdditionalDataPayPal | ResponseAdditionalDataSepa;
+        /**
+         * The balance for the payment method.
+         */
+        balance: Amount;
+        /**
+         * The fraud result properties of the payment.
+         */
+        fraudResult?: FraudResult;
+        /**
+         * Adyen's 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
+         *
+         * > `pspReference` is returned only for non-redirect payment methods.
+         */
+        pspReference?: string;
+        /**
+         * If the payment's authorisation is refused or an error occurs during authorisation, this field holds Adyen's mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.
+         *
+         * For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
+         */
+        refusalReason?: string;
+        /**
+         * The result of the payment. For more information, see [Result codes](https://docs.adyen.com/checkout/payment-result-codes).
+         *
+         * Possible values:
+         *
+         * * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions.
+         * * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state.
+         * * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state.
+         * * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions.
+         * * **Error** – There was an error when the payment was being processed. The reason is given in the `refusalReason` field. This is a final state.
+         * * **IdentifyShopper** – The issuer requires the shopper's device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions.
+         * * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment.
+         * * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment.
+         * * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments.
+         * * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation.
+         * * **Refused** – Indicates the payment was refused. The reason is given in the `refusalReason` field. This is a final state.
+         */
+        resultCode?: "AuthenticationFinished" | "Authorised" | "Cancelled" | "ChallengeShopper" | "Error" | "IdentifyShopper" | "Pending" | "PresentToShopper" | "Received" | "RedirectShopper" | "Refused";
+    }
+    export interface CheckoutCancelOrderRequest {
+        /**
+         * The merchant account identifier that orderData belongs to.
+         */
+        merchantAccount: string;
+        /**
+         * The order request object that contains a pspReference that represents the order and the matching encrypted order data.
+         */
+        order: CheckoutOrder;
+    }
+    export interface CheckoutCancelOrderResponse {
+        /**
+         * A unique reference of the cancellation request.
+         */
+        pspReference: string;
+        /**
+         * The result of the cancellation request.
+         */
+        resultCode: string;
+    }
+    export interface CheckoutCreateOrderRequest {
+        /**
+         * The total amount of the order.
+         */
+        amount: Amount;
+        /**
+         * The date that order expires; e.g. 2019-03-23T12:25:28Z. If not provided, the default expiry duration is 1 day.
+         */
+        expiresAt?: string;
+        /**
+         * The merchant account identifier, with which you want to process the order.
+         */
+        merchantAccount: string;
+        /**
+         * A custom reference identifying the order.
+         */
+        reference?: string;
+    }
+    export interface CheckoutCreateOrderResponse {
+        /**
+         * This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**.
+         */
+        additionalData?: /* This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**. */ ResponseAdditionalDataCommon | ResponseAdditionalDataBillingAddress | ResponseAdditionalDataCard | ResponseAdditionalDataDeliveryAddress | ResponseAdditionalDataInstallments | ResponseAdditionalDataNetworkTokens | ResponseAdditionalDataPayPal | ResponseAdditionalDataSepa;
+        /**
+         * The date that the order will expire.
+         */
+        expiresAt: string;
+        /**
+         * The fraud result properties of the payment.
+         */
+        fraudResult?: FraudResult;
+        /**
+         * The encrypted data that will be used by merchant for adding payments to the order.
+         */
+        orderData: string;
+        /**
+         * Adyen's 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
+         *
+         * > `pspReference` is returned only for non-redirect payment methods.
+         */
+        pspReference?: string;
+        /**
+         * If the payment's authorisation is refused or an error occurs during authorisation, this field holds Adyen's mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.
+         *
+         * For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
+         */
+        refusalReason?: string;
+        /**
+         * The remaining amount in the order.
+         */
+        remainingAmount: Amount;
+        /**
+         * The result of the payment. For more information, see [Result codes](https://docs.adyen.com/checkout/payment-result-codes).
+         *
+         * Possible values:
+         *
+         * * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions.
+         * * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state.
+         * * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state.
+         * * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions.
+         * * **Error** – There was an error when the payment was being processed. The reason is given in the `refusalReason` field. This is a final state.
+         * * **IdentifyShopper** – The issuer requires the shopper's device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions.
+         * * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment.
+         * * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment.
+         * * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments.
+         * * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation.
+         * * **Refused** – Indicates the payment was refused. The reason is given in the `refusalReason` field. This is a final state.
+         */
+        resultCode?: "AuthenticationFinished" | "Authorised" | "Cancelled" | "ChallengeShopper" | "Error" | "IdentifyShopper" | "Pending" | "PresentToShopper" | "Received" | "RedirectShopper" | "Refused";
+    }
+    export interface CheckoutDonationAction {
+        /**
+         * When non-empty, contains a value that you must submit to the `/payments/details` endpoint. In some cases, required for polling.
+         */
+        paymentData?: string;
+        /**
+         * Specifies the payment method.
+         */
+        paymentMethodType?: string;
+        /**
+         * Specifies the URL to redirect to.
+         */
+        url?: string;
+    }
+    export interface CheckoutOneTimePasscodeAction {
+        /**
+         * When non-empty, contains a value that you must submit to the `/payments/details` endpoint. In some cases, required for polling.
+         */
+        paymentData?: string;
+        /**
+         * Specifies the payment method.
+         */
+        paymentMethodType?: string;
+        /**
+         * When the payment flow requires a redirect as fallback, this object contains information about the redirect.
+         */
+        redirect?: Redirect;
+        /**
+         * The interval in second between OTP resend.
+         */
+        resendInterval?: number; // int32
+        /**
+         * The maximum number of OTP resend attempts.
+         */
+        resendMaxAttempts?: number; // int32
+        /**
+         * The URL, to which you make POST request to trigger OTP resend.
+         */
+        resendUrl?: string;
+        /**
+         * Specifies the URL to redirect to.
+         */
+        url?: string;
+    }
+    export interface CheckoutOrder {
+        /**
+         * The encrypted order data.
+         */
+        orderData: string;
+        /**
+         * The `pspReference` that belongs to the order.
+         */
+        pspReference: string;
+    }
+    export interface CheckoutOrderResponse {
+        /**
+         * The expiry date for the order.
+         */
+        expiresAt?: string;
+        /**
+         * The encrypted order data.
+         */
+        orderData?: string;
+        /**
+         * The `pspReference` that belongs to the order.
+         */
+        pspReference: string;
+        /**
+         * The merchant reference for the order.
+         */
+        reference?: string;
+        /**
+         * The updated remaining amount.
+         */
+        remainingAmount?: Amount;
+    }
+    export interface CheckoutQrCodeAction {
+        /**
+         * When non-empty, contains a value that you must submit to the `/payments/details` endpoint. In some cases, required for polling.
+         */
+        paymentData?: string;
+        /**
+         * Specifies the payment method.
+         */
+        paymentMethodType?: string;
+        /**
+         * The contents of the QR code as a UTF8 string.
+         */
+        qrCodeData?: string;
+        /**
+         * Specifies the URL to redirect to.
+         */
+        url?: string;
+    }
+    export interface CheckoutRedirectAction {
+        /**
+         * When the redirect URL must be accessed via POST, use this data to post to the redirect URL.
+         */
+        data?: {
+            [name: string]: string;
+        };
+        /**
+         * Specifies the HTTP method, for example GET or POST.
+         */
+        method?: string;
+        /**
+         * When non-empty, contains a value that you must submit to the `/payments/details` endpoint. In some cases, required for polling.
+         */
+        paymentData?: string;
+        /**
+         * Specifies the payment method.
+         */
+        paymentMethodType?: string;
+        /**
+         * Specifies the URL to redirect to.
+         */
+        url?: string;
+    }
+    export interface CheckoutSDKAction {
+        /**
+         * When non-empty, contains a value that you must submit to the `/payments/details` endpoint. In some cases, required for polling.
+         */
+        paymentData?: string;
+        /**
+         * Specifies the payment method.
+         */
+        paymentMethodType?: string;
+        /**
+         * The data to pass to the SDK.
+         */
+        sdkData?: {
+            [name: string]: string;
+        };
+        /**
+         * Specifies the URL to redirect to.
+         */
+        url?: string;
+    }
+    export interface CheckoutThreeDS2ChallengeAction {
+        /**
+         * When non-empty, contains a value that you must submit to the `/payments/details` endpoint. In some cases, required for polling.
+         */
+        paymentData?: string;
+        /**
+         * Specifies the payment method.
+         */
+        paymentMethodType?: string;
+        /**
+         * A token to pass to the 3DS2 Component to get the challenge.
+         */
+        token?: string;
+        /**
+         * Specifies the URL to redirect to.
+         */
+        url?: string;
+    }
+    export interface CheckoutThreeDS2FingerPrintAction {
+        /**
+         * When non-empty, contains a value that you must submit to the `/payments/details` endpoint. In some cases, required for polling.
+         */
+        paymentData?: string;
+        /**
+         * Specifies the payment method.
+         */
+        paymentMethodType?: string;
+        /**
+         * A token to pass to the 3DS2 Component to get the fingerprint.
+         */
+        token?: string;
+        /**
+         * Specifies the URL to redirect to.
+         */
+        url?: string;
+    }
+    export interface CheckoutUtilityRequest {
+        /**
+         * The list of origin domains, for which origin keys are requested.
+         */
+        originDomains: string[];
+    }
+    export interface CheckoutUtilityResponse {
+        /**
+         * The list of origin keys for all requested domains. For each list item, the key is the domain and the value is the origin key.
+         */
+        originKeys?: {
+            [name: string]: string;
+        };
+    }
+    export interface CheckoutVoucherAction {
         /**
          * The voucher alternative reference code.
          */
         alternativeReference?: string;
         /**
-         * When the redirect URL must be accessed via POST, use this data to post to the redirect URL.
+         * A collection institution number (store number) for Econtext Pay-Easy ATM.
          */
-        data?: {
-        };
+        collectionInstitutionNumber?: string;
         /**
          * The URL to download the voucher.
          */
@@ -1341,7 +2112,7 @@ declare namespace ICheckout {
         /**
          * The initial amount.
          */
-        initialAmount?: ICheckout.Amount;
+        initialAmount?: Amount;
         /**
          * The URL to the detailed instructions to make payment using the voucher.
          */
@@ -1363,10 +2134,6 @@ declare namespace ICheckout {
          */
         merchantReference?: string;
         /**
-         * Specifies the HTTP method, for example GET or POST.
-         */
-        method?: string;
-        /**
          * When non-empty, contains a value that you must submit to the `/payments/details` endpoint. In some cases, required for polling.
          */
         paymentData?: string;
@@ -1374,10 +2141,6 @@ declare namespace ICheckout {
          * Specifies the payment method.
          */
         paymentMethodType?: string;
-        /**
-         * The contents of the QR code as a UTF8 string.
-         */
-        qrCodeData?: string;
         /**
          * The voucher reference code.
          */
@@ -1393,19 +2156,11 @@ declare namespace ICheckout {
         /**
          * The surcharge amount.
          */
-        surcharge?: ICheckout.Amount;
-        /**
-         * A token to pass to the 3DS2 Component to get the fingerprint/challenge.
-         */
-        token?: string;
+        surcharge?: Amount;
         /**
          * The total amount (initial plus surcharge amount).
          */
-        totalAmount?: ICheckout.Amount;
-        /**
-         * Enum that specifies the action that needs to be taken by the client.
-         */
-        type?: "await" | "donate" | "qrCode" | "redirect" | "sdk" | "threeDS2Challenge" | "threeDS2Fingerprint" | "voucher" | "wechatpaySDK";
+        totalAmount?: Amount;
         /**
          * Specifies the URL to redirect to.
          */
@@ -1451,7 +2206,7 @@ declare namespace ICheckout {
         /**
          * Describes the configuration for AVS ([Address Verification System](https://en.wikipedia.org/wiki/Address_Verification_System)).
          */
-        avs?: ICheckout.Avs;
+        avs?: Avs;
         /**
          * Determines whether the cardholder name should be provided or not.
          *
@@ -1464,11 +2219,11 @@ declare namespace ICheckout {
         /**
          * Describes the configuration for [installment payments](https://docs.adyen.com/payment-methods/cards/credit-card-installments).
          */
-        installments?: ICheckout.Installments;
+        installments?: Installments;
         /**
          * Determines how to display the details fields.
          */
-        shopperInput?: ICheckout.ShopperInput;
+        shopperInput?: ShopperInput;
     }
     export interface CreatePaymentLinkRequest {
         /**
@@ -1478,14 +2233,17 @@ declare namespace ICheckout {
          */
         allowedPaymentMethods?: string[];
         /**
-         * The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
+         * The payment amount and currency.
          */
-        amount: ICheckout.Amount;
+        amount: Amount;
+        /**
+         * Information about your application. For more details, see [Building Adyen solutions](https://docs.adyen.com/development-resources/building-adyen-solutions).
+         */
+        applicationInfo?: ApplicationInfo;
         /**
          * The address where to send the invoice.
-         * > For 3D Secure 2 transactions, schemes require the `billingAddress` for both `deviceChannel` **browser** and **app**. Include all of the fields within this object.
          */
-        billingAddress?: ICheckout.Address;
+        billingAddress?: Address;
         /**
          * List of payments methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).
          *
@@ -1493,80 +2251,103 @@ declare namespace ICheckout {
          */
         blockedPaymentMethods?: string[];
         /**
-         * The shopper's country code.
+         * The shopper's two-letter country code.
          */
-        countryCode: string;
+        countryCode?: string;
         /**
          * The address where the purchased goods should be delivered.
          */
-        deliveryAddress?: ICheckout.Address;
+        deliveryAddress?: Address;
         /**
-         * A short description visible on the Pay By Link page.
+         * A short description visible on the payment page.
          * Maximum length: 280 characters.
          */
         description?: string;
         /**
-         * The date that the Pay By Link expires, in ISO 8601 format. For example, 2019-11-23T12:25:28Z. Maximum expiry date should be 30 days from when the payment link is created. If not provided, the default expiry duration is 24 hours.
+         * The date that the payment link expires, in ISO 8601 format. For example `2019-11-23T12:25:28Z`, or `2020-05-27T20:25:28+08:00`. Maximum expiry date should be 30 days from when the payment link is created. If not provided, the default expiry is set to 24 hours after the payment link is created.
          */
         expiresAt?: string;
         /**
-         * The merchant account identifier, with which you want to process the transaction.
+         * Price and product information about the purchased items, to be included on the invoice sent to the shopper.
+         * This parameter is required for open invoice (_buy now, pay later_) payment methods such AfterPay, Klarna, RatePay, and Zip.
+         */
+        lineItems?: LineItem[];
+        /**
+         * The merchant account identifier for which the payment link is created.
          */
         merchantAccount: string;
         /**
-         * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement.
-         * If you need to provide multiple references for a transaction, separate them with hyphens ("-").
-         * Maximum length: 80 characters.
+         * This reference allows linking multiple transactions to each other for reporting purposes (for example, order auth-rate). The reference should be unique per billing cycle.
+         */
+        merchantOrderReference?: string;
+        /**
+         * Metadata consists of entries, each of which includes a key and a value.
+         * Limitations:
+         * * Maximum 20 key-value pairs per request. When exceeding, the "177" error occurs: "Metadata size exceeds limit"
+         * * Maximum 20 characters per key. When exceeding, the "178" error occurs: "Metadata key size exceeds limit"
+         * * A key cannot have the name `checkout.linkId`. Whatever value is present under that key is going to be replaced by the real link id
+         */
+        metadata?: {
+            [name: string]: string;
+        };
+        /**
+         * Defines a recurring payment type.
+         * Allowed values:
+         * * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.
+         * * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.
+         * * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
+         *
+         */
+        recurringProcessingModel?: "CardOnFile" | "Subscription" | "UnscheduledCardOnFile";
+        /**
+         * A reference that is used to uniquely identify the payment in future communications about the payment status.
          */
         reference: string;
         /**
          * Website URL used for redirection after payment is completed.
-         * If provided, a **Continue** button will be shown on the page. If shoppers select the button, they are redirected to the specified URL.
+         * If provided, a **Continue** button will be shown on the payment page. If shoppers select the button, they are redirected to the specified URL.
          */
         returnUrl?: string;
         /**
-         * The shopper's email address. We recommend that you provide this data, as it is used in velocity fraud checks.
-         * > For 3D Secure 2 transactions, schemes require the `shopperEmail` for both `deviceChannel` **browser** and **app**.
+         * Indicates whether the payment link can be reused for multiple payments. If not provided, this defaults to **false** which means the link can be used for one successful payment only.
+         */
+        reusable?: boolean;
+        /**
+         * The shopper's email address.
          */
         shopperEmail?: string;
         /**
-         * The combination of a language code and a country code to specify the language to be used in the payment.
+         * The language to be used in the payment page, specified by a combination of a language and country code. For example, `en-US`.
+         *
+         * For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/checkout/pay-by-link#language-and-localization).
          */
         shopperLocale?: string;
         /**
-         * The shopper's reference to uniquely identify this shopper (e.g. user ID or account ID).
-         * > This field is required for recurring payments.
+         * The shopper's full name. This object is required for some payment methods such as AfterPay, Klarna, or if you're enrolled in the PayPal Seller Protection program.
+         */
+        shopperName?: Name;
+        /**
+         * A unique identifier for the shopper (for example, user ID or account ID).
          */
         shopperReference?: string;
         /**
-         * When true and `shopperReference` is provided, the payment details will be stored.
+         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information).
+         */
+        splits?: Split[];
+        /**
+         * The physical store, for which this payment is processed.
+         */
+        store?: string;
+        /**
+         * When this is set to **true** and the `shopperReference` is provided, the payment details will be stored.
          */
         storePaymentMethod?: boolean;
-    }
-    export interface CreatePaymentLinkResponse {
-        /**
-         * The amount for which the Pay By Link URL was created.
-         */
-        amount?: ICheckout.Amount;
-        /**
-         * The date that the Pay By Link expires; e.g. 2019-03-23T12:25:28Z.
-         */
-        expiresAt: string;
-        /**
-         * The reference that was specified when the Pay By Link URL was created.
-         */
-        reference: string;
-        /**
-         * The URL at which the shopper can complete the payment.
-         */
-        url: string;
     }
     export interface DetailsRequest {
         /**
          * Use this collection to submit the details that were returned as a result of the `/payments` call.
          */
-        details: {
-        };
+        details: PaymentCompletionDetails;
         /**
          * The `paymentData` value that you received in the response to the `/payments` call.
          */
@@ -1580,11 +2361,11 @@ declare namespace ICheckout {
         /**
          * Supported SDK interface types.
          * Allowed values:
-         * * Native
-         * * Html
+         * * native
+         * * html
          * * both
          */
-        sdkInterface?: "Html" | "Native" | "both";
+        sdkInterface?: "native" | "html" | "both";
         /**
          * UI types supported for displaying specific challenges.
          * Allowed values:
@@ -1595,6 +2376,82 @@ declare namespace ICheckout {
          * * multiSelect
          */
         sdkUiType?: ("multiSelect" | "otherHtml" | "outOfBand" | "singleSelect" | "text")[];
+    }
+    export interface DokuDetails {
+        /**
+         * The shopper's first name.
+         */
+        firstName: string;
+        infix?: string;
+        /**
+         * The shopper's last name.
+         */
+        lastName: string;
+        ovoId?: string;
+        /**
+         * The shopper's email.
+         */
+        shopperEmail: string;
+        /**
+         * **doku**
+         */
+        type: "doku_mandiri_va" | "doku_cimb_va" | "doku_danamon_va" | "doku_bni_va" | "doku_permata_lite_atm" | "doku_bri_va" | "doku_bca_va" | "doku_alfamart" | "doku_indomaret";
+    }
+    export interface DotpayDetails {
+        /**
+         * The Dotpay issuer value of the shopper's selected bank. Set this to an **id** of a Dotpay issuer to preselect it.
+         */
+        issuer: string;
+        /**
+         * **dotpay**
+         */
+        type: string;
+    }
+    export interface DragonpayDetails {
+        /**
+         * The Dragonpay issuer value of the shopper's selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.
+         */
+        issuer: string;
+        /**
+         * The shopper’s email address.
+         */
+        shopperEmail?: string;
+        /**
+         * **dragonpay**
+         */
+        type: "dragonpay_ebanking" | "dragonpay_otc_banking" | "dragonpay_otc_non_banking" | "dragonpay_otc_philippines";
+    }
+    export interface EcontextVoucherDetails {
+        /**
+         * The shopper's first name.
+         */
+        firstName: string;
+        /**
+         * The shopper's last name.
+         */
+        lastName: string;
+        /**
+         * The shopper's email.
+         */
+        shopperEmail: string;
+        /**
+         * The shopper's contact number.
+         */
+        telephoneNumber: string;
+        /**
+         * **econtextvoucher**
+         */
+        type: "econtext_seveneleven" | "econtext_stores";
+    }
+    export interface EntercashDetails {
+        /**
+         * The issuer id of the shopper's selected bank.
+         */
+        issuer: string;
+        /**
+         * **entercash**
+         */
+        type: string;
     }
     export interface ExternalPlatform {
         /**
@@ -1622,7 +2479,7 @@ declare namespace ICheckout {
         /**
          * The base amount.
          */
-        baseAmount?: ICheckout.Amount;
+        baseAmount?: Amount;
         /**
          * The base points.
          */
@@ -1630,11 +2487,11 @@ declare namespace ICheckout {
         /**
          * The buy rate.
          */
-        buy?: ICheckout.Amount;
+        buy?: Amount;
         /**
          * The interbank amount.
          */
-        interbank?: ICheckout.Amount;
+        interbank?: Amount;
         /**
          * The reference assigned to the forex quote request.
          */
@@ -1642,7 +2499,7 @@ declare namespace ICheckout {
         /**
          * The sell rate.
          */
-        sell?: ICheckout.Amount;
+        sell?: Amount;
         /**
          * The signature to validate the integrity.
          */
@@ -1682,22 +2539,66 @@ declare namespace ICheckout {
         /**
          * The result of the individual risk checks.
          */
-        results?: ICheckout.FraudCheckResult[];
+        results?: FraudCheckResult[];
+    }
+    export interface GiropayDetails {
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        /**
+         * **giropay**
+         */
+        type: string;
+    }
+    export interface GooglePayDetails {
+        fundingSource?: "credit" | "debit";
+        /**
+         *
+         */
+        googlePayCardNetwork: string;
+        /**
+         *
+         */
+        googlePayToken: string;
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        /**
+         * **paywithgoogle**
+         */
+        type: string;
+    }
+    export interface IdealDetails {
+        /**
+         * The iDEAL issuer value of the shopper's selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
+         */
+        issuer: string;
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        /**
+         * **ideal**
+         */
+        type: string;
     }
     export interface InputDetail {
         /**
          * Configuration parameters for the required input.
          */
         configuration?: {
+            [name: string]: string;
         };
         /**
          * Input details can also be provided recursively.
          */
-        details?: ICheckout.SubInputDetail[];
+        details?: SubInputDetail[];
         /**
          * Input details can also be provided recursively (deprecated).
          */
-        inputDetails?: ICheckout.SubInputDetail[];
+        inputDetails?: SubInputDetail[];
         /**
          * In case of a select, the URL from which to query the items.
          */
@@ -1705,7 +2606,7 @@ declare namespace ICheckout {
         /**
          * In case of a select, the items to choose from.
          */
-        items?: ICheckout.Item[];
+        items?: Item[];
         /**
          * The value to provide in the result.
          */
@@ -1725,6 +2626,14 @@ declare namespace ICheckout {
     }
     export interface Installments {
         /**
+         * Defines the type of installment plan. If not set, defaults to **regular**.
+         *
+         * Possible values:
+         * * **regular**
+         * * **revolving**
+         */
+        plan?: "regular" | "revolving";
+        /**
          * Defines the number of installments. Its value needs to be greater than zero.
          *
          * Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.
@@ -1740,6 +2649,33 @@ declare namespace ICheckout {
          * The display name.
          */
         name?: string;
+    }
+    export interface KlarnaDetails {
+        bankAccount?: string;
+        billingAddress?: string;
+        deliveryAddress?: string;
+        installmentConfigurationKey?: string;
+        personalDetails?: string;
+        separateDeliveryAddress?: string;
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        token?: string;
+        /**
+         * **klarna**
+         */
+        type: "klarna" | "klarnapayments" | "klarnapayments_account" | "klarnapayments_b2b" | "klarna_paynow" | "klarna_account" | "klarna_b2b";
+    }
+    export interface LianLianPayDetails {
+        /**
+         *
+         */
+        telephoneNumber: string;
+        /**
+         * **lianlianpay**
+         */
+        type: "lianlianpay_ebanking_enterprise" | "lianlianpay_ebanking_credit" | "lianlianpay_ebanking_debit";
     }
     export interface LineItem {
         /**
@@ -1774,6 +2710,31 @@ declare namespace ICheckout {
          * Tax percentage, in minor units.
          */
         taxPercentage?: number; // int64
+    }
+    export interface MasterpassDetails {
+        fundingSource?: "credit" | "debit";
+        /**
+         * The Masterpass transaction ID.
+         */
+        masterpassTransactionId: string;
+        /**
+         * **masterpass**
+         */
+        type: string;
+    }
+    export interface MbwayDetails {
+        /**
+         *
+         */
+        shopperEmail: string;
+        /**
+         *
+         */
+        telephoneNumber: string;
+        /**
+         * **mbway**
+         */
+        type: string;
     }
     export interface MerchantDevice {
         /**
@@ -1820,11 +2781,11 @@ declare namespace ICheckout {
          */
         deliveryTimeframe?: "electronicDelivery" | "sameDayShipping" | "overnightShipping" | "twoOrMoreDaysShipping";
         /**
-         * The amount of prepaid or gift cards used for this purchase.
+         * For prepaid or gift card purchase, the purchase amount total of prepaid or gift card(s).
          */
-        giftCardAmount?: ICheckout.Amount;
+        giftCardAmount?: Amount;
         /**
-         * Number of individual prepaid or gift cards used for this purchase.
+         * For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.
          */
         giftCardCount?: number; // int32
         /**
@@ -1839,6 +2800,22 @@ declare namespace ICheckout {
          * Indicator for whether the shopper has already purchased the same items in the past.
          */
         reorderItems?: boolean;
+    }
+    export interface MobilePayDetails {
+        /**
+         * **mobilepay**
+         */
+        type: string;
+    }
+    export interface MolPayDetails {
+        /**
+         *
+         */
+        issuer: string;
+        /**
+         * **molpay**
+         */
+        type: "molpay_ebanking_fpx_MY" | "molpay_ebanking_TH";
     }
     export interface Name {
         /**
@@ -1860,6 +2837,198 @@ declare namespace ICheckout {
          */
         lastName: string;
     }
+    export interface NexoRouterDetails {
+        /**
+         * **nexorouter**
+         */
+        type: string;
+        uniqueTerminalId?: string;
+    }
+    export interface OpenInvoiceDetails {
+        bankAccount?: string;
+        billingAddress?: string;
+        deliveryAddress?: string;
+        installmentConfigurationKey?: string;
+        personalDetails?: string;
+        separateDeliveryAddress?: string;
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        /**
+         * **openinvoice**
+         */
+        type: string;
+    }
+    export interface PayPalDetails {
+        orderID?: string;
+        payerID?: string;
+        /**
+         * The type of flow to initiate.
+         */
+        subtype?: "redirect" | "sdk";
+        /**
+         * **paypal**
+         */
+        type: string;
+    }
+    export interface PayUUpiDetails {
+        /**
+         * **payu_IN_upi**
+         */
+        type: string;
+        /**
+         * The VPA (Virtual Payment Address) for UPI.
+         */
+        vpa?: string;
+    }
+    export interface PaymentCompletionDetails {
+        MD?: string;
+        PaReq?: string;
+        PaRes?: string;
+        billingToken?: string;
+        "cupsecureplus.smscode"?: string;
+        facilitatorAccessToken?: string;
+        oneTimePasscode?: string;
+        orderID?: string;
+        payerID?: string;
+        payload?: string;
+        paymentID?: string;
+        paymentStatus?: string;
+        redirectResult?: string;
+        returnUrlQueryString?: string;
+        "threeds2.challengeResult"?: string;
+        "threeds2.fingerprint"?: string;
+    }
+    export interface PaymentDetails {
+        /**
+         * The payment method type.
+         */
+        type: string;
+    }
+    export interface PaymentLinkResource {
+        /**
+         * List of payments methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).
+         *
+         * Example: `"allowedPaymentMethods":["ideal","giropay"]`
+         */
+        allowedPaymentMethods?: string[];
+        /**
+         * The payment amount and currency.
+         */
+        amount: Amount;
+        /**
+         * Information about your application. For more details, see [Building Adyen solutions](https://docs.adyen.com/development-resources/building-adyen-solutions).
+         */
+        applicationInfo?: ApplicationInfo;
+        /**
+         * The address where to send the invoice.
+         */
+        billingAddress?: Address;
+        /**
+         * List of payments methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).
+         *
+         * Example: `"blockedPaymentMethods":["ideal","giropay"]`
+         */
+        blockedPaymentMethods?: string[];
+        /**
+         * The shopper's two-letter country code.
+         */
+        countryCode?: string;
+        /**
+         * The address where the purchased goods should be delivered.
+         */
+        deliveryAddress?: Address;
+        /**
+         * A short description visible on the payment page.
+         * Maximum length: 280 characters.
+         */
+        description?: string;
+        /**
+         * The date that the payment link expires, in ISO 8601 format. For example `2019-11-23T12:25:28Z`, or `2020-05-27T20:25:28+08:00`. Maximum expiry date should be 30 days from when the payment link is created. If not provided, the default expiry is set to 24 hours after the payment link is created.
+         */
+        expiresAt?: string;
+        /**
+         * A unique identifier of the payment link.
+         */
+        readonly id: string;
+        /**
+         * Price and product information about the purchased items, to be included on the invoice sent to the shopper.
+         * This parameter is required for open invoice (_buy now, pay later_) payment methods such AfterPay, Klarna, RatePay, and Zip.
+         */
+        lineItems?: LineItem[];
+        /**
+         * The merchant account identifier for which the payment link is created.
+         */
+        merchantAccount: string;
+        /**
+         * This reference allows linking multiple transactions to each other for reporting purposes (for example, order auth-rate). The reference should be unique per billing cycle.
+         */
+        merchantOrderReference?: string;
+        /**
+         * Defines a recurring payment type.
+         * Allowed values:
+         * * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.
+         * * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.
+         * * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
+         *
+         */
+        recurringProcessingModel?: "CardOnFile" | "Subscription" | "UnscheduledCardOnFile";
+        /**
+         * A reference that is used to uniquely identify the payment in future communications about the payment status.
+         */
+        reference: string;
+        /**
+         * Website URL used for redirection after payment is completed.
+         * If provided, a **Continue** button will be shown on the payment page. If shoppers select the button, they are redirected to the specified URL.
+         */
+        returnUrl?: string;
+        /**
+         * Indicates whether the payment link can be reused for multiple payments. If not provided, this defaults to **false** which means the link can be used for one successful payment only.
+         */
+        reusable?: boolean;
+        /**
+         * The shopper's email address.
+         */
+        shopperEmail?: string;
+        /**
+         * The language to be used in the payment page, specified by a combination of a language and country code. For example, `en-US`.
+         *
+         * For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/checkout/pay-by-link#language-and-localization).
+         */
+        shopperLocale?: string;
+        /**
+         * The shopper's full name. This object is required for some payment methods such as AfterPay, Klarna, or if you're enrolled in the PayPal Seller Protection program.
+         */
+        shopperName?: Name;
+        /**
+         * A unique identifier for the shopper (for example, user ID or account ID).
+         */
+        shopperReference?: string;
+        /**
+         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information).
+         */
+        splits?: Split[];
+        /**
+         * Status of the payment link. Possible values:
+         * * **active**
+         * * **paid**
+         * * **expired**
+         */
+        status: "active" | "expired" | "paid";
+        /**
+         * The physical store, for which this payment is processed.
+         */
+        store?: string;
+        /**
+         * When this is set to **true** and the `shopperReference` is provided, the payment details will be stored.
+         */
+        storePaymentMethod?: boolean;
+        /**
+         * The URL at which the shopper can complete the payment.
+         */
+        readonly url: string;
+    }
     export interface PaymentMethod {
         /**
          * List of possible brands. For example: visa, mc.
@@ -1869,19 +3038,24 @@ declare namespace ICheckout {
          * The configuration of the payment method.
          */
         configuration?: {
+            [name: string]: string;
         };
         /**
          * All input details to be provided to complete the payment with this payment method.
          */
-        details?: ICheckout.InputDetail[];
+        details?: InputDetail[];
+        /**
+         * The funding source of the payment method.
+         */
+        fundingSource?: "credit" | "debit";
         /**
          * The group where this payment method belongs to.
          */
-        group?: ICheckout.PaymentMethodGroup;
+        group?: PaymentMethodGroup;
         /**
          * All input details to be provided to complete the payment with this payment method.
          */
-        inputDetails?: ICheckout.InputDetail[];
+        inputDetails?: InputDetail[];
         /**
          * The displayable name of this payment method.
          */
@@ -1899,138 +3073,6 @@ declare namespace ICheckout {
          */
         type?: string;
     }
-    export interface PaymentMethodACH {
-        /**
-         * Must be set to **ach**.
-         */
-        type: string;
-        /**
-         * The bank account, from which the funds should be deducted.
-         */
-        bankAccount: string;
-    }
-    export interface PaymentMethodAmazonPay {
-        /**
-         * Must be set to **androidpay**.
-         */
-        type: string;
-        /**
-         * The stringified and base64 encoded paymentData retrieved from the Amazon framework.
-         */
-        amazonPayToken: string;
-    }
-    export interface PaymentMethodAndroidPay {
-        /**
-         * Must be set to **androidpay**.
-         */
-        type: string;
-        /**
-         * The stringified and base64 encoded paymentData retrieved from the Android framework.
-         */
-        "androidpay.token": string;
-    }
-    export interface PaymentMethodApplePay {
-        /**
-         * Must be set to **applepay**.
-         */
-        type: string;
-        /**
-         * The stringified and base64 encoded paymentData retrieved from the Apple framework.
-         */
-        "applepay.token": string;
-    }
-    export interface PaymentMethodCard {
-        /**
-         * Must be set to **scheme**.
-         */
-        type: string;
-        /**
-         * The [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is known also as:
-         * * CVV2/CVC2 – length: 3 digits
-         * * CID – length: 4 digits
-         */
-        cvc?: string;
-        /**
-         * The card expiry month.
-         * Format: 2 digits, zero-padded for single digits. For example:
-         * * 03 = March
-         * * 11 = November
-         */
-        expiryMonth: string;
-        /**
-         * The card expiry year.
-         * Format: 4 digits. For example: 2020
-         */
-        expiryYear: string;
-        /**
-         * The name of the cardholder, as printed on the card.
-         */
-        holderName: string;
-        /**
-         * The card number (4-19 characters). Do not use any separators.
-         */
-        number: string;
-    }
-    export interface PaymentMethodDotpay {
-        /**
-         * Must be set to **dotpay**.
-         */
-        type: string;
-        /**
-         * The Dotpay issuer value of the shopper's selected bank. Set this to an **id** of a Dotpay issuer to preselect it.
-         */
-        issuer: string;
-    }
-    export interface PaymentMethodDragonpayEBanking {
-        /**
-         * Must be set to **dragonpay_ebanking**.
-         */
-        type: string;
-        /**
-         * The Dragonpay issuer value of the shopper's selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.
-         */
-        issuer: string;
-    }
-    export interface PaymentMethodDragonpayOtcBanking {
-        /**
-         * Must be set to **dragonpay_otc_banking**.
-         */
-        type: string;
-        /**
-         * The Dragonpay issuer value of the shopper's selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.
-         */
-        issuer: string;
-    }
-    export interface PaymentMethodDragonpayOtcNonBanking {
-        /**
-         * Must be set to **dragonpay_otc_non_banking**.
-         */
-        type: string;
-        /**
-         * The Dragonpay issuer value of the shopper's selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.
-         */
-        issuer: string;
-    }
-    export interface PaymentMethodDragonpayOtcPhilippines {
-        /**
-         * Must be set to **dragonpay_otc_philippines**.
-         */
-        type: string;
-        /**
-         * The Dragonpay issuer value of the shopper's selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.
-         */
-        issuer: string;
-    }
-    export interface PaymentMethodGiropay {
-        /**
-         * Must be set to **giropay**.
-         */
-        type: string;
-        /**
-         * The bank identifier code (BIC) of the selected issuing bank.
-         */
-        bic: string;
-    }
     export interface PaymentMethodGroup {
         /**
          * The name of the group.
@@ -2044,196 +3086,6 @@ declare namespace ICheckout {
          * The unique code of the group.
          */
         type?: string;
-    }
-    export interface PaymentMethodIDeal {
-        /**
-         * Must be set to **dotpay**.
-         */
-        type: string;
-        /**
-         * The iDEAL issuer value of the shopper's selected bank. Set this to an **id** of an iDeal issuer to preselect it.
-         */
-        issuer: string;
-    }
-    export interface PaymentMethodLianLianPayEbankingCredit {
-        /**
-         * Must be set to **lianlianpay_ebanking_credit**.
-         */
-        type: string;
-        /**
-         * The shopper's telephone number.
-         */
-        telephoneNumber: string;
-    }
-    export interface PaymentMethodLianLianPayEbankingDebit {
-        /**
-         * Must be set to **lianlianpay_ebanking_debit**.
-         */
-        type: string;
-        /**
-         * The shopper's telephone number.
-         */
-        telephoneNumber: string;
-    }
-    export interface PaymentMethodLianLianPayEbankingEnterprise {
-        /**
-         * Must be set to **lianlianpay_ebanking_enterprise**.
-         */
-        type: string;
-        /**
-         * The shopper's telephone number.
-         */
-        telephoneNumber: string;
-    }
-    export interface PaymentMethodMOLpayEBankingMalaysia {
-        /**
-         * Must be set to **molpay_ebanking_fpx_MY**.
-         */
-        type: string;
-        /**
-         * The MOLpay issuer value of the shopper's selected bank. Set this to an **id** of a MOLpay issuer to preselect it.
-         */
-        issuer: string;
-    }
-    export interface PaymentMethodMOLpayEBankingThailand {
-        /**
-         * Must be set to **molpay_ebanking_TH**.
-         */
-        type: string;
-        /**
-         * The MOLpay issuer value of the shopper's selected bank. Set this to an **id** of a MOLpay issuer to preselect it.
-         */
-        issuer: string;
-    }
-    export interface PaymentMethodMOLpayEBankingVietnam {
-        /**
-         * Must be set to **molpay_ebanking_VN**.
-         */
-        type: string;
-        /**
-         * The MOLpay issuer value of the shopper's selected bank. Set this to an **id** of a MOLpay issuer to preselect it.
-         */
-        issuer: string;
-    }
-    export interface PaymentMethodPayWithGoogle {
-        /**
-         * Must be set to **paywithgoogle**.
-         */
-        type?: string;
-        /**
-         * The stringified and base64 encoded paymentData retrieved from the Google framework.
-         */
-        "paywithgoogle.token": string;
-        /**
-         * The stringified and base64 encoded paymentData retrieved from the Google framework.
-         */
-        googlePayToken: string;
-        /**
-         * The card type provided by the shopper.
-         */
-        googlePayCardNetwork: string;
-    }
-    export interface PaymentMethodQIWIWallet {
-        /**
-         * Must be set to **qiwiwallet**.
-         */
-        type: string;
-        /**
-         * The shopper's telephone number prefix.
-         */
-        "qiwiwallet.telephoneNumberPrefix": string;
-        /**
-         * The shopper's telephone number.
-         */
-        "qiwiwallet.telephoneNumber": string;
-    }
-    export interface PaymentMethodSamsungpay {
-        /**
-         * Must be set to **samsungpay**.
-         */
-        type: string;
-        /**
-         * The stringified and base64 encoded paymentData retrieved from the Samsung framework.
-         */
-        "samsungpay.token": string;
-    }
-    export interface PaymentMethodSchemeGiftCard {
-        /**
-         * Must be set to **scheme**.
-         */
-        type: string;
-        /**
-         * The [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is known also as:
-         * * CVV2/CVC2 – length: 3 digits
-         * * CID – length: 4 digits
-         */
-        cvc?: string;
-        /**
-         * The card expiry month.
-         * Format: 2 digits, zero-padded for single digits. For example:
-         * * 03 = March
-         * * 11 = November
-         */
-        expiryMonth: string;
-        /**
-         * The card expiry year.
-         * Format: 4 digits. For example: 2020
-         */
-        expiryYear: string;
-        /**
-         * The name of the cardholder, as printed on the card.
-         */
-        holderName: string;
-        /**
-         * The card number (4-19 characters). Do not use any separators.
-         */
-        number: string;
-        /**
-         * The encrypted [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is known also as:
-         * * CVV2/CVC2 – length: 3 digits
-         * * CID – length: 4 digits
-         */
-        encryptedSecurityCode: string;
-        /**
-         * The encrypted card expiry month.
-         * Format: 2 digits, zero-padded for single digits. For example:
-         * * 03 = March
-         * * 11 = November
-         */
-        encryptedExpiryMonth: string;
-        /**
-         * The encrypted card expiry year.
-         * Format: 4 digits. For example: 2020
-         */
-        encryptedExpiryYear: string;
-        /**
-         * The encrypted card number (4-19 characters). Do not use any separators.
-         */
-        encryptedCardNumber: string;
-    }
-    export interface PaymentMethodSepaDirectDebit {
-        /**
-         * Must be set to **sepadirectdebit**.
-         */
-        type: string;
-        /**
-         * The shopper's international bank account number (IBAN).
-         */
-        "sepa.ibanNumber": string;
-        /**
-         * The name on the SEPA bank account.
-         */
-        "sepa.ownerName": string;
-    }
-    export interface PaymentMethodVipps {
-        /**
-         * Must be set to **vipps**.
-         */
-        type: string;
-        /**
-         * The shopper's telephone number.
-         */
-        telephoneNumber: string;
     }
     export interface PaymentMethodsGroup {
         /**
@@ -2255,7 +3107,12 @@ declare namespace ICheckout {
          *
          * The `additionalData` object consists of entries, each of which includes the key and value.
          */
-        additionalData?: ICheckout.AdditionalDataCommon | ICheckout.AdditionalData3DSecure | ICheckout.AdditionalDataAirline | ICheckout.AdditionalDataCarRental | ICheckout.AdditionalDataLevel23 | ICheckout.AdditionalDataLodging | ICheckout.AdditionalDataOpenInvoice | ICheckout.AdditionalDataRatepay | ICheckout.AdditionalDataRetry | ICheckout.AdditionalDataRisk | ICheckout.AdditionalDataRiskStandalone | ICheckout.AdditionalDataTemporaryServices;
+        additionalData?: /**
+         * This field contains additional data, which may be required for a particular payment request.
+         *
+         * The `additionalData` object consists of entries, each of which includes the key and value.
+         */
+        AdditionalDataCommon | AdditionalData3DSecure | AdditionalDataAirline | AdditionalDataCarRental | AdditionalDataLevel23 | AdditionalDataLodging | AdditionalDataOpenInvoice | AdditionalDataRatepay | AdditionalDataRetry | AdditionalDataRisk | AdditionalDataRiskStandalone | AdditionalDataTemporaryServices | AdditionalDataWallets;
         /**
          * List of payments methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).
          *
@@ -2265,7 +3122,7 @@ declare namespace ICheckout {
         /**
          * The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
          */
-        amount?: ICheckout.Amount;
+        amount?: Amount;
         /**
          * List of payments methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).
          *
@@ -2292,6 +3149,10 @@ declare namespace ICheckout {
          */
         merchantAccount: string;
         /**
+         * Contains the order information which is required for partial payments.
+         */
+        order?: CheckoutOrder;
+        /**
          * The combination of a language code and a country code to specify the language to be used in the payment.
          */
         shopperLocale?: string;
@@ -2301,58 +3162,67 @@ declare namespace ICheckout {
          */
         shopperReference?: string;
         /**
-         * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
+         * Boolean value indicating whether the card payment method should be split into separate debit and credit options.
          */
-        threeDSAuthenticationOnly?: boolean;
+        splitCardFundingSources?: boolean;
+        /**
+         * The physical store, for which this payment is processed.
+         */
+        store?: string;
     }
     export interface PaymentMethodsResponse {
         /**
          * Groups of payment methods.
          */
-        groups?: ICheckout.PaymentMethodsGroup[];
+        groups?: PaymentMethodsGroup[];
         /**
          * Detailed list of one-click payment methods.
          */
-        oneClickPaymentMethods?: ICheckout.RecurringDetail[];
+        oneClickPaymentMethods?: RecurringDetail[];
         /**
          * Detailed list of payment methods required to generate payment forms.
          */
-        paymentMethods?: ICheckout.PaymentMethod[];
+        paymentMethods?: PaymentMethod[];
         /**
          * List of all stored payment methods.
          */
-        storedPaymentMethods?: ICheckout.StoredPaymentMethod[];
+        storedPaymentMethods?: StoredPaymentMethod[];
     }
     export interface PaymentRequest {
         /**
          * Shopper account information for 3D Secure 2.
          * > For 3D Secure 2 transactions, we recommend that you include this object to increase the chances of achieving a frictionless flow.
          */
-        accountInfo?: ICheckout.AccountInfo;
+        accountInfo?: AccountInfo;
         /**
          * This field contains additional data, which may be required for a particular payment request.
          *
          * The `additionalData` object consists of entries, each of which includes the key and value.
          */
-        additionalData?: ICheckout.AdditionalDataCommon | ICheckout.AdditionalData3DSecure | ICheckout.AdditionalDataAirline | ICheckout.AdditionalDataCarRental | ICheckout.AdditionalDataLevel23 | ICheckout.AdditionalDataLodging | ICheckout.AdditionalDataOpenInvoice | ICheckout.AdditionalDataRatepay | ICheckout.AdditionalDataRetry | ICheckout.AdditionalDataRisk | ICheckout.AdditionalDataRiskStandalone | ICheckout.AdditionalDataTemporaryServices;
+        additionalData?: /**
+         * This field contains additional data, which may be required for a particular payment request.
+         *
+         * The `additionalData` object consists of entries, each of which includes the key and value.
+         */
+        AdditionalDataCommon | AdditionalData3DSecure | AdditionalDataAirline | AdditionalDataCarRental | AdditionalDataLevel23 | AdditionalDataLodging | AdditionalDataOpenInvoice | AdditionalDataRatepay | AdditionalDataRetry | AdditionalDataRisk | AdditionalDataRiskStandalone | AdditionalDataTemporaryServices | AdditionalDataWallets;
         /**
          * The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
          */
-        amount: ICheckout.Amount;
+        amount: Amount;
         /**
          * Information about your application. For more details, see [Building Adyen solutions](https://docs.adyen.com/development-resources/building-adyen-solutions).
          */
-        applicationInfo?: ICheckout.ApplicationInfo;
+        applicationInfo?: ApplicationInfo;
         /**
          * The address where to send the invoice.
          * > For 3D Secure 2 transactions, schemes require the `billingAddress` for both `deviceChannel` **browser** and **app**. Include all of the fields within this object.
          */
-        billingAddress?: ICheckout.Address;
+        billingAddress?: Address;
         /**
          * The shopper's browser information.
-         * > For 3D Secure 2 transactions, `browserInfo` is required for `channel` **web** (or `deviceChannel` **browser**).
+         * > For 3D Secure transactions, `browserInfo` is required for `channel` **web** (or `deviceChannel` **browser**).
          */
-        browserInfo?: ICheckout.BrowserInfo;
+        browserInfo?: BrowserInfo;
         /**
          * The delay between the authorisation and scheduled auto-capture, specified in hours.
          */
@@ -2369,7 +3239,7 @@ declare namespace ICheckout {
         /**
          * Information regarding the company.
          */
-        company?: ICheckout.Company;
+        company?: Company;
         /**
          * Conversion ID that corresponds to the Id generated for tracking user payment journey.
          */
@@ -2390,11 +3260,11 @@ declare namespace ICheckout {
         /**
          * The forex quote as returned in the response of the forex service.
          */
-        dccQuote?: ICheckout.ForexQuote;
+        dccQuote?: ForexQuote;
         /**
          * The address where the purchased goods should be delivered.
          */
-        deliveryAddress?: ICheckout.Address;
+        deliveryAddress?: Address;
         /**
          * The date and time the purchased goods should be delivered.
          *
@@ -2434,12 +3304,12 @@ declare namespace ICheckout {
         /**
          * Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/cards/credit-card-installments).
          */
-        installments?: ICheckout.Installments;
+        installments?: Installments;
         /**
          * Price and product information about the purchased items, to be included on the invoice sent to the shopper.
          * > This field is required for Klarna, AfterPay, and RatePay.
          */
-        lineItems?: ICheckout.LineItem[];
+        lineItems?: LineItem[];
         /**
          * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
          */
@@ -2458,17 +3328,22 @@ declare namespace ICheckout {
          * Additional risk fields for 3D Secure 2.
          * > For 3D Secure 2 transactions, we recommend that you include this object to increase the chances of achieving a frictionless flow.
          */
-        merchantRiskIndicator?: ICheckout.MerchantRiskIndicator;
+        merchantRiskIndicator?: MerchantRiskIndicator;
         /**
          * Metadata consists of entries, each of which includes a key and a value.
          * Limitations: Maximum 20 key-value pairs per request. When exceeding, the "177" error occurs: "Metadata size exceeds limit".
          */
         metadata?: {
+            [name: string]: string;
         };
         /**
-         * Authentication data produced by an MPI (Mastercard SecureCode or Verified By Visa).
+         * Authentication data produced by an MPI (Mastercard SecureCode or Visa Secure).
          */
-        mpiData?: ICheckout.ThreeDSecureData;
+        mpiData?: ThreeDSecureData;
+        /**
+         * Contains the order information which is required for partial payments.
+         */
+        order?: CheckoutOrder;
         /**
          * When you are doing multiple partial (gift card) payments, this is the `pspReference` of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the `merchantOrderReference`instead.
          */
@@ -2480,10 +3355,9 @@ declare namespace ICheckout {
          */
         origin?: string;
         /**
-         * The collection that contains the type of the payment method and its specific information (e.g. `idealIssuer`).
+         * The type and required details of a payment method to use.
          */
-        paymentMethod: {
-        };
+        paymentMethod: /* The type and required details of a payment method to use. */ ApplePayDetails | SamsungPayDetails | AndroidPayDetails | VisaCheckoutDetails | GooglePayDetails | AmazonPayDetails | MasterpassDetails | StoredPaymentMethodDetails | CardDetails | PaymentDetails | AchDetails | KlarnaDetails | IdealDetails | PayPalDetails | SepaDirectDebitDetails | QiwiWalletDetails | VippsDetails | MobilePayDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | LianLianPayDetails | MolPayDetails | BillDeskOnlineDetails | BillDeskWalletDetails | PayUUpiDetails | DotpayDetails | EntercashDetails | OpenInvoiceDetails | DokuDetails | EcontextVoucherDetails | DragonpayDetails | GiropayDetails | NexoRouterDetails | BlikDetails | MbwayDetails;
         /**
          * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
          */
@@ -2496,8 +3370,8 @@ declare namespace ICheckout {
          * Defines a recurring payment type.
          * Allowed values:
          * * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.
-         * * `CardOnFile` – Card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.
-         * * `UnscheduledCardOnFile` – A transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
+         * * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.
+         * * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.
          *
          */
         recurringProcessingModel?: "CardOnFile" | "Subscription" | "UnscheduledCardOnFile";
@@ -2517,7 +3391,7 @@ declare namespace ICheckout {
         reference: string;
         /**
          * The URL to return to in case of a redirection.
-         * The format depends on the channel.
+         * The format depends on the channel. This URL can have a maximum of 1024 characters.
          * * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number.
          * Example: `https://your-company.com/checkout?shopperOrder=12xy`
          * * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app).
@@ -2529,9 +3403,11 @@ declare namespace ICheckout {
         /**
          * Contains risk data, such as client-side data, used to identify risk for a transaction.
          */
-        riskData?: ICheckout.RiskData;
+        riskData?: RiskData;
         /**
-         * The maximum validity of the session.
+         * The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.
+         *
+         * For example: 2020-07-18T15:42:40.428+01:00
          */
         sessionValidity?: string;
         /**
@@ -2562,14 +3438,15 @@ declare namespace ICheckout {
         /**
          * The shopper's full name and gender (if specified).
          */
-        shopperName?: ICheckout.Name;
+        shopperName?: Name;
         /**
          * The shopper's reference to uniquely identify this shopper (e.g. user ID or account ID).
          * > This field is required for recurring payments.
          */
         shopperReference?: string;
         /**
-         * The text to appear on the shopper's bank statement.
+         * The text to be shown on the shopper's bank statement. To enable this field, contact our [Support Team](https://support.adyen.com/hc/en-us/requests/new).
+         *  We recommend sending a maximum of 25 characters, otherwise banks might truncate the string.
          */
         shopperStatement?: string;
         /**
@@ -2577,9 +3454,13 @@ declare namespace ICheckout {
          */
         socialSecurityNumber?: string;
         /**
-         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/marketpay/processing-payments#providing-split-information).
+         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information).
          */
-        splits?: ICheckout.Split[];
+        splits?: Split[];
+        /**
+         * The physical store, for which this payment is processed.
+         */
+        store?: string;
         /**
          * When true and `shopperReference` is provided, the payment details will be stored.
          */
@@ -2591,7 +3472,7 @@ declare namespace ICheckout {
         /**
          * Request fields for 3D Secure 2.
          */
-        threeDS2RequestData?: ICheckout.ThreeDS2RequestData;
+        threeDS2RequestData?: ThreeDS2RequestData;
         /**
          * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
          */
@@ -2605,28 +3486,29 @@ declare namespace ICheckout {
         /**
          * Action to be taken for completing the payment.
          */
-        action?: ICheckout.CheckoutPaymentsAction;
+        action?: /* Action to be taken for completing the payment. */ CheckoutDonationAction | CheckoutQrCodeAction | CheckoutRedirectAction | CheckoutSDKAction | CheckoutThreeDS2ChallengeAction | CheckoutThreeDS2FingerPrintAction | CheckoutAwaitAction | CheckoutVoucherAction | CheckoutOneTimePasscodeAction;
         /**
          * This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**.
          */
-        additionalData?: ICheckout.ResponseAdditionalDataCommon | ICheckout.ResponseAdditionalDataBillingAddress | ICheckout.ResponseAdditionalDataCard | ICheckout.ResponseAdditionalDataDeliveryAddress | ICheckout.ResponseAdditionalDataInstallments | ICheckout.ResponseAdditionalDataNetworkTokens | ICheckout.ResponseAdditionalDataPayPal | ICheckout.ResponseAdditionalDataSepa;
+        additionalData?: /* This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**. */ ResponseAdditionalDataCommon | ResponseAdditionalDataBillingAddress | ResponseAdditionalDataCard | ResponseAdditionalDataDeliveryAddress | ResponseAdditionalDataInstallments | ResponseAdditionalDataNetworkTokens | ResponseAdditionalDataPayPal | ResponseAdditionalDataSepa;
         /**
          * Authorised amount in the transaction.
          */
-        amount?: ICheckout.Amount;
+        amount?: Amount;
         /**
          * Contains `threeds2.fingerprint` or `threeds2.challengeToken` values to be used in further calls to `/payments/details` endpoint.
          */
         authentication?: {
+            [name: string]: string;
         };
         /**
          * When non-empty, contains all the fields that you must submit to the `/payments/details` endpoint.
          */
-        details?: ICheckout.InputDetail[];
+        details?: InputDetail[];
         /**
          * The fraud result properties of the payment.
          */
-        fraudResult?: ICheckout.FraudResult;
+        fraudResult?: FraudResult;
         /**
          * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement.
          * If you need to provide multiple references for a transaction, separate them with hyphens ("-").
@@ -2634,9 +3516,14 @@ declare namespace ICheckout {
          */
         merchantReference?: string;
         /**
+         * Contains updated information regarding the order in case order information was provided in the request.
+         */
+        order?: CheckoutOrderResponse;
+        /**
          * Contains the details that will be presented to the shopper.
          */
         outputDetails?: {
+            [name: string]: string;
         };
         /**
          * When non-empty, contains a value that you must submit to the `/payments/details` endpoint.
@@ -2651,11 +3538,11 @@ declare namespace ICheckout {
         /**
          * When the payment flow requires a redirect, this object contains information about the redirect URL.
          */
-        redirect?: ICheckout.Redirect;
+        redirect?: Redirect;
         /**
-         * If the payment's authorisation is refused or an error occurs during authorisation, this field holds Adyen's mapped reason for the refusal or a description of the error.
+         * If the payment's authorisation is refused or an error occurs during authorisation, this field holds Adyen's mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.
          *
-         * When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.
+         * For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
          */
         refusalReason?: string;
         /**
@@ -2663,7 +3550,9 @@ declare namespace ICheckout {
          */
         refusalReasonCode?: string;
         /**
-         * The result of the payment. Possible values:
+         * The result of the payment. For more information, see [Result codes](https://docs.adyen.com/checkout/payment-result-codes).
+         *
+         * Possible values:
          *
          * * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions.
          * * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state.
@@ -2671,7 +3560,7 @@ declare namespace ICheckout {
          * * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions.
          * * **Error** – There was an error when the payment was being processed. The reason is given in the `refusalReason` field. This is a final state.
          * * **IdentifyShopper** – The issuer requires the shopper's device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions.
-         * * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information, refer to [Result codes](https://docs.adyen.com/checkout/payment-result-codes).
+         * * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment.
          * * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment.
          * * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments.
          * * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation.
@@ -2685,9 +3574,14 @@ declare namespace ICheckout {
          *
          * The `additionalData` object consists of entries, each of which includes the key and value.
          */
-        additionalData?: ICheckout.AdditionalDataCommon | ICheckout.AdditionalData3DSecure | ICheckout.AdditionalDataAirline | ICheckout.AdditionalDataCarRental | ICheckout.AdditionalDataLevel23 | ICheckout.AdditionalDataLodging | ICheckout.AdditionalDataOpenInvoice | ICheckout.AdditionalDataRatepay | ICheckout.AdditionalDataRetry | ICheckout.AdditionalDataRisk | ICheckout.AdditionalDataRiskStandalone | ICheckout.AdditionalDataTemporaryServices;
+        additionalData?: /**
+         * This field contains additional data, which may be required for a particular payment request.
+         *
+         * The `additionalData` object consists of entries, each of which includes the key and value.
+         */
+        AdditionalDataCommon | AdditionalData3DSecure | AdditionalDataAirline | AdditionalDataCarRental | AdditionalDataLevel23 | AdditionalDataLodging | AdditionalDataOpenInvoice | AdditionalDataRatepay | AdditionalDataRetry | AdditionalDataRisk | AdditionalDataRiskStandalone | AdditionalDataTemporaryServices | AdditionalDataWallets;
         /**
-         * List of payments methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).
+         * List of payments methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type`from [Payment methods overview](https://docs.adyen.com/payment-methods).
          *
          * Example: `"allowedPaymentMethods":["ideal","giropay"]`
          */
@@ -2695,18 +3589,18 @@ declare namespace ICheckout {
         /**
          * The amount information for the transaction (in [minor units](https://docs.adyen.com/development-resources/currency-codes)). For [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification) requests, set amount to 0 (zero).
          */
-        amount: ICheckout.Amount;
+        amount: Amount;
         /**
          * Information about your application. For more details, see [Building Adyen solutions](https://docs.adyen.com/development-resources/building-adyen-solutions).
          */
-        applicationInfo?: ICheckout.ApplicationInfo;
+        applicationInfo?: ApplicationInfo;
         /**
          * The address where to send the invoice.
          * > For 3D Secure 2 transactions, schemes require the `billingAddress` for both `deviceChannel` **browser** and **app**. Include all of the fields within this object.
          */
-        billingAddress?: ICheckout.Address;
+        billingAddress?: Address;
         /**
-         * List of payments methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).
+         * List of payments methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type`from [Payment methods overview](https://docs.adyen.com/payment-methods).
          *
          * Example: `"blockedPaymentMethods":["ideal","giropay"]`
          */
@@ -2727,11 +3621,11 @@ declare namespace ICheckout {
         /**
          * Information regarding the company.
          */
-        company?: ICheckout.Company;
+        company?: Company;
         /**
          * Specify configurations to enable additional features.
          */
-        configuration?: ICheckout.Configuration;
+        configuration?: Configuration;
         /**
          * Conversion ID that corresponds to the Id generated for tracking user payment journey.
          */
@@ -2752,11 +3646,11 @@ declare namespace ICheckout {
         /**
          * The forex quote as returned in the response of the forex service.
          */
-        dccQuote?: ICheckout.ForexQuote;
+        dccQuote?: ForexQuote;
         /**
          * The address where the purchased goods should be delivered.
          */
-        deliveryAddress?: ICheckout.Address;
+        deliveryAddress?: Address;
         /**
          * The date and time the purchased goods should be delivered.
          *
@@ -2792,12 +3686,12 @@ declare namespace ICheckout {
         /**
          * Contains installment settings. For more information, refer to [Installments](https://docs.adyen.com/payment-methods/cards/credit-card-installments).
          */
-        installments?: ICheckout.Installments;
+        installments?: Installments;
         /**
          * Price and product information about the purchased items, to be included on the invoice sent to the shopper.
          * > This field is required for Klarna, AfterPay, and RatePay.
          */
-        lineItems?: ICheckout.LineItem[];
+        lineItems?: LineItem[];
         /**
          * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
          */
@@ -2817,6 +3711,7 @@ declare namespace ICheckout {
          * Limitations: Maximum 20 key-value pairs per request. When exceeding, the "177" error occurs: "Metadata size exceeds limit".
          */
         metadata?: {
+            [name: string]: string;
         };
         /**
          * When you are doing multiple partial (gift card) payments, this is the `pspReference` of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the `merchantOrderReference`instead.
@@ -2844,7 +3739,7 @@ declare namespace ICheckout {
         reference: string;
         /**
          * The URL to return to in case of a redirection.
-         * The format depends on the channel.
+         * The format depends on the channel. This URL can have a maximum of 1024 characters.
          * * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number.
          * Example: `https://your-company.com/checkout?shopperOrder=12xy`
          * * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app).
@@ -2856,13 +3751,15 @@ declare namespace ICheckout {
         /**
          * Contains risk data, such as client-side data, used to identify risk for a transaction.
          */
-        riskData?: ICheckout.RiskData;
+        riskData?: RiskData;
         /**
          * The version of the SDK you are using (for Web SDK integrations only).
          */
         sdkVersion?: string;
         /**
-         * The maximum validity of the session.
+         * The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.
+         *
+         * For example: 2020-07-18T15:42:40.428+01:00
          */
         sessionValidity?: string;
         /**
@@ -2893,14 +3790,15 @@ declare namespace ICheckout {
         /**
          * The shopper's full name and gender (if specified).
          */
-        shopperName?: ICheckout.Name;
+        shopperName?: Name;
         /**
          * The shopper's reference to uniquely identify this shopper (e.g. user ID or account ID).
          * > This field is required for recurring payments.
          */
         shopperReference?: string;
         /**
-         * The text to appear on the shopper's bank statement.
+         * The text to be shown on the shopper's bank statement. To enable this field, contact our [Support Team](https://support.adyen.com/hc/en-us/requests/new).
+         *  We recommend sending a maximum of 25 characters, otherwise banks might truncate the string.
          */
         shopperStatement?: string;
         /**
@@ -2908,9 +3806,9 @@ declare namespace ICheckout {
          */
         socialSecurityNumber?: string;
         /**
-         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/marketpay/processing-payments#providing-split-information).
+         * Information on how the payment should be split between accounts when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information).
          */
-        splits?: ICheckout.Split[];
+        splits?: Split[];
         /**
          * When true and `shopperReference` is provided, the payment details will be stored.
          */
@@ -2942,7 +3840,7 @@ declare namespace ICheckout {
         /**
          * The detailed list of stored payment details required to generate payment forms. Will be empty if oneClick is set to false in the request.
          */
-        recurringDetails?: ICheckout.RecurringDetail[];
+        recurringDetails?: RecurringDetail[];
     }
     export interface PaymentVerificationRequest {
         /**
@@ -2954,15 +3852,19 @@ declare namespace ICheckout {
         /**
          * This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**.
          */
-        additionalData?: ICheckout.ResponseAdditionalDataCommon | ICheckout.ResponseAdditionalDataBillingAddress | ICheckout.ResponseAdditionalDataCard | ICheckout.ResponseAdditionalDataDeliveryAddress | ICheckout.ResponseAdditionalDataInstallments | ICheckout.ResponseAdditionalDataNetworkTokens | ICheckout.ResponseAdditionalDataPayPal | ICheckout.ResponseAdditionalDataSepa;
+        additionalData?: /* This field contains additional data, which may be required to return in a particular payment response. To choose data fields to be returned, go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**. */ ResponseAdditionalDataCommon | ResponseAdditionalDataBillingAddress | ResponseAdditionalDataCard | ResponseAdditionalDataDeliveryAddress | ResponseAdditionalDataInstallments | ResponseAdditionalDataNetworkTokens | ResponseAdditionalDataPayPal | ResponseAdditionalDataSepa;
         /**
          * The fraud result properties of the payment.
          */
-        fraudResult?: ICheckout.FraudResult;
+        fraudResult?: FraudResult;
         /**
          * A unique value that you provided in the initial `/paymentSession` request as a `reference` field.
          */
         merchantReference: string;
+        /**
+         * Contains updated information regarding the order in case order information was provided in the request.
+         */
+        order?: CheckoutOrderResponse;
         /**
          * The payment method used in the transaction.
          */
@@ -2974,9 +3876,9 @@ declare namespace ICheckout {
          */
         pspReference?: string;
         /**
-         * If the payment's authorisation is refused or an error occurs during authorisation, this field holds Adyen's mapped reason for the refusal or a description of the error.
+         * If the payment's authorisation is refused or an error occurs during authorisation, this field holds Adyen's mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.
          *
-         * When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.
+         * For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
          */
         refusalReason?: string;
         /**
@@ -2984,7 +3886,9 @@ declare namespace ICheckout {
          */
         refusalReasonCode?: string;
         /**
-         * The result of the payment. Possible values:
+         * The result of the payment. For more information, see [Result codes](https://docs.adyen.com/checkout/payment-result-codes).
+         *
+         * Possible values:
          *
          * * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions.
          * * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state.
@@ -2992,7 +3896,7 @@ declare namespace ICheckout {
          * * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions.
          * * **Error** – There was an error when the payment was being processed. The reason is given in the `refusalReason` field. This is a final state.
          * * **IdentifyShopper** – The issuer requires the shopper's device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions.
-         * * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. For more information, refer to [Result codes](https://docs.adyen.com/checkout/payment-result-codes).
+         * * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment.
          * * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment.
          * * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments.
          * * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation.
@@ -3002,17 +3906,21 @@ declare namespace ICheckout {
         /**
          * The type of the error.
          */
-        serviceError?: ICheckout.ServiceError;
+        serviceError?: ServiceError;
         /**
          * The shopperLocale value provided in the payment request.
          */
         shopperLocale: string;
     }
-    namespace Post {
-        export type RequestBody = ICheckout.PaymentVerificationRequest;
-        namespace Responses {
-            export type $200 = ICheckout.PaymentVerificationResponse;
-        }
+    export interface QiwiWalletDetails {
+        /**
+         *
+         */
+        telephoneNumber: string;
+        /**
+         * **qiwiwallet**
+         */
+        type: string;
     }
     export interface Recurring {
         /**
@@ -3050,19 +3958,24 @@ declare namespace ICheckout {
          * The configuration of the payment method.
          */
         configuration?: {
+            [name: string]: string;
         };
         /**
          * All input details to be provided to complete the payment with this payment method.
          */
-        details?: ICheckout.InputDetail[];
+        details?: InputDetail[];
+        /**
+         * The funding source of the payment method.
+         */
+        fundingSource?: "credit" | "debit";
         /**
          * The group where this payment method belongs to.
          */
-        group?: ICheckout.PaymentMethodGroup;
+        group?: PaymentMethodGroup;
         /**
          * All input details to be provided to complete the payment with this payment method.
          */
-        inputDetails?: ICheckout.InputDetail[];
+        inputDetails?: InputDetail[];
         /**
          * The displayable name of this payment method.
          */
@@ -3078,7 +3991,7 @@ declare namespace ICheckout {
         /**
          * Contains information on previously stored payment details.
          */
-        storedDetails?: ICheckout.StoredDetails;
+        storedDetails?: StoredDetails;
         /**
          * Indicates whether this payment method supports tokenization or not.
          */
@@ -3093,6 +4006,7 @@ declare namespace ICheckout {
          * When the redirect URL must be accessed via POST, use this data to post to the redirect URL.
          */
         data?: {
+            [name: string]: string;
         };
         /**
          * The web method that you must use to access the redirect URL.
@@ -3159,7 +4073,7 @@ declare namespace ICheckout {
          */
         cardIssuingCountry?: string;
         /**
-         * The currency in which the card is issued, if this information is available.
+         * The currency in which the card is issued, if this information is available. Provided as the currency code or currency number from the ISO-4217 standard.
          *
          * Example: USD
          */
@@ -3172,6 +4086,7 @@ declare namespace ICheckout {
         cardPaymentMethod?: string;
         /**
          * The last four digits of a card number.
+         *
          * > Returned only in case of a card payment.
          */
         cardSummary?: string;
@@ -3181,6 +4096,7 @@ declare namespace ICheckout {
          * The name of the Adyen acquirer account.
          *
          * Example: PayPalSandbox_TestAcquirer
+         *
          * > Only relevant for PayPal transactions.
          */
         acquirerAccountCode?: string;
@@ -3242,6 +4158,7 @@ declare namespace ICheckout {
          * BIC of a bank account.
          *
          * Example: TESTNL01
+         *
          * > Only relevant for SEPA Direct Debit transactions.
          */
         bic?: string;
@@ -3259,6 +4176,7 @@ declare namespace ICheckout {
          * The expiry date on the card.
          *
          * Example: 6/2016
+         *
          * > Returned only in case of a card payment.
          */
         expiryDate?: string;
@@ -3283,8 +4201,10 @@ declare namespace ICheckout {
          * * DEBIT
          * * PREPAID
          * * PREPAID_RELOADABLE
+         *
          * * PREPAID_NONRELOADABLE
          * * DEFFERED_DEBIT
+         *
          * > This functionality requires additional configuration on Adyen's end. To enable it, contact the Support Team.
          *
          * For receiving this field in the notification, enable **Include Funding Source** in **Notifications** > **Additional settings**.
@@ -3308,6 +4228,7 @@ declare namespace ICheckout {
          * Provides the more granular indication of why a transaction was refused. When a transaction fails with either "Refused", "Restricted Card", "Transaction Not Permitted", "Not supported" or "DeclinedNon Generic" refusalReason from the issuer, Adyen cross references its PSP-wide data for extra insight into the refusal reason. If an inferred refusal reason is available, the `inferredRefusalReason`, field is populated and the `refusalReason`, is set to "Not Supported".
          *
          * Possible values:
+         *
          * * 3D Secure Mandated
          * * Closed Account
          * * ContAuth Not Supported
@@ -3315,6 +4236,7 @@ declare namespace ICheckout {
          * * Ecommerce Not Allowed
          * * Crossborder Not Supported
          * * Card Updated
+         *
          * * Low Authrate Bin
          * * Non-reloadable prepaid card
          */
@@ -3327,6 +4249,7 @@ declare namespace ICheckout {
         issuerCountry?: string;
         /**
          * The `mcBankNetReferenceNumber`, is a minimum of six characters and a maximum of nine characters long.
+         *
          * > Contact Support Team to enable this field.
          */
         mcBankNetReferenceNumber?: string;
@@ -3363,6 +4286,7 @@ declare namespace ICheckout {
          *
          * Mastercard:
          * * "Y" (domestic and cross-border)
+         *
          * * "D" (only domestic)
          * * "N" (no MoneySend)
          * * "U" (unknown)
@@ -3375,6 +4299,7 @@ declare namespace ICheckout {
          * * CardChanged
          * * CardExpiryChanged
          * * CloseAccount
+         *
          * * ContactCardAccountHolder
          */
         realtimeAccountUpdaterStatus?: string;
@@ -3454,6 +4379,7 @@ declare namespace ICheckout {
         threeDSVersion?: string;
         /**
          * The `visaTransactionId`, has a fixed length of 15 numeric characters.
+         *
          * > Contact Support Team to enable this field.
          */
         visaTransactionId?: string;
@@ -3498,35 +4424,9 @@ declare namespace ICheckout {
     }
     export interface ResponseAdditionalDataInstallments {
         /**
-         * The number of installments that the payment amount should be charged with.
-         *
-         * Example: 5
-         * > Only relevant for card payments in countries that support installments.
-         */
-        "installments.value"?: string;
-        /**
          * Type of installment. The value of `installmentType` should be **IssuerFinanced**.
          */
         "installmentPaymentData.installmentType"?: string;
-        /**
-         * Possible values:
-         * * PayInInstallmentsOnly
-         * * PayInFullOnly
-         * * PayInFullOrInstallments
-         */
-        "installmentPaymentData.paymentOptions"?: string;
-        /**
-         * Total number of installments possible for this payment.
-         */
-        "installmentPaymentData.option[itemNr].numberOfInstallments"?: string;
-        /**
-         * Interest rate for the installment period.
-         */
-        "installmentPaymentData.option[itemNr].interestRate"?: string;
-        /**
-         * Installment fee amount in minor units.
-         */
-        "installmentPaymentData.option[itemNr].installmentFee"?: string;
         /**
          * Annual interest rate.
          */
@@ -3536,21 +4436,47 @@ declare namespace ICheckout {
          */
         "installmentPaymentData.option[itemNr].firstInstallmentAmount"?: string;
         /**
-         * Subsequent Installment Amount in minor units.
+         * Installment fee amount in minor units.
          */
-        "installmentPaymentData.option[itemNr].subsequentInstallmentAmount"?: string;
+        "installmentPaymentData.option[itemNr].installmentFee"?: string;
         /**
-         * Minimum number of installments possible for this payment.
+         * Interest rate for the installment period.
          */
-        "installmentPaymentData.option[itemNr].minimumNumberOfInstallments"?: string;
+        "installmentPaymentData.option[itemNr].interestRate"?: string;
         /**
          * Maximum number of installments possible for this payment.
          */
         "installmentPaymentData.option[itemNr].maximumNumberOfInstallments"?: string;
         /**
+         * Minimum number of installments possible for this payment.
+         */
+        "installmentPaymentData.option[itemNr].minimumNumberOfInstallments"?: string;
+        /**
+         * Total number of installments possible for this payment.
+         */
+        "installmentPaymentData.option[itemNr].numberOfInstallments"?: string;
+        /**
+         * Subsequent Installment Amount in minor units.
+         */
+        "installmentPaymentData.option[itemNr].subsequentInstallmentAmount"?: string;
+        /**
          * Total amount in minor units.
          */
         "installmentPaymentData.option[itemNr].totalAmountDue"?: string;
+        /**
+         * Possible values:
+         * * PayInInstallmentsOnly
+         * * PayInFullOnly
+         * * PayInFullOrInstallments
+         */
+        "installmentPaymentData.paymentOptions"?: string;
+        /**
+         * The number of installments that the payment amount should be charged with.
+         *
+         * Example: 5
+         * > Only relevant for card payments in countries that support installments.
+         */
+        "installments.value"?: string;
     }
     export interface ResponseAdditionalDataNetworkTokens {
         /**
@@ -3568,17 +4494,11 @@ declare namespace ICheckout {
     }
     export interface ResponseAdditionalDataPayPal {
         /**
-         * The status of the buyer's PayPal account.
+         * The buyer's PayPal account email address.
          *
-         * Example: unverified
+         * Example: paypaltest@adyen.com
          */
-        paypalPayerStatus?: string;
-        /**
-         * The buyer's country of residence.
-         *
-         * Example: NL
-         */
-        paypalPayerResidenceCountry?: string;
+        paypalEmail?: string;
         /**
          * The buyer's PayPal ID.
          *
@@ -3586,11 +4506,17 @@ declare namespace ICheckout {
          */
         paypalPayerId?: string;
         /**
-         * The buyer's PayPal account email address.
+         * The buyer's country of residence.
          *
-         * Example: paypaltest@adyen.com
+         * Example: NL
          */
-        paypalEmail?: string;
+        paypalPayerResidenceCountry?: string;
+        /**
+         * The status of the buyer's PayPal account.
+         *
+         * Example: unverified
+         */
+        paypalPayerStatus?: string;
         /**
          * The eligibility for PayPal Seller Protection for this payment.
          *
@@ -3606,12 +4532,13 @@ declare namespace ICheckout {
          */
         "sepadirectdebit.dateOfSignature"?: string;
         /**
-         * Its value corresponds to the  pspReference value of the transaction.
+         * Its value corresponds to the pspReference value of the transaction.
          */
         "sepadirectdebit.mandateId"?: string;
         /**
          * This field can take one of the following values:
          * * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.
+         *
          * * First: (FRST) Initial/first collection in a series of direct debit instructions.
          * * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor.
          * * Final: (FNAL) Last/final collection in a series of direct debit instructions.
@@ -3643,6 +4570,39 @@ declare namespace ICheckout {
          * The `y` value as received from the 3D Secure 2 SDK.
          */
         y?: string;
+    }
+    export interface SamsungPayDetails {
+        fundingSource?: "credit" | "debit";
+        /**
+         *
+         */
+        samsungPayToken: string;
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        /**
+         * **samsungpay**
+         */
+        type: string;
+    }
+    export interface SepaDirectDebitDetails {
+        /**
+         * The International Bank Account Number (IBAN).
+         */
+        iban: string;
+        /**
+         * The name of the bank account holder.
+         */
+        ownerName: string;
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        /**
+         * **sepadirectdebit**
+         */
+        type: string;
     }
     export interface ServiceError {
         errorCode?: string;
@@ -3702,7 +4662,7 @@ declare namespace ICheckout {
         /**
          * The amount of this split.
          */
-        amount: ICheckout.SplitAmount;
+        amount: SplitAmount;
         /**
          * A description of this split.
          */
@@ -3738,11 +4698,11 @@ declare namespace ICheckout {
         /**
          * The stored bank account.
          */
-        bank?: ICheckout.BankAccount;
+        bank?: BankAccount;
         /**
          * The stored card information.
          */
-        card?: ICheckout.Card;
+        card?: Card;
         /**
          * The email associated with stored payment details.
          */
@@ -3790,16 +4750,27 @@ declare namespace ICheckout {
          */
         type?: string;
     }
+    export interface StoredPaymentMethodDetails {
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        /**
+         * The payment method type.
+         */
+        type: string;
+    }
     export interface SubInputDetail {
         /**
          * Configuration parameters for the required input.
          */
         configuration?: {
+            [name: string]: string;
         };
         /**
          * In case of a select, the items to choose from.
          */
-        items?: ICheckout.Item[];
+        items?: Item[];
         /**
          * The value to provide in the result.
          */
@@ -3851,7 +4822,7 @@ declare namespace ICheckout {
          * Display options for the 3D Secure 2 SDK.
          * Optional and only for `deviceChannel` **app**.
          */
-        deviceRenderOptions?: ICheckout.DeviceRenderOptions;
+        deviceRenderOptions?: DeviceRenderOptions;
         /**
          * Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/checkout/3d-secure/other-3ds-flows/authentication-only). The `mcc` is a four-digit code with which the previously given `acquirerMerchantID` is registered at the scheme.
          */
@@ -3883,7 +4854,7 @@ declare namespace ICheckout {
          * The `sdkEphemPubKey` value as received from the 3D Secure 2 SDK.
          * Required for `deviceChannel` set to **app**.
          */
-        sdkEphemPubKey?: ICheckout.SDKEphemPubKey;
+        sdkEphemPubKey?: SDKEphemPubKey;
         /**
          * The maximum amount of time in minutes for the 3D Secure 2 authentication process.
          * Optional and only for `deviceChannel` set to **app**. Defaults to **60** minutes.
@@ -3928,7 +4899,7 @@ declare namespace ICheckout {
         /**
          * In 3D Secure 1, the authentication response if the shopper was redirected.
          *
-         * In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, set this value to **Y**.
+         * In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.
          */
         authenticationResponse?: "Y" | "N" | "U" | "A";
         /**
@@ -3942,7 +4913,7 @@ declare namespace ICheckout {
         /**
          * In 3D Secure 1, this is the enrollment response from the 3D directory server.
          *
-         * In 3D Secure 2, this is the `transStatus` from the `ARes`. The possible values are **A** or **Y** for a frictionless flow, or **C** for a challenge flow.
+         * In 3D Secure 2, this is the `transStatus` from the `ARes`.
          */
         directoryResponse?: "A" | "C" | "D" | "I" | "N" | "R" | "U" | "Y";
         /**
@@ -3961,5 +4932,260 @@ declare namespace ICheckout {
          * Supported for 3D Secure 1. The transaction identifier (Base64-encoded, 20 bytes in a decoded form).
          */
         xid?: string; // byte
+    }
+    export interface UpdatePaymentLinkRequest {
+        /**
+         * Status of the payment link. Possible values:
+         * * **expired**
+         */
+        status: "expired";
+    }
+    export interface VippsDetails {
+        /**
+         * This is the `recurringDetailReference` returned in the response when you created the token.
+         */
+        storedPaymentMethodId?: string;
+        /**
+         *
+         */
+        telephoneNumber: string;
+        /**
+         * **vipps**
+         */
+        type: string;
+    }
+    export interface VisaCheckoutDetails {
+        fundingSource?: "credit" | "debit";
+        /**
+         * **visacheckout**
+         */
+        type: string;
+        /**
+         *
+         */
+        visaCheckoutCallId: string;
+    }
+    export interface WeChatPayDetails {
+        appId?: string;
+        openid?: string;
+        /**
+         * **wechatpay**
+         */
+        type: string;
+    }
+    export interface WeChatPayMiniProgramDetails {
+        appId?: string;
+        openid?: string;
+        /**
+         * **wechatpayMiniProgram**
+         */
+        type: string;
+    }
+}
+declare namespace Paths {
+    namespace GetPaymentLinksLinkId {
+        namespace Parameters {
+            export type LinkId = string;
+        }
+        export interface PathParameters {
+            linkId: Parameters.LinkId;
+        }
+        namespace Responses {
+            export type $200 = ICheckout.PaymentLinkResource;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PatchPaymentLinksLinkId {
+        namespace Parameters {
+            export type LinkId = string;
+        }
+        export interface PathParameters {
+            linkId: Parameters.LinkId;
+        }
+        export type RequestBody = ICheckout.UpdatePaymentLinkRequest;
+        namespace Responses {
+            export type $200 = ICheckout.PaymentLinkResource;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostOrders {
+        export type RequestBody = ICheckout.CheckoutCreateOrderRequest;
+        namespace Responses {
+            export type $200 = ICheckout.CheckoutCreateOrderResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostOrdersCancel {
+        export type RequestBody = ICheckout.CheckoutCancelOrderRequest;
+        namespace Responses {
+            export type $200 = ICheckout.CheckoutCancelOrderResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostOriginKeys {
+        export type RequestBody = ICheckout.CheckoutUtilityRequest;
+        namespace Responses {
+            export type $200 = ICheckout.CheckoutUtilityResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostPaymentLinks {
+        export type RequestBody = ICheckout.CreatePaymentLinkRequest;
+        namespace Responses {
+            export type $200 = ICheckout.PaymentLinkResource;
+            export interface $201 {
+            }
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostPaymentMethods {
+        export type RequestBody = ICheckout.PaymentMethodsRequest;
+        namespace Responses {
+            export type $200 = ICheckout.PaymentMethodsResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostPaymentMethodsBalance {
+        export type RequestBody = ICheckout.CheckoutBalanceCheckRequest;
+        namespace Responses {
+            export type $200 = ICheckout.CheckoutBalanceCheckResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostPaymentSession {
+        export type RequestBody = ICheckout.PaymentSetupRequest;
+        namespace Responses {
+            export type $200 = ICheckout.PaymentSetupResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostPayments {
+        export type RequestBody = ICheckout.PaymentRequest;
+        namespace Responses {
+            export type $200 = ICheckout.PaymentResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostPaymentsDetails {
+        export type RequestBody = ICheckout.DetailsRequest;
+        namespace Responses {
+            export type $200 = ICheckout.PaymentResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
+    }
+    namespace PostPaymentsResult {
+        export type RequestBody = ICheckout.PaymentVerificationRequest;
+        namespace Responses {
+            export type $200 = ICheckout.PaymentVerificationResponse;
+            export interface $400 {
+            }
+            export interface $401 {
+            }
+            export interface $403 {
+            }
+            export interface $422 {
+            }
+            export interface $500 {
+            }
+        }
     }
 }

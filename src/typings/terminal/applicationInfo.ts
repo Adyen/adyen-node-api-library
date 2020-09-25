@@ -30,23 +30,23 @@
  */
 
 
-import { CommonField } from './commonField';
-import { ExternalPlatform } from './externalPlatform';
-import { MerchantDevice } from './merchantDevice';
-import { ShopperInteractionDevice } from './shopperInteractionDevice';
+import { CommonField } from "./commonField";
+import { ExternalPlatform } from "./externalPlatform";
+import { MerchantDevice } from "./merchantDevice";
+import { ShopperInteractionDevice } from "./shopperInteractionDevice";
 
 export class ApplicationInfo {
-    'adyenLibrary'?: CommonField;
-    'adyenPaymentSource'?: CommonField;
-    'externalPlatform'?: ExternalPlatform;
-    'merchantApplication'?: CommonField;
-    'merchantDevice'?: MerchantDevice;
-    'paymentDetailsSource'?: CommonField;
-    'shopperInteractionDevice'?: ShopperInteractionDevice;
+    "adyenLibrary"?: CommonField;
+    "adyenPaymentSource"?: CommonField;
+    "externalPlatform"?: ExternalPlatform;
+    "merchantApplication"?: CommonField;
+    "merchantDevice"?: MerchantDevice;
+    "paymentDetailsSource"?: CommonField;
+    "shopperInteractionDevice"?: ShopperInteractionDevice;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "adyenLibrary",
             "baseName": "adyenLibrary",

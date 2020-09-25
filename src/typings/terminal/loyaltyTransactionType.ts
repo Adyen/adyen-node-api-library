@@ -32,10 +32,10 @@
 
 
 export enum LoyaltyTransactionType {
-    Award = <any> 'Award',
-    AwardRefund = <any> 'AwardRefund',
-    Rebate = <any> 'Rebate',
-    RebateRefund = <any> 'RebateRefund',
-    Redemption = <any> 'Redemption',
-    RedemptionRefund = <any> 'RedemptionRefund'
+    Award = "Award" as any,
+    AwardRefund = "AwardRefund" as any,
+    Rebate = "Rebate" as any,
+    RebateRefund = "RebateRefund" as any,
+    Redemption = "Redemption" as any,
+    RedemptionRefund = "RedemptionRefund" as any
 }

@@ -32,8 +32,8 @@
 
 
 export enum GlobalStatusType {
-    Busy = <any> 'Busy',
-    Maintenance = <any> 'Maintenance',
-    OK = <any> 'OK',
-    Unreachable = <any> 'Unreachable'
+    Busy = "Busy" as any,
+    Maintenance = "Maintenance" as any,
+    OK = "OK" as any,
+    Unreachable = "Unreachable" as any
 }

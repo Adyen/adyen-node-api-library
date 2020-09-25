@@ -29,56 +29,56 @@
  * Do not edit the class manually.
  */
 
-import { AdditionalData } from './additionalData';
-import { Amount } from './amount';
+import { AdditionalData } from "./additionalData";
+import { Amount } from "./amount";
 
 export class NotificationRequestItem {
-    'additionalData'?: AdditionalData;
-    'amount': Amount;
+    "additionalData"?: AdditionalData;
+    "amount": Amount;
     /**
     * Adyen\'s 16-character unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.
     */
-    'pspReference': string;
+    "pspReference": string;
     /**
     * The type of event the notification item refers to. When eventCode returns AUTHORISATION, it does not necessarily mean that the payment authorisation request has been successfully processed. The authorisation is successful if success = true. If success = false, check the  the reason value for further information on the authorisation failure cause. This can occur, for example, if an error occurs or if the transaction is refused.
     */
-    'eventCode': NotificationRequestItem.EventCodeEnum;
+    "eventCode": NotificationRequestItem.EventCodeEnum;
     /**
     * The time when the event was generated.
     */
-    'eventDate': string;
+    "eventDate": string;
     /**
     * The merchant account identifier used in the transaction the notification item refers to.
     */
-    'merchantAccountCode': string;
+    "merchantAccountCode": string;
     /**
     * This field holds a list of the modification operations supported by the transaction the notification item refers to. The available operations in the list give information on the follow-up actions concerning the payment. You may be requested to: Capture the payment (for example, if auto-capture is not set up), Cancel the payment (if the payment has not been captured yet), or Refund the payment (if the payment has already been captured).
     */
-    'operations'?: Array<NotificationRequestItem.OperationsEnum>;
+    "operations"?: NotificationRequestItem.OperationsEnum[];
     /**
     *   A reference to uniquely identify the payment.This reference is used in all communication with you about the payment status.We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, you can enter them in this field. Separate each reference value with a hyphen character (\'-\'). This field has a length restriction: you can enter max. 80 characters.
     */
-    'merchantReference': string;
+    "merchantReference": string;
     /**
     * If the notification item is about a payment authorisation, this field is not populated and is blank. If the notification item is about a modification, the originalReference value corresponds to the payment request assigned to the original payment.
     */
-    'originalReference'?: string;
+    "originalReference"?: string;
     /**
     * The payment method used in the transaction the notification item refers to.
     */
-    'paymentMethod'?: string;
+    "paymentMethod"?: string;
     /**
     * This field holds plain text. For more information, refer to the reason field values below.
     */
-    'reason'?: string;
+    "reason"?: string;
     /**
     * Informs about the outcome of the event ( eventCode ) the notification refers to. true: the event ( eventCode ) the notification refers to was executed successfully. false: the event was not executed successfully.
     */
-    'success': NotificationRequestItem.SuccessEnum;
+    "success": NotificationRequestItem.SuccessEnum;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
@@ -147,50 +147,50 @@ export class NotificationRequestItem {
 
 export namespace NotificationRequestItem {
     export enum EventCodeEnum {
-        AUTHORISATION = <any> 'AUTHORISATION',
-        AUTHORISATIONADJUSTMENT = <any> 'AUTHORISATION_ADJUSTMENT',
-        CANCELLATION = <any> 'CANCELLATION',
-        CANCELORREFUND = <any> 'CANCEL_OR_REFUND',
-        CAPTURE = <any> 'CAPTURE',
-        CAPTUREFAILED = <any> 'CAPTURE_FAILED',
-        HANDLEDEXTERNALLY = <any> 'HANDLED_EXTERNALLY',
-        ORDEROPENED = <any> 'ORDER_OPENED',
-        ORDERCLOSED = <any> 'ORDER_CLOSED',
-        PENDING = <any> 'PENDING',
-        PROCESSRETRY = <any> 'PROCESS_RETRY',
-        REFUND = <any> 'REFUND',
-        REFUNDFAILED = <any> 'REFUND_FAILED',
-        REFUNDEDREVERSED = <any> 'REFUNDED_REVERSED',
-        REFUNDWITHDATA = <any> 'REFUND_WITH_DATA',
-        REPORTAVAILABLE = <any> 'REPORT_AVAILABLE',
-        VOIDPENDINGREFUND = <any> 'VOID_PENDING_REFUND',
-        CHARGEBACK = <any> 'CHARGEBACK',
-        CHARGEBACKREVERSED = <any> 'CHARGEBACK_REVERSED',
-        NOTIFICATIONOFCHARGEBACK = <any> 'NOTIFICATION_OF_CHARGEBACK',
-        NOTIFICATIONOFFRAUD = <any> 'NOTIFICATION_OF_FRAUD',
-        PREARBITRATIONLOST = <any> 'PREARBITRATION_LOST',
-        PREARBITRATIONWON = <any> 'PREARBITRATION_WON',
-        REQUESTFORINFORMATION = <any> 'REQUEST_FOR_INFORMATION',
-        SECONDCHARGEBACK = <any> 'SECOND_CHARGEBACK',
-        PAYOUTEXPIRE = <any> 'PAYOUT_EXPIRE',
-        PAYOUTDECLINE = <any> 'PAYOUT_DECLINE',
-        PAYOUTTHIRDPARTY = <any> 'PAYOUT_THIRDPARTY',
-        PAIDOUTREVERSED = <any> 'PAIDOUT_REVERSED',
-        AUTORESCUE = <any> 'AUTORESCUE',
-        CANCELAUTORESCUE = <any> 'CANCEL_AUTORESCUE',
-        RECURRINGCONTRACT = <any> 'RECURRING_CONTRACT',
-        POSTPONEDREFUND = <any> 'POSTPONED_REFUND',
-        OFFERCLOSED = <any> 'OFFER_CLOSED',
-        MANUALREVIEWACCEPT = <any> 'MANUAL_REVIEW_ACCEPT',
-        MANUALREVIEWREJECT = <any> 'MANUAL_REVIEW_REJECT'
+        AUTHORISATION = "AUTHORISATION" as any,
+        AUTHORISATIONADJUSTMENT = "AUTHORISATION_ADJUSTMENT" as any,
+        CANCELLATION = "CANCELLATION" as any,
+        CANCELORREFUND = "CANCEL_OR_REFUND" as any,
+        CAPTURE = "CAPTURE" as any,
+        CAPTUREFAILED = "CAPTURE_FAILED" as any,
+        HANDLEDEXTERNALLY = "HANDLED_EXTERNALLY" as any,
+        ORDEROPENED = "ORDER_OPENED" as any,
+        ORDERCLOSED = "ORDER_CLOSED" as any,
+        PENDING = "PENDING" as any,
+        PROCESSRETRY = "PROCESS_RETRY" as any,
+        REFUND = "REFUND" as any,
+        REFUNDFAILED = "REFUND_FAILED" as any,
+        REFUNDEDREVERSED = "REFUNDED_REVERSED" as any,
+        REFUNDWITHDATA = "REFUND_WITH_DATA" as any,
+        REPORTAVAILABLE = "REPORT_AVAILABLE" as any,
+        VOIDPENDINGREFUND = "VOID_PENDING_REFUND" as any,
+        CHARGEBACK = "CHARGEBACK" as any,
+        CHARGEBACKREVERSED = "CHARGEBACK_REVERSED" as any,
+        NOTIFICATIONOFCHARGEBACK = "NOTIFICATION_OF_CHARGEBACK" as any,
+        NOTIFICATIONOFFRAUD = "NOTIFICATION_OF_FRAUD" as any,
+        PREARBITRATIONLOST = "PREARBITRATION_LOST" as any,
+        PREARBITRATIONWON = "PREARBITRATION_WON" as any,
+        REQUESTFORINFORMATION = "REQUEST_FOR_INFORMATION" as any,
+        SECONDCHARGEBACK = "SECOND_CHARGEBACK" as any,
+        PAYOUTEXPIRE = "PAYOUT_EXPIRE" as any,
+        PAYOUTDECLINE = "PAYOUT_DECLINE" as any,
+        PAYOUTTHIRDPARTY = "PAYOUT_THIRDPARTY" as any,
+        PAIDOUTREVERSED = "PAIDOUT_REVERSED" as any,
+        AUTORESCUE = "AUTORESCUE" as any,
+        CANCELAUTORESCUE = "CANCEL_AUTORESCUE" as any,
+        RECURRINGCONTRACT = "RECURRING_CONTRACT" as any,
+        POSTPONEDREFUND = "POSTPONED_REFUND" as any,
+        OFFERCLOSED = "OFFER_CLOSED" as any,
+        MANUALREVIEWACCEPT = "MANUAL_REVIEW_ACCEPT" as any,
+        MANUALREVIEWREJECT = "MANUAL_REVIEW_REJECT" as any
     }
     export enum OperationsEnum {
-        CANCEL = <any> 'CANCEL',
-        CAPTURE = <any> 'CAPTURE',
-        REFUND = <any> 'REFUND'
+        CANCEL = "CANCEL" as any,
+        CAPTURE = "CAPTURE" as any,
+        REFUND = "REFUND" as any
     }
     export enum SuccessEnum {
-        True = <any> 'true',
-        False = <any> 'false'
+        True = "true" as any,
+        False = "false" as any
     }
 }

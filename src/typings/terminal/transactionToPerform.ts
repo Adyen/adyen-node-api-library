@@ -30,18 +30,18 @@
  */
 
 
-import { LoyaltyRequest } from './loyaltyRequest';
-import { PaymentRequest } from './paymentRequest';
-import { ReversalRequest } from './reversalRequest';
+import { LoyaltyRequest } from "./loyaltyRequest";
+import { PaymentRequest } from "./paymentRequest";
+import { ReversalRequest } from "./reversalRequest";
 
 export class TransactionToPerform {
-    'loyaltyRequest'?: LoyaltyRequest;
-    'paymentRequest'?: PaymentRequest;
-    'reversalRequest'?: ReversalRequest;
+    "loyaltyRequest"?: LoyaltyRequest;
+    "paymentRequest"?: PaymentRequest;
+    "reversalRequest"?: ReversalRequest;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "loyaltyRequest",
             "baseName": "LoyaltyRequest",

@@ -17,21 +17,21 @@
  * See the LICENSE file for more info.
  */
 
-import {ClientRequest, IncomingHttpHeaders, IncomingMessage} from "http";
-import {Agent, AgentOptions, request as httpsRequest} from "https";
-import {HttpsProxyAgent} from "https-proxy-agent";
+import { ClientRequest, IncomingHttpHeaders, IncomingMessage } from "http";
+import { Agent, AgentOptions, request as httpsRequest } from "https";
+import { HttpsProxyAgent } from "https-proxy-agent";
 
 import * as fs from "fs";
-import {URL} from "url";
+import { URL } from "url";
 import Client from "../client";
 import Config from "../config";
 import HttpClientException from "./httpClientException";
 import checkServerIdentity from "../helpers/checkServerIdentity";
-import {ApiError} from "../typings/apiError";
+import { ApiError } from "../typings/apiError";
 import ApiException from "../services/exception/apiException";
 import ClientInterface from "./clientInterface";
-import {ApiConstants} from "../constants/apiConstants";
-import {IRequest} from "../typings/requestOptions";
+import { ApiConstants } from "../constants/apiConstants";
+import { IRequest } from "../typings/requestOptions";
 
 class HttpURLConnectionClient implements ClientInterface {
     private static CHARSET = "utf-8";
@@ -100,7 +100,11 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
         requestOptions.headers["Cache-Control"] = "no-cache";
-        requestOptions.method = ApiConstants.METHOD_POST;
+
+        if (!requestOptions.method) {
+            requestOptions.method = ApiConstants.METHOD_POST;
+        }
+
         requestOptions.headers[ApiConstants.ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
         requestOptions.headers[ApiConstants.USER_AGENT] = `${applicationName} ${Client.LIB_NAME}/${Client.LIB_VERSION}`;
 
