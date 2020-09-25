@@ -17,4 +17,4 @@
  * See the LICENSE file for more info.
  */
 
-export type AnyType = any
+export type AnyType = any;

@@ -32,8 +32,8 @@
 
 
 export enum ResponseModeType {
-    Immediate = <any> 'Immediate',
-    NotRequired = <any> 'NotRequired',
-    PrintEnd = <any> 'PrintEnd',
-    SoundEnd = <any> 'SoundEnd'
+    Immediate = "Immediate" as any,
+    NotRequired = "NotRequired" as any,
+    PrintEnd = "PrintEnd" as any,
+    SoundEnd = "SoundEnd" as any
 }

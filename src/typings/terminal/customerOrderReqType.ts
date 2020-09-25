@@ -32,7 +32,7 @@
 
 
 export enum CustomerOrderReqType {
-    Both = <any> 'Both',
-    Closed = <any> 'Closed',
-    Open = <any> 'Open'
+    Both = "Both" as any,
+    Closed = "Closed" as any,
+    Open = "Open" as any
 }

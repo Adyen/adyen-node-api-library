@@ -30,16 +30,16 @@
  */
 
 
-import { AlgorithmType } from './algorithmType';
-import { Parameter } from './parameter';
+import { AlgorithmType } from "./algorithmType";
+import { Parameter } from "./parameter";
 
 export class AlgorithmIdentifier {
-    'algorithm': AlgorithmType;
-    'parameter'?: Parameter;
+    "algorithm": AlgorithmType;
+    "parameter"?: Parameter;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "algorithm",
             "baseName": "Algorithm",

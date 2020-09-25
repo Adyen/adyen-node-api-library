@@ -22,15 +22,18 @@ import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
 import Disable from "./resource/recurring/disable";
 import ListRecurringDetails from "./resource/recurring/listRecurringDetails";
+import ScheduleAccountUpdater from "./resource/recurring/scheduleAccountUpdater";
 
 class Recurring extends Service {
     private readonly _listRecurringDetails: ListRecurringDetails;
     private readonly _disable: Disable;
+    private readonly _scheduleAccountUpdater: ScheduleAccountUpdater;
 
     public constructor(client: Client) {
         super(client);
         this._listRecurringDetails = new ListRecurringDetails(this);
         this._disable = new Disable(this);
+        this._scheduleAccountUpdater = new ScheduleAccountUpdater(this);
     }
 
     public listRecurringDetails(request: IRecurring.RecurringDetailsRequest): Promise<IRecurring.RecurringDetailsResult> {
@@ -43,6 +46,13 @@ class Recurring extends Service {
     public disable(request: IRecurring.DisableRequest): Promise<IRecurring.DisableResult> {
         return getJsonResponse<IRecurring.DisableRequest, IRecurring.DisableResult>(
             this._disable,
+            request,
+        );
+    }
+
+    public scheduleAccountUpdater(request: IRecurring.ScheduleAccountUpdaterRequest): Promise<IRecurring.ScheduleAccountUpdaterResult> {
+        return getJsonResponse<IRecurring.ScheduleAccountUpdaterRequest, IRecurring.ScheduleAccountUpdaterResult>(
+            this._scheduleAccountUpdater,
             request,
         );
     }

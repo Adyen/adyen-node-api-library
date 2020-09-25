@@ -30,16 +30,16 @@
  */
 
 
-import { ReconciliationType } from './reconciliationType';
+import { ReconciliationType } from "./reconciliationType";
 
 export class ReconciliationRequest {
-    'acquirerID'?: Array<string>;
-    'pOIReconciliationID'?: string;
-    'reconciliationType': ReconciliationType;
+    "acquirerID"?: string[];
+    "pOIReconciliationID"?: string;
+    "reconciliationType": ReconciliationType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "acquirerID",
             "baseName": "AcquirerID",

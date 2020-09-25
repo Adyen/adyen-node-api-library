@@ -32,12 +32,12 @@
 
 
 export class TransactionIdentification {
-    'timeStamp': string;
-    'transactionID': string;
+    "timeStamp": string;
+    "transactionID": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "timeStamp",
             "baseName": "TimeStamp",

@@ -32,7 +32,7 @@
 
 
 export enum InstalmentType {
-    DeferredInstalments = <any> 'DeferredInstalments',
-    EqualInstalments = <any> 'EqualInstalments',
-    InequalInstalments = <any> 'InequalInstalments'
+    DeferredInstalments = "DeferredInstalments" as any,
+    EqualInstalments = "EqualInstalments" as any,
+    InequalInstalments = "InequalInstalments" as any
 }

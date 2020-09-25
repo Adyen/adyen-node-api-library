@@ -22,7 +22,6 @@
 /// <reference path="applicationInfo.ts" />
 /// <reference path="binLookup.ts" />
 /// <reference path="checkout.ts" />
-/// <reference path="checkoutUtility.ts" />
 /// <reference path="enums/environment.ts" />
 /// <reference path="enums/vatCategory.ts" />
 /// <reference path="nexo.ts" />

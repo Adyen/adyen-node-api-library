@@ -30,7 +30,7 @@ type Endpoints =
      "/transferFunds"|
      "/refundFundsTransfer"|
      "/setupBeneficiary"|
-     "/refundNotPaidOutTransfers"
+     "/refundNotPaidOutTransfers";
 
 
 class PlatformsFund extends Resource {

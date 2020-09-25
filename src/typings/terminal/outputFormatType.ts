@@ -32,8 +32,8 @@
 
 
 export enum OutputFormatType {
-    BarCode = <any> 'BarCode',
-    MessageRef = <any> 'MessageRef',
-    Text = <any> 'Text',
-    XHTML = <any> 'XHTML'
+    BarCode = "BarCode" as any,
+    MessageRef = "MessageRef" as any,
+    Text = "Text" as any,
+    XHTML = "XHTML" as any
 }

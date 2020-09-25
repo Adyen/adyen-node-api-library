@@ -32,15 +32,15 @@
 
 
 export enum AuthenticationMethodType {
-    Bypass = <any> 'Bypass',
-    ManualVerification = <any> 'ManualVerification',
-    MerchantAuthentication = <any> 'MerchantAuthentication',
-    OfflinePIN = <any> 'OfflinePIN',
-    OnlinePIN = <any> 'OnlinePIN',
-    PaperSignature = <any> 'PaperSignature',
-    SecureCertificate = <any> 'SecureCertificate',
-    SecureNoCertificate = <any> 'SecureNoCertificate',
-    SecuredChannel = <any> 'SecuredChannel',
-    SignatureCapture = <any> 'SignatureCapture',
-    UnknownMethod = <any> 'UnknownMethod'
+    Bypass = "Bypass" as any,
+    ManualVerification = "ManualVerification" as any,
+    MerchantAuthentication = "MerchantAuthentication" as any,
+    OfflinePIN = "OfflinePIN" as any,
+    OnlinePIN = "OnlinePIN" as any,
+    PaperSignature = "PaperSignature" as any,
+    SecureCertificate = "SecureCertificate" as any,
+    SecureNoCertificate = "SecureNoCertificate" as any,
+    SecuredChannel = "SecuredChannel" as any,
+    SignatureCapture = "SignatureCapture" as any,
+    UnknownMethod = "UnknownMethod" as any
 }

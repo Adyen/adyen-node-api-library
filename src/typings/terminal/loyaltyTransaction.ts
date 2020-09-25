@@ -30,22 +30,22 @@
  */
 
 
-import { LoyaltyTransactionType } from './loyaltyTransactionType';
-import { OriginalPOITransaction } from './originalPOITransaction';
-import { SaleItem } from './saleItem';
-import { TransactionConditions } from './transactionConditions';
+import { LoyaltyTransactionType } from "./loyaltyTransactionType";
+import { OriginalPOITransaction } from "./originalPOITransaction";
+import { SaleItem } from "./saleItem";
+import { TransactionConditions } from "./transactionConditions";
 
 export class LoyaltyTransaction {
-    'currency'?: string;
-    'loyaltyTransactionType': LoyaltyTransactionType;
-    'originalPOITransaction'?: OriginalPOITransaction;
-    'saleItem'?: Array<SaleItem>;
-    'totalAmount'?: number;
-    'transactionConditions'?: TransactionConditions;
+    "currency"?: string;
+    "loyaltyTransactionType": LoyaltyTransactionType;
+    "originalPOITransaction"?: OriginalPOITransaction;
+    "saleItem"?: SaleItem[];
+    "totalAmount"?: number;
+    "transactionConditions"?: TransactionConditions;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "currency",
             "baseName": "Currency",

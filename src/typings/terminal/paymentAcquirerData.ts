@@ -30,18 +30,18 @@
  */
 
 
-import { TransactionIdentification } from './transactionIdentification';
+import { TransactionIdentification } from "./transactionIdentification";
 
 export class PaymentAcquirerData {
-    'acquirerID'?: string;
-    'acquirerPOIID': string;
-    'acquirerTransactionID'?: TransactionIdentification;
-    'approvalCode'?: string;
-    'merchantID': string;
+    "acquirerID"?: string;
+    "acquirerPOIID": string;
+    "acquirerTransactionID"?: TransactionIdentification;
+    "approvalCode"?: string;
+    "merchantID": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "acquirerID",
             "baseName": "AcquirerID",

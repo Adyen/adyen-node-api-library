@@ -30,16 +30,16 @@
  */
 
 
-import { DocumentQualifierType } from './documentQualifierType';
-import { Response } from './response';
+import { DocumentQualifierType } from "./documentQualifierType";
+import { Response } from "./response";
 
 export class PrintResponse {
-    'documentQualifier': DocumentQualifierType;
-    'response': Response;
+    "documentQualifier": DocumentQualifierType;
+    "response": Response;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "documentQualifier",
             "baseName": "DocumentQualifier",

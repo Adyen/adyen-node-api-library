@@ -30,21 +30,21 @@
  */
 
 
-import { ContentInformation } from './contentInformation';
-import { InputCommandType } from './inputCommandType';
+import { ContentInformation } from "./contentInformation";
+import { InputCommandType } from "./inputCommandType";
 
 export class Input {
-    'confirmedFlag'?: boolean;
-    'digitInput'?: string;
-    'functionKey'?: string;
-    'inputCommand': InputCommandType;
-    'menuEntryNumber'?: number;
-    'password'?: ContentInformation;
-    'textInput'?: string;
+    "confirmedFlag"?: boolean;
+    "digitInput"?: string;
+    "functionKey"?: string;
+    "inputCommand": InputCommandType;
+    "menuEntryNumber"?: number;
+    "password"?: ContentInformation;
+    "textInput"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "confirmedFlag",
             "baseName": "ConfirmedFlag",

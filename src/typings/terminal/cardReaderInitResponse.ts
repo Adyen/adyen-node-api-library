@@ -30,19 +30,19 @@
  */
 
 
-import { ICCResetData } from './iCCResetData';
-import { Response } from './response';
-import { TrackData } from './trackData';
+import { ICCResetData } from "./iCCResetData";
+import { Response } from "./response";
+import { TrackData } from "./trackData";
 
 export class CardReaderInitResponse {
-    'entryMode'?: Array<CardReaderInitResponse.EntryModeEnum>;
-    'iCCResetData'?: ICCResetData;
-    'response': Response;
-    'trackData'?: Array<TrackData>;
+    "entryMode"?: CardReaderInitResponse.EntryModeEnum[];
+    "iCCResetData"?: ICCResetData;
+    "response": Response;
+    "trackData"?: TrackData[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "entryMode",
             "baseName": "EntryMode",
@@ -71,16 +71,16 @@ export class CardReaderInitResponse {
 
 export namespace CardReaderInitResponse {
     export enum EntryModeEnum {
-        Contactless = <any> 'Contactless',
-        File = <any> 'File',
-        ICC = <any> 'ICC',
-        Keyed = <any> 'Keyed',
-        MagStripe = <any> 'MagStripe',
-        Manual = <any> 'Manual',
-        Mobile = <any> 'Mobile',
-        RFID = <any> 'RFID',
-        Scanned = <any> 'Scanned',
-        SynchronousICC = <any> 'SynchronousICC',
-        Tapped = <any> 'Tapped'
+        Contactless = "Contactless" as any,
+        File = "File" as any,
+        ICC = "ICC" as any,
+        Keyed = "Keyed" as any,
+        MagStripe = "MagStripe" as any,
+        Manual = "Manual" as any,
+        Mobile = "Mobile" as any,
+        RFID = "RFID" as any,
+        Scanned = "Scanned" as any,
+        SynchronousICC = "SynchronousICC" as any,
+        Tapped = "Tapped" as any
     }
 }

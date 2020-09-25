@@ -32,21 +32,21 @@
 
 
 export class OutputText {
-    'alignment'?: OutputText.AlignmentEnum;
-    'characterHeight'?: OutputText.CharacterHeightEnum;
-    'characterSet'?: number;
-    'characterStyle'?: OutputText.CharacterStyleEnum;
-    'characterWidth'?: OutputText.CharacterWidthEnum;
-    'color'?: OutputText.ColorEnum;
-    'endOfLineFlag'?: boolean;
-    'font'?: string;
-    'startColumn'?: number;
-    'startRow'?: number;
-    'text'?: string;
+    "alignment"?: OutputText.AlignmentEnum;
+    "characterHeight"?: OutputText.CharacterHeightEnum;
+    "characterSet"?: number;
+    "characterStyle"?: OutputText.CharacterStyleEnum;
+    "characterWidth"?: OutputText.CharacterWidthEnum;
+    "color"?: OutputText.ColorEnum;
+    "endOfLineFlag"?: boolean;
+    "font"?: string;
+    "startColumn"?: number;
+    "startRow"?: number;
+    "text"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "alignment",
             "baseName": "Alignment",
@@ -110,34 +110,34 @@ export class OutputText {
 
 export namespace OutputText {
     export enum AlignmentEnum {
-        Centred = <any> 'Centred',
-        Justified = <any> 'Justified',
-        Left = <any> 'Left',
-        Right = <any> 'Right'
+        Centred = "Centred" as any,
+        Justified = "Justified" as any,
+        Left = "Left" as any,
+        Right = "Right" as any
     }
     export enum CharacterHeightEnum {
-        DoubleHeight = <any> 'DoubleHeight',
-        HalfHeight = <any> 'HalfHeight',
-        SingleHeight = <any> 'SingleHeight'
+        DoubleHeight = "DoubleHeight" as any,
+        HalfHeight = "HalfHeight" as any,
+        SingleHeight = "SingleHeight" as any
     }
     export enum CharacterStyleEnum {
-        Bold = <any> 'Bold',
-        Italic = <any> 'Italic',
-        Normal = <any> 'Normal',
-        Underlined = <any> 'Underlined'
+        Bold = "Bold" as any,
+        Italic = "Italic" as any,
+        Normal = "Normal" as any,
+        Underlined = "Underlined" as any
     }
     export enum CharacterWidthEnum {
-        DoubleWidth = <any> 'DoubleWidth',
-        SingleWidth = <any> 'SingleWidth'
+        DoubleWidth = "DoubleWidth" as any,
+        SingleWidth = "SingleWidth" as any
     }
     export enum ColorEnum {
-        Black = <any> 'Black',
-        Blue = <any> 'Blue',
-        Cyan = <any> 'Cyan',
-        Green = <any> 'Green',
-        Magenta = <any> 'Magenta',
-        Red = <any> 'Red',
-        White = <any> 'White',
-        Yellow = <any> 'Yellow'
+        Black = "Black" as any,
+        Blue = "Blue" as any,
+        Cyan = "Cyan" as any,
+        Green = "Green" as any,
+        Magenta = "Magenta" as any,
+        Red = "Red" as any,
+        White = "White" as any,
+        Yellow = "Yellow" as any
     }
 }

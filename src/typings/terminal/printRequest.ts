@@ -30,14 +30,14 @@
  */
 
 
-import { PrintOutput } from './printOutput';
+import { PrintOutput } from "./printOutput";
 
 export class PrintRequest {
-    'printOutput': PrintOutput;
+    "printOutput": PrintOutput;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "printOutput",
             "baseName": "PrintOutput",

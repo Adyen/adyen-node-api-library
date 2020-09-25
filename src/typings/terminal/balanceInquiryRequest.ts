@@ -30,16 +30,16 @@
  */
 
 
-import { LoyaltyAccountReq } from './loyaltyAccountReq';
-import { PaymentAccountReq } from './paymentAccountReq';
+import { LoyaltyAccountReq } from "./loyaltyAccountReq";
+import { PaymentAccountReq } from "./paymentAccountReq";
 
 export class BalanceInquiryRequest {
-    'loyaltyAccountReq'?: LoyaltyAccountReq;
-    'paymentAccountReq'?: PaymentAccountReq;
+    "loyaltyAccountReq"?: LoyaltyAccountReq;
+    "paymentAccountReq"?: PaymentAccountReq;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "loyaltyAccountReq",
             "baseName": "LoyaltyAccountReq",

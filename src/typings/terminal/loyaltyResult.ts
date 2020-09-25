@@ -30,21 +30,21 @@
  */
 
 
-import { LoyaltyAccount } from './loyaltyAccount';
-import { LoyaltyAcquirerData } from './loyaltyAcquirerData';
-import { LoyaltyAmount } from './loyaltyAmount';
-import { Rebates } from './rebates';
+import { LoyaltyAccount } from "./loyaltyAccount";
+import { LoyaltyAcquirerData } from "./loyaltyAcquirerData";
+import { LoyaltyAmount } from "./loyaltyAmount";
+import { Rebates } from "./rebates";
 
 export class LoyaltyResult {
-    'currentBalance'?: number;
-    'loyaltyAccount': LoyaltyAccount;
-    'loyaltyAcquirerData'?: LoyaltyAcquirerData;
-    'loyaltyAmount'?: LoyaltyAmount;
-    'rebates'?: Rebates;
+    "currentBalance"?: number;
+    "loyaltyAccount": LoyaltyAccount;
+    "loyaltyAcquirerData"?: LoyaltyAcquirerData;
+    "loyaltyAmount"?: LoyaltyAmount;
+    "rebates"?: Rebates;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "currentBalance",
             "baseName": "CurrentBalance",

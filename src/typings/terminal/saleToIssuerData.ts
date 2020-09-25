@@ -32,11 +32,11 @@
 
 
 export class SaleToIssuerData {
-    'statementReference'?: string;
+    "statementReference"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "statementReference",
             "baseName": "StatementReference",

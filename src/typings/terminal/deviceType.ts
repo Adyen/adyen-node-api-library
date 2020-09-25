@@ -32,8 +32,8 @@
 
 
 export enum DeviceType {
-    CashierDisplay = <any> 'CashierDisplay',
-    CashierInput = <any> 'CashierInput',
-    CustomerDisplay = <any> 'CustomerDisplay',
-    CustomerInput = <any> 'CustomerInput'
+    CashierDisplay = "CashierDisplay" as any,
+    CashierInput = "CashierInput" as any,
+    CustomerDisplay = "CustomerDisplay" as any,
+    CustomerInput = "CustomerInput" as any
 }

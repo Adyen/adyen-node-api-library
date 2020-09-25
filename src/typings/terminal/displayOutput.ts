@@ -30,24 +30,24 @@
  */
 
 
-import { AnyType } from './anyType';
-import { DeviceType } from './deviceType';
-import { InfoQualifyType } from './infoQualifyType';
-import { MenuEntry } from './menuEntry';
-import { OutputContent } from './outputContent';
+import { AnyType } from "./anyType";
+import { DeviceType } from "./deviceType";
+import { InfoQualifyType } from "./infoQualifyType";
+import { MenuEntry } from "./menuEntry";
+import { OutputContent } from "./outputContent";
 
 export class DisplayOutput {
-    'device': DeviceType;
-    'infoQualify': InfoQualifyType;
-    'menuEntry'?: Array<MenuEntry>;
-    'minimumDisplayTime'?: number;
-    'outputContent': OutputContent;
-    'outputSignature'?: AnyType;
-    'responseRequiredFlag'?: boolean;
+    "device": DeviceType;
+    "infoQualify": InfoQualifyType;
+    "menuEntry"?: MenuEntry[];
+    "minimumDisplayTime"?: number;
+    "outputContent": OutputContent;
+    "outputSignature"?: AnyType;
+    "responseRequiredFlag"?: boolean;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "device",
             "baseName": "Device",

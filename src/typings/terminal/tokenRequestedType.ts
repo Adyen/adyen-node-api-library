@@ -32,6 +32,6 @@
 
 
 export enum TokenRequestedType {
-    Customer = <any> 'Customer',
-    Transaction = <any> 'Transaction'
+    Customer = "Customer" as any,
+    Transaction = "Transaction" as any
 }

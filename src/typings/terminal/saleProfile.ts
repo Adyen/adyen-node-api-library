@@ -32,12 +32,12 @@
 
 
 export class SaleProfile {
-    'genericProfile'?: SaleProfile.GenericProfileEnum;
-    'serviceProfiles'?: Array<SaleProfile.ServiceProfilesEnum>;
+    "genericProfile"?: SaleProfile.GenericProfileEnum;
+    "serviceProfiles"?: SaleProfile.ServiceProfilesEnum[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "genericProfile",
             "baseName": "GenericProfile",
@@ -56,20 +56,20 @@ export class SaleProfile {
 
 export namespace SaleProfile {
     export enum GenericProfileEnum {
-        Basic = <any> 'Basic',
-        Extended = <any> 'Extended',
-        Standard = <any> 'Standard'
+        Basic = "Basic" as any,
+        Extended = "Extended" as any,
+        Standard = "Standard" as any
     }
     export enum ServiceProfilesEnum {
-        Batch = <any> 'Batch',
-        CardReader = <any> 'CardReader',
-        Communication = <any> 'Communication',
-        Loyalty = <any> 'Loyalty',
-        OneTimeRes = <any> 'OneTimeRes',
-        PIN = <any> 'PIN',
-        Reservation = <any> 'Reservation',
-        Sound = <any> 'Sound',
-        StoredValue = <any> 'StoredValue',
-        Synchro = <any> 'Synchro'
+        Batch = "Batch" as any,
+        CardReader = "CardReader" as any,
+        Communication = "Communication" as any,
+        Loyalty = "Loyalty" as any,
+        OneTimeRes = "OneTimeRes" as any,
+        PIN = "PIN" as any,
+        Reservation = "Reservation" as any,
+        Sound = "Sound" as any,
+        StoredValue = "StoredValue" as any,
+        Synchro = "Synchro" as any
     }
 }

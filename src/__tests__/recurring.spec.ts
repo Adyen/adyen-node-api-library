@@ -18,13 +18,13 @@
  */
 
 import nock from "nock";
-import {createClient} from "../__mocks__/base";
-import {disableSuccess} from "../__mocks__/recurring/disableSuccess";
-import {listRecurringDetailsSuccess} from "../__mocks__/recurring/listRecurringDetailsSuccess";
+import { createClient } from "../__mocks__/base";
+import { disableSuccess } from "../__mocks__/recurring/disableSuccess";
+import { listRecurringDetailsSuccess } from "../__mocks__/recurring/listRecurringDetailsSuccess";
 import Recurring from "../services/recurring";
 import Client from "../client";
-import {paymentsSuccess} from "../__mocks__/checkout/paymentsSuccess";
-import {createPaymentsCheckoutRequest} from "./checkout.spec";
+import { paymentsSuccess } from "../__mocks__/checkout/paymentsSuccess";
+import { createPaymentsCheckoutRequest } from "./checkout.spec";
 import Checkout from "../services/checkout";
 
 const createRecurringDetailsRequest = (): IRecurring.RecurringDetailsRequest => {
@@ -42,7 +42,7 @@ let checkout: Checkout;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    if (!nock.isActive()){
+    if (!nock.isActive()) {
         nock.activate();
     }
     client = createClient();
@@ -89,6 +89,37 @@ describe("Recurring", (): void => {
 
         try {
             const result = await recurring.disable(request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e.message);
+        }
+    });
+
+
+    // TODO: register account for AccountUpdater and unmock test
+    test.each([true])("should schedule account updater, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const scheduleAccountUpdaterSuccess: IRecurring.ScheduleAccountUpdaterResult = {
+            pspReference: "mocked_psp",
+            result: "SUCCESS"
+        };
+
+        scope.post("/scheduleAccountUpdater")
+            .reply(200, scheduleAccountUpdaterSuccess);
+
+        const request: IRecurring.ScheduleAccountUpdaterRequest = {
+            merchantAccount: process.env.ADYEN_MERCHANT!,
+            reference: "ref",
+            card: {
+                expiryMonth: "03",
+                expiryYear: "2030",
+                holderName: "John Smith",
+                number: "4111111111111111"
+            }
+        };
+
+        try {
+            const result = await recurring.scheduleAccountUpdater(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);

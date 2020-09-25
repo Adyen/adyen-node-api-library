@@ -17,9 +17,9 @@
  * See the LICENSE file for more info.
  */
 
-import {pbkdf2Sync} from "crypto";
+import { pbkdf2Sync } from "crypto";
 import { NexoDerivedKey } from "../typings/terminal/models";
-import {NexoEnum} from "../constants/nexoConstants";
+import { NexoEnum } from "../constants/nexoConstants";
 
 class NexoDerivedKeyGenerator {
     public static deriveKeyMaterial(passphrase: string): NexoDerivedKey {

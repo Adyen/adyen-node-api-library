@@ -30,18 +30,18 @@
  */
 
 
-import { MessageReference } from './messageReference';
-import { RepeatedMessageResponse } from './repeatedMessageResponse';
-import { Response } from './response';
+import { MessageReference } from "./messageReference";
+import { RepeatedMessageResponse } from "./repeatedMessageResponse";
+import { Response } from "./response";
 
 export class TransactionStatusResponse {
-    'messageReference'?: MessageReference;
-    'repeatedMessageResponse'?: RepeatedMessageResponse;
-    'response': Response;
+    "messageReference"?: MessageReference;
+    "repeatedMessageResponse"?: RepeatedMessageResponse;
+    "response": Response;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "messageReference",
             "baseName": "MessageReference",

@@ -32,9 +32,9 @@
 
 
 export enum IdentificationType {
-    AccountNumber = <any> 'AccountNumber',
-    BarCode = <any> 'BarCode',
-    ISOTrack2 = <any> 'ISOTrack2',
-    PAN = <any> 'PAN',
-    PhoneNumber = <any> 'PhoneNumber'
+    AccountNumber = "AccountNumber" as any,
+    BarCode = "BarCode" as any,
+    ISOTrack2 = "ISOTrack2" as any,
+    PAN = "PAN" as any,
+    PhoneNumber = "PhoneNumber" as any
 }

@@ -36,15 +36,15 @@ export class Amount {
     /**
     * The three-character ISO currency code. https://docs.adyen.com/development-resources/currency-codes
     */
-    'currency'?: string;
+    "currency"?: string;
     /**
     * The payable amount that can be charged for the transaction. The transaction amount needs to be represented in minor units according to the following table: https://docs.adyen.com/development-resources/currency-codes
     */
-    'value'?: number;
+    "value"?: number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "currency",
             "baseName": "currency",

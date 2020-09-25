@@ -30,22 +30,22 @@
  */
 
 
-import { CardholderPIN } from './cardholderPIN';
-import { PINRequestType } from './pINRequestType';
+import { CardholderPIN } from "./cardholderPIN";
+import { PINRequestType } from "./pINRequestType";
 
 export class PINRequest {
-    'additionalInput'?: string;
-    'cardholderPIN'?: CardholderPIN;
-    'keyReference'?: string;
-    'maxWaitingTime'?: number;
-    'pINEncAlgorithm'?: string;
-    'pINFormat'?: PINRequest.PINFormatEnum;
-    'pINRequestType': PINRequestType;
-    'pINVerifMethod'?: string;
+    "additionalInput"?: string;
+    "cardholderPIN"?: CardholderPIN;
+    "keyReference"?: string;
+    "maxWaitingTime"?: number;
+    "pINEncAlgorithm"?: string;
+    "pINFormat"?: PINRequest.PINFormatEnum;
+    "pINRequestType": PINRequestType;
+    "pINVerifMethod"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "additionalInput",
             "baseName": "AdditionalInput",
@@ -94,9 +94,9 @@ export class PINRequest {
 
 export namespace PINRequest {
     export enum PINFormatEnum {
-        ISO0 = <any> 'ISO0',
-        ISO1 = <any> 'ISO1',
-        ISO2 = <any> 'ISO2',
-        ISO3 = <any> 'ISO3'
+        ISO0 = "ISO0" as any,
+        ISO1 = "ISO1" as any,
+        ISO2 = "ISO2" as any,
+        ISO3 = "ISO3" as any
     }
 }

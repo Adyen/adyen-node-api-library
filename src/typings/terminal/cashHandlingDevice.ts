@@ -30,16 +30,16 @@
  */
 
 
-import { CoinsOrBills } from './coinsOrBills';
+import { CoinsOrBills } from "./coinsOrBills";
 
 export class CashHandlingDevice {
-    'cashHandlingOkFlag': boolean;
-    'coinsOrBills': Array<CoinsOrBills>;
-    'currency': string;
+    "cashHandlingOkFlag": boolean;
+    "coinsOrBills": CoinsOrBills[];
+    "currency": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "cashHandlingOkFlag",
             "baseName": "CashHandlingOkFlag",

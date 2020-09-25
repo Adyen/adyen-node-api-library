@@ -30,14 +30,14 @@
  */
 
 
-import { SaleToPOISecuredMessage } from './saleToPOISecuredMessage';
+import { SaleToPOISecuredMessage } from "./saleToPOISecuredMessage";
 
 export class TerminalApiSecuredRequest {
-    'saleToPOIRequest'?: SaleToPOISecuredMessage;
+    "saleToPOIRequest"?: SaleToPOISecuredMessage;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "saleToPOIRequest",
             "baseName": "SaleToPOIRequest",

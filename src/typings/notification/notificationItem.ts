@@ -29,14 +29,14 @@
  * Do not edit the class manually.
  */
 
-import { NotificationRequestItem } from './notificationRequestItem';
+import { NotificationRequestItem } from "./notificationRequestItem";
 
 export class NotificationItem {
-    'notificationRequestItem': NotificationRequestItem;
+    "notificationRequestItem": NotificationRequestItem;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "notificationRequestItem",
             "baseName": "NotificationRequestItem",

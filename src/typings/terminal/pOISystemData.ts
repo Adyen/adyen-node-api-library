@@ -30,20 +30,20 @@
  */
 
 
-import { AnyType } from './anyType';
-import { POISoftware } from './pOISoftware';
-import { POIStatus } from './pOIStatus';
-import { POITerminalData } from './pOITerminalData';
+import { AnyType } from "./anyType";
+import { POISoftware } from "./pOISoftware";
+import { POIStatus } from "./pOIStatus";
+import { POITerminalData } from "./pOITerminalData";
 
 export class POISystemData {
-    'dateTime': { [key: string]: AnyType; };
-    'pOISoftware': POISoftware;
-    'pOIStatus'?: POIStatus;
-    'pOITerminalData'?: POITerminalData;
+    "dateTime": { [key: string]: AnyType; };
+    "pOISoftware": POISoftware;
+    "pOIStatus"?: POIStatus;
+    "pOITerminalData"?: POITerminalData;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "dateTime",
             "baseName": "DateTime",

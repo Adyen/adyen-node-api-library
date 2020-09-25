@@ -18,11 +18,11 @@
  */
 
 import nock from "nock";
-import {createClient} from "../__mocks__/base";
+import { createClient } from "../__mocks__/base";
 import Payout from "../services/payout";
 import Client from "../client";
 import StoreDetailRequest = IPayouts.StoreDetailRequest;
-import {ApiConstants} from "../constants/apiConstants";
+import { ApiConstants } from "../constants/apiConstants";
 
 const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 const storeDetailAndSubmitThirdParty = JSON.stringify({

@@ -30,21 +30,21 @@
  */
 
 
-import { ContentInformation } from './contentInformation';
-import { Geolocation } from './geolocation';
-import { SensitiveMobileData } from './sensitiveMobileData';
+import { ContentInformation } from "./contentInformation";
+import { Geolocation } from "./geolocation";
+import { SensitiveMobileData } from "./sensitiveMobileData";
 
 export class MobileData {
-    'geolocation'?: Geolocation;
-    'maskedMSISDN'?: string;
-    'mobileCountryCode'?: string;
-    'mobileNetworkCode'?: string;
-    'protectedMobileData'?: ContentInformation;
-    'sensitiveMobileData'?: SensitiveMobileData;
+    "geolocation"?: Geolocation;
+    "maskedMSISDN"?: string;
+    "mobileCountryCode"?: string;
+    "mobileNetworkCode"?: string;
+    "protectedMobileData"?: ContentInformation;
+    "sensitiveMobileData"?: SensitiveMobileData;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "geolocation",
             "baseName": "Geolocation",

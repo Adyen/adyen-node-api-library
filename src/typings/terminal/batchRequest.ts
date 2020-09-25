@@ -30,15 +30,15 @@
  */
 
 
-import { TransactionToPerform } from './transactionToPerform';
+import { TransactionToPerform } from "./transactionToPerform";
 
 export class BatchRequest {
-    'removeAllFlag'?: boolean;
-    'transactionToPerform'?: Array<TransactionToPerform>;
+    "removeAllFlag"?: boolean;
+    "transactionToPerform"?: TransactionToPerform[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "removeAllFlag",
             "baseName": "RemoveAllFlag",

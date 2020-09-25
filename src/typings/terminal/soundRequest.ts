@@ -30,18 +30,18 @@
  */
 
 
-import { SoundActionType } from './soundActionType';
-import { SoundContent } from './soundContent';
+import { SoundActionType } from "./soundActionType";
+import { SoundContent } from "./soundContent";
 
 export class SoundRequest {
-    'responseMode'?: SoundRequest.ResponseModeEnum;
-    'soundAction': SoundActionType;
-    'soundContent': SoundContent;
-    'soundVolume'?: number;
+    "responseMode"?: SoundRequest.ResponseModeEnum;
+    "soundAction": SoundActionType;
+    "soundContent": SoundContent;
+    "soundVolume"?: number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "responseMode",
             "baseName": "ResponseMode",
@@ -70,9 +70,9 @@ export class SoundRequest {
 
 export namespace SoundRequest {
     export enum ResponseModeEnum {
-        Immediate = <any> 'Immediate',
-        NotRequired = <any> 'NotRequired',
-        PrintEnd = <any> 'PrintEnd',
-        SoundEnd = <any> 'SoundEnd'
+        Immediate = "Immediate" as any,
+        NotRequired = "NotRequired" as any,
+        PrintEnd = "PrintEnd" as any,
+        SoundEnd = "SoundEnd" as any
     }
 }

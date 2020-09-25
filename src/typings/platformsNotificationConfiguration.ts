@@ -12,7 +12,11 @@
  *                                      ######
  *                               #############
  *                               ############
+ *
  * Adyen NodeJS API Library
+ *
+ * Version of Platforms Notification Configuration: v6
+ *
  * Copyright (c) 2020 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
@@ -24,13 +28,13 @@ declare namespace IPlatformsNotificationConfiguration {
         /**
          * Details of the prospective notification subscription configuration.
          */
-        configurationDetails: IPlatformsNotificationConfiguration.NotificationConfigurationDetails;
+        configurationDetails: NotificationConfigurationDetails;
     }
     export interface DeleteNotificationConfigurationRequest {
         /**
          * A list of IDs of the notification subscription configurations to be deleted.
          */
-        notificationIds: number /* int64 */ [];
+        notificationIds: number /* int64 */[];
     }
     export type EmptyRequest = any;
     export interface ErrorFieldType {
@@ -45,7 +49,7 @@ declare namespace IPlatformsNotificationConfiguration {
         /**
          * The type of error field.
          */
-        fieldType?: IPlatformsNotificationConfiguration.FieldType;
+        fieldType?: FieldType;
     }
     export interface ExchangeMessage {
         messageCode?: string;
@@ -59,7 +63,7 @@ declare namespace IPlatformsNotificationConfiguration {
         /**
          * The type of the field.
          */
-        fieldName?: "accountCode" | "accountHolderCode" | "accountHolderDetails" | "accountNumber" | "accountStateType" | "accountStatus" | "accountType" | "address" | "bankAccount" | "bankAccountCode" | "bankAccountName" | "bankAccountUUID" | "bankBicSwift" | "bankCity" | "bankCode" | "bankName" | "bankStatement" | "branchCode" | "businessContact" | "cardToken" | "checkCode" | "city" | "companyRegistration" | "country" | "countryCode" | "currency" | "currencyCode" | "dateOfBirth" | "description" | "destinationAccountCode" | "document" | "documentExpirationDate" | "documentIssuerCountry" | "documentIssuerState" | "documentName" | "documentNumber" | "documentType" | "doingBusinessAs" | "drivingLicence" | "drivingLicenceBack" | "drivingLicense" | "email" | "firstName" | "fullPhoneNumber" | "gender" | "hopWebserviceUser" | "houseNumberOrName" | "iban" | "idCard" | "idCardBack" | "idCardFront" | "idNumber" | "identityDocument" | "individualDetails" | "lastName" | "legalBusinessName" | "legalEntity" | "legalEntityType" | "merchantAccount" | "merchantCategoryCode" | "merchantReference" | "microDeposit" | "name" | "nationality" | "originalReference" | "ownerCity" | "ownerCountryCode" | "ownerHouseNumberOrName" | "ownerName" | "ownerPostalCode" | "ownerState" | "ownerStreet" | "passport" | "passportNumber" | "payoutMethodCode" | "personalData" | "phoneCountryCode" | "phoneNumber" | "postalCode" | "primaryCurrency" | "reason" | "registrationNumber" | "returnUrl" | "schedule" | "shareholder" | "shareholderCode" | "socialSecurityNumber" | "sourceAccountCode" | "stateOrProvince" | "status" | "store" | "storeDetail" | "storeName" | "storeReference" | "street" | "taxId" | "tier" | "tierNumber" | "transferCode" | "unknown" | "value" | "virtualAccount" | "visaNumber" | "webAddress";
+        fieldName?: "accountCode" | "accountHolderCode" | "accountHolderDetails" | "accountNumber" | "accountStateType" | "accountStatus" | "accountType" | "address" | "bankAccount" | "bankAccountCode" | "bankAccountName" | "bankAccountUUID" | "bankBicSwift" | "bankCity" | "bankCode" | "bankName" | "bankStatement" | "branchCode" | "businessContact" | "cardToken" | "checkCode" | "city" | "companyRegistration" | "country" | "countryCode" | "currency" | "currencyCode" | "dateOfBirth" | "description" | "destinationAccountCode" | "document" | "documentExpirationDate" | "documentIssuerCountry" | "documentIssuerState" | "documentName" | "documentNumber" | "documentType" | "doingBusinessAs" | "drivingLicence" | "drivingLicenceBack" | "drivingLicense" | "email" | "firstName" | "fullPhoneNumber" | "gender" | "hopWebserviceUser" | "houseNumberOrName" | "iban" | "idCard" | "idCardBack" | "idCardFront" | "idNumber" | "identityDocument" | "individualDetails" | "lastName" | "legalBusinessName" | "legalEntity" | "legalEntityType" | "merchantAccount" | "merchantCategoryCode" | "merchantReference" | "microDeposit" | "name" | "nationality" | "originalReference" | "ownerCity" | "ownerCountryCode" | "ownerHouseNumberOrName" | "ownerName" | "ownerPostalCode" | "ownerState" | "ownerStreet" | "passport" | "passportNumber" | "payoutMethodCode" | "personalData" | "phoneCountryCode" | "phoneNumber" | "postalCode" | "primaryCurrency" | "reason" | "registrationNumber" | "returnUrl" | "schedule" | "shareholder" | "shareholderCode" | "socialSecurityNumber" | "sourceAccountCode" | "stateOrProvince" | "status" | "stockExchange" | "stockNumber" | "stockTicker" | "store" | "storeDetail" | "storeName" | "storeReference" | "street" | "taxId" | "tier" | "tierNumber" | "transferCode" | "unknown" | "value" | "virtualAccount" | "visaNumber" | "webAddress";
         /**
          * The code of the shareholder that the field belongs to. If empty, the field belongs to an account holder.
          */
@@ -69,11 +73,11 @@ declare namespace IPlatformsNotificationConfiguration {
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsNotificationConfiguration.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -83,15 +87,15 @@ declare namespace IPlatformsNotificationConfiguration {
         /**
          * Details of the notification subscription configurations.
          */
-        configurations: IPlatformsNotificationConfiguration.NotificationConfigurationDetails[];
+        configurations: NotificationConfigurationDetails[];
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsNotificationConfiguration.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -107,15 +111,15 @@ declare namespace IPlatformsNotificationConfiguration {
         /**
          * Details of the notification subscription configuration.
          */
-        configurationDetails: IPlatformsNotificationConfiguration.NotificationConfigurationDetails;
+        configurationDetails: NotificationConfigurationDetails;
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsNotificationConfiguration.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -132,13 +136,12 @@ declare namespace IPlatformsNotificationConfiguration {
         apiVersion?: number; // int32
         /**
          * A description of the notification subscription configuration.
-         * >Required when creating a configuration, forbidden when updating a configuration.
          */
         description?: string;
         /**
          * The types of events whose notifications apply to this configuration.
          */
-        eventConfigs: IPlatformsNotificationConfiguration.NotificationEventConfiguration[];
+        eventConfigs: NotificationEventConfiguration[];
         /**
          * A string with which to salt the notification(s) before hashing. If this field is provided, a hash value will be included under the notification header `HmacSignature` and the hash protocol will be included under the notification header `Protocol`. A notification body along with its `hmacSignatureKey` and `Protocol` can be used to calculate a hash value; matching this hash value with the `HmacSignature` will ensure that the notification body has not been tampered with or corrupted.
          *
@@ -175,7 +178,7 @@ declare namespace IPlatformsNotificationConfiguration {
          * The type of event triggering the notification.
          * >Permitted values: `ACCOUNT_HOLDER_CREATED`, `ACCOUNT_CREATED`, `ACCOUNT_UPDATED`, `ACCOUNT_HOLDER_UPDATED`, `ACCOUNT_HOLDER_STATUS_CHANGE`, `ACCOUNT_HOLDER_STORE_STATUS_CHANGE`, `ACCOUNT_HOLDER_VERIFICATION`, `ACCOUNT_HOLDER_LIMIT_REACHED`, `ACCOUNT_HOLDER_PAYOUT`, `PAYMENT_FAILURE`, `SCHEDULED_REFUNDS`, `REPORT_AVAILABLE`, `TRANSFER_FUNDS`, `BENEFICIARY_SETUP`, `COMPENSATE_NEGATIVE_BALANCE`.
          */
-        eventType: "ACCOUNT_CLOSED" | "ACCOUNT_CREATED" | "ACCOUNT_HOLDER_CREATED" | "ACCOUNT_HOLDER_LIMIT_REACHED" | "ACCOUNT_HOLDER_PAYOUT" | "ACCOUNT_HOLDER_STATUS_CHANGE" | "ACCOUNT_HOLDER_STORE_STATUS_CHANGE" | "ACCOUNT_HOLDER_UPCOMING_DEADLINE" | "ACCOUNT_HOLDER_UPDATED" | "ACCOUNT_HOLDER_VERIFICATION" | "ACCOUNT_UPDATED" | "BENEFICIARY_SETUP" | "COMPENSATE_NEGATIVE_BALANCE" | "DIRECT_DEBIT_INITIATED" | "PAYMENT_FAILURE" | "REPORT_AVAILABLE" | "SCHEDULED_REFUNDS" | "TRANSFER_FUNDS" | "TRANSFER_FUNDS_REFUND";
+        eventType: "ACCOUNT_CLOSED" | "ACCOUNT_CREATED" | "ACCOUNT_FUNDS_BELOW_THRESHOLD" | "ACCOUNT_HOLDER_CREATED" | "ACCOUNT_HOLDER_LIMIT_REACHED" | "ACCOUNT_HOLDER_PAYOUT" | "ACCOUNT_HOLDER_STATUS_CHANGE" | "ACCOUNT_HOLDER_STORE_STATUS_CHANGE" | "ACCOUNT_HOLDER_UPCOMING_DEADLINE" | "ACCOUNT_HOLDER_UPDATED" | "ACCOUNT_HOLDER_VERIFICATION" | "ACCOUNT_UPDATED" | "BENEFICIARY_SETUP" | "COMPENSATE_NEGATIVE_BALANCE" | "DIRECT_DEBIT_INITIATED" | "PAYMENT_FAILURE" | "REFUND_FUNDS_TRANSFER" | "REPORT_AVAILABLE" | "SCHEDULED_REFUNDS" | "TRANSFER_FUNDS";
         /**
          * Indicates whether the specified eventType is to be sent to the endpoint or all events other than the specified eventType (and other specified eventTypes) are to be sent.
          * >Permitted values: `INCLUDE`, `EXCLUDE`.
@@ -184,18 +187,12 @@ declare namespace IPlatformsNotificationConfiguration {
          */
         includeMode: "EXCLUDE" | "INCLUDE";
     }
-    namespace Post {
-        export type RequestBody = IPlatformsNotificationConfiguration.UpdateNotificationConfigurationRequest;
-        namespace Responses {
-            export type $200 = IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse;
-        }
-    }
     export interface TestNotificationConfigurationRequest {
         /**
          * The event types to test.  If left blank, then all of the configured event types will be tested.
          * >Permitted values: `ACCOUNT_HOLDER_CREATED`, `ACCOUNT_CREATED`, `ACCOUNT_UPDATED`, `ACCOUNT_HOLDER_UPDATED`, `ACCOUNT_HOLDER_STATUS_CHANGE`, `ACCOUNT_HOLDER_STORE_STATUS_CHANGE` `ACCOUNT_HOLDER_VERIFICATION`, `ACCOUNT_HOLDER_LIMIT_REACHED`, `ACCOUNT_HOLDER_PAYOUT`, `PAYMENT_FAILURE`, `SCHEDULED_REFUNDS`, `REPORT_AVAILABLE`, `TRANSFER_FUNDS`, `BENEFICIARY_SETUP`, `COMPENSATE_NEGATIVE_BALANCE`.
          */
-        eventTypes?: ("ACCOUNT_CLOSED" | "ACCOUNT_CREATED" | "ACCOUNT_HOLDER_CREATED" | "ACCOUNT_HOLDER_LIMIT_REACHED" | "ACCOUNT_HOLDER_PAYOUT" | "ACCOUNT_HOLDER_STATUS_CHANGE" | "ACCOUNT_HOLDER_STORE_STATUS_CHANGE" | "ACCOUNT_HOLDER_UPCOMING_DEADLINE" | "ACCOUNT_HOLDER_UPDATED" | "ACCOUNT_HOLDER_VERIFICATION" | "ACCOUNT_UPDATED" | "BENEFICIARY_SETUP" | "COMPENSATE_NEGATIVE_BALANCE" | "DIRECT_DEBIT_INITIATED" | "PAYMENT_FAILURE" | "REPORT_AVAILABLE" | "SCHEDULED_REFUNDS" | "TRANSFER_FUNDS" | "TRANSFER_FUNDS_REFUND")[];
+        eventTypes?: ("ACCOUNT_CLOSED" | "ACCOUNT_CREATED" | "ACCOUNT_FUNDS_BELOW_THRESHOLD" | "ACCOUNT_HOLDER_CREATED" | "ACCOUNT_HOLDER_LIMIT_REACHED" | "ACCOUNT_HOLDER_PAYOUT" | "ACCOUNT_HOLDER_STATUS_CHANGE" | "ACCOUNT_HOLDER_STORE_STATUS_CHANGE" | "ACCOUNT_HOLDER_UPCOMING_DEADLINE" | "ACCOUNT_HOLDER_UPDATED" | "ACCOUNT_HOLDER_VERIFICATION" | "ACCOUNT_UPDATED" | "BENEFICIARY_SETUP" | "COMPENSATE_NEGATIVE_BALANCE" | "DIRECT_DEBIT_INITIATED" | "PAYMENT_FAILURE" | "REFUND_FUNDS_TRANSFER" | "REPORT_AVAILABLE" | "SCHEDULED_REFUNDS" | "TRANSFER_FUNDS")[];
         /**
          * The ID of the notification subscription configuration to be tested.
          */
@@ -210,15 +207,15 @@ declare namespace IPlatformsNotificationConfiguration {
          * The event types that were tested.
          * >Permitted values: `ACCOUNT_HOLDER_CREATED`, `ACCOUNT_CREATED`, `ACCOUNT_UPDATED`, `ACCOUNT_HOLDER_UPDATED`, `ACCOUNT_HOLDER_STATUS_CHANGE`, `ACCOUNT_HOLDER_STORE_STATUS_CHANGE` `ACCOUNT_HOLDER_VERIFICATION`, `ACCOUNT_HOLDER_LIMIT_REACHED`, `ACCOUNT_HOLDER_PAYOUT`, `PAYMENT_FAILURE`, `SCHEDULED_REFUNDS`, `REPORT_AVAILABLE`, `TRANSFER_FUNDS`, `BENEFICIARY_SETUP`, `COMPENSATE_NEGATIVE_BALANCE`.
          */
-        eventTypes: ("ACCOUNT_CLOSED" | "ACCOUNT_CREATED" | "ACCOUNT_HOLDER_CREATED" | "ACCOUNT_HOLDER_LIMIT_REACHED" | "ACCOUNT_HOLDER_PAYOUT" | "ACCOUNT_HOLDER_STATUS_CHANGE" | "ACCOUNT_HOLDER_STORE_STATUS_CHANGE" | "ACCOUNT_HOLDER_UPCOMING_DEADLINE" | "ACCOUNT_HOLDER_UPDATED" | "ACCOUNT_HOLDER_VERIFICATION" | "ACCOUNT_UPDATED" | "BENEFICIARY_SETUP" | "COMPENSATE_NEGATIVE_BALANCE" | "DIRECT_DEBIT_INITIATED" | "PAYMENT_FAILURE" | "REPORT_AVAILABLE" | "SCHEDULED_REFUNDS" | "TRANSFER_FUNDS" | "TRANSFER_FUNDS_REFUND")[];
+        eventTypes: ("ACCOUNT_CLOSED" | "ACCOUNT_CREATED" | "ACCOUNT_FUNDS_BELOW_THRESHOLD" | "ACCOUNT_HOLDER_CREATED" | "ACCOUNT_HOLDER_LIMIT_REACHED" | "ACCOUNT_HOLDER_PAYOUT" | "ACCOUNT_HOLDER_STATUS_CHANGE" | "ACCOUNT_HOLDER_STORE_STATUS_CHANGE" | "ACCOUNT_HOLDER_UPCOMING_DEADLINE" | "ACCOUNT_HOLDER_UPDATED" | "ACCOUNT_HOLDER_VERIFICATION" | "ACCOUNT_UPDATED" | "BENEFICIARY_SETUP" | "COMPENSATE_NEGATIVE_BALANCE" | "DIRECT_DEBIT_INITIATED" | "PAYMENT_FAILURE" | "REFUND_FUNDS_TRANSFER" | "REPORT_AVAILABLE" | "SCHEDULED_REFUNDS" | "TRANSFER_FUNDS")[];
         /**
          * The notification message and related response messages.
          */
-        exchangeMessages: IPlatformsNotificationConfiguration.ExchangeMessage[];
+        exchangeMessages: ExchangeMessage[];
         /**
          * Contains field validation errors that would prevent requests from being processed.
          */
-        invalidFields?: IPlatformsNotificationConfiguration.ErrorFieldType[];
+        invalidFields?: ErrorFieldType[];
         /**
          * The ID of the notification subscription configuration.
          */
@@ -228,9 +225,9 @@ declare namespace IPlatformsNotificationConfiguration {
          */
         okMessages: string[];
         /**
-         * The reference of a request.  Can be used to uniquely identify the request.
+         * The reference of a request. Can be used to uniquely identify the request.
          */
-        pspReference: string;
+        pspReference?: string;
         /**
          * The result code.
          */
@@ -240,6 +237,44 @@ declare namespace IPlatformsNotificationConfiguration {
         /**
          * Details of the notification subscription configuration to be updated.
          */
-        configurationDetails: IPlatformsNotificationConfiguration.NotificationConfigurationDetails;
+        configurationDetails: NotificationConfigurationDetails;
+    }
+}
+declare namespace Paths {
+    namespace PostCreateNotificationConfiguration {
+        export type RequestBody = IPlatformsNotificationConfiguration.CreateNotificationConfigurationRequest;
+        namespace Responses {
+            export type $200 = IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse;
+        }
+    }
+    namespace PostDeleteNotificationConfigurations {
+        export type RequestBody = IPlatformsNotificationConfiguration.DeleteNotificationConfigurationRequest;
+        namespace Responses {
+            export type $200 = IPlatformsNotificationConfiguration.GenericResponse;
+        }
+    }
+    namespace PostGetNotificationConfiguration {
+        export type RequestBody = IPlatformsNotificationConfiguration.GetNotificationConfigurationRequest;
+        namespace Responses {
+            export type $200 = IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse;
+        }
+    }
+    namespace PostGetNotificationConfigurationList {
+        export type RequestBody = IPlatformsNotificationConfiguration.EmptyRequest;
+        namespace Responses {
+            export type $200 = IPlatformsNotificationConfiguration.GetNotificationConfigurationListResponse;
+        }
+    }
+    namespace PostTestNotificationConfiguration {
+        export type RequestBody = IPlatformsNotificationConfiguration.TestNotificationConfigurationRequest;
+        namespace Responses {
+            export type $200 = IPlatformsNotificationConfiguration.TestNotificationConfigurationResponse;
+        }
+    }
+    namespace PostUpdateNotificationConfiguration {
+        export type RequestBody = IPlatformsNotificationConfiguration.UpdateNotificationConfigurationRequest;
+        namespace Responses {
+            export type $200 = IPlatformsNotificationConfiguration.GetNotificationConfigurationResponse;
+        }
     }
 }

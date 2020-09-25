@@ -30,16 +30,16 @@
  */
 
 
-import { AnyType } from './anyType';
+import { AnyType } from "./anyType";
 
 export class NexoDerivedKey {
-    'cipherKey'?: AnyType;
-    'hmacKey'?: AnyType;
-    'iv'?: AnyType;
+    "cipherKey"?: AnyType;
+    "hmacKey"?: AnyType;
+    "iv"?: AnyType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "cipherKey",
             "baseName": "CipherKey",

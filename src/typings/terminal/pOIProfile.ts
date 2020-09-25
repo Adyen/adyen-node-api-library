@@ -32,12 +32,12 @@
 
 
 export class POIProfile {
-    'genericProfile'?: POIProfile.GenericProfileEnum;
-    'serviceProfiles'?: Array<POIProfile.ServiceProfilesEnum>;
+    "genericProfile"?: POIProfile.GenericProfileEnum;
+    "serviceProfiles"?: POIProfile.ServiceProfilesEnum[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "genericProfile",
             "baseName": "GenericProfile",
@@ -56,20 +56,20 @@ export class POIProfile {
 
 export namespace POIProfile {
     export enum GenericProfileEnum {
-        Basic = <any> 'Basic',
-        Extended = <any> 'Extended',
-        Standard = <any> 'Standard'
+        Basic = "Basic" as any,
+        Extended = "Extended" as any,
+        Standard = "Standard" as any
     }
     export enum ServiceProfilesEnum {
-        Batch = <any> 'Batch',
-        CardReader = <any> 'CardReader',
-        Communication = <any> 'Communication',
-        Loyalty = <any> 'Loyalty',
-        OneTimeRes = <any> 'OneTimeRes',
-        PIN = <any> 'PIN',
-        Reservation = <any> 'Reservation',
-        Sound = <any> 'Sound',
-        StoredValue = <any> 'StoredValue',
-        Synchro = <any> 'Synchro'
+        Batch = "Batch" as any,
+        CardReader = "CardReader" as any,
+        Communication = "Communication" as any,
+        Loyalty = "Loyalty" as any,
+        OneTimeRes = "OneTimeRes" as any,
+        PIN = "PIN" as any,
+        Reservation = "Reservation" as any,
+        Sound = "Sound" as any,
+        StoredValue = "StoredValue" as any,
+        Synchro = "Synchro" as any
     }
 }

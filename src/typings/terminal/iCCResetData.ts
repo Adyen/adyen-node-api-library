@@ -30,15 +30,15 @@
  */
 
 
-import { AnyType } from './anyType';
+import { AnyType } from "./anyType";
 
 export class ICCResetData {
-    'atrValue'?: AnyType;
-    'cardStatusWords'?: AnyType;
+    "atrValue"?: AnyType;
+    "cardStatusWords"?: AnyType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "atrValue",
             "baseName": "AtrValue",

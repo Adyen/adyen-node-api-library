@@ -30,16 +30,16 @@
  */
 
 
-import { MessageReference } from './messageReference';
+import { MessageReference } from "./messageReference";
 
 export class TransactionStatusRequest {
-    'documentQualifier'?: Array<TransactionStatusRequest.DocumentQualifierEnum>;
-    'messageReference'?: MessageReference;
-    'receiptReprintFlag'?: boolean;
+    "documentQualifier"?: TransactionStatusRequest.DocumentQualifierEnum[];
+    "messageReference"?: MessageReference;
+    "receiptReprintFlag"?: boolean;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "documentQualifier",
             "baseName": "DocumentQualifier",
@@ -63,11 +63,11 @@ export class TransactionStatusRequest {
 
 export namespace TransactionStatusRequest {
     export enum DocumentQualifierEnum {
-        CashierReceipt = <any> 'CashierReceipt',
-        CustomerReceipt = <any> 'CustomerReceipt',
-        Document = <any> 'Document',
-        Journal = <any> 'Journal',
-        SaleReceipt = <any> 'SaleReceipt',
-        Voucher = <any> 'Voucher'
+        CashierReceipt = "CashierReceipt" as any,
+        CustomerReceipt = "CustomerReceipt" as any,
+        Document = "Document" as any,
+        Journal = "Journal" as any,
+        SaleReceipt = "SaleReceipt" as any,
+        Voucher = "Voucher" as any
     }
 }

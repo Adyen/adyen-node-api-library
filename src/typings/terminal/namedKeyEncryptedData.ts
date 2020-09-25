@@ -30,16 +30,16 @@
  */
 
 
-import { EncryptedContent } from './encryptedContent';
+import { EncryptedContent } from "./encryptedContent";
 
 export class NamedKeyEncryptedData {
-    'encryptedContent': EncryptedContent;
-    'keyName'?: string;
-    'version'?: NamedKeyEncryptedData.VersionEnum;
+    "encryptedContent": EncryptedContent;
+    "keyName"?: string;
+    "version"?: NamedKeyEncryptedData.VersionEnum;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "encryptedContent",
             "baseName": "EncryptedContent",
@@ -63,11 +63,11 @@ export class NamedKeyEncryptedData {
 
 export namespace NamedKeyEncryptedData {
     export enum VersionEnum {
-        V0 = <any> 'V0',
-        V1 = <any> 'V1',
-        V2 = <any> 'V2',
-        V3 = <any> 'V3',
-        V4 = <any> 'V4',
-        V5 = <any> 'V5'
+        V0 = "V0" as any,
+        V1 = "V1" as any,
+        V2 = "V2" as any,
+        V3 = "V3" as any,
+        V4 = "V4" as any,
+        V5 = "V5" as any
     }
 }

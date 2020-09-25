@@ -32,8 +32,8 @@
 
 
 export enum MenuEntryTagType {
-    NonSelectable = <any> 'NonSelectable',
-    NonSelectableSubMenu = <any> 'NonSelectableSubMenu',
-    Selectable = <any> 'Selectable',
-    SubMenu = <any> 'SubMenu'
+    NonSelectable = "NonSelectable" as any,
+    NonSelectableSubMenu = "NonSelectableSubMenu" as any,
+    Selectable = "Selectable" as any,
+    SubMenu = "SubMenu" as any
 }

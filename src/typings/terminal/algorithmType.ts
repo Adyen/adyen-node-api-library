@@ -32,13 +32,13 @@
 
 
 export enum AlgorithmType {
-    DesEde3Cbc = <any> 'Des-ede3-cbc',
-    DesEde3Ecb = <any> 'Des-ede3-ecb',
-    IdDukptWrap = <any> 'Id-dukpt-wrap',
-    IdRetailCbcMAC = <any> 'Id-retail-cbc-MAC',
-    IdRetailCbcMACSha256 = <any> 'Id-retail-cbc-MAC-sha-256',
-    IdSha256 = <any> 'Id-sha256',
-    IdUkptWrap = <any> 'id-ukpt-wrap ',
-    RsaEncryption = <any> 'RsaEncryption',
-    Sha256WithRSAEncryption = <any> 'Sha256WithRSAEncryption'
+    DesEde3Cbc = "Des-ede3-cbc" as any,
+    DesEde3Ecb = "Des-ede3-ecb" as any,
+    IdDukptWrap = "Id-dukpt-wrap" as any,
+    IdRetailCbcMAC = "Id-retail-cbc-MAC" as any,
+    IdRetailCbcMACSha256 = "Id-retail-cbc-MAC-sha-256" as any,
+    IdSha256 = "Id-sha256" as any,
+    IdUkptWrap = "id-ukpt-wrap " as any,
+    RsaEncryption = "RsaEncryption" as any,
+    Sha256WithRSAEncryption = "Sha256WithRSAEncryption" as any
 }

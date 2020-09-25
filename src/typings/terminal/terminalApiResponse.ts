@@ -30,14 +30,14 @@
  */
 
 
-import { SaleToPOIResponse } from './saleToPOIResponse';
+import { SaleToPOIResponse } from "./saleToPOIResponse";
 
 export class TerminalApiResponse {
-    'saleToPOIResponse'?: SaleToPOIResponse;
+    "saleToPOIResponse"?: SaleToPOIResponse;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "saleToPOIResponse",
             "baseName": "SaleToPOIResponse",

@@ -30,16 +30,16 @@
  */
 
 
-import { PerformedTransaction } from './performedTransaction';
-import { Response } from './response';
+import { PerformedTransaction } from "./performedTransaction";
+import { Response } from "./response";
 
 export class BatchResponse {
-    'performedTransaction'?: Array<PerformedTransaction>;
-    'response': Response;
+    "performedTransaction"?: PerformedTransaction[];
+    "response": Response;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "performedTransaction",
             "baseName": "PerformedTransaction",

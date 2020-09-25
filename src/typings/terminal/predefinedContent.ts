@@ -32,12 +32,12 @@
 
 
 export class PredefinedContent {
-    'language'?: string;
-    'referenceID': string;
+    "language"?: string;
+    "referenceID": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "language",
             "baseName": "Language",

@@ -32,8 +32,8 @@
 
 
 export enum ReversalReasonType {
-    CustCancel = <any> 'CustCancel',
-    Malfunction = <any> 'Malfunction',
-    MerchantCancel = <any> 'MerchantCancel',
-    Unable2Compl = <any> 'Unable2Compl'
+    CustCancel = "CustCancel" as any,
+    Malfunction = "Malfunction" as any,
+    MerchantCancel = "MerchantCancel" as any,
+    Unable2Compl = "Unable2Compl" as any
 }

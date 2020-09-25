@@ -30,30 +30,30 @@
  */
 
 
-import { SaleTerminalData } from './saleTerminalData';
-import { SaleToAcquirerData } from './saleToAcquirerData';
-import { SaleToIssuerData } from './saleToIssuerData';
-import { SponsoredMerchant } from './sponsoredMerchant';
-import { TransactionIdentification } from './transactionIdentification';
+import { SaleTerminalData } from "./saleTerminalData";
+import { SaleToAcquirerData } from "./saleToAcquirerData";
+import { SaleToIssuerData } from "./saleToIssuerData";
+import { SponsoredMerchant } from "./sponsoredMerchant";
+import { TransactionIdentification } from "./transactionIdentification";
 
 export class SaleData {
-    'customerOrderID'?: string;
-    'customerOrderReq'?: Array<SaleData.CustomerOrderReqEnum>;
-    'operatorID'?: string;
-    'operatorLanguage'?: string;
-    'saleReferenceID'?: string;
-    'saleTerminalData'?: SaleTerminalData;
-    'saleToAcquirerData'?: SaleToAcquirerData;
-    'saleToIssuerData'?: SaleToIssuerData;
-    'saleToPOIData'?: string;
-    'saleTransactionID': TransactionIdentification;
-    'shiftNumber'?: string;
-    'sponsoredMerchant'?: Array<SponsoredMerchant>;
-    'tokenRequestedType'?: SaleData.TokenRequestedTypeEnum;
+    "customerOrderID"?: string;
+    "customerOrderReq"?: SaleData.CustomerOrderReqEnum[];
+    "operatorID"?: string;
+    "operatorLanguage"?: string;
+    "saleReferenceID"?: string;
+    "saleTerminalData"?: SaleTerminalData;
+    "saleToAcquirerData"?: SaleToAcquirerData;
+    "saleToIssuerData"?: SaleToIssuerData;
+    "saleToPOIData"?: string;
+    "saleTransactionID": TransactionIdentification;
+    "shiftNumber"?: string;
+    "sponsoredMerchant"?: SponsoredMerchant[];
+    "tokenRequestedType"?: SaleData.TokenRequestedTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "customerOrderID",
             "baseName": "CustomerOrderID",
@@ -127,12 +127,12 @@ export class SaleData {
 
 export namespace SaleData {
     export enum CustomerOrderReqEnum {
-        Both = <any> 'Both',
-        Closed = <any> 'Closed',
-        Open = <any> 'Open'
+        Both = "Both" as any,
+        Closed = "Closed" as any,
+        Open = "Open" as any
     }
     export enum TokenRequestedTypeEnum {
-        Customer = <any> 'Customer',
-        Transaction = <any> 'Transaction'
+        Customer = "Customer" as any,
+        Transaction = "Transaction" as any
     }
 }

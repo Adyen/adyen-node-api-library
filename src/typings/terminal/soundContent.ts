@@ -32,14 +32,14 @@
 
 
 export class SoundContent {
-    'language'?: string;
-    'referenceID'?: string;
-    'soundFormat'?: SoundContent.SoundFormatEnum;
-    'value'?: string;
+    "language"?: string;
+    "referenceID"?: string;
+    "soundFormat"?: SoundContent.SoundFormatEnum;
+    "value"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "language",
             "baseName": "Language",
@@ -68,8 +68,8 @@ export class SoundContent {
 
 export namespace SoundContent {
     export enum SoundFormatEnum {
-        MessageRef = <any> 'MessageRef',
-        SoundRef = <any> 'SoundRef',
-        Text = <any> 'Text'
+        MessageRef = "MessageRef" as any,
+        SoundRef = "SoundRef" as any,
+        Text = "Text" as any
     }
 }

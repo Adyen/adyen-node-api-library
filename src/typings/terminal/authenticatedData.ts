@@ -30,20 +30,20 @@
  */
 
 
-import { AlgorithmIdentifier } from './algorithmIdentifier';
-import { AnyType } from './anyType';
-import { EncapsulatedContent } from './encapsulatedContent';
+import { AlgorithmIdentifier } from "./algorithmIdentifier";
+import { AnyType } from "./anyType";
+import { EncapsulatedContent } from "./encapsulatedContent";
 
 export class AuthenticatedData {
-    'encapsulatedContent': EncapsulatedContent;
-    'keyTransportOrKEK'?: Array<AnyType>;
-    'mAC': AnyType;
-    'mACAlgorithm': AlgorithmIdentifier;
-    'version'?: AuthenticatedData.VersionEnum;
+    "encapsulatedContent": EncapsulatedContent;
+    "keyTransportOrKEK"?: AnyType[];
+    "mAC": AnyType;
+    "mACAlgorithm": AlgorithmIdentifier;
+    "version"?: AuthenticatedData.VersionEnum;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "encapsulatedContent",
             "baseName": "EncapsulatedContent",
@@ -77,11 +77,11 @@ export class AuthenticatedData {
 
 export namespace AuthenticatedData {
     export enum VersionEnum {
-        V0 = <any> 'V0',
-        V1 = <any> 'V1',
-        V2 = <any> 'V2',
-        V3 = <any> 'V3',
-        V4 = <any> 'V4',
-        V5 = <any> 'V5'
+        V0 = "V0" as any,
+        V1 = "V1" as any,
+        V2 = "V2" as any,
+        V3 = "V3" as any,
+        V4 = "V4" as any,
+        V5 = "V5" as any
     }
 }

@@ -30,17 +30,17 @@
  */
 
 
-import { MessageHeader } from './messageHeader';
-import { SecurityTrailer } from './securityTrailer';
+import { MessageHeader } from "./messageHeader";
+import { SecurityTrailer } from "./securityTrailer";
 
 export class SaleToPOISecuredMessage {
-    'messageHeader': MessageHeader;
-    'nexoBlob': string;
-    'securityTrailer': SecurityTrailer;
+    "messageHeader": MessageHeader;
+    "nexoBlob": string;
+    "securityTrailer": SecurityTrailer;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "messageHeader",
             "baseName": "MessageHeader",

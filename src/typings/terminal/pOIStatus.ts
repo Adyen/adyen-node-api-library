@@ -30,22 +30,22 @@
  */
 
 
-import { CashHandlingDevice } from './cashHandlingDevice';
-import { GlobalStatusType } from './globalStatusType';
+import { CashHandlingDevice } from "./cashHandlingDevice";
+import { GlobalStatusType } from "./globalStatusType";
 
 export class POIStatus {
-    'cardReaderOkFlag'?: boolean;
-    'cashHandlingDevice'?: Array<CashHandlingDevice>;
-    'communicationOkFlag'?: boolean;
-    'fraudPreventionFlag'?: boolean;
-    'globalStatus': GlobalStatusType;
-    'pEDOKFlag'?: boolean;
-    'printerStatus'?: POIStatus.PrinterStatusEnum;
-    'securityOkFlag'?: boolean;
+    "cardReaderOkFlag"?: boolean;
+    "cashHandlingDevice"?: CashHandlingDevice[];
+    "communicationOkFlag"?: boolean;
+    "fraudPreventionFlag"?: boolean;
+    "globalStatus": GlobalStatusType;
+    "pEDOKFlag"?: boolean;
+    "printerStatus"?: POIStatus.PrinterStatusEnum;
+    "securityOkFlag"?: boolean;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "cardReaderOkFlag",
             "baseName": "CardReaderOkFlag",
@@ -94,10 +94,10 @@ export class POIStatus {
 
 export namespace POIStatus {
     export enum PrinterStatusEnum {
-        NoPaper = <any> 'NoPaper',
-        OK = <any> 'OK',
-        OutOfOrder = <any> 'OutOfOrder',
-        PaperJam = <any> 'PaperJam',
-        PaperLow = <any> 'PaperLow'
+        NoPaper = "NoPaper" as any,
+        OK = "OK" as any,
+        OutOfOrder = "OutOfOrder" as any,
+        PaperJam = "PaperJam" as any,
+        PaperLow = "PaperLow" as any
     }
 }

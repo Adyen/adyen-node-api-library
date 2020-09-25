@@ -30,16 +30,16 @@
  */
 
 
-import { CardholderPIN } from './cardholderPIN';
-import { Response } from './response';
+import { CardholderPIN } from "./cardholderPIN";
+import { Response } from "./response";
 
 export class PINResponse {
-    'cardholderPIN'?: CardholderPIN;
-    'response': Response;
+    "cardholderPIN"?: CardholderPIN;
+    "response": Response;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "cardholderPIN",
             "baseName": "CardholderPIN",

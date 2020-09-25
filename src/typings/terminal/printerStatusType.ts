@@ -32,9 +32,9 @@
 
 
 export enum PrinterStatusType {
-    NoPaper = <any> 'NoPaper',
-    OK = <any> 'OK',
-    OutOfOrder = <any> 'OutOfOrder',
-    PaperJam = <any> 'PaperJam',
-    PaperLow = <any> 'PaperLow'
+    NoPaper = "NoPaper" as any,
+    OK = "OK" as any,
+    OutOfOrder = "OutOfOrder" as any,
+    PaperJam = "PaperJam" as any,
+    PaperLow = "PaperLow" as any
 }

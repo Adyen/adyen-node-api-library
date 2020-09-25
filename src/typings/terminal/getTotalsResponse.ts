@@ -30,17 +30,17 @@
  */
 
 
-import { Response } from './response';
-import { TransactionTotals } from './transactionTotals';
+import { Response } from "./response";
+import { TransactionTotals } from "./transactionTotals";
 
 export class GetTotalsResponse {
-    'pOIReconciliationID': string;
-    'response': Response;
-    'transactionTotals'?: Array<TransactionTotals>;
+    "pOIReconciliationID": string;
+    "response": Response;
+    "transactionTotals"?: TransactionTotals[];
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "pOIReconciliationID",
             "baseName": "POIReconciliationID",

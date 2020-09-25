@@ -30,16 +30,16 @@
  */
 
 
-import { AnyType } from './anyType';
-import { ContentType } from './contentType';
+import { AnyType } from "./anyType";
+import { ContentType } from "./contentType";
 
 export class EncapsulatedContent {
-    'content'?: AnyType;
-    'contentType': ContentType;
+    "content"?: AnyType;
+    "contentType": ContentType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "content",
             "baseName": "Content",

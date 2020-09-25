@@ -30,20 +30,20 @@
  */
 
 
-import { LoyaltyAccountStatus } from './loyaltyAccountStatus';
-import { PaymentAcquirerData } from './paymentAcquirerData';
-import { PaymentInstrumentData } from './paymentInstrumentData';
+import { LoyaltyAccountStatus } from "./loyaltyAccountStatus";
+import { PaymentAcquirerData } from "./paymentAcquirerData";
+import { PaymentInstrumentData } from "./paymentInstrumentData";
 
 export class PaymentAccountStatus {
-    'currency'?: string;
-    'currentBalance'?: number;
-    'loyaltyAccountStatus'?: LoyaltyAccountStatus;
-    'paymentAcquirerData'?: PaymentAcquirerData;
-    'paymentInstrumentData'?: PaymentInstrumentData;
+    "currency"?: string;
+    "currentBalance"?: number;
+    "loyaltyAccountStatus"?: LoyaltyAccountStatus;
+    "paymentAcquirerData"?: PaymentAcquirerData;
+    "paymentInstrumentData"?: PaymentInstrumentData;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "currency",
             "baseName": "Currency",

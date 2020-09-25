@@ -32,7 +32,7 @@
 
 
 export enum MessageType {
-    Notification = <any> 'Notification',
-    Request = <any> 'Request',
-    Response = <any> 'Response'
+    Notification = "Notification" as any,
+    Request = "Request" as any,
+    Response = "Response" as any
 }

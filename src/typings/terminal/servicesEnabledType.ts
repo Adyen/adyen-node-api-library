@@ -32,7 +32,7 @@
 
 
 export enum ServicesEnabledType {
-    CardAcquisition = <any> 'CardAcquisition',
-    Loyalty = <any> 'Loyalty',
-    Payment = <any> 'Payment'
+    CardAcquisition = "CardAcquisition" as any,
+    Loyalty = "Loyalty" as any,
+    Payment = "Payment" as any
 }

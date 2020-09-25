@@ -30,22 +30,22 @@
  */
 
 
-import { AnyType } from './anyType';
-import { OutputFormatType } from './outputFormatType';
-import { OutputText } from './outputText';
-import { PredefinedContent } from './predefinedContent';
+import { AnyType } from "./anyType";
+import { OutputFormatType } from "./outputFormatType";
+import { OutputText } from "./outputText";
+import { PredefinedContent } from "./predefinedContent";
 
 export class MenuEntry {
-    'defaultSelectedFlag'?: boolean;
-    'menuEntryTag'?: MenuEntry.MenuEntryTagEnum;
-    'outputFormat': OutputFormatType;
-    'outputText'?: Array<OutputText>;
-    'outputXHTML'?: AnyType;
-    'predefinedContent'?: PredefinedContent;
+    "defaultSelectedFlag"?: boolean;
+    "menuEntryTag"?: MenuEntry.MenuEntryTagEnum;
+    "outputFormat": OutputFormatType;
+    "outputText"?: OutputText[];
+    "outputXHTML"?: AnyType;
+    "predefinedContent"?: PredefinedContent;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "defaultSelectedFlag",
             "baseName": "DefaultSelectedFlag",
@@ -84,9 +84,9 @@ export class MenuEntry {
 
 export namespace MenuEntry {
     export enum MenuEntryTagEnum {
-        NonSelectable = <any> 'NonSelectable',
-        NonSelectableSubMenu = <any> 'NonSelectableSubMenu',
-        Selectable = <any> 'Selectable',
-        SubMenu = <any> 'SubMenu'
+        NonSelectable = "NonSelectable" as any,
+        NonSelectableSubMenu = "NonSelectableSubMenu" as any,
+        Selectable = "Selectable" as any,
+        SubMenu = "SubMenu" as any
     }
 }

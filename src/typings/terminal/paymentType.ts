@@ -32,16 +32,16 @@
 
 
 export enum PaymentType {
-    CashAdvance = <any> 'CashAdvance',
-    CashDeposit = <any> 'CashDeposit',
-    Completion = <any> 'Completion',
-    FirstReservation = <any> 'FirstReservation',
-    Instalment = <any> 'Instalment',
-    IssuerInstalment = <any> 'IssuerInstalment',
-    Normal = <any> 'Normal',
-    OneTimeReservation = <any> 'OneTimeReservation',
-    PaidOut = <any> 'PaidOut',
-    Recurring = <any> 'Recurring',
-    Refund = <any> 'Refund',
-    UpdateReservation = <any> 'UpdateReservation'
+    CashAdvance = "CashAdvance" as any,
+    CashDeposit = "CashDeposit" as any,
+    Completion = "Completion" as any,
+    FirstReservation = "FirstReservation" as any,
+    Instalment = "Instalment" as any,
+    IssuerInstalment = "IssuerInstalment" as any,
+    Normal = "Normal" as any,
+    OneTimeReservation = "OneTimeReservation" as any,
+    PaidOut = "PaidOut" as any,
+    Recurring = "Recurring" as any,
+    Refund = "Refund" as any,
+    UpdateReservation = "UpdateReservation" as any
 }

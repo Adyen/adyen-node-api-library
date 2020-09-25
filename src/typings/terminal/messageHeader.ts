@@ -30,23 +30,23 @@
  */
 
 
-import { MessageCategoryType } from './messageCategoryType';
-import { MessageClassType } from './messageClassType';
-import { MessageType } from './messageType';
+import { MessageCategoryType } from "./messageCategoryType";
+import { MessageClassType } from "./messageClassType";
+import { MessageType } from "./messageType";
 
 export class MessageHeader {
-    'deviceID'?: string;
-    'messageCategory': MessageCategoryType;
-    'messageClass': MessageClassType;
-    'messageType': MessageType;
-    'pOIID': string;
-    'protocolVersion'?: string;
-    'saleID'?: string;
-    'serviceID'?: string;
+    "deviceID"?: string;
+    "messageCategory": MessageCategoryType;
+    "messageClass": MessageClassType;
+    "messageType": MessageType;
+    "pOIID": string;
+    "protocolVersion"?: string;
+    "saleID"?: string;
+    "serviceID"?: string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "deviceID",
             "baseName": "DeviceID",

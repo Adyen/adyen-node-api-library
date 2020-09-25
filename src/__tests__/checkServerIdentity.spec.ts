@@ -20,7 +20,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
 import checkServerIdentity from "../helpers/checkServerIdentity";
-import {PeerCertificate} from "tls";
+import { PeerCertificate } from "tls";
 
 const createMockedCertificate = (CN: string): PeerCertificate => ({
     subjectaltname: "Adyen B.V",

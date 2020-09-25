@@ -32,14 +32,14 @@
 
 
 export class SecurityKey {
-    'adyenCryptoVersion': number;
-    'keyIdentifier': string;
-    'keyVersion': number;
-    'passphrase': string;
+    "adyenCryptoVersion": number;
+    "keyIdentifier": string;
+    "keyVersion": number;
+    "passphrase": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "adyenCryptoVersion",
             "baseName": "AdyenCryptoVersion",

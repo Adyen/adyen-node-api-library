@@ -32,11 +32,11 @@
 
 
 export class LogoutRequest {
-    'maintenanceAllowed'?: boolean;
+    "maintenanceAllowed"?: boolean;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "maintenanceAllowed",
             "baseName": "MaintenanceAllowed",

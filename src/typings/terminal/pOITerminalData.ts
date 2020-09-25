@@ -30,18 +30,18 @@
  */
 
 
-import { POIProfile } from './pOIProfile';
-import { TerminalEnvironmentType } from './terminalEnvironmentType';
+import { POIProfile } from "./pOIProfile";
+import { TerminalEnvironmentType } from "./terminalEnvironmentType";
 
 export class POITerminalData {
-    'pOICapabilities': Array<POITerminalData.POICapabilitiesEnum>;
-    'pOIProfile'?: POIProfile;
-    'pOISerialNumber': string;
-    'terminalEnvironment': TerminalEnvironmentType;
+    "pOICapabilities": POITerminalData.POICapabilitiesEnum[];
+    "pOIProfile"?: POIProfile;
+    "pOISerialNumber": string;
+    "terminalEnvironment": TerminalEnvironmentType;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "pOICapabilities",
             "baseName": "POICapabilities",
@@ -70,18 +70,18 @@ export class POITerminalData {
 
 export namespace POITerminalData {
     export enum POICapabilitiesEnum {
-        CashHandling = <any> 'CashHandling',
-        CashierDisplay = <any> 'CashierDisplay',
-        CashierError = <any> 'CashierError',
-        CashierInput = <any> 'CashierInput',
-        CustomerDisplay = <any> 'CustomerDisplay',
-        CustomerError = <any> 'CustomerError',
-        CustomerInput = <any> 'CustomerInput',
-        EMVContactless = <any> 'EMVContactless',
-        ICC = <any> 'ICC',
-        MagStripe = <any> 'MagStripe',
-        PrinterDocument = <any> 'PrinterDocument',
-        PrinterReceipt = <any> 'PrinterReceipt',
-        PrinterVoucher = <any> 'PrinterVoucher'
+        CashHandling = "CashHandling" as any,
+        CashierDisplay = "CashierDisplay" as any,
+        CashierError = "CashierError" as any,
+        CashierInput = "CashierInput" as any,
+        CustomerDisplay = "CustomerDisplay" as any,
+        CustomerError = "CustomerError" as any,
+        CustomerInput = "CustomerInput" as any,
+        EMVContactless = "EMVContactless" as any,
+        ICC = "ICC" as any,
+        MagStripe = "MagStripe" as any,
+        PrinterDocument = "PrinterDocument" as any,
+        PrinterReceipt = "PrinterReceipt" as any,
+        PrinterVoucher = "PrinterVoucher" as any
     }
 }

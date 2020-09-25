@@ -32,12 +32,12 @@
 
 
 export class RelativeDistinguishedName {
-    'attribute': string;
-    'attributeValue': string;
+    "attribute": string;
+    "attributeValue": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "attribute",
             "baseName": "Attribute",

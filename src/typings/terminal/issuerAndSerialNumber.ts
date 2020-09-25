@@ -30,15 +30,15 @@
  */
 
 
-import { Issuer } from './issuer';
+import { Issuer } from "./issuer";
 
 export class IssuerAndSerialNumber {
-    'issuer': Issuer;
-    'serialNumber': number;
+    "issuer": Issuer;
+    "serialNumber": number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "issuer",
             "baseName": "Issuer",

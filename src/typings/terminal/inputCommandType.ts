@@ -32,13 +32,13 @@
 
 
 export enum InputCommandType {
-    DecimalString = <any> 'DecimalString',
-    DigitString = <any> 'DigitString',
-    GetAnyKey = <any> 'GetAnyKey',
-    GetConfirmation = <any> 'GetConfirmation',
-    GetFunctionKey = <any> 'GetFunctionKey',
-    GetMenuEntry = <any> 'GetMenuEntry',
-    Password = <any> 'Password',
-    SiteManager = <any> 'SiteManager',
-    TextString = <any> 'TextString'
+    DecimalString = "DecimalString" as any,
+    DigitString = "DigitString" as any,
+    GetAnyKey = "GetAnyKey" as any,
+    GetConfirmation = "GetConfirmation" as any,
+    GetFunctionKey = "GetFunctionKey" as any,
+    GetMenuEntry = "GetMenuEntry" as any,
+    Password = "Password" as any,
+    SiteManager = "SiteManager" as any,
+    TextString = "TextString" as any
 }

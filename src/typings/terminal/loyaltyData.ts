@@ -30,18 +30,18 @@
  */
 
 
-import { LoyaltyAccountId } from './loyaltyAccountId';
-import { LoyaltyAmount } from './loyaltyAmount';
-import { TransactionIdentification } from './transactionIdentification';
+import { LoyaltyAccountId } from "./loyaltyAccountId";
+import { LoyaltyAmount } from "./loyaltyAmount";
+import { TransactionIdentification } from "./transactionIdentification";
 
 export class LoyaltyData {
-    'cardAcquisitionReference'?: TransactionIdentification;
-    'loyaltyAccountID'?: LoyaltyAccountId;
-    'loyaltyAmount'?: LoyaltyAmount;
+    "cardAcquisitionReference"?: TransactionIdentification;
+    "loyaltyAccountID"?: LoyaltyAccountId;
+    "loyaltyAmount"?: LoyaltyAmount;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "cardAcquisitionReference",
             "baseName": "CardAcquisitionReference",

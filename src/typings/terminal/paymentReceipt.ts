@@ -30,18 +30,18 @@
  */
 
 
-import { DocumentQualifierType } from './documentQualifierType';
-import { OutputContent } from './outputContent';
+import { DocumentQualifierType } from "./documentQualifierType";
+import { OutputContent } from "./outputContent";
 
 export class PaymentReceipt {
-    'documentQualifier': DocumentQualifierType;
-    'integratedPrintFlag'?: boolean;
-    'outputContent': OutputContent;
-    'requiredSignatureFlag'?: boolean;
+    "documentQualifier": DocumentQualifierType;
+    "integratedPrintFlag"?: boolean;
+    "outputContent": OutputContent;
+    "requiredSignatureFlag"?: boolean;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "documentQualifier",
             "baseName": "DocumentQualifier",

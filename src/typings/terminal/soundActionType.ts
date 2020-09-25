@@ -32,7 +32,7 @@
 
 
 export enum SoundActionType {
-    SetDefaultVolume = <any> 'SetDefaultVolume',
-    StartSound = <any> 'StartSound',
-    StopSound = <any> 'StopSound'
+    SetDefaultVolume = "SetDefaultVolume" as any,
+    StartSound = "StartSound" as any,
+    StopSound = "StopSound" as any
 }

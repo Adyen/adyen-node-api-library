@@ -30,24 +30,24 @@
  */
 
 
-import { ApplicationInfo } from './applicationInfo';
+import { ApplicationInfo } from "./applicationInfo";
 
 export class SaleToAcquirerData {
-    'applicationInfo'?: ApplicationInfo;
-    'shopperEmail'?: string;
-    'shopperReference'?: string;
-    'recurringContract'?: string;
-    'shopperStatement'?: string;
-    'recurringDetailName'?: string;
-    'store'?: string;
-    'merchantAccount'?: string;
-    'currency'?: string;
-    'tenderOption'?: string;
-    'additionalData'?: object;
+    "applicationInfo"?: ApplicationInfo;
+    "shopperEmail"?: string;
+    "shopperReference"?: string;
+    "recurringContract"?: string;
+    "shopperStatement"?: string;
+    "recurringDetailName"?: string;
+    "store"?: string;
+    "merchantAccount"?: string;
+    "currency"?: string;
+    "tenderOption"?: string;
+    "additionalData"?: object;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "applicationInfo",
             "baseName": "ApplicationInfo",

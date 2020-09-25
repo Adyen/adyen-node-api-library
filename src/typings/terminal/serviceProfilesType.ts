@@ -32,14 +32,14 @@
 
 
 export enum ServiceProfilesType {
-    Batch = <any> 'Batch',
-    CardReader = <any> 'CardReader',
-    Communication = <any> 'Communication',
-    Loyalty = <any> 'Loyalty',
-    OneTimeRes = <any> 'OneTimeRes',
-    PIN = <any> 'PIN',
-    Reservation = <any> 'Reservation',
-    Sound = <any> 'Sound',
-    StoredValue = <any> 'StoredValue',
-    Synchro = <any> 'Synchro'
+    Batch = "Batch" as any,
+    CardReader = "CardReader" as any,
+    Communication = "Communication" as any,
+    Loyalty = "Loyalty" as any,
+    OneTimeRes = "OneTimeRes" as any,
+    PIN = "PIN" as any,
+    Reservation = "Reservation" as any,
+    Sound = "Sound" as any,
+    StoredValue = "StoredValue" as any,
+    Synchro = "Synchro" as any
 }

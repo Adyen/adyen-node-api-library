@@ -23,8 +23,8 @@ import getJsonResponse from "../helpers/getJsonResponse";
 import Async from "./resource/terminal/cloud/async";
 import Sync from "./resource/terminal/cloud/sync";
 import mergeDeep from "../utils/mergeDeep";
-import {ApplicationInfo} from "../typings/applicationInfo";
-import {ObjectSerializer, TerminalApiRequest, TerminalApiResponse} from "../typings/terminal/models";
+import { ApplicationInfo } from "../typings/applicationInfo";
+import { ObjectSerializer, TerminalApiRequest, TerminalApiResponse } from "../typings/terminal/models";
 
 class TerminalCloudAPI extends ApiKeyAuthenticatedService {
     private readonly terminalApiAsync: Async;

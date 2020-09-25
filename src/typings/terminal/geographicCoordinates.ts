@@ -32,12 +32,12 @@
 
 
 export class GeographicCoordinates {
-    'latitude': string;
-    'longitude': string;
+    "latitude": string;
+    "longitude": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "latitude",
             "baseName": "Latitude",

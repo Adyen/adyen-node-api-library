@@ -30,22 +30,22 @@
  */
 
 
-import { AnyType } from './anyType';
-import { DisplayOutput } from './displayOutput';
-import { EventToNotifyType } from './eventToNotifyType';
+import { AnyType } from "./anyType";
+import { DisplayOutput } from "./displayOutput";
+import { EventToNotifyType } from "./eventToNotifyType";
 
 export class EventNotification {
-    'customerLanguage'?: string;
-    'displayOutput'?: DisplayOutput;
-    'eventDetails'?: string;
-    'eventToNotify': EventToNotifyType;
-    'maintenanceRequiredFlag'?: boolean;
-    'rejectedMessage'?: AnyType;
-    'timeStamp': string;
+    "customerLanguage"?: string;
+    "displayOutput"?: DisplayOutput;
+    "eventDetails"?: string;
+    "eventToNotify": EventToNotifyType;
+    "maintenanceRequiredFlag"?: boolean;
+    "rejectedMessage"?: AnyType;
+    "timeStamp": string;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "customerLanguage",
             "baseName": "CustomerLanguage",

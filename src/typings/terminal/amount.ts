@@ -32,12 +32,12 @@
 
 
 export class Amount {
-    'currency'?: string;
-    'value'?: number;
+    "currency"?: string;
+    "value"?: number;
 
     static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "currency",
             "baseName": "Currency",
