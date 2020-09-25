@@ -3,10 +3,11 @@ name: Node.js Package
 on:
   workflow_dispatch:
     inputs:
-      releaseArgs:
-        description: "Arguments to append to the release CLI command"
+      releaseType:
+        description: "Release type (major/minor/patch)"
         required: true
-        default: "--ci"
+      releaseArgs:
+        description: "Additional arguments to be appended to the `release-it` CLI command"
 
 jobs:
   publish-npm:
@@ -19,23 +20,10 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: |
           npm install
-          npm run release -- ${{ github.event.inputs.releaseArgs }}
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          git config --global user.name 'GitHub'
+          git config --global user.email 'noreply@github.com'
+          npm run release -- ${{ github.event.inputs.releaseType }} --ci ${{ github.event.inputs.releaseArgs }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-          CI: true
-          ADYEN_API_KEY: ${{ secrets.ADYEN_API_KEY }}
-          ADYEN_MERCHANT: ${{ secrets.ADYEN_MERCHANT }}
-          ADYEN_PASSWORD: ${{ secrets.ADYEN_PASSWORD }}
-          ADYEN_REVIEWPAYOUT_APIKEY: ${{ secrets.ADYEN_REVIEWPAYOUT_APIKEY }}
-          ADYEN_REVIEWPAYOUT_PASSWORD: ${{ secrets.ADYENREVIEWPAYOUT_PASSWORD }}
-          ADYEN_REVIEWPAYOUT_USER: ${{ secrets.ADYENREVIEWPAYOUT_USER }}
-          ADYEN_STOREPAYOUT_APIKEY: ${{ secrets.ADYEN_STOREPAYOUT_APIKEY }}
-          ADYEN_STOREPAYOUT_PASSWORD: ${{ secrets.ADYEN_STOREPAYOUT_PASSWORD }}
-          ADYEN_STOREPAYOUT_USER: ${{ secrets.ADYEN_STOREPAYOUT_USER }}
-          ADYEN_USER: ${{ secrets.ADYEN_USER }}
-          ADYEN_MARKETPLACE_USER: ${{ secrets.ADYEN_MARKETPLACE_USER }}
-          ADYEN_MARKETPLACE_PASSWORD: ${{ secrets.ADYEN_MARKETPLACE_PASSWORD }}
-          ADYEN_TERMINAL_APIKEY: ${{ secrets.ADYEN_TERMINAL_APIKEY }}
-          ADYEN_TERMINAL_POIID: ${{ secrets.ADYEN_TERMINAL_POIID }}
-          ADYEN_TERMINAL_MERCHANT: ${{ secrets.ADYEN_TERMINAL_MERCHANT }}
