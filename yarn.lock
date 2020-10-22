@@ -5015,13 +5015,14 @@ triple-beam@^1.2.0, triple-beam@^1.3.0:
   resolved "https://registry.yarnpkg.com/triple-beam/-/triple-beam-1.3.0.tgz#a595214c7298db8339eeeee083e4d10bd8cb8dd9"
   integrity sha512-XrHUvV5HpdLmIj4uVMxHggLbFSZYIn7HEWsqePZcI50pco+MPqJ50wMGY794X7AOOhxOBAjbkqfAbEe/QMp2Lw==
 
-ts-auto-mock@^1.6.0:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/ts-auto-mock/-/ts-auto-mock-1.6.2.tgz#24f11a20f9991c3a69b36ca37389042c058066a6"
-  integrity sha512-jklT1KzjFC4ApYYFpUkdif/2fqj0Calx8BRRuE7KNNihpb1sfFOXIvgnausD1yUNyhSGGY4nSpZjO80Cx2InPA==
+ts-auto-mock@^2.6.5:
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/ts-auto-mock/-/ts-auto-mock-2.6.5.tgz#5fb7becad172514c91ef21f1307317cd17f8e60f"
+  integrity sha512-yLWJgRBbtzI6KcEerFdhfxdtem+gtmj7q2gGrlR/hvnHALLtcgIhcaK/4Gv/XSnSKsaRtnfJmbeA53kzoKSfdQ==
   dependencies:
     lodash-es "^4.17.15"
-    winston "^3.2.1"
+    micromatch "^4.0.2"
+    winston "^3.3.3"
 
 ts-jest@25.5.1:
   version "25.5.1"
@@ -5342,7 +5343,7 @@ winston-transport@^4.4.0:
     readable-stream "^2.3.7"
     triple-beam "^1.2.0"
 
-winston@^3.2.1:
+winston@^3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/winston/-/winston-3.3.3.tgz#ae6172042cafb29786afa3d09c8ff833ab7c9170"
   integrity sha512-oEXTISQnC8VlSAKf1KYSSd7J6IWuRPQqDdo8eoRNaYKLvwSb5+79Z3Yi1lrl6KDpU6/VWaxpakDAtb1oQ4n9aw==
