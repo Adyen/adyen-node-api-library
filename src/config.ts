@@ -19,7 +19,6 @@
 interface ConfigConstructor {
     username?: string;
     password?: string;
-    merchantAccount?: string;
     environment?: Environment;
     endpoint?: string;
     marketPayEndpoint?: string;
@@ -39,7 +38,6 @@ interface ConfigConstructor {
 class Config {
     public username?: string;
     public password?: string;
-    public merchantAccount?: string;
     public environment?: Environment;
     public endpoint?: string;
     public marketPayEndpoint?: string;
@@ -61,7 +59,6 @@ class Config {
     public constructor(options: ConfigConstructor = {}) {
         if (options.username) this.username = options.username;
         if (options.password) this.password = options.password;
-        if (options.merchantAccount) this.merchantAccount = options.merchantAccount;
         if (options.environment) this.environment = options.environment;
         if (options.endpoint) this.endpoint = options.endpoint;
         if (options.marketPayEndpoint) this.marketPayEndpoint = options.marketPayEndpoint;
