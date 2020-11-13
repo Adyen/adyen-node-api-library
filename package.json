@@ -50,7 +50,7 @@
     "nock": "13.0.5",
     "release-it": "14.2.1",
     "ts-auto-mock": "^2.6.5",
-    "ts-jest": "25.5.1",
+    "ts-jest": "26.4.4",
     "ts-loader": "8.0.10",
     "ttypescript": "^1.5.10",
     "typescript": "3.9.7"
