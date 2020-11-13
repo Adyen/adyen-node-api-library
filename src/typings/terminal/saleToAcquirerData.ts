@@ -50,57 +50,57 @@ export class SaleToAcquirerData {
     static attributeTypeMap: {name: string, baseName: string, type: string}[] = [
         {
             "name": "applicationInfo",
-            "baseName": "ApplicationInfo",
+            "baseName": "applicationInfo",
             "type": "ApplicationInfo"
         },
         {
             "name": "shopperEmail",
-            "baseName": "ShopperEmail",
+            "baseName": "shopperEmail",
             "type": "string"
         },
         {
             "name": "shopperReference",
-            "baseName": "ShopperReference",
+            "baseName": "shopperReference",
             "type": "string"
         },
         {
             "name": "recurringContract",
-            "baseName": "RecurringContract",
+            "baseName": "recurringContract",
             "type": "string"
         },
         {
             "name": "shopperStatement",
-            "baseName": "ShopperStatement",
+            "baseName": "shopperStatement",
             "type": "string"
         },
         {
             "name": "recurringDetailName",
-            "baseName": "RecurringDetailName",
+            "baseName": "recurringDetailName",
             "type": "string"
         },
         {
             "name": "store",
-            "baseName": "Store",
+            "baseName": "store",
             "type": "string"
         },
         {
             "name": "merchantAccount",
-            "baseName": "MerchantAccount",
+            "baseName": "merchantAccount",
             "type": "string"
         },
         {
             "name": "currency",
-            "baseName": "Currency",
+            "baseName": "currency",
             "type": "string"
         },
         {
             "name": "tenderOption",
-            "baseName": "TenderOption",
+            "baseName": "tenderOption",
             "type": "string"
         },
         {
             "name": "additionalData",
-            "baseName": "AdditionalData",
+            "baseName": "additionalData",
             "type": "object"
         }    ];
 
