@@ -34,6 +34,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient(process.env.ADYEN_TERMINAL_APIKEY);
+    client.config.merchantAccount = process.env.ADYEN_TERMINAL_MERCHANT;
 
     terminalCloudAPI = new TerminalCloudAPI(client);
     scope = nock(`${client.config.terminalApiCloudEndpoint}`);
