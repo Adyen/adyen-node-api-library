@@ -18,6 +18,7 @@
  */
 
 import Client from "../../../client";
+import getJsonResponse from "../../../helpers/getJsonResponse";
 import Service from "../../../service";
 import Resource from "../../resource";
 
@@ -26,6 +27,13 @@ class OrdersCancel extends Resource {
         super(
             service,
             `${service.client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}/orders/cancel`,
+        );
+    }
+
+    public post(ordersCancelRequest: ICheckout.CheckoutCancelOrderRequest): Promise<ICheckout.CheckoutCancelOrderResponse> {
+        return getJsonResponse<ICheckout.CheckoutCancelOrderRequest, ICheckout.CheckoutCancelOrderResponse>(
+            this,
+            ordersCancelRequest,
         );
     }
 }

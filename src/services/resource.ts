@@ -33,7 +33,7 @@ abstract class Resource {
         this.endpoint = endpoint;
     }
 
-    public request(json: string, requestOptions?: IRequest.Options): Promise<string | HttpClientException | ApiException> {
+    protected request(json: string, requestOptions?: IRequest.Options): Promise<string | HttpClientException | ApiException> {
         const clientInterface: ClientInterface = this.service.client.httpClient;
         const config: Config = this.service.client.config;
 

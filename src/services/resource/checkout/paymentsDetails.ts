@@ -18,7 +18,9 @@
  */
 
 import Client from "../../../client";
+import getJsonResponse from "../../../helpers/getJsonResponse";
 import Service from "../../../service";
+import { IRequest } from "../../../typings/requestOptions";
 import Resource from "../../resource";
 
 class PaymentsDetails extends Resource {
@@ -28,6 +30,15 @@ class PaymentsDetails extends Resource {
             `${service.client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}/payments/details`,
         );
     }
+
+    public post(paymentsDetailsRequest: ICheckout.DetailsRequest, requestOptions?: IRequest.Options): Promise<ICheckout.PaymentResponse> {
+        return getJsonResponse<ICheckout.DetailsRequest, ICheckout.PaymentResponse>(
+            this,
+            paymentsDetailsRequest,
+            requestOptions
+        );
+    }
+
 }
 
 export default PaymentsDetails;
