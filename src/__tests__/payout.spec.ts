@@ -19,7 +19,7 @@
 
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import Payouts from "../services/payout";
+import Payouts from "../services/payouts";
 import Client from "../client";
 import StoreDetailRequest = IPayouts.StoreDetailRequest;
 import { ApiConstants } from "../constants/apiConstants";
