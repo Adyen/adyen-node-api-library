@@ -60,7 +60,7 @@ describe("Bin Lookup", function (): void {
         scope.post("/get3dsAvailability")
             .reply(200, threeDSAvailabilitySuccess);
 
-        const response = await binLookup.get3dsAvailability(threeDSAvailabilityRequest);
+        const response = await binLookup.get3dsAvailability.post(threeDSAvailabilityRequest);
 
         expect(response).toEqual<IBinLookup.ThreeDSAvailabilityResponse>(threeDSAvailabilitySuccess);
     });
@@ -77,7 +77,7 @@ describe("Bin Lookup", function (): void {
             .reply(403, JSON.stringify({status: 403, message: "fail", errorCode: "171"}));
 
         try {
-            await binLookup.get3dsAvailability(threeDSAvailabilityRequest as unknown as IBinLookup.ThreeDSAvailabilityRequest);
+            await binLookup.get3dsAvailability.post(threeDSAvailabilityRequest as unknown as IBinLookup.ThreeDSAvailabilityRequest);
             fail("Expected request to fail");
         } catch (e) {
             expect(e instanceof HttpClientException).toBeTruthy();
@@ -113,7 +113,7 @@ describe("Bin Lookup", function (): void {
         scope.post("/getCostEstimate")
             .reply(200, expected);
 
-        const response = await binLookup.getCostEstimate(costEstimateRequest);
+        const response = await binLookup.getCostEstimate.post(costEstimateRequest);
 
         expect(response).toEqual(expected);
     });

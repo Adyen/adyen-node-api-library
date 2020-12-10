@@ -20,12 +20,20 @@
 import Resource from "../../resource";
 import Service from "../../../service";
 import Client from "../../../client";
+import getJsonResponse from "../../../helpers/getJsonResponse";
 
 class GetCostEstimate extends Resource {
     public constructor(service: Service) {
         super(
             service,
             `${service.client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}${Client.BIN_LOOKUP_API_VERSION}/getCostEstimate`
+        );
+    }
+
+    public post(request: IBinLookup.CostEstimateRequest): Promise<IBinLookup.CostEstimateResponse> {
+        return getJsonResponse<IBinLookup.CostEstimateRequest, IBinLookup.CostEstimateResponse>(
+            this,
+            request
         );
     }
 }

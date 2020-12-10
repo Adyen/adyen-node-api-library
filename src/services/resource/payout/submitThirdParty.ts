@@ -19,12 +19,20 @@
 import Resource from "../../resource";
 import Service from "../../../service";
 import Client from "../../../client";
+import getJsonResponse from "../../../helpers/getJsonResponse";
 
 class SubmitThirdParty extends Resource {
     public constructor(service: Service) {
         super(
             service,
             `${service.client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}/submitThirdParty`
+        );
+    }
+
+    public post(request: IPayouts.SubmitRequest): Promise<IPayouts.SubmitResponse> {
+        return getJsonResponse<IPayouts.SubmitRequest, IPayouts.SubmitResponse>(
+            this,
+            request
         );
     }
 }

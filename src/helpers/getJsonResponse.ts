@@ -31,7 +31,7 @@ async function getJsonResponse<T, R>(
     requestOptions: IRequest.Options = {},
 ): Promise<R | string | HttpClientException | ApiException> {
     const request = typeof jsonRequest === "string" ? jsonRequest : JSON.stringify(jsonRequest);
-    const response = await resource.request(request, requestOptions);
+    const response = await resource._request(request, requestOptions);
     try {
         return typeof response === "string" ? JSON.parse(response) : response;
     } catch (e) {

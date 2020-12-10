@@ -20,12 +20,20 @@
 import Resource from "../../resource";
 import Service from "../../../service";
 import Client from "../../../client";
+import getJsonResponse from "../../../helpers/getJsonResponse";
 
 class Get3dsAvailability extends Resource {
     public constructor(service: Service) {
         super(
             service,
             `${service.client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}${Client.BIN_LOOKUP_API_VERSION}/get3dsAvailability`
+        );
+    }
+
+    public post(request: IBinLookup.ThreeDSAvailabilityRequest): Promise<IBinLookup.ThreeDSAvailabilityResponse> {
+        return getJsonResponse<IBinLookup.ThreeDSAvailabilityRequest, IBinLookup.ThreeDSAvailabilityResponse>(
+            this,
+            request
         );
     }
 }

@@ -26,6 +26,7 @@ import { IRequest } from "../typings/requestOptions";
 
 abstract class Resource {
     protected endpoint: string;
+    protected _params: string = '';
     private service: Service;
 
     protected constructor(service: Service, endpoint: string) {
@@ -33,12 +34,16 @@ abstract class Resource {
         this.endpoint = endpoint;
     }
 
-    protected request(json: string, requestOptions?: IRequest.Options): Promise<string | HttpClientException | ApiException> {
+    protected set params(par: string) {
+        this._params = par;
+    }
+
+    public _request(json: string, requestOptions?: IRequest.Options): Promise<string | HttpClientException | ApiException> {
         const clientInterface: ClientInterface = this.service.client.httpClient;
         const config: Config = this.service.client.config;
 
         return clientInterface.request(
-            this.endpoint,
+            `${this.endpoint}${this._params}`,
             json, config,
             this.service.apiKeyRequired,
             requestOptions,

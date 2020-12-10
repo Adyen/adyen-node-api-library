@@ -23,5 +23,5 @@ export { default as CheckoutAPI } from "./checkout";
 export { default as Recurring } from "./recurring";
 export { default as Modification } from "./modification";
 export { default as BinLookup } from "./binLookup";
-export { default as Payout } from "./payout";
+export { default as Payouts } from "./payout";
 export { default as Platforms } from "./platforms";

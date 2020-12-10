@@ -38,16 +38,18 @@ class PaymentLinks extends Resource {
     }
 
     public get(linkId: string): Promise<ICheckout.PaymentLinkResource> {
+        this.params = `/${linkId}`;
         return getJsonResponse<{}, ICheckout.PaymentLinkResource>(
-            { ...this, endpoint: `${this.endpoint}/${linkId}` },
+            this,
             {},
             { method: "GET" }
         );
     }
 
     public patch(linkId: string, status: "expired"): Promise<ICheckout.PaymentLinkResource> {
+        this.params = `/${linkId}`;
         return getJsonResponse<{}, ICheckout.PaymentLinkResource>(
-            { ...this, endpoint: `${this.endpoint}/${linkId}` },
+            this,
             { status },
             { method: "PATCH" }
         );

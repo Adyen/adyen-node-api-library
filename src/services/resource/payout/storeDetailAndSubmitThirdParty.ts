@@ -19,6 +19,7 @@
 import Resource from "../../resource";
 import Service from "../../../service";
 import Client from "../../../client";
+import getJsonResponse from "../../../helpers/getJsonResponse";
 
 class StoreDetailAndSubmitThirdParty extends Resource {
     public constructor(service: Service) {
@@ -27,6 +28,14 @@ class StoreDetailAndSubmitThirdParty extends Resource {
             `${service.client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}/storeDetailAndSubmitThirdParty`
         );
     }
+
+    public post(request: IPayouts.StoreDetailAndSubmitRequest): Promise<IPayouts.StoreDetailAndSubmitResponse> {
+        return getJsonResponse<IPayouts.StoreDetailAndSubmitRequest, IPayouts.StoreDetailAndSubmitResponse>(
+            this,
+            request
+        );
+    }
+
 }
 
 export default StoreDetailAndSubmitThirdParty;
