@@ -41,7 +41,7 @@ class Payments extends Resource {
     }
 
     public post(paymentsRequest: ICheckout.PaymentRequest, requestOptions?: IRequest.Options): Promise<ICheckout.PaymentResponse> {
-        return getJsonResponse<ICheckout.PaymentRequest, ICheckout.PaymentResponse>(
+        return getJsonResponse.call<Payments, [ICheckout.PaymentRequest, IRequest.Options | undefined], Promise<ICheckout.PaymentResponse>>(
             this,
             setApplicationInfo(paymentsRequest),
             requestOptions,

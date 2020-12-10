@@ -36,7 +36,7 @@ class Cancel extends Resource {
         cancelRequest: GenericRequest<IPayments.ModificationRequest>,
         requestOptions?: IRequest.Options,
     ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
+        return getJsonResponse.call<Cancel, [IPayments.ModificationRequest, IRequest.Options | undefined], Promise<IPayments.ModificationResult>>(
             this,
             setApplicationInfo(cancelRequest),
             requestOptions,

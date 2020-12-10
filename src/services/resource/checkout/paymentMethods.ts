@@ -36,7 +36,7 @@ class PaymentMethods extends Resource {
     }
 
     public post(paymentMethodsRequest: ICheckout.PaymentMethodsRequest): Promise<ICheckout.PaymentMethodsResponse> {
-        return getJsonResponse<ICheckout.PaymentMethodsRequest, ICheckout.PaymentMethodsResponse>(
+        return getJsonResponse.call<PaymentMethods, [ICheckout.PaymentMethodsRequest], Promise<ICheckout.PaymentMethodsResponse>>(
             this,
             paymentMethodsRequest,
         );

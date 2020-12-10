@@ -31,7 +31,7 @@ class ListRecurringDetails extends Resource {
     }
 
     public post(request: IRecurring.RecurringDetailsRequest): Promise<IRecurring.RecurringDetailsResult> {
-        return getJsonResponse<IRecurring.RecurringDetailsRequest, IRecurring.RecurringDetailsResult>(
+        return getJsonResponse.call<ListRecurringDetails, [IRecurring.RecurringDetailsRequest], Promise<IRecurring.RecurringDetailsResult>>(
             this,
             request,
         );

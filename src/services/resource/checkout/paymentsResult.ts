@@ -31,7 +31,7 @@ class PaymentsResult extends Resource {
     }
 
     public post(paymentResultRequest: ICheckout.PaymentVerificationRequest): Promise<ICheckout.PaymentVerificationResponse> {
-        return getJsonResponse<ICheckout.PaymentVerificationRequest, ICheckout.PaymentVerificationResponse>(
+        return getJsonResponse.call<PaymentsResult, [ICheckout.PaymentVerificationRequest], Promise<ICheckout.PaymentVerificationResponse>>(
             this,
             paymentResultRequest,
         );

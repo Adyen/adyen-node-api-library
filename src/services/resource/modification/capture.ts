@@ -36,7 +36,7 @@ class Capture extends Resource {
         captureRequest: GenericRequest<IPayments.ModificationRequest>,
         requestOptions?: IRequest.Options,
     ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
+        return getJsonResponse.call<Capture, [IPayments.ModificationRequest, IRequest.Options | undefined], Promise<IPayments.ModificationResult>>(
             this,
             setApplicationInfo(captureRequest),
             requestOptions,

@@ -35,7 +35,7 @@ class PaymentSession extends Resource {
         paymentSessionRequest: ICheckout.PaymentSetupRequest,
         requestOptions?: IRequest.Options,
     ): Promise<ICheckout.PaymentSetupResponse> {
-        return getJsonResponse<ICheckout.PaymentSetupRequest, ICheckout.PaymentSetupResponse>(
+        return getJsonResponse.call<PaymentSession, [ICheckout.PaymentSetupRequest, IRequest.Options | undefined], Promise<ICheckout.PaymentSetupResponse>>(
             this,
             paymentSessionRequest,
             requestOptions,

@@ -36,7 +36,7 @@ class TechnicalCancel extends Resource {
         technicalCancelRequest: GenericRequest<IPayments.ModificationRequest>,
         requestOptions?: IRequest.Options,
     ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
+        return getJsonResponse.call<TechnicalCancel, [IPayments.ModificationRequest, IRequest.Options | undefined], Promise<IPayments.ModificationResult>>(
             this,
             setApplicationInfo(technicalCancelRequest),
             requestOptions,

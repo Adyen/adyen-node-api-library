@@ -31,7 +31,7 @@ class Get3dsAvailability extends Resource {
     }
 
     public post(request: IBinLookup.ThreeDSAvailabilityRequest): Promise<IBinLookup.ThreeDSAvailabilityResponse> {
-        return getJsonResponse<IBinLookup.ThreeDSAvailabilityRequest, IBinLookup.ThreeDSAvailabilityResponse>(
+        return getJsonResponse.call<Get3dsAvailability,[IBinLookup.ThreeDSAvailabilityRequest], Promise<IBinLookup.ThreeDSAvailabilityResponse>>(
             this,
             request
         );

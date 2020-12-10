@@ -30,7 +30,7 @@ class Payout extends Resource {
     }
 
     public post(request: IPayouts.PayoutRequest): Promise<IPayouts.PayoutResponse> {
-        return getJsonResponse<IPayouts.PayoutRequest, IPayouts.PayoutResponse>(
+        return getJsonResponse.call<Payout, [IPayouts.PayoutRequest], Promise<IPayouts.PayoutResponse>>(
             this,
             request
         );

@@ -31,7 +31,7 @@ class GetCostEstimate extends Resource {
     }
 
     public post(request: IBinLookup.CostEstimateRequest): Promise<IBinLookup.CostEstimateResponse> {
-        return getJsonResponse<IBinLookup.CostEstimateRequest, IBinLookup.CostEstimateResponse>(
+        return getJsonResponse.call<GetCostEstimate, [IBinLookup.CostEstimateRequest], Promise<IBinLookup.CostEstimateResponse>>(
             this,
             request
         );

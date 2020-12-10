@@ -31,7 +31,7 @@ class PaymentLinks extends Resource {
     }
 
     public post(paymentLinkRequest: ICheckout.CreatePaymentLinkRequest): Promise<ICheckout.PaymentLinkResource> {
-        return getJsonResponse<ICheckout.CreatePaymentLinkRequest, ICheckout.PaymentLinkResource>(
+        return getJsonResponse.call<PaymentLinks, [ICheckout.CreatePaymentLinkRequest], Promise<ICheckout.PaymentLinkResource>>(
             this,
             paymentLinkRequest
         );
@@ -39,7 +39,7 @@ class PaymentLinks extends Resource {
 
     public get(linkId: string): Promise<ICheckout.PaymentLinkResource> {
         this.params = `/${linkId}`;
-        return getJsonResponse<{}, ICheckout.PaymentLinkResource>(
+        return getJsonResponse.call<PaymentLinks, [{}, { method: string }], Promise<ICheckout.PaymentLinkResource>>(
             this,
             {},
             { method: "GET" }
@@ -48,7 +48,7 @@ class PaymentLinks extends Resource {
 
     public patch(linkId: string, status: "expired"): Promise<ICheckout.PaymentLinkResource> {
         this.params = `/${linkId}`;
-        return getJsonResponse<{}, ICheckout.PaymentLinkResource>(
+        return getJsonResponse.call<PaymentLinks, [{}, { method: string }], Promise<ICheckout.PaymentLinkResource>>(
             this,
             { status },
             { method: "PATCH" }

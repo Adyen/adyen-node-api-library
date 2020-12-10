@@ -30,7 +30,7 @@ class SubmitThirdParty extends Resource {
     }
 
     public post(request: IPayouts.SubmitRequest): Promise<IPayouts.SubmitResponse> {
-        return getJsonResponse<IPayouts.SubmitRequest, IPayouts.SubmitResponse>(
+        return getJsonResponse.call<SubmitThirdParty, [IPayouts.SubmitRequest], Promise<IPayouts.SubmitResponse>>(
             this,
             request
         );

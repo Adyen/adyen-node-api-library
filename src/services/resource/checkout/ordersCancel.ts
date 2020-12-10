@@ -31,7 +31,7 @@ class OrdersCancel extends Resource {
     }
 
     public post(ordersCancelRequest: ICheckout.CheckoutCancelOrderRequest): Promise<ICheckout.CheckoutCancelOrderResponse> {
-        return getJsonResponse<ICheckout.CheckoutCancelOrderRequest, ICheckout.CheckoutCancelOrderResponse>(
+        return getJsonResponse.call<OrdersCancel, [ICheckout.CheckoutCancelOrderRequest], Promise<ICheckout.CheckoutCancelOrderResponse>>(
             this,
             ordersCancelRequest,
         );

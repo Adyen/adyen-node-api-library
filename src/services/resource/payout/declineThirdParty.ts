@@ -30,7 +30,7 @@ class DeclineThirdParty extends Resource {
     }
 
     public post(request: IPayouts.ModifyRequest): Promise<IPayouts.ModifyResponse> {
-        return getJsonResponse<IPayouts.ModifyRequest, IPayouts.ModifyResponse>(
+        return getJsonResponse.call<DeclineThirdParty, [IPayouts.ModifyRequest], Promise<IPayouts.ModifyResponse>>(
             this,
             request
         );

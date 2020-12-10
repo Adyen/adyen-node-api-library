@@ -31,7 +31,7 @@ class OriginKeys extends Resource {
     }
 
     public post(originKeysRequest: ICheckout.CheckoutUtilityRequest): Promise<ICheckout.CheckoutUtilityResponse> {
-        return getJsonResponse<ICheckout.CheckoutUtilityRequest, ICheckout.CheckoutUtilityResponse>(
+        return getJsonResponse.call<OriginKeys, [ICheckout.CheckoutUtilityRequest], Promise<ICheckout.CheckoutUtilityResponse>>(
             this,
             originKeysRequest,
         );

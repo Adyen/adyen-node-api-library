@@ -31,7 +31,7 @@ class ScheduleAccountUpdater extends Resource {
     }
 
     public post(request: IRecurring.ScheduleAccountUpdaterRequest): Promise<IRecurring.ScheduleAccountUpdaterResult> {
-        return getJsonResponse<IRecurring.ScheduleAccountUpdaterRequest, IRecurring.ScheduleAccountUpdaterResult>(
+        return getJsonResponse.call<ScheduleAccountUpdater, [IRecurring.ScheduleAccountUpdaterRequest], Promise<IRecurring.ScheduleAccountUpdaterResult>>(
             this,
             request,
         );

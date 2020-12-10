@@ -36,7 +36,7 @@ class Refund extends Resource {
         refundRequest: GenericRequest<IPayments.ModificationRequest>,
         requestOptions?: IRequest.Options,
     ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
+        return getJsonResponse.call<Refund, [IPayments.ModificationRequest, IRequest.Options | undefined], Promise<IPayments.ModificationResult>>(
             this,
             setApplicationInfo(refundRequest),
             requestOptions,

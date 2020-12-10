@@ -31,7 +31,7 @@ class Disable extends Resource {
     }
 
     public post(request: IRecurring.DisableRequest): Promise<IRecurring.DisableResult> {
-        return getJsonResponse<IRecurring.DisableRequest, IRecurring.DisableResult>(
+        return getJsonResponse.call<Disable, [IRecurring.DisableRequest], Promise<IRecurring.DisableResult>>(
             this,
             request,
         );

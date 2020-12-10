@@ -122,7 +122,7 @@ class Platforms extends Service {
     }
 
     createPostRequest = <T extends PlatformsTypes, U, V>(service: T): PostRequest<U, V> => {
-        return { post: (request: U): Promise<V> => getJsonResponse<U, V>(service, request) };
+        return { post: (request: U): Promise<V> => getJsonResponse.call<T, [U], Promise<V>>(service, request) };
     }
 
     public get Account(): {

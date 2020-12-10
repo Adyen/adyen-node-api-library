@@ -36,7 +36,7 @@ class AdjustAuthorisation extends Resource {
         adjustAuthorisationRequest: GenericRequest<IPayments.ModificationRequest>,
         requestOptions?: IRequest.Options,
     ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
+        return getJsonResponse.call<AdjustAuthorisation, [IPayments.ModificationRequest, IRequest.Options | undefined], Promise<IPayments.ModificationResult>>(
             this,
             setApplicationInfo(adjustAuthorisationRequest),
             requestOptions,

@@ -30,7 +30,7 @@ class StoreDetailAndSubmitThirdParty extends Resource {
     }
 
     public post(request: IPayouts.StoreDetailAndSubmitRequest): Promise<IPayouts.StoreDetailAndSubmitResponse> {
-        return getJsonResponse<IPayouts.StoreDetailAndSubmitRequest, IPayouts.StoreDetailAndSubmitResponse>(
+        return getJsonResponse.call<StoreDetailAndSubmitThirdParty, [IPayouts.StoreDetailAndSubmitRequest], Promise<IPayouts.StoreDetailAndSubmitResponse>>(
             this,
             request
         );

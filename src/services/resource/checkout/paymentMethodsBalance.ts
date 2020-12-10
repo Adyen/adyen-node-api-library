@@ -31,7 +31,7 @@ class PaymentMethodsBalance extends Resource {
     }
 
     public post(paymentMethodsBalanceRequest: ICheckout.CheckoutBalanceCheckRequest): Promise<ICheckout.CheckoutBalanceCheckResponse> {
-        return getJsonResponse<ICheckout.CheckoutBalanceCheckRequest, ICheckout.CheckoutBalanceCheckResponse>(
+        return getJsonResponse.call<PaymentMethodsBalance, [ICheckout.CheckoutBalanceCheckRequest], Promise<ICheckout.CheckoutBalanceCheckResponse>>(
             this,
             paymentMethodsBalanceRequest,
         );

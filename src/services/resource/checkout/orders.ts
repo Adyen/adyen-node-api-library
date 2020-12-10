@@ -36,7 +36,7 @@ class Orders extends Resource {
     }
 
     public post(ordersRequest: ICheckout.CheckoutCreateOrderRequest): Promise<ICheckout.CheckoutCreateOrderResponse> {
-        return getJsonResponse<ICheckout.CheckoutCreateOrderRequest, ICheckout.CheckoutCreateOrderResponse>(
+        return getJsonResponse.call<Orders, [ICheckout.CheckoutCreateOrderRequest], Promise<ICheckout.CheckoutCreateOrderResponse>>(
             this,
             ordersRequest,
         );

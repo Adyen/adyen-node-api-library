@@ -30,7 +30,7 @@ class StoreDetail extends Resource {
     }
 
     public post(request: IPayouts.StoreDetailRequest): Promise<IPayouts.StoreDetailResponse> {
-        return getJsonResponse<IPayouts.StoreDetailRequest, IPayouts.StoreDetailResponse>(
+        return getJsonResponse.call<StoreDetail, [IPayouts.StoreDetailRequest], Promise<IPayouts.StoreDetailResponse>>(
             this,
             request
         );
