@@ -150,7 +150,7 @@ describe("Checkout", (): void => {
             .reply(200, paymentsSuccess);
 
         const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
-        const paymentsResponse: ICheckout.PaymentResponse = await checkout.payments(paymentsRequest);
+        const paymentsResponse: ICheckout.PaymentResponse = await checkout.payments.post(paymentsRequest);
         expect(paymentsResponse.pspReference).toBeTruthy();
     });
 
@@ -161,7 +161,7 @@ describe("Checkout", (): void => {
                 .reply(401);
 
             const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
-            await checkout.payments(paymentsRequest);
+            await checkout.payments.post(paymentsRequest);
         } catch (e) {
             expect(e instanceof HttpClientException).toBeTruthy();
         }
@@ -174,7 +174,7 @@ describe("Checkout", (): void => {
         scope.post("/paymentMethods")
             .reply(200, paymentMethodsSuccess);
 
-        const paymentMethodsResponse = await checkout.paymentMethods(paymentMethodsRequest);
+        const paymentMethodsResponse = await checkout.paymentMethods.post(paymentMethodsRequest);
         if (paymentMethodsResponse && paymentMethodsResponse.paymentMethods) {
             expect(paymentMethodsResponse.paymentMethods.length).toBeGreaterThan(0);
         } else {
@@ -189,7 +189,7 @@ describe("Checkout", (): void => {
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
-        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
+        const paymentSuccessLinkResponse = await checkout.paymentLinks.post(createPaymentLinkRequest());
         expect(paymentSuccessLinkResponse).toBeTruthy();
     });
 
@@ -200,10 +200,10 @@ describe("Checkout", (): void => {
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
-        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
+        const paymentSuccessLinkResponse = await checkout.paymentLinks.post(createPaymentLinkRequest());
 
         scope.get(`/paymentLinks/${paymentSuccessLinkResponse.id}`).reply(200, paymentLinkSuccess);
-        const paymentLink = await checkout.getPaymentLinks(paymentSuccessLinkResponse.id);
+        const paymentLink = await checkout.paymentLinks.get(paymentSuccessLinkResponse.id);
         expect(paymentLink).toBeTruthy();
     });
 
@@ -214,10 +214,10 @@ describe("Checkout", (): void => {
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
-        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
+        const paymentSuccessLinkResponse = await checkout.paymentLinks.post(createPaymentLinkRequest());
 
         scope.patch(`/paymentLinks/${paymentSuccessLinkResponse.id}`).reply(200, { ...paymentLinkSuccess, status: "expired" });
-        const paymentLink = await checkout.updatePaymentLinks(paymentSuccessLinkResponse.id, "expired");
+        const paymentLink = await checkout.paymentLinks.patch(paymentSuccessLinkResponse.id, "expired");
         expect(paymentLink.status).toEqual("expired");
     });
 
@@ -226,7 +226,7 @@ describe("Checkout", (): void => {
         scope.post("/payments/details")
             .reply(200, paymentDetailsSuccess);
 
-        const paymentsResponse = await checkout.paymentsDetails(createPaymentsDetailsRequest());
+        const paymentsResponse = await checkout.payments.details.post(createPaymentsDetailsRequest());
         expect(paymentsResponse.resultCode).toEqual("Authorised");
     });
 
@@ -235,7 +235,7 @@ describe("Checkout", (): void => {
         scope.post("/paymentSession")
             .reply(200, paymentSessionSuccess);
         const paymentSessionRequest: ICheckout.PaymentSetupRequest = createPaymentSessionRequest();
-        const paymentSessionResponse = await checkout.paymentSession(paymentSessionRequest);
+        const paymentSessionResponse = await checkout.paymentSession.post(paymentSessionRequest);
         expect(paymentSessionResponse.paymentSession).not.toBeUndefined();
     });
 
@@ -246,7 +246,7 @@ describe("Checkout", (): void => {
         const paymentResultRequest: ICheckout.PaymentVerificationRequest = {
             payload: "This is a test payload",
         };
-        const paymentResultResponse = await checkout.paymentResult(paymentResultRequest);
+        const paymentResultResponse = await checkout.payments.result.post(paymentResultRequest);
         expect(paymentResultResponse.resultCode).toEqual("Authorised");
     });
 
@@ -268,7 +268,7 @@ describe("Checkout", (): void => {
             .reply(200, paymentsResultMultibancoSuccess);
 
         const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
-        const paymentsResponse: ICheckout.PaymentResponse = await checkout.payments(paymentsRequest);
+        const paymentsResponse: ICheckout.PaymentResponse = await checkout.payments.post(paymentsRequest);
 
         expect(paymentsResponse.pspReference).toBeTruthy();
         expect(paymentsResponse.additionalData).toBeTruthy();
@@ -285,7 +285,7 @@ describe("Checkout", (): void => {
             .post(`/${Client.CHECKOUT_API_VERSION}/originKeys`)
             .reply(200, originKeysSuccess);
 
-        const originKeysResponse = await checkoutUtility.originKeys(originKeysRequest);
+        const originKeysResponse = await checkoutUtility.originKeys.post(originKeysRequest);
         if (originKeysResponse.originKeys) {
             return expect(originKeysResponse.originKeys["https://www.your-domain.com"].startsWith("pub.v2")).toBeTruthy();
         }
@@ -306,7 +306,7 @@ describe("Checkout", (): void => {
         scope.post("/paymentMethods/balance")
             .reply(200,  paymentMethodsBalanceResponse);
 
-        const paymentsResponse: ICheckout.CheckoutBalanceCheckResponse = await checkout.paymentMethodsBalance(paymentMethodsRequest);
+        const paymentsResponse: ICheckout.CheckoutBalanceCheckResponse = await checkout.paymentMethods.balance.post(paymentMethodsRequest);
         expect(paymentsResponse.balance.value).toEqual(1000);
     });
 
@@ -323,7 +323,7 @@ describe("Checkout", (): void => {
         scope.post("/orders")
             .reply(200,  orderResponse);
 
-        const response: ICheckout.CheckoutCreateOrderResponse = await checkout.orders(orderRequest);
+        const response: ICheckout.CheckoutCreateOrderResponse = await checkout.orders.post(orderRequest);
         expect(response).toBeTruthy();
     });
 
@@ -340,7 +340,7 @@ describe("Checkout", (): void => {
         scope.post("/orders")
             .reply(200,  orderResponse);
 
-        const createOrderResponse: ICheckout.CheckoutCreateOrderResponse = await checkout.orders(orderRequest);
+        const createOrderResponse: ICheckout.CheckoutCreateOrderResponse = await checkout.orders.post(orderRequest);
         
         const orderCancelResponse: ICheckout.CheckoutCancelOrderResponse = {
             pspReference: "mocked_psp_ref",
@@ -349,7 +349,7 @@ describe("Checkout", (): void => {
         scope.post("/orders/cancel")
             .reply(200,  orderCancelResponse);
 
-        const response: ICheckout.CheckoutCancelOrderResponse = await checkout.ordersCancel({
+        const response: ICheckout.CheckoutCancelOrderResponse = await checkout.orders.cancel.post({
             order: {
                 orderData: createOrderResponse.orderData,
                 pspReference: createOrderResponse.pspReference!

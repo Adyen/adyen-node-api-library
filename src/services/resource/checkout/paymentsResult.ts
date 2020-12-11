@@ -18,6 +18,7 @@
  */
 
 import Client from "../../../client";
+import getJsonResponse from "../../../helpers/getJsonResponse";
 import Service from "../../../service";
 import Resource from "../../resource";
 
@@ -28,6 +29,14 @@ class PaymentsResult extends Resource {
             `${service.client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}/payments/result`,
         );
     }
+
+    public post(paymentResultRequest: ICheckout.PaymentVerificationRequest): Promise<ICheckout.PaymentVerificationResponse> {
+        return getJsonResponse.call<PaymentsResult, [ICheckout.PaymentVerificationRequest], Promise<ICheckout.PaymentVerificationResponse>>(
+            this,
+            paymentResultRequest,
+        );
+    }
+
 }
 
 export default PaymentsResult;

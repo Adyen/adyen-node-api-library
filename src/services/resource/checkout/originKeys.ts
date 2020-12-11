@@ -18,6 +18,7 @@
  */
 
 import Client from "../../../client";
+import getJsonResponse from "../../../helpers/getJsonResponse";
 import Service from "../../../service";
 import Resource from "../../resource";
 
@@ -28,6 +29,14 @@ class OriginKeys extends Resource {
             `${service.client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}/originKeys`,
         );
     }
+
+    public post(originKeysRequest: ICheckout.CheckoutUtilityRequest): Promise<ICheckout.CheckoutUtilityResponse> {
+        return getJsonResponse.call<OriginKeys, [ICheckout.CheckoutUtilityRequest], Promise<ICheckout.CheckoutUtilityResponse>>(
+            this,
+            originKeysRequest,
+        );
+    }
+
 }
 
 export default OriginKeys;

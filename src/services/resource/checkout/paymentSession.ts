@@ -18,7 +18,9 @@
  */
 
 import Client from "../../../client";
+import getJsonResponse from "../../../helpers/getJsonResponse";
 import Service from "../../../service";
+import { IRequest } from "../../../typings/requestOptions";
 import Resource from "../../resource";
 
 class PaymentSession extends Resource {
@@ -26,6 +28,17 @@ class PaymentSession extends Resource {
         super(
             service,
             `${service.client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}/paymentSession`,
+        );
+    }
+
+    public post(
+        paymentSessionRequest: ICheckout.PaymentSetupRequest,
+        requestOptions?: IRequest.Options,
+    ): Promise<ICheckout.PaymentSetupResponse> {
+        return getJsonResponse.call<PaymentSession, [ICheckout.PaymentSetupRequest, IRequest.Options | undefined], Promise<ICheckout.PaymentSetupResponse>>(
+            this,
+            paymentSessionRequest,
+            requestOptions,
         );
     }
 }

@@ -63,7 +63,7 @@ describe("Recurring", (): void => {
 
         const request = createRecurringDetailsRequest();
         try {
-            const result = await recurring.listRecurringDetails(request);
+            const result = await recurring.listRecurringDetails.post(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
@@ -76,7 +76,7 @@ describe("Recurring", (): void => {
             .reply(200, paymentsSuccess);
 
         const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
-        const res = await checkout.payments(paymentsRequest);
+        const res = await checkout.payments.post(paymentsRequest);
 
         scope.post("/disable")
             .reply(200, disableSuccess);
@@ -88,7 +88,7 @@ describe("Recurring", (): void => {
         };
 
         try {
-            const result = await recurring.disable(request);
+            const result = await recurring.disable.post(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
@@ -119,7 +119,7 @@ describe("Recurring", (): void => {
         };
 
         try {
-            const result = await recurring.scheduleAccountUpdater(request);
+            const result = await recurring.scheduleAccountUpdater.post(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);

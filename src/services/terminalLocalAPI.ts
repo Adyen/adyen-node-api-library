@@ -63,7 +63,7 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
             saleToPOIRequest: saleToPoiSecuredMessage,
         }, "TerminalApiSecuredRequest");
 
-        const jsonResponse = await getJsonResponse<TerminalApiSecuredRequest, TerminalApiResponse>(
+        const jsonResponse = await getJsonResponse.call<LocalRequest, [TerminalApiSecuredRequest], Promise<TerminalApiResponse>>(
             this.localRequest,
             securedPaymentRequest
         );

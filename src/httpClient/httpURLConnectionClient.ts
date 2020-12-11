@@ -70,12 +70,6 @@ class HttpURLConnectionClient implements ClientInterface {
         return this.doPostRequest(httpConnection, json);
     }
 
-    public post(endpoint: string, postParameters: [string, string][], config: Config): Promise<HttpClientException | string> {
-        const postQuery: string = this.getQuery(postParameters);
-        const connectionRequest: ClientRequest = this.createRequest(endpoint, {}, config.applicationName);
-        return this.doPostRequest(connectionRequest, postQuery);
-    }
-
     private createRequest(endpoint: string, requestOptions: IRequest.Options, applicationName?: string): ClientRequest {
         if (!requestOptions.headers) {
             requestOptions.headers = {};
@@ -109,10 +103,6 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.headers[ApiConstants.USER_AGENT] = `${applicationName} ${Client.LIB_NAME}/${Client.LIB_VERSION}`;
 
         return httpsRequest(requestOptions);
-    }
-
-    private getQuery(params: [string, string][]): string {
-        return params.map(([key, value]): string => `${key}=${value}`).join("&");
     }
 
     private doPostRequest(connectionRequest: ClientRequest, json: string): Promise<HttpClientException | string> {

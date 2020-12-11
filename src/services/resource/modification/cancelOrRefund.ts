@@ -19,6 +19,10 @@
 import Client from "../../../client";
 import Service from "../../../service";
 import Resource from "../../resource";
+import getJsonResponse from "../../../helpers/getJsonResponse";
+import { IRequest } from "../../../typings/requestOptions";
+import { GenericRequest } from "../../../typings/genericRequest";
+import setApplicationInfo from "../../../helpers/setApplicationInfo";
 
 class CancelOrRefund extends Resource {
     public constructor(service: Service) {
@@ -27,6 +31,18 @@ class CancelOrRefund extends Resource {
             `${service.client.config.endpoint}/pal/servlet/Payment/${Client.API_VERSION}/cancelOrRefund`,
         );
     }
+
+    public post(
+        cancelOrRefundRequest: GenericRequest<IPayments.ModificationRequest>,
+        requestOptions?: IRequest.Options,
+    ): Promise<IPayments.ModificationResult> {
+        return getJsonResponse.call<CancelOrRefund, [IPayments.ModificationRequest, IRequest.Options | undefined], Promise<IPayments.ModificationResult>>(
+            this,
+            setApplicationInfo(cancelOrRefundRequest),
+            requestOptions,
+        );
+    }
+
 }
 
 export default CancelOrRefund;
