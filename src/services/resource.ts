@@ -24,9 +24,15 @@ import ApiException from "./exception/apiException";
 import ClientInterface from "../httpClient/clientInterface";
 import { IRequest } from "../typings/requestOptions";
 
+type Req = { [key: string]: any };
+type ReqWithId = { id?: string } & Req;
+
 abstract class Resource {
     protected endpoint: string;
-    protected _params: string = '';
+    protected post?(req: Req, requestOptions?: IRequest.Options): Promise<{}>;
+    protected patch?(req?: ReqWithId, requestOptions?: IRequest.Options): Promise<{}>;
+    protected get?(req?: ReqWithId, requestOptions?: IRequest.Options): Promise<{}>;
+    protected delete?(req?: ReqWithId, requestOptions?: IRequest.Options): Promise<{}>;
     private service: Service;
 
     protected constructor(service: Service, endpoint: string) {
@@ -34,16 +40,12 @@ abstract class Resource {
         this.endpoint = endpoint;
     }
 
-    protected set params(par: string) {
-        this._params = par;
-    }
-
     protected request(json: string, requestOptions?: IRequest.Options): Promise<string | HttpClientException | ApiException> {
         const clientInterface: ClientInterface = this.service.client.httpClient;
         const config: Config = this.service.client.config;
 
         return clientInterface.request(
-            `${this.endpoint}${this._params}`,
+            this.endpoint,
             json, config,
             this.service.apiKeyRequired,
             requestOptions,

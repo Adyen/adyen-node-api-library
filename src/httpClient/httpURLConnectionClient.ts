@@ -76,10 +76,12 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
         const url = new URL(endpoint);
+        const additionalPathname = requestOptions.id ? `/${requestOptions.id}` : "";
+        const pathname = `${url.pathname}${additionalPathname}`
         requestOptions.hostname = url.hostname;
         requestOptions.protocol = url.protocol;
         requestOptions.port = url.port;
-        requestOptions.path = url.pathname;
+        requestOptions.path = pathname;
 
         if (requestOptions && requestOptions.idempotencyKey) {
             requestOptions.headers[ApiConstants.IDEMPOTENCY_KEY] = requestOptions.idempotencyKey;
