@@ -21,6 +21,8 @@ import Client from "../../../client";
 import getJsonResponse from "../../../helpers/getJsonResponse";
 import Service from "../../../service";
 import Resource from "../../resource";
+import { HTTPMethod } from "../../../typings/HTTPMethod";
+import { IRequest } from "../../../typings/requestOptions";
 
 class PaymentLinks extends Resource {
     public constructor(service: Service) {
@@ -37,21 +39,19 @@ class PaymentLinks extends Resource {
         );
     }
 
-    public get(linkId: string): Promise<ICheckout.PaymentLinkResource> {
-        this.params = `/${linkId}`;
-        return getJsonResponse.call<PaymentLinks, [{}, { method: string }], Promise<ICheckout.PaymentLinkResource>>(
+    public get({ id }: { id: string }): Promise<ICheckout.PaymentLinkResource> {
+        return getJsonResponse.call<PaymentLinks, [{}, IRequest.Options], Promise<ICheckout.PaymentLinkResource>>(
             this,
             {},
-            { method: "GET" }
+            { id, method: HTTPMethod.GET }
         );
     }
 
-    public patch(linkId: string, status: "expired"): Promise<ICheckout.PaymentLinkResource> {
-        this.params = `/${linkId}`;
-        return getJsonResponse.call<PaymentLinks, [{}, { method: string }], Promise<ICheckout.PaymentLinkResource>>(
+    public patch({ id, status }: { id: string, status: "expired" }): Promise<ICheckout.PaymentLinkResource> {
+        return getJsonResponse.call<PaymentLinks, [{}, IRequest.Options], Promise<ICheckout.PaymentLinkResource>>(
             this,
             { status },
-            { method: "PATCH" }
+            { id, method: HTTPMethod.PATCH }
         );
     }
 }

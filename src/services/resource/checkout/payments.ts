@@ -47,7 +47,6 @@ class Payments extends Resource {
             requestOptions,
         );
     }
-
 }
 
 export default Payments;

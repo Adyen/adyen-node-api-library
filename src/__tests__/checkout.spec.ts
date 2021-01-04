@@ -203,7 +203,7 @@ describe("Checkout", (): void => {
         const paymentSuccessLinkResponse = await checkout.paymentLinks.post(createPaymentLinkRequest());
 
         scope.get(`/paymentLinks/${paymentSuccessLinkResponse.id}`).reply(200, paymentLinkSuccess);
-        const paymentLink = await checkout.paymentLinks.get(paymentSuccessLinkResponse.id);
+        const paymentLink = await checkout.paymentLinks.get({ id: paymentSuccessLinkResponse.id });
         expect(paymentLink).toBeTruthy();
     });
 
@@ -217,7 +217,7 @@ describe("Checkout", (): void => {
         const paymentSuccessLinkResponse = await checkout.paymentLinks.post(createPaymentLinkRequest());
 
         scope.patch(`/paymentLinks/${paymentSuccessLinkResponse.id}`).reply(200, { ...paymentLinkSuccess, status: "expired" });
-        const paymentLink = await checkout.paymentLinks.patch(paymentSuccessLinkResponse.id, "expired");
+        const paymentLink = await checkout.paymentLinks.patch({ id: paymentSuccessLinkResponse.id, status: "expired" });
         expect(paymentLink.status).toEqual("expired");
     });
 
