@@ -3188,9 +3188,9 @@ jest-snapshot@^25.5.1:
     semver "^6.3.0"
 
 jest-ts-auto-mock@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/jest-ts-auto-mock/-/jest-ts-auto-mock-1.0.11.tgz#4a9824026013b55f118262262dce1b0d9449b396"
-  integrity sha512-HJ5UKgPLyHxWNpTQ0lguHO7dYx/rtxa1hk1/fzZZwJmB5f4b2s1Lx7N5QjRpza2UIlKDODo2Wv1mP7nv9Dk6bQ==
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/jest-ts-auto-mock/-/jest-ts-auto-mock-1.0.12.tgz#c913935cbf049379a0dd7280bcef5fe5ad90565e"
+  integrity sha512-Hotcti3+dy+MUi5+lxtRF6sPvvo3d+94UHc0l/iDhw1/Mk+LAuDUgvY45TW5V3VmGbYxQsNE3oyABVYEHP7Gzw==
 
 jest-util@^25.5.0:
   version "25.5.0"
