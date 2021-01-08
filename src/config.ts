@@ -34,6 +34,7 @@ interface ConfigConstructor {
     checkoutEndpoint?: string;
     terminalApiCloudEndpoint?: string;
     terminalApiLocalEndpoint?: string;
+    issuingApiEndpoint?: string;
 }
 
 class Config {
@@ -48,6 +49,7 @@ class Config {
     public connectionTimeoutMillis?: number;
     public readTimeoutMillis?: number;
     public certificatePath?: string;
+    public issuingApiEndpoint?: string;
 
     public hppEndpoint?: string;
     public skinCode?: string;
@@ -57,6 +59,7 @@ class Config {
 
     public terminalApiCloudEndpoint?: string;
     public terminalApiLocalEndpoint?: string;
+
 
     public constructor(options: ConfigConstructor = {}) {
         if (options.username) this.username = options.username;
@@ -76,6 +79,7 @@ class Config {
         if (options.checkoutEndpoint) this._checkoutEndpoint = options.checkoutEndpoint;
         if (options.terminalApiCloudEndpoint) this.terminalApiCloudEndpoint = options.terminalApiCloudEndpoint;
         if (options.terminalApiLocalEndpoint) this.terminalApiLocalEndpoint = options.terminalApiLocalEndpoint;
+        if (options.issuingApiEndpoint) this.issuingApiEndpoint = options.issuingApiEndpoint;
     }
 
     public set checkoutEndpoint(checkoutEndpoint: string | undefined) {

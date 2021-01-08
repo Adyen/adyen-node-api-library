@@ -69,6 +69,9 @@ class Client {
     public static TERMINAL_API_ENDPOINT_TEST = "https://terminal-api-test.adyen.com";
     public static TERMINAL_API_ENDPOINT_LIVE = "https://terminal-api-live.adyen.com";
     public static ENDPOINT_PROTOCOL = "https://";
+    public static ISSUING_API_VERSION = "v1";
+    public static ISSUING_ENDPOINT_LIVE = "https://balanceplatform-api-live.adyen.com/bcl";
+    public static ISSUING_ENDPOINT_TEST = "https://balanceplatform-api-test.adyen.com/bcl";
 
     private _httpClient!: ClientInterface;
     public config: Config;
@@ -107,10 +110,12 @@ class Client {
             this.config.hppEndpoint = Client.HPP_TEST;
             this.config.checkoutEndpoint = Client.CHECKOUT_ENDPOINT_TEST;
             this.config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
+            this.config.issuingApiEndpoint = Client.ISSUING_ENDPOINT_TEST;
         } else if (environment === "LIVE") {
             this.config.endpoint = Client.ENDPOINT_LIVE;
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_LIVE;
             this.config.hppEndpoint = Client.HPP_LIVE;
+            this.config.issuingApiEndpoint = Client.ISSUING_ENDPOINT_LIVE;
             if (liveEndpointUrlPrefix) {
                 this.config.endpoint =
                     `${Client.ENDPOINT_PROTOCOL}${liveEndpointUrlPrefix}${Client.ENDPOINT_LIVE_SUFFIX}`;

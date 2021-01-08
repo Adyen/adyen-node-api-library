@@ -75,14 +75,28 @@ class HttpURLConnectionClient implements ClientInterface {
             requestOptions.headers = {};
         }
 
+        if (requestOptions.params) {
+            for (const param in requestOptions.params) {
+                endpoint = endpoint.replace(`{${param}}`, requestOptions.params[param]);
+            }
+        } else {
+            const re = /\/\{.+\}/g;
+            endpoint = endpoint.replace(re, "");
+        }
+
         const url = new URL(endpoint);
-        const additionalPathname = requestOptions.id ? `/${requestOptions.id}` : "";
-        const pathname = `${url.pathname}${additionalPathname}`
+
+        if (requestOptions.queries) {
+            for (const query in requestOptions.queries) {
+                url.searchParams.set(query, requestOptions.queries[query]);
+            }
+        }
+
         requestOptions.hostname = url.hostname;
         requestOptions.protocol = url.protocol;
         requestOptions.port = url.port;
-        requestOptions.path = pathname;
-
+        requestOptions.path = url.search ? `${url.pathname}${url.search}` : url.pathname;
+        
         if (requestOptions && requestOptions.idempotencyKey) {
             requestOptions.headers[ApiConstants.IDEMPOTENCY_KEY] = requestOptions.idempotencyKey;
             delete requestOptions.idempotencyKey;
@@ -139,7 +153,7 @@ class HttpURLConnectionClient implements ClientInterface {
 
                     if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
                         try {
-                            const formattedData: ApiError | {[key: string]: never} = JSON.parse(response.body);
+                            const formattedData: ApiError | { [key: string]: never } = JSON.parse(response.body);
                             const isApiError = "status" in formattedData;
                             const isRequestError = "errors" in formattedData;
 

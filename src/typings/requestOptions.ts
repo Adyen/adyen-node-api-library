@@ -25,7 +25,8 @@ import * as https from "https";
 
 export namespace IRequest {
     export type Options = https.RequestOptions & {
-        id?: string;
+        params?: { [key: string]: string };
+        queries?: { [key: string]: string };
         idempotencyKey?: string;
     };
 }

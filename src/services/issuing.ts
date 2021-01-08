@@ -16,13 +16,17 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
+import ApiKeyAuthenticatedService from "../apiKeyAuthenticatedService";
+import Client from "../client";
+import BalancePlatforms from "./resource/issuing/balancePlatforms";
 
-export { default as TerminalLocalAPI } from "./terminalLocalAPI";
-export { default as TerminalCloudAPI } from "./terminalCloudAPI";
-export { default as CheckoutAPI } from "./checkout";
-export { default as Recurring } from "./recurring";
-export { default as Modification } from "./modification";
-export { default as BinLookup } from "./binLookup";
-export { default as Payouts } from "./payouts";
-export { default as Platforms } from "./platforms";
-export { default as Issuing } from "./issuing";
+class Issuing extends ApiKeyAuthenticatedService {
+    public readonly balancePlatforms: BalancePlatforms;
+
+    public constructor(client: Client) {
+        super(client);
+        this.balancePlatforms = new BalancePlatforms(this);
+    }
+}
+
+export default Issuing;

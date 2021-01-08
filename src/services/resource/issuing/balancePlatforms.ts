@@ -17,43 +17,33 @@
  * See the LICENSE file for more info.
  */
 
+import Resource from "../../resource";
+import Service from "../../../service";
 import Client from "../../../client";
 import getJsonResponse from "../../../helpers/getJsonResponse";
-import Service from "../../../service";
-import Resource from "../../resource";
+import { BalancePlatform } from "../../../typings/issuing/balancePlatform";
 import { HTTPMethod } from "../../../typings/HTTPMethod";
 import { IRequest } from "../../../typings/requestOptions";
+import AccountHolders from "./accountHolders";
 
-class PaymentLinks extends Resource {
+class BalancePlatforms extends Resource {
+    public readonly accountHolders: AccountHolders;
+
     public constructor(service: Service) {
         super(
             service,
-            `${service.client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}/paymentLinks/{id}`,
+            `${service.client.config.issuingApiEndpoint}/${Client.ISSUING_API_VERSION}/balancePlatforms/{id}`
         );
+        this.accountHolders = new AccountHolders(service);
     }
 
-    public post(paymentLinkRequest: ICheckout.CreatePaymentLinkRequest): Promise<ICheckout.PaymentLinkResource> {
-        return getJsonResponse.call<PaymentLinks, [ICheckout.CreatePaymentLinkRequest], Promise<ICheckout.PaymentLinkResource>>(
-            this,
-            paymentLinkRequest
-        );
-    }
-
-    public get({ id }: { id: string }): Promise<ICheckout.PaymentLinkResource> {
-        return getJsonResponse.call<PaymentLinks, [{}, IRequest.Options], Promise<ICheckout.PaymentLinkResource>>(
+    public get({ id }: { id: string }): Promise<BalancePlatform> {
+        return getJsonResponse.call<BalancePlatforms, [{}, IRequest.Options], Promise<BalancePlatform>>(
             this,
             {},
             { params: { id }, method: HTTPMethod.GET }
         );
     }
-
-    public patch({ id, status }: { id: string; status: "expired" }): Promise<ICheckout.PaymentLinkResource> {
-        return getJsonResponse.call<PaymentLinks, [{}, IRequest.Options], Promise<ICheckout.PaymentLinkResource>>(
-            this,
-            { status },
-            { params: { id }, method: HTTPMethod.PATCH }
-        );
-    }
 }
 
-export default PaymentLinks;
+export default BalancePlatforms;
