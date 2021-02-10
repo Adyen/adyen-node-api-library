@@ -52,6 +52,7 @@ class Client {
     public static HPP_LIVE = "https://live.adyen.com/hpp";
     public static MARKETPAY_ENDPOINT_TEST = "https://cal-test.adyen.com/cal/services";
     public static MARKETPAY_ENDPOINT_LIVE = "https://cal-live.adyen.com/cal/services";
+    public static CHECKOUT_API_VERSION = "v66";
     public static API_VERSION = "v64";
     public static RECURRING_API_VERSION = "v49";
     public static MARKETPAY_ACCOUNT_API_VERSION = "v6";
@@ -63,7 +64,6 @@ class Client {
     public static LIB_VERSION: string = version;
     public static CHECKOUT_ENDPOINT_TEST = "https://checkout-test.adyen.com/checkout";
     public static CHECKOUT_ENDPOINT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
-    public static CHECKOUT_API_VERSION = "v64";
     public static BIN_LOOKUP_PAL_SUFFIX = "/pal/servlet/BinLookup/";
     public static BIN_LOOKUP_API_VERSION = "v50";
     public static TERMINAL_API_ENDPOINT_TEST = "https://terminal-api-test.adyen.com";
