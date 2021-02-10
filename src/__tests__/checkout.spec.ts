@@ -67,8 +67,6 @@ export function createPaymentsCheckoutRequest(): ICheckout.PaymentRequest {
         paymentMethod: paymentMethodDetails,
         reference,
         returnUrl: "https://your-company.com/...",
-        enableRecurring: true,
-        enableOneClick: true,
         shopperReference: "shopperReference",
         storePaymentMethod: true
     };
