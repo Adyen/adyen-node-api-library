@@ -53,7 +53,7 @@
     "ts-jest": "25.5.1",
     "ts-loader": "8.0.10",
     "ttypescript": "^1.5.10",
-    "typescript": "3.9.7"
+    "typescript": "3.9.8"
   },
   "dependencies": {
     "https-proxy-agent": "5.0.0"
