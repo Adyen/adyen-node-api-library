@@ -42,7 +42,7 @@ class NexoCrypto {
         securityKey: SecurityKey,
     ): SaleToPOISecuredMessage {
         const derivedKey: NexoDerivedKey = NexoDerivedKeyGenerator.deriveKeyMaterial(securityKey.passphrase);
-        const saleToPoiMessageByteArray = Buffer.from(saleToPoiMessageJson, "ascii");
+        const saleToPoiMessageByteArray = Buffer.from(saleToPoiMessageJson, "utf-8");
         const ivNonce = NexoCrypto.generateRandomIvNonce();
         const encryptedSaleToPoiMessage = NexoCrypto.crypt(saleToPoiMessageByteArray, derivedKey, ivNonce, Modes.ENCRYPT);
         const encryptedSaleToPoiMessageHmac = NexoCrypto.hmac(saleToPoiMessageByteArray, derivedKey);
