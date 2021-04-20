@@ -26,6 +26,7 @@ interface ClientInterface {
     request(
         endpoint: string, json: string, config: Config, isApiKeyRequired: boolean, requestOptions?: IRequest.Options,
     ): Promise<string | HttpClientException | ApiException>;
+    post(endpoint: string, postParameters: [string, string][], config: Config): Promise<HttpClientException | string>;
     proxy?: AgentOptions;
 }
 

@@ -41,7 +41,7 @@ const getResponse = async ({apiKey , environment }: { apiKey: string; environmen
     const ErrorException = errorType === "ApiException" ? ApiException : HttpClientException;
 
     try {
-        await checkout.payments.post(createPaymentsCheckoutRequest());
+        await checkout.payments(createPaymentsCheckoutRequest());
         fail("request should fail");
     } catch (e) {
         expect(e instanceof ErrorException).toBeTruthy();

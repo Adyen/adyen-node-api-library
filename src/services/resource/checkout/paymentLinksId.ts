@@ -16,17 +16,25 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
+
 import Client from "../../../client";
 import Service from "../../../service";
 import Resource from "../../resource";
 
-class Capture extends Resource {
+class PaymentLinksId extends Resource {
+    static _id: string;
+
     public constructor(service: Service) {
         super(
             service,
-            `${service.client.config.endpoint}/pal/servlet/Payment/${Client.API_VERSION}/capture`,
+            `${service.client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}/paymentLinks`,
         );
+    }
+
+    public set id(id: string) {
+        PaymentLinksId._id = id;
+        this.endpoint = `${this.endpoint}/${PaymentLinksId._id}`;
     }
 }
 
-export default Capture;
+export default PaymentLinksId;

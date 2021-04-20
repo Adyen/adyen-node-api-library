@@ -18,7 +18,6 @@
  */
 
 import Client from "../../../client";
-import getJsonResponse from "../../../helpers/getJsonResponse";
 import Service from "../../../service";
 import Resource from "../../resource";
 
@@ -29,14 +28,6 @@ class PaymentMethodsBalance extends Resource {
             `${service.client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}/paymentMethods/balance`,
         );
     }
-
-    public post(paymentMethodsBalanceRequest: ICheckout.CheckoutBalanceCheckRequest): Promise<ICheckout.CheckoutBalanceCheckResponse> {
-        return getJsonResponse.call<PaymentMethodsBalance, [ICheckout.CheckoutBalanceCheckRequest], Promise<ICheckout.CheckoutBalanceCheckResponse>>(
-            this,
-            paymentMethodsBalanceRequest,
-        );
-    }
-
 }
 
 export default PaymentMethodsBalance;
