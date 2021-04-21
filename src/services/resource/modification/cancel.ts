@@ -19,27 +19,12 @@
 import Client from "../../../client";
 import Service from "../../../service";
 import Resource from "../../resource";
-import { GenericRequest } from "../../../typings/genericRequest";
-import { IRequest } from "../../../typings/requestOptions";
-import getJsonResponse from "../../../helpers/getJsonResponse";
-import setApplicationInfo from "../../../helpers/setApplicationInfo";
 
 class Cancel extends Resource {
     public constructor(service: Service) {
         super(
             service,
             `${service.client.config.endpoint}/pal/servlet/Payment/${Client.API_VERSION}/cancel`,
-        );
-    }
-    
-    public post(
-        cancelRequest: GenericRequest<IPayments.ModificationRequest>,
-        requestOptions?: IRequest.Options,
-    ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse.call<Cancel, [IPayments.ModificationRequest, IRequest.Options | undefined], Promise<IPayments.ModificationResult>>(
-            this,
-            setApplicationInfo(cancelRequest),
-            requestOptions,
         );
     }
 }
