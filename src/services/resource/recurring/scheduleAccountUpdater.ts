@@ -20,20 +20,12 @@
 import Client from "../../../client";
 import Service from "../../../service";
 import Resource from "../../resource";
-import getJsonResponse from "../../../helpers/getJsonResponse";
 
 class ScheduleAccountUpdater extends Resource {
     public constructor(service: Service) {
         super(
             service,
             `${service.client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}/scheduleAccountUpdater`,
-        );
-    }
-
-    public post(request: IRecurring.ScheduleAccountUpdaterRequest): Promise<IRecurring.ScheduleAccountUpdaterResult> {
-        return getJsonResponse.call<ScheduleAccountUpdater, [IRecurring.ScheduleAccountUpdaterRequest], Promise<IRecurring.ScheduleAccountUpdaterResult>>(
-            this,
-            request,
         );
     }
 }

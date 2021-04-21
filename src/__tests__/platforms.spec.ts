@@ -121,7 +121,7 @@ describe("Platforms Test", function () {
                 async (...args) => {
                     const service = platforms.Account;
                     scope.post(`/Account/${Client.MARKETPAY_ACCOUNT_API_VERSION}//${args[0]}`).reply(200, args[2]);
-                    const result = await service[args[0] as string].post(args[1] as never);
+                    const result = await service[args[0] as string](args[1] as never);
                     expect(result).toMatchObject(args[2]);
                 }
             );
@@ -144,7 +144,7 @@ describe("Platforms Test", function () {
                 const fund = platforms.Fund;
                 scope.post(`/Fund/${Client.MARKETPAY_FUND_API_VERSION}//${args[0]}`).reply(200, args[2]);
 
-                const result = await fund[args[0] as string].post(args[1] as never);
+                const result = await fund[args[0] as string](args[1] as never);
                 expect(result).toMatchObject(args[2]);
             }
         );
@@ -166,7 +166,7 @@ describe("Platforms Test", function () {
                 const notificationConfiguration = platforms.NotificationConfiguration;
                 scope.post(`/Notification/${Client.MARKETPAY_NOTIFICATION_CONFIGURATION_API_VERSION}//${args[0]}`).reply(200, args[2]);
 
-                const result = await notificationConfiguration[args[0] as string].post(args[1] as never);
+                const result = await notificationConfiguration[args[0] as string](args[1] as never);
                 expect(result).toMatchObject(args[2]);
             }
         );
@@ -182,7 +182,7 @@ describe("Platforms Test", function () {
                 const hostedOnboardingPage = platforms.HostedOnboardingPage;
                 scope.post(`/Hop/${Client.MARKETPAY_HOP_API_VERSION}//${args[0]}`).reply(200, args[2]);
 
-                const result = await hostedOnboardingPage[args[0] as string].post(args[1] as never);
+                const result = await hostedOnboardingPage[args[0] as string](args[1] as never);
                 expect(result).toMatchObject(args[2]);
             }
         );
@@ -191,46 +191,46 @@ describe("Platforms Test", function () {
 
 describe.skip("Platforms Test E2E", function(): void {
     beforeAll(async (done) => {
-        accountHolder = await platforms.Account.createAccountHolder.post({
+        accountHolder = await platforms.Account.createAccountHolder({
             accountHolderCode: generateRandomCode(),
             accountHolderDetails,
             legalEntity: "Individual",
         });
 
-        account = await platforms.Account.createAccount.post({
+        account = await platforms.Account.createAccount({
             accountHolderCode: generateRandomCode(),
             description: "This is a new account",
             metadata: {meta: "data"},
             payoutSchedule: "WEEKLY"
         });
 
-        accountHolderToSuspend = await platforms.Account.createAccountHolder.post({
+        accountHolderToSuspend = await platforms.Account.createAccountHolder({
             accountHolderCode: generateRandomCode(),
             accountHolderDetails,
             legalEntity: "Individual"
         });
 
-        accountToClose = await platforms.Account.createAccount.post({
+        accountToClose = await platforms.Account.createAccount({
             accountHolderCode: generateRandomCode(),
             description: "This is a new account",
             metadata: {meta: "data"},
             payoutSchedule: "WEEKLY"
         });
 
-        accountHolderToUnSuspend = await platforms.Account.createAccountHolder.post({
+        accountHolderToUnSuspend = await platforms.Account.createAccountHolder({
             accountHolderCode: generateRandomCode(),
             accountHolderDetails,
             legalEntity: "Individual"
         });
-        await platforms.Account.suspendAccountHolder.post({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode});
+        await platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode});
 
-        accountHolderToClose = await platforms.Account.createAccountHolder.post({
+        accountHolderToClose = await platforms.Account.createAccountHolder({
             accountHolderCode: generateRandomCode(),
             accountHolderDetails,
             legalEntity: "Individual"
         });
 
-        notificationConfigurationToRetrieve = await platforms.NotificationConfiguration.createNotificationConfiguration.post({
+        notificationConfigurationToRetrieve = await platforms.NotificationConfiguration.createNotificationConfiguration({
             configurationDetails: {
                 ...notificationConfigurationDetails,
                 description: `${generateRandomCode()}`
@@ -252,7 +252,7 @@ describe.skip("Platforms Test E2E", function(): void {
             it("should get account holder", async function() {
                 nock.restore();
                 try {
-                    const result = await platforms.Account.getAccountHolder.post({
+                    const result = await platforms.Account.getAccountHolder({
                         accountHolderCode: accountHolder.accountHolderCode,
                     });
                     expect(result.accountHolderDetails.email).toEqual("random_email@example.com");
@@ -264,7 +264,7 @@ describe.skip("Platforms Test E2E", function(): void {
             it("should update account holder", async function() {
                 nock.restore();
                 try {
-                    const result = await platforms.Account.updateAccountHolder.post({
+                    const result = await platforms.Account.updateAccountHolder({
                         accountHolderCode: accountHolder.accountHolderCode,
                         accountHolderDetails: {
                             ...accountHolderDetails,
@@ -282,7 +282,7 @@ describe.skip("Platforms Test E2E", function(): void {
             it("should check account holder", async function() {
                 nock.restore();
                 try {
-                    const result = await platforms.Account.checkAccountHolder.post({
+                    const result = await platforms.Account.checkAccountHolder({
                         accountHolderCode: accountHolder.accountHolderCode,
                         accountStateType: "Processing",
                         tier: 2
@@ -305,7 +305,7 @@ describe.skip("Platforms Test E2E", function(): void {
             it("should upload verification document", async function() {
                 nock.restore();
                 try {
-                    const result = await platforms.Account.uploadDocument.post({
+                    const result = await platforms.Account.uploadDocument({
                         documentContent,
                         documentDetail: {
                             accountHolderCode: account.accountHolderCode,
@@ -323,7 +323,7 @@ describe.skip("Platforms Test E2E", function(): void {
             it("should get uploaded verification documents", async function() {
                 nock.restore();
                 try {
-                    await platforms.Account.uploadDocument.post({
+                    await platforms.Account.uploadDocument({
                         documentContent,
                         documentDetail: {
                             accountHolderCode: account.accountHolderCode,
@@ -332,7 +332,7 @@ describe.skip("Platforms Test E2E", function(): void {
                             filename: "IDCardFront.png"
                         }
                     });
-                    const result = await platforms.Account.getUploadedDocuments.post({
+                    const result = await platforms.Account.getUploadedDocuments({
                         accountHolderCode: account.accountHolderCode,
                     });
                     expect(result.documentDetails![0].filename).toEqual("IDCardFront.png");
@@ -344,7 +344,7 @@ describe.skip("Platforms Test E2E", function(): void {
             it("should close account", async function() {
                 nock.restore();
                 try {
-                    const result = await platforms.Account.closeAccount.post({
+                    const result = await platforms.Account.closeAccount({
                         accountCode: accountToClose.accountCode
                     });
                     expect(result.status).toEqual("Closed");
@@ -356,7 +356,7 @@ describe.skip("Platforms Test E2E", function(): void {
             it("should suspend account holder", async function() {
                 nock.restore();
                 try {
-                    const result = await platforms.Account.suspendAccountHolder.post({
+                    const result = await platforms.Account.suspendAccountHolder({
                         accountHolderCode: accountHolderToSuspend.accountHolderCode,
                     });
                     expect(result.pspReference).toBeDefined();
@@ -368,7 +368,7 @@ describe.skip("Platforms Test E2E", function(): void {
             it("should unsuspend account holder", async function() {
                 nock.restore();
                 try {
-                    const result = await platforms.Account.unSuspendAccountHolder.post({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode });
+                    const result = await platforms.Account.unSuspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode });
                     expect(result.pspReference).toBeDefined();
                 } catch (e) {
                     assertError(e);
@@ -378,7 +378,7 @@ describe.skip("Platforms Test E2E", function(): void {
             it("should update account holder state", async function() {
                 nock.restore();
                 try {
-                    const result = await platforms.Account.updateAccountHolderState.post({
+                    const result = await platforms.Account.updateAccountHolderState({
                         accountHolderCode: accountHolder.accountHolderCode,
                         disable: false,
                         stateType: "Payout"
@@ -392,7 +392,7 @@ describe.skip("Platforms Test E2E", function(): void {
             it("should close account holder", async function() {
                 nock.restore();
                 try {
-                    const result = await platforms.Account.closeAccountHolder.post({
+                    const result = await platforms.Account.closeAccountHolder({
                         accountHolderCode: accountHolderToClose.accountHolderCode
                     });
                     expect(result.pspReference).toBeDefined();
@@ -408,7 +408,7 @@ describe.skip("Platforms Test E2E", function(): void {
         it("should retrieve the balance of an account holder", async function() {
             nock.restore();
             try {
-                const result = await platforms.Fund.accountHolderBalance.post({
+                const result = await platforms.Fund.accountHolderBalance({
                     accountHolderCode: generateRandomCode()
                 });
                 expect(result.balancePerAccount![0].detailBalance).toBeDefined();
@@ -420,7 +420,7 @@ describe.skip("Platforms Test E2E", function(): void {
         it("should retrieve a list of transaction for an account holder's accounts", async function() {
             nock.restore();
             try {
-                const result = await platforms.Fund.accountHolderTransactionList.post({
+                const result = await platforms.Fund.accountHolderTransactionList({
                     accountHolderCode: generateRandomCode()
                 });
                 expect(result.accountTransactionLists![0].transactions).toBeDefined();
@@ -432,7 +432,7 @@ describe.skip("Platforms Test E2E", function(): void {
         it("should transfer funds between two accounts", async function() {
             nock.restore();
             try {
-                const result = await platforms.Fund.transferFunds.post({
+                const result = await platforms.Fund.transferFunds({
                     sourceAccountCode: "8515883280985939",
                     destinationAccountCode: "8815883278206345",
                     amount: {
@@ -454,7 +454,7 @@ describe.skip("Platforms Test E2E", function(): void {
         it("should retrieve all Notification Configurations", async function() {
             nock.restore();
             try {
-                const result = await platforms.NotificationConfiguration.getNotificationConfigurationList.post({});
+                const result = await platforms.NotificationConfiguration.getNotificationConfigurationList({});
                 const resultStr = JSON.stringify(result);
                 expect(resultStr.includes("pspReference")).toBeTruthy();
             } catch (e) {
@@ -465,7 +465,7 @@ describe.skip("Platforms Test E2E", function(): void {
         it("should create a Notification Configuration", async function() {
             nock.restore();
             try {
-                const result = await platforms.NotificationConfiguration.createNotificationConfiguration.post({
+                const result = await platforms.NotificationConfiguration.createNotificationConfiguration({
                     configurationDetails: {
                         ...notificationConfigurationDetails,
                         description: `${generateRandomCode()}`
@@ -481,7 +481,7 @@ describe.skip("Platforms Test E2E", function(): void {
             nock.restore();
             try {
                 configurationID = notificationConfigurationToRetrieve.configurationDetails.notificationId!;
-                const result = await platforms.NotificationConfiguration.getNotificationConfiguration.post({
+                const result = await platforms.NotificationConfiguration.getNotificationConfiguration({
                     notificationId: configurationID
                 });
                 expect(result.configurationDetails.notifyURL).toEqual("https://www.adyen.com/notification-handler");
@@ -493,7 +493,7 @@ describe.skip("Platforms Test E2E", function(): void {
         it("should update a Notification Configuration", async function() {
             nock.restore();
             try {
-                const result = await platforms.NotificationConfiguration.updateNotificationConfiguration.post({
+                const result = await platforms.NotificationConfiguration.updateNotificationConfiguration({
                     configurationDetails: {
                         eventConfigs: [
                             {
@@ -521,7 +521,7 @@ describe.skip("Platforms Test E2E", function(): void {
             const notificationIds = [];
             notificationIds.push(configurationID);
             try {
-                const result = await platforms.NotificationConfiguration.deleteNotificationConfigurations.post({notificationIds});
+                const result = await platforms.NotificationConfiguration.deleteNotificationConfigurations({notificationIds});
                 expect(result.pspReference).toBeDefined();
             } catch (e) {
                 assertError(e);
