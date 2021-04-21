@@ -37,7 +37,7 @@ class HmacValidator {
         if (notificationRequestItem.additionalData?.[ApiConstants.HMAC_SIGNATURE]) {
             const expectedSign = this.calculateHmac(notificationRequestItem, key);
             const merchantSign = notificationRequestItem.additionalData?.[ApiConstants.HMAC_SIGNATURE];
-            if(typeof merchantSign !== "undefined" && expectedSign.length === merchantSign.length) {
+            if(merchantSign && expectedSign.length === merchantSign.length) {
                 return timingSafeEqual(
                     Buffer.from(expectedSign, "base64"),
                     Buffer.from(merchantSign, "base64")
