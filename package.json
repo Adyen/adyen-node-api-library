@@ -44,7 +44,7 @@
     "dotenv": "^8.2.0",
     "eslint": "6.8.0",
     "jest": "25.5.4",
-    "jest-ts-auto-mock": "^1.0.11",
+    "jest-ts-auto-mock": "^2.0.0",
     "kind-of": "^6.0.3",
     "minimist": ">=1.2.3",
     "nock": "13.0.11",
