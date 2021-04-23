@@ -1,0 +1,21 @@
+name: "Sonarcloud Analysis"
+
+on: ["push", "pull_request"]
+
+jobs:
+  sonarcloud-analysis:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone to improve relevancy of SonarCloud reporting
+          fetch-depth: 0
+
+      - name: SonarCloud integration
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
