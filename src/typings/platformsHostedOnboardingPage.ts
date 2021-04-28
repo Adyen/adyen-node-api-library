@@ -69,6 +69,10 @@ declare namespace IPlatformsHostedOnboardingPage {
          * The URL where the sub-merchant will be redirected back to after they complete the onboarding, or if their session times out. Maximum length of 500 characters. If you don't provide this, the sub-merchant will be redirected back to the default return URL configured in your platform account.
          */
         returnUrl?: string;
+        /**
+         * The language to be used in the page, specified by a combination of a language and country code. For example, **pt-BR**.   If not specified in the request or if the language is not supported, the page uses the browser language. If the browser language is not supported, the page uses **en-US** by default.  For a list supported languages, refer to [Change the page language](https://docs.adyen.com/platforms/hosted-onboarding-page#change-page-language).
+         */
+        shopperLocale?: string;
     }
     export interface GetOnboardingUrlResponse {
         /**
