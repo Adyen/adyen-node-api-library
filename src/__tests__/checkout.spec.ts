@@ -46,7 +46,6 @@ import {
     PaymentSetupRequest,
     PaymentVerificationRequest,
 } from "../typings/checkout/models";
-// import StatusEnum = PaymentLinkResource.StatusEnum;
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
 const reference = "Your order number";
