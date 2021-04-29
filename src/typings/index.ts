@@ -21,7 +21,6 @@
 /// <reference path="apiError.ts" />
 /// <reference path="applicationInfo.ts" />
 /// <reference path="binLookup.ts" />
-/// <reference path="checkout.ts" />
 /// <reference path="enums/environment.ts" />
 /// <reference path="enums/vatCategory.ts" />
 /// <reference path="nexo.ts" />

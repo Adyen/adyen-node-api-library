@@ -26,6 +26,7 @@ import Client from "../client";
 import { paymentsSuccess } from "../__mocks__/checkout/paymentsSuccess";
 import { createPaymentsCheckoutRequest } from "./checkout.spec";
 import Checkout from "../services/checkout";
+import { PaymentRequest } from "../typings/checkout/models";
 
 const createRecurringDetailsRequest = (): IRecurring.RecurringDetailsRequest => {
     return {
@@ -75,7 +76,7 @@ describe("Recurring", (): void => {
         scope.post("/payments")
             .reply(200, paymentsSuccess);
 
-        const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
         const res = await checkout.payments(paymentsRequest);
 
         scope.post("/disable")

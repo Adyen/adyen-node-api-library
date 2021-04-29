@@ -52,7 +52,7 @@ class Client {
     public static HPP_LIVE = "https://live.adyen.com/hpp";
     public static MARKETPAY_ENDPOINT_TEST = "https://cal-test.adyen.com/cal/services";
     public static MARKETPAY_ENDPOINT_LIVE = "https://cal-live.adyen.com/cal/services";
-    public static CHECKOUT_API_VERSION = "v66";
+    public static CHECKOUT_API_VERSION = "v67";
     public static API_VERSION = "v64";
     public static RECURRING_API_VERSION = "v49";
     public static MARKETPAY_ACCOUNT_API_VERSION = "v6";
