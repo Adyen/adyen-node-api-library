@@ -68,13 +68,17 @@ class NexoCrypto {
         const encryptedSaleToPoiMessageByteArray = Buffer.from(saleToPoiSecureMessage.nexoBlob, "base64");
         const derivedKey = NexoDerivedKeyGenerator.deriveKeyMaterial(securityKey.passphrase);
         const ivNonce = Buffer.from(saleToPoiSecureMessage.securityTrailer.nonce, "base64");
-        const decryptedSaleToPoiMessageByteArray =
-            NexoCrypto.crypt(encryptedSaleToPoiMessageByteArray, derivedKey, ivNonce, Modes.DECRYPT);
+        try{
+            const decryptedSaleToPoiMessageByteArray =
+                NexoCrypto.crypt(encryptedSaleToPoiMessageByteArray, derivedKey, ivNonce, Modes.DECRYPT);
 
-        const receivedHmac = Buffer.from(saleToPoiSecureMessage.securityTrailer.hmac, "base64");
-        this.validateHmac(receivedHmac, decryptedSaleToPoiMessageByteArray, derivedKey);
-
-        return decryptedSaleToPoiMessageByteArray.toString("ascii");
+            const receivedHmac = Buffer.from(saleToPoiSecureMessage.securityTrailer.hmac, "base64");
+            this.validateHmac(receivedHmac, decryptedSaleToPoiMessageByteArray, derivedKey);
+            return decryptedSaleToPoiMessageByteArray.toString("ascii");
+        } catch(error) {
+            timingSafeEqual(randomBytes(50), randomBytes(50));
+            throw error;
+        }
     }
 
     private static validateSecurityKey(securityKey: SecurityKey): void {
