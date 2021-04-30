@@ -21,6 +21,7 @@ The Library supports all APIs under the following services:
 * [x] recurring
 * [x] notifications
 * [x] BIN lookup
+* [x] Terminal API
 
 ## Requirements
 
