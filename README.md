@@ -21,6 +21,7 @@ The Library supports all APIs under the following services:
 * [x] recurring
 * [x] notifications
 * [x] BIN lookup
+* [x] Terminal API
 
 ## Requirements
 
@@ -87,6 +88,9 @@ client.setEnvironment('TEST');
 client.httpClient = httpClient;
 ...
 ```
+
+## Testing
+`$ npm run test`
 
 ## Support
 If you have a feature request, or spotted a bug or a technical problem, create a GitHub issue. For other questions, contact our [support team](https://support.adyen.com/hc/en-us/requests/new?ticket_form_id=360000705420).

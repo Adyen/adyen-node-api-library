@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 
-import { createHmac } from "crypto";
+import { createHmac, timingSafeEqual } from "crypto";
 import { NotificationRequestItem } from "../typings/notification/models";
 import { ApiConstants } from "../constants/apiConstants";
 
@@ -37,7 +37,14 @@ class HmacValidator {
         if (notificationRequestItem.additionalData?.[ApiConstants.HMAC_SIGNATURE]) {
             const expectedSign = this.calculateHmac(notificationRequestItem, key);
             const merchantSign = notificationRequestItem.additionalData?.[ApiConstants.HMAC_SIGNATURE];
-            return expectedSign === merchantSign;
+            if(merchantSign?.length === expectedSign.length) {
+                return timingSafeEqual(
+                    Buffer.from(expectedSign, "base64"),
+                    Buffer.from(merchantSign, "base64")
+                );
+            }
+            return false;
+
         }
         throw Error(`Missing ${ApiConstants.HMAC_SIGNATURE}`);
     }

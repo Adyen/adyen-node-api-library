@@ -84,6 +84,28 @@ describe("HMAC Validator", function (): void {
         expect(result).toBeFalsy();
     });
 
+    it("should throw error with missing hmac signature", function(): void {
+        expect.assertions(1);
+        const notificationRequestItemNoAdditionalData: NotificationRequestItem = {
+            pspReference: "pspReference",
+            originalReference: "originalReference",
+            merchantAccountCode: "merchantAccount",
+            merchantReference: "reference",
+            amount: {currency: "EUR", value: 1000},
+            eventCode: NotificationRequestItem.EventCodeEnum.REPORTAVAILABLE,
+            eventDate: "2019-09-21T11:45:24.637Z",
+            paymentMethod: "VISA",
+            reason: "reason",
+            success: NotificationRequestItem.SuccessEnum.True,
+            additionalData: { },
+        };
+        try {
+        hmacValidator.validateHMAC(notificationRequestItemNoAdditionalData, key);
+        } catch(error) {
+            expect(error.message).toEqual(`Missing ${ApiConstants.HMAC_SIGNATURE}`);
+        }
+    });
+
     it("should test hmac", function () {
         const data = "countryCode:currencyCode:merchantAccount:merchantReference:paymentAmount:sessionValidity:skinCode:NL:EUR:MagentoMerchantTest2:TEST-PAYMENT-2017-02-01-14\\:02\\:05:199:2017-02-02T14\\:02\\:05+01\\:00:PKz2KML1";
         const key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";

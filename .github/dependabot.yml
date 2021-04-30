@@ -7,4 +7,9 @@ updates:
     time: "04:00"
   open-pull-requests-limit: 10
   reviewers:
-  - KadoBOT
+  - zaiddreakh
+    maassenbas
+    msilvagarcia
+    AlexandrosMor
+    peterojo
+    wboereboom

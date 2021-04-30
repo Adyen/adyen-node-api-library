@@ -1,6 +1,6 @@
 {
   "name": "@adyen/api-library",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "The Adyen API Library for NodeJS enables you to work with Adyen APIs.",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
@@ -35,7 +35,7 @@
   "author": "Ricardo Ambrogi",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "26.0.15",
+    "@types/jest": "26.0.23",
     "@types/nock": "11.1.0",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
@@ -44,16 +44,16 @@
     "dotenv": "^8.2.0",
     "eslint": "6.8.0",
     "jest": "25.5.4",
-    "jest-ts-auto-mock": "^1.0.11",
+    "jest-ts-auto-mock": "^2.0.0",
     "kind-of": "^6.0.3",
     "minimist": ">=1.2.3",
-    "nock": "13.0.5",
-    "release-it": "14.2.1",
+    "nock": "13.0.11",
+    "release-it": "14.6.1",
     "ts-auto-mock": "^2.6.5",
     "ts-jest": "25.5.1",
     "ts-loader": "8.0.10",
     "ttypescript": "^1.5.10",
-    "typescript": "3.9.7"
+    "typescript": "3.9.9"
   },
   "dependencies": {
     "https-proxy-agent": "5.0.0"
