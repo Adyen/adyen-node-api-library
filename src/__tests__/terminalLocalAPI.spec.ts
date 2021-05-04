@@ -18,7 +18,11 @@
  */
 
 import nock from "nock";
-import { createClient, createTerminalAPIPaymentRequest } from "../__mocks__/base";
+import {
+    createClient,
+    createTerminalAPIPaymentRequest,
+    createTerminalAPIReceiptRequest
+} from "../__mocks__/base";
 import { localEncRes, wrongEncRes } from "../__mocks__/terminalApi/local";
 import Client from "../client";
 import TerminalLocalAPI from "../services/terminalLocalAPI";
@@ -83,5 +87,29 @@ describe("Terminal Local API", (): void => {
             expect(e instanceof NexoCryptoException);
             expect(e.message).toEqual("Hmac validation failed");
         }
+    });
+
+    test.each([isCI, true])("should print a receipt, isMock %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        scope.post("/").reply(200, localEncRes);
+
+        const terminalApiReceiptRequest = createTerminalAPIReceiptRequest();
+        const securityKey: SecurityKey = {
+            adyenCryptoVersion: 0,
+            keyIdentifier: "CryptoKeyIdentifier12345",
+            keyVersion: 0,
+            passphrase: "p@ssw0rd123456",
+        };
+
+        const terminalApiResponse: TerminalApiResponse =
+            await terminalLocalAPI.request(terminalApiReceiptRequest, securityKey);
+
+        //TODO: Implement encrypted printresponse
+        if(isMock) {
+            expect(terminalApiResponse.saleToPOIResponse?.paymentResponse).toBeDefined();
+        } else {
+            expect(terminalApiResponse.saleToPOIResponse?.printResponse).toBeDefined();
+        }
+        expect(terminalApiResponse.saleToPOIResponse?.messageHeader).toBeDefined();
     });
 });

@@ -21,12 +21,17 @@ import Client from "../client";
 import Config from "../config";
 import {
     AmountsReq,
+    DocumentQualifierType,
     MessageCategoryType,
     MessageClassType,
     MessageHeader,
     MessageType,
+    OutputFormatType,
+    OutputText,
     PaymentRequest,
     PaymentTransaction,
+    PrintRequest,
+    ResponseModeType,
     ReversalReasonType,
     ReversalRequest,
     SaleData,
@@ -34,6 +39,8 @@ import {
     TerminalApiRequest,
     TransactionIdentification
 } from "../typings/terminal/models";
+import CharacterStyleEnum = OutputText.CharacterStyleEnum;
+import AlignmentEnum = OutputText.AlignmentEnum;
 
 export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     const config: Config = new Config();
@@ -101,6 +108,34 @@ const paymentRequest: PaymentRequest = {
     saleData,
 };
 
+const printRequest: PrintRequest = {
+    printOutput: {
+        documentQualifier:DocumentQualifierType.CashierReceipt,
+        responseMode: ResponseModeType.PrintEnd,
+        outputContent: {
+            outputFormat: OutputFormatType.Text,
+            outputText:[
+                {
+                    characterStyle: CharacterStyleEnum.Bold,
+                    alignment: AlignmentEnum.Centred,
+                    endOfLineFlag:true,
+                    text:"This is a title"
+                },
+                {
+                    endOfLineFlag:false,
+                    alignment: AlignmentEnum.Left,
+                    text:"This is the key"
+                },
+                {
+                    endOfLineFlag:true,
+                    alignment: AlignmentEnum.Right,
+                    text:"value - üäöÖÜÄß"
+                },
+            ],
+        }
+    }
+};
+
 const getReversalRequest = (poiTransaction: TransactionIdentification): ReversalRequest => ({
     originalPOITransaction: {
         pOITransactionID: {
@@ -126,5 +161,11 @@ export const createTerminalAPIPaymentRequest = (): TerminalApiRequest => {
 export const createTerminalAPIRefundRequest = (transactionIdentification: TransactionIdentification): TerminalApiRequest => {
     const messageHeader = getMessageHeader({ messageCategory: MessageCategoryType.Reversal });
     const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { reversalRequest: getReversalRequest(transactionIdentification) });
+    return { saleToPOIRequest };
+};
+
+export const createTerminalAPIReceiptRequest = (): TerminalApiRequest => {
+    const messageHeader = getMessageHeader({ messageCategory: MessageCategoryType.Print});
+    const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { printRequest });
     return { saleToPOIRequest };
 };
