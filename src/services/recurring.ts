@@ -23,6 +23,14 @@ import Service from "../service";
 import Disable from "./resource/recurring/disable";
 import ListRecurringDetails from "./resource/recurring/listRecurringDetails";
 import ScheduleAccountUpdater from "./resource/recurring/scheduleAccountUpdater";
+import {
+    RecurringDetailsRequest,
+    RecurringDetailsResult,
+    DisableRequest,
+    DisableResult,
+    ScheduleAccountUpdaterRequest,
+    ScheduleAccountUpdaterResult
+} from "../typings/recurring/models";
 
 class Recurring extends Service {
     private readonly _listRecurringDetails: ListRecurringDetails;
@@ -36,22 +44,22 @@ class Recurring extends Service {
         this._scheduleAccountUpdater = new ScheduleAccountUpdater(this);
     }
 
-    public listRecurringDetails(request: IRecurring.RecurringDetailsRequest): Promise<IRecurring.RecurringDetailsResult> {
-        return getJsonResponse<IRecurring.RecurringDetailsRequest, IRecurring.RecurringDetailsResult>(
+    public listRecurringDetails(request: RecurringDetailsRequest): Promise<RecurringDetailsResult> {
+        return getJsonResponse<RecurringDetailsRequest, RecurringDetailsResult>(
             this._listRecurringDetails,
             request,
         );
     }
 
-    public disable(request: IRecurring.DisableRequest): Promise<IRecurring.DisableResult> {
-        return getJsonResponse<IRecurring.DisableRequest, IRecurring.DisableResult>(
+    public disable(request: DisableRequest): Promise<DisableResult> {
+        return getJsonResponse<DisableRequest, DisableResult>(
             this._disable,
             request,
         );
     }
 
-    public scheduleAccountUpdater(request: IRecurring.ScheduleAccountUpdaterRequest): Promise<IRecurring.ScheduleAccountUpdaterResult> {
-        return getJsonResponse<IRecurring.ScheduleAccountUpdaterRequest, IRecurring.ScheduleAccountUpdaterResult>(
+    public scheduleAccountUpdater(request: ScheduleAccountUpdaterRequest): Promise<ScheduleAccountUpdaterResult> {
+        return getJsonResponse<ScheduleAccountUpdaterRequest, ScheduleAccountUpdaterResult>(
             this._scheduleAccountUpdater,
             request,
         );
