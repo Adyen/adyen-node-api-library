@@ -47,6 +47,7 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
         securityKey: SecurityKey,
     ): Promise<TerminalApiResponse> {
         const formattedRequest = ObjectSerializer.serialize(terminalApiRequest, "TerminalApiRequest");
+
         if (formattedRequest.SaleToPOIRequest?.PaymentRequest?.SaleData?.SaleToAcquirerData) {
             const dataString = JSON.stringify(formattedRequest.SaleToPOIRequest.PaymentRequest.SaleData.SaleToAcquirerData);
             formattedRequest.SaleToPOIRequest.PaymentRequest.SaleData.SaleToAcquirerData = Buffer.from(dataString).toString("base64");
