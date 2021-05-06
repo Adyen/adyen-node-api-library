@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 
-import { Cipher, createCipheriv, createDecipheriv, createHmac, randomBytes } from "crypto";
+import { Cipher, createCipheriv, createDecipheriv, createHmac, randomBytes, timingSafeEqual } from "crypto";
 import NexoCryptoException from "../services/exception/nexoCryptoException";
 import {
     MessageHeader,
@@ -115,9 +115,7 @@ class NexoCrypto {
     private validateHmac(receivedHmac: Buffer, decryptedMessage: Buffer, derivedKey: NexoDerivedKey): void {
         const hmac = NexoCrypto.hmac(decryptedMessage, derivedKey);
 
-        const isValid = hmac.every((item, index): boolean => item === receivedHmac[index]);
-
-        if (!isValid) {
+        if (!timingSafeEqual(hmac, receivedHmac)) {
             throw new NexoCryptoException("Hmac validation failed");
         }
     }

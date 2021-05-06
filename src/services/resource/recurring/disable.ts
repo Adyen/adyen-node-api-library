@@ -20,7 +20,6 @@
 import Client from "../../../client";
 import Service from "../../../service";
 import Resource from "../../resource";
-import getJsonResponse from "../../../helpers/getJsonResponse";
 
 class Disable extends Resource {
     public constructor(service: Service) {
@@ -29,14 +28,6 @@ class Disable extends Resource {
             `${service.client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}/disable`,
         );
     }
-
-    public post(request: IRecurring.DisableRequest): Promise<IRecurring.DisableResult> {
-        return getJsonResponse.call<Disable, [IRecurring.DisableRequest], Promise<IRecurring.DisableResult>>(
-            this,
-            request,
-        );
-    }
-
 }
 
 export default Disable;

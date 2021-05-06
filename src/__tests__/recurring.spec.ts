@@ -21,23 +21,31 @@ import nock from "nock";
 import { createClient } from "../__mocks__/base";
 import { disableSuccess } from "../__mocks__/recurring/disableSuccess";
 import { listRecurringDetailsSuccess } from "../__mocks__/recurring/listRecurringDetailsSuccess";
-import Recurring from "../services/recurring";
+import RecurringService from "../services/recurring";
 import Client from "../client";
 import { paymentsSuccess } from "../__mocks__/checkout/paymentsSuccess";
 import { createPaymentsCheckoutRequest } from "./checkout.spec";
 import Checkout from "../services/checkout";
+import { PaymentRequest } from "../typings/checkout/models";
+import {
+    ScheduleAccountUpdaterRequest,
+    ScheduleAccountUpdaterResult,
+    DisableRequest,
+    RecurringDetailsRequest,
+    Recurring
+} from "../typings/recurring/models";
 
-const createRecurringDetailsRequest = (): IRecurring.RecurringDetailsRequest => {
+const createRecurringDetailsRequest = (): RecurringDetailsRequest => {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
-        recurring: { contract: "RECURRING" },
+        recurring: { contract: Recurring.ContractEnum.Recurring },
         shopperReference: "shopperReference",
     };
 };
 const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 
 let client: Client;
-let recurring: Recurring;
+let recurring: RecurringService;
 let checkout: Checkout;
 let scope: nock.Scope;
 
@@ -46,7 +54,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    recurring = new Recurring(client);
+    recurring = new RecurringService(client);
     checkout = new Checkout(client);
     scope = nock(`${client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}`);
 });
@@ -63,7 +71,7 @@ describe("Recurring", (): void => {
 
         const request = createRecurringDetailsRequest();
         try {
-            const result = await recurring.listRecurringDetails.post(request);
+            const result = await recurring.listRecurringDetails(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
@@ -75,20 +83,20 @@ describe("Recurring", (): void => {
         scope.post("/payments")
             .reply(200, paymentsSuccess);
 
-        const paymentsRequest: ICheckout.PaymentRequest = createPaymentsCheckoutRequest();
-        const res = await checkout.payments.post(paymentsRequest);
+        const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
+        const res = await checkout.payments(paymentsRequest);
 
         scope.post("/disable")
             .reply(200, disableSuccess);
 
-        const request: IRecurring.DisableRequest = {
+        const request: DisableRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             shopperReference: "shopperReference",
             recurringDetailReference: res.additionalData!["recurring.recurringDetailReference"]
         };
 
         try {
-            const result = await recurring.disable.post(request);
+            const result = await recurring.disable(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
@@ -99,7 +107,7 @@ describe("Recurring", (): void => {
     // TODO: register account for AccountUpdater and unmock test
     test.each([true])("should schedule account updater, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        const scheduleAccountUpdaterSuccess: IRecurring.ScheduleAccountUpdaterResult = {
+        const scheduleAccountUpdaterSuccess: ScheduleAccountUpdaterResult = {
             pspReference: "mocked_psp",
             result: "SUCCESS"
         };
@@ -107,7 +115,7 @@ describe("Recurring", (): void => {
         scope.post("/scheduleAccountUpdater")
             .reply(200, scheduleAccountUpdaterSuccess);
 
-        const request: IRecurring.ScheduleAccountUpdaterRequest = {
+        const request: ScheduleAccountUpdaterRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             reference: "ref",
             card: {
@@ -119,7 +127,7 @@ describe("Recurring", (): void => {
         };
 
         try {
-            const result = await recurring.scheduleAccountUpdater.post(request);
+            const result = await recurring.scheduleAccountUpdater(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);

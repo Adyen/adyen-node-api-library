@@ -19,20 +19,12 @@
 import Resource from "../../resource";
 import Service from "../../../service";
 import Client from "../../../client";
-import getJsonResponse from "../../../helpers/getJsonResponse";
 
 class Payout extends Resource {
     public constructor(service: Service) {
         super(
             service,
             `${service.client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}/payout`
-        );
-    }
-
-    public post(request: IPayouts.PayoutRequest): Promise<IPayouts.PayoutResponse> {
-        return getJsonResponse.call<Payout, [IPayouts.PayoutRequest], Promise<IPayouts.PayoutResponse>>(
-            this,
-            request
         );
     }
 }
