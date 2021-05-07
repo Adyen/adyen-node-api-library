@@ -23,25 +23,30 @@ import Service from "../service";
 import Disable from "./resource/recurring/disable";
 import ListRecurringDetails from "./resource/recurring/listRecurringDetails";
 import ScheduleAccountUpdater from "./resource/recurring/scheduleAccountUpdater";
+import NotifyShopper from "./resource/recurring/notifyShopper";
 import {
     RecurringDetailsRequest,
     RecurringDetailsResult,
     DisableRequest,
     DisableResult,
     ScheduleAccountUpdaterRequest,
-    ScheduleAccountUpdaterResult
+    ScheduleAccountUpdaterResult,
+    NotifyShopperRequest,
+    NotifyShopperResult
 } from "../typings/recurring/models";
 
 class Recurring extends Service {
     private readonly _listRecurringDetails: ListRecurringDetails;
     private readonly _disable: Disable;
     private readonly _scheduleAccountUpdater: ScheduleAccountUpdater;
+    private readonly _notifyShopper: NotifyShopper
 
     public constructor(client: Client) {
         super(client);
         this._listRecurringDetails = new ListRecurringDetails(this);
         this._disable = new Disable(this);
         this._scheduleAccountUpdater = new ScheduleAccountUpdater(this);
+        this._notifyShopper = new NotifyShopper(this);
     }
 
     public listRecurringDetails(request: RecurringDetailsRequest): Promise<RecurringDetailsResult> {
@@ -62,6 +67,13 @@ class Recurring extends Service {
         return getJsonResponse<ScheduleAccountUpdaterRequest, ScheduleAccountUpdaterResult>(
             this._scheduleAccountUpdater,
             request,
+        );
+    }
+
+    public notifyShopper(request: NotifyShopperRequest): Promise<NotifyShopperResult> {
+        return getJsonResponse<NotifyShopperRequest, NotifyShopperResult>(
+            this._notifyShopper,
+            request
         );
     }
 }
