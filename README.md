@@ -8,24 +8,28 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Adyen/adyen-node-api-library.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Adyen/adyen-node-api-library/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Adyen/adyen-node-api-library.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Adyen/adyen-node-api-library/context:javascript)
 
-The Adyen API Library for NodeJS enables you to work with Adyen APIs.
+This is the officially supported NodeJS library for using Adyen's APIs.
 
 ## Integration
 The Library supports all APIs under the following services:
 
-* [x] checkout
-* [x] checkout utility
-* [x] payments
-* [x] modifications
-* [x] payouts
-* [x] recurring
-* [x] notifications
-* [x] BIN lookup
-* [x] Terminal API
+* [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v67/overview): Our latest integration for accepting online payments. Current supported version: **v67**
+* [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v64/overview): Our classic integration for online payments. Current supported version: **v64**
+* [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v49/overview): Endpoints for managing saved payment details. Current supported version: **v49**
+* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v64/overview): Endpoints for sending funds to your customers. Current supported version: **v64**
+* [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms. 
+  * [Account API](https://docs.adyen.com/api-explorer/#/Account/v6/overview) Current supported version: **v6**
+  * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v6/overview) Current supported version: **v6**
+  * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v6/overview) Current supported version: **v6**
+* [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
+* [BIN lookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v50/overview): The BIN Lookup API provides endpoints for retrieving information based on a given BIN.  Current supported version: **v50**
 
-## Requirements
+For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
-* Node 10 or higher
+## Prerequisites
+-   [Adyen test account](https://docs.adyen.com/get-started-with-adyen)
+-   [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
+-   Node 10 or higher
 
 ## Installation
 
@@ -37,12 +41,28 @@ You can use NPM to add our library to your project
 npm install --save @adyen/api-library
 ```
 
-## Documentation
-* https://docs.adyen.com/developers/development-resources/libraries
-* https://docs.adyen.com/developers/checkout
+Alternatively, you can download the [release on GitHub](https://github.com/Adyen/adyen-node-api-library/releases).
 
-## HTTP Client Configuration
 
+## Using the library
+
+### General use with API key
+ 
+Set up the client as a singleton resource; you can then use it to create service objects for the API calls that you make to Adyen:
+ 
+```typescript
+    const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
+``` 
+### General use with API key for live environment
+ ```typescript
+     const client = new Client({apiKey: "YOUR_API_KEY", environment: "LIVE"});
+ ``` 
+### General use with basic auth
+```typescript
+    const client = new Client({username: "YOUR_USERNAME", password: "YOUR_PASSWORD", environment: "TEST"});
+``` 
+ 
+### Custom HTTP Client Configuration
 By default, NodeJS [https](https://nodejs.org/api/https.html) will be used to submit requests to the API. But you can change that by injecting your own HttpClient on your client instance. In the example below, we use `axios`:
 
 ```javascript
@@ -89,20 +109,23 @@ client.httpClient = httpClient;
 ...
 ```
 
-## Testing
-`$ npm run test`
+### Example integration
+ 
+For a closer look at how our PHP library works, clone our [example integration](https://github.com/adyen-examples/adyen-node-online-payments). This includes commented code, highlighting key features and concepts, and examples of API calls that can be made using the library.
 
-## Support
-If you have a feature request, or spotted a bug or a technical problem, create a GitHub issue. For other questions, contact our [support team](https://support.adyen.com/hc/en-us/requests/new?ticket_form_id=360000705420).
-
-## Contributing
+## Contributing 
 We strongly encourage you to join us in contributing to this repository so everyone can benefit from:
 * New features and functionality
 * Resolved bug fixes and issues
 * Any general improvements
 
-Read our [**contribution guidelines**](CONTRIBUTING.md) to find out how.
+Read our [**contribution guidelines**](CONTRIBUTING.md) to find out how to create a pull request.
+
+## Support
+If you have a feature request, or spotted a bug or a technical problem, create a GitHub issue. For other questions, contact our [support team](https://support.adyen.com/).
 
 ## Licence
+This repository is available under the [MIT license](LICENSE).
 
-MIT license. For more information, see the LICENSE file.
+## See also
+* [example integration](https://github.com/adyen-examples/adyen-node-online-payments)

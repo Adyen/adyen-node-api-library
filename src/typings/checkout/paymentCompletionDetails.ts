@@ -14,15 +14,15 @@ export class PaymentCompletionDetails {
     /**
     * A payment session identifier returned by the card issuer.
     */
-    'mD'?: string;
+    'MD'?: string;
     /**
     * (3D) Payment Authentication Request data for the card issuer.
     */
-    'paReq'?: string;
+    'PaReq'?: string;
     /**
     * (3D) Payment Authentication Response data by the card issuer.
     */
-    'paRes'?: string;
+    'PaRes'?: string;
     /**
     * PayPal-generated token for recurring payments.
     */

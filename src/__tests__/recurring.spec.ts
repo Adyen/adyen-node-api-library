@@ -21,24 +21,33 @@ import nock from "nock";
 import { createClient } from "../__mocks__/base";
 import { disableSuccess } from "../__mocks__/recurring/disableSuccess";
 import { listRecurringDetailsSuccess } from "../__mocks__/recurring/listRecurringDetailsSuccess";
-import Recurring from "../services/recurring";
+import { notifyShopperSuccess } from "../__mocks__/recurring/notifyShopperSuccess";
+import RecurringService from "../services/recurring";
 import Client from "../client";
 import { paymentsSuccess } from "../__mocks__/checkout/paymentsSuccess";
 import { createPaymentsCheckoutRequest } from "./checkout.spec";
 import Checkout from "../services/checkout";
 import { PaymentRequest } from "../typings/checkout/models";
+import {
+    ScheduleAccountUpdaterRequest,
+    ScheduleAccountUpdaterResult,
+    DisableRequest,
+    RecurringDetailsRequest,
+    Recurring,
+    NotifyShopperRequest
+} from "../typings/recurring/models";
 
-const createRecurringDetailsRequest = (): IRecurring.RecurringDetailsRequest => {
+const createRecurringDetailsRequest = (): RecurringDetailsRequest => {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
-        recurring: { contract: "RECURRING" },
+        recurring: { contract: Recurring.ContractEnum.Recurring },
         shopperReference: "shopperReference",
     };
 };
 const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 
 let client: Client;
-let recurring: Recurring;
+let recurring: RecurringService;
 let checkout: Checkout;
 let scope: nock.Scope;
 
@@ -47,7 +56,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    recurring = new Recurring(client);
+    recurring = new RecurringService(client);
     checkout = new Checkout(client);
     scope = nock(`${client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}`);
 });
@@ -82,7 +91,7 @@ describe("Recurring", (): void => {
         scope.post("/disable")
             .reply(200, disableSuccess);
 
-        const request: IRecurring.DisableRequest = {
+        const request: DisableRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             shopperReference: "shopperReference",
             recurringDetailReference: res.additionalData!["recurring.recurringDetailReference"]
@@ -96,11 +105,37 @@ describe("Recurring", (): void => {
         }
     });
 
+    test.each([isCI, true])("should send pre-debit Notification, isMock %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        scope.post("/notifyShopper")
+            .reply(200, notifyShopperSuccess);
+
+        const notifyShopperRequest: NotifyShopperRequest = {
+            merchantAccount: process.env.ADYEN_MERCHANT!,
+            shopperReference: "shopperReference",
+            storedPaymentMethodId: "8415995487234100",
+            amount: {
+                currency: "INR",
+                value: 1000
+            },
+            billingDate: "2021-03-16",
+            reference: "Example reference",
+            displayedReference: "Example displayed reference"
+        };
+
+        try {
+            const result = await recurring.notifyShopper(notifyShopperRequest);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e.message);
+        }
+    });
+
 
     // TODO: register account for AccountUpdater and unmock test
     test.each([true])("should schedule account updater, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        const scheduleAccountUpdaterSuccess: IRecurring.ScheduleAccountUpdaterResult = {
+        const scheduleAccountUpdaterSuccess: ScheduleAccountUpdaterResult = {
             pspReference: "mocked_psp",
             result: "SUCCESS"
         };
@@ -108,7 +143,7 @@ describe("Recurring", (): void => {
         scope.post("/scheduleAccountUpdater")
             .reply(200, scheduleAccountUpdaterSuccess);
 
-        const request: IRecurring.ScheduleAccountUpdaterRequest = {
+        const request: ScheduleAccountUpdaterRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             reference: "ref",
             card: {

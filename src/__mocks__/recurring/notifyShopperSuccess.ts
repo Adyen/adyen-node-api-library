@@ -17,20 +17,12 @@
  * See the LICENSE file for more info.
  */
 
-/// <reference path="amount.ts" />
-/// <reference path="apiError.ts" />
-/// <reference path="applicationInfo.ts" />
-/// <reference path="binLookup.ts" />
-/// <reference path="enums/environment.ts" />
-/// <reference path="enums/vatCategory.ts" />
-/// <reference path="nexo.ts" />
-/// <reference path="notification/notification.ts" />
-/// <reference path="payments.ts" />
-/// <reference path="payouts.ts" />
-/// <reference path="requestOptions.ts" />
-/// <reference path="terminal/models.ts" />
-/// <reference path="platformsAccount.ts" />
-/// <reference path="platformsFund.ts" />
-/// <reference path="platformsHostedOnboardingPage.ts" />
-/// <reference path="platformsNotificationConfiguration.ts" />
-/// <reference path="platformsNotifications.ts" />
+export const notifyShopperSuccess = {
+    "message": "Request Processed Successfully",
+    "resultCode": "Success",
+    "shopperNotificationReference": "9915003646742627",
+    "storedPaymentMethodId": "8415995487234100",
+    "pspReference": "9915003646742627",
+    "reference": "Example reference",
+    "displayedReference": "Example displayed reference"
+};

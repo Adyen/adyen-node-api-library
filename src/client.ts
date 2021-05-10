@@ -111,6 +111,7 @@ class Client {
             this.config.endpoint = Client.ENDPOINT_LIVE;
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_LIVE;
             this.config.hppEndpoint = Client.HPP_LIVE;
+            this.config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_LIVE;
             if (liveEndpointUrlPrefix) {
                 this.config.endpoint =
                     `${Client.ENDPOINT_PROTOCOL}${liveEndpointUrlPrefix}${Client.ENDPOINT_LIVE_SUFFIX}`;
