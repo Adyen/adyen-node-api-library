@@ -27,6 +27,13 @@ const modificationResult: IPayouts.ModifyResponse = {
     response: "[refund-received]"
 };
 
+const invalidModificationResult = {
+    "status": 422,
+    "errorCode": "167",
+    "message": "Original pspReference required for this operation",
+    "errorType": "validation"
+};
+
 const createModificationRequest = (): IPayments.ModificationRequest => {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
@@ -38,10 +45,28 @@ const createModificationRequest = (): IPayments.ModificationRequest => {
     };
 };
 
+const createInvalidModificationRequest = (): IPayments.ModificationRequest => {
+    return {
+        merchantAccount: process.env.ADYEN_MERCHANT!,
+        originalReference: "invalidPspReference",
+        modificationAmount: {
+            value: 500 ,
+            currency: "EUR"
+        }
+    };
+};
+
 const createCancelRequest = (): IPayments.ModificationRequest => {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
         originalReference: "862615382016087C"
+    };
+};
+
+const createInvalidCancelRequest = (): IPayments.ModificationRequest => {
+    return {
+        merchantAccount: process.env.ADYEN_MERCHANT!,
+        originalReference: "invalidPspReference"
     };
 };
 
@@ -77,6 +102,21 @@ describe("Modification", (): void => {
         }
     });
 
+    test.each([false, true])("should fail to perform a refund, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        expect.assertions(2);
+        scope.post("/refund")
+            .reply(422, invalidModificationResult);
+
+        const request = createInvalidModificationRequest();
+        try {
+            await modification.refund(request);
+        } catch (e) {
+            expect(e.statusCode).toBe(422);
+            expect(e.message).toContain("Original pspReference required for this operation");
+        }
+    });
+
     test.each([false, true])("should perform a capture, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/capture")
@@ -88,6 +128,21 @@ describe("Modification", (): void => {
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
+        }
+    });
+
+    test.each([false, true])("should fail to perform a capture, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        expect.assertions(2);
+        scope.post("/capture")
+            .reply(422, invalidModificationResult);
+
+        const request = createInvalidModificationRequest();
+        try {
+            await modification.capture(request);
+        } catch (e) {
+            expect(e.statusCode).toBe(422);
+            expect(e.message).toContain("Original pspReference required for this operation");
         }
     });
 
@@ -105,6 +160,21 @@ describe("Modification", (): void => {
         }
     });
 
+    test.each([false, true])("should fail to perform a cancelOrRefund, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        expect.assertions(2);
+        scope.post("/cancelOrRefund")
+            .reply(422, invalidModificationResult);
+
+        const request = createInvalidCancelRequest();
+        try {
+            await modification.cancelOrRefund(request);
+        } catch (e) {
+            expect(e.statusCode).toBe(422);
+            expect(e.message).toContain("Original pspReference required for this operation");
+        }
+    });
+
     test.each([false, true])("should perform a cancel, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/cancel")
@@ -116,6 +186,21 @@ describe("Modification", (): void => {
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
+        }
+    });
+
+    test.each([false, true])("should fail to perform a cancel, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        expect.assertions(2);
+        scope.post("/cancel")
+            .reply(422, invalidModificationResult);
+
+        const request = createInvalidCancelRequest();
+        try {
+            await modification.cancel(request);
+        } catch (e) {
+            expect(e.statusCode).toBe(422);
+            expect(e.message).toContain("Original pspReference required for this operation");
         }
     });
 
@@ -133,6 +218,21 @@ describe("Modification", (): void => {
         }
     });
 
+    test.each([false, true])("should fail to perform a technicalCancel, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        expect.assertions(2);
+        scope.post("/technicalCancel")
+            .reply(422, invalidModificationResult);
+
+        const request = createInvalidCancelRequest();
+        try {
+            await modification.technicalCancel(request);
+        } catch (e) {
+            expect(e.statusCode).toBe(422);
+            expect(e.message).toContain("Original pspReference required for this operation");
+        }
+    });
+
     test.each([false, true])("should perform a adjustAuthorisation, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/adjustAuthorisation")
@@ -144,6 +244,21 @@ describe("Modification", (): void => {
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
+        }
+    });
+
+    test.each([false, true])("should fail to perform a adjustAuthorisation, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        expect.assertions(2);
+        scope.post("/adjustAuthorisation")
+            .reply(422, invalidModificationResult);
+
+        const request = createInvalidModificationRequest();
+        try {
+            await modification.adjustAuthorisation(request);
+        } catch (e) {
+            expect(e.statusCode).toBe(422);
+            expect(e.message).toContain("Original pspReference required for this operation");
         }
     });
 });
