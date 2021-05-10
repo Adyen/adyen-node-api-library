@@ -21,6 +21,7 @@ import nock from "nock";
 import { createClient } from "../__mocks__/base";
 import { disableSuccess } from "../__mocks__/recurring/disableSuccess";
 import { listRecurringDetailsSuccess } from "../__mocks__/recurring/listRecurringDetailsSuccess";
+import { notifyShopperSuccess } from "../__mocks__/recurring/notifyShopperSuccess";
 import RecurringService from "../services/recurring";
 import Client from "../client";
 import { paymentsSuccess } from "../__mocks__/checkout/paymentsSuccess";
@@ -32,7 +33,8 @@ import {
     ScheduleAccountUpdaterResult,
     DisableRequest,
     RecurringDetailsRequest,
-    Recurring
+    Recurring,
+    NotifyShopperRequest
 } from "../typings/recurring/models";
 
 const createRecurringDetailsRequest = (): RecurringDetailsRequest => {
@@ -97,6 +99,32 @@ describe("Recurring", (): void => {
 
         try {
             const result = await recurring.disable(request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e.message);
+        }
+    });
+
+    test.each([isCI, true])("should send pre-debit Notification, isMock %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        scope.post("/notifyShopper")
+            .reply(200, notifyShopperSuccess);
+
+        const notifyShopperRequest: NotifyShopperRequest = {
+            merchantAccount: process.env.ADYEN_MERCHANT!,
+            shopperReference: "shopperReference",
+            storedPaymentMethodId: "8415995487234100",
+            amount: {
+                currency: "INR",
+                value: 1000
+            },
+            billingDate: "2021-03-16",
+            reference: "Example reference",
+            displayedReference: "Example displayed reference"
+        };
+
+        try {
+            const result = await recurring.notifyShopper(notifyShopperRequest);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
