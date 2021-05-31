@@ -111,7 +111,7 @@ client.httpClient = httpClient;
 
 ### Example integration
  
-For a closer look at how our PHP library works, clone our [example integration](https://github.com/adyen-examples/adyen-node-online-payments). This includes commented code, highlighting key features and concepts, and examples of API calls that can be made using the library.
+For a closer look at how our NodeJS library works, clone our [example integration](https://github.com/adyen-examples/adyen-node-online-payments). This includes commented code, highlighting key features and concepts, and examples of API calls that can be made using the library.
 
 ## Contributing 
 We strongly encourage you to join us in contributing to this repository so everyone can benefit from:
