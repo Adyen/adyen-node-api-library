@@ -83,7 +83,11 @@ const saleData: SaleData = {
                 version: "1",
                 name: "test"
             }
-        }
+        },
+        metadata: {
+            someMetaDataKey1: "YOUR_VALUE",
+            someMetaDataKey2: "YOUR_VALUE"
+        },
     }
 };
 
