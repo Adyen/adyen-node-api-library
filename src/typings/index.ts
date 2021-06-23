@@ -29,7 +29,6 @@
 /// <reference path="payouts.ts" />
 /// <reference path="requestOptions.ts" />
 /// <reference path="terminal/models.ts" />
-/// <reference path="platformsAccount.ts" />
 /// <reference path="platformsFund.ts" />
 /// <reference path="platformsHostedOnboardingPage.ts" />
 /// <reference path="platformsNotificationConfiguration.ts" />

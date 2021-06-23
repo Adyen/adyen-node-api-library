@@ -25,6 +25,36 @@ import getJsonResponse from "./../helpers/getJsonResponse";
 import PlatformsFund from "./resource/platforms/fund";
 import PlatformsHostedOnboardingPage from "./resource/platforms/hop";
 import PlatformsNotificationConfiguration from "./resource/platforms/notificationConfiguration";
+import {
+    GetAccountHolderRequest,
+    GetUploadedDocumentsRequest,
+    GetAccountHolderResponse,
+    GetUploadedDocumentsResponse,
+    CreateAccountHolderRequest,
+    CreateAccountHolderResponse,
+    CloseAccountHolderRequest,
+    CloseAccountHolderResponse,
+    CreateAccountRequest,
+    CreateAccountResponse,
+    DeleteBankAccountRequest,
+    GenericResponse,
+    DeletePayoutMethodRequest,
+    UpdateAccountRequest,
+    UpdateAccountResponse,
+    UploadDocumentRequest,
+    UnSuspendAccountHolderRequest,
+    UnSuspendAccountHolderResponse,
+    CloseAccountRequest,
+    CloseAccountResponse,
+    SuspendAccountHolderRequest,
+    SuspendAccountHolderResponse,
+    UpdateAccountHolderRequest,
+    UpdateAccountHolderResponse,
+    DeleteShareholderRequest,
+    PerformVerificationRequest,
+    UpdateAccountHolderStateRequest,
+    GetAccountHolderStatusResponse
+} from "../typings/platformsAccount/models";
 
 type AccountType = AccountTypesEnum.Accounts;
 type VerificationType = AccountTypesEnum.Verification;
@@ -125,41 +155,41 @@ class Platforms extends Service {
     }
 
     public get Account(): {
-        getAccountHolder: (request: IPlatformsAccount.GetAccountHolderRequest) => Promise<IPlatformsAccount.GetAccountHolderResponse>;
-        getUploadedDocuments: (request: IPlatformsAccount.GetUploadedDocumentsRequest) => Promise<IPlatformsAccount.GetUploadedDocumentsResponse>;
-        createAccountHolder: (request: IPlatformsAccount.CreateAccountHolderRequest) => Promise<IPlatformsAccount.CreateAccountHolderResponse>;
-        closeAccountHolder: (request: IPlatformsAccount.CloseAccountHolderRequest) => Promise<IPlatformsAccount.CloseAccountHolderResponse>;
-        createAccount: (request: IPlatformsAccount.CreateAccountRequest) => Promise<IPlatformsAccount.CreateAccountResponse>;
-        deleteBankAccounts: (request: IPlatformsAccount.DeleteBankAccountRequest) => Promise<IPlatformsAccount.GenericResponse>;
-        deletePayoutMethods: (request: IPlatformsAccount.DeletePayoutMethodRequest) => Promise<IPlatformsAccount.GenericResponse>;
-        updateAccount: (request: IPlatformsAccount.UpdateAccountRequest) => Promise<IPlatformsAccount.UpdateAccountResponse>;
-        uploadDocument: (request: IPlatformsAccount.UploadDocumentRequest) => Promise<IPlatformsAccount.GetUploadedDocumentsResponse>;
-        unSuspendAccountHolder: (request: IPlatformsAccount.UnSuspendAccountHolderRequest) => Promise<IPlatformsAccount.UnSuspendAccountHolderResponse>;
-        closeAccount: (request: IPlatformsAccount.CloseAccountRequest) => Promise<IPlatformsAccount.CloseAccountResponse>;
-        suspendAccountHolder: (request: IPlatformsAccount.SuspendAccountHolderRequest) => Promise<IPlatformsAccount.SuspendAccountHolderResponse>;
-        updateAccountHolder: (request: IPlatformsAccount.UpdateAccountHolderRequest) => Promise<IPlatformsAccount.UpdateAccountHolderResponse>;
-        deleteShareholders: (request: IPlatformsAccount.DeleteShareholderRequest) => Promise<IPlatformsAccount.GenericResponse>;
-        checkAccountHolder: (request: IPlatformsAccount.PerformVerificationRequest) => Promise<IPlatformsAccount.GenericResponse>;
-        updateAccountHolderState: (request: IPlatformsAccount.UpdateAccountHolderStateRequest) => Promise<IPlatformsAccount.GetAccountHolderStatusResponse>;
+        getAccountHolder: (request: GetAccountHolderRequest) => Promise<GetAccountHolderResponse>;
+        getUploadedDocuments: (request: GetUploadedDocumentsRequest) => Promise<GetUploadedDocumentsResponse>;
+        createAccountHolder: (request: CreateAccountHolderRequest) => Promise<CreateAccountHolderResponse>;
+        closeAccountHolder: (request: CloseAccountHolderRequest) => Promise<CloseAccountHolderResponse>;
+        createAccount: (request: CreateAccountRequest) => Promise<CreateAccountResponse>;
+        deleteBankAccounts: (request: DeleteBankAccountRequest) => Promise<GenericResponse>;
+        deletePayoutMethods: (request: DeletePayoutMethodRequest) => Promise<GenericResponse>;
+        updateAccount: (request: UpdateAccountRequest) => Promise<UpdateAccountResponse>;
+        uploadDocument: (request: UploadDocumentRequest) => Promise<GetUploadedDocumentsResponse>;
+        unSuspendAccountHolder: (request: UnSuspendAccountHolderRequest) => Promise<UnSuspendAccountHolderResponse>;
+        closeAccount: (request: CloseAccountRequest) => Promise<CloseAccountResponse>;
+        suspendAccountHolder: (request: SuspendAccountHolderRequest) => Promise<SuspendAccountHolderResponse>;
+        updateAccountHolder: (request: UpdateAccountHolderRequest) => Promise<UpdateAccountHolderResponse>;
+        deleteShareholders: (request: DeleteShareholderRequest) => Promise<GenericResponse>;
+        checkAccountHolder: (request: PerformVerificationRequest) => Promise<GenericResponse>;
+        updateAccountHolderState: (request: UpdateAccountHolderStateRequest) => Promise<GetAccountHolderStatusResponse>;
     } {
-        const closeAccount = this.createRequest<AccountsAccount, IPlatformsAccount.CloseAccountRequest, IPlatformsAccount.CloseAccountResponse>(this._closeAccount);
-        const updateAccount = this.createRequest<AccountsAccount, IPlatformsAccount.UpdateAccountRequest, IPlatformsAccount.UpdateAccountResponse>(this._updateAccount);
-        const createAccount = this.createRequest<AccountsAccount, IPlatformsAccount.CreateAccountRequest, IPlatformsAccount.CreateAccountResponse>(this._createAccount);
+        const closeAccount = this.createRequest<AccountsAccount, CloseAccountRequest, CloseAccountResponse>(this._closeAccount);
+        const updateAccount = this.createRequest<AccountsAccount, UpdateAccountRequest, UpdateAccountResponse>(this._updateAccount);
+        const createAccount = this.createRequest<AccountsAccount, CreateAccountRequest, CreateAccountResponse>(this._createAccount);
 
-        const uploadDocument = this.createRequest<AccountsVerification, IPlatformsAccount.UploadDocumentRequest, IPlatformsAccount.GetUploadedDocumentsResponse>(this._uploadDocument);
-        const getUploadedDocuments = this.createRequest<AccountsVerification, IPlatformsAccount.GetUploadedDocumentsRequest, IPlatformsAccount.GetUploadedDocumentsResponse>(this._getUploadedDocuments);
-        const deleteBankAccounts = this.createRequest<AccountsVerification, IPlatformsAccount.DeleteBankAccountRequest, IPlatformsAccount.GenericResponse>(this._deleteBankAccounts);
-        const deletePayoutMethods = this.createRequest<AccountsVerification, IPlatformsAccount.DeletePayoutMethodRequest, IPlatformsAccount.GenericResponse>(this._deletePayoutMethods);
-        const deleteShareholders = this.createRequest<AccountsVerification, IPlatformsAccount.DeleteShareholderRequest, IPlatformsAccount.GenericResponse>(this._deleteShareholders);
+        const uploadDocument = this.createRequest<AccountsVerification, UploadDocumentRequest, GetUploadedDocumentsResponse>(this._uploadDocument);
+        const getUploadedDocuments = this.createRequest<AccountsVerification, GetUploadedDocumentsRequest, GetUploadedDocumentsResponse>(this._getUploadedDocuments);
+        const deleteBankAccounts = this.createRequest<AccountsVerification, DeleteBankAccountRequest, GenericResponse>(this._deleteBankAccounts);
+        const deletePayoutMethods = this.createRequest<AccountsVerification, DeletePayoutMethodRequest, GenericResponse>(this._deletePayoutMethods);
+        const deleteShareholders = this.createRequest<AccountsVerification, DeleteShareholderRequest, GenericResponse>(this._deleteShareholders);
 
-        const createAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.CreateAccountHolderRequest, IPlatformsAccount.CreateAccountHolderResponse>(this._createAccountHolder);
-        const getAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.GetAccountHolderRequest, IPlatformsAccount.GetAccountHolderResponse>(this._getAccountHolder);
-        const updateAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.UpdateAccountHolderRequest, IPlatformsAccount.UpdateAccountHolderResponse>(this._updateAccountHolder);
-        const updateAccountHolderState = this.createRequest<AccountsAccountHolders, IPlatformsAccount.UpdateAccountHolderStateRequest, IPlatformsAccount.GetAccountHolderStatusResponse>(this._updateAccountHolderState);
-        const suspendAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.SuspendAccountHolderRequest, IPlatformsAccount.SuspendAccountHolderResponse>(this._suspendAccountHolder);
-        const unSuspendAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.UnSuspendAccountHolderRequest, IPlatformsAccount.UnSuspendAccountHolderResponse>(this._unSuspendAccountHolder);
-        const closeAccountHolder = this.createRequest<AccountsAccountHolders, IPlatformsAccount.CloseAccountHolderRequest, IPlatformsAccount.CloseAccountHolderResponse>(this._closeAccountHolder);
-        const checkAccountHolder = this.createRequest<AccountsVerification, IPlatformsAccount.PerformVerificationRequest, IPlatformsAccount.GenericResponse>(this._checkAccountHolder);
+        const createAccountHolder = this.createRequest<AccountsAccountHolders, CreateAccountHolderRequest, CreateAccountHolderResponse>(this._createAccountHolder);
+        const getAccountHolder = this.createRequest<AccountsAccountHolders, GetAccountHolderRequest, GetAccountHolderResponse>(this._getAccountHolder);
+        const updateAccountHolder = this.createRequest<AccountsAccountHolders, UpdateAccountHolderRequest, UpdateAccountHolderResponse>(this._updateAccountHolder);
+        const updateAccountHolderState = this.createRequest<AccountsAccountHolders, UpdateAccountHolderStateRequest, GetAccountHolderStatusResponse>(this._updateAccountHolderState);
+        const suspendAccountHolder = this.createRequest<AccountsAccountHolders, SuspendAccountHolderRequest, SuspendAccountHolderResponse>(this._suspendAccountHolder);
+        const unSuspendAccountHolder = this.createRequest<AccountsAccountHolders, UnSuspendAccountHolderRequest, UnSuspendAccountHolderResponse>(this._unSuspendAccountHolder);
+        const closeAccountHolder = this.createRequest<AccountsAccountHolders, CloseAccountHolderRequest, CloseAccountHolderResponse>(this._closeAccountHolder);
+        const checkAccountHolder = this.createRequest<AccountsVerification, PerformVerificationRequest, GenericResponse>(this._checkAccountHolder);
 
         const accounts = { closeAccount, updateAccount, createAccount };
         const verification = { uploadDocument, getUploadedDocuments, deleteBankAccounts, deletePayoutMethods, deleteShareholders, checkAccountHolder };
