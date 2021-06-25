@@ -23,7 +23,7 @@ import { createBasicAuthClient } from "../__mocks__/base";
 import { documentContent } from "../__mocks__/platforms/documentContent";
 import { Client, Platforms } from "../index";
 
-import A = IPlatformsAccount;
+import * as A from  "../typings/platformsAccount/models";
 import F = IPlatformsFund;
 import N = IPlatformsNotificationConfiguration;
 import H = IPlatformsHostedOnboardingPage;
@@ -50,7 +50,7 @@ const accountHolderDetails: AccountHolderDetails = {
     individualDetails: {
         name: {
             firstName: "John",
-            gender: "MALE",
+            gender: A.ViasName.GenderEnum.Male,
             lastName: "Smith"
         }
     },
@@ -194,40 +194,40 @@ describe.skip("Platforms Test E2E", function(): void {
         accountHolder = await platforms.Account.createAccountHolder({
             accountHolderCode: generateRandomCode(),
             accountHolderDetails,
-            legalEntity: "Individual",
+            legalEntity: A.CreateAccountHolderRequest.LegalEntityEnum.Individual,
         });
 
         account = await platforms.Account.createAccount({
             accountHolderCode: generateRandomCode(),
             description: "This is a new account",
             metadata: {meta: "data"},
-            payoutSchedule: "WEEKLY"
+            payoutSchedule: A.CreateAccountRequest.PayoutScheduleEnum.Weekly,
         });
 
         accountHolderToSuspend = await platforms.Account.createAccountHolder({
             accountHolderCode: generateRandomCode(),
             accountHolderDetails,
-            legalEntity: "Individual"
+            legalEntity: A.CreateAccountHolderRequest.LegalEntityEnum.Individual,
         });
 
         accountToClose = await platforms.Account.createAccount({
             accountHolderCode: generateRandomCode(),
             description: "This is a new account",
             metadata: {meta: "data"},
-            payoutSchedule: "WEEKLY"
+            payoutSchedule: A.CreateAccountRequest.PayoutScheduleEnum.Weekly,
         });
 
         accountHolderToUnSuspend = await platforms.Account.createAccountHolder({
             accountHolderCode: generateRandomCode(),
             accountHolderDetails,
-            legalEntity: "Individual"
+            legalEntity: A.CreateAccountHolderRequest.LegalEntityEnum.Individual,
         });
         await platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode});
 
         accountHolderToClose = await platforms.Account.createAccountHolder({
             accountHolderCode: generateRandomCode(),
             accountHolderDetails,
-            legalEntity: "Individual"
+            legalEntity: A.CreateAccountHolderRequest.LegalEntityEnum.Individual,
         });
 
         notificationConfigurationToRetrieve = await platforms.NotificationConfiguration.createNotificationConfiguration({
@@ -284,7 +284,7 @@ describe.skip("Platforms Test E2E", function(): void {
                 try {
                     const result = await platforms.Account.checkAccountHolder({
                         accountHolderCode: accountHolder.accountHolderCode,
-                        accountStateType: "Processing",
+                        accountStateType: A.PerformVerificationRequest.AccountStateTypeEnum.Processing,
                         tier: 2
                     });
                     expect(result.resultCode).toEqual("Success");
@@ -309,7 +309,7 @@ describe.skip("Platforms Test E2E", function(): void {
                         documentContent,
                         documentDetail: {
                             accountHolderCode: account.accountHolderCode,
-                            documentType: "ID_CARD_FRONT",
+                            documentType: A.DocumentDetail.DocumentTypeEnum.IdCardFront,
                             description: "test document 000",
                             filename: "IDCardFront.png"
                         }
@@ -327,7 +327,7 @@ describe.skip("Platforms Test E2E", function(): void {
                         documentContent,
                         documentDetail: {
                             accountHolderCode: account.accountHolderCode,
-                            documentType: "ID_CARD_FRONT",
+                            documentType: A.DocumentDetail.DocumentTypeEnum.IdCardFront,
                             description: "test document 000",
                             filename: "IDCardFront.png"
                         }
@@ -381,7 +381,7 @@ describe.skip("Platforms Test E2E", function(): void {
                     const result = await platforms.Account.updateAccountHolderState({
                         accountHolderCode: accountHolder.accountHolderCode,
                         disable: false,
-                        stateType: "Payout"
+                        stateType: A.UpdateAccountHolderStateRequest.StateTypeEnum.Payout
                     });
                     expect(result.pspReference).toBeDefined();
                 } catch (e) {

@@ -1,6 +1,6 @@
 {
   "name": "@adyen/api-library",
-  "version": "8.1.1",
+  "version": "8.2.0",
   "description": "The Adyen API Library for NodeJS enables you to work with Adyen APIs.",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
@@ -48,12 +48,12 @@
     "kind-of": "^6.0.3",
     "minimist": ">=1.2.3",
     "nock": "13.1.0",
-    "release-it": "14.7.0",
+    "release-it": "14.10.0",
     "ts-auto-mock": "^2.6.5",
     "ts-jest": "25.5.1",
     "ts-loader": "8.0.10",
     "ttypescript": "^1.5.10",
-    "typescript": "3.9.9"
+    "typescript": "3.9.10"
   },
   "dependencies": {
     "https-proxy-agent": "5.0.0"
