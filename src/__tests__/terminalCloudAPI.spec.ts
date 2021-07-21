@@ -64,8 +64,8 @@ describe("Terminal Cloud API", (): void => {
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
         const terminalAPIResponse: TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
 
-        expect(terminalAPIResponse.saleToPOIResponse?.paymentResponse).toBeDefined();
-        expect(terminalAPIResponse.saleToPOIResponse?.messageHeader).toBeDefined();
+        expect(terminalAPIResponse.SaleToPOIResponse?.PaymentResponse).toBeDefined();
+        expect(terminalAPIResponse.SaleToPOIResponse?.MessageHeader).toBeDefined();
     });
 
     test.each([isCI, true])("should make an async refund request, isMock: %p", async (isMock): Promise<void> => {
@@ -77,9 +77,9 @@ describe("Terminal Cloud API", (): void => {
 
         scope.post("/sync").reply(200, syncRefund);
 
-        const terminalAPIRefundRequest = createTerminalAPIRefundRequest(terminalAPIResponse.saleToPOIResponse?.paymentResponse?.pOIData.pOITransactionID!);
+        const terminalAPIRefundRequest = createTerminalAPIRefundRequest(terminalAPIResponse.SaleToPOIResponse?.PaymentResponse?.POIData.POITransactionID!);
         const terminalAPIRefundResponse = await terminalCloudAPI.sync(terminalAPIRefundRequest);
 
-        expect(terminalAPIRefundResponse.saleToPOIResponse?.reversalResponse).toBeDefined();
+        expect(terminalAPIRefundResponse.SaleToPOIResponse?.ReversalResponse).toBeDefined();
     });
 });
