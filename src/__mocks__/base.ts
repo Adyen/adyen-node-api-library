@@ -60,24 +60,24 @@ export const createBasicAuthClient = (): Client => {
 
 const id = Math.floor(Math.random() * Math.floor(10000000)).toString();
 const getMessageHeader = ({ messageCategory = MessageCategoryType.Payment }: { messageCategory?: MessageCategoryType } = {}): MessageHeader => ({
-    messageCategory,
-    messageClass: MessageClassType.Service,
-    messageType: MessageType.Request,
-    pOIID: process.env.ADYEN_TERMINAL_POIID!,
-    protocolVersion: "3.0",
-    saleID: id,
-    serviceID: id,
+    MessageCategory: messageCategory,
+    MessageClass: MessageClassType.Service,
+    MessageType: MessageType.Request,
+    POIID: process.env.ADYEN_TERMINAL_POIID!,
+    ProtocolVersion: "3.0",
+    SaleID: id,
+    ServiceID: id,
 });
 
 const timestamp = (): string => new Date().toISOString();
 const transactionIdentification: TransactionIdentification = {
-    timeStamp: timestamp(),
-    transactionID: id,
+    TimeStamp: timestamp(),
+    TransactionID: id,
 };
 
 const saleData: SaleData = {
-    saleTransactionID: transactionIdentification,
-    saleToAcquirerData: {
+    SaleTransactionID: transactionIdentification,
+    SaleToAcquirerData: {
         applicationInfo: {
             merchantApplication: {
                 version: "1",
@@ -92,43 +92,43 @@ const saleData: SaleData = {
 };
 
 const amountsReq: AmountsReq = {
-    currency: "EUR",
-    requestedAmount: 1,
+    Currency: "EUR",
+    RequestedAmount: 1,
 };
 
 const paymentTransaction: PaymentTransaction = {
-    amountsReq,
+    AmountsReq: amountsReq,
 };
 
 const paymentRequest: PaymentRequest = {
-    paymentTransaction,
-    saleData,
+    PaymentTransaction: paymentTransaction,
+    SaleData: saleData,
 };
 
 const getReversalRequest = (poiTransaction: TransactionIdentification): ReversalRequest => ({
-    originalPOITransaction: {
-        pOITransactionID: {
-            transactionID: poiTransaction.transactionID,
-            timeStamp: poiTransaction.timeStamp
+    OriginalPOITransaction: {
+        POITransactionID: {
+            TransactionID: poiTransaction.TransactionID,
+            TimeStamp: poiTransaction.TimeStamp
         },
     },
-    reversalReason: ReversalReasonType.MerchantCancel
+    ReversalReason: ReversalReasonType.MerchantCancel
 });
 
 const getSaleToPOIRequest = (messageHeader: MessageHeader, request: Partial<SaleToPOIRequest>): SaleToPOIRequest => ({
-    messageHeader,
+    MessageHeader: messageHeader,
     ...request
 });
 
 
 export const createTerminalAPIPaymentRequest = (): TerminalApiRequest => {
     const messageHeader = getMessageHeader();
-    const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { paymentRequest });
-    return { saleToPOIRequest };
+    const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { PaymentRequest: paymentRequest });
+    return { SaleToPOIRequest: saleToPOIRequest };
 };
 
 export const createTerminalAPIRefundRequest = (transactionIdentification: TransactionIdentification): TerminalApiRequest => {
     const messageHeader = getMessageHeader({ messageCategory: MessageCategoryType.Reversal });
-    const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { reversalRequest: getReversalRequest(transactionIdentification) });
-    return { saleToPOIRequest };
+    const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { ReversalRequest: getReversalRequest(transactionIdentification) });
+    return { SaleToPOIRequest: saleToPOIRequest };
 };

@@ -52,17 +52,17 @@ describe("Terminal Local API", (): void => {
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
         const securityKey: SecurityKey = {
-            adyenCryptoVersion: 0,
-            keyIdentifier: "CryptoKeyIdentifier12345",
-            keyVersion: 0,
-            passphrase: "p@ssw0rd123456",
+            AdyenCryptoVersion: 0,
+            KeyIdentifier: "CryptoKeyIdentifier12345",
+            KeyVersion: 0,
+            Passphrase: "p@ssw0rd123456",
         };
 
         const terminalApiResponse: TerminalApiResponse =
             await terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey);
 
-        expect(terminalApiResponse.saleToPOIResponse?.paymentResponse).toBeDefined();
-        expect(terminalApiResponse.saleToPOIResponse?.messageHeader).toBeDefined();
+        expect(terminalApiResponse.SaleToPOIResponse?.PaymentResponse).toBeDefined();
+        expect(terminalApiResponse.SaleToPOIResponse?.MessageHeader).toBeDefined();
     });
 
     test.each([isCI, true])("should return NexoCryptoException, isMock: %p", async (isMock: boolean): Promise<void> => {
@@ -71,10 +71,10 @@ describe("Terminal Local API", (): void => {
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
         const securityKey: SecurityKey = {
-            adyenCryptoVersion: 0,
-            keyIdentifier: "CryptoKeyIdentifier12345",
-            keyVersion: 0,
-            passphrase: "p@ssw0rd123456",
+            AdyenCryptoVersion: 0,
+            KeyIdentifier: "CryptoKeyIdentifier12345",
+            KeyVersion: 0,
+            Passphrase: "p@ssw0rd123456",
         };
 
         try {

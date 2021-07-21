@@ -54,7 +54,7 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
         }
 
         const saleToPoiSecuredMessage: SaleToPOISecuredMessage = NexoCrypto.encrypt(
-            terminalApiRequest.saleToPOIRequest.messageHeader,
+            terminalApiRequest.SaleToPOIRequest.MessageHeader,
             JSON.stringify(formattedRequest),
             securityKey,
         );
@@ -72,7 +72,7 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
             ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
 
         const response = this.nexoCrypto.decrypt(
-            terminalApiSecuredResponse.saleToPOIResponse,
+            terminalApiSecuredResponse.SaleToPOIResponse,
             securityKey,
         );
 

@@ -37,7 +37,7 @@ class TerminalCloudAPI extends ApiKeyAuthenticatedService {
     }
 
     private static setApplicationInfo(request: TerminalApiRequest): TerminalApiRequest {
-        if (request.saleToPOIRequest.paymentRequest) {
+        if (request.SaleToPOIRequest.PaymentRequest) {
             const applicationInfo = new ApplicationInfo();
             const saleToAcquirerData = {applicationInfo};
             const saleData = {saleToAcquirerData};
