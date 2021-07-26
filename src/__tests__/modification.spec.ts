@@ -171,6 +171,7 @@ let modification: Modification;
 let scope: nock.Scope;
 const paymentPspReference = "863620292981235A";
 const invalidPaymentPspReference = "invalid_psp_reference";
+const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 
 beforeEach((): void => {
     if (!nock.isActive()) {
@@ -186,7 +187,7 @@ afterEach(() => {
 });
 
 describe("Modification", (): void => {
-    test.each([false, true])("should perform an amount update request, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI, true])("should perform an amount update request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const request = createAmountUpdateRequest();
         scope.post(`/payments/${paymentPspReference}/amountUpdates`)
@@ -215,7 +216,7 @@ describe("Modification", (): void => {
         }
     });
 
-    test.each([false, true])("should perform a cancels request, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI, true])("should perform a cancels request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const request = createCancelsRequest();
         scope.post(`/payments/${paymentPspReference}/cancels`)
@@ -242,7 +243,7 @@ describe("Modification", (): void => {
         }
     });
 
-    test.each([false, true])("should perform a standalone cancels request, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI, true])("should perform a standalone cancels request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const request = createStandaloneCancelsRequest();
         scope.post("/cancels")
@@ -270,7 +271,7 @@ describe("Modification", (): void => {
         }
     });
 
-    test.each([false, true])("should perform a captures request, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI, true])("should perform a captures request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const request = createCapturesRequest();
         scope.post(`/payments/${paymentPspReference}/captures`)
@@ -297,7 +298,7 @@ describe("Modification", (): void => {
         }
     });
 
-    test.each([false, true])("should perform a refunds request, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI, true])("should perform a refunds request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const request = createRefundsRequest();
         scope.post(`/payments/${paymentPspReference}/refunds`)
@@ -324,7 +325,7 @@ describe("Modification", (): void => {
         }
     });
 
-    test.each([false, true])("should perform a reversals request, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI, true])("should perform a reversals request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const request = createReversalsRequest();
         scope.post(`/payments/${paymentPspReference}/reversals`)

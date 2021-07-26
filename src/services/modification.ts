@@ -19,7 +19,6 @@
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
-import setApplicationInfo from "../helpers/setApplicationInfo";
 import { ApplicationInfo } from "../typings/applicationInfo";
 import { IRequest } from "../typings/requestOptions";
 import AmountUpdates from "./resource/modification/amountUpdates";
@@ -56,7 +55,7 @@ class Modification extends Service {
         const amountUpdates = new AmountUpdates(this, paymentPspReference);
         return getJsonResponse<CreatePaymentAmountUpdateRequest, PaymentAmountUpdateResource>(
             amountUpdates,
-            setApplicationInfo(amountUpdatesRequest),
+            amountUpdatesRequest,
             requestOptions
         );
     }
@@ -68,7 +67,7 @@ class Modification extends Service {
         const cancelsStandalone = new CancelsStandalone(this);
         return getJsonResponse<CreateStandalonePaymentCancelRequest, StandalonePaymentCancelResource>(
             cancelsStandalone,
-            setApplicationInfo(cancelsStandaloneRequest),
+            cancelsStandaloneRequest,
             requestOptions
         );
     }
@@ -81,7 +80,7 @@ class Modification extends Service {
         const cancels = new Cancels(this, paymentPspReference);
         return getJsonResponse<CreatePaymentCancelRequest, PaymentCancelResource>(
             cancels,
-            setApplicationInfo(cancelsRequest),
+            cancelsRequest,
             requestOptions
         );
     }
@@ -94,7 +93,7 @@ class Modification extends Service {
         const captures = new Captures(this, paymentPspReference);
         return getJsonResponse<CreatePaymentCaptureRequest, PaymentCaptureResource>(
             captures,
-            setApplicationInfo(capturesRequest),
+            capturesRequest,
             requestOptions
         );
     }
@@ -107,7 +106,7 @@ class Modification extends Service {
         const refunds = new Refunds(this, paymentPspReference);
         return getJsonResponse<CreatePaymentRefundRequest, PaymentRefundResource>(
             refunds,
-            setApplicationInfo(refundsRequest),
+            refundsRequest,
             requestOptions
         );
     }
@@ -120,7 +119,7 @@ class Modification extends Service {
         const refunds = new Reversals(this, paymentPspReference);
         return getJsonResponse<CreatePaymentReversalRequest, PaymentReversalResource>(
             refunds,
-            setApplicationInfo(reversalsRequest),
+            reversalsRequest,
             requestOptions
         );
     }
