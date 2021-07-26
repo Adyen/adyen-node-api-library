@@ -14,58 +14,58 @@ export class ResponseAdditionalDataDeliveryAddress {
     /**
     * The delivery address city passed in the payment request.
     */
-    'deliveryAddressCity'?: string;
+    'deliveryAddress_city'?: string;
     /**
     * The delivery address country passed in the payment request.  Example: NL
     */
-    'deliveryAddressCountry'?: string;
+    'deliveryAddress_country'?: string;
     /**
     * The delivery address house number or name passed in the payment request.
     */
-    'deliveryAddressHouseNumberOrName'?: string;
+    'deliveryAddress_houseNumberOrName'?: string;
     /**
     * The delivery address postal code passed in the payment request.  Example: 1011 DJ
     */
-    'deliveryAddressPostalCode'?: string;
+    'deliveryAddress_postalCode'?: string;
     /**
     * The delivery address state or province passed in the payment request.  Example: NH
     */
-    'deliveryAddressStateOrProvince'?: string;
+    'deliveryAddress_stateOrProvince'?: string;
     /**
     * The delivery address street passed in the payment request.
     */
-    'deliveryAddressStreet'?: string;
+    'deliveryAddress_street'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "deliveryAddressCity",
+            "name": "deliveryAddress_city",
             "baseName": "deliveryAddress.city",
             "type": "string"
         },
         {
-            "name": "deliveryAddressCountry",
+            "name": "deliveryAddress_country",
             "baseName": "deliveryAddress.country",
             "type": "string"
         },
         {
-            "name": "deliveryAddressHouseNumberOrName",
+            "name": "deliveryAddress_houseNumberOrName",
             "baseName": "deliveryAddress.houseNumberOrName",
             "type": "string"
         },
         {
-            "name": "deliveryAddressPostalCode",
+            "name": "deliveryAddress_postalCode",
             "baseName": "deliveryAddress.postalCode",
             "type": "string"
         },
         {
-            "name": "deliveryAddressStateOrProvince",
+            "name": "deliveryAddress_stateOrProvince",
             "baseName": "deliveryAddress.stateOrProvince",
             "type": "string"
         },
         {
-            "name": "deliveryAddressStreet",
+            "name": "deliveryAddress_street",
             "baseName": "deliveryAddress.street",
             "type": "string"
         }    ];

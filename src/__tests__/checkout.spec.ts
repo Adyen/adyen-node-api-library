@@ -31,6 +31,7 @@ import Checkout from "../services/checkout";
 import HttpClientException from "../httpClient/httpClientException";
 import {
     Amount,
+    CardDetails,
     CheckoutBalanceCheckRequest,
     CheckoutBalanceCheckResponse,
     CheckoutCancelOrderResponse,
@@ -70,7 +71,7 @@ function createPaymentsDetailsRequest(): DetailsRequest {
 
 export function createPaymentsCheckoutRequest(): PaymentRequest {
     const paymentMethodDetails = {
-        type: "scheme",
+        type: CardDetails.TypeEnum.Scheme,
         encryptedCardNumber: "test_4111111111111111",
         encryptedExpiryMonth: "test_03",
         encryptedExpiryYear: "test_2030",

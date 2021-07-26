@@ -18,14 +18,20 @@
  */
 
 import nock from "nock";
-import { createClient } from "../__mocks__/base";
+import {createClient} from "../__mocks__/base";
 import Modification from "../services/modification";
 import Client from "../client";
-
-const modificationResult: IPayouts.ModifyResponse = {
-    pspReference: "1234567890987654",
-    response: "[refund-received]"
-};
+import {
+    CreatePaymentAmountUpdateRequest,
+    CreatePaymentCancelRequest,
+    CreatePaymentCaptureRequest,
+    CreatePaymentRefundRequest, CreatePaymentReversalRequest,
+    CreateStandalonePaymentCancelRequest,
+    PaymentAmountUpdateResource,
+    PaymentCancelResource,
+    PaymentCaptureResource, PaymentRefundResource, PaymentReversalResource,
+    StandalonePaymentCancelResource
+} from "../typings/checkout/models";
 
 const invalidModificationResult = {
     "status": 422,
@@ -34,45 +40,137 @@ const invalidModificationResult = {
     "errorType": "validation"
 };
 
-const createModificationRequest = (): IPayments.ModificationRequest => {
+const createAmountUpdateRequest = (): CreatePaymentAmountUpdateRequest => {
+    return {
+        reference: "863620292981235A",
+        merchantAccount: process.env.ADYEN_MERCHANT!,
+        amount: {
+            currency: "EUR",
+            value: 420
+        },
+        reason: CreatePaymentAmountUpdateRequest.ReasonEnum.DelayedCharge
+    };
+};
+
+const createAmountUpdateResponse = (): PaymentAmountUpdateResource => {
+    return {
+        paymentPspReference: "863620292981235A",
+        pspReference: "863620292981235B",
+        reference: "reference",
+        merchantAccount: process.env.ADYEN_MERCHANT!,
+        amount: {
+            currency: "EUR",
+            value: 420,
+        },
+        reason: CreatePaymentAmountUpdateRequest.ReasonEnum.DelayedCharge,
+        status: PaymentAmountUpdateResource.StatusEnum.Received,
+    };
+};
+
+const createCancelsRequest = (): CreatePaymentCancelRequest => {
+     return {
+         reference: "863620292981235B",
+         merchantAccount: process.env.ADYEN_MERCHANT!,
+     };
+};
+
+const createCancelsResponse = (): PaymentCancelResource =>  {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
-        originalReference: "863620292981235A",
-        modificationAmount: {
-            value: 500 ,
-            currency: "EUR"
+        pspReference: "863620292981235B",
+        paymentPspReference: "863620292981235A",
+        status: PaymentCancelResource.StatusEnum.Received,
+    };
+};
+
+const createStandaloneCancelsRequest = (): CreateStandalonePaymentCancelRequest => {
+    return {
+        reference: "reference",
+        merchantAccount: process.env.ADYEN_MERCHANT!,
+        paymentReference: "863620292981235B",
+    };
+};
+
+const createStandaloneCancelsResponse = (): StandalonePaymentCancelResource => {
+    return {
+        reference: "reference",
+        merchantAccount: process.env.ADYEN_MERCHANT!,
+        paymentReference: "863620292981235B",
+        pspReference: "863620292981235A",
+        status: StandalonePaymentCancelResource.StatusEnum.Received,
+    };
+};
+
+const createCapturesRequest = (): CreatePaymentCaptureRequest => {
+    return {
+        merchantAccount: process.env.ADYEN_MERCHANT!,
+        amount: {
+            currency: "EUR",
+            value: 420,
         }
     };
 };
 
-const createInvalidModificationRequest = (): IPayments.ModificationRequest => {
+function createCapturesResponse(): PaymentCaptureResource {
+    return {
+        paymentPspReference: "863620292981235A",
+        pspReference: "863620292981235B",
+        reference: "reference",
+        merchantAccount: process.env.ADYEN_MERCHANT!,
+        amount: {
+            currency: "EUR",
+            value: 420,
+        },
+        status: PaymentCaptureResource.StatusEnum.Received,
+    };
+}
+
+const createRefundsRequest = (): CreatePaymentRefundRequest => {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
-        originalReference: "invalidPspReference",
-        modificationAmount: {
-            value: 500 ,
-            currency: "EUR"
+        amount: {
+            currency: "EUR",
+            value: 420,
         }
     };
 };
 
-const createCancelRequest = (): IPayments.ModificationRequest => {
+const createRefundsResponse = (): PaymentRefundResource => {
     return {
+        paymentPspReference: "863620292981235A",
+        pspReference: "863620292981235B",
+        reference: "reference",
         merchantAccount: process.env.ADYEN_MERCHANT!,
-        originalReference: "862615382016087C"
+        amount: {
+            currency: "EUR",
+            value: 420,
+        },
+        status: PaymentRefundResource.StatusEnum.Received,
     };
 };
 
-const createInvalidCancelRequest = (): IPayments.ModificationRequest => {
+const createReversalsRequest = (): CreatePaymentReversalRequest => {
     return {
-        merchantAccount: process.env.ADYEN_MERCHANT!,
-        originalReference: "invalidPspReference"
+        merchantAccount: process.env.ADYEN_MERCHANT!
     };
 };
+
+const createReversalsResponse = (): PaymentReversalResource => {
+    return {
+        paymentPspReference: "863620292981235A",
+        pspReference: "863620292981235B",
+        reference: "reference",
+        merchantAccount: process.env.ADYEN_MERCHANT!,
+        status: PaymentRefundResource.StatusEnum.Received,
+    };
+};
+
 
 let client: Client;
 let modification: Modification;
 let scope: nock.Scope;
+const paymentPspReference = "863620292981235A";
+const invalidPaymentPspReference = "invalid_psp_reference";
 
 beforeEach((): void => {
     if (!nock.isActive()) {
@@ -80,7 +178,7 @@ beforeEach((): void => {
     }
     client = createClient();
     modification = new Modification(client);
-    scope = nock(`${client.config.endpoint}/pal/servlet/Payment/${Client.API_VERSION}`);
+    scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`);
 });
 
 afterEach(() => {
@@ -88,174 +186,165 @@ afterEach(() => {
 });
 
 describe("Modification", (): void => {
-    test.each([false, true])("should perform a refund, isMock: %p", async (isMock): Promise<void> => {
+    test.each([false, true])("should perform an amount update request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        scope.post("/refund")
-            .reply(200, modificationResult);
-
-        const request = createModificationRequest();
+        const request = createAmountUpdateRequest();
+        scope.post(`/payments/${paymentPspReference}/amountUpdates`)
+            .reply(200, createAmountUpdateResponse());
         try {
-            const result = await modification.refund(request);
+            const result = await modification.amountUpdates(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
         }
     });
 
-    test.each([false, true])("should fail to perform a refund, isMock: %p", async (isMock): Promise<void> => {
+    test.each([false, true])("should fail to perform an amount update request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         expect.assertions(2);
-        scope.post("/refund")
+        const request = createAmountUpdateRequest();
+        scope.post(`/payments/${invalidPaymentPspReference}/amountUpdates`)
             .reply(422, invalidModificationResult);
 
-        const request = createInvalidModificationRequest();
         try {
-            await modification.refund(request);
+            await modification.amountUpdates(invalidPaymentPspReference, request);
+        } catch (e) {
+            console.log(e);
+            expect(e.statusCode).toBe(422);
+            expect(e.message).toContain("Original pspReference required for this operation");
+        }
+    });
+
+    test.each([false, true])("should perform a cancels request, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        const request = createCancelsRequest();
+        scope.post(`/payments/${paymentPspReference}/cancels`)
+            .reply(200, createCancelsResponse());
+        try {
+            const result = await modification.cancels(paymentPspReference, request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e.message);
+        }
+    });
+
+    test.each([false, true])("should fail to perform a cancels request, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        expect.assertions(2);
+        const request = createCancelsRequest();
+        scope.post(`/payments/${invalidPaymentPspReference}/cancels`)
+            .reply(422, invalidModificationResult);
+        try {
+            await modification.cancels(invalidPaymentPspReference, request);
         } catch (e) {
             expect(e.statusCode).toBe(422);
             expect(e.message).toContain("Original pspReference required for this operation");
         }
     });
 
-    test.each([false, true])("should perform a capture, isMock: %p", async (isMock): Promise<void> => {
+    test.each([false, true])("should perform a standalone cancels request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        scope.post("/capture")
-            .reply(200, modificationResult);
-
-        const request = createModificationRequest();
+        const request = createStandaloneCancelsRequest();
+        scope.post("/cancels")
+            .reply(200, createStandaloneCancelsResponse());
         try {
-            const result = await modification.capture(request);
+            const result = await modification.cancelsStandalone(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
         }
     });
 
-    test.each([false, true])("should fail to perform a capture, isMock: %p", async (isMock): Promise<void> => {
+    test.each([false, true])("should fail to perform a standalone cancels request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         expect.assertions(2);
-        scope.post("/capture")
+        const request = createStandaloneCancelsResponse();
+        scope.post("/cancels")
             .reply(422, invalidModificationResult);
-
-        const request = createInvalidModificationRequest();
         try {
-            await modification.capture(request);
+            request.pspReference = "invalid_psp_reference";
+            await modification.cancelsStandalone(request);
         } catch (e) {
             expect(e.statusCode).toBe(422);
             expect(e.message).toContain("Original pspReference required for this operation");
         }
     });
 
-    test.each([false, true])("should perform a cancelOrRefund, isMock: %p", async (isMock): Promise<void> => {
+    test.each([false, true])("should perform a captures request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        scope.post("/cancelOrRefund")
-            .reply(200, modificationResult);
-
-        const request = createCancelRequest();
+        const request = createCapturesRequest();
+        scope.post(`/payments/${paymentPspReference}/captures`)
+            .reply(200, createCapturesResponse());
         try {
-            const result = await modification.cancelOrRefund(request);
+            const result = await modification.captures(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
         }
     });
 
-    test.each([false, true])("should fail to perform a cancelOrRefund, isMock: %p", async (isMock): Promise<void> => {
+    test.each([false, true])("should fail to perform a captures request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         expect.assertions(2);
-        scope.post("/cancelOrRefund")
+        const request = createCapturesRequest();
+        scope.post(`/payments/${invalidPaymentPspReference}/captures`)
             .reply(422, invalidModificationResult);
-
-        const request = createInvalidCancelRequest();
         try {
-            await modification.cancelOrRefund(request);
+            await modification.captures(invalidPaymentPspReference, request);
         } catch (e) {
             expect(e.statusCode).toBe(422);
             expect(e.message).toContain("Original pspReference required for this operation");
         }
     });
 
-    test.each([false, true])("should perform a cancel, isMock: %p", async (isMock): Promise<void> => {
+    test.each([false, true])("should perform a refunds request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        scope.post("/cancel")
-            .reply(200, modificationResult);
-
-        const request = createCancelRequest();
+        const request = createRefundsRequest();
+        scope.post(`/payments/${paymentPspReference}/refunds`)
+            .reply(200, createRefundsResponse());
         try {
-            const result = await modification.cancel(request);
+            const result = await modification.refunds(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
         }
     });
 
-    test.each([false, true])("should fail to perform a cancel, isMock: %p", async (isMock): Promise<void> => {
+    test.each([false, true])("should fail to perform a refunds request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         expect.assertions(2);
-        scope.post("/cancel")
+        const request = createRefundsRequest();
+        scope.post(`/payments/${paymentPspReference}/refunds`)
             .reply(422, invalidModificationResult);
-
-        const request = createInvalidCancelRequest();
         try {
-            await modification.cancel(request);
+            await modification.refunds(paymentPspReference, request);
         } catch (e) {
             expect(e.statusCode).toBe(422);
             expect(e.message).toContain("Original pspReference required for this operation");
         }
     });
 
-    test.each([false, true])("should perform a technicalCancel, isMock: %p", async (isMock): Promise<void> => {
+    test.each([false, true])("should perform a reversals request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        scope.post("/technicalCancel")
-            .reply(200, modificationResult);
-
-        const request = createCancelRequest();
+        const request = createReversalsRequest();
+        scope.post(`/payments/${paymentPspReference}/reversals`)
+            .reply(200, createReversalsResponse());
         try {
-            const result = await modification.technicalCancel(request);
+            const result = await modification.reversals(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
         }
     });
 
-    test.each([false, true])("should fail to perform a technicalCancel, isMock: %p", async (isMock): Promise<void> => {
+    test.each([false, true])("should fail to perform a reversals request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         expect.assertions(2);
-        scope.post("/technicalCancel")
+        const request = createReversalsRequest();
+        scope.post(`/payments/${invalidPaymentPspReference}/reversals`)
             .reply(422, invalidModificationResult);
-
-        const request = createInvalidCancelRequest();
         try {
-            await modification.technicalCancel(request);
-        } catch (e) {
-            expect(e.statusCode).toBe(422);
-            expect(e.message).toContain("Original pspReference required for this operation");
-        }
-    });
-
-    test.each([false, true])("should perform a adjustAuthorisation, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
-        scope.post("/adjustAuthorisation")
-            .reply(200, modificationResult);
-
-        const request = createModificationRequest();
-        try {
-            const result = await modification.adjustAuthorisation(request);
-            expect(result).toBeTruthy();
-        } catch (e) {
-            fail(e.message);
-        }
-    });
-
-    test.each([false, true])("should fail to perform a adjustAuthorisation, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
-        expect.assertions(2);
-        scope.post("/adjustAuthorisation")
-            .reply(422, invalidModificationResult);
-
-        const request = createInvalidModificationRequest();
-        try {
-            await modification.adjustAuthorisation(request);
+            await modification.reversals(invalidPaymentPspReference, request);
         } catch (e) {
             expect(e.statusCode).toBe(422);
             expect(e.message).toContain("Original pspReference required for this operation");

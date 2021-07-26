@@ -30,7 +30,7 @@ export class PaymentCompletionDetails {
     /**
     * The SMS verification code collected from the shopper.
     */
-    'cupsecureplusSmscode'?: string;
+    'cupsecureplus_smscode'?: string;
     /**
     * PayPal-generated third party access token.
     */
@@ -70,27 +70,27 @@ export class PaymentCompletionDetails {
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `transStatus`.
     */
-    'threeds2ChallengeResult'?: string;
+    'threeds2_challengeResult'?: string;
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `threeDSCompInd`.
     */
-    'threeds2Fingerprint'?: string;
+    'threeds2_fingerprint'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "mD",
+            "name": "MD",
             "baseName": "MD",
             "type": "string"
         },
         {
-            "name": "paReq",
+            "name": "PaReq",
             "baseName": "PaReq",
             "type": "string"
         },
         {
-            "name": "paRes",
+            "name": "PaRes",
             "baseName": "PaRes",
             "type": "string"
         },
@@ -100,7 +100,7 @@ export class PaymentCompletionDetails {
             "type": "string"
         },
         {
-            "name": "cupsecureplusSmscode",
+            "name": "cupsecureplus_smscode",
             "baseName": "cupsecureplus.smscode",
             "type": "string"
         },
@@ -150,12 +150,12 @@ export class PaymentCompletionDetails {
             "type": "string"
         },
         {
-            "name": "threeds2ChallengeResult",
+            "name": "threeds2_challengeResult",
             "baseName": "threeds2.challengeResult",
             "type": "string"
         },
         {
-            "name": "threeds2Fingerprint",
+            "name": "threeds2_fingerprint",
             "baseName": "threeds2.fingerprint",
             "type": "string"
         }    ];

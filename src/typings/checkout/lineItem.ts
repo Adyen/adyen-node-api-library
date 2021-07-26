@@ -32,6 +32,10 @@ export class LineItem {
     */
     'imageUrl'?: string;
     /**
+    * Item category, used by the RatePay payment method.
+    */
+    'itemCategory'?: string;
+    /**
     * Link to the purchased item.
     */
     'productUrl'?: string;
@@ -78,6 +82,11 @@ export class LineItem {
         {
             "name": "imageUrl",
             "baseName": "imageUrl",
+            "type": "string"
+        },
+        {
+            "name": "itemCategory",
+            "baseName": "itemCategory",
             "type": "string"
         },
         {

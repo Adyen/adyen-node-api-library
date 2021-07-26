@@ -65,11 +65,11 @@ export class CreatePaymentLinkRequest {
     */
     'merchantOrderReference'?: string;
     /**
-    * Metadata consists of entries, each of which includes a key and a value. Limitations: * Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\" * Maximum 20 characters per key. When exceeding, the \"178\" error occurs: \"Metadata key size exceeds limit\" * A key cannot have the name `checkout.linkId`. Whatever value is present under that key is going to be replaced by the real link id
+    * Metadata consists of entries, each of which includes a key and a value. Limitations: * Maximum 20 key-value pairs per request. Otherwise, error \"177\" occurs: \"Metadata size exceeds limit\" * Maximum 20 characters per key. Otherwise, error \"178\" occurs: \"Metadata key size exceeds limit\" * A key cannot have the name `checkout.linkId`. Any value that you provide with this key is going to be replaced by the real payment link ID.
     */
     'metadata'?: { [key: string]: string; };
     /**
-    * Defines a recurring payment type. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
+    * Defines a recurring payment type. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
     'recurringProcessingModel'?: CreatePaymentLinkRequest.RecurringProcessingModelEnum;
     /**
@@ -77,7 +77,7 @@ export class CreatePaymentLinkRequest {
     */
     'reference': string;
     /**
-    * The fields that have to be filled in by the shopper before completing the payment. Possible values: * `billingAddress` – The address where to send the invoice. * `deliveryAddress` – The address where the purchased goods should be delivered. * `shopperEmail` – The shopper\'s email address. * `shopperName` – The shopper\'s full name. * `telephoneNumber` – The shopper\'s phone number. 
+    * List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/online-payments/pay-by-link/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper\'s email address. * **shopperName** – The shopper\'s full name. * **telephoneNumber** – The shopper\'s phone number. 
     */
     'requiredShopperFields'?: Array<CreatePaymentLinkRequest.RequiredShopperFieldsEnum>;
     /**
@@ -111,7 +111,7 @@ export class CreatePaymentLinkRequest {
     */
     'store'?: string;
     /**
-    * When this is set to **true** and the `shopperReference` is provided, the payment details will be stored.
+    * When this is set to **true** and the `shopperReference` is provided, the payment details will be stored. From api version 68 use `storePaymentMethodMode` instead.
     */
     'storePaymentMethod'?: boolean;
 

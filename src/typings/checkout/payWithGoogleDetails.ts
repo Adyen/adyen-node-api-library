@@ -10,68 +10,67 @@
  * Do not edit the class manually.
  */
 
-export class Address {
+export class PayWithGoogleDetails {
     /**
-    * The name of the city. Maximum length: 3000 characters.
+    * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'city': string;
+    'fundingSource'?: PayWithGoogleDetails.FundingSourceEnum;
     /**
-    * The two-character country code as defined in ISO-3166-1 alpha-2. For example, **US**. > If you don\'t know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.
+    * The `token` that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) `PaymentData` response.
     */
-    'country': string;
+    'googlePayToken': string;
     /**
-    * The number or name of the house. Maximum length: 3000 characters.
+    * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'houseNumberOrName': string;
+    'recurringDetailReference'?: string;
     /**
-    * A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.
+    * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'postalCode': string;
+    'storedPaymentMethodId'?: string;
     /**
-    * State or province codes as defined in ISO 3166-2. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
+    * **paywithgoogle**
     */
-    'stateOrProvince'?: string;
-    /**
-    * The name of the street. Maximum length: 3000 characters. > The house number should not be included in this field; it should be separately provided via `houseNumberOrName`.
-    */
-    'street': string;
+    'type'?: PayWithGoogleDetails.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "city",
-            "baseName": "city",
+            "name": "fundingSource",
+            "baseName": "fundingSource",
+            "type": "PayWithGoogleDetails.FundingSourceEnum"
+        },
+        {
+            "name": "googlePayToken",
+            "baseName": "googlePayToken",
             "type": "string"
         },
         {
-            "name": "country",
-            "baseName": "country",
+            "name": "recurringDetailReference",
+            "baseName": "recurringDetailReference",
             "type": "string"
         },
         {
-            "name": "houseNumberOrName",
-            "baseName": "houseNumberOrName",
+            "name": "storedPaymentMethodId",
+            "baseName": "storedPaymentMethodId",
             "type": "string"
         },
         {
-            "name": "postalCode",
-            "baseName": "postalCode",
-            "type": "string"
-        },
-        {
-            "name": "stateOrProvince",
-            "baseName": "stateOrProvince",
-            "type": "string"
-        },
-        {
-            "name": "street",
-            "baseName": "street",
-            "type": "string"
+            "name": "type",
+            "baseName": "type",
+            "type": "PayWithGoogleDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return Address.attributeTypeMap;
+        return PayWithGoogleDetails.attributeTypeMap;
     }
 }
 
+export namespace PayWithGoogleDetails {
+    export enum FundingSourceEnum {
+        Debit = <any> 'debit'
+    }
+    export enum TypeEnum {
+        Paywithgoogle = <any> 'paywithgoogle'
+    }
+}

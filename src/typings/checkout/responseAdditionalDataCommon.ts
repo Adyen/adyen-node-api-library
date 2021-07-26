@@ -36,6 +36,10 @@ export class ResponseAdditionalDataCommon {
     */
     'authCode'?: string;
     /**
+    * Merchant ID known by the acquirer.
+    */
+    'authorisationMid'?: string;
+    /**
     * The currency of the authorised amount, as a three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
     'authorisedAmountCurrency'?: string;
@@ -55,6 +59,10 @@ export class ResponseAdditionalDataCommon {
     * BIC of a bank account.  Example: TESTNL01  > Only relevant for SEPA Direct Debit transactions.
     */
     'bic'?: string;
+    /**
+    * Includes the co-branded card information.
+    */
+    'coBrandedWith'?: string;
     /**
     * The result of CVC verification.
     */
@@ -86,7 +94,15 @@ export class ResponseAdditionalDataCommon {
     /**
     * The fraud score due to a particular fraud check. The fraud check name is found in the key of the key-value pair.
     */
-    'fraudCheckItemNrFraudCheckname'?: string;
+    'fraudCheck__itemNr__FraudCheckname'?: string;
+    /**
+    * Indicates if the payment is sent to manual review.
+    */
+    'fraudManualReview'?: string;
+    /**
+    * The fraud result properties of the payment.
+    */
+    'fraudResultType'?: ResponseAdditionalDataCommon.FraudResultTypeEnum;
     /**
     * Information regarding the funding type of the card. The possible return values are: * CHARGE * CREDIT * DEBIT * PREPAID * PREPAID_RELOADABLE  * PREPAID_NONRELOADABLE * DEFFERED_DEBIT  > This functionality requires additional configuration on Adyen\'s end. To enable it, contact the Support Team.  For receiving this field in the notification, enable **Include Funding Source** in **Notifications** > **Additional settings**.
     */
@@ -100,13 +116,29 @@ export class ResponseAdditionalDataCommon {
     */
     'inferredRefusalReason'?: string;
     /**
+    * Indicates if the card is used for business purposes only.
+    */
+    'isCardCommercial'?: string;
+    /**
     * The issuing country of the card based on the BIN list that Adyen maintains.  Example: JP
     */
     'issuerCountry'?: string;
     /**
+    * A Boolean value indicating whether a liability shift was offered for this payment.
+    */
+    'liabilityShift'?: string;
+    /**
     * The `mcBankNetReferenceNumber`, is a minimum of six characters and a maximum of nine characters long.  > Contact Support Team to enable this field.
     */
     'mcBankNetReferenceNumber'?: string;
+    /**
+    * A code and message that issuers send to provide more details about the payment. This field is especially useful when implementing a retry logic for declined payments.  Possible values:  * **01: New account information available**  * **02: Cannot approve at this time, try again later**  * **03: Do not try again**  * **04: Token requirements not fulfilled for this token type**  * **21: Payment Cancellation** (only for Mastercard)  
+    */
+    'merchantAdviceCode'?: ResponseAdditionalDataCommon.MerchantAdviceCodeEnum;
+    /**
+    * The reference provided for the transaction.
+    */
+    'merchantReference'?: string;
     /**
     * Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.
     */
@@ -119,6 +151,10 @@ export class ResponseAdditionalDataCommon {
     * The Payment Account Reference (PAR) value links a network token with the underlying primary account number (PAN). The PAR value consists of 29 uppercase alphanumeric characters.
     */
     'paymentAccountReference'?: string;
+    /**
+    * The payment method used in the transaction.
+    */
+    'paymentMethod'?: string;
     /**
     * The Adyen sub-variant of the payment method used for the payment request.  For more information, refer to [PaymentMethodVariant](https://docs.adyen.com/development-resources/paymentmethodvariant).  Example: mcpro
     */
@@ -136,17 +172,21 @@ export class ResponseAdditionalDataCommon {
     */
     'receiptFreeText'?: string;
     /**
+    * The recurring contract types applicable to the transaction.
+    */
+    'recurring_contractTypes'?: string;
+    /**
     * The `pspReference`, of the first recurring payment that created the recurring detail.  This functionality requires additional configuration on Adyen\'s end. To enable it, contact the Support Team.
     */
-    'recurringFirstPspReference'?: string;
+    'recurring_firstPspReference'?: string;
     /**
     * The reference that uniquely identifies the recurring transaction.
     */
-    'recurringRecurringDetailReference'?: string;
+    'recurring_recurringDetailReference'?: string;
     /**
     * The provided reference of the shopper for a recurring transaction.
     */
-    'recurringShopperReference'?: string;
+    'recurring_shopperReference'?: string;
     /**
     * The processing model used for the recurring transaction.
     */
@@ -234,6 +274,11 @@ export class ResponseAdditionalDataCommon {
             "type": "string"
         },
         {
+            "name": "authorisationMid",
+            "baseName": "authorisationMid",
+            "type": "string"
+        },
+        {
             "name": "authorisedAmountCurrency",
             "baseName": "authorisedAmountCurrency",
             "type": "string"
@@ -256,6 +301,11 @@ export class ResponseAdditionalDataCommon {
         {
             "name": "bic",
             "baseName": "bic",
+            "type": "string"
+        },
+        {
+            "name": "coBrandedWith",
+            "baseName": "coBrandedWith",
             "type": "string"
         },
         {
@@ -294,9 +344,19 @@ export class ResponseAdditionalDataCommon {
             "type": "string"
         },
         {
-            "name": "fraudCheckItemNrFraudCheckname",
+            "name": "fraudCheck__itemNr__FraudCheckname",
             "baseName": "fraudCheck-[itemNr]-[FraudCheckname]",
             "type": "string"
+        },
+        {
+            "name": "fraudManualReview",
+            "baseName": "fraudManualReview",
+            "type": "string"
+        },
+        {
+            "name": "fraudResultType",
+            "baseName": "fraudResultType",
+            "type": "ResponseAdditionalDataCommon.FraudResultTypeEnum"
         },
         {
             "name": "fundingSource",
@@ -314,13 +374,33 @@ export class ResponseAdditionalDataCommon {
             "type": "string"
         },
         {
+            "name": "isCardCommercial",
+            "baseName": "isCardCommercial",
+            "type": "string"
+        },
+        {
             "name": "issuerCountry",
             "baseName": "issuerCountry",
             "type": "string"
         },
         {
+            "name": "liabilityShift",
+            "baseName": "liabilityShift",
+            "type": "string"
+        },
+        {
             "name": "mcBankNetReferenceNumber",
             "baseName": "mcBankNetReferenceNumber",
+            "type": "string"
+        },
+        {
+            "name": "merchantAdviceCode",
+            "baseName": "merchantAdviceCode",
+            "type": "ResponseAdditionalDataCommon.MerchantAdviceCodeEnum"
+        },
+        {
+            "name": "merchantReference",
+            "baseName": "merchantReference",
             "type": "string"
         },
         {
@@ -336,6 +416,11 @@ export class ResponseAdditionalDataCommon {
         {
             "name": "paymentAccountReference",
             "baseName": "paymentAccountReference",
+            "type": "string"
+        },
+        {
+            "name": "paymentMethod",
+            "baseName": "paymentMethod",
             "type": "string"
         },
         {
@@ -359,17 +444,22 @@ export class ResponseAdditionalDataCommon {
             "type": "string"
         },
         {
-            "name": "recurringFirstPspReference",
+            "name": "recurring_contractTypes",
+            "baseName": "recurring.contractTypes",
+            "type": "string"
+        },
+        {
+            "name": "recurring_firstPspReference",
             "baseName": "recurring.firstPspReference",
             "type": "string"
         },
         {
-            "name": "recurringRecurringDetailReference",
+            "name": "recurring_recurringDetailReference",
             "baseName": "recurring.recurringDetailReference",
             "type": "string"
         },
         {
-            "name": "recurringShopperReference",
+            "name": "recurring_shopperReference",
             "baseName": "recurring.shopperReference",
             "type": "string"
         },
@@ -445,6 +535,17 @@ export class ResponseAdditionalDataCommon {
 }
 
 export namespace ResponseAdditionalDataCommon {
+    export enum FraudResultTypeEnum {
+        Green = <any> 'GREEN',
+        Fraud = <any> 'FRAUD'
+    }
+    export enum MerchantAdviceCodeEnum {
+        _01NewAccountInformationAvailable = <any> '01: New account information available',
+        _02CannotApproveAtThisTimeTryAgainLater = <any> '02: Cannot approve at this time, try again later',
+        _03DoNotTryAgain = <any> '03: Do not try again',
+        _04TokenRequirementsNotFulfilledForThisTokenType = <any> '04: Token requirements not fulfilled for this token type',
+        _21PaymentCancellation = <any> '21: Payment Cancellation'
+    }
     export enum RecurringProcessingModelEnum {
         CardOnFile = <any> 'CardOnFile',
         Subscription = <any> 'Subscription',

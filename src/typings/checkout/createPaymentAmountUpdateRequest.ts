@@ -10,68 +10,65 @@
  * Do not edit the class manually.
  */
 
-export class Address {
+import { Amount } from './amount';
+import { Split } from './split';
+
+export class CreatePaymentAmountUpdateRequest {
+    'amount': Amount;
     /**
-    * The name of the city. Maximum length: 3000 characters.
+    * The merchant account that is used to process the payment.
     */
-    'city': string;
+    'merchantAccount': string;
     /**
-    * The two-character country code as defined in ISO-3166-1 alpha-2. For example, **US**. > If you don\'t know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.
+    * The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**
     */
-    'country': string;
+    'reason'?: CreatePaymentAmountUpdateRequest.ReasonEnum;
     /**
-    * The number or name of the house. Maximum length: 3000 characters.
+    * Your reference for the amount update request. Maximum length: 80 characters.
     */
-    'houseNumberOrName': string;
+    'reference'?: string;
     /**
-    * A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.
+    * An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/platforms/processing-payments#providing-split-information).
     */
-    'postalCode': string;
-    /**
-    * State or province codes as defined in ISO 3166-2. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
-    */
-    'stateOrProvince'?: string;
-    /**
-    * The name of the street. Maximum length: 3000 characters. > The house number should not be included in this field; it should be separately provided via `houseNumberOrName`.
-    */
-    'street': string;
+    'splits'?: Array<Split>;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "city",
-            "baseName": "city",
+            "name": "amount",
+            "baseName": "amount",
+            "type": "Amount"
+        },
+        {
+            "name": "merchantAccount",
+            "baseName": "merchantAccount",
             "type": "string"
         },
         {
-            "name": "country",
-            "baseName": "country",
+            "name": "reason",
+            "baseName": "reason",
+            "type": "CreatePaymentAmountUpdateRequest.ReasonEnum"
+        },
+        {
+            "name": "reference",
+            "baseName": "reference",
             "type": "string"
         },
         {
-            "name": "houseNumberOrName",
-            "baseName": "houseNumberOrName",
-            "type": "string"
-        },
-        {
-            "name": "postalCode",
-            "baseName": "postalCode",
-            "type": "string"
-        },
-        {
-            "name": "stateOrProvince",
-            "baseName": "stateOrProvince",
-            "type": "string"
-        },
-        {
-            "name": "street",
-            "baseName": "street",
-            "type": "string"
+            "name": "splits",
+            "baseName": "splits",
+            "type": "Array<Split>"
         }    ];
 
     static getAttributeTypeMap() {
-        return Address.attributeTypeMap;
+        return CreatePaymentAmountUpdateRequest.attributeTypeMap;
     }
 }
 
+export namespace CreatePaymentAmountUpdateRequest {
+    export enum ReasonEnum {
+        DelayedCharge = <any> 'delayedCharge',
+        NoShow = <any> 'noShow'
+    }
+}

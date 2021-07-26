@@ -64,6 +64,7 @@ export namespace StoredPaymentMethodDetails {
         GrabpayPh = <any> 'grabpay_PH',
         Oxxo = <any> 'oxxo',
         Gcash = <any> 'gcash',
-        Kakaopay = <any> 'kakaopay'
+        Kakaopay = <any> 'kakaopay',
+        Truemoney = <any> 'truemoney'
     }
 }

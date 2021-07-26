@@ -125,7 +125,7 @@ export class CheckoutBalanceCheckRequest {
     */
     'shopperReference'?: string;
     /**
-    * The text to be shown on the shopper\'s bank statement. To enable this field, contact our [Support Team](https://support.adyen.com/hc/en-us/requests/new).  We recommend sending a maximum of 25 characters, otherwise banks might truncate the string.
+    * The text to be shown on the shopper\'s bank statement. To enable this field, contact our [Support Team](https://support.adyen.com/hc/en-us/requests/new).  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.
     */
     'shopperStatement'?: string;
     /**
@@ -137,7 +137,7 @@ export class CheckoutBalanceCheckRequest {
     */
     'splits'?: Array<Split>;
     /**
-    * The physical store, for which this payment is processed.
+    * The ecommerce or point-of-sale store that is processing the payment. Used in [partner arrangement integrations](https://docs.adyen.com/platforms/platforms-for-partners#route-payments) for Adyen for Platforms.
     */
     'store'?: string;
     /**

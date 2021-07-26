@@ -14,157 +14,157 @@ export class AdditionalDataLodging {
     /**
     * The arrival date. * Date format: `yyyyMMdd`
     */
-    'lodgingCheckInDate'?: string;
+    'lodging_checkInDate'?: string;
     /**
     * The departure date. * Date format: `yyyyMMdd`
     */
-    'lodgingCheckOutDate'?: string;
+    'lodging_checkOutDate'?: string;
     /**
     * The toll free phone number for the hotel/lodgings. * Format: Alphanumeric * maxLength: 17
     */
-    'lodgingCustomerServiceTollFreeNumber'?: string;
+    'lodging_customerServiceTollFreeNumber'?: string;
     /**
     * Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: \'Y\' or \'N\'. * Format: Alphabetic * maxLength: 1
     */
-    'lodgingFireSafetyActIndicator'?: string;
+    'lodging_fireSafetyActIndicator'?: string;
     /**
     * The folio cash advances. * Format: Numeric * maxLength: 12
     */
-    'lodgingFolioCashAdvances'?: string;
+    'lodging_folioCashAdvances'?: string;
     /**
     * Card acceptor’s internal invoice or billing ID reference number. * Format: Alphanumeric * maxLength: 25
     */
-    'lodgingFolioNumber'?: string;
+    'lodging_folioNumber'?: string;
     /**
     * Any charges for food and beverages associated with the booking. * Format: Numeric * maxLength: 12
     */
-    'lodgingFoodBeverageCharges'?: string;
+    'lodging_foodBeverageCharges'?: string;
     /**
     * Indicates if the customer was a \"no-show\" (neither keeps nor cancels their booking).  Value should be Y or N. * Format: Numeric * maxLength: 1
     */
-    'lodgingNoShowIndicator'?: string;
+    'lodging_noShowIndicator'?: string;
     /**
     * Prepaid expenses for the booking. * Format: Numeric * maxLength: 12
     */
-    'lodgingPrepaidExpenses'?: string;
+    'lodging_prepaidExpenses'?: string;
     /**
     * Identifies specific lodging property location by its local phone number. * Format: Alphanumeric * maxLength: 17
     */
-    'lodgingPropertyPhoneNumber'?: string;
+    'lodging_propertyPhoneNumber'?: string;
     /**
     * Total number of nights the room will be rented. * Format: Numeric * maxLength: 4
     */
-    'lodgingRoom1NumberOfNights'?: string;
+    'lodging_room1_numberOfNights'?: string;
     /**
     * The rate of the room. * Format: Numeric * maxLength: 12
     */
-    'lodgingRoom1Rate'?: string;
+    'lodging_room1_rate'?: string;
     /**
     * The total amount of tax to be paid. * Format: Numeric * maxLength: 12
     */
-    'lodgingRoom1Tax'?: string;
+    'lodging_room1_tax'?: string;
     /**
     * Total room tax amount. * Format: Numeric * maxLength: 12
     */
-    'lodgingTotalRoomTax'?: string;
+    'lodging_totalRoomTax'?: string;
     /**
     * Total tax amount. * Format: Numeric * maxLength: 12
     */
-    'lodgingTotalTax'?: string;
+    'lodging_totalTax'?: string;
     /**
     * Number of nights. This should be included in the auth message. * Format: Numeric * maxLength: 2
     */
-    'travelEntertainmentAuthDataDuration'?: string;
+    'travelEntertainmentAuthData_duration'?: string;
     /**
     * Indicates what market-specific dataset will be submitted or is being submitted. Value should be \"H\" for Hotel. This should be included in the auth message.  * Format: Alphanumeric * maxLength: 1
     */
-    'travelEntertainmentAuthDataMarket'?: string;
+    'travelEntertainmentAuthData_market'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "lodgingCheckInDate",
+            "name": "lodging_checkInDate",
             "baseName": "lodging.checkInDate",
             "type": "string"
         },
         {
-            "name": "lodgingCheckOutDate",
+            "name": "lodging_checkOutDate",
             "baseName": "lodging.checkOutDate",
             "type": "string"
         },
         {
-            "name": "lodgingCustomerServiceTollFreeNumber",
+            "name": "lodging_customerServiceTollFreeNumber",
             "baseName": "lodging.customerServiceTollFreeNumber",
             "type": "string"
         },
         {
-            "name": "lodgingFireSafetyActIndicator",
+            "name": "lodging_fireSafetyActIndicator",
             "baseName": "lodging.fireSafetyActIndicator",
             "type": "string"
         },
         {
-            "name": "lodgingFolioCashAdvances",
+            "name": "lodging_folioCashAdvances",
             "baseName": "lodging.folioCashAdvances",
             "type": "string"
         },
         {
-            "name": "lodgingFolioNumber",
+            "name": "lodging_folioNumber",
             "baseName": "lodging.folioNumber",
             "type": "string"
         },
         {
-            "name": "lodgingFoodBeverageCharges",
+            "name": "lodging_foodBeverageCharges",
             "baseName": "lodging.foodBeverageCharges",
             "type": "string"
         },
         {
-            "name": "lodgingNoShowIndicator",
+            "name": "lodging_noShowIndicator",
             "baseName": "lodging.noShowIndicator",
             "type": "string"
         },
         {
-            "name": "lodgingPrepaidExpenses",
+            "name": "lodging_prepaidExpenses",
             "baseName": "lodging.prepaidExpenses",
             "type": "string"
         },
         {
-            "name": "lodgingPropertyPhoneNumber",
+            "name": "lodging_propertyPhoneNumber",
             "baseName": "lodging.propertyPhoneNumber",
             "type": "string"
         },
         {
-            "name": "lodgingRoom1NumberOfNights",
+            "name": "lodging_room1_numberOfNights",
             "baseName": "lodging.room1.numberOfNights",
             "type": "string"
         },
         {
-            "name": "lodgingRoom1Rate",
+            "name": "lodging_room1_rate",
             "baseName": "lodging.room1.rate",
             "type": "string"
         },
         {
-            "name": "lodgingRoom1Tax",
+            "name": "lodging_room1_tax",
             "baseName": "lodging.room1.tax",
             "type": "string"
         },
         {
-            "name": "lodgingTotalRoomTax",
+            "name": "lodging_totalRoomTax",
             "baseName": "lodging.totalRoomTax",
             "type": "string"
         },
         {
-            "name": "lodgingTotalTax",
+            "name": "lodging_totalTax",
             "baseName": "lodging.totalTax",
             "type": "string"
         },
         {
-            "name": "travelEntertainmentAuthDataDuration",
+            "name": "travelEntertainmentAuthData_duration",
             "baseName": "travelEntertainmentAuthData.duration",
             "type": "string"
         },
         {
-            "name": "travelEntertainmentAuthDataMarket",
+            "name": "travelEntertainmentAuthData_market",
             "baseName": "travelEntertainmentAuthData.market",
             "type": "string"
         }    ];

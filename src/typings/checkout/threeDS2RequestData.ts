@@ -73,6 +73,10 @@ export class ThreeDS2RequestData {
     */
     'sdkTransID'?: string;
     /**
+    * Version of the 3D Secure 2 mobile SDK.  Only for `deviceChannel` set to **app**.
+    */
+    'sdkVersion'?: string;
+    /**
     * Completion indicator for the device fingerprinting.
     */
     'threeDSCompInd'?: string;
@@ -178,6 +182,11 @@ export class ThreeDS2RequestData {
         {
             "name": "sdkTransID",
             "baseName": "sdkTransID",
+            "type": "string"
+        },
+        {
+            "name": "sdkVersion",
+            "baseName": "sdkVersion",
             "type": "string"
         },
         {

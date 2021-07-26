@@ -14,256 +14,256 @@ export class AdditionalDataAirline {
     /**
     * Reference number for the invoice, issued by the agency. * minLength: 1 * maxLength: 6
     */
-    'airlineAgencyInvoiceNumber'?: string;
+    'airline_agency_invoice_number'?: string;
     /**
     * 2-letter agency plan identifier; alphabetical. * minLength: 2 * maxLength: 2
     */
-    'airlineAgencyPlanName'?: string;
+    'airline_agency_plan_name'?: string;
     /**
     * [IATA](https://www.iata.org/services/pages/codes.aspx) 3-digit accounting code (PAX); numeric. It identifies the carrier. * Format: IATA 3-digit accounting code (PAX) * Example: KLM = 074 * minLength: 3 * maxLength: 3
     */
-    'airlineAirlineCode'?: string;
+    'airline_airline_code'?: string;
     /**
     * [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter airline code * Example: KLM = KL * minLength: 2 * maxLength: 2
     */
-    'airlineAirlineDesignatorCode'?: string;
+    'airline_airline_designator_code'?: string;
     /**
     * Chargeable amount for boarding the plane. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes). * minLength: 1 * maxLength: 18
     */
-    'airlineBoardingFee'?: string;
+    'airline_boarding_fee'?: string;
     /**
     * The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket. * Format: alphanumeric. * minLength: 4 * maxLength: 4
     */
-    'airlineComputerizedReservationSystem'?: string;
+    'airline_computerized_reservation_system'?: string;
     /**
     * Reference number; alphanumeric. * minLength: 0 * maxLength: 20
     */
-    'airlineCustomerReferenceNumber'?: string;
+    'airline_customer_reference_number'?: string;
     /**
     * Optional 2-digit code; alphanumeric. It identifies the type of product of the transaction. The description of the code may appear on credit card statements. * Format: 2-digit code * Example: Passenger ticket = 01 * minLength: 2 * maxLength: 2
     */
-    'airlineDocumentType'?: string;
+    'airline_document_type'?: string;
     /**
     * Flight departure date. Local time `(HH:mm)` is optional. * Date format: `yyyy-MM-dd` * Date and time format: `yyyy-MM-dd HH:mm` * minLength: 10 * maxLength: 16
     */
-    'airlineFlightDate'?: string;
+    'airline_flight_date'?: string;
     /**
     * [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier. This field is required/mandatory if the airline data includes leg details. * Format: IATA 2-letter airline code * Example: KLM = KL * minLength: 2 * maxLength: 2
     */
-    'airlineLegCarrierCode'?: string;
+    'airline_leg_carrier_code'?: string;
     /**
     * 1-letter travel class identifier; alphabetical. There is no standard; however, the following codes are used rather consistently: * F: first class * J: business class * Y: economy class * W: premium economy  Limitations: * minLength: 1 * maxLength: 1
     */
-    'airlineLegClassOfTravel'?: string;
+    'airline_leg_class_of_travel'?: string;
     /**
     *   Date and time of travel. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-compliant. * Format: `yyyy-MM-dd HH:mm` * minLength: 16 * maxLength: 16
     */
-    'airlineLegDateOfTravel'?: string;
+    'airline_leg_date_of_travel'?: string;
     /**
     * Alphabetical identifier of the departure airport. This field is required if the airline data includes leg details. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code. * Example: Amsterdam = AMS * minLength: 3 * maxLength: 3
     */
-    'airlineLegDepartAirport'?: string;
+    'airline_leg_depart_airport'?: string;
     /**
     * [Departure tax](https://en.wikipedia.org/wiki/Departure_tax). Amount charged by a country to an individual upon their leaving. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes). * minLength: 1 * maxLength: 12
     */
-    'airlineLegDepartTax'?: string;
+    'airline_leg_depart_tax'?: string;
     /**
     * Alphabetical identifier of the destination/arrival airport. This field is required/mandatory if the airline data includes leg details. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code. * Example: Amsterdam = AMS * minLength: 3 * maxLength: 3
     */
-    'airlineLegDestinationCode'?: string;
+    'airline_leg_destination_code'?: string;
     /**
     * [Fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code); alphanumeric. * minLength: 1 * maxLength: 7
     */
-    'airlineLegFareBaseCode'?: string;
+    'airline_leg_fare_base_code'?: string;
     /**
     * The flight identifier. * minLength: 1 * maxLength: 5
     */
-    'airlineLegFlightNumber'?: string;
+    'airline_leg_flight_number'?: string;
     /**
     * 1-letter code that indicates whether the passenger is entitled to make a stopover. Only two types of characters are allowed: * O: Stopover allowed * X: Stopover not allowed  Limitations: * minLength: 1 * maxLength: 1
     */
-    'airlineLegStopOverCode'?: string;
+    'airline_leg_stop_over_code'?: string;
     /**
     * Date of birth of the passenger.  Date format: `yyyy-MM-dd` * minLength: 10 * maxLength: 10
     */
-    'airlinePassengerDateOfBirth'?: string;
+    'airline_passenger_date_of_birth'?: string;
     /**
     * Passenger first name/given name. > This field is required/mandatory if the airline data includes passenger details or leg details.
     */
-    'airlinePassengerFirstName'?: string;
+    'airline_passenger_first_name'?: string;
     /**
     * Passenger last name/family name. > This field is required/mandatory if the airline data includes passenger details or leg details.
     */
-    'airlinePassengerLastName'?: string;
+    'airline_passenger_last_name'?: string;
     /**
     * Telephone number of the passenger, including country code. This is an alphanumeric field that can include the \'+\' and \'-\' signs. * minLength: 3 * maxLength: 30
     */
-    'airlinePassengerTelephoneNumber'?: string;
+    'airline_passenger_telephone_number'?: string;
     /**
     * Passenger type code (PTC). IATA PTC values are 3-letter alphabetical. Example: ADT, SRC, CNN, INS.  However, several carriers use non-standard codes that can be up to 5 alphanumeric characters. * minLength: 3 * maxLength: 6
     */
-    'airlinePassengerTravellerType'?: string;
+    'airline_passenger_traveller_type'?: string;
     /**
     * Passenger name, initials, and a title. * Format: last name + first name or initials + title. * Example: *FLYER / MARY MS*. * minLength: 1 * maxLength: 49
     */
-    'airlinePassengerName': string;
+    'airline_passenger_name': string;
     /**
     * Address of the place/agency that issued the ticket. * minLength: 0 * maxLength: 16
     */
-    'airlineTicketIssueAddress'?: string;
+    'airline_ticket_issue_address'?: string;
     /**
     * The ticket\'s unique identifier. * minLength: 1 * maxLength: 150
     */
-    'airlineTicketNumber'?: string;
+    'airline_ticket_number'?: string;
     /**
     * IATA number, also ARC number or ARC/IATA number. Unique identifier number for travel agencies. * minLength: 1 * maxLength: 8
     */
-    'airlineTravelAgencyCode'?: string;
+    'airline_travel_agency_code'?: string;
     /**
     * The name of the travel agency. * minLength: 1 * maxLength: 25
     */
-    'airlineTravelAgencyName'?: string;
+    'airline_travel_agency_name'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "airlineAgencyInvoiceNumber",
+            "name": "airline_agency_invoice_number",
             "baseName": "airline.agency_invoice_number",
             "type": "string"
         },
         {
-            "name": "airlineAgencyPlanName",
+            "name": "airline_agency_plan_name",
             "baseName": "airline.agency_plan_name",
             "type": "string"
         },
         {
-            "name": "airlineAirlineCode",
+            "name": "airline_airline_code",
             "baseName": "airline.airline_code",
             "type": "string"
         },
         {
-            "name": "airlineAirlineDesignatorCode",
+            "name": "airline_airline_designator_code",
             "baseName": "airline.airline_designator_code",
             "type": "string"
         },
         {
-            "name": "airlineBoardingFee",
+            "name": "airline_boarding_fee",
             "baseName": "airline.boarding_fee",
             "type": "string"
         },
         {
-            "name": "airlineComputerizedReservationSystem",
+            "name": "airline_computerized_reservation_system",
             "baseName": "airline.computerized_reservation_system",
             "type": "string"
         },
         {
-            "name": "airlineCustomerReferenceNumber",
+            "name": "airline_customer_reference_number",
             "baseName": "airline.customer_reference_number",
             "type": "string"
         },
         {
-            "name": "airlineDocumentType",
+            "name": "airline_document_type",
             "baseName": "airline.document_type",
             "type": "string"
         },
         {
-            "name": "airlineFlightDate",
+            "name": "airline_flight_date",
             "baseName": "airline.flight_date",
             "type": "string"
         },
         {
-            "name": "airlineLegCarrierCode",
+            "name": "airline_leg_carrier_code",
             "baseName": "airline.leg.carrier_code",
             "type": "string"
         },
         {
-            "name": "airlineLegClassOfTravel",
+            "name": "airline_leg_class_of_travel",
             "baseName": "airline.leg.class_of_travel",
             "type": "string"
         },
         {
-            "name": "airlineLegDateOfTravel",
+            "name": "airline_leg_date_of_travel",
             "baseName": "airline.leg.date_of_travel",
             "type": "string"
         },
         {
-            "name": "airlineLegDepartAirport",
+            "name": "airline_leg_depart_airport",
             "baseName": "airline.leg.depart_airport",
             "type": "string"
         },
         {
-            "name": "airlineLegDepartTax",
+            "name": "airline_leg_depart_tax",
             "baseName": "airline.leg.depart_tax",
             "type": "string"
         },
         {
-            "name": "airlineLegDestinationCode",
+            "name": "airline_leg_destination_code",
             "baseName": "airline.leg.destination_code",
             "type": "string"
         },
         {
-            "name": "airlineLegFareBaseCode",
+            "name": "airline_leg_fare_base_code",
             "baseName": "airline.leg.fare_base_code",
             "type": "string"
         },
         {
-            "name": "airlineLegFlightNumber",
+            "name": "airline_leg_flight_number",
             "baseName": "airline.leg.flight_number",
             "type": "string"
         },
         {
-            "name": "airlineLegStopOverCode",
+            "name": "airline_leg_stop_over_code",
             "baseName": "airline.leg.stop_over_code",
             "type": "string"
         },
         {
-            "name": "airlinePassengerDateOfBirth",
+            "name": "airline_passenger_date_of_birth",
             "baseName": "airline.passenger.date_of_birth",
             "type": "string"
         },
         {
-            "name": "airlinePassengerFirstName",
+            "name": "airline_passenger_first_name",
             "baseName": "airline.passenger.first_name",
             "type": "string"
         },
         {
-            "name": "airlinePassengerLastName",
+            "name": "airline_passenger_last_name",
             "baseName": "airline.passenger.last_name",
             "type": "string"
         },
         {
-            "name": "airlinePassengerTelephoneNumber",
+            "name": "airline_passenger_telephone_number",
             "baseName": "airline.passenger.telephone_number",
             "type": "string"
         },
         {
-            "name": "airlinePassengerTravellerType",
+            "name": "airline_passenger_traveller_type",
             "baseName": "airline.passenger.traveller_type",
             "type": "string"
         },
         {
-            "name": "airlinePassengerName",
+            "name": "airline_passenger_name",
             "baseName": "airline.passenger_name",
             "type": "string"
         },
         {
-            "name": "airlineTicketIssueAddress",
+            "name": "airline_ticket_issue_address",
             "baseName": "airline.ticket_issue_address",
             "type": "string"
         },
         {
-            "name": "airlineTicketNumber",
+            "name": "airline_ticket_number",
             "baseName": "airline.ticket_number",
             "type": "string"
         },
         {
-            "name": "airlineTravelAgencyCode",
+            "name": "airline_travel_agency_code",
             "baseName": "airline.travel_agency_code",
             "type": "string"
         },
         {
-            "name": "airlineTravelAgencyName",
+            "name": "airline_travel_agency_name",
             "baseName": "airline.travel_agency_name",
             "type": "string"
         }    ];

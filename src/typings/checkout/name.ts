@@ -16,10 +16,6 @@ export class Name {
     */
     'firstName': string;
     /**
-    * The name\'s infix, if applicable. >A maximum length of twenty (20) characters is imposed.
-    */
-    'infix'?: string;
-    /**
     * The last name.
     */
     'lastName': string;
@@ -30,11 +26,6 @@ export class Name {
         {
             "name": "firstName",
             "baseName": "firstName",
-            "type": "string"
-        },
-        {
-            "name": "infix",
-            "baseName": "infix",
             "type": "string"
         },
         {

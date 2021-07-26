@@ -14,112 +14,112 @@ export class ResponseAdditionalDataInstallments {
     /**
     * Type of installment. The value of `installmentType` should be **IssuerFinanced**.
     */
-    'installmentPaymentDataInstallmentType'?: string;
+    'installmentPaymentData_installmentType'?: string;
     /**
     * Annual interest rate.
     */
-    'installmentPaymentDataOptionItemNrAnnualPercentageRate'?: string;
+    'installmentPaymentData_option_itemNr_annualPercentageRate'?: string;
     /**
     * First Installment Amount in minor units.
     */
-    'installmentPaymentDataOptionItemNrFirstInstallmentAmount'?: string;
+    'installmentPaymentData_option_itemNr_firstInstallmentAmount'?: string;
     /**
     * Installment fee amount in minor units.
     */
-    'installmentPaymentDataOptionItemNrInstallmentFee'?: string;
+    'installmentPaymentData_option_itemNr_installmentFee'?: string;
     /**
     * Interest rate for the installment period.
     */
-    'installmentPaymentDataOptionItemNrInterestRate'?: string;
+    'installmentPaymentData_option_itemNr_interestRate'?: string;
     /**
     * Maximum number of installments possible for this payment.
     */
-    'installmentPaymentDataOptionItemNrMaximumNumberOfInstallments'?: string;
+    'installmentPaymentData_option_itemNr_maximumNumberOfInstallments'?: string;
     /**
     * Minimum number of installments possible for this payment.
     */
-    'installmentPaymentDataOptionItemNrMinimumNumberOfInstallments'?: string;
+    'installmentPaymentData_option_itemNr_minimumNumberOfInstallments'?: string;
     /**
     * Total number of installments possible for this payment.
     */
-    'installmentPaymentDataOptionItemNrNumberOfInstallments'?: string;
+    'installmentPaymentData_option_itemNr_numberOfInstallments'?: string;
     /**
     * Subsequent Installment Amount in minor units.
     */
-    'installmentPaymentDataOptionItemNrSubsequentInstallmentAmount'?: string;
+    'installmentPaymentData_option_itemNr_subsequentInstallmentAmount'?: string;
     /**
     * Total amount in minor units.
     */
-    'installmentPaymentDataOptionItemNrTotalAmountDue'?: string;
+    'installmentPaymentData_option_itemNr_totalAmountDue'?: string;
     /**
     * Possible values: * PayInInstallmentsOnly * PayInFullOnly * PayInFullOrInstallments
     */
-    'installmentPaymentDataPaymentOptions'?: string;
+    'installmentPaymentData_paymentOptions'?: string;
     /**
     * The number of installments that the payment amount should be charged with.  Example: 5 > Only relevant for card payments in countries that support installments.
     */
-    'installmentsValue'?: string;
+    'installments_value'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "installmentPaymentDataInstallmentType",
+            "name": "installmentPaymentData_installmentType",
             "baseName": "installmentPaymentData.installmentType",
             "type": "string"
         },
         {
-            "name": "installmentPaymentDataOptionItemNrAnnualPercentageRate",
+            "name": "installmentPaymentData_option_itemNr_annualPercentageRate",
             "baseName": "installmentPaymentData.option[itemNr].annualPercentageRate",
             "type": "string"
         },
         {
-            "name": "installmentPaymentDataOptionItemNrFirstInstallmentAmount",
+            "name": "installmentPaymentData_option_itemNr_firstInstallmentAmount",
             "baseName": "installmentPaymentData.option[itemNr].firstInstallmentAmount",
             "type": "string"
         },
         {
-            "name": "installmentPaymentDataOptionItemNrInstallmentFee",
+            "name": "installmentPaymentData_option_itemNr_installmentFee",
             "baseName": "installmentPaymentData.option[itemNr].installmentFee",
             "type": "string"
         },
         {
-            "name": "installmentPaymentDataOptionItemNrInterestRate",
+            "name": "installmentPaymentData_option_itemNr_interestRate",
             "baseName": "installmentPaymentData.option[itemNr].interestRate",
             "type": "string"
         },
         {
-            "name": "installmentPaymentDataOptionItemNrMaximumNumberOfInstallments",
+            "name": "installmentPaymentData_option_itemNr_maximumNumberOfInstallments",
             "baseName": "installmentPaymentData.option[itemNr].maximumNumberOfInstallments",
             "type": "string"
         },
         {
-            "name": "installmentPaymentDataOptionItemNrMinimumNumberOfInstallments",
+            "name": "installmentPaymentData_option_itemNr_minimumNumberOfInstallments",
             "baseName": "installmentPaymentData.option[itemNr].minimumNumberOfInstallments",
             "type": "string"
         },
         {
-            "name": "installmentPaymentDataOptionItemNrNumberOfInstallments",
+            "name": "installmentPaymentData_option_itemNr_numberOfInstallments",
             "baseName": "installmentPaymentData.option[itemNr].numberOfInstallments",
             "type": "string"
         },
         {
-            "name": "installmentPaymentDataOptionItemNrSubsequentInstallmentAmount",
+            "name": "installmentPaymentData_option_itemNr_subsequentInstallmentAmount",
             "baseName": "installmentPaymentData.option[itemNr].subsequentInstallmentAmount",
             "type": "string"
         },
         {
-            "name": "installmentPaymentDataOptionItemNrTotalAmountDue",
+            "name": "installmentPaymentData_option_itemNr_totalAmountDue",
             "baseName": "installmentPaymentData.option[itemNr].totalAmountDue",
             "type": "string"
         },
         {
-            "name": "installmentPaymentDataPaymentOptions",
+            "name": "installmentPaymentData_paymentOptions",
             "baseName": "installmentPaymentData.paymentOptions",
             "type": "string"
         },
         {
-            "name": "installmentsValue",
+            "name": "installments_value",
             "baseName": "installments.value",
             "type": "string"
         }    ];

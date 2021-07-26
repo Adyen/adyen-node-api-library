@@ -12,6 +12,10 @@
 
 export class UpiDetails {
     /**
+    * The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+    */
+    'billingSequenceNumber': string;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'recurringDetailReference'?: string;
@@ -24,7 +28,7 @@ export class UpiDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
-    * **upi**
+    * **upi_collect**
     */
     'type': UpiDetails.TypeEnum;
     /**
@@ -35,6 +39,11 @@ export class UpiDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "billingSequenceNumber",
+            "baseName": "billingSequenceNumber",
+            "type": "string"
+        },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",

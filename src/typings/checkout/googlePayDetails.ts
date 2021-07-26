@@ -28,7 +28,7 @@ export class GooglePayDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
-    * **paywithgoogle**
+    * **googlepay**, **paywithgoogle**
     */
     'type'?: GooglePayDetails.TypeEnum;
 
@@ -71,6 +71,6 @@ export namespace GooglePayDetails {
         Debit = <any> 'debit'
     }
     export enum TypeEnum {
-        Paywithgoogle = <any> 'paywithgoogle'
+        Googlepay = <any> 'googlepay'
     }
 }

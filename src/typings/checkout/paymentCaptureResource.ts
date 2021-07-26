@@ -10,68 +10,82 @@
  * Do not edit the class manually.
  */
 
-export class Address {
+import { Amount } from './amount';
+import { Split } from './split';
+
+export class PaymentCaptureResource {
+    'amount': Amount;
     /**
-    * The name of the city. Maximum length: 3000 characters.
+    * The merchant account that is used to process the payment.
     */
-    'city': string;
+    'merchantAccount': string;
     /**
-    * The two-character country code as defined in ISO-3166-1 alpha-2. For example, **US**. > If you don\'t know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.
+    * The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to capture. 
     */
-    'country': string;
+    'paymentPspReference': string;
     /**
-    * The number or name of the house. Maximum length: 3000 characters.
+    * Adyen\'s 16-character reference associated with the capture request.
     */
-    'houseNumberOrName': string;
+    'pspReference': string;
     /**
-    * A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.
+    * Your reference for the capture request.
     */
-    'postalCode': string;
+    'reference'?: string;
     /**
-    * State or province codes as defined in ISO 3166-2. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
+    * An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/platforms/processing-payments#providing-split-information).
     */
-    'stateOrProvince'?: string;
+    'splits'?: Array<Split>;
     /**
-    * The name of the street. Maximum length: 3000 characters. > The house number should not be included in this field; it should be separately provided via `houseNumberOrName`.
+    * The status of your request. This will always have the value **received**.
     */
-    'street': string;
+    'status': PaymentCaptureResource.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "city",
-            "baseName": "city",
+            "name": "amount",
+            "baseName": "amount",
+            "type": "Amount"
+        },
+        {
+            "name": "merchantAccount",
+            "baseName": "merchantAccount",
             "type": "string"
         },
         {
-            "name": "country",
-            "baseName": "country",
+            "name": "paymentPspReference",
+            "baseName": "paymentPspReference",
             "type": "string"
         },
         {
-            "name": "houseNumberOrName",
-            "baseName": "houseNumberOrName",
+            "name": "pspReference",
+            "baseName": "pspReference",
             "type": "string"
         },
         {
-            "name": "postalCode",
-            "baseName": "postalCode",
+            "name": "reference",
+            "baseName": "reference",
             "type": "string"
         },
         {
-            "name": "stateOrProvince",
-            "baseName": "stateOrProvince",
-            "type": "string"
+            "name": "splits",
+            "baseName": "splits",
+            "type": "Array<Split>"
         },
         {
-            "name": "street",
-            "baseName": "street",
-            "type": "string"
+            "name": "status",
+            "baseName": "status",
+            "type": "PaymentCaptureResource.StatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return Address.attributeTypeMap;
+        return PaymentCaptureResource.attributeTypeMap;
     }
 }
 
+export namespace PaymentCaptureResource {
+    export enum StatusEnum {
+        Received = <any> 'received'
+    }
+}

@@ -51,6 +51,7 @@ import { Name } from './name';
 import { OpenInvoiceDetails } from './openInvoiceDetails';
 import { PayPalDetails } from './payPalDetails';
 import { PayUUpiDetails } from './payUUpiDetails';
+import { PayWithGoogleDetails } from './payWithGoogleDetails';
 import { PaymentDetails } from './paymentDetails';
 import { QiwiWalletDetails } from './qiwiWalletDetails';
 import { RatepayDetails } from './ratepayDetails';
@@ -165,7 +166,7 @@ export class PaymentRequest {
     /**
     * The type and required details of a payment method to use.
     */
-    'paymentMethod': AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | EntercashDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | LianLianPayDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PaymentDetails | QiwiWalletDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
+    'paymentMethod': AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | EntercashDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | LianLianPayDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | QiwiWalletDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
     */
@@ -221,7 +222,7 @@ export class PaymentRequest {
     */
     'shopperReference'?: string;
     /**
-    * The text to be shown on the shopper\'s bank statement. To enable this field, contact our [Support Team](https://support.adyen.com/hc/en-us/requests/new).  We recommend sending a maximum of 25 characters, otherwise banks might truncate the string.
+    * The text to be shown on the shopper\'s bank statement. To enable this field, contact our [Support Team](https://support.adyen.com/hc/en-us/requests/new).  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.
     */
     'shopperStatement'?: string;
     /**
@@ -233,7 +234,7 @@ export class PaymentRequest {
     */
     'splits'?: Array<Split>;
     /**
-    * The physical store, for which this payment is processed.
+    * The ecommerce or point-of-sale store that is processing the payment. Used in [partner arrangement integrations](https://docs.adyen.com/platforms/platforms-for-partners#route-payments) for Adyen for Platforms.
     */
     'store'?: string;
     /**
@@ -425,7 +426,7 @@ export class PaymentRequest {
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | EntercashDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | LianLianPayDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PaymentDetails | QiwiWalletDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails"
+            "type": "AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | EntercashDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | LianLianPayDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | QiwiWalletDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails"
         },
         {
             "name": "recurringExpiry",

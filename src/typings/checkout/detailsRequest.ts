@@ -15,7 +15,7 @@ import { PaymentCompletionDetails } from './paymentCompletionDetails';
 export class DetailsRequest {
     'details': PaymentCompletionDetails;
     /**
-    * The `paymentData` value from the `/payments` response. Required if the `/payments` response returns this value. In v67 and later, you will always get this value from the Component.
+    * The `paymentData` value from the `/payments` response. Required if the `/payments` response returns this value. 
     */
     'paymentData'?: string;
     /**

@@ -11,7 +11,7 @@
  */
 
 import { Avs } from './avs';
-import { Installments2 } from './installments2';
+import { InstallmentsNumber } from './installmentsNumber';
 import { ShopperInput } from './shopperInput';
 
 export class Configuration {
@@ -20,7 +20,7 @@ export class Configuration {
     * Determines whether the cardholder name should be provided or not.  Permitted values: * NONE * OPTIONAL * REQUIRED
     */
     'cardHolderName'?: Configuration.CardHolderNameEnum;
-    'installments'?: Installments2;
+    'installments'?: InstallmentsNumber;
     'shopperInput'?: ShopperInput;
 
     static discriminator: string | undefined = undefined;
@@ -39,7 +39,7 @@ export class Configuration {
         {
             "name": "installments",
             "baseName": "installments",
-            "type": "Installments2"
+            "type": "InstallmentsNumber"
         },
         {
             "name": "shopperInput",

@@ -25,7 +25,6 @@
 /// <reference path="enums/vatCategory.ts" />
 /// <reference path="nexo.ts" />
 /// <reference path="notification/notification.ts" />
-/// <reference path="payments.ts" />
 /// <reference path="payouts.ts" />
 /// <reference path="requestOptions.ts" />
 /// <reference path="terminal/models.ts" />

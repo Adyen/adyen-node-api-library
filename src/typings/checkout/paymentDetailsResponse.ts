@@ -13,6 +13,7 @@
 import { Amount } from './amount';
 import { CheckoutOrderResponse } from './checkoutOrderResponse';
 import { FraudResult } from './fraudResult';
+import { ThreeDS2ResponseData } from './threeDS2ResponseData';
 import { ThreeDS2Result } from './threeDS2Result';
 
 export class PaymentDetailsResponse {
@@ -55,7 +56,12 @@ export class PaymentDetailsResponse {
     * The shopperLocale.
     */
     'shopperLocale'?: string;
+    'threeDS2ResponseData'?: ThreeDS2ResponseData;
     'threeDS2Result'?: ThreeDS2Result;
+    /**
+    * When non-empty, contains a value that you must submit to the `/payments/details` endpoint as `paymentData`.
+    */
+    'threeDSPaymentData'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -121,9 +127,19 @@ export class PaymentDetailsResponse {
             "type": "string"
         },
         {
+            "name": "threeDS2ResponseData",
+            "baseName": "threeDS2ResponseData",
+            "type": "ThreeDS2ResponseData"
+        },
+        {
             "name": "threeDS2Result",
             "baseName": "threeDS2Result",
             "type": "ThreeDS2Result"
+        },
+        {
+            "name": "threeDSPaymentData",
+            "baseName": "threeDSPaymentData",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

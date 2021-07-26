@@ -10,68 +10,64 @@
  * Do not edit the class manually.
  */
 
-export class Address {
+export class PaymentReversalResource {
     /**
-    * The name of the city. Maximum length: 3000 characters.
+    * The merchant account that is used to process the payment.
     */
-    'city': string;
+    'merchantAccount': string;
     /**
-    * The two-character country code as defined in ISO-3166-1 alpha-2. For example, **US**. > If you don\'t know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.
+    * The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to reverse. 
     */
-    'country': string;
+    'paymentPspReference': string;
     /**
-    * The number or name of the house. Maximum length: 3000 characters.
+    * Adyen\'s 16-character reference associated with the reversal request.
     */
-    'houseNumberOrName': string;
+    'pspReference': string;
     /**
-    * A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.
+    * Your reference for the reversal request.
     */
-    'postalCode': string;
+    'reference'?: string;
     /**
-    * State or province codes as defined in ISO 3166-2. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
+    * The status of your request. This will always have the value **received**.
     */
-    'stateOrProvince'?: string;
-    /**
-    * The name of the street. Maximum length: 3000 characters. > The house number should not be included in this field; it should be separately provided via `houseNumberOrName`.
-    */
-    'street': string;
+    'status': PaymentReversalResource.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "city",
-            "baseName": "city",
+            "name": "merchantAccount",
+            "baseName": "merchantAccount",
             "type": "string"
         },
         {
-            "name": "country",
-            "baseName": "country",
+            "name": "paymentPspReference",
+            "baseName": "paymentPspReference",
             "type": "string"
         },
         {
-            "name": "houseNumberOrName",
-            "baseName": "houseNumberOrName",
+            "name": "pspReference",
+            "baseName": "pspReference",
             "type": "string"
         },
         {
-            "name": "postalCode",
-            "baseName": "postalCode",
+            "name": "reference",
+            "baseName": "reference",
             "type": "string"
         },
         {
-            "name": "stateOrProvince",
-            "baseName": "stateOrProvince",
-            "type": "string"
-        },
-        {
-            "name": "street",
-            "baseName": "street",
-            "type": "string"
+            "name": "status",
+            "baseName": "status",
+            "type": "PaymentReversalResource.StatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return Address.attributeTypeMap;
+        return PaymentReversalResource.attributeTypeMap;
     }
 }
 
+export namespace PaymentReversalResource {
+    export enum StatusEnum {
+        Received = <any> 'received'
+    }
+}

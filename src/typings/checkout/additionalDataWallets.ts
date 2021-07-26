@@ -14,58 +14,58 @@ export class AdditionalDataWallets {
     /**
     * The Android Pay token retrieved from the SDK.
     */
-    'androidpayToken'?: string;
+    'androidpay_token'?: string;
     /**
     * The Mastercard Masterpass Transaction ID retrieved from the SDK.
     */
-    'masterpassTransactionId'?: string;
+    'masterpass_transactionId'?: string;
     /**
     * The Apple Pay token retrieved from the SDK.
     */
-    'paymentToken'?: string;
+    'payment_token'?: string;
     /**
     * The Google Pay token retrieved from the SDK.
     */
-    'paywithgoogleToken'?: string;
+    'paywithgoogle_token'?: string;
     /**
     * The Samsung Pay token retrieved from the SDK.
     */
-    'samsungpayToken'?: string;
+    'samsungpay_token'?: string;
     /**
     * The Visa Checkout Call ID retrieved from the SDK.
     */
-    'visacheckoutCallId'?: string;
+    'visacheckout_callId'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "androidpayToken",
+            "name": "androidpay_token",
             "baseName": "androidpay.token",
             "type": "string"
         },
         {
-            "name": "masterpassTransactionId",
+            "name": "masterpass_transactionId",
             "baseName": "masterpass.transactionId",
             "type": "string"
         },
         {
-            "name": "paymentToken",
+            "name": "payment_token",
             "baseName": "payment.token",
             "type": "string"
         },
         {
-            "name": "paywithgoogleToken",
+            "name": "paywithgoogle_token",
             "baseName": "paywithgoogle.token",
             "type": "string"
         },
         {
-            "name": "samsungpayToken",
+            "name": "samsungpay_token",
             "baseName": "samsungpay.token",
             "type": "string"
         },
         {
-            "name": "visacheckoutCallId",
+            "name": "visacheckout_callId",
             "baseName": "visacheckout.callId",
             "type": "string"
         }    ];

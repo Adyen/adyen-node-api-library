@@ -10,68 +10,41 @@
  * Do not edit the class manually.
  */
 
-export class Address {
+export class CreateStandalonePaymentCancelRequest {
     /**
-    * The name of the city. Maximum length: 3000 characters.
+    * The merchant account that is used to process the payment.
     */
-    'city': string;
+    'merchantAccount': string;
     /**
-    * The two-character country code as defined in ISO-3166-1 alpha-2. For example, **US**. > If you don\'t know the country or are not collecting the country from the shopper, provide `country` as `ZZ`.
+    * The [`reference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment that you want to cancel.
     */
-    'country': string;
+    'paymentReference': string;
     /**
-    * The number or name of the house. Maximum length: 3000 characters.
+    * Your reference for the cancel request. Maximum length: 80 characters.
     */
-    'houseNumberOrName': string;
-    /**
-    * A maximum of five digits for an address in the US, or a maximum of ten characters for an address in all other countries.
-    */
-    'postalCode': string;
-    /**
-    * State or province codes as defined in ISO 3166-2. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
-    */
-    'stateOrProvince'?: string;
-    /**
-    * The name of the street. Maximum length: 3000 characters. > The house number should not be included in this field; it should be separately provided via `houseNumberOrName`.
-    */
-    'street': string;
+    'reference'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "city",
-            "baseName": "city",
+            "name": "merchantAccount",
+            "baseName": "merchantAccount",
             "type": "string"
         },
         {
-            "name": "country",
-            "baseName": "country",
+            "name": "paymentReference",
+            "baseName": "paymentReference",
             "type": "string"
         },
         {
-            "name": "houseNumberOrName",
-            "baseName": "houseNumberOrName",
-            "type": "string"
-        },
-        {
-            "name": "postalCode",
-            "baseName": "postalCode",
-            "type": "string"
-        },
-        {
-            "name": "stateOrProvince",
-            "baseName": "stateOrProvince",
-            "type": "string"
-        },
-        {
-            "name": "street",
-            "baseName": "street",
+            "name": "reference",
+            "baseName": "reference",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return Address.attributeTypeMap;
+        return CreateStandalonePaymentCancelRequest.attributeTypeMap;
     }
 }
 

@@ -53,7 +53,7 @@ export class PaymentMethodsRequest {
     */
     'splitCardFundingSources'?: boolean;
     /**
-    * The physical store, for which this payment is processed.
+    * The ecommerce or point-of-sale store that is processing the payment. Used in [partner arrangement integrations](https://docs.adyen.com/platforms/platforms-for-partners#route-payments) for Adyen for Platforms.
     */
     'store'?: string;
 
