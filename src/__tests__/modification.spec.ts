@@ -210,7 +210,6 @@ describe("Modification", (): void => {
         try {
             await modification.amountUpdates(invalidPaymentPspReference, request);
         } catch (e) {
-            console.log(e);
             expect(e.statusCode).toBe(422);
             expect(e.message).toContain("Original pspReference required for this operation");
         }
@@ -253,21 +252,6 @@ describe("Modification", (): void => {
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e.message);
-        }
-    });
-
-    test.each([false, true])("should fail to perform a standalone cancels request, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
-        expect.assertions(2);
-        const request = createStandaloneCancelsResponse();
-        scope.post("/cancels")
-            .reply(422, invalidModificationResult);
-        try {
-            request.pspReference = "invalid_psp_reference";
-            await modification.cancelsStandalone(request);
-        } catch (e) {
-            expect(e.statusCode).toBe(422);
-            expect(e.message).toContain("Original pspReference required for this operation");
         }
     });
 
@@ -315,10 +299,10 @@ describe("Modification", (): void => {
         !isMock && nock.restore();
         expect.assertions(2);
         const request = createRefundsRequest();
-        scope.post(`/payments/${paymentPspReference}/refunds`)
+        scope.post(`/payments/${invalidPaymentPspReference}/refunds`)
             .reply(422, invalidModificationResult);
         try {
-            await modification.refunds(paymentPspReference, request);
+            await modification.refunds(invalidPaymentPspReference, request);
         } catch (e) {
             expect(e.statusCode).toBe(422);
             expect(e.message).toContain("Original pspReference required for this operation");
