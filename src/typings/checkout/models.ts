@@ -12,7 +12,26 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
+ * Copyright (c) 2021 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+ 
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2021 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
@@ -72,7 +91,13 @@ export * from './checkoutVoucherAction';
 export * from './commonField';
 export * from './company';
 export * from './configuration';
+export * from './createPaymentAmountUpdateRequest';
+export * from './createPaymentCancelRequest';
+export * from './createPaymentCaptureRequest';
 export * from './createPaymentLinkRequest';
+export * from './createPaymentRefundRequest';
+export * from './createPaymentReversalRequest';
+export * from './createStandalonePaymentCancelRequest';
 export * from './detailsRequest';
 export * from './deviceRenderOptions';
 export * from './dokuDetails';
@@ -91,7 +116,7 @@ export * from './idealDetails';
 export * from './inputDetail';
 export * from './installmentOption';
 export * from './installments';
-export * from './installments2';
+export * from './installmentsNumber';
 export * from './item';
 export * from './klarnaDetails';
 export * from './lianLianPayDetails';
@@ -107,6 +132,10 @@ export * from './name';
 export * from './openInvoiceDetails';
 export * from './payPalDetails';
 export * from './payUUpiDetails';
+export * from './payWithGoogleDetails';
+export * from './paymentAmountUpdateResource';
+export * from './paymentCancelResource';
+export * from './paymentCaptureResource';
 export * from './paymentCompletionDetails';
 export * from './paymentDetails';
 export * from './paymentDetailsResponse';
@@ -115,8 +144,10 @@ export * from './paymentMethod';
 export * from './paymentMethodGroup';
 export * from './paymentMethodsRequest';
 export * from './paymentMethodsResponse';
+export * from './paymentRefundResource';
 export * from './paymentRequest';
 export * from './paymentResponse';
+export * from './paymentReversalResource';
 export * from './paymentSetupRequest';
 export * from './paymentSetupResponse';
 export * from './paymentVerificationRequest';
@@ -146,11 +177,13 @@ export * from './shopperInput';
 export * from './shopperInteractionDevice';
 export * from './split';
 export * from './splitAmount';
+export * from './standalonePaymentCancelResource';
 export * from './storedDetails';
 export * from './storedPaymentMethod';
 export * from './storedPaymentMethodDetails';
 export * from './subInputDetail';
 export * from './threeDS2RequestData';
+export * from './threeDS2ResponseData';
 export * from './threeDS2Result';
 export * from './threeDSecureData';
 export * from './updatePaymentLinkRequest';
@@ -172,7 +205,6 @@ export interface RequestDetailedFile {
 }
 
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
-
 
 import { AccountInfo } from './accountInfo';
 import { AchDetails } from './achDetails';
@@ -229,7 +261,13 @@ import { CheckoutVoucherAction } from './checkoutVoucherAction';
 import { CommonField } from './commonField';
 import { Company } from './company';
 import { Configuration } from './configuration';
+import { CreatePaymentAmountUpdateRequest } from './createPaymentAmountUpdateRequest';
+import { CreatePaymentCancelRequest } from './createPaymentCancelRequest';
+import { CreatePaymentCaptureRequest } from './createPaymentCaptureRequest';
 import { CreatePaymentLinkRequest } from './createPaymentLinkRequest';
+import { CreatePaymentRefundRequest } from './createPaymentRefundRequest';
+import { CreatePaymentReversalRequest } from './createPaymentReversalRequest';
+import { CreateStandalonePaymentCancelRequest } from './createStandalonePaymentCancelRequest';
 import { DetailsRequest } from './detailsRequest';
 import { DeviceRenderOptions } from './deviceRenderOptions';
 import { DokuDetails } from './dokuDetails';
@@ -248,7 +286,7 @@ import { IdealDetails } from './idealDetails';
 import { InputDetail } from './inputDetail';
 import { InstallmentOption } from './installmentOption';
 import { Installments } from './installments';
-import { Installments2 } from './installments2';
+import { InstallmentsNumber } from './installmentsNumber';
 import { Item } from './item';
 import { KlarnaDetails } from './klarnaDetails';
 import { LianLianPayDetails } from './lianLianPayDetails';
@@ -264,6 +302,10 @@ import { Name } from './name';
 import { OpenInvoiceDetails } from './openInvoiceDetails';
 import { PayPalDetails } from './payPalDetails';
 import { PayUUpiDetails } from './payUUpiDetails';
+import { PayWithGoogleDetails } from './payWithGoogleDetails';
+import { PaymentAmountUpdateResource } from './paymentAmountUpdateResource';
+import { PaymentCancelResource } from './paymentCancelResource';
+import { PaymentCaptureResource } from './paymentCaptureResource';
 import { PaymentCompletionDetails } from './paymentCompletionDetails';
 import { PaymentDetails } from './paymentDetails';
 import { PaymentDetailsResponse } from './paymentDetailsResponse';
@@ -272,8 +314,10 @@ import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodGroup } from './paymentMethodGroup';
 import { PaymentMethodsRequest } from './paymentMethodsRequest';
 import { PaymentMethodsResponse } from './paymentMethodsResponse';
+import { PaymentRefundResource } from './paymentRefundResource';
 import { PaymentRequest } from './paymentRequest';
 import { PaymentResponse } from './paymentResponse';
+import { PaymentReversalResource } from './paymentReversalResource';
 import { PaymentSetupRequest } from './paymentSetupRequest';
 import { PaymentSetupResponse } from './paymentSetupResponse';
 import { PaymentVerificationRequest } from './paymentVerificationRequest';
@@ -303,11 +347,13 @@ import { ShopperInput } from './shopperInput';
 import { ShopperInteractionDevice } from './shopperInteractionDevice';
 import { Split } from './split';
 import { SplitAmount } from './splitAmount';
+import { StandalonePaymentCancelResource } from './standalonePaymentCancelResource';
 import { StoredDetails } from './storedDetails';
 import { StoredPaymentMethod } from './storedPaymentMethod';
 import { StoredPaymentMethodDetails } from './storedPaymentMethodDetails';
 import { SubInputDetail } from './subInputDetail';
 import { ThreeDS2RequestData } from './threeDS2RequestData';
+import { ThreeDS2ResponseData } from './threeDS2ResponseData';
 import { ThreeDS2Result } from './threeDS2Result';
 import { ThreeDSecureData } from './threeDSecureData';
 import { UpdatePaymentLinkRequest } from './updatePaymentLinkRequest';
@@ -349,6 +395,7 @@ let enumsMap: {[index: string]: any} = {
         "BillDeskDetails.TypeEnum": BillDeskDetails.TypeEnum,
         "BlikDetails.TypeEnum": BlikDetails.TypeEnum,
         "CardDetails.FundingSourceEnum": CardDetails.FundingSourceEnum,
+        "CardDetails.TypeEnum": CardDetails.TypeEnum,
         "CellulantDetails.TypeEnum": CellulantDetails.TypeEnum,
         "CheckoutAwaitAction.TypeEnum": CheckoutAwaitAction.TypeEnum,
         "CheckoutBalanceCheckRequest.RecurringProcessingModelEnum": CheckoutBalanceCheckRequest.RecurringProcessingModelEnum,
@@ -365,6 +412,7 @@ let enumsMap: {[index: string]: any} = {
         "CheckoutThreeDS2Action.TypeEnum": CheckoutThreeDS2Action.TypeEnum,
         "CheckoutVoucherAction.TypeEnum": CheckoutVoucherAction.TypeEnum,
         "Configuration.CardHolderNameEnum": Configuration.CardHolderNameEnum,
+        "CreatePaymentAmountUpdateRequest.ReasonEnum": CreatePaymentAmountUpdateRequest.ReasonEnum,
         "CreatePaymentLinkRequest.RecurringProcessingModelEnum": CreatePaymentLinkRequest.RecurringProcessingModelEnum,
         "CreatePaymentLinkRequest.RequiredShopperFieldsEnum": CreatePaymentLinkRequest.RequiredShopperFieldsEnum,
         "DeviceRenderOptions.SdkInterfaceEnum": DeviceRenderOptions.SdkInterfaceEnum,
@@ -398,17 +446,25 @@ let enumsMap: {[index: string]: any} = {
         "PayPalDetails.SubtypeEnum": PayPalDetails.SubtypeEnum,
         "PayPalDetails.TypeEnum": PayPalDetails.TypeEnum,
         "PayUUpiDetails.TypeEnum": PayUUpiDetails.TypeEnum,
+        "PayWithGoogleDetails.FundingSourceEnum": PayWithGoogleDetails.FundingSourceEnum,
+        "PayWithGoogleDetails.TypeEnum": PayWithGoogleDetails.TypeEnum,
+        "PaymentAmountUpdateResource.ReasonEnum": PaymentAmountUpdateResource.ReasonEnum,
+        "PaymentAmountUpdateResource.StatusEnum": PaymentAmountUpdateResource.StatusEnum,
+        "PaymentCancelResource.StatusEnum": PaymentCancelResource.StatusEnum,
+        "PaymentCaptureResource.StatusEnum": PaymentCaptureResource.StatusEnum,
         "PaymentDetails.TypeEnum": PaymentDetails.TypeEnum,
         "PaymentDetailsResponse.ResultCodeEnum": PaymentDetailsResponse.ResultCodeEnum,
         "PaymentLinkResource.RecurringProcessingModelEnum": PaymentLinkResource.RecurringProcessingModelEnum,
         "PaymentLinkResource.StatusEnum": PaymentLinkResource.StatusEnum,
         "PaymentMethod.FundingSourceEnum": PaymentMethod.FundingSourceEnum,
         "PaymentMethodsRequest.ChannelEnum": PaymentMethodsRequest.ChannelEnum,
+        "PaymentRefundResource.StatusEnum": PaymentRefundResource.StatusEnum,
         "PaymentRequest.ChannelEnum": PaymentRequest.ChannelEnum,
         "PaymentRequest.EntityTypeEnum": PaymentRequest.EntityTypeEnum,
         "PaymentRequest.RecurringProcessingModelEnum": PaymentRequest.RecurringProcessingModelEnum,
         "PaymentRequest.ShopperInteractionEnum": PaymentRequest.ShopperInteractionEnum,
         "PaymentResponse.ResultCodeEnum": PaymentResponse.ResultCodeEnum,
+        "PaymentReversalResource.StatusEnum": PaymentReversalResource.StatusEnum,
         "PaymentSetupRequest.ChannelEnum": PaymentSetupRequest.ChannelEnum,
         "PaymentSetupRequest.EntityTypeEnum": PaymentSetupRequest.EntityTypeEnum,
         "PaymentSetupRequest.ShopperInteractionEnum": PaymentSetupRequest.ShopperInteractionEnum,
@@ -419,6 +475,8 @@ let enumsMap: {[index: string]: any} = {
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
         "RecurringDetail.FundingSourceEnum": RecurringDetail.FundingSourceEnum,
         "Redirect.MethodEnum": Redirect.MethodEnum,
+        "ResponseAdditionalDataCommon.FraudResultTypeEnum": ResponseAdditionalDataCommon.FraudResultTypeEnum,
+        "ResponseAdditionalDataCommon.MerchantAdviceCodeEnum": ResponseAdditionalDataCommon.MerchantAdviceCodeEnum,
         "ResponseAdditionalDataCommon.RecurringProcessingModelEnum": ResponseAdditionalDataCommon.RecurringProcessingModelEnum,
         "SamsungPayDetails.FundingSourceEnum": SamsungPayDetails.FundingSourceEnum,
         "SamsungPayDetails.TypeEnum": SamsungPayDetails.TypeEnum,
@@ -427,6 +485,7 @@ let enumsMap: {[index: string]: any} = {
         "ShopperInput.DeliveryAddressEnum": ShopperInput.DeliveryAddressEnum,
         "ShopperInput.PersonalDetailsEnum": ShopperInput.PersonalDetailsEnum,
         "Split.TypeEnum": Split.TypeEnum,
+        "StandalonePaymentCancelResource.StatusEnum": StandalonePaymentCancelResource.StatusEnum,
         "StoredPaymentMethodDetails.TypeEnum": StoredPaymentMethodDetails.TypeEnum,
         "ThreeDS2RequestData.ChallengeIndicatorEnum": ThreeDS2RequestData.ChallengeIndicatorEnum,
         "ThreeDS2RequestData.TransactionTypeEnum": ThreeDS2RequestData.TransactionTypeEnum,
@@ -498,7 +557,13 @@ let typeMap: {[index: string]: any} = {
     "CommonField": CommonField,
     "Company": Company,
     "Configuration": Configuration,
+    "CreatePaymentAmountUpdateRequest": CreatePaymentAmountUpdateRequest,
+    "CreatePaymentCancelRequest": CreatePaymentCancelRequest,
+    "CreatePaymentCaptureRequest": CreatePaymentCaptureRequest,
     "CreatePaymentLinkRequest": CreatePaymentLinkRequest,
+    "CreatePaymentRefundRequest": CreatePaymentRefundRequest,
+    "CreatePaymentReversalRequest": CreatePaymentReversalRequest,
+    "CreateStandalonePaymentCancelRequest": CreateStandalonePaymentCancelRequest,
     "DetailsRequest": DetailsRequest,
     "DeviceRenderOptions": DeviceRenderOptions,
     "DokuDetails": DokuDetails,
@@ -517,7 +582,7 @@ let typeMap: {[index: string]: any} = {
     "InputDetail": InputDetail,
     "InstallmentOption": InstallmentOption,
     "Installments": Installments,
-    "Installments2": Installments2,
+    "InstallmentsNumber": InstallmentsNumber,
     "Item": Item,
     "KlarnaDetails": KlarnaDetails,
     "LianLianPayDetails": LianLianPayDetails,
@@ -533,6 +598,10 @@ let typeMap: {[index: string]: any} = {
     "OpenInvoiceDetails": OpenInvoiceDetails,
     "PayPalDetails": PayPalDetails,
     "PayUUpiDetails": PayUUpiDetails,
+    "PayWithGoogleDetails": PayWithGoogleDetails,
+    "PaymentAmountUpdateResource": PaymentAmountUpdateResource,
+    "PaymentCancelResource": PaymentCancelResource,
+    "PaymentCaptureResource": PaymentCaptureResource,
     "PaymentCompletionDetails": PaymentCompletionDetails,
     "PaymentDetails": PaymentDetails,
     "PaymentDetailsResponse": PaymentDetailsResponse,
@@ -541,8 +610,10 @@ let typeMap: {[index: string]: any} = {
     "PaymentMethodGroup": PaymentMethodGroup,
     "PaymentMethodsRequest": PaymentMethodsRequest,
     "PaymentMethodsResponse": PaymentMethodsResponse,
+    "PaymentRefundResource": PaymentRefundResource,
     "PaymentRequest": PaymentRequest,
     "PaymentResponse": PaymentResponse,
+    "PaymentReversalResource": PaymentReversalResource,
     "PaymentSetupRequest": PaymentSetupRequest,
     "PaymentSetupResponse": PaymentSetupResponse,
     "PaymentVerificationRequest": PaymentVerificationRequest,
@@ -572,11 +643,13 @@ let typeMap: {[index: string]: any} = {
     "ShopperInteractionDevice": ShopperInteractionDevice,
     "Split": Split,
     "SplitAmount": SplitAmount,
+    "StandalonePaymentCancelResource": StandalonePaymentCancelResource,
     "StoredDetails": StoredDetails,
     "StoredPaymentMethod": StoredPaymentMethod,
     "StoredPaymentMethodDetails": StoredPaymentMethodDetails,
     "SubInputDetail": SubInputDetail,
     "ThreeDS2RequestData": ThreeDS2RequestData,
+    "ThreeDS2ResponseData": ThreeDS2ResponseData,
     "ThreeDS2Result": ThreeDS2Result,
     "ThreeDSecureData": ThreeDSecureData,
     "UpdatePaymentLinkRequest": UpdatePaymentLinkRequest,

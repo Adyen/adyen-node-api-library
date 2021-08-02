@@ -1,3 +1,22 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2021 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+ 
 /**
  * Adyen Checkout API
  * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v67/payments ```
@@ -14,35 +33,35 @@ export class AdditionalDataRiskStandalone {
     /**
     * Shopper\'s country of residence in the form of ISO standard 3166 2-character country codes.
     */
-    'payPalCountryCode'?: string;
+    'PayPal_CountryCode'?: string;
     /**
     * Shopper\'s email.
     */
-    'payPalEmailId'?: string;
+    'PayPal_EmailId'?: string;
     /**
     * Shopper\'s first name.
     */
-    'payPalFirstName'?: string;
+    'PayPal_FirstName'?: string;
     /**
     * Shopper\'s last name.
     */
-    'payPalLastName'?: string;
+    'PayPal_LastName'?: string;
     /**
     * Unique PayPal Customer Account identification number. Character length and limitations: 13 single-byte alphanumeric characters.
     */
-    'payPalPayerId'?: string;
+    'PayPal_PayerId'?: string;
     /**
     * Shopper\'s phone number.
     */
-    'payPalPhone'?: string;
+    'PayPal_Phone'?: string;
     /**
     * Allowed values: * **Eligible** — Merchant is protected by PayPal\'s Seller Protection Policy for Unauthorized Payments and Item Not Received.  * **PartiallyEligible** — Merchant is protected by PayPal\'s Seller Protection Policy for Item Not Received.  * **Ineligible** — Merchant is not protected under the Seller Protection Policy.
     */
-    'payPalProtectionEligibility'?: string;
+    'PayPal_ProtectionEligibility'?: string;
     /**
     * Unique transaction ID of the payment.
     */
-    'payPalTransactionId'?: string;
+    'PayPal_TransactionId'?: string;
     /**
     * Raw AVS result received from the acquirer, where available. Example: D
     */
@@ -76,42 +95,42 @@ export class AdditionalDataRiskStandalone {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "payPalCountryCode",
+            "name": "PayPal_CountryCode",
             "baseName": "PayPal.CountryCode",
             "type": "string"
         },
         {
-            "name": "payPalEmailId",
+            "name": "PayPal_EmailId",
             "baseName": "PayPal.EmailId",
             "type": "string"
         },
         {
-            "name": "payPalFirstName",
+            "name": "PayPal_FirstName",
             "baseName": "PayPal.FirstName",
             "type": "string"
         },
         {
-            "name": "payPalLastName",
+            "name": "PayPal_LastName",
             "baseName": "PayPal.LastName",
             "type": "string"
         },
         {
-            "name": "payPalPayerId",
+            "name": "PayPal_PayerId",
             "baseName": "PayPal.PayerId",
             "type": "string"
         },
         {
-            "name": "payPalPhone",
+            "name": "PayPal_Phone",
             "baseName": "PayPal.Phone",
             "type": "string"
         },
         {
-            "name": "payPalProtectionEligibility",
+            "name": "PayPal_ProtectionEligibility",
             "baseName": "PayPal.ProtectionEligibility",
             "type": "string"
         },
         {
-            "name": "payPalTransactionId",
+            "name": "PayPal_TransactionId",
             "baseName": "PayPal.TransactionId",
             "type": "string"
         },

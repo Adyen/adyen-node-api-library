@@ -1,3 +1,22 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2021 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+ 
 /**
  * Adyen Checkout API
  * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v67/payments ```
@@ -14,85 +33,85 @@ export class AdditionalDataTemporaryServices {
     /**
     * Customer code, if supplied by a customer. * Encoding: ASCII * maxLength: 25
     */
-    'enhancedSchemeDataCustomerReference'?: string;
+    'enhancedSchemeData_customerReference'?: string;
     /**
     * Name or ID associated with the individual working in a temporary capacity. * maxLength: 40
     */
-    'enhancedSchemeDataEmployeeName'?: string;
+    'enhancedSchemeData_employeeName'?: string;
     /**
     * Description of the job or task of the individual working in a temporary capacity. * maxLength: 40
     */
-    'enhancedSchemeDataJobDescription'?: string;
+    'enhancedSchemeData_jobDescription'?: string;
     /**
     * Amount paid per regular hours worked, minor units. * maxLength: 7
     */
-    'enhancedSchemeDataRegularHoursRate'?: string;
+    'enhancedSchemeData_regularHoursRate'?: string;
     /**
     * Amount of time worked during a normal operation for the task or job. * maxLength: 7
     */
-    'enhancedSchemeDataRegularHoursWorked'?: string;
+    'enhancedSchemeData_regularHoursWorked'?: string;
     /**
     * Name of the individual requesting temporary services. * maxLength: 40
     */
-    'enhancedSchemeDataRequestName'?: string;
+    'enhancedSchemeData_requestName'?: string;
     /**
     * Date for the beginning of the pay period. * Format: ddMMyy * maxLength: 6
     */
-    'enhancedSchemeDataTempStartDate'?: string;
+    'enhancedSchemeData_tempStartDate'?: string;
     /**
     * Date of the end of the billing cycle. * Format: ddMMyy * maxLength: 6
     */
-    'enhancedSchemeDataTempWeekEnding'?: string;
+    'enhancedSchemeData_tempWeekEnding'?: string;
     /**
     * Total tax amount, in minor units. For example, 2000 means USD 20.00 * maxLength: 12
     */
-    'enhancedSchemeDataTotalTaxAmount'?: string;
+    'enhancedSchemeData_totalTaxAmount'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "enhancedSchemeDataCustomerReference",
+            "name": "enhancedSchemeData_customerReference",
             "baseName": "enhancedSchemeData.customerReference",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataEmployeeName",
+            "name": "enhancedSchemeData_employeeName",
             "baseName": "enhancedSchemeData.employeeName",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataJobDescription",
+            "name": "enhancedSchemeData_jobDescription",
             "baseName": "enhancedSchemeData.jobDescription",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataRegularHoursRate",
+            "name": "enhancedSchemeData_regularHoursRate",
             "baseName": "enhancedSchemeData.regularHoursRate",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataRegularHoursWorked",
+            "name": "enhancedSchemeData_regularHoursWorked",
             "baseName": "enhancedSchemeData.regularHoursWorked",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataRequestName",
+            "name": "enhancedSchemeData_requestName",
             "baseName": "enhancedSchemeData.requestName",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataTempStartDate",
+            "name": "enhancedSchemeData_tempStartDate",
             "baseName": "enhancedSchemeData.tempStartDate",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataTempWeekEnding",
+            "name": "enhancedSchemeData_tempWeekEnding",
             "baseName": "enhancedSchemeData.tempWeekEnding",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataTotalTaxAmount",
+            "name": "enhancedSchemeData_totalTaxAmount",
             "baseName": "enhancedSchemeData.totalTaxAmount",
             "type": "string"
         }    ];
