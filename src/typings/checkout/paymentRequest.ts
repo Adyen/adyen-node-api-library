@@ -1,3 +1,22 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2021 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+ 
 /**
  * Adyen Checkout API
  * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v67/payments ```
@@ -51,6 +70,7 @@ import { Name } from './name';
 import { OpenInvoiceDetails } from './openInvoiceDetails';
 import { PayPalDetails } from './payPalDetails';
 import { PayUUpiDetails } from './payUUpiDetails';
+import { PayWithGoogleDetails } from './payWithGoogleDetails';
 import { PaymentDetails } from './paymentDetails';
 import { QiwiWalletDetails } from './qiwiWalletDetails';
 import { RatepayDetails } from './ratepayDetails';
@@ -165,7 +185,7 @@ export class PaymentRequest {
     /**
     * The type and required details of a payment method to use.
     */
-    'paymentMethod': AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | EntercashDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | LianLianPayDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PaymentDetails | QiwiWalletDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
+    'paymentMethod': AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | EntercashDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | LianLianPayDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | QiwiWalletDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
     */
@@ -221,7 +241,7 @@ export class PaymentRequest {
     */
     'shopperReference'?: string;
     /**
-    * The text to be shown on the shopper\'s bank statement. To enable this field, contact our [Support Team](https://support.adyen.com/hc/en-us/requests/new).  We recommend sending a maximum of 25 characters, otherwise banks might truncate the string.
+    * The text to be shown on the shopper\'s bank statement. To enable this field, contact our [Support Team](https://support.adyen.com/hc/en-us/requests/new).  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.
     */
     'shopperStatement'?: string;
     /**
@@ -233,7 +253,7 @@ export class PaymentRequest {
     */
     'splits'?: Array<Split>;
     /**
-    * The physical store, for which this payment is processed.
+    * The ecommerce or point-of-sale store that is processing the payment. Used in [partner arrangement integrations](https://docs.adyen.com/platforms/platforms-for-partners#route-payments) for Adyen for Platforms.
     */
     'store'?: string;
     /**
@@ -425,7 +445,7 @@ export class PaymentRequest {
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | EntercashDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | LianLianPayDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PaymentDetails | QiwiWalletDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails"
+            "type": "AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | EntercashDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | LianLianPayDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | QiwiWalletDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails"
         },
         {
             "name": "recurringExpiry",

@@ -12,107 +12,115 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
+ * Copyright (c) 2021 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
-import AdjustAuthorisation from "./resource/modification/adjustAuthorisation";
-import Cancel from "./resource/modification/cancel";
-import CancelOrRefund from "./resource/modification/cancelOrRefund";
-import Capture from "./resource/modification/capture";
-import Refund from "./resource/modification/refund";
-import TechnicalCancel from "./resource/modification/technicalCancel";
-import setApplicationInfo from "../helpers/setApplicationInfo";
 import { ApplicationInfo } from "../typings/applicationInfo";
 import { IRequest } from "../typings/requestOptions";
+import AmountUpdates from "./resource/modification/amountUpdates";
+import Cancels from "./resource/modification/cancels";
+import Captures from "./resource/modification/captures";
+import Refunds from "./resource/modification/refunds";
+import Reversals from "./resource/modification/reversals";
+import CancelsStandalone from "./resource/modification/cancelsStandalone";
+import {
+    CreatePaymentAmountUpdateRequest,
+    CreatePaymentCancelRequest,
+    CreatePaymentCaptureRequest,
+    CreatePaymentRefundRequest, CreatePaymentReversalRequest,
+    CreateStandalonePaymentCancelRequest,
+    PaymentAmountUpdateResource,
+    PaymentCancelResource,
+    PaymentCaptureResource, PaymentRefundResource, PaymentReversalResource,
+    StandalonePaymentCancelResource
+} from "../typings/checkout/models";
 
 interface AppInfo { applicationInfo?: ApplicationInfo }
 type GenericRequest<T> = T & AppInfo;
 
 class Modification extends Service {
-    private readonly _cancelOrRefund: CancelOrRefund;
-    private readonly _cancel: Cancel;
-    private readonly _capture: Capture;
-    private readonly _refund: Refund;
-    private readonly _adjustAuthorisation: AdjustAuthorisation;
-    private readonly _technicalCancel: TechnicalCancel;
-
     public constructor(client: Client) {
         super(client);
-        this._capture = new Capture(this);
-        this._cancelOrRefund = new CancelOrRefund(this);
-        this._cancel = new Cancel(this);
-        this._refund = new Refund(this);
-        this._adjustAuthorisation = new AdjustAuthorisation(this);
-        this._technicalCancel = new TechnicalCancel(this);
     }
 
-    public capture(
-        captureRequest: GenericRequest<IPayments.ModificationRequest>,
+    public amountUpdates(
+        paymentPspReference: string,
+        amountUpdatesRequest: GenericRequest<CreatePaymentAmountUpdateRequest>,
         requestOptions?: IRequest.Options,
-    ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
-            this._capture,
-            setApplicationInfo(captureRequest),
-            requestOptions,
+    ): Promise<PaymentAmountUpdateResource> {
+        const amountUpdates = new AmountUpdates(this, paymentPspReference);
+        return getJsonResponse<CreatePaymentAmountUpdateRequest, PaymentAmountUpdateResource>(
+            amountUpdates,
+            amountUpdatesRequest,
+            requestOptions
         );
     }
 
-    public cancelOrRefund(
-        cancelOrRefundRequest: GenericRequest<IPayments.ModificationRequest>,
-        requestOptions?: IRequest.Options,
-    ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
-            this._cancelOrRefund,
-            setApplicationInfo(cancelOrRefundRequest),
-            requestOptions,
+    public cancelsStandalone(
+        cancelsStandaloneRequest: GenericRequest<CreateStandalonePaymentCancelRequest>,
+        requestOptions?: IRequest.Options
+    ): Promise<StandalonePaymentCancelResource> {
+        const cancelsStandalone = new CancelsStandalone(this);
+        return getJsonResponse<CreateStandalonePaymentCancelRequest, StandalonePaymentCancelResource>(
+            cancelsStandalone,
+            cancelsStandaloneRequest,
+            requestOptions
         );
     }
 
-    public refund(
-        refundRequest: GenericRequest<IPayments.ModificationRequest>,
+    public cancels(
+        paymentPspReference: string,
+        cancelsRequest: GenericRequest<CreatePaymentCancelRequest>,
         requestOptions?: IRequest.Options,
-    ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
-            this._refund,
-            setApplicationInfo(refundRequest),
-            requestOptions,
+    ): Promise<PaymentCancelResource> {
+        const cancels = new Cancels(this, paymentPspReference);
+        return getJsonResponse<CreatePaymentCancelRequest, PaymentCancelResource>(
+            cancels,
+            cancelsRequest,
+            requestOptions
         );
     }
 
-    public cancel(
-        cancelRequest: GenericRequest<IPayments.ModificationRequest>,
-        requestOptions?: IRequest.Options,
-    ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
-            this._cancel,
-            setApplicationInfo(cancelRequest),
-            requestOptions,
+    public captures(
+        paymentPspReference: string,
+        capturesRequest: GenericRequest<CreatePaymentCaptureRequest>,
+        requestOptions?: IRequest.Options
+    ): Promise<PaymentCaptureResource> {
+        const captures = new Captures(this, paymentPspReference);
+        return getJsonResponse<CreatePaymentCaptureRequest, PaymentCaptureResource>(
+            captures,
+            capturesRequest,
+            requestOptions
         );
     }
 
-    public technicalCancel(
-        technicalCancelRequest: GenericRequest<IPayments.ModificationRequest>,
-        requestOptions?: IRequest.Options,
-    ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
-            this._technicalCancel,
-            setApplicationInfo(technicalCancelRequest),
-            requestOptions,
+    public refunds(
+        paymentPspReference: string,
+        refundsRequest: GenericRequest<CreatePaymentRefundRequest>,
+        requestOptions?: IRequest.Options
+    ): Promise<PaymentRefundResource> {
+        const refunds = new Refunds(this, paymentPspReference);
+        return getJsonResponse<CreatePaymentRefundRequest, PaymentRefundResource>(
+            refunds,
+            refundsRequest,
+            requestOptions
         );
     }
 
-    public adjustAuthorisation(
-        adjustAuthorisationRequest: GenericRequest<IPayments.ModificationRequest>,
-        requestOptions?: IRequest.Options,
-    ): Promise<IPayments.ModificationResult> {
-        return getJsonResponse<IPayments.ModificationRequest, IPayments.ModificationResult>(
-            this._adjustAuthorisation,
-            setApplicationInfo(adjustAuthorisationRequest),
-            requestOptions,
+    public reversals(
+        paymentPspReference: string,
+        reversalsRequest: GenericRequest<CreatePaymentReversalRequest>,
+        requestOptions?: IRequest.Options
+    ): Promise<PaymentReversalResource> {
+        const refunds = new Reversals(this, paymentPspReference);
+        return getJsonResponse<CreatePaymentReversalRequest, PaymentReversalResource>(
+            refunds,
+            reversalsRequest,
+            requestOptions
         );
     }
 }
