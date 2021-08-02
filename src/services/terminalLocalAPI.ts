@@ -12,7 +12,7 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
+ * Copyright (c) 2021 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
@@ -54,7 +54,7 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
         }
 
         const saleToPoiSecuredMessage: SaleToPOISecuredMessage = NexoCrypto.encrypt(
-            terminalApiRequest.saleToPOIRequest.messageHeader,
+            terminalApiRequest.SaleToPOIRequest.MessageHeader,
             JSON.stringify(formattedRequest),
             securityKey,
         );
@@ -72,7 +72,7 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
             ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
 
         const response = this.nexoCrypto.decrypt(
-            terminalApiSecuredResponse.saleToPOIResponse,
+            terminalApiSecuredResponse.SaleToPOIResponse,
             securityKey,
         );
 

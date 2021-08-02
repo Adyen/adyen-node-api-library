@@ -12,7 +12,7 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
+ * Copyright (c) 2021 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
@@ -41,37 +41,37 @@ class NexoCrypto {
         saleToPoiMessageJson: string,
         securityKey: SecurityKey,
     ): SaleToPOISecuredMessage {
-        const derivedKey: NexoDerivedKey = NexoDerivedKeyGenerator.deriveKeyMaterial(securityKey.passphrase);
+        const derivedKey: NexoDerivedKey = NexoDerivedKeyGenerator.deriveKeyMaterial(securityKey.Passphrase);
         const saleToPoiMessageByteArray = Buffer.from(saleToPoiMessageJson, "utf-8");
         const ivNonce = NexoCrypto.generateRandomIvNonce();
         const encryptedSaleToPoiMessage = NexoCrypto.crypt(saleToPoiMessageByteArray, derivedKey, ivNonce, Modes.ENCRYPT);
         const encryptedSaleToPoiMessageHmac = NexoCrypto.hmac(saleToPoiMessageByteArray, derivedKey);
 
         const securityTrailer: SecurityTrailer = {
-            adyenCryptoVersion: securityKey.adyenCryptoVersion,
-            hmac: encryptedSaleToPoiMessageHmac.toString("base64"),
-            keyIdentifier: securityKey.keyIdentifier,
-            keyVersion: securityKey.keyVersion,
-            nonce: ivNonce.toString("base64"),
+            AdyenCryptoVersion: securityKey.AdyenCryptoVersion,
+            Hmac: encryptedSaleToPoiMessageHmac.toString("base64"),
+            KeyIdentifier: securityKey.KeyIdentifier,
+            KeyVersion: securityKey.KeyVersion,
+            Nonce: ivNonce.toString("base64"),
         };
 
         return {
-            messageHeader,
-            nexoBlob: encryptedSaleToPoiMessage.toString("base64"),
-            securityTrailer,
+            MessageHeader: messageHeader,
+            NexoBlob: encryptedSaleToPoiMessage.toString("base64"),
+            SecurityTrailer: securityTrailer,
         };
     }
 
     public decrypt(saleToPoiSecureMessage: SaleToPOISecuredMessage, securityKey: SecurityKey): string {
         NexoCrypto.validateSecurityKey(securityKey);
 
-        const encryptedSaleToPoiMessageByteArray = Buffer.from(saleToPoiSecureMessage.nexoBlob, "base64");
-        const derivedKey = NexoDerivedKeyGenerator.deriveKeyMaterial(securityKey.passphrase);
-        const ivNonce = Buffer.from(saleToPoiSecureMessage.securityTrailer.nonce, "base64");
+        const encryptedSaleToPoiMessageByteArray = Buffer.from(saleToPoiSecureMessage.NexoBlob, "base64");
+        const derivedKey = NexoDerivedKeyGenerator.deriveKeyMaterial(securityKey.Passphrase);
+        const ivNonce = Buffer.from(saleToPoiSecureMessage.SecurityTrailer.Nonce, "base64");
         const decryptedSaleToPoiMessageByteArray =
             NexoCrypto.crypt(encryptedSaleToPoiMessageByteArray, derivedKey, ivNonce, Modes.DECRYPT);
 
-        const receivedHmac = Buffer.from(saleToPoiSecureMessage.securityTrailer.hmac, "base64");
+        const receivedHmac = Buffer.from(saleToPoiSecureMessage.SecurityTrailer.Hmac, "base64");
         this.validateHmac(receivedHmac, decryptedSaleToPoiMessageByteArray, derivedKey);
 
         return decryptedSaleToPoiMessageByteArray.toString("utf-8");
@@ -79,10 +79,10 @@ class NexoCrypto {
 
     private static validateSecurityKey(securityKey: SecurityKey): void {
         const isValid = securityKey
-            && securityKey.passphrase
-            && securityKey.keyIdentifier
-            && !isNaN(securityKey.keyVersion)
-            && !isNaN(securityKey.adyenCryptoVersion);
+            && securityKey.Passphrase
+            && securityKey.KeyIdentifier
+            && !isNaN(securityKey.KeyVersion)
+            && !isNaN(securityKey.AdyenCryptoVersion);
         if (!isValid) {
             throw new InvalidSecurityKeyException("Invalid Security Key");
         }

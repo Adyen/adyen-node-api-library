@@ -12,7 +12,7 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
+ * Copyright (c) 2021 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
@@ -37,7 +37,7 @@ class TerminalCloudAPI extends ApiKeyAuthenticatedService {
     }
 
     private static setApplicationInfo(request: TerminalApiRequest): TerminalApiRequest {
-        if (request.saleToPOIRequest.paymentRequest) {
+        if (request.SaleToPOIRequest.PaymentRequest) {
             const applicationInfo = new ApplicationInfo();
             const saleToAcquirerData = {applicationInfo};
             const saleData = {saleToAcquirerData};
