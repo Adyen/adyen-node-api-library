@@ -1,3 +1,22 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2021 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+ 
 /**
  * Adyen Checkout API
  * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v67/payments ```
@@ -30,7 +49,7 @@ export class PaymentCompletionDetails {
     /**
     * The SMS verification code collected from the shopper.
     */
-    'cupsecureplusSmscode'?: string;
+    'cupsecureplus_smscode'?: string;
     /**
     * PayPal-generated third party access token.
     */
@@ -70,27 +89,27 @@ export class PaymentCompletionDetails {
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `transStatus`.
     */
-    'threeds2ChallengeResult'?: string;
+    'threeds2_challengeResult'?: string;
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `threeDSCompInd`.
     */
-    'threeds2Fingerprint'?: string;
+    'threeds2_fingerprint'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "mD",
+            "name": "MD",
             "baseName": "MD",
             "type": "string"
         },
         {
-            "name": "paReq",
+            "name": "PaReq",
             "baseName": "PaReq",
             "type": "string"
         },
         {
-            "name": "paRes",
+            "name": "PaRes",
             "baseName": "PaRes",
             "type": "string"
         },
@@ -100,7 +119,7 @@ export class PaymentCompletionDetails {
             "type": "string"
         },
         {
-            "name": "cupsecureplusSmscode",
+            "name": "cupsecureplus_smscode",
             "baseName": "cupsecureplus.smscode",
             "type": "string"
         },
@@ -150,12 +169,12 @@ export class PaymentCompletionDetails {
             "type": "string"
         },
         {
-            "name": "threeds2ChallengeResult",
+            "name": "threeds2_challengeResult",
             "baseName": "threeds2.challengeResult",
             "type": "string"
         },
         {
-            "name": "threeds2Fingerprint",
+            "name": "threeds2_fingerprint",
             "baseName": "threeds2.fingerprint",
             "type": "string"
         }    ];
