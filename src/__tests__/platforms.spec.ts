@@ -190,7 +190,7 @@ describe("Platforms Test", function () {
 });
 
 describe.skip("Platforms Test E2E", function(): void {
-    beforeAll(async (done) => {
+    beforeAll(async () => {
         accountHolder = await platforms.Account.createAccountHolder({
             accountHolderCode: generateRandomCode(),
             accountHolderDetails,
@@ -236,8 +236,6 @@ describe.skip("Platforms Test E2E", function(): void {
                 description: `${generateRandomCode()}`
             }
         });
-
-        done();
     });
     describe("Account", function(): void {
         describe("Accounts E2E", function () {
