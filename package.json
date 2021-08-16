@@ -43,20 +43,21 @@
     "coveralls": "3.1.1",
     "dotenv": "^10.0.0",
     "eslint": "6.8.0",
-    "jest": "25.5.4",
+    "jest": "^27.0.6",
     "jest-ts-auto-mock": "^2.0.0",
     "kind-of": "^6.0.3",
     "minimist": ">=1.2.3",
     "nock": "13.1.1",
     "release-it": "14.11.5",
     "ts-auto-mock": "^2.6.5",
-    "ts-jest": "25.5.1",
+    "ts-jest": "^27.0.4",
     "ts-loader": "8.0.10",
     "ttypescript": "^1.5.10",
     "typescript": "3.9.10"
   },
   "dependencies": {
-    "https-proxy-agent": "5.0.0"
+    "https-proxy-agent": "5.0.0",
+    "yarn": "^1.22.11"
   },
   "optionalDependencies": {
     "@types/node": "14.0.9"
