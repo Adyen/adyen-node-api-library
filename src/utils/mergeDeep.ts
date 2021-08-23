@@ -18,9 +18,9 @@
  */
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function mergeDeep<T>(target: T, source: object | any): T {
+function mergeDeep<T>(target: T, source: Record<string, unknown> | any): T {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const isObject = (obj: object | any): boolean => obj && typeof obj === "object";
+    const isObject = (obj: Record<string, unknown> | any): boolean => obj && typeof obj === "object";
 
     if (!isObject(target) || !isObject(source)) {
         return source;
