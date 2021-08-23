@@ -17,8 +17,6 @@
  * See the LICENSE file for more info.
  */
 
-/* eslint-disable @typescript-eslint/camelcase */
-
 import checkServerIdentity from "../helpers/checkServerIdentity";
 import { PeerCertificate } from "tls";
 
