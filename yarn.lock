@@ -4783,9 +4783,9 @@ triple-beam@^1.2.0, triple-beam@^1.3.0:
   integrity sha512-XrHUvV5HpdLmIj4uVMxHggLbFSZYIn7HEWsqePZcI50pco+MPqJ50wMGY794X7AOOhxOBAjbkqfAbEe/QMp2Lw==
 
 ts-auto-mock@^3.3.5:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/ts-auto-mock/-/ts-auto-mock-3.3.6.tgz#6fd4c1ab6a280566a717cd62958a575dd1313d33"
-  integrity sha512-IFApl/ZKdU/UtR0yoKhZgwtEEsO9UWE4bezFEqBppRvFvPtAutoYL1AzDoC3jjlFrc/InTN7/Z22R5cVZDgdtQ==
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/ts-auto-mock/-/ts-auto-mock-3.4.0.tgz#9d13e6cc7aa12dc8e84206ec7d33a8bd0d47d5c2"
+  integrity sha512-oA+fdkzcsrqHUzcOnRrpp27eO1WPxVjtZsi6oz+3MYxjhabhH10bMQWQ9Klc/nJPdmdGq9xeluY9eMGtz/1eqQ==
   dependencies:
     lodash-es "^4.17.21"
     micromatch "^4.0.4"
