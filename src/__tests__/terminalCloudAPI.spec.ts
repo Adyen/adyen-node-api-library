@@ -77,16 +77,14 @@ describe("Terminal Cloud API", (): void => {
 
         scope.post("/sync").reply(200, syncRefund);
 
-        const pOITransactionID = terminalAPIResponse?.SaleToPOIResponse?.PaymentResponse?.POIData?.POITransactionID;
-        if(pOITransactionID) {
-            const terminalAPIRefundRequest = createTerminalAPIRefundRequest(pOITransactionID);
+        const pOITransactionId = terminalAPIResponse.SaleToPOIResponse?.PaymentResponse?.POIData!.POITransactionID;
+        if(pOITransactionId) {
+            const terminalAPIRefundRequest = createTerminalAPIRefundRequest(pOITransactionId);
             const terminalAPIRefundResponse = await terminalCloudAPI.sync(terminalAPIRefundRequest);
+
             expect(terminalAPIRefundResponse.SaleToPOIResponse?.ReversalResponse).toBeDefined();
         } else {
             fail();
         }
-
-
-
     });
 });

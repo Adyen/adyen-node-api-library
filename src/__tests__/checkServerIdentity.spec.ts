@@ -18,7 +18,6 @@
  */
 
 /* eslint-disable @typescript-eslint/naming-convention */
-
 import checkServerIdentity from "../helpers/checkServerIdentity";
 import { PeerCertificate } from "tls";
 
