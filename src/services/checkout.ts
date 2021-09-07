@@ -108,7 +108,7 @@ class Checkout extends ApiKeyAuthenticatedService {
 
     public getPaymentLinks(linkId: string): Promise<PaymentLinkResource> {
         this._paymentLinksId.id = linkId;
-        return getJsonResponse<{}, PaymentLinkResource>(
+        return getJsonResponse<Record<string, never>, PaymentLinkResource>(
             this._paymentLinksId,
             {},
             { method: "GET" }
@@ -117,7 +117,7 @@ class Checkout extends ApiKeyAuthenticatedService {
 
     public updatePaymentLinks(linkId: string, status: "expired"): Promise<PaymentLinkResource> {
         this._paymentLinksId.id = linkId;
-        return getJsonResponse<{}, PaymentLinkResource>(
+        return getJsonResponse<Record<string, unknown>, PaymentLinkResource>(
             this._paymentLinksId,
             { status },
             { method: "PATCH" }
