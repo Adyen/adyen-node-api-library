@@ -19,7 +19,7 @@
 
 import Config from "./config";
 import HttpURLConnectionClient from "./httpClient/httpURLConnectionClient";
-import { version } from "../package.json";
+import { version } from "./version";
 import ClientInterface from "./httpClient/clientInterface";
 
 type ClientParametersOverload =

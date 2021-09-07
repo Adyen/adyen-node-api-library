@@ -12,6 +12,7 @@
   },
   "hooks": {
     "after:bump": [
+      "npx genversion src/version.ts --semi --double --es6",
       "npm run build",
       "npx auto-changelog -p"
     ],
