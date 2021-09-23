@@ -184,7 +184,7 @@ describe("Checkout", (): void => {
 
     test.each([false, true])("should have valid payment methods, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
-        const paymentMethodsRequest: PaymentMethodsRequest = {merchantAccount: "MagentoMerchantTest"};
+        const paymentMethodsRequest: PaymentMethodsRequest = {merchantAccount};
 
         scope.post("/paymentMethods")
             .reply(200, paymentMethodsSuccess);
