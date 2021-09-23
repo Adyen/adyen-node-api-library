@@ -4758,9 +4758,9 @@ triple-beam@^1.2.0, triple-beam@^1.3.0:
   integrity sha512-XrHUvV5HpdLmIj4uVMxHggLbFSZYIn7HEWsqePZcI50pco+MPqJ50wMGY794X7AOOhxOBAjbkqfAbEe/QMp2Lw==
 
 ts-auto-mock@^3.3.5:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/ts-auto-mock/-/ts-auto-mock-3.4.0.tgz#9d13e6cc7aa12dc8e84206ec7d33a8bd0d47d5c2"
-  integrity sha512-oA+fdkzcsrqHUzcOnRrpp27eO1WPxVjtZsi6oz+3MYxjhabhH10bMQWQ9Klc/nJPdmdGq9xeluY9eMGtz/1eqQ==
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/ts-auto-mock/-/ts-auto-mock-3.5.0.tgz#a7fed77b2564c531440236789fb9d594802dc960"
+  integrity sha512-E1XjMO6UWK/e+i4Ri7h8xGFCIHAb+dxgojcmPQZabQXIJatddQvqJOypg7nYCD2lPtb43HVa3bQd6uHDYV5PvQ==
   dependencies:
     lodash-es "^4.17.21"
     micromatch "^4.0.4"
@@ -4868,10 +4868,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.2.tgz#6d618640d430e3569a1dfb44f7d7e600ced3ee86"
-  integrity sha512-gzP+t5W4hdy4c+68bfcv0t400HVJMMd2+H9B7gae1nQlBzCqvrXX+6GL/b3GAgyTH966pzrZ70/fRjwAtZksSQ==
+typescript@4.4.3:
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.3.tgz#bdc5407caa2b109efd4f82fe130656f977a29324"
+  integrity sha512-4xfscpisVgqqDfPaJo5vkd+Qd/ItkoagnHpufr+i2QCHBsNYp+G7UAoyFl8aPtx879u38wPV65rZ8qbGZijalA==
 
 unique-string@^2.0.0:
   version "2.0.0"
