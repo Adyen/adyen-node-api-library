@@ -35,10 +35,10 @@
   "author": "Ricardo Ambrogi",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "27.0.1",
+    "@types/jest": "27.0.2",
     "@types/nock": "11.1.0",
     "@typescript-eslint/eslint-plugin": "4.31.0",
-    "@typescript-eslint/parser": "4.31.0",
+    "@typescript-eslint/parser": "4.31.2",
     "acorn": "^8.0.1",
     "coveralls": "3.1.1",
     "dotenv": "^10.0.0",
