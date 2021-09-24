@@ -87,6 +87,15 @@ describe("Bin Lookup", function (): void {
     test.each([false, true])("should succeed on get cost estimate. isMock: %p", async function (isMock): Promise<void> {
         !isMock && nock.restore();
         const expected = {
+            cardBin:  {
+             bin: "",
+             fundsAvailability: "I",
+             issuingBank: "ADYEN TEST BANK",
+             issuingCountry: "NL",
+             paymentMethod: "visa",
+             payoutEligible: "Y",
+             summary: "",
+           },
             costEstimateAmount: {
                 currency: "EUR",
                 value: 10
@@ -118,3 +127,18 @@ describe("Bin Lookup", function (): void {
         expect(response).toEqual(expected);
     });
 });
+
+
+Vince Vissers
+Email
+vince.vissers@adyen.com
+Phone
+(+31) 621161626
+Company
+Adyen
+Street address
+Simon Carmiggeltstraat 6-50, 1011DJ
+City
+Amsterdam
+Country
+N-H, Netherlands
