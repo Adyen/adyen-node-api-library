@@ -127,18 +127,3 @@ describe("Bin Lookup", function (): void {
         expect(response).toEqual(expected);
     });
 });
-
-
-Vince Vissers
-Email
-vince.vissers@adyen.com
-Phone
-(+31) 621161626
-Company
-Adyen
-Street address
-Simon Carmiggeltstraat 6-50, 1011DJ
-City
-Amsterdam
-Country
-N-H, Netherlands
