@@ -103,6 +103,7 @@ const createStandaloneCancelsResponse = (): StandalonePaymentCancelResource => {
 
 const createCapturesRequest = (): CreatePaymentCaptureRequest => {
     return {
+        reference: "reference",
         merchantAccount: process.env.ADYEN_MERCHANT!,
         amount: {
             currency: "EUR",
