@@ -34,6 +34,6 @@
 
 export * as checkout from './checkout/models';
 export * as recurring from './recurring/models'
-export * as notificationf from './notification/models';
+export * as notification from './notification/models';
 export * as platformsAccount from './platformsAccount/models';
 export * as terminal from './terminal/models';
