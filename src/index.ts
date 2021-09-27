@@ -12,7 +12,7 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
+ * Copyright (c) 2021 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
@@ -24,3 +24,5 @@ export { default as Config } from "./config";
 export * from "./services/";
 export { hmacValidator } from "./utils";
 export { default as HttpURLConnectionClient } from "./httpClient/httpURLConnectionClient";
+export * as Types from "./typings";
+
