@@ -34,7 +34,7 @@ describe("Notification Test", function (): void {
 
         if (notificationRequest.notificationItems) {
             const notificationRequestItem: NotificationRequestItem = notificationRequest.notificationItems[0];
-            expect(NotificationEnum.AUTHORISATION).toEqual(notificationRequestItem.eventCode);
+            expect(NotificationEnum.Authorisation).toEqual(notificationRequestItem.eventCode);
             expect(notificationRequestItem.success === SuccessEnum.True).toBeTruthy();
             expect(notificationRequestItem.pspReference).toEqual("123456789");
         } else {
@@ -48,7 +48,7 @@ describe("Notification Test", function (): void {
 
         if (notificationRequest.notificationItems) {
             const notificationRequestItem = notificationRequest.notificationItems[0];
-            expect(NotificationEnum.CAPTURE).toEqual(notificationRequestItem.eventCode);
+            expect(NotificationEnum.Capture).toEqual(notificationRequestItem.eventCode);
             expect(notificationRequestItem.success === SuccessEnum.True).toBeTruthy();
             expect(notificationRequestItem.pspReference).toEqual("PSP_REFERENCE");
             expect(notificationRequestItem.originalReference).toEqual("ORIGINAL_PSP");
@@ -63,7 +63,7 @@ describe("Notification Test", function (): void {
 
         if (notificationRequest.notificationItems) {
             const notificationRequestItem = notificationRequest.notificationItems[0];
-            expect(NotificationEnum.CAPTURE).toEqual(notificationRequestItem.eventCode);
+            expect(NotificationEnum.Capture).toEqual(notificationRequestItem.eventCode);
             expect(notificationRequestItem.success === SuccessEnum.True).toBeFalsy();
             expect(notificationRequestItem.pspReference).toEqual("PSP_REFERENCE");
             expect(notificationRequestItem.originalReference).toEqual("ORIGINAL_PSP");
@@ -78,7 +78,7 @@ describe("Notification Test", function (): void {
 
         if (notificationRequest.notificationItems) {
             const notificationRequestItem = notificationRequest.notificationItems[0];
-            expect(NotificationEnum.REFUND).toEqual(notificationRequestItem.eventCode);
+            expect(NotificationEnum.Refund).toEqual(notificationRequestItem.eventCode);
             expect(notificationRequestItem.success === SuccessEnum.True).toBeTruthy();
             expect(notificationRequestItem.pspReference).toEqual("PSP_REFERENCE");
             expect(notificationRequestItem.originalReference).toEqual("ORIGINAL_PSP");
@@ -94,7 +94,7 @@ describe("Notification Test", function (): void {
 
         if (notificationRequest.notificationItems) {
             const notificationRequestItem = notificationRequest.notificationItems[0];
-            expect(NotificationEnum.REFUND).toEqual(notificationRequestItem.eventCode);
+            expect(NotificationEnum.Refund).toEqual(notificationRequestItem.eventCode);
             expect(notificationRequestItem.success === SuccessEnum.True).toBeFalsy();
             expect(notificationRequestItem.pspReference).toEqual("PSP_REFERENCE");
             expect(notificationRequestItem.originalReference).toEqual("ORIGINAL_PSP");

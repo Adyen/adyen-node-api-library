@@ -86,6 +86,5 @@ describe("Terminal Cloud API", (): void => {
         } else {
             fail();
         }
-
     });
 });

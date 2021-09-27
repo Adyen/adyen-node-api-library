@@ -12,25 +12,38 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
+ * Copyright (c) 2021 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
+ 
+export * from './additionalData';
+export * from './amount';
+export * from './notification';
+export * from './notificationItem';
+export * from './notificationRequestItem';
 
-export * from "./additionalData";
-export * from "./amount";
-export * from "./notification";
-export * from "./notificationItem";
-export * from "./notificationRequestItem";
+import * as fs from 'fs';
 
-import { AdditionalData } from "./additionalData";
-import { Amount } from "./amount";
-import { Notification } from "./notification";
-import { NotificationItem } from "./notificationItem";
-import { NotificationRequestItem } from "./notificationRequestItem";
+export interface RequestDetailedFile {
+    value: Buffer;
+    options?: {
+        filename?: string;
+        contentType?: string;
+    }
+}
+
+export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
+
+
+import { AdditionalData } from './additionalData';
+import { Amount } from './amount';
+import { Notification } from './notification';
+import { NotificationItem } from './notificationItem';
+import { NotificationRequestItem } from './notificationRequestItem';
 
 /* tslint:disable:no-unused-variable */
-const primitives = [
+let primitives = [
                     "string",
                     "boolean",
                     "double",
@@ -41,19 +54,19 @@ const primitives = [
                     "any"
                  ];
 
-const enumsMap: {[index: string]: any} = {
+let enumsMap: {[index: string]: any} = {
         "NotificationRequestItem.EventCodeEnum": NotificationRequestItem.EventCodeEnum,
         "NotificationRequestItem.OperationsEnum": NotificationRequestItem.OperationsEnum,
         "NotificationRequestItem.SuccessEnum": NotificationRequestItem.SuccessEnum,
-};
+}
 
-const typeMap: {[index: string]: any} = {
+let typeMap: {[index: string]: any} = {
     "AdditionalData": AdditionalData,
     "Amount": Amount,
     "Notification": Notification,
     "NotificationItem": NotificationItem,
     "NotificationRequestItem": NotificationRequestItem,
-};
+}
 
 export class ObjectSerializer {
     public static findCorrectType(data: any, expectedType: string) {
@@ -73,13 +86,13 @@ export class ObjectSerializer {
             }
 
             // Check the discriminator
-            const discriminatorProperty = typeMap[expectedType].discriminator;
-            if (discriminatorProperty == undefined) {
+            let discriminatorProperty = typeMap[expectedType].discriminator;
+            if (discriminatorProperty == null) {
                 return expectedType; // the type does not have a discriminator. use it.
             } else {
                 if (data[discriminatorProperty]) {
-                    const discriminatorType = data[discriminatorProperty];
-                    if (typeMap[discriminatorType]) {
+                    var discriminatorType = data[discriminatorProperty];
+                    if(typeMap[discriminatorType]){
                         return discriminatorType; // use the type given in the discriminator
                     } else {
                         return expectedType; // discriminator did not map to a type
@@ -99,10 +112,10 @@ export class ObjectSerializer {
         } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
             let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
             subType = subType.substring(0, subType.length - 1); // Type> => Type
-            const transformedData: any[] = [];
-            for (const index in data) {
-                const date = data[index];
-                transformedData.push(ObjectSerializer.serialize(date, subType));
+            let transformedData: any[] = [];
+            for (let index = 0; index < data.length; index++) {
+                let datum = data[index];
+                transformedData.push(ObjectSerializer.serialize(datum, subType));
             }
             return transformedData;
         } else if (type === "Date") {
@@ -119,10 +132,10 @@ export class ObjectSerializer {
             type = this.findCorrectType(data, type);
 
             // get the map for the correct type.
-            const attributeTypes = typeMap[type].getAttributeTypeMap();
-            const instance: {[index: string]: any} = {};
-            for (const index in attributeTypes) {
-                const attributeType = attributeTypes[index];
+            let attributeTypes = typeMap[type].getAttributeTypeMap();
+            let instance: {[index: string]: any} = {};
+            for (let index = 0; index < attributeTypes.length; index++) {
+                let attributeType = attributeTypes[index];
                 instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type);
             }
             return instance;
@@ -139,10 +152,10 @@ export class ObjectSerializer {
         } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
             let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
             subType = subType.substring(0, subType.length - 1); // Type> => Type
-            const transformedData: any[] = [];
-            for (const index in data) {
-                const date = data[index];
-                transformedData.push(ObjectSerializer.deserialize(date, subType));
+            let transformedData: any[] = [];
+            for (let index = 0; index < data.length; index++) {
+                let datum = data[index];
+                transformedData.push(ObjectSerializer.deserialize(datum, subType));
             }
             return transformedData;
         } else if (type === "Date") {
@@ -155,14 +168,13 @@ export class ObjectSerializer {
             if (!typeMap[type]) { // dont know the type
                 return data;
             }
-            const instance = new typeMap[type]();
-            const attributeTypes = typeMap[type].getAttributeTypeMap();
-            for (const index in attributeTypes) {
-                const attributeType = attributeTypes[index];
+            let instance = new typeMap[type]();
+            let attributeTypes = typeMap[type].getAttributeTypeMap();
+            for (let index = 0; index < attributeTypes.length; index++) {
+                let attributeType = attributeTypes[index];
                 instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type);
             }
             return instance;
         }
     }
 }
-
