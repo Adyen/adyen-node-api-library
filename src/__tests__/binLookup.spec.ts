@@ -87,6 +87,15 @@ describe("Bin Lookup", function (): void {
     test.each([false, true])("should succeed on get cost estimate. isMock: %p", async function (isMock): Promise<void> {
         !isMock && nock.restore();
         const expected = {
+            cardBin:  {
+             bin: "",
+             fundsAvailability: "I",
+             issuingBank: "ADYEN TEST BANK",
+             issuingCountry: "NL",
+             paymentMethod: "visa",
+             payoutEligible: "Y",
+             summary: "",
+           },
             costEstimateAmount: {
                 currency: "EUR",
                 value: 10

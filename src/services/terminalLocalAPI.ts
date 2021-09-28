@@ -60,7 +60,7 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
         );
 
         const securedPaymentRequest: TerminalApiSecuredRequest = ObjectSerializer.serialize({
-            saleToPOIRequest: saleToPoiSecuredMessage,
+            SaleToPOIRequest: saleToPoiSecuredMessage,
         }, "TerminalApiSecuredRequest");
 
         const jsonResponse = await getJsonResponse<TerminalApiSecuredRequest, TerminalApiResponse>(

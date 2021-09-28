@@ -32,7 +32,7 @@ const notificationRequestItem: { NotificationRequestItem: NotificationRequestIte
         merchantAccountCode: "merchantAccount",
         merchantReference: "reference",
         amount: {currency: "EUR", value: 1000},
-        eventCode: NotificationRequestItem.EventCodeEnum.REPORTAVAILABLE,
+        eventCode: NotificationRequestItem.EventCodeEnum.ReportAvailable,
         eventDate: "2019-09-21T11:45:24.637Z",
         paymentMethod: "VISA",
         reason: "reason",
@@ -92,7 +92,7 @@ describe("HMAC Validator", function (): void {
             merchantAccountCode: "merchantAccount",
             merchantReference: "reference",
             amount: {currency: "EUR", value: 1000},
-            eventCode: NotificationRequestItem.EventCodeEnum.REPORTAVAILABLE,
+            eventCode: NotificationRequestItem.EventCodeEnum.ReportAvailable,
             eventDate: "2019-09-21T11:45:24.637Z",
             paymentMethod: "VISA",
             reason: "reason",
@@ -101,7 +101,7 @@ describe("HMAC Validator", function (): void {
         };
         try {
         hmacValidator.validateHMAC(notificationRequestItemNoAdditionalData, key);
-        } catch(error) {
+        } catch(error: any) {
             expect(error.message).toEqual(`Missing ${ApiConstants.HMAC_SIGNATURE}`);
         }
     });

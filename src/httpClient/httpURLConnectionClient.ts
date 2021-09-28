@@ -195,7 +195,7 @@ class HttpURLConnectionClient implements ClientInterface {
                 checkServerIdentity,
             };
 
-        } catch (e) {
+        } catch (e: any) {
             return Promise.reject(new HttpClientException({ message: `Error loading certificate from path: ${e.message}` }));
         }
 
