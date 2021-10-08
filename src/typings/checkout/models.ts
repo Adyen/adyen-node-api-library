@@ -17,26 +17,10 @@
  * See the LICENSE file for more info.
  */
  
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
+import localVarRequest from 'request';
 
 export * from './accountInfo';
+export * from './acctInfo';
 export * from './achDetails';
 export * from './additionalData3DSecure';
 export * from './additionalDataAirline';
@@ -91,6 +75,8 @@ export * from './checkoutVoucherAction';
 export * from './commonField';
 export * from './company';
 export * from './configuration';
+export * from './createCheckoutSessionRequest';
+export * from './createCheckoutSessionResponse';
 export * from './createPaymentAmountUpdateRequest';
 export * from './createPaymentCancelRequest';
 export * from './createPaymentCaptureRequest';
@@ -101,10 +87,10 @@ export * from './createStandalonePaymentCancelRequest';
 export * from './detailsRequest';
 export * from './deviceRenderOptions';
 export * from './dokuDetails';
+export * from './donationResponse';
 export * from './dotpayDetails';
 export * from './dragonpayDetails';
 export * from './econtextVoucherDetails';
-export * from './entercashDetails';
 export * from './externalPlatform';
 export * from './forexQuote';
 export * from './fraudCheckResult';
@@ -139,9 +125,11 @@ export * from './paymentCaptureResource';
 export * from './paymentCompletionDetails';
 export * from './paymentDetails';
 export * from './paymentDetailsResponse';
+export * from './paymentDonationRequest';
 export * from './paymentLinkResource';
 export * from './paymentMethod';
 export * from './paymentMethodGroup';
+export * from './paymentMethodIssuer';
 export * from './paymentMethodsRequest';
 export * from './paymentMethodsResponse';
 export * from './paymentRefundResource';
@@ -152,7 +140,7 @@ export * from './paymentSetupRequest';
 export * from './paymentSetupResponse';
 export * from './paymentVerificationRequest';
 export * from './paymentVerificationResponse';
-export * from './qiwiWalletDetails';
+export * from './phone';
 export * from './ratepayDetails';
 export * from './recurring';
 export * from './recurringDetail';
@@ -165,7 +153,6 @@ export * from './responseAdditionalDataDeliveryAddress';
 export * from './responseAdditionalDataInstallments';
 export * from './responseAdditionalDataNetworkTokens';
 export * from './responseAdditionalDataOpi';
-export * from './responseAdditionalDataPayPal';
 export * from './responseAdditionalDataSepa';
 export * from './riskData';
 export * from './sDKEphemPubKey';
@@ -185,6 +172,8 @@ export * from './subInputDetail';
 export * from './threeDS2RequestData';
 export * from './threeDS2ResponseData';
 export * from './threeDS2Result';
+export * from './threeDSRequestorAuthenticationInfo';
+export * from './threeDSRequestorPriorAuthenticationInfo';
 export * from './threeDSecureData';
 export * from './updatePaymentLinkRequest';
 export * from './upiDetails';
@@ -206,7 +195,9 @@ export interface RequestDetailedFile {
 
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
+
 import { AccountInfo } from './accountInfo';
+import { AcctInfo } from './acctInfo';
 import { AchDetails } from './achDetails';
 import { AdditionalData3DSecure } from './additionalData3DSecure';
 import { AdditionalDataAirline } from './additionalDataAirline';
@@ -261,6 +252,8 @@ import { CheckoutVoucherAction } from './checkoutVoucherAction';
 import { CommonField } from './commonField';
 import { Company } from './company';
 import { Configuration } from './configuration';
+import { CreateCheckoutSessionRequest } from './createCheckoutSessionRequest';
+import { CreateCheckoutSessionResponse } from './createCheckoutSessionResponse';
 import { CreatePaymentAmountUpdateRequest } from './createPaymentAmountUpdateRequest';
 import { CreatePaymentCancelRequest } from './createPaymentCancelRequest';
 import { CreatePaymentCaptureRequest } from './createPaymentCaptureRequest';
@@ -271,10 +264,10 @@ import { CreateStandalonePaymentCancelRequest } from './createStandalonePaymentC
 import { DetailsRequest } from './detailsRequest';
 import { DeviceRenderOptions } from './deviceRenderOptions';
 import { DokuDetails } from './dokuDetails';
+import { DonationResponse } from './donationResponse';
 import { DotpayDetails } from './dotpayDetails';
 import { DragonpayDetails } from './dragonpayDetails';
 import { EcontextVoucherDetails } from './econtextVoucherDetails';
-import { EntercashDetails } from './entercashDetails';
 import { ExternalPlatform } from './externalPlatform';
 import { ForexQuote } from './forexQuote';
 import { FraudCheckResult } from './fraudCheckResult';
@@ -309,9 +302,11 @@ import { PaymentCaptureResource } from './paymentCaptureResource';
 import { PaymentCompletionDetails } from './paymentCompletionDetails';
 import { PaymentDetails } from './paymentDetails';
 import { PaymentDetailsResponse } from './paymentDetailsResponse';
+import { PaymentDonationRequest } from './paymentDonationRequest';
 import { PaymentLinkResource } from './paymentLinkResource';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodGroup } from './paymentMethodGroup';
+import { PaymentMethodIssuer } from './paymentMethodIssuer';
 import { PaymentMethodsRequest } from './paymentMethodsRequest';
 import { PaymentMethodsResponse } from './paymentMethodsResponse';
 import { PaymentRefundResource } from './paymentRefundResource';
@@ -322,7 +317,7 @@ import { PaymentSetupRequest } from './paymentSetupRequest';
 import { PaymentSetupResponse } from './paymentSetupResponse';
 import { PaymentVerificationRequest } from './paymentVerificationRequest';
 import { PaymentVerificationResponse } from './paymentVerificationResponse';
-import { QiwiWalletDetails } from './qiwiWalletDetails';
+import { Phone } from './phone';
 import { RatepayDetails } from './ratepayDetails';
 import { Recurring } from './recurring';
 import { RecurringDetail } from './recurringDetail';
@@ -335,7 +330,6 @@ import { ResponseAdditionalDataDeliveryAddress } from './responseAdditionalDataD
 import { ResponseAdditionalDataInstallments } from './responseAdditionalDataInstallments';
 import { ResponseAdditionalDataNetworkTokens } from './responseAdditionalDataNetworkTokens';
 import { ResponseAdditionalDataOpi } from './responseAdditionalDataOpi';
-import { ResponseAdditionalDataPayPal } from './responseAdditionalDataPayPal';
 import { ResponseAdditionalDataSepa } from './responseAdditionalDataSepa';
 import { RiskData } from './riskData';
 import { SDKEphemPubKey } from './sDKEphemPubKey';
@@ -355,6 +349,8 @@ import { SubInputDetail } from './subInputDetail';
 import { ThreeDS2RequestData } from './threeDS2RequestData';
 import { ThreeDS2ResponseData } from './threeDS2ResponseData';
 import { ThreeDS2Result } from './threeDS2Result';
+import { ThreeDSRequestorAuthenticationInfo } from './threeDSRequestorAuthenticationInfo';
+import { ThreeDSRequestorPriorAuthenticationInfo } from './threeDSRequestorPriorAuthenticationInfo';
 import { ThreeDSecureData } from './threeDSecureData';
 import { UpdatePaymentLinkRequest } from './updatePaymentLinkRequest';
 import { UpiDetails } from './upiDetails';
@@ -412,16 +408,23 @@ let enumsMap: {[index: string]: any} = {
         "CheckoutThreeDS2Action.TypeEnum": CheckoutThreeDS2Action.TypeEnum,
         "CheckoutVoucherAction.TypeEnum": CheckoutVoucherAction.TypeEnum,
         "Configuration.CardHolderNameEnum": Configuration.CardHolderNameEnum,
+        "CreateCheckoutSessionRequest.ChannelEnum": CreateCheckoutSessionRequest.ChannelEnum,
+        "CreateCheckoutSessionRequest.RecurringProcessingModelEnum": CreateCheckoutSessionRequest.RecurringProcessingModelEnum,
+        "CreateCheckoutSessionRequest.ShopperInteractionEnum": CreateCheckoutSessionRequest.ShopperInteractionEnum,
+        "CreateCheckoutSessionResponse.ChannelEnum": CreateCheckoutSessionResponse.ChannelEnum,
+        "CreateCheckoutSessionResponse.RecurringProcessingModelEnum": CreateCheckoutSessionResponse.RecurringProcessingModelEnum,
+        "CreateCheckoutSessionResponse.ShopperInteractionEnum": CreateCheckoutSessionResponse.ShopperInteractionEnum,
         "CreatePaymentAmountUpdateRequest.ReasonEnum": CreatePaymentAmountUpdateRequest.ReasonEnum,
         "CreatePaymentLinkRequest.RecurringProcessingModelEnum": CreatePaymentLinkRequest.RecurringProcessingModelEnum,
         "CreatePaymentLinkRequest.RequiredShopperFieldsEnum": CreatePaymentLinkRequest.RequiredShopperFieldsEnum,
+        "CreatePaymentLinkRequest.StorePaymentMethodModeEnum": CreatePaymentLinkRequest.StorePaymentMethodModeEnum,
         "DeviceRenderOptions.SdkInterfaceEnum": DeviceRenderOptions.SdkInterfaceEnum,
         "DeviceRenderOptions.SdkUiTypeEnum": DeviceRenderOptions.SdkUiTypeEnum,
         "DokuDetails.TypeEnum": DokuDetails.TypeEnum,
+        "DonationResponse.StatusEnum": DonationResponse.StatusEnum,
         "DotpayDetails.TypeEnum": DotpayDetails.TypeEnum,
         "DragonpayDetails.TypeEnum": DragonpayDetails.TypeEnum,
         "EcontextVoucherDetails.TypeEnum": EcontextVoucherDetails.TypeEnum,
-        "EntercashDetails.TypeEnum": EntercashDetails.TypeEnum,
         "GenericIssuerPaymentMethodDetails.TypeEnum": GenericIssuerPaymentMethodDetails.TypeEnum,
         "GiropayDetails.TypeEnum": GiropayDetails.TypeEnum,
         "GooglePayDetails.FundingSourceEnum": GooglePayDetails.FundingSourceEnum,
@@ -431,7 +434,6 @@ let enumsMap: {[index: string]: any} = {
         "Installments.PlanEnum": Installments.PlanEnum,
         "KlarnaDetails.TypeEnum": KlarnaDetails.TypeEnum,
         "LianLianPayDetails.TypeEnum": LianLianPayDetails.TypeEnum,
-        "LineItem.TaxCategoryEnum": LineItem.TaxCategoryEnum,
         "Mandate.AmountRuleEnum": Mandate.AmountRuleEnum,
         "Mandate.BillingAttemptsRuleEnum": Mandate.BillingAttemptsRuleEnum,
         "Mandate.FrequencyEnum": Mandate.FrequencyEnum,
@@ -454,8 +456,13 @@ let enumsMap: {[index: string]: any} = {
         "PaymentCaptureResource.StatusEnum": PaymentCaptureResource.StatusEnum,
         "PaymentDetails.TypeEnum": PaymentDetails.TypeEnum,
         "PaymentDetailsResponse.ResultCodeEnum": PaymentDetailsResponse.ResultCodeEnum,
+        "PaymentDonationRequest.ChannelEnum": PaymentDonationRequest.ChannelEnum,
+        "PaymentDonationRequest.EntityTypeEnum": PaymentDonationRequest.EntityTypeEnum,
+        "PaymentDonationRequest.RecurringProcessingModelEnum": PaymentDonationRequest.RecurringProcessingModelEnum,
+        "PaymentDonationRequest.ShopperInteractionEnum": PaymentDonationRequest.ShopperInteractionEnum,
         "PaymentLinkResource.RecurringProcessingModelEnum": PaymentLinkResource.RecurringProcessingModelEnum,
         "PaymentLinkResource.StatusEnum": PaymentLinkResource.StatusEnum,
+        "PaymentLinkResource.StorePaymentMethodModeEnum": PaymentLinkResource.StorePaymentMethodModeEnum,
         "PaymentMethod.FundingSourceEnum": PaymentMethod.FundingSourceEnum,
         "PaymentMethodsRequest.ChannelEnum": PaymentMethodsRequest.ChannelEnum,
         "PaymentRefundResource.StatusEnum": PaymentRefundResource.StatusEnum,
@@ -469,7 +476,6 @@ let enumsMap: {[index: string]: any} = {
         "PaymentSetupRequest.EntityTypeEnum": PaymentSetupRequest.EntityTypeEnum,
         "PaymentSetupRequest.ShopperInteractionEnum": PaymentSetupRequest.ShopperInteractionEnum,
         "PaymentVerificationResponse.ResultCodeEnum": PaymentVerificationResponse.ResultCodeEnum,
-        "QiwiWalletDetails.TypeEnum": QiwiWalletDetails.TypeEnum,
         "RatepayDetails.TypeEnum": RatepayDetails.TypeEnum,
         "Recurring.ContractEnum": Recurring.ContractEnum,
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
@@ -489,6 +495,8 @@ let enumsMap: {[index: string]: any} = {
         "StoredPaymentMethodDetails.TypeEnum": StoredPaymentMethodDetails.TypeEnum,
         "ThreeDS2RequestData.ChallengeIndicatorEnum": ThreeDS2RequestData.ChallengeIndicatorEnum,
         "ThreeDS2RequestData.TransactionTypeEnum": ThreeDS2RequestData.TransactionTypeEnum,
+        "ThreeDS2Result.ChallengeIndicatorEnum": ThreeDS2Result.ChallengeIndicatorEnum,
+        "ThreeDS2Result.ExemptionIndicatorEnum": ThreeDS2Result.ExemptionIndicatorEnum,
         "ThreeDSecureData.AuthenticationResponseEnum": ThreeDSecureData.AuthenticationResponseEnum,
         "ThreeDSecureData.DirectoryResponseEnum": ThreeDSecureData.DirectoryResponseEnum,
         "UpdatePaymentLinkRequest.StatusEnum": UpdatePaymentLinkRequest.StatusEnum,
@@ -503,6 +511,7 @@ let enumsMap: {[index: string]: any} = {
 
 let typeMap: {[index: string]: any} = {
     "AccountInfo": AccountInfo,
+    "AcctInfo": AcctInfo,
     "AchDetails": AchDetails,
     "AdditionalData3DSecure": AdditionalData3DSecure,
     "AdditionalDataAirline": AdditionalDataAirline,
@@ -557,6 +566,8 @@ let typeMap: {[index: string]: any} = {
     "CommonField": CommonField,
     "Company": Company,
     "Configuration": Configuration,
+    "CreateCheckoutSessionRequest": CreateCheckoutSessionRequest,
+    "CreateCheckoutSessionResponse": CreateCheckoutSessionResponse,
     "CreatePaymentAmountUpdateRequest": CreatePaymentAmountUpdateRequest,
     "CreatePaymentCancelRequest": CreatePaymentCancelRequest,
     "CreatePaymentCaptureRequest": CreatePaymentCaptureRequest,
@@ -567,10 +578,10 @@ let typeMap: {[index: string]: any} = {
     "DetailsRequest": DetailsRequest,
     "DeviceRenderOptions": DeviceRenderOptions,
     "DokuDetails": DokuDetails,
+    "DonationResponse": DonationResponse,
     "DotpayDetails": DotpayDetails,
     "DragonpayDetails": DragonpayDetails,
     "EcontextVoucherDetails": EcontextVoucherDetails,
-    "EntercashDetails": EntercashDetails,
     "ExternalPlatform": ExternalPlatform,
     "ForexQuote": ForexQuote,
     "FraudCheckResult": FraudCheckResult,
@@ -605,9 +616,11 @@ let typeMap: {[index: string]: any} = {
     "PaymentCompletionDetails": PaymentCompletionDetails,
     "PaymentDetails": PaymentDetails,
     "PaymentDetailsResponse": PaymentDetailsResponse,
+    "PaymentDonationRequest": PaymentDonationRequest,
     "PaymentLinkResource": PaymentLinkResource,
     "PaymentMethod": PaymentMethod,
     "PaymentMethodGroup": PaymentMethodGroup,
+    "PaymentMethodIssuer": PaymentMethodIssuer,
     "PaymentMethodsRequest": PaymentMethodsRequest,
     "PaymentMethodsResponse": PaymentMethodsResponse,
     "PaymentRefundResource": PaymentRefundResource,
@@ -618,7 +631,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentSetupResponse": PaymentSetupResponse,
     "PaymentVerificationRequest": PaymentVerificationRequest,
     "PaymentVerificationResponse": PaymentVerificationResponse,
-    "QiwiWalletDetails": QiwiWalletDetails,
+    "Phone": Phone,
     "RatepayDetails": RatepayDetails,
     "Recurring": Recurring,
     "RecurringDetail": RecurringDetail,
@@ -631,7 +644,6 @@ let typeMap: {[index: string]: any} = {
     "ResponseAdditionalDataInstallments": ResponseAdditionalDataInstallments,
     "ResponseAdditionalDataNetworkTokens": ResponseAdditionalDataNetworkTokens,
     "ResponseAdditionalDataOpi": ResponseAdditionalDataOpi,
-    "ResponseAdditionalDataPayPal": ResponseAdditionalDataPayPal,
     "ResponseAdditionalDataSepa": ResponseAdditionalDataSepa,
     "RiskData": RiskData,
     "SDKEphemPubKey": SDKEphemPubKey,
@@ -651,6 +663,8 @@ let typeMap: {[index: string]: any} = {
     "ThreeDS2RequestData": ThreeDS2RequestData,
     "ThreeDS2ResponseData": ThreeDS2ResponseData,
     "ThreeDS2Result": ThreeDS2Result,
+    "ThreeDSRequestorAuthenticationInfo": ThreeDSRequestorAuthenticationInfo,
+    "ThreeDSRequestorPriorAuthenticationInfo": ThreeDSRequestorPriorAuthenticationInfo,
     "ThreeDSecureData": ThreeDSecureData,
     "UpdatePaymentLinkRequest": UpdatePaymentLinkRequest,
     "UpiDetails": UpiDetails,
@@ -771,3 +785,77 @@ export class ObjectSerializer {
         }
     }
 }
+
+export interface Authentication {
+    /**
+    * Apply authentication settings to header and query params.
+    */
+    applyToRequest(requestOptions: localVarRequest.Options): Promise<void> | void;
+}
+
+export class HttpBasicAuth implements Authentication {
+    public username: string = '';
+    public password: string = '';
+
+    applyToRequest(requestOptions: localVarRequest.Options): void {
+        requestOptions.auth = {
+            username: this.username, password: this.password
+        }
+    }
+}
+
+export class HttpBearerAuth implements Authentication {
+    public accessToken: string | (() => string) = '';
+
+    applyToRequest(requestOptions: localVarRequest.Options): void {
+        if (requestOptions && requestOptions.headers) {
+            const accessToken = typeof this.accessToken === 'function'
+                            ? this.accessToken()
+                            : this.accessToken;
+            requestOptions.headers["Authorization"] = "Bearer " + accessToken;
+        }
+    }
+}
+
+export class ApiKeyAuth implements Authentication {
+    public apiKey: string = '';
+
+    constructor(private location: string, private paramName: string) {
+    }
+
+    applyToRequest(requestOptions: localVarRequest.Options): void {
+        if (this.location == "query") {
+            (<any>requestOptions.qs)[this.paramName] = this.apiKey;
+        } else if (this.location == "header" && requestOptions && requestOptions.headers) {
+            requestOptions.headers[this.paramName] = this.apiKey;
+        } else if (this.location == 'cookie' && requestOptions && requestOptions.headers) {
+            if (requestOptions.headers['Cookie']) {
+                requestOptions.headers['Cookie'] += '; ' + this.paramName + '=' + encodeURIComponent(this.apiKey);
+            }
+            else {
+                requestOptions.headers['Cookie'] = this.paramName + '=' + encodeURIComponent(this.apiKey);
+            }
+        }
+    }
+}
+
+export class OAuth implements Authentication {
+    public accessToken: string = '';
+
+    applyToRequest(requestOptions: localVarRequest.Options): void {
+        if (requestOptions && requestOptions.headers) {
+            requestOptions.headers["Authorization"] = "Bearer " + this.accessToken;
+        }
+    }
+}
+
+export class VoidAuth implements Authentication {
+    public username: string = '';
+    public password: string = '';
+
+    applyToRequest(_: localVarRequest.Options): void {
+        // Do nothing
+    }
+}
+
+export type Interceptor = (requestOptions: localVarRequest.Options) => (Promise<void> | void);

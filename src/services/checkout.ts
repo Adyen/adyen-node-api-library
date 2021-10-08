@@ -48,13 +48,19 @@ import {
     CheckoutCreateOrderRequest,
     CheckoutCreateOrderResponse,
     CheckoutCancelOrderRequest,
-    CheckoutCancelOrderResponse
+    CheckoutCancelOrderResponse,
+    CreateCheckoutSessionRequest,
+    CreateCheckoutSessionResponse,
+    PaymentDonationRequest,
+    DonationResponse
 } from "../typings/checkout/models";
 
 import PaymentLinksId from "./resource/checkout/paymentLinksId";
 import PaymentMethodsBalance from "./resource/checkout/paymentMethodsBalance";
 import Orders from "./resource/checkout/orders";
 import OrdersCancel from "./resource/checkout/ordersCancel";
+import Sessions from "./resource/checkout/sessions";
+import Donations from "./resource/checkout/donations";
 
 class Checkout extends ApiKeyAuthenticatedService {
     private readonly _payments: Payments;
@@ -68,6 +74,8 @@ class Checkout extends ApiKeyAuthenticatedService {
     private readonly _paymentMethodsBalance: PaymentMethodsBalance;
     private readonly _orders: Orders;
     private readonly _ordersCancel: OrdersCancel;
+    private readonly _sessions: Sessions;
+    private readonly _donations: Donations;
 
     public constructor(client: Client) {
         super(client);
@@ -82,6 +90,8 @@ class Checkout extends ApiKeyAuthenticatedService {
         this._paymentMethodsBalance = new PaymentMethodsBalance(this);
         this._orders = new Orders(this);
         this._ordersCancel = new OrdersCancel(this);
+        this._sessions = new Sessions(this);
+        this._donations = new Donations(this);
     }
 
     public payments(paymentsRequest: PaymentRequest, requestOptions?: IRequest.Options): Promise<PaymentResponse> {
@@ -175,6 +185,20 @@ class Checkout extends ApiKeyAuthenticatedService {
         return getJsonResponse<CheckoutCancelOrderRequest, CheckoutCancelOrderResponse>(
             this._ordersCancel,
             ordersCancelRequest,
+        );
+    }
+
+    public sessions(checkoutSessionRequest: CreateCheckoutSessionRequest): Promise<CreateCheckoutSessionResponse> {
+        return getJsonResponse<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse>(
+            this._sessions,
+            checkoutSessionRequest,
+        );
+    }
+
+    public donations(donationRequest: PaymentDonationRequest): Promise<DonationResponse> {
+        return getJsonResponse<PaymentDonationRequest, DonationResponse>(
+            this._donations,
+            donationRequest,
         );
     }
 }
