@@ -16,8 +16,7 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
- 
-import localVarRequest from 'request';
+
 
 export * from './accountInfo';
 export * from './acctInfo';
@@ -785,77 +784,3 @@ export class ObjectSerializer {
         }
     }
 }
-
-export interface Authentication {
-    /**
-    * Apply authentication settings to header and query params.
-    */
-    applyToRequest(requestOptions: localVarRequest.Options): Promise<void> | void;
-}
-
-export class HttpBasicAuth implements Authentication {
-    public username: string = '';
-    public password: string = '';
-
-    applyToRequest(requestOptions: localVarRequest.Options): void {
-        requestOptions.auth = {
-            username: this.username, password: this.password
-        }
-    }
-}
-
-export class HttpBearerAuth implements Authentication {
-    public accessToken: string | (() => string) = '';
-
-    applyToRequest(requestOptions: localVarRequest.Options): void {
-        if (requestOptions && requestOptions.headers) {
-            const accessToken = typeof this.accessToken === 'function'
-                            ? this.accessToken()
-                            : this.accessToken;
-            requestOptions.headers["Authorization"] = "Bearer " + accessToken;
-        }
-    }
-}
-
-export class ApiKeyAuth implements Authentication {
-    public apiKey: string = '';
-
-    constructor(private location: string, private paramName: string) {
-    }
-
-    applyToRequest(requestOptions: localVarRequest.Options): void {
-        if (this.location == "query") {
-            (<any>requestOptions.qs)[this.paramName] = this.apiKey;
-        } else if (this.location == "header" && requestOptions && requestOptions.headers) {
-            requestOptions.headers[this.paramName] = this.apiKey;
-        } else if (this.location == 'cookie' && requestOptions && requestOptions.headers) {
-            if (requestOptions.headers['Cookie']) {
-                requestOptions.headers['Cookie'] += '; ' + this.paramName + '=' + encodeURIComponent(this.apiKey);
-            }
-            else {
-                requestOptions.headers['Cookie'] = this.paramName + '=' + encodeURIComponent(this.apiKey);
-            }
-        }
-    }
-}
-
-export class OAuth implements Authentication {
-    public accessToken: string = '';
-
-    applyToRequest(requestOptions: localVarRequest.Options): void {
-        if (requestOptions && requestOptions.headers) {
-            requestOptions.headers["Authorization"] = "Bearer " + this.accessToken;
-        }
-    }
-}
-
-export class VoidAuth implements Authentication {
-    public username: string = '';
-    public password: string = '';
-
-    applyToRequest(_: localVarRequest.Options): void {
-        // Do nothing
-    }
-}
-
-export type Interceptor = (requestOptions: localVarRequest.Options) => (Promise<void> | void);
