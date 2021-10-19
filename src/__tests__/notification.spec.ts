@@ -37,6 +37,7 @@ describe("Notification Test", function (): void {
             expect(NotificationEnum.Authorisation).toEqual(notificationRequestItem.eventCode);
             expect(notificationRequestItem.success === SuccessEnum.True).toBeTruthy();
             expect(notificationRequestItem.pspReference).toEqual("123456789");
+            expect(notificationRequestItem.additionalData!.paymentLinkId).toEqual("ABCDEFG");
         } else {
             fail();
         }

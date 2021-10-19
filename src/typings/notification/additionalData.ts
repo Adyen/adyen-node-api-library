@@ -65,6 +65,10 @@ export class AdditionalData {
     * HMAC Key from customer area
     */
     'hmacSignature'?: string;
+    /**
+    * A unique identifier for the payment link
+    */
+    'paymentLinkId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -108,7 +112,13 @@ export class AdditionalData {
             "name": "hmacSignature",
             "baseName": "hmacSignature",
             "type": "string"
-        }    ];
+        },
+        {
+            "name": "paymentLinkId",
+            "baseName": "paymentLinkId",
+            "type": "string"
+        }
+    ];
 
     static getAttributeTypeMap() {
         return AdditionalData.attributeTypeMap;
