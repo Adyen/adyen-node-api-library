@@ -26,6 +26,7 @@ import {paymentSessionSuccess} from "../__mocks__/checkout/paymentSessionSucess"
 import {originKeysSuccess} from "../__mocks__/checkout/originkeysSuccess";
 import {paymentsResultMultibancoSuccess} from "../__mocks__/checkout/paymentsResultMultibancoSuccess";
 import {paymentsResultSuccess} from "../__mocks__/checkout/paymentsResultSucess";
+import {sessionsSuccess} from "../__mocks__/checkout/sessionsSuccess";
 import Client from "../client";
 import Checkout from "../services/checkout";
 import HttpClientException from "../httpClient/httpClientException";
@@ -46,6 +47,8 @@ import {
     PaymentResponse,
     PaymentSetupRequest,
     PaymentVerificationRequest,
+    CreateCheckoutSessionRequest,
+    CreateCheckoutSessionResponse
 } from "../typings/checkout/models";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
@@ -138,6 +141,16 @@ function createPaymentLinkRequest(): CreatePaymentLinkRequest {
             stateOrProvince: "SP"
         },
         reference
+    };
+}
+
+function createSessionRequest(): CreateCheckoutSessionRequest {
+    return {
+        amount: createAmountObject("USD", 1000),
+        countryCode: "NL",
+        merchantAccount,
+        reference,
+        returnUrl: "https://your-company.com/...",
     };
 }
 
@@ -339,6 +352,7 @@ describe("Checkout", (): void => {
 
         const orderResponse: CheckoutCreateOrderResponse = {
             expiresAt,
+            amount: createAmountObject("USD", 500),
             orderData: "mocked_order_data",
             remainingAmount: {currency: "USD", value: 500} ,
             resultCode: CheckoutCreateOrderResponse.ResultCodeEnum.Success
@@ -361,6 +375,7 @@ describe("Checkout", (): void => {
 
         const orderResponse: CheckoutCreateOrderResponse = {
             expiresAt,
+            amount: createAmountObject("USD", 500),
             orderData: "mocked_order_data",
             remainingAmount: {currency: "USD", value: 500},
             resultCode: CheckoutCreateOrderResponse.ResultCodeEnum.Success
@@ -369,7 +384,7 @@ describe("Checkout", (): void => {
             .reply(200,  orderResponse);
 
         const createOrderResponse: CheckoutCreateOrderResponse = await checkout.orders(orderRequest);
-        
+
         const orderCancelResponse: CheckoutCancelOrderResponse = {
             pspReference: "mocked_psp_ref",
             resultCode: CheckoutCancelOrderResponse.ResultCodeEnum.Received
@@ -385,5 +400,15 @@ describe("Checkout", (): void => {
             merchantAccount
         });
         expect(response).toBeTruthy();
+    });
+
+    test.each([false, true])("should create a session. isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+        scope.post("/sessions")
+            .reply(200, sessionsSuccess);
+
+        const sessionsRequest: CreateCheckoutSessionRequest = createSessionRequest();
+        const sessionsResponse: CreateCheckoutSessionResponse = await checkout.sessions(sessionsRequest);
+        expect(sessionsResponse.sessionData).toBeTruthy();
     });
 });

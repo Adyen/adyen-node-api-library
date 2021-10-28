@@ -11,7 +11,8 @@
           "totalFraudScore": "10",
           "hmacSignature": "OzDjCMZIsdtDqrZ+cl\/FWC+WdESrorctXTzAzW33dXI=",
           "NAME2": "  VALUE2  ",
-          "fraudCheck-6-ShopperIpUsage": "10"
+          "fraudCheck-6-ShopperIpUsage": "10",
+          "paymentLinkId": "ABCDEFG"
         },
         "amount": {
           "currency": "EUR",
