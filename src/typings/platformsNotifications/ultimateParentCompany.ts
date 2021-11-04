@@ -27,50 +27,15 @@
  * Do not edit the class manually.
  */
 
-import { ShareholderContact } from './shareholderContact';
-import { SignatoryContact } from './signatoryContact';
-import { UltimateParentCompany } from './ultimateParentCompany';
+import { UltimateParentCompanyBusinessDetails } from './ultimateParentCompanyBusinessDetails';
+import { ViasAddress } from './viasAddress';
 
-export class BusinessDetails {
+export class UltimateParentCompany {
+    'address'?: ViasAddress;
+    'businessDetails'?: UltimateParentCompanyBusinessDetails;
     /**
-    * The registered name of the company (if it differs from the legal name of the company).
+    * Adyen-generated unique alphanumeric identifier (UUID) for the entry, returned in the response when you create an ultimate parent company. Required when updating an existing entry in an `/updateAccountHolder` request.
     */
-    'doingBusinessAs'?: string;
-    /**
-    * The legal name of the company.
-    */
-    'legalBusinessName'?: string;
-    /**
-    * Information about the parent public company. Required if the account holder is 100% owned by a publicly listed company.
-    */
-    'listedUltimateParentCompany'?: Array<UltimateParentCompany>;
-    /**
-    * The registration number of the company.
-    */
-    'registrationNumber'?: string;
-    /**
-    * Array containing information about individuals associated with the account holder either through ownership or control. For details about how you can identify them, refer to [Identity check](https://docs.adyen.com/platforms/verification-checks/identity-check).
-    */
-    'shareholders'?: Array<ShareholderContact>;
-    /**
-    * Signatories associated with the company. Each array entry should represent one signatory.
-    */
-    'signatories'?: Array<SignatoryContact>;
-    /**
-    * Market Identifier Code (MIC).
-    */
-    'stockExchange'?: string;
-    /**
-    * International Securities Identification Number (ISIN).
-    */
-    'stockNumber'?: string;
-    /**
-    * Stock Ticker symbol.
-    */
-    'stockTicker'?: string;
-    /**
-    * The tax ID of the company.
-    */
-    'taxId'?: string;
+    'ultimateParentCompanyCode'?: string;
 }
 

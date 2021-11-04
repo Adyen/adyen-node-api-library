@@ -102,6 +102,8 @@ export * from './storeDetail';
 export * from './transaction';
 export * from './transferFundsNotification';
 export * from './transferFundsNotificationContent';
+export * from './ultimateParentCompany';
+export * from './ultimateParentCompanyBusinessDetails';
 export * from './updateAccountHolderResponse';
 export * from './updateAccountResponse';
 export * from './viasAddress';
