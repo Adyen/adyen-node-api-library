@@ -28,14 +28,26 @@
  */
 
 
-export class Message {
+export class ViasPhoneNumber {
     /**
-    * The message code.
+    * The two-character country code of the phone number. >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. \'NL\').
     */
-    'code'?: string;
+    'phoneCountryCode': string;
     /**
-    * The message text.
+    * The phone number. >The inclusion of the phone number country code is not necessary.
     */
-    'text'?: string;
+    'phoneNumber': string;
+    /**
+    * The type of the phone number. >The following values are permitted: `Landline`, `Mobile`, `SIP`, `Fax`.
+    */
+    'phoneType'?: ViasPhoneNumber.PhoneTypeEnum;
 }
 
+export namespace ViasPhoneNumber {
+    export enum PhoneTypeEnum {
+        Fax = <any> 'Fax',
+        Landline = <any> 'Landline',
+        Mobile = <any> 'Mobile',
+        Sip = <any> 'SIP'
+    }
+}
