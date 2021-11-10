@@ -24,6 +24,10 @@ The Library supports all APIs under the following services:
 * [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
 * [BIN lookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v50/overview): The BIN Lookup API provides endpoints for retrieving information based on a given BIN.  Current supported version: **v50**
 
+In addition it supports the following type collections:
+
+* [Platforms Notifications Webhooks](https://docs.adyen.com/api-explorer/#/NotificationService/v6/overview) Current supported version: **v6**
+
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
 ## Prerequisites
