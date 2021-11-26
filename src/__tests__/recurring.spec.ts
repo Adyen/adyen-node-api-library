@@ -76,23 +76,6 @@ describe("Recurring", (): void => {
         expect(result).toBeTruthy();
         expect(result.details?.[0].RecurringDetail.recurringDetailReference).toBe('recurringReference');
     });
-        !isMock && nock.restore();
-        scope.post("/listRecurringDetails")
-            .reply(200, listRecurringDetailsSuccess);
-
-        const request = createRecurringDetailsRequest();
-        try {
-            const result = await recurring.listRecurringDetails(request);
-            expect(result).toBeTruthy();
-            if (result.details && result.details.length > 0 && result.details[0].RecurringDetail) {
-                    expect(result.details[0].RecurringDetail.recurringDetailReference).toBe('recurringReference');
-            } else {
-                fail();
-            }
-        } catch (e: any) {
-            fail(e.message);
-        }
-    });
 
     test.each([isCI, true])("should disable, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
