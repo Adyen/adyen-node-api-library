@@ -13,7 +13,7 @@
 import {RecurringDetail} from "./recurringDetail";
 
 export class RecurringDetailContainer {
-    'RecurringDetail'?: RecurringDetail;
+    'RecurringDetail': RecurringDetail;
 
     static discriminator: string | undefined = undefined;
 
