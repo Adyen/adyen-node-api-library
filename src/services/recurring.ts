@@ -50,11 +50,10 @@ class Recurring extends Service {
     }
 
     public listRecurringDetails(request: RecurringDetailsRequest): Promise<RecurringDetailsResult> {
-        const response = getJsonResponse<RecurringDetailsRequest, RecurringDetailsResult>(
+        return getJsonResponse<RecurringDetailsRequest, RecurringDetailsResult>(
             this._listRecurringDetails,
             request,
         );
-        return response
     }
 
     public disable(request: DisableRequest): Promise<DisableResult> {
