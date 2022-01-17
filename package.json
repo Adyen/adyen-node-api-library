@@ -41,7 +41,7 @@
     "@typescript-eslint/parser": "4.33.0",
     "acorn": "^8.0.1",
     "coveralls": "3.1.1",
-    "dotenv": "^10.0.0",
+    "dotenv": "^14.1.0",
     "eslint": "7.32.0",
     "jest": "^27.0.6",
     "jest-ts-auto-mock": "^2.0.0",
