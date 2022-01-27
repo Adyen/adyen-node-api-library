@@ -64,12 +64,15 @@ class TerminalCloudAPI extends ApiKeyAuthenticatedService {
         return getJsonResponse<TerminalApiRequest>(this.terminalApiAsync, request);
     }
 
-    public async sync(terminalApiRequest: TerminalApiRequest): Promise<TerminalApiResponse> {
+    public async sync(terminalApiRequest: TerminalApiRequest): Promise<TerminalApiRequest | TerminalApiResponse> {
         const request = TerminalCloudAPI.setApplicationInfo(terminalApiRequest);
-        const response = await getJsonResponse<TerminalApiRequest, TerminalApiResponse>(
+        const response = await getJsonResponse<TerminalApiRequest, TerminalApiRequest | TerminalApiResponse>(
             this.terminalApiSync,
             request,
         );
+
+        if ((response as TerminalApiRequest).SaleToPOIRequest)
+            return ObjectSerializer.deserialize(response, "TerminalApiRequest");
 
         return ObjectSerializer.deserialize(response, "TerminalApiResponse");
     }

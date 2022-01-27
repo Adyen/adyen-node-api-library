@@ -365,3 +365,12 @@ export const syncRefund = {
         }
     }
 };
+
+export const syncResEventNotification = {
+    EventNotification: {
+        RejectedMessage: "abc_xyz_123=",
+        EventToNotify: "Reject",
+        TimeStamp: "2019-04-29T00:00:00.000Z",
+        EventDetails: "message=Failed+to+send+message+to+POI.+There+may+be+a+network+issue+or+it+may+not+have+the+websocket+connected.",
+    }
+};
