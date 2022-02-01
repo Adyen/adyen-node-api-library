@@ -33,6 +33,7 @@ export * from './recurringDetailsResult';
 export * from './scheduleAccountUpdaterRequest';
 export * from './scheduleAccountUpdaterResult';
 export * from './serviceError';
+export * from './recurringDetailContainer';
 
 import * as fs from 'fs';
 import {Address} from './address';
@@ -51,6 +52,7 @@ import {RecurringDetailsResult} from './recurringDetailsResult';
 import {ScheduleAccountUpdaterRequest} from './scheduleAccountUpdaterRequest';
 import {ScheduleAccountUpdaterResult} from './scheduleAccountUpdaterResult';
 import {ServiceError} from './serviceError';
+import {RecurringDetailContainer} from "./recurringDetailContainer";
 
 export interface RequestDetailedFile {
     value: Buffer;
@@ -94,6 +96,7 @@ let typeMap: {[index: string]: any} = {
     "RecurringDetail": RecurringDetail,
     "RecurringDetailsRequest": RecurringDetailsRequest,
     "RecurringDetailsResult": RecurringDetailsResult,
+    'RecurringDetailContainer': RecurringDetailContainer,
     "ScheduleAccountUpdaterRequest": ScheduleAccountUpdaterRequest,
     "ScheduleAccountUpdaterResult": ScheduleAccountUpdaterResult,
     "ServiceError": ServiceError,
