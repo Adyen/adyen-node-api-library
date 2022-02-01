@@ -12,7 +12,7 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
+ * Copyright (c) 2022 Adyen N.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
@@ -20,7 +20,7 @@
 import nock from "nock";
 import { createClient, createTerminalAPIPaymentRequest, createTerminalAPIRefundRequest } from "../__mocks__/base";
 import { asyncRes } from "../__mocks__/terminalApi/async";
-import { syncRefund, syncRes } from "../__mocks__/terminalApi/sync";
+import { syncRefund, syncRes, syncResEventNotification } from "../__mocks__/terminalApi/sync";
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
 import { TerminalApiResponse } from "../typings/terminal/models";
@@ -66,6 +66,17 @@ describe("Terminal Cloud API", (): void => {
 
         expect(terminalAPIResponse.SaleToPOIResponse?.PaymentResponse).toBeDefined();
         expect(terminalAPIResponse.SaleToPOIResponse?.MessageHeader).toBeDefined();
+    });
+
+    test.each([isCI, true])("should return event notification if response contains it, isMock: %p", async (isMock): Promise<void> => {
+        !isMock && nock.restore();
+
+        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+        scope.post("/sync").reply(200, syncResEventNotification);
+
+        const terminalAPIResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+
+        expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
     });
 
     test.each([isCI, true])("should make an async refund request, isMock: %p", async (isMock): Promise<void> => {
