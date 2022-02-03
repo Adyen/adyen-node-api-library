@@ -66,18 +66,15 @@ afterEach(() => {
 });
 
 describe("Recurring", (): void => {
-    test.each([false, true])("should test have recurring details list, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should list recurring details ", async (): Promise<void> => {
         scope.post("/listRecurringDetails")
             .reply(200, listRecurringDetailsSuccess);
-
         const request = createRecurringDetailsRequest();
-        try {
-            const result = await recurring.listRecurringDetails(request);
-            expect(result).toBeTruthy();
-        } catch (e: any) {
-            fail(e.message);
-        }
+        
+        const result = await recurring.listRecurringDetails(request);
+        
+        expect(result).toBeTruthy();
+        expect(result.details?.[0].RecurringDetail.recurringDetailReference).toBe('recurringReference');
     });
 
     test.each([isCI, true])("should disable, isMock: %p", async (isMock): Promise<void> => {
