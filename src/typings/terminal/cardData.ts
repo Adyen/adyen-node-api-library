@@ -12,7 +12,7 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
+ * Copyright (c) 2022 Adyen N.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
@@ -42,7 +42,7 @@ export class CardData {
     'CardCountryCode'?: string;
     'CustomerOrder'?: Array<CustomerOrder>;
     'EntryMode'?: Array<CardData.EntryModeEnum>;
-    'MaskedPAN'?: string;
+    'MaskedPan'?: string;
     'PaymentAccountRef'?: string;
     'PaymentBrand'?: string;
     'PaymentToken'?: PaymentToken;
@@ -78,8 +78,8 @@ export class CardData {
             "type": "Array<CardData.EntryModeEnum>"
         },
         {
-            "name": "MaskedPAN",
-            "baseName": "MaskedPAN",
+            "name": "MaskedPan",
+            "baseName": "MaskedPan",
             "type": "string"
         },
         {
