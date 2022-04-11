@@ -53,7 +53,9 @@ import {
     DeleteShareholderRequest,
     PerformVerificationRequest,
     UpdateAccountHolderStateRequest,
-    GetAccountHolderStatusResponse
+    GetAccountHolderStatusResponse,
+    GetTaxFormRequest,
+    GetTaxFormResponse,
 } from "../typings/platformsAccount/models";
 
 type AccountType = AccountTypesEnum.Accounts;
@@ -86,6 +88,7 @@ class Platforms extends Service {
     private readonly _suspendAccountHolder: PlatformsAccount<AccountHoldersType>;
     private readonly _unSuspendAccountHolder: PlatformsAccount<AccountHoldersType>;
     private readonly _closeAccountHolder: PlatformsAccount<AccountHoldersType>;
+    private readonly _getTaxForm: PlatformsAccount<AccountHoldersType>;
 
     /* PlatformsFund */
     private readonly _accountHolderBalance: PlatformsFund;
@@ -128,6 +131,7 @@ class Platforms extends Service {
         this._suspendAccountHolder = new PlatformsAccount<AccountHoldersType>(this, "/suspendAccountHolder");
         this._unSuspendAccountHolder = new PlatformsAccount<AccountHoldersType>(this, "/unSuspendAccountHolder");
         this._closeAccountHolder = new PlatformsAccount<AccountHoldersType>(this, "/closeAccountHolder");
+        this._getTaxForm = new PlatformsAccount<AccountHoldersType>(this, "/getTaxForm");
 
         // Fund
         this._accountHolderBalance = new PlatformsFund(this, "/accountHolderBalance");
@@ -171,6 +175,7 @@ class Platforms extends Service {
         deleteShareholders: (request: DeleteShareholderRequest) => Promise<GenericResponse>;
         checkAccountHolder: (request: PerformVerificationRequest) => Promise<GenericResponse>;
         updateAccountHolderState: (request: UpdateAccountHolderStateRequest) => Promise<GetAccountHolderStatusResponse>;
+        getTaxForm: (request: GetTaxFormRequest) => Promise<GetTaxFormResponse>;
     } {
         const closeAccount = this.createRequest<AccountsAccount, CloseAccountRequest, CloseAccountResponse>(this._closeAccount);
         const updateAccount = this.createRequest<AccountsAccount, UpdateAccountRequest, UpdateAccountResponse>(this._updateAccount);
@@ -190,10 +195,11 @@ class Platforms extends Service {
         const unSuspendAccountHolder = this.createRequest<AccountsAccountHolders, UnSuspendAccountHolderRequest, UnSuspendAccountHolderResponse>(this._unSuspendAccountHolder);
         const closeAccountHolder = this.createRequest<AccountsAccountHolders, CloseAccountHolderRequest, CloseAccountHolderResponse>(this._closeAccountHolder);
         const checkAccountHolder = this.createRequest<AccountsVerification, PerformVerificationRequest, GenericResponse>(this._checkAccountHolder);
+        const getTaxForm = this.createRequest<AccountsAccountHolders, GetTaxFormRequest, GetTaxFormResponse>(this._getTaxForm);
 
         const accounts = { closeAccount, updateAccount, createAccount };
         const verification = { uploadDocument, getUploadedDocuments, deleteBankAccounts, deletePayoutMethods, deleteShareholders, checkAccountHolder };
-        const accountHolders = { createAccountHolder, getAccountHolder, updateAccountHolder, updateAccountHolderState, suspendAccountHolder, unSuspendAccountHolder, closeAccountHolder};
+        const accountHolders = { createAccountHolder, getAccountHolder, updateAccountHolder, updateAccountHolderState, suspendAccountHolder, unSuspendAccountHolder, closeAccountHolder, getTaxForm};
 
         return {...accounts, ...verification, ...accountHolders };
     }
