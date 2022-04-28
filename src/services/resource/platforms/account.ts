@@ -30,7 +30,8 @@ type AccountHoldersEndpoints =
     "/updateAccountHolderState"|
     "/suspendAccountHolder"|
     "/unSuspendAccountHolder"|
-    "/closeAccountHolder";
+    "/closeAccountHolder"|
+    "/getTaxForm";
 
 type VerificationEndpoints =
     "/uploadDocument"|
