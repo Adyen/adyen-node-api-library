@@ -115,6 +115,7 @@ describe("Platforms Test", function () {
                 ["suspendAccountHolder", createMock<A.SuspendAccountHolderRequest>(), createMock<A.SuspendAccountHolderResponse>()],
                 ["unSuspendAccountHolder", createMock<A.UnSuspendAccountHolderRequest>(), createMock<A.UnSuspendAccountHolderResponse>()],
                 ["closeAccountHolder", createMock<A.CloseAccountHolderRequest>(), createMock<A.CloseAccountResponse>()],
+                ["getTaxForm", createMock<A.GetTaxFormRequest>(), createMock<A.GetTaxFormResponse>()],
             ];
             test.each(cases)(
                 "should %p",
@@ -399,7 +400,19 @@ describe.skip("Platforms Test E2E", function(): void {
                 }
             });
 
-
+            it("should get tax form", async function() {
+              nock.restore();
+              try {
+                const result = await platforms.Account.getTaxForm({
+                    accountHolderCode: accountHolder.accountHolderCode,
+                    formType: "1099-K",
+                    year: 2020
+                });
+                expect(result.content).toBeDefined();
+              } catch (e: any) {
+                assertError(e);
+              }
+            });
         });
     });
     describe("Fund", function () {
