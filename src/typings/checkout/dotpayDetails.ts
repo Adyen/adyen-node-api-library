@@ -28,10 +28,12 @@
 
 
 export class DotpayDetails {
+
     /**
     * The Dotpay issuer value of the shopper\'s selected bank. Set this to an **id** of a Dotpay issuer to preselect it.
     */
     'issuer': string;
+
     /**
     * **dotpay**
     */

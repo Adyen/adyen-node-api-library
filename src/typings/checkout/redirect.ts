@@ -28,14 +28,17 @@
 
 
 export class Redirect {
+
     /**
     * When the redirect URL must be accessed via POST, use this data to post to the redirect URL.
     */
     'data'?: { [key: string]: string; };
+
     /**
     * The web method that you must use to access the redirect URL.  Possible values: GET, POST.
     */
     'method'?: Redirect.MethodEnum;
+
     /**
     * The URL, to which you must redirect a shopper to complete a payment.
     */

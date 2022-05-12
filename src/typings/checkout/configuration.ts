@@ -31,12 +31,22 @@ import { InstallmentsNumber } from './installmentsNumber';
 import { ShopperInput } from './shopperInput';
 
 export class Configuration {
+
+    /**
+    */
     'avs'?: Avs;
+
     /**
     * Determines whether the cardholder name should be provided or not.  Permitted values: * NONE * OPTIONAL * REQUIRED
     */
     'cardHolderName'?: Configuration.CardHolderNameEnum;
+
+    /**
+    */
     'installments'?: InstallmentsNumber;
+
+    /**
+    */
     'shopperInput'?: ShopperInput;
 }
 

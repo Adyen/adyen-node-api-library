@@ -28,10 +28,12 @@
 
 
 export class MolPayDetails {
+
     /**
     * The shopper\'s bank. Specify this with the issuer value that corresponds to this bank.
     */
     'issuer': string;
+
     /**
     * **molpay**
     */

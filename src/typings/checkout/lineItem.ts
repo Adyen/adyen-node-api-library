@@ -28,42 +28,52 @@
 
 
 export class LineItem {
+
     /**
     * Item amount excluding the tax, in minor units.
     */
     'amountExcludingTax'?: number;
+
     /**
     * Item amount including the tax, in minor units.
     */
     'amountIncludingTax'?: number;
+
     /**
     * Description of the line item.
     */
     'description'?: string;
+
     /**
     * ID of the line item.
     */
     'id'?: string;
+
     /**
     * Link to the picture of the purchased item.
     */
     'imageUrl'?: string;
+
     /**
     * Item category, used by the RatePay payment method.
     */
     'itemCategory'?: string;
+
     /**
     * Link to the purchased item.
     */
     'productUrl'?: string;
+
     /**
     * Number of items.
     */
     'quantity'?: number;
+
     /**
     * Tax amount, in minor units.
     */
     'taxAmount'?: number;
+
     /**
     * Tax percentage, in minor units.
     */

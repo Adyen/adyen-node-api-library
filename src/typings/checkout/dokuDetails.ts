@@ -28,18 +28,22 @@
 
 
 export class DokuDetails {
+
     /**
     * The shopper\'s first name.
     */
     'firstName': string;
+
     /**
     * The shopper\'s last name.
     */
     'lastName': string;
+
     /**
     * The shopper\'s email.
     */
     'shopperEmail': string;
+
     /**
     * **doku**
     */

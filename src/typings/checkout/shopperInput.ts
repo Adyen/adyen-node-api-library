@@ -28,14 +28,17 @@
 
 
 export class ShopperInput {
+
     /**
     * Specifies visibility of billing address fields.  Permitted values: * editable * hidden * readOnly
     */
     'billingAddress'?: ShopperInput.BillingAddressEnum;
+
     /**
     * Specifies visibility of delivery address fields.  Permitted values: * editable * hidden * readOnly
     */
     'deliveryAddress'?: ShopperInput.DeliveryAddressEnum;
+
     /**
     * Specifies visibility of personal details.  Permitted values: * editable * hidden * readOnly
     */

@@ -28,26 +28,34 @@
 
 
 export class PayPalDetails {
+
     /**
     * The unique ID associated with the order.
     */
     'orderID'?: string;
+
     /**
     * The unique ID associated with the payer.
     */
     'payerID'?: string;
+
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
+    *
+    * @deprecated
     */
     'recurringDetailReference'?: string;
+
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'storedPaymentMethodId'?: string;
+
     /**
     * The type of flow to initiate.
     */
     'subtype'?: PayPalDetails.SubtypeEnum;
+
     /**
     * **paypal**
     */

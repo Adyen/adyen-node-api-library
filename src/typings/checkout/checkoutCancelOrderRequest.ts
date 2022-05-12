@@ -29,10 +29,14 @@
 import { CheckoutOrder } from './checkoutOrder';
 
 export class CheckoutCancelOrderRequest {
+
     /**
     * The merchant account identifier that orderData belongs to.
     */
     'merchantAccount': string;
+
+    /**
+    */
     'order': CheckoutOrder;
 }
 

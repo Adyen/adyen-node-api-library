@@ -28,10 +28,12 @@
 
 
 export class CellulantDetails {
+
     /**
     * The Cellulant issuer.
     */
     'issuer'?: string;
+
     /**
     * **Cellulant**
     */

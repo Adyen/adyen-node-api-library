@@ -28,8 +28,15 @@
 
 
 export class WeChatPayMiniProgramDetails {
+
+    /**
+    */
     'appId'?: string;
+
+    /**
+    */
     'openid'?: string;
+
     /**
     * **wechatpayMiniProgram**
     */

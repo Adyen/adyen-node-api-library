@@ -28,14 +28,17 @@
 
 
 export class DragonpayDetails {
+
     /**
     * The Dragonpay issuer value of the shopper\'s selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.
     */
     'issuer': string;
+
     /**
     * The shopper’s email address.
     */
     'shopperEmail'?: string;
+
     /**
     * **dragonpay**
     */

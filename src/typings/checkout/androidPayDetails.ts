@@ -28,6 +28,7 @@
 
 
 export class AndroidPayDetails {
+
     /**
     * **androidpay**
     */

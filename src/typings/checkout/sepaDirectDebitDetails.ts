@@ -28,22 +28,29 @@
 
 
 export class SepaDirectDebitDetails {
+
     /**
     * The International Bank Account Number (IBAN).
     */
     'iban': string;
+
     /**
     * The name of the bank account holder.
     */
     'ownerName': string;
+
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
+    *
+    * @deprecated
     */
     'recurringDetailReference'?: string;
+
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'storedPaymentMethodId'?: string;
+
     /**
     * **sepadirectdebit**
     */

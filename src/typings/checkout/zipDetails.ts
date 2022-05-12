@@ -28,18 +28,24 @@
 
 
 export class ZipDetails {
+
     /**
     * Set this to **true** if the shopper would like to pick up and collect their order, instead of having the goods delivered to them.
     */
     'clickAndCollect'?: string;
+
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
+    *
+    * @deprecated
     */
     'recurringDetailReference'?: string;
+
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'storedPaymentMethodId'?: string;
+
     /**
     * **zip**
     */

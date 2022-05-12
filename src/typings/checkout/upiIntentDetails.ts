@@ -28,6 +28,7 @@
 
 
 export class UpiIntentDetails {
+
     /**
     * **upi_intent**
     */

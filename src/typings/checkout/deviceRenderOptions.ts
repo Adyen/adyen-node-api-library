@@ -28,10 +28,12 @@
 
 
 export class DeviceRenderOptions {
+
     /**
     * Supported SDK interface types. Allowed values: * native * html * both
     */
     'sdkInterface'?: DeviceRenderOptions.SdkInterfaceEnum;
+
     /**
     * UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect
     */

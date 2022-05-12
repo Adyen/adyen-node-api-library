@@ -28,10 +28,12 @@
 
 
 export class BillDeskDetails {
+
     /**
     * The issuer id of the shopper\'s selected bank.
     */
     'issuer': string;
+
     /**
     * **billdesk**
     */

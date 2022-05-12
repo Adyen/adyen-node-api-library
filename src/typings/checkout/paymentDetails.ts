@@ -28,6 +28,7 @@
 
 
 export class PaymentDetails {
+
     /**
     * The payment method type.
     */

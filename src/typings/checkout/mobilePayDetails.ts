@@ -28,6 +28,7 @@
 
 
 export class MobilePayDetails {
+
     /**
     * **mobilepay**
     */

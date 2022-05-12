@@ -28,8 +28,15 @@
 
 
 export class MbwayDetails {
+
+    /**
+    */
     'shopperEmail': string;
+
+    /**
+    */
     'telephoneNumber': string;
+
     /**
     * **mbway**
     */

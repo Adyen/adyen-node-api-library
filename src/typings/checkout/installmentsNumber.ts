@@ -28,6 +28,7 @@
 
 
 export class InstallmentsNumber {
+
     /**
     * Maximum number of installments
     */

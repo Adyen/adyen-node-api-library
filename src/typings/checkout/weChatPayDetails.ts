@@ -28,6 +28,7 @@
 
 
 export class WeChatPayDetails {
+
     /**
     * **wechatpay**
     */

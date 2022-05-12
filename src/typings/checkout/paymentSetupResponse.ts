@@ -29,12 +29,16 @@
 import { RecurringDetail } from './recurringDetail';
 
 export class PaymentSetupResponse {
+
     /**
     * The encoded payment session that you need to pass to the SDK.
     */
     'paymentSession'?: string;
+
     /**
     * The detailed list of stored payment details required to generate payment forms. Will be empty if oneClick is set to false in the request.
+    *
+    * @deprecated
     */
     'recurringDetails'?: Array<RecurringDetail>;
 }

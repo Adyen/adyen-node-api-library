@@ -28,6 +28,7 @@
 
 
 export class UpdatePaymentLinkRequest {
+
     /**
     * Status of the payment link. Possible values: * **expired**
     */

@@ -28,22 +28,29 @@
 
 
 export class PayUUpiDetails {
+
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
+    *
+    * @deprecated
     */
     'recurringDetailReference'?: string;
+
     /**
     * The `shopperNotificationReference` returned in the response when you requested to notify the shopper. Used for recurring payment only.
     */
     'shopperNotificationReference'?: string;
+
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'storedPaymentMethodId'?: string;
+
     /**
     * **payu_IN_upi**
     */
     'type': PayUUpiDetails.TypeEnum;
+
     /**
     * The virtual payment address for UPI.
     */
