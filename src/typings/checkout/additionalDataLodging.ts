@@ -1,4 +1,4 @@
-/*
+/**
  *                       ######
  *                       ######
  * ############    ####( ######  #####. ######  ############   ############
@@ -12,14 +12,12 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
+ * Copyright (c) 2022 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
- */
- 
-/**
+ *
  * Adyen Checkout API
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=68) to find out what changed in this version!
  *
  * The version of the OpenAPI document: 68
  * Contact: developer-experience@adyen.com
@@ -30,168 +28,74 @@
  */
 
 
-
 export class AdditionalDataLodging {
     /**
     * The arrival date. * Date format: `yyyyMMdd`
     */
-    'lodging_checkInDate'?: string;
+    'lodgingCheckInDate'?: string;
     /**
     * The departure date. * Date format: `yyyyMMdd`
     */
-    'lodging_checkOutDate'?: string;
+    'lodgingCheckOutDate'?: string;
     /**
     * The toll free phone number for the hotel/lodgings. * Format: Alphanumeric * maxLength: 17
     */
-    'lodging_customerServiceTollFreeNumber'?: string;
+    'lodgingCustomerServiceTollFreeNumber'?: string;
     /**
     * Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: \'Y\' or \'N\'. * Format: Alphabetic * maxLength: 1
     */
-    'lodging_fireSafetyActIndicator'?: string;
+    'lodgingFireSafetyActIndicator'?: string;
     /**
     * The folio cash advances. * Format: Numeric * maxLength: 12
     */
-    'lodging_folioCashAdvances'?: string;
+    'lodgingFolioCashAdvances'?: string;
     /**
     * Card acceptor’s internal invoice or billing ID reference number. * Format: Alphanumeric * maxLength: 25
     */
-    'lodging_folioNumber'?: string;
+    'lodgingFolioNumber'?: string;
     /**
     * Any charges for food and beverages associated with the booking. * Format: Numeric * maxLength: 12
     */
-    'lodging_foodBeverageCharges'?: string;
+    'lodgingFoodBeverageCharges'?: string;
     /**
     * Indicates if the customer was a \"no-show\" (neither keeps nor cancels their booking).  Value should be Y or N. * Format: Numeric * maxLength: 1
     */
-    'lodging_noShowIndicator'?: string;
+    'lodgingNoShowIndicator'?: string;
     /**
     * Prepaid expenses for the booking. * Format: Numeric * maxLength: 12
     */
-    'lodging_prepaidExpenses'?: string;
+    'lodgingPrepaidExpenses'?: string;
     /**
     * Identifies specific lodging property location by its local phone number. * Format: Alphanumeric * maxLength: 17
     */
-    'lodging_propertyPhoneNumber'?: string;
+    'lodgingPropertyPhoneNumber'?: string;
     /**
     * Total number of nights the room will be rented. * Format: Numeric * maxLength: 4
     */
-    'lodging_room1_numberOfNights'?: string;
+    'lodgingRoom1NumberOfNights'?: string;
     /**
     * The rate of the room. * Format: Numeric * maxLength: 12
     */
-    'lodging_room1_rate'?: string;
+    'lodgingRoom1Rate'?: string;
     /**
     * The total amount of tax to be paid. * Format: Numeric * maxLength: 12
     */
-    'lodging_room1_tax'?: string;
+    'lodgingRoom1Tax'?: string;
     /**
     * Total room tax amount. * Format: Numeric * maxLength: 12
     */
-    'lodging_totalRoomTax'?: string;
+    'lodgingTotalRoomTax'?: string;
     /**
     * Total tax amount. * Format: Numeric * maxLength: 12
     */
-    'lodging_totalTax'?: string;
+    'lodgingTotalTax'?: string;
     /**
     * Number of nights. This should be included in the auth message. * Format: Numeric * maxLength: 2
     */
-    'travelEntertainmentAuthData_duration'?: string;
+    'travelEntertainmentAuthDataDuration'?: string;
     /**
     * Indicates what market-specific dataset will be submitted or is being submitted. Value should be \"H\" for Hotel. This should be included in the auth message.  * Format: Alphanumeric * maxLength: 1
     */
-    'travelEntertainmentAuthData_market'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "lodging_checkInDate",
-            "baseName": "lodging.checkInDate",
-            "type": "string"
-        },
-        {
-            "name": "lodging_checkOutDate",
-            "baseName": "lodging.checkOutDate",
-            "type": "string"
-        },
-        {
-            "name": "lodging_customerServiceTollFreeNumber",
-            "baseName": "lodging.customerServiceTollFreeNumber",
-            "type": "string"
-        },
-        {
-            "name": "lodging_fireSafetyActIndicator",
-            "baseName": "lodging.fireSafetyActIndicator",
-            "type": "string"
-        },
-        {
-            "name": "lodging_folioCashAdvances",
-            "baseName": "lodging.folioCashAdvances",
-            "type": "string"
-        },
-        {
-            "name": "lodging_folioNumber",
-            "baseName": "lodging.folioNumber",
-            "type": "string"
-        },
-        {
-            "name": "lodging_foodBeverageCharges",
-            "baseName": "lodging.foodBeverageCharges",
-            "type": "string"
-        },
-        {
-            "name": "lodging_noShowIndicator",
-            "baseName": "lodging.noShowIndicator",
-            "type": "string"
-        },
-        {
-            "name": "lodging_prepaidExpenses",
-            "baseName": "lodging.prepaidExpenses",
-            "type": "string"
-        },
-        {
-            "name": "lodging_propertyPhoneNumber",
-            "baseName": "lodging.propertyPhoneNumber",
-            "type": "string"
-        },
-        {
-            "name": "lodging_room1_numberOfNights",
-            "baseName": "lodging.room1.numberOfNights",
-            "type": "string"
-        },
-        {
-            "name": "lodging_room1_rate",
-            "baseName": "lodging.room1.rate",
-            "type": "string"
-        },
-        {
-            "name": "lodging_room1_tax",
-            "baseName": "lodging.room1.tax",
-            "type": "string"
-        },
-        {
-            "name": "lodging_totalRoomTax",
-            "baseName": "lodging.totalRoomTax",
-            "type": "string"
-        },
-        {
-            "name": "lodging_totalTax",
-            "baseName": "lodging.totalTax",
-            "type": "string"
-        },
-        {
-            "name": "travelEntertainmentAuthData_duration",
-            "baseName": "travelEntertainmentAuthData.duration",
-            "type": "string"
-        },
-        {
-            "name": "travelEntertainmentAuthData_market",
-            "baseName": "travelEntertainmentAuthData.market",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AdditionalDataLodging.attributeTypeMap;
-    }
+    'travelEntertainmentAuthDataMarket'?: string;
 }
 

@@ -1,4 +1,4 @@
-/*
+/**
  *                       ######
  *                       ######
  * ############    ####( ######  #####. ######  ############   ############
@@ -12,14 +12,12 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
+ * Copyright (c) 2022 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
- */
- 
-/**
+ *
  * Adyen Checkout API
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=68) to find out what changed in this version!
  *
  * The version of the OpenAPI document: 68
  * Contact: developer-experience@adyen.com
@@ -30,20 +28,19 @@
  */
 
 
-
 export class PaymentCompletionDetails {
     /**
     * A payment session identifier returned by the card issuer.
     */
-    'MD'?: string;
+    'mD'?: string;
     /**
     * (3D) Payment Authentication Request data for the card issuer.
     */
-    'PaReq'?: string;
+    'paReq'?: string;
     /**
     * (3D) Payment Authentication Response data by the card issuer.
     */
-    'PaRes'?: string;
+    'paRes'?: string;
     /**
     * PayPal-generated token for recurring payments.
     */
@@ -51,7 +48,7 @@ export class PaymentCompletionDetails {
     /**
     * The SMS verification code collected from the shopper.
     */
-    'cupsecureplus_smscode'?: string;
+    'cupsecureplusSmscode'?: string;
     /**
     * PayPal-generated third party access token.
     */
@@ -91,98 +88,10 @@ export class PaymentCompletionDetails {
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `transStatus`.
     */
-    'threeds2_challengeResult'?: string;
+    'threeds2ChallengeResult'?: string;
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `threeDSCompInd`.
     */
-    'threeds2_fingerprint'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "MD",
-            "baseName": "MD",
-            "type": "string"
-        },
-        {
-            "name": "PaReq",
-            "baseName": "PaReq",
-            "type": "string"
-        },
-        {
-            "name": "PaRes",
-            "baseName": "PaRes",
-            "type": "string"
-        },
-        {
-            "name": "billingToken",
-            "baseName": "billingToken",
-            "type": "string"
-        },
-        {
-            "name": "cupsecureplus_smscode",
-            "baseName": "cupsecureplus.smscode",
-            "type": "string"
-        },
-        {
-            "name": "facilitatorAccessToken",
-            "baseName": "facilitatorAccessToken",
-            "type": "string"
-        },
-        {
-            "name": "oneTimePasscode",
-            "baseName": "oneTimePasscode",
-            "type": "string"
-        },
-        {
-            "name": "orderID",
-            "baseName": "orderID",
-            "type": "string"
-        },
-        {
-            "name": "payerID",
-            "baseName": "payerID",
-            "type": "string"
-        },
-        {
-            "name": "payload",
-            "baseName": "payload",
-            "type": "string"
-        },
-        {
-            "name": "paymentID",
-            "baseName": "paymentID",
-            "type": "string"
-        },
-        {
-            "name": "paymentStatus",
-            "baseName": "paymentStatus",
-            "type": "string"
-        },
-        {
-            "name": "redirectResult",
-            "baseName": "redirectResult",
-            "type": "string"
-        },
-        {
-            "name": "threeDSResult",
-            "baseName": "threeDSResult",
-            "type": "string"
-        },
-        {
-            "name": "threeds2_challengeResult",
-            "baseName": "threeds2.challengeResult",
-            "type": "string"
-        },
-        {
-            "name": "threeds2_fingerprint",
-            "baseName": "threeds2.fingerprint",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return PaymentCompletionDetails.attributeTypeMap;
-    }
+    'threeds2Fingerprint'?: string;
 }
 

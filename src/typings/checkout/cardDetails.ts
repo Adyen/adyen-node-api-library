@@ -1,4 +1,4 @@
-/*
+/**
  *                       ######
  *                       ######
  * ############    ####( ######  #####. ######  ############   ############
@@ -12,14 +12,12 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
+ * Copyright (c) 2022 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
- */
- 
-/**
+ *
  * Adyen Checkout API
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=68) to find out what changed in this version!
  *
  * The version of the OpenAPI document: 68
  * Contact: developer-experience@adyen.com
@@ -30,9 +28,12 @@
  */
 
 
-
 export class CardDetails {
-    'cupsecureplus_smscode'?: string;
+    /**
+    * Secondary brand of the card. For example: **plastix**, **hmclub**.
+    */
+    'brand'?: string;
+    'cupsecureplusSmscode'?: string;
     /**
     * The card verification code. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
@@ -70,6 +71,10 @@ export class CardDetails {
     */
     'holderName'?: string;
     /**
+    * The network token reference. This is the [`networkTxReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment.
+    */
+    'networkPaymentReference'?: string;
+    /**
     * The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
     'number'?: string;
@@ -93,94 +98,6 @@ export class CardDetails {
     * Default payment method details. Common for scheme payment methods, and for simple payment method details.
     */
     'type'?: CardDetails.TypeEnum;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "cupsecureplus_smscode",
-            "baseName": "cupsecureplus.smscode",
-            "type": "string"
-        },
-        {
-            "name": "cvc",
-            "baseName": "cvc",
-            "type": "string"
-        },
-        {
-            "name": "encryptedCardNumber",
-            "baseName": "encryptedCardNumber",
-            "type": "string"
-        },
-        {
-            "name": "encryptedExpiryMonth",
-            "baseName": "encryptedExpiryMonth",
-            "type": "string"
-        },
-        {
-            "name": "encryptedExpiryYear",
-            "baseName": "encryptedExpiryYear",
-            "type": "string"
-        },
-        {
-            "name": "encryptedSecurityCode",
-            "baseName": "encryptedSecurityCode",
-            "type": "string"
-        },
-        {
-            "name": "expiryMonth",
-            "baseName": "expiryMonth",
-            "type": "string"
-        },
-        {
-            "name": "expiryYear",
-            "baseName": "expiryYear",
-            "type": "string"
-        },
-        {
-            "name": "fundingSource",
-            "baseName": "fundingSource",
-            "type": "CardDetails.FundingSourceEnum"
-        },
-        {
-            "name": "holderName",
-            "baseName": "holderName",
-            "type": "string"
-        },
-        {
-            "name": "number",
-            "baseName": "number",
-            "type": "string"
-        },
-        {
-            "name": "recurringDetailReference",
-            "baseName": "recurringDetailReference",
-            "type": "string"
-        },
-        {
-            "name": "shopperNotificationReference",
-            "baseName": "shopperNotificationReference",
-            "type": "string"
-        },
-        {
-            "name": "storedPaymentMethodId",
-            "baseName": "storedPaymentMethodId",
-            "type": "string"
-        },
-        {
-            "name": "threeDS2SdkVersion",
-            "baseName": "threeDS2SdkVersion",
-            "type": "string"
-        },
-        {
-            "name": "type",
-            "baseName": "type",
-            "type": "CardDetails.TypeEnum"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CardDetails.attributeTypeMap;
-    }
 }
 
 export namespace CardDetails {
@@ -193,25 +110,10 @@ export namespace CardDetails {
         Giftcard = <any> 'giftcard',
         Alliancedata = <any> 'alliancedata',
         Card = <any> 'card',
-        Moneybookers = <any> 'moneybookers',
         Qiwiwallet = <any> 'qiwiwallet',
-        AlipayHk = <any> 'alipay_hk',
-        AlipayHkWap = <any> 'alipay_hk_wap',
-        AlipayHkWeb = <any> 'alipay_hk_web',
-        AlipayWap = <any> 'alipay_wap',
-        KcpNaverpay = <any> 'kcp_naverpay',
-        Upi = <any> 'upi',
-        OnlinebankingIn = <any> 'onlinebanking_IN',
-        WalletIn = <any> 'wallet_IN',
-        Entercash = <any> 'entercash',
-        PrimeiropayBoleto = <any> 'primeiropay_boleto',
-        GopayWallet = <any> 'gopay_wallet',
-        Poli = <any> 'poli',
-        Mada = <any> 'mada',
-        Naps = <any> 'naps',
-        Benefit = <any> 'benefit',
-        Knet = <any> 'knet',
-        Fawry = <any> 'fawry',
-        Omannet = <any> 'omannet'
+        LianlianpayEbankingEnterprise = <any> 'lianlianpay_ebanking_enterprise',
+        LianlianpayEbankingCredit = <any> 'lianlianpay_ebanking_credit',
+        LianlianpayEbankingDebit = <any> 'lianlianpay_ebanking_debit',
+        Entercash = <any> 'entercash'
     }
 }

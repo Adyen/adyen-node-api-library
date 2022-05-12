@@ -1,4 +1,4 @@
-/*
+/**
  *                       ######
  *                       ######
  * ############    ####( ######  #####. ######  ############   ############
@@ -12,14 +12,12 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
+ * Copyright (c) 2022 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
- */
- 
-/**
+ *
  * Adyen Checkout API
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=68) to find out what changed in this version!
  *
  * The version of the OpenAPI document: 68
  * Contact: developer-experience@adyen.com
@@ -30,12 +28,11 @@
  */
 
 
-
 export class AdditionalDataCommon {
     /**
     * Triggers test scenarios that allow to replicate certain communication errors.  Allowed values: * **NO_CONNECTION_AVAILABLE** – There wasn\'t a connection available to service the outgoing communication. This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request. * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response. This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response.
     */
-    'RequestedTestErrorResponseCode'?: string;
+    'requestedTestErrorResponseCode'?: string;
     /**
     * Flags a card payment request for either pre-authorisation or final authorisation. For more information, refer to [Authorisation types](https://docs.adyen.com/online-payments/adjust-authorisation#authorisation-types).  Allowed values: * **PreAuth** – flags the payment request to be handled as a pre-authorisation. * **FinalAuth** – flags the payment request to be handled as a final authorisation.
     */
@@ -88,84 +85,6 @@ export class AdditionalDataCommon {
     * This field is required if the transaction is performed by a registered payment facilitator. This field must contain the tax ID of the actual merchant. * Format: alpha-numeric. * Fixed length: 11 or 14 characters.
     */
     'subMerchantTaxId'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "RequestedTestErrorResponseCode",
-            "baseName": "RequestedTestErrorResponseCode",
-            "type": "string"
-        },
-        {
-            "name": "authorisationType",
-            "baseName": "authorisationType",
-            "type": "string"
-        },
-        {
-            "name": "customRoutingFlag",
-            "baseName": "customRoutingFlag",
-            "type": "string"
-        },
-        {
-            "name": "industryUsage",
-            "baseName": "industryUsage",
-            "type": "AdditionalDataCommon.IndustryUsageEnum"
-        },
-        {
-            "name": "networkTxReference",
-            "baseName": "networkTxReference",
-            "type": "string"
-        },
-        {
-            "name": "overwriteBrand",
-            "baseName": "overwriteBrand",
-            "type": "string"
-        },
-        {
-            "name": "subMerchantCity",
-            "baseName": "subMerchantCity",
-            "type": "string"
-        },
-        {
-            "name": "subMerchantCountry",
-            "baseName": "subMerchantCountry",
-            "type": "string"
-        },
-        {
-            "name": "subMerchantID",
-            "baseName": "subMerchantID",
-            "type": "string"
-        },
-        {
-            "name": "subMerchantName",
-            "baseName": "subMerchantName",
-            "type": "string"
-        },
-        {
-            "name": "subMerchantPostalCode",
-            "baseName": "subMerchantPostalCode",
-            "type": "string"
-        },
-        {
-            "name": "subMerchantState",
-            "baseName": "subMerchantState",
-            "type": "string"
-        },
-        {
-            "name": "subMerchantStreet",
-            "baseName": "subMerchantStreet",
-            "type": "string"
-        },
-        {
-            "name": "subMerchantTaxId",
-            "baseName": "subMerchantTaxId",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AdditionalDataCommon.attributeTypeMap;
-    }
 }
 
 export namespace AdditionalDataCommon {

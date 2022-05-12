@@ -36,7 +36,7 @@ import { Name } from './name';
 import { RiskData } from './riskData';
 import { Split } from './split';
 
-export class CreatePaymentLinkRequest {
+export class PaymentLinkResponse {
     /**
     * List of payment methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
@@ -66,6 +66,10 @@ export class CreatePaymentLinkRequest {
     */
     'expiresAt'?: string;
     /**
+    * A unique identifier of the payment link.
+    */
+    'id': string;
+    /**
     * A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options.
     */
     'installmentOptions'?: { [key: string]: InstallmentOption; };
@@ -88,7 +92,7 @@ export class CreatePaymentLinkRequest {
     /**
     * Defines a recurring payment type. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
-    'recurringProcessingModel'?: CreatePaymentLinkRequest.RecurringProcessingModelEnum;
+    'recurringProcessingModel'?: PaymentLinkResponse.RecurringProcessingModelEnum;
     /**
     * A reference that is used to uniquely identify the payment in future communications about the payment status.
     */
@@ -96,7 +100,7 @@ export class CreatePaymentLinkRequest {
     /**
     * List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper\'s email address. * **shopperName** – The shopper\'s full name. * **telephoneNumber** – The shopper\'s phone number. 
     */
-    'requiredShopperFields'?: Array<CreatePaymentLinkRequest.RequiredShopperFieldsEnum>;
+    'requiredShopperFields'?: Array<PaymentLinkResponse.RequiredShopperFieldsEnum>;
     /**
     * Website URL used for redirection after payment is completed. If provided, a **Continue** button will be shown on the payment page. If shoppers select the button, they are redirected to the specified URL.
     */
@@ -124,13 +128,17 @@ export class CreatePaymentLinkRequest {
     */
     'splits'?: Array<Split>;
     /**
+    * Status of the payment link. Possible values: * **active**: The link can be used to make payments. * **expired**: The expiry date for the payment link has passed. Shoppers can no longer use the link to make payments. * **completed**: The shopper completed the payment. * **paymentPending**: The shopper is in the process of making the payment. Applies to payment methods with an asynchronous flow.
+    */
+    'status': PaymentLinkResponse.StatusEnum;
+    /**
     * The physical store, for which this payment is processed.
     */
     'store'?: string;
     /**
     * Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the `shopperReference` is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent.
     */
-    'storePaymentMethodMode'?: CreatePaymentLinkRequest.StorePaymentMethodModeEnum;
+    'storePaymentMethodMode'?: PaymentLinkResponse.StorePaymentMethodModeEnum;
     /**
     * The shopper\'s telephone number.
     */
@@ -139,9 +147,13 @@ export class CreatePaymentLinkRequest {
     * A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area.
     */
     'themeId'?: string;
+    /**
+    * The URL at which the shopper can complete the payment.
+    */
+    'url': string;
 }
 
-export namespace CreatePaymentLinkRequest {
+export namespace PaymentLinkResponse {
     export enum RecurringProcessingModelEnum {
         CardOnFile = <any> 'CardOnFile',
         Subscription = <any> 'Subscription',
@@ -153,6 +165,13 @@ export namespace CreatePaymentLinkRequest {
         ShopperEmail = <any> 'shopperEmail',
         ShopperName = <any> 'shopperName',
         TelephoneNumber = <any> 'telephoneNumber'
+    }
+    export enum StatusEnum {
+        Active = <any> 'active',
+        Completed = <any> 'completed',
+        Expired = <any> 'expired',
+        Paid = <any> 'paid',
+        PaymentPending = <any> 'paymentPending'
     }
     export enum StorePaymentMethodModeEnum {
         AskForConsent = <any> 'askForConsent',

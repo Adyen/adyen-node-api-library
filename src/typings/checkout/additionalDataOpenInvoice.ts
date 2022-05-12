@@ -1,4 +1,4 @@
-/*
+/**
  *                       ######
  *                       ######
  * ############    ####( ######  #####. ######  ############   ############
@@ -12,14 +12,12 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
+ * Copyright (c) 2022 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
- */
- 
-/**
+ *
  * Adyen Checkout API
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=68) to find out what changed in this version!
  *
  * The version of the OpenAPI document: 68
  * Contact: developer-experience@adyen.com
@@ -30,159 +28,70 @@
  */
 
 
-
 export class AdditionalDataOpenInvoice {
     /**
     * Holds different merchant data points like product, purchase, customer, and so on. It takes data in a Base64 encoded string.  The `merchantData` parameter needs to be added to the `openinvoicedata` signature at the end.  Since the field is optional, if it\'s not included it does not impact computing the merchant signature.  Applies only to Klarna.  You can contact Klarna for the format and structure of the string.
     */
-    'openinvoicedata_merchantData'?: string;
+    'openinvoicedataMerchantData'?: string;
     /**
     * The number of invoice lines included in `openinvoicedata`.  There needs to be at least one line, so `numberOfLines` needs to be at least 1.
     */
-    'openinvoicedata_numberOfLines'?: string;
+    'openinvoicedataNumberOfLines'?: string;
     /**
     * The three-character ISO currency code.
     */
-    'openinvoicedataLine_itemNr_currencyCode'?: string;
+    'openinvoicedataLineItemNrCurrencyCode'?: string;
     /**
     * A text description of the product the invoice line refers to.
     */
-    'openinvoicedataLine_itemNr_description'?: string;
+    'openinvoicedataLineItemNrDescription'?: string;
     /**
     * The price for one item in the invoice line, represented in minor units.  The due amount for the item, VAT excluded.
     */
-    'openinvoicedataLine_itemNr_itemAmount'?: string;
+    'openinvoicedataLineItemNrItemAmount'?: string;
     /**
     * A unique id for this item. Required for RatePay if the description of each item is not unique.
     */
-    'openinvoicedataLine_itemNr_itemId'?: string;
+    'openinvoicedataLineItemNrItemId'?: string;
     /**
     * The VAT due for one item in the invoice line, represented in minor units.
     */
-    'openinvoicedataLine_itemNr_itemVatAmount'?: string;
+    'openinvoicedataLineItemNrItemVatAmount'?: string;
     /**
     * The VAT percentage for one item in the invoice line, represented in minor units.  For example, 19% VAT is specified as 1900.
     */
-    'openinvoicedataLine_itemNr_itemVatPercentage'?: string;
+    'openinvoicedataLineItemNrItemVatPercentage'?: string;
     /**
     * The number of units purchased of a specific product.
     */
-    'openinvoicedataLine_itemNr_numberOfItems'?: string;
+    'openinvoicedataLineItemNrNumberOfItems'?: string;
     /**
     * Name of the shipping company handling the the return shipment.
     */
-    'openinvoicedataLine_itemNr_returnShippingCompany'?: string;
+    'openinvoicedataLineItemNrReturnShippingCompany'?: string;
     /**
     * The tracking number for the return of the shipment.
     */
-    'openinvoicedataLine_itemNr_returnTrackingNumber'?: string;
+    'openinvoicedataLineItemNrReturnTrackingNumber'?: string;
     /**
     * URI where the customer can track the return of their shipment.
     */
-    'openinvoicedataLine_itemNr_returnTrackingUri'?: string;
+    'openinvoicedataLineItemNrReturnTrackingUri'?: string;
     /**
     * Name of the shipping company handling the delivery.
     */
-    'openinvoicedataLine_itemNr_shippingCompany'?: string;
+    'openinvoicedataLineItemNrShippingCompany'?: string;
     /**
     * Shipping method.
     */
-    'openinvoicedataLine_itemNr_shippingMethod'?: string;
+    'openinvoicedataLineItemNrShippingMethod'?: string;
     /**
     * The tracking number for the shipment.
     */
-    'openinvoicedataLine_itemNr_trackingNumber'?: string;
+    'openinvoicedataLineItemNrTrackingNumber'?: string;
     /**
     * URI where the customer can track their shipment.
     */
-    'openinvoicedataLine_itemNr_trackingUri'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "openinvoicedata_merchantData",
-            "baseName": "openinvoicedata.merchantData",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedata_numberOfLines",
-            "baseName": "openinvoicedata.numberOfLines",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_currencyCode",
-            "baseName": "openinvoicedataLine[itemNr].currencyCode",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_description",
-            "baseName": "openinvoicedataLine[itemNr].description",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_itemAmount",
-            "baseName": "openinvoicedataLine[itemNr].itemAmount",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_itemId",
-            "baseName": "openinvoicedataLine[itemNr].itemId",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_itemVatAmount",
-            "baseName": "openinvoicedataLine[itemNr].itemVatAmount",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_itemVatPercentage",
-            "baseName": "openinvoicedataLine[itemNr].itemVatPercentage",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_numberOfItems",
-            "baseName": "openinvoicedataLine[itemNr].numberOfItems",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_returnShippingCompany",
-            "baseName": "openinvoicedataLine[itemNr].returnShippingCompany",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_returnTrackingNumber",
-            "baseName": "openinvoicedataLine[itemNr].returnTrackingNumber",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_returnTrackingUri",
-            "baseName": "openinvoicedataLine[itemNr].returnTrackingUri",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_shippingCompany",
-            "baseName": "openinvoicedataLine[itemNr].shippingCompany",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_shippingMethod",
-            "baseName": "openinvoicedataLine[itemNr].shippingMethod",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_trackingNumber",
-            "baseName": "openinvoicedataLine[itemNr].trackingNumber",
-            "type": "string"
-        },
-        {
-            "name": "openinvoicedataLine_itemNr_trackingUri",
-            "baseName": "openinvoicedataLine[itemNr].trackingUri",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return AdditionalDataOpenInvoice.attributeTypeMap;
-    }
+    'openinvoicedataLineItemNrTrackingUri'?: string;
 }
 

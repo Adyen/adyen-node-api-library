@@ -1,4 +1,4 @@
-/*
+/**
  *                       ######
  *                       ######
  * ############    ####( ######  #####. ######  ############   ############
@@ -12,14 +12,12 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
+ * Copyright (c) 2022 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
- */
- 
-/**
+ *
  * Adyen Checkout API
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=68) to find out what changed in this version!
  *
  * The version of the OpenAPI document: 68
  * Contact: developer-experience@adyen.com
@@ -28,7 +26,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-
 
 import { Address } from './address';
 import { Amount } from './amount';
@@ -113,7 +110,7 @@ export class PaymentSetupRequest {
     'fraudOffset'?: number;
     'installments'?: Installments;
     /**
-    * Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Zip.
+    * Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome.
     */
     'lineItems'?: Array<LineItem>;
     'mandate'?: Mandate;
@@ -188,7 +185,7 @@ export class PaymentSetupRequest {
     */
     'shopperReference'?: string;
     /**
-    * The text to be shown on the shopper\'s bank statement. To enable this field, contact our [Support Team](https://support.adyen.com/hc/en-us/requests/new).  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.
+    * The text to be shown on the shopper\'s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , \' _ - ? + * /_**.
     */
     'shopperStatement'?: string;
     /**
@@ -223,279 +220,6 @@ export class PaymentSetupRequest {
     * Set to true if the payment should be routed to a trusted MID.
     */
     'trustedShopper'?: boolean;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "additionalData",
-            "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
-        },
-        {
-            "name": "allowedPaymentMethods",
-            "baseName": "allowedPaymentMethods",
-            "type": "Array<string>"
-        },
-        {
-            "name": "amount",
-            "baseName": "amount",
-            "type": "Amount"
-        },
-        {
-            "name": "applicationInfo",
-            "baseName": "applicationInfo",
-            "type": "ApplicationInfo"
-        },
-        {
-            "name": "billingAddress",
-            "baseName": "billingAddress",
-            "type": "Address"
-        },
-        {
-            "name": "blockedPaymentMethods",
-            "baseName": "blockedPaymentMethods",
-            "type": "Array<string>"
-        },
-        {
-            "name": "captureDelayHours",
-            "baseName": "captureDelayHours",
-            "type": "number"
-        },
-        {
-            "name": "channel",
-            "baseName": "channel",
-            "type": "PaymentSetupRequest.ChannelEnum"
-        },
-        {
-            "name": "checkoutAttemptId",
-            "baseName": "checkoutAttemptId",
-            "type": "string"
-        },
-        {
-            "name": "company",
-            "baseName": "company",
-            "type": "Company"
-        },
-        {
-            "name": "configuration",
-            "baseName": "configuration",
-            "type": "Configuration"
-        },
-        {
-            "name": "conversionId",
-            "baseName": "conversionId",
-            "type": "string"
-        },
-        {
-            "name": "countryCode",
-            "baseName": "countryCode",
-            "type": "string"
-        },
-        {
-            "name": "dateOfBirth",
-            "baseName": "dateOfBirth",
-            "type": "Date"
-        },
-        {
-            "name": "dccQuote",
-            "baseName": "dccQuote",
-            "type": "ForexQuote"
-        },
-        {
-            "name": "deliveryAddress",
-            "baseName": "deliveryAddress",
-            "type": "Address"
-        },
-        {
-            "name": "deliveryDate",
-            "baseName": "deliveryDate",
-            "type": "Date"
-        },
-        {
-            "name": "enableOneClick",
-            "baseName": "enableOneClick",
-            "type": "boolean"
-        },
-        {
-            "name": "enablePayOut",
-            "baseName": "enablePayOut",
-            "type": "boolean"
-        },
-        {
-            "name": "enableRecurring",
-            "baseName": "enableRecurring",
-            "type": "boolean"
-        },
-        {
-            "name": "entityType",
-            "baseName": "entityType",
-            "type": "PaymentSetupRequest.EntityTypeEnum"
-        },
-        {
-            "name": "fraudOffset",
-            "baseName": "fraudOffset",
-            "type": "number"
-        },
-        {
-            "name": "installments",
-            "baseName": "installments",
-            "type": "Installments"
-        },
-        {
-            "name": "lineItems",
-            "baseName": "lineItems",
-            "type": "Array<LineItem>"
-        },
-        {
-            "name": "mandate",
-            "baseName": "mandate",
-            "type": "Mandate"
-        },
-        {
-            "name": "mcc",
-            "baseName": "mcc",
-            "type": "string"
-        },
-        {
-            "name": "merchantAccount",
-            "baseName": "merchantAccount",
-            "type": "string"
-        },
-        {
-            "name": "merchantOrderReference",
-            "baseName": "merchantOrderReference",
-            "type": "string"
-        },
-        {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "{ [key: string]: string; }"
-        },
-        {
-            "name": "orderReference",
-            "baseName": "orderReference",
-            "type": "string"
-        },
-        {
-            "name": "origin",
-            "baseName": "origin",
-            "type": "string"
-        },
-        {
-            "name": "recurringExpiry",
-            "baseName": "recurringExpiry",
-            "type": "string"
-        },
-        {
-            "name": "recurringFrequency",
-            "baseName": "recurringFrequency",
-            "type": "string"
-        },
-        {
-            "name": "reference",
-            "baseName": "reference",
-            "type": "string"
-        },
-        {
-            "name": "returnUrl",
-            "baseName": "returnUrl",
-            "type": "string"
-        },
-        {
-            "name": "riskData",
-            "baseName": "riskData",
-            "type": "RiskData"
-        },
-        {
-            "name": "sdkVersion",
-            "baseName": "sdkVersion",
-            "type": "string"
-        },
-        {
-            "name": "sessionValidity",
-            "baseName": "sessionValidity",
-            "type": "string"
-        },
-        {
-            "name": "shopperEmail",
-            "baseName": "shopperEmail",
-            "type": "string"
-        },
-        {
-            "name": "shopperIP",
-            "baseName": "shopperIP",
-            "type": "string"
-        },
-        {
-            "name": "shopperInteraction",
-            "baseName": "shopperInteraction",
-            "type": "PaymentSetupRequest.ShopperInteractionEnum"
-        },
-        {
-            "name": "shopperLocale",
-            "baseName": "shopperLocale",
-            "type": "string"
-        },
-        {
-            "name": "shopperName",
-            "baseName": "shopperName",
-            "type": "Name"
-        },
-        {
-            "name": "shopperReference",
-            "baseName": "shopperReference",
-            "type": "string"
-        },
-        {
-            "name": "shopperStatement",
-            "baseName": "shopperStatement",
-            "type": "string"
-        },
-        {
-            "name": "socialSecurityNumber",
-            "baseName": "socialSecurityNumber",
-            "type": "string"
-        },
-        {
-            "name": "splits",
-            "baseName": "splits",
-            "type": "Array<Split>"
-        },
-        {
-            "name": "store",
-            "baseName": "store",
-            "type": "string"
-        },
-        {
-            "name": "storePaymentMethod",
-            "baseName": "storePaymentMethod",
-            "type": "boolean"
-        },
-        {
-            "name": "telephoneNumber",
-            "baseName": "telephoneNumber",
-            "type": "string"
-        },
-        {
-            "name": "threeDSAuthenticationOnly",
-            "baseName": "threeDSAuthenticationOnly",
-            "type": "boolean"
-        },
-        {
-            "name": "token",
-            "baseName": "token",
-            "type": "string"
-        },
-        {
-            "name": "trustedShopper",
-            "baseName": "trustedShopper",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return PaymentSetupRequest.attributeTypeMap;
-    }
 }
 
 export namespace PaymentSetupRequest {

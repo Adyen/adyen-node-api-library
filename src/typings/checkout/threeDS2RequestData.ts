@@ -1,4 +1,4 @@
-/*
+/**
  *                       ######
  *                       ######
  * ############    ####( ######  #####. ######  ############   ############
@@ -12,14 +12,12 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
+ * Copyright (c) 2022 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
- */
- 
-/**
+ *
  * Adyen Checkout API
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports versioning of its endpoints through a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [Checkout documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to the Checkout API must be signed with an API key. For this, obtain an API Key from your Customer Area, as described in [How to get the API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). Then set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: Your_Checkout_API_key\" \\ ... ``` Note that when going live, you need to generate a new API Key to access the [live endpoints](https://docs.adyen.com/development-resources/live-endpoints).  ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v68/payments ```  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=68) to find out what changed in this version!
  *
  * The version of the OpenAPI document: 68
  * Contact: developer-experience@adyen.com
@@ -28,7 +26,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-
 
 import { AcctInfo } from './acctInfo';
 import { DeviceRenderOptions } from './deviceRenderOptions';
@@ -40,9 +37,9 @@ import { ThreeDSRequestorPriorAuthenticationInfo } from './threeDSRequestorPrior
 export class ThreeDS2RequestData {
     'acctInfo'?: AcctInfo;
     /**
-    * Indicates the type of account. For example, for a multi-account card product.
+    * Indicates the type of account. For example, for a multi-account card product. Length: 2 characters. Allowed values: * **01** — Not applicable * **02** — Credit * **03** — Debit
     */
-    'acctType'?: string;
+    'acctType'?: ThreeDS2RequestData.AcctTypeEnum;
     /**
     * Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The acquiring BIN enrolled for 3D Secure 2. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.
     */
@@ -52,9 +49,9 @@ export class ThreeDS2RequestData {
     */
     'acquirerMerchantID'?: string;
     /**
-    * Indicates whether the Cardholder Shipping Address and Cardholder Billing Address are the same.
+    * Indicates whether the Cardholder Shipping Address and Cardholder Billing Address are the same. Allowed values: * **Y** — Shipping Address matches Billing Address. * **N** — Shipping Address does not match Billing Address.
     */
-    'addrMatch'?: string;
+    'addrMatch'?: ThreeDS2RequestData.AddrMatchEnum;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     */
@@ -87,7 +84,7 @@ export class ThreeDS2RequestData {
     */
     'notificationURL'?: string;
     /**
-    * A value of True indicates that the transaction was de-tokenised prior to being received by the ACS.
+    * Value **true** indicates that the transaction was de-tokenised prior to being received by the ACS.
     */
     'payTokenInd'?: boolean;
     /**
@@ -95,15 +92,15 @@ export class ThreeDS2RequestData {
     */
     'paymentAuthenticationUseCase'?: string;
     /**
-    * Indicates the maximum number of authorisations permitted for instalment payments.
+    * Indicates the maximum number of authorisations permitted for instalment payments. Length: 1–3 characters.
     */
     'purchaseInstalData'?: string;
     /**
-    * Date after which no further authorisations shall be performed.
+    * Date after which no further authorisations shall be performed. Format: YYYYMMDD
     */
     'recurringExpiry'?: string;
     /**
-    * Indicates the minimum number of days between authorisations.
+    * Indicates the minimum number of days between authorisations. Maximum length: 4 characters.
     */
     'recurringFrequency'?: string;
     /**
@@ -141,9 +138,9 @@ export class ThreeDS2RequestData {
     'threeDSRequestorAuthenticationInd'?: string;
     'threeDSRequestorAuthenticationInfo'?: ThreeDSRequestorAuthenticationInfo;
     /**
-    * Indicates whether a challenge is requested for this transaction.
+    * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed)
     */
-    'threeDSRequestorChallengeInd'?: string;
+    'threeDSRequestorChallengeInd'?: ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
     /**
     * Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor identifier assigned by the Directory Server when you enrol for 3D Secure 2.
     */
@@ -158,9 +155,9 @@ export class ThreeDS2RequestData {
     */
     'threeDSRequestorURL'?: string;
     /**
-    * Identifies the type of transaction being authenticated.
+    * Identifies the type of transaction being authenticated. Length: 2 characters. Allowed values: * **01** — Goods/Service Purchase * **03** — Check Acceptance * **10** — Account Funding * **11** — Quasi-Cash Transaction * **28** — Prepaid Activation and Load
     */
-    'transType'?: string;
+    'transType'?: ThreeDS2RequestData.TransTypeEnum;
     /**
     * Identify the type of the transaction being authenticated.
     */
@@ -170,217 +167,37 @@ export class ThreeDS2RequestData {
     */
     'whiteListStatus'?: string;
     'workPhone'?: Phone;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "acctInfo",
-            "baseName": "acctInfo",
-            "type": "AcctInfo"
-        },
-        {
-            "name": "acctType",
-            "baseName": "acctType",
-            "type": "string"
-        },
-        {
-            "name": "acquirerBIN",
-            "baseName": "acquirerBIN",
-            "type": "string"
-        },
-        {
-            "name": "acquirerMerchantID",
-            "baseName": "acquirerMerchantID",
-            "type": "string"
-        },
-        {
-            "name": "addrMatch",
-            "baseName": "addrMatch",
-            "type": "string"
-        },
-        {
-            "name": "authenticationOnly",
-            "baseName": "authenticationOnly",
-            "type": "boolean"
-        },
-        {
-            "name": "challengeIndicator",
-            "baseName": "challengeIndicator",
-            "type": "ThreeDS2RequestData.ChallengeIndicatorEnum"
-        },
-        {
-            "name": "deviceChannel",
-            "baseName": "deviceChannel",
-            "type": "string"
-        },
-        {
-            "name": "deviceRenderOptions",
-            "baseName": "deviceRenderOptions",
-            "type": "DeviceRenderOptions"
-        },
-        {
-            "name": "homePhone",
-            "baseName": "homePhone",
-            "type": "Phone"
-        },
-        {
-            "name": "mcc",
-            "baseName": "mcc",
-            "type": "string"
-        },
-        {
-            "name": "merchantName",
-            "baseName": "merchantName",
-            "type": "string"
-        },
-        {
-            "name": "messageVersion",
-            "baseName": "messageVersion",
-            "type": "string"
-        },
-        {
-            "name": "mobilePhone",
-            "baseName": "mobilePhone",
-            "type": "Phone"
-        },
-        {
-            "name": "notificationURL",
-            "baseName": "notificationURL",
-            "type": "string"
-        },
-        {
-            "name": "payTokenInd",
-            "baseName": "payTokenInd",
-            "type": "boolean"
-        },
-        {
-            "name": "paymentAuthenticationUseCase",
-            "baseName": "paymentAuthenticationUseCase",
-            "type": "string"
-        },
-        {
-            "name": "purchaseInstalData",
-            "baseName": "purchaseInstalData",
-            "type": "string"
-        },
-        {
-            "name": "recurringExpiry",
-            "baseName": "recurringExpiry",
-            "type": "string"
-        },
-        {
-            "name": "recurringFrequency",
-            "baseName": "recurringFrequency",
-            "type": "string"
-        },
-        {
-            "name": "sdkAppID",
-            "baseName": "sdkAppID",
-            "type": "string"
-        },
-        {
-            "name": "sdkEncData",
-            "baseName": "sdkEncData",
-            "type": "string"
-        },
-        {
-            "name": "sdkEphemPubKey",
-            "baseName": "sdkEphemPubKey",
-            "type": "SDKEphemPubKey"
-        },
-        {
-            "name": "sdkMaxTimeout",
-            "baseName": "sdkMaxTimeout",
-            "type": "number"
-        },
-        {
-            "name": "sdkReferenceNumber",
-            "baseName": "sdkReferenceNumber",
-            "type": "string"
-        },
-        {
-            "name": "sdkTransID",
-            "baseName": "sdkTransID",
-            "type": "string"
-        },
-        {
-            "name": "sdkVersion",
-            "baseName": "sdkVersion",
-            "type": "string"
-        },
-        {
-            "name": "threeDSCompInd",
-            "baseName": "threeDSCompInd",
-            "type": "string"
-        },
-        {
-            "name": "threeDSRequestorAuthenticationInd",
-            "baseName": "threeDSRequestorAuthenticationInd",
-            "type": "string"
-        },
-        {
-            "name": "threeDSRequestorAuthenticationInfo",
-            "baseName": "threeDSRequestorAuthenticationInfo",
-            "type": "ThreeDSRequestorAuthenticationInfo"
-        },
-        {
-            "name": "threeDSRequestorChallengeInd",
-            "baseName": "threeDSRequestorChallengeInd",
-            "type": "string"
-        },
-        {
-            "name": "threeDSRequestorID",
-            "baseName": "threeDSRequestorID",
-            "type": "string"
-        },
-        {
-            "name": "threeDSRequestorName",
-            "baseName": "threeDSRequestorName",
-            "type": "string"
-        },
-        {
-            "name": "threeDSRequestorPriorAuthenticationInfo",
-            "baseName": "threeDSRequestorPriorAuthenticationInfo",
-            "type": "ThreeDSRequestorPriorAuthenticationInfo"
-        },
-        {
-            "name": "threeDSRequestorURL",
-            "baseName": "threeDSRequestorURL",
-            "type": "string"
-        },
-        {
-            "name": "transType",
-            "baseName": "transType",
-            "type": "string"
-        },
-        {
-            "name": "transactionType",
-            "baseName": "transactionType",
-            "type": "ThreeDS2RequestData.TransactionTypeEnum"
-        },
-        {
-            "name": "whiteListStatus",
-            "baseName": "whiteListStatus",
-            "type": "string"
-        },
-        {
-            "name": "workPhone",
-            "baseName": "workPhone",
-            "type": "Phone"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return ThreeDS2RequestData.attributeTypeMap;
-    }
 }
 
 export namespace ThreeDS2RequestData {
+    export enum AcctTypeEnum {
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03'
+    }
+    export enum AddrMatchEnum {
+        Y = <any> 'Y',
+        N = <any> 'N'
+    }
     export enum ChallengeIndicatorEnum {
         NoPreference = <any> 'noPreference',
         RequestNoChallenge = <any> 'requestNoChallenge',
         RequestChallenge = <any> 'requestChallenge',
         RequestChallengeAsMandate = <any> 'requestChallengeAsMandate'
+    }
+    export enum ThreeDSRequestorChallengeIndEnum {
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05'
+    }
+    export enum TransTypeEnum {
+        _01 = <any> '01',
+        _03 = <any> '03',
+        _10 = <any> '10',
+        _11 = <any> '11',
+        _28 = <any> '28'
     }
     export enum TransactionTypeEnum {
         GoodsOrServicePurchase = <any> 'goodsOrServicePurchase',

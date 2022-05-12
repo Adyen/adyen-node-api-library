@@ -28,58 +28,35 @@
  */
 
 
-export class StoredPaymentMethod {
+export class UpiCollectDetails {
     /**
-    * The brand of the card.
+    * The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
     */
-    'brand'?: string;
+    'billingSequenceNumber': string;
     /**
-    * The month the card expires.
+    * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'expiryMonth'?: string;
+    'recurringDetailReference'?: string;
     /**
-    * The year the card expires.
+    * The `shopperNotificationReference` returned in the response when you requested to notify the shopper. Used for recurring payment only.
     */
-    'expiryYear'?: string;
+    'shopperNotificationReference'?: string;
     /**
-    * The unique payment method code.
+    * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'holderName'?: string;
+    'storedPaymentMethodId'?: string;
     /**
-    * The IBAN of the bank account.
+    * **upi_collect**
     */
-    'iban'?: string;
+    'type': UpiCollectDetails.TypeEnum;
     /**
-    * A unique identifier of this stored payment method.
+    * The virtual payment address for UPI.
     */
-    'id'?: string;
-    /**
-    * The last four digits of the PAN.
-    */
-    'lastFour'?: string;
-    /**
-    * The display name of the stored payment method.
-    */
-    'name'?: string;
-    /**
-    * Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.
-    */
-    'networkTxReference'?: string;
-    /**
-    * The name of the bank account holder.
-    */
-    'ownerName'?: string;
-    /**
-    * The shopper’s email address.
-    */
-    'shopperEmail'?: string;
-    /**
-    * The supported shopper interactions for this stored payment method.
-    */
-    'supportedShopperInteractions'?: Array<string>;
-    /**
-    * The type of payment method.
-    */
-    'type'?: string;
+    'virtualPaymentAddress'?: string;
 }
 
+export namespace UpiCollectDetails {
+    export enum TypeEnum {
+        UpiCollect = <any> 'upi_collect'
+    }
+}
