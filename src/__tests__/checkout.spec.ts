@@ -65,8 +65,8 @@ function createAmountObject(currency: string, value: number): Amount {
 function createPaymentsDetailsRequest(): DetailsRequest {
     return {
         details: {
-            MD: "mdValue",
-            PaRes: "paResValue",
+            mD: "mdValue",
+            paRes: "paResValue",
         },
         paymentData: "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...",
     };
