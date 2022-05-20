@@ -41,7 +41,7 @@ import {
     CheckoutUtilityRequest,
     CreatePaymentLinkRequest,
     DetailsRequest,
-    PaymentLinkResource,
+    PaymentLinkResponse,
     PaymentMethodsRequest,
     PaymentRequest,
     PaymentResponse,
@@ -103,7 +103,7 @@ function createPaymentSessionRequest(): PaymentSetupRequest {
         sdkVersion: "3.7.0"
     };
 }
-function getPaymentLinkSuccess(expiresAt: string): PaymentLinkResource {
+function getPaymentLinkSuccess(expiresAt: string): PaymentLinkResponse {
     return {
         amount: createAmountObject("USD", 1000),
         expiresAt,
@@ -111,7 +111,7 @@ function getPaymentLinkSuccess(expiresAt: string): PaymentLinkResource {
         url: "paymentLinkResponse.url",
         id: "mocked_id",
         merchantAccount,
-        status: PaymentLinkResource.StatusEnum.Active
+        status: PaymentLinkResponse.StatusEnum.Active
     };
 }
 
@@ -213,7 +213,7 @@ describe("Checkout", (): void => {
     test.each([false, true])("should have valid payment link, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
@@ -224,7 +224,7 @@ describe("Checkout", (): void => {
     test.each([isCI, true])("should get payment link, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
@@ -238,7 +238,7 @@ describe("Checkout", (): void => {
     test.each([isCI, true])("should patch payment link, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
