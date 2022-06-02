@@ -101,7 +101,7 @@ describe("HMAC Validator", function (): void {
         };
         try {
         hmacValidator.validateHMAC(notificationRequestItemNoAdditionalData, key);
-        } catch(error: any) {
+        } catch(error) {
             expect(error.message).toEqual(`Missing ${ApiConstants.HMAC_SIGNATURE}`);
         }
     });

@@ -79,7 +79,7 @@ describe("Terminal Local API", (): void => {
 
         try {
             await terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey);
-        } catch (e: any) {
+        } catch (e) {
             expect(e instanceof NexoCryptoException);
             expect(e.message).toEqual("Hmac validation failed");
         }

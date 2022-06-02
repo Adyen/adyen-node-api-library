@@ -43,7 +43,7 @@ const getResponse = async ({apiKey , environment }: { apiKey: string; environmen
     try {
         await checkout.payments(createPaymentsCheckoutRequest());
         fail("request should fail");
-    } catch (e: any) {
+    } catch (e) {
         expect(e instanceof ErrorException).toBeTruthy();
         if (errorMessageEquals) expect(e.message).toEqual(errorMessageEquals);
         if (errorMessageContains) expect(e.message.toLowerCase()).toContain(errorMessageContains);
