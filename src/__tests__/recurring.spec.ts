@@ -97,8 +97,8 @@ describe("Recurring", (): void => {
         try {
             const result = await recurring.disable(request);
             expect(result).toBeTruthy();
-        } catch (e) {
-            if(e.message) fail(e.message);
+        } catch (e: any) {
+            fail(e.message);
         }
     });
 
@@ -123,8 +123,8 @@ describe("Recurring", (): void => {
         try {
             const result = await recurring.notifyShopper(notifyShopperRequest);
             expect(result).toBeTruthy();
-        } catch (e) {
-            if(e.message) fail(e.message);
+        } catch (e: any) {
+            fail(e.message);
         }
     });
 
@@ -154,8 +154,8 @@ describe("Recurring", (): void => {
         try {
             const result = await recurring.scheduleAccountUpdater(request);
             expect(result).toBeTruthy();
-        } catch (e) {
-            if(e.message) fail(e.message);
+        } catch (e: any) {
+            fail(e.message);
         }
     });
 });

@@ -190,7 +190,7 @@ describe("Checkout", (): void => {
 
             const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
             await checkout.payments(paymentsRequest);
-        } catch (e) {
+        } catch (e: any) {
             expect(e instanceof HttpClientException).toBeTruthy();
         }
     });
@@ -284,10 +284,8 @@ describe("Checkout", (): void => {
         try {
             new Checkout(client);
             fail();
-        } catch (e) {
-            if (e instanceof Error) {
+        } catch (e: any) {
                 expect(e.message).toEqual("Please provide your unique live url prefix on the setEnvironment() call on the Client or provide checkoutEndpoint in your config object.");
-            }
         }
     });
 
