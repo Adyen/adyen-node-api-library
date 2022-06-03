@@ -98,7 +98,7 @@ describe("Recurring", (): void => {
             const result = await recurring.disable(request);
             expect(result).toBeTruthy();
         } catch (e) {
-            fail(e.message);
+            if(e.message) fail(e.message);
         }
     });
 
@@ -124,7 +124,7 @@ describe("Recurring", (): void => {
             const result = await recurring.notifyShopper(notifyShopperRequest);
             expect(result).toBeTruthy();
         } catch (e) {
-            fail(e.message);
+            if(e.message) fail(e.message);
         }
     });
 
@@ -155,7 +155,7 @@ describe("Recurring", (): void => {
             const result = await recurring.scheduleAccountUpdater(request);
             expect(result).toBeTruthy();
         } catch (e) {
-            fail(e.message);
+            if(e.message) fail(e.message);
         }
     });
 });

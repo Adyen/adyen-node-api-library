@@ -45,8 +45,8 @@ const getResponse = async ({apiKey , environment }: { apiKey: string; environmen
         fail("request should fail");
     } catch (e) {
         expect(e instanceof ErrorException).toBeTruthy();
-        if (errorMessageEquals) expect(e.message).toEqual(errorMessageEquals);
-        if (errorMessageContains) expect(e.message.toLowerCase()).toContain(errorMessageContains);
+        if (errorMessageEquals && e.message) expect(e.message).toEqual(errorMessageEquals);
+        if (errorMessageContains && e.message) expect(e.message.toLowerCase()).toContain(errorMessageContains);
     }
 };
 
