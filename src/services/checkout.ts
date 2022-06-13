@@ -34,7 +34,7 @@ import {
     PaymentResponse,
     PaymentMethodsRequest,
     PaymentMethodsResponse,
-    PaymentLinkResource,
+    PaymentLinkResponse,
     CreatePaymentLinkRequest,
     DetailsRequest,
     PaymentSetupRequest,
@@ -109,25 +109,25 @@ class Checkout extends ApiKeyAuthenticatedService {
         );
     }
 
-    public paymentLinks(paymentLinkRequest: CreatePaymentLinkRequest): Promise<PaymentLinkResource> {
-        return getJsonResponse<CreatePaymentLinkRequest, PaymentLinkResource>(
+    public paymentLinks(paymentLinkRequest: CreatePaymentLinkRequest): Promise<PaymentLinkResponse> {
+        return getJsonResponse<CreatePaymentLinkRequest, PaymentLinkResponse>(
             this._paymentLinks,
             paymentLinkRequest
         );
     }
 
-    public getPaymentLinks(linkId: string): Promise<PaymentLinkResource> {
+    public getPaymentLinks(linkId: string): Promise<PaymentLinkResponse> {
         this._paymentLinksId.id = linkId;
-        return getJsonResponse<Record<string, never>, PaymentLinkResource>(
+        return getJsonResponse<Record<string, never>, PaymentLinkResponse>(
             this._paymentLinksId,
             {},
             { method: "GET" }
         );
     }
 
-    public updatePaymentLinks(linkId: string, status: "expired"): Promise<PaymentLinkResource> {
+    public updatePaymentLinks(linkId: string, status: "expired"): Promise<PaymentLinkResponse> {
         this._paymentLinksId.id = linkId;
-        return getJsonResponse<Record<string, unknown>, PaymentLinkResource>(
+        return getJsonResponse<Record<string, unknown>, PaymentLinkResponse>(
             this._paymentLinksId,
             { status },
             { method: "PATCH" }

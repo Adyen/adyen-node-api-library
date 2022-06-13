@@ -197,7 +197,7 @@ describe("Modification", (): void => {
             const result = await modification.amountUpdates(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e: any) {
-            fail(e.message);
+            if(e.message) fail(e.message);
         }
     });
 
@@ -278,8 +278,8 @@ describe("Modification", (): void => {
         try {
             await modification.captures(invalidPaymentPspReference, request);
         } catch (e: any) {
-            expect(e.statusCode).toBe(422);
-            expect(e.message).toContain("Original pspReference required for this operation");
+            if(e.statusCode) expect(e.statusCode).toBe(422);
+            if(e.message) expect(e.message).toContain("Original pspReference required for this operation");
         }
     });
 
@@ -292,7 +292,7 @@ describe("Modification", (): void => {
             const result = await modification.refunds(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e: any) {
-            fail(e.message);
+            if(e.message) fail(e.message);
         }
     });
 
@@ -305,7 +305,7 @@ describe("Modification", (): void => {
         try {
             await modification.refunds(invalidPaymentPspReference, request);
         } catch (e: any) {
-            expect(e.statusCode).toBe(422);
+            if(e.statusCode) expect(e.statusCode).toBe(422);
             expect(e.message).toContain("Original pspReference required for this operation");
         }
     });
@@ -332,7 +332,7 @@ describe("Modification", (): void => {
         try {
             await modification.reversals(invalidPaymentPspReference, request);
         } catch (e: any) {
-            expect(e.statusCode).toBe(422);
+            if(e.statusCode) expect(e.statusCode).toBe(422);
             expect(e.message).toContain("Original pspReference required for this operation");
         }
     });
