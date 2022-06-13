@@ -33,7 +33,7 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 ## Prerequisites
 -   [Adyen test account](https://docs.adyen.com/get-started-with-adyen)
 -   [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
--   Node 10 or higher
+-   Node 12 or higher
 
 ## Installation
 
