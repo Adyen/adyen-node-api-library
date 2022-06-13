@@ -41,7 +41,7 @@ import {
     CheckoutUtilityRequest,
     CreatePaymentLinkRequest,
     DetailsRequest,
-    PaymentLinkResource,
+    PaymentLinkResponse,
     PaymentMethodsRequest,
     PaymentRequest,
     PaymentResponse,
@@ -65,8 +65,8 @@ function createAmountObject(currency: string, value: number): Amount {
 function createPaymentsDetailsRequest(): DetailsRequest {
     return {
         details: {
-            MD: "mdValue",
-            PaRes: "paResValue",
+            mD: "mdValue",
+            paRes: "paResValue",
         },
         paymentData: "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...",
     };
@@ -103,15 +103,15 @@ function createPaymentSessionRequest(): PaymentSetupRequest {
         sdkVersion: "3.7.0"
     };
 }
-function getPaymentLinkSuccess(expiresAt: string): PaymentLinkResource {
+function getPaymentLinkSuccess(expiresAt: string): PaymentLinkResponse {
     return {
         amount: createAmountObject("USD", 1000),
         expiresAt,
         reference,
-        url: "paymentLinkResponse.url",
+        url: "PaymentLinkResponse.url",
         id: "mocked_id",
         merchantAccount,
-        status: PaymentLinkResource.StatusEnum.Active
+        status: PaymentLinkResponse.StatusEnum.Active
     };
 }
 
@@ -190,7 +190,7 @@ describe("Checkout", (): void => {
 
             const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
             await checkout.payments(paymentsRequest);
-        } catch (e) {
+        } catch (e: any) {
             expect(e instanceof HttpClientException).toBeTruthy();
         }
     });
@@ -213,7 +213,7 @@ describe("Checkout", (): void => {
     test.each([false, true])("should have valid payment link, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
@@ -224,7 +224,7 @@ describe("Checkout", (): void => {
     test.each([isCI, true])("should get payment link, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
@@ -238,7 +238,7 @@ describe("Checkout", (): void => {
     test.each([isCI, true])("should patch payment link, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: PaymentLinkResource = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
@@ -285,7 +285,7 @@ describe("Checkout", (): void => {
             new Checkout(client);
             fail();
         } catch (e: any) {
-            expect(e.message).toEqual("Please provide your unique live url prefix on the setEnvironment() call on the Client or provide checkoutEndpoint in your config object.");
+                expect(e.message).toEqual("Please provide your unique live url prefix on the setEnvironment() call on the Client or provide checkoutEndpoint in your config object.");
         }
     });
 

@@ -79,7 +79,7 @@ describe("Bin Lookup", function (): void {
         try {
             await binLookup.get3dsAvailability(threeDSAvailabilityRequest as unknown as IBinLookup.ThreeDSAvailabilityRequest);
             fail("Expected request to fail");
-        } catch (e) {
+        } catch (e: any) {
             expect(e instanceof HttpClientException).toBeTruthy();
         }
     });
