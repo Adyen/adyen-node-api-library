@@ -1,0 +1,56 @@
+{{>licenseInfo}}
+{{#models}}
+{{#model}}
+{{#tsImports}}
+import { {{classname}} } from '{{filename}}';
+{{/tsImports}}
+
+{{#description}}
+/**
+* {{{description}}}
+*/
+{{/description}}
+{{^isEnum}}
+export class {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
+{{#vars}}
+
+    /**
+{{#description}}
+    * {{{description}}}
+{{/description}}
+{{#deprecated}}
+    *
+    * @deprecated
+{{/deprecated}}
+    */
+    '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}};
+{{/vars}}
+}
+
+{{#hasEnums}}
+export namespace {{classname}} {
+{{#vars}}
+{{#isEnum}}
+    export enum {{enumName}} {
+        {{#allowableValues}}
+        {{#enumVars}}
+        {{name}} = <any> {{{value}}}{{^-last}},{{/-last}}
+        {{/enumVars}}
+        {{/allowableValues}}
+    }
+{{/isEnum}}
+{{/vars}}
+}
+{{/hasEnums}}
+{{/isEnum}}
+{{#isEnum}}
+export enum {{classname}} {
+    {{#allowableValues}}
+    {{#enumVars}}
+    {{name}} = <any> {{{value}}}{{^-last}},{{/-last}}
+    {{/enumVars}}
+    {{/allowableValues}}
+}
+{{/isEnum}}
+{{/model}}
+{{/models}}
