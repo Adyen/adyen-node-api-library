@@ -13,6 +13,7 @@ jobs:
         uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: typescript
+          openapi-url: https://raw.githubusercontent.com/Adyen/adyen-openapi/main/yaml/CheckoutService-v69.yaml
           template-dir: templates/typescript
       - name: Publish updates
         run: |
