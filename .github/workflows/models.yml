@@ -1,6 +1,6 @@
 name: Node.js Models
 
-on: [push, pull_request]
+on: [workflow_dispatch, pull_request ]
 
 jobs:
   generate:
@@ -9,12 +9,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Generate Typescript Client
-        uses: openapi-generators/openapitools-generator-action@v1
-        with:
-          generator: typescript
-          openapi-url: https://raw.githubusercontent.com/Adyen/adyen-openapi/main/yaml/CheckoutService-v69.yaml
-          template-dir: templates/typescript
-      - name: Publish updates
-        run: |
-          ls -lahR typescript
+      - name: Generate models
+        run: make models
+      - name: Propose changes
+        run: make pr 
