@@ -33,21 +33,22 @@
 import { CustomerOrder } from './customerOrder';
 import { OriginalPOITransaction } from './originalPOITransaction';
 import { ReversalReasonType } from './reversalReasonType';
+import { SaleData } from './saleData';
 
 export class ReversalRequest {
-    'CustomerOrderID'?: CustomerOrder;
+    'SaleData'?: SaleData;
     'OriginalPOITransaction': OriginalPOITransaction;
-    'ReversalReason': ReversalReasonType;
     'ReversedAmount'?: number;
-    'SaleReferenceID'?: string;
+    'ReversalReason': ReversalReasonType;
+    'CustomerOrder'?: CustomerOrder;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "CustomerOrderID",
-            "baseName": "CustomerOrderID",
-            "type": "CustomerOrder"
+            "name": "SaleData",
+            "baseName": "SaleData",
+            "type": "SaleData",
         },
         {
             "name": "OriginalPOITransaction",
@@ -65,9 +66,9 @@ export class ReversalRequest {
             "type": "number"
         },
         {
-            "name": "SaleReferenceID",
-            "baseName": "SaleReferenceID",
-            "type": "string"
+            "name": "CustomerOrder",
+            "baseName": "CustomerOrder",
+            "type": "CustomerOrder"
         }    ];
 
     static getAttributeTypeMap() {
