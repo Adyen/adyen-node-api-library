@@ -9,7 +9,7 @@ templates:
 	docker run --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli author template -g ${generator} -o build/templates/typescript
 
 build/spec:
-	mkdir build/spec
+	mkdir -p build/spec
 
 # Fetch spec files (git clone/submodule?)
 build/spec/CheckoutService-v69.json: build/spec
@@ -22,8 +22,7 @@ models: build/spec/CheckoutService-v69.json
 		-i /local/build/spec/CheckoutService-v69.json \
 		-g ${generator} \
 		-t /local/templates/typescript \
-		-o /local/build \
-		--global-property models
+		-o /local/build
 	
 # Propose changes
 pr:
