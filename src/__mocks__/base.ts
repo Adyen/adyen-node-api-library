@@ -112,7 +112,8 @@ const getReversalRequest = (poiTransaction: TransactionIdentification): Reversal
             TimeStamp: poiTransaction.TimeStamp
         },
     },
-    ReversalReason: ReversalReasonType.MerchantCancel
+    ReversalReason: ReversalReasonType.MerchantCancel,
+    SaleData: saleData
 });
 
 const getSaleToPOIRequest = (messageHeader: MessageHeader, request: Partial<SaleToPOIRequest>): SaleToPOIRequest => ({
