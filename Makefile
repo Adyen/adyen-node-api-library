@@ -23,7 +23,3 @@ models: build/spec/CheckoutService-v69.json
 		-g ${generator} \
 		-t /local/templates/typescript \
 		-o /local/build
-	
-# Propose changes
-pr:
-	diff build/model src/typings/checkout
