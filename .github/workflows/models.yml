@@ -19,5 +19,8 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           base: develop
+          branch: automation/models
+          title: Update models
+          body: OpenAPI spec or templates produced new models.
           add-paths: |
             src/typings/checkout
