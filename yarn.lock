@@ -4184,10 +4184,10 @@ new-github-release-url@2.0.0:
   dependencies:
     type-fest "^2.5.1"
 
-nock@*, nock@13.2.6:
-  version "13.2.6"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-13.2.6.tgz#35e419cd9d385ffa67e59523d9699e41b29e1a03"
-  integrity sha512-GbyeSwSEP0FYouzETZ0l/XNm5tNcDNcXJKw3LCAb+mx8bZSwg1wEEvdL0FAyg5TkBJYiWSCtw6ag4XfmBy60FA==
+nock@*, nock@13.2.7:
+  version "13.2.7"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-13.2.7.tgz#c93933b61df42f4f4b3a07fde946a4e209c0c168"
+  integrity sha512-R6NUw7RIPtKwgK7jskuKoEi4VFMqIHtV2Uu9K/Uegc4TA5cqe+oNMYslZcUmnVNQCTG6wcSqUBaGTDd7sq5srg==
   dependencies:
     debug "^4.1.0"
     json-stringify-safe "^5.0.1"
@@ -5515,10 +5515,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@4.7.3:
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.3.tgz#8364b502d5257b540f9de4c40be84c98e23a129d"
-  integrity sha512-WOkT3XYvrpXx4vMMqlD+8R8R37fZkjyLGlxavMc4iB8lrl8L0DeTcHbYgw/v0N/z9wAFsgBhcsF0ruoySS22mA==
+typescript@4.7.4:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
+  integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
 
 unbox-primitive@^1.0.1:
   version "1.0.2"
