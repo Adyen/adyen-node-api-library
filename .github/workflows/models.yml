@@ -11,5 +11,12 @@ jobs:
         uses: actions/checkout@v2
       - name: Generate models
         run: make models
-      - name: Propose changes
-        run: ./pr.sh 
+      - name: Overwrite current models  
+        run: |
+          rm -rf src/typings/checkout
+          cp -r build/model src/typings/checkout
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          add-paths: |
+            src/typings/checkout
