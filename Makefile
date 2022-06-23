@@ -1,12 +1,13 @@
 generator=typescript-node
+openapi-generator-cli=docker run --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v5.4.0
 
 clean:
-	rm -rf build/*
+	rm -rf build
 
 # Extract templates (copy them for modifications)
 .PHONY: templates
 templates:
-	docker run --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli author template -g ${generator} -o build/templates/typescript
+	$(openapi-generator-cli) author template -g ${generator} -o build/templates/typescript
 
 build/spec:
 	mkdir -p build/spec
@@ -17,9 +18,9 @@ build/spec/CheckoutService-v69.json: build/spec
 	sed -i 's/"openapi" : "3.[0-9].[0-9]"/"openapi" : "3.0.0"/' build/spec/CheckoutService-v69.json
 
 models: build/spec/CheckoutService-v69.json
-	docker run --rm \
-		-v ${PWD}:/local openapitools/openapi-generator-cli generate \
-		-i /local/build/spec/CheckoutService-v69.json \
+	$(openapi-generator-cli) generate \
+		-i build/spec/CheckoutService-v69.json \
 		-g ${generator} \
-		-t /local/templates/typescript \
-		-o /local/build
+		-t templates/typescript \
+		-o build \
+		--global-property models,supportingFiles
