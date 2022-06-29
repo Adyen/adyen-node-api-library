@@ -19,6 +19,8 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
+          committer: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
+          author: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
           base: develop
           branch: automation/models
           title: Update models
