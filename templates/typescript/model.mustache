@@ -7,24 +7,48 @@ import { {{classname}} } from '{{filename}}';
 
 {{#description}}
 /**
-* {{{description}}}
+* {{{.}}}
 */
 {{/description}}
 {{^isEnum}}
-export class {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
+export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
 {{#vars}}
-
-    /**
 {{#description}}
-    * {{{description}}}
-{{/description}}
-{{#deprecated}}
-    *
-    * @deprecated
-{{/deprecated}}
+    /**
+    * {{{.}}}
     */
+{{/description}}
     '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}};
 {{/vars}}
+
+    {{#discriminator}}
+    static discriminator: string | undefined = "{{discriminatorName}}";
+    {{/discriminator}}
+    {{^discriminator}}
+    static discriminator: string | undefined = undefined;
+    {{/discriminator}}
+
+    {{^isArray}}
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {{#vars}}
+        {
+            "name": "{{name}}",
+            "baseName": "{{baseName}}",
+            "type": "{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}"
+        }{{^-last}},
+        {{/-last}}
+        {{/vars}}
+    ];
+
+    static getAttributeTypeMap() {
+        {{#parent}}
+        return super.getAttributeTypeMap().concat({{classname}}.attributeTypeMap);
+        {{/parent}}
+        {{^parent}}
+        return {{classname}}.attributeTypeMap;
+        {{/parent}}
+    }
+    {{/isArray}}
 }
 
 {{#hasEnums}}
