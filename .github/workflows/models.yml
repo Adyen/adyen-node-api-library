@@ -21,6 +21,7 @@ jobs:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
           committer: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
           author: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
+          base: ${{ github.head_ref }}
           branch: automation/models
           title: Update models
           body: OpenAPI spec or templates produced new models.
