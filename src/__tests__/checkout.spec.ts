@@ -48,7 +48,9 @@ import {
     PaymentSetupRequest,
     PaymentVerificationRequest,
     CreateCheckoutSessionRequest,
-    CreateCheckoutSessionResponse
+    CreateCheckoutSessionResponse,
+    CardDetailsRequest,
+    CardDetailsResponse
 } from "../typings/checkout/models";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
@@ -410,5 +412,24 @@ describe("Checkout", (): void => {
         const sessionsRequest: CreateCheckoutSessionRequest = createSessionRequest();
         const sessionsResponse: CreateCheckoutSessionResponse = await checkout.sessions(sessionsRequest);
         expect(sessionsResponse.sessionData).toBeTruthy();
+    });
+
+    test("Should get card details", async (): Promise<void> => {
+        scope.post("/cardDetails")
+            .reply(200, {
+                "brands": [
+                  {
+                    "supported": true,
+                    "type": "visa"
+                  }
+                ]
+            });
+
+        const cardDetailsRequest: CardDetailsRequest = {
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "cardNumber": "411111"
+        };
+        const cardDetailsReponse: CardDetailsResponse = await checkout.cardDetails(cardDetailsRequest);
+        expect(cardDetailsReponse?.brands?.length).toBe(1);
     });
 });
