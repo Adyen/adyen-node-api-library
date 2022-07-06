@@ -31,8 +31,7 @@ afterEach((): void => {
 });
 
 describe("Bin Lookup", function (): void {
-    test.each([false, true])("should succeed on get 3ds availability. isMock: %p", async function (isMock): Promise<void> {
-        !isMock && nock.restore();
+    test("should succeed on get 3ds availability", async function (): Promise<void> {
         const threeDSAvailabilityRequest: IBinLookup.ThreeDSAvailabilityRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             brands: ["randomBrand"],
