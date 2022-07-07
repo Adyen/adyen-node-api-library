@@ -156,7 +156,7 @@ class Platforms extends Service {
 
     createRequest = <T extends PlatformsTypes, U, V>(service: T) => {
         return (request: U): Promise<V> => getJsonResponse<U, V>(service, request);
-    }
+    };
 
     public get Account(): {
         getAccountHolder: (request: GetAccountHolderRequest) => Promise<GetAccountHolderResponse>;

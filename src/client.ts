@@ -61,7 +61,7 @@ class Client {
     public static MARKETPAY_NOTIFICATION_API_VERSION = "v5";
     public static MARKETPAY_NOTIFICATION_CONFIGURATION_API_VERSION = "v6";
     public static PAYMENT_API_VERSION = "v68";
-    public static STOREDVALUE_API_VERSION = "v46"
+    public static STOREDVALUE_API_VERSION = "v46";
     public static LIB_NAME = "adyen-node-api-library";
     public static LIB_VERSION: string = version;
     public static CHECKOUT_ENDPOINT_TEST = "https://checkout-test.adyen.com/checkout";

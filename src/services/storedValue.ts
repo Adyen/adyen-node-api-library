@@ -1,57 +1,88 @@
-import { LookupAddress } from "dns";
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
 import {
-
+  StoredValueBalanceCheckRequest,
+  StoredValueBalanceCheckResponse,
+  StoredValueBalanceMergeRequest,
+  StoredValueBalanceMergeResponse,
+  StoredValueIssueRequest,
+  StoredValueIssueResponse,
+  StoredValueLoadRequest,
+  StoredValueLoadResponse,
+  StoredValueStatusChangeRequest,
+  StoredValueStatusChangeResponse,
+  StoredValueVoidRequest,
+  StoredValueVoidResponse,
 } from "../typings/storedValue/models";
-import { Issuer } from "../typings/terminal/issuer";
+import ChangeStatus from "./resource/storedValue/changeStatus";
+import Issue from "./resource/storedValue/issue";
+import Load from "./resource/storedValue/load";
+import CheckBalance from "./resource/storedValue/checkBalance";
+import MergeBalance from "./resource/storedValue/mergeBalance";
+import VoidTransaction from "./resource/storedValue/voidTransaction";
 
-class Recurring extends Service {
+class StoredValue extends Service {
 
-    private readonly _issue: Issuer;
+    private readonly _issue: Issue;
     private readonly _changeStatus: ChangeStatus;
     private readonly _load: Load;
-    private readonly _checkBalance CheckBalance;
-    private readonly _mergebalance MergeBalance;
-    private readonly _voidTransaction VoidTransaction;
+    private readonly _checkBalance: CheckBalance;
+    private readonly _mergebalance: MergeBalance;
+    private readonly _voidTransaction: VoidTransaction;
 
 
     public constructor(client: Client) {
         super(client);
-        this._listRecurringDetails = new ListRecurringDetails(this);
-        this._disable = new Disable(this);
-        this._scheduleAccountUpdater = new ScheduleAccountUpdater(this);
-        this._notifyShopper = new NotifyShopper(this);
+        this._issue = new Issue(this);
+        this._changeStatus = new ChangeStatus(this);
+        this._load = new Load(this);
+        this._checkBalance = new CheckBalance(this);
+        this._mergebalance = new MergeBalance(this);
+        this._voidTransaction = new VoidTransaction(this);
     }
 
-    public listRecurringDetails(request: RecurringDetailsRequest): Promise<RecurringDetailsResult> {
-        return getJsonResponse<RecurringDetailsRequest, RecurringDetailsResult>(
-            this._listRecurringDetails,
+    public issue(request: StoredValueIssueRequest): Promise<StoredValueIssueResponse> {
+        return getJsonResponse<StoredValueIssueRequest, StoredValueIssueResponse>(
+            this._issue,
             request,
         );
     }
 
-    public disable(request: DisableRequest): Promise<DisableResult> {
-        return getJsonResponse<DisableRequest, DisableResult>(
-            this._disable,
+    public changeStatus(request: StoredValueStatusChangeRequest): Promise<StoredValueStatusChangeResponse> {
+        return getJsonResponse<StoredValueStatusChangeRequest, StoredValueStatusChangeResponse>(
+            this._changeStatus,
             request,
         );
     }
 
-    public scheduleAccountUpdater(request: ScheduleAccountUpdaterRequest): Promise<ScheduleAccountUpdaterResult> {
-        return getJsonResponse<ScheduleAccountUpdaterRequest, ScheduleAccountUpdaterResult>(
-            this._scheduleAccountUpdater,
+    public load(request: StoredValueLoadRequest): Promise<StoredValueLoadResponse> {
+        return getJsonResponse<StoredValueLoadRequest, StoredValueLoadResponse>(
+            this._load,
             request,
         );
     }
 
-    public notifyShopper(request: NotifyShopperRequest): Promise<NotifyShopperResult> {
-        return getJsonResponse<NotifyShopperRequest, NotifyShopperResult>(
-            this._notifyShopper,
-            request
+    public checkBalance(request: StoredValueBalanceCheckRequest): Promise<StoredValueBalanceCheckResponse> {
+        return getJsonResponse<StoredValueBalanceCheckRequest, StoredValueBalanceCheckResponse>(
+            this._checkBalance,
+            request,
+        );
+    }
+
+    public mergebalance(request: StoredValueBalanceMergeRequest): Promise<StoredValueBalanceMergeResponse> {
+        return getJsonResponse<StoredValueBalanceMergeRequest, StoredValueBalanceMergeResponse>(
+            this._mergebalance,
+            request,
+        );
+    }
+
+    public voidTransaction(request: StoredValueVoidRequest): Promise<StoredValueVoidResponse> {
+        return getJsonResponse<StoredValueVoidRequest, StoredValueVoidResponse>(
+            this._voidTransaction,
+            request,
         );
     }
 }
 
-export default Recurring;
+export default StoredValue;
