@@ -16,7 +16,7 @@ $(services):
 		-t templates/typescript \
 		-o build \
 		--global-property models
-	mv build/model src/typings/$@
+	cp -r build/model src/typings/$@
 
 # Checkout spec (and patch version)
 build/spec:
