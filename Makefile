@@ -15,7 +15,7 @@ $(services):
 		-g $(generator) \
 		-t templates/typescript \
 		-o build \
-		--global-property models
+		--global-property models,supportingFiles
 	mv build/model src/typings/$@
 
 # Checkout spec (and patch version)
