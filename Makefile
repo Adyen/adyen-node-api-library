@@ -1,5 +1,5 @@
 generator:=typescript-node
-openapi-generator-cli:=docker run --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v5.4.0
+openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v5.4.0
 services:=checkout storedValue
 
 # Generate models
@@ -16,7 +16,7 @@ $(services):
 		-t templates/typescript \
 		-o build \
 		--global-property models
-	cp -r build/model src/typings/$@
+	mv build/model src/typings/$@
 
 # Checkout spec (and patch version)
 build/spec:
