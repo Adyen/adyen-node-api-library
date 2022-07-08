@@ -1,12 +1,13 @@
 generator:=typescript-node
 openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v5.4.0
-services:=checkout storedValue
+services:=checkout storedValue terminalManagement
 
 # Generate models
 models: $(services)
 
 checkout: spec=CheckoutService-v69
 storedValue: spec=StoredValueService-v46
+terminalManagement: spec=TfmAPIService-v1
 
 $(services): build/spec 
 	rm -rf src/typings/$@ build/model
