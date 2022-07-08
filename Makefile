@@ -3,12 +3,12 @@ openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v $
 services:=checkout storedValue
 
 # Generate models
-models: build/spec checkout storedValue
+models: $(services)
 
 checkout: spec=CheckoutService-v69
 storedValue: spec=StoredValueService-v46
 
-$(services):
+$(services): build/spec 
 	rm -rf src/typings/$@ build/model
 	$(openapi-generator-cli) generate \
 		-i build/spec/json/$(spec).json \
