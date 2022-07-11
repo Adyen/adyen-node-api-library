@@ -74,7 +74,7 @@ describe("Recurring", (): void => {
         const result = await recurring.listRecurringDetails(request);
         
         expect(result).toBeTruthy();
-        expect(result.details?.[0].RecurringDetail.recurringDetailReference).toBe("recurringReference");
+        expect(result.details?.[0].recurringDetailReference).toBe("recurringReference");
     });
 
     test.each([isCI, true])("should disable, isMock: %p", async (isMock): Promise<void> => {
