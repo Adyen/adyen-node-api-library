@@ -1,0 +1,29 @@
+name: Node.js Models
+
+on: [ workflow_dispatch ]
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    name: Generate Models
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Generate models
+        run: make models
+      - name: Overwrite current models  
+        run: |
+          rm -rf src/typings/checkout
+          cp -r build/model src/typings/checkout
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
+          committer: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
+          author: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
+          base: develop
+          branch: automation/models
+          title: Update models
+          body: OpenAPI spec or templates produced new models.
+          add-paths: |
+            src/typings/checkout

@@ -13,3 +13,4 @@ node_modules
 coverage/
 .env
 lib/
+build/

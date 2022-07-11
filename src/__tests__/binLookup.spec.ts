@@ -1,21 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
 import BinLookup from "../services/binLookup";
@@ -49,8 +31,7 @@ afterEach((): void => {
 });
 
 describe("Bin Lookup", function (): void {
-    test.each([false, true])("should succeed on get 3ds availability. isMock: %p", async function (isMock): Promise<void> {
-        !isMock && nock.restore();
+    test("should succeed on get 3ds availability", async function (): Promise<void> {
         const threeDSAvailabilityRequest: IBinLookup.ThreeDSAvailabilityRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             brands: ["randomBrand"],
