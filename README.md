@@ -23,6 +23,7 @@ The Library supports all APIs under the following services:
   * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v6/overview) Current supported version: **v6**
 * [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
 * [BIN lookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v50/overview): The BIN Lookup API provides endpoints for retrieving information based on a given BIN.  Current supported version: **v50**
+* [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api): Manage both online and point-of-sale gift cards and other stored-value cards.  Current supported version: **v46**
 
 In addition it supports the following type collections:
 
