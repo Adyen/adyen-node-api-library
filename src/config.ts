@@ -35,6 +35,7 @@ interface ConfigConstructor {
     terminalApiCloudEndpoint?: string;
     terminalApiLocalEndpoint?: string;
     paymentEndpoint?: string;
+    storedValueEndpoint?: string;
 }
 
 class Config {
@@ -60,6 +61,7 @@ class Config {
     public terminalApiLocalEndpoint?: string;
 
     public paymentEndpoint?: string;
+    public storedValueEndpoint?: string;
 
     public constructor(options: ConfigConstructor = {}) {
         if (options.username) this.username = options.username;
@@ -80,6 +82,7 @@ class Config {
         if (options.terminalApiCloudEndpoint) this.terminalApiCloudEndpoint = options.terminalApiCloudEndpoint;
         if (options.terminalApiLocalEndpoint) this.terminalApiLocalEndpoint = options.terminalApiLocalEndpoint;
         if (options.paymentEndpoint) this.paymentEndpoint = options.paymentEndpoint;
+        if (options.storedValueEndpoint) this.storedValueEndpoint = options.storedValueEndpoint;
     }
 
     public set checkoutEndpoint(checkoutEndpoint: string | undefined) {

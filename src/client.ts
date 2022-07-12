@@ -54,13 +54,14 @@ class Client {
     public static MARKETPAY_ENDPOINT_LIVE = "https://cal-live.adyen.com/cal/services";
     public static CHECKOUT_API_VERSION = "v69";
     public static API_VERSION = "v64";
-    public static RECURRING_API_VERSION = "v49";
+    public static RECURRING_API_VERSION = "v68";
     public static MARKETPAY_ACCOUNT_API_VERSION = "v6";
     public static MARKETPAY_FUND_API_VERSION = "v6";
     public static MARKETPAY_HOP_API_VERSION = "v6";
     public static MARKETPAY_NOTIFICATION_API_VERSION = "v5";
     public static MARKETPAY_NOTIFICATION_CONFIGURATION_API_VERSION = "v6";
     public static PAYMENT_API_VERSION = "v68";
+    public static STOREDVALUE_API_VERSION = "v46";
     public static LIB_NAME = "adyen-node-api-library";
     public static LIB_VERSION: string = version;
     public static CHECKOUT_ENDPOINT_TEST = "https://checkout-test.adyen.com/checkout";
@@ -72,6 +73,8 @@ class Client {
     public static ENDPOINT_PROTOCOL = "https://";
     public static PAYMENT_API_ENDPOINT_TEST = "https://pal-test.adyen.com/pal/servlet/Payment";
     public static PAYMENT_API_ENDPOINT_LIVE = "https://pal-live.adyen.com/pal/servlet/Payment";
+    public static STOREDVALUE_API_ENDPOINT_TEST = "https://pal-test.adyen.com/pal/servlet/StoredValue";
+    public static STOREDVALUE_API_ENDPOINT_LIVE = "https://pal-live.adyen.com/pal/servlet/StoredValue";
 
 
     private _httpClient!: ClientInterface;
@@ -112,12 +115,14 @@ class Client {
             this.config.checkoutEndpoint = Client.CHECKOUT_ENDPOINT_TEST;
             this.config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
             this.config.paymentEndpoint = Client.PAYMENT_API_ENDPOINT_TEST;
+            this.config.storedValueEndpoint = Client.STOREDVALUE_API_ENDPOINT_TEST;
         } else if (environment === "LIVE") {
             this.config.endpoint = Client.ENDPOINT_LIVE;
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_LIVE;
             this.config.hppEndpoint = Client.HPP_LIVE;
             this.config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_LIVE;
             this.config.paymentEndpoint = Client.PAYMENT_API_ENDPOINT_LIVE;
+            this.config.storedValueEndpoint = Client.STOREDVALUE_API_ENDPOINT_LIVE;
             if (liveEndpointUrlPrefix) {
                 this.config.endpoint =
                     `${Client.ENDPOINT_PROTOCOL}${liveEndpointUrlPrefix}${Client.ENDPOINT_LIVE_SUFFIX}`;

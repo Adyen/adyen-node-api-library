@@ -1,22 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
@@ -39,7 +20,7 @@ class Recurring extends Service {
     private readonly _listRecurringDetails: ListRecurringDetails;
     private readonly _disable: Disable;
     private readonly _scheduleAccountUpdater: ScheduleAccountUpdater;
-    private readonly _notifyShopper: NotifyShopper
+    private readonly _notifyShopper: NotifyShopper;
 
     public constructor(client: Client) {
         super(client);
