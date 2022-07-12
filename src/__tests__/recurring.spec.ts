@@ -1,22 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
 import { disableSuccess } from "../__mocks__/recurring/disableSuccess";
@@ -44,7 +25,6 @@ const createRecurringDetailsRequest = (): RecurringDetailsRequest => {
         shopperReference: "shopperReference",
     };
 };
-const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 
 let client: Client;
 let recurring: RecurringService;
@@ -66,7 +46,7 @@ afterEach(() => {
 });
 
 describe("Recurring", (): void => {
-    test("should list recurring details ", async (): Promise<void> => {
+    test("should list recurring details", async (): Promise<void> => {
         scope.post("/listRecurringDetails")
             .reply(200, listRecurringDetailsSuccess);
         const request = createRecurringDetailsRequest();
@@ -74,11 +54,10 @@ describe("Recurring", (): void => {
         const result = await recurring.listRecurringDetails(request);
         
         expect(result).toBeTruthy();
-        expect(result.details?.[0].RecurringDetail.recurringDetailReference).toBe("recurringReference");
+        expect(result.details?.[0].recurringDetailReference).toBe("recurringReference");
     });
 
-    test.each([isCI, true])("should disable, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should disable", async (): Promise<void> => {
         scope.post("/payments")
             .reply(200, paymentsSuccess);
 
@@ -102,8 +81,7 @@ describe("Recurring", (): void => {
         }
     });
 
-    test.each([isCI, true])("should send pre-debit Notification, isMock %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should send pre-debit Notification", async (): Promise<void> => {
         scope.post("/notifyShopper")
             .reply(200, notifyShopperSuccess);
 
@@ -129,9 +107,7 @@ describe("Recurring", (): void => {
     });
 
 
-    // TODO: register account for AccountUpdater and unmock test
-    test.each([true])("should schedule account updater, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should schedule account updater", async (): Promise<void> => {
         const scheduleAccountUpdaterSuccess: ScheduleAccountUpdaterResult = {
             pspReference: "mocked_psp",
             result: "SUCCESS"
