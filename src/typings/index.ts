@@ -16,5 +16,6 @@ export * as notification from './notification/models';
 export * as platformsNotifications from './platformsNotifications/models';
 export * as platformsAccount from './platformsAccount/models';
 export * as platformsHostedOnboardingPage from './platformsHostedOnboardingPage/models';
-export * as recurring from './recurring/models'
+export * as recurring from './recurring/models';
+export * as storedValue from './storedValue/models';
 export * as terminal from './terminal/models';
