@@ -39,7 +39,7 @@ class Recurring extends Service {
     private readonly _listRecurringDetails: ListRecurringDetails;
     private readonly _disable: Disable;
     private readonly _scheduleAccountUpdater: ScheduleAccountUpdater;
-    private readonly _notifyShopper: NotifyShopper
+    private readonly _notifyShopper: NotifyShopper;
 
     public constructor(client: Client) {
         super(client);
