@@ -8,23 +8,26 @@
  */
 
 
-export class DisableResult {
-    /**
-    * Depending on whether a specific recurring detail was in the request, result is either [detail-successfully-disabled] or [all-details-successfully-disabled].
-    */
-    'response'?: string;
+export class TokenDetails {
+    'tokenData'?: { [key: string]: string; };
+    'tokenDataType'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "response",
-            "baseName": "response",
+            "name": "tokenData",
+            "baseName": "tokenData",
+            "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "tokenDataType",
+            "baseName": "tokenDataType",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return DisableResult.attributeTypeMap;
+        return TokenDetails.attributeTypeMap;
     }
 }
 
