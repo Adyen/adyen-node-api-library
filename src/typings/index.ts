@@ -37,3 +37,4 @@ export * as platformsNotifications from './platformsNotifications/models';
 export * as platformsAccount from './platformsAccount/models';
 export * as recurring from './recurring/models'
 export * as terminal from './terminal/models';
+export * as terminalManagement from './terminalManagement/models';
