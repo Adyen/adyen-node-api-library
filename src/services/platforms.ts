@@ -1,23 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
-
 import Service from "../service";
 import Client from "../client";
 import PlatformsAccount, { AccountTypesEnum }  from "./resource/platforms/account";
@@ -57,6 +37,13 @@ import {
     GetTaxFormRequest,
     GetTaxFormResponse,
 } from "../typings/platformsAccount/models";
+
+import { 
+    GetOnboardingUrlRequest, 
+    GetOnboardingUrlResponse, 
+    GetPciUrlRequest, 
+    GetPciUrlResponse 
+} from "../typings/platformsHostedOnboardingPage/models";
 
 type AccountType = AccountTypesEnum.Accounts;
 type VerificationType = AccountTypesEnum.Verification;
@@ -101,6 +88,7 @@ class Platforms extends Service {
 
     /* HOP */
     private readonly _getOnboardingUrl: PlatformsHostedOnboardingPage;
+    private readonly _getPciQuestionnaireUrl: PlatformsHostedOnboardingPage;
 
     /* Notification Configuration */
     private readonly _createNotificationConfiguration: PlatformsNotificationConfiguration;
@@ -144,6 +132,7 @@ class Platforms extends Service {
 
         // HOP
         this._getOnboardingUrl = new PlatformsHostedOnboardingPage(this, "/getOnboardingUrl");
+        this._getPciQuestionnaireUrl = new PlatformsHostedOnboardingPage(this, "/getPciQuestionnaireUrl");
 
         // Notification Configuration
         this._createNotificationConfiguration = new PlatformsNotificationConfiguration(this, "/createNotificationConfiguration");
@@ -156,7 +145,7 @@ class Platforms extends Service {
 
     createRequest = <T extends PlatformsTypes, U, V>(service: T) => {
         return (request: U): Promise<V> => getJsonResponse<U, V>(service, request);
-    }
+    };
 
     public get Account(): {
         getAccountHolder: (request: GetAccountHolderRequest) => Promise<GetAccountHolderResponse>;
@@ -224,10 +213,13 @@ class Platforms extends Service {
         return { accountHolderBalance, accountHolderTransactionList, payoutAccountHolder, refundFundsTransfer, transferFunds, setupBeneficiary, refundNotPaidOutTransfers };
     }
 
-    public get HostedOnboardingPage(): { getOnboardingUrl: (request: IPlatformsHostedOnboardingPage.GetOnboardingUrlRequest) => Promise<IPlatformsHostedOnboardingPage.GetOnboardingUrlResponse> } {
-        const getOnboardingUrl = this.createRequest<PlatformsHostedOnboardingPage, IPlatformsHostedOnboardingPage.GetOnboardingUrlRequest, IPlatformsHostedOnboardingPage.GetOnboardingUrlResponse>(this._getOnboardingUrl);
-
-        return { getOnboardingUrl };
+    public get HostedOnboardingPage(): { 
+        getOnboardingUrl: (request: GetOnboardingUrlRequest) => Promise<GetOnboardingUrlResponse>;
+        getPciQuestionnaireUrl: (request: GetPciUrlRequest) => Promise<GetPciUrlResponse>;
+    } {
+        const getOnboardingUrl = this.createRequest<PlatformsHostedOnboardingPage, GetOnboardingUrlRequest, GetOnboardingUrlResponse>(this._getOnboardingUrl);
+        const getPciQuestionnaireUrl = this.createRequest<PlatformsHostedOnboardingPage, GetPciUrlRequest, GetPciUrlResponse>(this._getPciQuestionnaireUrl);
+        return { getOnboardingUrl, getPciQuestionnaireUrl };
     }
 
     public get NotificationConfiguration(): {
