@@ -55,24 +55,24 @@ describe("Management", (): void => {
             expect(meResponse.id).toEqual("S2-6262224667");
         });
 
-        // test("Should add an allowed origin to the list of allowed origins",async (): Promise<void> => {
-        //     scope.post("/me/allowedOrigins")
-        //     .reply(200, {
-        //         "id": "S2-45597C41735B6D75433E2B396553453ertcdt347675B4E3B413B4C4571522A6B2921",
-        //         "domain": "https://www.us.mystore.com",
-        //         "_links": {
-        //             "self": {
-        //                 "href": "https://management-test.adyen.com/v1/me/allowedOrigins/S2-45597C41735B6D75433E2B396553453ertcdt347675B4E3B413B4C4571522A6B2921"
-        //             }
-        //         }
-        //     });
-        // const allowedOriginRequest: CreateAllowedOriginRequest = {
-        //     "domain": "https://www.us.mystore.com"
-        // };
+        test("Should add an allowed origin to the list of allowed origins",async (): Promise<void> => {
+            scope.post("/me/allowedOrigins")
+            .reply(200, {
+                "id": "S2-45597C41735B6D75433E2B396553453ertcdt347675B4E3B413B4C4571522A6B2921",
+                "domain": "https://www.us.mystore.com",
+                "_links": {
+                    "self": {
+                        "href": "https://management-test.adyen.com/v1/me/allowedOrigins/S2-45597C41735B6D75433E2B396553453ertcdt347675B4E3B413B4C4571522A6B2921"
+                    }
+                }
+            });
+        const allowedOriginRequest: AllowedOrigin = {
+            "domain": "https://www.us.mystore.com"
+        };
 
-        // const allowedOriginsResponse: AllowedOrigin = await management.Me.createAllowedOrigin(allowedOriginRequest);
-        // expect(allowedOriginsResponse.domain).toEqual("https://www.us.mystore.com");
-        // });
+        const allowedOriginsResponse: AllowedOrigin = await management.Me.createAllowedOrigin(allowedOriginRequest);
+        expect(allowedOriginsResponse.domain).toEqual("https://www.us.mystore.com");
+        });
 
         test("Should get the list of allowed origins of a API credential based on the API key used in the request", async(): Promise<void> => {
             scope.get("/me/allowedOrigins")

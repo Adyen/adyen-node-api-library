@@ -24,7 +24,7 @@ class MeApi extends Service {
 
     public get Me(): {
         retrieve:() => Promise<MeApiCredential>;
-        createAllowedOrigin: (allowedOriginRequest: CreateAllowedOriginRequest) => Promise<AllowedOriginsResponse>;
+        createAllowedOrigin: (allowedOriginRequest: CreateAllowedOriginRequest) => Promise<AllowedOrigin>;
         retrieveAllowedOrigins: () => Promise<AllowedOriginsResponse>;
         retrieveAllowedOrigin: (originId: string) => Promise<AllowedOrigin>;
         deleteAllowerdOrigin: (originId: string) => Promise<Record<string, unknown>>;
@@ -35,7 +35,7 @@ class MeApi extends Service {
             { method: "GET"}
         );
 
-        const createAllowedOrigin = (allowedOriginRequest: CreateAllowedOriginRequest) => getJsonResponse<CreateAllowedOriginRequest, AllowedOriginsResponse>(
+        const createAllowedOrigin = (allowedOriginRequest: CreateAllowedOriginRequest) => getJsonResponse<CreateAllowedOriginRequest, AllowedOrigin>(
             this._allowedOrigins,
             allowedOriginRequest,
         );
