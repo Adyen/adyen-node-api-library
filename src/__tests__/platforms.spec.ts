@@ -26,10 +26,10 @@ import { Client, Platforms } from "../index";
 import * as A from  "../typings/platformsAccount/models";
 import F = IPlatformsFund;
 import N = IPlatformsNotificationConfiguration;
-import H = IPlatformsHostedOnboardingPage;
 import AccountHolderDetails = A.AccountHolderDetails;
 import NotificationConfigurationDetails = N.NotificationConfigurationDetails;
 import HttpClientException from "../httpClient/httpClientException";
+import { GetOnboardingUrlRequest, GetOnboardingUrlResponse, GetPciUrlRequest, GetPciUrlResponse } from "../typings/platformsHostedOnboardingPage/models";
 
 let client: Client;
 let platforms: Platforms;
@@ -175,7 +175,8 @@ describe("Platforms Test", function () {
 
     describe("Hop", function () {
         const cases = [
-            ["getOnboardingUrl", createMock<H.GetOnboardingUrlRequest>(), createMock<H.GetOnboardingUrlResponse>()]
+            ["getOnboardingUrl", createMock<GetOnboardingUrlRequest>(), createMock<GetOnboardingUrlResponse>()],
+            ["getPciQuestionnaireUrl", createMock<GetPciUrlRequest>(), createMock<GetPciUrlResponse>()],
         ];
         test.each(cases)(
             "should %p",
