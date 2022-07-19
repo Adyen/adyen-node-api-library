@@ -9,15 +9,31 @@
 
 
 export class Phone {
-
     /**
     * Country code. Length: 1–3 characters.
     */
     'cc'?: string;
-
     /**
     * Subscriber number. Maximum length: 15 characters.
     */
     'subscriber'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "cc",
+            "baseName": "cc",
+            "type": "string"
+        },
+        {
+            "name": "subscriber",
+            "baseName": "subscriber",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Phone.attributeTypeMap;
+    }
 }
 
