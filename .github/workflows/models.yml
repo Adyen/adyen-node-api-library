@@ -7,14 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Generate Models
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Generate models
         run: make models
-      - name: Overwrite current models  
-        run: |
-          rm -rf src/typings/checkout
-          cp -r build/model src/typings/checkout
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
@@ -26,4 +21,4 @@ jobs:
           title: Update models
           body: OpenAPI spec or templates produced new models.
           add-paths: |
-            src/typings/checkout
+            src/typings
