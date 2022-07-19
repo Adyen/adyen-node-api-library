@@ -2,16 +2,18 @@ import nock from "nock";
 import Client from "../client";
 import { createClient } from "../__mocks__/base";
 import TerminalManagement from "../services/terminalManagement";
-import { AssignTerminalsRequest } from "../typings/terminalManagement/assignTerminalsRequest";
-import { AssignTerminalsResponse } from "../typings/terminalManagement/assignTerminalsResponse";
-import { FindTerminalRequest } from "../typings/terminalManagement/findTerminalRequest";
-import { FindTerminalResponse } from "../typings/terminalManagement/findTerminalResponse";
-import { GetStoresUnderAccountRequest } from "../typings/terminalManagement/getStoresUnderAccountRequest";
-import { GetStoresUnderAccountResponse } from "../typings/terminalManagement/getStoresUnderAccountResponse";
-import { GetTerminalDetailsRequest } from "../typings/terminalManagement/getTerminalDetailsRequest";
-import { GetTerminalDetailsResponse } from "../typings/terminalManagement/getTerminalDetailsResponse";
-import { GetTerminalsUnderAccountRequest } from "../typings/terminalManagement/getTerminalsUnderAccountRequest";
-import { GetTerminalsUnderAccountResponse } from "../typings/terminalManagement/getTerminalsUnderAccountResponse";
+import {
+    AssignTerminalsRequest,
+    AssignTerminalsResponse,
+    FindTerminalRequest,
+    FindTerminalResponse,
+    GetStoresUnderAccountRequest,
+    GetStoresUnderAccountResponse,
+    GetTerminalDetailsRequest,
+    GetTerminalDetailsResponse,
+    GetTerminalsUnderAccountRequest,
+    GetTerminalsUnderAccountResponse
+} from "../typings/terminalManagement/models";
 
 let client: Client;
 let terminalManagement: TerminalManagement;
