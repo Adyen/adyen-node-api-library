@@ -13,29 +13,49 @@ import { MerchantDevice } from './merchantDevice';
 import { ShopperInteractionDevice } from './shopperInteractionDevice';
 
 export class ApplicationInfo {
-
-    /**
-    */
     'adyenLibrary'?: CommonField;
-
-    /**
-    */
     'adyenPaymentSource'?: CommonField;
-
-    /**
-    */
     'externalPlatform'?: ExternalPlatform;
-
-    /**
-    */
     'merchantApplication'?: CommonField;
-
-    /**
-    */
     'merchantDevice'?: MerchantDevice;
-
-    /**
-    */
     'shopperInteractionDevice'?: ShopperInteractionDevice;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "adyenLibrary",
+            "baseName": "adyenLibrary",
+            "type": "CommonField"
+        },
+        {
+            "name": "adyenPaymentSource",
+            "baseName": "adyenPaymentSource",
+            "type": "CommonField"
+        },
+        {
+            "name": "externalPlatform",
+            "baseName": "externalPlatform",
+            "type": "ExternalPlatform"
+        },
+        {
+            "name": "merchantApplication",
+            "baseName": "merchantApplication",
+            "type": "CommonField"
+        },
+        {
+            "name": "merchantDevice",
+            "baseName": "merchantDevice",
+            "type": "MerchantDevice"
+        },
+        {
+            "name": "shopperInteractionDevice",
+            "baseName": "shopperInteractionDevice",
+            "type": "ShopperInteractionDevice"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ApplicationInfo.attributeTypeMap;
+    }
 }
 
