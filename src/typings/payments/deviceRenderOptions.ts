@@ -9,16 +9,32 @@
 
 
 export class DeviceRenderOptions {
-
     /**
     * Supported SDK interface types. Allowed values: * native * html * both
     */
     'sdkInterface'?: DeviceRenderOptions.SdkInterfaceEnum;
-
     /**
     * UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect
     */
     'sdkUiType'?: Array<DeviceRenderOptions.SdkUiTypeEnum>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "sdkInterface",
+            "baseName": "sdkInterface",
+            "type": "DeviceRenderOptions.SdkInterfaceEnum"
+        },
+        {
+            "name": "sdkUiType",
+            "baseName": "sdkUiType",
+            "type": "Array<DeviceRenderOptions.SdkUiTypeEnum>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DeviceRenderOptions.attributeTypeMap;
+    }
 }
 
 export namespace DeviceRenderOptions {
