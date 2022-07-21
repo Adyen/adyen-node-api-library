@@ -412,6 +412,9 @@ describe("Checkout", (): void => {
         const sessionsRequest: CreateCheckoutSessionRequest = createSessionRequest();
         const sessionsResponse: CreateCheckoutSessionResponse = await checkout.sessions(sessionsRequest);
         expect(sessionsResponse.sessionData).toBeTruthy();
+        expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);
+        expect(sessionsResponse.expiresAt.getFullYear()).toBe(2021);
+        expect(sessionsResponse.expiresAt.toISOString()).toEqual("2021-10-08T15:28:56.000Z");
     });
 
     test("Should get card details", async (): Promise<void> => {

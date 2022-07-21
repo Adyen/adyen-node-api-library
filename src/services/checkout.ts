@@ -54,6 +54,7 @@ import {
     PaymentRefundResource,
     PaymentReversalResource,
     StandalonePaymentCancelResource,
+    ObjectSerializer
 } from "../typings/checkout/models";
 
 import PaymentLinksId from "./resource/checkout/paymentLinksId";
@@ -100,11 +101,12 @@ class Checkout extends ApiKeyAuthenticatedService {
 
     // Payments
 
-    public sessions(checkoutSessionRequest: CreateCheckoutSessionRequest): Promise<CreateCheckoutSessionResponse> {
-        return getJsonResponse<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse>(
+    public async sessions(checkoutSessionRequest: CreateCheckoutSessionRequest): Promise<CreateCheckoutSessionResponse> {
+        const response = await getJsonResponse<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse>(
             this._sessions,
             checkoutSessionRequest,
         );
+        return ObjectSerializer.deserialize(response, "CreateCheckoutSessionResponse");
     }
 
     public paymentMethods(paymentMethodsRequest: PaymentMethodsRequest): Promise<PaymentMethodsResponse> {
