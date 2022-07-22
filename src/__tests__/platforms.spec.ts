@@ -141,7 +141,7 @@ describe("Platforms Test", function () {
             ["refundNotPaidOutTransfers", createMock<F.RefundNotPaidOutTransfersRequest>(), createMock<F.RefundNotPaidOutTransfersResponse>()],
             ["debitAccountHolder", createMock<DebitAccountHolderRequest>(), createMock<DebitAccountHolderResponse>()],
         ];
-        test.only.each(cases)(
+        test.each(cases)(
             "should %p",
             async (...args) => {
                 const fund = platforms.Fund;

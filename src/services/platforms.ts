@@ -44,8 +44,7 @@ import {
     GetPciUrlRequest, 
     GetPciUrlResponse 
 } from "../typings/platformsHostedOnboardingPage/models";
-import { DebitAccountHolderRequest } from "../typings/platformsFund/debitAccountHolderRequest";
-import { DebitAccountHolderResponse } from "../typings/platformsFund/debitAccountHolderResponse";
+import { DebitAccountHolderRequest, DebitAccountHolderResponse } from "../typings/platformsFund/models";
 
 type AccountType = AccountTypesEnum.Accounts;
 type VerificationType = AccountTypesEnum.Verification;
