@@ -1,7 +1,7 @@
 import nock from "nock";
 import Client from "../client";
 import {createClient} from "../__mocks__/base";
-import StoredValue from "../services/storedValue";
+import {StoredValue} from "../services";
 import { StoredValueIssueRequest,
     StoredValueIssueResponse,
     StoredValueStatusChangeRequest,
