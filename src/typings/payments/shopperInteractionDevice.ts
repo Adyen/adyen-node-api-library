@@ -9,20 +9,40 @@
 
 
 export class ShopperInteractionDevice {
-
     /**
     * Locale on the shopper interaction device.
     */
     'locale'?: string;
-
     /**
     * Operating system running on the shopper interaction device.
     */
     'os'?: string;
-
     /**
     * Version of the operating system on the shopper interaction device.
     */
     'osVersion'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "locale",
+            "baseName": "locale",
+            "type": "string"
+        },
+        {
+            "name": "os",
+            "baseName": "os",
+            "type": "string"
+        },
+        {
+            "name": "osVersion",
+            "baseName": "osVersion",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ShopperInteractionDevice.attributeTypeMap;
+    }
 }
 
