@@ -44,6 +44,7 @@ import {
     GetPciUrlRequest, 
     GetPciUrlResponse 
 } from "../typings/platformsHostedOnboardingPage/models";
+import { DebitAccountHolderRequest, DebitAccountHolderResponse } from "../typings/platformsFund/models";
 
 type AccountType = AccountTypesEnum.Accounts;
 type VerificationType = AccountTypesEnum.Verification;
@@ -85,6 +86,7 @@ class Platforms extends Service {
     private readonly _refundFundsTransfer: PlatformsFund;
     private readonly _setupBeneficiary: PlatformsFund;
     private readonly _refundNotPaidOutTransfers: PlatformsFund;
+    private readonly _debitAccountHolder: PlatformsFund;
 
     /* HOP */
     private readonly _getOnboardingUrl: PlatformsHostedOnboardingPage;
@@ -129,6 +131,7 @@ class Platforms extends Service {
         this._refundFundsTransfer = new PlatformsFund(this, "/refundFundsTransfer");
         this._setupBeneficiary = new PlatformsFund(this, "/setupBeneficiary");
         this._refundNotPaidOutTransfers = new PlatformsFund(this, "/refundNotPaidOutTransfers");
+        this._debitAccountHolder = new PlatformsFund(this, "/debitAccountHolder");
 
         // HOP
         this._getOnboardingUrl = new PlatformsHostedOnboardingPage(this, "/getOnboardingUrl");
@@ -201,6 +204,7 @@ class Platforms extends Service {
         refundFundsTransfer: (request: IPlatformsFund.RefundFundsTransferRequest) => Promise<IPlatformsFund.RefundFundsTransferResponse>;
         payoutAccountHolder: (request: IPlatformsFund.PayoutAccountHolderRequest) => Promise<IPlatformsFund.PayoutAccountHolderResponse>;
         accountHolderBalance: (request: IPlatformsFund.AccountHolderBalanceRequest) => Promise<IPlatformsFund.AccountHolderBalanceResponse>;
+        debitAccountHolder: (request: DebitAccountHolderRequest) => Promise<DebitAccountHolderResponse>;
     } {
         const accountHolderBalance = this.createRequest<PlatformsFund, IPlatformsFund.AccountHolderBalanceRequest, IPlatformsFund.AccountHolderBalanceResponse>(this._accountHolderBalance);
         const accountHolderTransactionList = this.createRequest<PlatformsFund, IPlatformsFund.AccountHolderTransactionListRequest, IPlatformsFund.AccountHolderTransactionListResponse>(this._accountHolderTransactionList);
@@ -209,8 +213,9 @@ class Platforms extends Service {
         const refundFundsTransfer = this.createRequest<PlatformsFund, IPlatformsFund.RefundFundsTransferRequest, IPlatformsFund.RefundFundsTransferResponse>(this._refundFundsTransfer);
         const setupBeneficiary = this.createRequest<PlatformsFund, IPlatformsFund.SetupBeneficiaryRequest, IPlatformsFund.SetupBeneficiaryResponse>(this._setupBeneficiary);
         const refundNotPaidOutTransfers = this.createRequest<PlatformsFund, IPlatformsFund.RefundNotPaidOutTransfersRequest, IPlatformsFund.RefundNotPaidOutTransfersResponse>(this._refundNotPaidOutTransfers);
+        const debitAccountHolder = this.createRequest<PlatformsFund, DebitAccountHolderRequest, DebitAccountHolderResponse>(this._debitAccountHolder);
 
-        return { accountHolderBalance, accountHolderTransactionList, payoutAccountHolder, refundFundsTransfer, transferFunds, setupBeneficiary, refundNotPaidOutTransfers };
+        return { accountHolderBalance, accountHolderTransactionList, payoutAccountHolder, refundFundsTransfer, transferFunds, setupBeneficiary, refundNotPaidOutTransfers, debitAccountHolder };
     }
 
     public get HostedOnboardingPage(): { 
