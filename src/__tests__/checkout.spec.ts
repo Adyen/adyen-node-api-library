@@ -1,22 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
 import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess";
@@ -174,6 +155,86 @@ afterEach(() => {
 });
 
 describe("Checkout", (): void => {
+    test("should add idempotency key to request headers", async (): Promise<void> => {
+        const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
+        scope.post("/payments")
+            .reply(200, paymentsSuccess)
+            .matchHeader("Idempotency-Key", "testKey");
+        await checkout.payments(paymentsRequest, {idempotencyKey: "testKey"});
+
+        const paymentMethodsRequest: PaymentMethodsRequest = {merchantAccount};
+        scope.post("/paymentMethods")
+            .reply(200, paymentMethodsSuccess)
+            .matchHeader("Idempotency-Key", "testKey");
+        await checkout.paymentMethods(paymentMethodsRequest, {idempotencyKey: "testKey"});
+
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const paymentLinkSuccess: PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
+        scope.post("/paymentLinks")
+            .reply(200, paymentLinkSuccess)
+            .matchHeader("Idempotency-Key", "testKey");
+        await checkout.paymentLinks(createPaymentLinkRequest(), {idempotencyKey: "testKey"});
+
+        scope.patch("/paymentLinks/321")
+            .reply(200, { ...paymentLinkSuccess, status: "expired" })
+            .matchHeader("Idempotency-Key", "testKey");
+        await checkout.updatePaymentLinks("321", "expired", {idempotencyKey: "testKey"});
+
+        scope.get("/paymentLinks/123")
+            .reply(200, paymentLinkSuccess)
+            .matchHeader("Idempotency-Key", "testKey");
+        await checkout.getPaymentLinks("123", {idempotencyKey: "testKey"});
+
+        scope.post("/payments/details")
+            .reply(200, paymentDetailsSuccess)
+            .matchHeader("Idempotency-Key", "testKey");
+        await checkout.paymentsDetails(createPaymentsDetailsRequest(), {idempotencyKey: "testKey"});
+
+        scope.post("/paymentSession")
+            .reply(200, paymentSessionSuccess)
+            .matchHeader("Idempotency-Key", "testKey");
+        const paymentSessionRequest: PaymentSetupRequest = createPaymentSessionRequest();
+        await checkout.paymentSession(paymentSessionRequest, {idempotencyKey: "testKey"});
+
+        scope.post("/payments/result")
+            .reply(200, paymentsResultSuccess)
+            .matchHeader("Idempotency-Key", "testKey");
+        const paymentResultRequest: PaymentVerificationRequest = {
+            payload: "This is a test payload",
+        };
+        await checkout.paymentResult(paymentResultRequest, {idempotencyKey: "testKey"});
+
+        const orderRequest: CheckoutCreateOrderRequest = {
+            amount: createAmountObject("USD", 1000),
+            merchantAccount,
+            reference
+        };
+        scope.post("/orders")
+            .reply(200,  {})
+            .matchHeader("Idempotency-Key", "testKey");
+        await checkout.orders(orderRequest, {idempotencyKey: "testKey"});
+
+        scope.post("/orders/cancel")
+            .reply(200,  {})
+            .matchHeader("Idempotency-Key", "testKey");
+        await checkout.ordersCancel({
+            order: {
+                orderData: "mock_data",
+                pspReference: "mock_pspref"
+            },
+            merchantAccount
+        }, {idempotencyKey: "testKey"});
+
+        scope.post("/sessions")
+            .reply(200, sessionsSuccess)
+            .matchHeader("Idempotency-Key", "testKey");
+
+        const sessionsRequest: CreateCheckoutSessionRequest = createSessionRequest();
+        await checkout.sessions(sessionsRequest, {idempotencyKey: "testKey"});
+
+    });
+
+
     test.each([false, true])("should make a payment. isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/payments")
