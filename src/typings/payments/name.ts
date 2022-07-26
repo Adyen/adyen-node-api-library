@@ -9,15 +9,31 @@
 
 
 export class Name {
-
     /**
     * The first name.
     */
     'firstName': string;
-
     /**
     * The last name.
     */
     'lastName': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "firstName",
+            "baseName": "firstName",
+            "type": "string"
+        },
+        {
+            "name": "lastName",
+            "baseName": "lastName",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Name.attributeTypeMap;
+    }
 }
 

@@ -30,6 +30,7 @@ import AccountHolderDetails = A.AccountHolderDetails;
 import NotificationConfigurationDetails = N.NotificationConfigurationDetails;
 import HttpClientException from "../httpClient/httpClientException";
 import { GetOnboardingUrlRequest, GetOnboardingUrlResponse, GetPciUrlRequest, GetPciUrlResponse } from "../typings/platformsHostedOnboardingPage/models";
+import { DebitAccountHolderRequest, DebitAccountHolderResponse } from "../typings/platformsFund/models";
 
 let client: Client;
 let platforms: Platforms;
@@ -138,6 +139,7 @@ describe("Platforms Test", function () {
             ["refundFundsTransfer", createMock<F.RefundFundsTransferRequest>(), createMock<F.RefundFundsTransferResponse>()],
             ["setupBeneficiary", createMock<F.SetupBeneficiaryRequest>(), createMock<F.SetupBeneficiaryResponse>()],
             ["refundNotPaidOutTransfers", createMock<F.RefundNotPaidOutTransfersRequest>(), createMock<F.RefundNotPaidOutTransfersResponse>()],
+            ["debitAccountHolder", createMock<DebitAccountHolderRequest>(), createMock<DebitAccountHolderResponse>()],
         ];
         test.each(cases)(
             "should %p",
