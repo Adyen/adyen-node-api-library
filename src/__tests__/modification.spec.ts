@@ -13,6 +13,7 @@ import {
     PaymentCaptureResource, PaymentRefundResource, PaymentReversalResource,
     StandalonePaymentCancelResource
 } from "../typings/checkout/models";
+import HttpClientException from "../httpClient/httpClientException";
 
 const invalidModificationResult = {
     "status": 422,
@@ -177,8 +178,12 @@ describe("Modification", (): void => {
         try {
             const result = await checkout.amountUpdates(paymentPspReference, request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            if(e.message) fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -191,9 +196,13 @@ describe("Modification", (): void => {
 
         try {
             await checkout.amountUpdates(invalidPaymentPspReference, request);
-        } catch (e: any) {
-            expect(e.statusCode).toBe(422);
-            expect(e.message).toContain("Original pspReference required for this operation");
+        } catch (e) {
+            if(e instanceof HttpClientException) {
+                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.message).toContain("Original pspReference required for this operation");
+            } else {
+                fail();
+            }
         }
     });
 
@@ -205,8 +214,12 @@ describe("Modification", (): void => {
         try {
             const result = await checkout.cancels(paymentPspReference, request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -218,9 +231,13 @@ describe("Modification", (): void => {
             .reply(422, invalidModificationResult);
         try {
             await checkout.cancels(invalidPaymentPspReference, request);
-        } catch (e: any) {
-            expect(e.statusCode).toBe(422);
-            expect(e.message).toContain("Original pspReference required for this operation");
+        } catch (e) {
+            if(e instanceof HttpClientException) {
+                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.message).toContain("Original pspReference required for this operation");
+            } else {
+                fail();
+            }
         }
     });
 
@@ -232,8 +249,12 @@ describe("Modification", (): void => {
         try {
             const result = await checkout.cancelsStandalone(request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -245,8 +266,12 @@ describe("Modification", (): void => {
         try {
             const result = await checkout.captures(paymentPspReference, request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -258,9 +283,13 @@ describe("Modification", (): void => {
             .reply(422, invalidModificationResult);
         try {
             await checkout.captures(invalidPaymentPspReference, request);
-        } catch (e: any) {
-            if(e.statusCode) expect(e.statusCode).toBe(422);
-            if(e.message) expect(e.message).toContain("Original pspReference required for this operation");
+        } catch (e) {
+            if(e instanceof HttpClientException) {
+                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.message).toContain("Original pspReference required for this operation");
+            } else {
+                fail();
+            }
         }
     });
 
@@ -272,8 +301,12 @@ describe("Modification", (): void => {
         try {
             const result = await checkout.refunds(paymentPspReference, request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            if(e.message) fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -285,9 +318,13 @@ describe("Modification", (): void => {
             .reply(422, invalidModificationResult);
         try {
             await checkout.refunds(invalidPaymentPspReference, request);
-        } catch (e: any) {
-            if(e.statusCode) expect(e.statusCode).toBe(422);
-            expect(e.message).toContain("Original pspReference required for this operation");
+        } catch (e) {
+            if(e instanceof HttpClientException) {
+                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.message).toContain("Original pspReference required for this operation");
+            } else {
+                fail();
+            }
         }
     });
 
@@ -299,8 +336,12 @@ describe("Modification", (): void => {
         try {
             const result = await checkout.reversals(paymentPspReference, request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -312,9 +353,13 @@ describe("Modification", (): void => {
             .reply(422, invalidModificationResult);
         try {
             await checkout.reversals(invalidPaymentPspReference, request);
-        } catch (e: any) {
-            if(e.statusCode) expect(e.statusCode).toBe(422);
-            expect(e.message).toContain("Original pspReference required for this operation");
+        } catch (e) {
+            if(e instanceof HttpClientException) {
+                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.message).toContain("Original pspReference required for this operation");
+            } else {
+                fail();
+            }
         }
     });
 });
