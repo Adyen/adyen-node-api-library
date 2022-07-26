@@ -72,7 +72,6 @@ class Checkout extends ApiKeyAuthenticatedService {
     private readonly _paymentSession: PaymentSession;
     private readonly _paymentsResult: PaymentsResult;
     private readonly _paymentLinks: PaymentLinks;
-    private readonly _paymentLinksId: PaymentLinksId;
     private readonly _originKeys: OriginKeys;
     private readonly _paymentMethodsBalance: PaymentMethodsBalance;
     private readonly _orders: Orders;
@@ -89,7 +88,6 @@ class Checkout extends ApiKeyAuthenticatedService {
         this._paymentSession = new PaymentSession(this);
         this._paymentsResult = new PaymentsResult(this);
         this._paymentLinks = new PaymentLinks(this);
-        this._paymentLinksId = new PaymentLinksId(this);
         this._originKeys = new OriginKeys(this);
         this._paymentMethodsBalance = new PaymentMethodsBalance(this);
         this._orders = new Orders(this);
@@ -101,18 +99,20 @@ class Checkout extends ApiKeyAuthenticatedService {
 
     // Payments
 
-    public async sessions(checkoutSessionRequest: CreateCheckoutSessionRequest): Promise<CreateCheckoutSessionResponse> {
+    public async sessions(checkoutSessionRequest: CreateCheckoutSessionRequest, requestOptions?: IRequest.Options): Promise<CreateCheckoutSessionResponse> {
         const response = await getJsonResponse<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse>(
             this._sessions,
             checkoutSessionRequest,
+            requestOptions,
         );
         return ObjectSerializer.deserialize(response, "CreateCheckoutSessionResponse");
     }
 
-    public async paymentMethods(paymentMethodsRequest: PaymentMethodsRequest): Promise<PaymentMethodsResponse> {
+    public async paymentMethods(paymentMethodsRequest: PaymentMethodsRequest, requestOptions?: IRequest.Options): Promise<PaymentMethodsResponse> {
         const response = await getJsonResponse<PaymentMethodsRequest, PaymentMethodsResponse>(
             this._paymentMethods,
             paymentMethodsRequest,
+            requestOptions,
         );
         return ObjectSerializer.deserialize(response, "PaymentMethodsResponse");
     }
@@ -130,53 +130,56 @@ class Checkout extends ApiKeyAuthenticatedService {
         const response = await getJsonResponse<DetailsRequest, PaymentResponse>(
             this._paymentsDetails,
             paymentsDetailsRequest,
-            requestOptions
+            requestOptions,
         );
         return ObjectSerializer.deserialize(response, "PaymentResponse");
     }
 
-    public async donations(donationRequest: PaymentDonationRequest): Promise<DonationResponse> {
+    public async donations(donationRequest: PaymentDonationRequest, requestOptions?: IRequest.Options): Promise<DonationResponse> {
         const response = await getJsonResponse<PaymentDonationRequest, DonationResponse>(
             this._donations,
             donationRequest,
+            requestOptions,
         );
         return ObjectSerializer.deserialize(response, "DonationResponse");
     }
 
-    public async cardDetails(cardDetailsRequest: CardDetailsRequest): Promise<CardDetailsResponse> {
+    public async cardDetails(cardDetailsRequest: CardDetailsRequest, requestOptions?: IRequest.Options): Promise<CardDetailsResponse> {
         const response = await getJsonResponse<CardDetailsRequest, CardDetailsResponse>(
             this._cardDetails,
             cardDetailsRequest,
+            requestOptions,
         );
         return ObjectSerializer.deserialize(response, "CardDetailsResponse");
     }
 
     // Payment Links
 
-    public async paymentLinks(paymentLinkRequest: CreatePaymentLinkRequest): Promise<PaymentLinkResponse> {
+    public async paymentLinks(paymentLinkRequest: CreatePaymentLinkRequest, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
         const response = await getJsonResponse<CreatePaymentLinkRequest, PaymentLinkResponse>(
             this._paymentLinks,
-            paymentLinkRequest
+            paymentLinkRequest,
+            requestOptions,
         );
         return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
 
-    public async getPaymentLinks(linkId: string): Promise<PaymentLinkResponse> {
-        this._paymentLinksId.id = linkId;
+    public async getPaymentLinks(linkId: string, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
+        const paymentLinksId = new PaymentLinksId(this, linkId);
         const response = await getJsonResponse<Record<string, never>, PaymentLinkResponse>(
-            this._paymentLinksId,
+            paymentLinksId,
             {},
-            { method: "GET" }
+            {...{ method: "GET" }, ...requestOptions},
         );
         return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
 
-    public async updatePaymentLinks(linkId: string, status: "expired"): Promise<PaymentLinkResponse> {
-        this._paymentLinksId.id = linkId;
+    public async updatePaymentLinks(linkId: string, status: "expired", requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
+        const paymentLinksId = new PaymentLinksId(this, linkId);
         const response = await getJsonResponse<Record<string, unknown>, PaymentLinkResponse>(
-            this._paymentLinksId,
+            paymentLinksId,
             { status },
-            { method: "PATCH" }
+            {...{ method: "PATCH" }, ...requestOptions},
         );
         return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
@@ -268,26 +271,29 @@ class Checkout extends ApiKeyAuthenticatedService {
 
     // Orders
 
-    public async paymentMethodsBalance(paymentMethodsBalanceRequest: CheckoutBalanceCheckRequest): Promise<CheckoutBalanceCheckResponse> {
+    public async paymentMethodsBalance(paymentMethodsBalanceRequest: CheckoutBalanceCheckRequest, requestOptions?: IRequest.Options): Promise<CheckoutBalanceCheckResponse> {
         const response = await getJsonResponse<CheckoutBalanceCheckRequest, CheckoutBalanceCheckResponse>(
             this._paymentMethodsBalance,
             paymentMethodsBalanceRequest,
+            requestOptions,
         );
         return ObjectSerializer.deserialize(response, "CheckoutBalanceCheckResponse");
     }
 
-    public async orders(ordersRequest: CheckoutCreateOrderRequest): Promise<CheckoutCreateOrderResponse> {
+    public async orders(ordersRequest: CheckoutCreateOrderRequest, requestOptions?: IRequest.Options): Promise<CheckoutCreateOrderResponse> {
         const response = await getJsonResponse<CheckoutCreateOrderRequest, CheckoutCreateOrderResponse>(
             this._orders,
             ordersRequest,
+            requestOptions,
         );
         return ObjectSerializer.deserialize(response, "CheckoutCreateOrderResponse");
     }
 
-    public async ordersCancel(ordersCancelRequest: CheckoutCancelOrderRequest): Promise<CheckoutCancelOrderResponse> {
+    public async ordersCancel(ordersCancelRequest: CheckoutCancelOrderRequest, requestOptions?: IRequest.Options): Promise<CheckoutCancelOrderResponse> {
         const response = await getJsonResponse<CheckoutCancelOrderRequest, CheckoutCancelOrderResponse>(
             this._ordersCancel,
             ordersCancelRequest,
+            requestOptions,
         );
         return ObjectSerializer.deserialize(response, "CheckoutCancelOrderResponse");
     }
@@ -306,20 +312,22 @@ class Checkout extends ApiKeyAuthenticatedService {
         return ObjectSerializer.deserialize(response, "PaymentSetupResponse");
     }
 
-    public async paymentResult(paymentResultRequest: PaymentVerificationRequest): Promise<PaymentVerificationResponse> {
+    public async paymentResult(paymentResultRequest: PaymentVerificationRequest, requestOptions?: IRequest.Options): Promise<PaymentVerificationResponse> {
         const response = await getJsonResponse<PaymentVerificationRequest, PaymentVerificationResponse>(
             this._paymentsResult,
             paymentResultRequest,
+            requestOptions,
         );
         return ObjectSerializer.deserialize(response, "PaymentVerificationResponse");
     }
 
     //Utility
 
-    public async originKeys(originKeysRequest: CheckoutUtilityRequest): Promise<CheckoutUtilityResponse> {
+    public async originKeys(originKeysRequest: CheckoutUtilityRequest, requestOptions?: IRequest.Options): Promise<CheckoutUtilityResponse> {
         const response = await getJsonResponse<CheckoutUtilityRequest, CheckoutUtilityResponse>(
             this._originKeys,
             originKeysRequest,
+            requestOptions,
         );
         return ObjectSerializer.deserialize(response, "CheckoutUtilityResponse");
     }
