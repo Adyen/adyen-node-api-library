@@ -71,7 +71,6 @@ class Checkout extends ApiKeyAuthenticatedService {
     private readonly _paymentSession: PaymentSession;
     private readonly _paymentsResult: PaymentsResult;
     private readonly _paymentLinks: PaymentLinks;
-    private readonly _paymentLinksId: PaymentLinksId;
     private readonly _originKeys: OriginKeys;
     private readonly _paymentMethodsBalance: PaymentMethodsBalance;
     private readonly _orders: Orders;
@@ -88,7 +87,6 @@ class Checkout extends ApiKeyAuthenticatedService {
         this._paymentSession = new PaymentSession(this);
         this._paymentsResult = new PaymentsResult(this);
         this._paymentLinks = new PaymentLinks(this);
-        this._paymentLinksId = new PaymentLinksId(this);
         this._originKeys = new OriginKeys(this);
         this._paymentMethodsBalance = new PaymentMethodsBalance(this);
         this._orders = new Orders(this);
@@ -100,17 +98,19 @@ class Checkout extends ApiKeyAuthenticatedService {
 
     // Payments
 
-    public sessions(checkoutSessionRequest: CreateCheckoutSessionRequest): Promise<CreateCheckoutSessionResponse> {
+    public sessions(checkoutSessionRequest: CreateCheckoutSessionRequest, requestOptions?: IRequest.Options): Promise<CreateCheckoutSessionResponse> {
         return getJsonResponse<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse>(
             this._sessions,
             checkoutSessionRequest,
+            requestOptions,
         );
     }
 
-    public paymentMethods(paymentMethodsRequest: PaymentMethodsRequest): Promise<PaymentMethodsResponse> {
+    public paymentMethods(paymentMethodsRequest: PaymentMethodsRequest, requestOptions?: IRequest.Options): Promise<PaymentMethodsResponse> {
         return getJsonResponse<PaymentMethodsRequest, PaymentMethodsResponse>(
             this._paymentMethods,
             paymentMethodsRequest,
+            requestOptions,
         );
     }
 
@@ -126,48 +126,51 @@ class Checkout extends ApiKeyAuthenticatedService {
         return getJsonResponse<DetailsRequest, PaymentResponse>(
             this._paymentsDetails,
             paymentsDetailsRequest,
-            requestOptions
+            requestOptions,
         );
     }
 
-    public donations(donationRequest: PaymentDonationRequest): Promise<DonationResponse> {
+    public donations(donationRequest: PaymentDonationRequest, requestOptions?: IRequest.Options): Promise<DonationResponse> {
         return getJsonResponse<PaymentDonationRequest, DonationResponse>(
             this._donations,
             donationRequest,
+            requestOptions,
         );
     }
 
-    public cardDetails(cardDetailsRequest: CardDetailsRequest): Promise<CardDetailsResponse> {
+    public cardDetails(cardDetailsRequest: CardDetailsRequest, requestOptions?: IRequest.Options): Promise<CardDetailsResponse> {
         return getJsonResponse<CardDetailsRequest, CardDetailsResponse>(
             this._cardDetails,
             cardDetailsRequest,
+            requestOptions,
         );
     }
 
     // Payment Links
 
-    public paymentLinks(paymentLinkRequest: CreatePaymentLinkRequest): Promise<PaymentLinkResponse> {
+    public paymentLinks(paymentLinkRequest: CreatePaymentLinkRequest, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
         return getJsonResponse<CreatePaymentLinkRequest, PaymentLinkResponse>(
             this._paymentLinks,
-            paymentLinkRequest
+            paymentLinkRequest,
+            requestOptions,
         );
     }
 
-    public getPaymentLinks(linkId: string): Promise<PaymentLinkResponse> {
-        this._paymentLinksId.id = linkId;
+    public getPaymentLinks(linkId: string, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
+        const paymentLinksId = new PaymentLinksId(this, linkId);
         return getJsonResponse<Record<string, never>, PaymentLinkResponse>(
-            this._paymentLinksId,
+            paymentLinksId,
             {},
-            { method: "GET" }
+            {...{ method: "GET" }, ...requestOptions},
         );
     }
 
-    public updatePaymentLinks(linkId: string, status: "expired"): Promise<PaymentLinkResponse> {
-        this._paymentLinksId.id = linkId;
+    public updatePaymentLinks(linkId: string, status: "expired", requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
+        const paymentLinksId = new PaymentLinksId(this, linkId);
         return getJsonResponse<Record<string, unknown>, PaymentLinkResponse>(
-            this._paymentLinksId,
+            paymentLinksId,
             { status },
-            { method: "PATCH" }
+            {...{ method: "PATCH" }, ...requestOptions},
         );
     }
 
@@ -252,24 +255,27 @@ class Checkout extends ApiKeyAuthenticatedService {
 
     // Orders
 
-    public paymentMethodsBalance(paymentMethodsBalanceRequest: CheckoutBalanceCheckRequest): Promise<CheckoutBalanceCheckResponse> {
+    public paymentMethodsBalance(paymentMethodsBalanceRequest: CheckoutBalanceCheckRequest, requestOptions?: IRequest.Options): Promise<CheckoutBalanceCheckResponse> {
         return getJsonResponse<CheckoutBalanceCheckRequest, CheckoutBalanceCheckResponse>(
             this._paymentMethodsBalance,
             paymentMethodsBalanceRequest,
+            requestOptions,
         );
     }
 
-    public orders(ordersRequest: CheckoutCreateOrderRequest): Promise<CheckoutCreateOrderResponse> {
+    public orders(ordersRequest: CheckoutCreateOrderRequest, requestOptions?: IRequest.Options): Promise<CheckoutCreateOrderResponse> {
         return getJsonResponse<CheckoutCreateOrderRequest, CheckoutCreateOrderResponse>(
             this._orders,
             ordersRequest,
+            requestOptions,
         );
     }
 
-    public ordersCancel(ordersCancelRequest: CheckoutCancelOrderRequest): Promise<CheckoutCancelOrderResponse> {
+    public ordersCancel(ordersCancelRequest: CheckoutCancelOrderRequest, requestOptions?: IRequest.Options): Promise<CheckoutCancelOrderResponse> {
         return getJsonResponse<CheckoutCancelOrderRequest, CheckoutCancelOrderResponse>(
             this._ordersCancel,
             ordersCancelRequest,
+            requestOptions,
         );
     }
 
@@ -286,19 +292,21 @@ class Checkout extends ApiKeyAuthenticatedService {
         );
     }
 
-    public paymentResult(paymentResultRequest: PaymentVerificationRequest): Promise<PaymentVerificationResponse> {
+    public paymentResult(paymentResultRequest: PaymentVerificationRequest, requestOptions?: IRequest.Options): Promise<PaymentVerificationResponse> {
         return getJsonResponse<PaymentVerificationRequest, PaymentVerificationResponse>(
             this._paymentsResult,
             paymentResultRequest,
+            requestOptions,
         );
     }
 
     //Utility
 
-    public originKeys(originKeysRequest: CheckoutUtilityRequest): Promise<CheckoutUtilityResponse> {
+    public originKeys(originKeysRequest: CheckoutUtilityRequest, requestOptions?: IRequest.Options): Promise<CheckoutUtilityResponse> {
         return getJsonResponse<CheckoutUtilityRequest, CheckoutUtilityResponse>(
             this._originKeys,
             originKeysRequest,
+            requestOptions,
         );
     }
 }
