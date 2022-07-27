@@ -63,6 +63,7 @@ class Client {
     public static PAYMENT_API_VERSION = "v68";
     public static STOREDVALUE_API_VERSION = "v46";
     public static TERMINAL_MANAGEMENT_API_VERSION = "v1";
+    public static MANAGEMENT_API_VERSION = "v1";
     public static LIB_NAME = "adyen-node-api-library";
     public static LIB_VERSION: string = version;
     public static CHECKOUT_ENDPOINT_TEST = "https://checkout-test.adyen.com/checkout";
@@ -78,7 +79,8 @@ class Client {
     public static STOREDVALUE_API_ENDPOINT_LIVE = "https://pal-live.adyen.com/pal/servlet/StoredValue";
     public static TERMINAL_MANAGEMENT_API_ENDPOINT_TEST = "https://postfmapi-test.adyen.com/postfmapi/terminal";
     public static TERMINAL_MANAGEMENT_API_ENDPOINT_LIVE = "https://postfmapi-live.adyen.com/postfmapi/terminal";
-
+    public static MANAGEMENT_API_ENDPOINT_TEST = "https://management-test.adyen.com";
+    public static MANAGEMENT_API_ENDPOINT_LIVE = "https://management-live.adyen.com";
 
     private _httpClient!: ClientInterface;
     public config: Config;
@@ -120,6 +122,7 @@ class Client {
             this.config.paymentEndpoint = Client.PAYMENT_API_ENDPOINT_TEST;
             this.config.storedValueEndpoint = Client.STOREDVALUE_API_ENDPOINT_TEST;
             this.config.terminalManagementEndpoint = Client.TERMINAL_MANAGEMENT_API_ENDPOINT_TEST;
+            this.config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_TEST;
         } else if (environment === "LIVE") {
             this.config.endpoint = Client.ENDPOINT_LIVE;
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_LIVE;
@@ -128,6 +131,8 @@ class Client {
             this.config.paymentEndpoint = Client.PAYMENT_API_ENDPOINT_LIVE;
             this.config.storedValueEndpoint = Client.STOREDVALUE_API_ENDPOINT_LIVE;
             this.config.terminalManagementEndpoint = Client.TERMINAL_MANAGEMENT_API_ENDPOINT_LIVE;
+            this.config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_LIVE;
+
             if (liveEndpointUrlPrefix) {
                 this.config.endpoint =
                     `${Client.ENDPOINT_PROTOCOL}${liveEndpointUrlPrefix}${Client.ENDPOINT_LIVE_SUFFIX}`;

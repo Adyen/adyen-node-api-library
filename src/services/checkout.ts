@@ -54,6 +54,7 @@ import {
     PaymentRefundResource,
     PaymentReversalResource,
     StandalonePaymentCancelResource,
+    ObjectSerializer
 } from "../typings/checkout/models";
 
 import PaymentLinksId from "./resource/checkout/paymentLinksId";
@@ -71,7 +72,6 @@ class Checkout extends ApiKeyAuthenticatedService {
     private readonly _paymentSession: PaymentSession;
     private readonly _paymentsResult: PaymentsResult;
     private readonly _paymentLinks: PaymentLinks;
-    private readonly _paymentLinksId: PaymentLinksId;
     private readonly _originKeys: OriginKeys;
     private readonly _paymentMethodsBalance: PaymentMethodsBalance;
     private readonly _orders: Orders;
@@ -88,7 +88,6 @@ class Checkout extends ApiKeyAuthenticatedService {
         this._paymentSession = new PaymentSession(this);
         this._paymentsResult = new PaymentsResult(this);
         this._paymentLinks = new PaymentLinks(this);
-        this._paymentLinksId = new PaymentLinksId(this);
         this._originKeys = new OriginKeys(this);
         this._paymentMethodsBalance = new PaymentMethodsBalance(this);
         this._orders = new Orders(this);
@@ -100,206 +99,237 @@ class Checkout extends ApiKeyAuthenticatedService {
 
     // Payments
 
-    public sessions(checkoutSessionRequest: CreateCheckoutSessionRequest): Promise<CreateCheckoutSessionResponse> {
-        return getJsonResponse<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse>(
+    public async sessions(checkoutSessionRequest: CreateCheckoutSessionRequest, requestOptions?: IRequest.Options): Promise<CreateCheckoutSessionResponse> {
+        const response = await getJsonResponse<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse>(
             this._sessions,
             checkoutSessionRequest,
+            requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "CreateCheckoutSessionResponse");
     }
 
-    public paymentMethods(paymentMethodsRequest: PaymentMethodsRequest): Promise<PaymentMethodsResponse> {
-        return getJsonResponse<PaymentMethodsRequest, PaymentMethodsResponse>(
+    public async paymentMethods(paymentMethodsRequest: PaymentMethodsRequest, requestOptions?: IRequest.Options): Promise<PaymentMethodsResponse> {
+        const response = await getJsonResponse<PaymentMethodsRequest, PaymentMethodsResponse>(
             this._paymentMethods,
             paymentMethodsRequest,
+            requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "PaymentMethodsResponse");
     }
 
-    public payments(paymentsRequest: PaymentRequest, requestOptions?: IRequest.Options): Promise<PaymentResponse> {
-        return getJsonResponse<PaymentRequest, PaymentResponse>(
+    public async payments(paymentsRequest: PaymentRequest, requestOptions?: IRequest.Options): Promise<PaymentResponse> {
+        const response = await getJsonResponse<PaymentRequest, PaymentResponse>(
             this._payments,
             setApplicationInfo(paymentsRequest),
             requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "PaymentResponse");
     }
 
-    public paymentsDetails(paymentsDetailsRequest: DetailsRequest, requestOptions?: IRequest.Options): Promise<PaymentResponse> {
-        return getJsonResponse<DetailsRequest, PaymentResponse>(
+    public async paymentsDetails(paymentsDetailsRequest: DetailsRequest, requestOptions?: IRequest.Options): Promise<PaymentResponse> {
+        const response = await getJsonResponse<DetailsRequest, PaymentResponse>(
             this._paymentsDetails,
             paymentsDetailsRequest,
-            requestOptions
+            requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "PaymentResponse");
     }
 
-    public donations(donationRequest: PaymentDonationRequest): Promise<DonationResponse> {
-        return getJsonResponse<PaymentDonationRequest, DonationResponse>(
+    public async donations(donationRequest: PaymentDonationRequest, requestOptions?: IRequest.Options): Promise<DonationResponse> {
+        const response = await getJsonResponse<PaymentDonationRequest, DonationResponse>(
             this._donations,
             donationRequest,
+            requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "DonationResponse");
     }
 
-    public cardDetails(cardDetailsRequest: CardDetailsRequest): Promise<CardDetailsResponse> {
-        return getJsonResponse<CardDetailsRequest, CardDetailsResponse>(
+    public async cardDetails(cardDetailsRequest: CardDetailsRequest, requestOptions?: IRequest.Options): Promise<CardDetailsResponse> {
+        const response = await getJsonResponse<CardDetailsRequest, CardDetailsResponse>(
             this._cardDetails,
             cardDetailsRequest,
+            requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "CardDetailsResponse");
     }
 
     // Payment Links
 
-    public paymentLinks(paymentLinkRequest: CreatePaymentLinkRequest): Promise<PaymentLinkResponse> {
-        return getJsonResponse<CreatePaymentLinkRequest, PaymentLinkResponse>(
+    public async paymentLinks(paymentLinkRequest: CreatePaymentLinkRequest, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
+        const response = await getJsonResponse<CreatePaymentLinkRequest, PaymentLinkResponse>(
             this._paymentLinks,
-            paymentLinkRequest
+            paymentLinkRequest,
+            requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
 
-    public getPaymentLinks(linkId: string): Promise<PaymentLinkResponse> {
-        this._paymentLinksId.id = linkId;
-        return getJsonResponse<Record<string, never>, PaymentLinkResponse>(
-            this._paymentLinksId,
+    public async getPaymentLinks(linkId: string, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
+        const paymentLinksId = new PaymentLinksId(this, linkId);
+        const response = await getJsonResponse<Record<string, never>, PaymentLinkResponse>(
+            paymentLinksId,
             {},
-            { method: "GET" }
+            {...{ method: "GET" }, ...requestOptions},
         );
+        return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
 
-    public updatePaymentLinks(linkId: string, status: "expired"): Promise<PaymentLinkResponse> {
-        this._paymentLinksId.id = linkId;
-        return getJsonResponse<Record<string, unknown>, PaymentLinkResponse>(
-            this._paymentLinksId,
+    public async updatePaymentLinks(linkId: string, status: "expired", requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
+        const paymentLinksId = new PaymentLinksId(this, linkId);
+        const response = await getJsonResponse<Record<string, unknown>, PaymentLinkResponse>(
+            paymentLinksId,
             { status },
-            { method: "PATCH" }
+            {...{ method: "PATCH" }, ...requestOptions},
         );
+        return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
 
     // Modifications
 
-    public amountUpdates(
+    public async amountUpdates(
         paymentPspReference: string,
         amountUpdatesRequest: CreatePaymentAmountUpdateRequest,
         requestOptions?: IRequest.Options,
     ): Promise<PaymentAmountUpdateResource> {
         const amountUpdates = new AmountUpdates(this, paymentPspReference);
-        return getJsonResponse<CreatePaymentAmountUpdateRequest, PaymentAmountUpdateResource>(
+        const response = await getJsonResponse<CreatePaymentAmountUpdateRequest, PaymentAmountUpdateResource>(
             amountUpdates,
             amountUpdatesRequest,
             requestOptions
         );
+        return ObjectSerializer.deserialize(response, "PaymentAmountUpdateResource");
     }
 
-    public cancelsStandalone(
+    public async cancelsStandalone(
         cancelsStandaloneRequest: CreateStandalonePaymentCancelRequest,
         requestOptions?: IRequest.Options
     ): Promise<StandalonePaymentCancelResource> {
         const cancelsStandalone = new CancelsStandalone(this);
-        return getJsonResponse<CreateStandalonePaymentCancelRequest, StandalonePaymentCancelResource>(
+        const response = await getJsonResponse<CreateStandalonePaymentCancelRequest, StandalonePaymentCancelResource>(
             cancelsStandalone,
             cancelsStandaloneRequest,
             requestOptions
         );
+        return ObjectSerializer.deserialize(response, "StandalonePaymentCancelResource");
     }
 
-    public cancels(
+    public async cancels(
         paymentPspReference: string,
         cancelsRequest: CreatePaymentCancelRequest,
         requestOptions?: IRequest.Options,
     ): Promise<PaymentCancelResource> {
         const cancels = new Cancels(this, paymentPspReference);
-        return getJsonResponse<CreatePaymentCancelRequest, PaymentCancelResource>(
+        const response = await getJsonResponse<CreatePaymentCancelRequest, PaymentCancelResource>(
             cancels,
             cancelsRequest,
             requestOptions
         );
+        return ObjectSerializer.deserialize(response, "PaymentCancelResource");
     }
 
-    public captures(
+    public async captures(
         paymentPspReference: string,
         capturesRequest: CreatePaymentCaptureRequest,
         requestOptions?: IRequest.Options
     ): Promise<PaymentCaptureResource> {
         const captures = new Captures(this, paymentPspReference);
-        return getJsonResponse<CreatePaymentCaptureRequest, PaymentCaptureResource>(
+        const response = await getJsonResponse<CreatePaymentCaptureRequest, PaymentCaptureResource>(
             captures,
             capturesRequest,
             requestOptions
         );
+        return ObjectSerializer.deserialize(response, "PaymentCaptureResource");
     }
 
-    public refunds(
+    public async refunds(
         paymentPspReference: string,
         refundsRequest: CreatePaymentRefundRequest,
         requestOptions?: IRequest.Options
     ): Promise<PaymentRefundResource> {
         const refunds = new Refunds(this, paymentPspReference);
-        return getJsonResponse<CreatePaymentRefundRequest, PaymentRefundResource>(
+        const response = await getJsonResponse<CreatePaymentRefundRequest, PaymentRefundResource>(
             refunds,
             refundsRequest,
             requestOptions
         );
+        return ObjectSerializer.deserialize(response, "PaymentRefundResource");
     }
 
-    public reversals(
+    public async reversals(
         paymentPspReference: string,
         reversalsRequest: CreatePaymentReversalRequest,
         requestOptions?: IRequest.Options
     ): Promise<PaymentReversalResource> {
         const refunds = new Reversals(this, paymentPspReference);
-        return getJsonResponse<CreatePaymentReversalRequest, PaymentReversalResource>(
+        const response = await getJsonResponse<CreatePaymentReversalRequest, PaymentReversalResource>(
             refunds,
             reversalsRequest,
             requestOptions
         );
+        return ObjectSerializer.deserialize(response, "PaymentReversalResource");
     }
 
     // Orders
 
-    public paymentMethodsBalance(paymentMethodsBalanceRequest: CheckoutBalanceCheckRequest): Promise<CheckoutBalanceCheckResponse> {
-        return getJsonResponse<CheckoutBalanceCheckRequest, CheckoutBalanceCheckResponse>(
+    public async paymentMethodsBalance(paymentMethodsBalanceRequest: CheckoutBalanceCheckRequest, requestOptions?: IRequest.Options): Promise<CheckoutBalanceCheckResponse> {
+        const response = await getJsonResponse<CheckoutBalanceCheckRequest, CheckoutBalanceCheckResponse>(
             this._paymentMethodsBalance,
             paymentMethodsBalanceRequest,
+            requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "CheckoutBalanceCheckResponse");
     }
 
-    public orders(ordersRequest: CheckoutCreateOrderRequest): Promise<CheckoutCreateOrderResponse> {
-        return getJsonResponse<CheckoutCreateOrderRequest, CheckoutCreateOrderResponse>(
+    public async orders(ordersRequest: CheckoutCreateOrderRequest, requestOptions?: IRequest.Options): Promise<CheckoutCreateOrderResponse> {
+        const response = await getJsonResponse<CheckoutCreateOrderRequest, CheckoutCreateOrderResponse>(
             this._orders,
             ordersRequest,
+            requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "CheckoutCreateOrderResponse");
     }
 
-    public ordersCancel(ordersCancelRequest: CheckoutCancelOrderRequest): Promise<CheckoutCancelOrderResponse> {
-        return getJsonResponse<CheckoutCancelOrderRequest, CheckoutCancelOrderResponse>(
+    public async ordersCancel(ordersCancelRequest: CheckoutCancelOrderRequest, requestOptions?: IRequest.Options): Promise<CheckoutCancelOrderResponse> {
+        const response = await getJsonResponse<CheckoutCancelOrderRequest, CheckoutCancelOrderResponse>(
             this._ordersCancel,
             ordersCancelRequest,
+            requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "CheckoutCancelOrderResponse");
     }
 
     // Classic Checkout SDK
 
-    public paymentSession(
+    public async paymentSession(
         paymentSessionRequest: PaymentSetupRequest,
         requestOptions?: IRequest.Options,
     ): Promise<PaymentSetupResponse> {
-        return getJsonResponse<PaymentSetupRequest, PaymentSetupResponse>(
+        const response = await getJsonResponse<PaymentSetupRequest, PaymentSetupResponse>(
             this._paymentSession,
             paymentSessionRequest,
             requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "PaymentSetupResponse");
     }
 
-    public paymentResult(paymentResultRequest: PaymentVerificationRequest): Promise<PaymentVerificationResponse> {
-        return getJsonResponse<PaymentVerificationRequest, PaymentVerificationResponse>(
+    public async paymentResult(paymentResultRequest: PaymentVerificationRequest, requestOptions?: IRequest.Options): Promise<PaymentVerificationResponse> {
+        const response = await getJsonResponse<PaymentVerificationRequest, PaymentVerificationResponse>(
             this._paymentsResult,
             paymentResultRequest,
+            requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "PaymentVerificationResponse");
     }
 
     //Utility
 
-    public originKeys(originKeysRequest: CheckoutUtilityRequest): Promise<CheckoutUtilityResponse> {
-        return getJsonResponse<CheckoutUtilityRequest, CheckoutUtilityResponse>(
+    public async originKeys(originKeysRequest: CheckoutUtilityRequest, requestOptions?: IRequest.Options): Promise<CheckoutUtilityResponse> {
+        const response = await getJsonResponse<CheckoutUtilityRequest, CheckoutUtilityResponse>(
             this._originKeys,
             originKeysRequest,
+            requestOptions,
         );
+        return ObjectSerializer.deserialize(response, "CheckoutUtilityResponse");
     }
 }
 

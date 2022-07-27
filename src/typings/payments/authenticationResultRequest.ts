@@ -9,15 +9,31 @@
 
 
 export class AuthenticationResultRequest {
-
     /**
     * The merchant account identifier, with which the authentication was processed.
     */
     'merchantAccount': string;
-
     /**
     * The pspReference identifier for the transaction.
     */
     'pspReference': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "merchantAccount",
+            "baseName": "merchantAccount",
+            "type": "string"
+        },
+        {
+            "name": "pspReference",
+            "baseName": "pspReference",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AuthenticationResultRequest.attributeTypeMap;
+    }
 }
 

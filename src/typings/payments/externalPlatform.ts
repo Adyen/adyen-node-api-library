@@ -9,20 +9,40 @@
 
 
 export class ExternalPlatform {
-
     /**
     * External platform integrator.
     */
     'integrator'?: string;
-
     /**
     * Name of the field. For example, Name of External Platform.
     */
     'name'?: string;
-
     /**
     * Version of the field. For example, Version of External Platform.
     */
     'version'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "integrator",
+            "baseName": "integrator",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "version",
+            "baseName": "version",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ExternalPlatform.attributeTypeMap;
+    }
 }
 
