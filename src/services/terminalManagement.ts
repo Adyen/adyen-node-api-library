@@ -1,16 +1,19 @@
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
-import { AssignTerminalsRequest } from "../typings/terminalManagement/assignTerminalsRequest";
-import { AssignTerminalsResponse } from "../typings/terminalManagement/assignTerminalsResponse";
-import { FindTerminalRequest } from "../typings/terminalManagement/findTerminalRequest";
-import { FindTerminalResponse } from "../typings/terminalManagement/findTerminalResponse";
-import { GetStoresUnderAccountRequest } from "../typings/terminalManagement/getStoresUnderAccountRequest";
-import { GetStoresUnderAccountResponse } from "../typings/terminalManagement/getStoresUnderAccountResponse";
-import { GetTerminalDetailsRequest } from "../typings/terminalManagement/getTerminalDetailsRequest";
-import { GetTerminalDetailsResponse } from "../typings/terminalManagement/getTerminalDetailsResponse";
-import { GetTerminalsUnderAccountRequest } from "../typings/terminalManagement/getTerminalsUnderAccountRequest";
-import { GetTerminalsUnderAccountResponse } from "../typings/terminalManagement/getTerminalsUnderAccountResponse";
+import {
+    AssignTerminalsRequest,
+    AssignTerminalsResponse,
+    FindTerminalRequest,
+    FindTerminalResponse,
+    GetStoresUnderAccountRequest,
+    GetStoresUnderAccountResponse,
+    GetTerminalDetailsRequest,
+    GetTerminalDetailsResponse,
+    GetTerminalsUnderAccountRequest,
+    GetTerminalsUnderAccountResponse,
+    ObjectSerializer
+} from "../typings/terminalManagement/models";
 import AssignTerminals from "./resource/terminalManagement/assignTerminals";
 import FindTerminal from "./resource/terminalManagement/findTerminal";
 import GetStoresUnderAccount from "./resource/terminalManagement/getStoresUnderAccount";
@@ -24,7 +27,6 @@ class TerminalManagement extends Service {
     private readonly _getTerminalDetails: GetTerminalDetails;
     private readonly _getTerminalsUnderAccount: GetTerminalsUnderAccount;
 
-
     public constructor(client: Client) {
         super(client);
         this._assignTerminals = new AssignTerminals(this);
@@ -34,39 +36,44 @@ class TerminalManagement extends Service {
         this._getTerminalsUnderAccount = new GetTerminalsUnderAccount(this);
     }
 
-    public assignTerminals(request: AssignTerminalsRequest): Promise<AssignTerminalsResponse> {
-        return getJsonResponse<AssignTerminalsRequest, AssignTerminalsResponse>(
+    public async assignTerminals(request: AssignTerminalsRequest): Promise<AssignTerminalsResponse> {
+        const response = await getJsonResponse<AssignTerminalsRequest, AssignTerminalsResponse>(
             this._assignTerminals,
             request,
         );
+        return ObjectSerializer.deserialize(response, "AssignTerminalsResponse");
     }
     
-    public findTerminal(request: FindTerminalRequest): Promise<FindTerminalResponse> {
-        return getJsonResponse<FindTerminalRequest, FindTerminalResponse>(
+    public async findTerminal(request: FindTerminalRequest): Promise<FindTerminalResponse> {
+        const response = await getJsonResponse<FindTerminalRequest, FindTerminalResponse>(
             this._findTerminal,
             request,
         );
+        return ObjectSerializer.deserialize(response, "FindTerminalResponse");
     }
     
-    public getStoresUnderAccount(request: GetStoresUnderAccountRequest): Promise<GetStoresUnderAccountResponse> {
-        return getJsonResponse<GetStoresUnderAccountRequest, GetStoresUnderAccountResponse>(
+    public async getStoresUnderAccount(request: GetStoresUnderAccountRequest): Promise<GetStoresUnderAccountResponse> {
+        const response = await getJsonResponse<GetStoresUnderAccountRequest, GetStoresUnderAccountResponse>(
             this._getStoresUnderAccount,
             request,
         );
+        return ObjectSerializer.deserialize(response, "GetStoresUnderAccountResponse");
     }
     
-    public getTerminalDetails(request: GetTerminalDetailsRequest): Promise<GetTerminalDetailsResponse> {
-        return getJsonResponse<GetTerminalDetailsRequest, GetTerminalDetailsResponse>(
+    public async getTerminalDetails(request: GetTerminalDetailsRequest): Promise<GetTerminalDetailsResponse> {
+        const response = await getJsonResponse<GetTerminalDetailsRequest, GetTerminalDetailsResponse>(
             this._getTerminalDetails,
             request,
         );
+        return ObjectSerializer.deserialize(response, "GetTerminalDetailsResponse");
     }
     
-    public getTerminalsUnderAccount(request: GetTerminalsUnderAccountRequest): Promise<GetTerminalsUnderAccountResponse> {
-        return getJsonResponse<GetTerminalsUnderAccountRequest, GetTerminalsUnderAccountResponse>(
+    public async getTerminalsUnderAccount(request: GetTerminalsUnderAccountRequest): Promise<GetTerminalsUnderAccountResponse> {
+        const response = await getJsonResponse<GetTerminalsUnderAccountRequest, GetTerminalsUnderAccountResponse>(
             this._getTerminalsUnderAccount,
             request,
         );
+        return ObjectSerializer.deserialize(response, "GetTerminalsUnderAccountResponse");
     }
 }
 
