@@ -78,7 +78,9 @@ class Client {
     public static STOREDVALUE_API_ENDPOINT_LIVE = "https://pal-live.adyen.com/pal/servlet/StoredValue";
     public static MANAGEMENT_API_ENDPOINT_TEST = "https://management-test.adyen.com";
     public static MANAGEMENT_API_ENDPOINT_LIVE = "https://management-live.adyen.com";
-
+    public static BALANCE_PLATFORM_API_VERSION = "v2";
+    public static BALANCE_PLATFORM_API_ENDPOINT_TEST = "https://balanceplatform-api-test.adyen.com/bcl";
+    public static BALANCE_PLATFORM_API_ENDPOINT_LIVE = "https://balanceplatform-api-live.adyen.com/bcl";
 
     private _httpClient!: ClientInterface;
     public config: Config;
@@ -120,6 +122,7 @@ class Client {
             this.config.paymentEndpoint = Client.PAYMENT_API_ENDPOINT_TEST;
             this.config.storedValueEndpoint = Client.STOREDVALUE_API_ENDPOINT_TEST;
             this.config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_TEST;
+            this.config.balancePlatformEndpoint = Client.BALANCE_PLATFORM_API_ENDPOINT_TEST;
         } else if (environment === "LIVE") {
             this.config.endpoint = Client.ENDPOINT_LIVE;
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_LIVE;
@@ -128,6 +131,7 @@ class Client {
             this.config.paymentEndpoint = Client.PAYMENT_API_ENDPOINT_LIVE;
             this.config.storedValueEndpoint = Client.STOREDVALUE_API_ENDPOINT_LIVE;
             this.config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_LIVE;
+            this.config.balancePlatformEndpoint = Client.BALANCE_PLATFORM_API_ENDPOINT_LIVE;
 
             if (liveEndpointUrlPrefix) {
                 this.config.endpoint =

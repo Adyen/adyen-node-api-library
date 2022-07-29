@@ -47,6 +47,7 @@ export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     config.paymentEndpoint = Client.PAYMENT_API_ENDPOINT_TEST;
     config.storedValueEndpoint = Client.STOREDVALUE_API_ENDPOINT_TEST;
     config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_TEST;
+    config.balancePlatformEndpoint = Client.BALANCE_PLATFORM_API_ENDPOINT_TEST;
 
     return new Client({ config });
 };
