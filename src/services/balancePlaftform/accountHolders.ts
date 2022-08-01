@@ -1,4 +1,3 @@
-import { Client } from "../..";
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import { AccountHolder } from "../../typings/balancePlatform/accountHolder";
@@ -8,10 +7,6 @@ import { ObjectSerializer } from "../../typings/checkout/models";
 import BalancePlatformResource from "../resource/balancePlaftformResource";
 
 class AccountHolders extends Service {
-    public constructor(client: Client) {
-        super(client);
-    }
-
     public async create(request: AccountHolderInfo): Promise<AccountHolder> {
         const resource = new BalancePlatformResource(this, `/accountHolders`);
         const response = await getJsonResponse<AccountHolderInfo, AccountHolder>(
