@@ -135,9 +135,8 @@ describe("Balance Platform", (): void => {
             expect(response.status).toBe("Suspended");
         });
 
-
-        it("should support GET /accountHolders/{id}/balanceAccounts", async (): Promise<void> => {
-            scope.get("/accountHolders/AH32272223222B5CM4MWJ892H/balanceAccounts")
+        it.only("should support GET /accountHolders/{id}/balanceAccounts", async (): Promise<void> => {
+            scope.get("/accountHolders/AH32272223222B5CM4MWJ892H/balanceAccounts?limit=5&offset=10")
                 .reply(200, {
                     "balanceAccounts": [
                         {
@@ -163,7 +162,12 @@ describe("Balance Platform", (): void => {
                     "hasPrevious": false
                 });
 
-            const response: PaginatedBalanceAccountsResponse = await balancePlatform.AccountHolders.list("AH32272223222B5CM4MWJ892H");
+            const response: PaginatedBalanceAccountsResponse = await balancePlatform.AccountHolders.list("AH32272223222B5CM4MWJ892H", {
+                params: {
+                    "limit": "5",
+                    "offset": "10"
+                }
+            });
 
             expect(response.balanceAccounts[0].id).toBe("BA32272223222B59K6ZXHBFN6");
         });

@@ -4,6 +4,7 @@ import { AccountHolder } from "../../typings/balancePlatform/accountHolder";
 import { AccountHolderInfo } from "../../typings/balancePlatform/accountHolderInfo";
 import { PaginatedBalanceAccountsResponse } from "../../typings/balancePlatform/paginatedBalanceAccountsResponse";
 import { ObjectSerializer } from "../../typings/checkout/models";
+import { IRequest } from "../../typings/requestOptions";
 import BalancePlatformResource from "../resource/balancePlaftformResource";
 
 class AccountHolders extends Service {
@@ -37,12 +38,12 @@ class AccountHolders extends Service {
         return ObjectSerializer.deserialize(response, "AccountHolder");
     }
 
-    public async list(id: string): Promise<PaginatedBalanceAccountsResponse> {
+    public async list(id: string, requestOptions?: IRequest.Options): Promise<PaginatedBalanceAccountsResponse> {
         const resource = new BalancePlatformResource(this, `/accountHolders/${id}/balanceAccounts`);
         const response = await getJsonResponse<string, PaginatedBalanceAccountsResponse>(
             resource,
             '',
-            { method: "GET" }
+            { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PaginatedBalanceAccountsResponse");
     }
