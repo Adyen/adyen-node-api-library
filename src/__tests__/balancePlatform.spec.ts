@@ -3,6 +3,7 @@ import Client from "../client";
 import { createClient } from "../__mocks__/base";
 import BalancePlatform from "../services/balancePlatform";
 import { AccountHolder, AccountHolderInfo, PaginatedBalanceAccountsResponse, Phone } from "../typings/balancePlatform/models";
+import { AccountHolderUpdate } from "../services/balancePlaftform/accountHolders";
 
 let client: Client;
 let balancePlatform: BalancePlatform;
@@ -123,11 +124,9 @@ describe("Balance Platform", (): void => {
                     "id": "AH32272223222B5CM4MWJ892H",
                     "status": "Suspended"
                 });
-            const request: AccountHolder = {
+            const request: AccountHolderUpdate = {
                 status: AccountHolder.StatusEnum.Suspended,
-                // @TODO model requires ID and API endpoint too, keep it in a single place
-                id: "ABC123",
-                legalEntityId: "LE322KT223222D5FJ7THR293F"
+                legalEntityId: "LE322KT223222D5FJ7THR293F",
             };
 
             const response: AccountHolder = await balancePlatform.AccountHolders.update('AH32272223222B5CM4MWJ892H', request);
@@ -135,7 +134,7 @@ describe("Balance Platform", (): void => {
             expect(response.status).toBe("Suspended");
         });
 
-        it.only("should support GET /accountHolders/{id}/balanceAccounts", async (): Promise<void> => {
+        it("should support GET /accountHolders/{id}/balanceAccounts", async (): Promise<void> => {
             scope.get("/accountHolders/AH32272223222B5CM4MWJ892H/balanceAccounts?limit=5&offset=10")
                 .reply(200, {
                     "balanceAccounts": [

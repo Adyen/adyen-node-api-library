@@ -7,6 +7,9 @@ import { ObjectSerializer } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import BalancePlatformResource from "../resource/balancePlaftformResource";
 
+// @TODO PW-7013: make this change at the spec level?
+export type AccountHolderUpdate = Omit<AccountHolder, 'id'>;
+
 class AccountHolders extends Service {
     public async create(request: AccountHolderInfo): Promise<AccountHolder> {
         const resource = new BalancePlatformResource(this, `/accountHolders`);
@@ -28,9 +31,9 @@ class AccountHolders extends Service {
         return ObjectSerializer.deserialize(response, "AccountHolder");
     }
 
-    public async update(id: string, request: AccountHolder): Promise<AccountHolder> {
+    public async update(id: string, request: AccountHolderUpdate): Promise<AccountHolder> {
         const resource = new BalancePlatformResource(this, `/accountHolders/${id}`);
-        const response = await getJsonResponse<AccountHolder, AccountHolder>(
+        const response = await getJsonResponse<AccountHolderUpdate, AccountHolder>(
             resource,
             request,
             { method: "PATCH" }
