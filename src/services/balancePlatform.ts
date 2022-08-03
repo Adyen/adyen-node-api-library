@@ -5,6 +5,7 @@ import BalanceAccounts from "./balancePlaftform/balanceAccounts";
 import General from "./balancePlaftform/general";
 import PaymentInstruments from "./balancePlaftform/paymentInstruments";
 import PaymentInstrumentGroups from "./balancePlaftform/paymentInstrumentGroups";
+import TransactionRules from "./balancePlaftform/transactionRules";
 
 class BalancePlatform extends Service {
     public constructor(client: Client) {
@@ -29,6 +30,10 @@ class BalancePlatform extends Service {
 
     public get PaymentInstrumentGroups() {
         return new PaymentInstrumentGroups(this.client);
+    } 
+
+    public get TransactionRules() {
+        return new TransactionRules(this.client);
     } 
 }
 

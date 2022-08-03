@@ -5,6 +5,7 @@ import BalancePlatform from "../services/balancePlatform";
 import * as models from "../typings/balancePlatform/models";
 import { AccountHolderUpdate } from "../services/balancePlaftform/accountHolders";
 import { SweepConfigurationV2Create, SweepConfigurationV2Update } from "../services/balancePlaftform/balanceAccounts";
+import { TransactionRuleInfoUpdate } from "../services/balancePlaftform/transactionRules";
 
 let client: Client;
 let balancePlatform: BalancePlatform;
@@ -28,6 +29,7 @@ describe("Balance Platform", (): void => {
     const sweepId = "SWPC4227C224555B5FTD2NT2JV4WN5";
     const paymentInstrumentId = "PI32272223222B5CMD3MQ3HXX";
     const paymentInstrumentGroupId = "PG3227C223222B5CMD3FJFKGZ";
+    const transactionRuleId = "TR3227C223222B5FCB756DV9H";
 
     describe("AccountHolders", (): void => {
         it("should support POST /accountHolders", async (): Promise<void> => {
@@ -754,6 +756,134 @@ describe("Balance Platform", (): void => {
 
             expect(response.transactionRules!.length).toBe(2);
             expect(response.transactionRules![0].id).toBe("TR32272223222B5CMDGMC9F4F");
+        });
+    });
+
+    describe("TransactionRules", (): void => {
+        it("should support POST /transactionRules", async (): Promise<void> => {
+            scope.post(`/transactionRules`)
+                .reply(200, {
+                    "description": "Allow only point-of-sale transactions",
+                    "entityKey": {
+                        "entityReference": "PI3227C223222B5BPCMFXD2XG",
+                        "entityType": "paymentInstrument"
+                    },
+                    "interval": {
+                        "timeZone": "UTC",
+                        "type": "perTransaction"
+                    },
+                    "outcomeType": "hardBlock",
+                    "reference": "YOUR_REFERENCE_4F7346",
+                    "requestType": "authorization",
+                    "ruleRestrictions": {
+                        "processingTypes": {
+                            "operation": "noneMatch",
+                            "value": [
+                                "pos"
+                            ]
+                        }
+                    },
+                    "startDate": "2022-03-23T15:05:11.979433+01:00",
+                    "status": "active",
+                    "type": "blockList",
+                    "id": transactionRuleId
+                });
+            const request: models.TransactionRuleInfo = {
+                "description": "Allow only point-of-sale transactions",
+                "reference": "YOUR_REFERENCE_4F7346",
+                "entityKey": {
+                    "entityType": "paymentInstrument",
+                    "entityReference": "PI3227C223222B5BPCMFXD2XG"
+                },
+                "status": models.TransactionRuleInfo.StatusEnum.Active,
+                "interval": {
+                    "type": models.TransactionRuleInterval.TypeEnum.PerTransaction
+                },
+                "ruleRestrictions": {
+                    "processingTypes": {
+                        "operation": "noneMatch",
+                        "value": [
+                            models.ProcessingTypesRestriction.ValueEnum.Pos
+                        ]
+                    }
+                },
+                "type": models.TransactionRuleInfo.TypeEnum.BlockList
+            };
+
+            const response: models.TransactionRule = await balancePlatform.TransactionRules.create(request);
+
+            expect(response.id).toBe(transactionRuleId);
+            expect(response.status).toBe('active');
+        });
+
+        it("should support GET /transactionRules/{transactionRuleId}", async (): Promise<void> => {
+            scope.get(`/transactionRules/${transactionRuleId}`)
+                .reply(200, {
+                    "transactionRule": {
+                        "description": "Allow 5 transactions per month",
+                        "interval": {
+                            "type": "monthly"
+                        },
+                        "maxTransactions": 5,
+                        "paymentInstrumentId": "PI3227C223222B59KGTXP884R",
+                        "reference": "myRule12345",
+                        "startDate": "2021-01-25T12:46:35.476629Z",
+                        "status": "active",
+                        "type": "velocity",
+                        "id": transactionRuleId
+                    }
+                });
+
+            const response: models.TransactionRuleResponse = await balancePlatform.TransactionRules.retrieve(transactionRuleId);
+
+            expect(response.transactionRule!.id).toBe(transactionRuleId);
+            expect(response.transactionRule!.type).toBe('velocity');
+        });
+
+        it("should support PATCH /transactionRules/{transactionRuleId}", async (): Promise<void> => {
+            scope.patch(`/transactionRules/${transactionRuleId}`)
+                .reply(200, {
+                    "description": "Allow 5 transactions per month",
+                    "interval": {
+                        "type": "monthly"
+                    },
+                    "reference": "myRule12345",
+                    "startDate": "2021-01-21T12:46:35.476629Z",
+                    "status": "inactive",
+                    "type": "velocity",
+                    "id": transactionRuleId
+                });
+            const request: TransactionRuleInfoUpdate = {
+                "status": models.TransactionRuleInfo.StatusEnum.Inactive
+            };
+
+            const response: models.TransactionRule = await balancePlatform.TransactionRules.update(transactionRuleId, request);
+
+            expect(response.status).toBe('inactive');
+            expect(response.reference).toBe('myRule12345');
+        });
+
+        it("should support DELETE /transactionRules/{transactionRuleId}", async (): Promise<void> => {
+            scope.delete(`/transactionRules/${transactionRuleId}`)
+                .reply(200, {
+                    "amount": {
+                        "currency": "EUR",
+                        "value": 10000
+                    },
+                    "description": "Allow up to 100 EUR per month",
+                    "interval": {
+                        "type": "monthly"
+                    },
+                    "paymentInstrumentGroupId": "PG3227C223222B5CMD3FJFKGZ",
+                    "reference": "myRule16378",
+                    "startDate": "2021-01-25T12:46:35.476629Z",
+                    "type": "velocity",
+                    "id": transactionRuleId
+                });
+
+            const response: models.TransactionRule = await balancePlatform.TransactionRules.delete(transactionRuleId);
+
+            expect(response.id).toBe(transactionRuleId);
         });
     });
 });
