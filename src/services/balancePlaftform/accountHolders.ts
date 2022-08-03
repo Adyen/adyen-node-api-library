@@ -1,9 +1,6 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
-import { AccountHolder } from "../../typings/balancePlatform/accountHolder";
-import { AccountHolderInfo } from "../../typings/balancePlatform/accountHolderInfo";
-import { PaginatedBalanceAccountsResponse } from "../../typings/balancePlatform/paginatedBalanceAccountsResponse";
-import { ObjectSerializer } from "../../typings/checkout/models";
+import { AccountHolder, AccountHolderInfo, ObjectSerializer, PaginatedBalanceAccountsResponse } from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import BalancePlatformResource from "../resource/balancePlaftformResource";
 
