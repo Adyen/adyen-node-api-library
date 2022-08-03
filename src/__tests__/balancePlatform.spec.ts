@@ -27,6 +27,7 @@ describe("Balance Platform", (): void => {
     const balanceAccountId = "BA32272223222B59CZ3T52DKZ";
     const sweepId = "SWPC4227C224555B5FTD2NT2JV4WN5";
     const paymentInstrumentId = "PI32272223222B5CMD3MQ3HXX";
+    const paymentInstrumentGroupId = "PG3227C223222B5CMD3FJFKGZ";
 
     describe("AccountHolders", (): void => {
         it("should support POST /accountHolders", async (): Promise<void> => {
@@ -647,7 +648,7 @@ describe("Balance Platform", (): void => {
                                 "type": "monthly"
                             },
                             "maxTransactions": 5,
-                            "paymentInstrumentGroupId": "PG3227C223222B5CMD3FJFKGZ",
+                            "paymentInstrumentGroupId": paymentInstrumentGroupId,
                             "reference": "myRule12345",
                             "startDate": "2021-01-25T12:46:35.476629Z",
                             "status": "active",
@@ -663,7 +664,7 @@ describe("Balance Platform", (): void => {
                             "interval": {
                                 "type": "monthly"
                             },
-                            "paymentInstrumentGroupId": "PG3227C223222B5CMD3FJFKGZ",
+                            "paymentInstrumentGroupId": paymentInstrumentGroupId,
                             "reference": "myRule16378",
                             "startDate": "2021-01-25T12:46:35.476629Z",
                             "status": "active",
@@ -674,6 +675,82 @@ describe("Balance Platform", (): void => {
                 });
 
             const response: models.TransactionRulesResponse = await balancePlatform.PaymentInstruments.listTransactionRules(paymentInstrumentId);
+
+            expect(response.transactionRules!.length).toBe(2);
+            expect(response.transactionRules![0].id).toBe("TR32272223222B5CMDGMC9F4F");
+        });
+    });
+
+    describe("PaymentInstrumentGroups", (): void => {
+        it("should support POST /paymentInstrumentGroups", async (): Promise<void> => {
+            scope.post(`/paymentInstrumentGroups`)
+                .reply(200, {
+                    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                    "txVariant": "mc",
+                    "id": paymentInstrumentGroupId
+                });
+            const request: models.PaymentInstrumentGroupInfo = {
+                "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                "txVariant": "mc"
+            };
+
+            const response: models.PaymentInstrumentGroup = await balancePlatform.PaymentInstrumentGroups.create(request);
+
+            expect(response.id).toBe(paymentInstrumentGroupId);
+            expect(response.txVariant).toBe("mc");
+        });
+
+        it("should support GET /paymentInstrumentGroups/{id}", async (): Promise<void> => {
+            scope.get(`/paymentInstrumentGroups/${paymentInstrumentGroupId}`)
+                .reply(200, {
+                    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                    "txVariant": "mc",
+                    "id": paymentInstrumentGroupId
+                });
+
+            const response: models.PaymentInstrumentGroup = await balancePlatform.PaymentInstrumentGroups.retrieve(paymentInstrumentGroupId);
+
+            expect(response.id).toBe(paymentInstrumentGroupId);
+            expect(response.txVariant).toBe('mc');
+        });
+
+        it("should support GET /paymentInstrumentGroups/{id}/transactionRules", async (): Promise<void> => {
+            scope.get(`/paymentInstrumentGroups/${paymentInstrumentGroupId}/transactionRules`)
+                .reply(200, {
+                    "transactionRules": [
+                        {
+                            "description": "Allow 5 transactions per month",
+                            "interval": {
+                                "type": "monthly"
+                            },
+                            "maxTransactions": 5,
+                            "paymentInstrumentGroupId": paymentInstrumentGroupId,
+                            "reference": "myRule12345",
+                            "startDate": "2021-01-25T12:46:35.476629Z",
+                            "status": "active",
+                            "type": "velocity",
+                            "id": "TR32272223222B5CMDGMC9F4F"
+                        },
+                        {
+                            "amount": {
+                                "currency": "EUR",
+                                "value": 10000
+                            },
+                            "description": "Allow up to 100 EUR per month",
+                            "interval": {
+                                "type": "monthly"
+                            },
+                            "paymentInstrumentGroupId": paymentInstrumentGroupId,
+                            "reference": "myRule16378",
+                            "startDate": "2021-01-25T12:46:35.476629Z",
+                            "status": "active",
+                            "type": "velocity",
+                            "id": "TR32272223222B5CMDGT89F4F"
+                        }
+                    ]
+                });
+
+            const response: models.TransactionRulesResponse = await balancePlatform.PaymentInstrumentGroups.listTransactionRules(paymentInstrumentGroupId);
 
             expect(response.transactionRules!.length).toBe(2);
             expect(response.transactionRules![0].id).toBe("TR32272223222B5CMDGMC9F4F");
