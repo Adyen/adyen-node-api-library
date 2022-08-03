@@ -3,6 +3,7 @@ import Client from "../client";
 import AccountHolders from "./balancePlaftform/accountHolders";
 import BalanceAccounts from "./balancePlaftform/balanceAccounts";
 import General from "./balancePlaftform/general";
+import PaymentInstruments from "./balancePlaftform/paymentInstruments";
 
 class BalancePlatform extends Service {
     public constructor(client: Client) {
@@ -19,6 +20,10 @@ class BalancePlatform extends Service {
 
     public get BalanceAccounts() {
         return new BalanceAccounts(this.client);
+    } 
+
+    public get PaymentInstruments() {
+        return new PaymentInstruments(this.client);
     } 
 }
 

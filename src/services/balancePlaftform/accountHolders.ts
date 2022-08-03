@@ -38,7 +38,7 @@ class AccountHolders extends Service {
         return ObjectSerializer.deserialize(response, "AccountHolder");
     }
 
-    public async list(id: string, requestOptions?: IRequest.Options): Promise<PaginatedBalanceAccountsResponse> {
+    public async listBalanceAccounts(id: string, requestOptions?: IRequest.Options): Promise<PaginatedBalanceAccountsResponse> {
         const resource = new BalancePlatformResource(this, `/accountHolders/${id}/balanceAccounts`);
         const response = await getJsonResponse<string, PaginatedBalanceAccountsResponse>(
             resource,

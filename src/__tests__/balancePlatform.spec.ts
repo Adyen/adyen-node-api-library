@@ -26,6 +26,7 @@ afterEach(() => {
 describe("Balance Platform", (): void => {
     const balanceAccountId = "BA32272223222B59CZ3T52DKZ";
     const sweepId = "SWPC4227C224555B5FTD2NT2JV4WN5";
+    const paymentInstrumentId = "PI32272223222B5CMD3MQ3HXX";
 
     describe("AccountHolders", (): void => {
         it("should support POST /accountHolders", async (): Promise<void> => {
@@ -165,7 +166,7 @@ describe("Balance Platform", (): void => {
                     "hasPrevious": false
                 });
 
-            const response: models.PaginatedBalanceAccountsResponse = await balancePlatform.AccountHolders.list("AH32272223222B5CM4MWJ892H", {
+            const response: models.PaginatedBalanceAccountsResponse = await balancePlatform.AccountHolders.listBalanceAccounts("AH32272223222B5CM4MWJ892H", {
                 params: {
                     "limit": "5",
                     "offset": "10"
@@ -396,7 +397,7 @@ describe("Balance Platform", (): void => {
         });
 
         it("should support GET /balanceAccounts/{id}/paymentInstruments", async (): Promise<void> => {
-            scope.get(`/balanceAccounts/${balanceAccountId}/paymentInstruments`)
+            scope.get(`/balanceAccounts/${balanceAccountId}/paymentInstruments?limit=3&offset=6`)
                 .reply(200, {
                     "hasNext": "true",
                     "hasPrevious": "false",
@@ -442,7 +443,12 @@ describe("Balance Platform", (): void => {
                     ]
                 });
 
-            const response: models.PaginatedPaymentInstrumentsResponse = await balancePlatform.BalanceAccounts.listPaymentInstruments(balanceAccountId);
+            const response: models.PaginatedPaymentInstrumentsResponse = await balancePlatform.BalanceAccounts.listPaymentInstruments(balanceAccountId, {
+                params: {
+                    limit: "3",
+                    offset: "6",
+                }
+            });
 
             expect(response.paymentInstruments.length).toBe(2);
             expect(response.paymentInstruments[0].id).toBe("PI32272223222B59M5TM658DT");
@@ -500,11 +506,177 @@ describe("Balance Platform", (): void => {
                     "hasPrevious": "false"
                 });
 
-            const response: models.PaginatedAccountHoldersResponse = await balancePlatform.General.list(balanceAccountId);
+            const response: models.PaginatedAccountHoldersResponse = await balancePlatform.General.listAccountHolders(balanceAccountId);
 
             expect(response.accountHolders.length).toBe(2);
             expect(response.accountHolders[0].id).toBe("AH32272223222B59DDWSCCMP7");
         });
+    });
 
+    describe("PaymentInstruments", (): void => {
+        it("should support POST /paymentInstruments", async (): Promise<void> => {
+            scope.post(`/paymentInstruments`)
+                .reply(200, {
+                    "balanceAccountId": balanceAccountId,
+                    "description": "S. Hopper - Main card",
+                    "issuingCountryCode": "GB",
+                    "status": "Active",
+                    "type": "card",
+                    "card": {
+                        "brand": "mc",
+                        "brandVariant": "mcdebit",
+                        "cardholderName": "Simon Hopper",
+                        "formFactor": "virtual",
+                        "bin": "555544",
+                        "cvc": "873",
+                        "expiration": {
+                            "month": "01",
+                            "year": "2024"
+                        },
+                        "lastFour": "3548"
+                    },
+                    "id": paymentInstrumentId
+                });
+            const request: models.PaymentInstrumentInfo = {
+                "type": models.PaymentInstrumentInfo.TypeEnum.Card,
+                "issuingCountryCode": "NL",
+                "balanceAccountId": balanceAccountId,
+                "status": models.PaymentInstrumentInfo.StatusEnum.Inactive,
+                "card": {
+                    "formFactor": models.CardInfo.FormFactorEnum.Physical,
+                    "brand": "mc",
+                    "brandVariant": "mcdebit",
+                    "cardholderName": "Sam Hopper",
+                    "deliveryContact": {
+                        "address": {
+                            "city": "Amsterdam",
+                            "country": "NL",
+                            "stateOrProvince": "NH",
+                            "line1": "Simon Carmiggeltstraat",
+                            "line2": "6-50",
+                            "postalCode": "1011DJ"
+                        },
+                        "name": {
+                            "firstName": "Sam",
+                            "lastName": "Hopper"
+                        }
+                    },
+                    "configuration": {
+                        "configurationProfileId": "YOUR_CONFIGURATION_PROFILE_ID"
+                    },
+                },
+                "description": "S.Hopper - Main card"
+            };
+
+            const response: models.PaymentInstrument = await balancePlatform.PaymentInstruments.create(request);
+
+            expect(response.id).toBe(paymentInstrumentId);
+            expect(response.balanceAccountId).toBe(balanceAccountId);
+        });
+
+        it("should support GET /paymentInstruments/{id}", async (): Promise<void> => {
+            scope.get(`/paymentInstruments/${paymentInstrumentId}`)
+                .reply(200, {
+                    "balanceAccountId": balanceAccountId,
+                    "description": "S. Hopper - Main card",
+                    "issuingCountryCode": "GB",
+                    "status": "active",
+                    "type": "card",
+                    "card": {
+                        "brand": "mc",
+                        "brandVariant": "mcdebit",
+                        "cardholderName": "Simon Hopper",
+                        "formFactor": "virtual",
+                        "bin": "555544",
+                        "expiration": {
+                            "month": "01",
+                            "year": "2024"
+                        },
+                        "lastFour": "3548",
+                        "number": "************3548"
+                    },
+                    "id": paymentInstrumentId
+                });
+
+            const response: models.PaymentInstrument = await balancePlatform.PaymentInstruments.retrieve(paymentInstrumentId);
+
+            expect(response.id).toBe(paymentInstrumentId);
+            expect(response.status).toBe("active");
+        });
+
+        it("should support PATCH /paymentInstruments/{id}", async (): Promise<void> => {
+            scope.patch(`/paymentInstruments/${paymentInstrumentId}`)
+                .reply(200, {
+                    "balanceAccountId": "BA32272223222B5CM82WL892M",
+                    "description": "S. Hopper - Main card",
+                    "issuingCountryCode": "GB",
+                    "status": "inactive",
+                    "type": "card",
+                    "card": {
+                        "brand": "mc",
+                        "brandVariant": "mcdebit",
+                        "cardholderName": "Simon Hopper",
+                        "formFactor": "virtual",
+                        "bin": "555544",
+                        "expiration": {
+                            "month": "01",
+                            "year": "2024"
+                        },
+                        "lastFour": "5785",
+                        "number": "************5785"
+                    },
+                    "id": paymentInstrumentId
+                });
+            const request: models.PaymentInstrumentUpdateRequest = {
+                "balanceAccountId": "BA32272223222B5CM82WL892M"
+            };
+
+            const response: models.PaymentInstrument = await balancePlatform.PaymentInstruments.update(paymentInstrumentId, request);
+
+            expect(response.id).toBe(paymentInstrumentId);
+            expect(response.balanceAccountId).toBe("BA32272223222B5CM82WL892M");
+        });
+
+        it("should support GET /paymentInstruments/{id}/transactionRules", async (): Promise<void> => {
+            scope.get(`/paymentInstruments/${paymentInstrumentId}/transactionRules`)
+                .reply(200, {
+                    "transactionRules": [
+                        {
+                            "description": "Allow 5 transactions per month",
+                            "interval": {
+                                "type": "monthly"
+                            },
+                            "maxTransactions": 5,
+                            "paymentInstrumentGroupId": "PG3227C223222B5CMD3FJFKGZ",
+                            "reference": "myRule12345",
+                            "startDate": "2021-01-25T12:46:35.476629Z",
+                            "status": "active",
+                            "type": "velocity",
+                            "id": "TR32272223222B5CMDGMC9F4F"
+                        },
+                        {
+                            "amount": {
+                                "currency": "EUR",
+                                "value": 10000
+                            },
+                            "description": "Allow up to 100 EUR per month",
+                            "interval": {
+                                "type": "monthly"
+                            },
+                            "paymentInstrumentGroupId": "PG3227C223222B5CMD3FJFKGZ",
+                            "reference": "myRule16378",
+                            "startDate": "2021-01-25T12:46:35.476629Z",
+                            "status": "active",
+                            "type": "velocity",
+                            "id": "TR32272223222B5CMDGT89F4F"
+                        }
+                    ]
+                });
+
+            const response: models.TransactionRulesResponse = await balancePlatform.PaymentInstruments.listTransactionRules(paymentInstrumentId);
+
+            expect(response.transactionRules!.length).toBe(2);
+            expect(response.transactionRules![0].id).toBe("TR32272223222B5CMDGMC9F4F");
+        });
     });
 });
