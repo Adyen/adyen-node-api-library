@@ -24,6 +24,9 @@ afterEach(() => {
 });
 
 describe("Balance Platform", (): void => {
+    const balanceAccountId = "BA32272223222B59CZ3T52DKZ";
+    const sweepId = "SWPC4227C224555B5FTD2NT2JV4WN5";
+
     describe("AccountHolders", (): void => {
         it("should support POST /accountHolders", async (): Promise<void> => {
             scope.post("/accountHolders")
@@ -174,9 +177,6 @@ describe("Balance Platform", (): void => {
     });
 
     describe("BalanceAccounts", (): void => {
-        const balanceAccountId = "BA32272223222B59CZ3T52DKZ";
-        const sweepId = "SWPC4227C224555B5FTD2NT2JV4WN5";
-
         it("should support POST /balanceAccounts", async (): Promise<void> => {
             scope.post("/balanceAccounts")
                 .reply(200, {
@@ -267,7 +267,7 @@ describe("Balance Platform", (): void => {
                 },
                 "currency": "EUR",
                 "schedule": {
-                    "type": models.SweepSchedule.TypeEnum.Balance 
+                    "type": models.SweepSchedule.TypeEnum.Balance
                 },
                 "type": models.SweepConfigurationV2.TypeEnum.Pull,
                 "status": models.SweepConfigurationV2.StatusEnum.Active
@@ -447,5 +447,64 @@ describe("Balance Platform", (): void => {
             expect(response.paymentInstruments.length).toBe(2);
             expect(response.paymentInstruments[0].id).toBe("PI32272223222B59M5TM658DT");
         });
+    });
+
+    describe("General", (): void => {
+        it("should support GET /balancePlatforms/{id}", async (): Promise<void> => {
+            scope.get(`/balancePlatforms/${balanceAccountId}`)
+                .reply(200, {
+                    "id": balanceAccountId,
+                    "status": "Active"
+                });
+
+            const response: models.BalancePlatform = await balancePlatform.General.retrieve(balanceAccountId);
+
+            expect(response.id).toBe(balanceAccountId);
+            expect(response.status).toBe("Active");
+        });
+
+        it("should support GET /balancePlatforms/{id}/accountHolders", async (): Promise<void> => {
+            scope.get(`/balancePlatforms/${balanceAccountId}/accountHolders`)
+                .reply(200, {
+                    "accountHolders": [
+                        {
+                            "contactDetails": {
+                                "address": {
+                                    "city": "Amsterdam",
+                                    "country": "NL",
+                                    "houseNumberOrName": "6",
+                                    "postalCode": "12336750",
+                                    "street": "Simon Carmiggeltstraat"
+                                }
+                            },
+                            "description": "J. Doe",
+                            "id": "AH32272223222B59DDWSCCMP7",
+                            "status": "Active"
+                        },
+                        {
+                            "contactDetails": {
+                                "address": {
+                                    "city": "Amsterdam",
+                                    "country": "NL",
+                                    "houseNumberOrName": "11",
+                                    "postalCode": "12336750",
+                                    "street": "Simon Carmiggeltstraat"
+                                }
+                            },
+                            "description": "S. Hopper",
+                            "id": "AH32272223222B59DJ7QBCMPN",
+                            "status": "Active"
+                        }
+                    ],
+                    "hasNext": "true",
+                    "hasPrevious": "false"
+                });
+
+            const response: models.PaginatedAccountHoldersResponse = await balancePlatform.General.list(balanceAccountId);
+
+            expect(response.accountHolders.length).toBe(2);
+            expect(response.accountHolders[0].id).toBe("AH32272223222B59DDWSCCMP7");
+        });
+
     });
 });
