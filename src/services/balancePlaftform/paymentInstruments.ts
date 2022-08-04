@@ -5,7 +5,7 @@ import BalancePlatformResource from "../resource/balancePlaftformResource";
 
 class PaymentInstruments extends Service {
     public async create(request: PaymentInstrumentInfo): Promise<PaymentInstrument> {
-        const resource = new BalancePlatformResource(this, `/paymentInstruments`);
+        const resource = new BalancePlatformResource(this, "/paymentInstruments");
         const response = await getJsonResponse<PaymentInstrumentInfo, PaymentInstrument>(
             resource,
             request,
@@ -18,7 +18,7 @@ class PaymentInstruments extends Service {
         const resource = new BalancePlatformResource(this, `/paymentInstruments/${id}`);
         const response = await getJsonResponse<string, PaymentInstrument>(
             resource,
-            '',
+            "",
             { method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PaymentInstrument");
@@ -38,7 +38,7 @@ class PaymentInstruments extends Service {
         const resource = new BalancePlatformResource(this, `/paymentInstruments/${id}/transactionRules`);
         const response = await getJsonResponse<string, TransactionRulesResponse>(
             resource,
-            '',
+            "",
             { method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "TransactionRulesResponse");

@@ -5,11 +5,11 @@ import { IRequest } from "../../typings/requestOptions";
 import BalancePlatformResource from "../resource/balancePlaftformResource";
 
 // @TODO PW-7013: make this change at the spec level?
-export type AccountHolderUpdate = Omit<AccountHolder, 'id'>;
+export type AccountHolderUpdate = Omit<AccountHolder, "id">;
 
 class AccountHolders extends Service {
     public async create(request: AccountHolderInfo): Promise<AccountHolder> {
-        const resource = new BalancePlatformResource(this, `/accountHolders`);
+        const resource = new BalancePlatformResource(this, "/accountHolders");
         const response = await getJsonResponse<AccountHolderInfo, AccountHolder>(
             resource,
             request,
@@ -22,7 +22,7 @@ class AccountHolders extends Service {
         const resource = new BalancePlatformResource(this, `/accountHolders/${id}`);
         const response = await getJsonResponse<string, AccountHolder>(
             resource,
-            '',
+            "",
             { method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "AccountHolder");
@@ -42,7 +42,7 @@ class AccountHolders extends Service {
         const resource = new BalancePlatformResource(this, `/accountHolders/${id}/balanceAccounts`);
         const response = await getJsonResponse<string, PaginatedBalanceAccountsResponse>(
             resource,
-            '',
+            "",
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PaginatedBalanceAccountsResponse");

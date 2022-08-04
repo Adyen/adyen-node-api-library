@@ -137,7 +137,7 @@ describe("Balance Platform", (): void => {
                 legalEntityId: "LE322KT223222D5FJ7THR293F",
             };
 
-            const response: models.AccountHolder = await balancePlatform.AccountHolders.update('AH32272223222B5CM4MWJ892H', request);
+            const response: models.AccountHolder = await balancePlatform.AccountHolders.update("AH32272223222B5CM4MWJ892H", request);
 
             expect(response.status).toBe("Suspended");
         });
@@ -209,7 +209,7 @@ describe("Balance Platform", (): void => {
         });
 
         it("should support GET /balanceAccounts/{balanceAccountId}/sweeps", async (): Promise<void> => {
-            scope.get(`/balanceAccounts/${balanceAccountId}/sweeps`)
+            scope.get(`/balanceAccounts/${balanceAccountId}/sweeps?limit=5&offset=10`)
                 .reply(200, {
                     "hasNext": false,
                     "hasPrevious": false,
@@ -237,7 +237,12 @@ describe("Balance Platform", (): void => {
                     ]
                 });
 
-            const response: models.BalanceSweepConfigurationsResponse = await balancePlatform.BalanceAccounts.listSweeps(balanceAccountId);
+            const response: models.BalanceSweepConfigurationsResponse = await balancePlatform.BalanceAccounts.listSweeps(balanceAccountId, {
+                params: {
+                    "limit": "5",
+                    "offset": "10"
+                }
+            });
 
             expect(response.hasNext).toBeFalsy();
             expect(response.sweeps.length).toBe(1);
@@ -342,7 +347,7 @@ describe("Balance Platform", (): void => {
 
             const response: models.SweepConfigurationV2 = await balancePlatform.BalanceAccounts.updateSweep(balanceAccountId, sweepId, request);
 
-            expect(response.status).toBe('inactive');
+            expect(response.status).toBe("inactive");
         });
 
         it("should support GET /balanceAccounts/{id}", async (): Promise<void> => {
@@ -365,7 +370,7 @@ describe("Balance Platform", (): void => {
             const response: models.BalanceAccount = await balancePlatform.BalanceAccounts.retrieve(balanceAccountId);
 
             expect(response.id).toBe(balanceAccountId);
-            expect(response.status).toBe('Active');
+            expect(response.status).toBe("Active");
         });
 
         it("should support PATCH /balanceAccounts/{id}", async (): Promise<void> => {
@@ -518,7 +523,7 @@ describe("Balance Platform", (): void => {
 
     describe("PaymentInstruments", (): void => {
         it("should support POST /paymentInstruments", async (): Promise<void> => {
-            scope.post(`/paymentInstruments`)
+            scope.post("/paymentInstruments")
                 .reply(200, {
                     "balanceAccountId": balanceAccountId,
                     "description": "S. Hopper - Main card",
@@ -685,7 +690,7 @@ describe("Balance Platform", (): void => {
 
     describe("PaymentInstrumentGroups", (): void => {
         it("should support POST /paymentInstrumentGroups", async (): Promise<void> => {
-            scope.post(`/paymentInstrumentGroups`)
+            scope.post("/paymentInstrumentGroups")
                 .reply(200, {
                     "balancePlatform": "YOUR_BALANCE_PLATFORM",
                     "txVariant": "mc",
@@ -713,7 +718,7 @@ describe("Balance Platform", (): void => {
             const response: models.PaymentInstrumentGroup = await balancePlatform.PaymentInstrumentGroups.retrieve(paymentInstrumentGroupId);
 
             expect(response.id).toBe(paymentInstrumentGroupId);
-            expect(response.txVariant).toBe('mc');
+            expect(response.txVariant).toBe("mc");
         });
 
         it("should support GET /paymentInstrumentGroups/{id}/transactionRules", async (): Promise<void> => {
@@ -761,7 +766,7 @@ describe("Balance Platform", (): void => {
 
     describe("TransactionRules", (): void => {
         it("should support POST /transactionRules", async (): Promise<void> => {
-            scope.post(`/transactionRules`)
+            scope.post("/transactionRules")
                 .reply(200, {
                     "description": "Allow only point-of-sale transactions",
                     "entityKey": {
@@ -813,7 +818,7 @@ describe("Balance Platform", (): void => {
             const response: models.TransactionRule = await balancePlatform.TransactionRules.create(request);
 
             expect(response.id).toBe(transactionRuleId);
-            expect(response.status).toBe('active');
+            expect(response.status).toBe("active");
         });
 
         it("should support GET /transactionRules/{transactionRuleId}", async (): Promise<void> => {
@@ -837,7 +842,7 @@ describe("Balance Platform", (): void => {
             const response: models.TransactionRuleResponse = await balancePlatform.TransactionRules.retrieve(transactionRuleId);
 
             expect(response.transactionRule!.id).toBe(transactionRuleId);
-            expect(response.transactionRule!.type).toBe('velocity');
+            expect(response.transactionRule!.type).toBe("velocity");
         });
 
         it("should support PATCH /transactionRules/{transactionRuleId}", async (): Promise<void> => {
@@ -859,8 +864,8 @@ describe("Balance Platform", (): void => {
 
             const response: models.TransactionRule = await balancePlatform.TransactionRules.update(transactionRuleId, request);
 
-            expect(response.status).toBe('inactive');
-            expect(response.reference).toBe('myRule12345');
+            expect(response.status).toBe("inactive");
+            expect(response.reference).toBe("myRule12345");
         });
 
         it("should support DELETE /transactionRules/{transactionRuleId}", async (): Promise<void> => {

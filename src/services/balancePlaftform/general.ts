@@ -9,7 +9,7 @@ class General extends Service {
         const resource = new BalancePlatformResource(this, `/balancePlatforms/${id}`);
         const response = await getJsonResponse<string, BalancePlatform>(
             resource,
-            '',
+            "",
             { method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "BalancePlatform");
@@ -19,7 +19,7 @@ class General extends Service {
         const resource = new BalancePlatformResource(this, `/balancePlatforms/${id}/accountHolders`);
         const response = await getJsonResponse<string, PaginatedAccountHoldersResponse>(
             resource,
-            '',
+            "",
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PaginatedAccountHoldersResponse");

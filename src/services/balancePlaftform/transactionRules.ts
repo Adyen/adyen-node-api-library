@@ -8,7 +8,7 @@ export type TransactionRuleInfoUpdate = Partial<TransactionRuleInfo>;
 
 class TransactionRules extends Service {
     public async create(request: TransactionRuleInfo): Promise<TransactionRule> {
-        const resource = new BalancePlatformResource(this, `/transactionRules`);
+        const resource = new BalancePlatformResource(this, "/transactionRules");
         const response = await getJsonResponse<TransactionRuleInfo, TransactionRule>(
             resource,
             request,

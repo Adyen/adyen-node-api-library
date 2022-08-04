@@ -5,7 +5,7 @@ import BalancePlatformResource from "../resource/balancePlaftformResource";
 
 class PaymentInstrumentGroups extends Service {
     public async create(request: PaymentInstrumentGroupInfo): Promise<PaymentInstrumentGroup> {
-        const resource = new BalancePlatformResource(this, `/paymentInstrumentGroups`);
+        const resource = new BalancePlatformResource(this, "/paymentInstrumentGroups");
         const response = await getJsonResponse<PaymentInstrumentGroupInfo, PaymentInstrumentGroup>(
             resource,
             request,

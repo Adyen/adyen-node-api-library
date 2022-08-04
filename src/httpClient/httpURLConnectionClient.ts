@@ -88,7 +88,7 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.path = url.pathname;
 
         if (requestOptions.params) {
-            requestOptions.path += '?' + new URLSearchParams(requestOptions.params).toString();
+            requestOptions.path += "?" + new URLSearchParams(requestOptions.params).toString();
         }
 
         if (requestOptions && requestOptions.idempotencyKey) {
