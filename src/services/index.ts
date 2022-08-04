@@ -7,4 +7,5 @@ export { default as BinLookup } from "./binLookup";
 export { default as Payout } from "./payout";
 export { default as Platforms } from "./platforms";
 export { default as StoredValue} from "./storedValue";
+export { default as TerminalManagement} from "./terminalManagement";
 export { default as Management } from "./management";
