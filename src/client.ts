@@ -62,6 +62,7 @@ class Client {
     public static MARKETPAY_NOTIFICATION_CONFIGURATION_API_VERSION = "v6";
     public static PAYMENT_API_VERSION = "v68";
     public static STOREDVALUE_API_VERSION = "v46";
+    public static TERMINAL_MANAGEMENT_API_VERSION = "v1";
     public static MANAGEMENT_API_VERSION = "v1";
     public static LIB_NAME = "adyen-node-api-library";
     public static LIB_VERSION: string = version;
@@ -76,6 +77,8 @@ class Client {
     public static PAYMENT_API_ENDPOINT_LIVE = "https://pal-live.adyen.com/pal/servlet/Payment";
     public static STOREDVALUE_API_ENDPOINT_TEST = "https://pal-test.adyen.com/pal/servlet/StoredValue";
     public static STOREDVALUE_API_ENDPOINT_LIVE = "https://pal-live.adyen.com/pal/servlet/StoredValue";
+    public static TERMINAL_MANAGEMENT_API_ENDPOINT_TEST = "https://postfmapi-test.adyen.com/postfmapi/terminal";
+    public static TERMINAL_MANAGEMENT_API_ENDPOINT_LIVE = "https://postfmapi-live.adyen.com/postfmapi/terminal";
     public static MANAGEMENT_API_ENDPOINT_TEST = "https://management-test.adyen.com";
     public static MANAGEMENT_API_ENDPOINT_LIVE = "https://management-live.adyen.com";
     public static BALANCE_PLATFORM_API_VERSION = "v2";
@@ -121,6 +124,7 @@ class Client {
             this.config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
             this.config.paymentEndpoint = Client.PAYMENT_API_ENDPOINT_TEST;
             this.config.storedValueEndpoint = Client.STOREDVALUE_API_ENDPOINT_TEST;
+            this.config.terminalManagementEndpoint = Client.TERMINAL_MANAGEMENT_API_ENDPOINT_TEST;
             this.config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_TEST;
             this.config.balancePlatformEndpoint = Client.BALANCE_PLATFORM_API_ENDPOINT_TEST;
         } else if (environment === "LIVE") {
@@ -130,6 +134,7 @@ class Client {
             this.config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_LIVE;
             this.config.paymentEndpoint = Client.PAYMENT_API_ENDPOINT_LIVE;
             this.config.storedValueEndpoint = Client.STOREDVALUE_API_ENDPOINT_LIVE;
+            this.config.terminalManagementEndpoint = Client.TERMINAL_MANAGEMENT_API_ENDPOINT_LIVE;
             this.config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_LIVE;
             this.config.balancePlatformEndpoint = Client.BALANCE_PLATFORM_API_ENDPOINT_LIVE;
 
