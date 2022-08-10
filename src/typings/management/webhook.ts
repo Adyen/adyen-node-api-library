@@ -25,6 +25,10 @@ export class Webhook {
     */
     'acceptsUntrustedRootCertificate'?: boolean;
     /**
+    * Reference to the account the webook is set on.
+    */
+    'accountReference'?: string;
+    /**
     * Indicates if the webhook configuration is active. The field must be **true** for you to receive webhooks about events related an account.
     */
     'active': boolean;
@@ -74,7 +78,7 @@ export class Webhook {
     */
     'populateSoapActionHeader'?: boolean;
     /**
-    * SSL version to access the public webhook URL specified in the `url` field. Possible values: * **TLSv1.2** * **SSL** * **SSLv3** * **TLS** * **TLSv1** * **TLSv1.1**  If not specified, the webhook will use `sslVersion`: **TLSv1.2**.
+    * SSL version to access the public webhook URL specified in the `url` field. Possible values: * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use `sslVersion`: **TLSv1.2**.
     */
     'sslVersion'?: Webhook.SslVersionEnum;
     /**
@@ -112,6 +116,11 @@ export class Webhook {
             "name": "acceptsUntrustedRootCertificate",
             "baseName": "acceptsUntrustedRootCertificate",
             "type": "boolean"
+        },
+        {
+            "name": "accountReference",
+            "baseName": "accountReference",
+            "type": "string"
         },
         {
             "name": "active",

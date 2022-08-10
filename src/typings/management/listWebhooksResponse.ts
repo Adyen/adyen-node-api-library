@@ -13,6 +13,10 @@ import { Webhook } from './webhook';
 export class ListWebhooksResponse {
     'links'?: PaginationLinks;
     /**
+    * Reference to the account.
+    */
+    'accountReference'?: string;
+    /**
     * The list of webhooks configured for this account.
     */
     'data'?: Array<Webhook>;
@@ -32,6 +36,11 @@ export class ListWebhooksResponse {
             "name": "links",
             "baseName": "_links",
             "type": "PaginationLinks"
+        },
+        {
+            "name": "accountReference",
+            "baseName": "accountReference",
+            "type": "string"
         },
         {
             "name": "data",
