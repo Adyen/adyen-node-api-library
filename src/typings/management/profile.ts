@@ -50,7 +50,7 @@ export class Profile {
     */
     'eapPwd'?: string;
     /**
-    * Indicates if a network does not broadcast its SSID, so an SSID-specific probe request must be used for scans.
+    * Indicates if the network doesn\'t broadcast its SSID. Mandatory for Android terminals, because these terminals rely on this setting to be able to connect to any network.
     */
     'hiddenSsid'?: boolean;
     /**

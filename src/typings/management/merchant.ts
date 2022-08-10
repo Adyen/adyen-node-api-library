@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { DataCenter } from './dataCenter';
 import { MerchantLinks } from './merchantLinks';
 
 export class Merchant {
@@ -16,9 +17,21 @@ export class Merchant {
     */
     'captureDelay'?: string;
     /**
+    * The unique identifier of the company account this merchant belongs to
+    */
+    'companyId'?: string;
+    /**
+    * List of available data centers.  Adyen has several data centers around the world.In the URL that you use for making API requests, we recommend you use the live URL prefix from the data center closest to your shoppers.
+    */
+    'dataCenters'?: Array<DataCenter>;
+    /**
     * The default [`shopperInteraction`](https://docs.adyen.com/api-explorer/#/CheckoutService/v68/post/payments__reqParam_shopperInteraction) value used when processing payments through this merchant account.
     */
     'defaultShopperInteraction'?: string;
+    /**
+    * Your description for the merchant account, maximum 300 characters
+    */
+    'description'?: string;
     /**
     * The unique identifier of the merchant account.
     */
@@ -39,6 +52,10 @@ export class Merchant {
     * The currency of the country where the legal entity of this merchant account is registered. Format: [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, a legal entity based in the United States has USD as the primary settlement currency.
     */
     'primarySettlementCurrency'?: string;
+    /**
+    * Reference of the merchant account.
+    */
+    'reference'?: string;
     /**
     * The URL for the ecommerce website used with this merchant account.
     */
@@ -62,8 +79,23 @@ export class Merchant {
             "type": "string"
         },
         {
+            "name": "companyId",
+            "baseName": "companyId",
+            "type": "string"
+        },
+        {
+            "name": "dataCenters",
+            "baseName": "dataCenters",
+            "type": "Array<DataCenter>"
+        },
+        {
             "name": "defaultShopperInteraction",
             "baseName": "defaultShopperInteraction",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
             "type": "string"
         },
         {
@@ -89,6 +121,11 @@ export class Merchant {
         {
             "name": "primarySettlementCurrency",
             "baseName": "primarySettlementCurrency",
+            "type": "string"
+        },
+        {
+            "name": "reference",
+            "baseName": "reference",
             "type": "string"
         },
         {

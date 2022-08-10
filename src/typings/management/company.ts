@@ -17,6 +17,10 @@ export class Company {
     */
     'dataCenters'?: Array<DataCenter>;
     /**
+    * Your description for the company account, maximum 300 characters
+    */
+    'description'?: string;
+    /**
     * The unique identifier of the company account.
     */
     'id'?: string;
@@ -24,6 +28,10 @@ export class Company {
     * The legal or trading name of the company.
     */
     'name'?: string;
+    /**
+    * Your reference to the account
+    */
+    'reference'?: string;
     /**
     * The status of the company account.  Possible values:  * **Active**: Users can log in. Processing and payout capabilities depend on the status of the merchant account. * **Inactive**: Users can log in. Payment processing and payouts are disabled. * **Closed**: The company account is closed and this cannot be reversed. Users cannot log in. Payment processing and payouts are disabled.
     */
@@ -43,6 +51,11 @@ export class Company {
             "type": "Array<DataCenter>"
         },
         {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
             "name": "id",
             "baseName": "id",
             "type": "string"
@@ -50,6 +63,11 @@ export class Company {
         {
             "name": "name",
             "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "reference",
+            "baseName": "reference",
             "type": "string"
         },
         {
