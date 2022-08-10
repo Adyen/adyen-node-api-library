@@ -56,7 +56,7 @@ export class UpdateCompanyWebhookRequest {
     */
     'populateSoapActionHeader'?: boolean;
     /**
-    * SSL version to access the public webhook URL specified in the `url` field. Possible values: * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use `sslVersion`: **TLSv1.2**.
+    * SSL version to access the public webhook URL specified in the `url` field. Possible values: * **TLSv1.2** * **SSL** * **SSLv3** * **TLS** * **TLSv1** * **TLSv1.1**  If not specified, the webhook will use `sslVersion`: **TLSv1.2**.
     */
     'sslVersion'?: UpdateCompanyWebhookRequest.SslVersionEnum;
     /**
