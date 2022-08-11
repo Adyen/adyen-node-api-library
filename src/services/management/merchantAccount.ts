@@ -6,7 +6,7 @@ import ManagementResource from "../resource/management/managementResource";
 
 class MerchantAccount extends Service {
     public async list(requestOptions?: IRequest.Options): Promise<ListMerchantResponse> {
-        const resource = new ManagementResource(this, `/merchants`);
+        const resource = new ManagementResource(this, "/merchants");
         const response = await getJsonResponse<string, ListMerchantResponse>(
             resource,
             "",
@@ -16,7 +16,7 @@ class MerchantAccount extends Service {
     }
 
     public async create(request: CreateMerchantRequest): Promise<CreateMerchantResponse> {
-        const resource = new ManagementResource(this, `/merchants`);
+        const resource = new ManagementResource(this, "/merchants");
         const response = await getJsonResponse<CreateMerchantRequest, CreateMerchantResponse>(
             resource,
             request,
