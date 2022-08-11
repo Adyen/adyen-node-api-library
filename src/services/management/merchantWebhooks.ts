@@ -5,7 +5,10 @@ import { IRequest } from "../../typings/requestOptions";
 import ManagementResource from "../resource/management/managementResource";
 
 class MerchantWebhooks extends Service {
-    public async listWebhooks(merchantId: string, requestOptions?: IRequest.Options): Promise<ListWebhooksResponse> {
+    /**
+     * List all webhooks
+     */
+    public async list(merchantId: string, requestOptions?: IRequest.Options): Promise<ListWebhooksResponse> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/webhooks`);
         const response = await getJsonResponse<string, ListWebhooksResponse>(
             resource,
@@ -15,6 +18,9 @@ class MerchantWebhooks extends Service {
         return ObjectSerializer.deserialize(response, "ListWebhooksResponse");
     }
 
+    /**
+     * Set up a webhook
+     */
     public async create(merchantId: string, request: CreateMerchantWebhookRequest): Promise<Webhook> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/webhooks`);
         const response = await getJsonResponse<CreateMerchantWebhookRequest, Webhook>(
@@ -25,6 +31,9 @@ class MerchantWebhooks extends Service {
         return ObjectSerializer.deserialize(response, "Webhook");
     }
 
+    /**
+     * Remove a webhook
+     */
     public async delete(merchantId: string, webhookId: string): Promise<void> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/webhooks/${webhookId}`);
         const response = await getJsonResponse<string, void>(
@@ -35,6 +44,9 @@ class MerchantWebhooks extends Service {
         return ObjectSerializer.deserialize(response, "void");
     }
 
+    /**
+     * Get a webhook
+     */
     public async retrieve(merchantId: string, webhookId: string): Promise<Webhook> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/webhooks/${webhookId}`);
         const response = await getJsonResponse<string, Webhook>(
@@ -45,6 +57,9 @@ class MerchantWebhooks extends Service {
         return ObjectSerializer.deserialize(response, "Webhook");
     }
 
+    /**
+     * Update a webhook
+     */
     public async update(merchantId: string, webhookId: string, request: UpdateMerchantWebhookRequest): Promise<Webhook> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/webhooks/${webhookId}`);
         const response = await getJsonResponse<UpdateMerchantWebhookRequest, Webhook>(
@@ -55,6 +70,9 @@ class MerchantWebhooks extends Service {
         return ObjectSerializer.deserialize(response, "Webhook");
     }
 
+    /**
+     * Generate an HMAC key
+     */
     public async generateHmac(merchantId: string, webhookId: string): Promise<GenerateHmacKeyResponse> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/webhooks/${webhookId}/generateHmac`);
         const response = await getJsonResponse<string, GenerateHmacKeyResponse>(
@@ -65,6 +83,9 @@ class MerchantWebhooks extends Service {
         return ObjectSerializer.deserialize(response, "GenerateHmacKeyResponse");
     }
 
+    /**
+     * Test a webhook
+     */
     public async test(merchantId: string, webhookId: string, request: TestWebhookRequest): Promise<TestWebhookResponse> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/webhooks/${webhookId}/test`);
         const response = await getJsonResponse<TestWebhookRequest, TestWebhookResponse>(

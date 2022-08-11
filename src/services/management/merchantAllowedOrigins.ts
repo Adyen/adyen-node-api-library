@@ -4,6 +4,9 @@ import { AllowedOrigin, AllowedOriginsResponse, ObjectSerializer } from "../../t
 import ManagementResource from "../resource/management/managementResource";
 
 class MerchantAllowedOrigins extends Service {
+    /**
+     * Get a list of allowed origins
+     */
     public async list(merchantId: string, apiCredentialId: string): Promise<AllowedOriginsResponse> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/apiCredentials/${apiCredentialId}/allowedOrigins`);
         const response = await getJsonResponse<string, AllowedOriginsResponse>(
@@ -14,6 +17,9 @@ class MerchantAllowedOrigins extends Service {
         return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
     }
 
+    /**
+     * Create an allowed origin
+     */
     public async create(merchantId: string, apiCredentialId: string, request: AllowedOrigin): Promise<AllowedOriginsResponse> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/apiCredentials/${apiCredentialId}/allowedOrigins`);
         const response = await getJsonResponse<AllowedOrigin, AllowedOriginsResponse>(
@@ -24,6 +30,9 @@ class MerchantAllowedOrigins extends Service {
         return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
     }
 
+    /**
+     * Delete an allowed origin
+     */
     public async delete(merchantId: string, apiCredentialId: string, originId: string): Promise<void> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/apiCredentials/${apiCredentialId}/allowedOrigins/${originId}`);
         const response = await getJsonResponse<string, void>(
@@ -34,6 +43,9 @@ class MerchantAllowedOrigins extends Service {
         return ObjectSerializer.deserialize(response, "void");
     }
 
+    /**
+     * Get an allowed origin
+     */
     public async retrieve(merchantId: string, apiCredentialId: string, originId: string): Promise<AllowedOrigin> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/apiCredentials/${apiCredentialId}/allowedOrigins/${originId}`);
         const response = await getJsonResponse<string, AllowedOrigin>(

@@ -5,8 +5,11 @@ import { IRequest } from "../../typings/requestOptions";
 import ManagementResource from "../resource/management/managementResource";
 
 class MerchantAccount extends Service {
+    /**
+     * Get a list of merchant accounts
+     */
     public async list(requestOptions?: IRequest.Options): Promise<ListMerchantResponse> {
-        const resource = new ManagementResource(this, "/merchants");
+        const resource = new ManagementResource(this, `/merchants`);
         const response = await getJsonResponse<string, ListMerchantResponse>(
             resource,
             "",
@@ -15,8 +18,11 @@ class MerchantAccount extends Service {
         return ObjectSerializer.deserialize(response, "ListMerchantResponse");
     }
 
+    /**
+     * Create a merchant account
+     */
     public async create(request: CreateMerchantRequest): Promise<CreateMerchantResponse> {
-        const resource = new ManagementResource(this, "/merchants");
+        const resource = new ManagementResource(this, `/merchants`);
         const response = await getJsonResponse<CreateMerchantRequest, CreateMerchantResponse>(
             resource,
             request,
@@ -25,6 +31,9 @@ class MerchantAccount extends Service {
         return ObjectSerializer.deserialize(response, "CreateMerchantResponse");
     }
 
+    /**
+     * Get a merchant account
+     */
     public async retrieve(merchantId: string): Promise<Merchant> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}`);
         const response = await getJsonResponse<string, Merchant>(
@@ -35,6 +44,9 @@ class MerchantAccount extends Service {
         return ObjectSerializer.deserialize(response, "Merchant");
     }
 
+    /**
+     * Request to activate a merchant account
+     */
     public async activate(merchantId: string): Promise<RequestActivationResponse> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/activate`);
         const response = await getJsonResponse<string, RequestActivationResponse>(

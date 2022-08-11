@@ -5,7 +5,10 @@ import { IRequest } from "../../typings/requestOptions";
 import ManagementResource from "../resource/management/managementResource";
 
 class MerchantUsers extends Service {
-    public async listUsers(merchantId: string, requestOptions?: IRequest.Options): Promise<ListMerchantUsersResponse> {
+    /**
+     * Get a list of users
+     */
+    public async list(merchantId: string, requestOptions?: IRequest.Options): Promise<ListMerchantUsersResponse> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/users`);
         const response = await getJsonResponse<string, ListMerchantUsersResponse>(
             resource,
@@ -15,6 +18,9 @@ class MerchantUsers extends Service {
         return ObjectSerializer.deserialize(response, "ListMerchantUsersResponse");
     }
 
+    /**
+     * Create a new user
+     */
     public async create(merchantId: string, request: CreateMerchantUserRequest): Promise<CreateUserResponse> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/users`);
         const response = await getJsonResponse<CreateMerchantUserRequest, CreateUserResponse>(
@@ -25,6 +31,9 @@ class MerchantUsers extends Service {
         return ObjectSerializer.deserialize(response, "CreateUserResponse");
     }
 
+    /**
+     * Get user details
+     */
     public async retrieve(merchantId: string, userId: string): Promise<User> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/users/${userId}`);
         const response = await getJsonResponse<string, User>(
@@ -35,6 +44,9 @@ class MerchantUsers extends Service {
         return ObjectSerializer.deserialize(response, "User");
     }
 
+    /**
+     * Update a user
+     */
     public async update(merchantId: string, userId: string, request: UpdateMerchantUserRequest): Promise<User> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/users/${userId}`);
         const response = await getJsonResponse<UpdateMerchantUserRequest, User>(
