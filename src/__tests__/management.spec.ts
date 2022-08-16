@@ -194,7 +194,7 @@ describe("Management", (): void => {
 
         it("should support DELETE /merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}", async (): Promise<void> => {
             scope.delete(`/merchants/${merchantId}/apiCredentials/${apiCredentialId}/allowedOrigins/${originId}`)
-                .reply(200,);
+                .reply(204);
 
             await management.MerchantAllowedOrigins.delete(merchantId, apiCredentialId, originId);
         });
@@ -343,7 +343,7 @@ describe("Management", (): void => {
 
         it("should support DELETE /merchants/{merchantId}/payoutSettings/{payoutSettingsId}", async (): Promise<void> => {
             scope.delete(`/merchants/${merchantId}/payoutSettings/${payoutSettingsId}`)
-                .reply(200,);
+                .reply(200);
 
             await management.MerchantPayoutSettings.delete(merchantId, payoutSettingsId);
         });
@@ -603,7 +603,7 @@ describe("Management", (): void => {
 
         it("should support DELETE /merchants/{merchantId}/webhooks/{webhookId}", async (): Promise<void> => {
             scope.delete(`/merchants/${merchantId}/webhooks/${webhookId}`)
-                .reply(200,);
+                .reply(204);
 
             await management.MerchantWebhooks.delete(merchantId, webhookId);
         });
@@ -641,7 +641,7 @@ describe("Management", (): void => {
         });
 
         it("should support POST /merchants/{merchantId}/webhooks/{webhookId}/test", async (): Promise<void> => {
-            scope.post(`/merchants/${merchantId}/webhooks/${webhookId}/test`)
+            scope.post(`/merchants/${merchantId}/webhooks/${webhookId}/test`, /2022-07-15T00:00:00.000Z/)
                 .reply(200, responses.testWebhookResponse);
 
             let testWebhookRequest = {
@@ -651,7 +651,7 @@ describe("Management", (): void => {
                         "value": 0
                     },
                     "eventCode": "string",
-                    "eventDate": new Date(),
+                    "eventDate": new Date(2022, 6, 15),
                     "merchantReference": "string",
                     "paymentMethod": "string",
                     "reason": "string",

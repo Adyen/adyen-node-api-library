@@ -35,12 +35,11 @@ class MerchantAllowedOrigins extends Service {
      */
     public async delete(merchantId: string, apiCredentialId: string, originId: string): Promise<void> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/apiCredentials/${apiCredentialId}/allowedOrigins/${originId}`);
-        const response = await getJsonResponse<string, void>(
+        await getJsonResponse<string, void>(
             resource,
             "",
             { method: "DELETE" }
         );
-        return ObjectSerializer.deserialize(response, "void");
     }
 
     /**

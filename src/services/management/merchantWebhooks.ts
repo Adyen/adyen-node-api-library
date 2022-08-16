@@ -36,12 +36,11 @@ class MerchantWebhooks extends Service {
      */
     public async delete(merchantId: string, webhookId: string): Promise<void> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/webhooks/${webhookId}`);
-        const response = await getJsonResponse<string, void>(
+        await getJsonResponse<string, void>(
             resource,
             "",
             { method: "DELETE" }
         );
-        return ObjectSerializer.deserialize(response, "void");
     }
 
     /**

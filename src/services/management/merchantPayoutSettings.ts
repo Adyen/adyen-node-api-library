@@ -35,12 +35,11 @@ class MerchantPayoutSettings extends Service {
      */
     public async delete(merchantId: string, payoutSettingsId: string): Promise<void> {
         const resource = new ManagementResource(this, `/merchants/${merchantId}/payoutSettings/${payoutSettingsId}`);
-        const response = await getJsonResponse<string, void>(
+        await getJsonResponse<string, void>(
             resource,
             "",
             { method: "DELETE" }
         );
-        return ObjectSerializer.deserialize(response, "void");
     }
 
     /**
