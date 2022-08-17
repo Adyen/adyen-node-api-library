@@ -13,6 +13,7 @@ recurring: spec=RecurringService-v68
 payouts: spec=PayoutService-v68
 management: spec=ManagementService-v1
 balancePlatform: spec=BalancePlatformService-v2
+payout: spec=PayoutService-v68
 platformsAccount: spec=AccountService-v6
 platformsFund: spec=FundService-v6
 platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
