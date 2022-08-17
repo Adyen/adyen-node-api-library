@@ -37,7 +37,7 @@
   "devDependencies": {
     "@types/jest": "27.5.0",
     "@types/nock": "11.1.0",
-    "@typescript-eslint/eslint-plugin": "5.33.0",
+    "@typescript-eslint/eslint-plugin": "5.33.1",
     "@typescript-eslint/parser": "5.33.0",
     "acorn": "^8.0.1",
     "coveralls": "3.1.1",
@@ -48,7 +48,7 @@
     "kind-of": "^6.0.3",
     "minimist": ">=1.2.3",
     "nock": "13.2.9",
-    "release-it": "15.2.0",
+    "release-it": "15.3.0",
     "ts-auto-mock": "^3.3.5",
     "ts-jest": "^27.0.4",
     "ts-loader": "8.0.10",

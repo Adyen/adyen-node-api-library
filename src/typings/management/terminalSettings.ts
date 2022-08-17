@@ -12,6 +12,7 @@ import { Connectivity } from './connectivity';
 import { Gratuity } from './gratuity';
 import { Hardware } from './hardware';
 import { Nexo } from './nexo';
+import { OfflineProcessing } from './offlineProcessing';
 import { Opi } from './opi';
 import { ReceiptOptions } from './receiptOptions';
 import { ReceiptPrinting } from './receiptPrinting';
@@ -29,6 +30,7 @@ export class TerminalSettings {
     'gratuities'?: Array<Gratuity>;
     'hardware'?: Hardware;
     'nexo'?: Nexo;
+    'offlineProcessing'?: OfflineProcessing;
     'opi'?: Opi;
     'receiptOptions'?: ReceiptOptions;
     'receiptPrinting'?: ReceiptPrinting;
@@ -64,6 +66,11 @@ export class TerminalSettings {
             "name": "nexo",
             "baseName": "nexo",
             "type": "Nexo"
+        },
+        {
+            "name": "offlineProcessing",
+            "baseName": "offlineProcessing",
+            "type": "OfflineProcessing"
         },
         {
             "name": "opi",

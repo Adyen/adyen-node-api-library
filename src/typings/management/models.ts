@@ -27,6 +27,7 @@ export * from './bcmcInfo';
 export * from './billingEntitiesResponse';
 export * from './billingEntity';
 export * from './cardholderReceipt';
+export * from './cartesBancairesInfo';
 export * from './company';
 export * from './companyApiCredential';
 export * from './companyLinks';
@@ -42,6 +43,8 @@ export * from './createCompanyUserRequest';
 export * from './createCompanyUserResponse';
 export * from './createCompanyWebhookRequest';
 export * from './createMerchantApiCredentialRequest';
+export * from './createMerchantRequest';
+export * from './createMerchantResponse';
 export * from './createMerchantUserRequest';
 export * from './createMerchantWebhookRequest';
 export * from './createUserResponse';
@@ -79,10 +82,12 @@ export * from './logo';
 export * from './meApiCredential';
 export * from './merchant';
 export * from './merchantLinks';
+export * from './minorUnitsMonetaryValue';
 export * from './modelFile';
 export * from './name';
 export * from './name2';
 export * from './nexo';
+export * from './offlineProcessing';
 export * from './opi';
 export * from './orderItem';
 export * from './paginationLinks';
@@ -90,9 +95,14 @@ export * from './payPalInfo';
 export * from './paymentMethod';
 export * from './paymentMethodResponse';
 export * from './paymentMethodSetupInfo';
+export * from './payoutSettings';
+export * from './payoutSettingsRequest';
+export * from './payoutSettingsResponse';
 export * from './profile';
 export * from './receiptOptions';
 export * from './receiptPrinting';
+export * from './releaseUpdateDetails';
+export * from './requestActivationResponse';
 export * from './restServiceError';
 export * from './scheduleTerminalActionsRequest';
 export * from './scheduleTerminalActionsResponse';
@@ -108,6 +118,7 @@ export * from './storeSplitConfiguration';
 export * from './surcharge';
 export * from './swishInfo';
 export * from './terminal';
+export * from './terminalActionScheduleDetail';
 export * from './terminalModelsResponse';
 export * from './terminalOrder';
 export * from './terminalOrderRequest';
@@ -130,6 +141,7 @@ export * from './updateMerchantApiCredentialRequest';
 export * from './updateMerchantUserRequest';
 export * from './updateMerchantWebhookRequest';
 export * from './updatePaymentMethodInfo';
+export * from './updatePayoutSettingsRequest';
 export * from './updateStoreRequest';
 export * from './url';
 export * from './user';
@@ -157,6 +169,7 @@ import { BcmcInfo } from './bcmcInfo';
 import { BillingEntitiesResponse } from './billingEntitiesResponse';
 import { BillingEntity } from './billingEntity';
 import { CardholderReceipt } from './cardholderReceipt';
+import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { Company } from './company';
 import { CompanyApiCredential } from './companyApiCredential';
 import { CompanyLinks } from './companyLinks';
@@ -172,6 +185,8 @@ import { CreateCompanyUserRequest } from './createCompanyUserRequest';
 import { CreateCompanyUserResponse } from './createCompanyUserResponse';
 import { CreateCompanyWebhookRequest } from './createCompanyWebhookRequest';
 import { CreateMerchantApiCredentialRequest } from './createMerchantApiCredentialRequest';
+import { CreateMerchantRequest } from './createMerchantRequest';
+import { CreateMerchantResponse } from './createMerchantResponse';
 import { CreateMerchantUserRequest } from './createMerchantUserRequest';
 import { CreateMerchantWebhookRequest } from './createMerchantWebhookRequest';
 import { CreateUserResponse } from './createUserResponse';
@@ -209,10 +224,12 @@ import { Logo } from './logo';
 import { MeApiCredential } from './meApiCredential';
 import { Merchant } from './merchant';
 import { MerchantLinks } from './merchantLinks';
+import { MinorUnitsMonetaryValue } from './minorUnitsMonetaryValue';
 import { ModelFile } from './modelFile';
 import { Name } from './name';
 import { Name2 } from './name2';
 import { Nexo } from './nexo';
+import { OfflineProcessing } from './offlineProcessing';
 import { Opi } from './opi';
 import { OrderItem } from './orderItem';
 import { PaginationLinks } from './paginationLinks';
@@ -220,9 +237,14 @@ import { PayPalInfo } from './payPalInfo';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodResponse } from './paymentMethodResponse';
 import { PaymentMethodSetupInfo } from './paymentMethodSetupInfo';
+import { PayoutSettings } from './payoutSettings';
+import { PayoutSettingsRequest } from './payoutSettingsRequest';
+import { PayoutSettingsResponse } from './payoutSettingsResponse';
 import { Profile } from './profile';
 import { ReceiptOptions } from './receiptOptions';
 import { ReceiptPrinting } from './receiptPrinting';
+import { ReleaseUpdateDetails } from './releaseUpdateDetails';
+import { RequestActivationResponse } from './requestActivationResponse';
 import { RestServiceError } from './restServiceError';
 import { ScheduleTerminalActionsRequest } from './scheduleTerminalActionsRequest';
 import { ScheduleTerminalActionsResponse } from './scheduleTerminalActionsResponse';
@@ -238,6 +260,7 @@ import { StoreSplitConfiguration } from './storeSplitConfiguration';
 import { Surcharge } from './surcharge';
 import { SwishInfo } from './swishInfo';
 import { Terminal } from './terminal';
+import { TerminalActionScheduleDetail } from './terminalActionScheduleDetail';
 import { TerminalModelsResponse } from './terminalModelsResponse';
 import { TerminalOrder } from './terminalOrder';
 import { TerminalOrderRequest } from './terminalOrderRequest';
@@ -260,6 +283,7 @@ import { UpdateMerchantApiCredentialRequest } from './updateMerchantApiCredentia
 import { UpdateMerchantUserRequest } from './updateMerchantUserRequest';
 import { UpdateMerchantWebhookRequest } from './updateMerchantWebhookRequest';
 import { UpdatePaymentMethodInfo } from './updatePaymentMethodInfo';
+import { UpdatePayoutSettingsRequest } from './updatePayoutSettingsRequest';
 import { UpdateStoreRequest } from './updateStoreRequest';
 import { Url } from './url';
 import { User } from './user';
@@ -292,7 +316,11 @@ let enumsMap: {[index: string]: any} = {
         "InstallAndroidAppDetails.TypeEnum": InstallAndroidAppDetails.TypeEnum,
         "InstallAndroidCertificateDetails.TypeEnum": InstallAndroidCertificateDetails.TypeEnum,
         "KlarnaInfo.RegionEnum": KlarnaInfo.RegionEnum,
+        "PaymentMethodSetupInfo.ShopperInteractionEnum": PaymentMethodSetupInfo.ShopperInteractionEnum,
         "PaymentMethodSetupInfo.TypeEnum": PaymentMethodSetupInfo.TypeEnum,
+        "PayoutSettings.PriorityEnum": PayoutSettings.PriorityEnum,
+        "PayoutSettings.VerificationStatusEnum": PayoutSettings.VerificationStatusEnum,
+        "ReleaseUpdateDetails.TypeEnum": ReleaseUpdateDetails.TypeEnum,
         "Store.StatusEnum": Store.StatusEnum,
         "UninstallAndroidAppDetails.TypeEnum": UninstallAndroidAppDetails.TypeEnum,
         "UninstallAndroidCertificateDetails.TypeEnum": UninstallAndroidCertificateDetails.TypeEnum,
@@ -330,6 +358,7 @@ let typeMap: {[index: string]: any} = {
     "BillingEntitiesResponse": BillingEntitiesResponse,
     "BillingEntity": BillingEntity,
     "CardholderReceipt": CardholderReceipt,
+    "CartesBancairesInfo": CartesBancairesInfo,
     "Company": Company,
     "CompanyApiCredential": CompanyApiCredential,
     "CompanyLinks": CompanyLinks,
@@ -345,6 +374,8 @@ let typeMap: {[index: string]: any} = {
     "CreateCompanyUserResponse": CreateCompanyUserResponse,
     "CreateCompanyWebhookRequest": CreateCompanyWebhookRequest,
     "CreateMerchantApiCredentialRequest": CreateMerchantApiCredentialRequest,
+    "CreateMerchantRequest": CreateMerchantRequest,
+    "CreateMerchantResponse": CreateMerchantResponse,
     "CreateMerchantUserRequest": CreateMerchantUserRequest,
     "CreateMerchantWebhookRequest": CreateMerchantWebhookRequest,
     "CreateUserResponse": CreateUserResponse,
@@ -382,10 +413,12 @@ let typeMap: {[index: string]: any} = {
     "MeApiCredential": MeApiCredential,
     "Merchant": Merchant,
     "MerchantLinks": MerchantLinks,
+    "MinorUnitsMonetaryValue": MinorUnitsMonetaryValue,
     "ModelFile": ModelFile,
     "Name": Name,
     "Name2": Name2,
     "Nexo": Nexo,
+    "OfflineProcessing": OfflineProcessing,
     "Opi": Opi,
     "OrderItem": OrderItem,
     "PaginationLinks": PaginationLinks,
@@ -393,9 +426,14 @@ let typeMap: {[index: string]: any} = {
     "PaymentMethod": PaymentMethod,
     "PaymentMethodResponse": PaymentMethodResponse,
     "PaymentMethodSetupInfo": PaymentMethodSetupInfo,
+    "PayoutSettings": PayoutSettings,
+    "PayoutSettingsRequest": PayoutSettingsRequest,
+    "PayoutSettingsResponse": PayoutSettingsResponse,
     "Profile": Profile,
     "ReceiptOptions": ReceiptOptions,
     "ReceiptPrinting": ReceiptPrinting,
+    "ReleaseUpdateDetails": ReleaseUpdateDetails,
+    "RequestActivationResponse": RequestActivationResponse,
     "RestServiceError": RestServiceError,
     "ScheduleTerminalActionsRequest": ScheduleTerminalActionsRequest,
     "ScheduleTerminalActionsResponse": ScheduleTerminalActionsResponse,
@@ -411,6 +449,7 @@ let typeMap: {[index: string]: any} = {
     "Surcharge": Surcharge,
     "SwishInfo": SwishInfo,
     "Terminal": Terminal,
+    "TerminalActionScheduleDetail": TerminalActionScheduleDetail,
     "TerminalModelsResponse": TerminalModelsResponse,
     "TerminalOrder": TerminalOrder,
     "TerminalOrderRequest": TerminalOrderRequest,
@@ -433,6 +472,7 @@ let typeMap: {[index: string]: any} = {
     "UpdateMerchantUserRequest": UpdateMerchantUserRequest,
     "UpdateMerchantWebhookRequest": UpdateMerchantWebhookRequest,
     "UpdatePaymentMethodInfo": UpdatePaymentMethodInfo,
+    "UpdatePayoutSettingsRequest": UpdatePayoutSettingsRequest,
     "UpdateStoreRequest": UpdateStoreRequest,
     "Url": Url,
     "User": User,

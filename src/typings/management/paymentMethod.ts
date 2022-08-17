@@ -9,6 +9,7 @@
 
 import { ApplePayInfo } from './applePayInfo';
 import { BcmcInfo } from './bcmcInfo';
+import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { GiroPayInfo } from './giroPayInfo';
 import { KlarnaInfo } from './klarnaInfo';
 import { PayPalInfo } from './payPalInfo';
@@ -22,6 +23,7 @@ export class PaymentMethod {
     * The unique identifier of the business line.
     */
     'businessLineId'?: string;
+    'cartesBancaires'?: CartesBancairesInfo;
     /**
     * The list of countries where a payment method is available. By default, all countries supported by the payment method.
     */
@@ -69,6 +71,11 @@ export class PaymentMethod {
             "name": "businessLineId",
             "baseName": "businessLineId",
             "type": "string"
+        },
+        {
+            "name": "cartesBancaires",
+            "baseName": "cartesBancaires",
+            "type": "CartesBancairesInfo"
         },
         {
             "name": "countries",
