@@ -5,6 +5,7 @@ services:=checkout storedValue terminalManagement payments recurring payouts man
 # Generate models (for each service)
 models: $(services)
 
+binlookup: spec=BinLookupService-v52
 checkout: spec=CheckoutService-v69
 storedValue: spec=StoredValueService-v46
 terminalManagement: spec=TfmAPIService-v1
