@@ -1,6 +1,6 @@
 generator:=typescript-node
 openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v5.4.0
-services:=checkout storedValue terminalManagement payments recurring payouts management balancePlatform platformsAccount platformsFund platformsNotificationConfiguration platformsHostedOnboardingPage  
+services:=binlookup checkout storedValue terminalManagement payments recurring payouts management balancePlatform platformsAccount platformsFund platformsNotificationConfiguration platformsHostedOnboardingPage  
 
 # Generate models (for each service)
 models: $(services)
