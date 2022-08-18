@@ -1,27 +1,15 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
 import Payout from "../services/payout";
 import Client from "../client";
-import StoreDetailRequest = IPayouts.StoreDetailRequest;
+import {
+    ModifyRequest, 
+    PayoutRequest, 
+    Recurring,
+    StoreDetailAndSubmitRequest, 
+    StoreDetailRequest, 
+    SubmitRequest
+} from "../typings/payouts/models";
 import { ApiConstants } from "../constants/apiConstants";
 
 const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
@@ -50,13 +38,13 @@ const amountAndReference = {
 };
 
 const defaultData = {
-    dateOfBirth: (new Date()).toISOString(),
+    dateOfBirth: new Date(),
     nationality: "NL",
     shopperEmail: "johndoe@email.com",
     shopperReference: "shopperReference",
 };
 
-const mockStoreDetailRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): IPayouts.StoreDetailRequest => ({
+const mockStoreDetailRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): StoreDetailRequest => ({
     ...defaultData,
     card: {
         cvc: "737",
@@ -65,29 +53,29 @@ const mockStoreDetailRequest = (merchantAccount: string = process.env.ADYEN_MERC
         number: "4111111111111111",
         holderName: "John Smith"
     },
-    entityType: "Company",
+    entityType: StoreDetailRequest.EntityTypeEnum.Company,
     recurring: {
-        contract: "PAYOUT"
+        contract: Recurring.ContractEnum.Payout,
     },
     merchantAccount,
 });
 
-const mockSubmitRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): IPayouts.SubmitRequest => ({
+const mockSubmitRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): SubmitRequest => ({
     selectedRecurringDetailReference: "LATEST",
     recurring: {
-        contract: "PAYOUT"
+        contract: Recurring.ContractEnum.Payout
     },
     ...defaultData,
     ...amountAndReference,
     merchantAccount,
 });
 
-const mockStoreDetailAndSubmitRequest = (merchantAccount?: string): IPayouts.StoreDetailAndSubmitRequest => ({
+const mockStoreDetailAndSubmitRequest = (merchantAccount?: string): StoreDetailAndSubmitRequest => ({
     ...amountAndReference,
     ...(mockStoreDetailRequest(merchantAccount)),
-});
+}); 
 
-const mockPayoutRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): IPayouts.PayoutRequest => ({
+const mockPayoutRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): PayoutRequest => ({
     ...amountAndReference,
     ...defaultData,
     card: {
@@ -124,7 +112,7 @@ describe("PayoutTest", function (): void {
     test.each([isCI, true])("should succeed on store detail and submit third party, isMock: %p", async function (isMock): Promise<void> {
         !isMock && nock.restore();
         payout = new Payout(clientStore);
-        const request: IPayouts.StoreDetailAndSubmitRequest = mockStoreDetailAndSubmitRequest();
+        const request: StoreDetailAndSubmitRequest = mockStoreDetailAndSubmitRequest();
         scope.post("/storeDetailAndSubmitThirdParty").reply(200, storeDetailAndSubmitThirdParty);
 
         const result = await payout.storeDetailAndSubmitThirdParty(request);
@@ -158,7 +146,7 @@ describe("PayoutTest", function (): void {
                 response: "[payout-confirm-received]"
             });
 
-        const request: IPayouts.ModifyRequest = {
+        const request: ModifyRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             originalReference: storeResult.pspReference
         };
@@ -173,7 +161,7 @@ describe("PayoutTest", function (): void {
         payout = new Payout(clientStore);
         scope.post("/submitThirdParty").reply(200, storeDetailAndSubmitThirdParty);
 
-        const request: IPayouts.SubmitRequest = mockSubmitRequest();
+        const request: SubmitRequest = mockSubmitRequest();
         const result = await payout.submitThirdparty(request);
 
         expect(result.resultCode).toEqual("[payout-submit-received]");
@@ -193,7 +181,7 @@ describe("PayoutTest", function (): void {
         const storeResult = await payout.storeDetail(storeRequest);
 
         payout = new Payout(clientReview);
-        const request: IPayouts.ModifyRequest = {
+        const request: ModifyRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             originalReference: storeResult.pspReference
         };
