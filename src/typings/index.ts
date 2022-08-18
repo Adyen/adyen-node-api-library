@@ -6,13 +6,13 @@
 /// <reference path="enums/vatCategory.ts" />
 /// <reference path="nexo.ts" />
 /// <reference path="notification/notification.ts" />
-/// <reference path="payouts.ts" />
 /// <reference path="requestOptions.ts" />
 /// <reference path="platformsFund.ts" />
 /// <reference path="platformsNotificationConfiguration.ts" />
 
 export * as checkout from './checkout/models';
 export * as notification from './notification/models';
+export * as payouts from './payouts/models';
 export * as platformsNotifications from './platformsNotifications/models';
 export * as platformsAccount from './platformsAccount/models';
 export * as platformsHostedOnboardingPage from './platformsHostedOnboardingPage/models';
