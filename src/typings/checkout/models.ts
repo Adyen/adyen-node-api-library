@@ -32,6 +32,7 @@ export * from './amazonPayDetails';
 export * from './amount';
 export * from './androidPayDetails';
 export * from './applePayDetails';
+export * from './applePaySessionResponse';
 export * from './applicationInfo';
 export * from './authenticationData';
 export * from './avs';
@@ -61,6 +62,7 @@ export * from './checkoutOrderResponse';
 export * from './checkoutQrCodeAction';
 export * from './checkoutRedirectAction';
 export * from './checkoutSDKAction';
+export * from './checkoutSessionInstallmentOption';
 export * from './checkoutThreeDS2Action';
 export * from './checkoutUtilityRequest';
 export * from './checkoutUtilityResponse';
@@ -68,6 +70,7 @@ export * from './checkoutVoucherAction';
 export * from './commonField';
 export * from './company';
 export * from './configuration';
+export * from './createApplePaySessionRequest';
 export * from './createCheckoutSessionRequest';
 export * from './createCheckoutSessionResponse';
 export * from './createPaymentAmountUpdateRequest';
@@ -202,6 +205,7 @@ import { AmazonPayDetails } from './amazonPayDetails';
 import { Amount } from './amount';
 import { AndroidPayDetails } from './androidPayDetails';
 import { ApplePayDetails } from './applePayDetails';
+import { ApplePaySessionResponse } from './applePaySessionResponse';
 import { ApplicationInfo } from './applicationInfo';
 import { AuthenticationData } from './authenticationData';
 import { Avs } from './avs';
@@ -231,6 +235,7 @@ import { CheckoutOrderResponse } from './checkoutOrderResponse';
 import { CheckoutQrCodeAction } from './checkoutQrCodeAction';
 import { CheckoutRedirectAction } from './checkoutRedirectAction';
 import { CheckoutSDKAction } from './checkoutSDKAction';
+import { CheckoutSessionInstallmentOption } from './checkoutSessionInstallmentOption';
 import { CheckoutThreeDS2Action } from './checkoutThreeDS2Action';
 import { CheckoutUtilityRequest } from './checkoutUtilityRequest';
 import { CheckoutUtilityResponse } from './checkoutUtilityResponse';
@@ -238,6 +243,7 @@ import { CheckoutVoucherAction } from './checkoutVoucherAction';
 import { CommonField } from './commonField';
 import { Company } from './company';
 import { Configuration } from './configuration';
+import { CreateApplePaySessionRequest } from './createApplePaySessionRequest';
 import { CreateCheckoutSessionRequest } from './createCheckoutSessionRequest';
 import { CreateCheckoutSessionResponse } from './createCheckoutSessionResponse';
 import { CreatePaymentAmountUpdateRequest } from './createPaymentAmountUpdateRequest';
@@ -374,6 +380,7 @@ let enumsMap: {[index: string]: any} = {
         "AcctInfo.ShipNameIndicatorEnum": AcctInfo.ShipNameIndicatorEnum,
         "AcctInfo.SuspiciousAccActivityEnum": AcctInfo.SuspiciousAccActivityEnum,
         "AchDetails.TypeEnum": AchDetails.TypeEnum,
+        "AdditionalData3DSecure.ChallengeWindowSizeEnum": AdditionalData3DSecure.ChallengeWindowSizeEnum,
         "AdditionalDataCommon.IndustryUsageEnum": AdditionalDataCommon.IndustryUsageEnum,
         "AfterpayDetails.TypeEnum": AfterpayDetails.TypeEnum,
         "AmazonPayDetails.TypeEnum": AmazonPayDetails.TypeEnum,
@@ -400,6 +407,7 @@ let enumsMap: {[index: string]: any} = {
         "CheckoutQrCodeAction.TypeEnum": CheckoutQrCodeAction.TypeEnum,
         "CheckoutRedirectAction.TypeEnum": CheckoutRedirectAction.TypeEnum,
         "CheckoutSDKAction.TypeEnum": CheckoutSDKAction.TypeEnum,
+        "CheckoutSessionInstallmentOption.PlansEnum": CheckoutSessionInstallmentOption.PlansEnum,
         "CheckoutThreeDS2Action.TypeEnum": CheckoutThreeDS2Action.TypeEnum,
         "CheckoutVoucherAction.TypeEnum": CheckoutVoucherAction.TypeEnum,
         "Configuration.CardHolderNameEnum": Configuration.CardHolderNameEnum,
@@ -497,6 +505,7 @@ let enumsMap: {[index: string]: any} = {
         "ThreeDS2Result.ChallengeCancelEnum": ThreeDS2Result.ChallengeCancelEnum,
         "ThreeDS2Result.ChallengeIndicatorEnum": ThreeDS2Result.ChallengeIndicatorEnum,
         "ThreeDS2Result.ExemptionIndicatorEnum": ThreeDS2Result.ExemptionIndicatorEnum,
+        "ThreeDSRequestData.ChallengeWindowSizeEnum": ThreeDSRequestData.ChallengeWindowSizeEnum,
         "ThreeDSRequestData.NativeThreeDSEnum": ThreeDSRequestData.NativeThreeDSEnum,
         "ThreeDSRequestData.ThreeDSVersionEnum": ThreeDSRequestData.ThreeDSVersionEnum,
         "ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum": ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum,
@@ -540,6 +549,7 @@ let typeMap: {[index: string]: any} = {
     "Amount": Amount,
     "AndroidPayDetails": AndroidPayDetails,
     "ApplePayDetails": ApplePayDetails,
+    "ApplePaySessionResponse": ApplePaySessionResponse,
     "ApplicationInfo": ApplicationInfo,
     "AuthenticationData": AuthenticationData,
     "Avs": Avs,
@@ -569,6 +579,7 @@ let typeMap: {[index: string]: any} = {
     "CheckoutQrCodeAction": CheckoutQrCodeAction,
     "CheckoutRedirectAction": CheckoutRedirectAction,
     "CheckoutSDKAction": CheckoutSDKAction,
+    "CheckoutSessionInstallmentOption": CheckoutSessionInstallmentOption,
     "CheckoutThreeDS2Action": CheckoutThreeDS2Action,
     "CheckoutUtilityRequest": CheckoutUtilityRequest,
     "CheckoutUtilityResponse": CheckoutUtilityResponse,
@@ -576,6 +587,7 @@ let typeMap: {[index: string]: any} = {
     "CommonField": CommonField,
     "Company": Company,
     "Configuration": Configuration,
+    "CreateApplePaySessionRequest": CreateApplePaySessionRequest,
     "CreateCheckoutSessionRequest": CreateCheckoutSessionRequest,
     "CreateCheckoutSessionResponse": CreateCheckoutSessionResponse,
     "CreatePaymentAmountUpdateRequest": CreatePaymentAmountUpdateRequest,
