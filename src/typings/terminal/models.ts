@@ -854,6 +854,9 @@ export class ObjectSerializer {
         } else if (type === "Date") {
             return data.toISOString();
         } else if (type === "SaleToAcquirerData") {
+            if (typeof data === 'string') {
+                return data; // splits payment for terminal
+            }
             const dataString = JSON.stringify(data);
             return Buffer.from(dataString).toString("base64");
         } else {
