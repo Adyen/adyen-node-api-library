@@ -9,7 +9,7 @@
 /// <reference path="platformsFund.ts" />
 /// <reference path="platformsNotificationConfiguration.ts" />
 
-export * as binlookip from './binlookup/models';
+export * as binlookup from './binlookup/models';
 export * as checkout from './checkout/models';
 export * as notification from './notification/models';
 export * as payouts from './payouts/models';
