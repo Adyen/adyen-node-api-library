@@ -12,6 +12,7 @@ import { Address } from './address';
 import { Amount } from './amount';
 import { ApplicationInfo } from './applicationInfo';
 import { AuthenticationData } from './authenticationData';
+import { CheckoutSessionInstallmentOption } from './checkoutSessionInstallmentOption';
 import { Company } from './company';
 import { LineItem } from './lineItem';
 import { Mandate } from './mandate';
@@ -44,7 +45,7 @@ export class CreateCheckoutSessionResponse {
     */
     'captureDelayHours'?: number;
     /**
-    * The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.  Possible values: * **iOS** * **Android** * **Web**  
+    * The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.  Possible values: * **iOS** * **Android** * **Web**
     */
     'channel'?: CreateCheckoutSessionResponse.ChannelEnum;
     'company'?: Company;
@@ -81,6 +82,10 @@ export class CreateCheckoutSessionResponse {
     * A unique identifier of the session.
     */
     'id': string;
+    /**
+    * A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options.
+    */
+    'installmentOptions'?: { [key: string]: CheckoutSessionInstallmentOption; };
     /**
     * Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Zip.
     */
@@ -301,6 +306,11 @@ export class CreateCheckoutSessionResponse {
             "name": "id",
             "baseName": "id",
             "type": "string"
+        },
+        {
+            "name": "installmentOptions",
+            "baseName": "installmentOptions",
+            "type": "{ [key: string]: CheckoutSessionInstallmentOption; }"
         },
         {
             "name": "lineItems",

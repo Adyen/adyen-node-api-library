@@ -18,6 +18,14 @@ export class AdditionalDataOpenInvoice {
     */
     'openinvoicedataNumberOfLines'?: string;
     /**
+    * First name of the recipient. If the delivery address and the billing address are different, specify the `recipientFirstName` and `recipientLastName` to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.
+    */
+    'openinvoicedataRecipientFirstName'?: string;
+    /**
+    * Last name of the recipient. If the delivery address and the billing address are different, specify the `recipientFirstName` and `recipientLastName` to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.
+    */
+    'openinvoicedataRecipientLastName'?: string;
+    /**
     * The three-character ISO currency code.
     */
     'openinvoicedataLineItemNrCurrencyCode'?: string;
@@ -85,6 +93,16 @@ export class AdditionalDataOpenInvoice {
         {
             "name": "openinvoicedataNumberOfLines",
             "baseName": "openinvoicedata.numberOfLines",
+            "type": "string"
+        },
+        {
+            "name": "openinvoicedataRecipientFirstName",
+            "baseName": "openinvoicedata.recipientFirstName",
+            "type": "string"
+        },
+        {
+            "name": "openinvoicedataRecipientLastName",
+            "baseName": "openinvoicedata.recipientLastName",
             "type": "string"
         },
         {
