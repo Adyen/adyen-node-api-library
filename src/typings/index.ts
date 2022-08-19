@@ -1,7 +1,6 @@
 /// <reference path="amount.ts" />
 /// <reference path="apiError.ts" />
 /// <reference path="applicationInfo.ts" />
-/// <reference path="binLookup.ts" />
 /// <reference path="enums/environment.ts" />
 /// <reference path="enums/vatCategory.ts" />
 /// <reference path="nexo.ts" />
@@ -10,6 +9,7 @@
 /// <reference path="platformsFund.ts" />
 /// <reference path="platformsNotificationConfiguration.ts" />
 
+export * as binlookup from './binlookup/models';
 export * as checkout from './checkout/models';
 export * as notification from './notification/models';
 export * as payouts from './payouts/models';
