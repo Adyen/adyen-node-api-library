@@ -12,23 +12,23 @@ import { Address } from './address';
 export class Store {
     'address'?: Address;
     /**
-    * The store description
+    * The description of the store.
     */
     'description'?: string;
     /**
-    * List of unique terminal IDs assigned to this store
+    * The list of terminals assigned to the store.
     */
     'inStoreTerminals'?: Array<string>;
     /**
-    * Merchant account code
+    * The code of the merchant account.
     */
     'merchantAccountCode'?: string;
     /**
-    * Store status. Possible values:   - `PreActive`: The store has been created, but not yet activated.   - `Active`: The store has been activated. This means you can process payments over the store.   - `Inactive`: The store is currently not active.   - `InactiveWithModifications`: The store is currently not active, but payment modifications such as refunds are still allowed.   - `Closed`: The store has been closed. 
+    * The status of the store:  - `PreActive`: the store has been created, but not yet activated.   - `Active`: the store has been activated. This means you can process payments for this store.   - `Inactive`: the store is currently not active.   - `InactiveWithModifications`: the store is currently not active, but payment modifications such as refunds are possible.   - `Closed`: the store has been closed. 
     */
     'status'?: string;
     /**
-    * The store code of the store.
+    * The code of the store.
     */
     'store': string;
 
