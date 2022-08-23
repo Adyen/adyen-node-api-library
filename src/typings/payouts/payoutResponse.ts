@@ -21,7 +21,7 @@ export class PayoutResponse {
     'authCode'?: string;
     'dccAmount'?: Amount;
     /**
-    * Cryptographic signature used to verify `dccQuote`. > This value only applies if you have implemented Dynamic Currency Conversion. For more information, [contact Support](https://support.adyen.com/hc/en-us/requests/new).
+    * Cryptographic signature used to verify `dccQuote`. > This value only applies if you have implemented Dynamic Currency Conversion. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).
     */
     'dccSignature'?: string;
     'fraudResult'?: FraudResult;
