@@ -43,7 +43,7 @@ export class SaleData {
     'OperatorLanguage'?: string;
     'SaleReferenceID'?: string;
     'SaleTerminalData'?: SaleTerminalData;
-    'SaleToAcquirerData'?: SaleToAcquirerData;
+    'SaleToAcquirerData'?: SaleToAcquirerData | string;
     'SaleToIssuerData'?: SaleToIssuerData;
     'SaleToPOIData'?: string;
     'SaleTransactionID': TransactionIdentification;
