@@ -132,7 +132,7 @@ describe("Management", (): void => {
 
     describe("MerchantAccount", (): void => {
         it("should support GET /merchants", async (): Promise<void> => {
-            scope.get(`/merchants?pageNumber=1&pageSize=1`)
+            scope.get("/merchants?pageNumber=1&pageSize=1")
                 .reply(200, responses.listMerchantResponse);
 
             const response: models.ListMerchantResponse = await management.MerchantAccount.list({
@@ -146,7 +146,7 @@ describe("Management", (): void => {
         });
 
         it("should support POST /merchants", async (): Promise<void> => {
-            scope.post(`/merchants`)
+            scope.post("/merchants")
                 .reply(200, responses.createMerchantResponse);
 
             const response: models.CreateMerchantResponse = await management.MerchantAccount.create(requests.createMerchantRequest);
@@ -641,10 +641,10 @@ describe("Management", (): void => {
         });
 
         it("should support POST /merchants/{merchantId}/webhooks/{webhookId}/test", async (): Promise<void> => {
-            scope.post(`/merchants/${merchantId}/webhooks/${webhookId}/test`, /2022-07-15T00:00:00.000Z/)
+            scope.post(`/merchants/${merchantId}/webhooks/${webhookId}/test`)
                 .reply(200, responses.testWebhookResponse);
 
-            let testWebhookRequest = {
+            const testWebhookRequest: models.TestWebhookRequest = {
                 "notification": {
                     "amount": {
                         "currency": "string",
