@@ -12,7 +12,7 @@ import { FraudResult } from './fraudResult';
 
 export class PaymentResult {
     /**
-    * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**.
+    * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
     */
     'additionalData'?: { [key: string]: string; };
     /**

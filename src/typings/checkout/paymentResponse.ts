@@ -29,7 +29,7 @@ export class PaymentResponse {
     */
     'action'?: CheckoutAwaitAction | CheckoutBankTransferAction | CheckoutDonationAction | CheckoutOneTimePasscodeAction | CheckoutQrCodeAction | CheckoutRedirectAction | CheckoutSDKAction | CheckoutThreeDS2Action | CheckoutVoucherAction;
     /**
-    * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Account** > **API URLs** > **Additional data settings**.
+    * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
     */
     'additionalData'?: { [key: string]: string; };
     'amount'?: Amount;
