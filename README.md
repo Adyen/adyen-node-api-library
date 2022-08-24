@@ -29,8 +29,6 @@ The Library supports all APIs under the following services:
 * [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v68/overview): Endpoints for managing saved payment details. Current supported version: **v68**
 * [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api): Manage both online and point-of-sale gift cards and other stored-value cards.  Current supported version: **v46**
 
-
-
 In addition it supports the following type collections:
 
 * [Platforms Notifications Webhooks](https://docs.adyen.com/api-explorer/#/NotificationService/v6/overview) Current supported version: **v6**
