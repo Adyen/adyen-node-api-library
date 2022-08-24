@@ -1,22 +1,3 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
 import Config from "./config";
 import HttpURLConnectionClient from "./httpClient/httpURLConnectionClient";
 import { version } from "../package.json";
@@ -53,7 +34,7 @@ class Client {
     public static MARKETPAY_ENDPOINT_TEST = "https://cal-test.adyen.com/cal/services";
     public static MARKETPAY_ENDPOINT_LIVE = "https://cal-live.adyen.com/cal/services";
     public static CHECKOUT_API_VERSION = "v69";
-    public static API_VERSION = "v64";
+    public static API_VERSION = "v68";
     public static RECURRING_API_VERSION = "v68";
     public static MARKETPAY_ACCOUNT_API_VERSION = "v6";
     public static MARKETPAY_FUND_API_VERSION = "v6";

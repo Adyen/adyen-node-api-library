@@ -13,19 +13,21 @@ This is the officially supported NodeJS library for using Adyen's APIs.
 ## Integration
 The Library supports all APIs under the following services:
 
+* [BIN lookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v50/overview): The BIN Lookup API provides endpoints for retrieving information based on a given BIN.  Current supported version: **v52**
 * [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v69/overview): Our latest integration for accepting online payments. Current supported version: **v69**
+* [Configuration API](https://docs.adyen.com/api-explorer/#/balanceplatform/v2/overview): The Configuration API enables you to create a platform where you can onboard your users as account holders and create balance accounts, cards, and business accounts. Current supported verison: **v2**
+* [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
+* [Management API](https://docs.adyen.com/api-explorer/#/ManagementService/v1/overview): Configure and manage your Adyen company and merchant accounts, stores, and payment terminals. Current supported version **v1**
 * [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v68/overview): Our classic integration for online payments. Current supported version: **v68**
-* [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v68/overview): Endpoints for managing saved payment details. Current supported version: **v68**
-* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v64/overview): Endpoints for sending funds to your customers. Current supported version: **v64**
-* [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms. 
+* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v64/overview): Endpoints for sending funds to your customers. Current supported version: **v68**
+* [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms. This API is used for the classic integration.
   * [Account API](https://docs.adyen.com/api-explorer/#/Account/v6/overview) Current supported version: **v6**
   * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v6/overview) Current supported version: **v6**
+  * [Hosted onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v6/overview): Current supported version: **v6**
   * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v6/overview) Current supported version: **v6**
-  * [Hosted onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v6/overview) Current supported version: **v6**
-* [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
-* [BIN lookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v50/overview): The BIN Lookup API provides endpoints for retrieving information based on a given BIN.  Current supported version: **v50**
+* [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview): Endpoints for managing your point-of-sale payment terminals. Current supported version **v1**
+* [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v68/overview): Endpoints for managing saved payment details. Current supported version: **v68**
 * [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api): Manage both online and point-of-sale gift cards and other stored-value cards.  Current supported version: **v46**
-* [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview): Endpoints for managing your point-of-sale payment terminals **v1**
 
 In addition it supports the following type collections:
 
