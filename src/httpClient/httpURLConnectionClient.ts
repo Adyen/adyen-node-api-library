@@ -22,7 +22,7 @@ import { Agent, AgentOptions, request as httpsRequest } from "https";
 import { HttpsProxyAgent } from "https-proxy-agent";
 
 import * as fs from "fs";
-import { URL } from "url";
+import { URL, URLSearchParams } from "url";
 import Client from "../client";
 import Config from "../config";
 import HttpClientException from "./httpClientException";
@@ -86,6 +86,10 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.protocol = url.protocol;
         requestOptions.port = url.port;
         requestOptions.path = url.pathname;
+
+        if (requestOptions.params) {
+            requestOptions.path += "?" + new URLSearchParams(requestOptions.params).toString();
+        }
 
         if (requestOptions && requestOptions.idempotencyKey) {
             requestOptions.headers[ApiConstants.IDEMPOTENCY_KEY] = requestOptions.idempotencyKey;
@@ -195,8 +199,9 @@ class HttpURLConnectionClient implements ClientInterface {
                 checkServerIdentity,
             };
 
-        } catch (e: any) {
-            return Promise.reject(new HttpClientException({ message: `Error loading certificate from path: ${e.message}` }));
+        } catch (e) {
+            const message = e instanceof Error ? e.message: "undefined";
+            return Promise.reject(new HttpClientException({ message: `Error loading certificate from path: ${message}` }));
         }
 
     }

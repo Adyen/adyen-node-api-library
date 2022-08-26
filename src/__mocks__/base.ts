@@ -44,7 +44,11 @@ export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     config.checkoutEndpoint = Client.CHECKOUT_ENDPOINT_TEST;
     config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
     config.apiKey = apiKey;
-    config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
+    config.paymentEndpoint = Client.PAYMENT_API_ENDPOINT_TEST;
+    config.storedValueEndpoint = Client.STOREDVALUE_API_ENDPOINT_TEST;
+    config.terminalManagementEndpoint = Client.TERMINAL_MANAGEMENT_API_ENDPOINT_TEST;
+    config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_TEST;
+    config.balancePlatformEndpoint = Client.BALANCE_PLATFORM_API_ENDPOINT_TEST;
 
     return new Client({ config });
 };
@@ -112,7 +116,8 @@ const getReversalRequest = (poiTransaction: TransactionIdentification): Reversal
             TimeStamp: poiTransaction.TimeStamp
         },
     },
-    ReversalReason: ReversalReasonType.MerchantCancel
+    ReversalReason: ReversalReasonType.MerchantCancel,
+    SaleData: saleData
 });
 
 const getSaleToPOIRequest = (messageHeader: MessageHeader, request: Partial<SaleToPOIRequest>): SaleToPOIRequest => ({

@@ -23,7 +23,7 @@ import { asyncRes } from "../__mocks__/terminalApi/async";
 import { syncRefund, syncRes, syncResEventNotification } from "../__mocks__/terminalApi/sync";
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
-import { TerminalApiResponse } from "../typings/terminal/models";
+import { SaleToAcquirerData, TerminalApiResponse } from "../typings/terminal/models";
 
 let client: Client;
 let terminalCloudAPI: TerminalCloudAPI;
@@ -46,7 +46,7 @@ afterEach((): void => {
 
 const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 describe("Terminal Cloud API", (): void => {
-    test.each([isCI, true])("should make an async payment request, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI])("should make an async payment request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/async").reply(200, asyncRes);
 
@@ -57,7 +57,7 @@ describe("Terminal Cloud API", (): void => {
         expect(requestResponse).toEqual("ok");
     });
 
-    test.each([isCI, true])("should make a sync payment request, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI])("should make a sync payment request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/sync").reply(200, syncRes);
 
@@ -68,7 +68,7 @@ describe("Terminal Cloud API", (): void => {
         expect(terminalAPIResponse.SaleToPOIResponse?.MessageHeader).toBeDefined();
     });
 
-    test.each([isCI, true])("should return event notification if response contains it, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI])("should return event notification if response contains it, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
 
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
@@ -79,23 +79,26 @@ describe("Terminal Cloud API", (): void => {
         expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
     });
 
-    test.each([isCI, true])("should make an async refund request, isMock: %p", async (isMock): Promise<void> => {
+    test.each([isCI])("should make an async refund request, isMock: %p", async (isMock): Promise<void> => {
         !isMock && nock.restore();
         scope.post("/sync").reply(200, syncRes);
 
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
         const terminalAPIResponse: TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
 
+        const pOITransactionId = terminalAPIResponse.SaleToPOIResponse!.PaymentResponse!.POIData!.POITransactionID;
+        expect(pOITransactionId).toBeTruthy();
+
         scope.post("/sync").reply(200, syncRefund);
 
-        const pOITransactionId = terminalAPIResponse.SaleToPOIResponse?.PaymentResponse?.POIData!.POITransactionID;
-        if(pOITransactionId) {
-            const terminalAPIRefundRequest = createTerminalAPIRefundRequest(pOITransactionId);
-            const terminalAPIRefundResponse = await terminalCloudAPI.sync(terminalAPIRefundRequest);
+        const terminalAPIRefundRequest = createTerminalAPIRefundRequest(pOITransactionId);
+        const id = Math.floor(Math.random() * Math.floor(10000000)).toString();
+        terminalAPIRefundRequest.SaleToPOIRequest.MessageHeader.ServiceID = id;
+        const saleToAcquirerData: SaleToAcquirerData = new SaleToAcquirerData();
+        saleToAcquirerData.currency = "EUR";
+        terminalAPIRefundRequest.SaleToPOIRequest.ReversalRequest!.SaleData!.SaleToAcquirerData = saleToAcquirerData;
+        const terminalAPIRefundResponse = await terminalCloudAPI.sync(terminalAPIRefundRequest);
 
-            expect(terminalAPIRefundResponse.SaleToPOIResponse?.ReversalResponse).toBeDefined();
-        } else {
-            fail();
-        }
-    });
+        expect(terminalAPIRefundResponse.SaleToPOIResponse?.ReversalResponse?.Response.Result).toBe("Success");
+    }, 20000);
 });

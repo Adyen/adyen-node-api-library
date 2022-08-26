@@ -61,7 +61,7 @@ export namespace OutputBarcode {
         Ean13 = <any> 'EAN13',
         Ean8 = <any> 'EAN8',
         Pdf417 = <any> 'PDF417',
-        Qrcode = <any> 'QRCODE',
+        Qrcode = <any> 'QRCode',
         Upca = <any> 'UPCA'
     }
 }

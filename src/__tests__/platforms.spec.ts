@@ -26,10 +26,11 @@ import { Client, Platforms } from "../index";
 import * as A from  "../typings/platformsAccount/models";
 import F = IPlatformsFund;
 import N = IPlatformsNotificationConfiguration;
-import H = IPlatformsHostedOnboardingPage;
 import AccountHolderDetails = A.AccountHolderDetails;
 import NotificationConfigurationDetails = N.NotificationConfigurationDetails;
 import HttpClientException from "../httpClient/httpClientException";
+import { GetOnboardingUrlRequest, GetOnboardingUrlResponse, GetPciUrlRequest, GetPciUrlResponse } from "../typings/platformsHostedOnboardingPage/models";
+import { DebitAccountHolderRequest, DebitAccountHolderResponse } from "../typings/platformsFund/models";
 
 let client: Client;
 let platforms: Platforms;
@@ -138,6 +139,7 @@ describe("Platforms Test", function () {
             ["refundFundsTransfer", createMock<F.RefundFundsTransferRequest>(), createMock<F.RefundFundsTransferResponse>()],
             ["setupBeneficiary", createMock<F.SetupBeneficiaryRequest>(), createMock<F.SetupBeneficiaryResponse>()],
             ["refundNotPaidOutTransfers", createMock<F.RefundNotPaidOutTransfersRequest>(), createMock<F.RefundNotPaidOutTransfersResponse>()],
+            ["debitAccountHolder", createMock<DebitAccountHolderRequest>(), createMock<DebitAccountHolderResponse>()],
         ];
         test.each(cases)(
             "should %p",
@@ -175,7 +177,8 @@ describe("Platforms Test", function () {
 
     describe("Hop", function () {
         const cases = [
-            ["getOnboardingUrl", createMock<H.GetOnboardingUrlRequest>(), createMock<H.GetOnboardingUrlResponse>()]
+            ["getOnboardingUrl", createMock<GetOnboardingUrlRequest>(), createMock<GetOnboardingUrlResponse>()],
+            ["getPciQuestionnaireUrl", createMock<GetPciUrlRequest>(), createMock<GetPciUrlResponse>()],
         ];
         test.each(cases)(
             "should %p",
@@ -244,8 +247,12 @@ describe.skip("Platforms Test E2E", function(): void {
                 nock.restore();
                 try {
                     expect(accountHolder.pspReference).toBeDefined();
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
             it("should get account holder", async function() {
@@ -255,8 +262,12 @@ describe.skip("Platforms Test E2E", function(): void {
                         accountHolderCode: accountHolder.accountHolderCode,
                     });
                     expect(result.accountHolderDetails.email).toEqual("random_email@example.com");
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
 
@@ -273,8 +284,12 @@ describe.skip("Platforms Test E2E", function(): void {
                         }
                     });
                     expect(result.accountHolderDetails!.address?.country).toEqual("BE");
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
 
@@ -287,8 +302,12 @@ describe.skip("Platforms Test E2E", function(): void {
                         tier: 2
                     });
                     expect(result.resultCode).toEqual("Success");
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
 
@@ -296,8 +315,12 @@ describe.skip("Platforms Test E2E", function(): void {
                 nock.restore();
                 try {
                     expect(account.pspReference).toBeDefined();
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
 
@@ -314,8 +337,12 @@ describe.skip("Platforms Test E2E", function(): void {
                         }
                     });
                     expect(result.pspReference).toBeDefined();
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
 
@@ -335,8 +362,12 @@ describe.skip("Platforms Test E2E", function(): void {
                         accountHolderCode: account.accountHolderCode,
                     });
                     expect(result.documentDetails![0].filename).toEqual("IDCardFront.png");
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
 
@@ -347,8 +378,12 @@ describe.skip("Platforms Test E2E", function(): void {
                         accountCode: accountToClose.accountCode
                     });
                     expect(result.status).toEqual("Closed");
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
 
@@ -359,8 +394,12 @@ describe.skip("Platforms Test E2E", function(): void {
                         accountHolderCode: accountHolderToSuspend.accountHolderCode,
                     });
                     expect(result.pspReference).toBeDefined();
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
 
@@ -369,8 +408,12 @@ describe.skip("Platforms Test E2E", function(): void {
                 try {
                     const result = await platforms.Account.unSuspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode });
                     expect(result.pspReference).toBeDefined();
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
 
@@ -383,8 +426,12 @@ describe.skip("Platforms Test E2E", function(): void {
                         stateType: A.UpdateAccountHolderStateRequest.StateTypeEnum.Payout
                     });
                     expect(result.pspReference).toBeDefined();
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
 
@@ -395,8 +442,12 @@ describe.skip("Platforms Test E2E", function(): void {
                         accountHolderCode: accountHolderToClose.accountHolderCode
                     });
                     expect(result.pspReference).toBeDefined();
-                } catch (e: any) {
-                    assertError(e);
+                } catch (e) {
+                    if(e instanceof HttpClientException) {
+                        assertError(e);
+                    } else {
+                        fail();
+                    }
                 }
             });
 
@@ -409,9 +460,13 @@ describe.skip("Platforms Test E2E", function(): void {
                     year: 2020
                 });
                 expect(result.content).toBeDefined();
-              } catch (e: any) {
-                assertError(e);
-              }
+            } catch (e) {
+                if(e instanceof HttpClientException) {
+                    assertError(e);
+                } else {
+                    fail();
+                }
+            }
             });
         });
     });
@@ -423,8 +478,12 @@ describe.skip("Platforms Test E2E", function(): void {
                     accountHolderCode: generateRandomCode()
                 });
                 expect(result.balancePerAccount![0].detailBalance).toBeDefined();
-            } catch (e: any) {
-                assertError(e);
+            } catch (e) {
+                if(e instanceof HttpClientException) {
+                    assertError(e);
+                } else {
+                    fail();
+                }
             }
         });
 
@@ -435,8 +494,12 @@ describe.skip("Platforms Test E2E", function(): void {
                     accountHolderCode: generateRandomCode()
                 });
                 expect(result.accountTransactionLists![0].transactions).toBeDefined();
-            } catch (e: any) {
-                assertError(e);
+            } catch (e) {
+                if(e instanceof HttpClientException) {
+                    assertError(e);
+                } else {
+                    fail();
+                }
             }
         });
 
@@ -453,8 +516,12 @@ describe.skip("Platforms Test E2E", function(): void {
                     transferCode: "SUBSCRIPTION"
                 });
                 expect(result.pspReference).toBeDefined();
-            } catch (e: any) {
-                assertError(e);
+            } catch (e) {
+                if(e instanceof HttpClientException) {
+                    assertError(e);
+                } else {
+                    fail();
+                }
             }
         });
 
@@ -468,8 +535,12 @@ describe.skip("Platforms Test E2E", function(): void {
                 const result = await platforms.NotificationConfiguration.getNotificationConfigurationList({});
                 const resultStr = JSON.stringify(result);
                 expect(resultStr.includes("pspReference")).toBeTruthy();
-            } catch (e: any) {
-                assertError(e);
+            } catch (e) {
+                if(e instanceof HttpClientException) {
+                    assertError(e);
+                } else {
+                    fail();
+                }
             }
         });
 
@@ -483,8 +554,12 @@ describe.skip("Platforms Test E2E", function(): void {
                     }
                 });
                 expect(result.configurationDetails.active).toBeTruthy();
-            } catch (e: any) {
-                assertError(e);
+            } catch (e) {
+                if(e instanceof HttpClientException) {
+                    assertError(e);
+                } else {
+                    fail();
+                }
             }
         });
 
@@ -496,8 +571,12 @@ describe.skip("Platforms Test E2E", function(): void {
                     notificationId: configurationID
                 });
                 expect(result.configurationDetails.notifyURL).toEqual("https://www.adyen.com/notification-handler");
-            } catch (e: any) {
-                assertError(e);
+            } catch (e) {
+                if(e instanceof HttpClientException) {
+                    assertError(e);
+                } else {
+                    fail();
+                }
             }
         });
 
@@ -522,8 +601,12 @@ describe.skip("Platforms Test E2E", function(): void {
                 });
                 const accountHolderVerification = result.configurationDetails.eventConfigs.filter(event => event.eventType === "ACCOUNT_HOLDER_VERIFICATION")[0];
                 expect(accountHolderVerification.includeMode).toEqual("EXCLUDE");
-            } catch (e: any) {
-                assertError(e);
+            } catch (e) {
+                if(e instanceof HttpClientException) {
+                    assertError(e);
+                } else {
+                    fail();
+                }
             }
         });
 
@@ -534,9 +617,13 @@ describe.skip("Platforms Test E2E", function(): void {
             try {
                 const result = await platforms.NotificationConfiguration.deleteNotificationConfigurations({notificationIds});
                 expect(result.pspReference).toBeDefined();
-            } catch (e: any) {
-                assertError(e);
-            }
+            } catch (e) {
+                if(e instanceof HttpClientException) {
+                    assertError(e);
+                } else {
+                    fail();
+                }
+            }   
         });
 
     });

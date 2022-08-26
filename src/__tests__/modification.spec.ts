@@ -1,25 +1,6 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
 import nock from "nock";
 import {createClient} from "../__mocks__/base";
-import Modification from "../services/modification";
+import Checkout from "../services/checkout";
 import Client from "../client";
 import {
     CreatePaymentAmountUpdateRequest,
@@ -32,6 +13,7 @@ import {
     PaymentCaptureResource, PaymentRefundResource, PaymentReversalResource,
     StandalonePaymentCancelResource
 } from "../typings/checkout/models";
+import HttpClientException from "../httpClient/httpClientException";
 
 const invalidModificationResult = {
     "status": 422,
@@ -168,7 +150,7 @@ const createReversalsResponse = (): PaymentReversalResource => {
 
 
 let client: Client;
-let modification: Modification;
+let checkout: Checkout;
 let scope: nock.Scope;
 const paymentPspReference = "863620292981235A";
 const invalidPaymentPspReference = "invalid_psp_reference";
@@ -179,7 +161,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    modification = new Modification(client);
+    checkout = new Checkout(client);
     scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`);
 });
 
@@ -194,10 +176,14 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/amountUpdates`)
             .reply(200, createAmountUpdateResponse());
         try {
-            const result = await modification.amountUpdates(paymentPspReference, request);
+            const result = await checkout.amountUpdates(paymentPspReference, request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            if(e.message) fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -209,10 +195,14 @@ describe("Modification", (): void => {
             .reply(422, invalidModificationResult);
 
         try {
-            await modification.amountUpdates(invalidPaymentPspReference, request);
-        } catch (e: any) {
-            expect(e.statusCode).toBe(422);
-            expect(e.message).toContain("Original pspReference required for this operation");
+            await checkout.amountUpdates(invalidPaymentPspReference, request);
+        } catch (e) {
+            if(e instanceof HttpClientException) {
+                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.message).toContain("Original pspReference required for this operation");
+            } else {
+                fail();
+            }
         }
     });
 
@@ -222,10 +212,14 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/cancels`)
             .reply(200, createCancelsResponse());
         try {
-            const result = await modification.cancels(paymentPspReference, request);
+            const result = await checkout.cancels(paymentPspReference, request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -236,10 +230,14 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/cancels`)
             .reply(422, invalidModificationResult);
         try {
-            await modification.cancels(invalidPaymentPspReference, request);
-        } catch (e: any) {
-            expect(e.statusCode).toBe(422);
-            expect(e.message).toContain("Original pspReference required for this operation");
+            await checkout.cancels(invalidPaymentPspReference, request);
+        } catch (e) {
+            if(e instanceof HttpClientException) {
+                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.message).toContain("Original pspReference required for this operation");
+            } else {
+                fail();
+            }
         }
     });
 
@@ -249,10 +247,14 @@ describe("Modification", (): void => {
         scope.post("/cancels")
             .reply(200, createStandaloneCancelsResponse());
         try {
-            const result = await modification.cancelsStandalone(request);
+            const result = await checkout.cancelsStandalone(request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -262,10 +264,14 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/captures`)
             .reply(200, createCapturesResponse());
         try {
-            const result = await modification.captures(paymentPspReference, request);
+            const result = await checkout.captures(paymentPspReference, request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -276,10 +282,14 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/captures`)
             .reply(422, invalidModificationResult);
         try {
-            await modification.captures(invalidPaymentPspReference, request);
-        } catch (e: any) {
-            if(e.statusCode) expect(e.statusCode).toBe(422);
-            if(e.message) expect(e.message).toContain("Original pspReference required for this operation");
+            await checkout.captures(invalidPaymentPspReference, request);
+        } catch (e) {
+            if(e instanceof HttpClientException) {
+                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.message).toContain("Original pspReference required for this operation");
+            } else {
+                fail();
+            }
         }
     });
 
@@ -289,10 +299,14 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/refunds`)
             .reply(200, createRefundsResponse());
         try {
-            const result = await modification.refunds(paymentPspReference, request);
+            const result = await checkout.refunds(paymentPspReference, request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            if(e.message) fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -303,10 +317,14 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/refunds`)
             .reply(422, invalidModificationResult);
         try {
-            await modification.refunds(invalidPaymentPspReference, request);
-        } catch (e: any) {
-            if(e.statusCode) expect(e.statusCode).toBe(422);
-            expect(e.message).toContain("Original pspReference required for this operation");
+            await checkout.refunds(invalidPaymentPspReference, request);
+        } catch (e) {
+            if(e instanceof HttpClientException) {
+                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.message).toContain("Original pspReference required for this operation");
+            } else {
+                fail();
+            }
         }
     });
 
@@ -316,10 +334,14 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/reversals`)
             .reply(200, createReversalsResponse());
         try {
-            const result = await modification.reversals(paymentPspReference, request);
+            const result = await checkout.reversals(paymentPspReference, request);
             expect(result).toBeTruthy();
-        } catch (e: any) {
-            fail(e.message);
+        } catch (e) {
+            if(e instanceof Error) {
+                if(e.message) fail(e.message);
+            } else {
+                fail();
+            }
         }
     });
 
@@ -330,10 +352,14 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/reversals`)
             .reply(422, invalidModificationResult);
         try {
-            await modification.reversals(invalidPaymentPspReference, request);
-        } catch (e: any) {
-            if(e.statusCode) expect(e.statusCode).toBe(422);
-            expect(e.message).toContain("Original pspReference required for this operation");
+            await checkout.reversals(invalidPaymentPspReference, request);
+        } catch (e) {
+            if(e instanceof HttpClientException) {
+                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.message).toContain("Original pspReference required for this operation");
+            } else {
+                fail();
+            }
         }
     });
 });

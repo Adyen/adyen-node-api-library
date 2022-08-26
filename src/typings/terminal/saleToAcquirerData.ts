@@ -103,7 +103,12 @@ export class SaleToAcquirerData {
             "name": "additionalData",
             "baseName": "additionalData",
             "type": "object"
-        }    ];
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }"
+        }];
 
     static getAttributeTypeMap() {
         return SaleToAcquirerData.attributeTypeMap;

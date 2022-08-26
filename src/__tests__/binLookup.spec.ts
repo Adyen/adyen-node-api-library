@@ -1,26 +1,13 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
 import BinLookup from "../services/binLookup";
 import Client from "../client";
 import HttpClientException from "../httpClient/httpClientException";
+import {
+    ThreeDSAvailabilityRequest,
+    ThreeDSAvailabilityResponse,
+    CostEstimateRequest,
+} from "../typings/binlookup/models";
 
 const threeDSAvailabilitySuccess = {
     binDetails: {
@@ -49,9 +36,8 @@ afterEach((): void => {
 });
 
 describe("Bin Lookup", function (): void {
-    test.each([false, true])("should succeed on get 3ds availability. isMock: %p", async function (isMock): Promise<void> {
-        !isMock && nock.restore();
-        const threeDSAvailabilityRequest: IBinLookup.ThreeDSAvailabilityRequest = {
+    test("should succeed on get 3ds availability", async function (): Promise<void> {
+        const threeDSAvailabilityRequest: ThreeDSAvailabilityRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             brands: ["randomBrand"],
             cardNumber: "4111111111111111"
@@ -62,7 +48,7 @@ describe("Bin Lookup", function (): void {
 
         const response = await binLookup.get3dsAvailability(threeDSAvailabilityRequest);
 
-        expect(response).toEqual<IBinLookup.ThreeDSAvailabilityResponse>(threeDSAvailabilitySuccess);
+        expect(response).toEqual<ThreeDSAvailabilityResponse>(threeDSAvailabilitySuccess);
     });
 
     test.each([false, true])("should fail with invalid merchant. isMock: %p", async function (isMock): Promise<void> {
@@ -77,9 +63,9 @@ describe("Bin Lookup", function (): void {
             .reply(403, JSON.stringify({status: 403, message: "fail", errorCode: "171"}));
 
         try {
-            await binLookup.get3dsAvailability(threeDSAvailabilityRequest as unknown as IBinLookup.ThreeDSAvailabilityRequest);
+            await binLookup.get3dsAvailability(threeDSAvailabilityRequest as unknown as ThreeDSAvailabilityRequest);
             fail("Expected request to fail");
-        } catch (e: any) {
+        } catch (e) {
             expect(e instanceof HttpClientException).toBeTruthy();
         }
     });
@@ -103,7 +89,7 @@ describe("Bin Lookup", function (): void {
             resultCode: "Unsupported",
             surchargeType: "ZERO"
         };
-        const costEstimateRequest: IBinLookup.CostEstimateRequest = {
+        const costEstimateRequest: CostEstimateRequest = {
             amount: { currency: "EUR", value: 1000 },
             assumptions: {
                 assumeLevel3Data: true,
@@ -116,7 +102,7 @@ describe("Bin Lookup", function (): void {
                 mcc: "7411",
                 enrolledIn3DSecure: true
             },
-            shopperInteraction: "Ecommerce"
+            shopperInteraction: CostEstimateRequest.ShopperInteractionEnum.Ecommerce,
         };
 
         scope.post("/getCostEstimate")
