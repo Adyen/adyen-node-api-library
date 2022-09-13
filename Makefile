@@ -1,6 +1,6 @@
 generator:=typescript-node
 openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v5.4.0
-services:=binlookup checkout storedValue terminalManagement payments recurring payouts management balancePlatform platformsAccount platformsFund platformsNotificationConfiguration platformsHostedOnboardingPage  
+services:=binlookup checkout storedValue terminalManagement payments recurring payouts management legalEntityManagement balancePlatform platformsAccount platformsFund platformsNotificationConfiguration platformsHostedOnboardingPage  
 
 # Generate models (for each service)
 models: $(services)
@@ -13,6 +13,7 @@ payments: spec=PaymentService-v68
 recurring: spec=RecurringService-v68
 payouts: spec=PayoutService-v68
 management: spec=ManagementService-v1
+legalEntityManagement: spec=LegalEntityService-v2
 balancePlatform: spec=BalancePlatformService-v2
 platformsAccount: spec=AccountService-v6
 platformsFund: spec=FundService-v6
