@@ -45,7 +45,7 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
     public async request(
         terminalApiRequest: TerminalApiRequest,
         securityKey: SecurityKey,
-    ): Promise<TerminalApiResponse> {
+    ): Promise<any> {
         const formattedRequest = ObjectSerializer.serialize(terminalApiRequest, "TerminalApiRequest");
         const saleToPoiSecuredMessage: SaleToPOISecuredMessage = NexoCrypto.encrypt(
             terminalApiRequest.SaleToPOIRequest.MessageHeader,
@@ -62,15 +62,20 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
             securedPaymentRequest
         );
 
-        const terminalApiSecuredResponse: TerminalApiSecuredResponse =
-            ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
+        // Catch an empty jsonResponse (i.e. Abort Request)
+        if(jsonResponse == ""){
+            return Promise.resolve();
+        } else {
+            const terminalApiSecuredResponse: TerminalApiSecuredResponse =
+                ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
 
-        const response = this.nexoCrypto.decrypt(
-            terminalApiSecuredResponse.SaleToPOIResponse,
-            securityKey,
-        );
+            const response = this.nexoCrypto.decrypt(
+                terminalApiSecuredResponse.SaleToPOIResponse,
+                securityKey,
+                );
 
-        return ObjectSerializer.deserialize(JSON.parse(response), "TerminalApiResponse");
+            return ObjectSerializer.deserialize(JSON.parse(response), "TerminalApiResponse");
+        }
     }
 }
 
