@@ -3,10 +3,12 @@ import Service from "../../service";
 import LegalEntityManagementResource from "../resource/legalEntityManagementResource";
 import {Document, ObjectSerializer} from "../../typings/legalEntityManagement/models";
 
+export type DocumentUpdate = Omit<Document, "id">
+
 class Documents extends Service {
-    public async create(request: Document): Promise<Document> {
+    public async create(request: DocumentUpdate): Promise<Document> {
         const resource = new LegalEntityManagementResource(this, "/documents");
-        const response = await getJsonResponse<Document, Document>(
+        const response = await getJsonResponse<DocumentUpdate, Document>(
             resource,
             request,
             { method: "POST" }
@@ -24,9 +26,9 @@ class Documents extends Service {
         return ObjectSerializer.deserialize(response, "Document");
     }
 
-    public async update(id: string, request: Document): Promise<Document> {
+    public async update(id: string, request: DocumentUpdate): Promise<Document> {
         const resource = new LegalEntityManagementResource(this, `/documents/${id}`);
-        const response = await getJsonResponse<Document, Document>(
+        const response = await getJsonResponse<DocumentUpdate, Document>(
             resource,
             request,
             { method: "PATCH" }
