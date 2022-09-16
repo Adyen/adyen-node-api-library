@@ -315,7 +315,7 @@ describe("Legal Entity Management", (): void => {
             expect(response.themes[0].id).toEqual(id);
         });
 
-        it("should support GET /themes", async (): Promise<void> => {
+        it("should support GET /themes/{id}", async (): Promise<void> => {
             scope.get(`/themes/${id}`)
                 .reply(200, onboardingTheme);
 
