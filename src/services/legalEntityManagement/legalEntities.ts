@@ -37,7 +37,7 @@ class LegalEntities extends Service {
     }
 
     public async listBusinessLines(id: string): Promise<BusinessLines> {
-        const resource = new LegalEntityManagementResource(this, `/accountHolders/${id}/businessLines`);
+        const resource = new LegalEntityManagementResource(this, `/legalEntities/${id}/businessLines`);
         const response = await getJsonResponse<string, BusinessLines>(
             resource,
             "",

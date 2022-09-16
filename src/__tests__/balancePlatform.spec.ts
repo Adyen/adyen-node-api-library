@@ -7,6 +7,7 @@ import { AccountHolderUpdate } from "../services/balancePlaftform/accountHolders
 import { SweepConfigurationV2Create, SweepConfigurationV2Update } from "../services/balancePlaftform/balanceAccounts";
 import { TransactionRuleInfoUpdate } from "../services/balancePlaftform/transactionRules";
 
+
 let client: Client;
 let balancePlatform: BalancePlatform;
 let scope: nock.Scope;
