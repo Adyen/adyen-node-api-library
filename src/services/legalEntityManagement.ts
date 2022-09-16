@@ -1,7 +1,7 @@
 import Service from "../service";
 import Client from "../client";
 import LegalEntities from "./legalEntityManagement/legalEntities";
-import OnboardingPage from "./legalEntityManagement/onboardingPage";
+import OnboardingPage from "./legalEntityManagement/hostedOnboardingPage";
 import TransferInstruments from "./legalEntityManagement/transferInstruments";
 import BusinessLineService from "./legalEntityManagement/businessLineService";
 import Documents from "./legalEntityManagement/documents";
@@ -27,7 +27,7 @@ class LegalEntityManagement extends Service {
         return new Documents(this.client);
     }
 
-    public get OnboardingPage() {
+    public get HostedOnboardingPage() {
         return new OnboardingPage(this.client);
     }
 

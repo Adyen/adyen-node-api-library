@@ -5,7 +5,7 @@ import {OnboardingLinkInfo} from "../../typings/legalEntityManagement/onboarding
 import {OnboardingLink} from "../../typings/legalEntityManagement/onboardingLink";
 import {ObjectSerializer, OnboardingTheme, OnboardingThemes} from "../../typings/legalEntityManagement/models";
 
-class OnboardingPage extends Service {
+class HostedOnboardingPage extends Service {
     public async create(id: string, request: OnboardingLinkInfo): Promise<OnboardingLink> {
         const resource = new LegalEntityManagementResource(this, `/legalEntities/${id}/onboardingLinks`);
         const response = await getJsonResponse<OnboardingLinkInfo, OnboardingLink>(
@@ -16,7 +16,7 @@ class OnboardingPage extends Service {
         return ObjectSerializer.deserialize(response, "OnboardingLink");
     }
 
-    public async retrieve(): Promise<OnboardingThemes> {
+    public async listThemes(): Promise<OnboardingThemes> {
         const resource = new LegalEntityManagementResource(this, "/themes");
         const response = await getJsonResponse<string, OnboardingThemes>(
             resource,
@@ -26,7 +26,7 @@ class OnboardingPage extends Service {
         return ObjectSerializer.deserialize(response, "OnboardingThemes");
     }
 
-    public async update(id: string): Promise<OnboardingTheme> {
+    public async retrieveTheme(id: string): Promise<OnboardingTheme> {
         const resource = new LegalEntityManagementResource(this, `/themes/${id}`);
         const response = await getJsonResponse<string, OnboardingTheme>(
             resource,
@@ -37,4 +37,4 @@ class OnboardingPage extends Service {
     }
 }
 
-export default OnboardingPage;
+export default HostedOnboardingPage;

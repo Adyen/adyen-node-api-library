@@ -4,12 +4,12 @@ import {createClient} from "../__mocks__/base";
 import * as models from "../typings/legalEntityManagement/models";
 import {Document, LegalEntityInfo, OnboardingLinkInfo, TransferInstrumentInfo} from "../typings/legalEntityManagement/models";
 import {DocumentUpdate} from "../services/legalEntityManagement/documents";
-import LegalEntityManagement from "../services/legalEntityManagement";
 import {businessLine, businessLines, document, legalEntity, onboardingLink, onboardingTheme, onboardingThemes, transferInstrument} from "../__mocks__/legalEntityManagement/responses";
 import TransferEnum = TransferInstrumentInfo.TypeEnum;
 import TypeEnum = LegalEntityInfo.TypeEnum
 import DocEnum = Document.TypeEnum
 import {onboardingLinkInfo} from "../__mocks__/legalEntityManagement/requests";
+import LegalEntityManagement from "../services/legalEntityManagement";
 
 let client: Client;
 let legalEntityManagement: LegalEntityManagement;
@@ -301,7 +301,7 @@ describe("Legal Entity Management", (): void => {
 
             const request: OnboardingLinkInfo = onboardingLinkInfo;
 
-            const response: models.OnboardingLink = await legalEntityManagement.OnboardingPage.create(id, request);
+            const response: models.OnboardingLink = await legalEntityManagement.HostedOnboardingPage.create(id, request);
 
             expect(response.url).toBe("https://your.redirect-url.com");
         });
@@ -310,7 +310,7 @@ describe("Legal Entity Management", (): void => {
             scope.get(`/themes`)
                 .reply(200, onboardingThemes);
 
-            const response: models.OnboardingThemes = await legalEntityManagement.OnboardingPage.retrieve();
+            const response: models.OnboardingThemes = await legalEntityManagement.HostedOnboardingPage.listThemes();
 
             expect(response.themes[0].id).toEqual(id);
         });
@@ -319,7 +319,7 @@ describe("Legal Entity Management", (): void => {
             scope.get(`/themes/${id}`)
                 .reply(200, onboardingTheme);
 
-            const response: models.OnboardingTheme = await legalEntityManagement.OnboardingPage.update(id);
+            const response: models.OnboardingTheme = await legalEntityManagement.HostedOnboardingPage.retrieveTheme(id);
             expect(response.id).toBe(id);
         });
     });
