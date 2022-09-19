@@ -45,7 +45,7 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
     public async request(
         terminalApiRequest: TerminalApiRequest,
         securityKey: SecurityKey,
-    ): Promise<any> {
+    ): Promise<TerminalApiResponse> {
         const formattedRequest = ObjectSerializer.serialize(terminalApiRequest, "TerminalApiRequest");
         const saleToPoiSecuredMessage: SaleToPOISecuredMessage = NexoCrypto.encrypt(
             terminalApiRequest.SaleToPOIRequest.MessageHeader,
@@ -62,19 +62,22 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
             securedPaymentRequest
         );
 
+        console.log("jsonresponse" + jsonResponse.toString());
         // Catch an empty jsonResponse (i.e. Abort Request)
-        if(jsonResponse == ""){
-            return Promise.resolve();
-        } else {
+
+        try {
             const terminalApiSecuredResponse: TerminalApiSecuredResponse =
                 ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
 
             const response = this.nexoCrypto.decrypt(
                 terminalApiSecuredResponse.SaleToPOIResponse,
                 securityKey,
-                );
-
+            );
             return ObjectSerializer.deserialize(JSON.parse(response), "TerminalApiResponse");
+
+        } catch (e) {
+            const requestType = terminalApiRequest.SaleToPOIRequest.MessageHeader.MessageCategory;
+            throw new Error(`Request of type ${requestType} has no response!`);
         }
     }
 }
