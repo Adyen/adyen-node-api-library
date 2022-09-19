@@ -31,6 +31,7 @@ import {
     TerminalApiSecuredRequest,
     TerminalApiSecuredResponse
 } from "../typings/terminal/models";
+import NexoCryptoException from "./exception/nexoCryptoException";
 
 class TerminalLocalAPI extends ApiKeyAuthenticatedService {
     private readonly localRequest: LocalRequest;
@@ -62,9 +63,10 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
             securedPaymentRequest
         );
 
-        console.log("jsonresponse" + jsonResponse.toString());
-        // Catch an empty jsonResponse (i.e. Abort Request)
+        console.log("jsonresponse type" +  typeof jsonResponse);
+        console.log(jsonResponse);
 
+        // Catch an empty jsonResponse (i.e. Abort Request)
         try {
             const terminalApiSecuredResponse: TerminalApiSecuredResponse =
                 ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
@@ -76,8 +78,12 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
             return ObjectSerializer.deserialize(JSON.parse(response), "TerminalApiResponse");
 
         } catch (e) {
-            const requestType = terminalApiRequest.SaleToPOIRequest.MessageHeader.MessageCategory;
-            throw new Error(`Request of type ${requestType} has no response!`);
+            if(e instanceof NexoCryptoException){
+                throw e;
+            } else {
+                const requestType = terminalApiRequest.SaleToPOIRequest.MessageHeader.MessageCategory;
+                throw new Error(`Request of type ${requestType} has no response!`);
+            }
         }
     }
 }
