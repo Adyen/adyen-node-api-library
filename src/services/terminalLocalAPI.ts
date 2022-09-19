@@ -32,6 +32,8 @@ import {
     TerminalApiSecuredResponse
 } from "../typings/terminal/models";
 import NexoCryptoException from "./exception/nexoCryptoException";
+import HttpClientException from "../httpClient/httpClientException";
+import apiException from "./exception/apiException";
 
 class TerminalLocalAPI extends ApiKeyAuthenticatedService {
     private readonly localRequest: LocalRequest;
@@ -58,16 +60,13 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
             SaleToPOIRequest: saleToPoiSecuredMessage,
         }, "TerminalApiSecuredRequest");
 
-        const jsonResponse = await getJsonResponse<TerminalApiSecuredRequest, TerminalApiResponse>(
-            this.localRequest,
-            securedPaymentRequest
-        );
-
-        console.log("jsonresponse type" +  typeof jsonResponse);
-        console.log(jsonResponse);
-
-        // Catch an empty jsonResponse (i.e. Abort Request)
+        // Catch Exceptions and an empty jsonResponse (i.e. Abort Request)
         try {
+            const jsonResponse = await getJsonResponse<TerminalApiSecuredRequest, TerminalApiResponse>(
+                this.localRequest,
+                securedPaymentRequest
+            );
+
             const terminalApiSecuredResponse: TerminalApiSecuredResponse =
                 ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
 
@@ -78,11 +77,10 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
             return ObjectSerializer.deserialize(JSON.parse(response), "TerminalApiResponse");
 
         } catch (e) {
-            if(e instanceof NexoCryptoException){
+            if(e instanceof NexoCryptoException || e instanceof HttpClientException || e instanceof apiException) {
                 throw e;
             } else {
-                const requestType = terminalApiRequest.SaleToPOIRequest.MessageHeader.MessageCategory;
-                throw new Error(`Request of type ${requestType} has no response!`);
+                return new TerminalApiResponse();
             }
         }
     }
