@@ -68,7 +68,7 @@ Set up the client as a singleton resource; you can then use it to create service
  ``` 
 ### General use with basic auth
 ```typescript
-    const client = new Client({username: "YOUR_USERNAME", password: "YOUR_PASSWORD", environment: "TEST"});
+    const client = new Client({username: "YOUR_USERNAME", password: "YOUR_PASSWORD", environment: "TEST", applicationName: "YOUR_APPLICATION_NAME" });
 ``` 
  
 ### Custom HTTP Client Configuration
