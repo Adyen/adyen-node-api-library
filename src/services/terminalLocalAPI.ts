@@ -31,9 +31,6 @@ import {
     TerminalApiSecuredRequest,
     TerminalApiSecuredResponse
 } from "../typings/terminal/models";
-import NexoCryptoException from "./exception/nexoCryptoException";
-import HttpClientException from "../httpClient/httpClientException";
-import apiException from "./exception/apiException";
 
 class TerminalLocalAPI extends ApiKeyAuthenticatedService {
     private readonly localRequest: LocalRequest;
@@ -60,13 +57,15 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
             SaleToPOIRequest: saleToPoiSecuredMessage,
         }, "TerminalApiSecuredRequest");
 
-        // Catch Exceptions and an empty jsonResponse (i.e. Abort Request)
-        try {
-            const jsonResponse = await getJsonResponse<TerminalApiSecuredRequest, TerminalApiResponse>(
-                this.localRequest,
-                securedPaymentRequest
-            );
+        const jsonResponse = await getJsonResponse<TerminalApiSecuredRequest, TerminalApiResponse>(
+            this.localRequest,
+            securedPaymentRequest
+        );
 
+        // Catch an empty jsonResponse (i.e. Abort Request)
+        if(!jsonResponse) {
+            return new TerminalApiResponse();
+        } else {
             const terminalApiSecuredResponse: TerminalApiSecuredResponse =
                 ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
 
@@ -75,13 +74,6 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
                 securityKey,
             );
             return ObjectSerializer.deserialize(JSON.parse(response), "TerminalApiResponse");
-
-        } catch (e) {
-            if(e instanceof NexoCryptoException || e instanceof HttpClientException || e instanceof apiException) {
-                throw e;
-            } else {
-                return new TerminalApiResponse();
-            }
         }
     }
 }
