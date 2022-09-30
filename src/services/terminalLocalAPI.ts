@@ -62,15 +62,19 @@ class TerminalLocalAPI extends ApiKeyAuthenticatedService {
             securedPaymentRequest
         );
 
-        const terminalApiSecuredResponse: TerminalApiSecuredResponse =
-            ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
+        // Catch an empty jsonResponse (i.e. Abort Request)
+        if(!jsonResponse) {
+            return new TerminalApiResponse();
+        } else {
+            const terminalApiSecuredResponse: TerminalApiSecuredResponse =
+                ObjectSerializer.deserialize(jsonResponse, "TerminalApiSecuredResponse");
 
-        const response = this.nexoCrypto.decrypt(
-            terminalApiSecuredResponse.SaleToPOIResponse,
-            securityKey,
-        );
-
-        return ObjectSerializer.deserialize(JSON.parse(response), "TerminalApiResponse");
+            const response = this.nexoCrypto.decrypt(
+                terminalApiSecuredResponse.SaleToPOIResponse,
+                securityKey,
+            );
+            return ObjectSerializer.deserialize(JSON.parse(response), "TerminalApiResponse");
+        }
     }
 }
 
