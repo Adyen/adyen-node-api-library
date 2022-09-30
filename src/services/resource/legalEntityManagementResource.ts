@@ -11,4 +11,4 @@ class LegalEntityManagementResource extends Resource {
     }
 }
 
-export default legalEntityManagementResource;
+export default LegalEntityManagementResource;
