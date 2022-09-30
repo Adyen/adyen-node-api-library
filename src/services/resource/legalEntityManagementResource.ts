@@ -2,7 +2,7 @@ import Client from "../../client";
 import Service from "../../service";
 import Resource from "../resource";
 
-class legalEntityManagementResource extends Resource {
+class LegalEntityManagementResource extends Resource {
     public constructor(service: Service, endpoint: string) {
         super(
             service,
