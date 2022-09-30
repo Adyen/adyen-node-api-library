@@ -39,6 +39,7 @@ interface ConfigConstructor {
     terminalManagementEndpoint?: string;
     managementEndpoint?: string;
     balancePlatformEndpoint?: string;
+    legalEntityManagementEndpoint?: string;
 }
 
 class Config {
@@ -68,6 +69,7 @@ class Config {
     public terminalManagementEndpoint?: string;
     public managementEndpoint?: string;
     public balancePlatformEndpoint?: string;
+    public legalEntityManagementEndpoint?: string;
 
     public constructor(options: ConfigConstructor = {}) {
         if (options.username) this.username = options.username;
@@ -92,6 +94,7 @@ class Config {
         if (options.terminalManagementEndpoint) this.terminalManagementEndpoint = options.terminalManagementEndpoint;
         if (options.managementEndpoint) this.managementEndpoint = options.managementEndpoint;
         if (options.balancePlatformEndpoint) this.balancePlatformEndpoint = options.balancePlatformEndpoint;
+        if (options.legalEntityManagementEndpoint) this.legalEntityManagementEndpoint = options.legalEntityManagementEndpoint;
     }
 
     public set checkoutEndpoint(checkoutEndpoint: string | undefined) {
