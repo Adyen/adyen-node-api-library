@@ -38,7 +38,7 @@
     "@types/jest": "27.5.0",
     "@types/nock": "11.1.0",
     "@typescript-eslint/eslint-plugin": "5.39.0",
-    "@typescript-eslint/parser": "5.36.2",
+    "@typescript-eslint/parser": "5.39.0",
     "acorn": "^8.0.1",
     "coveralls": "3.1.1",
     "dotenv": "^16.0.0",
