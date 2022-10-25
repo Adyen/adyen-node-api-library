@@ -26,11 +26,13 @@ The Library supports all APIs under the following services:
   * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v6/overview) Current supported version: **v6**
   * [Hosted onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v6/overview): Current supported version: **v6**
   * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v6/overview) Current supported version: **v6**
+* [Platforms Notifications Webhooks](https://docs.adyen.com/api-explorer/#/NotificationService/v6/overview) Current supported version: **v6**
 * [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview): Endpoints for managing your point-of-sale payment terminals. Current supported version **v1**
 * [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v68/overview): Endpoints for managing saved payment details. Current supported version: **v68**
 * [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api): Manage both online and point-of-sale gift cards and other stored-value cards.  Current supported version: **v46**
+* [Transfers API](https://docs.adyen.com/api-explorer/transfers/3/overview) The Transfers API provides endpoints that you can use to get information about all your transactions, move funds within your balance platform or send funds from your balance platform to a transfer instrument. **v3**
 
-* [Platforms Notifications Webhooks](https://docs.adyen.com/api-explorer/#/NotificationService/v6/overview) Current supported version: **v6**
+
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 

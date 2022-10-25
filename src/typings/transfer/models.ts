@@ -14,7 +14,6 @@ export * from './address2';
 export * from './amount';
 export * from './bRLocalAccountIdentification';
 export * from './bankAccountV3';
-export * from './bankAccountV3AccountIdentification';
 export * from './cZLocalAccountIdentification';
 export * from './counterpartyInfoV3';
 export * from './counterpartyV3';
@@ -47,7 +46,6 @@ import { Address2 } from './address2';
 import { Amount } from './amount';
 import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
 import { BankAccountV3 } from './bankAccountV3';
-import { BankAccountV3AccountIdentification } from './bankAccountV3AccountIdentification';
 import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
 import { CounterpartyInfoV3 } from './counterpartyInfoV3';
 import { CounterpartyV3 } from './counterpartyV3';
@@ -89,8 +87,6 @@ let enumsMap: {[index: string]: any} = {
         "AULocalAccountIdentification.TypeEnum": AULocalAccountIdentification.TypeEnum,
         "AdditionalBankIdentification.TypeEnum": AdditionalBankIdentification.TypeEnum,
         "BRLocalAccountIdentification.TypeEnum": BRLocalAccountIdentification.TypeEnum,
-        "BankAccountV3AccountIdentification.TypeEnum": BankAccountV3AccountIdentification.TypeEnum,
-        "BankAccountV3AccountIdentification.AccountTypeEnum": BankAccountV3AccountIdentification.AccountTypeEnum,
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
@@ -121,7 +117,6 @@ let typeMap: {[index: string]: any} = {
     "Amount": Amount,
     "BRLocalAccountIdentification": BRLocalAccountIdentification,
     "BankAccountV3": BankAccountV3,
-    "BankAccountV3AccountIdentification": BankAccountV3AccountIdentification,
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
     "CounterpartyInfoV3": CounterpartyInfoV3,
     "CounterpartyV3": CounterpartyV3,

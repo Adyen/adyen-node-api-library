@@ -7,12 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { BankAccountV3AccountIdentification } from './bankAccountV3AccountIdentification';
+import { AULocalAccountIdentification } from './aULocalAccountIdentification';
+import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
+import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
+import { HULocalAccountIdentification } from './hULocalAccountIdentification';
+import { IbanAccountIdentification } from './ibanAccountIdentification';
+import { NOLocalAccountIdentification } from './nOLocalAccountIdentification';
+import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentification';
+import { PLLocalAccountIdentification } from './pLLocalAccountIdentification';
 import { PartyIdentification2 } from './partyIdentification2';
+import { SELocalAccountIdentification } from './sELocalAccountIdentification';
+import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
+import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 
 export class BankAccountV3 {
     'accountHolder': PartyIdentification2;
-    'accountIdentification': BankAccountV3AccountIdentification;
+    /**
+    * Contains the bank account details. The fields required in this object depend on the country of the bank account and the currency of the transfer.
+    */
+    'accountIdentification': AULocalAccountIdentification | BRLocalAccountIdentification | CZLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification;
 
     static discriminator: string | undefined = undefined;
 
@@ -25,7 +38,7 @@ export class BankAccountV3 {
         {
             "name": "accountIdentification",
             "baseName": "accountIdentification",
-            "type": "BankAccountV3AccountIdentification"
+            "type": "AULocalAccountIdentification | BRLocalAccountIdentification | CZLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification"
         }    ];
 
     static getAttributeTypeMap() {

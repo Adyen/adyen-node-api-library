@@ -35,7 +35,7 @@ export class BankAccountV3AccountIdentification {
     /**
     * **usLocal**
     */
-    'type'?: BankAccountV3AccountIdentification.TypeEnum;
+    'type': BankAccountV3AccountIdentification.TypeEnum;
     /**
     * The 4-digit bank code (Kód banky) (without separators or whitespace).
     */
@@ -70,7 +70,7 @@ export class BankAccountV3AccountIdentification {
     */
     'routingNumber': string;
 
-    static discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = "type";
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
