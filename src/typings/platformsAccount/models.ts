@@ -27,6 +27,7 @@ export * from './createAccountHolderResponse';
 export * from './createAccountRequest';
 export * from './createAccountResponse';
 export * from './deleteBankAccountRequest';
+export * from './deleteLegalArrangementRequest';
 export * from './deletePayoutMethodRequest';
 export * from './deleteShareholderRequest';
 export * from './deleteSignatoriesRequest';
@@ -54,6 +55,7 @@ export * from './kYCUltimateParentCompanyCheckResult';
 export * from './kYCVerificationResult';
 export * from './legalArrangementDetail';
 export * from './legalArrangementEntityDetail';
+export * from './legalArrangementRequest';
 export * from './payoutMethod';
 export * from './payoutScheduleResponse';
 export * from './performVerificationRequest';
@@ -100,6 +102,7 @@ import { CreateAccountHolderResponse } from './createAccountHolderResponse';
 import { CreateAccountRequest } from './createAccountRequest';
 import { CreateAccountResponse } from './createAccountResponse';
 import { DeleteBankAccountRequest } from './deleteBankAccountRequest';
+import { DeleteLegalArrangementRequest } from './deleteLegalArrangementRequest';
 import { DeletePayoutMethodRequest } from './deletePayoutMethodRequest';
 import { DeleteShareholderRequest } from './deleteShareholderRequest';
 import { DeleteSignatoriesRequest } from './deleteSignatoriesRequest';
@@ -127,6 +130,7 @@ import { KYCUltimateParentCompanyCheckResult } from './kYCUltimateParentCompanyC
 import { KYCVerificationResult } from './kYCVerificationResult';
 import { LegalArrangementDetail } from './legalArrangementDetail';
 import { LegalArrangementEntityDetail } from './legalArrangementEntityDetail';
+import { LegalArrangementRequest } from './legalArrangementRequest';
 import { PayoutMethod } from './payoutMethod';
 import { PayoutScheduleResponse } from './payoutScheduleResponse';
 import { PerformVerificationRequest } from './performVerificationRequest';
@@ -222,6 +226,7 @@ let typeMap: {[index: string]: any} = {
     "CreateAccountRequest": CreateAccountRequest,
     "CreateAccountResponse": CreateAccountResponse,
     "DeleteBankAccountRequest": DeleteBankAccountRequest,
+    "DeleteLegalArrangementRequest": DeleteLegalArrangementRequest,
     "DeletePayoutMethodRequest": DeletePayoutMethodRequest,
     "DeleteShareholderRequest": DeleteShareholderRequest,
     "DeleteSignatoriesRequest": DeleteSignatoriesRequest,
@@ -249,6 +254,7 @@ let typeMap: {[index: string]: any} = {
     "KYCVerificationResult": KYCVerificationResult,
     "LegalArrangementDetail": LegalArrangementDetail,
     "LegalArrangementEntityDetail": LegalArrangementEntityDetail,
+    "LegalArrangementRequest": LegalArrangementRequest,
     "PayoutMethod": PayoutMethod,
     "PayoutScheduleResponse": PayoutScheduleResponse,
     "PerformVerificationRequest": PerformVerificationRequest,

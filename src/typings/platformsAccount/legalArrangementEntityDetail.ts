@@ -25,7 +25,7 @@ export class LegalArrangementEntityDetail {
     'fullPhoneNumber'?: string;
     'individualDetails'?: IndividualDetails;
     /**
-    * Adyen-generated unique alphanumeric identifier (UUID) for the entry, returned in the response when you create a legal arrangement entity. Required when updating an existing legal arrangement entity entry in an `/updateAccountHolder` request.
+    * Adyen-generated unique alphanumeric identifier (UUID) for the entry, returned in the response when you create a legal arrangement entity. Use only when updating an account holder. If you include this field when creating an account holder, the request will fail.
     */
     'legalArrangementEntityCode'?: string;
     /**

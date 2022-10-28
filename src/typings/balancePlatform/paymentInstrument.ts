@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { BankAccount } from './bankAccount';
 import { Card } from './card';
 
 export class PaymentInstrument {
@@ -14,6 +15,7 @@ export class PaymentInstrument {
     * The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.
     */
     'balanceAccountId': string;
+    'bankAccount'?: BankAccount;
     'card'?: Card;
     /**
     * Your description for the payment instrument, maximum 300 characters.
@@ -36,7 +38,7 @@ export class PaymentInstrument {
     */
     'reference'?: string;
     /**
-    * The status of the payment instrument. If a status is not specified when creating a payment instrument, it is set to **active** by default. However, there can be exceptions based on the `card.formFactor` and the `issuingCountryCode`. For example, when issuing physical cards in the US, the default status is **inactive**.  Possible values:    * **active**:  The payment instrument is active and can be used to make payments.    * **inactive**: The payment instrument is inactive and cannot be used to make payments.    * **suspended**: The payment instrument is suspended, either because it was stolen or lost.    * **closed**: The payment instrument is permanently closed. This action cannot be undone.   
+    * The status of the payment instrument. If a status is not specified when creating a payment instrument, it is set to **active** by default. However, there can be exceptions for cards based on the `card.formFactor` and the `issuingCountryCode`. For example, when issuing physical cards in the US, the default status is **inactive**.  Possible values:    * **active**:  The payment instrument is active and can be used to make payments.    * **inactive**: The payment instrument is inactive and cannot be used to make payments.    * **suspended**: The payment instrument is suspended, either because it was stolen or lost.    * **closed**: The payment instrument is permanently closed. This action cannot be undone.   
     */
     'status'?: PaymentInstrument.StatusEnum;
     /**
@@ -44,7 +46,7 @@ export class PaymentInstrument {
     */
     'statusReason'?: PaymentInstrument.StatusReasonEnum;
     /**
-    * Type of payment instrument.  Possible value: **card**. 
+    * Type of payment instrument.  Possible value: **card**, **bankAccount**. 
     */
     'type': PaymentInstrument.TypeEnum;
 
@@ -55,6 +57,11 @@ export class PaymentInstrument {
             "name": "balanceAccountId",
             "baseName": "balanceAccountId",
             "type": "string"
+        },
+        {
+            "name": "bankAccount",
+            "baseName": "bankAccount",
+            "type": "BankAccount"
         },
         {
             "name": "card",
@@ -125,6 +132,7 @@ export namespace PaymentInstrument {
         SuspectedFraud = <any> 'suspectedFraud'
     }
     export enum TypeEnum {
+        BankAccount = <any> 'bankAccount',
         Card = <any> 'card'
     }
 }

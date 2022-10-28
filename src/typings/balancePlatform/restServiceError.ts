@@ -20,10 +20,6 @@ export class RestServiceError {
     */
     'errorCode': string;
     /**
-    * A URI that identifies the problem type, pointing to human-readable documentation on this problem type.
-    */
-    'errorType': string;
-    /**
     * A unique URI that identifies the specific occurrence of the problem.
     */
     'instance'?: string;
@@ -44,6 +40,10 @@ export class RestServiceError {
     * A short, human-readable summary of the problem type.
     */
     'title': string;
+    /**
+    * A URI that identifies the problem type, pointing to human-readable documentation on this problem type.
+    */
+    'type': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -56,11 +56,6 @@ export class RestServiceError {
         {
             "name": "errorCode",
             "baseName": "errorCode",
-            "type": "string"
-        },
-        {
-            "name": "errorType",
-            "baseName": "errorType",
             "type": "string"
         },
         {
@@ -91,6 +86,11 @@ export class RestServiceError {
         {
             "name": "title",
             "baseName": "title",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
             "type": "string"
         }    ];
 

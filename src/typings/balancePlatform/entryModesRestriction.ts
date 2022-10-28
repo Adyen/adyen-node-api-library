@@ -14,7 +14,7 @@ export class EntryModesRestriction {
     */
     'operation': string;
     /**
-    * List of point-of-sale entry modes.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **token**, **server**, **barcode**, **ocr**.  
+    * List of point-of-sale entry modes.  Possible values: **barcode**, **chip**, **cof**, **contactless**, **magstripe**, **manual**, **ocr**, **server**.  
     */
     'value'?: Array<EntryModesRestriction.ValueEnum>;
 
@@ -47,7 +47,6 @@ export namespace EntryModesRestriction {
         Manual = <any> 'manual',
         Ocr = <any> 'ocr',
         Server = <any> 'server',
-        Token = <any> 'token',
         Unknown = <any> 'unknown'
     }
 }

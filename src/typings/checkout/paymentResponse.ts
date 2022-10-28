@@ -9,9 +9,6 @@
 
 import { Amount } from './amount';
 import { CheckoutAwaitAction } from './checkoutAwaitAction';
-import { CheckoutBankTransferAction } from './checkoutBankTransferAction';
-import { CheckoutDonationAction } from './checkoutDonationAction';
-import { CheckoutOneTimePasscodeAction } from './checkoutOneTimePasscodeAction';
 import { CheckoutOrderResponse } from './checkoutOrderResponse';
 import { CheckoutQrCodeAction } from './checkoutQrCodeAction';
 import { CheckoutRedirectAction } from './checkoutRedirectAction';
@@ -27,7 +24,7 @@ export class PaymentResponse {
     /**
     * Action to be taken for completing the payment.
     */
-    'action'?: CheckoutAwaitAction | CheckoutBankTransferAction | CheckoutDonationAction | CheckoutOneTimePasscodeAction | CheckoutQrCodeAction | CheckoutRedirectAction | CheckoutSDKAction | CheckoutThreeDS2Action | CheckoutVoucherAction;
+    'action'?: CheckoutAwaitAction | CheckoutQrCodeAction | CheckoutRedirectAction | CheckoutSDKAction | CheckoutThreeDS2Action | CheckoutVoucherAction;
     /**
     * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
     */
@@ -73,7 +70,7 @@ export class PaymentResponse {
         {
             "name": "action",
             "baseName": "action",
-            "type": "CheckoutAwaitAction | CheckoutBankTransferAction | CheckoutDonationAction | CheckoutOneTimePasscodeAction | CheckoutQrCodeAction | CheckoutRedirectAction | CheckoutSDKAction | CheckoutThreeDS2Action | CheckoutVoucherAction"
+            "type": "CheckoutAwaitAction | CheckoutQrCodeAction | CheckoutRedirectAction | CheckoutSDKAction | CheckoutThreeDS2Action | CheckoutVoucherAction"
         },
         {
             "name": "additionalData",

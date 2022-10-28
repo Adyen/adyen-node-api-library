@@ -10,17 +10,14 @@
 
 export class Currency {
     /**
-    * Surcharge amount per transaction, in minor units.
+    * Surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
     */
     'amount'?: number;
     /**
     * Three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **AUD**.
     */
     'currencyCode': string;
-    /**
-    * Surcharge percentage per transaction. The maximum number of decimal places is two. For example, **1%** or **2.27%**.
-    */
-    'percentage'?: number;
+    'percentage'?: any;
 
     static discriminator: string | undefined = undefined;
 
@@ -38,7 +35,7 @@ export class Currency {
         {
             "name": "percentage",
             "baseName": "percentage",
-            "type": "number"
+            "type": "any"
         }    ];
 
     static getAttributeTypeMap() {

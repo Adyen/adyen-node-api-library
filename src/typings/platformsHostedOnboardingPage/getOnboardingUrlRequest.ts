@@ -29,7 +29,7 @@ export class GetOnboardingUrlRequest {
     */
     'returnUrl'?: string;
     /**
-    * The language to be used in the page, specified by a combination of a language and country code. For example, **pt-BR**.   If not specified in the request or if the language is not supported, the page uses the browser language. If the browser language is not supported, the page uses **en-US** by default.  For a list supported languages, refer to [Change the page language](https://docs.adyen.com/platforms/hosted-onboarding-page/customize-experience#change-page-language).
+    * The language to be used in the page, specified by a combination of a language and country code. For example, **pt-BR**.   If not specified in the request or if the language is not supported, the page uses the browser language. If the browser language is not supported, the page uses **en-US** by default.  For a list of supported languages, refer to [Change the page language](https://docs.adyen.com/marketplaces-and-platforms/classic/hosted-onboarding-page/customize-experience#change-page-language).
     */
     'shopperLocale'?: string;
     'showPages'?: ShowPages;

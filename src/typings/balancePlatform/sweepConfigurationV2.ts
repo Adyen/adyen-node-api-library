@@ -8,6 +8,7 @@
  */
 
 import { Amount } from './amount';
+import { CronSweepSchedule } from './cronSweepSchedule';
 import { SweepCounterparty } from './sweepCounterparty';
 import { SweepSchedule } from './sweepSchedule';
 
@@ -18,10 +19,17 @@ export class SweepConfigurationV2 {
     */
     'currency': string;
     /**
+    * The message that will be used in the sweep transfer\'s description body with a maximum length of 140 characters.  If the message is longer after replacing placeholders, the message will be cut off at 140 characters.
+    */
+    'description'?: string;
+    /**
     * The unique identifier of the sweep.
     */
     'id': string;
-    'schedule': SweepSchedule;
+    /**
+    * The schedule when the `triggerAmount` is evaluated. If the balance meets the threshold, funds are pushed out of or pulled in to the balance account.
+    */
+    'schedule': CronSweepSchedule | SweepSchedule;
     /**
     * The status of the sweep. If not provided, by default, this is set to **active**.  Possible values:    * **active**:  the sweep is enabled and funds will be pulled in or pushed out based on the defined configuration.    * **inactive**: the sweep is disabled and cannot be triggered.   
     */
@@ -48,6 +56,11 @@ export class SweepConfigurationV2 {
             "type": "string"
         },
         {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
             "name": "id",
             "baseName": "id",
             "type": "string"
@@ -55,7 +68,7 @@ export class SweepConfigurationV2 {
         {
             "name": "schedule",
             "baseName": "schedule",
-            "type": "SweepSchedule"
+            "type": "CronSweepSchedule | SweepSchedule"
         },
         {
             "name": "status",

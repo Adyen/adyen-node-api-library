@@ -12,6 +12,9 @@ import { Store } from './store';
 
 export class ListStoresResponse {
     'links'?: PaginationLinks;
+    /**
+    * List of stores
+    */
     'data'?: Array<Store>;
     /**
     * Total number of items.

@@ -61,6 +61,7 @@ export namespace PaymentDetails {
         MolpayEbankingVn = <any> 'molpay_ebanking_VN',
         OnlineBankingPl = <any> 'onlineBanking_PL',
         OpenbankingUk = <any> 'openbanking_UK',
+        Paybybank = <any> 'paybybank',
         EbankingFi = <any> 'ebanking_FI',
         MolpayEbankingMy = <any> 'molpay_ebanking_MY',
         MolpayEbankingDirectMy = <any> 'molpay_ebanking_direct_MY',

@@ -30,7 +30,7 @@ export class Individual {
     'phone'?: PhoneNumber;
     'residentialAddress': Address;
     /**
-    * The tax information of the organization.
+    * The tax information of the individual.
     */
     'taxInformation'?: Array<TaxInformation>;
     'webData'?: WebData;

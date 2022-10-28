@@ -50,7 +50,7 @@ export class PaymentMethodsRequest {
     */
     'splitCardFundingSources'?: boolean;
     /**
-    * The ecommerce or point-of-sale store that is processing the payment. Used in [partner arrangement integrations](https://docs.adyen.com/platforms/platforms-for-partners#route-payments) for Adyen for Platforms.
+    * The ecommerce or point-of-sale store that is processing the payment. Used in [partner model integrations](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments) for Adyen for Platforms.
     */
     'store'?: string;
 

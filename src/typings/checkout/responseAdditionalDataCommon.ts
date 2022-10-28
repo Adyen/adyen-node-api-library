@@ -130,9 +130,9 @@ export class ResponseAdditionalDataCommon {
     */
     'mcBankNetReferenceNumber'?: string;
     /**
-    * A code and message that issuers send to provide more details about the payment. This field is especially useful when implementing a retry logic for declined payments.  Possible values:  * **01: New account information available**  * **02: Cannot approve at this time, try again later**  * **03: Do not try again**  * **04: Token requirements not fulfilled for this token type**  * **21: Payment Cancellation** (only for Mastercard)  
+    * The Merchant Advice Code (MAC) can be returned by Mastercard issuers for refused payments. If present, the MAC contains information about why the payment failed, and whether it can be retried.  For more information see [Mastercard Merchant Advice Codes](https://docs.adyen.com/development-resources/raw-acquirer-responses#mastercard-merchant-advice-codes).
     */
-    'merchantAdviceCode'?: ResponseAdditionalDataCommon.MerchantAdviceCodeEnum;
+    'merchantAdviceCode'?: string;
     /**
     * The reference provided for the transaction.
     */
@@ -402,7 +402,7 @@ export class ResponseAdditionalDataCommon {
         {
             "name": "merchantAdviceCode",
             "baseName": "merchantAdviceCode",
-            "type": "ResponseAdditionalDataCommon.MerchantAdviceCodeEnum"
+            "type": "string"
         },
         {
             "name": "merchantReference",
@@ -554,13 +554,6 @@ export namespace ResponseAdditionalDataCommon {
     export enum FraudResultTypeEnum {
         Green = <any> 'GREEN',
         Fraud = <any> 'FRAUD'
-    }
-    export enum MerchantAdviceCodeEnum {
-        _01NewAccountInformationAvailable = <any> '01: New account information available',
-        _02CannotApproveAtThisTimeTryAgainLater = <any> '02: Cannot approve at this time, try again later',
-        _03DoNotTryAgain = <any> '03: Do not try again',
-        _04TokenRequirementsNotFulfilledForThisTokenType = <any> '04: Token requirements not fulfilled for this token type',
-        _21PaymentCancellation = <any> '21: Payment Cancellation'
     }
     export enum RecurringProcessingModelEnum {
         CardOnFile = <any> 'CardOnFile',

@@ -10,7 +10,7 @@
 
 export class PayoutMethod {
     /**
-    * The [`merchantAccount`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_merchantAccount) you used in the `/payments` request when you [saved the account holder\'s card details](https://docs.adyen.com/platforms/payout-to-cards#check-and-store).
+    * The [`merchantAccount`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_merchantAccount) you used in the `/payments` request when you [saved the account holder\'s card details](https://docs.adyen.com/marketplaces-and-platforms/classic/payouts/manual-payout/payout-to-cards#check-and-store).
     */
     'merchantAccount': string;
     /**
@@ -22,11 +22,11 @@ export class PayoutMethod {
     */
     'payoutMethodReference'?: string;
     /**
-    * The [`recurringDetailReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_additionalData-ResponseAdditionalDataCommon-recurring-recurringDetailReference)  returned in the `/payments` response when you [saved the account holder\'s card details](https://docs.adyen.com/platforms/payout-to-cards#check-and-store).
+    * The [`recurringDetailReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_additionalData-ResponseAdditionalDataCommon-recurring-recurringDetailReference)  returned in the `/payments` response when you [saved the account holder\'s card details](https://docs.adyen.com/marketplaces-and-platforms/classic/payouts/manual-payout/payout-to-cards#check-and-store).
     */
     'recurringDetailReference': string;
     /**
-    * The [`shopperReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_shopperReference) you sent in the `/payments` request when you [saved the account holder\'s card details](https://docs.adyen.com/platforms/payout-to-cards#check-and-store).
+    * The [`shopperReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_shopperReference) you sent in the `/payments` request when you [saved the account holder\'s card details](https://docs.adyen.com/marketplaces-and-platforms/classic/payouts/manual-payout/payout-to-cards#check-and-store).
     */
     'shopperReference': string;
 

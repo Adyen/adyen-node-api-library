@@ -25,7 +25,7 @@ export class MeApiCredential {
     */
     'allowedOrigins'?: Array<AllowedOrigin>;
     /**
-    * List of merchant accounts that the API credential has access to.
+    * List of merchant accounts that the API credential has explicit access to.   If the credential has access to a company, this implies access to all merchant accounts and no merchants for that company will be included.
     */
     'associatedMerchantAccounts'?: Array<string>;
     /**

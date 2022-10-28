@@ -14,7 +14,7 @@ export class TaxInformation {
     */
     'country'?: string;
     /**
-    * The organization\'s tax ID number (TIN).
+    * The tax ID number (TIN) of the organization or individual.
     */
     'number'?: string;
     /**

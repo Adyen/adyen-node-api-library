@@ -94,29 +94,15 @@ export class CreateAccountRequest {
 export namespace CreateAccountRequest {
     export enum PayoutScheduleEnum {
         BiweeklyOn1StAnd15ThAtMidnight = <any> 'BIWEEKLY_ON_1ST_AND_15TH_AT_MIDNIGHT',
-        BiweeklyOn1StAnd15ThAtNoon = <any> 'BIWEEKLY_ON_1ST_AND_15TH_AT_NOON',
-        BiDailyAu = <any> 'BI_DAILY_AU',
-        BiDailyEu = <any> 'BI_DAILY_EU',
-        BiDailyUs = <any> 'BI_DAILY_US',
         Daily = <any> 'DAILY',
-        Daily6Pm = <any> 'DAILY_6PM',
         DailyAu = <any> 'DAILY_AU',
         DailyEu = <any> 'DAILY_EU',
         DailySg = <any> 'DAILY_SG',
         DailyUs = <any> 'DAILY_US',
-        Default = <any> 'DEFAULT',
-        Every6HoursFromMidnight = <any> 'EVERY_6_HOURS_FROM_MIDNIGHT',
         Hold = <any> 'HOLD',
         Monthly = <any> 'MONTHLY',
-        MonthlyOn15ThAtMidnight = <any> 'MONTHLY_ON_15TH_AT_MIDNIGHT',
         Weekly = <any> 'WEEKLY',
-        WeeklyMonToFriAu = <any> 'WEEKLY_MON_TO_FRI_AU',
-        WeeklyMonToFriEu = <any> 'WEEKLY_MON_TO_FRI_EU',
-        WeeklyMonToFriUs = <any> 'WEEKLY_MON_TO_FRI_US',
-        WeeklyOnTueFriMidnight = <any> 'WEEKLY_ON_TUE_FRI_MIDNIGHT',
-        WeeklySunToThuAu = <any> 'WEEKLY_SUN_TO_THU_AU',
-        WeeklySunToThuUs = <any> 'WEEKLY_SUN_TO_THU_US',
-        Yearly = <any> 'YEARLY'
+        WeeklyOnTueFriMidnight = <any> 'WEEKLY_ON_TUE_FRI_MIDNIGHT'
     }
     export enum PayoutSpeedEnum {
         Instant = <any> 'INSTANT',

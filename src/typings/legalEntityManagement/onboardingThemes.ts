@@ -18,6 +18,9 @@ export class OnboardingThemes {
     * The previous page. Only present if there is a previous page.
     */
     'previous'?: string;
+    /**
+    * List of onboarding themes.
+    */
     'themes': Array<OnboardingTheme>;
 
     static discriminator: string | undefined = undefined;

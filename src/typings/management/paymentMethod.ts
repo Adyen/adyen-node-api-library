@@ -17,6 +17,10 @@ import { SofortInfo } from './sofortInfo';
 import { SwishInfo } from './swishInfo';
 
 export class PaymentMethod {
+    /**
+    * Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
+    */
+    'allowed'?: boolean;
     'applePay'?: ApplePayInfo;
     'bcmc'?: BcmcInfo;
     /**
@@ -43,6 +47,10 @@ export class PaymentMethod {
     'id': string;
     'klarna'?: KlarnaInfo;
     'paypal'?: PayPalInfo;
+    /**
+    * The sales channel.
+    */
+    'shopperInteraction'?: string;
     'sofort'?: SofortInfo;
     /**
     * The ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/post/stores__resParam_id), if any.
@@ -53,10 +61,19 @@ export class PaymentMethod {
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
     */
     'type'?: string;
+    /**
+    * Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
+    */
+    'verificationStatus'?: PaymentMethod.VerificationStatusEnum;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "allowed",
+            "baseName": "allowed",
+            "type": "boolean"
+        },
         {
             "name": "applePay",
             "baseName": "applePay",
@@ -113,6 +130,11 @@ export class PaymentMethod {
             "type": "PayPalInfo"
         },
         {
+            "name": "shopperInteraction",
+            "baseName": "shopperInteraction",
+            "type": "string"
+        },
+        {
             "name": "sofort",
             "baseName": "sofort",
             "type": "SofortInfo"
@@ -131,6 +153,11 @@ export class PaymentMethod {
             "name": "type",
             "baseName": "type",
             "type": "string"
+        },
+        {
+            "name": "verificationStatus",
+            "baseName": "verificationStatus",
+            "type": "PaymentMethod.VerificationStatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -138,3 +165,11 @@ export class PaymentMethod {
     }
 }
 
+export namespace PaymentMethod {
+    export enum VerificationStatusEnum {
+        Valid = <any> 'valid',
+        Pending = <any> 'pending',
+        Invalid = <any> 'invalid',
+        Rejected = <any> 'rejected'
+    }
+}
