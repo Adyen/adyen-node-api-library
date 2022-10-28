@@ -23,3 +23,4 @@ export * as terminal from './terminal/models';
 export * as terminalManagement from './terminalManagement/models';
 export * as management from './management/models';
 export * as legalEntityManagement from './legalEntityManagement/models';
+export * as transfer from './transfer/models';

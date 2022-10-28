@@ -10,3 +10,4 @@ export { default as StoredValue} from "./storedValue";
 export { default as TerminalManagement} from "./terminalManagement";
 export { default as Management } from "./management";
 export { default as LegalEntityManagement } from "./legalEntityManagement";
+export { default as Transfers } from "./transfers";
