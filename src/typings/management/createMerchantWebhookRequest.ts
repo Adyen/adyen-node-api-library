@@ -48,7 +48,7 @@ export class CreateMerchantWebhookRequest {
     */
     'populateSoapActionHeader'?: boolean;
     /**
-    * SSL version to access the public webhook URL specified in the `url` field. Possible values: * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use `sslVersion`: **TLSv1.2**.
+    * SSL version to access the public webhook URL specified in the `url` field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use `sslVersion`: **TLSv1.2**.
     */
     'sslVersion'?: CreateMerchantWebhookRequest.SslVersionEnum;
     /**
@@ -162,6 +162,7 @@ export namespace CreateMerchantWebhookRequest {
         Tlsv1 = <any> 'TLSV1',
         Tlsv11 = <any> 'TLSV1_1',
         Tlsv12 = <any> 'TLSV1_2',
+        Tlsv13 = <any> 'TLSV1_3',
         Tlsv1InsecureCiphers = <any> 'TLSV1_INSECURE_CIPHERS'
     }
 }

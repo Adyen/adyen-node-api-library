@@ -109,6 +109,7 @@ export * from './scheduleTerminalActionsResponse';
 export * from './settings';
 export * from './shippingLocation';
 export * from './shippingLocationsResponse';
+export * from './shopperStatement';
 export * from './signature';
 export * from './sofortInfo';
 export * from './store';
@@ -251,6 +252,7 @@ import { ScheduleTerminalActionsResponse } from './scheduleTerminalActionsRespon
 import { Settings } from './settings';
 import { ShippingLocation } from './shippingLocation';
 import { ShippingLocationsResponse } from './shippingLocationsResponse';
+import { ShopperStatement } from './shopperStatement';
 import { Signature } from './signature';
 import { SofortInfo } from './sofortInfo';
 import { Store } from './store';
@@ -316,11 +318,13 @@ let enumsMap: {[index: string]: any} = {
         "InstallAndroidAppDetails.TypeEnum": InstallAndroidAppDetails.TypeEnum,
         "InstallAndroidCertificateDetails.TypeEnum": InstallAndroidCertificateDetails.TypeEnum,
         "KlarnaInfo.RegionEnum": KlarnaInfo.RegionEnum,
+        "PaymentMethod.VerificationStatusEnum": PaymentMethod.VerificationStatusEnum,
         "PaymentMethodSetupInfo.ShopperInteractionEnum": PaymentMethodSetupInfo.ShopperInteractionEnum,
         "PaymentMethodSetupInfo.TypeEnum": PaymentMethodSetupInfo.TypeEnum,
         "PayoutSettings.PriorityEnum": PayoutSettings.PriorityEnum,
         "PayoutSettings.VerificationStatusEnum": PayoutSettings.VerificationStatusEnum,
         "ReleaseUpdateDetails.TypeEnum": ReleaseUpdateDetails.TypeEnum,
+        "ShopperStatement.TypeEnum": ShopperStatement.TypeEnum,
         "Store.StatusEnum": Store.StatusEnum,
         "UninstallAndroidAppDetails.TypeEnum": UninstallAndroidAppDetails.TypeEnum,
         "UninstallAndroidCertificateDetails.TypeEnum": UninstallAndroidCertificateDetails.TypeEnum,
@@ -440,6 +444,7 @@ let typeMap: {[index: string]: any} = {
     "Settings": Settings,
     "ShippingLocation": ShippingLocation,
     "ShippingLocationsResponse": ShippingLocationsResponse,
+    "ShopperStatement": ShopperStatement,
     "Signature": Signature,
     "SofortInfo": SofortInfo,
     "Store": Store,

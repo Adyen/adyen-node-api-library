@@ -13,7 +13,7 @@ export class SoleProprietorship {
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.
     */
-    'countryOfGoverningLaw'?: string;
+    'countryOfGoverningLaw': string;
     /**
     * The registered name, if different from the `name`.
     */

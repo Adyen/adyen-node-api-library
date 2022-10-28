@@ -17,6 +17,10 @@ export class StoreDetail {
     */
     'fullPhoneNumber'?: string;
     /**
+    * Store logo for payment method setup.
+    */
+    'logo'?: string;
+    /**
     * The merchant account to which the store belongs.
     */
     'merchantAccount': string;
@@ -24,6 +28,10 @@ export class StoreDetail {
     * The merchant category code (MCC) that classifies the business of the account holder.
     */
     'merchantCategoryCode': string;
+    /**
+    * Merchant house number for payment method setup.
+    */
+    'merchantHouseNumber'?: string;
     'phoneNumber'?: ViasPhoneNumber;
     /**
     * The sales channel. Possible values: **Ecommerce**, **POS**.
@@ -72,6 +80,11 @@ export class StoreDetail {
             "type": "string"
         },
         {
+            "name": "logo",
+            "baseName": "logo",
+            "type": "string"
+        },
+        {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
             "type": "string"
@@ -79,6 +92,11 @@ export class StoreDetail {
         {
             "name": "merchantCategoryCode",
             "baseName": "merchantCategoryCode",
+            "type": "string"
+        },
+        {
+            "name": "merchantHouseNumber",
+            "baseName": "merchantHouseNumber",
             "type": "string"
         },
         {

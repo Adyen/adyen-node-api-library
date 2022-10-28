@@ -24,7 +24,7 @@ export class PayoutAccountHolderRequest {
     */
     'bankAccountUUID'?: string;
     /**
-    * A description of the payout. Maximum 35 characters. Allowed: **abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/?:().,\'+ \";**
+    * A description of the payout. Maximum 200 characters. Allowed: **abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/?:().,\'+ \";**
     */
     'description'?: string;
     /**

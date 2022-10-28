@@ -52,7 +52,7 @@ export class TransactionRule {
     */
     'status'?: TransactionRule.StatusEnum;
     /**
-    * The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which definesif a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:   * **blockList**: decline a transaction when the conditions are met.   * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.   * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met. 
+    * The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met. 
     */
     'type': TransactionRule.TypeEnum;
 

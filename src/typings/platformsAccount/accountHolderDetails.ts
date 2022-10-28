@@ -18,7 +18,7 @@ import { ViasAddress } from './viasAddress';
 export class AccountHolderDetails {
     'address'?: ViasAddress;
     /**
-    * Array of bank accounts associated with the account holder. For details about the required `BankAccountDetail` fields, refer to [Bank account check](https://docs.adyen.com/platforms/verification-checks/bank-account-check).
+    * Array of bank accounts associated with the account holder. For details about the required `bankAccountDetail` fields, see [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information).
     */
     'bankAccountDetails'?: Array<BankAccountDetail>;
     /**
@@ -40,7 +40,7 @@ export class AccountHolderDetails {
     */
     'lastReviewDate'?: string;
     /**
-    * An array containing information about the account holder\'s [legal arrangements](https://docs.adyen.com/platforms/verification-checks/legal-arrangements).
+    * An array containing information about the account holder\'s [legal arrangements](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/legal-arrangements).
     */
     'legalArrangements'?: Array<LegalArrangementDetail>;
     /**
@@ -52,12 +52,12 @@ export class AccountHolderDetails {
     */
     'metadata'?: { [key: string]: string; };
     /**
-    * Array of tokenized card details associated with the account holder. For details about how you can use the tokens to pay out, refer to [Pay out to cards](https://docs.adyen.com/platforms/payout-to-cards).
+    * Array of tokenized card details associated with the account holder. For details about how you can use the tokens to pay out, refer to [Pay out to cards](https://docs.adyen.com/marketplaces-and-platforms/classic/payout-to-cards).
     */
     'payoutMethods'?: Array<PayoutMethod>;
     'principalBusinessAddress'?: ViasAddress;
     /**
-    * Array of stores associated with the account holder. Required when onboarding account holders that have an Adyen [point of sale](https://docs.adyen.com/platforms/platforms-for-pos).
+    * Array of stores associated with the account holder. Required when onboarding account holders that have an Adyen [point of sale](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-pos).
     */
     'storeDetails'?: Array<StoreDetail>;
     /**

@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { ShopperStatement } from './shopperStatement';
 
 export class UpdatePaymentMethodInfo {
     /**
@@ -21,6 +22,7 @@ export class UpdatePaymentMethodInfo {
     * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
     */
     'enabled'?: boolean;
+    'shopperStatement'?: ShopperStatement;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +41,11 @@ export class UpdatePaymentMethodInfo {
             "name": "enabled",
             "baseName": "enabled",
             "type": "boolean"
+        },
+        {
+            "name": "shopperStatement",
+            "baseName": "shopperStatement",
+            "type": "ShopperStatement"
         }    ];
 
     static getAttributeTypeMap() {

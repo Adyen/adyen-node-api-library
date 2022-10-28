@@ -10,11 +10,11 @@
 
 export class BankAccountDetail {
     /**
-    * The bank account number (without separators). >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The bank account number (without separators). >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'accountNumber'?: string;
     /**
-    * The type of bank account. Only applicable to bank accounts held in the USA. The permitted values are: `checking`, `savings`.  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The type of bank account. Only applicable to bank accounts held in the USA. The permitted values are: `checking`, `savings`.  >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'accountType'?: string;
     /**
@@ -30,47 +30,47 @@ export class BankAccountDetail {
     */
     'bankAccountUUID'?: string;
     /**
-    * The bank identifier code. >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The bank identifier code. >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'bankBicSwift'?: string;
     /**
-    * The city in which the bank branch is located.  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The city in which the bank branch is located.  >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'bankCity'?: string;
     /**
-    * The bank code of the banking institution with which the bank account is registered.  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The bank code of the banking institution with which the bank account is registered.  >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'bankCode'?: string;
     /**
-    * The name of the banking institution with which the bank account is held.  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The name of the banking institution with which the bank account is held.  >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'bankName'?: string;
     /**
-    * The branch code of the branch under which the bank account is registered. The value to be specified in this parameter depends on the country of the bank account: * United States - Routing number * United Kingdom - Sort code * Germany - Bankleitzahl >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The branch code of the branch under which the bank account is registered. The value to be specified in this parameter depends on the country of the bank account: * United States - Routing number * United Kingdom - Sort code * Germany - Bankleitzahl >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'branchCode'?: string;
     /**
-    * The check code of the bank account.  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The check code of the bank account.  >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'checkCode'?: string;
     /**
-    * The two-letter country code in which the bank account is registered. >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. \'NL\').  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The two-letter country code in which the bank account is registered. >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. \'NL\').  >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'countryCode'?: string;
     /**
-    * The currency in which the bank account deals. >The permitted currency codes are defined in ISO-4217 (e.g. \'EUR\').  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The currency in which the bank account deals. >The permitted currency codes are defined in ISO-4217 (e.g. \'EUR\'). 
     */
     'currencyCode'?: string;
     /**
-    * The international bank account number. >The IBAN standard is defined in ISO-13616.  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The international bank account number. >The IBAN standard is defined in ISO-13616.  >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'iban'?: string;
     /**
-    * The city of residence of the bank account owner. >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The city of residence of the bank account owner. >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'ownerCity'?: string;
     /**
-    * The country code of the country of residence of the bank account owner. >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. \'NL\').  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The country code of the country of residence of the bank account owner. >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. \'NL\').  >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'ownerCountryCode'?: string;
     /**
@@ -78,27 +78,27 @@ export class BankAccountDetail {
     */
     'ownerDateOfBirth'?: string;
     /**
-    * The house name or number of the residence of the bank account owner. >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The house name or number of the residence of the bank account owner. >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'ownerHouseNumberOrName'?: string;
     /**
-    * The name of the bank account owner. >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The name of the bank account owner. >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'ownerName'?: string;
     /**
-    * The country code of the country of nationality of the bank account owner. >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. \'NL\').  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The country code of the country of nationality of the bank account owner. >The permitted country codes are defined in ISO-3166-1 alpha-2 (e.g. \'NL\').  >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'ownerNationality'?: string;
     /**
-    * The postal code of the residence of the bank account owner. >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The postal code of the residence of the bank account owner. >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'ownerPostalCode'?: string;
     /**
-    * The state of residence of the bank account owner. >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The state of residence of the bank account owner. >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'ownerState'?: string;
     /**
-    * The street name of the residence of the bank account owner. >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The street name of the residence of the bank account owner. >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'ownerStreet'?: string;
     /**
@@ -106,11 +106,11 @@ export class BankAccountDetail {
     */
     'primaryAccount'?: boolean;
     /**
-    * The tax ID number.  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The tax ID number.  >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'taxId'?: string;
     /**
-    * The URL to be used for bank account verification. This may be generated on bank account creation.  >Refer to the [Onboarding and verification](https://docs.adyen.com/platforms/onboarding-and-verification) section for details on field requirements.
+    * The URL to be used for bank account verification. This may be generated on bank account creation.  >Refer to [Required information](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/required-information) for details on field requirements.
     */
     'urlForVerification'?: string;
 

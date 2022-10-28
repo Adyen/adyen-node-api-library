@@ -7,7 +7,6 @@
  * Do not edit this class manually.
  */
 
-import { CapabilityProblem } from './capabilityProblem';
 import { JSONObject } from './jSONObject';
 
 export class AccountHolderCapability {
@@ -27,7 +26,7 @@ export class AccountHolderCapability {
     /**
     * Contains verification errors and the actions that you can take to resolve them.
     */
-    'problems'?: Array<CapabilityProblem>;
+    'problems'?: Array<any>;
     /**
     * Indicates whether the capability is requested. To check whether the account holder is permitted to use the capability, refer to the `allowed` field.
     */
@@ -68,7 +67,7 @@ export class AccountHolderCapability {
         {
             "name": "problems",
             "baseName": "problems",
-            "type": "Array<CapabilityProblem>"
+            "type": "Array<any>"
         },
         {
             "name": "requested",
