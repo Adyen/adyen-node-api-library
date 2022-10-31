@@ -44,6 +44,7 @@ export namespace TestNotificationConfigurationRequest {
         AccountFundsBelowThreshold = <any> 'ACCOUNT_FUNDS_BELOW_THRESHOLD',
         AccountHolderCreated = <any> 'ACCOUNT_HOLDER_CREATED',
         AccountHolderLimitReached = <any> 'ACCOUNT_HOLDER_LIMIT_REACHED',
+        AccountHolderMigrated = <any> 'ACCOUNT_HOLDER_MIGRATED',
         AccountHolderPayout = <any> 'ACCOUNT_HOLDER_PAYOUT',
         AccountHolderStatusChange = <any> 'ACCOUNT_HOLDER_STATUS_CHANGE',
         AccountHolderStoreStatusChange = <any> 'ACCOUNT_HOLDER_STORE_STATUS_CHANGE',

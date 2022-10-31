@@ -14,7 +14,7 @@ export class ProcessingTypesRestriction {
     */
     'operation': string;
     /**
-    * List of processing types.  Possible values: **atmWithdraw**, **pos**, **ecommerce**, **moto**, **recurring**, **balanceInquiry**.  
+    * List of processing types.  Possible values: **atmWithdraw**, **balanceInquiry**, **ecommerce**, **moto**, **pos**, **recurring**, **token**.  
     */
     'value'?: Array<ProcessingTypesRestriction.ValueEnum>;
 
@@ -44,7 +44,6 @@ export namespace ProcessingTypesRestriction {
         Ecommerce = <any> 'ecommerce',
         Moto = <any> 'moto',
         Pos = <any> 'pos',
-        PurchaseWithCashback = <any> 'purchaseWithCashback',
         Recurring = <any> 'recurring',
         Token = <any> 'token',
         Unknown = <any> 'unknown'

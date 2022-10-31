@@ -45,6 +45,8 @@ export * from './externalPlatform';
 export * from './forexQuote';
 export * from './fraudCheckResult';
 export * from './fraudResult';
+export * from './fundDestination';
+export * from './fundSource';
 export * from './installments';
 export * from './mandate';
 export * from './merchantDevice';
@@ -120,6 +122,8 @@ import { ExternalPlatform } from './externalPlatform';
 import { ForexQuote } from './forexQuote';
 import { FraudCheckResult } from './fraudCheckResult';
 import { FraudResult } from './fraudResult';
+import { FundDestination } from './fundDestination';
+import { FundSource } from './fundSource';
 import { Installments } from './installments';
 import { Mandate } from './mandate';
 import { MerchantDevice } from './merchantDevice';
@@ -206,7 +210,6 @@ let enumsMap: {[index: string]: any} = {
         "Recurring.ContractEnum": Recurring.ContractEnum,
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
         "ResponseAdditionalDataCommon.FraudResultTypeEnum": ResponseAdditionalDataCommon.FraudResultTypeEnum,
-        "ResponseAdditionalDataCommon.MerchantAdviceCodeEnum": ResponseAdditionalDataCommon.MerchantAdviceCodeEnum,
         "ResponseAdditionalDataCommon.RecurringProcessingModelEnum": ResponseAdditionalDataCommon.RecurringProcessingModelEnum,
         "Split.TypeEnum": Split.TypeEnum,
         "ThreeDS2RequestData.AcctTypeEnum": ThreeDS2RequestData.AcctTypeEnum,
@@ -263,6 +266,8 @@ let typeMap: {[index: string]: any} = {
     "ForexQuote": ForexQuote,
     "FraudCheckResult": FraudCheckResult,
     "FraudResult": FraudResult,
+    "FundDestination": FundDestination,
+    "FundSource": FundSource,
     "Installments": Installments,
     "Mandate": Mandate,
     "MerchantDevice": MerchantDevice,

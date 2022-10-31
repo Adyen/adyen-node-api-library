@@ -14,7 +14,7 @@ export class StoreSplitConfiguration {
     */
     'balanceAccountId'?: string;
     /**
-    * The UUID of the [split configuration](https://docs.adyen.com/platforms/split-configuration-for-stores) from the Customer Area.
+    * The UUID of the [split configuration](https://docs.adyen.com/marketplaces-and-platforms/classic/split-configuration-for-stores) from the Customer Area.
     */
     'splitConfigurationId'?: string;
 

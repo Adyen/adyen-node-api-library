@@ -27,7 +27,7 @@ export class Card {
     */
     'brandVariant': string;
     /**
-    * The name of the card holder.  Maximum length: 26 characters.
+    * The name of the cardholder.  Maximum length: 26 characters.
     */
     'cardholderName': string;
     'configuration'?: CardConfiguration;

@@ -32,7 +32,7 @@ export class CreateAccountHolderRequest {
     */
     'primaryCurrency'?: string;
     /**
-    * The starting [processing tier](https://docs.adyen.com/platforms/onboarding-and-verification/precheck-kyc-information) for the prospective account holder.
+    * The starting [processing tier](https://docs.adyen.com/marketplaces-and-platforms/classic/onboarding-and-verification/precheck-kyc-information) for the prospective account holder.
     */
     'processingTier'?: number;
     /**

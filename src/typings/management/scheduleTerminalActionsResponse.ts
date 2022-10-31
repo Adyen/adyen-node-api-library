@@ -19,6 +19,9 @@ export class ScheduleTerminalActionsResponse {
     * Information about the action to take.
     */
     'actionDetails'?: InstallAndroidAppDetails | InstallAndroidCertificateDetails | ReleaseUpdateDetails | UninstallAndroidAppDetails | UninstallAndroidCertificateDetails;
+    /**
+    * A list containing a terminal ID and an action ID for each terminal that the action was scheduled for.
+    */
     'items'?: Array<TerminalActionScheduleDetail>;
     /**
     * The date and time when the action should happen.  Format: [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339), but without the **Z** before the time offset. For example, **2021-11-15T12:16:21+01:00**  The action is sent with the first [maintenance call](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api#when-actions-take-effect) after the specified date and time in the time zone of the terminal.  An empty value causes the action to be sent as soon as possible: at the next maintenance call.
@@ -29,7 +32,7 @@ export class ScheduleTerminalActionsResponse {
     */
     'storeId'?: string;
     /**
-    * A list of unique IDs of the terminals to apply the action to. You can extract the IDs from the [GET `/terminals`](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/terminals) response. Maximum length: 100 IDs.
+    * A list of unique IDs of the terminals that the action applies to.
     */
     'terminalIds'?: Array<string>;
     /**

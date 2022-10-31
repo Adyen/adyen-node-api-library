@@ -47,7 +47,7 @@ export class Organization {
     /**
     * Type of organization.   Possible values: **associationIncorporated**, **governmentalOrganization**, **listedPublicCompany**, **nonProfit**, **partnershipIncorporated**, **privateCompany**.
     */
-    'type': Organization.TypeEnum;
+    'type'?: Organization.TypeEnum;
     /**
     * The reason the organization has not provided a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
     */

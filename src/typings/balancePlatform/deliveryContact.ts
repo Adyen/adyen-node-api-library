@@ -12,7 +12,7 @@ import { Name } from './name';
 import { PhoneNumber } from './phoneNumber';
 
 export class DeliveryContact {
-    'address'?: Address2;
+    'address': Address2;
     /**
     * The email address of the contact.
     */
@@ -21,7 +21,7 @@ export class DeliveryContact {
     * The full phone number of the contact provided as a single string. It will be handled as a landline phone. **Examples:** \"0031 6 11 22 33 44\", \"+316/1122-3344\", \"(0031) 611223344\"
     */
     'fullPhoneNumber'?: string;
-    'name'?: Name;
+    'name': Name;
     'phoneNumber'?: PhoneNumber;
     /**
     * The URL of the contact\'s website.

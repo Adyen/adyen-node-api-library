@@ -50,6 +50,8 @@ export class AccountHolderTransactionListRequest {
 export namespace AccountHolderTransactionListRequest {
     export enum TransactionStatusesEnum {
         BalanceNotPaidOutTransfer = <any> 'BalanceNotPaidOutTransfer',
+        BalancePlatformSweep = <any> 'BalancePlatformSweep',
+        BalancePlatfromSweepReturned = <any> 'BalancePlatfromSweepReturned',
         Chargeback = <any> 'Chargeback',
         ChargebackCorrection = <any> 'ChargebackCorrection',
         ChargebackCorrectionReceived = <any> 'ChargebackCorrectionReceived',

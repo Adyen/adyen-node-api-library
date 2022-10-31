@@ -29,7 +29,7 @@ export class BusinessDetails {
     */
     'registrationNumber'?: string;
     /**
-    * Array containing information about individuals associated with the account holder either through ownership or control. For details about how you can identify them, refer to [Identity check](https://docs.adyen.com/platforms/verification-checks/identity-check).
+    * Array containing information about individuals associated with the account holder either through ownership or control. For details about how you can identify them, refer to [our verification guide](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process#identify-ubos).
     */
     'shareholders'?: Array<ShareholderContact>;
     /**
