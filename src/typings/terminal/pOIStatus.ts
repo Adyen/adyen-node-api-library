@@ -34,21 +34,21 @@ import { CashHandlingDevice } from './cashHandlingDevice';
 import { GlobalStatusType } from './globalStatusType';
 
 export class POIStatus {
-    'CardReaderOkFlag'?: boolean;
+    'CardReaderOKFlag'?: boolean;
     'CashHandlingDevice'?: Array<CashHandlingDevice>;
     'CommunicationOKFlag'?: boolean;
     'FraudPreventionFlag'?: boolean;
     'GlobalStatus': GlobalStatusType;
     'PEDOKFlag'?: boolean;
     'PrinterStatus'?: POIStatus.PrinterStatusEnum;
-    'SecurityOkFlag'?: boolean;
+    'SecurityOKFlag'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "CardReaderOkFlag",
-            "baseName": "CardReaderOkFlag",
+            "name": "CardReaderOKFlag",
+            "baseName": "CardReaderOKFlag",
             "type": "boolean"
         },
         {
@@ -82,8 +82,8 @@ export class POIStatus {
             "type": "POIStatus.PrinterStatusEnum"
         },
         {
-            "name": "SecurityOkFlag",
-            "baseName": "SecurityOkFlag",
+            "name": "SecurityOKFlag",
+            "baseName": "SecurityOKFlag",
             "type": "boolean"
         }    ];
 
