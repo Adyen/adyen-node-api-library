@@ -10,11 +10,11 @@
 
 export class MinorUnitsMonetaryValue {
     /**
-    *  Amount of this monetary value, in minor units
+    * The transaction amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
     */
     'amount'?: number;
     /**
-    *  Currency of this monetary value, Format: [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
     'currencyCode'?: string;
 

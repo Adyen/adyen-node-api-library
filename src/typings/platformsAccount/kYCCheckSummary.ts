@@ -10,7 +10,7 @@
 
 export class KYCCheckSummary {
     /**
-    * The code of the check. For possible values, refer to [Verification codes](https://docs.adyen.com/platforms/verification-codes).
+    * The code of the check. For possible values, refer to [Verification codes](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/verification-codes).
     */
     'kycCheckCode'?: number;
     /**

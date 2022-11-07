@@ -8,15 +8,15 @@
  */
 
 
-export class CapabilityProblemEntityRecursive {
+export class OwnerEntity {
     /**
-    * The ID of the entity.
+    * Unique identifier of the resource that owns the document. For `type` **legalEntity**, this value is the unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id). For `type` **bankAccount**, this value is the unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
     */
-    'id'?: string;
+    'id': string;
     /**
-    * Type of entity.   Possible values: **LegalEntity**, **BankAccount**, **Document**.
+    * Type of resource that owns the document.  Possible values: **legalEntity**, **bankAccount**.
     */
-    'type'?: CapabilityProblemEntityRecursive.TypeEnum;
+    'type': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -29,18 +29,11 @@ export class CapabilityProblemEntityRecursive {
         {
             "name": "type",
             "baseName": "type",
-            "type": "CapabilityProblemEntityRecursive.TypeEnum"
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return CapabilityProblemEntityRecursive.attributeTypeMap;
+        return OwnerEntity.attributeTypeMap;
     }
 }
 
-export namespace CapabilityProblemEntityRecursive {
-    export enum TypeEnum {
-        BankAccount = <any> 'BankAccount',
-        Document = <any> 'Document',
-        LegalEntity = <any> 'LegalEntity'
-    }
-}

@@ -10,7 +10,7 @@
 
 export class ServiceError {
     /**
-    * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Account** > **API URLs**.
+    * Contains additional information about the payment. Some data fields are included only if you select them first. Go to **Customer Area** > **Developers** > **Additional data**.
     */
     'additionalData'?: { [key: string]: string; };
     /**

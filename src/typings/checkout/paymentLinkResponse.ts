@@ -128,7 +128,7 @@ export class PaymentLinkResponse {
     */
     'splitCardFundingSources'?: boolean;
     /**
-    * An array of objects specifying how the payment should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/platforms/processing-payments#providing-split-information).
+    * An array of objects specifying how the payment should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information).
     */
     'splits'?: Array<Split>;
     /**
@@ -148,7 +148,7 @@ export class PaymentLinkResponse {
     */
     'telephoneNumber'?: string;
     /**
-    * A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area.
+    * A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area.
     */
     'themeId'?: string;
     /**

@@ -10,7 +10,7 @@
 
 export class AccountEvent {
     /**
-    * The event. >Permitted values: `InactivateAccount`, `RefundNotPaidOutTransfers`. For more information, refer to [Verification checks](https://docs.adyen.com/platforms/verification-checks).
+    * The event. >Permitted values: `InactivateAccount`, `RefundNotPaidOutTransfers`. For more information, refer to [Verification checks](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process).
     */
     'event': AccountEvent.EventEnum;
     /**

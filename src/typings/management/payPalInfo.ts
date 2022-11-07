@@ -14,10 +14,6 @@ export class PayPalInfo {
     */
     'directCapture'?: boolean;
     /**
-    * Must be set to **true** to confirm that the settlement to your bank account is performed directly by PayPal. Default value: **null**.
-    */
-    'directSettlement': boolean;
-    /**
     * PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.
     */
     'payerId': string;
@@ -32,11 +28,6 @@ export class PayPalInfo {
         {
             "name": "directCapture",
             "baseName": "directCapture",
-            "type": "boolean"
-        },
-        {
-            "name": "directSettlement",
-            "baseName": "directSettlement",
             "type": "boolean"
         },
         {

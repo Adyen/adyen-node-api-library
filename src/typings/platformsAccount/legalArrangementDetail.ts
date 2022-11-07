@@ -13,7 +13,7 @@ import { ViasAddress } from './viasAddress';
 export class LegalArrangementDetail {
     'address': ViasAddress;
     /**
-    * Adyen-generated unique alphanumeric identifier (UUID) for the entry, returned in the response when you create a legal arrangement. Required when updating an existing legal arrangement entry in an `/updateAccountHolder` request.
+    * Adyen-generated unique alphanumeric identifier (UUID) for the entry, returned in the response when you create a legal arrangement. Use only when updating an account holder. If you include this field when creating an account holder, the request will fail.
     */
     'legalArrangementCode'?: string;
     /**
@@ -41,7 +41,7 @@ export class LegalArrangementDetail {
     */
     'taxNumber'?: string;
     /**
-    * The [type of legal arrangement](https://docs.adyen.com/platforms/verification-checks/legal-arrangements#types-of-legal-arrangements).  Possible values:  - **Association**   - **Partnership**   - **SoleProprietorship**   - **Trust**   
+    * The [type of legal arrangement](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process/legal-arrangements#types-of-legal-arrangements).  Possible values:  - **Association**   - **Partnership**   - **SoleProprietorship**   - **Trust**   
     */
     'type': LegalArrangementDetail.TypeEnum;
 

@@ -47,7 +47,7 @@ export class NotificationConfigurationDetails {
     */
     'notifyUsername'?: string;
     /**
-    * The SSL protocol employed by the endpoint. >Permitted values: `SSL`, `SSLInsecureCiphers`, `TLS`, `TLSv10`, `TLSv10InsecureCiphers`, `TLSv11`, `TLSv12`.
+    * The SSL protocol employed by the endpoint. >Permitted values: `TLSv12`, `TLSv13`.
     */
     'sslProtocol'?: NotificationConfigurationDetails.SslProtocolEnum;
 
@@ -112,12 +112,7 @@ export class NotificationConfigurationDetails {
 
 export namespace NotificationConfigurationDetails {
     export enum SslProtocolEnum {
-        Ssl = <any> 'SSL',
-        SslInsecureCiphers = <any> 'SSLInsecureCiphers',
-        Tls = <any> 'TLS',
-        Tlsv10 = <any> 'TLSv10',
-        Tlsv10InsecureCiphers = <any> 'TLSv10InsecureCiphers',
-        Tlsv11 = <any> 'TLSv11',
-        Tlsv12 = <any> 'TLSv12'
+        Tlsv12 = <any> 'TLSv12',
+        Tlsv13 = <any> 'TLSv13'
     }
 }

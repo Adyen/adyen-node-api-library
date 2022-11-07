@@ -10,7 +10,7 @@
 
 export class SweepSchedule {
     /**
-    * The schedule type.  Possible values:  * **daily**: push out funds daily at 07:00 AM CET.  * **weekly**: push out funds every Monday at 07:00 AM CET.  * **monthly**: push out funds every first of the month at 07:00 AM CET.  * **balance**: pull in funds instantly if the balance is less than or equal to the `triggerAmount`. You can only use this for sweeps of `type` **pull** and when the source is a `merchantAccount` or `transferInstrument`.
+    * The schedule type.  Possible values:  * **cron**: push out funds based on a cron expression.  * **daily**: push out funds daily at 07:00 AM CET.  * **weekly**: push out funds every Monday at 07:00 AM CET.  * **monthly**: push out funds every first of the month at 07:00 AM CET.  * **balance**: pull in funds instantly if the balance is less than or equal to the `triggerAmount`. You can only use this for sweeps of `type` **pull** and when the source is a `merchantAccount` or `transferInstrument`.
     */
     'type'?: SweepSchedule.TypeEnum;
 
@@ -33,6 +33,7 @@ export namespace SweepSchedule {
         Daily = <any> 'daily',
         Weekly = <any> 'weekly',
         Monthly = <any> 'monthly',
-        Balance = <any> 'balance'
+        Balance = <any> 'balance',
+        Cron = <any> 'cron'
     }
 }

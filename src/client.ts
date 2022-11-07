@@ -65,6 +65,13 @@ class Client {
     public static BALANCE_PLATFORM_API_VERSION = "v2";
     public static BALANCE_PLATFORM_API_ENDPOINT_TEST = "https://balanceplatform-api-test.adyen.com/bcl";
     public static BALANCE_PLATFORM_API_ENDPOINT_LIVE = "https://balanceplatform-api-live.adyen.com/bcl";
+    public static LEGAL_ENTITY_MANAGEMENT_API_VERSION = "v2";
+    public static LEGAL_ENTITY_MANAGEMENT_API_ENDPOINT_TEST = "https://kyc-test.adyen.com/lem";
+    public static LEGAL_ENTITY_MANAGEMENT_API_ENDPOINT_LIVE = "https://kyc-live.adyen.com/lem";
+    public static TRANSFERS_API_VERSION="v3";
+    public static TRANSFERS_API_VERSION_TEST = "https://balanceplatform-api-test.adyen.com/btl";
+    public static TRANSFERS_API_VERSION_LIVE = "https://balanceplatform-api-live.adyen.com/btl";
+
 
     private _httpClient!: ClientInterface;
     public config: Config;
@@ -108,6 +115,8 @@ class Client {
             this.config.terminalManagementEndpoint = Client.TERMINAL_MANAGEMENT_API_ENDPOINT_TEST;
             this.config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_TEST;
             this.config.balancePlatformEndpoint = Client.BALANCE_PLATFORM_API_ENDPOINT_TEST;
+            this.config.legalEntityManagementEndpoint = Client.LEGAL_ENTITY_MANAGEMENT_API_ENDPOINT_TEST;
+            this.config.transfersEndpoint = Client.TRANSFERS_API_VERSION_TEST;
         } else if (environment === "LIVE") {
             this.config.endpoint = Client.ENDPOINT_LIVE;
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_LIVE;
@@ -118,6 +127,8 @@ class Client {
             this.config.terminalManagementEndpoint = Client.TERMINAL_MANAGEMENT_API_ENDPOINT_LIVE;
             this.config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_LIVE;
             this.config.balancePlatformEndpoint = Client.BALANCE_PLATFORM_API_ENDPOINT_LIVE;
+            this.config.legalEntityManagementEndpoint = Client.LEGAL_ENTITY_MANAGEMENT_API_ENDPOINT_LIVE;
+            this.config.transfersEndpoint = Client.TRANSFERS_API_VERSION_LIVE;
 
             if (liveEndpointUrlPrefix) {
                 this.config.endpoint =

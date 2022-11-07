@@ -26,15 +26,15 @@ export class Terminal {
     */
     'city'?: string;
     /**
-    * The company account of the terminal.
+    * The company account that the terminal is associated with. If this is the only account level shown in the response, the terminal is assigned to the inventory of the company account.
     */
     'companyAccount'?: string;
     /**
-    * The country code where the terminal is located.
+    * The country code of the country where the terminal is located.
     */
     'countryCode'?: string;
     /**
-    * The terminal model of the device.
+    * The model name of the terminal.
     */
     'deviceModel'?: string;
     /**
@@ -46,11 +46,11 @@ export class Terminal {
     */
     'ethernetMac'?: string;
     /**
-    * The firmware Version of the terminal.
+    * The software release currently in use on the terminal.
     */
     'firmwareVersion'?: string;
     /**
-    * The ICCID number of the cellular communications card.
+    * The integrated circuit card identifier (ICCID) of the SIM card in the terminal.
     */
     'iccid'?: string;
     /**
@@ -58,15 +58,15 @@ export class Terminal {
     */
     'id'?: string;
     /**
-    * The last Activity Date and Time of the terminal.
+    * Date and time of the last activity on the terminal. Not included when the last activity was more than 14 days ago.
     */
     'lastActivityDateTime'?: Date;
     /**
-    * The last Transaction Date and Time of the terminal.
+    * Date and time of the last transaction on the terminal. Not included when the last transaction was more than 14 days ago.
     */
     'lastTransactionDateTime'?: Date;
     /**
-    * The ethernet link speed of the terminal that was negotiated.
+    * The Ethernet link negotiation that the terminal uses:  - `auto`: Auto-negotiation  - `100full`: 100 Mbps full duplex
     */
     'linkNegotiation'?: string;
     /**
@@ -82,19 +82,19 @@ export class Terminal {
     */
     'status'?: string;
     /**
-    * The Status of store where the terminal is located.
+    * The status of the store that the terminal is assigned to.
     */
     'storeStatus'?: string;
     /**
-    * The WiFi IP address of the terminal.
+    * The terminal\'s IP address in your Wi-Fi network.
     */
     'wifiIp'?: string;
     /**
-    * The WiFi MAC address of the terminal.
+    * The terminal\'s MAC address in your Wi-Fi network.
     */
     'wifiMac'?: string;
     /**
-    * The WIFI SSID of the terminal.
+    * The SSID of the Wi-Fi network that your terminal is connected to.
     */
     'wifiSsid'?: string;
 

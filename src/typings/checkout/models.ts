@@ -50,13 +50,10 @@ export * from './cellulantDetails';
 export * from './checkoutAwaitAction';
 export * from './checkoutBalanceCheckRequest';
 export * from './checkoutBalanceCheckResponse';
-export * from './checkoutBankTransferAction';
 export * from './checkoutCancelOrderRequest';
 export * from './checkoutCancelOrderResponse';
 export * from './checkoutCreateOrderRequest';
 export * from './checkoutCreateOrderResponse';
-export * from './checkoutDonationAction';
-export * from './checkoutOneTimePasscodeAction';
 export * from './checkoutOrder';
 export * from './checkoutOrderResponse';
 export * from './checkoutQrCodeAction';
@@ -139,7 +136,6 @@ export * from './phone';
 export * from './ratepayDetails';
 export * from './recurring';
 export * from './recurringDetail';
-export * from './redirect';
 export * from './responseAdditionalData3DSecure';
 export * from './responseAdditionalDataBillingAddress';
 export * from './responseAdditionalDataCard';
@@ -223,13 +219,10 @@ import { CellulantDetails } from './cellulantDetails';
 import { CheckoutAwaitAction } from './checkoutAwaitAction';
 import { CheckoutBalanceCheckRequest } from './checkoutBalanceCheckRequest';
 import { CheckoutBalanceCheckResponse } from './checkoutBalanceCheckResponse';
-import { CheckoutBankTransferAction } from './checkoutBankTransferAction';
 import { CheckoutCancelOrderRequest } from './checkoutCancelOrderRequest';
 import { CheckoutCancelOrderResponse } from './checkoutCancelOrderResponse';
 import { CheckoutCreateOrderRequest } from './checkoutCreateOrderRequest';
 import { CheckoutCreateOrderResponse } from './checkoutCreateOrderResponse';
-import { CheckoutDonationAction } from './checkoutDonationAction';
-import { CheckoutOneTimePasscodeAction } from './checkoutOneTimePasscodeAction';
 import { CheckoutOrder } from './checkoutOrder';
 import { CheckoutOrderResponse } from './checkoutOrderResponse';
 import { CheckoutQrCodeAction } from './checkoutQrCodeAction';
@@ -312,7 +305,6 @@ import { Phone } from './phone';
 import { RatepayDetails } from './ratepayDetails';
 import { Recurring } from './recurring';
 import { RecurringDetail } from './recurringDetail';
-import { Redirect } from './redirect';
 import { ResponseAdditionalData3DSecure } from './responseAdditionalData3DSecure';
 import { ResponseAdditionalDataBillingAddress } from './responseAdditionalDataBillingAddress';
 import { ResponseAdditionalDataCard } from './responseAdditionalDataCard';
@@ -399,11 +391,8 @@ let enumsMap: {[index: string]: any} = {
         "CheckoutBalanceCheckRequest.RecurringProcessingModelEnum": CheckoutBalanceCheckRequest.RecurringProcessingModelEnum,
         "CheckoutBalanceCheckRequest.ShopperInteractionEnum": CheckoutBalanceCheckRequest.ShopperInteractionEnum,
         "CheckoutBalanceCheckResponse.ResultCodeEnum": CheckoutBalanceCheckResponse.ResultCodeEnum,
-        "CheckoutBankTransferAction.TypeEnum": CheckoutBankTransferAction.TypeEnum,
         "CheckoutCancelOrderResponse.ResultCodeEnum": CheckoutCancelOrderResponse.ResultCodeEnum,
         "CheckoutCreateOrderResponse.ResultCodeEnum": CheckoutCreateOrderResponse.ResultCodeEnum,
-        "CheckoutDonationAction.TypeEnum": CheckoutDonationAction.TypeEnum,
-        "CheckoutOneTimePasscodeAction.TypeEnum": CheckoutOneTimePasscodeAction.TypeEnum,
         "CheckoutQrCodeAction.TypeEnum": CheckoutQrCodeAction.TypeEnum,
         "CheckoutRedirectAction.TypeEnum": CheckoutRedirectAction.TypeEnum,
         "CheckoutSDKAction.TypeEnum": CheckoutSDKAction.TypeEnum,
@@ -483,9 +472,7 @@ let enumsMap: {[index: string]: any} = {
         "Recurring.ContractEnum": Recurring.ContractEnum,
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
         "RecurringDetail.FundingSourceEnum": RecurringDetail.FundingSourceEnum,
-        "Redirect.MethodEnum": Redirect.MethodEnum,
         "ResponseAdditionalDataCommon.FraudResultTypeEnum": ResponseAdditionalDataCommon.FraudResultTypeEnum,
-        "ResponseAdditionalDataCommon.MerchantAdviceCodeEnum": ResponseAdditionalDataCommon.MerchantAdviceCodeEnum,
         "ResponseAdditionalDataCommon.RecurringProcessingModelEnum": ResponseAdditionalDataCommon.RecurringProcessingModelEnum,
         "SamsungPayDetails.FundingSourceEnum": SamsungPayDetails.FundingSourceEnum,
         "SamsungPayDetails.TypeEnum": SamsungPayDetails.TypeEnum,
@@ -567,13 +554,10 @@ let typeMap: {[index: string]: any} = {
     "CheckoutAwaitAction": CheckoutAwaitAction,
     "CheckoutBalanceCheckRequest": CheckoutBalanceCheckRequest,
     "CheckoutBalanceCheckResponse": CheckoutBalanceCheckResponse,
-    "CheckoutBankTransferAction": CheckoutBankTransferAction,
     "CheckoutCancelOrderRequest": CheckoutCancelOrderRequest,
     "CheckoutCancelOrderResponse": CheckoutCancelOrderResponse,
     "CheckoutCreateOrderRequest": CheckoutCreateOrderRequest,
     "CheckoutCreateOrderResponse": CheckoutCreateOrderResponse,
-    "CheckoutDonationAction": CheckoutDonationAction,
-    "CheckoutOneTimePasscodeAction": CheckoutOneTimePasscodeAction,
     "CheckoutOrder": CheckoutOrder,
     "CheckoutOrderResponse": CheckoutOrderResponse,
     "CheckoutQrCodeAction": CheckoutQrCodeAction,
@@ -656,7 +640,6 @@ let typeMap: {[index: string]: any} = {
     "RatepayDetails": RatepayDetails,
     "Recurring": Recurring,
     "RecurringDetail": RecurringDetail,
-    "Redirect": Redirect,
     "ResponseAdditionalData3DSecure": ResponseAdditionalData3DSecure,
     "ResponseAdditionalDataBillingAddress": ResponseAdditionalDataBillingAddress,
     "ResponseAdditionalDataCard": ResponseAdditionalDataCard,

@@ -13,25 +13,26 @@ This is the officially supported NodeJS library for using Adyen's APIs.
 ## Integration
 The Library supports all APIs under the following services:
 
-* [BIN lookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v50/overview): The BIN Lookup API provides endpoints for retrieving information based on a given BIN.  Current supported version: **v52**
+* [BIN lookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v52/overview): The BIN Lookup API provides endpoints for retrieving information based on a given BIN.  Current supported version: **v52**
 * [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v69/overview): Our latest integration for accepting online payments. Current supported version: **v69**
 * [Configuration API](https://docs.adyen.com/api-explorer/#/balanceplatform/v2/overview): The Configuration API enables you to create a platform where you can onboard your users as account holders and create balance accounts, cards, and business accounts. Current supported verison: **v2**
+* [Legal Entity Management API](https://docs.adyen.com/api-explorer/#/legalentity/v2/overview): Manage legal entities that contain information required for verification. Current supported version: **v2**
 * [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
 * [Management API](https://docs.adyen.com/api-explorer/#/ManagementService/v1/overview): Configure and manage your Adyen company and merchant accounts, stores, and payment terminals. Current supported version **v1**
 * [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v68/overview): Our classic integration for online payments. Current supported version: **v68**
-* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v64/overview): Endpoints for sending funds to your customers. Current supported version: **v68**
+* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v68/overview): Endpoints for sending funds to your customers. Current supported version: **v68**
 * [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms. This API is used for the classic integration.
   * [Account API](https://docs.adyen.com/api-explorer/#/Account/v6/overview) Current supported version: **v6**
   * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v6/overview) Current supported version: **v6**
   * [Hosted onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v6/overview): Current supported version: **v6**
   * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v6/overview) Current supported version: **v6**
+* [Platforms Notifications Webhooks](https://docs.adyen.com/api-explorer/#/NotificationService/v6/overview) Current supported version: **v6**
 * [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview): Endpoints for managing your point-of-sale payment terminals. Current supported version **v1**
 * [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v68/overview): Endpoints for managing saved payment details. Current supported version: **v68**
 * [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api): Manage both online and point-of-sale gift cards and other stored-value cards.  Current supported version: **v46**
+* [Transfers API](https://docs.adyen.com/api-explorer/transfers/3/overview) The Transfers API provides endpoints that you can use to get information about all your transactions, move funds within your balance platform or send funds from your balance platform to a transfer instrument. **v3**
 
-In addition it supports the following type collections:
 
-* [Platforms Notifications Webhooks](https://docs.adyen.com/api-explorer/#/NotificationService/v6/overview) Current supported version: **v6**
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
@@ -131,7 +132,7 @@ We strongly encourage you to join us in contributing to this repository so every
 Read our [**contribution guidelines**](CONTRIBUTING.md) to find out how to create a pull request.
 
 ## Support
-If you have a feature request, or spotted a bug or a technical problem, create a GitHub issue. For other questions, contact our [support team](https://support.adyen.com/).
+If you have a feature request, or spotted a bug or a technical problem, create a GitHub issue. For other questions, contact our [support team](https://www.adyen.help).
 
 ## Licence
 This repository is available under the [MIT license](LICENSE).

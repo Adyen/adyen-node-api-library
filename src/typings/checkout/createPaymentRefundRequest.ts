@@ -26,7 +26,7 @@ export class CreatePaymentRefundRequest {
     */
     'reference'?: string;
     /**
-    * An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/platforms/processing-payments#providing-split-information).
+    * An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information).
     */
     'splits'?: Array<Split>;
 

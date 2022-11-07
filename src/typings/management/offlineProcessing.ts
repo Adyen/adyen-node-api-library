@@ -11,11 +11,11 @@ import { MinorUnitsMonetaryValue } from './minorUnitsMonetaryValue';
 
 export class OfflineProcessing {
     /**
-    * The (inclusive) limit for accepting chip cards offline, in the processing currency, in minor units
+    * The maximum offline transaction amount for chip cards, in the processing currency and specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).
     */
     'chipFloorLimit'?: number;
     /**
-    * The maximum amount up to which swiped credit cards can be accepted offline, in the specified currency
+    * The maximum offline transaction amount for swiped cards, in the specified currency.
     */
     'offlineSwipeLimits'?: Array<MinorUnitsMonetaryValue>;
 
