@@ -33,7 +33,7 @@
 
 export class OutputBarcode {
     'BarcodeType'?: OutputBarcode.BarcodeTypeEnum;
-    'Value'?: string;
+    'BarcodeValue'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -44,8 +44,8 @@ export class OutputBarcode {
             "type": "OutputBarcode.BarcodeTypeEnum"
         },
         {
-            "name": "Value",
-            "baseName": "Value",
+            "name": "BarcodeValue",
+            "baseName": "BarcodeValue",
             "type": "string"
         }    ];
 
