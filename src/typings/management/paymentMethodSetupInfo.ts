@@ -11,6 +11,7 @@ import { ApplePayInfo } from './applePayInfo';
 import { BcmcInfo } from './bcmcInfo';
 import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { GiroPayInfo } from './giroPayInfo';
+import { GooglePayInfo } from './googlePayInfo';
 import { KlarnaInfo } from './klarnaInfo';
 import { PayPalInfo } from './payPalInfo';
 import { SofortInfo } from './sofortInfo';
@@ -33,6 +34,7 @@ export class PaymentMethodSetupInfo {
     */
     'currencies'?: Array<string>;
     'giroPay'?: GiroPayInfo;
+    'googlePay'?: GooglePayInfo;
     'klarna'?: KlarnaInfo;
     'paypal'?: PayPalInfo;
     /**
@@ -87,6 +89,11 @@ export class PaymentMethodSetupInfo {
             "name": "giroPay",
             "baseName": "giroPay",
             "type": "GiroPayInfo"
+        },
+        {
+            "name": "googlePay",
+            "baseName": "googlePay",
+            "type": "GooglePayInfo"
         },
         {
             "name": "klarna",
@@ -152,6 +159,7 @@ export namespace PaymentMethodSetupInfo {
         EftposAustralia = <any> 'eftpos_australia',
         Girocard = <any> 'girocard',
         Giropay = <any> 'giropay',
+        Googlepay = <any> 'googlepay',
         Ideal = <any> 'ideal',
         InteracCard = <any> 'interac_card',
         Jcb = <any> 'jcb',

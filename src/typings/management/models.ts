@@ -57,6 +57,7 @@ export * from './generateApiKeyResponse';
 export * from './generateClientKeyResponse';
 export * from './generateHmacKeyResponse';
 export * from './giroPayInfo';
+export * from './googlePayInfo';
 export * from './gratuity';
 export * from './hardware';
 export * from './idName';
@@ -200,6 +201,7 @@ import { GenerateApiKeyResponse } from './generateApiKeyResponse';
 import { GenerateClientKeyResponse } from './generateClientKeyResponse';
 import { GenerateHmacKeyResponse } from './generateHmacKeyResponse';
 import { GiroPayInfo } from './giroPayInfo';
+import { GooglePayInfo } from './googlePayInfo';
 import { Gratuity } from './gratuity';
 import { Hardware } from './hardware';
 import { IdName } from './idName';
@@ -306,7 +308,6 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
-        "Configuration.SourcesEnum": Configuration.SourcesEnum,
         "Connectivity.SimcardStatusEnum": Connectivity.SimcardStatusEnum,
         "CreateCompanyWebhookRequest.CommunicationFormatEnum": CreateCompanyWebhookRequest.CommunicationFormatEnum,
         "CreateCompanyWebhookRequest.FilterMerchantAccountTypeEnum": CreateCompanyWebhookRequest.FilterMerchantAccountTypeEnum,
@@ -319,6 +320,7 @@ let enumsMap: {[index: string]: any} = {
         "InstallAndroidCertificateDetails.TypeEnum": InstallAndroidCertificateDetails.TypeEnum,
         "KlarnaInfo.RegionEnum": KlarnaInfo.RegionEnum,
         "PaymentMethod.VerificationStatusEnum": PaymentMethod.VerificationStatusEnum,
+        "PaymentMethodResponse.TypesWithErrorsEnum": PaymentMethodResponse.TypesWithErrorsEnum,
         "PaymentMethodSetupInfo.ShopperInteractionEnum": PaymentMethodSetupInfo.ShopperInteractionEnum,
         "PaymentMethodSetupInfo.TypeEnum": PaymentMethodSetupInfo.TypeEnum,
         "PayoutSettings.PriorityEnum": PayoutSettings.PriorityEnum,
@@ -392,6 +394,7 @@ let typeMap: {[index: string]: any} = {
     "GenerateClientKeyResponse": GenerateClientKeyResponse,
     "GenerateHmacKeyResponse": GenerateHmacKeyResponse,
     "GiroPayInfo": GiroPayInfo,
+    "GooglePayInfo": GooglePayInfo,
     "Gratuity": Gratuity,
     "Hardware": Hardware,
     "IdName": IdName,

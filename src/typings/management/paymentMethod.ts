@@ -11,6 +11,7 @@ import { ApplePayInfo } from './applePayInfo';
 import { BcmcInfo } from './bcmcInfo';
 import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { GiroPayInfo } from './giroPayInfo';
+import { GooglePayInfo } from './googlePayInfo';
 import { KlarnaInfo } from './klarnaInfo';
 import { PayPalInfo } from './payPalInfo';
 import { SofortInfo } from './sofortInfo';
@@ -41,6 +42,7 @@ export class PaymentMethod {
     */
     'enabled'?: boolean;
     'giroPay'?: GiroPayInfo;
+    'googlePay'?: GooglePayInfo;
     /**
     * The identifier of the resource.
     */
@@ -113,6 +115,11 @@ export class PaymentMethod {
             "name": "giroPay",
             "baseName": "giroPay",
             "type": "GiroPayInfo"
+        },
+        {
+            "name": "googlePay",
+            "baseName": "googlePay",
+            "type": "GooglePayInfo"
         },
         {
             "name": "id",

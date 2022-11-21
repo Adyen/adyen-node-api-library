@@ -8,23 +8,23 @@
  */
 
 
-export class ApplePayInfo {
+export class GooglePayInfo {
     /**
-    * The list of merchant domains. Maximum: 99 domains per request.  For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in?tab=adyen-certificate-live_1#going-live).
+    * GooglePay Merchant ID. Character length and limitations: 16 alphanumeric characters or 20 numeric characters.
     */
-    'domains': Array<string>;
+    'merchantId': string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "domains",
-            "baseName": "domains",
-            "type": "Array<string>"
+            "name": "merchantId",
+            "baseName": "merchantId",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return ApplePayInfo.attributeTypeMap;
+        return GooglePayInfo.attributeTypeMap;
     }
 }
 
