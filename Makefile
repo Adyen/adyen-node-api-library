@@ -1,5 +1,8 @@
 generator:=typescript-node
-openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v5.4.0
+openapi-generator-version:=5.4.0
+openapi-generator-url:=https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/$(openapi-generator-version)/openapi-generator-cli-$(openapi-generator-version).jar
+openapi-generator-jar:=build/openapi-generator-cli.jar
+openapi-generator-cli:=java -jar $(openapi-generator-jar)
 services:=binlookup checkout storedValue terminalManagement payments recurring payouts management legalEntityManagement balancePlatform platformsAccount platformsFund platformsNotificationConfiguration platformsHostedOnboardingPage transfer
 
 # Generate models (for each service)
@@ -21,7 +24,7 @@ platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 platformsHostedOnboardingPage: spec=HopService-v6
 transfer: spec=TransferService-v3
 
-$(services): build/spec 
+$(services): build/spec $(openapi-generator-jar)  
 	rm -rf src/typings/$@ build/model
 	$(openapi-generator-cli) generate \
 		-i build/spec/json/$(spec).json \
@@ -37,8 +40,12 @@ build/spec:
 	sed -i 's/"openapi" : "3.[0-9].[0-9]"/"openapi" : "3.0.0"/' build/spec/json/*.json
 
 # Extract templates (copy them for modifications)
-templates:
+templates: $(openapi-generator-jar)
 	$(openapi-generator-cli) author template -g $(generator) -o build/templates/typescript
+
+# Download the generator
+$(openapi-generator-jar):
+	wget --quiet -o /dev/null $(openapi-generator-url) -O $(openapi-generator-jar)
 
 # Discard generated artifacts and changed models
 clean:
