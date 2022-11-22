@@ -6,7 +6,7 @@ import Service from "../../service";
 {{#imports}}
 import { {{classname}} } from '{{filename}}';
 {{/imports}}
-// TODO: query string $import_request_options
+import { IRequest } from "../../typings/requestOptions";
 import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
@@ -22,7 +22,7 @@ export class {{classname}} extends Service {
      * @param {{paramName}} {{description}}
      {{/allParams}}
      */
-    public async {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options: {headers: {[name: string]: string}} = {headers: {}}): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+    public async {{nickname}}({{#pathParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/bodyParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
         const localVarPath = "{{{path}}}"{{#pathParams}}
             .replace('{' + '{{baseName}}' + '}', encodeURIComponent(String({{paramName}}))){{/pathParams}};
         const resource = new ManagementResource(this, localVarPath);
@@ -37,47 +37,6 @@ export class {{classname}} extends Service {
         {{#returnType}}
         return ObjectSerializer.deserialize(response, "{{{.}}}");
         {{/returnType}}
-    }
-
-// DEFAULT
-
-    public async {{nickname}} ({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; {{#returnType}}body: {{{.}}}; {{/returnType}}{{^returnType}}body?: any; {{/returnType}} }> {
-        let localVarQueryParameters: any = {};
-
-{{#queryParams}}
-        if ({{paramName}} !== undefined) {
-            localVarQueryParameters['{{baseName}}'] = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}");
-        }
-
-{{/queryParams}}
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: '{{httpMethod}}',
-            qs: localVarQueryParameters,
-            useQuerystring: this._useQuerystring,
-{{#bodyParam}}
-            body: ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}")
-{{/bodyParam}}
-        };
-
-        return interceptorPromise.then(() => {
-            return new Promise<{ response: http.IncomingMessage; {{#returnType}}body: {{{.}}}; {{/returnType}}{{^returnType}}body?: any; {{/returnType}} }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            {{#returnType}}
-                            body = ObjectSerializer.deserialize(body, "{{{.}}}");
-                            {{/returnType}}
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
     }
 {{/operation}}
 }
