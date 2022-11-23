@@ -16,6 +16,8 @@ payments: spec=PaymentService-v68
 recurring: spec=RecurringService-v68
 payouts: spec=PayoutService-v68
 management: spec=ManagementService-v1
+managementapi: spec=ManagementService-v1
+managementapi: service=management
 legalEntityManagement: spec=LegalEntityService-v2
 balancePlatform: spec=BalancePlatformService-v2
 platformsAccount: spec=AccountService-v6
@@ -34,6 +36,20 @@ $(services): build/spec $(openapi-generator-jar)
 		--global-property models,supportingFiles
 	mv build/model src/typings/$@
 
+# Service
+managementapi: build/spec $(openapi-generator-jar)  
+	# rm -rf build/$(spec)
+	$(openapi-generator-cli) generate \
+		-i build/spec/json/$(spec).json \
+		-g $(generator) \
+		-t templates/typescript \
+		-o build \
+		--api-package $(service) \
+		--model-package typings/$(service) \
+		--global-property apis
+	cp build/$(service)/* src/services/$(service)
+	sed -i '/RestServiceError/d' src/services/$(service)/*
+
 # Checkout spec (and patch version)
 build/spec:
 	git clone https://github.com/Adyen/adyen-openapi.git build/spec
@@ -49,7 +65,7 @@ $(openapi-generator-jar):
 
 # Discard generated artifacts and changed models
 clean:
-	git checkout src/typings
-	git clean -f -d src/typings
+	git checkout src/typings src/services/management
+	git clean -f -d src/typings src/services/management
 
 .PHONY: templates models $(services)
