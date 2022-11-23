@@ -23,7 +23,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class WebhooksCompanyLevelApi extends Service {
+export default class WebhooksCompanyLevelApi extends Service {
     /**
      * @summary Remove a webhook
      * @param companyId The unique identifier of the company account.

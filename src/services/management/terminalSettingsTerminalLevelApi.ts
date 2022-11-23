@@ -18,7 +18,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class TerminalSettingsTerminalLevelApi extends Service {
+export default class TerminalSettingsTerminalLevelApi extends Service {
     /**
      * @summary Get the terminal logo
      * @param terminalId The unique identifier of the payment terminal.

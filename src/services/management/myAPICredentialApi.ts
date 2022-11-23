@@ -20,7 +20,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class MyAPICredentialApi extends Service {
+export default class MyAPICredentialApi extends Service {
     /**
      * @summary Remove allowed origin
      * @param originId Unique identifier of the allowed origin.

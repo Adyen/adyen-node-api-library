@@ -17,7 +17,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class TerminalsTerminalLevelApi extends Service {
+export default class TerminalsTerminalLevelApi extends Service {
     /**
      * @summary Get a list of terminals
      * @param searchQuery Returns terminals with an ID that contains the specified string. If present, other query parameters are ignored.

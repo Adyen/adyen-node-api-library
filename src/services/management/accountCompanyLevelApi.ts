@@ -19,7 +19,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class AccountCompanyLevelApi extends Service {
+export default class AccountCompanyLevelApi extends Service {
     /**
      * @summary Get a list of company accounts
      * @param pageNumber The number of the page to fetch.

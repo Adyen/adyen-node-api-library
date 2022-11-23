@@ -24,7 +24,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class TerminalOrdersCompanyLevelApi extends Service {
+export default class TerminalOrdersCompanyLevelApi extends Service {
     /**
      * @summary Get a list of billing entities
      * @param companyId The unique identifier of the company account.

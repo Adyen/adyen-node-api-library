@@ -20,7 +20,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class TerminalActionsCompanyLevelApi extends Service {
+export default class TerminalActionsCompanyLevelApi extends Service {
     /**
      * @summary Get a list of Android apps
      * @param companyId The unique identifier of the company account.

@@ -21,7 +21,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class UsersMerchantLevelApi extends Service {
+export default class UsersMerchantLevelApi extends Service {
     /**
      * @summary Get a list of users
      * @param merchantId Unique identifier of the merchant.

@@ -21,7 +21,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class UsersCompanyLevelApi extends Service {
+export default class UsersCompanyLevelApi extends Service {
     /**
      * @summary Get a list of users
      * @param companyId The unique identifier of the company account.

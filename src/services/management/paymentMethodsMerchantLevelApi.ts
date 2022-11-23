@@ -21,7 +21,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class PaymentMethodsMerchantLevelApi extends Service {
+export default class PaymentMethodsMerchantLevelApi extends Service {
     /**
      * @summary Get all payment methods
      * @param merchantId The unique identifier of the merchant account.

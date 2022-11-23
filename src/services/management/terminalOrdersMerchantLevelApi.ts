@@ -24,7 +24,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class TerminalOrdersMerchantLevelApi extends Service {
+export default class TerminalOrdersMerchantLevelApi extends Service {
     /**
      * @summary Get a list of billing entities
      * @param merchantId The unique identifier of the merchant account.

@@ -18,7 +18,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class TerminalSettingsMerchantLevelApi extends Service {
+export default class TerminalSettingsMerchantLevelApi extends Service {
     /**
      * @summary Get the terminal logo
      * @param merchantId The unique identifier of the merchant account.

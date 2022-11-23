@@ -21,7 +21,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class AccountMerchantLevelApi extends Service {
+export default class AccountMerchantLevelApi extends Service {
     /**
      * @summary Get a list of merchant accounts
      * @param pageNumber The number of the page to fetch.

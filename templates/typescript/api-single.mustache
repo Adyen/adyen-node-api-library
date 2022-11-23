@@ -12,7 +12,7 @@ import { ObjectSerializer } from "../../typings/management/models";
 
 {{#operations}}
 
-export class {{classname}} extends Service {
+export default class {{classname}} extends Service {
 {{#operation}}
     /**
      {{#summary}}

@@ -18,7 +18,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class TerminalSettingsCompanyLevelApi extends Service {
+export default class TerminalSettingsCompanyLevelApi extends Service {
     /**
      * @summary Get the terminal logo
      * @param companyId The unique identifier of the company account.

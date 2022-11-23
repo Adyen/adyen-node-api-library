@@ -18,7 +18,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class AllowedOriginsCompanyLevelApi extends Service {
+export default class AllowedOriginsCompanyLevelApi extends Service {
     /**
      * @summary Delete an allowed origin
      * @param companyId The unique identifier of the company account.

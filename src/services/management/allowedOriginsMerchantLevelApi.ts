@@ -18,7 +18,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class AllowedOriginsMerchantLevelApi extends Service {
+export default class AllowedOriginsMerchantLevelApi extends Service {
     /**
      * @summary Delete an allowed origin
      * @param merchantId The unique identifier of the merchant account.

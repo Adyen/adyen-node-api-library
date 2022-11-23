@@ -20,7 +20,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class PayoutSettingsMerchantLevelApi extends Service {
+export default class PayoutSettingsMerchantLevelApi extends Service {
     /**
      * @summary Delete a payout setting
      * @param merchantId The unique identifier of the merchant account.

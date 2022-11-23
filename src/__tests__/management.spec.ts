@@ -664,4 +664,13 @@ describe("Management", (): void => {
             expect(response).toBeTruthy();
         });
     });
+
+    describe("AllowedOriginsMerchantLevelApi", (): void => {
+        test("Delete an allowed origin", async () => {
+            scope.delete("/merchants/foo/apiCredentials/BAR123/allowedOrigins/fishy%20one").reply(204);
+
+            await management.AllowedOriginsMerchantLevelApi
+                .deleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId("foo", "BAR123", "fishy one");
+        });
+    });
 });

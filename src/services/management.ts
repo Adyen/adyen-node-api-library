@@ -13,6 +13,7 @@ import MerchantTerminalOrders from "./management/merchantTerminalOrders";
 import MerchantTerminalSettings from "./management/merchantTerminalSettings";
 import MerchantUsers from "./management/merchantUsers";
 import MerchantWebhooks from "./management/merchantWebhooks";
+import AllowedOriginsMerchantLevelApi from "./management/allowedOriginsMerchantLevelApi";
 
 class Management extends Service {
     public constructor(client: Client) {
@@ -66,6 +67,10 @@ class Management extends Service {
 
     public get MerchantWebhooks() {
         return new MerchantWebhooks(this.client);
+    }
+
+    public get AllowedOriginsMerchantLevelApi() {
+        return new AllowedOriginsMerchantLevelApi(this.client);
     }
 }
 

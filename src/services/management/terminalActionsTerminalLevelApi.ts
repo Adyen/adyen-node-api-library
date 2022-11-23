@@ -18,7 +18,7 @@ import ManagementResource from "../resource/management/managementResource";
 import { ObjectSerializer } from "../../typings/management/models";
 
 
-export class TerminalActionsTerminalLevelApi extends Service {
+export default class TerminalActionsTerminalLevelApi extends Service {
     /**
      * @summary Create a terminal action
      * @param scheduleTerminalActionsRequest 
