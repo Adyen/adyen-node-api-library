@@ -22,12 +22,12 @@ export default class {{classname}} extends Service {
      * @param {{paramName}} {{description}}
      {{/allParams}}
      */
-    public async {{nickname}}({{#pathParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/bodyParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+    public async {{nickname}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
         const localVarPath = "{{{path}}}"{{#pathParams}}
             .replace('{' + '{{baseName}}' + '}', encodeURIComponent(String({{paramName}}))){{/pathParams}};
         const resource = new ManagementResource(this, localVarPath);
 {{#bodyParam}}
-        const request: string = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}");
+        const request: {{{dataType}}} = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}");
 {{/bodyParam}}
         {{#returnType}}const response = {{/returnType}}await getJsonResponse<{{#bodyParam}}{{{dataType}}}{{/bodyParam}}{{^bodyParam}}string{{/bodyParam}}, {{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}>(
             resource,

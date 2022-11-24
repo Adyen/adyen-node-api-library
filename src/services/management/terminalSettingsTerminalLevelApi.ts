@@ -54,11 +54,11 @@ export default class TerminalSettingsTerminalLevelApi extends Service {
      * @param terminalId The unique identifier of the payment terminal.
      * @param logo 
      */
-    public async patchTerminalsTerminalIdTerminalLogos(terminalId: string, logo?: Logo, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async patchTerminalsTerminalIdTerminalLogos(terminalId: string, logo: Logo, requestOptions?: IRequest.Options): Promise<Logo> {
         const localVarPath = "/terminals/{terminalId}/terminalLogos"
             .replace('{' + 'terminalId' + '}', encodeURIComponent(String(terminalId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(logo, "Logo");
+        const request: Logo = ObjectSerializer.serialize(logo, "Logo");
         const response = await getJsonResponse<Logo, Logo>(
             resource,
             request,
@@ -71,11 +71,11 @@ export default class TerminalSettingsTerminalLevelApi extends Service {
      * @param terminalId The unique identifier of the payment terminal.
      * @param terminalSettings 
      */
-    public async patchTerminalsTerminalIdTerminalSettings(terminalId: string, terminalSettings?: TerminalSettings, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
+    public async patchTerminalsTerminalIdTerminalSettings(terminalId: string, terminalSettings: TerminalSettings, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
         const localVarPath = "/terminals/{terminalId}/terminalSettings"
             .replace('{' + 'terminalId' + '}', encodeURIComponent(String(terminalId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(terminalSettings, "TerminalSettings");
+        const request: TerminalSettings = ObjectSerializer.serialize(terminalSettings, "TerminalSettings");
         const response = await getJsonResponse<TerminalSettings, TerminalSettings>(
             resource,
             request,

@@ -56,10 +56,10 @@ export default class AccountMerchantLevelApi extends Service {
      * @summary Create a merchant account
      * @param createMerchantRequest 
      */
-    public async postMerchants(createMerchantRequest?: CreateMerchantRequest, requestOptions?: IRequest.Options): Promise<CreateMerchantResponse> {
+    public async postMerchants(createMerchantRequest: CreateMerchantRequest, requestOptions?: IRequest.Options): Promise<CreateMerchantResponse> {
         const localVarPath = "/merchants";
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(createMerchantRequest, "CreateMerchantRequest");
+        const request: CreateMerchantRequest = ObjectSerializer.serialize(createMerchantRequest, "CreateMerchantRequest");
         const response = await getJsonResponse<CreateMerchantRequest, CreateMerchantResponse>(
             resource,
             request,

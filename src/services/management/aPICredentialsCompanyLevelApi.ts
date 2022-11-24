@@ -62,12 +62,12 @@ export default class APICredentialsCompanyLevelApi extends Service {
      * @param apiCredentialId Unique identifier of the API credential.
      * @param updateCompanyApiCredentialRequest 
      */
-    public async patchCompaniesCompanyIdApiCredentialsApiCredentialId(companyId: string, apiCredentialId: string, updateCompanyApiCredentialRequest?: UpdateCompanyApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CompanyApiCredential> {
+    public async patchCompaniesCompanyIdApiCredentialsApiCredentialId(companyId: string, apiCredentialId: string, updateCompanyApiCredentialRequest: UpdateCompanyApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CompanyApiCredential> {
         const localVarPath = "/companies/{companyId}/apiCredentials/{apiCredentialId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(updateCompanyApiCredentialRequest, "UpdateCompanyApiCredentialRequest");
+        const request: UpdateCompanyApiCredentialRequest = ObjectSerializer.serialize(updateCompanyApiCredentialRequest, "UpdateCompanyApiCredentialRequest");
         const response = await getJsonResponse<UpdateCompanyApiCredentialRequest, CompanyApiCredential>(
             resource,
             request,
@@ -80,11 +80,11 @@ export default class APICredentialsCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param createCompanyApiCredentialRequest 
      */
-    public async postCompaniesCompanyIdApiCredentials(companyId: string, createCompanyApiCredentialRequest?: CreateCompanyApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyApiCredentialResponse> {
+    public async postCompaniesCompanyIdApiCredentials(companyId: string, createCompanyApiCredentialRequest: CreateCompanyApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyApiCredentialResponse> {
         const localVarPath = "/companies/{companyId}/apiCredentials"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(createCompanyApiCredentialRequest, "CreateCompanyApiCredentialRequest");
+        const request: CreateCompanyApiCredentialRequest = ObjectSerializer.serialize(createCompanyApiCredentialRequest, "CreateCompanyApiCredentialRequest");
         const response = await getJsonResponse<CreateCompanyApiCredentialRequest, CreateCompanyApiCredentialResponse>(
             resource,
             request,

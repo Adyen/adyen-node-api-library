@@ -672,5 +672,32 @@ describe("Management", (): void => {
             await management.AllowedOriginsMerchantLevelApi
                 .deleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId("foo", "BAR123", "fishy one");
         });
+
+        test("Create an allowed origin", async () => {
+            const requestBody = {
+                "domain": "https://www.eu.mystore.com"
+            };
+            scope.post("/merchants/YOUR_MERCHANT_ACCOUNT/apiCredentials/YOUR_API_CREDENTIAL/allowedOrigins", requestBody)
+                .reply(200, {
+                    "id": "YOUR_ALLOWED_ORIGIN",
+                    "data": [
+                        {
+                            "domain": "https://www.eu.mystore.com",
+                        }
+                    ], 
+                    "_links": {
+                        "self": {
+                            "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT/apiCredentials/YOUR_API_CREDENTIAL/allowedOrigins/YOUR_ALLOWED_ORIGIN"
+                        }
+                    }
+                });
+
+            const response: AllowedOriginsResponse = await management.AllowedOriginsMerchantLevelApi
+                .postMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins("YOUR_MERCHANT_ACCOUNT", "YOUR_API_CREDENTIAL", {
+                    domain: "https://www.eu.mystore.com",
+                });
+
+            expect(response.data![0].domain).toEqual("https://www.eu.mystore.com");
+        });
     });
 });

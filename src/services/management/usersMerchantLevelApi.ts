@@ -62,12 +62,12 @@ export default class UsersMerchantLevelApi extends Service {
      * @param userId Unique identifier of the user.
      * @param updateMerchantUserRequest 
      */
-    public async patchMerchantsMerchantIdUsersUserId(merchantId: string, userId: string, updateMerchantUserRequest?: UpdateMerchantUserRequest, requestOptions?: IRequest.Options): Promise<User> {
+    public async patchMerchantsMerchantIdUsersUserId(merchantId: string, userId: string, updateMerchantUserRequest: UpdateMerchantUserRequest, requestOptions?: IRequest.Options): Promise<User> {
         const localVarPath = "/merchants/{merchantId}/users/{userId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(updateMerchantUserRequest, "UpdateMerchantUserRequest");
+        const request: UpdateMerchantUserRequest = ObjectSerializer.serialize(updateMerchantUserRequest, "UpdateMerchantUserRequest");
         const response = await getJsonResponse<UpdateMerchantUserRequest, User>(
             resource,
             request,
@@ -80,11 +80,11 @@ export default class UsersMerchantLevelApi extends Service {
      * @param merchantId Unique identifier of the merchant.
      * @param createMerchantUserRequest 
      */
-    public async postMerchantsMerchantIdUsers(merchantId: string, createMerchantUserRequest?: CreateMerchantUserRequest, requestOptions?: IRequest.Options): Promise<CreateUserResponse> {
+    public async postMerchantsMerchantIdUsers(merchantId: string, createMerchantUserRequest: CreateMerchantUserRequest, requestOptions?: IRequest.Options): Promise<CreateUserResponse> {
         const localVarPath = "/merchants/{merchantId}/users"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(createMerchantUserRequest, "CreateMerchantUserRequest");
+        const request: CreateMerchantUserRequest = ObjectSerializer.serialize(createMerchantUserRequest, "CreateMerchantUserRequest");
         const response = await getJsonResponse<CreateMerchantUserRequest, CreateUserResponse>(
             resource,
             request,

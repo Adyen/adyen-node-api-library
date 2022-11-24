@@ -80,10 +80,10 @@ export default class MyAPICredentialApi extends Service {
      * @summary Add allowed origin
      * @param createAllowedOriginRequest 
      */
-    public async postMeAllowedOrigins(createAllowedOriginRequest?: CreateAllowedOriginRequest, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+    public async postMeAllowedOrigins(createAllowedOriginRequest: CreateAllowedOriginRequest, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
         const localVarPath = "/me/allowedOrigins";
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(createAllowedOriginRequest, "CreateAllowedOriginRequest");
+        const request: CreateAllowedOriginRequest = ObjectSerializer.serialize(createAllowedOriginRequest, "CreateAllowedOriginRequest");
         const response = await getJsonResponse<CreateAllowedOriginRequest, AllowedOriginsResponse>(
             resource,
             request,

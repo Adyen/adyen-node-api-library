@@ -79,12 +79,12 @@ export default class AllowedOriginsCompanyLevelApi extends Service {
      * @param apiCredentialId Unique identifier of the API credential.
      * @param allowedOrigin 
      */
-    public async postCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(companyId: string, apiCredentialId: string, allowedOrigin?: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+    public async postCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(companyId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
         const localVarPath = "/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(allowedOrigin, "AllowedOrigin");
+        const request: AllowedOrigin = ObjectSerializer.serialize(allowedOrigin, "AllowedOrigin");
         const response = await getJsonResponse<AllowedOrigin, AllowedOriginsResponse>(
             resource,
             request,

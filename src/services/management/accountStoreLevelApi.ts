@@ -95,12 +95,12 @@ export default class AccountStoreLevelApi extends Service {
      * @param storeId The unique identifier of the store.
      * @param updateStoreRequest 
      */
-    public async patchMerchantsMerchantIdStoresStoreId(merchantId: string, storeId: string, updateStoreRequest?: UpdateStoreRequest, requestOptions?: IRequest.Options): Promise<Store> {
+    public async patchMerchantsMerchantIdStoresStoreId(merchantId: string, storeId: string, updateStoreRequest: UpdateStoreRequest, requestOptions?: IRequest.Options): Promise<Store> {
         const localVarPath = "/merchants/{merchantId}/stores/{storeId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(updateStoreRequest, "UpdateStoreRequest");
+        const request: UpdateStoreRequest = ObjectSerializer.serialize(updateStoreRequest, "UpdateStoreRequest");
         const response = await getJsonResponse<UpdateStoreRequest, Store>(
             resource,
             request,
@@ -113,11 +113,11 @@ export default class AccountStoreLevelApi extends Service {
      * @param storeId The unique identifier of the store.
      * @param updateStoreRequest 
      */
-    public async patchStoresStoreId(storeId: string, updateStoreRequest?: UpdateStoreRequest, requestOptions?: IRequest.Options): Promise<Store> {
+    public async patchStoresStoreId(storeId: string, updateStoreRequest: UpdateStoreRequest, requestOptions?: IRequest.Options): Promise<Store> {
         const localVarPath = "/stores/{storeId}"
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(updateStoreRequest, "UpdateStoreRequest");
+        const request: UpdateStoreRequest = ObjectSerializer.serialize(updateStoreRequest, "UpdateStoreRequest");
         const response = await getJsonResponse<UpdateStoreRequest, Store>(
             resource,
             request,
@@ -130,11 +130,11 @@ export default class AccountStoreLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param storeCreationRequest 
      */
-    public async postMerchantsMerchantIdStores(merchantId: string, storeCreationRequest?: StoreCreationRequest, requestOptions?: IRequest.Options): Promise<Store> {
+    public async postMerchantsMerchantIdStores(merchantId: string, storeCreationRequest: StoreCreationRequest, requestOptions?: IRequest.Options): Promise<Store> {
         const localVarPath = "/merchants/{merchantId}/stores"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(storeCreationRequest, "StoreCreationRequest");
+        const request: StoreCreationRequest = ObjectSerializer.serialize(storeCreationRequest, "StoreCreationRequest");
         const response = await getJsonResponse<StoreCreationRequest, Store>(
             resource,
             request,
@@ -146,10 +146,10 @@ export default class AccountStoreLevelApi extends Service {
      * @summary Create a store
      * @param storeCreationWithMerchantCodeRequest 
      */
-    public async postStores(storeCreationWithMerchantCodeRequest?: StoreCreationWithMerchantCodeRequest, requestOptions?: IRequest.Options): Promise<Store> {
+    public async postStores(storeCreationWithMerchantCodeRequest: StoreCreationWithMerchantCodeRequest, requestOptions?: IRequest.Options): Promise<Store> {
         const localVarPath = "/stores";
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(storeCreationWithMerchantCodeRequest, "StoreCreationWithMerchantCodeRequest");
+        const request: StoreCreationWithMerchantCodeRequest = ObjectSerializer.serialize(storeCreationWithMerchantCodeRequest, "StoreCreationWithMerchantCodeRequest");
         const response = await getJsonResponse<StoreCreationWithMerchantCodeRequest, Store>(
             resource,
             request,

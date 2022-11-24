@@ -76,12 +76,12 @@ export default class PayoutSettingsMerchantLevelApi extends Service {
      * @param payoutSettingsId The unique identifier of the payout setting.
      * @param updatePayoutSettingsRequest 
      */
-    public async patchMerchantsMerchantIdPayoutSettingsPayoutSettingsId(merchantId: string, payoutSettingsId: string, updatePayoutSettingsRequest?: UpdatePayoutSettingsRequest, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
+    public async patchMerchantsMerchantIdPayoutSettingsPayoutSettingsId(merchantId: string, payoutSettingsId: string, updatePayoutSettingsRequest: UpdatePayoutSettingsRequest, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
         const localVarPath = "/merchants/{merchantId}/payoutSettings/{payoutSettingsId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'payoutSettingsId' + '}', encodeURIComponent(String(payoutSettingsId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(updatePayoutSettingsRequest, "UpdatePayoutSettingsRequest");
+        const request: UpdatePayoutSettingsRequest = ObjectSerializer.serialize(updatePayoutSettingsRequest, "UpdatePayoutSettingsRequest");
         const response = await getJsonResponse<UpdatePayoutSettingsRequest, PayoutSettings>(
             resource,
             request,
@@ -94,11 +94,11 @@ export default class PayoutSettingsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param payoutSettingsRequest 
      */
-    public async postMerchantsMerchantIdPayoutSettings(merchantId: string, payoutSettingsRequest?: PayoutSettingsRequest, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
+    public async postMerchantsMerchantIdPayoutSettings(merchantId: string, payoutSettingsRequest: PayoutSettingsRequest, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
         const localVarPath = "/merchants/{merchantId}/payoutSettings"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(payoutSettingsRequest, "PayoutSettingsRequest");
+        const request: PayoutSettingsRequest = ObjectSerializer.serialize(payoutSettingsRequest, "PayoutSettingsRequest");
         const response = await getJsonResponse<PayoutSettingsRequest, PayoutSettings>(
             resource,
             request,

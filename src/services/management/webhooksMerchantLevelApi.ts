@@ -80,12 +80,12 @@ export default class WebhooksMerchantLevelApi extends Service {
      * @param webhookId Unique identifier of the webhook configuration.
      * @param updateMerchantWebhookRequest 
      */
-    public async patchMerchantsMerchantIdWebhooksWebhookId(merchantId: string, webhookId: string, updateMerchantWebhookRequest?: UpdateMerchantWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
+    public async patchMerchantsMerchantIdWebhooksWebhookId(merchantId: string, webhookId: string, updateMerchantWebhookRequest: UpdateMerchantWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
         const localVarPath = "/merchants/{merchantId}/webhooks/{webhookId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(updateMerchantWebhookRequest, "UpdateMerchantWebhookRequest");
+        const request: UpdateMerchantWebhookRequest = ObjectSerializer.serialize(updateMerchantWebhookRequest, "UpdateMerchantWebhookRequest");
         const response = await getJsonResponse<UpdateMerchantWebhookRequest, Webhook>(
             resource,
             request,
@@ -98,11 +98,11 @@ export default class WebhooksMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param createMerchantWebhookRequest 
      */
-    public async postMerchantsMerchantIdWebhooks(merchantId: string, createMerchantWebhookRequest?: CreateMerchantWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
+    public async postMerchantsMerchantIdWebhooks(merchantId: string, createMerchantWebhookRequest: CreateMerchantWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
         const localVarPath = "/merchants/{merchantId}/webhooks"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(createMerchantWebhookRequest, "CreateMerchantWebhookRequest");
+        const request: CreateMerchantWebhookRequest = ObjectSerializer.serialize(createMerchantWebhookRequest, "CreateMerchantWebhookRequest");
         const response = await getJsonResponse<CreateMerchantWebhookRequest, Webhook>(
             resource,
             request,
@@ -133,12 +133,12 @@ export default class WebhooksMerchantLevelApi extends Service {
      * @param webhookId Unique identifier of the webhook configuration.
      * @param testWebhookRequest 
      */
-    public async postMerchantsMerchantIdWebhooksWebhookIdTest(merchantId: string, webhookId: string, testWebhookRequest?: TestWebhookRequest, requestOptions?: IRequest.Options): Promise<TestWebhookResponse> {
+    public async postMerchantsMerchantIdWebhooksWebhookIdTest(merchantId: string, webhookId: string, testWebhookRequest: TestWebhookRequest, requestOptions?: IRequest.Options): Promise<TestWebhookResponse> {
         const localVarPath = "/merchants/{merchantId}/webhooks/{webhookId}/test"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(testWebhookRequest, "TestWebhookRequest");
+        const request: TestWebhookRequest = ObjectSerializer.serialize(testWebhookRequest, "TestWebhookRequest");
         const response = await getJsonResponse<TestWebhookRequest, TestWebhookResponse>(
             resource,
             request,

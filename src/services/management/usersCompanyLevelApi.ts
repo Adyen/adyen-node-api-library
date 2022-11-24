@@ -62,12 +62,12 @@ export default class UsersCompanyLevelApi extends Service {
      * @param userId The unique identifier of the user.
      * @param updateCompanyUserRequest 
      */
-    public async patchCompaniesCompanyIdUsersUserId(companyId: string, userId: string, updateCompanyUserRequest?: UpdateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CompanyUser> {
+    public async patchCompaniesCompanyIdUsersUserId(companyId: string, userId: string, updateCompanyUserRequest: UpdateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CompanyUser> {
         const localVarPath = "/companies/{companyId}/users/{userId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(updateCompanyUserRequest, "UpdateCompanyUserRequest");
+        const request: UpdateCompanyUserRequest = ObjectSerializer.serialize(updateCompanyUserRequest, "UpdateCompanyUserRequest");
         const response = await getJsonResponse<UpdateCompanyUserRequest, CompanyUser>(
             resource,
             request,
@@ -80,11 +80,11 @@ export default class UsersCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param createCompanyUserRequest 
      */
-    public async postCompaniesCompanyIdUsers(companyId: string, createCompanyUserRequest?: CreateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyUserResponse> {
+    public async postCompaniesCompanyIdUsers(companyId: string, createCompanyUserRequest: CreateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyUserResponse> {
         const localVarPath = "/companies/{companyId}/users"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(createCompanyUserRequest, "CreateCompanyUserRequest");
+        const request: CreateCompanyUserRequest = ObjectSerializer.serialize(createCompanyUserRequest, "CreateCompanyUserRequest");
         const response = await getJsonResponse<CreateCompanyUserRequest, CreateCompanyUserResponse>(
             resource,
             request,

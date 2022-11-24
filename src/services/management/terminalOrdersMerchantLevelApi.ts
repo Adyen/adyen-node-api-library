@@ -135,12 +135,12 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param orderId The unique identifier of the order.
      * @param terminalOrderRequest 
      */
-    public async patchMerchantsMerchantIdTerminalOrdersOrderId(merchantId: string, orderId: string, terminalOrderRequest?: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+    public async patchMerchantsMerchantIdTerminalOrdersOrderId(merchantId: string, orderId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
         const localVarPath = "/merchants/{merchantId}/terminalOrders/{orderId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(terminalOrderRequest, "TerminalOrderRequest");
+        const request: TerminalOrderRequest = ObjectSerializer.serialize(terminalOrderRequest, "TerminalOrderRequest");
         const response = await getJsonResponse<TerminalOrderRequest, TerminalOrder>(
             resource,
             request,
@@ -153,11 +153,11 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param shippingLocation 
      */
-    public async postMerchantsMerchantIdShippingLocations(merchantId: string, shippingLocation?: ShippingLocation, requestOptions?: IRequest.Options): Promise<ShippingLocation> {
+    public async postMerchantsMerchantIdShippingLocations(merchantId: string, shippingLocation: ShippingLocation, requestOptions?: IRequest.Options): Promise<ShippingLocation> {
         const localVarPath = "/merchants/{merchantId}/shippingLocations"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(shippingLocation, "ShippingLocation");
+        const request: ShippingLocation = ObjectSerializer.serialize(shippingLocation, "ShippingLocation");
         const response = await getJsonResponse<ShippingLocation, ShippingLocation>(
             resource,
             request,
@@ -170,11 +170,11 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param terminalOrderRequest 
      */
-    public async postMerchantsMerchantIdTerminalOrders(merchantId: string, terminalOrderRequest?: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+    public async postMerchantsMerchantIdTerminalOrders(merchantId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
         const localVarPath = "/merchants/{merchantId}/terminalOrders"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(terminalOrderRequest, "TerminalOrderRequest");
+        const request: TerminalOrderRequest = ObjectSerializer.serialize(terminalOrderRequest, "TerminalOrderRequest");
         const response = await getJsonResponse<TerminalOrderRequest, TerminalOrder>(
             resource,
             request,

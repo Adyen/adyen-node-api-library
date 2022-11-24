@@ -62,12 +62,12 @@ export default class APICredentialsMerchantLevelApi extends Service {
      * @param apiCredentialId Unique identifier of the API credential.
      * @param updateMerchantApiCredentialRequest 
      */
-    public async patchMerchantsMerchantIdApiCredentialsApiCredentialId(merchantId: string, apiCredentialId: string, updateMerchantApiCredentialRequest?: UpdateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<ApiCredential> {
+    public async patchMerchantsMerchantIdApiCredentialsApiCredentialId(merchantId: string, apiCredentialId: string, updateMerchantApiCredentialRequest: UpdateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<ApiCredential> {
         const localVarPath = "/merchants/{merchantId}/apiCredentials/{apiCredentialId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(updateMerchantApiCredentialRequest, "UpdateMerchantApiCredentialRequest");
+        const request: UpdateMerchantApiCredentialRequest = ObjectSerializer.serialize(updateMerchantApiCredentialRequest, "UpdateMerchantApiCredentialRequest");
         const response = await getJsonResponse<UpdateMerchantApiCredentialRequest, ApiCredential>(
             resource,
             request,
@@ -80,11 +80,11 @@ export default class APICredentialsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param createMerchantApiCredentialRequest 
      */
-    public async postMerchantsMerchantIdApiCredentials(merchantId: string, createMerchantApiCredentialRequest?: CreateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateApiCredentialResponse> {
+    public async postMerchantsMerchantIdApiCredentials(merchantId: string, createMerchantApiCredentialRequest: CreateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateApiCredentialResponse> {
         const localVarPath = "/merchants/{merchantId}/apiCredentials"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(createMerchantApiCredentialRequest, "CreateMerchantApiCredentialRequest");
+        const request: CreateMerchantApiCredentialRequest = ObjectSerializer.serialize(createMerchantApiCredentialRequest, "CreateMerchantApiCredentialRequest");
         const response = await getJsonResponse<CreateMerchantApiCredentialRequest, CreateApiCredentialResponse>(
             resource,
             request,

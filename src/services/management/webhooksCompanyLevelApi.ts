@@ -80,12 +80,12 @@ export default class WebhooksCompanyLevelApi extends Service {
      * @param webhookId Unique identifier of the webhook configuration.
      * @param updateCompanyWebhookRequest 
      */
-    public async patchCompaniesCompanyIdWebhooksWebhookId(companyId: string, webhookId: string, updateCompanyWebhookRequest?: UpdateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
+    public async patchCompaniesCompanyIdWebhooksWebhookId(companyId: string, webhookId: string, updateCompanyWebhookRequest: UpdateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
         const localVarPath = "/companies/{companyId}/webhooks/{webhookId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(updateCompanyWebhookRequest, "UpdateCompanyWebhookRequest");
+        const request: UpdateCompanyWebhookRequest = ObjectSerializer.serialize(updateCompanyWebhookRequest, "UpdateCompanyWebhookRequest");
         const response = await getJsonResponse<UpdateCompanyWebhookRequest, Webhook>(
             resource,
             request,
@@ -98,11 +98,11 @@ export default class WebhooksCompanyLevelApi extends Service {
      * @param companyId Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).
      * @param createCompanyWebhookRequest 
      */
-    public async postCompaniesCompanyIdWebhooks(companyId: string, createCompanyWebhookRequest?: CreateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
+    public async postCompaniesCompanyIdWebhooks(companyId: string, createCompanyWebhookRequest: CreateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
         const localVarPath = "/companies/{companyId}/webhooks"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(createCompanyWebhookRequest, "CreateCompanyWebhookRequest");
+        const request: CreateCompanyWebhookRequest = ObjectSerializer.serialize(createCompanyWebhookRequest, "CreateCompanyWebhookRequest");
         const response = await getJsonResponse<CreateCompanyWebhookRequest, Webhook>(
             resource,
             request,
@@ -133,12 +133,12 @@ export default class WebhooksCompanyLevelApi extends Service {
      * @param webhookId Unique identifier of the webhook configuration.
      * @param testCompanyWebhookRequest 
      */
-    public async postCompaniesCompanyIdWebhooksWebhookIdTest(companyId: string, webhookId: string, testCompanyWebhookRequest?: TestCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<TestWebhookResponse> {
+    public async postCompaniesCompanyIdWebhooksWebhookIdTest(companyId: string, webhookId: string, testCompanyWebhookRequest: TestCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<TestWebhookResponse> {
         const localVarPath = "/companies/{companyId}/webhooks/{webhookId}/test"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(testCompanyWebhookRequest, "TestCompanyWebhookRequest");
+        const request: TestCompanyWebhookRequest = ObjectSerializer.serialize(testCompanyWebhookRequest, "TestCompanyWebhookRequest");
         const response = await getJsonResponse<TestCompanyWebhookRequest, TestWebhookResponse>(
             resource,
             request,

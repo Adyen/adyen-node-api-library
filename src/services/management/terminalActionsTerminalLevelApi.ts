@@ -23,10 +23,10 @@ export default class TerminalActionsTerminalLevelApi extends Service {
      * @summary Create a terminal action
      * @param scheduleTerminalActionsRequest 
      */
-    public async postTerminalsScheduleActions(scheduleTerminalActionsRequest?: ScheduleTerminalActionsRequest, requestOptions?: IRequest.Options): Promise<ScheduleTerminalActionsResponse> {
+    public async postTerminalsScheduleActions(scheduleTerminalActionsRequest: ScheduleTerminalActionsRequest, requestOptions?: IRequest.Options): Promise<ScheduleTerminalActionsResponse> {
         const localVarPath = "/terminals/scheduleActions";
         const resource = new ManagementResource(this, localVarPath);
-        const request: string = ObjectSerializer.serialize(scheduleTerminalActionsRequest, "ScheduleTerminalActionsRequest");
+        const request: ScheduleTerminalActionsRequest = ObjectSerializer.serialize(scheduleTerminalActionsRequest, "ScheduleTerminalActionsRequest");
         const response = await getJsonResponse<ScheduleTerminalActionsRequest, ScheduleTerminalActionsResponse>(
             resource,
             request,
