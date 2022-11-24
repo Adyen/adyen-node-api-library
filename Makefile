@@ -38,7 +38,6 @@ $(services): build/spec $(openapi-generator-jar)
 
 # Service
 managementapi: build/spec $(openapi-generator-jar)  
-	# rm -rf build/$(spec)
 	$(openapi-generator-cli) generate \
 		-i build/spec/json/$(spec).json \
 		-g $(generator) \
@@ -46,7 +45,8 @@ managementapi: build/spec $(openapi-generator-jar)
 		-o build \
 		--api-package $(service) \
 		--model-package typings/$(service) \
-		--global-property apis
+		--global-property apis \
+		--additional-properties=serviceName=$(service)
 	cp build/$(service)/* src/services/$(service)
 	sed -i '/RestServiceError/d' src/services/$(service)/*
 

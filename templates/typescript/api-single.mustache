@@ -4,11 +4,11 @@ import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 /* tslint:disable:no-unused-locals */
 {{#imports}}
-import { {{classname}} } from '../../typings/management/models';
+import { {{classname}} } from '../../typings/{{serviceName}}/models';
 {{/imports}}
 import { IRequest } from "../../typings/requestOptions";
-import ManagementResource from "../resource/management/managementResource";
-import { ObjectSerializer } from "../../typings/management/models";
+import {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource from "../resource/{{serviceName}}/{{serviceName}}Resource";
+import { ObjectSerializer } from "../../typings/{{serviceName}}/models";
 
 {{#operations}}
 
@@ -25,7 +25,7 @@ export default class {{classname}} extends Service {
     public async {{nickname}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
         const localVarPath = "{{{path}}}"{{#pathParams}}
             .replace('{' + '{{baseName}}' + '}', encodeURIComponent(String({{paramName}}))){{/pathParams}};
-        const resource = new ManagementResource(this, localVarPath);
+        const resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, localVarPath);
 {{#bodyParam}}
         const request: {{{dataType}}} = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}");
 {{/bodyParam}}
