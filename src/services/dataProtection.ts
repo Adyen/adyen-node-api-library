@@ -3,6 +3,7 @@ import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
 import { SubjectErasureByPspReferenceRequest, SubjectErasureResponse, ObjectSerializer } from "../typings/dataProtection/models";
 import DataProtectionResource from "./resource/dataProtectionresource";
+import { IRequest } from "../typings/requestOptions";
 
 class DataProtection extends Service {
     private readonly _dataProtectionResource: DataProtectionResource;
