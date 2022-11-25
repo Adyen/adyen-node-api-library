@@ -22,7 +22,7 @@ export default class {{classname}} extends Service {
      * @param {{paramName}} {{description}}
      {{/allParams}}
      */
-    public async {{nickname}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+    public async {{#vendorExtensions.x-methodName}}{{.}}{{/vendorExtensions.x-methodName}}{{^vendorExtensions.x-methodName}}{{nickname}}{{/vendorExtensions.x-methodName}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
         const localVarPath = "{{{path}}}"{{#pathParams}}
             .replace('{' + '{{baseName}}' + '}', encodeURIComponent(String({{paramName}}))){{/pathParams}};
         const resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, localVarPath);

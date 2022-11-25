@@ -48,7 +48,8 @@ managementapi: build/spec $(openapi-generator-jar)
 		--global-property apis \
 		--additional-properties=serviceName=$(service)
 	cp build/$(service)/* src/services/$(service)
-	sed -i '/RestServiceError/d' src/services/$(service)/*
+	sed -i.bak '/RestServiceError/d' src/services/$(service)/*
+	rm src/services/$(service)/*.bak
 
 # Checkout spec (and patch version)
 build/spec:
