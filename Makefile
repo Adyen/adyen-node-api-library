@@ -1,6 +1,6 @@
 generator:=typescript-node
 openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v5.4.0
-services:=binlookup checkout storedValue terminalManagement payments recurring payouts management legalEntityManagement balancePlatform platformsAccount platformsFund platformsNotificationConfiguration platformsHostedOnboardingPage transfer
+services:=binlookup checkout storedValue terminalManagement payments recurring payouts management legalEntityManagement balancePlatform platformsAccount platformsFund platformsNotificationConfiguration platformsHostedOnboardingPage transfer webhooks
 
 # Generate models (for each service)
 models: $(services)
@@ -20,16 +20,24 @@ platformsFund: spec=FundService-v6
 platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 platformsHostedOnboardingPage: spec=HopService-v6
 transfer: spec=TransferService-v3
+webhooks: spec=Webhooks-v1
 
-$(services): build/spec 
+$(services): build/spec
 	rm -rf src/typings/$@ build/model
 	$(openapi-generator-cli) generate \
 		-i build/spec/json/$(spec).json \
 		-g $(generator) \
 		-t templates/typescript \
 		-o build \
-		--global-property models,supportingFiles
-	mv build/model src/typings/$@
+		--global-property models,supportingFiles \
+		--skip-validate-spec
+	@if [ "$@" = "webhooks" ]; then\
+	    mv build/model/notificationAdditionalData.ts src/typings/notification;\
+	else\
+	    mv build/model src/typings/$@;\
+	fi
+
+
 
 # Checkout spec (and patch version)
 build/spec:

@@ -29,11 +29,11 @@
  * Do not edit the class manually.
  */
 
-import { AdditionalData } from './additionalData';
+import { NotificationAdditionalData } from './notificationAdditionalData';
 import { Amount } from './amount';
 
 export class NotificationRequestItem {
-    'additionalData'?: AdditionalData;
+    'additionalData'?: NotificationAdditionalData;
     'amount': Amount;
     /**
     * Adyen\'s 16-character unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.

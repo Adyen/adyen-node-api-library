@@ -12,7 +12,7 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
+ * Copyright (c) 2022 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
@@ -38,6 +38,8 @@ describe("Notification Test", function (): void {
             expect(notificationRequestItem.success === SuccessEnum.True).toBeTruthy();
             expect(notificationRequestItem.pspReference).toEqual("123456789");
             expect(notificationRequestItem.additionalData!.paymentLinkId).toEqual("ABCDEFG");
+            expect(notificationRequestItem.additionalData!.realtimeAccountUpdaterStatus).toEqual("status");
+
         } else {
             fail();
         }
