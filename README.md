@@ -78,7 +78,7 @@ Set up the client as a singleton resource; you can then use it to create service
 ``` 
 
 ### Consuming Services
-Every API the library supports is represented by a service object. The name of the service matching the corresponding API is listed in the [Integrations]() section of this document.
+Every API the library supports is represented by a service object. The name of the service matching the corresponding API is listed in the [Integrations](#integration) section of this document.
 ```javascript
   const { Client, CheckoutAPI	} = require('@adyen/api-library');
   const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
