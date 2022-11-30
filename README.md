@@ -119,7 +119,7 @@ Alternatively you can make use of the Types included in this library using Types
 
   import { Types } from '@adyen/api-library';
 
-  const doPaymentsRequest= async ()  => {
+  const doPaymentsRequest = async ()  => {
     const paymentRequest : Types.checkout.PaymentRequest = {
       amount: {
         currency: "USD",
