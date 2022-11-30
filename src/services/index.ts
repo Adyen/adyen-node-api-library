@@ -12,3 +12,4 @@ export { default as Management } from "./management";
 export { default as LegalEntityManagement } from "./legalEntityManagement";
 export { default as Transfers } from "./transfers";
 export { default as BalancePlatform } from "./balancePlatform";
+export { default as DataProtection } from "./dataProtection";
