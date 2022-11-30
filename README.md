@@ -44,7 +44,7 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 -   [Adyen test account](https://docs.adyen.com/get-started-with-adyen)
 -   [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
 -   Node 12 or higher
-****
+
 ## Installation
 
 You can use NPM to add our library to your project
@@ -201,9 +201,9 @@ For a closer look at how our NodeJS library works, clone our [example integratio
 
 ## Contributing 
 We strongly encourage you to join us in contributing to this repository so everyone can benefit from:
-| New features and functionality
-| Resolved bug fixes and issues
-| Any general improvements
+* New features and functionality
+* Resolved bug fixes and issues
+* Any general improvements
 
 Read our [**contribution guidelines**](CONTRIBUTING.md) to find out how to create a pull request.
 
@@ -214,4 +214,4 @@ If you have a feature request, or spotted a bug or a technical problem, create a
 This repository is available under the [MIT license](LICENSE).
 
 ## See also
-| [example integration](https://github.com/adyen-examples/adyen-node-online-payments)
+* [example integration](https://github.com/adyen-examples/adyen-node-online-payments)
