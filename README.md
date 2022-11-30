@@ -32,6 +32,9 @@ The Library supports all APIs under the following services:
 | [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v68/overview)| Endpoints for managing saved payment details. | Recurring | **v68** |
 | [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api) | Manage both online and point-of-sale gift cards and other stored-value cards. | StoredValue | **v46** |
 | [Transfers API](https://docs.adyen.com/api-explorer/transfers/3/overview) | The Transfers API provides endpoints that you can use to get information about all your transactions, move funds within your balance platform or send funds from your balance platform to a transfer instrument. | Transfers | **v3** |
+| [Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview) | We use webhooks to send you notifications about payment status updates, newly available reports, and other events that you can subscribe to. For more information, refer to our [documentation](https://docs.adyen.com/development-resources/webhooks). | *Models only* | **v1**
+
+
 
 
 
@@ -41,7 +44,7 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 -   [Adyen test account](https://docs.adyen.com/get-started-with-adyen)
 -   [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
 -   Node 12 or higher
-
+****
 ## Installation
 
 You can use NPM to add our library to your project
