@@ -10,7 +10,7 @@
 
 This is the officially supported NodeJS library for using Adyen's APIs.
 
-## Integration
+## Supported API versions
 The Library supports all APIs under the following services:
 | API | Description | Service Name | Supported version |
 | --- | ----------- | ------------ | ----------------- | 
@@ -41,7 +41,7 @@ The Library supports all APIs under the following services:
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
 ## Prerequisites
--   [Adyen test account](https://docs.adyen.com/get-started-with-adyen)
+-   [Adyen test account](https://docs.adyen.com/get-started-with-adyen). To start using Adyen APIs, you will need a Merchant Account.
 -   [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
 -   Node 12 or higher
 
@@ -81,7 +81,7 @@ Set up the client as a singleton resource; you can then use it to create service
 ``` 
 
 ### Consuming Services
-Every API the library supports is represented by a service object. The name of the service matching the corresponding API is listed in the [Integrations](#integration) section of this document.
+Every API the library supports is represented by a service object. The name of the service matching the corresponding API is listed in the [Integrations](#supported-api-versions) section of this document.
 ```javascript
   const { Client, CheckoutAPI	} = require('@adyen/api-library');
   const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
@@ -89,7 +89,7 @@ Every API the library supports is represented by a service object. The name of t
   const paymentRequest = {
     amount: {
       currency: "USD",
-      value: 1000
+      value: 1000 // value in minor units
     },
     reference: "Your order number",
     paymentMethod: {
@@ -123,7 +123,7 @@ Alternatively you can make use of the Types included in this library using Types
     const paymentRequest : Types.checkout.PaymentRequest = {
       amount: {
         currency: "USD",
-        value: 1000
+        value: 1000 // value in minor units
       },
       reference: "Your order number",
       paymentMethod: {
