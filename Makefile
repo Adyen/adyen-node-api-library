@@ -1,6 +1,6 @@
 generator:=typescript-node
-openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v5.4.0
-services:=binlookup checkout storedValue terminalManagement payments recurring payouts management legalEntityManagement balancePlatform platformsAccount platformsFund platformsNotificationConfiguration platformsHostedOnboardingPage transfer webhooks
+openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v /home/vagrant/adyen-node-api-library:/local -w /local openapitools/openapi-generator-cli:v5.4.0
+services:=webhooks
 
 # Generate models (for each service)
 models: $(services)
@@ -31,12 +31,7 @@ $(services): build/spec
 		-o build \
 		--global-property models,supportingFiles \
 		--skip-validate-spec
-	@if [ "$@" = "webhooks" ]; then\
-	    mv build/model/notificationAdditionalData.ts src/typings/notification;\
-	else\
-	    mv build/model src/typings/$@;\
-	fi
-
+	mv build/model src/typings/$@
 
 
 # Checkout spec (and patch version)

@@ -16,8 +16,7 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
- 
-export * from './notificationAdditionalData';
+
 export * from './amount';
 export * from './notification';
 export * from './notificationItem';
@@ -36,7 +35,6 @@ export interface RequestDetailedFile {
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
-import { NotificationAdditionalData } from './notificationAdditionalData';
 import { Amount } from './amount';
 import { Notification } from './notification';
 import { NotificationItem } from './notificationItem';
@@ -61,7 +59,6 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
-    "AdditionalData": NotificationAdditionalData,
     "Amount": Amount,
     "Notification": Notification,
     "NotificationItem": NotificationItem,
