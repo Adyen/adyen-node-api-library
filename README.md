@@ -31,6 +31,7 @@ The Library supports all APIs under the following services:
 * [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v68/overview): Endpoints for managing saved payment details. Current supported version: **v68**
 * [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api): Manage both online and point-of-sale gift cards and other stored-value cards.  Current supported version: **v46**
 * [Transfers API](https://docs.adyen.com/api-explorer/transfers/3/overview) The Transfers API provides endpoints that you can use to get information about all your transactions, move funds within your balance platform or send funds from your balance platform to a transfer instrument. **v3**
+* [DataProtection API](https://docs.adyen.com/development-resources/data-protection-api) Adyen Data Protection API provides a way for you to process [Subject Erasure Requests](https://gdpr-info.eu/art-17-gdpr/) as mandated in GDPR. Use our API to submit a request to delete shopper's data, including payment details and other related information (for example, delivery address or shopper email) **v1**
 
 
 

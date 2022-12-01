@@ -1,12 +1,13 @@
 generator:=typescript-node
-openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v /home/vagrant/adyen-node-api-library:/local -w /local openapitools/openapi-generator-cli:v5.4.0
-services:=webhooks
+openapi-generator-cli:=docker run --user $(shell id -u):$(shell id -g) --rm -v ${PWD}:/local -w /local openapitools/openapi-generator-cli:v5.4.0
+services:=balancePlatform binlookup checkout dataProtection legalEntityManagement management payments payouts platformsAccount platformsFund platformsHostedOnboardingPage platformsNotificationConfiguration recurring storedValue terminalManagement transfer
 
 # Generate models (for each service)
 models: $(services)
 
 binlookup: spec=BinLookupService-v52
 checkout: spec=CheckoutService-v69
+dataProtection: spec=DataProtectionService-v1
 storedValue: spec=StoredValueService-v46
 terminalManagement: spec=TfmAPIService-v1
 payments: spec=PaymentService-v68
@@ -20,7 +21,6 @@ platformsFund: spec=FundService-v6
 platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 platformsHostedOnboardingPage: spec=HopService-v6
 transfer: spec=TransferService-v3
-webhooks: spec=Webhooks-v1
 
 $(services): build/spec
 	rm -rf src/typings/$@ build/model
@@ -29,8 +29,7 @@ $(services): build/spec
 		-g $(generator) \
 		-t templates/typescript \
 		-o build \
-		--global-property models,supportingFiles \
-		--skip-validate-spec
+		--global-property models,supportingFiles
 	mv build/model src/typings/$@
 
 
