@@ -17,6 +17,7 @@ The Library supports all APIs under the following services:
 |[BIN lookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v52/overview) | The BIN Lookup API provides endpoints for retrieving information based on a given BIN. | BinLookup | **v52** |
 | [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v69/overview)| Our latest integration for accepting online payments. | CheckoutAPI | **v69** |
 | [Configuration API](https://docs.adyen.com/api-explorer/#/balanceplatform/v2/overview)| The Configuration API enables you to create a platform where you can onboard your users as account holders and create balance accounts, cards, and business accounts. | BalancePlatform | **v2** |
+| [DataProtection API](https://docs.adyen.com/development-resources/data-protection-api) | Adyen Data Protection API provides a way for you to process [Subject Erasure Requests](https://gdpr-info.eu/art-17-gdpr/) as mandated in GDPR. Use our API to submit a request to delete shopper's data, including payment details and other related information (for example, delivery address or shopper email) | DataProtection | **v1** |
 | [Legal Entity Management API](https://docs.adyen.com/api-explorer/#/legalentity/v2/overview)| Manage legal entities that contain information required for verification. | LegalEntityManagement | **v2** |
 | [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference)| Our point-of-sale integration. | TerminalLocalAPI or TerminalCloudAPI | - |
 | [Management API](https://docs.adyen.com/api-explorer/#/ManagementService/v1/overview)| Configure and manage your Adyen company and merchant accounts, stores, and payment terminals. | Management | **v1** |
@@ -32,11 +33,7 @@ The Library supports all APIs under the following services:
 | [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v68/overview)| Endpoints for managing saved payment details. | Recurring | **v68** |
 | [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api) | Manage both online and point-of-sale gift cards and other stored-value cards. | StoredValue | **v46** |
 | [Transfers API](https://docs.adyen.com/api-explorer/transfers/3/overview) | The Transfers API provides endpoints that you can use to get information about all your transactions, move funds within your balance platform or send funds from your balance platform to a transfer instrument. | Transfers | **v3** |
-| [Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview) | We use webhooks to send you notifications about payment status updates, newly available reports, and other events that you can subscribe to. For more information, refer to our [documentation](https://docs.adyen.com/development-resources/webhooks). | *Models only* | **v1**
-
-
-
-
+| [Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview) | We use webhooks to send you notifications about payment status updates, newly available reports, and other events that you can subscribe to. For more information, refer to our [documentation](https://docs.adyen.com/development-resources/webhooks). | *Models only* | **v1** |
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 

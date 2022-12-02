@@ -50,7 +50,8 @@ export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_TEST;
     config.balancePlatformEndpoint = Client.BALANCE_PLATFORM_API_ENDPOINT_TEST;
     config.legalEntityManagementEndpoint = Client.LEGAL_ENTITY_MANAGEMENT_API_ENDPOINT_TEST;
-    config.transfersEndpoint = Client.TRANSFERS_API_VERSION_TEST;
+    config.transfersEndpoint = Client.TRANSFERS_API_ENDPOINT_TEST;
+    config.dataProtectionEndpoint = Client.DATA_PROTECTION_API_ENDPOINT_TEST;
 
     return new Client({ config });
 };
