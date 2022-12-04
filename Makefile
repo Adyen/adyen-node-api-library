@@ -32,7 +32,6 @@ $(services): build/spec
 		--global-property models,supportingFiles
 	mv build/model src/typings/$@
 
-
 # Checkout spec (and patch version)
 build/spec:
 	git clone https://github.com/Adyen/adyen-openapi.git build/spec
