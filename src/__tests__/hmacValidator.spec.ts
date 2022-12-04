@@ -98,7 +98,6 @@ describe("HMAC Validator", function (): void {
             reason: "reason",
             success: NotificationRequestItem.SuccessEnum.True,
             additionalData: { },
-
         };
         try {
         hmacValidator.validateHMAC(notificationRequestItemNoAdditionalData, key);
