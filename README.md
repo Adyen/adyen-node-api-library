@@ -10,35 +10,35 @@
 
 This is the officially supported NodeJS library for using Adyen's APIs.
 
-## Integration
+## Supported API versions
 The Library supports all APIs under the following services:
-
-* [BIN lookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v52/overview): The BIN Lookup API provides endpoints for retrieving information based on a given BIN.  Current supported version: **v52**
-* [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v69/overview): Our latest integration for accepting online payments. Current supported version: **v69**
-* [Configuration API](https://docs.adyen.com/api-explorer/#/balanceplatform/v2/overview): The Configuration API enables you to create a platform where you can onboard your users as account holders and create balance accounts, cards, and business accounts. Current supported verison: **v2**
-* [Legal Entity Management API](https://docs.adyen.com/api-explorer/#/legalentity/v2/overview): Manage legal entities that contain information required for verification. Current supported version: **v2**
-* [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference): Our point-of-sale integration.
-* [Management API](https://docs.adyen.com/api-explorer/#/ManagementService/v1/overview): Configure and manage your Adyen company and merchant accounts, stores, and payment terminals. Current supported version **v1**
-* [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v68/overview): Our classic integration for online payments. Current supported version: **v68**
-* [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v68/overview): Endpoints for sending funds to your customers. Current supported version: **v68**
-* [Platforms APIs](https://docs.adyen.com/platforms/api): Set of APIs when using Adyen for Platforms. This API is used for the classic integration.
-  * [Account API](https://docs.adyen.com/api-explorer/#/Account/v6/overview) Current supported version: **v6**
-  * [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v6/overview) Current supported version: **v6**
-  * [Hosted onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v6/overview): Current supported version: **v6**
-  * [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v6/overview) Current supported version: **v6**
-* [Platforms Notifications Webhooks](https://docs.adyen.com/api-explorer/#/NotificationService/v6/overview) Current supported version: **v6**
-* [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview): Endpoints for managing your point-of-sale payment terminals. Current supported version **v1**
-* [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v68/overview): Endpoints for managing saved payment details. Current supported version: **v68**
-* [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api): Manage both online and point-of-sale gift cards and other stored-value cards.  Current supported version: **v46**
-* [Transfers API](https://docs.adyen.com/api-explorer/transfers/3/overview) The Transfers API provides endpoints that you can use to get information about all your transactions, move funds within your balance platform or send funds from your balance platform to a transfer instrument. **v3**
-* [DataProtection API](https://docs.adyen.com/development-resources/data-protection-api) Adyen Data Protection API provides a way for you to process [Subject Erasure Requests](https://gdpr-info.eu/art-17-gdpr/) as mandated in GDPR. Use our API to submit a request to delete shopper's data, including payment details and other related information (for example, delivery address or shopper email) **v1**
-
-
+| API | Description | Service Name | Supported version |
+| --- | ----------- | ------------ | ----------------- | 
+|[BIN lookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v52/overview) | The BIN Lookup API provides endpoints for retrieving information based on a given BIN. | BinLookup | **v52** |
+| [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v69/overview)| Our latest integration for accepting online payments. | CheckoutAPI | **v69** |
+| [Configuration API](https://docs.adyen.com/api-explorer/#/balanceplatform/v2/overview)| The Configuration API enables you to create a platform where you can onboard your users as account holders and create balance accounts, cards, and business accounts. | BalancePlatform | **v2** |
+| [DataProtection API](https://docs.adyen.com/development-resources/data-protection-api) | Adyen Data Protection API provides a way for you to process [Subject Erasure Requests](https://gdpr-info.eu/art-17-gdpr/) as mandated in GDPR. Use our API to submit a request to delete shopper's data, including payment details and other related information (for example, delivery address or shopper email) | DataProtection | **v1** |
+| [Legal Entity Management API](https://docs.adyen.com/api-explorer/#/legalentity/v2/overview)| Manage legal entities that contain information required for verification. | LegalEntityManagement | **v2** |
+| [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference)| Our point-of-sale integration. | TerminalLocalAPI or TerminalCloudAPI | - |
+| [Management API](https://docs.adyen.com/api-explorer/#/ManagementService/v1/overview)| Configure and manage your Adyen company and merchant accounts, stores, and payment terminals. | Management | **v1** |
+| [Payments API](https://docs.adyen.com/api-explorer/#/Payment/v68/overview)| Our classic integration for online payments. | ClassicIntegrationAPI | **v68** |
+| [Payouts API](https://docs.adyen.com/api-explorer/#/Payout/v68/overview)| Endpoints for sending funds to your customers. | Payout | **v68** |
+| [Platforms APIs](https://docs.adyen.com/platforms/api)| Set of APIs when using Adyen for Platforms. This API is used for the classic integration. | Platforms | - |
+  | [Account API](https://docs.adyen.com/api-explorer/#/Account/v6/overview) | *Platforms subclass* | Account | **v6** |
+  | [Fund API](https://docs.adyen.com/api-explorer/#/Fund/v6/overview) | *Platforms subclass* | Fund | **v6** |
+  | [Hosted onboarding API](https://docs.adyen.com/api-explorer/#/Hop/v6/overview)| *Platforms subclass* | HostedOnboardingPage | **v6** |
+  | [Notification Configuration API](https://docs.adyen.com/api-explorer/#/NotificationConfigurationService/v6/overview) | *Platforms subclass* | NotificationConfiguration | **v6** |
+| [Platforms Notifications Webhooks](https://docs.adyen.com/api-explorer/#/NotificationService/v6/overview) || *Models only* | **v6** |
+| [POS Terminal Management API](https://docs.adyen.com/api-explorer/#/postfmapi/v1/overview)| Endpoints for managing your point-of-sale payment terminals. | TerminalManagement | **v1** |
+| [Recurring API](https://docs.adyen.com/api-explorer/#/Recurring/v68/overview)| Endpoints for managing saved payment details. | Recurring | **v68** |
+| [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api) | Manage both online and point-of-sale gift cards and other stored-value cards. | StoredValue | **v46** |
+| [Transfers API](https://docs.adyen.com/api-explorer/transfers/3/overview) | The Transfers API provides endpoints that can be used to get information about all your transactions, move funds within your balance platform or send funds from your balance platform to a transfer instrument. | Transfers | **v3** |
+| [Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview) | Adyen uses webhooks to send notifications about payment status updates, newly available reports, and other events that can be subscribed to. For more information, refer to our [documentation](https://docs.adyen.com/development-resources/webhooks). | *Models only* | **v1** |
 
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
 ## Prerequisites
--   [Adyen test account](https://docs.adyen.com/get-started-with-adyen)
+-   [Adyen test account](https://docs.adyen.com/get-started-with-adyen). To start using Adyen APIs, you will need a Merchant Account.
 -   [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
 -   Node 12 or higher
 
@@ -57,21 +57,93 @@ Alternatively, you can download the [release on GitHub](https://github.com/Adyen
 
 ## Using the library
 
-### General use with API key
+### Client initialisation
+#### General use with API key
  
 Set up the client as a singleton resource; you can then use it to create service objects for the API calls that you make to Adyen:
  
 ```typescript
-    const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
+  const { Client } = require('@adyen/api-library');
+  const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
 ``` 
-### General use with API key for live environment
+#### General use with API key for live environment
  ```typescript
-     const client = new Client({apiKey: "YOUR_API_KEY", environment: "LIVE"});
+  const { Client } = require('@adyen/api-library');
+  const client = new Client({apiKey: "YOUR_API_KEY", environment: "LIVE"});
  ``` 
-### General use with basic auth
+#### General use with basic auth
 ```typescript
-    const client = new Client({username: "YOUR_USERNAME", password: "YOUR_PASSWORD", environment: "TEST"});
+  const { Client } = require('@adyen/api-library');
+  const client = new Client({username: "YOUR_USERNAME", password: "YOUR_PASSWORD", environment: "TEST"});
 ``` 
+
+### Consuming Services
+Every API the library supports is represented by a service object. The name of the service matching the corresponding API is listed in the [Integrations](#supported-api-versions) section of this document.
+```javascript
+  const { Client, CheckoutAPI	} = require('@adyen/api-library');
+  const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
+
+  const paymentRequest = {
+    amount: {
+      currency: "USD",
+      value: 1000 // value in minor units
+    },
+    reference: "Your order number",
+    paymentMethod: {
+      type: "scheme",
+      encryptedCardNumber: "test_4111111111111111",
+      encryptedExpiryMonth: "test_03",
+      encryptedExpiryYear: "test_2030",
+      encryptedSecurityCode: "test_737"
+    },
+    shopperReference: "YOUR_UNIQUE_SHOPPER_ID_IOfW3k9G2PvXFu2j",
+    storePaymentMethod: true,
+    shopperInteraction: "Ecommerce",
+    recurringProcessingModel: "CardOnFile",
+    returnUrl: "https://your-company.com/...",
+    merchantAccount: "YOUR_MERCHANT_ACCOUNT"
+  };
+  const checkoutAPI = new CheckoutAPI(client);
+  checkoutAPI.payments(paymentRequest)
+    .then( paymentResponse => console.log(paymentResponse.pspReference))
+    .catch(error => console.log(error));
+```
+
+Alternatively you can make use of the Types included in this library using Typescript, and/or use the async syntax:
+```typescript
+  const { Client, CheckoutAPI } = require('@adyen/api-library');
+  const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
+
+  import { Types } from '@adyen/api-library';
+
+  const doPaymentsRequest = async ()  => {
+    const paymentRequest : Types.checkout.PaymentRequest = {
+      amount: {
+        currency: "USD",
+        value: 1000 // value in minor units
+      },
+      reference: "Your order number",
+      paymentMethod: {
+        type: Types.checkout.CardDetails.TypeEnum.Scheme,
+        encryptedCardNumber: "test_4111111111111111",
+        encryptedExpiryMonth: "test_03",
+        encryptedExpiryYear: "test_2030",
+        encryptedSecurityCode: "test_737"
+      },
+      shopperReference: "YOUR_UNIQUE_SHOPPER_ID_IOfW3k9G2PvXFu2j",
+      storePaymentMethod: true,
+      shopperInteraction: Types.checkout.PaymentRequest.ShopperInteractionEnum.Ecommerce,
+      recurringProcessingModel: Types.checkout.PaymentRequest.RecurringProcessingModelEnum.CardOnFile,
+      returnUrl: "https://your-company.com/...",
+      merchantAccount: "YOUR_MERCHANT_ACCOUNT"
+    };
+    const checkoutAPI = new CheckoutAPI(client);
+    const paymentResponse : Types.checkout.PaymentResponse = await checkoutAPI.payments(paymentRequest);
+    console.log(paymentResponse.pspReference);
+  }
+
+  doPaymentsRequest();
+```
  
 ### Custom HTTP Client Configuration
 By default, NodeJS [https](https://nodejs.org/api/https.html) will be used to submit requests to the API. But you can change that by injecting your own HttpClient on your client instance. In the example below, we use `axios`:
