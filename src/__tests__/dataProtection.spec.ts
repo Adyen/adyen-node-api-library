@@ -3,10 +3,10 @@ import  { createClient } from "../__mocks__/base";
 import { DataProtection } from "../services";
 import Client from "../client";
 import HttpClientException from "../httpClient/httpClientException";
-import {SubjectErasureByPspReferenceRequest, SubjectErasureResponse } from "../typings/dataProtection/models";
+import { dataProtection } from "../typings";
 
 let client: Client,
-    dataProtection: DataProtection,
+    dataProtectionService: DataProtection,
     scope: nock.Scope;
 
 beforeEach((): void => {
@@ -14,7 +14,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    dataProtection = new DataProtection(client);
+    dataProtectionService = new DataProtection(client);
     scope = nock(`${client.config.dataProtectionEndpoint}/${Client.DATA_PROTECTION_API_VERSION}`);
 });
 
@@ -24,11 +24,11 @@ afterEach(() => {
 
 describe("DataProtection", (): void => {
     test("should make succesful subjectErasure call", async (): Promise<void> => {
-        const requestSubjectErasureSuccess: SubjectErasureResponse = {
-            "result": SubjectErasureResponse.ResultEnum.Success,
+        const requestSubjectErasureSuccess: dataProtection.SubjectErasureResponse = {
+            "result": dataProtection.SubjectErasureResponse.ResultEnum.Success,
         };
         
-        const requestSubjectErasureRequest: SubjectErasureByPspReferenceRequest = {
+        const requestSubjectErasureRequest: dataProtection.SubjectErasureByPspReferenceRequest = {
             "merchantAccount": "MY_MERCHANT_ACCOUNT",
             "forceErasure": true,
             "pspReference": "0123456789"
@@ -37,22 +37,21 @@ describe("DataProtection", (): void => {
         scope.post("/requestSubjectErasure")
         .reply(200, requestSubjectErasureSuccess);
 
-        const response: SubjectErasureResponse = await dataProtection.requestSubjectErasure(requestSubjectErasureRequest);
-        expect(response.result).toEqual(SubjectErasureResponse.ResultEnum.Success);
+        const response: dataProtection.SubjectErasureResponse = await dataProtectionService.requestSubjectErasure(requestSubjectErasureRequest);
+        expect(response.result).toEqual(dataProtection.SubjectErasureResponse.ResultEnum.Success);
     });
 
-    test.each([false, true])("should return correct Exception, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should return correct Exception", async (): Promise<void> => {
         try {
             scope.post("/requestSubjectErasure")
                 .reply(401);
 
-                const requestSubjectErasureRequest: SubjectErasureByPspReferenceRequest = {
+                const requestSubjectErasureRequest: dataProtection.SubjectErasureByPspReferenceRequest = {
                     "merchantAccount": "MY_MERCHANT_ACCOUNT",
                     "forceErasure": true,
                     "pspReference": "0123456789"
                 };
-            await dataProtection.requestSubjectErasure(requestSubjectErasureRequest);
+            await dataProtectionService.requestSubjectErasure(requestSubjectErasureRequest);
         } catch (e) {
             expect(e instanceof HttpClientException).toBeTruthy();
         }
