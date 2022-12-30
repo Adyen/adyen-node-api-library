@@ -25,7 +25,8 @@ import * as https from "https";
 import { URLSearchParams } from "url";
 
 export namespace IRequest {
-    type QueryString = URLSearchParams | string | NodeJS.Dict<string | string[]> | Iterable<[string, string]> | Array<[string, string]>;
+    type QueryString = ConstructorParameters<typeof URLSearchParams>[0];
+
     export type Options = https.RequestOptions & {
         idempotencyKey?: string;
         params?: QueryString;
