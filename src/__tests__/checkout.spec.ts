@@ -11,41 +11,19 @@ import {sessionsSuccess} from "../__mocks__/checkout/sessionsSuccess";
 import Client from "../client";
 import Checkout from "../services/checkout";
 import HttpClientException from "../httpClient/httpClientException";
-import {
-    Amount,
-    CardDetails,
-    CheckoutBalanceCheckRequest,
-    CheckoutBalanceCheckResponse,
-    CheckoutCancelOrderResponse,
-    CheckoutCreateOrderRequest,
-    CheckoutCreateOrderResponse,
-    CheckoutUtilityRequest,
-    CreatePaymentLinkRequest,
-    DetailsRequest,
-    PaymentLinkResponse,
-    PaymentMethodsRequest,
-    PaymentRequest,
-    PaymentResponse,
-    PaymentSetupRequest,
-    PaymentVerificationRequest,
-    CreateCheckoutSessionRequest,
-    CreateCheckoutSessionResponse,
-    CardDetailsRequest,
-    CardDetailsResponse
-} from "../typings/checkout/models";
+import { checkout } from "../typings";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
 const reference = "Your order number";
-const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
 
-function createAmountObject(currency: string, value: number): Amount {
+function createAmountObject(currency: string, value: number): checkout.Amount {
     return {
         currency,
         value,
     };
 }
 
-function createPaymentsDetailsRequest(): DetailsRequest {
+function createPaymentsDetailsRequest(): checkout.DetailsRequest {
     return {
         details: {
             mD: "mdValue",
@@ -55,9 +33,9 @@ function createPaymentsDetailsRequest(): DetailsRequest {
     };
 }
 
-export function createPaymentsCheckoutRequest(): PaymentRequest {
+export function createPaymentsCheckoutRequest(): checkout.PaymentRequest {
     const paymentMethodDetails = {
-        type: CardDetails.TypeEnum.Scheme,
+        type: checkout.CardDetails.TypeEnum.Scheme,
         encryptedCardNumber: "test_4111111111111111",
         encryptedExpiryMonth: "test_03",
         encryptedExpiryYear: "test_2030",
@@ -75,18 +53,18 @@ export function createPaymentsCheckoutRequest(): PaymentRequest {
     };
 }
 
-function createPaymentSessionRequest(): PaymentSetupRequest {
+function createPaymentSessionRequest(): checkout.PaymentSetupRequest {
     return {
         amount: createAmountObject("USD", 1000),
         countryCode: "NL",
         merchantAccount,
         reference,
         returnUrl: "https://your-company.com/...",
-        channel: PaymentSetupRequest.ChannelEnum.Web,
+        channel: checkout.PaymentSetupRequest.ChannelEnum.Web,
         sdkVersion: "3.7.0"
     };
 }
-function getPaymentLinkSuccess(expiresAt: string): PaymentLinkResponse {
+function getPaymentLinkSuccess(expiresAt: string): checkout.PaymentLinkResponse {
     return {
         amount: createAmountObject("USD", 1000),
         expiresAt,
@@ -94,11 +72,11 @@ function getPaymentLinkSuccess(expiresAt: string): PaymentLinkResponse {
         url: "PaymentLinkResponse.url",
         id: "mocked_id",
         merchantAccount,
-        status: PaymentLinkResponse.StatusEnum.Active
+        status: checkout.PaymentLinkResponse.StatusEnum.Active
     };
 }
 
-function createPaymentLinkRequest(): CreatePaymentLinkRequest {
+function createPaymentLinkRequest(): checkout.CreatePaymentLinkRequest {
     return {
         allowedPaymentMethods: ["scheme", "boletobancario"],
         amount: createAmountObject("USD", 1000),
@@ -127,7 +105,7 @@ function createPaymentLinkRequest(): CreatePaymentLinkRequest {
     };
 }
 
-function createSessionRequest(): CreateCheckoutSessionRequest {
+function createSessionRequest(): checkout.CreateCheckoutSessionRequest {
     return {
         amount: createAmountObject("USD", 1000),
         countryCode: "NL",
@@ -138,7 +116,7 @@ function createSessionRequest(): CreateCheckoutSessionRequest {
 }
 
 let client: Client;
-let checkout: Checkout;
+let checkoutService: Checkout;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -147,7 +125,7 @@ beforeEach((): void => {
     }
     client = createClient();
     scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`);
-    checkout = new Checkout(client);
+    checkoutService = new Checkout(client);
 });
 
 afterEach(() => {
@@ -156,55 +134,55 @@ afterEach(() => {
 
 describe("Checkout", (): void => {
     test("should add idempotency key to request headers", async (): Promise<void> => {
-        const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
         scope.post("/payments")
             .reply(200, paymentsSuccess)
             .matchHeader("Idempotency-Key", "testKey");
-        await checkout.payments(paymentsRequest, {idempotencyKey: "testKey"});
+        await checkoutService.payments(paymentsRequest, {idempotencyKey: "testKey"});
 
-        const paymentMethodsRequest: PaymentMethodsRequest = {merchantAccount};
+        const paymentMethodsRequest: checkout.PaymentMethodsRequest = {merchantAccount};
         scope.post("/paymentMethods")
             .reply(200, paymentMethodsSuccess)
             .matchHeader("Idempotency-Key", "testKey");
-        await checkout.paymentMethods(paymentMethodsRequest, {idempotencyKey: "testKey"});
+        await checkoutService.paymentMethods(paymentMethodsRequest, {idempotencyKey: "testKey"});
 
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
         scope.post("/paymentLinks")
             .reply(200, paymentLinkSuccess)
             .matchHeader("Idempotency-Key", "testKey");
-        await checkout.paymentLinks(createPaymentLinkRequest(), {idempotencyKey: "testKey"});
+        await checkoutService.paymentLinks(createPaymentLinkRequest(), {idempotencyKey: "testKey"});
 
         scope.patch("/paymentLinks/321")
             .reply(200, { ...paymentLinkSuccess, status: "expired" })
             .matchHeader("Idempotency-Key", "testKey");
-        await checkout.updatePaymentLinks("321", "expired", {idempotencyKey: "testKey"});
+        await checkoutService.updatePaymentLinks("321", "expired", {idempotencyKey: "testKey"});
 
         scope.get("/paymentLinks/123")
             .reply(200, paymentLinkSuccess)
             .matchHeader("Idempotency-Key", "testKey");
-        await checkout.getPaymentLinks("123", {idempotencyKey: "testKey"});
+        await checkoutService.getPaymentLinks("123", {idempotencyKey: "testKey"});
 
         scope.post("/payments/details")
             .reply(200, paymentDetailsSuccess)
             .matchHeader("Idempotency-Key", "testKey");
-        await checkout.paymentsDetails(createPaymentsDetailsRequest(), {idempotencyKey: "testKey"});
+        await checkoutService.paymentsDetails(createPaymentsDetailsRequest(), {idempotencyKey: "testKey"});
 
         scope.post("/paymentSession")
             .reply(200, paymentSessionSuccess)
             .matchHeader("Idempotency-Key", "testKey");
-        const paymentSessionRequest: PaymentSetupRequest = createPaymentSessionRequest();
-        await checkout.paymentSession(paymentSessionRequest, {idempotencyKey: "testKey"});
+        const paymentSessionRequest: checkout.PaymentSetupRequest = createPaymentSessionRequest();
+        await checkoutService.paymentSession(paymentSessionRequest, {idempotencyKey: "testKey"});
 
         scope.post("/payments/result")
             .reply(200, paymentsResultSuccess)
             .matchHeader("Idempotency-Key", "testKey");
-        const paymentResultRequest: PaymentVerificationRequest = {
+        const paymentResultRequest: checkout.PaymentVerificationRequest = {
             payload: "This is a test payload",
         };
-        await checkout.paymentResult(paymentResultRequest, {idempotencyKey: "testKey"});
+        await checkoutService.paymentResult(paymentResultRequest, {idempotencyKey: "testKey"});
 
-        const orderRequest: CheckoutCreateOrderRequest = {
+        const orderRequest: checkout.CheckoutCreateOrderRequest = {
             amount: createAmountObject("USD", 1000),
             merchantAccount,
             reference
@@ -212,12 +190,12 @@ describe("Checkout", (): void => {
         scope.post("/orders")
             .reply(200,  {})
             .matchHeader("Idempotency-Key", "testKey");
-        await checkout.orders(orderRequest, {idempotencyKey: "testKey"});
+        await checkoutService.orders(orderRequest, {idempotencyKey: "testKey"});
 
         scope.post("/orders/cancel")
             .reply(200,  {})
             .matchHeader("Idempotency-Key", "testKey");
-        await checkout.ordersCancel({
+        await checkoutService.ordersCancel({
             order: {
                 orderData: "mock_data",
                 pspReference: "mock_pspref"
@@ -229,43 +207,40 @@ describe("Checkout", (): void => {
             .reply(200, sessionsSuccess)
             .matchHeader("Idempotency-Key", "testKey");
 
-        const sessionsRequest: CreateCheckoutSessionRequest = createSessionRequest();
-        await checkout.sessions(sessionsRequest, {idempotencyKey: "testKey"});
+        const sessionsRequest: checkout.CreateCheckoutSessionRequest = createSessionRequest();
+        await checkoutService.sessions(sessionsRequest, {idempotencyKey: "testKey"});
 
     });
 
 
-    test.each([false, true])("should make a payment. isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should make a payment.", async (): Promise<void> => {
         scope.post("/payments")
             .reply(200, paymentsSuccess);
 
-        const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
-        const paymentsResponse: PaymentResponse = await checkout.payments(paymentsRequest);
+        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: checkout.PaymentResponse = await checkoutService.payments(paymentsRequest);
         expect(paymentsResponse.pspReference).toBeTruthy();
     });
 
-    test.each([false, true])("should return correct Exception, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should return correct Exception", async (): Promise<void> => {
         try {
             scope.post("/payments")
                 .reply(401);
 
-            const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
-            await checkout.payments(paymentsRequest);
+            const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
+            await checkoutService.payments(paymentsRequest);
         } catch (e) {
             expect(e instanceof HttpClientException).toBeTruthy();
         }
     });
 
-    test.each([false, true])("should have valid payment methods, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
-        const paymentMethodsRequest: PaymentMethodsRequest = {merchantAccount};
+    test("should have valid payment methods", async (): Promise<void> => {
+        const paymentMethodsRequest: checkout.PaymentMethodsRequest = {merchantAccount};
 
         scope.post("/paymentMethods")
             .reply(200, paymentMethodsSuccess);
 
-        const paymentMethodsResponse = await checkout.paymentMethods(paymentMethodsRequest);
+        const paymentMethodsResponse = await checkoutService.paymentMethods(paymentMethodsRequest);
         if (paymentMethodsResponse && paymentMethodsResponse.paymentMethods) {
             expect(paymentMethodsResponse.paymentMethods.length).toBeGreaterThan(0);
         } else {
@@ -273,76 +248,69 @@ describe("Checkout", (): void => {
         }
     });
 
-    test.each([false, true])("should have valid payment link, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should have valid payment link", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
-        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
+        const paymentSuccessLinkResponse = await checkoutService.paymentLinks(createPaymentLinkRequest());
         expect(paymentSuccessLinkResponse).toBeTruthy();
     });
 
-    test.each([isCI, true])("should get payment link, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should get payment link", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
-        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
+        const paymentSuccessLinkResponse = await checkoutService.paymentLinks(createPaymentLinkRequest());
 
         scope.get(`/paymentLinks/${paymentSuccessLinkResponse.id}`).reply(200, paymentLinkSuccess);
-        const paymentLink = await checkout.getPaymentLinks(paymentSuccessLinkResponse.id);
+        const paymentLink = await checkoutService.getPaymentLinks(paymentSuccessLinkResponse.id);
         expect(paymentLink).toBeTruthy();
     });
 
-    test.each([isCI, true])("should patch payment link, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should patch payment link", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
-        const paymentSuccessLinkResponse = await checkout.paymentLinks(createPaymentLinkRequest());
+        const paymentSuccessLinkResponse = await checkoutService.paymentLinks(createPaymentLinkRequest());
 
         scope.patch(`/paymentLinks/${paymentSuccessLinkResponse.id}`).reply(200, { ...paymentLinkSuccess, status: "expired" });
-        const paymentLink = await checkout.updatePaymentLinks(paymentSuccessLinkResponse.id, "expired");
+        const paymentLink = await checkoutService.updatePaymentLinks(paymentSuccessLinkResponse.id, "expired");
         expect(paymentLink.status).toEqual("expired");
     });
 
-    test.each([isCI, true])("should have payment details, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should have payment details", async (): Promise<void> => {
         scope.post("/payments/details")
             .reply(200, paymentDetailsSuccess);
 
-        const paymentsResponse = await checkout.paymentsDetails(createPaymentsDetailsRequest());
+        const paymentsResponse = await checkoutService.paymentsDetails(createPaymentsDetailsRequest());
         expect(paymentsResponse.resultCode).toEqual("Authorised");
     });
 
-    test.each([false, true])("should have payment session success, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should have payment session success", async (): Promise<void> => {
         scope.post("/paymentSession")
             .reply(200, paymentSessionSuccess);
-        const paymentSessionRequest: PaymentSetupRequest = createPaymentSessionRequest();
-        const paymentSessionResponse = await checkout.paymentSession(paymentSessionRequest);
+        const paymentSessionRequest: checkout.PaymentSetupRequest = createPaymentSessionRequest();
+        const paymentSessionResponse = await checkoutService.paymentSession(paymentSessionRequest);
         expect(paymentSessionResponse.paymentSession).not.toBeUndefined();
     });
 
-    test.each([isCI, true])("should have payments result, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should have payments result", async (): Promise<void> => {
         scope.post("/payments/result")
             .reply(200, paymentsResultSuccess);
-        const paymentResultRequest: PaymentVerificationRequest = {
+        const paymentResultRequest: checkout.PaymentVerificationRequest = {
             payload: "This is a test payload",
         };
-        const paymentResultResponse = await checkout.paymentResult(paymentResultRequest);
+        const paymentResultResponse = await checkoutService.paymentResult(paymentResultRequest);
         expect(paymentResultResponse.resultCode).toEqual("Authorised");
     });
 
-    test.each([false, true])("should have missing identifier on live, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should have missing identifier on live", async (): Promise<void> => {
         client.setEnvironment("LIVE");
         try {
             new Checkout(client);
@@ -358,22 +326,20 @@ describe("Checkout", (): void => {
     });
 
 
-    test.each([false, true])("should succeed on multibanco payment, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should succeed on multibanco payment", async (): Promise<void> => {
         scope.post("/payments")
             .reply(200, paymentsResultMultibancoSuccess);
 
-        const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
-        const paymentsResponse: PaymentResponse = await checkout.payments(paymentsRequest);
+        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: checkout.PaymentResponse = await checkoutService.payments(paymentsRequest);
 
         expect(paymentsResponse.pspReference).toBeTruthy();
         expect(paymentsResponse.additionalData).toBeTruthy();
     });
 
-    test.each([false, true])("should get origin keys. isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should get origin keys", async (): Promise<void> => {
         const checkoutUtility = new Checkout(client);
-        const originKeysRequest: CheckoutUtilityRequest = {
+        const originKeysRequest: checkout.CheckoutUtilityRequest = {
             originDomains: ["https://www.your-domain.com"],
         };
 
@@ -389,78 +355,75 @@ describe("Checkout", (): void => {
     });
 
     // TODO: add gift card to PaymentMethod and unmock test
-    test.each([true, true])("should get payment methods balance", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
-        const paymentMethodsRequest: CheckoutBalanceCheckRequest = {
+    test("should get payment methods balance", async (): Promise<void> => {
+        const paymentMethodsRequest: checkout.CheckoutBalanceCheckRequest = {
             merchantAccount,
             amount: createAmountObject("USD", 1000),
             paymentMethod: { },
             reference: "mocked_reference"
         };
 
-        const paymentMethodsBalanceResponse: CheckoutBalanceCheckResponse = {
+        const paymentMethodsBalanceResponse: checkout.CheckoutBalanceCheckResponse = {
             balance: {currency: "USD", value: 1000},
-            resultCode: CheckoutBalanceCheckResponse.ResultCodeEnum.Success
+            resultCode: checkout.CheckoutBalanceCheckResponse.ResultCodeEnum.Success
         };
         scope.post("/paymentMethods/balance")
             .reply(200,  paymentMethodsBalanceResponse);
 
-        const paymentsResponse: CheckoutBalanceCheckResponse = await checkout.paymentMethodsBalance(paymentMethodsRequest);
+        const paymentsResponse: checkout.CheckoutBalanceCheckResponse = await checkoutService.paymentMethodsBalance(paymentMethodsRequest);
         expect(paymentsResponse.balance.value).toEqual(1000);
     });
 
-    test.each([false, true])("should create order", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should create order", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const orderRequest: CheckoutCreateOrderRequest = {
+        const orderRequest: checkout.CheckoutCreateOrderRequest = {
             amount: createAmountObject("USD", 1000),
             merchantAccount,
             reference
         };
 
-        const orderResponse: CheckoutCreateOrderResponse = {
+        const orderResponse: checkout.CheckoutCreateOrderResponse = {
             expiresAt,
             amount: createAmountObject("USD", 500),
             orderData: "mocked_order_data",
             remainingAmount: {currency: "USD", value: 500} ,
-            resultCode: CheckoutCreateOrderResponse.ResultCodeEnum.Success
+            resultCode: checkout.CheckoutCreateOrderResponse.ResultCodeEnum.Success
         };
         scope.post("/orders")
             .reply(200,  orderResponse);
 
-        const response: CheckoutCreateOrderResponse = await checkout.orders(orderRequest);
+        const response: checkout.CheckoutCreateOrderResponse = await checkoutService.orders(orderRequest);
         expect(response).toBeTruthy();
     });
 
-    test.each([false, true])("should cancel order", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should cancel order", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const orderRequest: CheckoutCreateOrderRequest = {
+        const orderRequest: checkout.CheckoutCreateOrderRequest = {
             amount: createAmountObject("USD", 1000),
             merchantAccount,
             reference
         };
 
-        const orderResponse: CheckoutCreateOrderResponse = {
+        const orderResponse: checkout.CheckoutCreateOrderResponse = {
             expiresAt,
             amount: createAmountObject("USD", 500),
             orderData: "mocked_order_data",
             remainingAmount: {currency: "USD", value: 500},
-            resultCode: CheckoutCreateOrderResponse.ResultCodeEnum.Success
+            resultCode: checkout.CheckoutCreateOrderResponse.ResultCodeEnum.Success
         };
         scope.post("/orders")
             .reply(200,  orderResponse);
 
-        const createOrderResponse: CheckoutCreateOrderResponse = await checkout.orders(orderRequest);
+        const createOrderResponse: checkout.CheckoutCreateOrderResponse = await checkoutService.orders(orderRequest);
 
-        const orderCancelResponse: CheckoutCancelOrderResponse = {
+        const orderCancelResponse: checkout.CheckoutCancelOrderResponse = {
             pspReference: "mocked_psp_ref",
-            resultCode: CheckoutCancelOrderResponse.ResultCodeEnum.Received
+            resultCode: checkout.CheckoutCancelOrderResponse.ResultCodeEnum.Received
         };
         scope.post("/orders/cancel")
             .reply(200,  orderCancelResponse);
 
-        const response: CheckoutCancelOrderResponse = await checkout.ordersCancel({
+        const response: checkout.CheckoutCancelOrderResponse = await checkoutService.ordersCancel({
             order: {
                 orderData: createOrderResponse.orderData,
                 pspReference: createOrderResponse.pspReference!
@@ -470,13 +433,12 @@ describe("Checkout", (): void => {
         expect(response).toBeTruthy();
     });
 
-    test.each([false, true])("should create a session. isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should create a session.", async (): Promise<void> => {
         scope.post("/sessions")
             .reply(200, sessionsSuccess);
 
-        const sessionsRequest: CreateCheckoutSessionRequest = createSessionRequest();
-        const sessionsResponse: CreateCheckoutSessionResponse = await checkout.sessions(sessionsRequest);
+        const sessionsRequest: checkout.CreateCheckoutSessionRequest = createSessionRequest();
+        const sessionsResponse: checkout.CreateCheckoutSessionResponse = await checkoutService.sessions(sessionsRequest);
         expect(sessionsResponse.sessionData).toBeTruthy();
         expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);
         expect(sessionsResponse.expiresAt.getFullYear()).toBeGreaterThan(0);
@@ -493,11 +455,11 @@ describe("Checkout", (): void => {
                 ]
             });
 
-        const cardDetailsRequest: CardDetailsRequest = {
+        const cardDetailsRequest: checkout.CardDetailsRequest = {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "cardNumber": "411111"
         };
-        const cardDetailsReponse: CardDetailsResponse = await checkout.cardDetails(cardDetailsRequest);
+        const cardDetailsReponse: checkout.CardDetailsResponse = await checkoutService.cardDetails(cardDetailsRequest);
         expect(cardDetailsReponse?.brands?.length).toBe(1);
     });
 });
