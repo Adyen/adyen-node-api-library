@@ -222,15 +222,27 @@ describe("Checkout", (): void => {
         expect(paymentsResponse.pspReference).toBeTruthy();
     });
 
-    test("should return correct Exception", async (): Promise<void> => {
+    test("Should properly handle error responses from API", async (): Promise<void> => {
         try {
             scope.post("/payments")
-                .reply(401);
+                .reply(422, {
+                    "status": 422,
+                    "errorCode": "200",
+                    "message": "Field 'countryCode' is not valid.",
+                    "errorType": "validation",
+                    "pspReference": "DMB552CV6JHKGK82",
+                });
 
             const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
             await checkoutService.payments(paymentsRequest);
-        } catch (e) {
-            expect(e instanceof HttpClientException).toBeTruthy();
+            fail("No exception was thrown");
+        } catch (error) {
+            expect(error instanceof HttpClientException).toBeTruthy();
+            if(error instanceof HttpClientException && error.responseBody) {
+                expect(JSON.parse(error.responseBody).errorType).toBe("validation");
+            } else {
+                fail("Error did not contain the expected data");
+            }
         }
     });
 
