@@ -2,23 +2,11 @@ import nock from "nock";
 import Client from "../client";
 import {createClient} from "../__mocks__/base";
 import {StoredValue} from "../services";
-import { StoredValueIssueRequest,
-    StoredValueIssueResponse,
-    StoredValueStatusChangeRequest,
-    StoredValueStatusChangeResponse,
-    StoredValueLoadRequest,
-    StoredValueLoadResponse,
-    StoredValueBalanceCheckRequest,
-    StoredValueBalanceCheckResponse,
-    StoredValueBalanceMergeRequest,
-    StoredValueBalanceMergeResponse,
-    StoredValueVoidRequest,
-    StoredValueVoidResponse 
-} from "../typings/storedValue/models";
+import { storedValue } from "../typings";
 
 
 let client: Client;
-let storedValue: StoredValue;
+let storedValueService: StoredValue;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -27,7 +15,7 @@ beforeEach((): void => {
     }
     client = createClient();
     scope = nock(`${client.config.storedValueEndpoint}/${Client.STOREDVALUE_API_VERSION}`);
-    storedValue = new StoredValue(client);
+    storedValueService = new StoredValue(client);
 });
 
 afterEach(() => {
@@ -50,7 +38,7 @@ describe("StoredValue", (): void => {
                     "type": "givex"
                 }
             });
-        const issueRequest: StoredValueIssueRequest = {
+        const issueRequest: storedValue.StoredValueIssueRequest = {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "store": "YOUR_STORE_ID",
             "paymentMethod": {
@@ -63,7 +51,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const issueResponse: StoredValueIssueResponse = await storedValue.issue(issueRequest);
+        const issueResponse: storedValue.StoredValueIssueResponse = await storedValueService.issue(issueRequest);
         expect(issueResponse.pspReference).toEqual("851564651069192J");
 
     });
@@ -83,7 +71,7 @@ describe("StoredValue", (): void => {
                     "type": "givex"
                 }
             });
-        const issueRequest: StoredValueIssueRequest = {
+        const issueRequest: storedValue.StoredValueIssueRequest = {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "store": "YOUR_STORE_ID",
             "paymentMethod": {
@@ -93,7 +81,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const issueResponse: StoredValueIssueResponse = await storedValue.issue(issueRequest);
+        const issueResponse: storedValue.StoredValueIssueResponse = await storedValueService.issue(issueRequest);
         expect(issueResponse.pspReference).toEqual("851564651069192J");
 
     });
@@ -109,8 +97,8 @@ describe("StoredValue", (): void => {
                 "resultCode": "Success"
             });
 
-        const statusRequest: StoredValueStatusChangeRequest = {
-            "status": StoredValueStatusChangeRequest.StatusEnum.Active,
+        const statusRequest: storedValue.StoredValueStatusChangeRequest = {
+            "status": storedValue.StoredValueStatusChangeRequest.StatusEnum.Active,
             "amount": {
                 "currency": "USD",
                 "value": 1000
@@ -125,7 +113,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const changeStatusResponse: StoredValueStatusChangeResponse = await storedValue.changeStatus(statusRequest);
+        const changeStatusResponse: storedValue.StoredValueStatusChangeResponse = await storedValueService.changeStatus(statusRequest);
         expect(changeStatusResponse.pspReference).toEqual("851564652149588K");
     });
 
@@ -140,8 +128,8 @@ describe("StoredValue", (): void => {
                 "resultCode": "Success"
             });
 
-        const statusRequest: StoredValueStatusChangeRequest = {
-            "status": StoredValueStatusChangeRequest.StatusEnum.Inactive,
+        const statusRequest: storedValue.StoredValueStatusChangeRequest = {
+            "status": storedValue.StoredValueStatusChangeRequest.StatusEnum.Inactive,
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "store":"YOUR_STORE_ID",
             "paymentMethod": {
@@ -149,11 +137,11 @@ describe("StoredValue", (): void => {
             },
             "recurringDetailReference": "7219627091701347",
             "shopperReference": "YOUR_UNIQUE_SHOPPER_ID_P3fW3k9D2tvXFu6l",
-            "shopperInteraction": StoredValueStatusChangeRequest.ShopperInteractionEnum.Ecommerce,
+            "shopperInteraction": storedValue.StoredValueStatusChangeRequest.ShopperInteractionEnum.Ecommerce,
             "reference": "YOUR_REFERENCE"
         };
 
-        const changeStatusResponse: StoredValueStatusChangeResponse = await storedValue.changeStatus(statusRequest);
+        const changeStatusResponse: storedValue.StoredValueStatusChangeResponse = await storedValueService.changeStatus(statusRequest);
         expect(changeStatusResponse.pspReference).toEqual("851564652149588K");
     });
 
@@ -168,12 +156,12 @@ describe("StoredValue", (): void => {
                 "resultCode": "Success"
             });
 
-        const loadRequest: StoredValueLoadRequest = {
+        const loadRequest: storedValue.StoredValueLoadRequest = {
             "amount": {
                 "currency": "USD",
                 "value": 2000
             },
-            "loadType": StoredValueLoadRequest.LoadTypeEnum.MerchandiseReturn,
+            "loadType": storedValue.StoredValueLoadRequest.LoadTypeEnum.MerchandiseReturn,
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "store":"YOUR_STORE_ID",
             "paymentMethod": {
@@ -184,7 +172,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const loadResponse: StoredValueLoadResponse = await storedValue.load(loadRequest);
+        const loadResponse: storedValue.StoredValueLoadResponse = await storedValueService.load(loadRequest);
         expect(loadResponse.pspReference).toEqual("851564654294247B");
     });
 
@@ -199,7 +187,7 @@ describe("StoredValue", (): void => {
                 "resultCode": "Success"
             });
 
-        const checkBalanceRequest: StoredValueBalanceCheckRequest = {
+        const checkBalanceRequest: storedValue.StoredValueBalanceCheckRequest = {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "store":"YOUR_STORE_ID",
             "paymentMethod": {
@@ -210,7 +198,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const checkBalanceResponse: StoredValueBalanceCheckResponse = await storedValue.checkBalance(checkBalanceRequest);
+        const checkBalanceResponse: storedValue.StoredValueBalanceCheckResponse = await storedValueService.checkBalance(checkBalanceRequest);
         expect(checkBalanceResponse.pspReference).toEqual("881564657480267D");
     });
 
@@ -225,7 +213,7 @@ describe("StoredValue", (): void => {
                 "resultCode": "Success"
             });
 
-        const mergeBalanceRequest: StoredValueBalanceMergeRequest = {
+        const mergeBalanceRequest: storedValue.StoredValueBalanceMergeRequest = {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "store":"YOUR_STORE_ID",
             "sourcePaymentMethod": {
@@ -240,7 +228,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const mergeBalanceResponse: StoredValueBalanceMergeResponse = await storedValue.mergebalance(mergeBalanceRequest);
+        const mergeBalanceResponse: storedValue.StoredValueBalanceMergeResponse = await storedValueService.mergebalance(mergeBalanceRequest);
         expect(mergeBalanceResponse.pspReference).toEqual("881564657480267D");
     });
 
@@ -255,13 +243,13 @@ describe("StoredValue", (): void => {
                 "resultCode": "Success"
             });
 
-        const voidTransactionRequest: StoredValueVoidRequest = {
+        const voidTransactionRequest: storedValue.StoredValueVoidRequest = {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "originalReference": "851564654294247B",
             "reference": "YOUR_REFERENCE"
         };
 
-        const voidTransactionResponse: StoredValueVoidResponse = await storedValue.voidTransaction(voidTransactionRequest);
+        const voidTransactionResponse: storedValue.StoredValueVoidResponse = await storedValueService.voidTransaction(voidTransactionRequest);
         expect(voidTransactionResponse.pspReference).toEqual("851564673300692A");
     });
 });

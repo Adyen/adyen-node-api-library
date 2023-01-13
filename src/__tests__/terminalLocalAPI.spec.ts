@@ -1,28 +1,9 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2021 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
 import nock from "nock";
 import { createClient, createTerminalAPIPaymentRequest } from "../__mocks__/base";
 import { localEncRes, wrongEncRes } from "../__mocks__/terminalApi/local";
 import Client from "../client";
 import TerminalLocalAPI from "../services/terminalLocalAPI";
-import { SecurityKey, TerminalApiResponse } from "../typings/terminal/models";
+import { terminal } from "../typings";
 import NexoCryptoException from "../services/exception/nexoCryptoException";
 
 let client: Client;
@@ -43,34 +24,30 @@ afterEach((): void => {
     nock.cleanAll();
 });
 
-const isCI = process.env.CI === "true" || (typeof process.env.CI === "boolean" && process.env.CI);
-
 describe("Terminal Local API", (): void => {
-    test.each([isCI, true])("should make a local payment, isMock: %p", async (isMock): Promise<void> => {
-        !isMock && nock.restore();
+    test("should make a local payment", async (): Promise<void> => {
         scope.post("/").reply(200, localEncRes);
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
-        const securityKey: SecurityKey = {
+        const securityKey: terminal.SecurityKey = {
             AdyenCryptoVersion: 0,
             KeyIdentifier: "CryptoKeyIdentifier12345",
             KeyVersion: 0,
             Passphrase: "p@ssw0rd123456",
         };
 
-        const terminalApiResponse: TerminalApiResponse =
+        const terminalApiResponse: terminal.TerminalApiResponse =
             await terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey);
 
         expect(terminalApiResponse.SaleToPOIResponse?.PaymentResponse).toBeDefined();
         expect(terminalApiResponse.SaleToPOIResponse?.MessageHeader).toBeDefined();
     });
 
-    test.each([isCI, true])("should return NexoCryptoException, isMock: %p", async (isMock: boolean): Promise<void> => {
-        !isMock && nock.restore();
+    test("should return NexoCryptoException", async (): Promise<void> => {
         scope.post("/").reply(200, wrongEncRes);
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
-        const securityKey: SecurityKey = {
+        const securityKey: terminal.SecurityKey = {
             AdyenCryptoVersion: 0,
             KeyIdentifier: "CryptoKeyIdentifier12345",
             KeyVersion: 0,

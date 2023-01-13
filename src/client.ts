@@ -6,6 +6,10 @@ import ClientInterface from "./httpClient/clientInterface";
 type ClientParametersOverload =
 | { config: Config }
 | { config: Config; httpClient: ClientInterface }
+| { username: string; password: string; environment: Environment}
+| { username: string; password: string; environment: Environment; httpClient: ClientInterface }
+| { username: string; password: string; environment: Environment; liveEndpointUrlPrefix: string }
+| { username: string; password: string; environment: Environment; liveEndpointUrlPrefix: string; httpClient: ClientInterface }
 | { username: string; password: string; environment: Environment; applicationName: string }
 | { username: string; password: string; environment: Environment; applicationName: string; httpClient: ClientInterface }
 | { username: string; password: string; environment: Environment; applicationName: string; liveEndpointUrlPrefix: string }
@@ -90,10 +94,12 @@ class Client {
         const environment = options.environment || this.config.environment;
         if (environment) {
             this.setEnvironment(environment, options.liveEndpointUrlPrefix);
-            if (options.username && options.password && options.applicationName) {
+            if (options.username && options.password) {
                 this.config.username = options.username;
                 this.config.password = options.password;
-                this.config.applicationName = options.applicationName;
+                if(options.applicationName) {
+                    this.config.applicationName = options.applicationName;
+                }
             }
 
             if (options.apiKey) {
