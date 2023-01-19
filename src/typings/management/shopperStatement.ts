@@ -12,7 +12,7 @@ export class ShopperStatement {
     /**
     * The name you want to be shown on the shopper\'s bank or credit card statement. Maximum length: 22 characters; can\'t be all numbers.
     */
-    'doingBusinessAsName': string;
+    'doingBusinessAsName'?: string;
     /**
     * The type of shopperstatement you want to use: fixed, append or dynamic
     */

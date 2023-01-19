@@ -14,9 +14,11 @@ import { Hardware } from './hardware';
 import { Nexo } from './nexo';
 import { OfflineProcessing } from './offlineProcessing';
 import { Opi } from './opi';
+import { Passcodes } from './passcodes';
 import { ReceiptOptions } from './receiptOptions';
 import { ReceiptPrinting } from './receiptPrinting';
 import { Signature } from './signature';
+import { Standalone } from './standalone';
 import { Surcharge } from './surcharge';
 import { Timeouts } from './timeouts';
 import { WifiProfiles } from './wifiProfiles';
@@ -32,9 +34,11 @@ export class TerminalSettings {
     'nexo'?: Nexo;
     'offlineProcessing'?: OfflineProcessing;
     'opi'?: Opi;
+    'passcodes'?: Passcodes;
     'receiptOptions'?: ReceiptOptions;
     'receiptPrinting'?: ReceiptPrinting;
     'signature'?: Signature;
+    'standalone'?: Standalone;
     'surcharge'?: Surcharge;
     'timeouts'?: Timeouts;
     'wifiProfiles'?: WifiProfiles;
@@ -78,6 +82,11 @@ export class TerminalSettings {
             "type": "Opi"
         },
         {
+            "name": "passcodes",
+            "baseName": "passcodes",
+            "type": "Passcodes"
+        },
+        {
             "name": "receiptOptions",
             "baseName": "receiptOptions",
             "type": "ReceiptOptions"
@@ -91,6 +100,11 @@ export class TerminalSettings {
             "name": "signature",
             "baseName": "signature",
             "type": "Signature"
+        },
+        {
+            "name": "standalone",
+            "baseName": "standalone",
+            "type": "Standalone"
         },
         {
             "name": "surcharge",

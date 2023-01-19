@@ -8,23 +8,23 @@
  */
 
 
-export class SwishInfo {
+export class GooglePayInfo {
     /**
-    * Swish number. Format: 10 digits without spaces. For example, **1231111111**.
+    * Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl=en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters.
     */
-    'swishNumber'?: string;
+    'merchantId'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "swishNumber",
-            "baseName": "swishNumber",
+            "name": "merchantId",
+            "baseName": "merchantId",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return SwishInfo.attributeTypeMap;
+        return GooglePayInfo.attributeTypeMap;
     }
 }
 

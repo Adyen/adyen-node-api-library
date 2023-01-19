@@ -24,6 +24,10 @@ export class PaymentMethodResponse {
     * Total number of pages.
     */
     'pagesTotal': number;
+    /**
+    * Payment method types with errors.
+    */
+    'typesWithErrors'?: Array<PaymentMethodResponse.TypesWithErrorsEnum>;
 
     static discriminator: string | undefined = undefined;
 
@@ -47,6 +51,11 @@ export class PaymentMethodResponse {
             "name": "pagesTotal",
             "baseName": "pagesTotal",
             "type": "number"
+        },
+        {
+            "name": "typesWithErrors",
+            "baseName": "typesWithErrors",
+            "type": "Array<PaymentMethodResponse.TypesWithErrorsEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -54,3 +63,50 @@ export class PaymentMethodResponse {
     }
 }
 
+export namespace PaymentMethodResponse {
+    export enum TypesWithErrorsEnum {
+        Alipay = <any> 'alipay',
+        Amex = <any> 'amex',
+        Applepay = <any> 'applepay',
+        Bcmc = <any> 'bcmc',
+        Blik = <any> 'blik',
+        Cartebancaire = <any> 'cartebancaire',
+        Cup = <any> 'cup',
+        Diners = <any> 'diners',
+        DirectEbanking = <any> 'directEbanking',
+        DirectdebitGb = <any> 'directdebit_GB',
+        Discover = <any> 'discover',
+        EbankingFi = <any> 'ebanking_FI',
+        EftposAustralia = <any> 'eftpos_australia',
+        Elo = <any> 'elo',
+        Elocredit = <any> 'elocredit',
+        Elodebit = <any> 'elodebit',
+        Girocard = <any> 'girocard',
+        Giropay = <any> 'giropay',
+        Googlepay = <any> 'googlepay',
+        Hiper = <any> 'hiper',
+        Hipercard = <any> 'hipercard',
+        Ideal = <any> 'ideal',
+        InteracCard = <any> 'interac_card',
+        Jcb = <any> 'jcb',
+        Klarna = <any> 'klarna',
+        KlarnaAccount = <any> 'klarna_account',
+        KlarnaPaynow = <any> 'klarna_paynow',
+        Maestro = <any> 'maestro',
+        Mbway = <any> 'mbway',
+        Mc = <any> 'mc',
+        Mcdebit = <any> 'mcdebit',
+        MealVoucherFr = <any> 'mealVoucher_FR',
+        Mobilepay = <any> 'mobilepay',
+        Multibanco = <any> 'multibanco',
+        Paypal = <any> 'paypal',
+        Payshop = <any> 'payshop',
+        Swish = <any> 'swish',
+        Trustly = <any> 'trustly',
+        Visa = <any> 'visa',
+        Visadebit = <any> 'visadebit',
+        Vpay = <any> 'vpay',
+        Wechatpay = <any> 'wechatpay',
+        WechatpayPos = <any> 'wechatpay_pos'
+    }
+}

@@ -18,6 +18,10 @@ export class Signature {
     */
     'deviceName'?: string;
     /**
+    * Slogan shown on the start screen of the device.
+    */
+    'deviceSlogan'?: string;
+    /**
     * Skip asking for a signature. This is possible because all global card schemes (American Express, Diners, Discover, JCB, MasterCard, VISA, and UnionPay) regard a signature as optional.
     */
     'skipSignature'?: boolean;
@@ -33,6 +37,11 @@ export class Signature {
         {
             "name": "deviceName",
             "baseName": "deviceName",
+            "type": "string"
+        },
+        {
+            "name": "deviceSlogan",
+            "baseName": "deviceSlogan",
             "type": "string"
         },
         {
