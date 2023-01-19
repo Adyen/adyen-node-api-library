@@ -28,7 +28,7 @@ export default class APICredentialsMerchantLevelApi extends Service {
      * @param pageNumber The number of the page to fetch.
      * @param pageSize The number of items to have on a page, maximum 100. The default is 10 items on a page.
      */
-    public async getMerchantsMerchantIdApiCredentials(merchantId: string, requestOptions?: IRequest.Options): Promise<ListMerchantApiCredentialsResponse> {
+    public async listApiCredentials(merchantId: string, requestOptions?: IRequest.Options): Promise<ListMerchantApiCredentialsResponse> {
         const localVarPath = "/merchants/{merchantId}/apiCredentials"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -44,7 +44,7 @@ export default class APICredentialsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param apiCredentialId Unique identifier of the API credential.
      */
-    public async getMerchantsMerchantIdApiCredentialsApiCredentialId(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<ApiCredential> {
+    public async getApiCredential(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<ApiCredential> {
         const localVarPath = "/merchants/{merchantId}/apiCredentials/{apiCredentialId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));
@@ -62,7 +62,7 @@ export default class APICredentialsMerchantLevelApi extends Service {
      * @param apiCredentialId Unique identifier of the API credential.
      * @param updateMerchantApiCredentialRequest 
      */
-    public async patchMerchantsMerchantIdApiCredentialsApiCredentialId(merchantId: string, apiCredentialId: string, updateMerchantApiCredentialRequest: UpdateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<ApiCredential> {
+    public async updateApiCredential(merchantId: string, apiCredentialId: string, updateMerchantApiCredentialRequest: UpdateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<ApiCredential> {
         const localVarPath = "/merchants/{merchantId}/apiCredentials/{apiCredentialId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));
@@ -80,7 +80,7 @@ export default class APICredentialsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param createMerchantApiCredentialRequest 
      */
-    public async postMerchantsMerchantIdApiCredentials(merchantId: string, createMerchantApiCredentialRequest: CreateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateApiCredentialResponse> {
+    public async createApiCredential(merchantId: string, createMerchantApiCredentialRequest: CreateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateApiCredentialResponse> {
         const localVarPath = "/merchants/{merchantId}/apiCredentials"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);

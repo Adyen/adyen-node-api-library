@@ -23,7 +23,7 @@ export default class APIKeyMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param apiCredentialId Unique identifier of the API credential.
      */
-    public async postMerchantsMerchantIdApiCredentialsApiCredentialIdGenerateApiKey(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<GenerateApiKeyResponse> {
+    public async generateNewApiKey(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<GenerateApiKeyResponse> {
         const localVarPath = "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateApiKey"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));

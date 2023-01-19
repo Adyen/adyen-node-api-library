@@ -8,23 +8,32 @@
  */
 
 
-export class GooglePayInfo {
+export class Standalone {
     /**
-    * Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl=en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters.
+    * The default currency that will be used when the device is in standalone mode (ISO 4217 - 3 letter code).
     */
-    'merchantId'?: string;
+    'currencyCode'?: string;
+    /**
+    * Enable standalone mode.
+    */
+    'enableStandalone'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "merchantId",
-            "baseName": "merchantId",
+            "name": "currencyCode",
+            "baseName": "currencyCode",
             "type": "string"
+        },
+        {
+            "name": "enableStandalone",
+            "baseName": "enableStandalone",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return GooglePayInfo.attributeTypeMap;
+        return Standalone.attributeTypeMap;
     }
 }
 

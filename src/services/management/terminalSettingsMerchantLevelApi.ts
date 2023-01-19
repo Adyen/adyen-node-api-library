@@ -24,7 +24,7 @@ export default class TerminalSettingsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param model The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.
      */
-    public async getMerchantsMerchantIdTerminalLogos(merchantId: string, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async getTerminalLogo(merchantId: string, requestOptions?: IRequest.Options): Promise<Logo> {
         const localVarPath = "/merchants/{merchantId}/terminalLogos"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -39,7 +39,7 @@ export default class TerminalSettingsMerchantLevelApi extends Service {
      * @summary Get terminal settings
      * @param merchantId The unique identifier of the merchant account.
      */
-    public async getMerchantsMerchantIdTerminalSettings(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
+    public async getTerminalSettings(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
         const localVarPath = "/merchants/{merchantId}/terminalSettings"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -56,7 +56,7 @@ export default class TerminalSettingsMerchantLevelApi extends Service {
      * @param model The terminal model. Allowed values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.
      * @param logo 
      */
-    public async patchMerchantsMerchantIdTerminalLogos(merchantId: string, logo: Logo, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async updateTerminalLogo(merchantId: string, logo: Logo, requestOptions?: IRequest.Options): Promise<Logo> {
         const localVarPath = "/merchants/{merchantId}/terminalLogos"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -73,7 +73,7 @@ export default class TerminalSettingsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param terminalSettings 
      */
-    public async patchMerchantsMerchantIdTerminalSettings(merchantId: string, terminalSettings: TerminalSettings, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
+    public async updateTerminalSettings(merchantId: string, terminalSettings: TerminalSettings, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
         const localVarPath = "/merchants/{merchantId}/terminalSettings"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);

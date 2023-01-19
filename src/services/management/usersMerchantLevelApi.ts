@@ -28,7 +28,7 @@ export default class UsersMerchantLevelApi extends Service {
      * @param pageNumber The number of the page to fetch.
      * @param pageSize The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.
      */
-    public async getMerchantsMerchantIdUsers(merchantId: string, requestOptions?: IRequest.Options): Promise<ListMerchantUsersResponse> {
+    public async listUsers(merchantId: string, requestOptions?: IRequest.Options): Promise<ListMerchantUsersResponse> {
         const localVarPath = "/merchants/{merchantId}/users"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -44,7 +44,7 @@ export default class UsersMerchantLevelApi extends Service {
      * @param merchantId Unique identifier of the merchant.
      * @param userId Unique identifier of the user.
      */
-    public async getMerchantsMerchantIdUsersUserId(merchantId: string, userId: string, requestOptions?: IRequest.Options): Promise<User> {
+    public async getUserDetails(merchantId: string, userId: string, requestOptions?: IRequest.Options): Promise<User> {
         const localVarPath = "/merchants/{merchantId}/users/{userId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -62,7 +62,7 @@ export default class UsersMerchantLevelApi extends Service {
      * @param userId Unique identifier of the user.
      * @param updateMerchantUserRequest 
      */
-    public async patchMerchantsMerchantIdUsersUserId(merchantId: string, userId: string, updateMerchantUserRequest: UpdateMerchantUserRequest, requestOptions?: IRequest.Options): Promise<User> {
+    public async updateUser(merchantId: string, userId: string, updateMerchantUserRequest: UpdateMerchantUserRequest, requestOptions?: IRequest.Options): Promise<User> {
         const localVarPath = "/merchants/{merchantId}/users/{userId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -80,7 +80,7 @@ export default class UsersMerchantLevelApi extends Service {
      * @param merchantId Unique identifier of the merchant.
      * @param createMerchantUserRequest 
      */
-    public async postMerchantsMerchantIdUsers(merchantId: string, createMerchantUserRequest: CreateMerchantUserRequest, requestOptions?: IRequest.Options): Promise<CreateUserResponse> {
+    public async createNewUser(merchantId: string, createMerchantUserRequest: CreateMerchantUserRequest, requestOptions?: IRequest.Options): Promise<CreateUserResponse> {
         const localVarPath = "/merchants/{merchantId}/users"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);

@@ -23,7 +23,7 @@ export default class APIKeyCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param apiCredentialId Unique identifier of the API credential.
      */
-    public async postCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateApiKey(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<GenerateApiKeyResponse> {
+    public async generateNewApiKey(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<GenerateApiKeyResponse> {
         const localVarPath = "/companies/{companyId}/apiCredentials/{apiCredentialId}/generateApiKey"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));

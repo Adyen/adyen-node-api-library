@@ -26,23 +26,22 @@ export default class PayoutSettingsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param payoutSettingsId The unique identifier of the payout setting.
      */
-    public async deleteMerchantsMerchantIdPayoutSettingsPayoutSettingsId(merchantId: string, payoutSettingsId: string, requestOptions?: IRequest.Options): Promise<any> {
+    public async deletePayoutSetting(merchantId: string, payoutSettingsId: string, requestOptions?: IRequest.Options): Promise<void> {
         const localVarPath = "/merchants/{merchantId}/payoutSettings/{payoutSettingsId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'payoutSettingsId' + '}', encodeURIComponent(String(payoutSettingsId)));
         const resource = new ManagementResource(this, localVarPath);
-        const response = await getJsonResponse<string, any>(
+        await getJsonResponse<string, void>(
             resource,
             "",
             { ...requestOptions, method: "DELETE" }
         );
-        return ObjectSerializer.deserialize(response, "any");
     }
     /**
      * @summary Get a list of payout settings
      * @param merchantId The unique identifier of the merchant account.
      */
-    public async getMerchantsMerchantIdPayoutSettings(merchantId: string, requestOptions?: IRequest.Options): Promise<PayoutSettingsResponse> {
+    public async listPayoutSettings(merchantId: string, requestOptions?: IRequest.Options): Promise<PayoutSettingsResponse> {
         const localVarPath = "/merchants/{merchantId}/payoutSettings"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -58,7 +57,7 @@ export default class PayoutSettingsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param payoutSettingsId The unique identifier of the payout setting.
      */
-    public async getMerchantsMerchantIdPayoutSettingsPayoutSettingsId(merchantId: string, payoutSettingsId: string, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
+    public async getPayoutSetting(merchantId: string, payoutSettingsId: string, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
         const localVarPath = "/merchants/{merchantId}/payoutSettings/{payoutSettingsId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'payoutSettingsId' + '}', encodeURIComponent(String(payoutSettingsId)));
@@ -76,7 +75,7 @@ export default class PayoutSettingsMerchantLevelApi extends Service {
      * @param payoutSettingsId The unique identifier of the payout setting.
      * @param updatePayoutSettingsRequest 
      */
-    public async patchMerchantsMerchantIdPayoutSettingsPayoutSettingsId(merchantId: string, payoutSettingsId: string, updatePayoutSettingsRequest: UpdatePayoutSettingsRequest, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
+    public async updatePayoutSetting(merchantId: string, payoutSettingsId: string, updatePayoutSettingsRequest: UpdatePayoutSettingsRequest, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
         const localVarPath = "/merchants/{merchantId}/payoutSettings/{payoutSettingsId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'payoutSettingsId' + '}', encodeURIComponent(String(payoutSettingsId)));
@@ -94,7 +93,7 @@ export default class PayoutSettingsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param payoutSettingsRequest 
      */
-    public async postMerchantsMerchantIdPayoutSettings(merchantId: string, payoutSettingsRequest: PayoutSettingsRequest, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
+    public async addPayoutSetting(merchantId: string, payoutSettingsRequest: PayoutSettingsRequest, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
         const localVarPath = "/merchants/{merchantId}/payoutSettings"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);

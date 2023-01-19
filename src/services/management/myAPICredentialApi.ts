@@ -25,7 +25,7 @@ export default class MyAPICredentialApi extends Service {
      * @summary Remove allowed origin
      * @param originId Unique identifier of the allowed origin.
      */
-    public async deleteMeAllowedOriginsOriginId(originId: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async removeAllowedOrigin(originId: string, requestOptions?: IRequest.Options): Promise<void> {
         const localVarPath = "/me/allowedOrigins/{originId}"
             .replace('{' + 'originId' + '}', encodeURIComponent(String(originId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -38,7 +38,7 @@ export default class MyAPICredentialApi extends Service {
     /**
      * @summary Get API credential details
      */
-    public async getMe(requestOptions?: IRequest.Options): Promise<MeApiCredential> {
+    public async getApiCredentialDetails(requestOptions?: IRequest.Options): Promise<MeApiCredential> {
         const localVarPath = "/me";
         const resource = new ManagementResource(this, localVarPath);
         const response = await getJsonResponse<string, MeApiCredential>(
@@ -51,7 +51,7 @@ export default class MyAPICredentialApi extends Service {
     /**
      * @summary Get allowed origins
      */
-    public async getMeAllowedOrigins(requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+    public async getAllowedOrigins(requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
         const localVarPath = "/me/allowedOrigins";
         const resource = new ManagementResource(this, localVarPath);
         const response = await getJsonResponse<string, AllowedOriginsResponse>(
@@ -65,7 +65,7 @@ export default class MyAPICredentialApi extends Service {
      * @summary Get allowed origin details
      * @param originId Unique identifier of the allowed origin.
      */
-    public async getMeAllowedOriginsOriginId(originId: string, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
+    public async getAllowedOriginDetails(originId: string, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
         const localVarPath = "/me/allowedOrigins/{originId}"
             .replace('{' + 'originId' + '}', encodeURIComponent(String(originId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -80,7 +80,7 @@ export default class MyAPICredentialApi extends Service {
      * @summary Add allowed origin
      * @param createAllowedOriginRequest 
      */
-    public async postMeAllowedOrigins(createAllowedOriginRequest: CreateAllowedOriginRequest, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+    public async addAllowedOrigin(createAllowedOriginRequest: CreateAllowedOriginRequest, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
         const localVarPath = "/me/allowedOrigins";
         const resource = new ManagementResource(this, localVarPath);
         const request: CreateAllowedOriginRequest = ObjectSerializer.serialize(createAllowedOriginRequest, "CreateAllowedOriginRequest");

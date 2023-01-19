@@ -23,7 +23,7 @@ export default class TerminalSettingsTerminalLevelApi extends Service {
      * @summary Get the terminal logo
      * @param terminalId The unique identifier of the payment terminal.
      */
-    public async getTerminalsTerminalIdTerminalLogos(terminalId: string, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async getTerminalLogo(terminalId: string, requestOptions?: IRequest.Options): Promise<Logo> {
         const localVarPath = "/terminals/{terminalId}/terminalLogos"
             .replace('{' + 'terminalId' + '}', encodeURIComponent(String(terminalId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -38,7 +38,7 @@ export default class TerminalSettingsTerminalLevelApi extends Service {
      * @summary Get terminal settings
      * @param terminalId The unique identifier of the payment terminal.
      */
-    public async getTerminalsTerminalIdTerminalSettings(terminalId: string, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
+    public async getTerminalSettings(terminalId: string, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
         const localVarPath = "/terminals/{terminalId}/terminalSettings"
             .replace('{' + 'terminalId' + '}', encodeURIComponent(String(terminalId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -54,7 +54,7 @@ export default class TerminalSettingsTerminalLevelApi extends Service {
      * @param terminalId The unique identifier of the payment terminal.
      * @param logo 
      */
-    public async patchTerminalsTerminalIdTerminalLogos(terminalId: string, logo: Logo, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async updateLogo(terminalId: string, logo: Logo, requestOptions?: IRequest.Options): Promise<Logo> {
         const localVarPath = "/terminals/{terminalId}/terminalLogos"
             .replace('{' + 'terminalId' + '}', encodeURIComponent(String(terminalId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -71,7 +71,7 @@ export default class TerminalSettingsTerminalLevelApi extends Service {
      * @param terminalId The unique identifier of the payment terminal.
      * @param terminalSettings 
      */
-    public async patchTerminalsTerminalIdTerminalSettings(terminalId: string, terminalSettings: TerminalSettings, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
+    public async updateTerminalSettings(terminalId: string, terminalSettings: TerminalSettings, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
         const localVarPath = "/terminals/{terminalId}/terminalSettings"
             .replace('{' + 'terminalId' + '}', encodeURIComponent(String(terminalId)));
         const resource = new ManagementResource(this, localVarPath);

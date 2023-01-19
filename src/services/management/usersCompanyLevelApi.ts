@@ -28,7 +28,7 @@ export default class UsersCompanyLevelApi extends Service {
      * @param pageNumber The number of the page to return.
      * @param pageSize The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.
      */
-    public async getCompaniesCompanyIdUsers(companyId: string, requestOptions?: IRequest.Options): Promise<ListCompanyUsersResponse> {
+    public async listUsers(companyId: string, requestOptions?: IRequest.Options): Promise<ListCompanyUsersResponse> {
         const localVarPath = "/companies/{companyId}/users"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -44,7 +44,7 @@ export default class UsersCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param userId The unique identifier of the user.
      */
-    public async getCompaniesCompanyIdUsersUserId(companyId: string, userId: string, requestOptions?: IRequest.Options): Promise<CompanyUser> {
+    public async getUserDetails(companyId: string, userId: string, requestOptions?: IRequest.Options): Promise<CompanyUser> {
         const localVarPath = "/companies/{companyId}/users/{userId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -62,7 +62,7 @@ export default class UsersCompanyLevelApi extends Service {
      * @param userId The unique identifier of the user.
      * @param updateCompanyUserRequest 
      */
-    public async patchCompaniesCompanyIdUsersUserId(companyId: string, userId: string, updateCompanyUserRequest: UpdateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CompanyUser> {
+    public async updateUserDetails(companyId: string, userId: string, updateCompanyUserRequest: UpdateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CompanyUser> {
         const localVarPath = "/companies/{companyId}/users/{userId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -80,7 +80,7 @@ export default class UsersCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param createCompanyUserRequest 
      */
-    public async postCompaniesCompanyIdUsers(companyId: string, createCompanyUserRequest: CreateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyUserResponse> {
+    public async createNewUser(companyId: string, createCompanyUserRequest: CreateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyUserResponse> {
         const localVarPath = "/companies/{companyId}/users"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);

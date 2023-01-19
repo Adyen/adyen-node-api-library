@@ -28,7 +28,7 @@ export default class APICredentialsCompanyLevelApi extends Service {
      * @param pageNumber The number of the page to fetch.
      * @param pageSize The number of items to have on a page, maximum 100. The default is 10 items on a page.
      */
-    public async getCompaniesCompanyIdApiCredentials(companyId: string, requestOptions?: IRequest.Options): Promise<ListCompanyApiCredentialsResponse> {
+    public async listApiCredentials(companyId: string, requestOptions?: IRequest.Options): Promise<ListCompanyApiCredentialsResponse> {
         const localVarPath = "/companies/{companyId}/apiCredentials"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -44,7 +44,7 @@ export default class APICredentialsCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param apiCredentialId Unique identifier of the API credential.
      */
-    public async getCompaniesCompanyIdApiCredentialsApiCredentialId(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<CompanyApiCredential> {
+    public async getApiCredential(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<CompanyApiCredential> {
         const localVarPath = "/companies/{companyId}/apiCredentials/{apiCredentialId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));
@@ -62,7 +62,7 @@ export default class APICredentialsCompanyLevelApi extends Service {
      * @param apiCredentialId Unique identifier of the API credential.
      * @param updateCompanyApiCredentialRequest 
      */
-    public async patchCompaniesCompanyIdApiCredentialsApiCredentialId(companyId: string, apiCredentialId: string, updateCompanyApiCredentialRequest: UpdateCompanyApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CompanyApiCredential> {
+    public async updateApiCredential(companyId: string, apiCredentialId: string, updateCompanyApiCredentialRequest: UpdateCompanyApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CompanyApiCredential> {
         const localVarPath = "/companies/{companyId}/apiCredentials/{apiCredentialId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));
@@ -80,7 +80,7 @@ export default class APICredentialsCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param createCompanyApiCredentialRequest 
      */
-    public async postCompaniesCompanyIdApiCredentials(companyId: string, createCompanyApiCredentialRequest: CreateCompanyApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyApiCredentialResponse> {
+    public async createApiCredential(companyId: string, createCompanyApiCredentialRequest: CreateCompanyApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyApiCredentialResponse> {
         const localVarPath = "/companies/{companyId}/apiCredentials"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);

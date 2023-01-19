@@ -24,7 +24,7 @@ export default class TerminalSettingsCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param model The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.
      */
-    public async getCompaniesCompanyIdTerminalLogos(companyId: string, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async getTerminalLogo(companyId: string, requestOptions?: IRequest.Options): Promise<Logo> {
         const localVarPath = "/companies/{companyId}/terminalLogos"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -39,7 +39,7 @@ export default class TerminalSettingsCompanyLevelApi extends Service {
      * @summary Get terminal settings
      * @param companyId The unique identifier of the company account.
      */
-    public async getCompaniesCompanyIdTerminalSettings(companyId: string, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
+    public async getTerminalSettings(companyId: string, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
         const localVarPath = "/companies/{companyId}/terminalSettings"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -56,7 +56,7 @@ export default class TerminalSettingsCompanyLevelApi extends Service {
      * @param model The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.
      * @param logo 
      */
-    public async patchCompaniesCompanyIdTerminalLogos(companyId: string, logo: Logo, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async updateTerminalLogo(companyId: string, logo: Logo, requestOptions?: IRequest.Options): Promise<Logo> {
         const localVarPath = "/companies/{companyId}/terminalLogos"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -73,7 +73,7 @@ export default class TerminalSettingsCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param terminalSettings 
      */
-    public async patchCompaniesCompanyIdTerminalSettings(companyId: string, terminalSettings: TerminalSettings, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
+    public async updateTerminalSettings(companyId: string, terminalSettings: TerminalSettings, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
         const localVarPath = "/companies/{companyId}/terminalSettings"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);

@@ -25,7 +25,7 @@ export default class AllowedOriginsMerchantLevelApi extends Service {
      * @param apiCredentialId Unique identifier of the API credential.
      * @param originId Unique identifier of the allowed origin.
      */
-    public async deleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(merchantId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async deleteAllowedOrigin(merchantId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<void> {
         const localVarPath = "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)))
@@ -42,7 +42,7 @@ export default class AllowedOriginsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param apiCredentialId Unique identifier of the API credential.
      */
-    public async getMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+    public async listAllowedOrigins(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
         const localVarPath = "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));
@@ -60,7 +60,7 @@ export default class AllowedOriginsMerchantLevelApi extends Service {
      * @param apiCredentialId Unique identifier of the API credential.
      * @param originId Unique identifier of the allowed origin.
      */
-    public async getMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(merchantId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
+    public async getAllowedOrigin(merchantId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
         const localVarPath = "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)))
@@ -79,7 +79,7 @@ export default class AllowedOriginsMerchantLevelApi extends Service {
      * @param apiCredentialId Unique identifier of the API credential.
      * @param allowedOrigin 
      */
-    public async postMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins(merchantId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+    public async createAllowedOrigin(merchantId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
         const localVarPath = "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));

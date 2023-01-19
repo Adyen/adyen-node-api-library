@@ -29,7 +29,7 @@ export default class WebhooksCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param webhookId Unique identifier of the webhook configuration.
      */
-    public async deleteCompaniesCompanyIdWebhooksWebhookId(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async removeWebhook(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<void> {
         const localVarPath = "/companies/{companyId}/webhooks/{webhookId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));
@@ -46,7 +46,7 @@ export default class WebhooksCompanyLevelApi extends Service {
      * @param pageNumber The number of the page to fetch.
      * @param pageSize The number of items to have on a page, maximum 100. The default is 10 items on a page.
      */
-    public async getCompaniesCompanyIdWebhooks(companyId: string, requestOptions?: IRequest.Options): Promise<ListWebhooksResponse> {
+    public async listAllWebhooks(companyId: string, requestOptions?: IRequest.Options): Promise<ListWebhooksResponse> {
         const localVarPath = "/companies/{companyId}/webhooks"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -62,7 +62,7 @@ export default class WebhooksCompanyLevelApi extends Service {
      * @param companyId Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).
      * @param webhookId Unique identifier of the webhook configuration.
      */
-    public async getCompaniesCompanyIdWebhooksWebhookId(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<Webhook> {
+    public async getWebhook(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<Webhook> {
         const localVarPath = "/companies/{companyId}/webhooks/{webhookId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));
@@ -80,7 +80,7 @@ export default class WebhooksCompanyLevelApi extends Service {
      * @param webhookId Unique identifier of the webhook configuration.
      * @param updateCompanyWebhookRequest 
      */
-    public async patchCompaniesCompanyIdWebhooksWebhookId(companyId: string, webhookId: string, updateCompanyWebhookRequest: UpdateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
+    public async updateWebhook(companyId: string, webhookId: string, updateCompanyWebhookRequest: UpdateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
         const localVarPath = "/companies/{companyId}/webhooks/{webhookId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));
@@ -98,7 +98,7 @@ export default class WebhooksCompanyLevelApi extends Service {
      * @param companyId Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).
      * @param createCompanyWebhookRequest 
      */
-    public async postCompaniesCompanyIdWebhooks(companyId: string, createCompanyWebhookRequest: CreateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
+    public async setUpWebhook(companyId: string, createCompanyWebhookRequest: CreateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
         const localVarPath = "/companies/{companyId}/webhooks"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -115,7 +115,7 @@ export default class WebhooksCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param webhookId Unique identifier of the webhook configuration.
      */
-    public async postCompaniesCompanyIdWebhooksWebhookIdGenerateHmac(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<GenerateHmacKeyResponse> {
+    public async generateHmacKey(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<GenerateHmacKeyResponse> {
         const localVarPath = "/companies/{companyId}/webhooks/{webhookId}/generateHmac"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));
@@ -133,7 +133,7 @@ export default class WebhooksCompanyLevelApi extends Service {
      * @param webhookId Unique identifier of the webhook configuration.
      * @param testCompanyWebhookRequest 
      */
-    public async postCompaniesCompanyIdWebhooksWebhookIdTest(companyId: string, webhookId: string, testCompanyWebhookRequest: TestCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<TestWebhookResponse> {
+    public async testWebhook(companyId: string, webhookId: string, testCompanyWebhookRequest: TestCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<TestWebhookResponse> {
         const localVarPath = "/companies/{companyId}/webhooks/{webhookId}/test"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));

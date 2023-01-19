@@ -25,7 +25,7 @@ export default class AllowedOriginsCompanyLevelApi extends Service {
      * @param apiCredentialId Unique identifier of the API credential.
      * @param originId Unique identifier of the allowed origin.
      */
-    public async deleteCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(companyId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async deleteAllowedOrigin(companyId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<void> {
         const localVarPath = "/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)))
@@ -42,7 +42,7 @@ export default class AllowedOriginsCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param apiCredentialId Unique identifier of the API credential.
      */
-    public async getCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+    public async listAllowedOrigins(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
         const localVarPath = "/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));
@@ -60,7 +60,7 @@ export default class AllowedOriginsCompanyLevelApi extends Service {
      * @param apiCredentialId Unique identifier of the API credential.
      * @param originId Unique identifier of the allowed origin.
      */
-    public async getCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOriginsOriginId(companyId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
+    public async getAllowedOrigin(companyId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
         const localVarPath = "/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)))
@@ -79,7 +79,7 @@ export default class AllowedOriginsCompanyLevelApi extends Service {
      * @param apiCredentialId Unique identifier of the API credential.
      * @param allowedOrigin 
      */
-    public async postCompaniesCompanyIdApiCredentialsApiCredentialIdAllowedOrigins(companyId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+    public async createAllowedOrigin(companyId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
         const localVarPath = "/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));

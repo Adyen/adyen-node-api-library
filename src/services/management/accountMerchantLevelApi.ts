@@ -27,7 +27,7 @@ export default class AccountMerchantLevelApi extends Service {
      * @param pageNumber The number of the page to fetch.
      * @param pageSize The number of items to have on a page, maximum 100. The default is 10 items on a page.
      */
-    public async getMerchants(requestOptions?: IRequest.Options): Promise<ListMerchantResponse> {
+    public async listMerchantAccounts(requestOptions?: IRequest.Options): Promise<ListMerchantResponse> {
         const localVarPath = "/merchants";
         const resource = new ManagementResource(this, localVarPath);
         const response = await getJsonResponse<string, ListMerchantResponse>(
@@ -41,7 +41,7 @@ export default class AccountMerchantLevelApi extends Service {
      * @summary Get a merchant account
      * @param merchantId The unique identifier of the merchant account.
      */
-    public async getMerchantsMerchantId(merchantId: string, requestOptions?: IRequest.Options): Promise<Merchant> {
+    public async getMerchantAccount(merchantId: string, requestOptions?: IRequest.Options): Promise<Merchant> {
         const localVarPath = "/merchants/{merchantId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -56,7 +56,7 @@ export default class AccountMerchantLevelApi extends Service {
      * @summary Create a merchant account
      * @param createMerchantRequest 
      */
-    public async postMerchants(createMerchantRequest: CreateMerchantRequest, requestOptions?: IRequest.Options): Promise<CreateMerchantResponse> {
+    public async createMerchantAccount(createMerchantRequest: CreateMerchantRequest, requestOptions?: IRequest.Options): Promise<CreateMerchantResponse> {
         const localVarPath = "/merchants";
         const resource = new ManagementResource(this, localVarPath);
         const request: CreateMerchantRequest = ObjectSerializer.serialize(createMerchantRequest, "CreateMerchantRequest");
@@ -71,7 +71,7 @@ export default class AccountMerchantLevelApi extends Service {
      * @summary Request to activate a merchant account
      * @param merchantId The unique identifier of the merchant account.
      */
-    public async postMerchantsMerchantIdActivate(merchantId: string, requestOptions?: IRequest.Options): Promise<RequestActivationResponse> {
+    public async requestToActivateMerchantAccount(merchantId: string, requestOptions?: IRequest.Options): Promise<RequestActivationResponse> {
         const localVarPath = "/merchants/{merchantId}/activate"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);

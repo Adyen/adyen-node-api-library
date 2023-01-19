@@ -30,7 +30,7 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param name The name of the billing entity.
      */
-    public async getMerchantsMerchantIdBillingEntities(merchantId: string, requestOptions?: IRequest.Options): Promise<BillingEntitiesResponse> {
+    public async listBillingEntities(merchantId: string, requestOptions?: IRequest.Options): Promise<BillingEntitiesResponse> {
         const localVarPath = "/merchants/{merchantId}/billingEntities"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -48,7 +48,7 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param offset The number of locations to skip.
      * @param limit The number of locations to return.
      */
-    public async getMerchantsMerchantIdShippingLocations(merchantId: string, requestOptions?: IRequest.Options): Promise<ShippingLocationsResponse> {
+    public async listShippingLocations(merchantId: string, requestOptions?: IRequest.Options): Promise<ShippingLocationsResponse> {
         const localVarPath = "/merchants/{merchantId}/shippingLocations"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -63,7 +63,7 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @summary Get a list of terminal models
      * @param merchantId The unique identifier of the merchant account.
      */
-    public async getMerchantsMerchantIdTerminalModels(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalModelsResponse> {
+    public async listTerminalModels(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalModelsResponse> {
         const localVarPath = "/merchants/{merchantId}/terminalModels"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -82,7 +82,7 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param offset The number of orders to skip.
      * @param limit The number of orders to return.
      */
-    public async getMerchantsMerchantIdTerminalOrders(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalOrdersResponse> {
+    public async listOrders(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalOrdersResponse> {
         const localVarPath = "/merchants/{merchantId}/terminalOrders"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -98,7 +98,7 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param orderId The unique identifier of the order.
      */
-    public async getMerchantsMerchantIdTerminalOrdersOrderId(merchantId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+    public async getOrder(merchantId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
         const localVarPath = "/merchants/{merchantId}/terminalOrders/{orderId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
@@ -118,7 +118,7 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param offset The number of products to skip.
      * @param limit The number of products to return.
      */
-    public async getMerchantsMerchantIdTerminalProducts(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalProductsResponse> {
+    public async listTerminalProducts(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalProductsResponse> {
         const localVarPath = "/merchants/{merchantId}/terminalProducts"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -135,7 +135,7 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param orderId The unique identifier of the order.
      * @param terminalOrderRequest 
      */
-    public async patchMerchantsMerchantIdTerminalOrdersOrderId(merchantId: string, orderId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+    public async updateOrder(merchantId: string, orderId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
         const localVarPath = "/merchants/{merchantId}/terminalOrders/{orderId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
@@ -153,7 +153,7 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param shippingLocation 
      */
-    public async postMerchantsMerchantIdShippingLocations(merchantId: string, shippingLocation: ShippingLocation, requestOptions?: IRequest.Options): Promise<ShippingLocation> {
+    public async createShippingLocation(merchantId: string, shippingLocation: ShippingLocation, requestOptions?: IRequest.Options): Promise<ShippingLocation> {
         const localVarPath = "/merchants/{merchantId}/shippingLocations"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -170,7 +170,7 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param terminalOrderRequest 
      */
-    public async postMerchantsMerchantIdTerminalOrders(merchantId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+    public async createOrder(merchantId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
         const localVarPath = "/merchants/{merchantId}/terminalOrders"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -187,7 +187,7 @@ export default class TerminalOrdersMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param orderId The unique identifier of the order.
      */
-    public async postMerchantsMerchantIdTerminalOrdersOrderIdCancel(merchantId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+    public async cancelOrder(merchantId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
         const localVarPath = "/merchants/{merchantId}/terminalOrders/{orderId}/cancel"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));

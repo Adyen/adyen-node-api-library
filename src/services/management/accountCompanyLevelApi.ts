@@ -25,7 +25,7 @@ export default class AccountCompanyLevelApi extends Service {
      * @param pageNumber The number of the page to fetch.
      * @param pageSize The number of items to have on a page, maximum 100. The default is 10 items on a page.
      */
-    public async getCompanies(requestOptions?: IRequest.Options): Promise<ListCompanyResponse> {
+    public async listCompanyAccounts(requestOptions?: IRequest.Options): Promise<ListCompanyResponse> {
         const localVarPath = "/companies";
         const resource = new ManagementResource(this, localVarPath);
         const response = await getJsonResponse<string, ListCompanyResponse>(
@@ -39,7 +39,7 @@ export default class AccountCompanyLevelApi extends Service {
      * @summary Get a company account
      * @param companyId The unique identifier of the company account.
      */
-    public async getCompaniesCompanyId(companyId: string, requestOptions?: IRequest.Options): Promise<Company> {
+    public async getCompanyAccount(companyId: string, requestOptions?: IRequest.Options): Promise<Company> {
         const localVarPath = "/companies/{companyId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -56,7 +56,7 @@ export default class AccountCompanyLevelApi extends Service {
      * @param pageNumber The number of the page to fetch.
      * @param pageSize The number of items to have on a page, maximum 100. The default is 10 items on a page.
      */
-    public async getCompaniesCompanyIdMerchants(companyId: string, requestOptions?: IRequest.Options): Promise<ListMerchantResponse> {
+    public async listMerchantAccounts(companyId: string, requestOptions?: IRequest.Options): Promise<ListMerchantResponse> {
         const localVarPath = "/companies/{companyId}/merchants"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);

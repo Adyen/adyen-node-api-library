@@ -29,7 +29,7 @@ export default class AccountStoreLevelApi extends Service {
      * @param pageSize The number of items to have on a page, maximum 100. The default is 10 items on a page.
      * @param reference The reference of the store.
      */
-    public async getMerchantsMerchantIdStores(merchantId: string, requestOptions?: IRequest.Options): Promise<ListStoresResponse> {
+    public async listStoresByMerchantId(merchantId: string, requestOptions?: IRequest.Options): Promise<ListStoresResponse> {
         const localVarPath = "/merchants/{merchantId}/stores"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -45,7 +45,7 @@ export default class AccountStoreLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param storeId The unique identifier of the store.
      */
-    public async getMerchantsMerchantIdStoresStoreId(merchantId: string, storeId: string, requestOptions?: IRequest.Options): Promise<Store> {
+    public async getStore(merchantId: string, storeId: string, requestOptions?: IRequest.Options): Promise<Store> {
         const localVarPath = "/merchants/{merchantId}/stores/{storeId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -64,7 +64,7 @@ export default class AccountStoreLevelApi extends Service {
      * @param reference The reference of the store.
      * @param merchantId The unique identifier of the merchant account.
      */
-    public async getStores(requestOptions?: IRequest.Options): Promise<ListStoresResponse> {
+    public async listStores(requestOptions?: IRequest.Options): Promise<ListStoresResponse> {
         const localVarPath = "/stores";
         const resource = new ManagementResource(this, localVarPath);
         const response = await getJsonResponse<string, ListStoresResponse>(
@@ -78,7 +78,7 @@ export default class AccountStoreLevelApi extends Service {
      * @summary Get a store
      * @param storeId The unique identifier of the store.
      */
-    public async getStoresStoreId(storeId: string, requestOptions?: IRequest.Options): Promise<Store> {
+    public async getStoreById(storeId: string, requestOptions?: IRequest.Options): Promise<Store> {
         const localVarPath = "/stores/{storeId}"
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -95,7 +95,7 @@ export default class AccountStoreLevelApi extends Service {
      * @param storeId The unique identifier of the store.
      * @param updateStoreRequest 
      */
-    public async patchMerchantsMerchantIdStoresStoreId(merchantId: string, storeId: string, updateStoreRequest: UpdateStoreRequest, requestOptions?: IRequest.Options): Promise<Store> {
+    public async updateStore(merchantId: string, storeId: string, updateStoreRequest: UpdateStoreRequest, requestOptions?: IRequest.Options): Promise<Store> {
         const localVarPath = "/merchants/{merchantId}/stores/{storeId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
@@ -113,7 +113,7 @@ export default class AccountStoreLevelApi extends Service {
      * @param storeId The unique identifier of the store.
      * @param updateStoreRequest 
      */
-    public async patchStoresStoreId(storeId: string, updateStoreRequest: UpdateStoreRequest, requestOptions?: IRequest.Options): Promise<Store> {
+    public async updateStoreById(storeId: string, updateStoreRequest: UpdateStoreRequest, requestOptions?: IRequest.Options): Promise<Store> {
         const localVarPath = "/stores/{storeId}"
             .replace('{' + 'storeId' + '}', encodeURIComponent(String(storeId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -130,7 +130,7 @@ export default class AccountStoreLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param storeCreationRequest 
      */
-    public async postMerchantsMerchantIdStores(merchantId: string, storeCreationRequest: StoreCreationRequest, requestOptions?: IRequest.Options): Promise<Store> {
+    public async createStoreByMerchantId(merchantId: string, storeCreationRequest: StoreCreationRequest, requestOptions?: IRequest.Options): Promise<Store> {
         const localVarPath = "/merchants/{merchantId}/stores"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -146,7 +146,7 @@ export default class AccountStoreLevelApi extends Service {
      * @summary Create a store
      * @param storeCreationWithMerchantCodeRequest 
      */
-    public async postStores(storeCreationWithMerchantCodeRequest: StoreCreationWithMerchantCodeRequest, requestOptions?: IRequest.Options): Promise<Store> {
+    public async createStore(storeCreationWithMerchantCodeRequest: StoreCreationWithMerchantCodeRequest, requestOptions?: IRequest.Options): Promise<Store> {
         const localVarPath = "/stores";
         const resource = new ManagementResource(this, localVarPath);
         const request: StoreCreationWithMerchantCodeRequest = ObjectSerializer.serialize(storeCreationWithMerchantCodeRequest, "StoreCreationWithMerchantCodeRequest");

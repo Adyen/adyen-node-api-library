@@ -669,7 +669,7 @@ describe("Management", (): void => {
             scope.delete("/merchants/foo/apiCredentials/BAR123/allowedOrigins/fishy%20one").reply(204);
 
             await managementService.AllowedOriginsMerchantLevelApi
-                .deleteMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOriginsOriginId("foo", "BAR123", "fishy one");
+                .deleteAllowedOrigin("foo", "BAR123", "fishy one");
         });
 
         test("Create an allowed origin", async () => {
@@ -692,7 +692,7 @@ describe("Management", (): void => {
                 });
 
             const response: management.AllowedOriginsResponse = await managementService.AllowedOriginsMerchantLevelApi
-                .postMerchantsMerchantIdApiCredentialsApiCredentialIdAllowedOrigins("YOUR_MERCHANT_ACCOUNT", "YOUR_API_CREDENTIAL", {
+                .createAllowedOrigin("YOUR_MERCHANT_ACCOUNT", "YOUR_API_CREDENTIAL", {
                     domain: "https://www.eu.mystore.com",
                 });
 

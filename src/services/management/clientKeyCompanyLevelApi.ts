@@ -23,7 +23,7 @@ export default class ClientKeyCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param apiCredentialId Unique identifier of the API credential.
      */
-    public async postCompaniesCompanyIdApiCredentialsApiCredentialIdGenerateClientKey(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<GenerateClientKeyResponse> {
+    public async generateNewClientKey(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<GenerateClientKeyResponse> {
         const localVarPath = "/companies/{companyId}/apiCredentials/{apiCredentialId}/generateClientKey"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'apiCredentialId' + '}', encodeURIComponent(String(apiCredentialId)));

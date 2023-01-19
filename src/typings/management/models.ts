@@ -66,6 +66,7 @@ export * from './installAndroidCertificateDetails';
 export * from './invalidField';
 export * from './jSONObject';
 export * from './jSONPath';
+export * from './key';
 export * from './klarnaInfo';
 export * from './links';
 export * from './linksElement';
@@ -81,6 +82,7 @@ export * from './listTerminalsResponse';
 export * from './listWebhooksResponse';
 export * from './logo';
 export * from './meApiCredential';
+export * from './mealVoucherFRInfo';
 export * from './merchant';
 export * from './merchantLinks';
 export * from './minorUnitsMonetaryValue';
@@ -88,10 +90,12 @@ export * from './modelFile';
 export * from './name';
 export * from './name2';
 export * from './nexo';
+export * from './notificationUrl';
 export * from './offlineProcessing';
 export * from './opi';
 export * from './orderItem';
 export * from './paginationLinks';
+export * from './passcodes';
 export * from './payPalInfo';
 export * from './paymentMethod';
 export * from './paymentMethodResponse';
@@ -113,6 +117,7 @@ export * from './shippingLocationsResponse';
 export * from './shopperStatement';
 export * from './signature';
 export * from './sofortInfo';
+export * from './standalone';
 export * from './store';
 export * from './storeCreationRequest';
 export * from './storeCreationWithMerchantCodeRequest';
@@ -210,6 +215,7 @@ import { InstallAndroidCertificateDetails } from './installAndroidCertificateDet
 import { InvalidField } from './invalidField';
 import { JSONObject } from './jSONObject';
 import { JSONPath } from './jSONPath';
+import { Key } from './key';
 import { KlarnaInfo } from './klarnaInfo';
 import { Links } from './links';
 import { LinksElement } from './linksElement';
@@ -225,6 +231,7 @@ import { ListTerminalsResponse } from './listTerminalsResponse';
 import { ListWebhooksResponse } from './listWebhooksResponse';
 import { Logo } from './logo';
 import { MeApiCredential } from './meApiCredential';
+import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { Merchant } from './merchant';
 import { MerchantLinks } from './merchantLinks';
 import { MinorUnitsMonetaryValue } from './minorUnitsMonetaryValue';
@@ -232,10 +239,12 @@ import { ModelFile } from './modelFile';
 import { Name } from './name';
 import { Name2 } from './name2';
 import { Nexo } from './nexo';
+import { NotificationUrl } from './notificationUrl';
 import { OfflineProcessing } from './offlineProcessing';
 import { Opi } from './opi';
 import { OrderItem } from './orderItem';
 import { PaginationLinks } from './paginationLinks';
+import { Passcodes } from './passcodes';
 import { PayPalInfo } from './payPalInfo';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodResponse } from './paymentMethodResponse';
@@ -257,6 +266,7 @@ import { ShippingLocationsResponse } from './shippingLocationsResponse';
 import { ShopperStatement } from './shopperStatement';
 import { Signature } from './signature';
 import { SofortInfo } from './sofortInfo';
+import { Standalone } from './standalone';
 import { Store } from './store';
 import { StoreCreationRequest } from './storeCreationRequest';
 import { StoreCreationWithMerchantCodeRequest } from './storeCreationWithMerchantCodeRequest';
@@ -319,6 +329,7 @@ let enumsMap: {[index: string]: any} = {
         "InstallAndroidAppDetails.TypeEnum": InstallAndroidAppDetails.TypeEnum,
         "InstallAndroidCertificateDetails.TypeEnum": InstallAndroidCertificateDetails.TypeEnum,
         "KlarnaInfo.RegionEnum": KlarnaInfo.RegionEnum,
+        "MealVoucherFRInfo.SubTypesEnum": MealVoucherFRInfo.SubTypesEnum,
         "PaymentMethod.VerificationStatusEnum": PaymentMethod.VerificationStatusEnum,
         "PaymentMethodResponse.TypesWithErrorsEnum": PaymentMethodResponse.TypesWithErrorsEnum,
         "PaymentMethodSetupInfo.ShopperInteractionEnum": PaymentMethodSetupInfo.ShopperInteractionEnum,
@@ -403,6 +414,7 @@ let typeMap: {[index: string]: any} = {
     "InvalidField": InvalidField,
     "JSONObject": JSONObject,
     "JSONPath": JSONPath,
+    "Key": Key,
     "KlarnaInfo": KlarnaInfo,
     "Links": Links,
     "LinksElement": LinksElement,
@@ -418,6 +430,7 @@ let typeMap: {[index: string]: any} = {
     "ListWebhooksResponse": ListWebhooksResponse,
     "Logo": Logo,
     "MeApiCredential": MeApiCredential,
+    "MealVoucherFRInfo": MealVoucherFRInfo,
     "Merchant": Merchant,
     "MerchantLinks": MerchantLinks,
     "MinorUnitsMonetaryValue": MinorUnitsMonetaryValue,
@@ -425,10 +438,12 @@ let typeMap: {[index: string]: any} = {
     "Name": Name,
     "Name2": Name2,
     "Nexo": Nexo,
+    "NotificationUrl": NotificationUrl,
     "OfflineProcessing": OfflineProcessing,
     "Opi": Opi,
     "OrderItem": OrderItem,
     "PaginationLinks": PaginationLinks,
+    "Passcodes": Passcodes,
     "PayPalInfo": PayPalInfo,
     "PaymentMethod": PaymentMethod,
     "PaymentMethodResponse": PaymentMethodResponse,
@@ -450,6 +465,7 @@ let typeMap: {[index: string]: any} = {
     "ShopperStatement": ShopperStatement,
     "Signature": Signature,
     "SofortInfo": SofortInfo,
+    "Standalone": Standalone,
     "Store": Store,
     "StoreCreationRequest": StoreCreationRequest,
     "StoreCreationWithMerchantCodeRequest": StoreCreationWithMerchantCodeRequest,

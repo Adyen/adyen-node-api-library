@@ -30,7 +30,7 @@ export default class PaymentMethodsMerchantLevelApi extends Service {
      * @param pageSize The number of items to have on a page, maximum 100. The default is 10 items on a page.
      * @param pageNumber The number of the page to fetch.
      */
-    public async getMerchantsMerchantIdPaymentMethodSettings(merchantId: string, requestOptions?: IRequest.Options): Promise<PaymentMethodResponse> {
+    public async getAllPaymentMethods(merchantId: string, requestOptions?: IRequest.Options): Promise<PaymentMethodResponse> {
         const localVarPath = "/merchants/{merchantId}/paymentMethodSettings"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -46,7 +46,7 @@ export default class PaymentMethodsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param paymentMethodId The unique identifier of the payment method.
      */
-    public async getMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(merchantId: string, paymentMethodId: string, requestOptions?: IRequest.Options): Promise<PaymentMethod> {
+    public async getPaymentMethodDetails(merchantId: string, paymentMethodId: string, requestOptions?: IRequest.Options): Promise<PaymentMethod> {
         const localVarPath = "/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'paymentMethodId' + '}', encodeURIComponent(String(paymentMethodId)));
@@ -63,7 +63,7 @@ export default class PaymentMethodsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param paymentMethodId The unique identifier of the payment method.
      */
-    public async getMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdGetApplePayDomains(merchantId: string, paymentMethodId: string, requestOptions?: IRequest.Options): Promise<ApplePayInfo> {
+    public async getApplePayDomains(merchantId: string, paymentMethodId: string, requestOptions?: IRequest.Options): Promise<ApplePayInfo> {
         const localVarPath = "/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'paymentMethodId' + '}', encodeURIComponent(String(paymentMethodId)));
@@ -81,7 +81,7 @@ export default class PaymentMethodsMerchantLevelApi extends Service {
      * @param paymentMethodId The unique identifier of the payment method.
      * @param updatePaymentMethodInfo 
      */
-    public async patchMerchantsMerchantIdPaymentMethodSettingsPaymentMethodId(merchantId: string, paymentMethodId: string, updatePaymentMethodInfo: UpdatePaymentMethodInfo, requestOptions?: IRequest.Options): Promise<PaymentMethod> {
+    public async updatePaymentMethod(merchantId: string, paymentMethodId: string, updatePaymentMethodInfo: UpdatePaymentMethodInfo, requestOptions?: IRequest.Options): Promise<PaymentMethod> {
         const localVarPath = "/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'paymentMethodId' + '}', encodeURIComponent(String(paymentMethodId)));
@@ -99,7 +99,7 @@ export default class PaymentMethodsMerchantLevelApi extends Service {
      * @param merchantId The unique identifier of the merchant account.
      * @param paymentMethodSetupInfo 
      */
-    public async postMerchantsMerchantIdPaymentMethodSettings(merchantId: string, paymentMethodSetupInfo: PaymentMethodSetupInfo, requestOptions?: IRequest.Options): Promise<PaymentMethod> {
+    public async requestPaymentMethod(merchantId: string, paymentMethodSetupInfo: PaymentMethodSetupInfo, requestOptions?: IRequest.Options): Promise<PaymentMethod> {
         const localVarPath = "/merchants/{merchantId}/paymentMethodSettings"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -117,17 +117,16 @@ export default class PaymentMethodsMerchantLevelApi extends Service {
      * @param paymentMethodId The unique identifier of the payment method.
      * @param applePayInfo 
      */
-    public async postMerchantsMerchantIdPaymentMethodSettingsPaymentMethodIdAddApplePayDomains(merchantId: string, paymentMethodId: string, applePayInfo: ApplePayInfo, requestOptions?: IRequest.Options): Promise<any> {
+    public async addApplePayDomain(merchantId: string, paymentMethodId: string, applePayInfo: ApplePayInfo, requestOptions?: IRequest.Options): Promise<void> {
         const localVarPath = "/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains"
             .replace('{' + 'merchantId' + '}', encodeURIComponent(String(merchantId)))
             .replace('{' + 'paymentMethodId' + '}', encodeURIComponent(String(paymentMethodId)));
         const resource = new ManagementResource(this, localVarPath);
         const request: ApplePayInfo = ObjectSerializer.serialize(applePayInfo, "ApplePayInfo");
-        const response = await getJsonResponse<ApplePayInfo, any>(
+        await getJsonResponse<ApplePayInfo, void>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "any");
     }
 }

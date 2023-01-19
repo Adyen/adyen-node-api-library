@@ -27,7 +27,7 @@ export default class TerminalActionsCompanyLevelApi extends Service {
      * @param pageNumber The number of the page to fetch.
      * @param pageSize The number of items to have on a page, maximum 100. The default is 20 items on a page.
      */
-    public async getCompaniesCompanyIdAndroidApps(companyId: string, requestOptions?: IRequest.Options): Promise<AndroidAppsResponse> {
+    public async listAndroidApps(companyId: string, requestOptions?: IRequest.Options): Promise<AndroidAppsResponse> {
         const localVarPath = "/companies/{companyId}/androidApps"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -44,7 +44,7 @@ export default class TerminalActionsCompanyLevelApi extends Service {
      * @param pageNumber The number of the page to fetch.
      * @param pageSize The number of items to have on a page, maximum 100. The default is 20 items on a page.
      */
-    public async getCompaniesCompanyIdAndroidCertificates(companyId: string, requestOptions?: IRequest.Options): Promise<AndroidCertificatesResponse> {
+    public async listAndroidCertificates(companyId: string, requestOptions?: IRequest.Options): Promise<AndroidCertificatesResponse> {
         const localVarPath = "/companies/{companyId}/androidCertificates"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -63,7 +63,7 @@ export default class TerminalActionsCompanyLevelApi extends Service {
      * @param status Returns terminal actions with the specified status.  Allowed values: **pending**, **successful**, **failed**, **cancelled**, **tryLater**.
      * @param type Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**.
      */
-    public async getCompaniesCompanyIdTerminalActions(companyId: string, requestOptions?: IRequest.Options): Promise<ListExternalTerminalActionsResponse> {
+    public async listTerminalActions(companyId: string, requestOptions?: IRequest.Options): Promise<ListExternalTerminalActionsResponse> {
         const localVarPath = "/companies/{companyId}/terminalActions"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -79,7 +79,7 @@ export default class TerminalActionsCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param actionId The unique identifier of the terminal action.
      */
-    public async getCompaniesCompanyIdTerminalActionsActionId(companyId: string, actionId: string, requestOptions?: IRequest.Options): Promise<ExternalTerminalAction> {
+    public async getTerminalAction(companyId: string, actionId: string, requestOptions?: IRequest.Options): Promise<ExternalTerminalAction> {
         const localVarPath = "/companies/{companyId}/terminalActions/{actionId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'actionId' + '}', encodeURIComponent(String(actionId)));

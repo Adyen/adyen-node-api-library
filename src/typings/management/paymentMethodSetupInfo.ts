@@ -13,6 +13,7 @@ import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { GiroPayInfo } from './giroPayInfo';
 import { GooglePayInfo } from './googlePayInfo';
 import { KlarnaInfo } from './klarnaInfo';
+import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { PayPalInfo } from './payPalInfo';
 import { SofortInfo } from './sofortInfo';
 import { SwishInfo } from './swishInfo';
@@ -33,10 +34,19 @@ export class PaymentMethodSetupInfo {
     * The list of currencies that a payment method supports. By default, all currencies supported by the payment method.
     */
     'currencies'?: Array<string>;
+    /**
+    * The list of custom routing flags to route payment to the intended acquirer.
+    */
+    'customRoutingFlags'?: Array<string>;
     'giroPay'?: GiroPayInfo;
     'googlePay'?: GooglePayInfo;
     'klarna'?: KlarnaInfo;
+    'mealVoucherFR'?: MealVoucherFRInfo;
     'paypal'?: PayPalInfo;
+    /**
+    * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
+    */
+    'reference'?: string;
     /**
     * The sales channel. Required if the merchant account does not have a sales channel. When you provide this field, it overrides the default sales channel set on the merchant account.  Possible values: **eCommerce**, **pos**, **contAuth**, and **moto**. 
     */
@@ -50,7 +60,7 @@ export class PaymentMethodSetupInfo {
     /**
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
     */
-    'type': PaymentMethodSetupInfo.TypeEnum;
+    'type'?: PaymentMethodSetupInfo.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -86,6 +96,11 @@ export class PaymentMethodSetupInfo {
             "type": "Array<string>"
         },
         {
+            "name": "customRoutingFlags",
+            "baseName": "customRoutingFlags",
+            "type": "Array<string>"
+        },
+        {
             "name": "giroPay",
             "baseName": "giroPay",
             "type": "GiroPayInfo"
@@ -101,9 +116,19 @@ export class PaymentMethodSetupInfo {
             "type": "KlarnaInfo"
         },
         {
+            "name": "mealVoucherFR",
+            "baseName": "mealVoucher_FR",
+            "type": "MealVoucherFRInfo"
+        },
+        {
             "name": "paypal",
             "baseName": "paypal",
             "type": "PayPalInfo"
+        },
+        {
+            "name": "reference",
+            "baseName": "reference",
+            "type": "string"
         },
         {
             "name": "shopperInteraction",
@@ -157,9 +182,14 @@ export namespace PaymentMethodSetupInfo {
         Discover = <any> 'discover',
         EbankingFi = <any> 'ebanking_FI',
         EftposAustralia = <any> 'eftpos_australia',
+        Elo = <any> 'elo',
+        Elocredit = <any> 'elocredit',
+        Elodebit = <any> 'elodebit',
         Girocard = <any> 'girocard',
         Giropay = <any> 'giropay',
         Googlepay = <any> 'googlepay',
+        Hiper = <any> 'hiper',
+        Hipercard = <any> 'hipercard',
         Ideal = <any> 'ideal',
         InteracCard = <any> 'interac_card',
         Jcb = <any> 'jcb',
@@ -169,6 +199,8 @@ export namespace PaymentMethodSetupInfo {
         Maestro = <any> 'maestro',
         Mbway = <any> 'mbway',
         Mc = <any> 'mc',
+        Mcdebit = <any> 'mcdebit',
+        MealVoucherFr = <any> 'mealVoucher_FR',
         Mobilepay = <any> 'mobilepay',
         Multibanco = <any> 'multibanco',
         Paypal = <any> 'paypal',
@@ -176,6 +208,8 @@ export namespace PaymentMethodSetupInfo {
         Swish = <any> 'swish',
         Trustly = <any> 'trustly',
         Visa = <any> 'visa',
+        Visadebit = <any> 'visadebit',
+        Vpay = <any> 'vpay',
         Wechatpay = <any> 'wechatpay',
         WechatpayPos = <any> 'wechatpay_pos'
     }

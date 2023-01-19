@@ -28,7 +28,7 @@ export default class TerminalsTerminalLevelApi extends Service {
      * @param pageNumber The number of the page to fetch.
      * @param pageSize The number of items to have on a page, maximum 100. The default is 20 items on a page.
      */
-    public async getTerminals(requestOptions?: IRequest.Options): Promise<ListTerminalsResponse> {
+    public async listTerminals(requestOptions?: IRequest.Options): Promise<ListTerminalsResponse> {
         const localVarPath = "/terminals";
         const resource = new ManagementResource(this, localVarPath);
         const response = await getJsonResponse<string, ListTerminalsResponse>(

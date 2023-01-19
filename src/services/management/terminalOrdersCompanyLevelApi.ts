@@ -30,7 +30,7 @@ export default class TerminalOrdersCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param name The name of the billing entity.
      */
-    public async getCompaniesCompanyIdBillingEntities(companyId: string, requestOptions?: IRequest.Options): Promise<BillingEntitiesResponse> {
+    public async listBillingEntities(companyId: string, requestOptions?: IRequest.Options): Promise<BillingEntitiesResponse> {
         const localVarPath = "/companies/{companyId}/billingEntities"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -48,7 +48,7 @@ export default class TerminalOrdersCompanyLevelApi extends Service {
      * @param offset The number of locations to skip.
      * @param limit The number of locations to return.
      */
-    public async getCompaniesCompanyIdShippingLocations(companyId: string, requestOptions?: IRequest.Options): Promise<ShippingLocationsResponse> {
+    public async listShippingLocations(companyId: string, requestOptions?: IRequest.Options): Promise<ShippingLocationsResponse> {
         const localVarPath = "/companies/{companyId}/shippingLocations"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -63,7 +63,7 @@ export default class TerminalOrdersCompanyLevelApi extends Service {
      * @summary Get a list of terminal models
      * @param companyId The unique identifier of the company account.
      */
-    public async getCompaniesCompanyIdTerminalModels(companyId: string, requestOptions?: IRequest.Options): Promise<TerminalModelsResponse> {
+    public async listTerminalModels(companyId: string, requestOptions?: IRequest.Options): Promise<TerminalModelsResponse> {
         const localVarPath = "/companies/{companyId}/terminalModels"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -82,7 +82,7 @@ export default class TerminalOrdersCompanyLevelApi extends Service {
      * @param offset The number of orders to skip.
      * @param limit The number of orders to return.
      */
-    public async getCompaniesCompanyIdTerminalOrders(companyId: string, requestOptions?: IRequest.Options): Promise<TerminalOrdersResponse> {
+    public async listOrders(companyId: string, requestOptions?: IRequest.Options): Promise<TerminalOrdersResponse> {
         const localVarPath = "/companies/{companyId}/terminalOrders"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -98,7 +98,7 @@ export default class TerminalOrdersCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param orderId The unique identifier of the order.
      */
-    public async getCompaniesCompanyIdTerminalOrdersOrderId(companyId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+    public async getOrder(companyId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
         const localVarPath = "/companies/{companyId}/terminalOrders/{orderId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
@@ -118,7 +118,7 @@ export default class TerminalOrdersCompanyLevelApi extends Service {
      * @param offset The number of products to skip.
      * @param limit The number of products to return.
      */
-    public async getCompaniesCompanyIdTerminalProducts(companyId: string, requestOptions?: IRequest.Options): Promise<TerminalProductsResponse> {
+    public async listTerminalProducts(companyId: string, requestOptions?: IRequest.Options): Promise<TerminalProductsResponse> {
         const localVarPath = "/companies/{companyId}/terminalProducts"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -135,7 +135,7 @@ export default class TerminalOrdersCompanyLevelApi extends Service {
      * @param orderId The unique identifier of the order.
      * @param terminalOrderRequest 
      */
-    public async patchCompaniesCompanyIdTerminalOrdersOrderId(companyId: string, orderId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+    public async updateOrder(companyId: string, orderId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
         const localVarPath = "/companies/{companyId}/terminalOrders/{orderId}"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
@@ -153,7 +153,7 @@ export default class TerminalOrdersCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param shippingLocation 
      */
-    public async postCompaniesCompanyIdShippingLocations(companyId: string, shippingLocation: ShippingLocation, requestOptions?: IRequest.Options): Promise<ShippingLocation> {
+    public async createShippingLocation(companyId: string, shippingLocation: ShippingLocation, requestOptions?: IRequest.Options): Promise<ShippingLocation> {
         const localVarPath = "/companies/{companyId}/shippingLocations"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -170,7 +170,7 @@ export default class TerminalOrdersCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param terminalOrderRequest 
      */
-    public async postCompaniesCompanyIdTerminalOrders(companyId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+    public async createOrder(companyId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
         const localVarPath = "/companies/{companyId}/terminalOrders"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         const resource = new ManagementResource(this, localVarPath);
@@ -187,7 +187,7 @@ export default class TerminalOrdersCompanyLevelApi extends Service {
      * @param companyId The unique identifier of the company account.
      * @param orderId The unique identifier of the order.
      */
-    public async postCompaniesCompanyIdTerminalOrdersOrderIdCancel(companyId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+    public async cancelOrder(companyId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
         const localVarPath = "/companies/{companyId}/terminalOrders/{orderId}/cancel"
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
             .replace('{' + 'orderId' + '}', encodeURIComponent(String(orderId)));
