@@ -5,6 +5,7 @@ import { Management } from "../services";
 import { management } from "../typings";
 import * as requests from "../__mocks__/management/requests";
 import * as responses from "../__mocks__/management/responses";
+import HttpClientException from "../httpClient/httpClientException";
 
 let client: Client;
 let managementService: Management;
@@ -34,6 +35,32 @@ afterEach(() => {
 
 describe("Management", (): void => {
     describe("Me", (): void => {
+        test("Should properly handle error responses from API", async (): Promise<void> => {
+            scope.post("/me/allowedOrigins")
+            .reply(422, {
+                "type": "https://docs.adyen.com/errors/not-found",
+                "title": "Entity was not found",
+                "status": 422,
+                "detail": "The origin id is invalid or does not exist.",
+                "requestId": "KQZ5LXK2VMPRMC82",
+                "errorCode": "30_112",
+            });
+            try {
+                const createAllowedOriginRequest : management.CreateAllowedOriginRequest = {
+                    domain: "test.com",
+                };
+                await managementService.Me.createAllowedOrigin(createAllowedOriginRequest);
+                fail("No exception was thrown");
+            } catch (error) {
+                expect(error instanceof HttpClientException).toBeTruthy();
+                if(error instanceof HttpClientException && error.responseBody) {
+                    expect(JSON.parse(error.responseBody).requestId).toBe("KQZ5LXK2VMPRMC82");
+                } else {
+                    fail("Error did not contain the expected data");
+                }
+            }
+        });
+        
         test("Should get  API credential details based on the API Key used in the request", async (): Promise<void> => {
             scope.get("/me")
                 .reply(200, {
