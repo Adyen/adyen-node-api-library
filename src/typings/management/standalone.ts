@@ -8,23 +8,32 @@
  */
 
 
-export class SwishInfo {
+export class Standalone {
     /**
-    * Swish number. Format: 10 digits without spaces. For example, **1231111111**.
+    * The default currency that will be used when the device is in standalone mode (ISO 4217 - 3 letter code).
     */
-    'swishNumber'?: string;
+    'currencyCode'?: string;
+    /**
+    * Enable standalone mode.
+    */
+    'enableStandalone'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "swishNumber",
-            "baseName": "swishNumber",
+            "name": "currencyCode",
+            "baseName": "currencyCode",
             "type": "string"
+        },
+        {
+            "name": "enableStandalone",
+            "baseName": "enableStandalone",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return SwishInfo.attributeTypeMap;
+        return Standalone.attributeTypeMap;
     }
 }
 

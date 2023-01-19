@@ -8,8 +8,6 @@
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@adyen/api-library.svg)
 [![Version](https://img.shields.io/npm/v/@adyen/api-library.svg)](https://www.npmjs.com/package/@adyen/api-library)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Adyen_adyen-node-api-library&metric=alert_status)](https://sonarcloud.io/dashboard?id=Adyen_adyen-node-api-library)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/Adyen/adyen-node-api-library.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Adyen/adyen-node-api-library/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Adyen/adyen-node-api-library.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Adyen/adyen-node-api-library/context:javascript)
 
 This is the officially supported NodeJS library for using Adyen's APIs.
 

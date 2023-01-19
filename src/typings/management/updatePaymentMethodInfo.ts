@@ -19,6 +19,10 @@ export class UpdatePaymentMethodInfo {
     */
     'currencies'?: Array<string>;
     /**
+    * Custom routing flags for acquirer routing.
+    */
+    'customRoutingFlags'?: Array<string>;
+    /**
     * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
     */
     'enabled'?: boolean;
@@ -35,6 +39,11 @@ export class UpdatePaymentMethodInfo {
         {
             "name": "currencies",
             "baseName": "currencies",
+            "type": "Array<string>"
+        },
+        {
+            "name": "customRoutingFlags",
+            "baseName": "customRoutingFlags",
             "type": "Array<string>"
         },
         {
