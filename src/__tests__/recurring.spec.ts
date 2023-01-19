@@ -6,6 +6,7 @@ import { notifyShopperSuccess } from "../__mocks__/recurring/notifyShopperSucces
 import RecurringService from "../services/recurring";
 import Client from "../client";
 import { recurring } from "../typings";
+import {Permit} from "../typings/recurring/permit";
 
 const createRecurringDetailsRequest = (): recurring.RecurringDetailsRequest => {
     return {
@@ -110,6 +111,51 @@ describe("Recurring", (): void => {
 
         try {
             const result = await recurringService.scheduleAccountUpdater(request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e);
+        }
+    });
+
+    test("should create a permit request", async (): Promise<void> => {
+        const createPermitResultSuccess: recurring.CreatePermitResult = {
+            pspReference: "1234567890"
+        };
+
+        scope.post("/createPermit")
+            .reply(200, createPermitResultSuccess);
+
+        const request: recurring.CreatePermitRequest = {
+            permits: [new Permit],
+            merchantAccount: process.env.ADYEN_MERCHANT!,
+            shopperReference: "shopperRef",
+            recurringDetailReference: "recurringRef",
+        };
+
+        try {
+            const result = await recurringService.createPermit(request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e);
+        }
+    });
+
+    test("should create a disable permit request", async (): Promise<void> => {
+        const disablePermitResultSuccess: recurring.DisablePermitResult = {
+            pspReference: "1234567890",
+            status: "disabled",
+        };
+
+        scope.post("/disablePermit")
+            .reply(200, disablePermitResultSuccess);
+
+        const request: recurring.DisablePermitRequest = {
+            merchantAccount: process.env.ADYEN_MERCHANT!,
+            token: "permitToken"
+        };
+
+        try {
+            const result = await recurringService.disablePermit(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e);
