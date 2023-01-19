@@ -13,7 +13,7 @@ import {
     CreatePermitRequest,
     CreatePermitResult,
     DisablePermitRequest,
-    DisablePermitResult
+    DisablePermitResult, ObjectSerializer
 } from "../typings/recurring/models";
 import RecurringResource from "./resource/RecurringResource";
 
@@ -35,42 +35,48 @@ class Recurring extends Service {
         this._disablePermit = new RecurringResource(this, "/disablePermit")
     }
 
-    public listRecurringDetails(request: RecurringDetailsRequest): Promise<RecurringDetailsResult> {
+    public listRecurringDetails(recurringDetailsRequest: RecurringDetailsRequest): Promise<RecurringDetailsResult> {
+        const request: RecurringDetailsRequest = ObjectSerializer.serialize(recurringDetailsRequest, "RecurringDetailsRequest");
         return getJsonResponse<RecurringDetailsRequest, RecurringDetailsResult>(
             this._listRecurringDetails,
             request,
         );
     }
 
-    public disable(request: DisableRequest): Promise<DisableResult> {
+    public disable(disableRequest: DisableRequest): Promise<DisableResult> {
+        const request: DisableRequest = ObjectSerializer.serialize(disableRequest, "DisableRequest");
         return getJsonResponse<DisableRequest, DisableResult>(
             this._disable,
             request,
         );
     }
 
-    public scheduleAccountUpdater(request: ScheduleAccountUpdaterRequest): Promise<ScheduleAccountUpdaterResult> {
+    public scheduleAccountUpdater(scheduleAccountUpdaterRequest: ScheduleAccountUpdaterRequest): Promise<ScheduleAccountUpdaterResult> {
+        const request: ScheduleAccountUpdaterRequest = ObjectSerializer.serialize(scheduleAccountUpdaterRequest, "ScheduleAccountUpdaterRequest");
         return getJsonResponse<ScheduleAccountUpdaterRequest, ScheduleAccountUpdaterResult>(
             this._scheduleAccountUpdater,
             request,
         );
     }
 
-    public notifyShopper(request: NotifyShopperRequest): Promise<NotifyShopperResult> {
+    public notifyShopper(notifyShopperRequest: NotifyShopperRequest): Promise<NotifyShopperResult> {
+        const request: NotifyShopperRequest = ObjectSerializer.serialize(notifyShopperRequest, "NotifyShopperRequest");
         return getJsonResponse<NotifyShopperRequest, NotifyShopperResult>(
             this._notifyShopper,
             request
         );
     }
 
-    public createPermit(request: CreatePermitRequest): Promise<CreatePermitResult>{
+    public createPermit(createPermitRequest: CreatePermitRequest): Promise<CreatePermitResult>{
+        const request: CreatePermitRequest = ObjectSerializer.serialize(createPermitRequest, "CreatePermitRequest");
         return getJsonResponse<CreatePermitRequest, CreatePermitResult>(
             this._createPermit,
             request
         );
     }
 
-    public disablePermit(request: DisablePermitRequest): Promise<DisablePermitResult>{
+    public disablePermit(disablePermitRequest: DisablePermitRequest): Promise<DisablePermitResult>{
+        const request: DisablePermitRequest = ObjectSerializer.serialize(disablePermitRequest, "DisablePermitRequest");
         return getJsonResponse<DisablePermitRequest, DisablePermitResult>(
             this._disablePermit,
             request

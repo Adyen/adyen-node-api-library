@@ -7,6 +7,8 @@ import RecurringService from "../services/recurring";
 import Client from "../client";
 import { recurring } from "../typings";
 import {Permit} from "../typings/recurring/permit";
+import {CreatePermitRequest} from "../typings/recurring/createPermitRequest";
+import {ObjectSerializer} from "../typings/recurring/models";
 
 const createRecurringDetailsRequest = (): recurring.RecurringDetailsRequest => {
     return {
@@ -117,7 +119,7 @@ describe("Recurring", (): void => {
         }
     });
 
-    test("should create a permit request", async (): Promise<void> => {
+    test("should do a createPermit request", async (): Promise<void> => {
         const createPermitResultSuccess: recurring.CreatePermitResult = {
             pspReference: "1234567890"
         };
@@ -125,12 +127,20 @@ describe("Recurring", (): void => {
         scope.post("/createPermit")
             .reply(200, createPermitResultSuccess);
 
+        const permit: Permit = {
+            validTillDate: new Date("2022-03-25"),
+            partnerId: "partnerID"
+        };
+
         const request: recurring.CreatePermitRequest = {
-            permits: [new Permit],
+            permits: [permit],
             merchantAccount: process.env.ADYEN_MERCHANT!,
             shopperReference: "shopperRef",
             recurringDetailReference: "recurringRef",
         };
+
+        const serializedRequest: CreatePermitRequest = ObjectSerializer.serialize(request, "CreatePermitRequest");
+        expect(serializedRequest.permits[0].validTillDate?.toString()).toBe("2022-03-25T00:00:00.000Z");
 
         try {
             const result = await recurringService.createPermit(request);
@@ -140,7 +150,7 @@ describe("Recurring", (): void => {
         }
     });
 
-    test("should create a disable permit request", async (): Promise<void> => {
+    test("should do a disablePermit request", async (): Promise<void> => {
         const disablePermitResultSuccess: recurring.DisablePermitResult = {
             pspReference: "1234567890",
             status: "disabled",
