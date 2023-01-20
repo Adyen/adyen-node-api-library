@@ -33,6 +33,10 @@ export class CreateMerchantRequest {
     * Your reference for the merchant account. To make this reference the unique identifier of the merchant account, your Adyen contact can set up a template on your company account. The template can have 6 to 255 characters with upper- and lower-case letters, underscores, and numbers. When your company account has a template, then the `reference` is required and must be unique within the company account.
     */
     'reference'?: string;
+    /**
+    * List of sales channels that the merchant will process payments with
+    */
+    'salesChannels'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -66,6 +70,11 @@ export class CreateMerchantRequest {
             "name": "reference",
             "baseName": "reference",
             "type": "string"
+        },
+        {
+            "name": "salesChannels",
+            "baseName": "salesChannels",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {

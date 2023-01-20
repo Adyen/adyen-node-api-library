@@ -2,21 +2,10 @@ import nock from "nock";
 import Client from "../client";
 import { createClient } from "../__mocks__/base";
 import TerminalManagement from "../services/terminalManagement";
-import {
-    AssignTerminalsRequest,
-    AssignTerminalsResponse,
-    FindTerminalRequest,
-    FindTerminalResponse,
-    GetStoresUnderAccountRequest,
-    GetStoresUnderAccountResponse,
-    GetTerminalDetailsRequest,
-    GetTerminalDetailsResponse,
-    GetTerminalsUnderAccountRequest,
-    GetTerminalsUnderAccountResponse
-} from "../typings/terminalManagement/models";
+import { terminalManagement } from "../typings";
 
 let client: Client;
-let terminalManagement: TerminalManagement;
+let terminalManagementService: TerminalManagement;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -25,7 +14,7 @@ beforeEach((): void => {
     }
     client = createClient();
     scope = nock(`${client.config.terminalManagementEndpoint}/${Client.TERMINAL_MANAGEMENT_API_VERSION}`);
-    terminalManagement = new TerminalManagement(client);
+    terminalManagementService = new TerminalManagement(client);
 });
 
 afterEach(() => {
@@ -40,14 +29,14 @@ describe("POS Terminal Management API", (): void => {
                     "P400Plus-275479597": "RemoveConfigScheduled"
                 }
             });
-        const request: AssignTerminalsRequest = {
+        const request: terminalManagement.AssignTerminalsRequest = {
             "companyAccount": "YOUR_COMPANY_ACCOUNT",
             "terminals": [
                 "P400Plus-275479597"
             ]
         };
 
-        const response: AssignTerminalsResponse = await terminalManagement.assignTerminals(request);
+        const response: terminalManagement.AssignTerminalsResponse = await terminalManagementService.assignTerminals(request);
 
         expect(response.results["P400Plus-275479597"]).toEqual("RemoveConfigScheduled");
     });
@@ -60,11 +49,11 @@ describe("POS Terminal Management API", (): void => {
                 "merchantInventory": false,
                 "terminal": "P400Plus-275479597"
             });
-        const request: FindTerminalRequest = {
+        const request: terminalManagement.FindTerminalRequest = {
             "terminal": "P400Plus-275479597"
         };
 
-        const response: FindTerminalResponse = await terminalManagement.findTerminal(request);
+        const response: terminalManagement.FindTerminalResponse = await terminalManagementService.findTerminal(request);
 
         expect(response.terminal).toEqual("P400Plus-275479597");
     });
@@ -87,11 +76,11 @@ describe("POS Terminal Management API", (): void => {
                     }
                 ]
             });
-        const request: GetStoresUnderAccountRequest = {
+        const request: terminalManagement.GetStoresUnderAccountRequest = {
             "companyAccount": "YOUR_COMPANY_ACCOUNT"
         };
 
-        const response: GetStoresUnderAccountResponse = await terminalManagement.getStoresUnderAccount(request);
+        const response: terminalManagement.GetStoresUnderAccountResponse = await terminalManagementService.getStoresUnderAccount(request);
 
         expect(response.stores).toHaveLength(1);
         expect(response.stores![0].status).toEqual("Active");
@@ -113,11 +102,11 @@ describe("POS Terminal Management API", (): void => {
                 "country": "NETHERLANDS",
                 "dhcpEnabled": false
             });
-        const request: GetTerminalDetailsRequest = {
+        const request: terminalManagement.GetTerminalDetailsRequest = {
             "terminal": "P400Plus-275479597"
         };
 
-        const response: GetTerminalDetailsResponse = await terminalManagement.getTerminalDetails(request);
+        const response: terminalManagement.GetTerminalDetailsResponse = await terminalManagementService.getTerminalDetails(request);
 
         expect(response.deviceModel).toBe("P400Plus");
     });
@@ -144,11 +133,11 @@ describe("POS Terminal Management API", (): void => {
                     }
                 ]
             });
-        const request: GetTerminalsUnderAccountRequest = {
+        const request: terminalManagement.GetTerminalsUnderAccountRequest = {
             "companyAccount": "YOUR_COMPANY_ACCOUNT"
         };
 
-        const response: GetTerminalsUnderAccountResponse = await terminalManagement.getTerminalsUnderAccount(request);
+        const response: terminalManagement.GetTerminalsUnderAccountResponse = await terminalManagementService.getTerminalsUnderAccount(request);
 
         expect(response.merchantAccounts).toHaveLength(1);
         expect(response.merchantAccounts![0].stores).toHaveLength(1);

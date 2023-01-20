@@ -12,7 +12,7 @@ export class SwishInfo {
     /**
     * Swish number. Format: 10 digits without spaces. For example, **1231111111**.
     */
-    'swishNumber': string;
+    'swishNumber'?: string;
 
     static discriminator: string | undefined = undefined;
 

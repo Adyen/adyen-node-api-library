@@ -21,7 +21,7 @@ export class Configuration {
     /**
     * Funding source. Possible values: * **Credit** * **Debit**
     */
-    'sources'?: Configuration.SourcesEnum;
+    'sources'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,7 +39,7 @@ export class Configuration {
         {
             "name": "sources",
             "baseName": "sources",
-            "type": "Configuration.SourcesEnum"
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -47,7 +47,3 @@ export class Configuration {
     }
 }
 
-export namespace Configuration {
-    export enum SourcesEnum {
-    }
-}

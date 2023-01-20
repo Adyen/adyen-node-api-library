@@ -5,30 +5,21 @@ import { listRecurringDetailsSuccess } from "../__mocks__/recurring/listRecurrin
 import { notifyShopperSuccess } from "../__mocks__/recurring/notifyShopperSuccess";
 import RecurringService from "../services/recurring";
 import Client from "../client";
-import { paymentsSuccess } from "../__mocks__/checkout/paymentsSuccess";
-import { createPaymentsCheckoutRequest } from "./checkout.spec";
-import Checkout from "../services/checkout";
-import { PaymentRequest } from "../typings/checkout/models";
-import {
-    ScheduleAccountUpdaterRequest,
-    ScheduleAccountUpdaterResult,
-    DisableRequest,
-    RecurringDetailsRequest,
-    Recurring,
-    NotifyShopperRequest
-} from "../typings/recurring/models";
+import { recurring } from "../typings";
+import {Permit} from "../typings/recurring/permit";
+import {CreatePermitRequest} from "../typings/recurring/createPermitRequest";
+import {ObjectSerializer} from "../typings/recurring/models";
 
-const createRecurringDetailsRequest = (): RecurringDetailsRequest => {
+const createRecurringDetailsRequest = (): recurring.RecurringDetailsRequest => {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
-        recurring: { contract: Recurring.ContractEnum.Recurring },
+        recurring: { contract: recurring.Recurring.ContractEnum.Recurring },
         shopperReference: "shopperReference",
     };
 };
 
 let client: Client;
-let recurring: RecurringService;
-let checkout: Checkout;
+let recurringService: RecurringService;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -36,8 +27,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    recurring = new RecurringService(client);
-    checkout = new Checkout(client);
+    recurringService = new RecurringService(client);
     scope = nock(`${client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}`);
 });
 
@@ -51,30 +41,24 @@ describe("Recurring", (): void => {
             .reply(200, listRecurringDetailsSuccess);
         const request = createRecurringDetailsRequest();
         
-        const result = await recurring.listRecurringDetails(request);
+        const result = await recurringService.listRecurringDetails(request);
         
         expect(result).toBeTruthy();
         expect(result.details?.[0].recurringDetailReference).toBe("recurringReference");
     });
 
     test("should disable", async (): Promise<void> => {
-        scope.post("/payments")
-            .reply(200, paymentsSuccess);
-
-        const paymentsRequest: PaymentRequest = createPaymentsCheckoutRequest();
-        const res = await checkout.payments(paymentsRequest);
-
         scope.post("/disable")
             .reply(200, disableSuccess);
 
-        const request: DisableRequest = {
+        const request: recurring.DisableRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             shopperReference: "shopperReference",
-            recurringDetailReference: res.additionalData!["recurring.recurringDetailReference"]
+            recurringDetailReference: "recurring.recurringDetailReference",
         };
 
         try {
-            const result = await recurring.disable(request);
+            const result = await recurringService.disable(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e);
@@ -85,7 +69,7 @@ describe("Recurring", (): void => {
         scope.post("/notifyShopper")
             .reply(200, notifyShopperSuccess);
 
-        const notifyShopperRequest: NotifyShopperRequest = {
+        const notifyShopperRequest: recurring.NotifyShopperRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             shopperReference: "shopperReference",
             storedPaymentMethodId: "8415995487234100",
@@ -99,7 +83,7 @@ describe("Recurring", (): void => {
         };
 
         try {
-            const result = await recurring.notifyShopper(notifyShopperRequest);
+            const result = await recurringService.notifyShopper(notifyShopperRequest);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e);
@@ -108,7 +92,7 @@ describe("Recurring", (): void => {
 
 
     test("should schedule account updater", async (): Promise<void> => {
-        const scheduleAccountUpdaterSuccess: ScheduleAccountUpdaterResult = {
+        const scheduleAccountUpdaterSuccess: recurring.ScheduleAccountUpdaterResult = {
             pspReference: "mocked_psp",
             result: "SUCCESS"
         };
@@ -116,7 +100,7 @@ describe("Recurring", (): void => {
         scope.post("/scheduleAccountUpdater")
             .reply(200, scheduleAccountUpdaterSuccess);
 
-        const request: ScheduleAccountUpdaterRequest = {
+        const request: recurring.ScheduleAccountUpdaterRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             reference: "ref",
             card: {
@@ -128,7 +112,60 @@ describe("Recurring", (): void => {
         };
 
         try {
-            const result = await recurring.scheduleAccountUpdater(request);
+            const result = await recurringService.scheduleAccountUpdater(request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e);
+        }
+    });
+
+    test("should do a createPermit request", async (): Promise<void> => {
+        const createPermitResultSuccess: recurring.CreatePermitResult = {
+            pspReference: "1234567890"
+        };
+
+        scope.post("/createPermit")
+            .reply(200, createPermitResultSuccess);
+
+        const permit: Permit = {
+            validTillDate: new Date("2022-03-25"),
+            partnerId: "partnerID"
+        };
+
+        const request: recurring.CreatePermitRequest = {
+            permits: [permit],
+            merchantAccount: process.env.ADYEN_MERCHANT!,
+            shopperReference: "shopperRef",
+            recurringDetailReference: "recurringRef",
+        };
+
+        const serializedRequest: CreatePermitRequest = ObjectSerializer.serialize(request, "CreatePermitRequest");
+        expect(serializedRequest.permits[0].validTillDate?.toString()).toBe("2022-03-25T00:00:00.000Z");
+
+        try {
+            const result = await recurringService.createPermit(request);
+            expect(result).toBeTruthy();
+        } catch (e) {
+            fail(e);
+        }
+    });
+
+    test("should do a disablePermit request", async (): Promise<void> => {
+        const disablePermitResultSuccess: recurring.DisablePermitResult = {
+            pspReference: "1234567890",
+            status: "disabled",
+        };
+
+        scope.post("/disablePermit")
+            .reply(200, disablePermitResultSuccess);
+
+        const request: recurring.DisablePermitRequest = {
+            merchantAccount: process.env.ADYEN_MERCHANT!,
+            token: "permitToken"
+        };
+
+        try {
+            const result = await recurringService.disablePermit(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e);

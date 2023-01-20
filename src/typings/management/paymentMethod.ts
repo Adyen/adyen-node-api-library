@@ -11,7 +11,9 @@ import { ApplePayInfo } from './applePayInfo';
 import { BcmcInfo } from './bcmcInfo';
 import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { GiroPayInfo } from './giroPayInfo';
+import { GooglePayInfo } from './googlePayInfo';
 import { KlarnaInfo } from './klarnaInfo';
+import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { PayPalInfo } from './payPalInfo';
 import { SofortInfo } from './sofortInfo';
 import { SwishInfo } from './swishInfo';
@@ -37,16 +39,26 @@ export class PaymentMethod {
     */
     'currencies'?: Array<string>;
     /**
+    * The list of custom routing flags to route payment to the intended acquirer.
+    */
+    'customRoutingFlags'?: Array<string>;
+    /**
     * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
     */
     'enabled'?: boolean;
     'giroPay'?: GiroPayInfo;
+    'googlePay'?: GooglePayInfo;
     /**
     * The identifier of the resource.
     */
     'id': string;
     'klarna'?: KlarnaInfo;
+    'mealVoucherFR'?: MealVoucherFRInfo;
     'paypal'?: PayPalInfo;
+    /**
+    * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
+    */
+    'reference'?: string;
     /**
     * The sales channel.
     */
@@ -105,6 +117,11 @@ export class PaymentMethod {
             "type": "Array<string>"
         },
         {
+            "name": "customRoutingFlags",
+            "baseName": "customRoutingFlags",
+            "type": "Array<string>"
+        },
+        {
             "name": "enabled",
             "baseName": "enabled",
             "type": "boolean"
@@ -113,6 +130,11 @@ export class PaymentMethod {
             "name": "giroPay",
             "baseName": "giroPay",
             "type": "GiroPayInfo"
+        },
+        {
+            "name": "googlePay",
+            "baseName": "googlePay",
+            "type": "GooglePayInfo"
         },
         {
             "name": "id",
@@ -125,9 +147,19 @@ export class PaymentMethod {
             "type": "KlarnaInfo"
         },
         {
+            "name": "mealVoucherFR",
+            "baseName": "mealVoucher_FR",
+            "type": "MealVoucherFRInfo"
+        },
+        {
             "name": "paypal",
             "baseName": "paypal",
             "type": "PayPalInfo"
+        },
+        {
+            "name": "reference",
+            "baseName": "reference",
+            "type": "string"
         },
         {
             "name": "shopperInteraction",
