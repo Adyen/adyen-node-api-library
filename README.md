@@ -55,6 +55,9 @@ npm install --save @adyen/api-library
 
 Alternatively, you can download the [release on GitHub](https://github.com/Adyen/adyen-node-api-library/releases).
 
+## Upgrading
+
+Please check the **[release page](https://github.com/Adyen/adyen-node-api-library/releases/)** to check for breaking changes in Major versions.
 
 ## Using the library
 
