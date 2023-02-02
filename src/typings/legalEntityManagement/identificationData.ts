@@ -10,6 +10,10 @@
 
 export class IdentificationData {
     /**
+    * The card number of the document that was issued (AU only).
+    */
+    'cardNumber'?: string;
+    /**
     * The expiry date of the document, in YYYY-MM-DD format.
     */
     'expiryDate'?: string;
@@ -37,6 +41,11 @@ export class IdentificationData {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "cardNumber",
+            "baseName": "cardNumber",
+            "type": "string"
+        },
         {
             "name": "expiryDate",
             "baseName": "expiryDate",

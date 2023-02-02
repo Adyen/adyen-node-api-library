@@ -11,10 +11,16 @@ import { DocumentReference } from './documentReference';
 import { EntityReference } from './entityReference';
 import { Individual } from './individual';
 import { LegalEntityAssociation } from './legalEntityAssociation';
+import { LegalEntityCapability } from './legalEntityCapability';
 import { Organization } from './organization';
 import { SoleProprietorship } from './soleProprietorship';
+import { TransferInstrumentReference } from './transferInstrumentReference';
 
 export class LegalEntity {
+    /**
+    * Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
+    */
+    'capabilities'?: { [key: string]: LegalEntityCapability; };
     /**
     * List of documents uploaded for the legal entity.
     */
@@ -39,17 +45,22 @@ export class LegalEntity {
     'reference'?: string;
     'soleProprietorship'?: SoleProprietorship;
     /**
-    * List of transfer instruments owned by the legal entity.
+    * List of transfer instruments that the legal entity owns.
     */
-    'transferInstruments'?: Array<EntityReference>;
+    'transferInstruments'?: Array<TransferInstrumentReference>;
     /**
     * The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
     */
-    'type': LegalEntity.TypeEnum;
+    'type'?: LegalEntity.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "capabilities",
+            "baseName": "capabilities",
+            "type": "{ [key: string]: LegalEntityCapability; }"
+        },
         {
             "name": "documentDetails",
             "baseName": "documentDetails",
@@ -93,7 +104,7 @@ export class LegalEntity {
         {
             "name": "transferInstruments",
             "baseName": "transferInstruments",
-            "type": "Array<EntityReference>"
+            "type": "Array<TransferInstrumentReference>"
         },
         {
             "name": "type",

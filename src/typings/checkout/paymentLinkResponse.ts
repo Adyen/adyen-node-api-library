@@ -66,6 +66,10 @@ export class PaymentLinkResponse {
     */
     'lineItems'?: Array<LineItem>;
     /**
+    * Indicates if the payment must be [captured manually](https://docs.adyen.com/online-payments/capture).
+    */
+    'manualCapture'?: boolean;
+    /**
     * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
     */
     'mcc'?: string;
@@ -120,6 +124,10 @@ export class PaymentLinkResponse {
     */
     'shopperStatement'?: string;
     /**
+    * Set to **false** to hide the button that lets the shopper remove a stored payment method.
+    */
+    'showRemovePaymentMethodButton'?: boolean;
+    /**
     * The shopper\'s social security number.
     */
     'socialSecurityNumber'?: string;
@@ -151,6 +159,10 @@ export class PaymentLinkResponse {
     * A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area.
     */
     'themeId'?: string;
+    /**
+    * The date when the payment link status was updated.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
+    */
+    'updatedAt'?: Date;
     /**
     * The URL at which the shopper can complete the payment.
     */
@@ -235,6 +247,11 @@ export class PaymentLinkResponse {
             "type": "Array<LineItem>"
         },
         {
+            "name": "manualCapture",
+            "baseName": "manualCapture",
+            "type": "boolean"
+        },
+        {
             "name": "mcc",
             "baseName": "mcc",
             "type": "string"
@@ -310,6 +327,11 @@ export class PaymentLinkResponse {
             "type": "string"
         },
         {
+            "name": "showRemovePaymentMethodButton",
+            "baseName": "showRemovePaymentMethodButton",
+            "type": "boolean"
+        },
+        {
             "name": "socialSecurityNumber",
             "baseName": "socialSecurityNumber",
             "type": "string"
@@ -348,6 +370,11 @@ export class PaymentLinkResponse {
             "name": "themeId",
             "baseName": "themeId",
             "type": "string"
+        },
+        {
+            "name": "updatedAt",
+            "baseName": "updatedAt",
+            "type": "Date"
         },
         {
             "name": "url",

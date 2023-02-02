@@ -145,6 +145,7 @@ export class PaymentDetailsResponse {
 export namespace PaymentDetailsResponse {
     export enum ResultCodeEnum {
         AuthenticationFinished = <any> 'AuthenticationFinished',
+        AuthenticationNotRequired = <any> 'AuthenticationNotRequired',
         Authorised = <any> 'Authorised',
         Cancelled = <any> 'Cancelled',
         ChallengeShopper = <any> 'ChallengeShopper',

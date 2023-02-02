@@ -8,15 +8,12 @@
  */
 
 
-export class Amount2 {
+export class TerminalProductPrice {
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
-    'currency': string;
-    /**
-    * The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
-    */
-    'value': number;
+    'currency'?: string;
+    'value'?: any;
 
     static discriminator: string | undefined = undefined;
 
@@ -29,11 +26,11 @@ export class Amount2 {
         {
             "name": "value",
             "baseName": "value",
-            "type": "number"
+            "type": "any"
         }    ];
 
     static getAttributeTypeMap() {
-        return Amount2.attributeTypeMap;
+        return TerminalProductPrice.attributeTypeMap;
     }
 }
 

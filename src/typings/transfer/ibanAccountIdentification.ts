@@ -16,7 +16,7 @@ export class IbanAccountIdentification {
     /**
     * **iban**
     */
-    'type'?: IbanAccountIdentification.TypeEnum;
+    'type': IbanAccountIdentification.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 

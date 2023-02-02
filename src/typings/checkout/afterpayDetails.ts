@@ -14,6 +14,10 @@ export class AfterpayDetails {
     */
     'billingAddress'?: string;
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The address where the goods should be delivered.
     */
     'deliveryAddress'?: string;
@@ -40,6 +44,11 @@ export class AfterpayDetails {
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
+            "type": "string"
+        },
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
             "type": "string"
         },
         {

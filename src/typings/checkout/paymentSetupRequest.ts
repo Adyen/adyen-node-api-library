@@ -17,6 +17,7 @@ import { Installments } from './installments';
 import { LineItem } from './lineItem';
 import { Mandate } from './mandate';
 import { Name } from './name';
+import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { RiskData } from './riskData';
 import { Split } from './split';
 
@@ -118,6 +119,7 @@ export class PaymentSetupRequest {
     * Required for the Web integration.  Set this parameter to the origin URL of the page that you are loading the SDK from.
     */
     'origin'?: string;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
     */
@@ -358,6 +360,11 @@ export class PaymentSetupRequest {
             "name": "origin",
             "baseName": "origin",
             "type": "string"
+        },
+        {
+            "name": "platformChargebackLogic",
+            "baseName": "platformChargebackLogic",
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "recurringExpiry",

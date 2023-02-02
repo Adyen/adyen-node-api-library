@@ -12,8 +12,11 @@ export class Amount {
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
-    'currency'?: string;
-    'value'?: any;
+    'currency': string;
+    /**
+    * The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+    */
+    'value': number;
 
     static discriminator: string | undefined = undefined;
 
@@ -26,7 +29,7 @@ export class Amount {
         {
             "name": "value",
             "baseName": "value",
-            "type": "any"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {

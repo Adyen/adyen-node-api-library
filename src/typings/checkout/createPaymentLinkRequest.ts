@@ -62,6 +62,10 @@ export class CreatePaymentLinkRequest {
     */
     'lineItems'?: Array<LineItem>;
     /**
+    * Indicates if the payment must be [captured manually](https://docs.adyen.com/online-payments/capture).
+    */
+    'manualCapture'?: boolean;
+    /**
     * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
     */
     'mcc'?: string;
@@ -115,6 +119,10 @@ export class CreatePaymentLinkRequest {
     * The text to be shown on the shopper\'s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , \' _ - ? + * /_**.
     */
     'shopperStatement'?: string;
+    /**
+    * Set to **false** to hide the button that lets the shopper remove a stored payment method.
+    */
+    'showRemovePaymentMethodButton'?: boolean;
     /**
     * The shopper\'s social security number.
     */
@@ -218,6 +226,11 @@ export class CreatePaymentLinkRequest {
             "type": "Array<LineItem>"
         },
         {
+            "name": "manualCapture",
+            "baseName": "manualCapture",
+            "type": "boolean"
+        },
+        {
             "name": "mcc",
             "baseName": "mcc",
             "type": "string"
@@ -291,6 +304,11 @@ export class CreatePaymentLinkRequest {
             "name": "shopperStatement",
             "baseName": "shopperStatement",
             "type": "string"
+        },
+        {
+            "name": "showRemovePaymentMethodButton",
+            "baseName": "showRemovePaymentMethodButton",
+            "type": "boolean"
         },
         {
             "name": "socialSecurityNumber",

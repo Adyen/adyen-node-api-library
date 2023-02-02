@@ -15,6 +15,10 @@ export class SoleProprietorship {
     */
     'countryOfGoverningLaw': string;
     /**
+    * The date when the legal arrangement was incorporated in YYYY-MM-DD format.
+    */
+    'dateOfIncorporation'?: string;
+    /**
     * The registered name, if different from the `name`.
     */
     'doingBusinessAs'?: string;
@@ -43,6 +47,11 @@ export class SoleProprietorship {
         {
             "name": "countryOfGoverningLaw",
             "baseName": "countryOfGoverningLaw",
+            "type": "string"
+        },
+        {
+            "name": "dateOfIncorporation",
+            "baseName": "dateOfIncorporation",
             "type": "string"
         },
         {
