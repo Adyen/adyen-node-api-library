@@ -14,6 +14,10 @@ export class UpiCollectDetails {
     */
     'billingSequenceNumber': string;
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'recurringDetailReference'?: string;
@@ -40,6 +44,11 @@ export class UpiCollectDetails {
         {
             "name": "billingSequenceNumber",
             "baseName": "billingSequenceNumber",
+            "type": "string"
+        },
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
             "type": "string"
         },
         {

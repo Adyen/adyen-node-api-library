@@ -10,11 +10,11 @@
 
 export class SourceOfFunds {
     /**
-    * The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability. Required when `adyenProcessedFunds` is **true**.
+    * The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.
     */
     'acquiringBusinessLineId'?: string;
     /**
-    * Indicates whether the funds are coming from transactions processed by Adyen.   - If **true**, the `acquiringBusinessLineId` is required.   - If **false**, a `description` is required.
+    * Indicates whether the funds are coming from transactions processed by Adyen. If **false**, a `description` is required.
     */
     'adyenProcessedFunds'?: boolean;
     /**

@@ -16,6 +16,10 @@ import { WebData } from './webData';
 
 export class Organization {
     /**
+    * The date when the organization was incorporated in YYYY-MM-DD format.
+    */
+    'dateOfIncorporation'?: string;
+    /**
     * Your description for the organization.
     */
     'description'?: string;
@@ -61,6 +65,11 @@ export class Organization {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "dateOfIncorporation",
+            "baseName": "dateOfIncorporation",
+            "type": "string"
+        },
         {
             "name": "description",
             "baseName": "description",

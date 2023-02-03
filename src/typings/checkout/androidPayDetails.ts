@@ -10,6 +10,10 @@
 
 export class AndroidPayDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * **androidpay**
     */
     'type'?: AndroidPayDetails.TypeEnum;
@@ -17,6 +21,11 @@ export class AndroidPayDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "type",
             "baseName": "type",

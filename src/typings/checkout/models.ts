@@ -35,6 +35,7 @@ export * from './applePayDetails';
 export * from './applePaySessionResponse';
 export * from './applicationInfo';
 export * from './authenticationData';
+export * from './authenticationData2';
 export * from './avs';
 export * from './bacsDirectDebitDetails';
 export * from './bankAccount';
@@ -88,6 +89,8 @@ export * from './externalPlatform';
 export * from './forexQuote';
 export * from './fraudCheckResult';
 export * from './fraudResult';
+export * from './fundOrigin';
+export * from './fundRecipient';
 export * from './genericIssuerPaymentMethodDetails';
 export * from './giropayDetails';
 export * from './googlePayDetails';
@@ -133,6 +136,7 @@ export * from './paymentSetupResponse';
 export * from './paymentVerificationRequest';
 export * from './paymentVerificationResponse';
 export * from './phone';
+export * from './platformChargebackLogic';
 export * from './ratepayDetails';
 export * from './recurring';
 export * from './recurringDetail';
@@ -160,6 +164,7 @@ export * from './storedDetails';
 export * from './storedPaymentMethod';
 export * from './storedPaymentMethodDetails';
 export * from './subInputDetail';
+export * from './subMerchant';
 export * from './threeDS2RequestData';
 export * from './threeDS2ResponseData';
 export * from './threeDS2Result';
@@ -204,6 +209,7 @@ import { ApplePayDetails } from './applePayDetails';
 import { ApplePaySessionResponse } from './applePaySessionResponse';
 import { ApplicationInfo } from './applicationInfo';
 import { AuthenticationData } from './authenticationData';
+import { AuthenticationData2 } from './authenticationData2';
 import { Avs } from './avs';
 import { BacsDirectDebitDetails } from './bacsDirectDebitDetails';
 import { BankAccount } from './bankAccount';
@@ -257,6 +263,8 @@ import { ExternalPlatform } from './externalPlatform';
 import { ForexQuote } from './forexQuote';
 import { FraudCheckResult } from './fraudCheckResult';
 import { FraudResult } from './fraudResult';
+import { FundOrigin } from './fundOrigin';
+import { FundRecipient } from './fundRecipient';
 import { GenericIssuerPaymentMethodDetails } from './genericIssuerPaymentMethodDetails';
 import { GiropayDetails } from './giropayDetails';
 import { GooglePayDetails } from './googlePayDetails';
@@ -302,6 +310,7 @@ import { PaymentSetupResponse } from './paymentSetupResponse';
 import { PaymentVerificationRequest } from './paymentVerificationRequest';
 import { PaymentVerificationResponse } from './paymentVerificationResponse';
 import { Phone } from './phone';
+import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { RatepayDetails } from './ratepayDetails';
 import { Recurring } from './recurring';
 import { RecurringDetail } from './recurringDetail';
@@ -329,6 +338,7 @@ import { StoredDetails } from './storedDetails';
 import { StoredPaymentMethod } from './storedPaymentMethod';
 import { StoredPaymentMethodDetails } from './storedPaymentMethodDetails';
 import { SubInputDetail } from './subInputDetail';
+import { SubMerchant } from './subMerchant';
 import { ThreeDS2RequestData } from './threeDS2RequestData';
 import { ThreeDS2ResponseData } from './threeDS2ResponseData';
 import { ThreeDS2Result } from './threeDS2Result';
@@ -379,7 +389,7 @@ let enumsMap: {[index: string]: any} = {
         "AndroidPayDetails.TypeEnum": AndroidPayDetails.TypeEnum,
         "ApplePayDetails.FundingSourceEnum": ApplePayDetails.FundingSourceEnum,
         "ApplePayDetails.TypeEnum": ApplePayDetails.TypeEnum,
-        "AuthenticationData.AttemptAuthenticationEnum": AuthenticationData.AttemptAuthenticationEnum,
+        "AuthenticationData2.AttemptAuthenticationEnum": AuthenticationData2.AttemptAuthenticationEnum,
         "Avs.EnabledEnum": Avs.EnabledEnum,
         "BacsDirectDebitDetails.TypeEnum": BacsDirectDebitDetails.TypeEnum,
         "BillDeskDetails.TypeEnum": BillDeskDetails.TypeEnum,
@@ -468,6 +478,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentSetupRequest.EntityTypeEnum": PaymentSetupRequest.EntityTypeEnum,
         "PaymentSetupRequest.ShopperInteractionEnum": PaymentSetupRequest.ShopperInteractionEnum,
         "PaymentVerificationResponse.ResultCodeEnum": PaymentVerificationResponse.ResultCodeEnum,
+        "PlatformChargebackLogic.BehaviorEnum": PlatformChargebackLogic.BehaviorEnum,
         "RatepayDetails.TypeEnum": RatepayDetails.TypeEnum,
         "Recurring.ContractEnum": Recurring.ContractEnum,
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
@@ -493,6 +504,7 @@ let enumsMap: {[index: string]: any} = {
         "ThreeDS2Result.ChallengeIndicatorEnum": ThreeDS2Result.ChallengeIndicatorEnum,
         "ThreeDS2Result.ExemptionIndicatorEnum": ThreeDS2Result.ExemptionIndicatorEnum,
         "ThreeDSRequestData.ChallengeWindowSizeEnum": ThreeDSRequestData.ChallengeWindowSizeEnum,
+        "ThreeDSRequestData.DataOnlyEnum": ThreeDSRequestData.DataOnlyEnum,
         "ThreeDSRequestData.NativeThreeDSEnum": ThreeDSRequestData.NativeThreeDSEnum,
         "ThreeDSRequestData.ThreeDSVersionEnum": ThreeDSRequestData.ThreeDSVersionEnum,
         "ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum": ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum,
@@ -539,6 +551,7 @@ let typeMap: {[index: string]: any} = {
     "ApplePaySessionResponse": ApplePaySessionResponse,
     "ApplicationInfo": ApplicationInfo,
     "AuthenticationData": AuthenticationData,
+    "AuthenticationData2": AuthenticationData2,
     "Avs": Avs,
     "BacsDirectDebitDetails": BacsDirectDebitDetails,
     "BankAccount": BankAccount,
@@ -592,6 +605,8 @@ let typeMap: {[index: string]: any} = {
     "ForexQuote": ForexQuote,
     "FraudCheckResult": FraudCheckResult,
     "FraudResult": FraudResult,
+    "FundOrigin": FundOrigin,
+    "FundRecipient": FundRecipient,
     "GenericIssuerPaymentMethodDetails": GenericIssuerPaymentMethodDetails,
     "GiropayDetails": GiropayDetails,
     "GooglePayDetails": GooglePayDetails,
@@ -637,6 +652,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentVerificationRequest": PaymentVerificationRequest,
     "PaymentVerificationResponse": PaymentVerificationResponse,
     "Phone": Phone,
+    "PlatformChargebackLogic": PlatformChargebackLogic,
     "RatepayDetails": RatepayDetails,
     "Recurring": Recurring,
     "RecurringDetail": RecurringDetail,
@@ -664,6 +680,7 @@ let typeMap: {[index: string]: any} = {
     "StoredPaymentMethod": StoredPaymentMethod,
     "StoredPaymentMethodDetails": StoredPaymentMethodDetails,
     "SubInputDetail": SubInputDetail,
+    "SubMerchant": SubMerchant,
     "ThreeDS2RequestData": ThreeDS2RequestData,
     "ThreeDS2ResponseData": ThreeDS2ResponseData,
     "ThreeDS2Result": ThreeDS2Result,

@@ -18,6 +18,10 @@ export class AchDetails {
     */
     'bankLocationId'?: string;
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * Encrypted bank account number. The bank account number (without separators).
     */
     'encryptedBankAccountNumber'?: string;
@@ -53,6 +57,11 @@ export class AchDetails {
         {
             "name": "bankLocationId",
             "baseName": "bankLocationId",
+            "type": "string"
+        },
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
             "type": "string"
         },
         {

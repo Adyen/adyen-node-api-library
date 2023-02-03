@@ -10,6 +10,10 @@
 
 export class MolPayDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The shopper\'s bank. Specify this with the issuer value that corresponds to this bank.
     */
     'issuer': string;
@@ -21,6 +25,11 @@ export class MolPayDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "issuer",
             "baseName": "issuer",

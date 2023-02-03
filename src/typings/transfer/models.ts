@@ -14,9 +14,11 @@ export * from './address2';
 export * from './amount';
 export * from './bRLocalAccountIdentification';
 export * from './bankAccountV3';
+export * from './cALocalAccountIdentification';
 export * from './cZLocalAccountIdentification';
 export * from './counterpartyInfoV3';
 export * from './counterpartyV3';
+export * from './dKLocalAccountIdentification';
 export * from './hULocalAccountIdentification';
 export * from './ibanAccountIdentification';
 export * from './invalidField';
@@ -32,6 +34,7 @@ export * from './pLLocalAccountIdentification';
 export * from './partyIdentification2';
 export * from './restServiceError';
 export * from './sELocalAccountIdentification';
+export * from './sGLocalAccountIdentification';
 export * from './transaction';
 export * from './transactionSearchResponse';
 export * from './transfer';
@@ -46,9 +49,11 @@ import { Address2 } from './address2';
 import { Amount } from './amount';
 import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
 import { BankAccountV3 } from './bankAccountV3';
+import { CALocalAccountIdentification } from './cALocalAccountIdentification';
 import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
 import { CounterpartyInfoV3 } from './counterpartyInfoV3';
 import { CounterpartyV3 } from './counterpartyV3';
+import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { InvalidField } from './invalidField';
@@ -64,6 +69,7 @@ import { PLLocalAccountIdentification } from './pLLocalAccountIdentification';
 import { PartyIdentification2 } from './partyIdentification2';
 import { RestServiceError } from './restServiceError';
 import { SELocalAccountIdentification } from './sELocalAccountIdentification';
+import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
 import { Transaction } from './transaction';
 import { TransactionSearchResponse } from './transactionSearchResponse';
 import { Transfer } from './transfer';
@@ -87,7 +93,9 @@ let enumsMap: {[index: string]: any} = {
         "AULocalAccountIdentification.TypeEnum": AULocalAccountIdentification.TypeEnum,
         "AdditionalBankIdentification.TypeEnum": AdditionalBankIdentification.TypeEnum,
         "BRLocalAccountIdentification.TypeEnum": BRLocalAccountIdentification.TypeEnum,
+        "CALocalAccountIdentification.TypeEnum": CALocalAccountIdentification.TypeEnum,
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
+        "DKLocalAccountIdentification.TypeEnum": DKLocalAccountIdentification.TypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
@@ -95,6 +103,7 @@ let enumsMap: {[index: string]: any} = {
         "PLLocalAccountIdentification.TypeEnum": PLLocalAccountIdentification.TypeEnum,
         "PartyIdentification2.TypeEnum": PartyIdentification2.TypeEnum,
         "SELocalAccountIdentification.TypeEnum": SELocalAccountIdentification.TypeEnum,
+        "SGLocalAccountIdentification.TypeEnum": SGLocalAccountIdentification.TypeEnum,
         "Transaction.CategoryEnum": Transaction.CategoryEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
@@ -117,9 +126,11 @@ let typeMap: {[index: string]: any} = {
     "Amount": Amount,
     "BRLocalAccountIdentification": BRLocalAccountIdentification,
     "BankAccountV3": BankAccountV3,
+    "CALocalAccountIdentification": CALocalAccountIdentification,
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
     "CounterpartyInfoV3": CounterpartyInfoV3,
     "CounterpartyV3": CounterpartyV3,
+    "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
     "InvalidField": InvalidField,
@@ -135,6 +146,7 @@ let typeMap: {[index: string]: any} = {
     "PartyIdentification2": PartyIdentification2,
     "RestServiceError": RestServiceError,
     "SELocalAccountIdentification": SELocalAccountIdentification,
+    "SGLocalAccountIdentification": SGLocalAccountIdentification,
     "Transaction": Transaction,
     "TransactionSearchResponse": TransactionSearchResponse,
     "Transfer": Transfer,

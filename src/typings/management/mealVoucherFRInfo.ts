@@ -18,9 +18,9 @@ export class MealVoucherFRInfo {
     */
     'siret': string;
     /**
-    * The list of additional payment methods
+    * The list of additional payment methods. Allowed values: **mealVoucher_FR_endenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
     */
-    'subTypes'?: MealVoucherFRInfo.SubTypesEnum;
+    'subTypes': Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -38,7 +38,7 @@ export class MealVoucherFRInfo {
         {
             "name": "subTypes",
             "baseName": "subTypes",
-            "type": "MealVoucherFRInfo.SubTypesEnum"
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -46,7 +46,3 @@ export class MealVoucherFRInfo {
     }
 }
 
-export namespace MealVoucherFRInfo {
-    export enum SubTypesEnum {
-    }
-}

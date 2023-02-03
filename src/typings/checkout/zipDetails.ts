@@ -10,6 +10,10 @@
 
 export class ZipDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * Set this to **true** if the shopper would like to pick up and collect their order, instead of having the goods delivered to them.
     */
     'clickAndCollect'?: string;
@@ -29,6 +33,11 @@ export class ZipDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "clickAndCollect",
             "baseName": "clickAndCollect",

@@ -16,7 +16,7 @@ export class Nexo {
     'encryptionKey'?: Key;
     'eventUrls'?: EventUrl;
     /**
-    * @deprecated One or more URLs to send event messages to when using Terminal API.
+    * One or more URLs to send event messages to when using Terminal API.
     */
     'nexoEventUrls'?: Array<string>;
 

@@ -9,6 +9,10 @@
 
 
 export class MbwayDetails {
+    /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
     'shopperEmail': string;
     'telephoneNumber': string;
     /**
@@ -19,6 +23,11 @@ export class MbwayDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",

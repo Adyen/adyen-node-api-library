@@ -10,6 +10,10 @@
 
 export class GenericIssuerPaymentMethodDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The issuer id of the shopper\'s selected bank.
     */
     'issuer': string;
@@ -29,6 +33,11 @@ export class GenericIssuerPaymentMethodDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "issuer",
             "baseName": "issuer",
@@ -57,6 +66,7 @@ export class GenericIssuerPaymentMethodDetails {
 
 export namespace GenericIssuerPaymentMethodDetails {
     export enum TypeEnum {
+        OnlineBankingPl = <any> 'onlineBanking_PL',
         Eps = <any> 'eps',
         OnlineBankingSk = <any> 'onlineBanking_SK',
         OnlineBankingCz = <any> 'onlineBanking_CZ'

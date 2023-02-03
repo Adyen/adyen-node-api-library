@@ -10,6 +10,10 @@
 
 export class VippsDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'recurringDetailReference'?: string;
@@ -26,6 +30,11 @@ export class VippsDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",

@@ -10,6 +10,10 @@
 
 export class SepaDirectDebitDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The International Bank Account Number (IBAN).
     */
     'iban': string;
@@ -33,6 +37,11 @@ export class SepaDirectDebitDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "iban",
             "baseName": "iban",

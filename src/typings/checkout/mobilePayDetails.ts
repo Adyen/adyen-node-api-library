@@ -10,6 +10,10 @@
 
 export class MobilePayDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * **mobilepay**
     */
     'type'?: MobilePayDetails.TypeEnum;
@@ -17,6 +21,11 @@ export class MobilePayDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "type",
             "baseName": "type",

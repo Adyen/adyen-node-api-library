@@ -7,10 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { Amount2 } from './amount2';
+import { Amount } from './amount';
 
 export class CustomNotification {
-    'amount'?: Amount2;
+    'amount'?: Amount;
     /**
     * The event that caused the notification to be sent.Currently supported values: * **AUTHORISATION** * **CANCELLATION** * **REFUND** * **CAPTURE** * **DEACTIVATE_RECURRING** * **REPORT_AVAILABLE** * **CHARGEBACK** * **REQUEST_FOR_INFORMATION** * **NOTIFICATION_OF_CHARGEBACK** * **NOTIFICATIONTEST** * **ORDER_OPENED** * **ORDER_CLOSED** * **CHARGEBACK_REVERSED** * **REFUNDED_REVERSED** * **REFUND_WITH_DATA**
     */
@@ -42,7 +42,7 @@ export class CustomNotification {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount2"
+            "type": "Amount"
         },
         {
             "name": "eventCode",
