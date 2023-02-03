@@ -10,6 +10,10 @@
 
 export class MasterpassDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
     'fundingSource'?: MasterpassDetails.FundingSourceEnum;
@@ -25,6 +29,11 @@ export class MasterpassDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",

@@ -7,9 +7,11 @@
  * Do not edit this class manually.
  */
 
+import { AuthenticationData } from './authenticationData';
 import { PaymentCompletionDetails } from './paymentCompletionDetails';
 
 export class DetailsRequest {
+    'authenticationData'?: AuthenticationData;
     'details': PaymentCompletionDetails;
     /**
     * The `paymentData` value from the `/payments` response. Required if the `/payments` response returns this value. 
@@ -23,6 +25,11 @@ export class DetailsRequest {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "authenticationData",
+            "baseName": "authenticationData",
+            "type": "AuthenticationData"
+        },
         {
             "name": "details",
             "baseName": "details",

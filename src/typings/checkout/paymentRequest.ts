@@ -16,7 +16,7 @@ import { Amount } from './amount';
 import { AndroidPayDetails } from './androidPayDetails';
 import { ApplePayDetails } from './applePayDetails';
 import { ApplicationInfo } from './applicationInfo';
-import { AuthenticationData } from './authenticationData';
+import { AuthenticationData2 } from './authenticationData2';
 import { BacsDirectDebitDetails } from './bacsDirectDebitDetails';
 import { BillDeskDetails } from './billDeskDetails';
 import { BlikDetails } from './blikDetails';
@@ -49,6 +49,7 @@ import { PayPalDetails } from './payPalDetails';
 import { PayUUpiDetails } from './payUUpiDetails';
 import { PayWithGoogleDetails } from './payWithGoogleDetails';
 import { PaymentDetails } from './paymentDetails';
+import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { RatepayDetails } from './ratepayDetails';
 import { RiskData } from './riskData';
 import { SamsungPayDetails } from './samsungPayDetails';
@@ -73,7 +74,7 @@ export class PaymentRequest {
     'additionalData'?: { [key: string]: string; };
     'amount': Amount;
     'applicationInfo'?: ApplicationInfo;
-    'authenticationData'?: AuthenticationData;
+    'authenticationData'?: AuthenticationData2;
     'billingAddress'?: Address;
     'browserInfo'?: BrowserInfo;
     /**
@@ -168,6 +169,7 @@ export class PaymentRequest {
     * The type and required details of a payment method to use.
     */
     'paymentMethod': AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
     */
@@ -282,7 +284,7 @@ export class PaymentRequest {
         {
             "name": "authenticationData",
             "baseName": "authenticationData",
-            "type": "AuthenticationData"
+            "type": "AuthenticationData2"
         },
         {
             "name": "billingAddress",
@@ -438,6 +440,11 @@ export class PaymentRequest {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
             "type": "AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails"
+        },
+        {
+            "name": "platformChargebackLogic",
+            "baseName": "platformChargebackLogic",
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "recurringExpiry",

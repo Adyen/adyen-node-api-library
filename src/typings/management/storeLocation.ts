@@ -8,7 +8,7 @@
  */
 
 
-export class Address2 {
+export class StoreLocation {
     /**
     * The name of the city.
     */
@@ -78,7 +78,7 @@ export class Address2 {
         }    ];
 
     static getAttributeTypeMap() {
-        return Address2.attributeTypeMap;
+        return StoreLocation.attributeTypeMap;
     }
 }
 

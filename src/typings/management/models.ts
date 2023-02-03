@@ -11,11 +11,9 @@
 export * from './additionalSettings';
 export * from './additionalSettingsResponse';
 export * from './address';
-export * from './address2';
 export * from './allowedOrigin';
 export * from './allowedOriginsResponse';
 export * from './amount';
-export * from './amount2';
 export * from './androidApp';
 export * from './androidAppsResponse';
 export * from './androidCertificate';
@@ -121,6 +119,7 @@ export * from './standalone';
 export * from './store';
 export * from './storeCreationRequest';
 export * from './storeCreationWithMerchantCodeRequest';
+export * from './storeLocation';
 export * from './storeSplitConfiguration';
 export * from './surcharge';
 export * from './swishInfo';
@@ -131,6 +130,7 @@ export * from './terminalOrder';
 export * from './terminalOrderRequest';
 export * from './terminalOrdersResponse';
 export * from './terminalProduct';
+export * from './terminalProductPrice';
 export * from './terminalProductsResponse';
 export * from './terminalSettings';
 export * from './testCompanyWebhookRequest';
@@ -160,11 +160,9 @@ export * from './wifiProfiles';
 import { AdditionalSettings } from './additionalSettings';
 import { AdditionalSettingsResponse } from './additionalSettingsResponse';
 import { Address } from './address';
-import { Address2 } from './address2';
 import { AllowedOrigin } from './allowedOrigin';
 import { AllowedOriginsResponse } from './allowedOriginsResponse';
 import { Amount } from './amount';
-import { Amount2 } from './amount2';
 import { AndroidApp } from './androidApp';
 import { AndroidAppsResponse } from './androidAppsResponse';
 import { AndroidCertificate } from './androidCertificate';
@@ -270,6 +268,7 @@ import { Standalone } from './standalone';
 import { Store } from './store';
 import { StoreCreationRequest } from './storeCreationRequest';
 import { StoreCreationWithMerchantCodeRequest } from './storeCreationWithMerchantCodeRequest';
+import { StoreLocation } from './storeLocation';
 import { StoreSplitConfiguration } from './storeSplitConfiguration';
 import { Surcharge } from './surcharge';
 import { SwishInfo } from './swishInfo';
@@ -280,6 +279,7 @@ import { TerminalOrder } from './terminalOrder';
 import { TerminalOrderRequest } from './terminalOrderRequest';
 import { TerminalOrdersResponse } from './terminalOrdersResponse';
 import { TerminalProduct } from './terminalProduct';
+import { TerminalProductPrice } from './terminalProductPrice';
 import { TerminalProductsResponse } from './terminalProductsResponse';
 import { TerminalSettings } from './terminalSettings';
 import { TestCompanyWebhookRequest } from './testCompanyWebhookRequest';
@@ -329,7 +329,6 @@ let enumsMap: {[index: string]: any} = {
         "InstallAndroidAppDetails.TypeEnum": InstallAndroidAppDetails.TypeEnum,
         "InstallAndroidCertificateDetails.TypeEnum": InstallAndroidCertificateDetails.TypeEnum,
         "KlarnaInfo.RegionEnum": KlarnaInfo.RegionEnum,
-        "MealVoucherFRInfo.SubTypesEnum": MealVoucherFRInfo.SubTypesEnum,
         "PaymentMethod.VerificationStatusEnum": PaymentMethod.VerificationStatusEnum,
         "PaymentMethodResponse.TypesWithErrorsEnum": PaymentMethodResponse.TypesWithErrorsEnum,
         "PaymentMethodSetupInfo.ShopperInteractionEnum": PaymentMethodSetupInfo.ShopperInteractionEnum,
@@ -359,11 +358,9 @@ let typeMap: {[index: string]: any} = {
     "AdditionalSettings": AdditionalSettings,
     "AdditionalSettingsResponse": AdditionalSettingsResponse,
     "Address": Address,
-    "Address2": Address2,
     "AllowedOrigin": AllowedOrigin,
     "AllowedOriginsResponse": AllowedOriginsResponse,
     "Amount": Amount,
-    "Amount2": Amount2,
     "AndroidApp": AndroidApp,
     "AndroidAppsResponse": AndroidAppsResponse,
     "AndroidCertificate": AndroidCertificate,
@@ -469,6 +466,7 @@ let typeMap: {[index: string]: any} = {
     "Store": Store,
     "StoreCreationRequest": StoreCreationRequest,
     "StoreCreationWithMerchantCodeRequest": StoreCreationWithMerchantCodeRequest,
+    "StoreLocation": StoreLocation,
     "StoreSplitConfiguration": StoreSplitConfiguration,
     "Surcharge": Surcharge,
     "SwishInfo": SwishInfo,
@@ -479,6 +477,7 @@ let typeMap: {[index: string]: any} = {
     "TerminalOrderRequest": TerminalOrderRequest,
     "TerminalOrdersResponse": TerminalOrdersResponse,
     "TerminalProduct": TerminalProduct,
+    "TerminalProductPrice": TerminalProductPrice,
     "TerminalProductsResponse": TerminalProductsResponse,
     "TerminalSettings": TerminalSettings,
     "TestCompanyWebhookRequest": TestCompanyWebhookRequest,

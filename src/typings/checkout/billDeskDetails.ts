@@ -10,6 +10,10 @@
 
 export class BillDeskDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The issuer id of the shopper\'s selected bank.
     */
     'issuer': string;
@@ -21,6 +25,11 @@ export class BillDeskDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "issuer",
             "baseName": "issuer",

@@ -10,13 +10,13 @@
 
 export class HULocalAccountIdentification {
     /**
-    * The 24-digit bank account number (without separators or whitespace).
+    * The 24-digit bank account number, without separators or whitespace.
     */
     'accountNumber': string;
     /**
     * **huLocal**
     */
-    'type'?: HULocalAccountIdentification.TypeEnum;
+    'type': HULocalAccountIdentification.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 

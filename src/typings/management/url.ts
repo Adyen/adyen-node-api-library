@@ -10,7 +10,7 @@
 
 export class Url {
     /**
-    * The password for authentication of the event notifications.
+    * The password for authentication of the notifications.
     */
     'password'?: string;
     /**
@@ -18,7 +18,7 @@ export class Url {
     */
     'url'?: string;
     /**
-    * The username for authentication of the event notifications.
+    * The username for authentication of the notifications.
     */
     'username'?: string;
 

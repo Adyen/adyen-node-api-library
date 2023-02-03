@@ -13,11 +13,11 @@ import { CounterpartyInfoV3 } from './counterpartyInfoV3';
 export class TransferInfo {
     'amount': Amount;
     /**
-    * Unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+    * The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
     */
     'balanceAccountId'?: string;
     /**
-    * The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.
+    * The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
     */
     'category': TransferInfo.CategoryEnum;
     'counterparty': CounterpartyInfoV3;
@@ -30,15 +30,15 @@ export class TransferInfo {
     */
     'id'?: string;
     /**
-    * Unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
+    * The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
     */
     'paymentInstrumentId'?: string;
     /**
-    * The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  
+    * The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).
     */
     'priority'?: TransferInfo.PriorityEnum;
     /**
-    * A reference for the transfer, only used internally within your platform. If you don\'t provide this in the request, Adyen generates a unique reference. Maximum length: 80 characters.
+    * Your reference for the transfer, used internally within your platform. If you don\'t provide this in the request, Adyen generates a unique reference.
     */
     'reference'?: string;
     /**
@@ -108,9 +108,12 @@ export class TransferInfo {
 export namespace TransferInfo {
     export enum CategoryEnum {
         Bank = <any> 'bank',
-        Internal = <any> 'internal'
+        Internal = <any> 'internal',
+        IssuedCard = <any> 'issuedCard',
+        PlatformPayment = <any> 'platformPayment'
     }
     export enum PriorityEnum {
+        DirectDebit = <any> 'directDebit',
         Fast = <any> 'fast',
         Instant = <any> 'instant',
         Regular = <any> 'regular',

@@ -16,7 +16,7 @@ export class Card {
     /**
     * The card expiry month. Format: 2 digits, zero-padded for single digits. For example: * 03 = March * 11 = November
     */
-    'expiryMonth': string;
+    'expiryMonth'?: string;
     /**
     * The card expiry year. Format: 4 digits. For example: 2020
     */
@@ -32,7 +32,7 @@ export class Card {
     /**
     * The card number (4-19 characters). Do not use any separators. When this value is returned in a response, only the last 4 digits of the card number are returned.
     */
-    'number': string;
+    'number'?: string;
     /**
     * The month component of the start date (for some UK debit cards only).
     */

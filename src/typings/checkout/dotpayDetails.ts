@@ -10,6 +10,10 @@
 
 export class DotpayDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The Dotpay issuer value of the shopper\'s selected bank. Set this to an **id** of a Dotpay issuer to preselect it.
     */
     'issuer': string;
@@ -21,6 +25,11 @@ export class DotpayDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "issuer",
             "baseName": "issuer",
