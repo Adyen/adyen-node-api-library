@@ -12,7 +12,8 @@
           "hmacSignature": "OzDjCMZIsdtDqrZ+cl\/FWC+WdESrorctXTzAzW33dXI=",
           "NAME2": "  VALUE2  ",
           "fraudCheck-6-ShopperIpUsage": "10",
-          "paymentLinkId": "ABCDEFG"
+          "paymentLinkId": "ABCDEFG",
+          "realtimeAccountUpdaterStatus": "status"
         },
         "amount": {
           "currency": "EUR",
