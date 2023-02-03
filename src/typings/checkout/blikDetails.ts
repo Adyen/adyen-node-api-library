@@ -14,6 +14,10 @@ export class BlikDetails {
     */
     'blikCode'?: string;
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'recurringDetailReference'?: string;
@@ -32,6 +36,11 @@ export class BlikDetails {
         {
             "name": "blikCode",
             "baseName": "blikCode",
+            "type": "string"
+        },
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
             "type": "string"
         },
         {

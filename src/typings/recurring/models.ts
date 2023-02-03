@@ -12,11 +12,18 @@ export * from './address';
 export * from './amount';
 export * from './bankAccount';
 export * from './card';
+export * from './createPermitRequest';
+export * from './createPermitResult';
+export * from './disablePermitRequest';
+export * from './disablePermitResult';
 export * from './disableRequest';
 export * from './disableResult';
 export * from './name';
 export * from './notifyShopperRequest';
 export * from './notifyShopperResult';
+export * from './permit';
+export * from './permitRestriction';
+export * from './permitResult';
 export * from './recurring';
 export * from './recurringDetail';
 export * from './recurringDetailsRequest';
@@ -31,11 +38,18 @@ import { Address } from './address';
 import { Amount } from './amount';
 import { BankAccount } from './bankAccount';
 import { Card } from './card';
+import { CreatePermitRequest } from './createPermitRequest';
+import { CreatePermitResult } from './createPermitResult';
+import { DisablePermitRequest } from './disablePermitRequest';
+import { DisablePermitResult } from './disablePermitResult';
 import { DisableRequest } from './disableRequest';
 import { DisableResult } from './disableResult';
 import { Name } from './name';
 import { NotifyShopperRequest } from './notifyShopperRequest';
 import { NotifyShopperResult } from './notifyShopperResult';
+import { Permit } from './permit';
+import { PermitRestriction } from './permitRestriction';
+import { PermitResult } from './permitResult';
 import { Recurring } from './recurring';
 import { RecurringDetail } from './recurringDetail';
 import { RecurringDetailsRequest } from './recurringDetailsRequest';
@@ -67,11 +81,18 @@ let typeMap: {[index: string]: any} = {
     "Amount": Amount,
     "BankAccount": BankAccount,
     "Card": Card,
+    "CreatePermitRequest": CreatePermitRequest,
+    "CreatePermitResult": CreatePermitResult,
+    "DisablePermitRequest": DisablePermitRequest,
+    "DisablePermitResult": DisablePermitResult,
     "DisableRequest": DisableRequest,
     "DisableResult": DisableResult,
     "Name": Name,
     "NotifyShopperRequest": NotifyShopperRequest,
     "NotifyShopperResult": NotifyShopperResult,
+    "Permit": Permit,
+    "PermitRestriction": PermitRestriction,
+    "PermitResult": PermitResult,
     "Recurring": Recurring,
     "RecurringDetail": RecurringDetail,
     "RecurringDetailsRequest": RecurringDetailsRequest,

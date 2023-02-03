@@ -10,6 +10,10 @@
 
 export class DokuDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The shopper\'s first name.
     */
     'firstName': string;
@@ -29,6 +33,11 @@ export class DokuDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "firstName",
             "baseName": "firstName",

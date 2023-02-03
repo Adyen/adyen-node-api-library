@@ -8,32 +8,41 @@
  */
 
 
-export class Amount2 {
+export class Key {
     /**
-    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+    * The unique identifier of the shared key.
     */
-    'currency': string;
+    'identifier'?: string;
     /**
-    * The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+    * The secure passphrase to protect the shared key.
     */
-    'value': number;
+    'passphrase'?: string;
+    /**
+    * The version number of the shared key.
+    */
+    'version'?: number;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "currency",
-            "baseName": "currency",
+            "name": "identifier",
+            "baseName": "identifier",
             "type": "string"
         },
         {
-            "name": "value",
-            "baseName": "value",
+            "name": "passphrase",
+            "baseName": "passphrase",
+            "type": "string"
+        },
+        {
+            "name": "version",
+            "baseName": "version",
             "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return Amount2.attributeTypeMap;
+        return Key.attributeTypeMap;
     }
 }
 

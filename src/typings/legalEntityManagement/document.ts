@@ -17,6 +17,10 @@ export class Document {
     */
     'attachments': Array<Attachment>;
     /**
+    * The creation date of the document.
+    */
+    'creationDate'?: Date;
+    /**
     * Your description for the document.
     */
     'description': string;
@@ -41,6 +45,10 @@ export class Document {
     */
     'issuerState'?: string;
     /**
+    * The modification date of the document.
+    */
+    'modificationDate'?: Date;
+    /**
     * The number in the document.
     */
     'number'?: string;
@@ -62,6 +70,11 @@ export class Document {
             "name": "attachments",
             "baseName": "attachments",
             "type": "Array<Attachment>"
+        },
+        {
+            "name": "creationDate",
+            "baseName": "creationDate",
+            "type": "Date"
         },
         {
             "name": "description",
@@ -92,6 +105,11 @@ export class Document {
             "name": "issuerState",
             "baseName": "issuerState",
             "type": "string"
+        },
+        {
+            "name": "modificationDate",
+            "baseName": "modificationDate",
+            "type": "Date"
         },
         {
             "name": "number",

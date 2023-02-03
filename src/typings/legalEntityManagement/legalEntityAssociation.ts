@@ -30,7 +30,7 @@ export class LegalEntityAssociation {
     */
     'name'?: string;
     /**
-    * Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, or **signatory**. 
+    * Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **soleProprietorship**. 
     */
     'type': LegalEntityAssociation.TypeEnum;
 
@@ -75,7 +75,9 @@ export class LegalEntityAssociation {
 
 export namespace LegalEntityAssociation {
     export enum TypeEnum {
+        PciSignatory = <any> 'pciSignatory',
         Signatory = <any> 'signatory',
+        SoleProprietorship = <any> 'soleProprietorship',
         UboThroughControl = <any> 'uboThroughControl',
         UboThroughOwnership = <any> 'uboThroughOwnership'
     }

@@ -10,6 +10,10 @@
 
 export class SamsungPayDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
     'fundingSource'?: SamsungPayDetails.FundingSourceEnum;
@@ -33,6 +37,11 @@ export class SamsungPayDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",

@@ -73,6 +73,7 @@ export * from './serviceError';
 export * from './shopperInteractionDevice';
 export * from './split';
 export * from './splitAmount';
+export * from './subMerchant';
 export * from './technicalCancelRequest';
 export * from './threeDS1Result';
 export * from './threeDS2RequestData';
@@ -150,6 +151,7 @@ import { ServiceError } from './serviceError';
 import { ShopperInteractionDevice } from './shopperInteractionDevice';
 import { Split } from './split';
 import { SplitAmount } from './splitAmount';
+import { SubMerchant } from './subMerchant';
 import { TechnicalCancelRequest } from './technicalCancelRequest';
 import { ThreeDS1Result } from './threeDS1Result';
 import { ThreeDS2RequestData } from './threeDS2RequestData';
@@ -294,6 +296,7 @@ let typeMap: {[index: string]: any} = {
     "ShopperInteractionDevice": ShopperInteractionDevice,
     "Split": Split,
     "SplitAmount": SplitAmount,
+    "SubMerchant": SubMerchant,
     "TechnicalCancelRequest": TechnicalCancelRequest,
     "ThreeDS1Result": ThreeDS1Result,
     "ThreeDS2RequestData": ThreeDS2RequestData,

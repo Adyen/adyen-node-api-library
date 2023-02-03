@@ -690,4 +690,40 @@ describe("Management", (): void => {
             expect(response).toBeTruthy();
         });
     });
+
+    describe("AllowedOriginsMerchantLevelApi", (): void => {
+        test("Delete an allowed origin", async () => {
+            scope.delete("/merchants/foo/apiCredentials/BAR123/allowedOrigins/fishy%20one").reply(204);
+
+            await managementService.AllowedOriginsMerchantLevelApi
+                .deleteAllowedOrigin("foo", "BAR123", "fishy one");
+        });
+
+        test("Create an allowed origin", async () => {
+            const requestBody = {
+                "domain": "https://www.eu.mystore.com"
+            };
+            scope.post("/merchants/YOUR_MERCHANT_ACCOUNT/apiCredentials/YOUR_API_CREDENTIAL/allowedOrigins", requestBody)
+                .reply(200, {
+                    "id": "YOUR_ALLOWED_ORIGIN",
+                    "data": [
+                        {
+                            "domain": "https://www.eu.mystore.com",
+                        }
+                    ], 
+                    "_links": {
+                        "self": {
+                            "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT/apiCredentials/YOUR_API_CREDENTIAL/allowedOrigins/YOUR_ALLOWED_ORIGIN"
+                        }
+                    }
+                });
+
+            const response: management.AllowedOriginsResponse = await managementService.AllowedOriginsMerchantLevelApi
+                .createAllowedOrigin("YOUR_MERCHANT_ACCOUNT", "YOUR_API_CREDENTIAL", {
+                    domain: "https://www.eu.mystore.com",
+                });
+
+            expect(response.data![0].domain).toEqual("https://www.eu.mystore.com");
+        });
+    });
 });

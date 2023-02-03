@@ -18,6 +18,10 @@ export class BacsDirectDebitDetails {
     */
     'bankLocationId'?: string;
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The name of the bank account holder.
     */
     'holderName'?: string;
@@ -45,6 +49,11 @@ export class BacsDirectDebitDetails {
         {
             "name": "bankLocationId",
             "baseName": "bankLocationId",
+            "type": "string"
+        },
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
             "type": "string"
         },
         {

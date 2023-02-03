@@ -14,6 +14,10 @@ export class AmazonPayDetails {
     */
     'amazonPayToken'?: string;
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * **amazonpay**
     */
     'type'?: AmazonPayDetails.TypeEnum;
@@ -24,6 +28,11 @@ export class AmazonPayDetails {
         {
             "name": "amazonPayToken",
             "baseName": "amazonPayToken",
+            "type": "string"
+        },
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
             "type": "string"
         },
         {

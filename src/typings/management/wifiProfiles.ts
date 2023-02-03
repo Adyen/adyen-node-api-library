@@ -12,7 +12,7 @@ import { Settings } from './settings';
 
 export class WifiProfiles {
     /**
-    * List of remote Wi-Fi profiles
+    * List of remote Wi-Fi profiles.
     */
     'profiles'?: Array<Profile>;
     'settings'?: Settings;

@@ -10,6 +10,10 @@
 
 export class PayPalDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The unique ID associated with the order.
     */
     'orderID'?: string;
@@ -37,6 +41,11 @@ export class PayPalDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "orderID",
             "baseName": "orderID",

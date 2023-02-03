@@ -10,6 +10,10 @@
 
 export class CellulantDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * The Cellulant issuer.
     */
     'issuer'?: string;
@@ -21,6 +25,11 @@ export class CellulantDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "issuer",
             "baseName": "issuer",

@@ -8,17 +8,31 @@
  */
 
 import { EventUrl } from './eventUrl';
+import { Key } from './key';
+import { NotificationUrl } from './notificationUrl';
 
 export class Nexo {
+    'displayUrls'?: NotificationUrl;
+    'encryptionKey'?: Key;
     'eventUrls'?: EventUrl;
     /**
-    * @deprecated One or more URLs to send event messages to when using Terminal API.
+    * One or more URLs to send event messages to when using Terminal API.
     */
     'nexoEventUrls'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "displayUrls",
+            "baseName": "displayUrls",
+            "type": "NotificationUrl"
+        },
+        {
+            "name": "encryptionKey",
+            "baseName": "encryptionKey",
+            "type": "Key"
+        },
         {
             "name": "eventUrls",
             "baseName": "eventUrls",

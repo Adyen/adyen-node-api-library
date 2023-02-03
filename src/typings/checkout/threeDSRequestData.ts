@@ -14,6 +14,10 @@ export class ThreeDSRequestData {
     */
     'challengeWindowSize'?: ThreeDSRequestData.ChallengeWindowSizeEnum;
     /**
+    * Flag for data only flow.
+    */
+    'dataOnly'?: ThreeDSRequestData.DataOnlyEnum;
+    /**
     * Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available.
     */
     'nativeThreeDS'?: ThreeDSRequestData.NativeThreeDSEnum;
@@ -29,6 +33,11 @@ export class ThreeDSRequestData {
             "name": "challengeWindowSize",
             "baseName": "challengeWindowSize",
             "type": "ThreeDSRequestData.ChallengeWindowSizeEnum"
+        },
+        {
+            "name": "dataOnly",
+            "baseName": "dataOnly",
+            "type": "ThreeDSRequestData.DataOnlyEnum"
         },
         {
             "name": "nativeThreeDS",
@@ -53,6 +62,10 @@ export namespace ThreeDSRequestData {
         _03 = <any> '03',
         _04 = <any> '04',
         _05 = <any> '05'
+    }
+    export enum DataOnlyEnum {
+        False = <any> 'false',
+        True = <any> 'true'
     }
     export enum NativeThreeDSEnum {
         Preferred = <any> 'preferred'

@@ -11,9 +11,11 @@ import { AccountInfo } from './accountInfo';
 import { Address } from './address';
 import { Amount } from './amount';
 import { ApplicationInfo } from './applicationInfo';
-import { AuthenticationData } from './authenticationData';
+import { AuthenticationData2 } from './authenticationData2';
 import { CheckoutSessionInstallmentOption } from './checkoutSessionInstallmentOption';
 import { Company } from './company';
+import { FundOrigin } from './fundOrigin';
+import { FundRecipient } from './fundRecipient';
 import { LineItem } from './lineItem';
 import { Mandate } from './mandate';
 import { Name } from './name';
@@ -34,7 +36,7 @@ export class CreateCheckoutSessionResponse {
     'allowedPaymentMethods'?: Array<string>;
     'amount': Amount;
     'applicationInfo'?: ApplicationInfo;
-    'authenticationData'?: AuthenticationData;
+    'authenticationData'?: AuthenticationData2;
     'billingAddress'?: Address;
     /**
     * List of payment methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type`from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
@@ -78,6 +80,8 @@ export class CreateCheckoutSessionResponse {
     * The date the session expires in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. When not specified, the expiry date is set to 1 hour after session creation. You cannot set the session expiry to more than 24 hours after session creation.
     */
     'expiresAt': Date;
+    'fundOrigin'?: FundOrigin;
+    'fundRecipient'?: FundRecipient;
     /**
     * A unique identifier of the session.
     */
@@ -235,7 +239,7 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "authenticationData",
             "baseName": "authenticationData",
-            "type": "AuthenticationData"
+            "type": "AuthenticationData2"
         },
         {
             "name": "billingAddress",
@@ -301,6 +305,16 @@ export class CreateCheckoutSessionResponse {
             "name": "expiresAt",
             "baseName": "expiresAt",
             "type": "Date"
+        },
+        {
+            "name": "fundOrigin",
+            "baseName": "fundOrigin",
+            "type": "FundOrigin"
+        },
+        {
+            "name": "fundRecipient",
+            "baseName": "fundRecipient",
+            "type": "FundRecipient"
         },
         {
             "name": "id",

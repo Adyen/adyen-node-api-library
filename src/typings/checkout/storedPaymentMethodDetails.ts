@@ -10,6 +10,10 @@
 
 export class StoredPaymentMethodDetails {
     /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'recurringDetailReference'?: string;
@@ -25,6 +29,11 @@ export class StoredPaymentMethodDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
+            "type": "string"
+        },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",

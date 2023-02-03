@@ -10,6 +10,10 @@
 
 export class WeChatPayMiniProgramDetails {
     'appId'?: string;
+    /**
+    * The checkout attempt identifier.
+    */
+    'checkoutAttemptId'?: string;
     'openid'?: string;
     /**
     * **wechatpayMiniProgram**
@@ -22,6 +26,11 @@ export class WeChatPayMiniProgramDetails {
         {
             "name": "appId",
             "baseName": "appId",
+            "type": "string"
+        },
+        {
+            "name": "checkoutAttemptId",
+            "baseName": "checkoutAttemptId",
             "type": "string"
         },
         {

@@ -10,13 +10,13 @@
 
 export class NOLocalAccountIdentification {
     /**
-    * The 11-digit bank account number (without separators or whitespace).
+    * The 11-digit bank account number, without separators or whitespace.
     */
     'accountNumber': string;
     /**
     * **noLocal**
     */
-    'type'?: NOLocalAccountIdentification.TypeEnum;
+    'type': NOLocalAccountIdentification.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 

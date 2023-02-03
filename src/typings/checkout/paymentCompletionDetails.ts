@@ -62,6 +62,10 @@ export class PaymentCompletionDetails {
     */
     'redirectResult'?: string;
     /**
+    * Value you received from the WeChat Pay SDK.
+    */
+    'resultCode'?: string;
+    /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: `transStatus`, `authorisationToken`.
     */
     'threeDSResult'?: string;
@@ -140,6 +144,11 @@ export class PaymentCompletionDetails {
         {
             "name": "redirectResult",
             "baseName": "redirectResult",
+            "type": "string"
+        },
+        {
+            "name": "resultCode",
+            "baseName": "resultCode",
             "type": "string"
         },
         {

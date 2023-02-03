@@ -20,7 +20,7 @@ export class KlarnaInfo {
     /**
     * The region of operation. For example, **NA**, **EU**, **CH**, **AU**.
     */
-    'region': KlarnaInfo.RegionEnum;
+    'region'?: KlarnaInfo.RegionEnum;
     /**
     * The email address of merchant support.
     */
