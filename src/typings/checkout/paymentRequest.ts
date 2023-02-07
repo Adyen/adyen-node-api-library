@@ -16,7 +16,7 @@ import { Amount } from './amount';
 import { AndroidPayDetails } from './androidPayDetails';
 import { ApplePayDetails } from './applePayDetails';
 import { ApplicationInfo } from './applicationInfo';
-import { AuthenticationData2 } from './authenticationData2';
+import { AuthenticationData } from './authenticationData';
 import { BacsDirectDebitDetails } from './bacsDirectDebitDetails';
 import { BillDeskDetails } from './billDeskDetails';
 import { BlikDetails } from './blikDetails';
@@ -74,7 +74,7 @@ export class PaymentRequest {
     'additionalData'?: { [key: string]: string; };
     'amount': Amount;
     'applicationInfo'?: ApplicationInfo;
-    'authenticationData'?: AuthenticationData2;
+    'authenticationData'?: AuthenticationData;
     'billingAddress'?: Address;
     'browserInfo'?: BrowserInfo;
     /**
@@ -101,7 +101,7 @@ export class PaymentRequest {
     /**
     * The shopper\'s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
     */
-    'dateOfBirth'?: Date;
+    'dateOfBirth'?: string;
     'dccQuote'?: ForexQuote;
     'deliveryAddress'?: Address;
     /**
@@ -137,6 +137,10 @@ export class PaymentRequest {
     * Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Zip and Atome.
     */
     'lineItems'?: Array<LineItem>;
+    /**
+    * This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants should send the Katakana shopperStatement in full-width characters.  An example request would be: > {   \"shopperStatement\" : \"ADYEN - SELLER-A\",   \"localizedShopperStatement\" : {     \"ja-Kana\" : \"ADYEN - セラーA\"   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field `shopperStatement` is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned.
+    */
+    'localizedShopperStatement'?: { [key: string]: string; };
     'mandate'?: Mandate;
     /**
     * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
@@ -284,7 +288,7 @@ export class PaymentRequest {
         {
             "name": "authenticationData",
             "baseName": "authenticationData",
-            "type": "AuthenticationData2"
+            "type": "AuthenticationData"
         },
         {
             "name": "billingAddress",
@@ -329,7 +333,7 @@ export class PaymentRequest {
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "Date"
+            "type": "string"
         },
         {
             "name": "dccQuote",
@@ -385,6 +389,11 @@ export class PaymentRequest {
             "name": "lineItems",
             "baseName": "lineItems",
             "type": "Array<LineItem>"
+        },
+        {
+            "name": "localizedShopperStatement",
+            "baseName": "localizedShopperStatement",
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "mandate",

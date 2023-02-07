@@ -199,6 +199,8 @@ export namespace Transaction {
         DepositCorrection = <any> 'depositCorrection',
         Fee = <any> 'fee',
         Grant = <any> 'grant',
+        Installment = <any> 'installment',
+        InstallmentReversal = <any> 'installmentReversal',
         InternalTransfer = <any> 'internalTransfer',
         InvoiceDeduction = <any> 'invoiceDeduction',
         Leftover = <any> 'leftover',

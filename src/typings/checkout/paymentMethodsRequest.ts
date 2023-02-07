@@ -33,6 +33,10 @@ export class PaymentMethodsRequest {
     */
     'countryCode'?: string;
     /**
+    * This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants should send the Katakana shopperStatement in full-width characters.  An example request would be: > {   \"shopperStatement\" : \"ADYEN - SELLER-A\",   \"localizedShopperStatement\" : {     \"ja-Kana\" : \"ADYEN - セラーA\"   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field `shopperStatement` is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned.
+    */
+    'localizedShopperStatement'?: { [key: string]: string; };
+    /**
     * The merchant account identifier, with which you want to process the transaction.
     */
     'merchantAccount': string;
@@ -86,6 +90,11 @@ export class PaymentMethodsRequest {
             "name": "countryCode",
             "baseName": "countryCode",
             "type": "string"
+        },
+        {
+            "name": "localizedShopperStatement",
+            "baseName": "localizedShopperStatement",
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "merchantAccount",
