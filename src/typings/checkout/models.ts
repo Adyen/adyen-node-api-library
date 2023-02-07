@@ -35,7 +35,6 @@ export * from './applePayDetails';
 export * from './applePaySessionResponse';
 export * from './applicationInfo';
 export * from './authenticationData';
-export * from './authenticationData2';
 export * from './avs';
 export * from './bacsDirectDebitDetails';
 export * from './bankAccount';
@@ -79,6 +78,7 @@ export * from './createPaymentRefundRequest';
 export * from './createPaymentReversalRequest';
 export * from './createStandalonePaymentCancelRequest';
 export * from './detailsRequest';
+export * from './detailsRequestAuthenticationData';
 export * from './deviceRenderOptions';
 export * from './dokuDetails';
 export * from './donationResponse';
@@ -209,7 +209,6 @@ import { ApplePayDetails } from './applePayDetails';
 import { ApplePaySessionResponse } from './applePaySessionResponse';
 import { ApplicationInfo } from './applicationInfo';
 import { AuthenticationData } from './authenticationData';
-import { AuthenticationData2 } from './authenticationData2';
 import { Avs } from './avs';
 import { BacsDirectDebitDetails } from './bacsDirectDebitDetails';
 import { BankAccount } from './bankAccount';
@@ -253,6 +252,7 @@ import { CreatePaymentRefundRequest } from './createPaymentRefundRequest';
 import { CreatePaymentReversalRequest } from './createPaymentReversalRequest';
 import { CreateStandalonePaymentCancelRequest } from './createStandalonePaymentCancelRequest';
 import { DetailsRequest } from './detailsRequest';
+import { DetailsRequestAuthenticationData } from './detailsRequestAuthenticationData';
 import { DeviceRenderOptions } from './deviceRenderOptions';
 import { DokuDetails } from './dokuDetails';
 import { DonationResponse } from './donationResponse';
@@ -389,7 +389,7 @@ let enumsMap: {[index: string]: any} = {
         "AndroidPayDetails.TypeEnum": AndroidPayDetails.TypeEnum,
         "ApplePayDetails.FundingSourceEnum": ApplePayDetails.FundingSourceEnum,
         "ApplePayDetails.TypeEnum": ApplePayDetails.TypeEnum,
-        "AuthenticationData2.AttemptAuthenticationEnum": AuthenticationData2.AttemptAuthenticationEnum,
+        "AuthenticationData.AttemptAuthenticationEnum": AuthenticationData.AttemptAuthenticationEnum,
         "Avs.EnabledEnum": Avs.EnabledEnum,
         "BacsDirectDebitDetails.TypeEnum": BacsDirectDebitDetails.TypeEnum,
         "BillDeskDetails.TypeEnum": BillDeskDetails.TypeEnum,
@@ -420,6 +420,7 @@ let enumsMap: {[index: string]: any} = {
         "CreatePaymentLinkRequest.RecurringProcessingModelEnum": CreatePaymentLinkRequest.RecurringProcessingModelEnum,
         "CreatePaymentLinkRequest.RequiredShopperFieldsEnum": CreatePaymentLinkRequest.RequiredShopperFieldsEnum,
         "CreatePaymentLinkRequest.StorePaymentMethodModeEnum": CreatePaymentLinkRequest.StorePaymentMethodModeEnum,
+        "CreatePaymentRefundRequest.MerchantRefundReasonEnum": CreatePaymentRefundRequest.MerchantRefundReasonEnum,
         "DeviceRenderOptions.SdkInterfaceEnum": DeviceRenderOptions.SdkInterfaceEnum,
         "DeviceRenderOptions.SdkUiTypeEnum": DeviceRenderOptions.SdkUiTypeEnum,
         "DokuDetails.TypeEnum": DokuDetails.TypeEnum,
@@ -467,6 +468,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentLinkResponse.StorePaymentMethodModeEnum": PaymentLinkResponse.StorePaymentMethodModeEnum,
         "PaymentMethod.FundingSourceEnum": PaymentMethod.FundingSourceEnum,
         "PaymentMethodsRequest.ChannelEnum": PaymentMethodsRequest.ChannelEnum,
+        "PaymentRefundResource.MerchantRefundReasonEnum": PaymentRefundResource.MerchantRefundReasonEnum,
         "PaymentRefundResource.StatusEnum": PaymentRefundResource.StatusEnum,
         "PaymentRequest.ChannelEnum": PaymentRequest.ChannelEnum,
         "PaymentRequest.EntityTypeEnum": PaymentRequest.EntityTypeEnum,
@@ -551,7 +553,6 @@ let typeMap: {[index: string]: any} = {
     "ApplePaySessionResponse": ApplePaySessionResponse,
     "ApplicationInfo": ApplicationInfo,
     "AuthenticationData": AuthenticationData,
-    "AuthenticationData2": AuthenticationData2,
     "Avs": Avs,
     "BacsDirectDebitDetails": BacsDirectDebitDetails,
     "BankAccount": BankAccount,
@@ -595,6 +596,7 @@ let typeMap: {[index: string]: any} = {
     "CreatePaymentReversalRequest": CreatePaymentReversalRequest,
     "CreateStandalonePaymentCancelRequest": CreateStandalonePaymentCancelRequest,
     "DetailsRequest": DetailsRequest,
+    "DetailsRequestAuthenticationData": DetailsRequestAuthenticationData,
     "DeviceRenderOptions": DeviceRenderOptions,
     "DokuDetails": DokuDetails,
     "DonationResponse": DonationResponse,

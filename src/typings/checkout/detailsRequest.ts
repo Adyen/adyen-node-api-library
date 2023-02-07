@@ -7,11 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { AuthenticationData } from './authenticationData';
+import { DetailsRequestAuthenticationData } from './detailsRequestAuthenticationData';
 import { PaymentCompletionDetails } from './paymentCompletionDetails';
 
 export class DetailsRequest {
-    'authenticationData'?: AuthenticationData;
+    'authenticationData'?: DetailsRequestAuthenticationData;
     'details': PaymentCompletionDetails;
     /**
     * The `paymentData` value from the `/payments` response. Required if the `/payments` response returns this value. 
@@ -28,7 +28,7 @@ export class DetailsRequest {
         {
             "name": "authenticationData",
             "baseName": "authenticationData",
-            "type": "AuthenticationData"
+            "type": "DetailsRequestAuthenticationData"
         },
         {
             "name": "details",

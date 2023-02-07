@@ -18,6 +18,10 @@ export class CardDetailsRequest {
     */
     'countryCode'?: string;
     /**
+    * The encrypted card number.
+    */
+    'encryptedCardNumber'?: string;
+    /**
     * The merchant account identifier, with which you want to process the transaction.
     */
     'merchantAccount': string;
@@ -37,6 +41,11 @@ export class CardDetailsRequest {
         {
             "name": "countryCode",
             "baseName": "countryCode",
+            "type": "string"
+        },
+        {
+            "name": "encryptedCardNumber",
+            "baseName": "encryptedCardNumber",
             "type": "string"
         },
         {

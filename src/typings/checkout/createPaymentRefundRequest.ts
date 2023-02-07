@@ -22,6 +22,10 @@ export class CreatePaymentRefundRequest {
     */
     'merchantAccount': string;
     /**
+    * Your reason for the refund request
+    */
+    'merchantRefundReason'?: CreatePaymentRefundRequest.MerchantRefundReasonEnum;
+    /**
     * Your reference for the refund request. Maximum length: 80 characters.
     */
     'reference'?: string;
@@ -49,6 +53,11 @@ export class CreatePaymentRefundRequest {
             "type": "string"
         },
         {
+            "name": "merchantRefundReason",
+            "baseName": "merchantRefundReason",
+            "type": "CreatePaymentRefundRequest.MerchantRefundReasonEnum"
+        },
+        {
             "name": "reference",
             "baseName": "reference",
             "type": "string"
@@ -64,3 +73,12 @@ export class CreatePaymentRefundRequest {
     }
 }
 
+export namespace CreatePaymentRefundRequest {
+    export enum MerchantRefundReasonEnum {
+        Fraud = <any> 'FRAUD',
+        CustomerRequest = <any> 'CUSTOMER REQUEST',
+        Return = <any> 'RETURN',
+        Duplicate = <any> 'DUPLICATE',
+        Other = <any> 'OTHER'
+    }
+}
