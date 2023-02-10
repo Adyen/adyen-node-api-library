@@ -1,22 +1,14 @@
 import ApiKeyAuthenticatedService from "../apiKeyAuthenticatedService";
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
-import PaymentMethods from "./resource/checkout/paymentMethods";
-import Payments from "./resource/checkout/payments";
-import PaymentsDetails from "./resource/checkout/paymentsDetails";
-import PaymentSession from "./resource/checkout/paymentSession";
-import PaymentsResult from "./resource/checkout/paymentsResult";
-import PaymentLinks from "./resource/checkout/paymentLinks";
-import OriginKeys from "./resource/checkout/originKeys";
+import CheckoutResource from "./resource/checkoutResource";
 import setApplicationInfo from "../helpers/setApplicationInfo";
-import AmountUpdates from "./resource/checkout/amountUpdates";
-import Cancels from "./resource/checkout/cancels";
-import Captures from "./resource/checkout/captures";
-import Refunds from "./resource/checkout/refunds";
-import Reversals from "./resource/checkout/reversals";
-import CancelsStandalone from "./resource/checkout/cancelsStandalone";
 import { IRequest } from "../typings/requestOptions";
 import {
+    CreateApplePaySessionRequest,
+    ApplePaySessionResponse,
+    ListStoredPaymentMethodsResponse,
+    StoredPaymentMethodResource,
     PaymentRequest,
     PaymentResponse,
     PaymentMethodsRequest,
@@ -54,47 +46,44 @@ import {
     PaymentRefundResource,
     PaymentReversalResource,
     StandalonePaymentCancelResource,
-    ObjectSerializer
+    ObjectSerializer,
 } from "../typings/checkout/models";
-
-import PaymentLinksId from "./resource/checkout/paymentLinksId";
-import PaymentMethodsBalance from "./resource/checkout/paymentMethodsBalance";
-import Orders from "./resource/checkout/orders";
-import OrdersCancel from "./resource/checkout/ordersCancel";
-import Sessions from "./resource/checkout/sessions";
-import Donations from "./resource/checkout/donations";
-import CardDetails from "./resource/checkout/cardDetails";
-
 class Checkout extends ApiKeyAuthenticatedService {
-    private readonly _payments: Payments;
-    private readonly _paymentMethods: PaymentMethods;
-    private readonly _paymentsDetails: PaymentsDetails;
-    private readonly _paymentSession: PaymentSession;
-    private readonly _paymentsResult: PaymentsResult;
-    private readonly _paymentLinks: PaymentLinks;
-    private readonly _originKeys: OriginKeys;
-    private readonly _paymentMethodsBalance: PaymentMethodsBalance;
-    private readonly _orders: Orders;
-    private readonly _ordersCancel: OrdersCancel;
-    private readonly _sessions: Sessions;
-    private readonly _donations: Donations;
-    private readonly _cardDetails: CardDetails;
+    private readonly _payments: CheckoutResource;
+    private readonly _paymentMethods: CheckoutResource;
+    private readonly _paymentsDetails: CheckoutResource;
+    private readonly _paymentSession: CheckoutResource;
+    private readonly _paymentsResult: CheckoutResource;
+    private readonly _paymentLinks: CheckoutResource;
+    private readonly _originKeys: CheckoutResource;
+    private readonly _paymentMethodsBalance: CheckoutResource;
+    private readonly _orders: CheckoutResource;
+    private readonly _ordersCancel: CheckoutResource;
+    private readonly _sessions: CheckoutResource;
+    private readonly _donations: CheckoutResource;
+    private readonly _cardDetails: CheckoutResource;
+    private readonly _cancelsStandalone: CheckoutResource;
+    private readonly _applePaySessions: CheckoutResource;
+    private readonly _getStoredPaymentMethods: CheckoutResource;
 
     public constructor(client: Client) {
         super(client);
-        this._payments = new Payments(this);
-        this._paymentMethods = new PaymentMethods(this);
-        this._paymentsDetails = new PaymentsDetails(this);
-        this._paymentSession = new PaymentSession(this);
-        this._paymentsResult = new PaymentsResult(this);
-        this._paymentLinks = new PaymentLinks(this);
-        this._originKeys = new OriginKeys(this);
-        this._paymentMethodsBalance = new PaymentMethodsBalance(this);
-        this._orders = new Orders(this);
-        this._ordersCancel = new OrdersCancel(this);
-        this._sessions = new Sessions(this);
-        this._donations = new Donations(this);
-        this._cardDetails = new CardDetails(this);
+        this._payments = new CheckoutResource(this, "/payments");
+        this._paymentMethods = new CheckoutResource(this, "/paymentMethods");
+        this._paymentsDetails = new CheckoutResource(this, "/payments/details");
+        this._paymentSession = new CheckoutResource(this, "/paymentSession");
+        this._paymentsResult = new CheckoutResource(this, "/payments/result");
+        this._paymentLinks = new CheckoutResource(this, "/paymentLinks");
+        this._originKeys = new CheckoutResource(this, "/originKeys");
+        this._paymentMethodsBalance = new CheckoutResource(this, "/paymentMethods/balance");
+        this._orders = new CheckoutResource(this, "/orders");
+        this._ordersCancel = new CheckoutResource(this, "/orders/cancel");
+        this._sessions = new CheckoutResource(this, "/sessions");
+        this._donations = new CheckoutResource(this, "/donations");
+        this._cardDetails = new CheckoutResource(this, "/cardDetails");
+        this._cancelsStandalone = new CheckoutResource(this, "/cancels");
+        this._applePaySessions = new CheckoutResource(this, "/applePay/sessions");
+        this._getStoredPaymentMethods = new CheckoutResource(this, "/storedPaymentMethods");
     }
 
     // Payments
@@ -165,7 +154,7 @@ class Checkout extends ApiKeyAuthenticatedService {
     }
 
     public async getPaymentLinks(linkId: string, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
-        const paymentLinksId = new PaymentLinksId(this, linkId);
+        const paymentLinksId = new CheckoutResource(this, `/paymentLinks/${linkId}`);
         const response = await getJsonResponse<Record<string, never>, PaymentLinkResponse>(
             paymentLinksId,
             {},
@@ -175,7 +164,7 @@ class Checkout extends ApiKeyAuthenticatedService {
     }
 
     public async updatePaymentLinks(linkId: string, status: "expired", requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
-        const paymentLinksId = new PaymentLinksId(this, linkId);
+        const paymentLinksId = new CheckoutResource(this, `/paymentLinks/${linkId}`);
         const response = await getJsonResponse<Record<string, unknown>, PaymentLinkResponse>(
             paymentLinksId,
             { status },
@@ -191,7 +180,7 @@ class Checkout extends ApiKeyAuthenticatedService {
         amountUpdatesRequest: CreatePaymentAmountUpdateRequest,
         requestOptions?: IRequest.Options,
     ): Promise<PaymentAmountUpdateResource> {
-        const amountUpdates = new AmountUpdates(this, paymentPspReference);
+        const amountUpdates = new CheckoutResource(this, `/payments/${paymentPspReference}/amountUpdates`);
         const response = await getJsonResponse<CreatePaymentAmountUpdateRequest, PaymentAmountUpdateResource>(
             amountUpdates,
             amountUpdatesRequest,
@@ -204,9 +193,8 @@ class Checkout extends ApiKeyAuthenticatedService {
         cancelsStandaloneRequest: CreateStandalonePaymentCancelRequest,
         requestOptions?: IRequest.Options
     ): Promise<StandalonePaymentCancelResource> {
-        const cancelsStandalone = new CancelsStandalone(this);
         const response = await getJsonResponse<CreateStandalonePaymentCancelRequest, StandalonePaymentCancelResource>(
-            cancelsStandalone,
+            this._cancelsStandalone,
             cancelsStandaloneRequest,
             requestOptions
         );
@@ -218,7 +206,7 @@ class Checkout extends ApiKeyAuthenticatedService {
         cancelsRequest: CreatePaymentCancelRequest,
         requestOptions?: IRequest.Options,
     ): Promise<PaymentCancelResource> {
-        const cancels = new Cancels(this, paymentPspReference);
+        const cancels = new CheckoutResource(this, `/payments/${paymentPspReference}/cancels`);
         const response = await getJsonResponse<CreatePaymentCancelRequest, PaymentCancelResource>(
             cancels,
             cancelsRequest,
@@ -232,7 +220,7 @@ class Checkout extends ApiKeyAuthenticatedService {
         capturesRequest: CreatePaymentCaptureRequest,
         requestOptions?: IRequest.Options
     ): Promise<PaymentCaptureResource> {
-        const captures = new Captures(this, paymentPspReference);
+        const captures = new CheckoutResource(this, `/payments/${paymentPspReference}/captures`);
         const response = await getJsonResponse<CreatePaymentCaptureRequest, PaymentCaptureResource>(
             captures,
             capturesRequest,
@@ -246,7 +234,7 @@ class Checkout extends ApiKeyAuthenticatedService {
         refundsRequest: CreatePaymentRefundRequest,
         requestOptions?: IRequest.Options
     ): Promise<PaymentRefundResource> {
-        const refunds = new Refunds(this, paymentPspReference);
+        const refunds = new CheckoutResource(this, `/payments/${paymentPspReference}/refunds`);
         const response = await getJsonResponse<CreatePaymentRefundRequest, PaymentRefundResource>(
             refunds,
             refundsRequest,
@@ -260,7 +248,7 @@ class Checkout extends ApiKeyAuthenticatedService {
         reversalsRequest: CreatePaymentReversalRequest,
         requestOptions?: IRequest.Options
     ): Promise<PaymentReversalResource> {
-        const refunds = new Reversals(this, paymentPspReference);
+        const refunds = new CheckoutResource(this, `/payments/${paymentPspReference}/reversals`);
         const response = await getJsonResponse<CreatePaymentReversalRequest, PaymentReversalResource>(
             refunds,
             reversalsRequest,
@@ -323,6 +311,9 @@ class Checkout extends ApiKeyAuthenticatedService {
 
     //Utility
 
+    /**
+     * @deprecated Deprecated in version 67
+     */
     public async originKeys(originKeysRequest: CheckoutUtilityRequest, requestOptions?: IRequest.Options): Promise<CheckoutUtilityResponse> {
         const response = await getJsonResponse<CheckoutUtilityRequest, CheckoutUtilityResponse>(
             this._originKeys,
@@ -330,6 +321,36 @@ class Checkout extends ApiKeyAuthenticatedService {
             requestOptions,
         );
         return ObjectSerializer.deserialize(response, "CheckoutUtilityResponse");
+    }
+
+    public async applePaySessions(applePaySessionRequest: CreateApplePaySessionRequest, requestOptions?: IRequest.Options): Promise<ApplePaySessionResponse> {
+        const response = await getJsonResponse<CreateApplePaySessionRequest, ApplePaySessionResponse>(
+            this._applePaySessions,
+            applePaySessionRequest,
+            requestOptions,
+        );
+        return ObjectSerializer.deserialize(response, "ApplePaySessionResponse")
+    }
+
+    //Recurring
+
+    public async getStoredPaymentMethods(requestOptions?: IRequest.Options): Promise<ListStoredPaymentMethodsResponse> {
+        const response = await getJsonResponse<Record<string, never>, PaymentLinkResponse>(
+            this._getStoredPaymentMethods,
+            {},
+            {...{ method: "GET" }, ...requestOptions},
+        );
+        return ObjectSerializer.deserialize(response, "ListStoredPaymentMethodsResponse");
+    }
+
+    public async deleteStoredPaymentMethod(recurringId: string, requestOptions?: IRequest.Options): Promise<StoredPaymentMethodResource> {
+        const deleteStoredPaymentMethod = new CheckoutResource(this, `/storedPaymentMethods/${recurringId}`);
+        const response = await getJsonResponse<Record<string, never>, StoredPaymentMethodResource>(
+            deleteStoredPaymentMethod,
+            {},
+            {...{ method: "DELETE" }, ...requestOptions}
+        );
+        return ObjectSerializer.deserialize(response, "StoredPaymentMethodResource");
     }
 }
 
