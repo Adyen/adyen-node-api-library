@@ -12,6 +12,7 @@ import Client from "../client";
 import Checkout from "../services/checkout";
 import HttpClientException from "../httpClient/httpClientException";
 import { checkout } from "../typings";
+import { IRequest } from "../typings/requestOptions";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
 const reference = "Your order number";
@@ -473,5 +474,50 @@ describe("Checkout", (): void => {
         };
         const cardDetailsReponse: checkout.CardDetailsResponse = await checkoutService.cardDetails(cardDetailsRequest);
         expect(cardDetailsReponse?.brands?.length).toBe(1);
+    });
+    
+    test("Should create applePaySession", async (): Promise<void> => {
+        scope.post("/applePay/sessions")
+        .reply(200, {
+            "data": "eyJ2Z...",
+        });
+
+        const applePaySessionRequest: checkout.CreateApplePaySessionRequest = {
+            "displayName": "YOUR_MERCHANT_NAME",
+            "domainName": "YOUR_DOMAIN_NAME",
+            "merchantIdentifier": "YOUR_MERCHANT_ID"
+        };
+        const applepaySessionResponse = await checkoutService.applePaySessions(applePaySessionRequest);
+        expect(applepaySessionResponse.data).toEqual("eyJ2Z...");
+    });
+
+    test("Should get stored paymentMethods", async (): Promise<void> => {
+        scope.get("/storedPaymentMethods?shopperReference=MYSHOPPERREFERENCE")
+        .reply(200, {
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "shopperReference": "YOUR_SHOPPER_REFERENCE",
+            "storedPaymentMethods": [
+                { "id": "123"}
+            ]
+        });
+
+        const requestOptions: IRequest.Options = {
+            params: {
+                shopperReference: "MYSHOPPERREFERENCE"
+            }
+        };
+        const getStoredPaymentMethodsResponse = await checkoutService.getStoredPaymentMethods(requestOptions);
+        expect(getStoredPaymentMethodsResponse.merchantAccount).toEqual("YOUR_MERCHANT_ACCOUNT");
+        expect(getStoredPaymentMethodsResponse?.storedPaymentMethods?.length).toBe(1);
+    });
+
+    test("Should delete stored paymentMethod", async (): Promise<void> => {
+        scope.delete("/storedPaymentMethods/12321")
+        .reply(200, {
+            "id": "123"
+        });
+
+        const deletePaymentMethodResponse = await  checkoutService.deleteStoredPaymentMethod("12321");
+        expect(deletePaymentMethodResponse.id).toEqual("123");
     });
 });

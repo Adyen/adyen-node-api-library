@@ -30,7 +30,7 @@ const createAmountUpdateRequest = (): CreatePaymentAmountUpdateRequest => {
             currency: "EUR",
             value: 420
         },
-        reason: CreatePaymentAmountUpdateRequest.ReasonEnum.DelayedCharge
+        industryUsage: CreatePaymentAmountUpdateRequest.IndustryUsageEnum.DelayedCharge
     };
 };
 
@@ -44,7 +44,6 @@ const createAmountUpdateResponse = (): PaymentAmountUpdateResource => {
             currency: "EUR",
             value: 420,
         },
-        reason: CreatePaymentAmountUpdateRequest.ReasonEnum.DelayedCharge,
         status: PaymentAmountUpdateResource.StatusEnum.Received,
     };
 };
