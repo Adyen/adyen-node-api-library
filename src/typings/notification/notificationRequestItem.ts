@@ -152,6 +152,7 @@ export namespace NotificationRequestItem {
         CancelOrRefund = <any> 'CANCEL_OR_REFUND',
         Capture = <any> 'CAPTURE',
         CaptureFailed = <any> 'CAPTURE_FAILED',
+        Donation = <any> 'DONATION',
         HandledExternally = <any> 'HANDLED_EXTERNALLY',
         OrderOpened = <any> 'ORDER_OPENED',
         OrderClosed = <any> 'ORDER_CLOSED',
