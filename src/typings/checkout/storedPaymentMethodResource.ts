@@ -8,7 +8,7 @@
  */
 
 
-export class StoredPaymentMethod {
+export class StoredPaymentMethodResource {
     /**
     * The brand of the card.
     */
@@ -22,6 +22,14 @@ export class StoredPaymentMethod {
     */
     'expiryYear'?: string;
     /**
+    * The response code returned by an external system (for example after a provisioning operation).
+    */
+    'externalResponseCode'?: string;
+    /**
+    * The token reference of a linked token in an external system (for example a network token reference).
+    */
+    'externalTokenReference'?: string;
+    /**
     * The unique payment method code.
     */
     'holderName'?: string;
@@ -33,6 +41,10 @@ export class StoredPaymentMethod {
     * A unique identifier of this stored payment method.
     */
     'id'?: string;
+    /**
+    * The name of the issuer of token or card.
+    */
+    'issuerName'?: string;
     /**
     * The last four digits of the PAN.
     */
@@ -54,13 +66,13 @@ export class StoredPaymentMethod {
     */
     'shopperEmail'?: string;
     /**
-    * The supported recurring processing models for this stored payment method.
+    * Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
+    */
+    'shopperReference'?: string;
+    /**
+    * Defines a recurring payment type. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount.
     */
     'supportedRecurringProcessingModels'?: Array<string>;
-    /**
-    * The supported shopper interactions for this stored payment method.
-    */
-    'supportedShopperInteractions'?: Array<string>;
     /**
     * The type of payment method.
     */
@@ -85,6 +97,16 @@ export class StoredPaymentMethod {
             "type": "string"
         },
         {
+            "name": "externalResponseCode",
+            "baseName": "externalResponseCode",
+            "type": "string"
+        },
+        {
+            "name": "externalTokenReference",
+            "baseName": "externalTokenReference",
+            "type": "string"
+        },
+        {
             "name": "holderName",
             "baseName": "holderName",
             "type": "string"
@@ -97,6 +119,11 @@ export class StoredPaymentMethod {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "issuerName",
+            "baseName": "issuerName",
             "type": "string"
         },
         {
@@ -125,13 +152,13 @@ export class StoredPaymentMethod {
             "type": "string"
         },
         {
-            "name": "supportedRecurringProcessingModels",
-            "baseName": "supportedRecurringProcessingModels",
-            "type": "Array<string>"
+            "name": "shopperReference",
+            "baseName": "shopperReference",
+            "type": "string"
         },
         {
-            "name": "supportedShopperInteractions",
-            "baseName": "supportedShopperInteractions",
+            "name": "supportedRecurringProcessingModels",
+            "baseName": "supportedRecurringProcessingModels",
             "type": "Array<string>"
         },
         {
@@ -141,7 +168,7 @@ export class StoredPaymentMethod {
         }    ];
 
     static getAttributeTypeMap() {
-        return StoredPaymentMethod.attributeTypeMap;
+        return StoredPaymentMethodResource.attributeTypeMap;
     }
 }
 
