@@ -7,7 +7,6 @@
  * Do not edit this class manually.
  */
 
-import { CapabilityProblem } from './capabilityProblem';
 
 export class SupportingEntityCapability {
     /**
@@ -18,10 +17,6 @@ export class SupportingEntityCapability {
     * Supporting entity reference 
     */
     'id'?: string;
-    /**
-    * Contains verification errors and the actions that you can take to resolve them.
-    */
-    'problems'?: Array<CapabilityProblem>;
     /**
     * Indicates whether the supporting entity capability is requested. 
     */
@@ -43,11 +38,6 @@ export class SupportingEntityCapability {
             "name": "id",
             "baseName": "id",
             "type": "string"
-        },
-        {
-            "name": "problems",
-            "baseName": "problems",
-            "type": "Array<CapabilityProblem>"
         },
         {
             "name": "requested",

@@ -89,7 +89,6 @@ export namespace PaymentDetails {
         Dana = <any> 'dana',
         Paysafecard = <any> 'paysafecard',
         Cashticket = <any> 'cashticket',
-        Isracard = <any> 'isracard',
         Ikano = <any> 'ikano',
         Karenmillen = <any> 'karenmillen',
         Oasis = <any> 'oasis',
