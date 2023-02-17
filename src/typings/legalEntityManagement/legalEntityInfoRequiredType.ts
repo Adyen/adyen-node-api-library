@@ -9,21 +9,39 @@
 
 import { Individual } from './individual';
 import { LegalEntityAssociation } from './legalEntityAssociation';
+import { LegalEntityCapability } from './legalEntityCapability';
 import { Organization } from './organization';
 import { SoleProprietorship } from './soleProprietorship';
 
-export class GenericEntityInfo {
+export class LegalEntityInfoRequiredType {
+    /**
+    * Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
+    */
+    'capabilities'?: { [key: string]: LegalEntityCapability; };
     /**
     * List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories.
     */
     'entityAssociations'?: Array<LegalEntityAssociation>;
     'individual'?: Individual;
     'organization'?: Organization;
+    /**
+    * Your reference for the legal entity, maximum 150 characters.
+    */
+    'reference'?: string;
     'soleProprietorship'?: SoleProprietorship;
+    /**
+    * The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
+    */
+    'type': LegalEntityInfoRequiredType.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "capabilities",
+            "baseName": "capabilities",
+            "type": "{ [key: string]: LegalEntityCapability; }"
+        },
         {
             "name": "entityAssociations",
             "baseName": "entityAssociations",
@@ -40,13 +58,32 @@ export class GenericEntityInfo {
             "type": "Organization"
         },
         {
+            "name": "reference",
+            "baseName": "reference",
+            "type": "string"
+        },
+        {
             "name": "soleProprietorship",
             "baseName": "soleProprietorship",
             "type": "SoleProprietorship"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "LegalEntityInfoRequiredType.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return GenericEntityInfo.attributeTypeMap;
+        return LegalEntityInfoRequiredType.attributeTypeMap;
     }
 }
 
+export namespace LegalEntityInfoRequiredType {
+    export enum TypeEnum {
+        Individual = <any> 'individual',
+        Organization = <any> 'organization',
+        SoleProprietorship = <any> 'soleProprietorship',
+        Trust = <any> 'trust',
+        UnincorporatedPartnership = <any> 'unincorporatedPartnership'
+    }
+}

@@ -1,7 +1,7 @@
 import HmacValidator from "../utils/hmacValidator";
-import { AdditionalData, NotificationItem, NotificationRequestItem } from "../typings/notification/models";
+import {NotificationItem, NotificationRequestItem } from "../typings/notification/models";
 import { ApiConstants } from "../constants/apiConstants";
-import NotificationRequest from "../notification/notificationRequest";
+import NotificationRequestService from "../notification/notificationRequest";
 
 const key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
 const expectedSign = "ZNBPtI+oDyyRrLyD1XirkKnQgIAlFc07Vj27TeHsDRE=";
@@ -21,7 +21,7 @@ const notificationRequestItem: { NotificationRequestItem: NotificationRequestIte
         additionalData: { [ApiConstants.HMAC_SIGNATURE]: expectedSign },
     }
 };
-const notification = new NotificationRequest({
+const notification = new NotificationRequestService({
     live: "false",
     notificationItems: [notificationRequestItem as unknown as NotificationItem]
 });
@@ -59,7 +59,7 @@ describe("HMAC Validator", function (): void {
     it("should have invalid hmac", function (): void {
         const invalidNotification = {
             ...notification.notificationItems![0],
-            additionalData: { [ApiConstants.HMAC_SIGNATURE as keyof AdditionalData]: "notValidSign" }
+            additionalData: { [ApiConstants.HMAC_SIGNATURE]: "notValidSign" }
         };
         const result = hmacValidator.validateHMAC(invalidNotification, key);
         expect(result).toBeFalsy();
@@ -115,7 +115,7 @@ describe("HMAC Validator", function (): void {
             success: "true",
             additionalData: { [ApiConstants.HMAC_SIGNATURE]: expectedSign }
         }} as unknown as NotificationItem;
-        const notification = new NotificationRequest({
+        const notification = new NotificationRequestService({
             live: "false",
             notificationItems: [notificationRequestItem]
         });

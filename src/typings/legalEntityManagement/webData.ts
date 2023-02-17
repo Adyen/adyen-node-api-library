@@ -10,9 +10,13 @@
 
 export class WebData {
     /**
-    * The URL of the website.
+    * The URL of the website or the app store URL.
     */
     'webAddress'?: string;
+    /**
+    * The unique identifier of the web address.
+    */
+    'webAddressId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -20,6 +24,11 @@ export class WebData {
         {
             "name": "webAddress",
             "baseName": "webAddress",
+            "type": "string"
+        },
+        {
+            "name": "webAddressId",
+            "baseName": "webAddressId",
             "type": "string"
         }    ];
 

@@ -190,6 +190,7 @@ export namespace Transaction {
         AtmWithdrawal = <any> 'atmWithdrawal',
         AtmWithdrawalReversal = <any> 'atmWithdrawalReversal',
         BalanceAdjustment = <any> 'balanceAdjustment',
+        BalanceRollover = <any> 'balanceRollover',
         BankTransfer = <any> 'bankTransfer',
         Capture = <any> 'capture',
         CaptureReversal = <any> 'captureReversal',

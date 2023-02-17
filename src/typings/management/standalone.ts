@@ -10,7 +10,7 @@
 
 export class Standalone {
     /**
-    * The default currency that will be used when the device is in standalone mode (ISO 4217 - 3 letter code).
+    * The default currency of the standalone payment terminal as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
     */
     'currencyCode'?: string;
     /**

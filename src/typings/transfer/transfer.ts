@@ -13,11 +13,11 @@ import { CounterpartyV3 } from './counterpartyV3';
 export class Transfer {
     'amount': Amount;
     /**
-    * Unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+    * The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
     */
     'balanceAccountId'?: string;
     /**
-    * The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.
+    * The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
     */
     'category': Transfer.CategoryEnum;
     'counterparty': CounterpartyV3;
@@ -34,11 +34,11 @@ export class Transfer {
     */
     'id'?: string;
     /**
-    * Unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
+    * The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
     */
     'paymentInstrumentId'?: string;
     /**
-    * The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  
+    * The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html)  .* **crossBorder**: High value transfer to receipt in a different country. 
     */
     'priority'?: Transfer.PriorityEnum;
     /**
@@ -46,7 +46,7 @@ export class Transfer {
     */
     'reason'?: Transfer.ReasonEnum;
     /**
-    * A reference for the transfer, only used internally within your platform. If you don\'t provide this in the request, Adyen generates a unique reference. Maximum length: 80 characters.
+    * Your reference for the transfer, used internally within your platform. If you don\'t provide this in the request, Adyen generates a unique reference.
     */
     'reference'?: string;
     /**
@@ -54,7 +54,7 @@ export class Transfer {
     */
     'referenceForBeneficiary'?: string;
     /**
-    * The result of the transfer.   Possible values: **authorised**, **refused**, **error**.
+    * The result of the transfer.   For example, **authorised**, **refused**, or **error**.
     */
     'status': Transfer.StatusEnum;
 
@@ -135,28 +135,44 @@ export class Transfer {
 export namespace Transfer {
     export enum CategoryEnum {
         Bank = <any> 'bank',
-        Internal = <any> 'internal'
+        Internal = <any> 'internal',
+        IssuedCard = <any> 'issuedCard',
+        PlatformPayment = <any> 'platformPayment'
     }
     export enum DirectionEnum {
         Incoming = <any> 'incoming',
         Outgoing = <any> 'outgoing'
     }
     export enum PriorityEnum {
+        CrossBorder = <any> 'crossBorder',
+        DirectDebit = <any> 'directDebit',
         Fast = <any> 'fast',
         Instant = <any> 'instant',
         Regular = <any> 'regular',
         Wire = <any> 'wire'
     }
     export enum ReasonEnum {
+        AmountLimitExceded = <any> 'amountLimitExceded',
         Approved = <any> 'approved',
+        CounterpartyAccountBlocked = <any> 'counterpartyAccountBlocked',
+        CounterpartyAccountClosed = <any> 'counterpartyAccountClosed',
+        CounterpartyAccountNotFound = <any> 'counterpartyAccountNotFound',
+        CounterpartyAddressRequired = <any> 'counterpartyAddressRequired',
+        CounterpartyBankTimedOut = <any> 'counterpartyBankTimedOut',
+        CounterpartyBankUnavailable = <any> 'counterpartyBankUnavailable',
         Error = <any> 'error',
         NotEnoughBalance = <any> 'notEnoughBalance',
+        RefusedByCounterpartyBank = <any> 'refusedByCounterpartyBank',
+        RouteNotFound = <any> 'routeNotFound',
         Unknown = <any> 'unknown'
     }
     export enum StatusEnum {
         AtmWithdrawal = <any> 'atmWithdrawal',
         AtmWithdrawalReversalPending = <any> 'atmWithdrawalReversalPending',
         AtmWithdrawalReversed = <any> 'atmWithdrawalReversed',
+        AuthAdjustmentAuthorised = <any> 'authAdjustmentAuthorised',
+        AuthAdjustmentError = <any> 'authAdjustmentError',
+        AuthAdjustmentRefused = <any> 'authAdjustmentRefused',
         Authorised = <any> 'authorised',
         BankTransfer = <any> 'bankTransfer',
         BankTransferPending = <any> 'bankTransferPending',
@@ -171,6 +187,7 @@ export namespace Transfer {
         ChargebackPending = <any> 'chargebackPending',
         ChargebackReversalPending = <any> 'chargebackReversalPending',
         ChargebackReversed = <any> 'chargebackReversed',
+        Credited = <any> 'credited',
         DepositCorrection = <any> 'depositCorrection',
         DepositCorrectionPending = <any> 'depositCorrectionPending',
         Dispute = <any> 'dispute',
@@ -206,6 +223,7 @@ export namespace Transfer {
         Refused = <any> 'refused',
         ReserveAdjustment = <any> 'reserveAdjustment',
         ReserveAdjustmentPending = <any> 'reserveAdjustmentPending',
+        Returned = <any> 'returned',
         SecondChargeback = <any> 'secondChargeback',
         SecondChargebackPending = <any> 'secondChargebackPending',
         Undefined = <any> 'undefined'

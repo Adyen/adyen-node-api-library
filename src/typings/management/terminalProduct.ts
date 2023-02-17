@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { TerminalProductPrice } from './terminalProductPrice';
 
 export class TerminalProduct {
     /**
@@ -26,7 +26,7 @@ export class TerminalProduct {
     * The descriptive name of the product.
     */
     'name'?: string;
-    'price'?: Amount;
+    'price'?: TerminalProductPrice;
 
     static discriminator: string | undefined = undefined;
 
@@ -54,7 +54,7 @@ export class TerminalProduct {
         {
             "name": "price",
             "baseName": "price",
-            "type": "Amount"
+            "type": "TerminalProductPrice"
         }    ];
 
     static getAttributeTypeMap() {
