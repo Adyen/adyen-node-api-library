@@ -55,6 +55,6 @@ export class NumberAndBicAccountIdentification {
 
 export namespace NumberAndBicAccountIdentification {
     export enum TypeEnum {
-        NumberAndBic = <any> 'numberAndBic'
+        NumberAndBic = 'numberAndBic'
     }
 }

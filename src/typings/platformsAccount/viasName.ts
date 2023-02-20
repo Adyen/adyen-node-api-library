@@ -57,8 +57,8 @@ export class ViasName {
 
 export namespace ViasName {
     export enum GenderEnum {
-        Male = <any> 'MALE',
-        Female = <any> 'FEMALE',
-        Unknown = <any> 'UNKNOWN'
+        Male = 'MALE',
+        Female = 'FEMALE',
+        Unknown = 'UNKNOWN'
     }
 }

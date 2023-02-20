@@ -552,12 +552,12 @@ export class ResponseAdditionalDataCommon {
 
 export namespace ResponseAdditionalDataCommon {
     export enum FraudResultTypeEnum {
-        Green = <any> 'GREEN',
-        Fraud = <any> 'FRAUD'
+        Green = 'GREEN',
+        Fraud = 'FRAUD'
     }
     export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
+        CardOnFile = 'CardOnFile',
+        Subscription = 'Subscription',
+        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
     }
 }

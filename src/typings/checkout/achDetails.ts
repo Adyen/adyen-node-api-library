@@ -102,6 +102,6 @@ export class AchDetails {
 
 export namespace AchDetails {
     export enum TypeEnum {
-        Ach = <any> 'ach'
+        Ach = 'ach'
     }
 }

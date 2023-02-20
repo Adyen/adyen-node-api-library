@@ -85,9 +85,9 @@ export class StoredValueIssueRequest {
 
 export namespace StoredValueIssueRequest {
     export enum ShopperInteractionEnum {
-        Ecommerce = <any> 'Ecommerce',
-        ContAuth = <any> 'ContAuth',
-        Moto = <any> 'Moto',
-        Pos = <any> 'POS'
+        Ecommerce = 'Ecommerce',
+        ContAuth = 'ContAuth',
+        Moto = 'Moto',
+        Pos = 'POS'
     }
 }

@@ -30,7 +30,7 @@ export class Connectivity {
 
 export namespace Connectivity {
     export enum SimcardStatusEnum {
-        Activated = <any> 'ACTIVATED',
-        Inventory = <any> 'INVENTORY'
+        Activated = 'ACTIVATED',
+        Inventory = 'INVENTORY'
     }
 }

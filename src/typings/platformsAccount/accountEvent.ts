@@ -48,7 +48,7 @@ export class AccountEvent {
 
 export namespace AccountEvent {
     export enum EventEnum {
-        InactivateAccount = <any> 'InactivateAccount',
-        RefundNotPaidOutTransfers = <any> 'RefundNotPaidOutTransfers'
+        InactivateAccount = 'InactivateAccount',
+        RefundNotPaidOutTransfers = 'RefundNotPaidOutTransfers'
     }
 }

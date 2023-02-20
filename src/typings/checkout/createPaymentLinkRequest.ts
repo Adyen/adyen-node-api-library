@@ -346,20 +346,20 @@ export class CreatePaymentLinkRequest {
 
 export namespace CreatePaymentLinkRequest {
     export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
+        CardOnFile = 'CardOnFile',
+        Subscription = 'Subscription',
+        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
     }
     export enum RequiredShopperFieldsEnum {
-        BillingAddress = <any> 'billingAddress',
-        DeliveryAddress = <any> 'deliveryAddress',
-        ShopperEmail = <any> 'shopperEmail',
-        ShopperName = <any> 'shopperName',
-        TelephoneNumber = <any> 'telephoneNumber'
+        BillingAddress = 'billingAddress',
+        DeliveryAddress = 'deliveryAddress',
+        ShopperEmail = 'shopperEmail',
+        ShopperName = 'shopperName',
+        TelephoneNumber = 'telephoneNumber'
     }
     export enum StorePaymentMethodModeEnum {
-        AskForConsent = <any> 'askForConsent',
-        Disabled = <any> 'disabled',
-        Enabled = <any> 'enabled'
+        AskForConsent = 'askForConsent',
+        Disabled = 'disabled',
+        Enabled = 'enabled'
     }
 }

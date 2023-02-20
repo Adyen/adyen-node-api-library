@@ -48,18 +48,18 @@ export class ShopperInput {
 
 export namespace ShopperInput {
     export enum BillingAddressEnum {
-        Editable = <any> 'editable',
-        Hidden = <any> 'hidden',
-        ReadOnly = <any> 'readOnly'
+        Editable = 'editable',
+        Hidden = 'hidden',
+        ReadOnly = 'readOnly'
     }
     export enum DeliveryAddressEnum {
-        Editable = <any> 'editable',
-        Hidden = <any> 'hidden',
-        ReadOnly = <any> 'readOnly'
+        Editable = 'editable',
+        Hidden = 'hidden',
+        ReadOnly = 'readOnly'
     }
     export enum PersonalDetailsEnum {
-        Editable = <any> 'editable',
-        Hidden = <any> 'hidden',
-        ReadOnly = <any> 'readOnly'
+        Editable = 'editable',
+        Hidden = 'hidden',
+        ReadOnly = 'readOnly'
     }
 }

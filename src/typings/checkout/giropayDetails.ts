@@ -57,6 +57,6 @@ export class GiropayDetails {
 
 export namespace GiropayDetails {
     export enum TypeEnum {
-        Giropay = <any> 'giropay'
+        Giropay = 'giropay'
     }
 }

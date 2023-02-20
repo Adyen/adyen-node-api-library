@@ -58,8 +58,8 @@ export class VerificationErrorRecursive {
 
 export namespace VerificationErrorRecursive {
     export enum TypeEnum {
-        DataMissing = <any> 'dataMissing',
-        InvalidInput = <any> 'invalidInput',
-        PendingStatus = <any> 'pendingStatus'
+        DataMissing = 'dataMissing',
+        InvalidInput = 'invalidInput',
+        PendingStatus = 'pendingStatus'
     }
 }

@@ -10,9 +10,21 @@
 import { Amount } from './amount';
 
 export class CapabilitySettings {
+    /**
+    * The maximum amount a card holder can spend per industry.
+    */
     'amountPerIndustry'?: { [key: string]: Amount; };
+    /**
+    * The number of card holders who can use the card.
+    */
     'authorizedCardUsers'?: boolean;
+    /**
+    * The funding source of the card, for example **debit**.
+    */
     'fundingSource'?: Array<CapabilitySettings.FundingSourceEnum>;
+    /**
+    * The period when the rule conditions apply.
+    */
     'interval'?: CapabilitySettings.IntervalEnum;
     'maxAmount'?: Amount;
 
@@ -52,13 +64,13 @@ export class CapabilitySettings {
 
 export namespace CapabilitySettings {
     export enum FundingSourceEnum {
-        Credit = <any> 'credit',
-        Debit = <any> 'debit',
-        Prepaid = <any> 'prepaid'
+        Credit = 'credit',
+        Debit = 'debit',
+        Prepaid = 'prepaid'
     }
     export enum IntervalEnum {
-        Daily = <any> 'daily',
-        Monthly = <any> 'monthly',
-        Weekly = <any> 'weekly'
+        Daily = 'daily',
+        Monthly = 'monthly',
+        Weekly = 'weekly'
     }
 }

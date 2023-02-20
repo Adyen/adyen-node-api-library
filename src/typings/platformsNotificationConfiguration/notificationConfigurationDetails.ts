@@ -112,7 +112,7 @@ export class NotificationConfigurationDetails {
 
 export namespace NotificationConfigurationDetails {
     export enum SslProtocolEnum {
-        Tlsv12 = <any> 'TLSv12',
-        Tlsv13 = <any> 'TLSv13'
+        Tlsv12 = 'TLSv12',
+        Tlsv13 = 'TLSv13'
     }
 }

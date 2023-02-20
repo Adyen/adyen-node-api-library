@@ -39,6 +39,6 @@ export class InstallAndroidCertificateDetails {
 
 export namespace InstallAndroidCertificateDetails {
     export enum TypeEnum {
-        InstallAndroidCertificate = <any> 'InstallAndroidCertificate'
+        InstallAndroidCertificate = 'InstallAndroidCertificate'
     }
 }

@@ -97,7 +97,7 @@ export class SoleProprietorship {
 
 export namespace SoleProprietorship {
     export enum VatAbsenceReasonEnum {
-        IndustryExemption = <any> 'industryExemption',
-        BelowTaxThreshold = <any> 'belowTaxThreshold'
+        IndustryExemption = 'industryExemption',
+        BelowTaxThreshold = 'belowTaxThreshold'
     }
 }

@@ -66,6 +66,6 @@ export class PaymentCancelResource {
 
 export namespace PaymentCancelResource {
     export enum StatusEnum {
-        Received = <any> 'received'
+        Received = 'received'
     }
 }

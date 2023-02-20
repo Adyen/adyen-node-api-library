@@ -101,29 +101,29 @@ export class LegalArrangementDetail {
 
 export namespace LegalArrangementDetail {
     export enum LegalFormEnum {
-        CashManagementTrust = <any> 'CashManagementTrust',
-        CorporateUnitTrust = <any> 'CorporateUnitTrust',
-        DeceasedEstate = <any> 'DeceasedEstate',
-        DiscretionaryInvestmentTrust = <any> 'DiscretionaryInvestmentTrust',
-        DiscretionaryServicesManagementTrust = <any> 'DiscretionaryServicesManagementTrust',
-        DiscretionaryTradingTrust = <any> 'DiscretionaryTradingTrust',
-        FirstHomeSaverAccountsTrust = <any> 'FirstHomeSaverAccountsTrust',
-        FixedTrust = <any> 'FixedTrust',
-        FixedUnitTrust = <any> 'FixedUnitTrust',
-        HybridTrust = <any> 'HybridTrust',
-        ListedPublicUnitTrust = <any> 'ListedPublicUnitTrust',
-        OtherTrust = <any> 'OtherTrust',
-        PooledSuperannuationTrust = <any> 'PooledSuperannuationTrust',
-        PublicTradingTrust = <any> 'PublicTradingTrust',
-        UnlistedPublicUnitTrust = <any> 'UnlistedPublicUnitTrust',
-        LimitedPartnership = <any> 'LimitedPartnership',
-        FamilyPartnership = <any> 'FamilyPartnership',
-        OtherPartnership = <any> 'OtherPartnership'
+        CashManagementTrust = 'CashManagementTrust',
+        CorporateUnitTrust = 'CorporateUnitTrust',
+        DeceasedEstate = 'DeceasedEstate',
+        DiscretionaryInvestmentTrust = 'DiscretionaryInvestmentTrust',
+        DiscretionaryServicesManagementTrust = 'DiscretionaryServicesManagementTrust',
+        DiscretionaryTradingTrust = 'DiscretionaryTradingTrust',
+        FirstHomeSaverAccountsTrust = 'FirstHomeSaverAccountsTrust',
+        FixedTrust = 'FixedTrust',
+        FixedUnitTrust = 'FixedUnitTrust',
+        HybridTrust = 'HybridTrust',
+        ListedPublicUnitTrust = 'ListedPublicUnitTrust',
+        OtherTrust = 'OtherTrust',
+        PooledSuperannuationTrust = 'PooledSuperannuationTrust',
+        PublicTradingTrust = 'PublicTradingTrust',
+        UnlistedPublicUnitTrust = 'UnlistedPublicUnitTrust',
+        LimitedPartnership = 'LimitedPartnership',
+        FamilyPartnership = 'FamilyPartnership',
+        OtherPartnership = 'OtherPartnership'
     }
     export enum TypeEnum {
-        Association = <any> 'Association',
-        Partnership = <any> 'Partnership',
-        SoleProprietorship = <any> 'SoleProprietorship',
-        Trust = <any> 'Trust'
+        Association = 'Association',
+        Partnership = 'Partnership',
+        SoleProprietorship = 'SoleProprietorship',
+        Trust = 'Trust'
     }
 }

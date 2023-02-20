@@ -66,9 +66,9 @@ export class GenericIssuerPaymentMethodDetails {
 
 export namespace GenericIssuerPaymentMethodDetails {
     export enum TypeEnum {
-        OnlineBankingPl = <any> 'onlineBanking_PL',
-        Eps = <any> 'eps',
-        OnlineBankingSk = <any> 'onlineBanking_SK',
-        OnlineBankingCz = <any> 'onlineBanking_CZ'
+        OnlineBankingPl = 'onlineBanking_PL',
+        Eps = 'eps',
+        OnlineBankingSk = 'onlineBanking_SK',
+        OnlineBankingCz = 'onlineBanking_CZ'
     }
 }

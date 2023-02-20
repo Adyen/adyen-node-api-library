@@ -118,6 +118,6 @@ export class RecurringDetail {
 
 export namespace RecurringDetail {
     export enum FundingSourceEnum {
-        Debit = <any> 'debit'
+        Debit = 'debit'
     }
 }

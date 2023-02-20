@@ -48,6 +48,6 @@ export class UKLocalAccountIdentification {
 
 export namespace UKLocalAccountIdentification {
     export enum TypeEnum {
-        UkLocal = <any> 'ukLocal'
+        UkLocal = 'ukLocal'
     }
 }

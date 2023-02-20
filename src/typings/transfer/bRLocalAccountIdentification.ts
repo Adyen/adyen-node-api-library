@@ -57,6 +57,6 @@ export class BRLocalAccountIdentification {
 
 export namespace BRLocalAccountIdentification {
     export enum TypeEnum {
-        BrLocal = <any> 'brLocal'
+        BrLocal = 'brLocal'
     }
 }

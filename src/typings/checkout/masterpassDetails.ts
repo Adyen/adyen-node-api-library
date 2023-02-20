@@ -57,9 +57,9 @@ export class MasterpassDetails {
 
 export namespace MasterpassDetails {
     export enum FundingSourceEnum {
-        Debit = <any> 'debit'
+        Debit = 'debit'
     }
     export enum TypeEnum {
-        Masterpass = <any> 'masterpass'
+        Masterpass = 'masterpass'
     }
 }

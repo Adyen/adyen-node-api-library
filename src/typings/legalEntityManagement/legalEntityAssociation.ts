@@ -75,10 +75,10 @@ export class LegalEntityAssociation {
 
 export namespace LegalEntityAssociation {
     export enum TypeEnum {
-        PciSignatory = <any> 'pciSignatory',
-        Signatory = <any> 'signatory',
-        SoleProprietorship = <any> 'soleProprietorship',
-        UboThroughControl = <any> 'uboThroughControl',
-        UboThroughOwnership = <any> 'uboThroughOwnership'
+        PciSignatory = 'pciSignatory',
+        Signatory = 'signatory',
+        SoleProprietorship = 'soleProprietorship',
+        UboThroughControl = 'uboThroughControl',
+        UboThroughOwnership = 'uboThroughOwnership'
     }
 }

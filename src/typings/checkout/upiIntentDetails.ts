@@ -66,6 +66,6 @@ export class UpiIntentDetails {
 
 export namespace UpiIntentDetails {
     export enum TypeEnum {
-        UpiIntent = <any> 'upi_intent'
+        UpiIntent = 'upi_intent'
     }
 }

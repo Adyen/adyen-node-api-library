@@ -153,15 +153,15 @@ export class Organization {
 
 export namespace Organization {
     export enum TypeEnum {
-        AssociationIncorporated = <any> 'associationIncorporated',
-        GovernmentalOrganization = <any> 'governmentalOrganization',
-        ListedPublicCompany = <any> 'listedPublicCompany',
-        NonProfit = <any> 'nonProfit',
-        PartnershipIncorporated = <any> 'partnershipIncorporated',
-        PrivateCompany = <any> 'privateCompany'
+        AssociationIncorporated = 'associationIncorporated',
+        GovernmentalOrganization = 'governmentalOrganization',
+        ListedPublicCompany = 'listedPublicCompany',
+        NonProfit = 'nonProfit',
+        PartnershipIncorporated = 'partnershipIncorporated',
+        PrivateCompany = 'privateCompany'
     }
     export enum VatAbsenceReasonEnum {
-        IndustryExemption = <any> 'industryExemption',
-        BelowTaxThreshold = <any> 'belowTaxThreshold'
+        IndustryExemption = 'industryExemption',
+        BelowTaxThreshold = 'belowTaxThreshold'
     }
 }

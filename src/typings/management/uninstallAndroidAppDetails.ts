@@ -39,6 +39,6 @@ export class UninstallAndroidAppDetails {
 
 export namespace UninstallAndroidAppDetails {
     export enum TypeEnum {
-        UninstallAndroidApp = <any> 'UninstallAndroidApp'
+        UninstallAndroidApp = 'UninstallAndroidApp'
     }
 }

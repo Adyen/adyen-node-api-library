@@ -44,7 +44,7 @@ export class BankAccountInfo {
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**.
     */
-    'countryCode': string;
+    'countryCode'?: string;
     /**
     * The account\'s three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **EUR**.
     */

@@ -48,9 +48,9 @@ export class ViasPhoneNumber {
 
 export namespace ViasPhoneNumber {
     export enum PhoneTypeEnum {
-        Fax = <any> 'Fax',
-        Landline = <any> 'Landline',
-        Mobile = <any> 'Mobile',
-        Sip = <any> 'SIP'
+        Fax = 'Fax',
+        Landline = 'Landline',
+        Mobile = 'Mobile',
+        Sip = 'SIP'
     }
 }

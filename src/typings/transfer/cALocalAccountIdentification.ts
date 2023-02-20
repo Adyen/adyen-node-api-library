@@ -57,6 +57,6 @@ export class CALocalAccountIdentification {
 
 export namespace CALocalAccountIdentification {
     export enum TypeEnum {
-        CaLocal = <any> 'caLocal'
+        CaLocal = 'caLocal'
     }
 }

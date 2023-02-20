@@ -39,6 +39,6 @@ export class InstallAndroidAppDetails {
 
 export namespace InstallAndroidAppDetails {
     export enum TypeEnum {
-        InstallAndroidApp = <any> 'InstallAndroidApp'
+        InstallAndroidApp = 'InstallAndroidApp'
     }
 }

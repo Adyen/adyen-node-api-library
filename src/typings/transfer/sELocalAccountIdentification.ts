@@ -48,6 +48,6 @@ export class SELocalAccountIdentification {
 
 export namespace SELocalAccountIdentification {
     export enum TypeEnum {
-        SeLocal = <any> 'seLocal'
+        SeLocal = 'seLocal'
     }
 }

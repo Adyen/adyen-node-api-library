@@ -119,10 +119,10 @@ export class LegalEntity {
 
 export namespace LegalEntity {
     export enum TypeEnum {
-        Individual = <any> 'individual',
-        Organization = <any> 'organization',
-        SoleProprietorship = <any> 'soleProprietorship',
-        Trust = <any> 'trust',
-        UnincorporatedPartnership = <any> 'unincorporatedPartnership'
+        Individual = 'individual',
+        Organization = 'organization',
+        SoleProprietorship = 'soleProprietorship',
+        Trust = 'trust',
+        UnincorporatedPartnership = 'unincorporatedPartnership'
     }
 }
