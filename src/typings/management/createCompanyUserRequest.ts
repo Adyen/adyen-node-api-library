@@ -21,8 +21,8 @@ export class CreateCompanyUserRequest {
     /**
     * The email address of the user.
     */
-    'email'?: string;
-    'name'?: Name;
+    'email': string;
+    'name': Name;
     /**
     * The list of [roles](https://docs.adyen.com/account/user-roles) for this user.
     */
@@ -34,7 +34,7 @@ export class CreateCompanyUserRequest {
     /**
     * The username for this user. Allowed length: 255 alphanumeric characters.
     */
-    'username'?: string;
+    'username': string;
 
     static discriminator: string | undefined = undefined;
 

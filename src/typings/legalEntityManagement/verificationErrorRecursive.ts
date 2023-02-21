@@ -7,15 +7,28 @@
  * Do not edit this class manually.
  */
 
-import { CapabilityProblemEntity } from './capabilityProblemEntity';
 import { RemediatingAction } from './remediatingAction';
 
 export class VerificationErrorRecursive {
+    /**
+    * Contains key-value pairs that specify the actions that the legal entity can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
+    */
     'capabilities'?: Array<VerificationErrorRecursive.CapabilitiesEnum>;
+    /**
+    * The general error code.
+    */
     'code'?: string;
+    /**
+    * The general error message.
+    */
     'message'?: string;
+    /**
+    * The type of error.
+    */
     'type'?: VerificationErrorRecursive.TypeEnum;
-    'entity'?: CapabilityProblemEntity;
+    /**
+    * An object containing possible solutions to fix a verification error.
+    */
     'remediatingActions'?: Array<RemediatingAction>;
 
     static discriminator: string | undefined = undefined;
@@ -40,11 +53,6 @@ export class VerificationErrorRecursive {
             "name": "type",
             "baseName": "type",
             "type": "VerificationErrorRecursive.TypeEnum"
-        },
-        {
-            "name": "entity",
-            "baseName": "entity",
-            "type": "CapabilityProblemEntity"
         },
         {
             "name": "remediatingActions",

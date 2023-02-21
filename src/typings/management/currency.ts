@@ -17,7 +17,7 @@ export class Currency {
     * Three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **AUD**.
     */
     'currencyCode': string;
-    'percentage'?: any;
+    'percentage'?: object;
 
     static discriminator: string | undefined = undefined;
 
@@ -35,7 +35,7 @@ export class Currency {
         {
             "name": "percentage",
             "baseName": "percentage",
-            "type": "any"
+            "type": "object"
         }    ];
 
     static getAttributeTypeMap() {

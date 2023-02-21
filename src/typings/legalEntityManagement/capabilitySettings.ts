@@ -10,9 +10,21 @@
 import { Amount } from './amount';
 
 export class CapabilitySettings {
+    /**
+    * The maximum amount a card holder can spend per industry.
+    */
     'amountPerIndustry'?: { [key: string]: Amount; };
+    /**
+    * The number of card holders who can use the card.
+    */
     'authorizedCardUsers'?: boolean;
+    /**
+    * The funding source of the card, for example **debit**.
+    */
     'fundingSource'?: Array<CapabilitySettings.FundingSourceEnum>;
+    /**
+    * The period when the rule conditions apply.
+    */
     'interval'?: CapabilitySettings.IntervalEnum;
     'maxAmount'?: Amount;
 

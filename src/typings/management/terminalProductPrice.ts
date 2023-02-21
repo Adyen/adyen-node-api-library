@@ -13,7 +13,7 @@ export class TerminalProductPrice {
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
     'currency'?: string;
-    'value'?: any;
+    'value'?: object;
 
     static discriminator: string | undefined = undefined;
 
@@ -26,7 +26,7 @@ export class TerminalProductPrice {
         {
             "name": "value",
             "baseName": "value",
-            "type": "any"
+            "type": "object"
         }    ];
 
     static getAttributeTypeMap() {
