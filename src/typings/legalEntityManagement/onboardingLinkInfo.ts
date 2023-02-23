@@ -18,7 +18,7 @@ export class OnboardingLinkInfo {
     */
     'redirectUrl'?: string;
     /**
-    * Boolean key-value pairs indicating the settings for the hosted onboarding page. The keys are the settings. By default, the values are set to **true**. Set to **false** to not allow the action.  Possible keys:  - **changeLegalEntityType**: The user can change the country of their legal entity\'s address, for example the registered address of an organization.  - **editPrefilledCountry**: The user can change their legal entity type.  
+    * Boolean key-value pairs indicating the settings for the hosted onboarding page. The keys are the settings. By default, the values are set to **true**. Set to **false** to not allow the action.  Possible keys:  - **changeLegalEntityType**: The user can change their legal entity type.  - **editPrefilledCountry**: The user can change the country of their legal entity\'s address, for example the registered address of an organization.  
     */
     'settings'?: { [key: string]: boolean; };
     /**
