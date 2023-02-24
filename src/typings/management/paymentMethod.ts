@@ -199,9 +199,9 @@ export class PaymentMethod {
 
 export namespace PaymentMethod {
     export enum VerificationStatusEnum {
-        Valid = <any> 'valid',
-        Pending = <any> 'pending',
-        Invalid = <any> 'invalid',
-        Rejected = <any> 'rejected'
+        Valid = 'valid',
+        Pending = 'pending',
+        Invalid = 'invalid',
+        Rejected = 'rejected'
     }
 }

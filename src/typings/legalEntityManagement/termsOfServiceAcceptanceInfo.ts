@@ -66,10 +66,10 @@ export class TermsOfServiceAcceptanceInfo {
 
 export namespace TermsOfServiceAcceptanceInfo {
     export enum TypeEnum {
-        AdyenAccount = <any> 'adyenAccount',
-        AdyenCapital = <any> 'adyenCapital',
-        AdyenForPlatformsAdvanced = <any> 'adyenForPlatformsAdvanced',
-        AdyenForPlatformsManage = <any> 'adyenForPlatformsManage',
-        AdyenIssuing = <any> 'adyenIssuing'
+        AdyenAccount = 'adyenAccount',
+        AdyenCapital = 'adyenCapital',
+        AdyenForPlatformsAdvanced = 'adyenForPlatformsAdvanced',
+        AdyenForPlatformsManage = 'adyenForPlatformsManage',
+        AdyenIssuing = 'adyenIssuing'
     }
 }

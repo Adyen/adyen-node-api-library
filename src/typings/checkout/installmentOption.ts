@@ -57,7 +57,7 @@ export class InstallmentOption {
 
 export namespace InstallmentOption {
     export enum PlansEnum {
-        Regular = <any> 'regular',
-        Revolving = <any> 'revolving'
+        Regular = 'regular',
+        Revolving = 'revolving'
     }
 }

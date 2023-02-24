@@ -180,7 +180,7 @@ export class StoreDetailAndSubmitRequest {
 
 export namespace StoreDetailAndSubmitRequest {
     export enum EntityTypeEnum {
-        NaturalPerson = <any> 'NaturalPerson',
-        Company = <any> 'Company'
+        NaturalPerson = 'NaturalPerson',
+        Company = 'Company'
     }
 }

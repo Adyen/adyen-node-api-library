@@ -63,6 +63,6 @@ export class VippsDetails {
 
 export namespace VippsDetails {
     export enum TypeEnum {
-        Vipps = <any> 'vipps'
+        Vipps = 'vipps'
     }
 }

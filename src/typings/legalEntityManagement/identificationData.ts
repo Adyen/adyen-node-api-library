@@ -84,18 +84,18 @@ export class IdentificationData {
 
 export namespace IdentificationData {
     export enum TypeEnum {
-        BankStatement = <any> 'bankStatement',
-        DriversLicense = <any> 'driversLicense',
-        IdentityCard = <any> 'identityCard',
-        NationalIdNumber = <any> 'nationalIdNumber',
-        Passport = <any> 'passport',
-        ProofOfAddress = <any> 'proofOfAddress',
-        ProofOfNationalIdNumber = <any> 'proofOfNationalIdNumber',
-        ProofOfResidency = <any> 'proofOfResidency',
-        RegistrationDocument = <any> 'registrationDocument',
-        VatDocument = <any> 'vatDocument',
-        ProofOfOrganizationTaxInfo = <any> 'proofOfOrganizationTaxInfo',
-        ProofOfIndustry = <any> 'proofOfIndustry',
-        ConstitutionalDocument = <any> 'constitutionalDocument'
+        BankStatement = 'bankStatement',
+        DriversLicense = 'driversLicense',
+        IdentityCard = 'identityCard',
+        NationalIdNumber = 'nationalIdNumber',
+        Passport = 'passport',
+        ProofOfAddress = 'proofOfAddress',
+        ProofOfNationalIdNumber = 'proofOfNationalIdNumber',
+        ProofOfResidency = 'proofOfResidency',
+        RegistrationDocument = 'registrationDocument',
+        VatDocument = 'vatDocument',
+        ProofOfOrganizationTaxInfo = 'proofOfOrganizationTaxInfo',
+        ProofOfIndustry = 'proofOfIndustry',
+        ConstitutionalDocument = 'constitutionalDocument'
     }
 }

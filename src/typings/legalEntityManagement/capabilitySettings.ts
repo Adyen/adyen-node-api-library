@@ -64,13 +64,13 @@ export class CapabilitySettings {
 
 export namespace CapabilitySettings {
     export enum FundingSourceEnum {
-        Credit = <any> 'credit',
-        Debit = <any> 'debit',
-        Prepaid = <any> 'prepaid'
+        Credit = 'credit',
+        Debit = 'debit',
+        Prepaid = 'prepaid'
     }
     export enum IntervalEnum {
-        Daily = <any> 'daily',
-        Monthly = <any> 'monthly',
-        Weekly = <any> 'weekly'
+        Daily = 'daily',
+        Monthly = 'monthly',
+        Weekly = 'weekly'
     }
 }

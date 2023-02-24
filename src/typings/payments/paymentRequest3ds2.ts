@@ -388,14 +388,14 @@ export class PaymentRequest3ds2 {
 
 export namespace PaymentRequest3ds2 {
     export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
+        CardOnFile = 'CardOnFile',
+        Subscription = 'Subscription',
+        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
     }
     export enum ShopperInteractionEnum {
-        Ecommerce = <any> 'Ecommerce',
-        ContAuth = <any> 'ContAuth',
-        Moto = <any> 'Moto',
-        Pos = <any> 'POS'
+        Ecommerce = 'Ecommerce',
+        ContAuth = 'ContAuth',
+        Moto = 'Moto',
+        Pos = 'POS'
     }
 }

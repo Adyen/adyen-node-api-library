@@ -39,6 +39,6 @@ export class NOLocalAccountIdentification {
 
 export namespace NOLocalAccountIdentification {
     export enum TypeEnum {
-        NoLocal = <any> 'noLocal'
+        NoLocal = 'noLocal'
     }
 }

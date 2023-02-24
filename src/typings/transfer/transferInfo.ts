@@ -107,18 +107,17 @@ export class TransferInfo {
 
 export namespace TransferInfo {
     export enum CategoryEnum {
-        Bank = <any> 'bank',
-        Internal = <any> 'internal',
-        IssuedCard = <any> 'issuedCard',
-        PlatformPayment = <any> 'platformPayment'
+        Bank = 'bank',
+        Internal = 'internal',
+        IssuedCard = 'issuedCard',
+        PlatformPayment = 'platformPayment'
     }
     export enum PriorityEnum {
-        CrossBorder = <any> 'crossBorder',
-        DirectDebit = <any> 'directDebit',
-        Fast = <any> 'fast',
-        Instant = <any> 'instant',
-        Internal = <any> 'internal',
-        Regular = <any> 'regular',
-        Wire = <any> 'wire'
+        CrossBorder = 'crossBorder',
+        DirectDebit = 'directDebit',
+        Fast = 'fast',
+        Instant = 'instant',
+        Regular = 'regular',
+        Wire = 'wire'
     }
 }

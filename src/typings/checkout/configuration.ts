@@ -51,8 +51,8 @@ export class Configuration {
 
 export namespace Configuration {
     export enum CardHolderNameEnum {
-        None = <any> 'NONE',
-        Optional = <any> 'OPTIONAL',
-        Required = <any> 'REQUIRED'
+        None = 'NONE',
+        Optional = 'OPTIONAL',
+        Required = 'REQUIRED'
     }
 }

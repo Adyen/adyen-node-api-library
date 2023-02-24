@@ -55,25 +55,25 @@ export class KYCCheckStatusData {
 
 export namespace KYCCheckStatusData {
     export enum StatusEnum {
-        AwaitingData = <any> 'AWAITING_DATA',
-        DataProvided = <any> 'DATA_PROVIDED',
-        Failed = <any> 'FAILED',
-        InvalidData = <any> 'INVALID_DATA',
-        Passed = <any> 'PASSED',
-        Pending = <any> 'PENDING',
-        PendingReview = <any> 'PENDING_REVIEW',
-        RetryLimitReached = <any> 'RETRY_LIMIT_REACHED',
-        Unchecked = <any> 'UNCHECKED'
+        AwaitingData = 'AWAITING_DATA',
+        DataProvided = 'DATA_PROVIDED',
+        Failed = 'FAILED',
+        InvalidData = 'INVALID_DATA',
+        Passed = 'PASSED',
+        Pending = 'PENDING',
+        PendingReview = 'PENDING_REVIEW',
+        RetryLimitReached = 'RETRY_LIMIT_REACHED',
+        Unchecked = 'UNCHECKED'
     }
     export enum TypeEnum {
-        BankAccountVerification = <any> 'BANK_ACCOUNT_VERIFICATION',
-        CardVerification = <any> 'CARD_VERIFICATION',
-        CompanyVerification = <any> 'COMPANY_VERIFICATION',
-        IdentityVerification = <any> 'IDENTITY_VERIFICATION',
-        LegalArrangementVerification = <any> 'LEGAL_ARRANGEMENT_VERIFICATION',
-        NonprofitVerification = <any> 'NONPROFIT_VERIFICATION',
-        PassportVerification = <any> 'PASSPORT_VERIFICATION',
-        PayoutMethodVerification = <any> 'PAYOUT_METHOD_VERIFICATION',
-        PciVerification = <any> 'PCI_VERIFICATION'
+        BankAccountVerification = 'BANK_ACCOUNT_VERIFICATION',
+        CardVerification = 'CARD_VERIFICATION',
+        CompanyVerification = 'COMPANY_VERIFICATION',
+        IdentityVerification = 'IDENTITY_VERIFICATION',
+        LegalArrangementVerification = 'LEGAL_ARRANGEMENT_VERIFICATION',
+        NonprofitVerification = 'NONPROFIT_VERIFICATION',
+        PassportVerification = 'PASSPORT_VERIFICATION',
+        PayoutMethodVerification = 'PAYOUT_METHOD_VERIFICATION',
+        PciVerification = 'PCI_VERIFICATION'
     }
 }

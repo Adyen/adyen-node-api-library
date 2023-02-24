@@ -48,11 +48,11 @@ export class PerformVerificationRequest {
 
 export namespace PerformVerificationRequest {
     export enum AccountStateTypeEnum {
-        LimitedPayout = <any> 'LimitedPayout',
-        LimitedProcessing = <any> 'LimitedProcessing',
-        LimitlessPayout = <any> 'LimitlessPayout',
-        LimitlessProcessing = <any> 'LimitlessProcessing',
-        Payout = <any> 'Payout',
-        Processing = <any> 'Processing'
+        LimitedPayout = 'LimitedPayout',
+        LimitedProcessing = 'LimitedProcessing',
+        LimitlessPayout = 'LimitlessPayout',
+        LimitlessProcessing = 'LimitlessProcessing',
+        Payout = 'Payout',
+        Processing = 'Processing'
     }
 }

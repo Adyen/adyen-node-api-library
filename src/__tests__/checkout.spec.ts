@@ -378,7 +378,7 @@ describe("Checkout", (): void => {
 
         const paymentMethodsBalanceResponse: checkout.CheckoutBalanceCheckResponse = {
             balance: {currency: "USD", value: 1000},
-            resultCode: checkout.CheckoutBalanceCheckResponse.ResultCodeEnum.Success
+            resultCode: <checkout.CheckoutBalanceCheckResponse.ResultCodeEnum> "Success"
         };
         scope.post("/paymentMethods/balance")
             .reply(200,  paymentMethodsBalanceResponse);

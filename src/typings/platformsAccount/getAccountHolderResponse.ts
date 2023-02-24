@@ -134,10 +134,10 @@ export class GetAccountHolderResponse {
 
 export namespace GetAccountHolderResponse {
     export enum LegalEntityEnum {
-        Business = <any> 'Business',
-        Individual = <any> 'Individual',
-        NonProfit = <any> 'NonProfit',
-        Partnership = <any> 'Partnership',
-        PublicCompany = <any> 'PublicCompany'
+        Business = 'Business',
+        Individual = 'Individual',
+        NonProfit = 'NonProfit',
+        Partnership = 'Partnership',
+        PublicCompany = 'PublicCompany'
     }
 }

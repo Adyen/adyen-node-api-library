@@ -102,6 +102,6 @@ export class PaymentMethod {
 
 export namespace PaymentMethod {
     export enum FundingSourceEnum {
-        Debit = <any> 'debit'
+        Debit = 'debit'
     }
 }

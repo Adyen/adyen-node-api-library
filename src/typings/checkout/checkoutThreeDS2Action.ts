@@ -84,6 +84,6 @@ export class CheckoutThreeDS2Action {
 
 export namespace CheckoutThreeDS2Action {
     export enum TypeEnum {
-        ThreeDs2 = <any> 'threeDS2'
+        ThreeDs2 = 'threeDS2'
     }
 }

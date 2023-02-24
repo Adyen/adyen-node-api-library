@@ -75,7 +75,7 @@ export class SepaDirectDebitDetails {
 
 export namespace SepaDirectDebitDetails {
     export enum TypeEnum {
-        Sepadirectdebit = <any> 'sepadirectdebit',
-        SepadirectdebitAmazonpay = <any> 'sepadirectdebit_amazonpay'
+        Sepadirectdebit = 'sepadirectdebit',
+        SepadirectdebitAmazonpay = 'sepadirectdebit_amazonpay'
     }
 }

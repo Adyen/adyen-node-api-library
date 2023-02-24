@@ -39,8 +39,8 @@ export class Avs {
 
 export namespace Avs {
     export enum EnabledEnum {
-        Yes = <any> 'yes',
-        No = <any> 'no',
-        Automatic = <any> 'automatic'
+        Yes = 'yes',
+        No = 'no',
+        Automatic = 'automatic'
     }
 }

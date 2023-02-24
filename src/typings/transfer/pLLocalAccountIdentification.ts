@@ -39,6 +39,6 @@ export class PLLocalAccountIdentification {
 
 export namespace PLLocalAccountIdentification {
     export enum TypeEnum {
-        PlLocal = <any> 'plLocal'
+        PlLocal = 'plLocal'
     }
 }

@@ -64,8 +64,8 @@ export class PartyIdentification2 {
 
 export namespace PartyIdentification2 {
     export enum TypeEnum {
-        Individual = <any> 'individual',
-        Organization = <any> 'organization',
-        Unknown = <any> 'unknown'
+        Individual = 'individual',
+        Organization = 'organization',
+        Unknown = 'unknown'
     }
 }

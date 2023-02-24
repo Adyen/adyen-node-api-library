@@ -48,6 +48,6 @@ export class DKLocalAccountIdentification {
 
 export namespace DKLocalAccountIdentification {
     export enum TypeEnum {
-        DkLocal = <any> 'dkLocal'
+        DkLocal = 'dkLocal'
     }
 }

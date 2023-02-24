@@ -152,14 +152,14 @@ export class StoreDetail {
 
 export namespace StoreDetail {
     export enum ShopperInteractionEnum {
-        Ecommerce = <any> 'Ecommerce',
-        Pos = <any> 'POS'
+        Ecommerce = 'Ecommerce',
+        Pos = 'POS'
     }
     export enum StatusEnum {
-        Active = <any> 'Active',
-        Closed = <any> 'Closed',
-        Inactive = <any> 'Inactive',
-        InactiveWithModifications = <any> 'InactiveWithModifications',
-        Pending = <any> 'Pending'
+        Active = 'Active',
+        Closed = 'Closed',
+        Inactive = 'Inactive',
+        InactiveWithModifications = 'InactiveWithModifications',
+        Pending = 'Pending'
     }
 }

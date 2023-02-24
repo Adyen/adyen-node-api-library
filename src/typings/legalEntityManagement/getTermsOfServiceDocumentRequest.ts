@@ -39,10 +39,10 @@ export class GetTermsOfServiceDocumentRequest {
 
 export namespace GetTermsOfServiceDocumentRequest {
     export enum TypeEnum {
-        AdyenAccount = <any> 'adyenAccount',
-        AdyenCapital = <any> 'adyenCapital',
-        AdyenForPlatformsAdvanced = <any> 'adyenForPlatformsAdvanced',
-        AdyenForPlatformsManage = <any> 'adyenForPlatformsManage',
-        AdyenIssuing = <any> 'adyenIssuing'
+        AdyenAccount = 'adyenAccount',
+        AdyenCapital = 'adyenCapital',
+        AdyenForPlatformsAdvanced = 'adyenForPlatformsAdvanced',
+        AdyenForPlatformsManage = 'adyenForPlatformsManage',
+        AdyenIssuing = 'adyenIssuing'
     }
 }
