@@ -26,7 +26,9 @@ jobs:
           git reset --hard develop
       # @TODO testing step, remove me
       - name: Bake release scripts too  
-        run: git merge origin/ITT-12
+        run: |
+          git fetch origin ITT-12:ITT-12
+          git merge ITT-12
       - name: Prepare release request
         uses: actions/github-script@v6
         id: release
