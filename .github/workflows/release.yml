@@ -1,0 +1,36 @@
+name: Release request
+
+on: [ workflow_dispatch ]
+
+jobs:
+  release:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+      - name: Reset promotion branch
+        run: |
+          git fetch origin develop:develop
+          git reset --hard develop
+      - name: Prepare release request
+        uses: actions/github-script@v6
+        id: release
+        with:
+          debug: true
+          script: |
+            const release = require('./.github/scripts/release.js')
+            const options = { github, context, core, getCurrentVersion: release.packageVersion };
+            await release.bump(options);
+      - name: Bump package.json
+        run: npm --no-git-tag-version version ${{steps.release.outputs.nextVersion}}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          branch: automation/release
+          title: Release v${{steps.release.outputs.nextVersion}}
+          body: ${{steps.release.outputs.changelog}}
+          commit-message: "chore(release): bump to ${{steps.release.outputs.nextVersion}}"
