@@ -1,6 +1,14 @@
 name: Release request
 
-on: [ workflow_dispatch ]
+on:
+  workflow_dispatch:
+  push:
+  # push:
+  #   branches:
+  #     - develop
+  schedule:
+    # Every Monday
+    - cron:  '0 0 * * MON'
 
 jobs:
   release:
@@ -10,12 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: main
-      - name: Reset promotion branch
-        run: |
-          git fetch origin develop:develop
-          git reset --hard develop
+        # with:
+        #   ref: main
+      # - name: Reset promotion branch
+      #   run: |
+      #     git fetch origin develop:develop
+      #     git reset --hard develop
       - name: Prepare release request
         uses: actions/github-script@v6
         id: release
@@ -30,6 +38,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
+          base: main
           branch: automation/release
           title: Release v${{steps.release.outputs.nextVersion}}
           body: ${{steps.release.outputs.changelog}}
