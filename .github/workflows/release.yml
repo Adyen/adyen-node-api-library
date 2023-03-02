@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - develop
-      - ITT-12
 
 jobs:
   release:
@@ -21,16 +20,10 @@ jobs:
         run: |
           git fetch origin develop:develop
           git reset --hard develop
-      # @TODO testing step, remove me
-      - name: Bake release scripts too  
-        run: |
-          git fetch origin ITT-12:ITT-12
-          git merge ITT-12
       - name: Prepare release request
         uses: actions/github-script@v6
         id: release
         with:
-          debug: true
           script: |
             const release = require('./.github/scripts/release.js')
             const options = { github, context, core, getCurrentVersion: release.packageVersion };
