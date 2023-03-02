@@ -3,12 +3,9 @@ name: Release request
 on:
   workflow_dispatch:
   push:
-  # push:
-  #   branches:
-  #     - develop
-  schedule:
-    # Every Monday
-    - cron:  '0 0 * * MON'
+    branches:
+      - develop
+      - ITT-12
 
 jobs:
   release:
@@ -41,9 +38,15 @@ jobs:
       - name: Bump package.json
         run: npm --no-git-tag-version version ${{steps.release.outputs.nextVersion}}
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04 # v4.2.3
         with:
+          token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
+          committer: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
+          author: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
           branch: automation/release
           title: Release v${{steps.release.outputs.nextVersion}}
-          body: ${{steps.release.outputs.changelog}}
+          body: |
+            Merged pull requests to be released:
+            ${{steps.release.outputs.changelog}}
           commit-message: "chore(release): bump to ${{steps.release.outputs.nextVersion}}"
+          delete-branch: true
