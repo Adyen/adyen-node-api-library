@@ -80,4 +80,6 @@ export enum ApiConstants {
     CONTENT_TYPE = "Content-Type",
     API_KEY = "X-API-Key",
     APPLICATION_JSON_TYPE = "application/json",
+    ADYEN_LIBRARY_NAME = "adyen-library-name",
+    ADYEN_LIBRARY_VERSION = "adyen-library-version",
 }

@@ -111,6 +111,8 @@ class HttpURLConnectionClient implements ClientInterface {
 
         requestOptions.headers[ApiConstants.ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
         requestOptions.headers[ApiConstants.USER_AGENT] = `${applicationName} ${Client.LIB_NAME}/${Client.LIB_VERSION}`;
+        requestOptions.headers[ApiConstants.ADYEN_LIBRARY_NAME] = Client.LIB_NAME;
+        requestOptions.headers[ApiConstants.ADYEN_LIBRARY_VERSION] = Client.LIB_VERSION;
 
         return httpsRequest(requestOptions);
     }

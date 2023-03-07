@@ -79,7 +79,6 @@ class Client {
     public static DATA_PROTECTION_API_ENDPOINT_TEST = "https://ca-test.adyen.com/ca/services/DataProtectionService";
     public static DATA_PROTECTION_API_ENDPOINT_LIVE = "https://ca-live.adyen.com/ca/services/DataProtectionService";
 
-
     private _httpClient!: ClientInterface;
     public config: Config;
 
