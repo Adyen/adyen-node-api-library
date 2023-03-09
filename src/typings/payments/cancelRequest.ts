@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { Split } from './split';
 import { ThreeDSecureData } from './threeDSecureData';
 
@@ -28,6 +29,7 @@ export class CancelRequest {
     * The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
     */
     'originalReference': string;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
     */
@@ -72,6 +74,11 @@ export class CancelRequest {
             "name": "originalReference",
             "baseName": "originalReference",
             "type": "string"
+        },
+        {
+            "name": "platformChargebackLogic",
+            "baseName": "platformChargebackLogic",
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "reference",

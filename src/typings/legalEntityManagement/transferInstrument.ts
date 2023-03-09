@@ -21,7 +21,7 @@ export class TransferInstrument {
     */
     'id': string;
     /**
-    * The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the transfer instrument.
+    * The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.
     */
     'legalEntityId': string;
     /**

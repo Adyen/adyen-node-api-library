@@ -54,6 +54,7 @@ export * from './checkoutCancelOrderRequest';
 export * from './checkoutCancelOrderResponse';
 export * from './checkoutCreateOrderRequest';
 export * from './checkoutCreateOrderResponse';
+export * from './checkoutNativeRedirectAction';
 export * from './checkoutOrder';
 export * from './checkoutOrderResponse';
 export * from './checkoutQrCodeAction';
@@ -230,6 +231,7 @@ import { CheckoutCancelOrderRequest } from './checkoutCancelOrderRequest';
 import { CheckoutCancelOrderResponse } from './checkoutCancelOrderResponse';
 import { CheckoutCreateOrderRequest } from './checkoutCreateOrderRequest';
 import { CheckoutCreateOrderResponse } from './checkoutCreateOrderResponse';
+import { CheckoutNativeRedirectAction } from './checkoutNativeRedirectAction';
 import { CheckoutOrder } from './checkoutOrder';
 import { CheckoutOrderResponse } from './checkoutOrderResponse';
 import { CheckoutQrCodeAction } from './checkoutQrCodeAction';
@@ -407,6 +409,7 @@ let enumsMap: {[index: string]: any} = {
         "CheckoutBalanceCheckResponse.ResultCodeEnum": CheckoutBalanceCheckResponse.ResultCodeEnum,
         "CheckoutCancelOrderResponse.ResultCodeEnum": CheckoutCancelOrderResponse.ResultCodeEnum,
         "CheckoutCreateOrderResponse.ResultCodeEnum": CheckoutCreateOrderResponse.ResultCodeEnum,
+        "CheckoutNativeRedirectAction.TypeEnum": CheckoutNativeRedirectAction.TypeEnum,
         "CheckoutQrCodeAction.TypeEnum": CheckoutQrCodeAction.TypeEnum,
         "CheckoutRedirectAction.TypeEnum": CheckoutRedirectAction.TypeEnum,
         "CheckoutSDKAction.TypeEnum": CheckoutSDKAction.TypeEnum,
@@ -581,6 +584,7 @@ let typeMap: {[index: string]: any} = {
     "CheckoutCancelOrderResponse": CheckoutCancelOrderResponse,
     "CheckoutCreateOrderRequest": CheckoutCreateOrderRequest,
     "CheckoutCreateOrderResponse": CheckoutCreateOrderResponse,
+    "CheckoutNativeRedirectAction": CheckoutNativeRedirectAction,
     "CheckoutOrder": CheckoutOrder,
     "CheckoutOrderResponse": CheckoutOrderResponse,
     "CheckoutQrCodeAction": CheckoutQrCodeAction,

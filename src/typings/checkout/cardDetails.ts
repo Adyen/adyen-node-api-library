@@ -25,15 +25,15 @@ export class CardDetails {
     /**
     * The encrypted card number.
     */
-    'encryptedCardNumber': string;
+    'encryptedCardNumber'?: string;
     /**
     * The encrypted card expiry month.
     */
-    'encryptedExpiryMonth': string;
+    'encryptedExpiryMonth'?: string;
     /**
     * The encrypted card expiry year.
     */
-    'encryptedExpiryYear': string;
+    'encryptedExpiryYear'?: string;
     /**
     * The encrypted card verification code.
     */
