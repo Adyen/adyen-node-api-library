@@ -1,8 +1,8 @@
 changelog:
   exclude:
     authors:
-      - app/renovate
-      - app/dependabot
+      - renovate[bot]
+      - dependabot[bot]
   categories:
     - title: Breaking Changes 🛠
       labels:
