@@ -109,7 +109,7 @@ export class PaymentLinkResponse {
     */
     'shopperEmail'?: string;
     /**
-    * The language to be used in the payment page, specified by a combination of a language and country code. For example, `en-US`.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/online-payments/pay-by-link#language-and-localization).
+    * The language to be used in the payment page, specified by a combination of a language and country code. For example, `en-US`.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#language).
     */
     'shopperLocale'?: string;
     'shopperName'?: Name;

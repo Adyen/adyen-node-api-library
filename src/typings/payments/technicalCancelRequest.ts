@@ -8,6 +8,7 @@
  */
 
 import { Amount } from './amount';
+import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { Split } from './split';
 import { ThreeDSecureData } from './threeDSecureData';
 
@@ -26,6 +27,7 @@ export class TechnicalCancelRequest {
     * The original merchant reference to cancel.
     */
     'originalMerchantReference': string;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
     */
@@ -70,6 +72,11 @@ export class TechnicalCancelRequest {
             "name": "originalMerchantReference",
             "baseName": "originalMerchantReference",
             "type": "string"
+        },
+        {
+            "name": "platformChargebackLogic",
+            "baseName": "platformChargebackLogic",
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "reference",

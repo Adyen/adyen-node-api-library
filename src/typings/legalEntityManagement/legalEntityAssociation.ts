@@ -22,15 +22,15 @@ export class LegalEntityAssociation {
     */
     'jobTitle'?: string;
     /**
-    * The unique identifier of the associated [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id).
+    * The unique identifier of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id).
     */
     'legalEntityId': string;
     /**
-    * The name of the associated [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id).  - For **individual**, `name.firstName` and `name.lastName`. - For **organization**, `legalName`. - For **soleProprietorship**, `name`.
+    * The name of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id).  - For **individual**, `name.firstName` and `name.lastName`. - For **organization**, `legalName`. - For **soleProprietorship**, `name`.
     */
     'name'?: string;
     /**
-    * Defines the relationship of the legal entity to the current legal entity.   For example, **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **soleProprietorship**. 
+    * Defines the relationship of the legal entity to the current legal entity.   Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **signatory**, or **ultimateParentCompany**.   Possible values for sole proprietorships: **soleProprietorship**. 
     */
     'type': LegalEntityAssociation.TypeEnum;
 
@@ -79,6 +79,7 @@ export namespace LegalEntityAssociation {
         Signatory = 'signatory',
         SoleProprietorship = 'soleProprietorship',
         UboThroughControl = 'uboThroughControl',
-        UboThroughOwnership = 'uboThroughOwnership'
+        UboThroughOwnership = 'uboThroughOwnership',
+        UltimateParentCompany = 'ultimateParentCompany'
     }
 }
