@@ -26,4 +26,4 @@ jobs:
         run: |
           gh release create v${{steps.release.outputs.version}} \
             --title 'Adyen Node API Library v${{steps.release.outputs.version}}' \
-            --generate-notes --target main --draft
+            --generate-notes --target main
