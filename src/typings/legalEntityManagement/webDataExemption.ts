@@ -30,6 +30,6 @@ export class WebDataExemption {
 
 export namespace WebDataExemption {
     export enum ReasonEnum {
-        NoOnlinePresence = <any> 'noOnlinePresence'
+        NoOnlinePresence = 'noOnlinePresence'
     }
 }

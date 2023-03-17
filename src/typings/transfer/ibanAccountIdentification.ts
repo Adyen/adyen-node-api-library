@@ -39,6 +39,6 @@ export class IbanAccountIdentification {
 
 export namespace IbanAccountIdentification {
     export enum TypeEnum {
-        Iban = <any> 'iban'
+        Iban = 'iban'
     }
 }

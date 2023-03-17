@@ -92,11 +92,11 @@ export class PaymentAmountUpdateResource {
 
 export namespace PaymentAmountUpdateResource {
     export enum IndustryUsageEnum {
-        DelayedCharge = <any> 'delayedCharge',
-        Installment = <any> 'installment',
-        NoShow = <any> 'noShow'
+        DelayedCharge = 'delayedCharge',
+        Installment = 'installment',
+        NoShow = 'noShow'
     }
     export enum StatusEnum {
-        Received = <any> 'received'
+        Received = 'received'
     }
 }

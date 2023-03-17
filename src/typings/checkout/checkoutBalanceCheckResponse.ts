@@ -77,8 +77,8 @@ export class CheckoutBalanceCheckResponse {
 
 export namespace CheckoutBalanceCheckResponse {
     export enum ResultCodeEnum {
-        Success = <any> 'Success',
-        NotEnoughBalance = <any> 'NotEnoughBalance',
-        Failed = <any> 'Failed'
+        Success = 'Success',
+        NotEnoughBalance = 'NotEnoughBalance',
+        Failed = 'Failed'
     }
 }

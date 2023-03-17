@@ -480,24 +480,24 @@ export class CreateCheckoutSessionRequest {
 
 export namespace CreateCheckoutSessionRequest {
     export enum ChannelEnum {
-        IOs = <any> 'iOS',
-        Android = <any> 'Android',
-        Web = <any> 'Web'
+        IOs = 'iOS',
+        Android = 'Android',
+        Web = 'Web'
     }
     export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
+        CardOnFile = 'CardOnFile',
+        Subscription = 'Subscription',
+        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
     }
     export enum ShopperInteractionEnum {
-        Ecommerce = <any> 'Ecommerce',
-        ContAuth = <any> 'ContAuth',
-        Moto = <any> 'Moto',
-        Pos = <any> 'POS'
+        Ecommerce = 'Ecommerce',
+        ContAuth = 'ContAuth',
+        Moto = 'Moto',
+        Pos = 'POS'
     }
     export enum StorePaymentMethodModeEnum {
-        AskForConsent = <any> 'askForConsent',
-        Disabled = <any> 'disabled',
-        Enabled = <any> 'enabled'
+        AskForConsent = 'askForConsent',
+        Disabled = 'disabled',
+        Enabled = 'enabled'
     }
 }

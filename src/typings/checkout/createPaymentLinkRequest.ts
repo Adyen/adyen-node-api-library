@@ -105,7 +105,7 @@ export class CreatePaymentLinkRequest {
     */
     'shopperEmail'?: string;
     /**
-    * The language to be used in the payment page, specified by a combination of a language and country code. For example, `en-US`.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/online-payments/pay-by-link#language-and-localization).
+    * The language to be used in the payment page, specified by a combination of a language and country code. For example, `en-US`.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#language).
     */
     'shopperLocale'?: string;
     'shopperName'?: Name;
@@ -346,20 +346,20 @@ export class CreatePaymentLinkRequest {
 
 export namespace CreatePaymentLinkRequest {
     export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
+        CardOnFile = 'CardOnFile',
+        Subscription = 'Subscription',
+        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
     }
     export enum RequiredShopperFieldsEnum {
-        BillingAddress = <any> 'billingAddress',
-        DeliveryAddress = <any> 'deliveryAddress',
-        ShopperEmail = <any> 'shopperEmail',
-        ShopperName = <any> 'shopperName',
-        TelephoneNumber = <any> 'telephoneNumber'
+        BillingAddress = 'billingAddress',
+        DeliveryAddress = 'deliveryAddress',
+        ShopperEmail = 'shopperEmail',
+        ShopperName = 'shopperName',
+        TelephoneNumber = 'telephoneNumber'
     }
     export enum StorePaymentMethodModeEnum {
-        AskForConsent = <any> 'askForConsent',
-        Disabled = <any> 'disabled',
-        Enabled = <any> 'enabled'
+        AskForConsent = 'askForConsent',
+        Disabled = 'disabled',
+        Enabled = 'enabled'
     }
 }

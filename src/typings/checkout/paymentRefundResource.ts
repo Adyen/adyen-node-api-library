@@ -102,13 +102,13 @@ export class PaymentRefundResource {
 
 export namespace PaymentRefundResource {
     export enum MerchantRefundReasonEnum {
-        Fraud = <any> 'FRAUD',
-        CustomerRequest = <any> 'CUSTOMER REQUEST',
-        Return = <any> 'RETURN',
-        Duplicate = <any> 'DUPLICATE',
-        Other = <any> 'OTHER'
+        Fraud = 'FRAUD',
+        CustomerRequest = 'CUSTOMER REQUEST',
+        Return = 'RETURN',
+        Duplicate = 'DUPLICATE',
+        Other = 'OTHER'
     }
     export enum StatusEnum {
-        Received = <any> 'received'
+        Received = 'received'
     }
 }

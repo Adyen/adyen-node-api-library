@@ -39,14 +39,14 @@ export class EntryModesRestriction {
 
 export namespace EntryModesRestriction {
     export enum ValueEnum {
-        Barcode = <any> 'barcode',
-        Chip = <any> 'chip',
-        Cof = <any> 'cof',
-        Contactless = <any> 'contactless',
-        Magstripe = <any> 'magstripe',
-        Manual = <any> 'manual',
-        Ocr = <any> 'ocr',
-        Server = <any> 'server',
-        Unknown = <any> 'unknown'
+        Barcode = 'barcode',
+        Chip = 'chip',
+        Cof = 'cof',
+        Contactless = 'contactless',
+        Magstripe = 'magstripe',
+        Manual = 'manual',
+        Ocr = 'ocr',
+        Server = 'server',
+        Unknown = 'unknown'
     }
 }

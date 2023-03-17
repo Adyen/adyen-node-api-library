@@ -39,7 +39,7 @@ export class Phone {
 
 export namespace Phone {
     export enum TypeEnum {
-        Landline = <any> 'landline',
-        Mobile = <any> 'mobile'
+        Landline = 'landline',
+        Mobile = 'mobile'
     }
 }

@@ -34,7 +34,7 @@ export class IdentificationData {
     */
     'number'?: string;
     /**
-    * Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the `type` values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading documents: * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+    * Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the `type` values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading photo IDs: * For **individual**, the `type` values can be **identityCard**, **driversLicense**, or **passport**.  When uploading other documents: * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
     */
     'type': IdentificationData.TypeEnum;
 
@@ -84,18 +84,18 @@ export class IdentificationData {
 
 export namespace IdentificationData {
     export enum TypeEnum {
-        BankStatement = <any> 'bankStatement',
-        DriversLicense = <any> 'driversLicense',
-        IdentityCard = <any> 'identityCard',
-        NationalIdNumber = <any> 'nationalIdNumber',
-        Passport = <any> 'passport',
-        ProofOfAddress = <any> 'proofOfAddress',
-        ProofOfNationalIdNumber = <any> 'proofOfNationalIdNumber',
-        ProofOfResidency = <any> 'proofOfResidency',
-        RegistrationDocument = <any> 'registrationDocument',
-        VatDocument = <any> 'vatDocument',
-        ProofOfOrganizationTaxInfo = <any> 'proofOfOrganizationTaxInfo',
-        ProofOfIndustry = <any> 'proofOfIndustry',
-        ConstitutionalDocument = <any> 'constitutionalDocument'
+        BankStatement = 'bankStatement',
+        DriversLicense = 'driversLicense',
+        IdentityCard = 'identityCard',
+        NationalIdNumber = 'nationalIdNumber',
+        Passport = 'passport',
+        ProofOfAddress = 'proofOfAddress',
+        ProofOfNationalIdNumber = 'proofOfNationalIdNumber',
+        ProofOfResidency = 'proofOfResidency',
+        RegistrationDocument = 'registrationDocument',
+        VatDocument = 'vatDocument',
+        ProofOfOrganizationTaxInfo = 'proofOfOrganizationTaxInfo',
+        ProofOfIndustry = 'proofOfIndustry',
+        ConstitutionalDocument = 'constitutionalDocument'
     }
 }

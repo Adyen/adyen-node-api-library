@@ -80,8 +80,8 @@ export class DonationResponse {
 
 export namespace DonationResponse {
     export enum StatusEnum {
-        Completed = <any> 'completed',
-        Pending = <any> 'pending',
-        Refused = <any> 'refused'
+        Completed = 'completed',
+        Pending = 'pending',
+        Refused = 'refused'
     }
 }

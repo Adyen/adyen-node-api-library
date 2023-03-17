@@ -40,7 +40,7 @@ export class User {
     /**
     * The username for this user.
     */
-    'username'?: string;
+    'username': string;
 
     static discriminator: string | undefined = undefined;
 

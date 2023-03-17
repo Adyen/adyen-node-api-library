@@ -75,7 +75,7 @@ export class EcontextVoucherDetails {
 
 export namespace EcontextVoucherDetails {
     export enum TypeEnum {
-        Seveneleven = <any> 'econtext_seveneleven',
-        Stores = <any> 'econtext_stores'
+        Seveneleven = 'econtext_seveneleven',
+        Stores = 'econtext_stores'
     }
 }

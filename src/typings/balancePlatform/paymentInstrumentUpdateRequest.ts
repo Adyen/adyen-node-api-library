@@ -64,19 +64,19 @@ export class PaymentInstrumentUpdateRequest {
 
 export namespace PaymentInstrumentUpdateRequest {
     export enum StatusEnum {
-        Active = <any> 'active',
-        Closed = <any> 'closed',
-        Inactive = <any> 'inactive',
-        Suspended = <any> 'suspended'
+        Active = 'active',
+        Closed = 'closed',
+        Inactive = 'inactive',
+        Suspended = 'suspended'
     }
     export enum StatusReasonEnum {
-        AccountClosure = <any> 'accountClosure',
-        Damaged = <any> 'damaged',
-        EndOfLife = <any> 'endOfLife',
-        Expired = <any> 'expired',
-        Lost = <any> 'lost',
-        Other = <any> 'other',
-        Stolen = <any> 'stolen',
-        SuspectedFraud = <any> 'suspectedFraud'
+        AccountClosure = 'accountClosure',
+        Damaged = 'damaged',
+        EndOfLife = 'endOfLife',
+        Expired = 'expired',
+        Lost = 'lost',
+        Other = 'other',
+        Stolen = 'stolen',
+        SuspectedFraud = 'suspectedFraud'
     }
 }

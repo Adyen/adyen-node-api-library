@@ -48,6 +48,6 @@ export class CellulantDetails {
 
 export namespace CellulantDetails {
     export enum TypeEnum {
-        Cellulant = <any> 'cellulant'
+        Cellulant = 'cellulant'
     }
 }

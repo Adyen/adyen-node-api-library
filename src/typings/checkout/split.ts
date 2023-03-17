@@ -64,15 +64,15 @@ export class Split {
 
 export namespace Split {
     export enum TypeEnum {
-        BalanceAccount = <any> 'BalanceAccount',
-        Commission = <any> 'Commission',
-        Default = <any> 'Default',
-        MarketPlace = <any> 'MarketPlace',
-        PaymentFee = <any> 'PaymentFee',
-        Remainder = <any> 'Remainder',
-        Surcharge = <any> 'Surcharge',
-        Tip = <any> 'Tip',
-        Vat = <any> 'VAT',
-        Verification = <any> 'Verification'
+        BalanceAccount = 'BalanceAccount',
+        Commission = 'Commission',
+        Default = 'Default',
+        MarketPlace = 'MarketPlace',
+        PaymentFee = 'PaymentFee',
+        Remainder = 'Remainder',
+        Surcharge = 'Surcharge',
+        Tip = 'Tip',
+        Vat = 'VAT',
+        Verification = 'Verification'
     }
 }

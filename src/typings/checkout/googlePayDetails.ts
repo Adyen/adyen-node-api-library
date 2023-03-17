@@ -75,9 +75,9 @@ export class GooglePayDetails {
 
 export namespace GooglePayDetails {
     export enum FundingSourceEnum {
-        Debit = <any> 'debit'
+        Debit = 'debit'
     }
     export enum TypeEnum {
-        Googlepay = <any> 'googlepay'
+        Googlepay = 'googlepay'
     }
 }

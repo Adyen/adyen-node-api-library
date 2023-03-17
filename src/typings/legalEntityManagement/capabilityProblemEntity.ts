@@ -40,8 +40,8 @@ export class CapabilityProblemEntity {
 
 export namespace CapabilityProblemEntity {
     export enum TypeEnum {
-        BankAccount = <any> 'BankAccount',
-        Document = <any> 'Document',
-        LegalEntity = <any> 'LegalEntity'
+        BankAccount = 'BankAccount',
+        Document = 'Document',
+        LegalEntity = 'LegalEntity'
     }
 }

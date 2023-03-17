@@ -30,10 +30,10 @@ export class SweepSchedule {
 
 export namespace SweepSchedule {
     export enum TypeEnum {
-        Daily = <any> 'daily',
-        Weekly = <any> 'weekly',
-        Monthly = <any> 'monthly',
-        Balance = <any> 'balance',
-        Cron = <any> 'cron'
+        Daily = 'daily',
+        Weekly = 'weekly',
+        Monthly = 'monthly',
+        Balance = 'balance',
+        Cron = 'cron'
     }
 }

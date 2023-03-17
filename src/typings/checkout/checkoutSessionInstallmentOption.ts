@@ -48,7 +48,7 @@ export class CheckoutSessionInstallmentOption {
 
 export namespace CheckoutSessionInstallmentOption {
     export enum PlansEnum {
-        Regular = <any> 'regular',
-        Revolving = <any> 'revolving'
+        Regular = 'regular',
+        Revolving = 'revolving'
     }
 }

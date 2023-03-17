@@ -65,8 +65,8 @@ export class CreatePaymentAmountUpdateRequest {
 
 export namespace CreatePaymentAmountUpdateRequest {
     export enum IndustryUsageEnum {
-        DelayedCharge = <any> 'delayedCharge',
-        Installment = <any> 'installment',
-        NoShow = <any> 'noShow'
+        DelayedCharge = 'delayedCharge',
+        Installment = 'installment',
+        NoShow = 'noShow'
     }
 }

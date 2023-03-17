@@ -25,15 +25,15 @@ export class CardDetails {
     /**
     * The encrypted card number.
     */
-    'encryptedCardNumber': string;
+    'encryptedCardNumber'?: string;
     /**
     * The encrypted card expiry month.
     */
-    'encryptedExpiryMonth': string;
+    'encryptedExpiryMonth'?: string;
     /**
     * The encrypted card expiry year.
     */
-    'encryptedExpiryYear': string;
+    'encryptedExpiryYear'?: string;
     /**
     * The encrypted card verification code.
     */
@@ -189,13 +189,13 @@ export class CardDetails {
 
 export namespace CardDetails {
     export enum FundingSourceEnum {
-        Debit = <any> 'debit'
+        Debit = 'debit'
     }
     export enum TypeEnum {
-        Scheme = <any> 'scheme',
-        NetworkToken = <any> 'networkToken',
-        Giftcard = <any> 'giftcard',
-        Alliancedata = <any> 'alliancedata',
-        Card = <any> 'card'
+        Scheme = 'scheme',
+        NetworkToken = 'networkToken',
+        Giftcard = 'giftcard',
+        Alliancedata = 'alliancedata',
+        Card = 'card'
     }
 }

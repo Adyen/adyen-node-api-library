@@ -104,6 +104,6 @@ export class CheckoutCreateOrderResponse {
 
 export namespace CheckoutCreateOrderResponse {
     export enum ResultCodeEnum {
-        Success = <any> 'Success'
+        Success = 'Success'
     }
 }

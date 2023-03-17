@@ -48,6 +48,6 @@ export class CZLocalAccountIdentification {
 
 export namespace CZLocalAccountIdentification {
     export enum TypeEnum {
-        CzLocal = <any> 'czLocal'
+        CzLocal = 'czLocal'
     }
 }

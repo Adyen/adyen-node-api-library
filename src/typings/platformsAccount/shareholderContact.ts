@@ -112,8 +112,8 @@ export class ShareholderContact {
 
 export namespace ShareholderContact {
     export enum ShareholderTypeEnum {
-        Controller = <any> 'Controller',
-        Owner = <any> 'Owner',
-        Signatory = <any> 'Signatory'
+        Controller = 'Controller',
+        Owner = 'Owner',
+        Signatory = 'Signatory'
     }
 }
