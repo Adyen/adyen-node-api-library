@@ -93,6 +93,6 @@ export class PaymentCaptureResource {
 
 export namespace PaymentCaptureResource {
     export enum StatusEnum {
-        Received = <any> 'received'
+        Received = 'received'
     }
 }

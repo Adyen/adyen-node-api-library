@@ -57,9 +57,9 @@ export class DragonpayDetails {
 
 export namespace DragonpayDetails {
     export enum TypeEnum {
-        Ebanking = <any> 'dragonpay_ebanking',
-        OtcBanking = <any> 'dragonpay_otc_banking',
-        OtcNonBanking = <any> 'dragonpay_otc_non_banking',
-        OtcPhilippines = <any> 'dragonpay_otc_philippines'
+        Ebanking = 'dragonpay_ebanking',
+        OtcBanking = 'dragonpay_otc_banking',
+        OtcNonBanking = 'dragonpay_otc_non_banking',
+        OtcPhilippines = 'dragonpay_otc_philippines'
     }
 }

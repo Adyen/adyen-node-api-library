@@ -7,17 +7,33 @@
  * Do not edit this class manually.
  */
 
-import { CapabilityProblemEntity } from './capabilityProblemEntity';
 import { RemediatingAction } from './remediatingAction';
 import { VerificationErrorRecursive } from './verificationErrorRecursive';
 
 export class VerificationError {
+    /**
+    * Contains key-value pairs that specify the actions that the legal entity can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
+    */
     'capabilities'?: Array<VerificationError.CapabilitiesEnum>;
+    /**
+    * The general error code.
+    */
     'code'?: string;
-    'entity'?: CapabilityProblemEntity;
+    /**
+    * The general error message.
+    */
     'message'?: string;
+    /**
+    * An object containing possible solutions to fix a verification error.
+    */
     'remediatingActions'?: Array<RemediatingAction>;
+    /**
+    * An array containing more granular information about the cause of the verification error.
+    */
     'subErrors'?: Array<VerificationErrorRecursive>;
+    /**
+    * The type of error.
+    */
     'type'?: VerificationError.TypeEnum;
 
     static discriminator: string | undefined = undefined;
@@ -32,11 +48,6 @@ export class VerificationError {
             "name": "code",
             "baseName": "code",
             "type": "string"
-        },
-        {
-            "name": "entity",
-            "baseName": "entity",
-            "type": "CapabilityProblemEntity"
         },
         {
             "name": "message",
@@ -66,60 +77,60 @@ export class VerificationError {
 
 export namespace VerificationError {
     export enum CapabilitiesEnum {
-        AcceptExternalFunding = <any> 'acceptExternalFunding',
-        AcceptPspFunding = <any> 'acceptPspFunding',
-        AcceptTransactionInRestrictedCountries = <any> 'acceptTransactionInRestrictedCountries',
-        AcceptTransactionInRestrictedCountriesCommercial = <any> 'acceptTransactionInRestrictedCountriesCommercial',
-        AcceptTransactionInRestrictedCountriesConsumer = <any> 'acceptTransactionInRestrictedCountriesConsumer',
-        AcceptTransactionInRestrictedIndustries = <any> 'acceptTransactionInRestrictedIndustries',
-        AcceptTransactionInRestrictedIndustriesCommercial = <any> 'acceptTransactionInRestrictedIndustriesCommercial',
-        AcceptTransactionInRestrictedIndustriesConsumer = <any> 'acceptTransactionInRestrictedIndustriesConsumer',
-        Acquiring = <any> 'acquiring',
-        AtmWithdrawal = <any> 'atmWithdrawal',
-        AtmWithdrawalCommercial = <any> 'atmWithdrawalCommercial',
-        AtmWithdrawalConsumer = <any> 'atmWithdrawalConsumer',
-        AtmWithdrawalInRestrictedCountries = <any> 'atmWithdrawalInRestrictedCountries',
-        AtmWithdrawalInRestrictedCountriesCommercial = <any> 'atmWithdrawalInRestrictedCountriesCommercial',
-        AtmWithdrawalInRestrictedCountriesConsumer = <any> 'atmWithdrawalInRestrictedCountriesConsumer',
-        AuthorisedPaymentInstrumentUser = <any> 'authorisedPaymentInstrumentUser',
-        GetGrantOffers = <any> 'getGrantOffers',
-        IssueBankAccount = <any> 'issueBankAccount',
-        IssueCard = <any> 'issueCard',
-        IssueCardCommercial = <any> 'issueCardCommercial',
-        IssueCardConsumer = <any> 'issueCardConsumer',
-        LocalAcceptance = <any> 'localAcceptance',
-        Payout = <any> 'payout',
-        PayoutToTransferInstrument = <any> 'payoutToTransferInstrument',
-        Processing = <any> 'processing',
-        ReceiveFromBalanceAccount = <any> 'receiveFromBalanceAccount',
-        ReceiveFromPlatformPayments = <any> 'receiveFromPlatformPayments',
-        ReceiveFromThirdParty = <any> 'receiveFromThirdParty',
-        ReceiveFromTransferInstrument = <any> 'receiveFromTransferInstrument',
-        ReceiveGrants = <any> 'receiveGrants',
-        ReceivePayments = <any> 'receivePayments',
-        SendToBalanceAccount = <any> 'sendToBalanceAccount',
-        SendToThirdParty = <any> 'sendToThirdParty',
-        SendToTransferInstrument = <any> 'sendToTransferInstrument',
-        ThirdPartyFunding = <any> 'thirdPartyFunding',
-        UseCard = <any> 'useCard',
-        UseCardCommercial = <any> 'useCardCommercial',
-        UseCardConsumer = <any> 'useCardConsumer',
-        UseCardInRestrictedCountries = <any> 'useCardInRestrictedCountries',
-        UseCardInRestrictedCountriesCommercial = <any> 'useCardInRestrictedCountriesCommercial',
-        UseCardInRestrictedCountriesConsumer = <any> 'useCardInRestrictedCountriesConsumer',
-        UseCardInRestrictedIndustries = <any> 'useCardInRestrictedIndustries',
-        UseCardInRestrictedIndustriesCommercial = <any> 'useCardInRestrictedIndustriesCommercial',
-        UseCardInRestrictedIndustriesConsumer = <any> 'useCardInRestrictedIndustriesConsumer',
-        WithdrawFromAtm = <any> 'withdrawFromAtm',
-        WithdrawFromAtmCommercial = <any> 'withdrawFromAtmCommercial',
-        WithdrawFromAtmConsumer = <any> 'withdrawFromAtmConsumer',
-        WithdrawFromAtmInRestrictedCountries = <any> 'withdrawFromAtmInRestrictedCountries',
-        WithdrawFromAtmInRestrictedCountriesCommercial = <any> 'withdrawFromAtmInRestrictedCountriesCommercial',
-        WithdrawFromAtmInRestrictedCountriesConsumer = <any> 'withdrawFromAtmInRestrictedCountriesConsumer'
+        AcceptExternalFunding = 'acceptExternalFunding',
+        AcceptPspFunding = 'acceptPspFunding',
+        AcceptTransactionInRestrictedCountries = 'acceptTransactionInRestrictedCountries',
+        AcceptTransactionInRestrictedCountriesCommercial = 'acceptTransactionInRestrictedCountriesCommercial',
+        AcceptTransactionInRestrictedCountriesConsumer = 'acceptTransactionInRestrictedCountriesConsumer',
+        AcceptTransactionInRestrictedIndustries = 'acceptTransactionInRestrictedIndustries',
+        AcceptTransactionInRestrictedIndustriesCommercial = 'acceptTransactionInRestrictedIndustriesCommercial',
+        AcceptTransactionInRestrictedIndustriesConsumer = 'acceptTransactionInRestrictedIndustriesConsumer',
+        Acquiring = 'acquiring',
+        AtmWithdrawal = 'atmWithdrawal',
+        AtmWithdrawalCommercial = 'atmWithdrawalCommercial',
+        AtmWithdrawalConsumer = 'atmWithdrawalConsumer',
+        AtmWithdrawalInRestrictedCountries = 'atmWithdrawalInRestrictedCountries',
+        AtmWithdrawalInRestrictedCountriesCommercial = 'atmWithdrawalInRestrictedCountriesCommercial',
+        AtmWithdrawalInRestrictedCountriesConsumer = 'atmWithdrawalInRestrictedCountriesConsumer',
+        AuthorisedPaymentInstrumentUser = 'authorisedPaymentInstrumentUser',
+        GetGrantOffers = 'getGrantOffers',
+        IssueBankAccount = 'issueBankAccount',
+        IssueCard = 'issueCard',
+        IssueCardCommercial = 'issueCardCommercial',
+        IssueCardConsumer = 'issueCardConsumer',
+        LocalAcceptance = 'localAcceptance',
+        Payout = 'payout',
+        PayoutToTransferInstrument = 'payoutToTransferInstrument',
+        Processing = 'processing',
+        ReceiveFromBalanceAccount = 'receiveFromBalanceAccount',
+        ReceiveFromPlatformPayments = 'receiveFromPlatformPayments',
+        ReceiveFromThirdParty = 'receiveFromThirdParty',
+        ReceiveFromTransferInstrument = 'receiveFromTransferInstrument',
+        ReceiveGrants = 'receiveGrants',
+        ReceivePayments = 'receivePayments',
+        SendToBalanceAccount = 'sendToBalanceAccount',
+        SendToThirdParty = 'sendToThirdParty',
+        SendToTransferInstrument = 'sendToTransferInstrument',
+        ThirdPartyFunding = 'thirdPartyFunding',
+        UseCard = 'useCard',
+        UseCardCommercial = 'useCardCommercial',
+        UseCardConsumer = 'useCardConsumer',
+        UseCardInRestrictedCountries = 'useCardInRestrictedCountries',
+        UseCardInRestrictedCountriesCommercial = 'useCardInRestrictedCountriesCommercial',
+        UseCardInRestrictedCountriesConsumer = 'useCardInRestrictedCountriesConsumer',
+        UseCardInRestrictedIndustries = 'useCardInRestrictedIndustries',
+        UseCardInRestrictedIndustriesCommercial = 'useCardInRestrictedIndustriesCommercial',
+        UseCardInRestrictedIndustriesConsumer = 'useCardInRestrictedIndustriesConsumer',
+        WithdrawFromAtm = 'withdrawFromAtm',
+        WithdrawFromAtmCommercial = 'withdrawFromAtmCommercial',
+        WithdrawFromAtmConsumer = 'withdrawFromAtmConsumer',
+        WithdrawFromAtmInRestrictedCountries = 'withdrawFromAtmInRestrictedCountries',
+        WithdrawFromAtmInRestrictedCountriesCommercial = 'withdrawFromAtmInRestrictedCountriesCommercial',
+        WithdrawFromAtmInRestrictedCountriesConsumer = 'withdrawFromAtmInRestrictedCountriesConsumer'
     }
     export enum TypeEnum {
-        DataMissing = <any> 'dataMissing',
-        InvalidInput = <any> 'invalidInput',
-        PendingStatus = <any> 'pendingStatus'
+        DataMissing = 'dataMissing',
+        InvalidInput = 'invalidInput',
+        PendingStatus = 'pendingStatus'
     }
 }

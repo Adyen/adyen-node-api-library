@@ -64,9 +64,9 @@ export class StoredValueBalanceCheckResponse {
 
 export namespace StoredValueBalanceCheckResponse {
     export enum ResultCodeEnum {
-        Success = <any> 'Success',
-        Refused = <any> 'Refused',
-        Error = <any> 'Error',
-        NotEnoughBalance = <any> 'NotEnoughBalance'
+        Success = 'Success',
+        Refused = 'Refused',
+        Error = 'Error',
+        NotEnoughBalance = 'NotEnoughBalance'
     }
 }

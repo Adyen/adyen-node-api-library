@@ -109,7 +109,7 @@ export class PaymentLinkResponse {
     */
     'shopperEmail'?: string;
     /**
-    * The language to be used in the payment page, specified by a combination of a language and country code. For example, `en-US`.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/online-payments/pay-by-link#language-and-localization).
+    * The language to be used in the payment page, specified by a combination of a language and country code. For example, `en-US`.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#language).
     */
     'shopperLocale'?: string;
     'shopperName'?: Name;
@@ -382,27 +382,27 @@ export class PaymentLinkResponse {
 
 export namespace PaymentLinkResponse {
     export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
+        CardOnFile = 'CardOnFile',
+        Subscription = 'Subscription',
+        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
     }
     export enum RequiredShopperFieldsEnum {
-        BillingAddress = <any> 'billingAddress',
-        DeliveryAddress = <any> 'deliveryAddress',
-        ShopperEmail = <any> 'shopperEmail',
-        ShopperName = <any> 'shopperName',
-        TelephoneNumber = <any> 'telephoneNumber'
+        BillingAddress = 'billingAddress',
+        DeliveryAddress = 'deliveryAddress',
+        ShopperEmail = 'shopperEmail',
+        ShopperName = 'shopperName',
+        TelephoneNumber = 'telephoneNumber'
     }
     export enum StatusEnum {
-        Active = <any> 'active',
-        Completed = <any> 'completed',
-        Expired = <any> 'expired',
-        Paid = <any> 'paid',
-        PaymentPending = <any> 'paymentPending'
+        Active = 'active',
+        Completed = 'completed',
+        Expired = 'expired',
+        Paid = 'paid',
+        PaymentPending = 'paymentPending'
     }
     export enum StorePaymentMethodModeEnum {
-        AskForConsent = <any> 'askForConsent',
-        Disabled = <any> 'disabled',
-        Enabled = <any> 'enabled'
+        AskForConsent = 'askForConsent',
+        Disabled = 'disabled',
+        Enabled = 'enabled'
     }
 }

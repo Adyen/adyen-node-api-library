@@ -75,9 +75,9 @@ export class SamsungPayDetails {
 
 export namespace SamsungPayDetails {
     export enum FundingSourceEnum {
-        Debit = <any> 'debit'
+        Debit = 'debit'
     }
     export enum TypeEnum {
-        Samsungpay = <any> 'samsungpay'
+        Samsungpay = 'samsungpay'
     }
 }

@@ -78,8 +78,8 @@ export class CardInfo {
 
 export namespace CardInfo {
     export enum FormFactorEnum {
-        Physical = <any> 'physical',
-        Unknown = <any> 'unknown',
-        Virtual = <any> 'virtual'
+        Physical = 'physical',
+        Unknown = 'unknown',
+        Virtual = 'virtual'
     }
 }

@@ -57,10 +57,10 @@ export class USLocalAccountIdentification {
 
 export namespace USLocalAccountIdentification {
     export enum AccountTypeEnum {
-        Checking = <any> 'checking',
-        Savings = <any> 'savings'
+        Checking = 'checking',
+        Savings = 'savings'
     }
     export enum TypeEnum {
-        UsLocal = <any> 'usLocal'
+        UsLocal = 'usLocal'
     }
 }

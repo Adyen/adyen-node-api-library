@@ -155,7 +155,7 @@ export class StoreDetailRequest {
 
 export namespace StoreDetailRequest {
     export enum EntityTypeEnum {
-        NaturalPerson = <any> 'NaturalPerson',
-        Company = <any> 'Company'
+        NaturalPerson = 'NaturalPerson',
+        Company = 'Company'
     }
 }

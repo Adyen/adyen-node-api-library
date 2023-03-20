@@ -39,8 +39,8 @@ export class ShopperStatement {
 
 export namespace ShopperStatement {
     export enum TypeEnum {
-        Append = <any> 'append',
-        Dynamic = <any> 'dynamic',
-        Fixed = <any> 'fixed'
+        Append = 'append',
+        Dynamic = 'dynamic',
+        Fixed = 'fixed'
     }
 }

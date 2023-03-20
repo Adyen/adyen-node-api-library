@@ -123,17 +123,17 @@ export class TransactionRuleInfo {
 
 export namespace TransactionRuleInfo {
     export enum OutcomeTypeEnum {
-        HardBlock = <any> 'hardBlock',
-        ScoreBased = <any> 'scoreBased'
+        HardBlock = 'hardBlock',
+        ScoreBased = 'scoreBased'
     }
     export enum StatusEnum {
-        Active = <any> 'active',
-        Inactive = <any> 'inactive'
+        Active = 'active',
+        Inactive = 'inactive'
     }
     export enum TypeEnum {
-        AllowList = <any> 'allowList',
-        BlockList = <any> 'blockList',
-        MaxUsage = <any> 'maxUsage',
-        Velocity = <any> 'velocity'
+        AllowList = 'allowList',
+        BlockList = 'blockList',
+        MaxUsage = 'maxUsage',
+        Velocity = 'velocity'
     }
 }

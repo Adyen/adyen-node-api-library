@@ -121,8 +121,8 @@ export class Card {
 
 export namespace Card {
     export enum FormFactorEnum {
-        Physical = <any> 'physical',
-        Unknown = <any> 'unknown',
-        Virtual = <any> 'virtual'
+        Physical = 'physical',
+        Unknown = 'unknown',
+        Virtual = 'virtual'
     }
 }

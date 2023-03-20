@@ -619,28 +619,28 @@ export class PaymentDonationRequest {
 
 export namespace PaymentDonationRequest {
     export enum ChannelEnum {
-        IOs = <any> 'iOS',
-        Android = <any> 'Android',
-        Web = <any> 'Web'
+        IOs = 'iOS',
+        Android = 'Android',
+        Web = 'Web'
     }
     export enum EntityTypeEnum {
-        NaturalPerson = <any> 'NaturalPerson',
-        CompanyName = <any> 'CompanyName'
+        NaturalPerson = 'NaturalPerson',
+        CompanyName = 'CompanyName'
     }
     export enum IndustryUsageEnum {
-        DelayedCharge = <any> 'delayedCharge',
-        Installment = <any> 'installment',
-        NoShow = <any> 'noShow'
+        DelayedCharge = 'delayedCharge',
+        Installment = 'installment',
+        NoShow = 'noShow'
     }
     export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
+        CardOnFile = 'CardOnFile',
+        Subscription = 'Subscription',
+        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
     }
     export enum ShopperInteractionEnum {
-        Ecommerce = <any> 'Ecommerce',
-        ContAuth = <any> 'ContAuth',
-        Moto = <any> 'Moto',
-        Pos = <any> 'POS'
+        Ecommerce = 'Ecommerce',
+        ContAuth = 'ContAuth',
+        Moto = 'Moto',
+        Pos = 'POS'
     }
 }

@@ -57,11 +57,11 @@ export class UpdateAccountHolderStateRequest {
 
 export namespace UpdateAccountHolderStateRequest {
     export enum StateTypeEnum {
-        LimitedPayout = <any> 'LimitedPayout',
-        LimitedProcessing = <any> 'LimitedProcessing',
-        LimitlessPayout = <any> 'LimitlessPayout',
-        LimitlessProcessing = <any> 'LimitlessProcessing',
-        Payout = <any> 'Payout',
-        Processing = <any> 'Processing'
+        LimitedPayout = 'LimitedPayout',
+        LimitedProcessing = 'LimitedProcessing',
+        LimitlessPayout = 'LimitlessPayout',
+        LimitlessProcessing = 'LimitlessProcessing',
+        Payout = 'Payout',
+        Processing = 'Processing'
     }
 }

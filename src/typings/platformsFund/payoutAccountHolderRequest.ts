@@ -91,8 +91,8 @@ export class PayoutAccountHolderRequest {
 
 export namespace PayoutAccountHolderRequest {
     export enum PayoutSpeedEnum {
-        Instant = <any> 'INSTANT',
-        SameDay = <any> 'SAME_DAY',
-        Standard = <any> 'STANDARD'
+        Instant = 'INSTANT',
+        SameDay = 'SAME_DAY',
+        Standard = 'STANDARD'
     }
 }

@@ -71,8 +71,8 @@ export class UpdateStoreRequest {
 
 export namespace UpdateStoreRequest {
     export enum StatusEnum {
-        Active = <any> 'active',
-        Closed = <any> 'closed',
-        Inactive = <any> 'inactive'
+        Active = 'active',
+        Closed = 'closed',
+        Inactive = 'inactive'
     }
 }

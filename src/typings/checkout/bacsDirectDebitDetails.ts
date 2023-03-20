@@ -84,6 +84,6 @@ export class BacsDirectDebitDetails {
 
 export namespace BacsDirectDebitDetails {
     export enum TypeEnum {
-        DirectdebitGb = <any> 'directdebit_GB'
+        DirectdebitGb = 'directdebit_GB'
     }
 }

@@ -30,10 +30,10 @@ export class CalculateTermsOfServiceStatusResponse {
 
 export namespace CalculateTermsOfServiceStatusResponse {
     export enum TermsOfServiceTypesEnum {
-        AdyenAccount = <any> 'adyenAccount',
-        AdyenCapital = <any> 'adyenCapital',
-        AdyenForPlatformsAdvanced = <any> 'adyenForPlatformsAdvanced',
-        AdyenForPlatformsManage = <any> 'adyenForPlatformsManage',
-        AdyenIssuing = <any> 'adyenIssuing'
+        AdyenAccount = 'adyenAccount',
+        AdyenCapital = 'adyenCapital',
+        AdyenForPlatformsAdvanced = 'adyenForPlatformsAdvanced',
+        AdyenForPlatformsManage = 'adyenForPlatformsManage',
+        AdyenIssuing = 'adyenIssuing'
     }
 }

@@ -103,11 +103,11 @@ export class SweepConfigurationV2 {
 
 export namespace SweepConfigurationV2 {
     export enum StatusEnum {
-        Active = <any> 'active',
-        Inactive = <any> 'inactive'
+        Active = 'active',
+        Inactive = 'inactive'
     }
     export enum TypeEnum {
-        Pull = <any> 'pull',
-        Push = <any> 'push'
+        Pull = 'pull',
+        Push = 'push'
     }
 }

@@ -57,9 +57,9 @@ export class KlarnaInfo {
 
 export namespace KlarnaInfo {
     export enum RegionEnum {
-        Na = <any> 'NA',
-        Eu = <any> 'EU',
-        Ch = <any> 'CH',
-        Au = <any> 'AU'
+        Na = 'NA',
+        Eu = 'EU',
+        Ch = 'CH',
+        Au = 'AU'
     }
 }

@@ -128,14 +128,14 @@ export class CreateAccountResponse {
 
 export namespace CreateAccountResponse {
     export enum PayoutSpeedEnum {
-        Instant = <any> 'INSTANT',
-        SameDay = <any> 'SAME_DAY',
-        Standard = <any> 'STANDARD'
+        Instant = 'INSTANT',
+        SameDay = 'SAME_DAY',
+        Standard = 'STANDARD'
     }
     export enum StatusEnum {
-        Active = <any> 'Active',
-        Closed = <any> 'Closed',
-        Inactive = <any> 'Inactive',
-        Suspended = <any> 'Suspended'
+        Active = 'Active',
+        Closed = 'Closed',
+        Inactive = 'Inactive',
+        Suspended = 'Suspended'
     }
 }

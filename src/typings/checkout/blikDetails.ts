@@ -66,6 +66,6 @@ export class BlikDetails {
 
 export namespace BlikDetails {
     export enum TypeEnum {
-        Blik = <any> 'blik'
+        Blik = 'blik'
     }
 }

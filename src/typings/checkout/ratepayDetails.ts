@@ -84,7 +84,7 @@ export class RatepayDetails {
 
 export namespace RatepayDetails {
     export enum TypeEnum {
-        Ratepay = <any> 'ratepay',
-        RatepayDirectdebit = <any> 'ratepay_directdebit'
+        Ratepay = 'ratepay',
+        RatepayDirectdebit = 'ratepay_directdebit'
     }
 }

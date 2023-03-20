@@ -34,7 +34,7 @@ export class TransferInfo {
     */
     'paymentInstrumentId'?: string;
     /**
-    * The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).
+    * The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
     */
     'priority'?: TransferInfo.PriorityEnum;
     /**
@@ -107,16 +107,18 @@ export class TransferInfo {
 
 export namespace TransferInfo {
     export enum CategoryEnum {
-        Bank = <any> 'bank',
-        Internal = <any> 'internal',
-        IssuedCard = <any> 'issuedCard',
-        PlatformPayment = <any> 'platformPayment'
+        Bank = 'bank',
+        Internal = 'internal',
+        IssuedCard = 'issuedCard',
+        PlatformPayment = 'platformPayment'
     }
     export enum PriorityEnum {
-        DirectDebit = <any> 'directDebit',
-        Fast = <any> 'fast',
-        Instant = <any> 'instant',
-        Regular = <any> 'regular',
-        Wire = <any> 'wire'
+        CrossBorder = 'crossBorder',
+        DirectDebit = 'directDebit',
+        Fast = 'fast',
+        Instant = 'instant',
+        Internal = 'internal',
+        Regular = 'regular',
+        Wire = 'wire'
     }
 }

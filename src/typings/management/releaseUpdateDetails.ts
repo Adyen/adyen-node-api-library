@@ -39,6 +39,6 @@ export class ReleaseUpdateDetails {
 
 export namespace ReleaseUpdateDetails {
     export enum TypeEnum {
-        ReleaseUpdate = <any> 'ReleaseUpdate'
+        ReleaseUpdate = 'ReleaseUpdate'
     }
 }

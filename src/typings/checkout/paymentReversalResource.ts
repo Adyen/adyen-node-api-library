@@ -66,6 +66,6 @@ export class PaymentReversalResource {
 
 export namespace PaymentReversalResource {
     export enum StatusEnum {
-        Received = <any> 'received'
+        Received = 'received'
     }
 }

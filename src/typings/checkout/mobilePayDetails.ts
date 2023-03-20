@@ -39,6 +39,6 @@ export class MobilePayDetails {
 
 export namespace MobilePayDetails {
     export enum TypeEnum {
-        Mobilepay = <any> 'mobilepay'
+        Mobilepay = 'mobilepay'
     }
 }

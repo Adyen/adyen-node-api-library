@@ -48,6 +48,6 @@ export class SGLocalAccountIdentification {
 
 export namespace SGLocalAccountIdentification {
     export enum TypeEnum {
-        SgLocal = <any> 'sgLocal'
+        SgLocal = 'sgLocal'
     }
 }

@@ -9,6 +9,7 @@
 
 import { Amount } from './amount';
 import { CheckoutAwaitAction } from './checkoutAwaitAction';
+import { CheckoutNativeRedirectAction } from './checkoutNativeRedirectAction';
 import { CheckoutOrderResponse } from './checkoutOrderResponse';
 import { CheckoutQrCodeAction } from './checkoutQrCodeAction';
 import { CheckoutRedirectAction } from './checkoutRedirectAction';
@@ -24,7 +25,7 @@ export class PaymentResponse {
     /**
     * Action to be taken for completing the payment.
     */
-    'action'?: CheckoutAwaitAction | CheckoutQrCodeAction | CheckoutRedirectAction | CheckoutSDKAction | CheckoutThreeDS2Action | CheckoutVoucherAction;
+    'action'?: CheckoutAwaitAction | CheckoutNativeRedirectAction | CheckoutQrCodeAction | CheckoutRedirectAction | CheckoutSDKAction | CheckoutThreeDS2Action | CheckoutVoucherAction;
     /**
     * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
     */
@@ -70,7 +71,7 @@ export class PaymentResponse {
         {
             "name": "action",
             "baseName": "action",
-            "type": "CheckoutAwaitAction | CheckoutQrCodeAction | CheckoutRedirectAction | CheckoutSDKAction | CheckoutThreeDS2Action | CheckoutVoucherAction"
+            "type": "CheckoutAwaitAction | CheckoutNativeRedirectAction | CheckoutQrCodeAction | CheckoutRedirectAction | CheckoutSDKAction | CheckoutThreeDS2Action | CheckoutVoucherAction"
         },
         {
             "name": "additionalData",
@@ -150,18 +151,18 @@ export class PaymentResponse {
 
 export namespace PaymentResponse {
     export enum ResultCodeEnum {
-        AuthenticationFinished = <any> 'AuthenticationFinished',
-        AuthenticationNotRequired = <any> 'AuthenticationNotRequired',
-        Authorised = <any> 'Authorised',
-        Cancelled = <any> 'Cancelled',
-        ChallengeShopper = <any> 'ChallengeShopper',
-        Error = <any> 'Error',
-        IdentifyShopper = <any> 'IdentifyShopper',
-        Pending = <any> 'Pending',
-        PresentToShopper = <any> 'PresentToShopper',
-        Received = <any> 'Received',
-        RedirectShopper = <any> 'RedirectShopper',
-        Refused = <any> 'Refused',
-        Success = <any> 'Success'
+        AuthenticationFinished = 'AuthenticationFinished',
+        AuthenticationNotRequired = 'AuthenticationNotRequired',
+        Authorised = 'Authorised',
+        Cancelled = 'Cancelled',
+        ChallengeShopper = 'ChallengeShopper',
+        Error = 'Error',
+        IdentifyShopper = 'IdentifyShopper',
+        Pending = 'Pending',
+        PresentToShopper = 'PresentToShopper',
+        Received = 'Received',
+        RedirectShopper = 'RedirectShopper',
+        Refused = 'Refused',
+        Success = 'Success'
     }
 }

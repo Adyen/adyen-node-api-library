@@ -39,6 +39,6 @@ export class HULocalAccountIdentification {
 
 export namespace HULocalAccountIdentification {
     export enum TypeEnum {
-        HuLocal = <any> 'huLocal'
+        HuLocal = 'huLocal'
     }
 }

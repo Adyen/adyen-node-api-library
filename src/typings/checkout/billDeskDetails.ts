@@ -48,9 +48,9 @@ export class BillDeskDetails {
 
 export namespace BillDeskDetails {
     export enum TypeEnum {
-        BilldeskOnline = <any> 'billdesk_online',
-        BilldeskWallet = <any> 'billdesk_wallet',
-        OnlinebankingIn = <any> 'onlinebanking_IN',
-        WalletIn = <any> 'wallet_IN'
+        BilldeskOnline = 'billdesk_online',
+        BilldeskWallet = 'billdesk_wallet',
+        OnlinebankingIn = 'onlinebanking_IN',
+        WalletIn = 'wallet_IN'
     }
 }

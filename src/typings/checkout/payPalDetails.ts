@@ -84,10 +84,10 @@ export class PayPalDetails {
 
 export namespace PayPalDetails {
     export enum SubtypeEnum {
-        Redirect = <any> 'redirect',
-        Sdk = <any> 'sdk'
+        Redirect = 'redirect',
+        Sdk = 'sdk'
     }
     export enum TypeEnum {
-        Paypal = <any> 'paypal'
+        Paypal = 'paypal'
     }
 }

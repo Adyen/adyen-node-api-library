@@ -48,6 +48,6 @@ export class AULocalAccountIdentification {
 
 export namespace AULocalAccountIdentification {
     export enum TypeEnum {
-        AuLocal = <any> 'auLocal'
+        AuLocal = 'auLocal'
     }
 }

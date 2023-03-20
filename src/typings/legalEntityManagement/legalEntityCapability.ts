@@ -99,15 +99,15 @@ export class LegalEntityCapability {
 
 export namespace LegalEntityCapability {
     export enum AllowedLevelEnum {
-        High = <any> 'high',
-        Low = <any> 'low',
-        Medium = <any> 'medium',
-        NotApplicable = <any> 'notApplicable'
+        High = 'high',
+        Low = 'low',
+        Medium = 'medium',
+        NotApplicable = 'notApplicable'
     }
     export enum RequestedLevelEnum {
-        High = <any> 'high',
-        Low = <any> 'low',
-        Medium = <any> 'medium',
-        NotApplicable = <any> 'notApplicable'
+        High = 'high',
+        Low = 'low',
+        Medium = 'medium',
+        NotApplicable = 'notApplicable'
     }
 }

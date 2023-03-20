@@ -57,6 +57,6 @@ export class SourceOfFunds {
 
 export namespace SourceOfFunds {
     export enum TypeEnum {
-        Business = <any> 'business'
+        Business = 'business'
     }
 }

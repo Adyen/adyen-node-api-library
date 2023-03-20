@@ -75,9 +75,9 @@ export class PayWithGoogleDetails {
 
 export namespace PayWithGoogleDetails {
     export enum FundingSourceEnum {
-        Debit = <any> 'debit'
+        Debit = 'debit'
     }
     export enum TypeEnum {
-        Paywithgoogle = <any> 'paywithgoogle'
+        Paywithgoogle = 'paywithgoogle'
     }
 }

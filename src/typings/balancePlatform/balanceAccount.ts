@@ -94,9 +94,9 @@ export class BalanceAccount {
 
 export namespace BalanceAccount {
     export enum StatusEnum {
-        Active = <any> 'active',
-        Closed = <any> 'closed',
-        Inactive = <any> 'inactive',
-        Suspended = <any> 'suspended'
+        Active = 'active',
+        Closed = 'closed',
+        Inactive = 'inactive',
+        Suspended = 'suspended'
     }
 }

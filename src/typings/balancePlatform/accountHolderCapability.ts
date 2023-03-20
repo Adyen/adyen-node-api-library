@@ -97,21 +97,21 @@ export class AccountHolderCapability {
 
 export namespace AccountHolderCapability {
     export enum AllowedLevelEnum {
-        High = <any> 'high',
-        Low = <any> 'low',
-        Medium = <any> 'medium',
-        NotApplicable = <any> 'notApplicable'
+        High = 'high',
+        Low = 'low',
+        Medium = 'medium',
+        NotApplicable = 'notApplicable'
     }
     export enum RequestedLevelEnum {
-        High = <any> 'high',
-        Low = <any> 'low',
-        Medium = <any> 'medium',
-        NotApplicable = <any> 'notApplicable'
+        High = 'high',
+        Low = 'low',
+        Medium = 'medium',
+        NotApplicable = 'notApplicable'
     }
     export enum VerificationStatusEnum {
-        Invalid = <any> 'invalid',
-        Pending = <any> 'pending',
-        Rejected = <any> 'rejected',
-        Valid = <any> 'valid'
+        Invalid = 'invalid',
+        Pending = 'pending',
+        Rejected = 'rejected',
+        Valid = 'valid'
     }
 }
