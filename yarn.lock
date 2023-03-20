@@ -860,10 +860,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.3.tgz#463fc47f13ec0688a33aec75d078a0541a447199"
   integrity sha512-HzNRZtp4eepNitP+BD6k2L6DROIDG4Q0fm4x+dwfsr6LGmROENnok75VGw40628xf+iR24WeMFcHuuBDUAzzsQ==
 
-"@types/node@14.18.36":
-  version "14.18.36"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.36.tgz#c414052cb9d43fab67d679d5f3c641be911f5835"
-  integrity sha512-FXKWbsJ6a1hIrRxv+FoukuHnGTgEzKYGi7kilfMae96AL9UNkPFNWJEEYWzdRI9ooIkbr4AKldyuSTLql06vLQ==
+"@types/node@14.18.38":
+  version "14.18.38"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.38.tgz#2169ca4b70aa59aa5a8923509e50619dde48b0cf"
+  integrity sha512-zMRIidN2Huikv/+/U7gRPFYsXDR/7IGqFZzTLnCEj5+gkrQjsowfamaxEnyvArct5hxGA3bTxMXlYhH78V6Cew==
 
 "@types/prettier@^2.1.5":
   version "2.6.3"
