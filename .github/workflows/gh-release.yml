@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Grab version
         uses: actions/github-script@v6
         id: release
@@ -27,3 +29,8 @@ jobs:
           gh release create v${{steps.release.outputs.version}} \
             --title 'Adyen Node API Library v${{steps.release.outputs.version}}' \
             --generate-notes --target main
+      - name: Update develop branch
+        run: |
+          git checkout develop
+          git merge main
+          git push origin develop

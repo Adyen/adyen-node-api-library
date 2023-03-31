@@ -41,7 +41,7 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 ## Prerequisites
 -   [Adyen test account](https://docs.adyen.com/get-started-with-adyen). To start using Adyen APIs, you will need a Merchant Account.
 -   [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
--   Node 12 or higher
+-   Node 14 or higher
 
 ## Installation
 
