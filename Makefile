@@ -35,7 +35,8 @@ $(services): build/spec $(openapi-generator-jar)
 		-t templates/typescript \
 		-o build \
 		--global-property models,supportingFiles \
-		--additional-properties=serviceName=$@
+		--additional-properties=serviceName=$@ \
+		--additional-properties=modelPropertyNaming=original
 	mv build/model src/typings/$@
 
 # Service
@@ -47,6 +48,7 @@ managementapi: build/spec $(openapi-generator-jar)
 		-o build \
 		--api-package $(service) \
 		--model-package typings/$(service) \
+		--additional-properties=modelPropertyNaming=original \
 		--global-property apis \
 		--additional-properties=serviceName=$(service)
 	cp build/$(service)/* src/services/$(service)
