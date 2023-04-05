@@ -12,7 +12,7 @@ export class ViasName {
     /**
     * The first name.
     */
-    'firstName': string;
+    'firstName'?: string;
     /**
     * The gender. >The following values are permitted: `MALE`, `FEMALE`, `UNKNOWN`.
     */
@@ -24,7 +24,7 @@ export class ViasName {
     /**
     * The last name.
     */
-    'lastName': string;
+    'lastName'?: string;
 
     static discriminator: string | undefined = undefined;
 

@@ -17,7 +17,7 @@ export class CardDetails {
     * The checkout attempt identifier.
     */
     'checkoutAttemptId'?: string;
-    'cupsecureplusSmscode'?: string;
+    'cupsecureplus_smscode'?: string;
     /**
     * The card verification code. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
@@ -97,7 +97,7 @@ export class CardDetails {
             "type": "string"
         },
         {
-            "name": "cupsecureplusSmscode",
+            "name": "cupsecureplus_smscode",
             "baseName": "cupsecureplus.smscode",
             "type": "string"
         },

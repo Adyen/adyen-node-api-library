@@ -10,7 +10,7 @@
 import { Links } from './links';
 
 export class AllowedOrigin {
-    'links'?: Links;
+    '_links'?: Links;
     /**
     * Domain of the allowed origin.
     */
@@ -24,7 +24,7 @@ export class AllowedOrigin {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "Links"
         },

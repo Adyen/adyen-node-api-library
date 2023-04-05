@@ -14,8 +14,8 @@ export class GetAccountHolderStatusResponse {
     /**
     * The code of the Account Holder.
     */
-    'accountHolderCode': string;
-    'accountHolderStatus': AccountHolderStatus;
+    'accountHolderCode'?: string;
+    'accountHolderStatus'?: AccountHolderStatus;
     /**
     * Contains field validation errors that would prevent requests from being processed.
     */

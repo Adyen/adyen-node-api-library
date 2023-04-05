@@ -21,6 +21,10 @@ export class GetOnboardingUrlRequest {
     */
     'editMode'?: boolean;
     /**
+    * The URL to which the account holder is redirected after completing an OAuth authentication with a bank through Trustly/PayMyBank.
+    */
+    'mobileOAuthCallbackUrl'?: string;
+    /**
     * The platform name which will show up in the welcome page.
     */
     'platformName'?: string;
@@ -51,6 +55,11 @@ export class GetOnboardingUrlRequest {
             "name": "editMode",
             "baseName": "editMode",
             "type": "boolean"
+        },
+        {
+            "name": "mobileOAuthCallbackUrl",
+            "baseName": "mobileOAuthCallbackUrl",
+            "type": "string"
         },
         {
             "name": "platformName",

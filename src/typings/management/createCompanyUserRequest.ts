@@ -19,6 +19,10 @@ export class CreateCompanyUserRequest {
     */
     'associatedMerchantAccounts'?: Array<string>;
     /**
+    * Set of authn apps to add to this user
+    */
+    'authnApps'?: Array<string>;
+    /**
     * The email address of the user.
     */
     'email': string;
@@ -47,6 +51,11 @@ export class CreateCompanyUserRequest {
         {
             "name": "associatedMerchantAccounts",
             "baseName": "associatedMerchantAccounts",
+            "type": "Array<string>"
+        },
+        {
+            "name": "authnApps",
+            "baseName": "authnApps",
             "type": "Array<string>"
         },
         {

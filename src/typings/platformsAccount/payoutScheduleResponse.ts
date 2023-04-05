@@ -16,7 +16,7 @@ export class PayoutScheduleResponse {
     /**
     * The payout schedule of the account. Permitted values: `DEFAULT`, `DAILY`, `DAILY_US`, `DAILY_EU`, `DAILY_AU`, `DAILY_SG`, `WEEKLY`, `WEEKLY_ON_TUE_FRI_MIDNIGHT`, `BIWEEKLY_ON_1ST_AND_15TH_AT_MIDNIGHT`, `MONTHLY`, `HOLD`.
     */
-    'schedule': PayoutScheduleResponse.ScheduleEnum;
+    'schedule'?: PayoutScheduleResponse.ScheduleEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,11 @@ export namespace PayoutScheduleResponse {
         Hold = 'HOLD',
         Monthly = 'MONTHLY',
         Weekly = 'WEEKLY',
-        WeeklyOnTueFriMidnight = 'WEEKLY_ON_TUE_FRI_MIDNIGHT'
+        WeeklyMonToFriAu = 'WEEKLY_MON_TO_FRI_AU',
+        WeeklyMonToFriEu = 'WEEKLY_MON_TO_FRI_EU',
+        WeeklyMonToFriUs = 'WEEKLY_MON_TO_FRI_US',
+        WeeklyOnTueFriMidnight = 'WEEKLY_ON_TUE_FRI_MIDNIGHT',
+        WeeklySunToThuAu = 'WEEKLY_SUN_TO_THU_AU',
+        WeeklySunToThuUs = 'WEEKLY_SUN_TO_THU_US'
     }
 }

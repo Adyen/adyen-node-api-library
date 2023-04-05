@@ -17,6 +17,7 @@ import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { PayPalInfo } from './payPalInfo';
 import { SofortInfo } from './sofortInfo';
 import { SwishInfo } from './swishInfo';
+import { VippsInfo } from './vippsInfo';
 
 export class PaymentMethodSetupInfo {
     'applePay'?: ApplePayInfo;
@@ -41,7 +42,7 @@ export class PaymentMethodSetupInfo {
     'giroPay'?: GiroPayInfo;
     'googlePay'?: GooglePayInfo;
     'klarna'?: KlarnaInfo;
-    'mealVoucherFR'?: MealVoucherFRInfo;
+    'mealVoucher_FR'?: MealVoucherFRInfo;
     'paypal'?: PayPalInfo;
     /**
     * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
@@ -61,6 +62,7 @@ export class PaymentMethodSetupInfo {
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
     */
     'type'?: PaymentMethodSetupInfo.TypeEnum;
+    'vipps'?: VippsInfo;
 
     static discriminator: string | undefined = undefined;
 
@@ -116,7 +118,7 @@ export class PaymentMethodSetupInfo {
             "type": "KlarnaInfo"
         },
         {
-            "name": "mealVoucherFR",
+            "name": "mealVoucher_FR",
             "baseName": "mealVoucher_FR",
             "type": "MealVoucherFRInfo"
         },
@@ -154,6 +156,11 @@ export class PaymentMethodSetupInfo {
             "name": "type",
             "baseName": "type",
             "type": "PaymentMethodSetupInfo.TypeEnum"
+        },
+        {
+            "name": "vipps",
+            "baseName": "vipps",
+            "type": "VippsInfo"
         }    ];
 
     static getAttributeTypeMap() {
@@ -169,12 +176,15 @@ export namespace PaymentMethodSetupInfo {
         ContAuth = 'contAuth'
     }
     export enum TypeEnum {
+        Afterpaytouch = 'afterpaytouch',
         Alipay = 'alipay',
+        AlipayHk = 'alipay_hk',
         Amex = 'amex',
         Applepay = 'applepay',
         Bcmc = 'bcmc',
         Blik = 'blik',
         Cartebancaire = 'cartebancaire',
+        Clearpay = 'clearpay',
         Cup = 'cup',
         Diners = 'diners',
         DirectEbanking = 'directEbanking',
@@ -203,10 +213,12 @@ export namespace PaymentMethodSetupInfo {
         MealVoucherFr = 'mealVoucher_FR',
         Mobilepay = 'mobilepay',
         Multibanco = 'multibanco',
+        OnlineBankingPl = 'onlineBanking_PL',
         Paypal = 'paypal',
         Payshop = 'payshop',
         Swish = 'swish',
         Trustly = 'trustly',
+        Vipps = 'vipps',
         Visa = 'visa',
         Visadebit = 'visadebit',
         Vpay = 'vpay',

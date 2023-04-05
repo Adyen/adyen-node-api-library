@@ -15,6 +15,8 @@ import { Nexo } from './nexo';
 import { OfflineProcessing } from './offlineProcessing';
 import { Opi } from './opi';
 import { Passcodes } from './passcodes';
+import { PayAtTable } from './payAtTable';
+import { Payment } from './payment';
 import { ReceiptOptions } from './receiptOptions';
 import { ReceiptPrinting } from './receiptPrinting';
 import { Signature } from './signature';
@@ -35,6 +37,8 @@ export class TerminalSettings {
     'offlineProcessing'?: OfflineProcessing;
     'opi'?: Opi;
     'passcodes'?: Passcodes;
+    'payAtTable'?: PayAtTable;
+    'payment'?: Payment;
     'receiptOptions'?: ReceiptOptions;
     'receiptPrinting'?: ReceiptPrinting;
     'signature'?: Signature;
@@ -85,6 +89,16 @@ export class TerminalSettings {
             "name": "passcodes",
             "baseName": "passcodes",
             "type": "Passcodes"
+        },
+        {
+            "name": "payAtTable",
+            "baseName": "payAtTable",
+            "type": "PayAtTable"
+        },
+        {
+            "name": "payment",
+            "baseName": "payment",
+            "type": "Payment"
         },
         {
             "name": "receiptOptions",

@@ -12,7 +12,11 @@ export class GooglePayInfo {
     /**
     * Google Pay [Merchant ID](https://support.google.com/paymentscenter/answer/7163092?hl=en). Character length and limitations: 16 alphanumeric characters or 20 numeric characters.
     */
-    'merchantId'?: string;
+    'merchantId': string;
+    /**
+    * Indicates whether the Google Pay Merchant ID is used for several merchant accounts. Default value: **false**.
+    */
+    'reuseMerchantId'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -21,6 +25,11 @@ export class GooglePayInfo {
             "name": "merchantId",
             "baseName": "merchantId",
             "type": "string"
+        },
+        {
+            "name": "reuseMerchantId",
+            "baseName": "reuseMerchantId",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

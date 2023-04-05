@@ -14,6 +14,10 @@ export class CALocalAccountIdentification {
     */
     'accountNumber': string;
     /**
+    * The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
+    */
+    'accountType'?: CALocalAccountIdentification.AccountTypeEnum;
+    /**
     * The 3-digit institution number, without separators or whitespace.
     */
     'institutionNumber': string;
@@ -33,6 +37,11 @@ export class CALocalAccountIdentification {
             "name": "accountNumber",
             "baseName": "accountNumber",
             "type": "string"
+        },
+        {
+            "name": "accountType",
+            "baseName": "accountType",
+            "type": "CALocalAccountIdentification.AccountTypeEnum"
         },
         {
             "name": "institutionNumber",
@@ -56,6 +65,10 @@ export class CALocalAccountIdentification {
 }
 
 export namespace CALocalAccountIdentification {
+    export enum AccountTypeEnum {
+        Checking = 'checking',
+        Savings = 'savings'
+    }
     export enum TypeEnum {
         CaLocal = 'caLocal'
     }

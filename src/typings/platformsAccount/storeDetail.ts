@@ -56,7 +56,7 @@ export class StoreDetail {
     /**
     * Your unique identifier for the store. The Customer Area also uses this value for the store description.   * Length: Between 3 to 128 characters  * The following characters are *not* supported: **:;}{$#@!|<>%^*+=\\\\**
     */
-    'storeReference': string;
+    'storeReference'?: string;
     /**
     * The account holder\'s `accountCode` where the split amount will be sent. Required when you provide the `splitConfigurationUUID`.
     */

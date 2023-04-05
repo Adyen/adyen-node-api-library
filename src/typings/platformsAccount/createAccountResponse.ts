@@ -14,11 +14,11 @@ export class CreateAccountResponse {
     /**
     * The code of the new account.
     */
-    'accountCode': string;
+    'accountCode'?: string;
     /**
     * The code of the account holder.
     */
-    'accountHolderCode': string;
+    'accountHolderCode'?: string;
     /**
     * The bankAccountUUID of the bank account held by the account holder to couple the account with. Scheduled payouts in currencies matching the currency of this bank account will be sent to this bank account. Payouts in different currencies will be sent to a matching bank account of the account holder.
     */
@@ -55,7 +55,7 @@ export class CreateAccountResponse {
     /**
     * The status of the account. >Permitted values: `Active`.
     */
-    'status': CreateAccountResponse.StatusEnum;
+    'status'?: CreateAccountResponse.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 

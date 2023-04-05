@@ -7,15 +7,19 @@
  * Do not edit this class manually.
  */
 
-import { BankAccount } from './bankAccount';
 import { Card } from './card';
+import { IbanAccountIdentification } from './ibanAccountIdentification';
+import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 
 export class PaymentInstrument {
     /**
     * The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.
     */
     'balanceAccountId': string;
-    'bankAccount'?: BankAccount;
+    /**
+    * Contains the business account details. Returned when you create a payment instrument with `type` **bankAccount**.
+    */
+    'bankAccount'?: IbanAccountIdentification | USLocalAccountIdentification;
     'card'?: Card;
     /**
     * Your description for the payment instrument, maximum 300 characters.
@@ -61,7 +65,7 @@ export class PaymentInstrument {
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccount"
+            "type": "IbanAccountIdentification | USLocalAccountIdentification"
         },
         {
             "name": "card",

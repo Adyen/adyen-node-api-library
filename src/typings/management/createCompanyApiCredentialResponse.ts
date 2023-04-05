@@ -11,7 +11,7 @@ import { AllowedOrigin } from './allowedOrigin';
 import { ApiCredentialLinks } from './apiCredentialLinks';
 
 export class CreateCompanyApiCredentialResponse {
-    'links'?: ApiCredentialLinks;
+    '_links'?: ApiCredentialLinks;
     /**
     * Indicates if the API credential is enabled. Must be set to **true** to use the credential in your integration.
     */
@@ -61,7 +61,7 @@ export class CreateCompanyApiCredentialResponse {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "ApiCredentialLinks"
         },

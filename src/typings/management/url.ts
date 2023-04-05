@@ -10,6 +10,10 @@
 
 export class Url {
     /**
+    * Indicates if the message sent to this URL should be encrypted.
+    */
+    'encrypted'?: boolean;
+    /**
     * The password for authentication of the notifications.
     */
     'password'?: string;
@@ -25,6 +29,11 @@ export class Url {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "encrypted",
+            "baseName": "encrypted",
+            "type": "boolean"
+        },
         {
             "name": "password",
             "baseName": "password",
