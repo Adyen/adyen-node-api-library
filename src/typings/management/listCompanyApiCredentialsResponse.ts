@@ -11,7 +11,7 @@ import { CompanyApiCredential } from './companyApiCredential';
 import { PaginationLinks } from './paginationLinks';
 
 export class ListCompanyApiCredentialsResponse {
-    'links'?: PaginationLinks;
+    '_links'?: PaginationLinks;
     /**
     * The list of API credentials.
     */
@@ -29,7 +29,7 @@ export class ListCompanyApiCredentialsResponse {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "PaginationLinks"
         },

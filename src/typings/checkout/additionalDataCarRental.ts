@@ -12,211 +12,211 @@ export class AdditionalDataCarRental {
     /**
     * Pick-up date. * Date format: `yyyyMMdd`
     */
-    'carRentalCheckOutDate'?: string;
+    'carRental_checkOutDate'?: string;
     /**
     * The customer service phone number of the car rental company. * Format: Alphanumeric * maxLength: 17
     */
-    'carRentalCustomerServiceTollFreeNumber'?: string;
+    'carRental_customerServiceTollFreeNumber'?: string;
     /**
     * Number of days for which the car is being rented. * Format: Numeric * maxLength: 19
     */
-    'carRentalDaysRented'?: string;
+    'carRental_daysRented'?: string;
     /**
     * Any fuel charges associated with the rental. * Format: Numeric * maxLength: 12
     */
-    'carRentalFuelCharges'?: string;
+    'carRental_fuelCharges'?: string;
     /**
     * Any insurance charges associated with the rental. * Format: Numeric * maxLength: 12
     */
-    'carRentalInsuranceCharges'?: string;
+    'carRental_insuranceCharges'?: string;
     /**
     * The city from which the car is rented. * Format: Alphanumeric * maxLength: 18
     */
-    'carRentalLocationCity'?: string;
+    'carRental_locationCity'?: string;
     /**
     * The country from which the car is rented. * Format: Alphanumeric * maxLength: 2
     */
-    'carRentalLocationCountry'?: string;
+    'carRental_locationCountry'?: string;
     /**
     * The state or province from where the car is rented. * Format: Alphanumeric * maxLength: 3
     */
-    'carRentalLocationStateProvince'?: string;
+    'carRental_locationStateProvince'?: string;
     /**
     * Indicates if the customer was a \"no-show\" (neither keeps nor cancels their booking). * Y - Customer was a no show. * N - Not applicable.
     */
-    'carRentalNoShowIndicator'?: string;
+    'carRental_noShowIndicator'?: string;
     /**
     * Charge associated with not returning a vehicle to the original rental location.
     */
-    'carRentalOneWayDropOffCharges'?: string;
+    'carRental_oneWayDropOffCharges'?: string;
     /**
     * Daily rental rate. * Format: Alphanumeric * maxLength: 12
     */
-    'carRentalRate'?: string;
+    'carRental_rate'?: string;
     /**
     * Specifies whether the given rate is applied daily or weekly. * D - Daily rate. * W - Weekly rate.
     */
-    'carRentalRateIndicator'?: string;
+    'carRental_rateIndicator'?: string;
     /**
     * The rental agreement number associated with this car rental. * Format: Alphanumeric * maxLength: 9
     */
-    'carRentalRentalAgreementNumber'?: string;
+    'carRental_rentalAgreementNumber'?: string;
     /**
     * Daily rental rate. * Format: Alphanumeric * maxLength: 12
     */
-    'carRentalRentalClassId'?: string;
+    'carRental_rentalClassId'?: string;
     /**
     * The name of the person renting the car. * Format: Alphanumeric * maxLength: 26
     */
-    'carRentalRenterName'?: string;
+    'carRental_renterName'?: string;
     /**
     * The city where the car must be returned. * Format: Alphanumeric * maxLength: 18
     */
-    'carRentalReturnCity'?: string;
+    'carRental_returnCity'?: string;
     /**
     * The country where the car must be returned. * Format: Alphanumeric * maxLength: 2
     */
-    'carRentalReturnCountry'?: string;
+    'carRental_returnCountry'?: string;
     /**
     * The last date to return the car by. * Date format: `yyyyMMdd`
     */
-    'carRentalReturnDate'?: string;
+    'carRental_returnDate'?: string;
     /**
     * Agency code, phone number, or address abbreviation * Format: Alphanumeric * maxLength: 10
     */
-    'carRentalReturnLocationId'?: string;
+    'carRental_returnLocationId'?: string;
     /**
     * The state or province where the car must be returned. * Format: Alphanumeric * maxLength: 3
     */
-    'carRentalReturnStateProvince'?: string;
+    'carRental_returnStateProvince'?: string;
     /**
     * Indicates whether the goods or services were tax-exempt, or tax was not collected.  Values: * Y - Goods or services were tax exempt * N - Tax was not collected
     */
-    'carRentalTaxExemptIndicator'?: string;
+    'carRental_taxExemptIndicator'?: string;
     /**
     * Number of nights.  This should be included in the auth message. * Format: Numeric * maxLength: 2
     */
-    'travelEntertainmentAuthDataDuration'?: string;
+    'travelEntertainmentAuthData_duration'?: string;
     /**
     * Indicates what market-specific dataset will be submitted or is being submitted. Value should be \"A\" for Car rental. This should be included in the auth message. * Format: Alphanumeric * maxLength: 1
     */
-    'travelEntertainmentAuthDataMarket'?: string;
+    'travelEntertainmentAuthData_market'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "carRentalCheckOutDate",
+            "name": "carRental_checkOutDate",
             "baseName": "carRental.checkOutDate",
             "type": "string"
         },
         {
-            "name": "carRentalCustomerServiceTollFreeNumber",
+            "name": "carRental_customerServiceTollFreeNumber",
             "baseName": "carRental.customerServiceTollFreeNumber",
             "type": "string"
         },
         {
-            "name": "carRentalDaysRented",
+            "name": "carRental_daysRented",
             "baseName": "carRental.daysRented",
             "type": "string"
         },
         {
-            "name": "carRentalFuelCharges",
+            "name": "carRental_fuelCharges",
             "baseName": "carRental.fuelCharges",
             "type": "string"
         },
         {
-            "name": "carRentalInsuranceCharges",
+            "name": "carRental_insuranceCharges",
             "baseName": "carRental.insuranceCharges",
             "type": "string"
         },
         {
-            "name": "carRentalLocationCity",
+            "name": "carRental_locationCity",
             "baseName": "carRental.locationCity",
             "type": "string"
         },
         {
-            "name": "carRentalLocationCountry",
+            "name": "carRental_locationCountry",
             "baseName": "carRental.locationCountry",
             "type": "string"
         },
         {
-            "name": "carRentalLocationStateProvince",
+            "name": "carRental_locationStateProvince",
             "baseName": "carRental.locationStateProvince",
             "type": "string"
         },
         {
-            "name": "carRentalNoShowIndicator",
+            "name": "carRental_noShowIndicator",
             "baseName": "carRental.noShowIndicator",
             "type": "string"
         },
         {
-            "name": "carRentalOneWayDropOffCharges",
+            "name": "carRental_oneWayDropOffCharges",
             "baseName": "carRental.oneWayDropOffCharges",
             "type": "string"
         },
         {
-            "name": "carRentalRate",
+            "name": "carRental_rate",
             "baseName": "carRental.rate",
             "type": "string"
         },
         {
-            "name": "carRentalRateIndicator",
+            "name": "carRental_rateIndicator",
             "baseName": "carRental.rateIndicator",
             "type": "string"
         },
         {
-            "name": "carRentalRentalAgreementNumber",
+            "name": "carRental_rentalAgreementNumber",
             "baseName": "carRental.rentalAgreementNumber",
             "type": "string"
         },
         {
-            "name": "carRentalRentalClassId",
+            "name": "carRental_rentalClassId",
             "baseName": "carRental.rentalClassId",
             "type": "string"
         },
         {
-            "name": "carRentalRenterName",
+            "name": "carRental_renterName",
             "baseName": "carRental.renterName",
             "type": "string"
         },
         {
-            "name": "carRentalReturnCity",
+            "name": "carRental_returnCity",
             "baseName": "carRental.returnCity",
             "type": "string"
         },
         {
-            "name": "carRentalReturnCountry",
+            "name": "carRental_returnCountry",
             "baseName": "carRental.returnCountry",
             "type": "string"
         },
         {
-            "name": "carRentalReturnDate",
+            "name": "carRental_returnDate",
             "baseName": "carRental.returnDate",
             "type": "string"
         },
         {
-            "name": "carRentalReturnLocationId",
+            "name": "carRental_returnLocationId",
             "baseName": "carRental.returnLocationId",
             "type": "string"
         },
         {
-            "name": "carRentalReturnStateProvince",
+            "name": "carRental_returnStateProvince",
             "baseName": "carRental.returnStateProvince",
             "type": "string"
         },
         {
-            "name": "carRentalTaxExemptIndicator",
+            "name": "carRental_taxExemptIndicator",
             "baseName": "carRental.taxExemptIndicator",
             "type": "string"
         },
         {
-            "name": "travelEntertainmentAuthDataDuration",
+            "name": "travelEntertainmentAuthData_duration",
             "baseName": "travelEntertainmentAuthData.duration",
             "type": "string"
         },
         {
-            "name": "travelEntertainmentAuthDataMarket",
+            "name": "travelEntertainmentAuthData_market",
             "baseName": "travelEntertainmentAuthData.market",
             "type": "string"
         }    ];

@@ -12,7 +12,7 @@ export class AdditionalDataCommon {
     /**
     * Triggers test scenarios that allow to replicate certain communication errors.  Allowed values: * **NO_CONNECTION_AVAILABLE** – There wasn\'t a connection available to service the outgoing communication. This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request. * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response. This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response.
     */
-    'requestedTestErrorResponseCode'?: string;
+    'RequestedTestErrorResponseCode'?: string;
     /**
     * Set to true to authorise a part of the requested amount in case the cardholder does not have enough funds on their account.  If a payment was partially authorised, the response includes resultCode: PartiallyAuthorised and the authorised amount in additionalData.authorisedAmountValue. To enable this functionality, contact our Support Team.
     */
@@ -78,7 +78,7 @@ export class AdditionalDataCommon {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "requestedTestErrorResponseCode",
+            "name": "RequestedTestErrorResponseCode",
             "baseName": "RequestedTestErrorResponseCode",
             "type": "string"
         },

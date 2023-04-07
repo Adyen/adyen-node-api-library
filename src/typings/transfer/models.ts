@@ -93,6 +93,7 @@ let enumsMap: {[index: string]: any} = {
         "AULocalAccountIdentification.TypeEnum": AULocalAccountIdentification.TypeEnum,
         "AdditionalBankIdentification.TypeEnum": AdditionalBankIdentification.TypeEnum,
         "BRLocalAccountIdentification.TypeEnum": BRLocalAccountIdentification.TypeEnum,
+        "CALocalAccountIdentification.AccountTypeEnum": CALocalAccountIdentification.AccountTypeEnum,
         "CALocalAccountIdentification.TypeEnum": CALocalAccountIdentification.TypeEnum,
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
         "DKLocalAccountIdentification.TypeEnum": DKLocalAccountIdentification.TypeEnum,

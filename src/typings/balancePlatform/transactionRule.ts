@@ -38,6 +38,10 @@ export class TransactionRule {
     * Your reference for the transaction rule, maximum 150 characters.
     */
     'reference': string;
+    /**
+    * Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.
+    */
+    'requestType'?: TransactionRule.RequestTypeEnum;
     'ruleRestrictions': TransactionRuleRestrictions;
     /**
     * A positive or negative score applied to the transaction if it meets the conditions of the rule. Required when `outcomeType` is **scoreBased**.  The value must be between **-100** and **100**.
@@ -100,6 +104,11 @@ export class TransactionRule {
             "type": "string"
         },
         {
+            "name": "requestType",
+            "baseName": "requestType",
+            "type": "TransactionRule.RequestTypeEnum"
+        },
+        {
             "name": "ruleRestrictions",
             "baseName": "ruleRestrictions",
             "type": "TransactionRuleRestrictions"
@@ -134,6 +143,11 @@ export namespace TransactionRule {
     export enum OutcomeTypeEnum {
         HardBlock = 'hardBlock',
         ScoreBased = 'scoreBased'
+    }
+    export enum RequestTypeEnum {
+        Authentication = 'authentication',
+        Authorization = 'authorization',
+        Tokenization = 'tokenization'
     }
     export enum StatusEnum {
         Active = 'active',

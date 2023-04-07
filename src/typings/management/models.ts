@@ -94,7 +94,9 @@ export * from './opi';
 export * from './orderItem';
 export * from './paginationLinks';
 export * from './passcodes';
+export * from './payAtTable';
 export * from './payPalInfo';
+export * from './payment';
 export * from './paymentMethod';
 export * from './paymentMethodResponse';
 export * from './paymentMethodSetupInfo';
@@ -152,6 +154,7 @@ export * from './updatePayoutSettingsRequest';
 export * from './updateStoreRequest';
 export * from './url';
 export * from './user';
+export * from './vippsInfo';
 export * from './webhook';
 export * from './webhookLinks';
 export * from './wifiProfiles';
@@ -243,7 +246,9 @@ import { Opi } from './opi';
 import { OrderItem } from './orderItem';
 import { PaginationLinks } from './paginationLinks';
 import { Passcodes } from './passcodes';
+import { PayAtTable } from './payAtTable';
 import { PayPalInfo } from './payPalInfo';
+import { Payment } from './payment';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodResponse } from './paymentMethodResponse';
 import { PaymentMethodSetupInfo } from './paymentMethodSetupInfo';
@@ -301,6 +306,7 @@ import { UpdatePayoutSettingsRequest } from './updatePayoutSettingsRequest';
 import { UpdateStoreRequest } from './updateStoreRequest';
 import { Url } from './url';
 import { User } from './user';
+import { VippsInfo } from './vippsInfo';
 import { Webhook } from './webhook';
 import { WebhookLinks } from './webhookLinks';
 import { WifiProfiles } from './wifiProfiles';
@@ -329,6 +335,7 @@ let enumsMap: {[index: string]: any} = {
         "InstallAndroidAppDetails.TypeEnum": InstallAndroidAppDetails.TypeEnum,
         "InstallAndroidCertificateDetails.TypeEnum": InstallAndroidCertificateDetails.TypeEnum,
         "KlarnaInfo.RegionEnum": KlarnaInfo.RegionEnum,
+        "PayAtTable.AuthenticationMethodEnum": PayAtTable.AuthenticationMethodEnum,
         "PaymentMethod.VerificationStatusEnum": PaymentMethod.VerificationStatusEnum,
         "PaymentMethodResponse.TypesWithErrorsEnum": PaymentMethodResponse.TypesWithErrorsEnum,
         "PaymentMethodSetupInfo.ShopperInteractionEnum": PaymentMethodSetupInfo.ShopperInteractionEnum,
@@ -441,7 +448,9 @@ let typeMap: {[index: string]: any} = {
     "OrderItem": OrderItem,
     "PaginationLinks": PaginationLinks,
     "Passcodes": Passcodes,
+    "PayAtTable": PayAtTable,
     "PayPalInfo": PayPalInfo,
+    "Payment": Payment,
     "PaymentMethod": PaymentMethod,
     "PaymentMethodResponse": PaymentMethodResponse,
     "PaymentMethodSetupInfo": PaymentMethodSetupInfo,
@@ -499,6 +508,7 @@ let typeMap: {[index: string]: any} = {
     "UpdateStoreRequest": UpdateStoreRequest,
     "Url": Url,
     "User": User,
+    "VippsInfo": VippsInfo,
     "Webhook": Webhook,
     "WebhookLinks": WebhookLinks,
     "WifiProfiles": WifiProfiles,

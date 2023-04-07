@@ -11,7 +11,7 @@ import { CompanyUser } from './companyUser';
 import { PaginationLinks } from './paginationLinks';
 
 export class ListCompanyUsersResponse {
-    'links'?: PaginationLinks;
+    '_links'?: PaginationLinks;
     /**
     * The list of users.
     */
@@ -29,7 +29,7 @@ export class ListCompanyUsersResponse {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "PaginationLinks"
         },

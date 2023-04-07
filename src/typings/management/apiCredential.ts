@@ -11,7 +11,7 @@ import { AllowedOrigin } from './allowedOrigin';
 import { ApiCredentialLinks } from './apiCredentialLinks';
 
 export class ApiCredential {
-    'links'?: ApiCredentialLinks;
+    '_links'?: ApiCredentialLinks;
     /**
     * Indicates if the API credential is enabled. Must be set to **true** to use the credential in your integration.
     */
@@ -49,7 +49,7 @@ export class ApiCredential {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "ApiCredentialLinks"
         },

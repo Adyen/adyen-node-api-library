@@ -68,8 +68,10 @@ export namespace TermsOfServiceAcceptanceInfo {
     export enum TypeEnum {
         AdyenAccount = 'adyenAccount',
         AdyenCapital = 'adyenCapital',
+        AdyenCard = 'adyenCard',
         AdyenForPlatformsAdvanced = 'adyenForPlatformsAdvanced',
         AdyenForPlatformsManage = 'adyenForPlatformsManage',
+        AdyenFranchisee = 'adyenFranchisee',
         AdyenIssuing = 'adyenIssuing'
     }
 }

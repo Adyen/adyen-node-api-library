@@ -12,157 +12,157 @@ export class AdditionalDataLevel23 {
     /**
     * Customer code, if supplied by a customer.  Encoding: ASCII.  Max length: 25 characters.  > Required for Level 2 and Level 3 data.
     */
-    'enhancedSchemeDataCustomerReference'?: string;
+    'enhancedSchemeData_customerReference'?: string;
     /**
     * Destination country code.  Encoding: ASCII.  Max length: 3 characters.
     */
-    'enhancedSchemeDataDestinationCountryCode'?: string;
+    'enhancedSchemeData_destinationCountryCode'?: string;
     /**
     * The postal code of a destination address.  Encoding: ASCII.  Max length: 10 characters.  > Required for American Express.
     */
-    'enhancedSchemeDataDestinationPostalCode'?: string;
+    'enhancedSchemeData_destinationPostalCode'?: string;
     /**
     * Destination state or province code.  Encoding: ASCII.Max length: 3 characters.
     */
-    'enhancedSchemeDataDestinationStateProvinceCode'?: string;
+    'enhancedSchemeData_destinationStateProvinceCode'?: string;
     /**
     * Duty amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
     */
-    'enhancedSchemeDataDutyAmount'?: string;
+    'enhancedSchemeData_dutyAmount'?: string;
     /**
     * Shipping amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
     */
-    'enhancedSchemeDataFreightAmount'?: string;
+    'enhancedSchemeData_freightAmount'?: string;
     /**
     * Item commodity code.  Encoding: ASCII.  Max length: 12 characters.
     */
-    'enhancedSchemeDataItemDetailLineItemNrCommodityCode'?: string;
+    'enhancedSchemeData_itemDetailLine_itemNr_commodityCode'?: string;
     /**
     * Item description.  Encoding: ASCII.  Max length: 26 characters.
     */
-    'enhancedSchemeDataItemDetailLineItemNrDescription'?: string;
+    'enhancedSchemeData_itemDetailLine_itemNr_description'?: string;
     /**
     * Discount amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
     */
-    'enhancedSchemeDataItemDetailLineItemNrDiscountAmount'?: string;
+    'enhancedSchemeData_itemDetailLine_itemNr_discountAmount'?: string;
     /**
     * Product code.  Encoding: ASCII.  Max length: 12 characters.
     */
-    'enhancedSchemeDataItemDetailLineItemNrProductCode'?: string;
+    'enhancedSchemeData_itemDetailLine_itemNr_productCode'?: string;
     /**
     * Quantity, specified as an integer value.  Value must be greater than 0.  Max length: 12 characters.
     */
-    'enhancedSchemeDataItemDetailLineItemNrQuantity'?: string;
+    'enhancedSchemeData_itemDetailLine_itemNr_quantity'?: string;
     /**
     * Total amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
     */
-    'enhancedSchemeDataItemDetailLineItemNrTotalAmount'?: string;
+    'enhancedSchemeData_itemDetailLine_itemNr_totalAmount'?: string;
     /**
     * Item unit of measurement.  Encoding: ASCII.  Max length: 3 characters.
     */
-    'enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure'?: string;
+    'enhancedSchemeData_itemDetailLine_itemNr_unitOfMeasure'?: string;
     /**
     * Unit price, specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).  Max length: 12 characters.
     */
-    'enhancedSchemeDataItemDetailLineItemNrUnitPrice'?: string;
+    'enhancedSchemeData_itemDetailLine_itemNr_unitPrice'?: string;
     /**
     * Order date. * Format: `ddMMyy`  Encoding: ASCII.  Max length: 6 characters.
     */
-    'enhancedSchemeDataOrderDate'?: string;
+    'enhancedSchemeData_orderDate'?: string;
     /**
     * The postal code of a \"ship-from\" address.  Encoding: ASCII.  Max length: 10 characters.
     */
-    'enhancedSchemeDataShipFromPostalCode'?: string;
+    'enhancedSchemeData_shipFromPostalCode'?: string;
     /**
     * Total tax amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.  > Required for Level 2 and Level 3 data.
     */
-    'enhancedSchemeDataTotalTaxAmount'?: string;
+    'enhancedSchemeData_totalTaxAmount'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "enhancedSchemeDataCustomerReference",
+            "name": "enhancedSchemeData_customerReference",
             "baseName": "enhancedSchemeData.customerReference",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataDestinationCountryCode",
+            "name": "enhancedSchemeData_destinationCountryCode",
             "baseName": "enhancedSchemeData.destinationCountryCode",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataDestinationPostalCode",
+            "name": "enhancedSchemeData_destinationPostalCode",
             "baseName": "enhancedSchemeData.destinationPostalCode",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataDestinationStateProvinceCode",
+            "name": "enhancedSchemeData_destinationStateProvinceCode",
             "baseName": "enhancedSchemeData.destinationStateProvinceCode",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataDutyAmount",
+            "name": "enhancedSchemeData_dutyAmount",
             "baseName": "enhancedSchemeData.dutyAmount",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataFreightAmount",
+            "name": "enhancedSchemeData_freightAmount",
             "baseName": "enhancedSchemeData.freightAmount",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataItemDetailLineItemNrCommodityCode",
+            "name": "enhancedSchemeData_itemDetailLine_itemNr_commodityCode",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].commodityCode",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataItemDetailLineItemNrDescription",
+            "name": "enhancedSchemeData_itemDetailLine_itemNr_description",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].description",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataItemDetailLineItemNrDiscountAmount",
+            "name": "enhancedSchemeData_itemDetailLine_itemNr_discountAmount",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].discountAmount",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataItemDetailLineItemNrProductCode",
+            "name": "enhancedSchemeData_itemDetailLine_itemNr_productCode",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].productCode",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataItemDetailLineItemNrQuantity",
+            "name": "enhancedSchemeData_itemDetailLine_itemNr_quantity",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].quantity",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataItemDetailLineItemNrTotalAmount",
+            "name": "enhancedSchemeData_itemDetailLine_itemNr_totalAmount",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].totalAmount",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataItemDetailLineItemNrUnitOfMeasure",
+            "name": "enhancedSchemeData_itemDetailLine_itemNr_unitOfMeasure",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].unitOfMeasure",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataItemDetailLineItemNrUnitPrice",
+            "name": "enhancedSchemeData_itemDetailLine_itemNr_unitPrice",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].unitPrice",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataOrderDate",
+            "name": "enhancedSchemeData_orderDate",
             "baseName": "enhancedSchemeData.orderDate",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataShipFromPostalCode",
+            "name": "enhancedSchemeData_shipFromPostalCode",
             "baseName": "enhancedSchemeData.shipFromPostalCode",
             "type": "string"
         },
         {
-            "name": "enhancedSchemeDataTotalTaxAmount",
+            "name": "enhancedSchemeData_totalTaxAmount",
             "baseName": "enhancedSchemeData.totalTaxAmount",
             "type": "string"
         }    ];

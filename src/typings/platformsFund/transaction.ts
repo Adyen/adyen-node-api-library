@@ -163,7 +163,7 @@ export namespace Transaction {
     export enum TransactionStatusEnum {
         BalanceNotPaidOutTransfer = 'BalanceNotPaidOutTransfer',
         BalancePlatformSweep = 'BalancePlatformSweep',
-        BalancePlatfromSweepReturned = 'BalancePlatfromSweepReturned',
+        BalancePlatformSweepReturned = 'BalancePlatformSweepReturned',
         Chargeback = 'Chargeback',
         ChargebackCorrection = 'ChargebackCorrection',
         ChargebackCorrectionReceived = 'ChargebackCorrectionReceived',

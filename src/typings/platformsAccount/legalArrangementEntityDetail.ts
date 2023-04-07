@@ -39,7 +39,7 @@ export class LegalArrangementEntityDetail {
     /**
     * The legal entity type.  Possible values: **Business**, **Individual**, **NonProfit**, **PublicCompany**, or **Partnership**. 
     */
-    'legalEntityType': LegalArrangementEntityDetail.LegalEntityTypeEnum;
+    'legalEntityType'?: LegalArrangementEntityDetail.LegalEntityTypeEnum;
     'phoneNumber'?: ViasPhoneNumber;
     /**
     * The URL of the website of the contact.

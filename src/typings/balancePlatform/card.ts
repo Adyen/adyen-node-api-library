@@ -19,11 +19,11 @@ export class Card {
     */
     'bin'?: string;
     /**
-    * The brand of the payment instrument. Possible values: **visa**, **mc**.
+    * The brand of the physical or the virtual card. Possible values: **visa**, **mc**.
     */
     'brand': string;
     /**
-    * The brand variant of the payment instrument. >Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
+    * The brand variant of the physical or the virtual card. >Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
     */
     'brandVariant': string;
     /**

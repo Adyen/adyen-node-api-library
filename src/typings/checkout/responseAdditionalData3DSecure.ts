@@ -28,7 +28,7 @@ export class ResponseAdditionalData3DSecure {
     /**
     * Indicates whether a card is enrolled for 3D Secure 2.
     */
-    'threeds2CardEnrolled'?: boolean;
+    'threeds2_cardEnrolled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -54,7 +54,7 @@ export class ResponseAdditionalData3DSecure {
             "type": "string"
         },
         {
-            "name": "threeds2CardEnrolled",
+            "name": "threeds2_cardEnrolled",
             "baseName": "threeds2.cardEnrolled",
             "type": "boolean"
         }    ];

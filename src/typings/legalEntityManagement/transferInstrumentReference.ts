@@ -17,6 +17,10 @@ export class TransferInstrumentReference {
     * The unique identifier of the resource.
     */
     'id': string;
+    /**
+    * Four last digits of the bank account number.
+    */
+    'realLastFour'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -29,6 +33,11 @@ export class TransferInstrumentReference {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "realLastFour",
+            "baseName": "realLastFour",
             "type": "string"
         }    ];
 

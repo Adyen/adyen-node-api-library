@@ -17,6 +17,7 @@ import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { PayPalInfo } from './payPalInfo';
 import { SofortInfo } from './sofortInfo';
 import { SwishInfo } from './swishInfo';
+import { VippsInfo } from './vippsInfo';
 
 export class PaymentMethod {
     /**
@@ -53,7 +54,7 @@ export class PaymentMethod {
     */
     'id': string;
     'klarna'?: KlarnaInfo;
-    'mealVoucherFR'?: MealVoucherFRInfo;
+    'mealVoucher_FR'?: MealVoucherFRInfo;
     'paypal'?: PayPalInfo;
     /**
     * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
@@ -77,6 +78,7 @@ export class PaymentMethod {
     * Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
     */
     'verificationStatus'?: PaymentMethod.VerificationStatusEnum;
+    'vipps'?: VippsInfo;
 
     static discriminator: string | undefined = undefined;
 
@@ -147,7 +149,7 @@ export class PaymentMethod {
             "type": "KlarnaInfo"
         },
         {
-            "name": "mealVoucherFR",
+            "name": "mealVoucher_FR",
             "baseName": "mealVoucher_FR",
             "type": "MealVoucherFRInfo"
         },
@@ -190,6 +192,11 @@ export class PaymentMethod {
             "name": "verificationStatus",
             "baseName": "verificationStatus",
             "type": "PaymentMethod.VerificationStatusEnum"
+        },
+        {
+            "name": "vipps",
+            "baseName": "vipps",
+            "type": "VippsInfo"
         }    ];
 
     static getAttributeTypeMap() {

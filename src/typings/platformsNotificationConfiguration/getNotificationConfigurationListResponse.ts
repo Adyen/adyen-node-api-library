@@ -14,7 +14,7 @@ export class GetNotificationConfigurationListResponse {
     /**
     * Details of the notification subscription configurations.
     */
-    'configurations': Array<NotificationConfigurationDetails>;
+    'configurations'?: Array<NotificationConfigurationDetails>;
     /**
     * Contains field validation errors that would prevent requests from being processed.
     */

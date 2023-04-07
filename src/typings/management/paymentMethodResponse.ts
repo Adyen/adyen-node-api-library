@@ -11,7 +11,7 @@ import { PaginationLinks } from './paginationLinks';
 import { PaymentMethod } from './paymentMethod';
 
 export class PaymentMethodResponse {
-    'links'?: PaginationLinks;
+    '_links'?: PaginationLinks;
     /**
     * Payment methods details.
     */
@@ -33,7 +33,7 @@ export class PaymentMethodResponse {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "PaginationLinks"
         },
@@ -65,12 +65,15 @@ export class PaymentMethodResponse {
 
 export namespace PaymentMethodResponse {
     export enum TypesWithErrorsEnum {
+        Afterpaytouch = 'afterpaytouch',
         Alipay = 'alipay',
+        AlipayHk = 'alipay_hk',
         Amex = 'amex',
         Applepay = 'applepay',
         Bcmc = 'bcmc',
         Blik = 'blik',
         Cartebancaire = 'cartebancaire',
+        Clearpay = 'clearpay',
         Cup = 'cup',
         Diners = 'diners',
         DirectEbanking = 'directEbanking',
@@ -99,10 +102,12 @@ export namespace PaymentMethodResponse {
         MealVoucherFr = 'mealVoucher_FR',
         Mobilepay = 'mobilepay',
         Multibanco = 'multibanco',
+        OnlineBankingPl = 'onlineBanking_PL',
         Paypal = 'paypal',
         Payshop = 'payshop',
         Swish = 'swish',
         Trustly = 'trustly',
+        Vipps = 'vipps',
         Visa = 'visa',
         Visadebit = 'visadebit',
         Vpay = 'vpay',

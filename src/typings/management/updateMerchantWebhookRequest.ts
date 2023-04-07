@@ -25,12 +25,12 @@ export class UpdateMerchantWebhookRequest {
     /**
     * Indicates if the webhook configuration is active. The field must be **true** for us to send webhooks about events related an account.
     */
-    'active': boolean;
+    'active'?: boolean;
     'additionalSettings'?: AdditionalSettings;
     /**
     * Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** 
     */
-    'communicationFormat': UpdateMerchantWebhookRequest.CommunicationFormatEnum;
+    'communicationFormat'?: UpdateMerchantWebhookRequest.CommunicationFormatEnum;
     /**
     * Your description for this webhook configuration.
     */
@@ -54,7 +54,7 @@ export class UpdateMerchantWebhookRequest {
     /**
     * Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**.
     */
-    'url': string;
+    'url'?: string;
     /**
     * Username to access the webhook URL.
     */
@@ -136,9 +136,9 @@ export class UpdateMerchantWebhookRequest {
 
 export namespace UpdateMerchantWebhookRequest {
     export enum CommunicationFormatEnum {
-        Http = 'HTTP',
-        Json = 'JSON',
-        Soap = 'SOAP'
+        Http = 'http',
+        Json = 'json',
+        Soap = 'soap'
     }
     export enum NetworkTypeEnum {
         Local = 'LOCAL',
@@ -147,13 +147,11 @@ export namespace UpdateMerchantWebhookRequest {
     export enum SslVersionEnum {
         Http = 'HTTP',
         Ssl = 'SSL',
-        Sslv3 = 'SSLV3',
-        SslInsecureCiphers = 'SSL_INSECURE_CIPHERS',
+        Sslv3 = 'SSLv3',
         Tls = 'TLS',
-        Tlsv1 = 'TLSV1',
-        Tlsv11 = 'TLSV1_1',
-        Tlsv12 = 'TLSV1_2',
-        Tlsv13 = 'TLSV1_3',
-        Tlsv1InsecureCiphers = 'TLSV1_INSECURE_CIPHERS'
+        Tlsv1 = 'TLSv1',
+        Tlsv11 = 'TLSv1.1',
+        Tlsv12 = 'TLSv1.2',
+        Tlsv13 = 'TLSv1.3'
     }
 }

@@ -12,35 +12,35 @@ export class AdditionalDataRiskStandalone {
     /**
     * Shopper\'s country of residence in the form of ISO standard 3166 2-character country codes.
     */
-    'payPalCountryCode'?: string;
+    'PayPal_CountryCode'?: string;
     /**
     * Shopper\'s email.
     */
-    'payPalEmailId'?: string;
+    'PayPal_EmailId'?: string;
     /**
     * Shopper\'s first name.
     */
-    'payPalFirstName'?: string;
+    'PayPal_FirstName'?: string;
     /**
     * Shopper\'s last name.
     */
-    'payPalLastName'?: string;
+    'PayPal_LastName'?: string;
     /**
     * Unique PayPal Customer Account identification number. Character length and limitations: 13 single-byte alphanumeric characters.
     */
-    'payPalPayerId'?: string;
+    'PayPal_PayerId'?: string;
     /**
     * Shopper\'s phone number.
     */
-    'payPalPhone'?: string;
+    'PayPal_Phone'?: string;
     /**
     * Allowed values: * **Eligible** — Merchant is protected by PayPal\'s Seller Protection Policy for Unauthorized Payments and Item Not Received.  * **PartiallyEligible** — Merchant is protected by PayPal\'s Seller Protection Policy for Item Not Received.  * **Ineligible** — Merchant is not protected under the Seller Protection Policy.
     */
-    'payPalProtectionEligibility'?: string;
+    'PayPal_ProtectionEligibility'?: string;
     /**
     * Unique transaction ID of the payment.
     */
-    'payPalTransactionId'?: string;
+    'PayPal_TransactionId'?: string;
     /**
     * Raw AVS result received from the acquirer, where available. Example: D
     */
@@ -74,42 +74,42 @@ export class AdditionalDataRiskStandalone {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "payPalCountryCode",
+            "name": "PayPal_CountryCode",
             "baseName": "PayPal.CountryCode",
             "type": "string"
         },
         {
-            "name": "payPalEmailId",
+            "name": "PayPal_EmailId",
             "baseName": "PayPal.EmailId",
             "type": "string"
         },
         {
-            "name": "payPalFirstName",
+            "name": "PayPal_FirstName",
             "baseName": "PayPal.FirstName",
             "type": "string"
         },
         {
-            "name": "payPalLastName",
+            "name": "PayPal_LastName",
             "baseName": "PayPal.LastName",
             "type": "string"
         },
         {
-            "name": "payPalPayerId",
+            "name": "PayPal_PayerId",
             "baseName": "PayPal.PayerId",
             "type": "string"
         },
         {
-            "name": "payPalPhone",
+            "name": "PayPal_Phone",
             "baseName": "PayPal.Phone",
             "type": "string"
         },
         {
-            "name": "payPalProtectionEligibility",
+            "name": "PayPal_ProtectionEligibility",
             "baseName": "PayPal.ProtectionEligibility",
             "type": "string"
         },
         {
-            "name": "payPalTransactionId",
+            "name": "PayPal_TransactionId",
             "baseName": "PayPal.TransactionId",
             "type": "string"
         },

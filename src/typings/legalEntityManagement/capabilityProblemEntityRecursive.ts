@@ -9,12 +9,18 @@
 
 
 export class CapabilityProblemEntityRecursive {
+    'documents'?: Array<string>;
     'id'?: string;
     'type'?: CapabilityProblemEntityRecursive.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "documents",
+            "baseName": "documents",
+            "type": "Array<string>"
+        },
         {
             "name": "id",
             "baseName": "id",

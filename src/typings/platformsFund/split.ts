@@ -24,7 +24,7 @@ export class Split {
     */
     'reference'?: string;
     /**
-    * The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**.
+    * The type of split. Possible values: **Default**, **PaymentFee**, **VAT**, **Commission**, **MarketPlace**, **BalanceAccount**, **Remainder**, **Surcharge**, **Tip**.
     */
     'type': Split.TypeEnum;
 
@@ -70,6 +70,8 @@ export namespace Split {
         MarketPlace = 'MarketPlace',
         PaymentFee = 'PaymentFee',
         Remainder = 'Remainder',
+        Surcharge = 'Surcharge',
+        Tip = 'Tip',
         Vat = 'VAT',
         Verification = 'Verification'
     }

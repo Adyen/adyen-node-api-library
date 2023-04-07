@@ -102,7 +102,12 @@ export namespace CreateAccountRequest {
         Hold = 'HOLD',
         Monthly = 'MONTHLY',
         Weekly = 'WEEKLY',
-        WeeklyOnTueFriMidnight = 'WEEKLY_ON_TUE_FRI_MIDNIGHT'
+        WeeklyMonToFriAu = 'WEEKLY_MON_TO_FRI_AU',
+        WeeklyMonToFriEu = 'WEEKLY_MON_TO_FRI_EU',
+        WeeklyMonToFriUs = 'WEEKLY_MON_TO_FRI_US',
+        WeeklyOnTueFriMidnight = 'WEEKLY_ON_TUE_FRI_MIDNIGHT',
+        WeeklySunToThuAu = 'WEEKLY_SUN_TO_THU_AU',
+        WeeklySunToThuUs = 'WEEKLY_SUN_TO_THU_US'
     }
     export enum PayoutSpeedEnum {
         Instant = 'INSTANT',
