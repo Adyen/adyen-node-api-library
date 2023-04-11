@@ -24,7 +24,7 @@ jobs:
             core.setOutput('version', release.packageVersion())
       - name: Create new release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
         run: |
           gh release create v${{steps.release.outputs.version}} \
             --title 'Adyen Node API Library v${{steps.release.outputs.version}}' \
