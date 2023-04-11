@@ -207,7 +207,7 @@ describe.skip("Platforms Test E2E", function(): void {
             accountHolderDetails,
             legalEntity: A.CreateAccountHolderRequest.LegalEntityEnum.Individual,
         });
-        await platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode});
+        await platforms.Account.suspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode!});
 
         accountHolderToClose = await platforms.Account.createAccountHolder({
             accountHolderCode: generateRandomCode(),
@@ -242,7 +242,7 @@ describe.skip("Platforms Test E2E", function(): void {
                     const result = await platforms.Account.getAccountHolder({
                         accountHolderCode: accountHolder.accountHolderCode,
                     });
-                    expect(result.accountHolderDetails.email).toEqual("random_email@example.com");
+                    expect(result.accountHolderDetails?.email).toEqual("random_email@example.com");
                 } catch (e) {
                     if(e instanceof HttpClientException) {
                         assertError(e);
@@ -256,7 +256,7 @@ describe.skip("Platforms Test E2E", function(): void {
                 nock.restore();
                 try {
                     const result = await platforms.Account.updateAccountHolder({
-                        accountHolderCode: accountHolder.accountHolderCode,
+                        accountHolderCode: accountHolder.accountHolderCode!,
                         accountHolderDetails: {
                             ...accountHolderDetails,
                             address: {
@@ -278,7 +278,7 @@ describe.skip("Platforms Test E2E", function(): void {
                 nock.restore();
                 try {
                     const result = await platforms.Account.checkAccountHolder({
-                        accountHolderCode: accountHolder.accountHolderCode,
+                        accountHolderCode: accountHolder.accountHolderCode!,
                         accountStateType: A.PerformVerificationRequest.AccountStateTypeEnum.Processing,
                         tier: 2
                     });
@@ -340,7 +340,7 @@ describe.skip("Platforms Test E2E", function(): void {
                         }
                     });
                     const result = await platforms.Account.getUploadedDocuments({
-                        accountHolderCode: account.accountHolderCode,
+                        accountHolderCode: account.accountHolderCode!,
                     });
                     expect(result.documentDetails![0].filename).toEqual("IDCardFront.png");
                 } catch (e) {
@@ -356,7 +356,7 @@ describe.skip("Platforms Test E2E", function(): void {
                 nock.restore();
                 try {
                     const result = await platforms.Account.closeAccount({
-                        accountCode: accountToClose.accountCode
+                        accountCode: accountToClose.accountCode!
                     });
                     expect(result.status).toEqual("Closed");
                 } catch (e) {
@@ -372,7 +372,7 @@ describe.skip("Platforms Test E2E", function(): void {
                 nock.restore();
                 try {
                     const result = await platforms.Account.suspendAccountHolder({
-                        accountHolderCode: accountHolderToSuspend.accountHolderCode,
+                        accountHolderCode: accountHolderToSuspend.accountHolderCode!,
                     });
                     expect(result.pspReference).toBeDefined();
                 } catch (e) {
@@ -387,7 +387,7 @@ describe.skip("Platforms Test E2E", function(): void {
             it("should unsuspend account holder", async function() {
                 nock.restore();
                 try {
-                    const result = await platforms.Account.unSuspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode });
+                    const result = await platforms.Account.unSuspendAccountHolder({ accountHolderCode: accountHolderToUnSuspend.accountHolderCode! });
                     expect(result.pspReference).toBeDefined();
                 } catch (e) {
                     if(e instanceof HttpClientException) {
@@ -402,7 +402,7 @@ describe.skip("Platforms Test E2E", function(): void {
                 nock.restore();
                 try {
                     const result = await platforms.Account.updateAccountHolderState({
-                        accountHolderCode: accountHolder.accountHolderCode,
+                        accountHolderCode: accountHolder.accountHolderCode!,
                         disable: false,
                         stateType: A.UpdateAccountHolderStateRequest.StateTypeEnum.Payout
                     });
@@ -420,7 +420,7 @@ describe.skip("Platforms Test E2E", function(): void {
                 nock.restore();
                 try {
                     const result = await platforms.Account.closeAccountHolder({
-                        accountHolderCode: accountHolderToClose.accountHolderCode
+                        accountHolderCode: accountHolderToClose.accountHolderCode!
                     });
                     expect(result.pspReference).toBeDefined();
                 } catch (e) {
@@ -436,7 +436,7 @@ describe.skip("Platforms Test E2E", function(): void {
               nock.restore();
               try {
                 const result = await platforms.Account.getTaxForm({
-                    accountHolderCode: accountHolder.accountHolderCode,
+                    accountHolderCode: accountHolder.accountHolderCode!,
                     formType: "1099-K",
                     year: 2020
                 });
