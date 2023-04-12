@@ -25,7 +25,7 @@ export class NotificationConfigurationDetails {
     /**
     * Contains objects that define event types and their subscription settings.
     */
-    'eventConfigs': Array<NotificationEventConfiguration>;
+    'eventConfigs'?: Array<NotificationEventConfiguration>;
     /**
     * A string with which to salt the notification(s) before hashing. If this field is provided, a hash value will be included under the notification header `HmacSignature` and the hash protocol will be included under the notification header `Protocol`. A notification body along with its `hmacSignatureKey` and `Protocol` can be used to calculate a hash value; matching this hash value with the `HmacSignature` will ensure that the notification body has not been tampered with or corrupted.  >Must be a 32-byte hex-encoded string (i.e. a string containing 64 hexadecimal characters; e.g. \"b0ea55c2fe60d4d1d605e9c385e0e7f7e6cafbb939ce07010f31a327a0871f27\").  The omission of this field will preclude the provision of the `HmacSignature` and `Protocol` headers in notification(s).
     */
@@ -41,7 +41,7 @@ export class NotificationConfigurationDetails {
     /**
     * The URL to which the notifications are to be sent.
     */
-    'notifyURL': string;
+    'notifyURL'?: string;
     /**
     * The username to use when accessing the notifyURL.
     */

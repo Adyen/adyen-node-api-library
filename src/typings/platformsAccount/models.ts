@@ -56,6 +56,9 @@ export * from './kYCVerificationResult';
 export * from './legalArrangementDetail';
 export * from './legalArrangementEntityDetail';
 export * from './legalArrangementRequest';
+export * from './migratedAccounts';
+export * from './migratedStores';
+export * from './migrationData';
 export * from './payoutMethod';
 export * from './payoutScheduleResponse';
 export * from './performVerificationRequest';
@@ -131,6 +134,9 @@ import { KYCVerificationResult } from './kYCVerificationResult';
 import { LegalArrangementDetail } from './legalArrangementDetail';
 import { LegalArrangementEntityDetail } from './legalArrangementEntityDetail';
 import { LegalArrangementRequest } from './legalArrangementRequest';
+import { MigratedAccounts } from './migratedAccounts';
+import { MigratedStores } from './migratedStores';
+import { MigrationData } from './migrationData';
 import { PayoutMethod } from './payoutMethod';
 import { PayoutScheduleResponse } from './payoutScheduleResponse';
 import { PerformVerificationRequest } from './performVerificationRequest';
@@ -255,6 +261,9 @@ let typeMap: {[index: string]: any} = {
     "LegalArrangementDetail": LegalArrangementDetail,
     "LegalArrangementEntityDetail": LegalArrangementEntityDetail,
     "LegalArrangementRequest": LegalArrangementRequest,
+    "MigratedAccounts": MigratedAccounts,
+    "MigratedStores": MigratedStores,
+    "MigrationData": MigrationData,
     "PayoutMethod": PayoutMethod,
     "PayoutScheduleResponse": PayoutScheduleResponse,
     "PerformVerificationRequest": PerformVerificationRequest,

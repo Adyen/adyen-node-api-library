@@ -7,13 +7,13 @@
  * Do not edit this class manually.
  */
 
-import { BalanceAccount } from './balanceAccount';
+import { BalanceAccountBase } from './balanceAccountBase';
 
 export class PaginatedBalanceAccountsResponse {
     /**
     * List of balance accounts.
     */
-    'balanceAccounts': Array<BalanceAccount>;
+    'balanceAccounts': Array<BalanceAccountBase>;
     /**
     * Indicates whether there are more items on the next page.
     */
@@ -29,7 +29,7 @@ export class PaginatedBalanceAccountsResponse {
         {
             "name": "balanceAccounts",
             "baseName": "balanceAccounts",
-            "type": "Array<BalanceAccount>"
+            "type": "Array<BalanceAccountBase>"
         },
         {
             "name": "hasNext",

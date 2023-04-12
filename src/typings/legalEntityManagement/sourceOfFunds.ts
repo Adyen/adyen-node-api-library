@@ -18,7 +18,7 @@ export class SourceOfFunds {
     */
     'adyenProcessedFunds'?: boolean;
     /**
-    * Text describing the source of funds. For example, for `type` **business**, provide a description of the business. Required when `adyenProcessedFunds` is **false**.
+    * Text describing the source of funds. For example, for `type` **business**, provide a description of where the business transactions come from, such as payments through bank transfer. Required when `adyenProcessedFunds` is **false**.
     */
     'description'?: string;
     /**

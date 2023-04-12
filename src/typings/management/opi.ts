@@ -10,7 +10,7 @@
 
 export class Opi {
     /**
-    * Indicates if Pay at Table is enabled.
+    * Indicates if Pay at table is enabled.
     */
     'enablePayAtTable'?: boolean;
     /**

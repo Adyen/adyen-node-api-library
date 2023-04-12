@@ -19,6 +19,14 @@ export class UpdateMerchantUserRequest {
     */
     'active'?: boolean;
     /**
+    * Set of authn apps to add to this user
+    */
+    'authnAppsToAdd'?: Array<string>;
+    /**
+    * Set of authn apps to remove from this user
+    */
+    'authnAppsToRemove'?: Array<string>;
+    /**
     * The email address of the user.
     */
     'email'?: string;
@@ -44,6 +52,16 @@ export class UpdateMerchantUserRequest {
             "name": "active",
             "baseName": "active",
             "type": "boolean"
+        },
+        {
+            "name": "authnAppsToAdd",
+            "baseName": "authnAppsToAdd",
+            "type": "Array<string>"
+        },
+        {
+            "name": "authnAppsToRemove",
+            "baseName": "authnAppsToRemove",
+            "type": "Array<string>"
         },
         {
             "name": "email",

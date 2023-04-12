@@ -153,7 +153,7 @@ export namespace Transfer {
         Wire = 'wire'
     }
     export enum ReasonEnum {
-        AmountLimitExceded = 'amountLimitExceded',
+        AmountLimitExceeded = 'amountLimitExceeded',
         Approved = 'approved',
         CounterpartyAccountBlocked = 'counterpartyAccountBlocked',
         CounterpartyAccountClosed = 'counterpartyAccountClosed',
@@ -168,6 +168,7 @@ export namespace Transfer {
         Unknown = 'unknown'
     }
     export enum StatusEnum {
+        ApprovalPending = 'approvalPending',
         AtmWithdrawal = 'atmWithdrawal',
         AtmWithdrawalReversalPending = 'atmWithdrawalReversalPending',
         AtmWithdrawalReversed = 'atmWithdrawalReversed',

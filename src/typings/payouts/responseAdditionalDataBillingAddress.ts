@@ -12,58 +12,58 @@ export class ResponseAdditionalDataBillingAddress {
     /**
     * The billing address city passed in the payment request.
     */
-    'billingAddressCity'?: string;
+    'billingAddress_city'?: string;
     /**
     * The billing address country passed in the payment request.  Example: NL
     */
-    'billingAddressCountry'?: string;
+    'billingAddress_country'?: string;
     /**
     * The billing address house number or name passed in the payment request.
     */
-    'billingAddressHouseNumberOrName'?: string;
+    'billingAddress_houseNumberOrName'?: string;
     /**
     * The billing address postal code passed in the payment request.  Example: 1011 DJ
     */
-    'billingAddressPostalCode'?: string;
+    'billingAddress_postalCode'?: string;
     /**
     * The billing address state or province passed in the payment request.  Example: NH
     */
-    'billingAddressStateOrProvince'?: string;
+    'billingAddress_stateOrProvince'?: string;
     /**
     * The billing address street passed in the payment request.
     */
-    'billingAddressStreet'?: string;
+    'billingAddress_street'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "billingAddressCity",
+            "name": "billingAddress_city",
             "baseName": "billingAddress.city",
             "type": "string"
         },
         {
-            "name": "billingAddressCountry",
+            "name": "billingAddress_country",
             "baseName": "billingAddress.country",
             "type": "string"
         },
         {
-            "name": "billingAddressHouseNumberOrName",
+            "name": "billingAddress_houseNumberOrName",
             "baseName": "billingAddress.houseNumberOrName",
             "type": "string"
         },
         {
-            "name": "billingAddressPostalCode",
+            "name": "billingAddress_postalCode",
             "baseName": "billingAddress.postalCode",
             "type": "string"
         },
         {
-            "name": "billingAddressStateOrProvince",
+            "name": "billingAddress_stateOrProvince",
             "baseName": "billingAddress.stateOrProvince",
             "type": "string"
         },
         {
-            "name": "billingAddressStreet",
+            "name": "billingAddress_street",
             "baseName": "billingAddress.street",
             "type": "string"
         }    ];

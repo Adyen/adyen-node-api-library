@@ -55,6 +55,7 @@ export namespace TestNotificationConfigurationRequest {
         BeneficiarySetup = 'BENEFICIARY_SETUP',
         CompensateNegativeBalance = 'COMPENSATE_NEGATIVE_BALANCE',
         DirectDebitInitiated = 'DIRECT_DEBIT_INITIATED',
+        FundsMigrated = 'FUNDS_MIGRATED',
         PaymentFailure = 'PAYMENT_FAILURE',
         PendingCredit = 'PENDING_CREDIT',
         RefundFundsTransfer = 'REFUND_FUNDS_TRANSFER',

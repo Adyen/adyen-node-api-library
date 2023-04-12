@@ -12,7 +12,7 @@ export class DocumentDetail {
     /**
     * The code of account holder, to which the document applies.
     */
-    'accountHolderCode': string;
+    'accountHolderCode'?: string;
     /**
     * The Adyen-generated [`bankAccountUUID`](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-bankAccountDetails-bankAccountUUID) to which the document must be linked. Refer to [Bank account check](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-checks/bank-account-check#uploading-a-bank-statement) for details on when a document should be submitted. >Required if the `documentType` is **BANK_STATEMENT**, where a document is being submitted in order to verify a bank account. 
     */
@@ -28,7 +28,7 @@ export class DocumentDetail {
     /**
     * Filename of the document.
     */
-    'filename': string;
+    'filename'?: string;
     /**
     * The Adyen-generated [`legalArrangementCode`](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementCode) to which the document must be linked.
     */

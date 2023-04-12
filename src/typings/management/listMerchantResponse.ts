@@ -11,7 +11,7 @@ import { Merchant } from './merchant';
 import { PaginationLinks } from './paginationLinks';
 
 export class ListMerchantResponse {
-    'links'?: PaginationLinks;
+    '_links'?: PaginationLinks;
     /**
     * The list of merchant accounts.
     */
@@ -29,7 +29,7 @@ export class ListMerchantResponse {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "PaginationLinks"
         },

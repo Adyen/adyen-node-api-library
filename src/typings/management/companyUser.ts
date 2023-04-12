@@ -11,7 +11,7 @@ import { Links } from './links';
 import { Name } from './name';
 
 export class CompanyUser {
-    'links'?: Links;
+    '_links'?: Links;
     /**
     * The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user.
     */
@@ -24,6 +24,10 @@ export class CompanyUser {
     * The list of [merchant accounts](https://docs.adyen.com/account/account-structure#merchant-accounts) associated with this user.
     */
     'associatedMerchantAccounts'?: Array<string>;
+    /**
+    * Set of authn apps available to this user
+    */
+    'authnApps'?: Array<string>;
     /**
     * The email address of the user.
     */
@@ -50,7 +54,7 @@ export class CompanyUser {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "Links"
         },
@@ -67,6 +71,11 @@ export class CompanyUser {
         {
             "name": "associatedMerchantAccounts",
             "baseName": "associatedMerchantAccounts",
+            "type": "Array<string>"
+        },
+        {
+            "name": "authnApps",
+            "baseName": "authnApps",
             "type": "Array<string>"
         },
         {

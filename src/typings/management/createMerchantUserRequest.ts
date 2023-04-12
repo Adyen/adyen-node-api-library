@@ -15,6 +15,10 @@ export class CreateMerchantUserRequest {
     */
     'accountGroups'?: Array<string>;
     /**
+    * Set of authn apps to add to this user
+    */
+    'authnApps'?: Array<string>;
+    /**
     * The email address of the user.
     */
     'email': string;
@@ -38,6 +42,11 @@ export class CreateMerchantUserRequest {
         {
             "name": "accountGroups",
             "baseName": "accountGroups",
+            "type": "Array<string>"
+        },
+        {
+            "name": "authnApps",
+            "baseName": "authnApps",
             "type": "Array<string>"
         },
         {

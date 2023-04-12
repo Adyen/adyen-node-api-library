@@ -13,6 +13,10 @@ import { SweepCounterparty } from './sweepCounterparty';
 import { SweepSchedule } from './sweepSchedule';
 
 export class SweepConfigurationV2 {
+    /**
+    * The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting `priorities`.
+    */
+    'category'?: SweepConfigurationV2.CategoryEnum;
     'counterparty': SweepCounterparty;
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances).
@@ -26,6 +30,14 @@ export class SweepConfigurationV2 {
     * The unique identifier of the sweep.
     */
     'id': string;
+    /**
+    * The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority listed first, and if that\'s not possible, it moves on to the next option in the order of provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set `category` to **bank**. For more details, see [optional priorities setup](https://docs.adyen.com/marketplaces-and-platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
+    */
+    'priorities'?: Array<SweepConfigurationV2.PrioritiesEnum>;
+    /**
+    * The reason for disabling the sweep.
+    */
+    'reason'?: SweepConfigurationV2.ReasonEnum;
     /**
     * The schedule when the `triggerAmount` is evaluated. If the balance meets the threshold, funds are pushed out of or pulled in to the balance account.
     */
@@ -46,6 +58,11 @@ export class SweepConfigurationV2 {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "category",
+            "baseName": "category",
+            "type": "SweepConfigurationV2.CategoryEnum"
+        },
+        {
             "name": "counterparty",
             "baseName": "counterparty",
             "type": "SweepCounterparty"
@@ -64,6 +81,16 @@ export class SweepConfigurationV2 {
             "name": "id",
             "baseName": "id",
             "type": "string"
+        },
+        {
+            "name": "priorities",
+            "baseName": "priorities",
+            "type": "Array<SweepConfigurationV2.PrioritiesEnum>"
+        },
+        {
+            "name": "reason",
+            "baseName": "reason",
+            "type": "SweepConfigurationV2.ReasonEnum"
         },
         {
             "name": "schedule",
@@ -102,6 +129,35 @@ export class SweepConfigurationV2 {
 }
 
 export namespace SweepConfigurationV2 {
+    export enum CategoryEnum {
+        Bank = 'bank',
+        Internal = 'internal',
+        PlatformPayment = 'platformPayment'
+    }
+    export enum PrioritiesEnum {
+        CrossBorder = 'crossBorder',
+        DirectDebit = 'directDebit',
+        Fast = 'fast',
+        Instant = 'instant',
+        Internal = 'internal',
+        Regular = 'regular',
+        Wire = 'wire'
+    }
+    export enum ReasonEnum {
+        AmountLimitExceeded = 'amountLimitExceeded',
+        Approved = 'approved',
+        CounterpartyAccountBlocked = 'counterpartyAccountBlocked',
+        CounterpartyAccountClosed = 'counterpartyAccountClosed',
+        CounterpartyAccountNotFound = 'counterpartyAccountNotFound',
+        CounterpartyAddressRequired = 'counterpartyAddressRequired',
+        CounterpartyBankTimedOut = 'counterpartyBankTimedOut',
+        CounterpartyBankUnavailable = 'counterpartyBankUnavailable',
+        Error = 'error',
+        NotEnoughBalance = 'notEnoughBalance',
+        RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
+        RouteNotFound = 'routeNotFound',
+        Unknown = 'unknown'
+    }
     export enum StatusEnum {
         Active = 'active',
         Inactive = 'inactive'

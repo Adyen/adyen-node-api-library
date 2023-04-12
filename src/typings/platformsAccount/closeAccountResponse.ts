@@ -29,7 +29,7 @@ export class CloseAccountResponse {
     /**
     * The new status of the account. >Permitted values: `Active`, `Inactive`, `Suspended`, `Closed`.
     */
-    'status': CloseAccountResponse.StatusEnum;
+    'status'?: CloseAccountResponse.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 

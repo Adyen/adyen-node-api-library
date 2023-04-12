@@ -12,15 +12,15 @@ export class AccountEvent {
     /**
     * The event. >Permitted values: `InactivateAccount`, `RefundNotPaidOutTransfers`. For more information, refer to [Verification checks](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process).
     */
-    'event': AccountEvent.EventEnum;
+    'event'?: AccountEvent.EventEnum;
     /**
     * The date on which the event will take place.
     */
-    'executionDate': Date;
+    'executionDate'?: Date;
     /**
     * The reason why this event has been created.
     */
-    'reason': string;
+    'reason'?: string;
 
     static discriminator: string | undefined = undefined;
 

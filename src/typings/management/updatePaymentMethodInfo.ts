@@ -27,6 +27,10 @@ export class UpdatePaymentMethodInfo {
     */
     'enabled'?: boolean;
     'shopperStatement'?: ShopperStatement;
+    /**
+    * The list of stores for this payment method
+    */
+    'storeIds'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -55,6 +59,11 @@ export class UpdatePaymentMethodInfo {
             "name": "shopperStatement",
             "baseName": "shopperStatement",
             "type": "ShopperStatement"
+        },
+        {
+            "name": "storeIds",
+            "baseName": "storeIds",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {

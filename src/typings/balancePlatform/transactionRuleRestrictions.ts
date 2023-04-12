@@ -10,11 +10,13 @@
 import { ActiveNetworkTokensRestriction } from './activeNetworkTokensRestriction';
 import { BrandVariantsRestriction } from './brandVariantsRestriction';
 import { CountriesRestriction } from './countriesRestriction';
+import { DayOfWeekRestriction } from './dayOfWeekRestriction';
 import { DifferentCurrenciesRestriction } from './differentCurrenciesRestriction';
 import { EntryModesRestriction } from './entryModesRestriction';
 import { InternationalTransactionRestriction } from './internationalTransactionRestriction';
 import { MatchingTransactionsRestriction } from './matchingTransactionsRestriction';
 import { MccsRestriction } from './mccsRestriction';
+import { MerchantNamesRestriction } from './merchantNamesRestriction';
 import { MerchantsRestriction } from './merchantsRestriction';
 import { ProcessingTypesRestriction } from './processingTypesRestriction';
 import { TimeOfDayRestriction } from './timeOfDayRestriction';
@@ -24,11 +26,13 @@ export class TransactionRuleRestrictions {
     'activeNetworkTokens'?: ActiveNetworkTokensRestriction;
     'brandVariants'?: BrandVariantsRestriction;
     'countries'?: CountriesRestriction;
+    'dayOfWeek'?: DayOfWeekRestriction;
     'differentCurrencies'?: DifferentCurrenciesRestriction;
     'entryModes'?: EntryModesRestriction;
     'internationalTransaction'?: InternationalTransactionRestriction;
     'matchingTransactions'?: MatchingTransactionsRestriction;
     'mccs'?: MccsRestriction;
+    'merchantNames'?: MerchantNamesRestriction;
     'merchants'?: MerchantsRestriction;
     'processingTypes'?: ProcessingTypesRestriction;
     'timeOfDay'?: TimeOfDayRestriction;
@@ -51,6 +55,11 @@ export class TransactionRuleRestrictions {
             "name": "countries",
             "baseName": "countries",
             "type": "CountriesRestriction"
+        },
+        {
+            "name": "dayOfWeek",
+            "baseName": "dayOfWeek",
+            "type": "DayOfWeekRestriction"
         },
         {
             "name": "differentCurrencies",
@@ -76,6 +85,11 @@ export class TransactionRuleRestrictions {
             "name": "mccs",
             "baseName": "mccs",
             "type": "MccsRestriction"
+        },
+        {
+            "name": "merchantNames",
+            "baseName": "merchantNames",
+            "type": "MerchantNamesRestriction"
         },
         {
             "name": "merchants",

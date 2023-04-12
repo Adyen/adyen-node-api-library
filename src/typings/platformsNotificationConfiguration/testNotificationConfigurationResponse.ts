@@ -18,11 +18,11 @@ export class TestNotificationConfigurationResponse {
     /**
     * The event types that were tested. >Permitted values: `ACCOUNT_HOLDER_CREATED`, `ACCOUNT_CREATED`, `ACCOUNT_UPDATED`, `ACCOUNT_HOLDER_UPDATED`, `ACCOUNT_HOLDER_STATUS_CHANGE`, `ACCOUNT_HOLDER_STORE_STATUS_CHANGE` `ACCOUNT_HOLDER_VERIFICATION`, `ACCOUNT_HOLDER_LIMIT_REACHED`, `ACCOUNT_HOLDER_PAYOUT`, `PAYMENT_FAILURE`, `SCHEDULED_REFUNDS`, `REPORT_AVAILABLE`, `TRANSFER_FUNDS`, `BENEFICIARY_SETUP`, `COMPENSATE_NEGATIVE_BALANCE`.
     */
-    'eventTypes': Array<TestNotificationConfigurationResponse.EventTypesEnum>;
+    'eventTypes'?: Array<TestNotificationConfigurationResponse.EventTypesEnum>;
     /**
     * The notification message and related response messages.
     */
-    'exchangeMessages': Array<ExchangeMessage>;
+    'exchangeMessages'?: Array<ExchangeMessage>;
     /**
     * Contains field validation errors that would prevent requests from being processed.
     */
@@ -34,7 +34,7 @@ export class TestNotificationConfigurationResponse {
     /**
     * A list of messages describing the testing steps.
     */
-    'okMessages': Array<string>;
+    'okMessages'?: Array<string>;
     /**
     * The reference of a request. Can be used to uniquely identify the request.
     */
@@ -111,6 +111,7 @@ export namespace TestNotificationConfigurationResponse {
         BeneficiarySetup = 'BENEFICIARY_SETUP',
         CompensateNegativeBalance = 'COMPENSATE_NEGATIVE_BALANCE',
         DirectDebitInitiated = 'DIRECT_DEBIT_INITIATED',
+        FundsMigrated = 'FUNDS_MIGRATED',
         PaymentFailure = 'PAYMENT_FAILURE',
         PendingCredit = 'PENDING_CREDIT',
         RefundFundsTransfer = 'REFUND_FUNDS_TRANSFER',
