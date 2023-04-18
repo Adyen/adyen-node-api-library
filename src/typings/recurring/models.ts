@@ -26,6 +26,7 @@ export * from './permitRestriction';
 export * from './permitResult';
 export * from './recurring';
 export * from './recurringDetail';
+export * from './recurringDetailWrapper';
 export * from './recurringDetailsRequest';
 export * from './recurringDetailsResult';
 export * from './scheduleAccountUpdaterRequest';
@@ -52,6 +53,7 @@ import { PermitRestriction } from './permitRestriction';
 import { PermitResult } from './permitResult';
 import { Recurring } from './recurring';
 import { RecurringDetail } from './recurringDetail';
+import { RecurringDetailWrapper } from './recurringDetailWrapper';
 import { RecurringDetailsRequest } from './recurringDetailsRequest';
 import { RecurringDetailsResult } from './recurringDetailsResult';
 import { ScheduleAccountUpdaterRequest } from './scheduleAccountUpdaterRequest';
@@ -95,6 +97,7 @@ let typeMap: {[index: string]: any} = {
     "PermitResult": PermitResult,
     "Recurring": Recurring,
     "RecurringDetail": RecurringDetail,
+    "RecurringDetailWrapper": RecurringDetailWrapper,
     "RecurringDetailsRequest": RecurringDetailsRequest,
     "RecurringDetailsResult": RecurringDetailsResult,
     "ScheduleAccountUpdaterRequest": ScheduleAccountUpdaterRequest,
