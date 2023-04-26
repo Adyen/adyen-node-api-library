@@ -65,9 +65,17 @@ npm install --save @adyen/api-library
 
 Alternatively, you can download the [release on GitHub](https://github.com/Adyen/adyen-node-api-library/releases).
 
-## Usage
+## Updating
 
-Please check the **[release page](https://github.com/Adyen/adyen-node-api-library/releases/)** to check for breaking changes in Major versions.
+To update the Node.JS package:
+
+``` bash
+npm update @adyen/api-library
+```
+
+Check for breaking changes on the [releases page](https://github.com/Adyen/adyen-node-api-library/releases/).
+
+## Usage
 
 ``` javascript
 // Step 1: Require the parts of the module you want to use
