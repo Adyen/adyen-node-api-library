@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { AccountSupportingEntityCapability } from './accountSupportingEntityCapability';
 import { JSONObject } from './jSONObject';
 
 export class AccountHolderCapability {
@@ -26,7 +27,7 @@ export class AccountHolderCapability {
     /**
     * Contains verification errors and the actions that you can take to resolve them.
     */
-    'problems'?: Array<any>;
+    'problems'?: Array<object>;
     /**
     * Indicates whether the capability is requested. To check whether the account holder is permitted to use the capability, refer to the `allowed` field.
     */
@@ -36,6 +37,10 @@ export class AccountHolderCapability {
     */
     'requestedLevel'?: AccountHolderCapability.RequestedLevelEnum;
     'requestedSettings'?: JSONObject;
+    /**
+    * Contains the status of the transfer instruments associated with this capability. 
+    */
+    'transferInstruments'?: Array<AccountSupportingEntityCapability>;
     /**
     * The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the `errors` array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
     */
@@ -67,7 +72,7 @@ export class AccountHolderCapability {
         {
             "name": "problems",
             "baseName": "problems",
-            "type": "Array<any>"
+            "type": "Array<object>"
         },
         {
             "name": "requested",
@@ -85,6 +90,11 @@ export class AccountHolderCapability {
             "type": "JSONObject"
         },
         {
+            "name": "transferInstruments",
+            "baseName": "transferInstruments",
+            "type": "Array<AccountSupportingEntityCapability>"
+        },
+        {
             "name": "verificationStatus",
             "baseName": "verificationStatus",
             "type": "AccountHolderCapability.VerificationStatusEnum"
@@ -97,21 +107,21 @@ export class AccountHolderCapability {
 
 export namespace AccountHolderCapability {
     export enum AllowedLevelEnum {
-        High = <any> 'high',
-        Low = <any> 'low',
-        Medium = <any> 'medium',
-        NotApplicable = <any> 'notApplicable'
+        High = 'high',
+        Low = 'low',
+        Medium = 'medium',
+        NotApplicable = 'notApplicable'
     }
     export enum RequestedLevelEnum {
-        High = <any> 'high',
-        Low = <any> 'low',
-        Medium = <any> 'medium',
-        NotApplicable = <any> 'notApplicable'
+        High = 'high',
+        Low = 'low',
+        Medium = 'medium',
+        NotApplicable = 'notApplicable'
     }
     export enum VerificationStatusEnum {
-        Invalid = <any> 'invalid',
-        Pending = <any> 'pending',
-        Rejected = <any> 'rejected',
-        Valid = <any> 'valid'
+        Invalid = 'invalid',
+        Pending = 'pending',
+        Rejected = 'rejected',
+        Valid = 'valid'
     }
 }

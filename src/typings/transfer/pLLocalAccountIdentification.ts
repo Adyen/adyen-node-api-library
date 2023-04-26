@@ -10,13 +10,13 @@
 
 export class PLLocalAccountIdentification {
     /**
-    * The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)) (without separators or whitespace).
+    * The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace.
     */
     'accountNumber': string;
     /**
     * **plLocal**
     */
-    'type'?: PLLocalAccountIdentification.TypeEnum;
+    'type': PLLocalAccountIdentification.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class PLLocalAccountIdentification {
 
 export namespace PLLocalAccountIdentification {
     export enum TypeEnum {
-        PlLocal = <any> 'plLocal'
+        PlLocal = 'plLocal'
     }
 }

@@ -10,6 +10,7 @@
 import { Address } from './address';
 import { Card } from './card';
 import { Name } from './name';
+import { SubMerchant } from './subMerchant';
 
 export class FundDestination {
     /**
@@ -31,6 +32,7 @@ export class FundDestination {
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
     'shopperReference'?: string;
+    'subMerchant'?: SubMerchant;
     /**
     * the telephone number of the person
     */
@@ -73,6 +75,11 @@ export class FundDestination {
             "name": "shopperReference",
             "baseName": "shopperReference",
             "type": "string"
+        },
+        {
+            "name": "subMerchant",
+            "baseName": "subMerchant",
+            "type": "SubMerchant"
         },
         {
             "name": "telephoneNumber",

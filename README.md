@@ -67,6 +67,8 @@ Alternatively, you can download the [release on GitHub](https://github.com/Adyen
 
 ## Usage
 
+Please check the **[release page](https://github.com/Adyen/adyen-node-api-library/releases/)** to check for breaking changes in Major versions.
+
 ### Step 1: Require the parts of the module you want to use
 
 Use the Node.js `require` function to load the `Client` and API objects from the Adyen module. For the name of the API objects, see [Supported APIs](#supported-apis).

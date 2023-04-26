@@ -12,7 +12,11 @@ import { Address2 } from './address2';
 export class PartyIdentification2 {
     'address'?: Address2;
     /**
-    * First name of the individual. Required when `type` is **individual**.
+    * The date of birth of the individual. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD Allowed only when `type` is **individual**.
+    */
+    'dateOfBirth'?: string;
+    /**
+    * First name of the individual. Allowed only when `type` is **individual**.
     */
     'firstName'?: string;
     /**
@@ -20,7 +24,7 @@ export class PartyIdentification2 {
     */
     'fullName': string;
     /**
-    * Last name of the individual. Required when `type` is **individual**.
+    * Last name of the individual. Allowed only when `type` is **individual**.
     */
     'lastName'?: string;
     /**
@@ -35,6 +39,11 @@ export class PartyIdentification2 {
             "name": "address",
             "baseName": "address",
             "type": "Address2"
+        },
+        {
+            "name": "dateOfBirth",
+            "baseName": "dateOfBirth",
+            "type": "string"
         },
         {
             "name": "firstName",
@@ -64,8 +73,8 @@ export class PartyIdentification2 {
 
 export namespace PartyIdentification2 {
     export enum TypeEnum {
-        Individual = <any> 'individual',
-        Organization = <any> 'organization',
-        Unknown = <any> 'unknown'
+        Individual = 'individual',
+        Organization = 'organization',
+        Unknown = 'unknown'
     }
 }

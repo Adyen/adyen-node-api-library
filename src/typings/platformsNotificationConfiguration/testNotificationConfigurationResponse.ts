@@ -18,11 +18,11 @@ export class TestNotificationConfigurationResponse {
     /**
     * The event types that were tested. >Permitted values: `ACCOUNT_HOLDER_CREATED`, `ACCOUNT_CREATED`, `ACCOUNT_UPDATED`, `ACCOUNT_HOLDER_UPDATED`, `ACCOUNT_HOLDER_STATUS_CHANGE`, `ACCOUNT_HOLDER_STORE_STATUS_CHANGE` `ACCOUNT_HOLDER_VERIFICATION`, `ACCOUNT_HOLDER_LIMIT_REACHED`, `ACCOUNT_HOLDER_PAYOUT`, `PAYMENT_FAILURE`, `SCHEDULED_REFUNDS`, `REPORT_AVAILABLE`, `TRANSFER_FUNDS`, `BENEFICIARY_SETUP`, `COMPENSATE_NEGATIVE_BALANCE`.
     */
-    'eventTypes': Array<TestNotificationConfigurationResponse.EventTypesEnum>;
+    'eventTypes'?: Array<TestNotificationConfigurationResponse.EventTypesEnum>;
     /**
     * The notification message and related response messages.
     */
-    'exchangeMessages': Array<ExchangeMessage>;
+    'exchangeMessages'?: Array<ExchangeMessage>;
     /**
     * Contains field validation errors that would prevent requests from being processed.
     */
@@ -34,7 +34,7 @@ export class TestNotificationConfigurationResponse {
     /**
     * A list of messages describing the testing steps.
     */
-    'okMessages': Array<string>;
+    'okMessages'?: Array<string>;
     /**
     * The reference of a request. Can be used to uniquely identify the request.
     */
@@ -95,29 +95,30 @@ export class TestNotificationConfigurationResponse {
 
 export namespace TestNotificationConfigurationResponse {
     export enum EventTypesEnum {
-        AccountClosed = <any> 'ACCOUNT_CLOSED',
-        AccountCreated = <any> 'ACCOUNT_CREATED',
-        AccountFundsBelowThreshold = <any> 'ACCOUNT_FUNDS_BELOW_THRESHOLD',
-        AccountHolderCreated = <any> 'ACCOUNT_HOLDER_CREATED',
-        AccountHolderLimitReached = <any> 'ACCOUNT_HOLDER_LIMIT_REACHED',
-        AccountHolderMigrated = <any> 'ACCOUNT_HOLDER_MIGRATED',
-        AccountHolderPayout = <any> 'ACCOUNT_HOLDER_PAYOUT',
-        AccountHolderStatusChange = <any> 'ACCOUNT_HOLDER_STATUS_CHANGE',
-        AccountHolderStoreStatusChange = <any> 'ACCOUNT_HOLDER_STORE_STATUS_CHANGE',
-        AccountHolderUpcomingDeadline = <any> 'ACCOUNT_HOLDER_UPCOMING_DEADLINE',
-        AccountHolderUpdated = <any> 'ACCOUNT_HOLDER_UPDATED',
-        AccountHolderVerification = <any> 'ACCOUNT_HOLDER_VERIFICATION',
-        AccountUpdated = <any> 'ACCOUNT_UPDATED',
-        BeneficiarySetup = <any> 'BENEFICIARY_SETUP',
-        CompensateNegativeBalance = <any> 'COMPENSATE_NEGATIVE_BALANCE',
-        DirectDebitInitiated = <any> 'DIRECT_DEBIT_INITIATED',
-        PaymentFailure = <any> 'PAYMENT_FAILURE',
-        PendingCredit = <any> 'PENDING_CREDIT',
-        RefundFundsTransfer = <any> 'REFUND_FUNDS_TRANSFER',
-        ReportAvailable = <any> 'REPORT_AVAILABLE',
-        ScheduledRefunds = <any> 'SCHEDULED_REFUNDS',
-        ScoreSignalTriggered = <any> 'SCORE_SIGNAL_TRIGGERED',
-        TransferFunds = <any> 'TRANSFER_FUNDS',
-        TransferNotPaidoutTransfers = <any> 'TRANSFER_NOT_PAIDOUT_TRANSFERS'
+        AccountClosed = 'ACCOUNT_CLOSED',
+        AccountCreated = 'ACCOUNT_CREATED',
+        AccountFundsBelowThreshold = 'ACCOUNT_FUNDS_BELOW_THRESHOLD',
+        AccountHolderCreated = 'ACCOUNT_HOLDER_CREATED',
+        AccountHolderLimitReached = 'ACCOUNT_HOLDER_LIMIT_REACHED',
+        AccountHolderMigrated = 'ACCOUNT_HOLDER_MIGRATED',
+        AccountHolderPayout = 'ACCOUNT_HOLDER_PAYOUT',
+        AccountHolderStatusChange = 'ACCOUNT_HOLDER_STATUS_CHANGE',
+        AccountHolderStoreStatusChange = 'ACCOUNT_HOLDER_STORE_STATUS_CHANGE',
+        AccountHolderUpcomingDeadline = 'ACCOUNT_HOLDER_UPCOMING_DEADLINE',
+        AccountHolderUpdated = 'ACCOUNT_HOLDER_UPDATED',
+        AccountHolderVerification = 'ACCOUNT_HOLDER_VERIFICATION',
+        AccountUpdated = 'ACCOUNT_UPDATED',
+        BeneficiarySetup = 'BENEFICIARY_SETUP',
+        CompensateNegativeBalance = 'COMPENSATE_NEGATIVE_BALANCE',
+        DirectDebitInitiated = 'DIRECT_DEBIT_INITIATED',
+        FundsMigrated = 'FUNDS_MIGRATED',
+        PaymentFailure = 'PAYMENT_FAILURE',
+        PendingCredit = 'PENDING_CREDIT',
+        RefundFundsTransfer = 'REFUND_FUNDS_TRANSFER',
+        ReportAvailable = 'REPORT_AVAILABLE',
+        ScheduledRefunds = 'SCHEDULED_REFUNDS',
+        ScoreSignalTriggered = 'SCORE_SIGNAL_TRIGGERED',
+        TransferFunds = 'TRANSFER_FUNDS',
+        TransferNotPaidoutTransfers = 'TRANSFER_NOT_PAIDOUT_TRANSFERS'
     }
 }

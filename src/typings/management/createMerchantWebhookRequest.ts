@@ -145,24 +145,22 @@ export class CreateMerchantWebhookRequest {
 
 export namespace CreateMerchantWebhookRequest {
     export enum CommunicationFormatEnum {
-        Http = <any> 'HTTP',
-        Json = <any> 'JSON',
-        Soap = <any> 'SOAP'
+        Http = 'http',
+        Json = 'json',
+        Soap = 'soap'
     }
     export enum NetworkTypeEnum {
-        Local = <any> 'LOCAL',
-        Public = <any> 'PUBLIC'
+        Local = 'LOCAL',
+        Public = 'PUBLIC'
     }
     export enum SslVersionEnum {
-        Http = <any> 'HTTP',
-        Ssl = <any> 'SSL',
-        Sslv3 = <any> 'SSLV3',
-        SslInsecureCiphers = <any> 'SSL_INSECURE_CIPHERS',
-        Tls = <any> 'TLS',
-        Tlsv1 = <any> 'TLSV1',
-        Tlsv11 = <any> 'TLSV1_1',
-        Tlsv12 = <any> 'TLSV1_2',
-        Tlsv13 = <any> 'TLSV1_3',
-        Tlsv1InsecureCiphers = <any> 'TLSV1_INSECURE_CIPHERS'
+        Http = 'HTTP',
+        Ssl = 'SSL',
+        Sslv3 = 'SSLv3',
+        Tls = 'TLS',
+        Tlsv1 = 'TLSv1',
+        Tlsv11 = 'TLSv1.1',
+        Tlsv12 = 'TLSv1.2',
+        Tlsv13 = 'TLSv1.3'
     }
 }

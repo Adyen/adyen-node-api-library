@@ -19,10 +19,14 @@ export class CreateCompanyUserRequest {
     */
     'associatedMerchantAccounts'?: Array<string>;
     /**
+    * Set of authn apps to add to this user
+    */
+    'authnApps'?: Array<string>;
+    /**
     * The email address of the user.
     */
-    'email'?: string;
-    'name'?: Name;
+    'email': string;
+    'name': Name;
     /**
     * The list of [roles](https://docs.adyen.com/account/user-roles) for this user.
     */
@@ -34,7 +38,7 @@ export class CreateCompanyUserRequest {
     /**
     * The username for this user. Allowed length: 255 alphanumeric characters.
     */
-    'username'?: string;
+    'username': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -47,6 +51,11 @@ export class CreateCompanyUserRequest {
         {
             "name": "associatedMerchantAccounts",
             "baseName": "associatedMerchantAccounts",
+            "type": "Array<string>"
+        },
+        {
+            "name": "authnApps",
+            "baseName": "authnApps",
             "type": "Array<string>"
         },
         {

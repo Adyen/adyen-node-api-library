@@ -9,7 +9,7 @@ services:=balancePlatform binlookup checkout dataProtection legalEntityManagemen
 models: $(services)
 
 binlookup: spec=BinLookupService-v52
-checkout: spec=CheckoutService-v69
+checkout: spec=CheckoutService-v70
 dataProtection: spec=DataProtectionService-v1
 storedValue: spec=StoredValueService-v46
 terminalManagement: spec=TfmAPIService-v1
@@ -35,7 +35,8 @@ $(services): build/spec $(openapi-generator-jar)
 		-t templates/typescript \
 		-o build \
 		--global-property models,supportingFiles \
-		--additional-properties=serviceName=$@
+		--additional-properties=serviceName=$@ \
+		--additional-properties=modelPropertyNaming=original
 	mv build/model src/typings/$@
 
 # Service
@@ -47,6 +48,7 @@ managementapi: build/spec $(openapi-generator-jar)
 		-o build \
 		--api-package $(service) \
 		--model-package typings/$(service) \
+		--additional-properties=modelPropertyNaming=original \
 		--global-property apis \
 		--additional-properties=serviceName=$(service)
 	cp build/$(service)/* src/services/$(service)

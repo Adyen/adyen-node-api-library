@@ -11,7 +11,7 @@ import { AdditionalSettingsResponse } from './additionalSettingsResponse';
 import { WebhookLinks } from './webhookLinks';
 
 export class Webhook {
-    'links'?: WebhookLinks;
+    '_links'?: WebhookLinks;
     /**
     * Indicates if expired SSL certificates are accepted. Default value: **false**.
     */
@@ -98,7 +98,7 @@ export class Webhook {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "WebhookLinks"
         },
@@ -215,29 +215,27 @@ export class Webhook {
 
 export namespace Webhook {
     export enum CommunicationFormatEnum {
-        Http = <any> 'HTTP',
-        Json = <any> 'JSON',
-        Soap = <any> 'SOAP'
+        Http = 'http',
+        Json = 'json',
+        Soap = 'soap'
     }
     export enum FilterMerchantAccountTypeEnum {
-        ExcludeList = <any> 'EXCLUDE_LIST',
-        IncludeAll = <any> 'INCLUDE_ALL',
-        IncludeList = <any> 'INCLUDE_LIST'
+        AllAccounts = 'allAccounts',
+        ExcludeAccounts = 'excludeAccounts',
+        IncludeAccounts = 'includeAccounts'
     }
     export enum NetworkTypeEnum {
-        Local = <any> 'LOCAL',
-        Public = <any> 'PUBLIC'
+        Local = 'LOCAL',
+        Public = 'PUBLIC'
     }
     export enum SslVersionEnum {
-        Http = <any> 'HTTP',
-        Ssl = <any> 'SSL',
-        Sslv3 = <any> 'SSLV3',
-        SslInsecureCiphers = <any> 'SSL_INSECURE_CIPHERS',
-        Tls = <any> 'TLS',
-        Tlsv1 = <any> 'TLSV1',
-        Tlsv11 = <any> 'TLSV1_1',
-        Tlsv12 = <any> 'TLSV1_2',
-        Tlsv13 = <any> 'TLSV1_3',
-        Tlsv1InsecureCiphers = <any> 'TLSV1_INSECURE_CIPHERS'
+        Http = 'HTTP',
+        Ssl = 'SSL',
+        Sslv3 = 'SSLv3',
+        Tls = 'TLS',
+        Tlsv1 = 'TLSv1',
+        Tlsv11 = 'TLSv1.1',
+        Tlsv12 = 'TLSv1.2',
+        Tlsv13 = 'TLSv1.3'
     }
 }

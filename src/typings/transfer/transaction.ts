@@ -176,41 +176,42 @@ export class Transaction {
 
 export namespace Transaction {
     export enum CategoryEnum {
-        Bank = <any> 'bank',
-        Grants = <any> 'grants',
-        Internal = <any> 'internal',
-        IssuedCard = <any> 'issuedCard',
-        PlatformPayment = <any> 'platformPayment'
+        Bank = 'bank',
+        Grants = 'grants',
+        Internal = 'internal',
+        IssuedCard = 'issuedCard',
+        PlatformPayment = 'platformPayment'
     }
     export enum StatusEnum {
-        Booked = <any> 'booked',
-        Pending = <any> 'pending'
+        Booked = 'booked',
+        Pending = 'pending'
     }
     export enum TypeEnum {
-        AtmWithdrawal = <any> 'atmWithdrawal',
-        AtmWithdrawalReversal = <any> 'atmWithdrawalReversal',
-        BalanceAdjustment = <any> 'balanceAdjustment',
-        BankTransfer = <any> 'bankTransfer',
-        Capture = <any> 'capture',
-        CaptureReversal = <any> 'captureReversal',
-        Chargeback = <any> 'chargeback',
-        ChargebackReversal = <any> 'chargebackReversal',
-        DepositCorrection = <any> 'depositCorrection',
-        Fee = <any> 'fee',
-        Grant = <any> 'grant',
-        Installment = <any> 'installment',
-        InstallmentReversal = <any> 'installmentReversal',
-        InternalTransfer = <any> 'internalTransfer',
-        InvoiceDeduction = <any> 'invoiceDeduction',
-        Leftover = <any> 'leftover',
-        ManualCorrection = <any> 'manualCorrection',
-        MiscCost = <any> 'miscCost',
-        Payment = <any> 'payment',
-        PaymentCost = <any> 'paymentCost',
-        Refund = <any> 'refund',
-        RefundReversal = <any> 'refundReversal',
-        Repayment = <any> 'repayment',
-        ReserveAdjustment = <any> 'reserveAdjustment',
-        SecondChargeback = <any> 'secondChargeback'
+        AtmWithdrawal = 'atmWithdrawal',
+        AtmWithdrawalReversal = 'atmWithdrawalReversal',
+        BalanceAdjustment = 'balanceAdjustment',
+        BalanceRollover = 'balanceRollover',
+        BankTransfer = 'bankTransfer',
+        Capture = 'capture',
+        CaptureReversal = 'captureReversal',
+        Chargeback = 'chargeback',
+        ChargebackReversal = 'chargebackReversal',
+        DepositCorrection = 'depositCorrection',
+        Fee = 'fee',
+        Grant = 'grant',
+        Installment = 'installment',
+        InstallmentReversal = 'installmentReversal',
+        InternalTransfer = 'internalTransfer',
+        InvoiceDeduction = 'invoiceDeduction',
+        Leftover = 'leftover',
+        ManualCorrection = 'manualCorrection',
+        MiscCost = 'miscCost',
+        Payment = 'payment',
+        PaymentCost = 'paymentCost',
+        Refund = 'refund',
+        RefundReversal = 'refundReversal',
+        Repayment = 'repayment',
+        ReserveAdjustment = 'reserveAdjustment',
+        SecondChargeback = 'secondChargeback'
     }
 }

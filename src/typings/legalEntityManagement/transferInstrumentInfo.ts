@@ -8,17 +8,15 @@
  */
 
 import { BankAccountInfo } from './bankAccountInfo';
-import { RecurringDetail } from './recurringDetail';
 
 export class TransferInstrumentInfo {
-    'bankAccount'?: BankAccountInfo;
+    'bankAccount': BankAccountInfo;
     /**
-    * The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the transfer instrument.
+    * The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.
     */
     'legalEntityId': string;
-    'recurringDetail'?: RecurringDetail;
     /**
-    * The type of transfer instrument.  Possible values: **bankAccount**, **recurringDetail**.
+    * The type of transfer instrument.  Possible value: **bankAccount**.
     */
     'type': TransferInstrumentInfo.TypeEnum;
 
@@ -36,11 +34,6 @@ export class TransferInstrumentInfo {
             "type": "string"
         },
         {
-            "name": "recurringDetail",
-            "baseName": "recurringDetail",
-            "type": "RecurringDetail"
-        },
-        {
             "name": "type",
             "baseName": "type",
             "type": "TransferInstrumentInfo.TypeEnum"
@@ -53,7 +46,7 @@ export class TransferInstrumentInfo {
 
 export namespace TransferInstrumentInfo {
     export enum TypeEnum {
-        BankAccount = <any> 'bankAccount',
-        RecurringDetail = <any> 'recurringDetail'
+        BankAccount = 'bankAccount',
+        RecurringDetail = 'recurringDetail'
     }
 }

@@ -118,7 +118,7 @@ export class ThreeDS2RequestData {
     'threeDSRequestorAuthenticationInd'?: string;
     'threeDSRequestorAuthenticationInfo'?: ThreeDSRequestorAuthenticationInfo;
     /**
-    * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed)
+    * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
     'threeDSRequestorChallengeInd'?: ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
     /**
@@ -354,39 +354,40 @@ export class ThreeDS2RequestData {
 
 export namespace ThreeDS2RequestData {
     export enum AcctTypeEnum {
-        _01 = <any> '01',
-        _02 = <any> '02',
-        _03 = <any> '03'
+        _01 = '01',
+        _02 = '02',
+        _03 = '03'
     }
     export enum AddrMatchEnum {
-        Y = <any> 'Y',
-        N = <any> 'N'
+        Y = 'Y',
+        N = 'N'
     }
     export enum ChallengeIndicatorEnum {
-        NoPreference = <any> 'noPreference',
-        RequestNoChallenge = <any> 'requestNoChallenge',
-        RequestChallenge = <any> 'requestChallenge',
-        RequestChallengeAsMandate = <any> 'requestChallengeAsMandate'
+        NoPreference = 'noPreference',
+        RequestNoChallenge = 'requestNoChallenge',
+        RequestChallenge = 'requestChallenge',
+        RequestChallengeAsMandate = 'requestChallengeAsMandate'
     }
     export enum ThreeDSRequestorChallengeIndEnum {
-        _01 = <any> '01',
-        _02 = <any> '02',
-        _03 = <any> '03',
-        _04 = <any> '04',
-        _05 = <any> '05'
+        _01 = '01',
+        _02 = '02',
+        _03 = '03',
+        _04 = '04',
+        _05 = '05',
+        _06 = '06'
     }
     export enum TransTypeEnum {
-        _01 = <any> '01',
-        _03 = <any> '03',
-        _10 = <any> '10',
-        _11 = <any> '11',
-        _28 = <any> '28'
+        _01 = '01',
+        _03 = '03',
+        _10 = '10',
+        _11 = '11',
+        _28 = '28'
     }
     export enum TransactionTypeEnum {
-        GoodsOrServicePurchase = <any> 'goodsOrServicePurchase',
-        CheckAcceptance = <any> 'checkAcceptance',
-        AccountFunding = <any> 'accountFunding',
-        QuasiCashTransaction = <any> 'quasiCashTransaction',
-        PrepaidActivationAndLoad = <any> 'prepaidActivationAndLoad'
+        GoodsOrServicePurchase = 'goodsOrServicePurchase',
+        CheckAcceptance = 'checkAcceptance',
+        AccountFunding = 'accountFunding',
+        QuasiCashTransaction = 'quasiCashTransaction',
+        PrepaidActivationAndLoad = 'prepaidActivationAndLoad'
     }
 }

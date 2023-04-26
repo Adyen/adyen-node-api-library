@@ -58,6 +58,7 @@ export * from './paymentRequest3d';
 export * from './paymentRequest3ds2';
 export * from './paymentResult';
 export * from './phone';
+export * from './platformChargebackLogic';
 export * from './recurring';
 export * from './refundRequest';
 export * from './responseAdditionalData3DSecure';
@@ -73,6 +74,7 @@ export * from './serviceError';
 export * from './shopperInteractionDevice';
 export * from './split';
 export * from './splitAmount';
+export * from './subMerchant';
 export * from './technicalCancelRequest';
 export * from './threeDS1Result';
 export * from './threeDS2RequestData';
@@ -135,6 +137,7 @@ import { PaymentRequest3d } from './paymentRequest3d';
 import { PaymentRequest3ds2 } from './paymentRequest3ds2';
 import { PaymentResult } from './paymentResult';
 import { Phone } from './phone';
+import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { Recurring } from './recurring';
 import { RefundRequest } from './refundRequest';
 import { ResponseAdditionalData3DSecure } from './responseAdditionalData3DSecure';
@@ -150,6 +153,7 @@ import { ServiceError } from './serviceError';
 import { ShopperInteractionDevice } from './shopperInteractionDevice';
 import { Split } from './split';
 import { SplitAmount } from './splitAmount';
+import { SubMerchant } from './subMerchant';
 import { TechnicalCancelRequest } from './technicalCancelRequest';
 import { ThreeDS1Result } from './threeDS1Result';
 import { ThreeDS2RequestData } from './threeDS2RequestData';
@@ -207,6 +211,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentRequest3ds2.RecurringProcessingModelEnum": PaymentRequest3ds2.RecurringProcessingModelEnum,
         "PaymentRequest3ds2.ShopperInteractionEnum": PaymentRequest3ds2.ShopperInteractionEnum,
         "PaymentResult.ResultCodeEnum": PaymentResult.ResultCodeEnum,
+        "PlatformChargebackLogic.BehaviorEnum": PlatformChargebackLogic.BehaviorEnum,
         "Recurring.ContractEnum": Recurring.ContractEnum,
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
         "ResponseAdditionalDataCommon.FraudResultTypeEnum": ResponseAdditionalDataCommon.FraudResultTypeEnum,
@@ -279,6 +284,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentRequest3ds2": PaymentRequest3ds2,
     "PaymentResult": PaymentResult,
     "Phone": Phone,
+    "PlatformChargebackLogic": PlatformChargebackLogic,
     "Recurring": Recurring,
     "RefundRequest": RefundRequest,
     "ResponseAdditionalData3DSecure": ResponseAdditionalData3DSecure,
@@ -294,6 +300,7 @@ let typeMap: {[index: string]: any} = {
     "ShopperInteractionDevice": ShopperInteractionDevice,
     "Split": Split,
     "SplitAmount": SplitAmount,
+    "SubMerchant": SubMerchant,
     "TechnicalCancelRequest": TechnicalCancelRequest,
     "ThreeDS1Result": ThreeDS1Result,
     "ThreeDS2RequestData": ThreeDS2RequestData,

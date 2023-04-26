@@ -9,10 +9,15 @@
 
 import { Individual } from './individual';
 import { LegalEntityAssociation } from './legalEntityAssociation';
+import { LegalEntityCapability } from './legalEntityCapability';
 import { Organization } from './organization';
 import { SoleProprietorship } from './soleProprietorship';
 
 export class LegalEntityInfo {
+    /**
+    * Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
+    */
+    'capabilities'?: { [key: string]: LegalEntityCapability; };
     /**
     * List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories.
     */
@@ -27,11 +32,16 @@ export class LegalEntityInfo {
     /**
     * The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
     */
-    'type': LegalEntityInfo.TypeEnum;
+    'type'?: LegalEntityInfo.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "capabilities",
+            "baseName": "capabilities",
+            "type": "{ [key: string]: LegalEntityCapability; }"
+        },
         {
             "name": "entityAssociations",
             "baseName": "entityAssociations",
@@ -70,10 +80,10 @@ export class LegalEntityInfo {
 
 export namespace LegalEntityInfo {
     export enum TypeEnum {
-        Individual = <any> 'individual',
-        Organization = <any> 'organization',
-        SoleProprietorship = <any> 'soleProprietorship',
-        Trust = <any> 'trust',
-        UnincorporatedPartnership = <any> 'unincorporatedPartnership'
+        Individual = 'individual',
+        Organization = 'organization',
+        SoleProprietorship = 'soleProprietorship',
+        Trust = 'trust',
+        UnincorporatedPartnership = 'unincorporatedPartnership'
     }
 }

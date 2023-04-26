@@ -10,7 +10,7 @@
 
 export class USLocalAccountIdentification {
     /**
-    * The bank account number (without separators or whitespace).
+    * The bank account number, without separators or whitespace.
     */
     'accountNumber': string;
     /**
@@ -18,13 +18,13 @@ export class USLocalAccountIdentification {
     */
     'accountType'?: USLocalAccountIdentification.AccountTypeEnum;
     /**
-    * The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number) (without separators or whitespace).
+    * The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.
     */
     'routingNumber': string;
     /**
     * **usLocal**
     */
-    'type'?: USLocalAccountIdentification.TypeEnum;
+    'type': USLocalAccountIdentification.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -57,10 +57,10 @@ export class USLocalAccountIdentification {
 
 export namespace USLocalAccountIdentification {
     export enum AccountTypeEnum {
-        Checking = <any> 'checking',
-        Savings = <any> 'savings'
+        Checking = 'checking',
+        Savings = 'savings'
     }
     export enum TypeEnum {
-        UsLocal = <any> 'usLocal'
+        UsLocal = 'usLocal'
     }
 }

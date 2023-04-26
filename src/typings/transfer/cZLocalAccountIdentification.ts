@@ -14,13 +14,13 @@ export class CZLocalAccountIdentification {
     */
     'accountNumber': string;
     /**
-    * The 4-digit bank code (Kód banky) (without separators or whitespace).
+    * The 4-digit bank code (Kód banky), without separators or whitespace.
     */
     'bankCode': string;
     /**
     * **czLocal**
     */
-    'type'?: CZLocalAccountIdentification.TypeEnum;
+    'type': CZLocalAccountIdentification.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class CZLocalAccountIdentification {
 
 export namespace CZLocalAccountIdentification {
     export enum TypeEnum {
-        CzLocal = <any> 'czLocal'
+        CzLocal = 'czLocal'
     }
 }

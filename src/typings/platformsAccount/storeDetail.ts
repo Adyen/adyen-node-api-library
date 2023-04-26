@@ -56,7 +56,7 @@ export class StoreDetail {
     /**
     * Your unique identifier for the store. The Customer Area also uses this value for the store description.   * Length: Between 3 to 128 characters  * The following characters are *not* supported: **:;}{$#@!|<>%^*+=\\\\**
     */
-    'storeReference': string;
+    'storeReference'?: string;
     /**
     * The account holder\'s `accountCode` where the split amount will be sent. Required when you provide the `splitConfigurationUUID`.
     */
@@ -152,14 +152,14 @@ export class StoreDetail {
 
 export namespace StoreDetail {
     export enum ShopperInteractionEnum {
-        Ecommerce = <any> 'Ecommerce',
-        Pos = <any> 'POS'
+        Ecommerce = 'Ecommerce',
+        Pos = 'POS'
     }
     export enum StatusEnum {
-        Active = <any> 'Active',
-        Closed = <any> 'Closed',
-        Inactive = <any> 'Inactive',
-        InactiveWithModifications = <any> 'InactiveWithModifications',
-        Pending = <any> 'Pending'
+        Active = 'Active',
+        Closed = 'Closed',
+        Inactive = 'Inactive',
+        InactiveWithModifications = 'InactiveWithModifications',
+        Pending = 'Pending'
     }
 }

@@ -29,7 +29,7 @@ export class CloseAccountResponse {
     /**
     * The new status of the account. >Permitted values: `Active`, `Inactive`, `Suspended`, `Closed`.
     */
-    'status': CloseAccountResponse.StatusEnum;
+    'status'?: CloseAccountResponse.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -67,9 +67,9 @@ export class CloseAccountResponse {
 
 export namespace CloseAccountResponse {
     export enum StatusEnum {
-        Active = <any> 'Active',
-        Closed = <any> 'Closed',
-        Inactive = <any> 'Inactive',
-        Suspended = <any> 'Suspended'
+        Active = 'Active',
+        Closed = 'Closed',
+        Inactive = 'Inactive',
+        Suspended = 'Suspended'
     }
 }

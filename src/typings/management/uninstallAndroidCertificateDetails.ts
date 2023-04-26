@@ -39,6 +39,6 @@ export class UninstallAndroidCertificateDetails {
 
 export namespace UninstallAndroidCertificateDetails {
     export enum TypeEnum {
-        UninstallAndroidCertificate = <any> 'UninstallAndroidCertificate'
+        UninstallAndroidCertificate = 'UninstallAndroidCertificate'
     }
 }

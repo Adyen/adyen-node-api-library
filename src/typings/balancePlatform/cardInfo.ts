@@ -14,11 +14,11 @@ import { DeliveryContact } from './deliveryContact';
 export class CardInfo {
     'authentication'?: Authentication;
     /**
-    * The brand of the payment instrument. Possible values: **visa**, **mc**.
+    * The brand of the physical or the virtual card. Possible values: **visa**, **mc**.
     */
     'brand': string;
     /**
-    * The brand variant of the payment instrument. >Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
+    * The brand variant of the physical or the virtual card. >Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
     */
     'brandVariant': string;
     /**
@@ -78,8 +78,8 @@ export class CardInfo {
 
 export namespace CardInfo {
     export enum FormFactorEnum {
-        Physical = <any> 'physical',
-        Unknown = <any> 'unknown',
-        Virtual = <any> 'virtual'
+        Physical = 'physical',
+        Unknown = 'unknown',
+        Virtual = 'virtual'
     }
 }

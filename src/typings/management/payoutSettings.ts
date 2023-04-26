@@ -84,14 +84,14 @@ export class PayoutSettings {
 
 export namespace PayoutSettings {
     export enum PriorityEnum {
-        First = <any> 'first',
-        Normal = <any> 'normal',
-        Urgent = <any> 'urgent'
+        First = 'first',
+        Normal = 'normal',
+        Urgent = 'urgent'
     }
     export enum VerificationStatusEnum {
-        Invalid = <any> 'invalid',
-        Pending = <any> 'pending',
-        Rejected = <any> 'rejected',
-        Valid = <any> 'valid'
+        Invalid = 'invalid',
+        Pending = 'pending',
+        Rejected = 'rejected',
+        Valid = 'valid'
     }
 }

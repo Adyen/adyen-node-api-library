@@ -21,6 +21,7 @@ import { Installments } from './installments';
 import { Mandate } from './mandate';
 import { MerchantRiskIndicator } from './merchantRiskIndicator';
 import { Name } from './name';
+import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { Recurring } from './recurring';
 import { Split } from './split';
 import { ThreeDS2RequestData } from './threeDS2RequestData';
@@ -46,7 +47,7 @@ export class PaymentRequest {
     /**
     * The shopper\'s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
     */
-    'dateOfBirth'?: Date;
+    'dateOfBirth'?: string;
     'dccQuote'?: ForexQuote;
     'deliveryAddress'?: Address;
     /**
@@ -72,6 +73,10 @@ export class PaymentRequest {
     */
     'fundingSource'?: PaymentRequest.FundingSourceEnum;
     'installments'?: Installments;
+    /**
+    * This field allows merchants to use dynamic shopper statement in local character sets. The local shopper statement field can be supplied in markets where localized merchant descriptors are used. Currently, Adyen only supports this in the Japanese market .The available character sets at the moment are: * Processing in Japan: **ja-Kana** The character set **ja-Kana** supports UTF-8 based Katakana and alphanumeric and special characters. Merchants should send the Katakana shopperStatement in full-width characters.  An example request would be: > {   \"shopperStatement\" : \"ADYEN - SELLER-A\",   \"localizedShopperStatement\" : {     \"ja-Kana\" : \"ADYEN - セラーA\"   } } We recommend merchants to always supply the field localizedShopperStatement in addition to the field shopperStatement.It is issuer dependent whether the localized shopper statement field is supported. In the case of non-domestic transactions (e.g. US-issued cards processed in JP) the field `shopperStatement` is used to modify the statement of the shopper. Adyen handles the complexity of ensuring the correct descriptors are assigned.
+    */
+    'localizedShopperStatement'?: { [key: string]: string; };
     'mandate'?: Mandate;
     /**
     * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
@@ -99,6 +104,7 @@ export class PaymentRequest {
     * When you are doing multiple partial (gift card) payments, this is the `pspReference` of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the `merchantOrderReference`instead.
     */
     'orderReference'?: string;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     'recurring'?: Recurring;
     /**
     * Defines a recurring payment type. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
@@ -231,7 +237,7 @@ export class PaymentRequest {
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "Date"
+            "type": "string"
         },
         {
             "name": "dccQuote",
@@ -284,6 +290,11 @@ export class PaymentRequest {
             "type": "Installments"
         },
         {
+            "name": "localizedShopperStatement",
+            "baseName": "localizedShopperStatement",
+            "type": "{ [key: string]: string; }"
+        },
+        {
             "name": "mandate",
             "baseName": "mandate",
             "type": "Mandate"
@@ -327,6 +338,11 @@ export class PaymentRequest {
             "name": "orderReference",
             "baseName": "orderReference",
             "type": "string"
+        },
+        {
+            "name": "platformChargebackLogic",
+            "baseName": "platformChargebackLogic",
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "recurring",
@@ -441,21 +457,21 @@ export class PaymentRequest {
 
 export namespace PaymentRequest {
     export enum EntityTypeEnum {
-        NaturalPerson = <any> 'NaturalPerson',
-        CompanyName = <any> 'CompanyName'
+        NaturalPerson = 'NaturalPerson',
+        CompanyName = 'CompanyName'
     }
     export enum FundingSourceEnum {
-        Debit = <any> 'debit'
+        Debit = 'debit'
     }
     export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
+        CardOnFile = 'CardOnFile',
+        Subscription = 'Subscription',
+        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
     }
     export enum ShopperInteractionEnum {
-        Ecommerce = <any> 'Ecommerce',
-        ContAuth = <any> 'ContAuth',
-        Moto = <any> 'Moto',
-        Pos = <any> 'POS'
+        Ecommerce = 'Ecommerce',
+        ContAuth = 'ContAuth',
+        Moto = 'Moto',
+        Pos = 'POS'
     }
 }

@@ -11,7 +11,7 @@ import { Links } from './links';
 import { Transaction } from './transaction';
 
 export class TransactionSearchResponse {
-    'links'?: Links;
+    '_links'?: Links;
     /**
     * Contains the transactions that match the query parameters.
     */
@@ -21,7 +21,7 @@ export class TransactionSearchResponse {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "Links"
         },

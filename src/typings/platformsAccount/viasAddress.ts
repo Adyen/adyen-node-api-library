@@ -16,7 +16,7 @@ export class ViasAddress {
     /**
     * The two-character country code of the address in ISO-3166-1 alpha-2 format. For example, **NL**.
     */
-    'country': string;
+    'country'?: string;
     /**
     * The number or name of the house.
     */

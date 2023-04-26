@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { RecurringDetail } from './recurringDetail';
+import { RecurringDetailWrapper } from './recurringDetailWrapper';
 
 export class RecurringDetailsResult {
     /**
@@ -17,7 +17,7 @@ export class RecurringDetailsResult {
     /**
     * Payment details stored for recurring payments.
     */
-    'details'?: Array<RecurringDetail>;
+    'details'?: Array<RecurringDetailWrapper>;
     /**
     * The most recent email for this shopper (if available).
     */
@@ -38,7 +38,7 @@ export class RecurringDetailsResult {
         {
             "name": "details",
             "baseName": "details",
-            "type": "Array<RecurringDetail>"
+            "type": "Array<RecurringDetailWrapper>"
         },
         {
             "name": "lastKnownShopperEmail",

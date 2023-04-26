@@ -11,7 +11,7 @@ import { PaginationLinks } from './paginationLinks';
 import { Webhook } from './webhook';
 
 export class ListWebhooksResponse {
-    'links'?: PaginationLinks;
+    '_links'?: PaginationLinks;
     /**
     * Reference to the account.
     */
@@ -33,7 +33,7 @@ export class ListWebhooksResponse {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "PaginationLinks"
         },

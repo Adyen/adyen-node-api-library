@@ -12,14 +12,15 @@ import { AccountHolderDetails } from './accountHolderDetails';
 import { AccountHolderStatus } from './accountHolderStatus';
 import { ErrorFieldType } from './errorFieldType';
 import { KYCVerificationResult } from './kYCVerificationResult';
+import { MigrationData } from './migrationData';
 
 export class GetAccountHolderResponse {
     /**
     * The code of the account holder.
     */
-    'accountHolderCode': string;
-    'accountHolderDetails': AccountHolderDetails;
-    'accountHolderStatus': AccountHolderStatus;
+    'accountHolderCode'?: string;
+    'accountHolderDetails'?: AccountHolderDetails;
+    'accountHolderStatus'?: AccountHolderStatus;
     /**
     * A list of the accounts under the account holder.
     */
@@ -35,7 +36,8 @@ export class GetAccountHolderResponse {
     /**
     * The legal entity of the account holder.
     */
-    'legalEntity': GetAccountHolderResponse.LegalEntityEnum;
+    'legalEntity'?: GetAccountHolderResponse.LegalEntityEnum;
+    'migrationData'?: MigrationData;
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes), with which the prospective account holder primarily deals.
     */
@@ -52,7 +54,7 @@ export class GetAccountHolderResponse {
     * The time that shows how up to date is the information in the response.
     */
     'systemUpToDateTime'?: Date;
-    'verification': KYCVerificationResult;
+    'verification'?: KYCVerificationResult;
     /**
     * The identifier of the profile that applies to this entity.
     */
@@ -97,6 +99,11 @@ export class GetAccountHolderResponse {
             "type": "GetAccountHolderResponse.LegalEntityEnum"
         },
         {
+            "name": "migrationData",
+            "baseName": "migrationData",
+            "type": "MigrationData"
+        },
+        {
             "name": "primaryCurrency",
             "baseName": "primaryCurrency",
             "type": "string"
@@ -134,10 +141,10 @@ export class GetAccountHolderResponse {
 
 export namespace GetAccountHolderResponse {
     export enum LegalEntityEnum {
-        Business = <any> 'Business',
-        Individual = <any> 'Individual',
-        NonProfit = <any> 'NonProfit',
-        Partnership = <any> 'Partnership',
-        PublicCompany = <any> 'PublicCompany'
+        Business = 'Business',
+        Individual = 'Individual',
+        NonProfit = 'NonProfit',
+        Partnership = 'Partnership',
+        PublicCompany = 'PublicCompany'
     }
 }

@@ -66,10 +66,10 @@ export class PersonalDocumentData {
 
 export namespace PersonalDocumentData {
     export enum TypeEnum {
-        Drivinglicense = <any> 'DRIVINGLICENSE',
-        Id = <any> 'ID',
-        Passport = <any> 'PASSPORT',
-        Socialsecurity = <any> 'SOCIALSECURITY',
-        Visa = <any> 'VISA'
+        Drivinglicense = 'DRIVINGLICENSE',
+        Id = 'ID',
+        Passport = 'PASSPORT',
+        Socialsecurity = 'SOCIALSECURITY',
+        Visa = 'VISA'
     }
 }

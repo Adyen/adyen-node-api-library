@@ -12,7 +12,7 @@ export class DocumentDetail {
     /**
     * The code of account holder, to which the document applies.
     */
-    'accountHolderCode': string;
+    'accountHolderCode'?: string;
     /**
     * The Adyen-generated [`bankAccountUUID`](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-bankAccountDetails-bankAccountUUID) to which the document must be linked. Refer to [Bank account check](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-checks/bank-account-check#uploading-a-bank-statement) for details on when a document should be submitted. >Required if the `documentType` is **BANK_STATEMENT**, where a document is being submitted in order to verify a bank account. 
     */
@@ -28,7 +28,7 @@ export class DocumentDetail {
     /**
     * Filename of the document.
     */
-    'filename': string;
+    'filename'?: string;
     /**
     * The Adyen-generated [`legalArrangementCode`](https://docs.adyen.com/api-explorer/#/Account/latest/post/createAccountHolder__resParam_accountHolderDetails-legalArrangements-legalArrangementCode) to which the document must be linked.
     */
@@ -102,19 +102,19 @@ export class DocumentDetail {
 
 export namespace DocumentDetail {
     export enum DocumentTypeEnum {
-        BankStatement = <any> 'BANK_STATEMENT',
-        Bsn = <any> 'BSN',
-        CompanyRegistrationScreening = <any> 'COMPANY_REGISTRATION_SCREENING',
-        ConstitutionalDocument = <any> 'CONSTITUTIONAL_DOCUMENT',
-        DrivingLicence = <any> 'DRIVING_LICENCE',
-        DrivingLicenceBack = <any> 'DRIVING_LICENCE_BACK',
-        DrivingLicenceFront = <any> 'DRIVING_LICENCE_FRONT',
-        IdCard = <any> 'ID_CARD',
-        IdCardBack = <any> 'ID_CARD_BACK',
-        IdCardFront = <any> 'ID_CARD_FRONT',
-        Passport = <any> 'PASSPORT',
-        ProofOfResidency = <any> 'PROOF_OF_RESIDENCY',
-        Ssn = <any> 'SSN',
-        SupportingDocuments = <any> 'SUPPORTING_DOCUMENTS'
+        BankStatement = 'BANK_STATEMENT',
+        Bsn = 'BSN',
+        CompanyRegistrationScreening = 'COMPANY_REGISTRATION_SCREENING',
+        ConstitutionalDocument = 'CONSTITUTIONAL_DOCUMENT',
+        DrivingLicence = 'DRIVING_LICENCE',
+        DrivingLicenceBack = 'DRIVING_LICENCE_BACK',
+        DrivingLicenceFront = 'DRIVING_LICENCE_FRONT',
+        IdCard = 'ID_CARD',
+        IdCardBack = 'ID_CARD_BACK',
+        IdCardFront = 'ID_CARD_FRONT',
+        Passport = 'PASSPORT',
+        ProofOfResidency = 'PROOF_OF_RESIDENCY',
+        Ssn = 'SSN',
+        SupportingDocuments = 'SUPPORTING_DOCUMENTS'
     }
 }

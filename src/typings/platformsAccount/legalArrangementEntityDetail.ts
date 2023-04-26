@@ -39,7 +39,7 @@ export class LegalArrangementEntityDetail {
     /**
     * The legal entity type.  Possible values: **Business**, **Individual**, **NonProfit**, **PublicCompany**, or **Partnership**. 
     */
-    'legalEntityType': LegalArrangementEntityDetail.LegalEntityTypeEnum;
+    'legalEntityType'?: LegalArrangementEntityDetail.LegalEntityTypeEnum;
     'phoneNumber'?: ViasPhoneNumber;
     /**
     * The URL of the website of the contact.
@@ -112,19 +112,19 @@ export class LegalArrangementEntityDetail {
 
 export namespace LegalArrangementEntityDetail {
     export enum LegalArrangementMembersEnum {
-        Beneficiary = <any> 'Beneficiary',
-        ControllingPerson = <any> 'ControllingPerson',
-        Partner = <any> 'Partner',
-        Protector = <any> 'Protector',
-        Settlor = <any> 'Settlor',
-        Shareholder = <any> 'Shareholder',
-        Trustee = <any> 'Trustee'
+        Beneficiary = 'Beneficiary',
+        ControllingPerson = 'ControllingPerson',
+        Partner = 'Partner',
+        Protector = 'Protector',
+        Settlor = 'Settlor',
+        Shareholder = 'Shareholder',
+        Trustee = 'Trustee'
     }
     export enum LegalEntityTypeEnum {
-        Business = <any> 'Business',
-        Individual = <any> 'Individual',
-        NonProfit = <any> 'NonProfit',
-        Partnership = <any> 'Partnership',
-        PublicCompany = <any> 'PublicCompany'
+        Business = 'Business',
+        Individual = 'Individual',
+        NonProfit = 'NonProfit',
+        Partnership = 'Partnership',
+        PublicCompany = 'PublicCompany'
     }
 }

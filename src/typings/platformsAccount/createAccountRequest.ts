@@ -93,20 +93,25 @@ export class CreateAccountRequest {
 
 export namespace CreateAccountRequest {
     export enum PayoutScheduleEnum {
-        BiweeklyOn1StAnd15ThAtMidnight = <any> 'BIWEEKLY_ON_1ST_AND_15TH_AT_MIDNIGHT',
-        Daily = <any> 'DAILY',
-        DailyAu = <any> 'DAILY_AU',
-        DailyEu = <any> 'DAILY_EU',
-        DailySg = <any> 'DAILY_SG',
-        DailyUs = <any> 'DAILY_US',
-        Hold = <any> 'HOLD',
-        Monthly = <any> 'MONTHLY',
-        Weekly = <any> 'WEEKLY',
-        WeeklyOnTueFriMidnight = <any> 'WEEKLY_ON_TUE_FRI_MIDNIGHT'
+        BiweeklyOn1StAnd15ThAtMidnight = 'BIWEEKLY_ON_1ST_AND_15TH_AT_MIDNIGHT',
+        Daily = 'DAILY',
+        DailyAu = 'DAILY_AU',
+        DailyEu = 'DAILY_EU',
+        DailySg = 'DAILY_SG',
+        DailyUs = 'DAILY_US',
+        Hold = 'HOLD',
+        Monthly = 'MONTHLY',
+        Weekly = 'WEEKLY',
+        WeeklyMonToFriAu = 'WEEKLY_MON_TO_FRI_AU',
+        WeeklyMonToFriEu = 'WEEKLY_MON_TO_FRI_EU',
+        WeeklyMonToFriUs = 'WEEKLY_MON_TO_FRI_US',
+        WeeklyOnTueFriMidnight = 'WEEKLY_ON_TUE_FRI_MIDNIGHT',
+        WeeklySunToThuAu = 'WEEKLY_SUN_TO_THU_AU',
+        WeeklySunToThuUs = 'WEEKLY_SUN_TO_THU_US'
     }
     export enum PayoutSpeedEnum {
-        Instant = <any> 'INSTANT',
-        SameDay = <any> 'SAME_DAY',
-        Standard = <any> 'STANDARD'
+        Instant = 'INSTANT',
+        SameDay = 'SAME_DAY',
+        Standard = 'STANDARD'
     }
 }

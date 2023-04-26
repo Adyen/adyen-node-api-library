@@ -73,21 +73,21 @@ export class TransactionRuleInterval {
 
 export namespace TransactionRuleInterval {
     export enum DayOfWeekEnum {
-        Friday = <any> 'friday',
-        Monday = <any> 'monday',
-        Saturday = <any> 'saturday',
-        Sunday = <any> 'sunday',
-        Thursday = <any> 'thursday',
-        Tuesday = <any> 'tuesday',
-        Wednesday = <any> 'wednesday'
+        Friday = 'friday',
+        Monday = 'monday',
+        Saturday = 'saturday',
+        Sunday = 'sunday',
+        Thursday = 'thursday',
+        Tuesday = 'tuesday',
+        Wednesday = 'wednesday'
     }
     export enum TypeEnum {
-        Daily = <any> 'daily',
-        Lifetime = <any> 'lifetime',
-        Monthly = <any> 'monthly',
-        PerTransaction = <any> 'perTransaction',
-        Rolling = <any> 'rolling',
-        Sliding = <any> 'sliding',
-        Weekly = <any> 'weekly'
+        Daily = 'daily',
+        Lifetime = 'lifetime',
+        Monthly = 'monthly',
+        PerTransaction = 'perTransaction',
+        Rolling = 'rolling',
+        Sliding = 'sliding',
+        Weekly = 'weekly'
     }
 }

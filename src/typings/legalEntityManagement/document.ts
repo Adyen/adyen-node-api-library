@@ -17,6 +17,10 @@ export class Document {
     */
     'attachments': Array<Attachment>;
     /**
+    * The creation date of the document.
+    */
+    'creationDate'?: Date;
+    /**
     * Your description for the document.
     */
     'description': string;
@@ -31,7 +35,7 @@ export class Document {
     /**
     * The unique identifier of the document.
     */
-    'id': string;
+    'id'?: string;
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the document was issued. For example, **US**.
     */
@@ -41,12 +45,16 @@ export class Document {
     */
     'issuerState'?: string;
     /**
+    * The modification date of the document.
+    */
+    'modificationDate'?: Date;
+    /**
     * The number in the document.
     */
     'number'?: string;
     'owner': OwnerEntity;
     /**
-    * Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the `type` values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading documents: * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+    * Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  When providing ID numbers: * For **individual**, the `type` values can be **driversLicense**, **identityCard**, **nationalIdNumber**, or **passport**.  When uploading photo IDs: * For **individual**, the `type` values can be **identityCard**, **driversLicense**, or **passport**.  When uploading other documents: * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, or **proofOfIndustry**.   * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, or **proofOfIndividualTaxId**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
     */
     'type': Document.TypeEnum;
 
@@ -62,6 +70,11 @@ export class Document {
             "name": "attachments",
             "baseName": "attachments",
             "type": "Array<Attachment>"
+        },
+        {
+            "name": "creationDate",
+            "baseName": "creationDate",
+            "type": "Date"
         },
         {
             "name": "description",
@@ -94,6 +107,11 @@ export class Document {
             "type": "string"
         },
         {
+            "name": "modificationDate",
+            "baseName": "modificationDate",
+            "type": "Date"
+        },
+        {
             "name": "number",
             "baseName": "number",
             "type": "string"
@@ -116,18 +134,18 @@ export class Document {
 
 export namespace Document {
     export enum TypeEnum {
-        BankStatement = <any> 'bankStatement',
-        DriversLicense = <any> 'driversLicense',
-        IdentityCard = <any> 'identityCard',
-        NationalIdNumber = <any> 'nationalIdNumber',
-        Passport = <any> 'passport',
-        ProofOfAddress = <any> 'proofOfAddress',
-        ProofOfNationalIdNumber = <any> 'proofOfNationalIdNumber',
-        ProofOfResidency = <any> 'proofOfResidency',
-        RegistrationDocument = <any> 'registrationDocument',
-        VatDocument = <any> 'vatDocument',
-        ProofOfOrganizationTaxInfo = <any> 'proofOfOrganizationTaxInfo',
-        ProofOfIndustry = <any> 'proofOfIndustry',
-        ConstitutionalDocument = <any> 'constitutionalDocument'
+        BankStatement = 'bankStatement',
+        DriversLicense = 'driversLicense',
+        IdentityCard = 'identityCard',
+        NationalIdNumber = 'nationalIdNumber',
+        Passport = 'passport',
+        ProofOfAddress = 'proofOfAddress',
+        ProofOfNationalIdNumber = 'proofOfNationalIdNumber',
+        ProofOfResidency = 'proofOfResidency',
+        RegistrationDocument = 'registrationDocument',
+        VatDocument = 'vatDocument',
+        ProofOfOrganizationTaxInfo = 'proofOfOrganizationTaxInfo',
+        ProofOfIndustry = 'proofOfIndustry',
+        ConstitutionalDocument = 'constitutionalDocument'
     }
 }

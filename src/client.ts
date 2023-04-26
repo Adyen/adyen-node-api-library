@@ -37,7 +37,7 @@ class Client {
     public static HPP_LIVE = "https://live.adyen.com/hpp";
     public static MARKETPAY_ENDPOINT_TEST = "https://cal-test.adyen.com/cal/services";
     public static MARKETPAY_ENDPOINT_LIVE = "https://cal-live.adyen.com/cal/services";
-    public static CHECKOUT_API_VERSION = "v69";
+    public static CHECKOUT_API_VERSION = "v70";
     public static API_VERSION = "v68";
     public static RECURRING_API_VERSION = "v68";
     public static MARKETPAY_ACCOUNT_API_VERSION = "v6";
@@ -78,7 +78,6 @@ class Client {
     public static DATA_PROTECTION_API_VERSION = "v1";
     public static DATA_PROTECTION_API_ENDPOINT_TEST = "https://ca-test.adyen.com/ca/services/DataProtectionService";
     public static DATA_PROTECTION_API_ENDPOINT_LIVE = "https://ca-live.adyen.com/ca/services/DataProtectionService";
-
 
     private _httpClient!: ClientInterface;
     public config: Config;

@@ -39,7 +39,7 @@ export class Installments {
 
 export namespace Installments {
     export enum PlanEnum {
-        Regular = <any> 'regular',
-        Revolving = <any> 'revolving'
+        Regular = 'regular',
+        Revolving = 'revolving'
     }
 }

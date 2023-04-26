@@ -8,7 +8,10 @@
  */
 
 
+export * from './acceptTermsOfServiceRequest';
+export * from './acceptTermsOfServiceResponse';
 export * from './address';
+export * from './amount';
 export * from './attachment';
 export * from './bankAccountInfo';
 export * from './birthData';
@@ -16,15 +19,27 @@ export * from './businessLine';
 export * from './businessLineInfo';
 export * from './businessLineInfoUpdate';
 export * from './businessLines';
+export * from './capabilityProblem';
+export * from './capabilityProblemEntity';
+export * from './capabilityProblemEntityRecursive';
+export * from './capabilitySettings';
 export * from './document';
 export * from './documentReference';
 export * from './entityReference';
-export * from './genericEntityInfo';
+export * from './generatePciDescriptionRequest';
+export * from './generatePciDescriptionResponse';
+export * from './getPciQuestionnaireInfosResponse';
+export * from './getPciQuestionnaireResponse';
+export * from './getTermsOfServiceAcceptanceInfosResponse';
+export * from './getTermsOfServiceDocumentRequest';
+export * from './getTermsOfServiceDocumentResponse';
 export * from './identificationData';
 export * from './individual';
 export * from './legalEntity';
 export * from './legalEntityAssociation';
+export * from './legalEntityCapability';
 export * from './legalEntityInfo';
+export * from './legalEntityInfoRequiredType';
 export * from './name';
 export * from './onboardingLink';
 export * from './onboardingLinkInfo';
@@ -32,21 +47,32 @@ export * from './onboardingTheme';
 export * from './onboardingThemes';
 export * from './organization';
 export * from './ownerEntity';
+export * from './pciDocumentInfo';
+export * from './pciSigningRequest';
+export * from './pciSigningResponse';
 export * from './phoneNumber';
-export * from './recurringDetail';
+export * from './remediatingAction';
 export * from './serviceError';
 export * from './soleProprietorship';
 export * from './sourceOfFunds';
 export * from './stockData';
+export * from './supportingEntityCapability';
 export * from './taxInformation';
 export * from './taxReportingClassification';
+export * from './termsOfServiceAcceptanceInfo';
 export * from './transferInstrument';
 export * from './transferInstrumentInfo';
+export * from './transferInstrumentReference';
+export * from './verificationError';
+export * from './verificationErrorRecursive';
 export * from './webData';
 export * from './webDataExemption';
 
 
+import { AcceptTermsOfServiceRequest } from './acceptTermsOfServiceRequest';
+import { AcceptTermsOfServiceResponse } from './acceptTermsOfServiceResponse';
 import { Address } from './address';
+import { Amount } from './amount';
 import { Attachment } from './attachment';
 import { BankAccountInfo } from './bankAccountInfo';
 import { BirthData } from './birthData';
@@ -54,15 +80,27 @@ import { BusinessLine } from './businessLine';
 import { BusinessLineInfo } from './businessLineInfo';
 import { BusinessLineInfoUpdate } from './businessLineInfoUpdate';
 import { BusinessLines } from './businessLines';
+import { CapabilityProblem } from './capabilityProblem';
+import { CapabilityProblemEntity } from './capabilityProblemEntity';
+import { CapabilityProblemEntityRecursive } from './capabilityProblemEntityRecursive';
+import { CapabilitySettings } from './capabilitySettings';
 import { Document } from './document';
 import { DocumentReference } from './documentReference';
 import { EntityReference } from './entityReference';
-import { GenericEntityInfo } from './genericEntityInfo';
+import { GeneratePciDescriptionRequest } from './generatePciDescriptionRequest';
+import { GeneratePciDescriptionResponse } from './generatePciDescriptionResponse';
+import { GetPciQuestionnaireInfosResponse } from './getPciQuestionnaireInfosResponse';
+import { GetPciQuestionnaireResponse } from './getPciQuestionnaireResponse';
+import { GetTermsOfServiceAcceptanceInfosResponse } from './getTermsOfServiceAcceptanceInfosResponse';
+import { GetTermsOfServiceDocumentRequest } from './getTermsOfServiceDocumentRequest';
+import { GetTermsOfServiceDocumentResponse } from './getTermsOfServiceDocumentResponse';
 import { IdentificationData } from './identificationData';
 import { Individual } from './individual';
 import { LegalEntity } from './legalEntity';
 import { LegalEntityAssociation } from './legalEntityAssociation';
+import { LegalEntityCapability } from './legalEntityCapability';
 import { LegalEntityInfo } from './legalEntityInfo';
+import { LegalEntityInfoRequiredType } from './legalEntityInfoRequiredType';
 import { Name } from './name';
 import { OnboardingLink } from './onboardingLink';
 import { OnboardingLinkInfo } from './onboardingLinkInfo';
@@ -70,16 +108,24 @@ import { OnboardingTheme } from './onboardingTheme';
 import { OnboardingThemes } from './onboardingThemes';
 import { Organization } from './organization';
 import { OwnerEntity } from './ownerEntity';
+import { PciDocumentInfo } from './pciDocumentInfo';
+import { PciSigningRequest } from './pciSigningRequest';
+import { PciSigningResponse } from './pciSigningResponse';
 import { PhoneNumber } from './phoneNumber';
-import { RecurringDetail } from './recurringDetail';
+import { RemediatingAction } from './remediatingAction';
 import { ServiceError } from './serviceError';
 import { SoleProprietorship } from './soleProprietorship';
 import { SourceOfFunds } from './sourceOfFunds';
 import { StockData } from './stockData';
+import { SupportingEntityCapability } from './supportingEntityCapability';
 import { TaxInformation } from './taxInformation';
 import { TaxReportingClassification } from './taxReportingClassification';
+import { TermsOfServiceAcceptanceInfo } from './termsOfServiceAcceptanceInfo';
 import { TransferInstrument } from './transferInstrument';
 import { TransferInstrumentInfo } from './transferInstrumentInfo';
+import { TransferInstrumentReference } from './transferInstrumentReference';
+import { VerificationError } from './verificationError';
+import { VerificationErrorRecursive } from './verificationErrorRecursive';
 import { WebData } from './webData';
 import { WebDataExemption } from './webDataExemption';
 
@@ -96,11 +142,21 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
+        "AcceptTermsOfServiceResponse.TypeEnum": AcceptTermsOfServiceResponse.TypeEnum,
+        "CapabilityProblemEntity.TypeEnum": CapabilityProblemEntity.TypeEnum,
+        "CapabilityProblemEntityRecursive.TypeEnum": CapabilityProblemEntityRecursive.TypeEnum,
+        "CapabilitySettings.FundingSourceEnum": CapabilitySettings.FundingSourceEnum,
+        "CapabilitySettings.IntervalEnum": CapabilitySettings.IntervalEnum,
         "Document.TypeEnum": Document.TypeEnum,
+        "GetTermsOfServiceDocumentRequest.TypeEnum": GetTermsOfServiceDocumentRequest.TypeEnum,
+        "GetTermsOfServiceDocumentResponse.TypeEnum": GetTermsOfServiceDocumentResponse.TypeEnum,
         "IdentificationData.TypeEnum": IdentificationData.TypeEnum,
         "LegalEntity.TypeEnum": LegalEntity.TypeEnum,
         "LegalEntityAssociation.TypeEnum": LegalEntityAssociation.TypeEnum,
+        "LegalEntityCapability.AllowedLevelEnum": LegalEntityCapability.AllowedLevelEnum,
+        "LegalEntityCapability.RequestedLevelEnum": LegalEntityCapability.RequestedLevelEnum,
         "LegalEntityInfo.TypeEnum": LegalEntityInfo.TypeEnum,
+        "LegalEntityInfoRequiredType.TypeEnum": LegalEntityInfoRequiredType.TypeEnum,
         "Organization.TypeEnum": Organization.TypeEnum,
         "Organization.VatAbsenceReasonEnum": Organization.VatAbsenceReasonEnum,
         "SoleProprietorship.VatAbsenceReasonEnum": SoleProprietorship.VatAbsenceReasonEnum,
@@ -108,13 +164,21 @@ let enumsMap: {[index: string]: any} = {
         "TaxReportingClassification.BusinessTypeEnum": TaxReportingClassification.BusinessTypeEnum,
         "TaxReportingClassification.MainSourceOfIncomeEnum": TaxReportingClassification.MainSourceOfIncomeEnum,
         "TaxReportingClassification.TypeEnum": TaxReportingClassification.TypeEnum,
+        "TermsOfServiceAcceptanceInfo.TypeEnum": TermsOfServiceAcceptanceInfo.TypeEnum,
         "TransferInstrument.TypeEnum": TransferInstrument.TypeEnum,
         "TransferInstrumentInfo.TypeEnum": TransferInstrumentInfo.TypeEnum,
+        "VerificationError.CapabilitiesEnum": VerificationError.CapabilitiesEnum,
+        "VerificationError.TypeEnum": VerificationError.TypeEnum,
+        "VerificationErrorRecursive.CapabilitiesEnum": VerificationErrorRecursive.CapabilitiesEnum,
+        "VerificationErrorRecursive.TypeEnum": VerificationErrorRecursive.TypeEnum,
         "WebDataExemption.ReasonEnum": WebDataExemption.ReasonEnum,
 }
 
 let typeMap: {[index: string]: any} = {
+    "AcceptTermsOfServiceRequest": AcceptTermsOfServiceRequest,
+    "AcceptTermsOfServiceResponse": AcceptTermsOfServiceResponse,
     "Address": Address,
+    "Amount": Amount,
     "Attachment": Attachment,
     "BankAccountInfo": BankAccountInfo,
     "BirthData": BirthData,
@@ -122,15 +186,27 @@ let typeMap: {[index: string]: any} = {
     "BusinessLineInfo": BusinessLineInfo,
     "BusinessLineInfoUpdate": BusinessLineInfoUpdate,
     "BusinessLines": BusinessLines,
+    "CapabilityProblem": CapabilityProblem,
+    "CapabilityProblemEntity": CapabilityProblemEntity,
+    "CapabilityProblemEntityRecursive": CapabilityProblemEntityRecursive,
+    "CapabilitySettings": CapabilitySettings,
     "Document": Document,
     "DocumentReference": DocumentReference,
     "EntityReference": EntityReference,
-    "GenericEntityInfo": GenericEntityInfo,
+    "GeneratePciDescriptionRequest": GeneratePciDescriptionRequest,
+    "GeneratePciDescriptionResponse": GeneratePciDescriptionResponse,
+    "GetPciQuestionnaireInfosResponse": GetPciQuestionnaireInfosResponse,
+    "GetPciQuestionnaireResponse": GetPciQuestionnaireResponse,
+    "GetTermsOfServiceAcceptanceInfosResponse": GetTermsOfServiceAcceptanceInfosResponse,
+    "GetTermsOfServiceDocumentRequest": GetTermsOfServiceDocumentRequest,
+    "GetTermsOfServiceDocumentResponse": GetTermsOfServiceDocumentResponse,
     "IdentificationData": IdentificationData,
     "Individual": Individual,
     "LegalEntity": LegalEntity,
     "LegalEntityAssociation": LegalEntityAssociation,
+    "LegalEntityCapability": LegalEntityCapability,
     "LegalEntityInfo": LegalEntityInfo,
+    "LegalEntityInfoRequiredType": LegalEntityInfoRequiredType,
     "Name": Name,
     "OnboardingLink": OnboardingLink,
     "OnboardingLinkInfo": OnboardingLinkInfo,
@@ -138,16 +214,24 @@ let typeMap: {[index: string]: any} = {
     "OnboardingThemes": OnboardingThemes,
     "Organization": Organization,
     "OwnerEntity": OwnerEntity,
+    "PciDocumentInfo": PciDocumentInfo,
+    "PciSigningRequest": PciSigningRequest,
+    "PciSigningResponse": PciSigningResponse,
     "PhoneNumber": PhoneNumber,
-    "RecurringDetail": RecurringDetail,
+    "RemediatingAction": RemediatingAction,
     "ServiceError": ServiceError,
     "SoleProprietorship": SoleProprietorship,
     "SourceOfFunds": SourceOfFunds,
     "StockData": StockData,
+    "SupportingEntityCapability": SupportingEntityCapability,
     "TaxInformation": TaxInformation,
     "TaxReportingClassification": TaxReportingClassification,
+    "TermsOfServiceAcceptanceInfo": TermsOfServiceAcceptanceInfo,
     "TransferInstrument": TransferInstrument,
     "TransferInstrumentInfo": TransferInstrumentInfo,
+    "TransferInstrumentReference": TransferInstrumentReference,
+    "VerificationError": VerificationError,
+    "VerificationErrorRecursive": VerificationErrorRecursive,
     "WebData": WebData,
     "WebDataExemption": WebDataExemption,
 }

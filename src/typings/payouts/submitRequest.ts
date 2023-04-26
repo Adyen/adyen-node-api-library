@@ -150,7 +150,7 @@ export class SubmitRequest {
 
 export namespace SubmitRequest {
     export enum EntityTypeEnum {
-        NaturalPerson = <any> 'NaturalPerson',
-        Company = <any> 'Company'
+        NaturalPerson = 'NaturalPerson',
+        Company = 'Company'
     }
 }

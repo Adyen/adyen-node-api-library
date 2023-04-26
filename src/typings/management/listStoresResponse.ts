@@ -11,7 +11,7 @@ import { PaginationLinks } from './paginationLinks';
 import { Store } from './store';
 
 export class ListStoresResponse {
-    'links'?: PaginationLinks;
+    '_links'?: PaginationLinks;
     /**
     * List of stores
     */
@@ -29,7 +29,7 @@ export class ListStoresResponse {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "PaginationLinks"
         },

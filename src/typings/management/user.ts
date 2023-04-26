@@ -11,7 +11,7 @@ import { Links } from './links';
 import { Name } from './name';
 
 export class User {
-    'links'?: Links;
+    '_links'?: Links;
     /**
     * The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user.
     */
@@ -20,6 +20,10 @@ export class User {
     * Indicates whether this user is active.
     */
     'active'?: boolean;
+    /**
+    * Set of authn apps available to this user
+    */
+    'authnApps'?: Array<string>;
     /**
     * The email address of the user.
     */
@@ -40,13 +44,13 @@ export class User {
     /**
     * The username for this user.
     */
-    'username'?: string;
+    'username': string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "links",
+            "name": "_links",
             "baseName": "_links",
             "type": "Links"
         },
@@ -59,6 +63,11 @@ export class User {
             "name": "active",
             "baseName": "active",
             "type": "boolean"
+        },
+        {
+            "name": "authnApps",
+            "baseName": "authnApps",
+            "type": "Array<string>"
         },
         {
             "name": "email",

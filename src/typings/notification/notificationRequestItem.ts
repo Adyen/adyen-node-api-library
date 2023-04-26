@@ -29,11 +29,10 @@
  * Do not edit the class manually.
  */
 
-import { AdditionalData } from './additionalData';
 import { Amount } from './amount';
 
 export class NotificationRequestItem {
-    'additionalData'?: AdditionalData;
+    'additionalData'?: { [key: string]: string; };
     'amount': Amount;
     /**
     * Adyen\'s 16-character unique reference associated with the transaction/the request. This value is globally unique; quote it when communicating with us about this request.
@@ -153,6 +152,7 @@ export namespace NotificationRequestItem {
         CancelOrRefund = <any> 'CANCEL_OR_REFUND',
         Capture = <any> 'CAPTURE',
         CaptureFailed = <any> 'CAPTURE_FAILED',
+        Donation = <any> 'DONATION',
         HandledExternally = <any> 'HANDLED_EXTERNALLY',
         OrderOpened = <any> 'ORDER_OPENED',
         OrderClosed = <any> 'ORDER_CLOSED',

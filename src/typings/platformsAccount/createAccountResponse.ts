@@ -14,11 +14,11 @@ export class CreateAccountResponse {
     /**
     * The code of the new account.
     */
-    'accountCode': string;
+    'accountCode'?: string;
     /**
     * The code of the account holder.
     */
-    'accountHolderCode': string;
+    'accountHolderCode'?: string;
     /**
     * The bankAccountUUID of the bank account held by the account holder to couple the account with. Scheduled payouts in currencies matching the currency of this bank account will be sent to this bank account. Payouts in different currencies will be sent to a matching bank account of the account holder.
     */
@@ -55,7 +55,7 @@ export class CreateAccountResponse {
     /**
     * The status of the account. >Permitted values: `Active`.
     */
-    'status': CreateAccountResponse.StatusEnum;
+    'status'?: CreateAccountResponse.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -128,14 +128,14 @@ export class CreateAccountResponse {
 
 export namespace CreateAccountResponse {
     export enum PayoutSpeedEnum {
-        Instant = <any> 'INSTANT',
-        SameDay = <any> 'SAME_DAY',
-        Standard = <any> 'STANDARD'
+        Instant = 'INSTANT',
+        SameDay = 'SAME_DAY',
+        Standard = 'STANDARD'
     }
     export enum StatusEnum {
-        Active = <any> 'Active',
-        Closed = <any> 'Closed',
-        Inactive = <any> 'Inactive',
-        Suspended = <any> 'Suspended'
+        Active = 'Active',
+        Closed = 'Closed',
+        Inactive = 'Inactive',
+        Suspended = 'Suspended'
     }
 }

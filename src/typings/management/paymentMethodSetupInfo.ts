@@ -17,6 +17,7 @@ import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { PayPalInfo } from './payPalInfo';
 import { SofortInfo } from './sofortInfo';
 import { SwishInfo } from './swishInfo';
+import { VippsInfo } from './vippsInfo';
 
 export class PaymentMethodSetupInfo {
     'applePay'?: ApplePayInfo;
@@ -41,7 +42,7 @@ export class PaymentMethodSetupInfo {
     'giroPay'?: GiroPayInfo;
     'googlePay'?: GooglePayInfo;
     'klarna'?: KlarnaInfo;
-    'mealVoucherFR'?: MealVoucherFRInfo;
+    'mealVoucher_FR'?: MealVoucherFRInfo;
     'paypal'?: PayPalInfo;
     /**
     * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
@@ -61,6 +62,7 @@ export class PaymentMethodSetupInfo {
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
     */
     'type'?: PaymentMethodSetupInfo.TypeEnum;
+    'vipps'?: VippsInfo;
 
     static discriminator: string | undefined = undefined;
 
@@ -116,7 +118,7 @@ export class PaymentMethodSetupInfo {
             "type": "KlarnaInfo"
         },
         {
-            "name": "mealVoucherFR",
+            "name": "mealVoucher_FR",
             "baseName": "mealVoucher_FR",
             "type": "MealVoucherFRInfo"
         },
@@ -154,6 +156,11 @@ export class PaymentMethodSetupInfo {
             "name": "type",
             "baseName": "type",
             "type": "PaymentMethodSetupInfo.TypeEnum"
+        },
+        {
+            "name": "vipps",
+            "baseName": "vipps",
+            "type": "VippsInfo"
         }    ];
 
     static getAttributeTypeMap() {
@@ -163,54 +170,59 @@ export class PaymentMethodSetupInfo {
 
 export namespace PaymentMethodSetupInfo {
     export enum ShopperInteractionEnum {
-        ECommerce = <any> 'eCommerce',
-        Pos = <any> 'pos',
-        Moto = <any> 'moto',
-        ContAuth = <any> 'contAuth'
+        ECommerce = 'eCommerce',
+        Pos = 'pos',
+        Moto = 'moto',
+        ContAuth = 'contAuth'
     }
     export enum TypeEnum {
-        Alipay = <any> 'alipay',
-        Amex = <any> 'amex',
-        Applepay = <any> 'applepay',
-        Bcmc = <any> 'bcmc',
-        Blik = <any> 'blik',
-        Cartebancaire = <any> 'cartebancaire',
-        Cup = <any> 'cup',
-        Diners = <any> 'diners',
-        DirectEbanking = <any> 'directEbanking',
-        DirectdebitGb = <any> 'directdebit_GB',
-        Discover = <any> 'discover',
-        EbankingFi = <any> 'ebanking_FI',
-        EftposAustralia = <any> 'eftpos_australia',
-        Elo = <any> 'elo',
-        Elocredit = <any> 'elocredit',
-        Elodebit = <any> 'elodebit',
-        Girocard = <any> 'girocard',
-        Giropay = <any> 'giropay',
-        Googlepay = <any> 'googlepay',
-        Hiper = <any> 'hiper',
-        Hipercard = <any> 'hipercard',
-        Ideal = <any> 'ideal',
-        InteracCard = <any> 'interac_card',
-        Jcb = <any> 'jcb',
-        Klarna = <any> 'klarna',
-        KlarnaAccount = <any> 'klarna_account',
-        KlarnaPaynow = <any> 'klarna_paynow',
-        Maestro = <any> 'maestro',
-        Mbway = <any> 'mbway',
-        Mc = <any> 'mc',
-        Mcdebit = <any> 'mcdebit',
-        MealVoucherFr = <any> 'mealVoucher_FR',
-        Mobilepay = <any> 'mobilepay',
-        Multibanco = <any> 'multibanco',
-        Paypal = <any> 'paypal',
-        Payshop = <any> 'payshop',
-        Swish = <any> 'swish',
-        Trustly = <any> 'trustly',
-        Visa = <any> 'visa',
-        Visadebit = <any> 'visadebit',
-        Vpay = <any> 'vpay',
-        Wechatpay = <any> 'wechatpay',
-        WechatpayPos = <any> 'wechatpay_pos'
+        Afterpaytouch = 'afterpaytouch',
+        Alipay = 'alipay',
+        AlipayHk = 'alipay_hk',
+        Amex = 'amex',
+        Applepay = 'applepay',
+        Bcmc = 'bcmc',
+        Blik = 'blik',
+        Cartebancaire = 'cartebancaire',
+        Clearpay = 'clearpay',
+        Cup = 'cup',
+        Diners = 'diners',
+        DirectEbanking = 'directEbanking',
+        DirectdebitGb = 'directdebit_GB',
+        Discover = 'discover',
+        EbankingFi = 'ebanking_FI',
+        EftposAustralia = 'eftpos_australia',
+        Elo = 'elo',
+        Elocredit = 'elocredit',
+        Elodebit = 'elodebit',
+        Girocard = 'girocard',
+        Giropay = 'giropay',
+        Googlepay = 'googlepay',
+        Hiper = 'hiper',
+        Hipercard = 'hipercard',
+        Ideal = 'ideal',
+        InteracCard = 'interac_card',
+        Jcb = 'jcb',
+        Klarna = 'klarna',
+        KlarnaAccount = 'klarna_account',
+        KlarnaPaynow = 'klarna_paynow',
+        Maestro = 'maestro',
+        Mbway = 'mbway',
+        Mc = 'mc',
+        Mcdebit = 'mcdebit',
+        MealVoucherFr = 'mealVoucher_FR',
+        Mobilepay = 'mobilepay',
+        Multibanco = 'multibanco',
+        OnlineBankingPl = 'onlineBanking_PL',
+        Paypal = 'paypal',
+        Payshop = 'payshop',
+        Swish = 'swish',
+        Trustly = 'trustly',
+        Vipps = 'vipps',
+        Visa = 'visa',
+        Visadebit = 'visadebit',
+        Vpay = 'vpay',
+        Wechatpay = 'wechatpay',
+        WechatpayPos = 'wechatpay_pos'
     }
 }

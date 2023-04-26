@@ -14,6 +14,10 @@ export class OrderItem {
     */
     'id'?: string;
     /**
+    * The number of installments for the specified product `id`.
+    */
+    'installments'?: number;
+    /**
     * The name of the product.
     */
     'name'?: string;
@@ -29,6 +33,11 @@ export class OrderItem {
             "name": "id",
             "baseName": "id",
             "type": "string"
+        },
+        {
+            "name": "installments",
+            "baseName": "installments",
+            "type": "number"
         },
         {
             "name": "name",

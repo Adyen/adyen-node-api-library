@@ -9,6 +9,7 @@
 
 import { AccountHolderCapability } from './accountHolderCapability';
 import { ContactDetails } from './contactDetails';
+import { VerificationDeadline } from './verificationDeadline';
 
 export class AccountHolder {
     /**
@@ -29,7 +30,7 @@ export class AccountHolder {
     */
     'id': string;
     /**
-    * The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.
+    * The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.
     */
     'legalEntityId': string;
     /**
@@ -41,13 +42,17 @@ export class AccountHolder {
     */
     'reference'?: string;
     /**
-    * The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
+    * The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
     */
     'status'?: AccountHolder.StatusEnum;
     /**
-    * The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. If not set, the time zone of the balance account will be used. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+    * The [time zone](https://www.iana.org/time-zones) of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
     */
     'timeZone'?: string;
+    /**
+    * List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
+    */
+    'verificationDeadlines'?: Array<VerificationDeadline>;
 
     static discriminator: string | undefined = undefined;
 
@@ -101,6 +106,11 @@ export class AccountHolder {
             "name": "timeZone",
             "baseName": "timeZone",
             "type": "string"
+        },
+        {
+            "name": "verificationDeadlines",
+            "baseName": "verificationDeadlines",
+            "type": "Array<VerificationDeadline>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -110,9 +120,9 @@ export class AccountHolder {
 
 export namespace AccountHolder {
     export enum StatusEnum {
-        Active = <any> 'active',
-        Closed = <any> 'closed',
-        Inactive = <any> 'inactive',
-        Suspended = <any> 'suspended'
+        Active = 'active',
+        Closed = 'closed',
+        Inactive = 'inactive',
+        Suspended = 'suspended'
     }
 }

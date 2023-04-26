@@ -10,15 +10,15 @@
 
 export class SourceOfFunds {
     /**
-    * The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability. Required when `adyenProcessedFunds` is **true**.
+    * The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.
     */
     'acquiringBusinessLineId'?: string;
     /**
-    * Indicates whether the funds are coming from transactions processed by Adyen.   - If **true**, the `acquiringBusinessLineId` is required.   - If **false**, a `description` is required.
+    * Indicates whether the funds are coming from transactions processed by Adyen. If **false**, a `description` is required.
     */
     'adyenProcessedFunds'?: boolean;
     /**
-    * Text describing the source of funds. For example, for `type` **business**, provide a description of the business. Required when `adyenProcessedFunds` is **false**.
+    * Text describing the source of funds. For example, for `type` **business**, provide a description of where the business transactions come from, such as payments through bank transfer. Required when `adyenProcessedFunds` is **false**.
     */
     'description'?: string;
     /**
@@ -57,6 +57,6 @@ export class SourceOfFunds {
 
 export namespace SourceOfFunds {
     export enum TypeEnum {
-        Business = <any> 'business'
+        Business = 'business'
     }
 }

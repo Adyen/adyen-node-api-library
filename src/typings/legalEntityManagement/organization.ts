@@ -16,6 +16,10 @@ import { WebData } from './webData';
 
 export class Organization {
     /**
+    * The date when the organization was incorporated in YYYY-MM-DD format.
+    */
+    'dateOfIncorporation'?: string;
+    /**
     * Your description for the organization.
     */
     'description'?: string;
@@ -61,6 +65,11 @@ export class Organization {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "dateOfIncorporation",
+            "baseName": "dateOfIncorporation",
+            "type": "string"
+        },
         {
             "name": "description",
             "baseName": "description",
@@ -144,15 +153,15 @@ export class Organization {
 
 export namespace Organization {
     export enum TypeEnum {
-        AssociationIncorporated = <any> 'associationIncorporated',
-        GovernmentalOrganization = <any> 'governmentalOrganization',
-        ListedPublicCompany = <any> 'listedPublicCompany',
-        NonProfit = <any> 'nonProfit',
-        PartnershipIncorporated = <any> 'partnershipIncorporated',
-        PrivateCompany = <any> 'privateCompany'
+        AssociationIncorporated = 'associationIncorporated',
+        GovernmentalOrganization = 'governmentalOrganization',
+        ListedPublicCompany = 'listedPublicCompany',
+        NonProfit = 'nonProfit',
+        PartnershipIncorporated = 'partnershipIncorporated',
+        PrivateCompany = 'privateCompany'
     }
     export enum VatAbsenceReasonEnum {
-        IndustryExemption = <any> 'industryExemption',
-        BelowTaxThreshold = <any> 'belowTaxThreshold'
+        IndustryExemption = 'industryExemption',
+        BelowTaxThreshold = 'belowTaxThreshold'
     }
 }

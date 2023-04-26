@@ -7,15 +7,19 @@
  * Do not edit this class manually.
  */
 
-import { BankAccount } from './bankAccount';
 import { Card } from './card';
+import { IbanAccountIdentification } from './ibanAccountIdentification';
+import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 
 export class PaymentInstrument {
     /**
     * The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.
     */
     'balanceAccountId': string;
-    'bankAccount'?: BankAccount;
+    /**
+    * Contains the business account details. Returned when you create a payment instrument with `type` **bankAccount**.
+    */
+    'bankAccount'?: IbanAccountIdentification | USLocalAccountIdentification;
     'card'?: Card;
     /**
     * Your description for the payment instrument, maximum 300 characters.
@@ -61,7 +65,7 @@ export class PaymentInstrument {
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccount"
+            "type": "IbanAccountIdentification | USLocalAccountIdentification"
         },
         {
             "name": "card",
@@ -116,23 +120,23 @@ export class PaymentInstrument {
 
 export namespace PaymentInstrument {
     export enum StatusEnum {
-        Active = <any> 'active',
-        Closed = <any> 'closed',
-        Inactive = <any> 'inactive',
-        Suspended = <any> 'suspended'
+        Active = 'active',
+        Closed = 'closed',
+        Inactive = 'inactive',
+        Suspended = 'suspended'
     }
     export enum StatusReasonEnum {
-        AccountClosure = <any> 'accountClosure',
-        Damaged = <any> 'damaged',
-        EndOfLife = <any> 'endOfLife',
-        Expired = <any> 'expired',
-        Lost = <any> 'lost',
-        Other = <any> 'other',
-        Stolen = <any> 'stolen',
-        SuspectedFraud = <any> 'suspectedFraud'
+        AccountClosure = 'accountClosure',
+        Damaged = 'damaged',
+        EndOfLife = 'endOfLife',
+        Expired = 'expired',
+        Lost = 'lost',
+        Other = 'other',
+        Stolen = 'stolen',
+        SuspectedFraud = 'suspectedFraud'
     }
     export enum TypeEnum {
-        BankAccount = <any> 'bankAccount',
-        Card = <any> 'card'
+        BankAccount = 'bankAccount',
+        Card = 'card'
     }
 }

@@ -16,13 +16,13 @@ export class NumberAndBicAccountIdentification {
     'accountNumber': string;
     'additionalBankIdentification'?: AdditionalBankIdentification;
     /**
-    * The bank\'s 8 or 11 character BIC or SWIFT code.
+    * The bank\'s 8- or 11-character BIC or SWIFT code.
     */
     'bic': string;
     /**
     * **numberAndBic**
     */
-    'type'?: NumberAndBicAccountIdentification.TypeEnum;
+    'type': NumberAndBicAccountIdentification.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -55,6 +55,6 @@ export class NumberAndBicAccountIdentification {
 
 export namespace NumberAndBicAccountIdentification {
     export enum TypeEnum {
-        NumberAndBic = <any> 'numberAndBic'
+        NumberAndBic = 'numberAndBic'
     }
 }

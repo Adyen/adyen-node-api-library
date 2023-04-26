@@ -11,7 +11,7 @@ import { AccountHolderStatus } from './accountHolderStatus';
 import { ErrorFieldType } from './errorFieldType';
 
 export class SuspendAccountHolderResponse {
-    'accountHolderStatus': AccountHolderStatus;
+    'accountHolderStatus'?: AccountHolderStatus;
     /**
     * Contains field validation errors that would prevent requests from being processed.
     */

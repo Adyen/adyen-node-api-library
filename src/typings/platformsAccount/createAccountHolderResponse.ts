@@ -20,9 +20,9 @@ export class CreateAccountHolderResponse {
     /**
     * The code of the new account holder.
     */
-    'accountHolderCode': string;
-    'accountHolderDetails': AccountHolderDetails;
-    'accountHolderStatus': AccountHolderStatus;
+    'accountHolderCode'?: string;
+    'accountHolderDetails'?: AccountHolderDetails;
+    'accountHolderStatus'?: AccountHolderStatus;
     /**
     * The description of the new account holder.
     */
@@ -34,7 +34,7 @@ export class CreateAccountHolderResponse {
     /**
     * The type of legal entity of the new account holder.
     */
-    'legalEntity': CreateAccountHolderResponse.LegalEntityEnum;
+    'legalEntity'?: CreateAccountHolderResponse.LegalEntityEnum;
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes), with which the prospective account holder primarily deals.
     */
@@ -47,7 +47,7 @@ export class CreateAccountHolderResponse {
     * The result code.
     */
     'resultCode'?: string;
-    'verification': KYCVerificationResult;
+    'verification'?: KYCVerificationResult;
     /**
     * The identifier of the profile that applies to this entity.
     */
@@ -124,10 +124,10 @@ export class CreateAccountHolderResponse {
 
 export namespace CreateAccountHolderResponse {
     export enum LegalEntityEnum {
-        Business = <any> 'Business',
-        Individual = <any> 'Individual',
-        NonProfit = <any> 'NonProfit',
-        Partnership = <any> 'Partnership',
-        PublicCompany = <any> 'PublicCompany'
+        Business = 'Business',
+        Individual = 'Individual',
+        NonProfit = 'NonProfit',
+        Partnership = 'Partnership',
+        PublicCompany = 'PublicCompany'
     }
 }

@@ -10,19 +10,19 @@
 
 export class Passcodes {
     /**
-    * The pin code used to enter the admin menu
+    * The passcode for the Admin menu and the Settings menu.
     */
     'adminMenuPin'?: string;
     /**
-    * Allows merchant to create a dedicated PIN for standalone refund functionality
+    * The passcode for unreferenced refunds on standalone terminals.
     */
     'refundPin'?: string;
     /**
-    * Passcode to unlock screen after sleep
+    * The passcode to unlock the terminal screen after a timeout.
     */
     'screenLockPin'?: string;
     /**
-    * The PIN code used to enter the transaction menu
+    * The passcode for the Transactions menu.
     */
     'txMenuPin'?: string;
 

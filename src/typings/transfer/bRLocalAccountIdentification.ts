@@ -24,7 +24,7 @@ export class BRLocalAccountIdentification {
     /**
     * **brLocal**
     */
-    'type'?: BRLocalAccountIdentification.TypeEnum;
+    'type': BRLocalAccountIdentification.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -57,6 +57,6 @@ export class BRLocalAccountIdentification {
 
 export namespace BRLocalAccountIdentification {
     export enum TypeEnum {
-        BrLocal = <any> 'brLocal'
+        BrLocal = 'brLocal'
     }
 }

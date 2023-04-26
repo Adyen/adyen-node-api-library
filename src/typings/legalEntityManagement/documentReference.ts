@@ -14,6 +14,10 @@ export class DocumentReference {
     */
     'active'?: boolean;
     /**
+    * Your description for the document.
+    */
+    'description'?: string;
+    /**
     * Document name.
     */
     'fileName'?: string;
@@ -21,6 +25,14 @@ export class DocumentReference {
     * The unique identifier of the resource.
     */
     'id'?: string;
+    /**
+    * The modification date of the document.
+    */
+    'modificationDate'?: Date;
+    /**
+    * Type of document, used when providing an ID number or uploading a document.
+    */
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -31,6 +43,11 @@ export class DocumentReference {
             "type": "boolean"
         },
         {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
             "name": "fileName",
             "baseName": "fileName",
             "type": "string"
@@ -38,6 +55,16 @@ export class DocumentReference {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "modificationDate",
+            "baseName": "modificationDate",
+            "type": "Date"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
             "type": "string"
         }    ];
 

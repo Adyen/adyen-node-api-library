@@ -10,15 +10,15 @@
 
 export class Key {
     /**
-    * Identifier
+    * The unique identifier of the shared key.
     */
     'identifier'?: string;
     /**
-    * Passphrase
+    * The secure passphrase to protect the shared key.
     */
     'passphrase'?: string;
     /**
-    * Version number
+    * The version number of the shared key.
     */
     'version'?: number;
 
