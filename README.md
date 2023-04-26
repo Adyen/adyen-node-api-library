@@ -69,6 +69,44 @@ Alternatively, you can download the [release on GitHub](https://github.com/Adyen
 
 Please check the **[release page](https://github.com/Adyen/adyen-node-api-library/releases/)** to check for breaking changes in Major versions.
 
+``` javascript
+// Step 1: Require the parts of the module you want to use
+const { Client, CheckoutAPI} = require('@adyen/api-library');
+
+// Step 2: Initialize the client object
+const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"}); 
+
+// Step 3: Initialize the API object
+const checkoutApi = new CheckoutAPI(client);
+
+// Step 4: Create the request object
+  const paymentRequest = {
+    amount: {
+      currency: "USD",
+      value: 1000 // value in minor units
+    },
+    reference: "Your order number",
+    paymentMethod: {
+      type: "scheme",
+      encryptedCardNumber: "test_4111111111111111",
+      encryptedExpiryMonth: "test_03",
+      encryptedExpiryYear: "test_2030",
+      encryptedSecurityCode: "test_737"
+    },
+    shopperReference: "YOUR_UNIQUE_SHOPPER_ID_IOfW3k9G2PvXFu2j",
+    storePaymentMethod: true,
+    shopperInteraction: "Ecommerce",
+    recurringProcessingModel: "CardOnFile",
+    returnUrl: "https://your-company.com/...",
+    merchantAccount: "YOUR_MERCHANT_ACCOUNT"
+  };
+  
+// Step 5: Make the request
+checkoutAPI.payments(paymentRequest)
+  .then(paymentResponse => console.log(paymentResponse.pspReference))
+  .catch(error => console.log(error));
+```
+
 ### Step 1: Require the parts of the module you want to use
 
 Use the Node.js `require` function to load the `Client` and API objects from the Adyen module. For the name of the API objects, see [Supported APIs](#supported-apis).
