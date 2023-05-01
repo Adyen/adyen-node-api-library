@@ -102,6 +102,7 @@ export class AchDetails {
 
 export namespace AchDetails {
     export enum TypeEnum {
-        Ach = 'ach'
+        Ach = 'ach',
+        AchPlaid = 'ach_plaid'
     }
 }

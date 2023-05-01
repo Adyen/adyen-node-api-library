@@ -9,6 +9,7 @@
 
 import { Address } from './address';
 import { Amount } from './amount';
+import { ApplicationInfo } from './applicationInfo';
 import { InstallmentOption } from './installmentOption';
 import { LineItem } from './lineItem';
 import { Name } from './name';
@@ -17,13 +18,14 @@ import { Split } from './split';
 
 export class PaymentLinkResponse {
     /**
-    * List of payment methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+    * List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
     'allowedPaymentMethods'?: Array<string>;
     'amount': Amount;
+    'applicationInfo'?: ApplicationInfo;
     'billingAddress'?: Address;
     /**
-    * List of payment methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+    * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
     'blockedPaymentMethods'?: Array<string>;
     /**
@@ -178,6 +180,11 @@ export class PaymentLinkResponse {
             "name": "amount",
             "baseName": "amount",
             "type": "Amount"
+        },
+        {
+            "name": "applicationInfo",
+            "baseName": "applicationInfo",
+            "type": "ApplicationInfo"
         },
         {
             "name": "billingAddress",

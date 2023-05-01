@@ -31,6 +31,8 @@ export * from './brandVariantsRestriction';
 export * from './bulkAddress';
 export * from './cALocalAccountIdentification';
 export * from './cZLocalAccountIdentification';
+export * from './capitalBalance';
+export * from './capitalGrantAccount';
 export * from './card';
 export * from './cardConfiguration';
 export * from './cardInfo';
@@ -43,6 +45,10 @@ export * from './differentCurrenciesRestriction';
 export * from './duration';
 export * from './entryModesRestriction';
 export * from './expiry';
+export * from './fee';
+export * from './grantLimit';
+export * from './grantOffer';
+export * from './grantOffers';
 export * from './hULocalAccountIdentification';
 export * from './ibanAccountIdentification';
 export * from './internationalTransactionRestriction';
@@ -70,6 +76,8 @@ export * from './paymentInstrumentUpdateRequest';
 export * from './phone';
 export * from './phoneNumber';
 export * from './processingTypesRestriction';
+export * from './repayment';
+export * from './repaymentTerm';
 export * from './restServiceError';
 export * from './sELocalAccountIdentification';
 export * from './sGLocalAccountIdentification';
@@ -77,6 +85,7 @@ export * from './stringMatch';
 export * from './sweepConfigurationV2';
 export * from './sweepCounterparty';
 export * from './sweepSchedule';
+export * from './thresholdRepayment';
 export * from './timeOfDay';
 export * from './timeOfDayRestriction';
 export * from './totalAmountRestriction';
@@ -116,6 +125,8 @@ import { BrandVariantsRestriction } from './brandVariantsRestriction';
 import { BulkAddress } from './bulkAddress';
 import { CALocalAccountIdentification } from './cALocalAccountIdentification';
 import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
+import { CapitalBalance } from './capitalBalance';
+import { CapitalGrantAccount } from './capitalGrantAccount';
 import { Card } from './card';
 import { CardConfiguration } from './cardConfiguration';
 import { CardInfo } from './cardInfo';
@@ -128,6 +139,10 @@ import { DifferentCurrenciesRestriction } from './differentCurrenciesRestriction
 import { Duration } from './duration';
 import { EntryModesRestriction } from './entryModesRestriction';
 import { Expiry } from './expiry';
+import { Fee } from './fee';
+import { GrantLimit } from './grantLimit';
+import { GrantOffer } from './grantOffer';
+import { GrantOffers } from './grantOffers';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { InternationalTransactionRestriction } from './internationalTransactionRestriction';
@@ -155,6 +170,8 @@ import { PaymentInstrumentUpdateRequest } from './paymentInstrumentUpdateRequest
 import { Phone } from './phone';
 import { PhoneNumber } from './phoneNumber';
 import { ProcessingTypesRestriction } from './processingTypesRestriction';
+import { Repayment } from './repayment';
+import { RepaymentTerm } from './repaymentTerm';
 import { RestServiceError } from './restServiceError';
 import { SELocalAccountIdentification } from './sELocalAccountIdentification';
 import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
@@ -162,6 +179,7 @@ import { StringMatch } from './stringMatch';
 import { SweepConfigurationV2 } from './sweepConfigurationV2';
 import { SweepCounterparty } from './sweepCounterparty';
 import { SweepSchedule } from './sweepSchedule';
+import { ThresholdRepayment } from './thresholdRepayment';
 import { TimeOfDay } from './timeOfDay';
 import { TimeOfDayRestriction } from './timeOfDayRestriction';
 import { TotalAmountRestriction } from './totalAmountRestriction';
@@ -211,6 +229,7 @@ let enumsMap: {[index: string]: any} = {
         "DayOfWeekRestriction.ValueEnum": DayOfWeekRestriction.ValueEnum,
         "Duration.UnitEnum": Duration.UnitEnum,
         "EntryModesRestriction.ValueEnum": EntryModesRestriction.ValueEnum,
+        "GrantOffer.ContractTypeEnum": GrantOffer.ContractTypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
@@ -279,6 +298,8 @@ let typeMap: {[index: string]: any} = {
     "BulkAddress": BulkAddress,
     "CALocalAccountIdentification": CALocalAccountIdentification,
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
+    "CapitalBalance": CapitalBalance,
+    "CapitalGrantAccount": CapitalGrantAccount,
     "Card": Card,
     "CardConfiguration": CardConfiguration,
     "CardInfo": CardInfo,
@@ -291,6 +312,10 @@ let typeMap: {[index: string]: any} = {
     "Duration": Duration,
     "EntryModesRestriction": EntryModesRestriction,
     "Expiry": Expiry,
+    "Fee": Fee,
+    "GrantLimit": GrantLimit,
+    "GrantOffer": GrantOffer,
+    "GrantOffers": GrantOffers,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
     "InternationalTransactionRestriction": InternationalTransactionRestriction,
@@ -318,6 +343,8 @@ let typeMap: {[index: string]: any} = {
     "Phone": Phone,
     "PhoneNumber": PhoneNumber,
     "ProcessingTypesRestriction": ProcessingTypesRestriction,
+    "Repayment": Repayment,
+    "RepaymentTerm": RepaymentTerm,
     "RestServiceError": RestServiceError,
     "SELocalAccountIdentification": SELocalAccountIdentification,
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
@@ -325,6 +352,7 @@ let typeMap: {[index: string]: any} = {
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,
     "SweepSchedule": SweepSchedule,
+    "ThresholdRepayment": ThresholdRepayment,
     "TimeOfDay": TimeOfDay,
     "TimeOfDayRestriction": TimeOfDayRestriction,
     "TotalAmountRestriction": TotalAmountRestriction,

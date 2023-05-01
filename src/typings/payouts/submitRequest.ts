@@ -20,7 +20,7 @@ export class SubmitRequest {
     /**
     * The date of birth. Format: ISO-8601; example: YYYY-MM-DD  For Paysafecard it must be the same as used when registering the Paysafecard account.  > This field is mandatory for natural persons.  > This field is required to update the existing `dateOfBirth` that is associated with this recurring contract.
     */
-    'dateOfBirth'?: Date;
+    'dateOfBirth'?: string;
     /**
     * The type of the entity the payout is processed for.  Allowed values: * NaturalPerson * Company > This field is required to update the existing `entityType` that is associated with this recurring contract.
     */
@@ -80,7 +80,7 @@ export class SubmitRequest {
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "Date"
+            "type": "string"
         },
         {
             "name": "entityType",

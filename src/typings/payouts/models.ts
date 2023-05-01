@@ -13,6 +13,7 @@ export * from './amount';
 export * from './bankAccount';
 export * from './card';
 export * from './fraudCheckResult';
+export * from './fraudCheckResultWrapper';
 export * from './fraudResult';
 export * from './fundSource';
 export * from './modifyRequest';
@@ -43,6 +44,7 @@ import { Amount } from './amount';
 import { BankAccount } from './bankAccount';
 import { Card } from './card';
 import { FraudCheckResult } from './fraudCheckResult';
+import { FraudCheckResultWrapper } from './fraudCheckResultWrapper';
 import { FraudResult } from './fraudResult';
 import { FundSource } from './fundSource';
 import { ModifyRequest } from './modifyRequest';
@@ -97,6 +99,7 @@ let typeMap: {[index: string]: any} = {
     "BankAccount": BankAccount,
     "Card": Card,
     "FraudCheckResult": FraudCheckResult,
+    "FraudCheckResultWrapper": FraudCheckResultWrapper,
     "FraudResult": FraudResult,
     "FundSource": FundSource,
     "ModifyRequest": ModifyRequest,
