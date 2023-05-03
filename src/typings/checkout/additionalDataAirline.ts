@@ -10,115 +10,115 @@
 
 export class AdditionalDataAirline {
     /**
-    * Reference number for the invoice, issued by the agency. * minLength: 1 * maxLength: 6
+    * The reference number for the invoice, issued by the agency. * Encoding: ASCII * minLength: 1 character * maxLength: 6 characters
     */
     'airline_agency_invoice_number'?: string;
     /**
-    * 2-letter agency plan identifier; alphabetical. * minLength: 2 * maxLength: 2
+    * The two-letter agency plan identifier. * Encoding: ASCII * minLength: 2 characters * maxLength: 2 characters
     */
     'airline_agency_plan_name'?: string;
     /**
-    * [IATA](https://www.iata.org/services/pages/codes.aspx) 3-digit accounting code (PAX); numeric. It identifies the carrier. * Format: IATA 3-digit accounting code (PAX) * Example: KLM = 074 * minLength: 3 * maxLength: 3
+    * The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-digit accounting code (PAX) that identifies the carrier. * Format: IATA 3-digit accounting code (PAX) * Example: KLM = 074 * minLength: 3 characters * maxLength: 3 characters * Must not be all spaces * Must not be all zeros
     */
     'airline_airline_code'?: string;
     /**
-    * [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter airline code * Example: KLM = KL * minLength: 2 * maxLength: 2
+    * The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. * Encoding: ASCII * Example: KLM = KL * minLength: 2 characters * maxLength: 2 characters * Must not be all spaces * Must not be all zeros
     */
     'airline_airline_designator_code'?: string;
     /**
-    * Chargeable amount for boarding the plane. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes). * minLength: 1 * maxLength: 18
+    * The amount charged for boarding the plane, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 character * maxLength: 18 characters
     */
     'airline_boarding_fee'?: string;
     /**
-    * The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket. * Format: alphanumeric. * minLength: 4 * maxLength: 4
+    * The [CRS](https://en.wikipedia.org/wiki/Computer_reservation_system) used to make the reservation and purchase the ticket. * Encoding: ASCII * minLength: 4 characters * maxLength: 4 characters
     */
     'airline_computerized_reservation_system'?: string;
     /**
-    * Reference number; alphanumeric. * minLength: 0 * maxLength: 20
+    * The alphanumeric customer reference number. * Encoding: ASCII * maxLength: 20 characters * If you send more than 20 characters, the customer reference number is truncated * Must not be all spaces
     */
     'airline_customer_reference_number'?: string;
     /**
-    * Optional 2-digit code; alphanumeric. It identifies the type of product of the transaction. The description of the code may appear on credit card statements. * Format: 2-digit code * Example: Passenger ticket = 01 * minLength: 2 * maxLength: 2
+    * A code that identifies the type of item bought. The description of the code can appear on credit card statements. * Encoding: ASCII * Example: Passenger ticket = 01 * minLength: 2 characters * maxLength: 2 characters
     */
     'airline_document_type'?: string;
     /**
-    * Flight departure date. Local time `(HH:mm)` is optional. * Date format: `yyyy-MM-dd` * Date and time format: `yyyy-MM-dd HH:mm` * minLength: 10 * maxLength: 16
+    * The flight departure date. Local time `(HH:mm)` is optional. * Date format: `yyyy-MM-dd` * Date and time format: `yyyy-MM-dd HH:mm` * minLength: 10 characters * maxLength: 16 characters
     */
     'airline_flight_date'?: string;
     /**
-    * [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX); alphabetical. It identifies the carrier. This field is required/mandatory if the airline data includes leg details. * Format: IATA 2-letter airline code * Example: KLM = KL * minLength: 2 * maxLength: 2
+    * The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM = KL * minLength: 2 characters * maxLength: 2 characters * Must not be all spaces * Must not be all zeros
     */
     'airline_leg_carrier_code'?: string;
     /**
-    * 1-letter travel class identifier; alphabetical. There is no standard; however, the following codes are used rather consistently: * F: first class * J: business class * Y: economy class * W: premium economy  Limitations: * minLength: 1 * maxLength: 1
+    * A one-letter travel class identifier.  The following are common:  * F: first class * J: business class * Y: economy class * W: premium economy  * Encoding: ASCII * minLength: 1 character * maxLength: 1 character * Must not be all spaces * Must not be all zeros
     */
     'airline_leg_class_of_travel'?: string;
     /**
-    *   Date and time of travel. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)-compliant. * Format: `yyyy-MM-dd HH:mm` * minLength: 16 * maxLength: 16
+    *   Date and time of travel in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format `yyyy-MM-dd HH:mm`. * Encoding: ASCII * minLength: 16 characters * maxLength: 16 characters
     */
     'airline_leg_date_of_travel'?: string;
     /**
-    * Alphabetical identifier of the departure airport. This field is required if the airline data includes leg details. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code. * Example: Amsterdam = AMS * minLength: 3 * maxLength: 3
+    * The [IATA](https://www.iata.org/services/pages/codes.aspx) three-letter airport code of the departure airport. This field is required if the airline data includes leg details.  * Encoding: ASCII * Example: Amsterdam = AMS * minLength: 3 characters * maxLength: 3 characters * Must not be all spaces * Must not be all zeros
     */
     'airline_leg_depart_airport'?: string;
     /**
-    * [Departure tax](https://en.wikipedia.org/wiki/Departure_tax). Amount charged by a country to an individual upon their leaving. The transaction amount needs to be represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes). * minLength: 1 * maxLength: 12
+    * The amount of [departure tax](https://en.wikipedia.org/wiki/Departure_tax) charged, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 * maxLength: 12 * Must not be all zeros
     */
     'airline_leg_depart_tax'?: string;
     /**
-    * Alphabetical identifier of the destination/arrival airport. This field is required/mandatory if the airline data includes leg details. * Format: [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code. * Example: Amsterdam = AMS * minLength: 3 * maxLength: 3
+    * The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code of the destination airport. This field is required if the airline data includes leg details. * Example: Amsterdam = AMS * Encoding: ASCII * minLength: 3 characters * maxLength: 3 characters * Must not be all spaces * Must not be all zeros
     */
     'airline_leg_destination_code'?: string;
     /**
-    * [Fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code); alphanumeric. * minLength: 1 * maxLength: 7
+    * The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 6 characters * Must not be all spaces * Must not be all zeros
     */
     'airline_leg_fare_base_code'?: string;
     /**
-    * The flight identifier. * minLength: 1 * maxLength: 5
+    * The flight identifier. * minLength: 1 character * maxLength: 5 characters * Must not be all spaces * Must not be all zeros
     */
     'airline_leg_flight_number'?: string;
     /**
-    * 1-letter code that indicates whether the passenger is entitled to make a stopover. Only two types of characters are allowed: * O: Stopover allowed * X: Stopover not allowed  Limitations: * minLength: 1 * maxLength: 1
+    * A one-letter code that indicates whether the passenger is entitled to make a stopover. Can be a space, O if the passenger is entitled to make a stopover, or X if they are not. * Encoding: ASCII * minLength: 1 character * maxLength: 1 character
     */
     'airline_leg_stop_over_code'?: string;
     /**
-    * Date of birth of the passenger.  Date format: `yyyy-MM-dd` * minLength: 10 * maxLength: 10
+    * The passenger\'s date of birth.  Date format: `yyyy-MM-dd` * minLength: 10 * maxLength: 10
     */
     'airline_passenger_date_of_birth'?: string;
     /**
-    * Passenger first name/given name. > This field is required/mandatory if the airline data includes passenger details or leg details.
+    * The passenger\'s first name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII
     */
     'airline_passenger_first_name'?: string;
     /**
-    * Passenger last name/family name. > This field is required/mandatory if the airline data includes passenger details or leg details.
+    * The passenger\'s last name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII
     */
     'airline_passenger_last_name'?: string;
     /**
-    * Telephone number of the passenger, including country code. This is an alphanumeric field that can include the \'+\' and \'-\' signs. * minLength: 3 * maxLength: 30
+    * The passenger\'s telephone number, including country code. This is an alphanumeric field that can include the \'+\' and \'-\' signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters
     */
     'airline_passenger_telephone_number'?: string;
     /**
-    * Passenger type code (PTC). IATA PTC values are 3-letter alphabetical. Example: ADT, SRC, CNN, INS.  However, several carriers use non-standard codes that can be up to 5 alphanumeric characters. * minLength: 3 * maxLength: 6
+    * The IATA passenger type code (PTC). * Encoding: ASCII * minLength: 3 characters * maxLength: 6 characters
     */
     'airline_passenger_traveller_type'?: string;
     /**
-    * Passenger name, initials, and a title. * Format: last name + first name or initials + title. * Example: *FLYER / MARY MS*. * minLength: 1 * maxLength: 49
+    * The passenger\'s name, initials, and title. * Format: last name + first name or initials + title * Example: *FLYER / MARY MS* * minLength: 1 character * maxLength: 20 characters * If you send more than 20 characters, the name is truncated * Must not be all spaces * Must not be all zeros
     */
     'airline_passenger_name': string;
     /**
-    * Address of the place/agency that issued the ticket. * minLength: 0 * maxLength: 16
+    * The address of the organization that issued the ticket. * minLength: 0 characters * maxLength: 16 characters
     */
     'airline_ticket_issue_address'?: string;
     /**
-    * The ticket\'s unique identifier. * minLength: 1 * maxLength: 150
+    * The ticket\'s unique identifier. * minLength: 1 character * maxLength: 15 characters * Must not be all spaces * Must not be all zeros
     */
     'airline_ticket_number'?: string;
     /**
-    * IATA number, also ARC number or ARC/IATA number. Unique identifier number for travel agencies. * minLength: 1 * maxLength: 8
+    * The unique identifier from IATA or ARC for the travel agency that issues the ticket. * Encoding: ASCII * minLength: 1 character * maxLength: 8 characters * Must not be all spaces * Must not be all zeros
     */
     'airline_travel_agency_code'?: string;
     /**
-    * The name of the travel agency. * minLength: 1 * maxLength: 25
+    * The name of the travel agency.  * Encoding: ASCII * minLength: 1 character * maxLength: 25 characters * Must not be all spaces * Must not be all zeros
     */
     'airline_travel_agency_name'?: string;
 
