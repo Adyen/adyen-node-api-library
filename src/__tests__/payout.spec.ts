@@ -30,7 +30,7 @@ const amountAndReference = {
 };
 
 const defaultData = {
-    dateOfBirth: new Date(),
+    dateOfBirth: "1980-01-01",
     nationality: "NL",
     shopperEmail: "johndoe@email.com",
     shopperReference: "shopperReference",
