@@ -9,6 +9,7 @@
 
 import { Amount } from './amount';
 import { CounterpartyInfoV3 } from './counterpartyInfoV3';
+import { UltimatePartyIdentification } from './ultimatePartyIdentification';
 
 export class TransferInfo {
     'amount': Amount;
@@ -45,6 +46,7 @@ export class TransferInfo {
     *  A reference that is sent to the recipient. This reference is also sent in all notification webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
     'referenceForBeneficiary'?: string;
+    'ultimateParty'?: UltimatePartyIdentification;
 
     static discriminator: string | undefined = undefined;
 
@@ -98,6 +100,11 @@ export class TransferInfo {
             "name": "referenceForBeneficiary",
             "baseName": "referenceForBeneficiary",
             "type": "string"
+        },
+        {
+            "name": "ultimateParty",
+            "baseName": "ultimateParty",
+            "type": "UltimatePartyIdentification"
         }    ];
 
     static getAttributeTypeMap() {

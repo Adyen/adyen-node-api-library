@@ -10,71 +10,71 @@
 
 export class AdditionalDataLevel23 {
     /**
-    * Customer code, if supplied by a customer.  Encoding: ASCII.  Max length: 25 characters.  > Required for Level 2 and Level 3 data.
+    * The customer code, if supplied by a customer.  Encoding: ASCII  Max length: 25 characters  Must not start with a space or be all spaces  Must not be all zeros
     */
     'enhancedSchemeData_customerReference'?: string;
     /**
-    * Destination country code.  Encoding: ASCII.  Max length: 3 characters.
+    * The three-letter [ISO 3166-1 alpha-3 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) for the destination address.  Encoding: ASCII  Fixed length: 3 characters
     */
     'enhancedSchemeData_destinationCountryCode'?: string;
     /**
-    * The postal code of a destination address.  Encoding: ASCII.  Max length: 10 characters.  > Required for American Express.
+    * The postal code of the destination address.  Encoding: ASCII  Max length: 10 characters  Must not start with a space
     */
     'enhancedSchemeData_destinationPostalCode'?: string;
     /**
-    * Destination state or province code.  Encoding: ASCII.Max length: 3 characters.
+    * Destination state or province code.  Encoding: ASCII  Max length: 3 characters  Must not start with a space
     */
     'enhancedSchemeData_destinationStateProvinceCode'?: string;
     /**
-    * Duty amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
+    * The duty amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters
     */
     'enhancedSchemeData_dutyAmount'?: string;
     /**
-    * Shipping amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
+    * The shipping amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters
     */
     'enhancedSchemeData_freightAmount'?: string;
     /**
-    * Item commodity code.  Encoding: ASCII.  Max length: 12 characters.
+    * The [UNSPC commodity code](https://www.unspsc.org/) of the item.  Encoding: ASCII  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros
     */
     'enhancedSchemeData_itemDetailLine_itemNr_commodityCode'?: string;
     /**
-    * Item description.  Encoding: ASCII.  Max length: 26 characters.
+    * A description of the item.  Encoding: ASCII  Max length: 26 characters  Must not start with a space or be all spaces  Must not be all zeros
     */
     'enhancedSchemeData_itemDetailLine_itemNr_description'?: string;
     /**
-    * Discount amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
+    * The discount amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters
     */
     'enhancedSchemeData_itemDetailLine_itemNr_discountAmount'?: string;
     /**
-    * Product code.  Encoding: ASCII.  Max length: 12 characters.
+    * The product code.  Encoding: ASCII.  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros
     */
     'enhancedSchemeData_itemDetailLine_itemNr_productCode'?: string;
     /**
-    * Quantity, specified as an integer value.  Value must be greater than 0.  Max length: 12 characters.
+    * The number of items. Must be an integer greater than zero.  Encoding: Numeric  Max length: 12 characters  Must not start with a space or be all spaces  
     */
     'enhancedSchemeData_itemDetailLine_itemNr_quantity'?: string;
     /**
-    * Total amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.
+    * The total amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Max length: 12 characters  Must not start with a space or be all spaces  Must not be all zeros
     */
     'enhancedSchemeData_itemDetailLine_itemNr_totalAmount'?: string;
     /**
-    * Item unit of measurement.  Encoding: ASCII.  Max length: 3 characters.
+    * The unit of measurement for an item.  Encoding: ASCII  Max length: 3 characters  Must not start with a space or be all spaces  Must not be all zeros
     */
     'enhancedSchemeData_itemDetailLine_itemNr_unitOfMeasure'?: string;
     /**
-    * Unit price, specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).  Max length: 12 characters.
+    * The unit price in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters
     */
     'enhancedSchemeData_itemDetailLine_itemNr_unitPrice'?: string;
     /**
-    * Order date. * Format: `ddMMyy`  Encoding: ASCII.  Max length: 6 characters.
+    * The order date. * Format: `ddMMyy`  Encoding: ASCII  Max length: 6 characters
     */
     'enhancedSchemeData_orderDate'?: string;
     /**
-    * The postal code of a \"ship-from\" address.  Encoding: ASCII.  Max length: 10 characters.
+    * The postal code of the address the item is shipped from.  Encoding: ASCII  Max length: 10 characters  Must not start with a space or be all spaces  Must not be all zeros
     */
     'enhancedSchemeData_shipFromPostalCode'?: string;
     /**
-    * Total tax amount, in minor units.  For example, 2000 means USD 20.00.  Max length: 12 characters.  > Required for Level 2 and Level 3 data.
+    * The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).  For example, 2000 means USD 20.00.  Encoding: Numeric  Max length: 12 characters  
     */
     'enhancedSchemeData_totalTaxAmount'?: string;
 

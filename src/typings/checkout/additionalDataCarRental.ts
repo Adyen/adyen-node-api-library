@@ -10,95 +10,95 @@
 
 export class AdditionalDataCarRental {
     /**
-    * Pick-up date. * Date format: `yyyyMMdd`
+    * The pick-up date. * Date format: `yyyyMMdd`
     */
     'carRental_checkOutDate'?: string;
     /**
-    * The customer service phone number of the car rental company. * Format: Alphanumeric * maxLength: 17
+    * The customer service phone number of the car rental company. * Format: Alphanumeric * maxLength: 17 * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -
     */
     'carRental_customerServiceTollFreeNumber'?: string;
     /**
-    * Number of days for which the car is being rented. * Format: Numeric * maxLength: 19
+    * Number of days for which the car is being rented. * Format: Numeric * maxLength: 2 * Must not be all spaces
     */
     'carRental_daysRented'?: string;
     /**
-    * Any fuel charges associated with the rental. * Format: Numeric * maxLength: 12
+    * Any fuel charges associated with the rental, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: Numeric * maxLength: 12
     */
     'carRental_fuelCharges'?: string;
     /**
-    * Any insurance charges associated with the rental. * Format: Numeric * maxLength: 12
+    * Any insurance charges associated with the rental, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: Numeric * maxLength: 12 * Must not be all spaces * Must not be all zeros
     */
     'carRental_insuranceCharges'?: string;
     /**
-    * The city from which the car is rented. * Format: Alphanumeric * maxLength: 18
+    * The city where the car is rented. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces * Must not be all zeros
     */
     'carRental_locationCity'?: string;
     /**
-    * The country from which the car is rented. * Format: Alphanumeric * maxLength: 2
+    * The country where the car is rented, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. * Format: Alphanumeric * maxLength: 2
     */
     'carRental_locationCountry'?: string;
     /**
-    * The state or province from where the car is rented. * Format: Alphanumeric * maxLength: 3
+    * The state or province where the car is rented. * Format: Alphanumeric * maxLength: 2 * Must not start with a space or be all spaces * Must not be all zeros
     */
     'carRental_locationStateProvince'?: string;
     /**
-    * Indicates if the customer was a \"no-show\" (neither keeps nor cancels their booking). * Y - Customer was a no show. * N - Not applicable.
+    * Indicates if the customer didn\'t pick up their rental car. * Y - Customer did not pick up their car * N - Not applicable
     */
     'carRental_noShowIndicator'?: string;
     /**
-    * Charge associated with not returning a vehicle to the original rental location.
+    * The charge for not returning a car to the original rental location, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * maxLength: 12
     */
     'carRental_oneWayDropOffCharges'?: string;
     /**
-    * Daily rental rate. * Format: Alphanumeric * maxLength: 12
+    * The daily rental rate, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: Alphanumeric * maxLength: 12
     */
     'carRental_rate'?: string;
     /**
-    * Specifies whether the given rate is applied daily or weekly. * D - Daily rate. * W - Weekly rate.
+    * Specifies whether the given rate is applied daily or weekly. * D - Daily rate * W - Weekly rate
     */
     'carRental_rateIndicator'?: string;
     /**
-    * The rental agreement number associated with this car rental. * Format: Alphanumeric * maxLength: 9
+    * The rental agreement number for the car rental. * Format: Alphanumeric * maxLength: 9 * Must not start with a space or be all spaces * Must not be all zeros
     */
     'carRental_rentalAgreementNumber'?: string;
     /**
-    * Daily rental rate. * Format: Alphanumeric * maxLength: 12
+    * The classification of the rental car. * Format: Alphanumeric * maxLength: 4 * Must not start with a space or be all spaces * Must not be all zeros
     */
     'carRental_rentalClassId'?: string;
     /**
-    * The name of the person renting the car. * Format: Alphanumeric * maxLength: 26
+    * The name of the person renting the car. * Format: Alphanumeric * maxLength: 26 * If you send more than 26 characters, the name is truncated * Must not start with a space or be all spaces * Must not be all zeros
     */
     'carRental_renterName'?: string;
     /**
-    * The city where the car must be returned. * Format: Alphanumeric * maxLength: 18
+    * The city where the car must be returned. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces * Must not be all zeros
     */
     'carRental_returnCity'?: string;
     /**
-    * The country where the car must be returned. * Format: Alphanumeric * maxLength: 2
+    * The country where the car must be returned, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. * Format: Alphanumeric * maxLength: 2
     */
     'carRental_returnCountry'?: string;
     /**
-    * The last date to return the car by. * Date format: `yyyyMMdd`
+    * The last date to return the car by. * Date format: `yyyyMMdd` * maxLength: 8
     */
     'carRental_returnDate'?: string;
     /**
-    * Agency code, phone number, or address abbreviation * Format: Alphanumeric * maxLength: 10
+    * The agency code, phone number, or address abbreviation * Format: Alphanumeric * maxLength: 10 * Must not start with a space or be all spaces * Must not be all zeros
     */
     'carRental_returnLocationId'?: string;
     /**
-    * The state or province where the car must be returned. * Format: Alphanumeric * maxLength: 3
+    * The state or province where the car must be returned. * Format: Alphanumeric * maxLength: 3 * Must not start with a space or be all spaces * Must not be all zeros
     */
     'carRental_returnStateProvince'?: string;
     /**
-    * Indicates whether the goods or services were tax-exempt, or tax was not collected.  Values: * Y - Goods or services were tax exempt * N - Tax was not collected
+    * Indicates if the goods or services were tax-exempt, or if tax was not paid on them.  Values: * Y - Goods or services were tax exempt * N - Tax was not collected
     */
     'carRental_taxExemptIndicator'?: string;
     /**
-    * Number of nights.  This should be included in the auth message. * Format: Numeric * maxLength: 2
+    * Number of days the car is rented for. This should be included in the auth message. * Format: Numeric * maxLength: 2
     */
     'travelEntertainmentAuthData_duration'?: string;
     /**
-    * Indicates what market-specific dataset will be submitted or is being submitted. Value should be \"A\" for Car rental. This should be included in the auth message. * Format: Alphanumeric * maxLength: 1
+    * Indicates what market-specific dataset will be submitted or is being submitted. Value should be \'A\' for car rental. This should be included in the auth message. * Format: Alphanumeric * maxLength: 1
     */
     'travelEntertainmentAuthData_market'?: string;
 

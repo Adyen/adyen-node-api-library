@@ -10,6 +10,9 @@
 import { CapabilityProblemEntityRecursive } from './capabilityProblemEntityRecursive';
 
 export class CapabilityProblemEntity {
+    /**
+    * List of document IDs corresponding to the verification errors from capabilities.
+    */
     'documents'?: Array<string>;
     'id'?: string;
     'owner'?: CapabilityProblemEntityRecursive;

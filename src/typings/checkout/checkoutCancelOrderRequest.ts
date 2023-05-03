@@ -7,14 +7,14 @@
  * Do not edit this class manually.
  */
 
-import { CheckoutOrder } from './checkoutOrder';
+import { EncryptedOrderData } from './encryptedOrderData';
 
 export class CheckoutCancelOrderRequest {
     /**
     * The merchant account identifier that orderData belongs to.
     */
     'merchantAccount': string;
-    'order': CheckoutOrder;
+    'order': EncryptedOrderData;
 
     static discriminator: string | undefined = undefined;
 
@@ -27,7 +27,7 @@ export class CheckoutCancelOrderRequest {
         {
             "name": "order",
             "baseName": "order",
-            "type": "CheckoutOrder"
+            "type": "EncryptedOrderData"
         }    ];
 
     static getAttributeTypeMap() {

@@ -9,7 +9,7 @@
 
 import { Address2 } from './address2';
 
-export class PartyIdentification2 {
+export class UltimatePartyIdentification {
     'address'?: Address2;
     /**
     * The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when `type` is **individual**.
@@ -34,7 +34,7 @@ export class PartyIdentification2 {
     /**
     * The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**.
     */
-    'type'?: PartyIdentification2.TypeEnum;
+    'type'?: UltimatePartyIdentification.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -72,15 +72,15 @@ export class PartyIdentification2 {
         {
             "name": "type",
             "baseName": "type",
-            "type": "PartyIdentification2.TypeEnum"
+            "type": "UltimatePartyIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return PartyIdentification2.attributeTypeMap;
+        return UltimatePartyIdentification.attributeTypeMap;
     }
 }
 
-export namespace PartyIdentification2 {
+export namespace UltimatePartyIdentification {
     export enum TypeEnum {
         Individual = 'individual',
         Organization = 'organization',

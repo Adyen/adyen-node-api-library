@@ -9,6 +9,9 @@
 
 
 export class CapabilityProblemEntityRecursive {
+    /**
+    * List of document IDs corresponding to the verification errors from capabilities.
+    */
     'documents'?: Array<string>;
     'id'?: string;
     'type'?: CapabilityProblemEntityRecursive.TypeEnum;
