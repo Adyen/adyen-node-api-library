@@ -8,7 +8,7 @@
  */
 
 
-export class CheckoutOrder {
+export class EncryptedOrderData {
     /**
     * The encrypted order data.
     */
@@ -33,7 +33,7 @@ export class CheckoutOrder {
         }    ];
 
     static getAttributeTypeMap() {
-        return CheckoutOrder.attributeTypeMap;
+        return EncryptedOrderData.attributeTypeMap;
     }
 }
 

@@ -20,11 +20,11 @@ export class Card {
     /**
     * The card expiry year. Format: 4 digits. For example: 2020
     */
-    'expiryYear': string;
+    'expiryYear'?: string;
     /**
     * The name of the cardholder, as printed on the card.
     */
-    'holderName': string;
+    'holderName'?: string;
     /**
     * The issue number of the card (for some UK debit cards only).
     */

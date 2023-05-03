@@ -9,9 +9,13 @@
 
 import { Amount } from './amount';
 import { CounterpartyV3 } from './counterpartyV3';
+import { PaymentInstrument } from './paymentInstrument';
+import { ResourceReference } from './resourceReference';
 
 export class Transfer {
+    'accountHolder'?: ResourceReference;
     'amount': Amount;
+    'balanceAccount'?: ResourceReference;
     /**
     * The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
     */
@@ -33,8 +37,9 @@ export class Transfer {
     * The ID of the resource.
     */
     'id'?: string;
+    'paymentInstrument'?: PaymentInstrument;
     /**
-    * The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
+    * The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) used in the transfer.
     */
     'paymentInstrumentId'?: string;
     /**
@@ -62,9 +67,19 @@ export class Transfer {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "accountHolder",
+            "baseName": "accountHolder",
+            "type": "ResourceReference"
+        },
+        {
             "name": "amount",
             "baseName": "amount",
             "type": "Amount"
+        },
+        {
+            "name": "balanceAccount",
+            "baseName": "balanceAccount",
+            "type": "ResourceReference"
         },
         {
             "name": "balanceAccountId",
@@ -95,6 +110,11 @@ export class Transfer {
             "name": "id",
             "baseName": "id",
             "type": "string"
+        },
+        {
+            "name": "paymentInstrument",
+            "baseName": "paymentInstrument",
+            "type": "PaymentInstrument"
         },
         {
             "name": "paymentInstrumentId",

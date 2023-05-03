@@ -8,7 +8,7 @@
  */
 
 import { Amount } from './amount';
-import { CheckoutOrder } from './checkoutOrder';
+import { EncryptedOrderData } from './encryptedOrderData';
 
 export class PaymentMethodsRequest {
     /**
@@ -16,12 +16,12 @@ export class PaymentMethodsRequest {
     */
     'additionalData'?: { [key: string]: string; };
     /**
-    * List of payment methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+    * List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
     'allowedPaymentMethods'?: Array<string>;
     'amount'?: Amount;
     /**
-    * List of payment methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type` from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+    * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
     'blockedPaymentMethods'?: Array<string>;
     /**
@@ -36,7 +36,7 @@ export class PaymentMethodsRequest {
     * The merchant account identifier, with which you want to process the transaction.
     */
     'merchantAccount': string;
-    'order'?: CheckoutOrder;
+    'order'?: EncryptedOrderData;
     /**
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
@@ -95,7 +95,7 @@ export class PaymentMethodsRequest {
         {
             "name": "order",
             "baseName": "order",
-            "type": "CheckoutOrder"
+            "type": "EncryptedOrderData"
         },
         {
             "name": "shopperLocale",
