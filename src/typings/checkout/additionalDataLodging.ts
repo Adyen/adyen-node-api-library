@@ -10,71 +10,67 @@
 
 export class AdditionalDataLodging {
     /**
-    * The arrival date. * Date format: `yyyyMMdd`
+    * The arrival date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**.
     */
     'lodging_checkInDate'?: string;
     /**
-    * The departure date. * Date format: `yyyyMMdd`
+    * The departure date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**.
     */
     'lodging_checkOutDate'?: string;
     /**
-    * The toll free phone number for the hotel/lodgings. * Format: Alphanumeric * maxLength: 17
+    * The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -
     */
     'lodging_customerServiceTollFreeNumber'?: string;
     /**
-    * Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Values can be: \'Y\' or \'N\'. * Format: Alphabetic * maxLength: 1
+    * Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Must be \'Y\' or \'N\'. * Format: alphabetic * Max length: 1 character
     */
     'lodging_fireSafetyActIndicator'?: string;
     /**
-    * The folio cash advances. * Format: Numeric * maxLength: 12
+    * The folio cash advances, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters
     */
     'lodging_folioCashAdvances'?: string;
     /**
-    * Card acceptor’s internal invoice or billing ID reference number. * Format: Alphanumeric * maxLength: 25
+    * The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters. * Must not start with a space * Must not be all zeros
     */
     'lodging_folioNumber'?: string;
     /**
-    * Any charges for food and beverages associated with the booking. * Format: Numeric * maxLength: 12
+    * Any charges for food and beverages associated with the booking, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters
     */
     'lodging_foodBeverageCharges'?: string;
     /**
-    * Indicates if the customer was a \"no-show\" (neither keeps nor cancels their booking).  Value should be Y or N. * Format: Numeric * maxLength: 1
+    * Indicates if the customer didn\'t check in for their booking.  Possible values:  * **Y**: the customer didn\'t check in  * **N**: the customer checked in
     */
     'lodging_noShowIndicator'?: string;
     /**
-    * Prepaid expenses for the booking. * Format: Numeric * maxLength: 12
+    * The prepaid expenses for the booking. * Format: numeric * Max length: 12 characters
     */
     'lodging_prepaidExpenses'?: string;
     /**
-    * Identifies specific lodging property location by its local phone number. * Format: Alphanumeric * maxLength: 17
+    * The lodging property location\'s phone number. * Format: numeric. * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -
     */
     'lodging_propertyPhoneNumber'?: string;
     /**
-    * Total number of nights the room will be rented. * Format: Numeric * maxLength: 4
+    * The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 2 characters
     */
     'lodging_room1_numberOfNights'?: string;
     /**
-    * The rate of the room. * Format: Numeric * maxLength: 12
+    * The rate for the room, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
     */
     'lodging_room1_rate'?: string;
     /**
-    * The total amount of tax to be paid. * Format: Numeric * maxLength: 12
-    */
-    'lodging_room1_tax'?: string;
-    /**
-    * Total room tax amount. * Format: Numeric * maxLength: 12
+    * The total room tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
     */
     'lodging_totalRoomTax'?: string;
     /**
-    * Total tax amount. * Format: Numeric * maxLength: 12
+    * The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
     */
     'lodging_totalTax'?: string;
     /**
-    * Number of nights. This should be included in the auth message. * Format: Numeric * maxLength: 2
+    * The number of nights. This should be included in the auth message. * Format: numeric * Max length: 2 characters
     */
     'travelEntertainmentAuthData_duration'?: string;
     /**
-    * Indicates what market-specific dataset will be submitted or is being submitted. Value should be \"H\" for Hotel. This should be included in the auth message.  * Format: Alphanumeric * maxLength: 1
+    * Indicates what market-specific dataset will be submitted. Must be \'H\' for Hotel. This should be included in the auth message.  * Format: alphanumeric * Max length: 1 character
     */
     'travelEntertainmentAuthData_market'?: string;
 
@@ -139,11 +135,6 @@ export class AdditionalDataLodging {
         {
             "name": "lodging_room1_rate",
             "baseName": "lodging.room1.rate",
-            "type": "string"
-        },
-        {
-            "name": "lodging_room1_tax",
-            "baseName": "lodging.room1.tax",
             "type": "string"
         },
         {

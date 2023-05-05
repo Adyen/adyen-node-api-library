@@ -32,6 +32,8 @@ export * from './nameLocation';
 export * from './numberAndBicAccountIdentification';
 export * from './pLLocalAccountIdentification';
 export * from './partyIdentification2';
+export * from './paymentInstrument';
+export * from './resourceReference';
 export * from './restServiceError';
 export * from './sELocalAccountIdentification';
 export * from './sGLocalAccountIdentification';
@@ -41,6 +43,7 @@ export * from './transfer';
 export * from './transferInfo';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
+export * from './ultimatePartyIdentification';
 
 
 import { AULocalAccountIdentification } from './aULocalAccountIdentification';
@@ -67,6 +70,8 @@ import { NameLocation } from './nameLocation';
 import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentification';
 import { PLLocalAccountIdentification } from './pLLocalAccountIdentification';
 import { PartyIdentification2 } from './partyIdentification2';
+import { PaymentInstrument } from './paymentInstrument';
+import { ResourceReference } from './resourceReference';
 import { RestServiceError } from './restServiceError';
 import { SELocalAccountIdentification } from './sELocalAccountIdentification';
 import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
@@ -76,6 +81,7 @@ import { Transfer } from './transfer';
 import { TransferInfo } from './transferInfo';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
+import { UltimatePartyIdentification } from './ultimatePartyIdentification';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -118,6 +124,7 @@ let enumsMap: {[index: string]: any} = {
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
+        "UltimatePartyIdentification.TypeEnum": UltimatePartyIdentification.TypeEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -145,6 +152,8 @@ let typeMap: {[index: string]: any} = {
     "NumberAndBicAccountIdentification": NumberAndBicAccountIdentification,
     "PLLocalAccountIdentification": PLLocalAccountIdentification,
     "PartyIdentification2": PartyIdentification2,
+    "PaymentInstrument": PaymentInstrument,
+    "ResourceReference": ResourceReference,
     "RestServiceError": RestServiceError,
     "SELocalAccountIdentification": SELocalAccountIdentification,
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
@@ -154,6 +163,7 @@ let typeMap: {[index: string]: any} = {
     "TransferInfo": TransferInfo,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,
+    "UltimatePartyIdentification": UltimatePartyIdentification,
 }
 
 export class ObjectSerializer {

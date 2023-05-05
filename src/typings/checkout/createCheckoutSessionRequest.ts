@@ -31,7 +31,7 @@ export class CreateCheckoutSessionRequest {
     */
     'additionalData'?: { [key: string]: string; };
     /**
-    * List of payment methods to be presented to the shopper. To refer to payment methods, use their `paymentMethod.type`from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+    * List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
     'allowedPaymentMethods'?: Array<string>;
     'amount': Amount;
@@ -39,7 +39,7 @@ export class CreateCheckoutSessionRequest {
     'authenticationData'?: AuthenticationData;
     'billingAddress'?: Address;
     /**
-    * List of payment methods to be hidden from the shopper. To refer to payment methods, use their `paymentMethod.type`from [Payment methods overview](https://docs.adyen.com/payment-methods).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+    * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
     'blockedPaymentMethods'?: Array<string>;
     /**

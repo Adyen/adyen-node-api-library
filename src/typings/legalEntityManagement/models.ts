@@ -19,7 +19,6 @@ export * from './businessLine';
 export * from './businessLineInfo';
 export * from './businessLineInfoUpdate';
 export * from './businessLines';
-export * from './calculateTermsOfServiceStatusResponse';
 export * from './capabilityProblem';
 export * from './capabilityProblemEntity';
 export * from './capabilityProblemEntityRecursive';
@@ -27,6 +26,10 @@ export * from './capabilitySettings';
 export * from './document';
 export * from './documentReference';
 export * from './entityReference';
+export * from './generatePciDescriptionRequest';
+export * from './generatePciDescriptionResponse';
+export * from './getPciQuestionnaireInfosResponse';
+export * from './getPciQuestionnaireResponse';
 export * from './getTermsOfServiceAcceptanceInfosResponse';
 export * from './getTermsOfServiceDocumentRequest';
 export * from './getTermsOfServiceDocumentResponse';
@@ -44,6 +47,9 @@ export * from './onboardingTheme';
 export * from './onboardingThemes';
 export * from './organization';
 export * from './ownerEntity';
+export * from './pciDocumentInfo';
+export * from './pciSigningRequest';
+export * from './pciSigningResponse';
 export * from './phoneNumber';
 export * from './remediatingAction';
 export * from './serviceError';
@@ -74,7 +80,6 @@ import { BusinessLine } from './businessLine';
 import { BusinessLineInfo } from './businessLineInfo';
 import { BusinessLineInfoUpdate } from './businessLineInfoUpdate';
 import { BusinessLines } from './businessLines';
-import { CalculateTermsOfServiceStatusResponse } from './calculateTermsOfServiceStatusResponse';
 import { CapabilityProblem } from './capabilityProblem';
 import { CapabilityProblemEntity } from './capabilityProblemEntity';
 import { CapabilityProblemEntityRecursive } from './capabilityProblemEntityRecursive';
@@ -82,6 +87,10 @@ import { CapabilitySettings } from './capabilitySettings';
 import { Document } from './document';
 import { DocumentReference } from './documentReference';
 import { EntityReference } from './entityReference';
+import { GeneratePciDescriptionRequest } from './generatePciDescriptionRequest';
+import { GeneratePciDescriptionResponse } from './generatePciDescriptionResponse';
+import { GetPciQuestionnaireInfosResponse } from './getPciQuestionnaireInfosResponse';
+import { GetPciQuestionnaireResponse } from './getPciQuestionnaireResponse';
 import { GetTermsOfServiceAcceptanceInfosResponse } from './getTermsOfServiceAcceptanceInfosResponse';
 import { GetTermsOfServiceDocumentRequest } from './getTermsOfServiceDocumentRequest';
 import { GetTermsOfServiceDocumentResponse } from './getTermsOfServiceDocumentResponse';
@@ -99,6 +108,9 @@ import { OnboardingTheme } from './onboardingTheme';
 import { OnboardingThemes } from './onboardingThemes';
 import { Organization } from './organization';
 import { OwnerEntity } from './ownerEntity';
+import { PciDocumentInfo } from './pciDocumentInfo';
+import { PciSigningRequest } from './pciSigningRequest';
+import { PciSigningResponse } from './pciSigningResponse';
 import { PhoneNumber } from './phoneNumber';
 import { RemediatingAction } from './remediatingAction';
 import { ServiceError } from './serviceError';
@@ -131,7 +143,6 @@ let primitives = [
 
 let enumsMap: {[index: string]: any} = {
         "AcceptTermsOfServiceResponse.TypeEnum": AcceptTermsOfServiceResponse.TypeEnum,
-        "CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum": CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum,
         "CapabilityProblemEntity.TypeEnum": CapabilityProblemEntity.TypeEnum,
         "CapabilityProblemEntityRecursive.TypeEnum": CapabilityProblemEntityRecursive.TypeEnum,
         "CapabilitySettings.FundingSourceEnum": CapabilitySettings.FundingSourceEnum,
@@ -175,7 +186,6 @@ let typeMap: {[index: string]: any} = {
     "BusinessLineInfo": BusinessLineInfo,
     "BusinessLineInfoUpdate": BusinessLineInfoUpdate,
     "BusinessLines": BusinessLines,
-    "CalculateTermsOfServiceStatusResponse": CalculateTermsOfServiceStatusResponse,
     "CapabilityProblem": CapabilityProblem,
     "CapabilityProblemEntity": CapabilityProblemEntity,
     "CapabilityProblemEntityRecursive": CapabilityProblemEntityRecursive,
@@ -183,6 +193,10 @@ let typeMap: {[index: string]: any} = {
     "Document": Document,
     "DocumentReference": DocumentReference,
     "EntityReference": EntityReference,
+    "GeneratePciDescriptionRequest": GeneratePciDescriptionRequest,
+    "GeneratePciDescriptionResponse": GeneratePciDescriptionResponse,
+    "GetPciQuestionnaireInfosResponse": GetPciQuestionnaireInfosResponse,
+    "GetPciQuestionnaireResponse": GetPciQuestionnaireResponse,
     "GetTermsOfServiceAcceptanceInfosResponse": GetTermsOfServiceAcceptanceInfosResponse,
     "GetTermsOfServiceDocumentRequest": GetTermsOfServiceDocumentRequest,
     "GetTermsOfServiceDocumentResponse": GetTermsOfServiceDocumentResponse,
@@ -200,6 +214,9 @@ let typeMap: {[index: string]: any} = {
     "OnboardingThemes": OnboardingThemes,
     "Organization": Organization,
     "OwnerEntity": OwnerEntity,
+    "PciDocumentInfo": PciDocumentInfo,
+    "PciSigningRequest": PciSigningRequest,
+    "PciSigningResponse": PciSigningResponse,
     "PhoneNumber": PhoneNumber,
     "RemediatingAction": RemediatingAction,
     "ServiceError": ServiceError,

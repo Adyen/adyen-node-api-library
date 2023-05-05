@@ -44,7 +44,11 @@ describe("Recurring", (): void => {
         const result = await recurringService.listRecurringDetails(request);
         
         expect(result).toBeTruthy();
-        expect(result.details?.[0].recurringDetailReference).toBe("recurringReference");
+        if(result.details) {
+            expect(result?.details[0]?.RecurringDetail?.recurringDetailReference).toBe("HW9LL9ML73M84H82");
+        } else {
+            fail("result did not contain any details");
+        }
     });
 
     test("should disable", async (): Promise<void> => {

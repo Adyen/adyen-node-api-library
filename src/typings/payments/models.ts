@@ -44,6 +44,7 @@ export * from './donationRequest';
 export * from './externalPlatform';
 export * from './forexQuote';
 export * from './fraudCheckResult';
+export * from './fraudCheckResultWrapper';
 export * from './fraudResult';
 export * from './fundDestination';
 export * from './fundSource';
@@ -123,6 +124,7 @@ import { DonationRequest } from './donationRequest';
 import { ExternalPlatform } from './externalPlatform';
 import { ForexQuote } from './forexQuote';
 import { FraudCheckResult } from './fraudCheckResult';
+import { FraudCheckResultWrapper } from './fraudCheckResultWrapper';
 import { FraudResult } from './fraudResult';
 import { FundDestination } from './fundDestination';
 import { FundSource } from './fundSource';
@@ -270,6 +272,7 @@ let typeMap: {[index: string]: any} = {
     "ExternalPlatform": ExternalPlatform,
     "ForexQuote": ForexQuote,
     "FraudCheckResult": FraudCheckResult,
+    "FraudCheckResultWrapper": FraudCheckResultWrapper,
     "FraudResult": FraudResult,
     "FundDestination": FundDestination,
     "FundSource": FundSource,

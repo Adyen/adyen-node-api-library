@@ -10,6 +10,7 @@
 
 export class PlatformChargebackLogic {
     'behavior'?: PlatformChargebackLogic.BehaviorEnum;
+    'costAllocationAccount'?: string;
     'targetAccount'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -19,6 +20,11 @@ export class PlatformChargebackLogic {
             "name": "behavior",
             "baseName": "behavior",
             "type": "PlatformChargebackLogic.BehaviorEnum"
+        },
+        {
+            "name": "costAllocationAccount",
+            "baseName": "costAllocationAccount",
+            "type": "string"
         },
         {
             "name": "targetAccount",

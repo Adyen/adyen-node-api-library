@@ -21,6 +21,10 @@ export class TransferInstrumentReference {
     * Four last digits of the bank account number.
     */
     'realLastFour'?: string;
+    /**
+    * Identifies if the TI was created from a trusted source.
+    */
+    'trustedSource'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +43,11 @@ export class TransferInstrumentReference {
             "name": "realLastFour",
             "baseName": "realLastFour",
             "type": "string"
+        },
+        {
+            "name": "trustedSource",
+            "baseName": "trustedSource",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

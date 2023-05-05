@@ -9,9 +9,13 @@
 
 import { Amount } from './amount';
 import { CounterpartyV3 } from './counterpartyV3';
+import { PaymentInstrument } from './paymentInstrument';
+import { ResourceReference } from './resourceReference';
 
 export class Transfer {
+    'accountHolder'?: ResourceReference;
     'amount': Amount;
+    'balanceAccount'?: ResourceReference;
     /**
     * The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
     */
@@ -22,7 +26,7 @@ export class Transfer {
     'category': Transfer.CategoryEnum;
     'counterparty': CounterpartyV3;
     /**
-    * A human-readable description for the transfer. You can use alphanumeric characters and hyphens. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.
+    * Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , \' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ \' \" ! ?**
     */
     'description'?: string;
     /**
@@ -33,8 +37,9 @@ export class Transfer {
     * The ID of the resource.
     */
     'id'?: string;
+    'paymentInstrument'?: PaymentInstrument;
     /**
-    * The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
+    * The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) used in the transfer.
     */
     'paymentInstrumentId'?: string;
     /**
@@ -62,9 +67,19 @@ export class Transfer {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "accountHolder",
+            "baseName": "accountHolder",
+            "type": "ResourceReference"
+        },
+        {
             "name": "amount",
             "baseName": "amount",
             "type": "Amount"
+        },
+        {
+            "name": "balanceAccount",
+            "baseName": "balanceAccount",
+            "type": "ResourceReference"
         },
         {
             "name": "balanceAccountId",
@@ -95,6 +110,11 @@ export class Transfer {
             "name": "id",
             "baseName": "id",
             "type": "string"
+        },
+        {
+            "name": "paymentInstrument",
+            "baseName": "paymentInstrument",
+            "type": "PaymentInstrument"
         },
         {
             "name": "paymentInstrumentId",

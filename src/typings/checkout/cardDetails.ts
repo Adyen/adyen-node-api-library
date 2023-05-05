@@ -75,7 +75,7 @@ export class CardDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
-    * Version of the 3D Secure 2 mobile SDK.
+    * Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
     */
     'threeDS2SdkVersion'?: string;
     /**

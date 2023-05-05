@@ -55,7 +55,6 @@ export * from './checkoutCancelOrderResponse';
 export * from './checkoutCreateOrderRequest';
 export * from './checkoutCreateOrderResponse';
 export * from './checkoutNativeRedirectAction';
-export * from './checkoutOrder';
 export * from './checkoutOrderResponse';
 export * from './checkoutQrCodeAction';
 export * from './checkoutRedirectAction';
@@ -86,6 +85,7 @@ export * from './donationResponse';
 export * from './dotpayDetails';
 export * from './dragonpayDetails';
 export * from './econtextVoucherDetails';
+export * from './encryptedOrderData';
 export * from './externalPlatform';
 export * from './forexQuote';
 export * from './fraudCheckResult';
@@ -232,7 +232,6 @@ import { CheckoutCancelOrderResponse } from './checkoutCancelOrderResponse';
 import { CheckoutCreateOrderRequest } from './checkoutCreateOrderRequest';
 import { CheckoutCreateOrderResponse } from './checkoutCreateOrderResponse';
 import { CheckoutNativeRedirectAction } from './checkoutNativeRedirectAction';
-import { CheckoutOrder } from './checkoutOrder';
 import { CheckoutOrderResponse } from './checkoutOrderResponse';
 import { CheckoutQrCodeAction } from './checkoutQrCodeAction';
 import { CheckoutRedirectAction } from './checkoutRedirectAction';
@@ -263,6 +262,7 @@ import { DonationResponse } from './donationResponse';
 import { DotpayDetails } from './dotpayDetails';
 import { DragonpayDetails } from './dragonpayDetails';
 import { EcontextVoucherDetails } from './econtextVoucherDetails';
+import { EncryptedOrderData } from './encryptedOrderData';
 import { ExternalPlatform } from './externalPlatform';
 import { ForexQuote } from './forexQuote';
 import { FraudCheckResult } from './fraudCheckResult';
@@ -585,7 +585,6 @@ let typeMap: {[index: string]: any} = {
     "CheckoutCreateOrderRequest": CheckoutCreateOrderRequest,
     "CheckoutCreateOrderResponse": CheckoutCreateOrderResponse,
     "CheckoutNativeRedirectAction": CheckoutNativeRedirectAction,
-    "CheckoutOrder": CheckoutOrder,
     "CheckoutOrderResponse": CheckoutOrderResponse,
     "CheckoutQrCodeAction": CheckoutQrCodeAction,
     "CheckoutRedirectAction": CheckoutRedirectAction,
@@ -616,6 +615,7 @@ let typeMap: {[index: string]: any} = {
     "DotpayDetails": DotpayDetails,
     "DragonpayDetails": DragonpayDetails,
     "EcontextVoucherDetails": EcontextVoucherDetails,
+    "EncryptedOrderData": EncryptedOrderData,
     "ExternalPlatform": ExternalPlatform,
     "ForexQuote": ForexQuote,
     "FraudCheckResult": FraudCheckResult,

@@ -12,11 +12,11 @@ import { Address2 } from './address2';
 export class PartyIdentification2 {
     'address'?: Address2;
     /**
-    * The date of birth of the individual. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD Allowed only when `type` is **individual**.
+    * The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when `type` is **individual**.
     */
     'dateOfBirth'?: string;
     /**
-    * First name of the individual. Allowed only when `type` is **individual**.
+    * First name of the individual.  Allowed only when `type` is **individual**.
     */
     'firstName'?: string;
     /**
@@ -24,9 +24,13 @@ export class PartyIdentification2 {
     */
     'fullName': string;
     /**
-    * Last name of the individual. Allowed only when `type` is **individual**.
+    * Last name of the individual.  Allowed only when `type` is **individual**.
     */
     'lastName'?: string;
+    /**
+    * Your unique reference of the party. This should be consistent for all transfers initiated to/from the same party/counterparty. e.g Your client\'s unique wallet or payee ID
+    */
+    'reference'?: string;
     /**
     * The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**.
     */
@@ -58,6 +62,11 @@ export class PartyIdentification2 {
         {
             "name": "lastName",
             "baseName": "lastName",
+            "type": "string"
+        },
+        {
+            "name": "reference",
+            "baseName": "reference",
             "type": "string"
         },
         {

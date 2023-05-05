@@ -24,7 +24,7 @@ export class StoreDetailRequest {
     /**
     * The date of birth. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD For Paysafecard it must be the same as used when registering the Paysafecard account. > This field is mandatory for natural persons.
     */
-    'dateOfBirth': Date;
+    'dateOfBirth': string;
     /**
     * The type of the entity the payout is processed for.
     */
@@ -90,7 +90,7 @@ export class StoreDetailRequest {
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "Date"
+            "type": "string"
         },
         {
             "name": "entityType",

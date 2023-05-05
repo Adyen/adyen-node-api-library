@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { FraudCheckResult } from './fraudCheckResult';
+import { FraudCheckResultWrapper } from './fraudCheckResultWrapper';
 
 export class FraudResult {
     /**
@@ -17,7 +17,7 @@ export class FraudResult {
     /**
     * The result of the individual risk checks.
     */
-    'results'?: Array<FraudCheckResult>;
+    'results'?: Array<FraudCheckResultWrapper>;
 
     static discriminator: string | undefined = undefined;
 
@@ -30,7 +30,7 @@ export class FraudResult {
         {
             "name": "results",
             "baseName": "results",
-            "type": "Array<FraudCheckResult>"
+            "type": "Array<FraudCheckResultWrapper>"
         }    ];
 
     static getAttributeTypeMap() {
