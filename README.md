@@ -18,7 +18,7 @@ This library supports the following:
 | API name | API version | Description | API object |
 |----------|:-----------:|-------------|------------|
 | [BIN lookup API](https://docs.adyen.com/api-explorer/#/BinLookup/v52/overview) | v52 | The BIN Lookup API provides endpoints for retrieving information based on a given BIN. | [BinLookup](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/binLookup.ts) |
-| [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v69/overview) | v69 | Our latest integration for accepting online payments. | [CheckoutAPI](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/checkout.ts) |
+| [Checkout API](https://docs.adyen.com/api-explorer/#/CheckoutService/v70/overview) | v70 | Our latest integration for accepting online payments. | [CheckoutAPI](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/checkout.ts) |
 | [Configuration API](https://docs.adyen.com/api-explorer/#/balanceplatform/v2/overview) | v2 | The Configuration API enables you to create a platform where you can onboard your users as account holders and create balance accounts, cards, and business accounts. | [BalancePlatform](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/balancePlatform.ts) |
 | [DataProtection API](https://docs.adyen.com/development-resources/data-protection-api) | v1 | Adyen Data Protection API provides a way for you to process [Subject Erasure Requests](https://gdpr-info.eu/art-17-gdpr/) as mandated in GDPR. Use our API to submit a request to delete shopper's data, including payment details and other related information (for example, delivery address or shopper email) | [DataProtection](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/dataProtection.ts) |
 | [Legal Entity Management API](https://docs.adyen.com/api-explorer/#/legalentity/v2/overview) | v2 | Manage legal entities that contain information required for verification. | [LegalEntityManagement](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/legalEntityManagement.ts) |
@@ -119,7 +119,7 @@ checkoutAPI.payments(paymentRequest)
 
 Use the Node.js `require` function to load the `Client` and API objects from the Adyen module. For the name of the API objects, see [Supported APIs](#supported-apis).
 
-For example, to use the [Checkout API](https://docs.adyen.com/api-explorer/Checkout/69/overview):
+For example, to use the [Checkout API](https://docs.adyen.com/api-explorer/Checkout/70/overview):
 
 ``` javascript
 const { Client, CheckoutAPI} = require('@adyen/api-library');
@@ -141,7 +141,7 @@ const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
 
 Initialize the API object you want to use, passing the `client` object from the previous step. 
 
-For example, for the [Checkout API](https://docs.adyen.com/api-explorer/Checkout/69/overview):
+For example, for the [Checkout API](https://docs.adyen.com/api-explorer/Checkout/70/overview):
 
 ``` javascript
 const checkoutApi = new CheckoutAPI(client);
