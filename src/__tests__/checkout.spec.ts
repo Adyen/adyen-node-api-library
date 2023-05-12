@@ -9,7 +9,7 @@ import {paymentsResultMultibancoSuccess} from "../__mocks__/checkout/paymentsRes
 import {paymentsResultSuccess} from "../__mocks__/checkout/paymentsResultSucess";
 import {sessionsSuccess} from "../__mocks__/checkout/sessionsSuccess";
 import Client from "../client";
-import {CheckoutAPI} from "../services";
+import {Checkout} from "../services";
 import HttpClientException from "../httpClient/httpClientException";
 import { checkout } from "../typings";
 import { IRequest } from "../typings/requestOptions";
@@ -122,7 +122,7 @@ function createSessionRequest(): checkout.CreateCheckoutSessionRequest {
 }
 
 let client: Client;
-let checkoutService: CheckoutAPI;
+let checkoutService: Checkout;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -131,7 +131,7 @@ beforeEach((): void => {
     }
     client = createClient();
     scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`);
-    checkoutService = new CheckoutAPI(client);
+    checkoutService = new Checkout(client);
 });
 
 afterEach(() => {
@@ -331,7 +331,7 @@ describe("Checkout", (): void => {
     test("should have missing identifier on live", async (): Promise<void> => {
         client.setEnvironment("LIVE");
         try {
-            const liveCheckout = new CheckoutAPI(client);
+            const liveCheckout = new Checkout(client);
             await liveCheckout.PaymentsApi.payments(createPaymentsCheckoutRequest());
             fail();
         } catch (e) {
@@ -357,7 +357,7 @@ describe("Checkout", (): void => {
     });
 
     test("should get origin keys", async (): Promise<void> => {
-        const checkoutUtility = new CheckoutAPI(client);
+        const checkoutUtility = new Checkout(client);
         const originKeysRequest: checkout.CheckoutUtilityRequest = {
             originDomains: ["https://www.your-domain.com"],
         };

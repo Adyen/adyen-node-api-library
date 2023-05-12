@@ -7,47 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { ClassicCheckoutSDKApi } from "./classicCheckoutSDKApi";
-import { ModificationsApi } from "./modificationsApi";
-import { OrdersApi } from "./ordersApi";
-import { PaymentLinksApi } from "./paymentLinksApi";
-import { PaymentsApi } from "./paymentsApi";
-import { RecurringApi } from "./recurringApi";
-import { UtilityApi } from "./utilityApi";
 
-import Service from "../../service";
-import Client from "../../client";
+import Service from "../service";
+import Client from "../client";
 
-export default class CheckoutAPI extends Service {
-    
+import ClassicCheckoutSDKApi from "./checkout/classicCheckoutSDKApi";
+import ModificationsApi from "./checkout/modificationsApi";
+import OrdersApi from "./checkout/ordersApi";
+import PaymentLinksApi from "./checkout/paymentLinksApi";
+import PaymentsApi from "./checkout/paymentsApi";
+import RecurringApi from "./checkout/recurringApi";
+import UtilityApi from "./checkout/utilityApi";
+
+export default class Checkout extends Service {
     public constructor(client: Client) {
         super(client);
     }
-
     public get ClassicCheckoutSDKApi() {
         return new ClassicCheckoutSDKApi(this.client);
     }
-
     public get ModificationsApi() {
         return new ModificationsApi(this.client);
     }
-
     public get OrdersApi() {
         return new OrdersApi(this.client);
     }
-
     public get PaymentLinksApi() {
         return new PaymentLinksApi(this.client);
     }
-
     public get PaymentsApi() {
         return new PaymentsApi(this.client);
     }
-
     public get RecurringApi() {
         return new RecurringApi(this.client);
     }
-
     public get UtilityApi() {
         return new UtilityApi(this.client);
     }

@@ -48,6 +48,10 @@ import {
     StandalonePaymentCancelResource,
     ObjectSerializer,
 } from "../typings/checkout/models";
+
+/**
+ * @deprecated deprecated in favor of checkout classes per service
+*/
 class Checkout extends ApiKeyAuthenticatedService {
     private readonly _payments: CheckoutResource;
     private readonly _paymentMethods: CheckoutResource;
@@ -329,7 +333,7 @@ class Checkout extends ApiKeyAuthenticatedService {
             applePaySessionRequest,
             requestOptions,
         );
-        return ObjectSerializer.deserialize(response, "ApplePaySessionResponse")
+        return ObjectSerializer.deserialize(response, "ApplePaySessionResponse");
     }
 
     //Recurring

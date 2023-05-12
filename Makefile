@@ -60,20 +60,24 @@ bigServices:=checkout
 
 $(bigServices): build/spec $(openapi-generator-jar)
 	rm -rf $(models)/$@ build/model
-	rm -rf src/service/$@
+	rm -rf src/services/$@
 	$(openapi-generator-cli) generate \
 		-i build/spec/json/$(spec).json \
 		-g $(generator) \
 		-t templates/typescript \
 		-o build \
+		-c templates/config.yaml \
 		--model-package typings/$@ \
 		--api-package $@ \
-		--api-name-suffix Api \
-		--global-property apis \
+		--api-name-suffix Service \
+		--global-property apis,supportingFiles \
 		--additional-properties=modelPropertyNaming=original \
 		--additional-properties=serviceName=$@
+
+
 	mkdir -p src/services/$@
 	mv build/$@/* src/services/$@
+	mv build/index.ts src/services/$@
 	sed -i.bak '/RestServiceError/d' src/services/$@/*
 	rm src/services/$@/*.bak
 

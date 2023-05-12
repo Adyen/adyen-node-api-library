@@ -15,6 +15,7 @@ import { PaymentSetupRequest } from "../../typings/checkout/models";
 import { PaymentSetupResponse } from "../../typings/checkout/models";
 import { PaymentVerificationRequest } from "../../typings/checkout/models";
 import { PaymentVerificationResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import CheckoutResource from "../resource/checkoutResource";
 import { ObjectSerializer } from "../../typings/checkout/models";

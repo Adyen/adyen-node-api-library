@@ -13,6 +13,7 @@ import Service from "../../service";
 /* tslint:disable:no-unused-locals */
 import { CreatePaymentLinkRequest } from "../../typings/checkout/models";
 import { PaymentLinkResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
 import { UpdatePaymentLinkRequest } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import CheckoutResource from "../resource/checkoutResource";
