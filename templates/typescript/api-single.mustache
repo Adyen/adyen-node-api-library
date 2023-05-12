@@ -1,8 +1,6 @@
 {{>licenseInfo}}
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
-/* tslint:disable:no-unused-locals */
 {{#imports}}
 import { {{classname}} } from "../../typings/{{serviceName}}/models";
 {{/imports}}
@@ -11,9 +9,9 @@ import {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource from ".
 import { ObjectSerializer } from "../../typings/{{serviceName}}/models";
 
 {{#operations}}
-
 export class {{classname}} extends Service {
 {{#operation}}
+
     /**
      {{#summary}}
      * @summary {{&summary}}
