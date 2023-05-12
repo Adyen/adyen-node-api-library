@@ -55,6 +55,28 @@ managementapi: build/spec $(openapi-generator-jar)
 	sed -i.bak '/RestServiceError/d' src/services/$(service)/*
 	rm src/services/$(service)/*.bak
 
+# Service + Models automation
+bigServices:=checkout
+
+$(bigServices): build/spec $(openapi-generator-jar)
+	rm -rf $(models)/$@ build/model
+	rm -rf src/service/$@
+	$(openapi-generator-cli) generate \
+		-i build/spec/json/$(spec).json \
+		-g $(generator) \
+		-t templates/typescript \
+		-o build \
+		--model-package typings/$@ \
+		--api-package $@ \
+		--api-name-suffix Api \
+		--global-property apis \
+		--additional-properties=modelPropertyNaming=original \
+		--additional-properties=serviceName=$@
+	mkdir -p src/services/$@
+	mv build/$@/* src/services/$@
+	sed -i.bak '/RestServiceError/d' src/services/$@/*
+	rm src/services/$@/*.bak
+
 # Checkout spec (and patch version)
 build/spec:
 	git clone https://github.com/Adyen/adyen-openapi.git build/spec
