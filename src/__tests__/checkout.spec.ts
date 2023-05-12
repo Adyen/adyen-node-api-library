@@ -331,7 +331,8 @@ describe("Checkout", (): void => {
     test("should have missing identifier on live", async (): Promise<void> => {
         client.setEnvironment("LIVE");
         try {
-            new CheckoutAPI(client).PaymentsApi;
+            const liveCheckout = new CheckoutAPI(client);
+            await liveCheckout.PaymentsApi.payments(createPaymentsCheckoutRequest());
             fail();
         } catch (e) {
             if(e instanceof Error) {
