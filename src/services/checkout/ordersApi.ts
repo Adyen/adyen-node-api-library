@@ -17,7 +17,6 @@ import { CheckoutCancelOrderRequest } from "../../typings/checkout/models";
 import { CheckoutCancelOrderResponse } from "../../typings/checkout/models";
 import { CheckoutCreateOrderRequest } from "../../typings/checkout/models";
 import { CheckoutCreateOrderResponse } from "../../typings/checkout/models";
-import { ServiceError } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import CheckoutResource from "../resource/checkoutResource";
 import { ObjectSerializer } from "../../typings/checkout/models";

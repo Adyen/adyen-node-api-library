@@ -15,7 +15,6 @@ import { ApplePaySessionResponse } from "../../typings/checkout/models";
 import { CheckoutUtilityRequest } from "../../typings/checkout/models";
 import { CheckoutUtilityResponse } from "../../typings/checkout/models";
 import { CreateApplePaySessionRequest } from "../../typings/checkout/models";
-import { ServiceError } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import CheckoutResource from "../resource/checkoutResource";
 import { ObjectSerializer } from "../../typings/checkout/models";

@@ -78,8 +78,7 @@ $(bigServices): build/spec $(openapi-generator-jar)
 	mkdir -p src/services/$@
 	mv build/$@/* src/services/$@
 	mv build/index.ts src/services/$@
-	sed -i.bak '/RestServiceError/d' src/services/$@/*
-	rm src/services/$@/*.bak
+	npx eslint --fix ./src/services/$@/*.ts
 
 # Checkout spec (and patch version)
 build/spec:

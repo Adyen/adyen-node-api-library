@@ -22,7 +22,6 @@ import { PaymentCancelResource } from "../../typings/checkout/models";
 import { PaymentCaptureResource } from "../../typings/checkout/models";
 import { PaymentRefundResource } from "../../typings/checkout/models";
 import { PaymentReversalResource } from "../../typings/checkout/models";
-import { ServiceError } from "../../typings/checkout/models";
 import { StandalonePaymentCancelResource } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import CheckoutResource from "../resource/checkoutResource";
