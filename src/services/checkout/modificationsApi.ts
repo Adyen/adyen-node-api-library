@@ -7,10 +7,8 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
-/* tslint:disable:no-unused-locals */
 import { CreatePaymentAmountUpdateRequest } from "../../typings/checkout/models";
 import { CreatePaymentCancelRequest } from "../../typings/checkout/models";
 import { CreatePaymentCaptureRequest } from "../../typings/checkout/models";
@@ -27,8 +25,8 @@ import { IRequest } from "../../typings/requestOptions";
 import CheckoutResource from "../resource/checkoutResource";
 import { ObjectSerializer } from "../../typings/checkout/models";
 
-
 export class ModificationsApi extends Service {
+
     /**
      * @summary Cancel an authorised payment
      * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
@@ -45,6 +43,7 @@ export class ModificationsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "StandalonePaymentCancelResource");
     }
+
     /**
      * @summary Update an authorised amount
      * @param paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.
@@ -63,6 +62,7 @@ export class ModificationsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "PaymentAmountUpdateResource");
     }
+
     /**
      * @summary Cancel an authorised payment
      * @param paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. 
@@ -81,6 +81,7 @@ export class ModificationsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "PaymentCancelResource");
     }
+
     /**
      * @summary Capture an authorised payment
      * @param paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.
@@ -99,6 +100,7 @@ export class ModificationsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "PaymentCaptureResource");
     }
+
     /**
      * @summary Refund a captured payment
      * @param paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to refund.
@@ -117,6 +119,7 @@ export class ModificationsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "PaymentRefundResource");
     }
+
     /**
      * @summary Refund or cancel a payment
      * @param paymentPspReference The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to reverse. 

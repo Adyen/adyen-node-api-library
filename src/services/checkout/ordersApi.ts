@@ -7,10 +7,8 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
-/* tslint:disable:no-unused-locals */
 import { CheckoutBalanceCheckRequest } from "../../typings/checkout/models";
 import { CheckoutBalanceCheckResponse } from "../../typings/checkout/models";
 import { CheckoutCancelOrderRequest } from "../../typings/checkout/models";
@@ -21,8 +19,8 @@ import { IRequest } from "../../typings/requestOptions";
 import CheckoutResource from "../resource/checkoutResource";
 import { ObjectSerializer } from "../../typings/checkout/models";
 
-
 export class OrdersApi extends Service {
+
     /**
      * @summary Create an order
      * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
@@ -39,6 +37,7 @@ export class OrdersApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "CheckoutCreateOrderResponse");
     }
+
     /**
      * @summary Cancel an order
      * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
@@ -55,6 +54,7 @@ export class OrdersApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "CheckoutCancelOrderResponse");
     }
+
     /**
      * @summary Get the balance of a gift card
      * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).

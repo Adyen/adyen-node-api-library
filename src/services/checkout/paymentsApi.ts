@@ -7,10 +7,8 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
-/* tslint:disable:no-unused-locals */
 import { CardDetailsRequest } from "../../typings/checkout/models";
 import { CardDetailsResponse } from "../../typings/checkout/models";
 import { CreateCheckoutSessionRequest } from "../../typings/checkout/models";
@@ -27,8 +25,8 @@ import { IRequest } from "../../typings/requestOptions";
 import CheckoutResource from "../resource/checkoutResource";
 import { ObjectSerializer } from "../../typings/checkout/models";
 
-
 export class PaymentsApi extends Service {
+
     /**
      * @summary Get the list of brands on the card
      * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
@@ -45,6 +43,7 @@ export class PaymentsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "CardDetailsResponse");
     }
+
     /**
      * @summary Start a transaction for donations
      * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
@@ -61,6 +60,7 @@ export class PaymentsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "DonationResponse");
     }
+
     /**
      * @summary Get a list of available payment methods
      * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
@@ -77,6 +77,7 @@ export class PaymentsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "PaymentMethodsResponse");
     }
+
     /**
      * @summary Start a transaction
      * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
@@ -93,6 +94,7 @@ export class PaymentsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "PaymentResponse");
     }
+
     /**
      * @summary Submit details for a payment
      * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
@@ -109,6 +111,7 @@ export class PaymentsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "PaymentDetailsResponse");
     }
+
     /**
      * @summary Create a payment session
      * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).

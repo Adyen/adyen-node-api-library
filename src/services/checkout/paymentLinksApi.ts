@@ -7,10 +7,8 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
-/* tslint:disable:no-unused-locals */
 import { CreatePaymentLinkRequest } from "../../typings/checkout/models";
 import { PaymentLinkResponse } from "../../typings/checkout/models";
 import { UpdatePaymentLinkRequest } from "../../typings/checkout/models";
@@ -18,8 +16,8 @@ import { IRequest } from "../../typings/requestOptions";
 import CheckoutResource from "../resource/checkoutResource";
 import { ObjectSerializer } from "../../typings/checkout/models";
 
-
 export class PaymentLinksApi extends Service {
+
     /**
      * @summary Get a payment link
      * @param linkId Unique identifier of the payment link.
@@ -35,6 +33,7 @@ export class PaymentLinksApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
+
     /**
      * @summary Update the status of a payment link
      * @param linkId Unique identifier of the payment link.
@@ -52,6 +51,7 @@ export class PaymentLinksApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
+
     /**
      * @summary Create a payment link
      * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).

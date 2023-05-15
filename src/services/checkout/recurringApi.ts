@@ -7,18 +7,16 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
-/* tslint:disable:no-unused-locals */
 import { ListStoredPaymentMethodsResponse } from "../../typings/checkout/models";
 import { StoredPaymentMethodResource } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import CheckoutResource from "../resource/checkoutResource";
 import { ObjectSerializer } from "../../typings/checkout/models";
 
-
 export class RecurringApi extends Service {
+
     /**
      * @summary Delete a token for stored payment details
      * @param recurringId The unique identifier of the token.
@@ -36,6 +34,7 @@ export class RecurringApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "StoredPaymentMethodResource");
     }
+
     /**
      * @summary Get tokens for stored payment details
      * @param shopperReference Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
