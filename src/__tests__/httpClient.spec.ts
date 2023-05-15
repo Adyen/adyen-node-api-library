@@ -1,6 +1,6 @@
 import nock, { Interceptor } from "nock";
 import Client from "../client";
-import Checkout from "../services/checkout";
+import { CheckoutAPI } from "../services";
 import ApiException from "../services/exception/apiException";
 import { createPaymentsCheckoutRequest } from "./checkout.spec";
 import HttpClientException from "../httpClient/httpClientException";
@@ -14,7 +14,7 @@ type testOptions = { errorType: errorType; errorMessageContains?: string; errorM
 
 const getResponse = async ({apiKey , environment }: { apiKey: string; environment: Environment}, cb: (scope: Interceptor) => testOptions): Promise<void> => {
     const client = new Client({ apiKey, environment });
-    const checkout = new Checkout(client);
+    const checkout = new CheckoutAPI(client);
 
     const scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`)
         .post("/payments");
@@ -22,7 +22,7 @@ const getResponse = async ({apiKey , environment }: { apiKey: string; environmen
     const ErrorException = errorType === "ApiException" ? ApiException : HttpClientException;
 
     try {
-        await checkout.payments(createPaymentsCheckoutRequest());
+        await checkout.PaymentsApi.payments(createPaymentsCheckoutRequest());
         fail("request should fail");
     } catch (e) {
         if(e instanceof ErrorException){
