@@ -1,28 +1,37 @@
 import nock, { Interceptor } from "nock";
 import Client from "../client";
-import { CheckoutAPI } from "../services";
+import { BinLookup } from "../services";
 import ApiException from "../services/exception/apiException";
-import { createPaymentsCheckoutRequest } from "./checkout.spec";
 import HttpClientException from "../httpClient/httpClientException";
 
 beforeEach((): void => {
     nock.cleanAll();
 });
 
+const threeDSAvailabilitySuccess = {
+    binDetails: {
+        issuerCountry: "NL"
+    },
+    merchantAccount: "MY_MERCHANT_ACCOUNT",
+    threeDS1Supported: true,
+    threeDS2CardRangeDetails: [],
+    threeDS2supported: false
+};
+
 type errorType = "HttpClientException" | "ApiException";
 type testOptions = { errorType: errorType; errorMessageContains?: string; errorMessageEquals?: string };
 
 const getResponse = async ({apiKey , environment }: { apiKey: string; environment: Environment}, cb: (scope: Interceptor) => testOptions): Promise<void> => {
     const client = new Client({ apiKey, environment });
-    const checkout = new CheckoutAPI(client);
+    const binLookup = new BinLookup(client);
 
-    const scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`)
-        .post("/payments");
+    const scope = nock(`${client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}${Client.BIN_LOOKUP_API_VERSION}`)
+        .post("/get3dsAvailability");
     const { errorMessageContains, errorMessageEquals, errorType } = cb(scope);
     const ErrorException = errorType === "ApiException" ? ApiException : HttpClientException;
 
     try {
-        await checkout.PaymentsApi.payments(createPaymentsCheckoutRequest());
+        await binLookup.get3dsAvailability(threeDSAvailabilitySuccess);
         fail("request should fail");
     } catch (e) {
         if(e instanceof ErrorException){
