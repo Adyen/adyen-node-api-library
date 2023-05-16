@@ -10,7 +10,7 @@ import { {{ classname }} } from "./{{ classFilename }}";
 import Service from "../../service";
 import Client from "../../client";
 
-export default class CheckoutAPI extends Service {
+export default class {{#lambda.pascalcase}}{{ apiPackage }}{{/lambda.pascalcase}}API extends Service {
     
     public constructor(client: Client) {
         super(client);
