@@ -38,7 +38,7 @@ class PlatformsFund extends Resource {
     public constructor(service: Service, endpoint: Endpoints) {
         super(
             service,
-            `${service.client.config.marketPayEndpoint}/Fund/${Client.MARKETPAY_FUND_API_VERSION}/${endpoint}`,
+            `${service.client.config.marketPayEndpoint}/Fund/${Client.MARKETPAY_FUND_API_VERSION}${endpoint}`,
         );
     }
 }

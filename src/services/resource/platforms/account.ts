@@ -57,7 +57,7 @@ export interface AccountTypes {
 
 class PlatformsAccount<T extends AccountTypesEnum> extends Resource {
     public constructor(service: Service, endpoint: AccountTypes[T]) {
-        super(service, `${service.client.config.marketPayEndpoint}/Account/${Client.MARKETPAY_ACCOUNT_API_VERSION}/${endpoint}`);
+        super(service, `${service.client.config.marketPayEndpoint}/Account/${Client.MARKETPAY_ACCOUNT_API_VERSION}${endpoint}`);
     }
 }
 
