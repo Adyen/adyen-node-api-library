@@ -1,0 +1,4 @@
+files:
+  api-index.mustache:
+    destinationFilename: index.ts
+    templateType: SupportingFiles
