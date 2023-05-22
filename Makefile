@@ -17,7 +17,7 @@ payments: spec=PaymentService-v68
 recurring: spec=RecurringService-v68
 payouts: spec=PayoutService-v68
 management: spec=ManagementService-v1
-legalEntityManagement: spec=LegalEntityService-v2
+legalEntityManagement: spec=LegalEntityService-v3
 balancePlatform: spec=BalancePlatformService-v2
 platformsAccount: spec=AccountService-v6
 platformsFund: spec=FundService-v6
@@ -38,7 +38,7 @@ $(services): build/spec $(openapi-generator-jar)
 	mv build/model src/typings/$@
 
 # Service + Models automation
-bigServices:=checkout management
+bigServices:=checkout management legalEntityManagement
 
 $(bigServices): build/spec $(openapi-generator-jar)
 	rm -rf $(models)/$@ build/model
@@ -49,13 +49,13 @@ $(bigServices): build/spec $(openapi-generator-jar)
 		-t templates/typescript \
 		-o build \
 		-c templates/config.yaml \
+		--skip-validate-spec \
 		--model-package typings/$@ \
 		--api-package $@ \
 		--api-name-suffix Service \
 		--global-property apis,supportingFiles \
 		--additional-properties=modelPropertyNaming=original \
 		--additional-properties=serviceName=$@
-
 	mkdir -p src/services/$@
 	mv build/$@/*Api.ts src/services/$@
 	mv build/index.ts src/services/$@

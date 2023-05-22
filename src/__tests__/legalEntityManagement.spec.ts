@@ -2,17 +2,28 @@ import nock from "nock";
 import Client from "../client";
 import {createClient} from "../__mocks__/base";
 import * as models from "../typings/legalEntityManagement/models";
-import {Document, LegalEntityInfo, OnboardingLinkInfo, TransferInstrumentInfo} from "../typings/legalEntityManagement/models";
-import {DocumentUpdate} from "../services/legalEntityManagement/documents";
-import {businessLine, businessLines, document, legalEntity, onboardingLink, onboardingTheme, onboardingThemes, transferInstrument} from "../__mocks__/legalEntityManagement/responses";
-import TransferEnum = TransferInstrumentInfo.TypeEnum;
-import TypeEnum = LegalEntityInfo.TypeEnum
-import DocEnum = Document.TypeEnum
+import {
+    Document,
+    LegalEntityInfo,
+    LegalEntityInfoRequiredType,
+    OnboardingLinkInfo, TransferInstrumentInfo
+} from "../typings/legalEntityManagement/models";
+import {
+    businessLine,
+    businessLines,
+    document,
+    legalEntity,
+    onboardingLink,
+    onboardingTheme,
+    onboardingThemes,
+    transferInstrument
+} from "../__mocks__/legalEntityManagement/responses";
 import {onboardingLinkInfo} from "../__mocks__/legalEntityManagement/requests";
-import LegalEntityManagement from "../services/legalEntityManagement";
+import LegalEntityManagementAPI from "../services/legalEntityManagement";
+import TypeEnum = LegalEntityInfoRequiredType.TypeEnum;
 
 let client: Client;
-let legalEntityManagement: LegalEntityManagement;
+let legalEntityManagement: LegalEntityManagementAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -21,7 +32,7 @@ beforeEach((): void => {
     }
     client = createClient();
     scope = nock(`${client.config.legalEntityManagementEndpoint}/${Client.LEGAL_ENTITY_MANAGEMENT_API_VERSION}`);
-    legalEntityManagement = new LegalEntityManagement(client);
+    legalEntityManagement = new LegalEntityManagementAPI(client);
 });
 
 afterEach(() => {
@@ -37,12 +48,12 @@ describe("Legal Entity Management", (): void => {
             scope.post("/legalEntities")
                 .reply(200, legalEntity);
 
-            const request: models.LegalEntityInfo = {
+            const request: models.LegalEntityInfoRequiredType = {
                 type : TypeEnum.Individual,
                 individual : undefined
             };
 
-            const response: models.LegalEntity = await legalEntityManagement.LegalEntities.create(request);
+            const response: models.LegalEntity = await legalEntityManagement.LegalEntitiesApi.createLegalEntity(request);
 
             expect(response.id).toBe(id);
             expect(response.type).toBe("individual");
@@ -52,7 +63,7 @@ describe("Legal Entity Management", (): void => {
             scope.get(`/legalEntities/${id}`)
                 .reply(200, legalEntity);
 
-            const response: models.LegalEntity = await legalEntityManagement.LegalEntities.retrieve("123456789");
+            const response: models.LegalEntity = await legalEntityManagement.LegalEntitiesApi.getLegalEntity("123456789");
 
             expect(response.id).toBe(id);
             expect(response.type).toBe("individual");
@@ -63,11 +74,11 @@ describe("Legal Entity Management", (): void => {
                 .reply(200, legalEntity);
 
             const request: models.LegalEntityInfo = {
-                type : TypeEnum.Individual,
+                type : LegalEntityInfo.TypeEnum.Individual,
                 individual : undefined
             };
 
-            const response: models.LegalEntity = await legalEntityManagement.LegalEntities.update(id, request);
+            const response: models.LegalEntity = await legalEntityManagement.LegalEntitiesApi.updateLegalEntity(id, request);
 
             expect(response.id).toBe(id);
             expect(response.type).toBe("individual");
@@ -77,7 +88,7 @@ describe("Legal Entity Management", (): void => {
             scope.get(`/legalEntities/${id}/businessLines`)
                 .reply(200, businessLines);
 
-            const response: models.BusinessLines = await legalEntityManagement.LegalEntities.listBusinessLines(id);
+            const response: models.BusinessLines = await legalEntityManagement.LegalEntitiesApi.getAllBusinessLinesUnderLegalEntity(id);
 
             expect(response.businessLines).toEqual( [{
                 "capability": "receivePayments",
@@ -104,7 +115,7 @@ describe("Legal Entity Management", (): void => {
                 .reply(200, transferInstrument);
 
             const request: models.TransferInstrumentInfo = {
-                type : TransferEnum.BankAccount,
+                type : TransferInstrumentInfo.TypeEnum.BankAccount,
                 legalEntityId : id,
                 bankAccount : {accountNumber: "string",
                     accountType: "string",
@@ -120,20 +131,20 @@ describe("Legal Entity Management", (): void => {
                 }
             };
 
-            const response: models.TransferInstrument = await legalEntityManagement.TransferInstruments.create(request);
+            const response: models.TransferInstrument = await legalEntityManagement.TransferInstrumentsApi.createTransferInstrument(request);
 
             expect(response.id).toBe(id);
-            expect(response.type).toBe(TransferEnum.BankAccount);
+            expect(response.type).toBe(TransferInstrumentInfo.TypeEnum.BankAccount);
         });
 
         it("should support GET /transferInstruments/{id}", async (): Promise<void> => {
             scope.get(`/transferInstruments/${id}`)
                 .reply(200, transferInstrument);
 
-            const response: models.TransferInstrument = await legalEntityManagement.TransferInstruments.retrieve(id);
+            const response: models.TransferInstrument = await legalEntityManagement.TransferInstrumentsApi.getTransferInstrument(id);
 
             expect(response.id).toBe(id);
-            expect(response.type).toBe(TransferEnum.BankAccount);
+            expect(response.type).toBe(TransferInstrumentInfo.TypeEnum.BankAccount);
         });
 
         it("should support PATCH /transferInstruments/{id}", async (): Promise<void> => {
@@ -141,7 +152,7 @@ describe("Legal Entity Management", (): void => {
                 .reply(200, transferInstrument);
 
             const request: models.TransferInstrumentInfo = {
-                type : TransferEnum.BankAccount,
+                type : TransferInstrumentInfo.TypeEnum.BankAccount,
                 legalEntityId : id,
                 bankAccount : {accountNumber: "string",
                     accountType: "string",
@@ -157,17 +168,17 @@ describe("Legal Entity Management", (): void => {
                 }
             };
 
-            const response: models.TransferInstrument = await legalEntityManagement.TransferInstruments.update(id, request);
+            const response: models.TransferInstrument = await legalEntityManagement.TransferInstrumentsApi.updateTransferInstrument(id, request);
 
             expect(response.id).toBe(id);
-            expect(response.type).toBe(TransferEnum.BankAccount);
+            expect(response.type).toBe(TransferInstrumentInfo.TypeEnum.BankAccount);
         });
 
         it("should support DELETE /transferInstruments/{id}", async (): Promise<void> => {
             scope.delete(`/transferInstruments/${id}`)
                 .reply(200);
 
-            await legalEntityManagement.TransferInstruments.delete(id);
+            await legalEntityManagement.TransferInstrumentsApi.deleteTransferInstrument(id);
 
             expect(200);
         });
@@ -183,7 +194,7 @@ describe("Legal Entity Management", (): void => {
                 industryCode: id,
                 legalEntityId: id };
 
-            const response: models.BusinessLine = await legalEntityManagement.BusinessLineService.create(request);
+            const response: models.BusinessLine = await legalEntityManagement.BusinessLinesApi.createBusinessLine(request);
 
             expect(response.id).toBe(id);
             expect(response.capability).toBe("receivePayments");
@@ -195,7 +206,7 @@ describe("Legal Entity Management", (): void => {
             scope.get(`/businessLines/${id}`)
                 .reply(200, businessLine);
 
-            const response: models.BusinessLine = await legalEntityManagement.BusinessLineService.retrieve(id);
+            const response: models.BusinessLine = await legalEntityManagement.BusinessLinesApi.getBusinessLine(id);
 
             expect(response.id).toBe(id);
             expect(response.capability).toBe("receivePayments");
@@ -210,7 +221,7 @@ describe("Legal Entity Management", (): void => {
                 industryCode: id,
                 legalEntityId: id };
 
-            const response: models.BusinessLine = await legalEntityManagement.BusinessLineService.update(id, request);
+            const response: models.BusinessLine = await legalEntityManagement.BusinessLinesApi.updateBusinessLine(id, request);
 
             expect(response.id).toBe(id);
             expect(response.capability).toBe("receivePayments");
@@ -224,7 +235,7 @@ describe("Legal Entity Management", (): void => {
             scope.post("/documents")
                 .reply(200, document);
 
-            const request: DocumentUpdate = {
+            const request: Document = {
                 attachments: [{
                     content: "string",
                     contentType: "string",
@@ -237,13 +248,13 @@ describe("Legal Entity Management", (): void => {
                     "id": "123456789",
                     "type": "passport"
                 },
-                type : DocEnum.DriversLicense
+                type : Document.TypeEnum.DriversLicense
             };
 
-            const response: models.Document = await legalEntityManagement.Documents.create(request);
+            const response: models.Document = await legalEntityManagement.DocumentsApi.uploadDocumentForVerificationChecks(request);
 
             expect(response.id).toBe(id);
-            expect(response.type).toBe(DocEnum.DriversLicense);
+            expect(response.type).toBe(Document.TypeEnum.DriversLicense);
             expect(response.owner).toEqual({id : "123456789", type : "passport" })
         });
 
@@ -251,10 +262,10 @@ describe("Legal Entity Management", (): void => {
             scope.get(`/documents/${id}`)
                 .reply(200, document);
 
-            const response: models.Document = await legalEntityManagement.Documents.retrieve(id);
+            const response: models.Document = await legalEntityManagement.DocumentsApi.getDocument(id);
 
             expect(response.id).toBe(id);
-            expect(response.type).toBe(DocEnum.DriversLicense);
+            expect(response.type).toBe(Document.TypeEnum.DriversLicense);
             expect(response.owner).toEqual({id : "123456789", type : "passport" })
         });
 
@@ -262,7 +273,7 @@ describe("Legal Entity Management", (): void => {
             scope.patch(`/documents/${id}`)
                 .reply(200, document);
 
-            const request: DocumentUpdate = {
+            const request: Document = {
                 attachments: [{
                     content: "string",
                     contentType: "string",
@@ -275,13 +286,13 @@ describe("Legal Entity Management", (): void => {
                     "id": "123456789",
                     "type": "passport"
                 },
-                type : DocEnum.DriversLicense
+                type : Document.TypeEnum.DriversLicense
             };
 
-            const response: models.Document = await legalEntityManagement.Documents.update(id, request);
+            const response: models.Document = await legalEntityManagement.DocumentsApi.updateDocument(id, request);
 
             expect(response.id).toBe(id);
-            expect(response.type).toBe(DocEnum.DriversLicense);
+            expect(response.type).toBe(Document.TypeEnum.DriversLicense);
             expect(response.owner).toEqual({id : "123456789", type : "passport" })
         });
 
@@ -289,7 +300,7 @@ describe("Legal Entity Management", (): void => {
             scope.delete(`/documents/${id}`)
                 .reply(200);
 
-            await legalEntityManagement.Documents.delete(id);
+            await legalEntityManagement.DocumentsApi.deleteDocument(id);
 
         });
     });
@@ -301,7 +312,7 @@ describe("Legal Entity Management", (): void => {
 
             const request: OnboardingLinkInfo = onboardingLinkInfo;
 
-            const response: models.OnboardingLink = await legalEntityManagement.HostedOnboardingPage.create(id, request);
+            const response: models.OnboardingLink = await legalEntityManagement.HostedOnboardingApi.getLinkToAdyenhostedOnboardingPage(id, request);
 
             expect(response.url).toBe("https://your.redirect-url.com");
         });
@@ -310,7 +321,7 @@ describe("Legal Entity Management", (): void => {
             scope.get(`/themes`)
                 .reply(200, onboardingThemes);
 
-            const response: models.OnboardingThemes = await legalEntityManagement.HostedOnboardingPage.listThemes();
+            const response: models.OnboardingThemes = await legalEntityManagement.HostedOnboardingApi.listHostedOnboardingPageThemes();
 
             expect(response.themes[0].id).toEqual(id);
         });
@@ -319,7 +330,7 @@ describe("Legal Entity Management", (): void => {
             scope.get(`/themes/${id}`)
                 .reply(200, onboardingTheme);
 
-            const response: models.OnboardingTheme = await legalEntityManagement.HostedOnboardingPage.retrieveTheme(id);
+            const response: models.OnboardingTheme = await legalEntityManagement.HostedOnboardingApi.getOnboardingLinkTheme(id);
             expect(response.id).toBe(id);
         });
     });
