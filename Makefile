@@ -39,10 +39,10 @@ $(services): build/spec $(openapi-generator-jar)
 	mv build/model src/typings/$@
 
 # Service + Models automation
-bigServices:=checkout management legalEntityManagement
-smallServices:=balanceControl 
+services:=checkout management legalEntityManagement
+singleFileServices:=balanceControl 
 
-$(bigServices): build/spec $(openapi-generator-jar)
+$(services): build/spec $(openapi-generator-jar)
 	rm -rf $(models)/$@ build/model
 	rm -rf src/services/$@
 	$(openapi-generator-cli) generate \
@@ -63,7 +63,7 @@ $(bigServices): build/spec $(openapi-generator-jar)
 	mv build/index.ts src/services/$@
 	npx eslint --fix ./src/services/$@/*.ts
 
-$(smallServices): build/spec $(openapi-generator-jar)
+$(singleFileServices): build/spec $(openapi-generator-jar)
 	rm -rf src/typings/$@ build/model
 	rm -rf $(models)/$@ build/model
 	rm -rf src/services/$@
