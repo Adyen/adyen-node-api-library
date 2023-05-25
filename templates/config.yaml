@@ -3,5 +3,5 @@ files:
     destinationFilename: index.ts
     templateType: SupportingFiles
   api-single.mustache:
-    destinationFilename: Single.ts
+    destinationFilename: .ts
     templateType: API
