@@ -1,3 +1,4 @@
+templateDir: ./templates/typescript
 files:
   api-index.mustache:
     destinationFilename: index.ts

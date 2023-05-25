@@ -6,11 +6,11 @@ import Service from "../service";
 import { {{classname}} } from "../typings/{{serviceName}}/models";
 {{/imports}}
 import { IRequest } from "../typings/requestOptions";
-import {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource from "../resource/{{serviceName}}Resource";
+import {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource from "./resource/{{serviceName}}Resource";
 import { ObjectSerializer } from "../typings/{{serviceName}}/models";
 
 {{#operations}}
-export class {{classname}} extends Service {
+export class {{#lambda.pascalcase}}{{ apiPackage }}{{/lambda.pascalcase}}API extends Service {
     public constructor(client: Client) {
         super(client);
     }
@@ -35,4 +35,6 @@ export class {{classname}} extends Service {
     }
 {{/operation}}
 }
+
+export default {{#lambda.pascalcase}}{{ apiPackage }}{{/lambda.pascalcase}}API;
 {{/operations}}
