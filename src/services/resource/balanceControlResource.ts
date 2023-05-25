@@ -6,7 +6,7 @@ class BalanceControlResource extends Resource {
     public constructor(service: Service, endpoint: string) {
         super(
             service,
-            `${service.client.config.endpoint}/pal/servlet/${Client.BIN_LOOKUP_API_VERSION}${endpoint}`
+            `${service.client.config.endpoint}/pal/servlet/${Client.BALANCE_CONTROL_API_VERSION}${endpoint}`
         );
     }
 }

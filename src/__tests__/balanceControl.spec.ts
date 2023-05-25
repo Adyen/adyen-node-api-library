@@ -15,7 +15,7 @@ beforeEach((): void => {
     }
     client = createClient();
     balanceService = new BalanceControlAPI(client);
-    scope = nock(`${client.config.endpoint}/pal/servlet/${Client.BIN_LOOKUP_API_VERSION}`);
+    scope = nock(`${client.config.endpoint}/pal/servlet/${Client.BALANCE_CONTROL_API_VERSION}`);
 });
 
 afterEach(() => {
@@ -38,7 +38,6 @@ describe("Balance Control", (): void => {
             "pspReference": "8816080397613514",
             "status": "transferred"
           };
-        
         const request: BalanceTransferRequest = new BalanceTransferRequest;
 
         scope.post("/balanceTransfer")
