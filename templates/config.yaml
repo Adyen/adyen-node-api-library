@@ -5,3 +5,6 @@ files:
   api-single.mustache:
     destinationFilename: .ts
     templateType: API
+  api-root.mustache:
+    destinationFilename: Root.ts
+    templateType: API

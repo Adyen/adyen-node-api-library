@@ -78,9 +78,8 @@ $(smallServices): build/spec $(openapi-generator-jar)
 		--global-property apis,supportingFiles \
 		--additional-properties=modelPropertyNaming=original \
 		--additional-properties=serviceName=$@
-#	mv build/$@/*Api.ts src/services/$@
-#	mv build/index.ts src/services/$@
-#	npx eslint --fix ./src/services/$@/*.ts
+	mv build/$@/*Root.ts src/services/$@Api.ts
+	npx eslint --fix ./src/services/$@/*.ts
 
 # Checkout spec (and patch version)
 build/spec:

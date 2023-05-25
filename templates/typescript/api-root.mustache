@@ -1,0 +1,38 @@
+{{>licenseInfo}}
+import Client from "../client";
+import getJsonResponse from "../helpers/getJsonResponse";
+import Service from "../service";
+{{#imports}}
+import { {{classname}} } from "../typings/{{serviceName}}/models";
+{{/imports}}
+import { IRequest } from "../typings/requestOptions";
+import {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource from "../resource/{{serviceName}}Resource";
+import { ObjectSerializer } from "../typings/{{serviceName}}/models";
+
+{{#operations}}
+export class {{classname}} extends Service {
+    public constructor(client: Client) {
+        super(client);
+    }
+{{#operation}}
+
+{{>api_summary}}
+    public async {{#vendorExtensions.x-methodName}}{{.}}{{/vendorExtensions.x-methodName}}{{^vendorExtensions.x-methodName}}{{nickname}}{{/vendorExtensions.x-methodName}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+        const localVarPath = "{{{path}}}"{{#pathParams}}
+            .replace("{" + "{{baseName}}" + "}", encodeURIComponent(String({{paramName}}))){{/pathParams}};
+        const resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, localVarPath);
+{{#bodyParam}}
+        const request: {{{dataType}}} = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}");
+{{/bodyParam}}
+        {{#returnType}}const response = {{/returnType}}await getJsonResponse<{{#bodyParam}}{{{dataType}}}{{/bodyParam}}{{^bodyParam}}string{{/bodyParam}}, {{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}>(
+            resource,
+            {{#bodyParam}}request{{/bodyParam}}{{^bodyParam}}""{{/bodyParam}},
+            { ...requestOptions, method: "{{httpMethod}}" }
+        );
+        {{#returnType}}
+        return ObjectSerializer.deserialize(response, "{{{.}}}");
+        {{/returnType}}
+    }
+{{/operation}}
+}
+{{/operations}}
