@@ -39,6 +39,7 @@ $(services): build/spec $(openapi-generator-jar)
 
 # Service + Models automation
 bigServices:=checkout management legalEntityManagement
+smallServices:= dataProtection 
 
 $(bigServices): build/spec $(openapi-generator-jar)
 	rm -rf $(models)/$@ build/model
@@ -60,6 +61,26 @@ $(bigServices): build/spec $(openapi-generator-jar)
 	mv build/$@/*Api.ts src/services/$@
 	mv build/index.ts src/services/$@
 	npx eslint --fix ./src/services/$@/*.ts
+
+$(smallServices): build/spec $(openapi-generator-jar)
+	rm -rf $(models)/$@ build/model
+	rm -rf src/services/$@
+	$(openapi-generator-cli) generate \
+		-i build/spec/json/$(spec).json \
+		-g $(generator) \
+		-t templates/typescript \
+		-o build \
+		-c templates/config.yaml \
+		--skip-validate-spec \
+		--model-package typings/$@ \
+		--api-package $@ \
+		--api-name-suffix Service \
+		--global-property apis,supportingFiles \
+		--additional-properties=modelPropertyNaming=original \
+		--additional-properties=serviceName=$@
+#	mv build/$@/*Api.ts src/services/$@
+#	mv build/index.ts src/services/$@
+#	npx eslint --fix ./src/services/$@/*.ts
 
 # Checkout spec (and patch version)
 build/spec:
