@@ -16,6 +16,7 @@ type ClientParametersOverload =
 | { username: string; password: string; environment: Environment; applicationName: string; liveEndpointUrlPrefix: string; httpClient: ClientInterface }
 | { apiKey: string; environment: Environment }
 | { apiKey: string; environment: Environment; httpClient: ClientInterface }
+| { apiKey: string; environment: Environment; liveEndpointUrlPrefix: string }
 | { apiKey: string; environment: Environment; liveEndpointUrlPrefix: string; httpClient: ClientInterface };
 
 interface ClientParameters {
