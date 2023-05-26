@@ -3,12 +3,13 @@ openapi-generator-version:=5.4.0
 openapi-generator-url:=https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/$(openapi-generator-version)/openapi-generator-cli-$(openapi-generator-version).jar
 openapi-generator-jar:=build/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
-services:=balancePlatform binlookup checkout dataProtection legalEntityManagement management payments payouts platformsAccount platformsFund platformsHostedOnboardingPage platformsNotificationConfiguration recurring storedValue terminalManagement transfer
+services:=balanceControl balancePlatform binlookup checkout dataProtection legalEntityManagement management payments payouts platformsAccount platformsFund platformsHostedOnboardingPage platformsNotificationConfiguration recurring storedValue terminalManagement transfer
 
 # Generate models (for each service)
 models: $(services)
 
-binlookup: spec=BinLookupService-v52
+balanceControl: spec=BalanceControlService-v1
+binlookup: spec=BinLookupService-v52 # we should bump this to 54
 checkout: spec=CheckoutService-v70
 dataProtection: spec=DataProtectionService-v1
 storedValue: spec=StoredValueService-v46
@@ -38,9 +39,10 @@ $(services): build/spec $(openapi-generator-jar)
 	mv build/model src/typings/$@
 
 # Service + Models automation
-bigServices:=checkout management legalEntityManagement
+services:=checkout management legalEntityManagement
+singleFileServices:=balanceControl 
 
-$(bigServices): build/spec $(openapi-generator-jar)
+$(services): build/spec $(openapi-generator-jar)
 	rm -rf $(models)/$@ build/model
 	rm -rf src/services/$@
 	$(openapi-generator-cli) generate \
@@ -60,6 +62,25 @@ $(bigServices): build/spec $(openapi-generator-jar)
 	mv build/$@/*Api.ts src/services/$@
 	mv build/index.ts src/services/$@
 	npx eslint --fix ./src/services/$@/*.ts
+
+$(singleFileServices): build/spec $(openapi-generator-jar)
+	rm -rf src/typings/$@ build/model
+	rm -rf $(models)/$@ build/model
+	rm -rf src/services/$@
+	$(openapi-generator-cli) generate \
+		-i build/spec/json/$(spec).json \
+		-g $(generator) \
+		-o build \
+		-c templates/config.yaml \
+		--skip-validate-spec \
+		--api-package $@ \
+		--api-name-suffix Service \
+		--global-property models,apis,supportingFiles \
+		--additional-properties=modelPropertyNaming=original \
+		--additional-properties=serviceName=$@
+	mv build/$@/*Root.ts src/services/$@Api.ts
+	mv -f build/model src/typings/$@/
+	npx eslint --fix ./src/services/$@Api.ts
 
 # Checkout spec (and patch version)
 build/spec:
