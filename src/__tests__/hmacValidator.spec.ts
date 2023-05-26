@@ -1,5 +1,5 @@
 import HmacValidator from "../utils/hmacValidator";
-import {NotificationItem, NotificationRequestItem } from "../typings/notification/models";
+import {NotificationItem, NotificationRequestItem } from "../typings/webhook/models";
 import { ApiConstants } from "../constants/apiConstants";
 import NotificationRequestService from "../notification/notificationRequest";
 

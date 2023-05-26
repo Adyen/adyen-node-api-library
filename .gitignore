@@ -15,3 +15,4 @@ coverage/
 lib/
 build/
 package-lock.json
+.vscode

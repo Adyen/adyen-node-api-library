@@ -4,7 +4,7 @@ import captureFalse from "../__mocks__/notification/captureFalse.json";
 import refundTrue from "../__mocks__/notification/refundTrue.json";
 import refundFalse from "../__mocks__/notification/refundFalse.json";
 import NotificationRequest from "../notification/notificationRequest";
-import { Notification, NotificationRequestItem } from "../typings/notification/models";
+import { Notification, NotificationRequestItem } from "../typings/webhook/models";
 import NotificationEnum = NotificationRequestItem.EventCodeEnum;
 import SuccessEnum = NotificationRequestItem.SuccessEnum;
 

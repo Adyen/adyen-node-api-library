@@ -21,7 +21,7 @@ import {
     NotificationItem,
     NotificationRequestItem,
     ObjectSerializer
-} from "../typings/notification/models";
+} from "../typings/webhook/models";
 
 class NotificationRequest {
     public constructor(json: Notification) {

@@ -18,7 +18,7 @@
  */
 
 import { createHmac, timingSafeEqual } from "crypto";
-import { NotificationRequestItem } from "../typings/notification/models";
+import { NotificationRequestItem } from "../typings/webhook/models";
 import { ApiConstants } from "../constants/apiConstants";
 
 type DataToSign = NotificationRequestItem | { [key: string]: string };
