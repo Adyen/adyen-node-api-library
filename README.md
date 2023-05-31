@@ -183,6 +183,14 @@ checkoutAPI.payments(paymentRequest)
   .then(paymentResponse => console.log(paymentResponse.pspReference))
   .catch(error => console.log(error));
 ```
+## Client setup when going live
+
+For APIS that require your [Live URL Prefix](https://docs.adyen.com/development-resources/live-endpoints#live-url-prefix) (Binlookup, BalanceControl, Checkout, Payout and Recurring) the client is set up as follows in order to start processing live payments:
+``` typescript
+const { Client } = require('@adyen/api-library');
+
+const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST", liveEndpointUrlPrefix: "YOUR_LIVE_URL_PREFIX"}); 
+```
 
 ## Usage in TypeScript
 
