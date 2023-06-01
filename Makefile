@@ -14,7 +14,7 @@ checkout: spec=CheckoutService-v70
 dataProtection: spec=DataProtectionService-v1
 storedValue: spec=StoredValueService-v46
 terminalManagement: spec=TfmAPIService-v1
-payments: spec=PaymentService-v68
+payment: spec=PaymentService-v68
 recurring: spec=RecurringService-v68
 payouts: spec=PayoutService-v68
 management: spec=ManagementService-v1
@@ -40,7 +40,7 @@ $(services): build/spec $(openapi-generator-jar)
 
 # Service + Models automation
 services:=checkout management legalEntityManagement
-singleFileServices:=balanceControl 
+singleFileServices:=balanceControl payment
 
 $(services): build/spec $(openapi-generator-jar)
 	rm -rf $(models)/$@ build/model
@@ -67,6 +67,8 @@ $(singleFileServices): build/spec $(openapi-generator-jar)
 	rm -rf src/typings/$@ build/model
 	rm -rf $(models)/$@ build/model
 	rm -rf src/services/$@
+	jq -e 'del(.paths[][].tags)' build/spec/json/$(spec).json > build/spec/json/$(spec).tmp
+	mv build/spec/json/$(spec).tmp build/spec/json/$(spec).json 
 	$(openapi-generator-cli) generate \
 		-i build/spec/json/$(spec).json \
 		-g $(generator) \

@@ -1,7 +1,7 @@
 import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import Client from "../client";
-import ClassicIntegration from "../services/classicIntegration";
+import ClassicIntegration from "../services/paymentApi";
 import { payments } from "../typings";
 
 let client: Client;
