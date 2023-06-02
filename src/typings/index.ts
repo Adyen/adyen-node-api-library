@@ -10,7 +10,7 @@
 /// <reference path="platformsNotificationConfiguration.ts" />
 
 export * as balancePlatform from './balancePlatform/models';
-export * as binlookup from './binlookup/models';
+export * as binlookup from './binLookup/models';
 export * as checkout from './checkout/models';
 export * as notification from './notification/models';
 export * as payments from './payments/models';

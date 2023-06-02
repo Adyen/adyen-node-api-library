@@ -1,6 +1,6 @@
 import nock, { Interceptor } from "nock";
 import Client from "../client";
-import { BinLookup } from "../services";
+import { BinLookupAPI } from "../services";
 import ApiException from "../services/exception/apiException";
 import HttpClientException from "../httpClient/httpClientException";
 
@@ -23,7 +23,7 @@ type testOptions = { errorType: errorType; errorMessageContains?: string; errorM
 
 const getResponse = async ({apiKey , environment }: { apiKey: string; environment: Environment}, cb: (scope: Interceptor) => testOptions): Promise<void> => {
     const client = new Client({ apiKey, environment });
-    const binLookup = new BinLookup(client);
+    const binLookup = new BinLookupAPI(client);
 
     const scope = nock(`${client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}${Client.BIN_LOOKUP_API_VERSION}`)
         .post("/get3dsAvailability");

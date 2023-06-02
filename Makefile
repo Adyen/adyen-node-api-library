@@ -9,7 +9,7 @@ services:=balanceControl balancePlatform binlookup checkout dataProtection legal
 models: $(services)
 
 balanceControl: spec=BalanceControlService-v1
-binlookup: spec=BinLookupService-v52 # we should bump this to 54
+binLookup: spec=BinLookupService-v54# we should bump this to 54
 checkout: spec=CheckoutService-v70
 dataProtection: spec=DataProtectionService-v1
 storedValue: spec=StoredValueService-v46
@@ -40,7 +40,7 @@ $(services): build/spec $(openapi-generator-jar)
 
 # Service + Models automation
 services:=checkout management legalEntityManagement
-singleFileServices:=balanceControl 
+singleFileServices:=balanceControl payout binLookup
 
 $(services): build/spec $(openapi-generator-jar)
 	rm -rf $(models)/$@ build/model
