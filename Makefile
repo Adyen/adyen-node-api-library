@@ -13,10 +13,10 @@ binlookup: spec=BinLookupService-v52 # we should bump this to 54
 checkout: spec=CheckoutService-v70
 dataProtection: spec=DataProtectionService-v1
 storedValue: spec=StoredValueService-v46
-terminalManagement: spec=TfmAPIService-v1
+terminalManagement: spec=TfmAPIService-v1m
 payments: spec=PaymentService-v68
 recurring: spec=RecurringService-v68
-payouts: spec=PayoutService-v68
+payout: spec=PayoutService-v68
 management: spec=ManagementService-v1
 legalEntityManagement: spec=LegalEntityService-v3
 balancePlatform: spec=BalancePlatformService-v2
@@ -39,8 +39,8 @@ $(services): build/spec $(openapi-generator-jar)
 	mv build/model src/typings/$@
 
 # Service + Models automation
-services:=checkout management legalEntityManagement
-singleFileServices:=balanceControl 
+services:=checkout management legalEntityManagement payout
+singleFileServices:=balanceControl
 
 $(services): build/spec $(openapi-generator-jar)
 	rm -rf $(models)/$@ build/model
@@ -52,15 +52,15 @@ $(services): build/spec $(openapi-generator-jar)
 		-o build \
 		-c templates/config.yaml \
 		--skip-validate-spec \
-		--model-package typings/$@ \
 		--api-package $@ \
 		--api-name-suffix Service \
-		--global-property apis,supportingFiles \
+		--global-property models,apis,supportingFiles \
 		--additional-properties=modelPropertyNaming=original \
 		--additional-properties=serviceName=$@
 	mkdir -p src/services/$@
 	mv build/$@/*Api.ts src/services/$@
 	mv build/index.ts src/services/$@
+	mv -f build/model src/typings/$@/
 	npx eslint --fix ./src/services/$@/*.ts
 
 $(singleFileServices): build/spec $(openapi-generator-jar)
