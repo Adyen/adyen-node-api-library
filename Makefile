@@ -9,7 +9,7 @@ services:=balanceControl balancePlatform binlookup checkout dataProtection legal
 models: $(services)
 
 balanceControl: spec=BalanceControlService-v1
-binLookup: spec=BinLookupService-v54# we should bump this to 54
+binLookup: spec=BinLookupService-v54
 checkout: spec=CheckoutService-v70
 dataProtection: spec=DataProtectionService-v1
 storedValue: spec=StoredValueService-v46
