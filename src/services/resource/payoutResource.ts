@@ -11,4 +11,4 @@ class PayoutResource extends Resource {
     }
 }
 
-export default PayoutResource;s
+export default PayoutResource;
