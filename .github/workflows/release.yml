@@ -29,7 +29,12 @@ jobs:
             const options = { github, context, core, getCurrentVersion: release.packageVersion };
             await release.bump(options);
       - name: Bump package.json
-        run: npm --no-git-tag-version version ${{steps.release.outputs.nextVersion}}
+        run: |
+          if [[ $(node -pe "require('./package.json').version") == ${{steps.release.outputs.nextVersion}} ]]; then
+            npm --no-git-tag-version version ${{steps.release.outputs.nextVersion}}
+          fi
+        env:
+          CURRENT_VERSION: node -pe "require('./package.json').version" == true
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@284f54f989303d2699d373481a0cfa13ad5a6666 # v5.0.1
