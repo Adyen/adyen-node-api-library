@@ -30,7 +30,7 @@ jobs:
             await release.bump(options);
       - name: Bump package.json
         run: |
-          if [[ $(node -pe "require('./package.json').version") == ${{steps.release.outputs.nextVersion}} ]]; then
+          if [[ $(node -pe "require('./package.json').version") != ${{steps.release.outputs.nextVersion}} ]]; then
             npm --no-git-tag-version version 13.1.3
           fi
       - name: Create Pull Request
