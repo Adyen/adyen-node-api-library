@@ -31,7 +31,7 @@ jobs:
       - name: Bump package.json
         run: |
           if [[ $(node -pe "require('./package.json').version") != ${{steps.release.outputs.nextVersion}} ]]; then
-            npm --no-git-tag-version version 13.1.3
+            npm --no-git-tag-version version ${{steps.release.outputs.nextVersion}}
           fi
       - name: Create Pull Request
         id: cpr
