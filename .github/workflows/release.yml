@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - ITT-478/fix_release_automation
+      - develop
 
 jobs:
   release:
