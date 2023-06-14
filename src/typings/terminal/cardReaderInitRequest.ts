@@ -34,7 +34,7 @@ import { DisplayOutput } from './displayOutput';
 
 export class CardReaderInitRequest {
     'DisplayOutput'?: DisplayOutput;
-    'ForceEntryMode'?: Array<Array<CardReaderInitRequest.ForceEntryModeEnum>>;
+    'ForceEntryMode'?: Array<CardReaderInitRequest.ForceEntryModeEnum>;
     'LeaveCardFlag'?: boolean;
     'MaxWaitingTime'?: number;
     'WarmResetFlag'?: boolean;
@@ -50,7 +50,7 @@ export class CardReaderInitRequest {
         {
             "name": "ForceEntryMode",
             "baseName": "ForceEntryMode",
-            "type": "Array<Array<CardReaderInitRequest.ForceEntryModeEnum>>"
+            "type": "Array<CardReaderInitRequest.ForceEntryModeEnum>"
         },
         {
             "name": "LeaveCardFlag",
