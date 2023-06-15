@@ -18,8 +18,8 @@ jobs:
           ref: main
       - name: Reset promotion branch
         run: |
-          git fetch origin ITT-478/fix_release_automation:ITT-478/fix_release_automation
-          git reset --hard ITT-478/fix_release_automation
+          git fetch origin develop:develop
+          git reset --hard develop
       - name: Prepare release request
         uses: actions/github-script@v6
         id: release
