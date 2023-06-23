@@ -1,8 +1,8 @@
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import Payout from "../services/payout";
+import PayoutAPI from "../services/payout";
+import { payout } from "../typings";
 import Client from "../client";
-import { payouts } from "../typings";
 import { ApiConstants } from "../constants/apiConstants";
 
 const storeDetailAndSubmitThirdParty = JSON.stringify({
@@ -36,7 +36,7 @@ const defaultData = {
     shopperReference: "shopperReference",
 };
 
-const mockStoreDetailRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): payouts.StoreDetailRequest => ({
+const mockStoreDetailRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): payout.StoreDetailRequest => ({
     ...defaultData,
     card: {
         cvc: "737",
@@ -45,29 +45,29 @@ const mockStoreDetailRequest = (merchantAccount: string = process.env.ADYEN_MERC
         number: "4111111111111111",
         holderName: "John Smith"
     },
-    entityType: payouts.StoreDetailRequest.EntityTypeEnum.Company,
+    entityType: payout.StoreDetailRequest.EntityTypeEnum.Company,
     recurring: {
-        contract: payouts.Recurring.ContractEnum.Payout,
+        contract: payout.Recurring.ContractEnum.Payout,
     },
     merchantAccount,
 });
 
-const mockSubmitRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): payouts.SubmitRequest => ({
+const mockSubmitRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): payout.SubmitRequest => ({
     selectedRecurringDetailReference: "LATEST",
     recurring: {
-        contract: payouts.Recurring.ContractEnum.Payout
+        contract: payout.Recurring.ContractEnum.Payout
     },
     ...defaultData,
     ...amountAndReference,
     merchantAccount,
 });
 
-const mockStoreDetailAndSubmitRequest = (merchantAccount?: string): payouts.StoreDetailAndSubmitRequest => ({
+const mockStoreDetailAndSubmitRequest = (merchantAccount?: string): payout.StoreDetailAndSubmitRequest => ({
     ...amountAndReference,
     ...(mockStoreDetailRequest(merchantAccount)),
 }); 
 
-const mockPayoutRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): payouts.PayoutRequest => ({
+const mockPayoutRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!): payout.PayoutRequest => ({
     ...amountAndReference,
     ...defaultData,
     card: {
@@ -82,7 +82,7 @@ const mockPayoutRequest = (merchantAccount: string = process.env.ADYEN_MERCHANT!
 let client: Client;
 let clientStore: Client;
 let clientReview: Client;
-let payoutService: Payout;
+let payoutService: PayoutAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -93,7 +93,7 @@ beforeEach((): void => {
     clientStore = createClient(process.env.ADYEN_STOREPAYOUT_APIKEY);
     clientReview = createClient(process.env.ADYEN_REVIEWPAYOUT_APIKEY);
     scope = nock(`${client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}`);
-    payoutService = new Payout(client);
+    payoutService = new PayoutAPI(client);
 });
 
 afterEach((): void => {
@@ -102,20 +102,20 @@ afterEach((): void => {
 
 describe("PayoutTest", function (): void {
    test("should succeed on store detail and submit third party", async function (): Promise<void> {
-        payoutService = new Payout(clientStore);
-        const request: payouts.StoreDetailAndSubmitRequest = mockStoreDetailAndSubmitRequest();
+        payoutService = new PayoutAPI(clientStore);
+        const request: payout.StoreDetailAndSubmitRequest = mockStoreDetailAndSubmitRequest();
         scope.post("/storeDetailAndSubmitThirdParty").reply(200, storeDetailAndSubmitThirdParty);
 
-        const result = await payoutService.storeDetailAndSubmitThirdParty(request);
+        const result = await payoutService.InitializationApi.storeDetailAndSubmitThirdParty(request);
         expect(result.resultCode).toEqual("[payout-submit-received]");
         expect(result.pspReference).toBeTruthy();
     });
 
    test("should succeed on store detail", async function (): Promise<void> {
-        payoutService = new Payout(clientStore);
+        payoutService = new PayoutAPI(clientStore);
         scope.post("/storeDetail").reply(200, storeDetail);
-        const request: payouts.StoreDetailRequest = mockStoreDetailRequest();
-        const result = await payoutService.storeDetail(request);
+        const request: payout.StoreDetailRequest = mockStoreDetailRequest();
+        const result = await payoutService.InitializationApi.storeDetail(request);
 
         expect("Success").toEqual(result.resultCode);
         expect(result.pspReference).toBeTruthy();
@@ -123,34 +123,34 @@ describe("PayoutTest", function (): void {
     });
 
    test("should succeed on confirm third party", async function (): Promise<void> {
-        payoutService = new Payout(clientStore);
+        payoutService = new PayoutAPI(clientStore);
         scope.post("/storeDetail").reply(200, storeDetail);
-        const storeRequest: payouts.StoreDetailRequest = mockStoreDetailRequest();
-        const storeResult = await payoutService.storeDetail(storeRequest);
+        const storeRequest: payout.StoreDetailRequest = mockStoreDetailRequest();
+        const storeResult = await payoutService.InitializationApi.storeDetail(storeRequest);
 
-        payoutService = new Payout(clientReview);
+        payoutService = new PayoutAPI(clientReview);
         scope.post("/confirmThirdParty")
             .reply(200, {
                 pspReference: "8815131762537886",
                 response: "[payout-confirm-received]"
             });
 
-        const request: payouts.ModifyRequest = {
+        const request: payout.ModifyRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             originalReference: storeResult.pspReference
         };
-        const result = await payoutService.confirmThirdParty(request);
+        const result = await payoutService.ReviewingApi.confirmThirdParty(request);
 
         expect(result.response).toEqual("[payout-confirm-received]");
         expect(result.pspReference).toBeTruthy();
     });
 
    test("should succeed on submit third party", async function (): Promise<void> {
-        payoutService = new Payout(clientStore);
+        payoutService = new PayoutAPI(clientStore);
         scope.post("/submitThirdParty").reply(200, storeDetailAndSubmitThirdParty);
 
-        const request: payouts.SubmitRequest = mockSubmitRequest();
-        const result = await payoutService.submitThirdparty(request);
+        const request: payout.SubmitRequest = mockSubmitRequest();
+        const result = await payoutService.InitializationApi.submitThirdParty(request);
 
         expect(result.resultCode).toEqual("[payout-submit-received]");
         expect(result.pspReference).toBeTruthy();
@@ -162,13 +162,13 @@ describe("PayoutTest", function (): void {
     });
 
    test("should succeed on decline third party", async function (): Promise<void> {
-        payoutService = new Payout(clientStore);
+        payoutService = new PayoutAPI(clientStore);
         scope.post("/storeDetail").reply(200, storeDetail);
-        const storeRequest: payouts.StoreDetailRequest = mockStoreDetailRequest();
-        const storeResult = await payoutService.storeDetail(storeRequest);
+        const storeRequest: payout.StoreDetailRequest = mockStoreDetailRequest();
+        const storeResult = await payoutService.InitializationApi.storeDetail(storeRequest);
 
-        payoutService = new Payout(clientReview);
-        const request: payouts.ModifyRequest = {
+        payoutService = new PayoutAPI(clientReview);
+        const request: payout.ModifyRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
             originalReference: storeResult.pspReference
         };
@@ -177,7 +177,7 @@ describe("PayoutTest", function (): void {
                 pspReference: "8815131762537886",
                 response: "[payout-decline-received]"
             });
-        const result = await payoutService.declineThirdParty(request);
+        const result = await payoutService.ReviewingApi.declineThirdParty(request);
 
         expect(result.response).toEqual("[payout-decline-received]");
         expect(result.pspReference).toBeTruthy();
@@ -190,7 +190,7 @@ describe("PayoutTest", function (): void {
         });
 
         const request = mockPayoutRequest();
-        const result = await payoutService.payout(request);
+        const result = await payoutService.InstantPayoutsApi.payout(request);
 
         expect(result.resultCode).toEqual("Received");
         expect(result.pspReference).toBeTruthy();
