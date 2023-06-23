@@ -3,7 +3,7 @@ export { default as TerminalCloudAPI } from "./terminalCloudAPI";
 export { default as CheckoutAPI } from "./checkout";
 export { default as PaymentAPI } from "./paymentApi";
 export { default as RecurringAPI } from "./recurringApi";
-export { default as BinLookup } from "./binLookup";
+export { default as BinLookupAPI } from "./binLookupApi";
 export { default as PayoutAPI } from "./payout";
 export { default as Platforms } from "./platforms";
 export { default as StoredValue} from "./storedValue";
