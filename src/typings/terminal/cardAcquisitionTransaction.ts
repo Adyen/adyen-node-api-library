@@ -37,7 +37,7 @@ export class CardAcquisitionTransaction {
     'CashBackFlag'?: boolean;
     'CustomerLanguage'?: string;
     'ForceCustomerSelectionFlag'?: boolean;
-    'ForceEntryMode'?: Array<Array<CardAcquisitionTransaction.ForceEntryModeEnum>>;
+    'ForceEntryMode'?: Array<CardAcquisitionTransaction.ForceEntryModeEnum>;
     'LoyaltyHandling'?: CardAcquisitionTransaction.LoyaltyHandlingEnum;
     'PaymentType'?: CardAcquisitionTransaction.PaymentTypeEnum;
     'TotalAmount'?: number;
@@ -73,7 +73,7 @@ export class CardAcquisitionTransaction {
         {
             "name": "ForceEntryMode",
             "baseName": "ForceEntryMode",
-            "type": "Array<Array<CardAcquisitionTransaction.ForceEntryModeEnum>>"
+            "type": "Array<CardAcquisitionTransaction.ForceEntryModeEnum>"
         },
         {
             "name": "LoyaltyHandling",

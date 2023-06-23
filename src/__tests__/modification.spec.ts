@@ -1,6 +1,6 @@
 import nock from "nock";
 import {createClient} from "../__mocks__/base";
-import Checkout from "../services/checkout";
+import {CheckoutAPI} from "../services/";
 import Client from "../client";
 import {
     CreatePaymentAmountUpdateRequest,
@@ -149,7 +149,7 @@ const createReversalsResponse = (): PaymentReversalResource => {
 
 
 let client: Client;
-let checkout: Checkout;
+let checkout: CheckoutAPI;
 let scope: nock.Scope;
 const paymentPspReference = "863620292981235A";
 const invalidPaymentPspReference = "invalid_psp_reference";
@@ -159,7 +159,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    checkout = new Checkout(client);
+    checkout = new CheckoutAPI(client);
     scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`);
 });
 
@@ -173,7 +173,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/amountUpdates`)
             .reply(200, createAmountUpdateResponse());
         try {
-            const result = await checkout.amountUpdates(paymentPspReference, request);
+            const result = await checkout.ModificationsApi.updateAuthorisedAmount(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -191,7 +191,7 @@ describe("Modification", (): void => {
             .reply(422, invalidModificationResult);
 
         try {
-            await checkout.amountUpdates(invalidPaymentPspReference, request);
+            await checkout.ModificationsApi.updateAuthorisedAmount(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
                 if(e.statusCode) expect(e.statusCode).toBe(422);
@@ -207,7 +207,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/cancels`)
             .reply(200, createCancelsResponse());
         try {
-            const result = await checkout.cancels(paymentPspReference, request);
+            const result = await checkout.ModificationsApi.cancelAuthorisedPaymentByPspReference(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -224,7 +224,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/cancels`)
             .reply(422, invalidModificationResult);
         try {
-            await checkout.cancels(invalidPaymentPspReference, request);
+            await checkout.ModificationsApi.cancelAuthorisedPaymentByPspReference(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
                 if(e.statusCode) expect(e.statusCode).toBe(422);
@@ -240,7 +240,7 @@ describe("Modification", (): void => {
         scope.post("/cancels")
             .reply(200, createStandaloneCancelsResponse());
         try {
-            const result = await checkout.cancelsStandalone(request);
+            const result = await checkout.ModificationsApi.cancelAuthorisedPayment(request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -256,7 +256,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/captures`)
             .reply(200, createCapturesResponse());
         try {
-            const result = await checkout.captures(paymentPspReference, request);
+            const result = await checkout.ModificationsApi.captureAuthorisedPayment(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -273,7 +273,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/captures`)
             .reply(422, invalidModificationResult);
         try {
-            await checkout.captures(invalidPaymentPspReference, request);
+            await checkout.ModificationsApi.captureAuthorisedPayment(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
                 if(e.statusCode) expect(e.statusCode).toBe(422);
@@ -289,7 +289,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/refunds`)
             .reply(200, createRefundsResponse());
         try {
-            const result = await checkout.refunds(paymentPspReference, request);
+            const result = await checkout.ModificationsApi.refundCapturedPayment(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -306,7 +306,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/refunds`)
             .reply(422, invalidModificationResult);
         try {
-            await checkout.refunds(invalidPaymentPspReference, request);
+            await checkout.ModificationsApi.refundCapturedPayment(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
                 if(e.statusCode) expect(e.statusCode).toBe(422);
@@ -322,7 +322,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/reversals`)
             .reply(200, createReversalsResponse());
         try {
-            const result = await checkout.reversals(paymentPspReference, request);
+            const result = await checkout.ModificationsApi.refundOrCancelPayment(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -339,7 +339,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/reversals`)
             .reply(422, invalidModificationResult);
         try {
-            await checkout.reversals(invalidPaymentPspReference, request);
+            await checkout.ModificationsApi.refundOrCancelPayment(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
                 if(e.statusCode) expect(e.statusCode).toBe(422);

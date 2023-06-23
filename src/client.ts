@@ -16,6 +16,7 @@ type ClientParametersOverload =
 | { username: string; password: string; environment: Environment; applicationName: string; liveEndpointUrlPrefix: string; httpClient: ClientInterface }
 | { apiKey: string; environment: Environment }
 | { apiKey: string; environment: Environment; httpClient: ClientInterface }
+| { apiKey: string; environment: Environment; liveEndpointUrlPrefix: string }
 | { apiKey: string; environment: Environment; liveEndpointUrlPrefix: string; httpClient: ClientInterface };
 
 interface ClientParameters {
@@ -54,7 +55,7 @@ class Client {
     public static CHECKOUT_ENDPOINT_TEST = "https://checkout-test.adyen.com/checkout";
     public static CHECKOUT_ENDPOINT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
     public static BIN_LOOKUP_PAL_SUFFIX = "/pal/servlet/BinLookup/";
-    public static BIN_LOOKUP_API_VERSION = "v50";
+    public static BIN_LOOKUP_API_VERSION = "v54";
     public static TERMINAL_API_ENDPOINT_TEST = "https://terminal-api-test.adyen.com";
     public static TERMINAL_API_ENDPOINT_LIVE = "https://terminal-api-live.adyen.com";
     public static ENDPOINT_PROTOCOL = "https://";
@@ -78,6 +79,7 @@ class Client {
     public static DATA_PROTECTION_API_VERSION = "v1";
     public static DATA_PROTECTION_API_ENDPOINT_TEST = "https://ca-test.adyen.com/ca/services/DataProtectionService";
     public static DATA_PROTECTION_API_ENDPOINT_LIVE = "https://ca-live.adyen.com/ca/services/DataProtectionService";
+    public static BALANCE_CONTROL_API_VERSION = "v1";
 
     private _httpClient!: ClientInterface;
     public config: Config;

@@ -1,6 +1,6 @@
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import BinLookup from "../services/binLookup";
+import BinLookup from "../services/binLookupApi";
 import Client from "../client";
 import HttpClientException from "../httpClient/httpClientException";
 import { binlookup } from "../typings";

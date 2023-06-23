@@ -1,27 +1,8 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
 const path = require('path');
 
 module.exports = {
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
+  plugins: ["@typescript-eslint", "unused-imports"],
   env: {
     es6: true,
     node: true
@@ -51,7 +32,8 @@ module.exports = {
           "{}": false
         }
       }
-    ]
+    ],
+    "unused-imports/no-unused-imports": "warn",
   },
   overrides: [
     {
