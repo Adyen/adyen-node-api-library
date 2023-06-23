@@ -37,7 +37,7 @@ export class TransactionConditions {
     'AllowedPaymentBrand'?: Array<string>;
     'CustomerLanguage'?: string;
     'DebitPreferredFlag'?: boolean;
-    'ForceEntryMode'?: Array<Array<TransactionConditions.ForceEntryModeEnum>>;
+    'ForceEntryMode'?: Array<TransactionConditions.ForceEntryModeEnum>;
     'ForceOnlineFlag'?: boolean;
     'LoyaltyHandling'?: TransactionConditions.LoyaltyHandlingEnum;
     'MerchantCategoryCode'?: string;
@@ -73,7 +73,7 @@ export class TransactionConditions {
         {
             "name": "ForceEntryMode",
             "baseName": "ForceEntryMode",
-            "type": "Array<Array<TransactionConditions.ForceEntryModeEnum>>"
+            "type": "Array<TransactionConditions.ForceEntryModeEnum>"
         },
         {
             "name": "ForceOnlineFlag",
