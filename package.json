@@ -60,6 +60,6 @@
     "https-proxy-agent": "5.0.1"
   },
   "optionalDependencies": {
-    "@types/node": "14.18.42"
+    "@types/node": "14.18.51"
   }
 }
