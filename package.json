@@ -29,8 +29,7 @@
     "lint:fix": "eslint --fix 'src/**/*.ts'",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "release": "release-it"
+    "test:coverage": "jest --coverage"
   },
   "author": "Ricardo Ambrogi",
   "license": "MIT",
@@ -49,7 +48,6 @@
     "kind-of": "^6.0.3",
     "minimist": ">=1.2.3",
     "nock": "13.3.1",
-    "release-it": "15.10.3",
     "ts-auto-mock": "^3.3.5",
     "ts-jest": "^27.0.4",
     "ts-loader": "9.4.4",
