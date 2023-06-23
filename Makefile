@@ -16,7 +16,7 @@ storedValue: spec=StoredValueService-v46
 terminalManagement: spec=TfmAPIService-v1
 payment: spec=PaymentService-v68
 recurring: spec=RecurringService-v68
-payouts: spec=PayoutService-v68
+payout: spec=PayoutService-v68
 management: spec=ManagementService-v1
 legalEntityManagement: spec=LegalEntityService-v3
 balancePlatform: spec=BalancePlatformService-v2
@@ -52,15 +52,15 @@ $(services): build/spec $(openapi-generator-jar)
 		-o build \
 		-c templates/config.yaml \
 		--skip-validate-spec \
-		--model-package typings/$@ \
 		--api-package $@ \
 		--api-name-suffix Service \
-		--global-property apis,supportingFiles \
+		--global-property models,apis,supportingFiles \
 		--additional-properties=modelPropertyNaming=original \
 		--additional-properties=serviceName=$@
 	mkdir -p src/services/$@
 	mv build/$@/*Api.ts src/services/$@
 	mv build/index.ts src/services/$@
+	mv -f build/model src/typings/$@/
 	npx eslint --fix ./src/services/$@/*.ts
 
 $(singleFileServices): build/spec $(openapi-generator-jar)

@@ -14,7 +14,7 @@ export * as binlookup from './binlookup/models';
 export * as checkout from './checkout/models';
 export * as notification from './notification/models';
 export * as payments from './payments/models';
-export * as payouts from './payouts/models';
+export * as payout from './payout/models';
 export * as platformsNotifications from './platformsNotifications/models';
 export * as platformsAccount from './platformsAccount/models';
 export * as platformsHostedOnboardingPage from './platformsHostedOnboardingPage/models';
