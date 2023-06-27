@@ -61,6 +61,7 @@ $(services): build/spec $(openapi-generator-jar)
 	mv build/$@/*Api.ts src/services/$@
 	mv build/index.ts src/services/$@
 	mv -f build/model src/typings/$@/
+	npm install --save-dev
 	npx eslint --fix ./src/services/$@/*.ts
 
 $(singleFileServices): build/spec $(openapi-generator-jar)
@@ -82,6 +83,7 @@ $(singleFileServices): build/spec $(openapi-generator-jar)
 		--additional-properties=serviceName=$@
 	mv build/$@/*Root.ts src/services/$@Api.ts
 	mv -f build/model src/typings/$@/
+	npm install --save-dev
 	npx eslint --fix ./src/services/$@Api.ts
 
 # Checkout spec (and patch version)
