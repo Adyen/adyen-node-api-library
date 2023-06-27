@@ -60,7 +60,7 @@ $(services): build/spec $(openapi-generator-jar)
 	mkdir -p src/services/$@
 	mv build/$@/*Api.ts src/services/$@
 	mv build/index.ts src/services/$@
-	mv -f build/model src/typings/$@/
+	mv -f build/model/* src/typings/$@/
 	npm install --save-dev
 	npx eslint --fix ./src/services/$@/*.ts
 
@@ -82,7 +82,7 @@ $(singleFileServices): build/spec $(openapi-generator-jar)
 		--additional-properties=modelPropertyNaming=original \
 		--additional-properties=serviceName=$@
 	mv build/$@/*Root.ts src/services/$@Api.ts
-	mv -f build/model src/typings/$@/
+	mv -f build/model/* src/typings/$@/
 	npm install --save-dev
 	npx eslint --fix ./src/services/$@Api.ts
 
