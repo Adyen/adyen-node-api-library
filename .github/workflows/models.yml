@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Generate Models
     steps:
+      - name: install Node dev dependencies
+        run: npm install --save-dev
       - uses: actions/checkout@v3
       - run: make models
       - name: Set PR variables
