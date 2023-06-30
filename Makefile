@@ -43,8 +43,7 @@ services:=checkout management legalEntityManagement payout
 singleFileServices:=balanceControl payment recurring payout binLookup terminalManagement
 
 $(services): build/spec $(openapi-generator-jar)
-	rm -rf $(models)/$@ build/model
-	rm -rf src/services/$@
+	rm -rf build/model src/typings/$@ src/services/$@
 	$(openapi-generator-cli) generate \
 		-i build/spec/json/$(spec).json \
 		-g $(generator) \
@@ -60,13 +59,11 @@ $(services): build/spec $(openapi-generator-jar)
 	mkdir -p src/services/$@
 	mv build/$@/*Api.ts src/services/$@
 	mv build/index.ts src/services/$@
-	mv -f build/model src/typings/$@/
+	mv -f build/model src/typings/$@
 	npx eslint --fix ./src/services/$@/*.ts
 
 $(singleFileServices): build/spec $(openapi-generator-jar)
-	rm -rf src/typings/$@ build/model
-	rm -rf $(models)/$@ build/model
-	rm -rf src/services/$@
+	rm -rf src/typings/$@ build/model src/services/$@
 	jq -e 'del(.paths[][].tags)' build/spec/json/$(spec).json > build/spec/json/$(spec).tmp
 	mv build/spec/json/$(spec).tmp build/spec/json/$(spec).json 
 	$(openapi-generator-cli) generate \
@@ -81,7 +78,7 @@ $(singleFileServices): build/spec $(openapi-generator-jar)
 		--additional-properties=modelPropertyNaming=original \
 		--additional-properties=serviceName=$@
 	mv build/$@/*Root.ts src/services/$@Api.ts
-	mv -f build/model src/typings/$@/
+	mv -f build/model src/typings/$@
 	npx eslint --fix ./src/services/$@Api.ts
 
 # Checkout spec (and patch version)
