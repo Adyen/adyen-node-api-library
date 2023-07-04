@@ -42,7 +42,7 @@
     "acorn": "^8.0.1",
     "coveralls": "3.1.1",
     "dotenv": "^16.0.0",
-    "eslint": "8.43.0",
+    "eslint": "8.44.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "jest": "^27.0.6",
     "jest-ts-auto-mock": "^2.0.0",
