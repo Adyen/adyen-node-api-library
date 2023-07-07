@@ -27,9 +27,6 @@ class HmacValidator {
     public static HMAC_SHA256_ALGORITHM = "sha256";
     public static DATA_SEPARATOR = ":";
 
-    public constructor() {
-    }
-
     public calculateHmac(data: string | NotificationRequestItem, key: string): string {
         const dataString = typeof data !== "string" ? this.getDataToSign(data) : data;
         const rawKey = Buffer.from(key, "hex");
