@@ -3,7 +3,7 @@ openapi-generator-version:=5.4.0
 openapi-generator-url:=https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/$(openapi-generator-version)/openapi-generator-cli-$(openapi-generator-version).jar
 openapi-generator-jar:=build/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
-services:=balanceControl balancePlatform binlookup checkout dataProtection legalEntityManagement management payments payouts platformsAccount platformsFund platformsHostedOnboardingPage platformsNotificationConfiguration recurring storedValue terminalManagement transfer
+services:=balanceControl balancePlatform binLookup checkout dataProtection legalEntityManagement management payments payouts platformsAccount platformsFund platformsHostedOnboardingPage platformsNotificationConfiguration recurring storedValue terminalManagement transfer
 
 # Generate models (for each service)
 models: $(services)
