@@ -36,16 +36,16 @@ This library supports the following:
 | [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api) | v46 | Manage both online and point-of-sale gift cards and other stored-value cards. | [StoredValue](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/storedValue.ts) |
 | [Transfers API](https://docs.adyen.com/api-explorer/transfers/3/overview) | v3 | The Transfers API provides endpoints that can be used to get information about all your transactions, move funds within your balance platform or send funds from your balance platform to a transfer instrument. | [Transfers](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/transfers.ts) |
 
+## Supported Webhook versions
+The library supports all webhooks under the following model directories:
+
+| Webhooks                                                                                          | Description                                                                                                                                                                             | Model Name                                                     | Supported Version |
+|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|-------------------|
+| [Configuration Webhooks](https://docs.adyen.com/api-explorer/balanceplatform-webhooks/1/overview) | You can use these webhooks to build your implementation. For example, you can use this information to update internal statuses when the status of a capability is changed.              | [ConfigurationNotification](src/typings/configurationWebhooks) | **v1**            |
+| [Transfer Webhooks](https://docs.adyen.com/api-explorer/transfer-webhooks/3/overview)             | You can use these webhooks to build your implementation. For example, you can use this information to update balances in your own dashboards or to keep track of incoming funds.        | [TransferNotification](src/typings/transferWebhooks)           | **v3**            |
+| [Report Webhooks](https://docs.adyen.com/api-explorer/report-webhooks/1/overview)                 | You can download reports programmatically by making an HTTP GET request, or manually from your Balance Platform Customer Area                                                           | [ReportNotification](src/typings/reportWebhooks)               | **v1**            |
+| [Notification Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview)                  | We use webhooks to send you updates about payment status updates, newly available reports, and other events that you can subscribe to. For more information, refer to our documentation | [Notification](src/typings/notification)                       | **v1**            |
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
-
-## Webhooks
-
-Adyen uses [webhooks to send you notifications](https://docs.adyen.com/development-resources/webhooks) about payment status updates, newly available reports, and other events that you can subscribe to. 
-
-This library includes models for webhooks in the following categories:
-
-- [Online Payments](https://docs.adyen.com/api-explorer/Webhooks/1/overview) (v1)
-- [Classic Platforms](https://docs.adyen.com/api-explorer/Notification/6/overview) (v6)
 
 ## Before you begin
 
@@ -259,6 +259,23 @@ const client = new Client({
   }
 });
 // ... more code
+```
+
+## Parsing and Authenticating Banking Webhooks
+Parse an AccountHolderNotificationRequest webhook;
+``` typescript
+let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
+const accountHolderNotificationRequest: AccountHolderNotificationRequest = bankingWebhookHandler.getAccountHolderNotificationRequest();
+const genericWebhook = bankingWebhookHandler.getGenericWebhook();
+```
+Parse a generic Banking webhook;
+``` typescript
+let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
+const genericWebhook = bankingWebhookHandler.getGenericWebhook();
+```
+Verify the authenticity (where you retrieve the hmac key from the CA and the signature from the webhook header);
+``` typescript
+const isValid = hmacValidator.validateBankingHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGNATURE", jsonString)
 ```
 
 ## Proxy configuration
