@@ -27,6 +27,9 @@ class HmacValidator {
     public static HMAC_SHA256_ALGORITHM = "sha256";
     public static DATA_SEPARATOR = ":";
 
+    public constructor() {
+    }
+
     public calculateHmac(data: string | NotificationRequestItem, key: string): string {
         const dataString = typeof data !== "string" ? this.getDataToSign(data) : data;
         const rawKey = Buffer.from(key, "hex");
@@ -34,12 +37,11 @@ class HmacValidator {
     }
 
     public validateBankingHMAC(hmacKey: string, hmacSign: string, notification: string): boolean {
-        const expectedSign = this.calculateHmac(notification, hmacKey);
-        console.log(expectedSign)
-        if(hmacSign?.length === expectedSign.length) {
+        const expectedSign = createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, Buffer.from(hmacSign, "hex")).update(notification, "utf8").digest("base64");
+        if(hmacKey?.length === expectedSign.length) {
             return timingSafeEqual(
                 Buffer.from(expectedSign, "base64"),
-                Buffer.from(hmacSign, "base64")
+                Buffer.from(hmacKey, "base64")
             );
         }
         return false;
