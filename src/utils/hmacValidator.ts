@@ -33,6 +33,18 @@ class HmacValidator {
         return createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, rawKey).update(dataString, "utf8").digest("base64");
     }
 
+    public validateBankingHMAC(hmacKey: string, hmacSign: string, notification: string): boolean {
+        const expectedSign = this.calculateHmac(notification, hmacKey);
+        console.log(expectedSign)
+        if(hmacSign?.length === expectedSign.length) {
+            return timingSafeEqual(
+                Buffer.from(expectedSign, "base64"),
+                Buffer.from(hmacSign, "base64")
+            );
+        }
+        return false;
+    }
+
     public validateHMAC(notificationRequestItem: NotificationRequestItem, key: string): boolean {
         if (notificationRequestItem.additionalData?.[ApiConstants.HMAC_SIGNATURE]) {
             const expectedSign = this.calculateHmac(notificationRequestItem, key);
