@@ -24,7 +24,7 @@ beforeEach((): void => {
     }
     client = createClient();
     binLookupService = new BinLookup(client);
-    scope = nock(`${client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}${Client.BIN_LOOKUP_API_VERSION}`);
+    scope = nock("https://pal-test.adyen.com/pal/servlet/BinLookup/v54");
 });
 
 afterEach((): void => {

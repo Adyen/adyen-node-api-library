@@ -25,7 +25,7 @@ const getResponse = async ({apiKey , environment }: { apiKey: string; environmen
     const client = new Client({ apiKey, environment });
     const binLookup = new BinLookupAPI(client);
 
-    const scope = nock(`${client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}${Client.BIN_LOOKUP_API_VERSION}`)
+    const scope = nock("https://pal-test.adyen.com/pal/servlet/BinLookup/v54")
         .post("/get3dsAvailability");
     const { errorMessageContains, errorMessageEquals, errorType } = cb(scope);
     const ErrorException = errorType === "ApiException" ? ApiException : HttpClientException;

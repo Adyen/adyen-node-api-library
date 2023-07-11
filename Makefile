@@ -9,6 +9,7 @@ services:=balanceControl balancePlatform binLookup checkout dataProtection legal
 models: $(services)
 
 balanceControl: spec=BalanceControlService-v1
+balancePlatform: spec=BalancePlatformService-v2
 binLookup: spec=BinLookupService-v54
 checkout: spec=CheckoutService-v70
 dataProtection: spec=DataProtectionService-v1
@@ -39,7 +40,7 @@ $(services): build/spec $(openapi-generator-jar)
 	mv build/model src/typings/$@
 
 # Service + Models automation
-services:=checkout management legalEntityManagement payout transfers
+services:=balancePlatform checkout management legalEntityManagement payout transfers
 singleFileServices:=balanceControl dataProtection payment recurring binLookup storedValue terminalManagement
 
 services: $(services) $(singleFileServices)

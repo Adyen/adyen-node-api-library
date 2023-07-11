@@ -28,7 +28,7 @@ beforeEach((): void => {
     }
     client = createClient();
     recurringService = new RecurringService(client);
-    scope = nock(`${client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}`);
+    scope = nock("https://pal-test.adyen.com/pal/servlet/Recurring/v68");
 });
 
 afterEach(() => {

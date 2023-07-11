@@ -31,7 +31,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock(`${client.config.legalEntityManagementEndpoint}/${Client.LEGAL_ENTITY_MANAGEMENT_API_VERSION}`);
+    scope = nock("https://kyc-test.adyen.com/lem/v3");
     legalEntityManagement = new LegalEntityManagementAPI(client);
 });
 
@@ -117,17 +117,13 @@ describe("Legal Entity Management", (): void => {
             const request: models.TransferInstrumentInfo = {
                 type : TransferInstrumentInfo.TypeEnum.BankAccount,
                 legalEntityId : id,
-                bankAccount : {accountNumber: "string",
+                bankAccount : {
+                    accountIdentification: {
+                        type: models.IbanAccountIdentification.TypeEnum.Iban,
+                        iban: "string"
+                    },
                     accountType: "string",
-                    bankBicSwift: "string",
-                    bankCity: "string",
-                    bankCode: "string",
-                    bankName: "string",
-                    branchCode: "string",
-                    checkCode: "string",
                     countryCode: "string",
-                    currencyCode: "string",
-                    iban: "string"
                 }
             };
 
@@ -154,17 +150,13 @@ describe("Legal Entity Management", (): void => {
             const request: models.TransferInstrumentInfo = {
                 type : TransferInstrumentInfo.TypeEnum.BankAccount,
                 legalEntityId : id,
-                bankAccount : {accountNumber: "string",
+                bankAccount : {
+                    accountIdentification: {
+                        type: models.IbanAccountIdentification.TypeEnum.Iban,
+                        iban: "string"
+                    },
                     accountType: "string",
-                    bankBicSwift: "string",
-                    bankCity: "string",
-                    bankCode: "string",
-                    bankName: "string",
-                    branchCode: "string",
-                    checkCode: "string",
                     countryCode: "string",
-                    currencyCode: "string",
-                    iban: "string"
                 }
             };
 
@@ -190,14 +182,16 @@ describe("Legal Entity Management", (): void => {
                 .reply(200, businessLine);
 
             const request: models.BusinessLineInfo = {
-                capability: "receivePayments",
+                capability: models.BusinessLineInfo.CapabilityEnum.ReceivePayments,
                 industryCode: id,
-                legalEntityId: id };
+                legalEntityId: id,
+                service: models.BusinessLine.ServiceEnum.Banking 
+            };
 
             const response: models.BusinessLine = await legalEntityManagement.BusinessLinesApi.createBusinessLine(request);
 
             expect(response.id).toBe(id);
-            expect(response.capability).toBe("receivePayments");
+            expect(response.capability).toBe(models.BusinessLineInfo.CapabilityEnum.ReceivePayments);
             expect(response.industryCode).toBe(id);
             expect(response.legalEntityId).toBe(id);
         });
@@ -217,14 +211,16 @@ describe("Legal Entity Management", (): void => {
                 .reply(200, businessLine);
 
             const request: models.BusinessLineInfo = {
-                capability: "receivePayments",
+                capability: models.BusinessLineInfo.CapabilityEnum.ReceivePayments,
                 industryCode: id,
-                legalEntityId: id };
+                service: models.BusinessLine.ServiceEnum.Banking, 
+                legalEntityId: id
+            };
 
             const response: models.BusinessLine = await legalEntityManagement.BusinessLinesApi.updateBusinessLine(id, request);
 
             expect(response.id).toBe(id);
-            expect(response.capability).toBe("receivePayments");
+            expect(response.capability).toBe(models.BusinessLineInfo.CapabilityEnum.ReceivePayments);
             expect(response.industryCode).toBe(id);
             expect(response.legalEntityId).toBe(id);
         });

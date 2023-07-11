@@ -130,6 +130,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
+    console.log(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`);
     scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`);
     checkoutService = new CheckoutAPI(client);
 });

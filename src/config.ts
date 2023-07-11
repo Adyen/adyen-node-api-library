@@ -28,21 +28,10 @@ interface ConfigConstructor {
     connectionTimeoutMillis?: number;
     readTimeoutMillis?: number;
     certificatePath?: string;
-    hppEndpoint?: string;
     skinCode?: string;
     hmacKey?: string;
-    checkoutEndpoint?: string;
     terminalApiCloudEndpoint?: string;
     terminalApiLocalEndpoint?: string;
-    paymentEndpoint?: string;
-    storedValueEndpoint?: string;
-    terminalManagementEndpoint?: string;
-    managementEndpoint?: string;
-    balancePlatformEndpoint?: string;
-    legalEntityManagementEndpoint?: string;
-    transfersEndpoint?: string;
-    dataProtectionEndpoint?: string;
-    BalanceControlEndpoint?: string;
 }
 
 class Config {
@@ -58,24 +47,13 @@ class Config {
     public readTimeoutMillis?: number;
     public certificatePath?: string;
 
-    public hppEndpoint?: string;
     public skinCode?: string;
     public hmacKey?: string;
 
-    protected _checkoutEndpoint?: string;
 
     public terminalApiCloudEndpoint?: string;
     public terminalApiLocalEndpoint?: string;
 
-    public paymentEndpoint?: string;
-    public storedValueEndpoint?: string;
-    public terminalManagementEndpoint?: string;
-    public managementEndpoint?: string;
-    public balancePlatformEndpoint?: string;
-    public legalEntityManagementEndpoint?: string;
-    public transfersEndpoint?: string;
-    public dataProtectionEndpoint?: string;
-    public BalanceControlEndpoint?: string;
 
     public constructor(options: ConfigConstructor = {}) {
         if (options.username) this.username = options.username;
@@ -89,34 +67,10 @@ class Config {
         if (options.connectionTimeoutMillis) this.connectionTimeoutMillis = options.connectionTimeoutMillis || 30000;
         if (options.readTimeoutMillis) this.readTimeoutMillis = options.readTimeoutMillis || 3000;
         if (options.certificatePath) this.certificatePath = options.certificatePath;
-        if (options.hppEndpoint) this.hppEndpoint = options.hppEndpoint;
         if (options.skinCode) this.skinCode = options.skinCode;
         if (options.hmacKey) this.hmacKey = options.hmacKey;
-        if (options.checkoutEndpoint) this._checkoutEndpoint = options.checkoutEndpoint;
         if (options.terminalApiCloudEndpoint) this.terminalApiCloudEndpoint = options.terminalApiCloudEndpoint;
         if (options.terminalApiLocalEndpoint) this.terminalApiLocalEndpoint = options.terminalApiLocalEndpoint;
-        if (options.paymentEndpoint) this.paymentEndpoint = options.paymentEndpoint;
-        if (options.storedValueEndpoint) this.storedValueEndpoint = options.storedValueEndpoint;
-        if (options.terminalManagementEndpoint) this.terminalManagementEndpoint = options.terminalManagementEndpoint;
-        if (options.managementEndpoint) this.managementEndpoint = options.managementEndpoint;
-        if (options.balancePlatformEndpoint) this.balancePlatformEndpoint = options.balancePlatformEndpoint;
-        if (options.legalEntityManagementEndpoint) this.legalEntityManagementEndpoint = options.legalEntityManagementEndpoint;
-        if (options.transfersEndpoint) this.transfersEndpoint = options.transfersEndpoint;
-        if (options.dataProtectionEndpoint) this.dataProtectionEndpoint = options.dataProtectionEndpoint;
-        if (options.balancePlatformEndpoint) this.balancePlatformEndpoint = options.balancePlatformEndpoint;
-    }
-
-    public set checkoutEndpoint(checkoutEndpoint: string | undefined) {
-        this._checkoutEndpoint = checkoutEndpoint;
-    }
-
-    public get checkoutEndpoint(): string | undefined {
-        if (!this._checkoutEndpoint) {
-            const message = "Please provide your unique live url prefix on the setEnvironment() call on the Client or provide checkoutEndpoint in your config object.";
-            throw new Error(message);
-        } else {
-            return this._checkoutEndpoint;
-        }
     }
 }
 
