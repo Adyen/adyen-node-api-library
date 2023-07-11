@@ -18,11 +18,12 @@ import { ObjectSerializer } from "../typings/balanceControl/models";
 
 export class BalanceControlAPI extends Service {
     
+    readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/BalanceControl/v1";
     private baseUrl: string;
 
     public constructor(client: Client) {
         super(client);
-        this.baseUrl = this.createBaseUrl("https://pal-test.adyen.com/pal/servlet/BalanceControl/v1");
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
     }
 
     /**

@@ -33,11 +33,12 @@ import { ObjectSerializer } from "../typings/payment/models";
 
 export class PaymentAPI extends Service {
     
+    readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/Payment/v68";
     private baseUrl: string;
 
     public constructor(client: Client) {
         super(client);
-        this.baseUrl = this.createBaseUrl("https://pal-test.adyen.com/pal/servlet/Payment/v68");
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
     }
 
     /**

@@ -26,11 +26,12 @@ import { ObjectSerializer } from "../typings/terminalManagement/models";
 
 export class TerminalManagementAPI extends Service {
     
+    readonly API_BASEPATH: string = "https://postfmapi-test.adyen.com/postfmapi/terminal/v1";
     private baseUrl: string;
 
     public constructor(client: Client) {
         super(client);
-        this.baseUrl = this.createBaseUrl("https://postfmapi-test.adyen.com/postfmapi/terminal/v1");
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
     }
 
     /**

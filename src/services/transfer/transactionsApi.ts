@@ -18,11 +18,12 @@ import { ObjectSerializer } from "../../typings/transfer/models";
 
 export class TransactionsApi extends Service {
 
+    readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/btl/v3";
     private baseUrl: string;
 
     public constructor(client: Client){
         super(client);
-        this.baseUrl = this.createBaseUrl("https://balanceplatform-api-test.adyen.com/btl/v3");
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
     }
 
     /**

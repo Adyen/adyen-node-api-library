@@ -17,11 +17,12 @@ import { ObjectSerializer } from "../../typings/management/models";
 
 export class APIKeyCompanyLevelApi extends Service {
 
+    readonly API_BASEPATH: string = "https://management-test.adyen.com/v1";
     private baseUrl: string;
 
     public constructor(client: Client){
         super(client);
-        this.baseUrl = this.createBaseUrl("https://management-test.adyen.com/v1");
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
     }
 
     /**

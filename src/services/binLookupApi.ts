@@ -20,11 +20,12 @@ import { ObjectSerializer } from "../typings/binLookup/models";
 
 export class BinLookupAPI extends Service {
     
+    readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/BinLookup/v54";
     private baseUrl: string;
 
     public constructor(client: Client) {
         super(client);
-        this.baseUrl = this.createBaseUrl("https://pal-test.adyen.com/pal/servlet/BinLookup/v54");
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
     }
 
     /**

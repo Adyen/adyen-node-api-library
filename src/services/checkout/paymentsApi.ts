@@ -28,11 +28,12 @@ import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class PaymentsApi extends Service {
 
+    readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v70";
     private baseUrl: string;
 
     public constructor(client: Client){
         super(client);
-        this.baseUrl = this.createBaseUrl("https://checkout-test.adyen.com/v70");
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
     }
 
     /**
