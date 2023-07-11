@@ -10,10 +10,6 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ModifyRequest } from "../../typings/payout/models";
-import { ModifyResponse } from "../../typings/payout/models";
-import { PayoutRequest } from "../../typings/payout/models";
-import { PayoutResponse } from "../../typings/payout/models";
 import { StoreDetailAndSubmitRequest } from "../../typings/payout/models";
 import { StoreDetailAndSubmitResponse } from "../../typings/payout/models";
 import { StoreDetailRequest } from "../../typings/payout/models";
@@ -24,7 +20,7 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/payout/models";
 
-export class DefaultApi extends Service {
+export class InitializationApi extends Service {
 
     private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/Payout/v68";
     private baseUrl: string;
@@ -32,60 +28,6 @@ export class DefaultApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
-    }
-
-    /**
-    * @summary Confirm a payout
-    * @param modifyRequest {@link ModifyRequest } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link ModifyResponse }
-    */
-    public async confirmThirdParty(modifyRequest: ModifyRequest, requestOptions?: IRequest.Options): Promise<ModifyResponse> {
-        const endpoint = `${this.baseUrl}/confirmThirdParty`;
-        const resource = new Resource(this, endpoint);
-        const request: ModifyRequest = ObjectSerializer.serialize(modifyRequest, "ModifyRequest");
-        const response = await getJsonResponse<ModifyRequest, ModifyResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "ModifyResponse");
-    }
-
-    /**
-    * @summary Cancel a payout
-    * @param modifyRequest {@link ModifyRequest } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link ModifyResponse }
-    */
-    public async declineThirdParty(modifyRequest: ModifyRequest, requestOptions?: IRequest.Options): Promise<ModifyResponse> {
-        const endpoint = `${this.baseUrl}/declineThirdParty`;
-        const resource = new Resource(this, endpoint);
-        const request: ModifyRequest = ObjectSerializer.serialize(modifyRequest, "ModifyRequest");
-        const response = await getJsonResponse<ModifyRequest, ModifyResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "ModifyResponse");
-    }
-
-    /**
-    * @summary Make an instant card payout
-    * @param payoutRequest {@link PayoutRequest } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link PayoutResponse }
-    */
-    public async payout(payoutRequest: PayoutRequest, requestOptions?: IRequest.Options): Promise<PayoutResponse> {
-        const endpoint = `${this.baseUrl}/payout`;
-        const resource = new Resource(this, endpoint);
-        const request: PayoutRequest = ObjectSerializer.serialize(payoutRequest, "PayoutRequest");
-        const response = await getJsonResponse<PayoutRequest, PayoutResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "PayoutResponse");
     }
 
     /**
