@@ -18,7 +18,7 @@ import { ObjectSerializer } from "../typings/dataProtection/models";
 
 export class DataProtectionAPI extends Service {
     
-    readonly API_BASEPATH: string = "https://ca-test.adyen.com/ca/services/DataProtectionService/v1";
+    private readonly API_BASEPATH: string = "https://ca-test.adyen.com/ca/services/DataProtectionService/v1";
     private baseUrl: string;
 
     public constructor(client: Client) {

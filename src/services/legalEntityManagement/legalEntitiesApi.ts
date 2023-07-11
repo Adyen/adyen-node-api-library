@@ -21,7 +21,7 @@ import { ObjectSerializer } from "../../typings/legalEntityManagement/models";
 
 export class LegalEntitiesApi extends Service {
 
-    readonly API_BASEPATH: string = "https://kyc-test.adyen.com/lem/v3";
+    private readonly API_BASEPATH: string = "https://kyc-test.adyen.com/lem/v3";
     private baseUrl: string;
 
     public constructor(client: Client){

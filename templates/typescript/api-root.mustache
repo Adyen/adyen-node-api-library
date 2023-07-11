@@ -12,7 +12,7 @@ import { ObjectSerializer } from "../typings/{{serviceName}}/models";
 {{#operations}}
 export class {{#lambda.pascalcase}}{{ apiPackage }}{{/lambda.pascalcase}}API extends Service {
     
-    readonly API_BASEPATH: string = "{{{basePath}}}";
+    private readonly API_BASEPATH: string = "{{{basePath}}}";
     private baseUrl: string;
 
     public constructor(client: Client) {

@@ -18,7 +18,7 @@ import { ObjectSerializer } from "../typings/balanceControl/models";
 
 export class BalanceControlAPI extends Service {
     
-    readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/BalanceControl/v1";
+    private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/BalanceControl/v1";
     private baseUrl: string;
 
     public constructor(client: Client) {

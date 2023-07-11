@@ -20,7 +20,7 @@ import { ObjectSerializer } from "../../typings/management/models";
 
 export class PayoutSettingsMerchantLevelApi extends Service {
 
-    readonly API_BASEPATH: string = "https://management-test.adyen.com/v1";
+    private readonly API_BASEPATH: string = "https://management-test.adyen.com/v1";
     private baseUrl: string;
 
     public constructor(client: Client){

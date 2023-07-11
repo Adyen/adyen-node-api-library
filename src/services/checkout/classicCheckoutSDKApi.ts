@@ -20,7 +20,7 @@ import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class ClassicCheckoutSDKApi extends Service {
 
-    readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v70";
+    private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v70";
     private baseUrl: string;
 
     public constructor(client: Client){

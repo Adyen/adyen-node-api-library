@@ -28,7 +28,7 @@ import { ObjectSerializer } from "../typings/recurring/models";
 
 export class RecurringAPI extends Service {
     
-    readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/Recurring/v68";
+    private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/Recurring/v68";
     private baseUrl: string;
 
     public constructor(client: Client) {

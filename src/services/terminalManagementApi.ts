@@ -26,7 +26,7 @@ import { ObjectSerializer } from "../typings/terminalManagement/models";
 
 export class TerminalManagementAPI extends Service {
     
-    readonly API_BASEPATH: string = "https://postfmapi-test.adyen.com/postfmapi/terminal/v1";
+    private readonly API_BASEPATH: string = "https://postfmapi-test.adyen.com/postfmapi/terminal/v1";
     private baseUrl: string;
 
     public constructor(client: Client) {

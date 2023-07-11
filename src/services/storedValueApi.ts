@@ -28,7 +28,7 @@ import { ObjectSerializer } from "../typings/storedValue/models";
 
 export class StoredValueAPI extends Service {
     
-    readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/StoredValue/v46";
+    private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/StoredValue/v46";
     private baseUrl: string;
 
     public constructor(client: Client) {

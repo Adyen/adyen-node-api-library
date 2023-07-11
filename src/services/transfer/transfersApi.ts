@@ -18,7 +18,7 @@ import { ObjectSerializer } from "../../typings/transfer/models";
 
 export class TransfersApi extends Service {
 
-    readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/btl/v3";
+    private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/btl/v3";
     private baseUrl: string;
 
     public constructor(client: Client){

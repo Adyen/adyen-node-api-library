@@ -26,7 +26,7 @@ import { ObjectSerializer } from "../../typings/payout/models";
 
 export class DefaultApi extends Service {
 
-    readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/Payout/v68";
+    private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/Payout/v68";
     private baseUrl: string;
 
     public constructor(client: Client){
