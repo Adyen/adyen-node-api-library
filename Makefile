@@ -24,7 +24,7 @@ platformsAccount: spec=AccountService-v6
 platformsFund: spec=FundService-v6
 platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 platformsHostedOnboardingPage: spec=HopService-v6
-transfer: spec=TransferService-v3
+transfers: spec=TransferService-v3
 
 $(services): build/spec $(openapi-generator-jar)  
 	rm -rf src/typings/$@ build/model
@@ -39,7 +39,7 @@ $(services): build/spec $(openapi-generator-jar)
 	mv build/model src/typings/$@
 
 # Service + Models automation
-services:=checkout management legalEntityManagement payout
+services:=checkout management legalEntityManagement payout transfers
 singleFileServices:=balanceControl payment recurring payout binLookup terminalManagement
 
 $(services): build/spec $(openapi-generator-jar)
