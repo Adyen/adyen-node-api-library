@@ -10,7 +10,7 @@ export { default as StoredValueAPI} from "./storedValueApi";
 export { default as TerminalManagementAPI } from "./terminalManagementApi";
 export { default as Management } from "./management";
 export { default as LegalEntityManagement } from "./legalEntityManagement";
-export { default as Transfer } from "./transfer";
+export { default as Transfers } from "./transfers";
 export { default as BalancePlatformAPI } from "./balancePlatform";
 export { default as DataProtectionAPI } from "./dataProtectionApi";
 export { default as BalanceControlAPI } from "./balanceControlApi";
