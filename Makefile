@@ -39,8 +39,10 @@ $(services): build/spec $(openapi-generator-jar)
 	mv build/model src/typings/$@
 
 # Service + Models automation
-services:=checkout management legalEntityManagement payout
-singleFileServices:=balanceControl payment recurring payout binLookup terminalManagement
+services:=checkout management legalEntityManagement payout transfer
+singleFileServices:=balanceControl dataProtection payment recurring payout binLookup storedValue terminalManagement
+
+services: $(services) $(singleFileServices)
 
 $(services): build/spec $(openapi-generator-jar)
 	rm -rf build/model src/typings/$@ src/services/$@

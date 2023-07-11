@@ -24,11 +24,11 @@ import ApiException from "./exception/apiException";
 import ClientInterface from "../httpClient/clientInterface";
 import { IRequest } from "../typings/requestOptions";
 
-abstract class Resource {
-    protected endpoint: string;
+class Resource {
+    private endpoint: string;
     private service: Service;
 
-    protected constructor(service: Service, endpoint: string) {
+    public constructor(service: Service, endpoint: string) {
         this.service = service;
         this.endpoint = endpoint;
     }

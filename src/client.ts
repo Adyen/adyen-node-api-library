@@ -52,8 +52,8 @@ class Client {
     public static MANAGEMENT_API_VERSION = "v1";
     public static LIB_NAME = "adyen-node-api-library";
     public static LIB_VERSION: string = version;
-    public static CHECKOUT_ENDPOINT_TEST = "https://checkout-test.adyen.com/checkout";
-    public static CHECKOUT_ENDPOINT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com/checkout";
+    public static CHECKOUT_ENDPOINT_TEST = "https://checkout-test.adyen.com";
+    public static CHECKOUT_ENDPOINT_LIVE_SUFFIX = "-checkout-live.adyenpayments.com";
     public static BIN_LOOKUP_PAL_SUFFIX = "/pal/servlet/BinLookup/";
     public static BIN_LOOKUP_API_VERSION = "v54";
     public static TERMINAL_API_ENDPOINT_TEST = "https://terminal-api-test.adyen.com";
@@ -83,6 +83,7 @@ class Client {
 
     private _httpClient!: ClientInterface;
     public config: Config;
+    public liveEndpointUrlPrefix: string;
 
     public constructor(clientParameters: ClientParametersOverload);
     public constructor(options: ClientParameters) {
@@ -91,6 +92,7 @@ class Client {
         } else {
             this.config = new Config();
         }
+        this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix || '';
 
         const environment = options.environment || this.config.environment;
         if (environment) {
