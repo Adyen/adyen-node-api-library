@@ -40,7 +40,7 @@ $(services): build/spec $(openapi-generator-jar)
 
 # Service + Models automation
 services:=checkout management legalEntityManagement payout transfer
-singleFileServices:=balanceControl dataProtection payment recurring payout binLookup storedValue terminalManagement
+singleFileServices:=balanceControl dataProtection payment recurring binLookup storedValue terminalManagement
 
 services: $(services) $(singleFileServices)
 

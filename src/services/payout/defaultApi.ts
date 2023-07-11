@@ -7,28 +7,28 @@
  * Do not edit this class manually.
  */
 
-import Client from "../client";
-import getJsonResponse from "../helpers/getJsonResponse";
-import Service from "../service";
-import { ModifyRequest } from "../typings/payout/models";
-import { ModifyResponse } from "../typings/payout/models";
-import { PayoutRequest } from "../typings/payout/models";
-import { PayoutResponse } from "../typings/payout/models";
-import { StoreDetailAndSubmitRequest } from "../typings/payout/models";
-import { StoreDetailAndSubmitResponse } from "../typings/payout/models";
-import { StoreDetailRequest } from "../typings/payout/models";
-import { StoreDetailResponse } from "../typings/payout/models";
-import { SubmitRequest } from "../typings/payout/models";
-import { SubmitResponse } from "../typings/payout/models";
-import { IRequest } from "../typings/requestOptions";
-import Resource from "./resource";
-import { ObjectSerializer } from "../typings/payout/models";
+import getJsonResponse from "../../helpers/getJsonResponse";
+import Service from "../../service";
+import Client from "../../client";
+import { ModifyRequest } from "../../typings/payout/models";
+import { ModifyResponse } from "../../typings/payout/models";
+import { PayoutRequest } from "../../typings/payout/models";
+import { PayoutResponse } from "../../typings/payout/models";
+import { StoreDetailAndSubmitRequest } from "../../typings/payout/models";
+import { StoreDetailAndSubmitResponse } from "../../typings/payout/models";
+import { StoreDetailRequest } from "../../typings/payout/models";
+import { StoreDetailResponse } from "../../typings/payout/models";
+import { SubmitRequest } from "../../typings/payout/models";
+import { SubmitResponse } from "../../typings/payout/models";
+import { IRequest } from "../../typings/requestOptions";
+import Resource from "../resource";
+import { ObjectSerializer } from "../../typings/payout/models";
 
-export class PayoutAPI extends Service {
-    
+export class DefaultApi extends Service {
+
     private baseUrl: string;
 
-    public constructor(client: Client) {
+    public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl("https://pal-test.adyen.com/pal/servlet/Payout/v68");
     }
@@ -141,5 +141,3 @@ export class PayoutAPI extends Service {
         return ObjectSerializer.deserialize(response, "SubmitResponse");
     }
 }
-
-export default PayoutAPI;

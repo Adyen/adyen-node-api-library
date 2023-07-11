@@ -4,7 +4,7 @@ export { default as Checkout } from "./checkout";
 export { default as PaymentAPI } from "./paymentApi";
 export { default as RecurringAPI } from "./recurringApi";
 export { default as BinLookupAPI } from "./binLookupApi";
-export { default as PayoutAPI } from "./payoutApi";
+export { default as Payout } from "./payout";
 export { default as Platforms } from "./platforms";
 export { default as StoredValueAPI} from "./storedValueApi";
 export { default as TerminalManagementAPI } from "./terminalManagementApi";
