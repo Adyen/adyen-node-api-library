@@ -2,7 +2,6 @@ src/
 .eslintignore
 .eslintrc.js
 .gitignore
-.release-it.json
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 Makefile
