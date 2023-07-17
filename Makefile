@@ -3,7 +3,8 @@ openapi-generator-version:=5.4.0
 openapi-generator-url:=https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/$(openapi-generator-version)/openapi-generator-cli-$(openapi-generator-version).jar
 openapi-generator-jar:=build/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
-services:=balanceControl balancePlatform binLookup checkout dataProtection legalEntityManagement management payment payout platformsAccount platformsFund platformsHostedOnboardingPage platformsNotificationConfiguration recurring storedValue terminalManagement transfers
+
+services:=balanceControl balancePlatform binlookup checkout configurationWebhooks dataProtection legalEntityManagement management payment payout platformsAccount platformsFund platformsHostedOnboardingPage platformsNotificationConfiguration recurring reportWebhooks storedValue terminalManagement transfer transferWebhooks
 
 # Generate models (for each service)
 models: $(services)
@@ -26,6 +27,10 @@ platformsFund: spec=FundService-v6
 platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 platformsHostedOnboardingPage: spec=HopService-v6
 transfers: spec=TransferService-v3
+# BalanceWebhooks
+configurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
+reportWebhooks: spec=BalancePlatformReportNotification-v1
+transferWebhooks: spec=BalancePlatformTransferNotification-v3
 
 $(services): build/spec $(openapi-generator-jar)  
 	rm -rf src/typings/$@ build/model
@@ -34,6 +39,7 @@ $(services): build/spec $(openapi-generator-jar)
 		-g $(generator) \
 		-t templates/typescript \
 		-o build \
+		--skip-validate-spec \
 		--global-property models,supportingFiles \
 		--additional-properties=serviceName=$@ \
 		--additional-properties=modelPropertyNaming=original
