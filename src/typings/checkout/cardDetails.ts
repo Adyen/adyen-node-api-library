@@ -195,6 +195,9 @@ export namespace CardDetails {
         Scheme = 'scheme',
         NetworkToken = 'networkToken',
         Giftcard = 'giftcard',
+        MealVoucherFrGroupeup = 'mealVoucher_FR_groupeup',
+        MealVoucherFrNatixis = 'mealVoucher_FR_natixis',
+        MealVoucherFrSodexo = 'mealVoucher_FR_sodexo',
         Alliancedata = 'alliancedata',
         Card = 'card'
     }

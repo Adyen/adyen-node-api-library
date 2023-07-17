@@ -79,6 +79,7 @@ export namespace PaymentDetails {
         Pix = 'pix',
         Bizum = 'bizum',
         Alma = 'alma',
+        Paypo = 'paypo',
         MolpayFpx = 'molpay_fpx',
         Konbini = 'konbini',
         DirectEbanking = 'directEbanking',
