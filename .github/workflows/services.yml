@@ -1,11 +1,11 @@
-name: Node.js Models
+name: Node.js Services
 
 on: [ workflow_dispatch ]
 
 jobs:
   generate:
     runs-on: ubuntu-latest
-    name: Generate Models
+    name: Generate Services
     steps:
       - uses: actions/checkout@v3
       - name: install Node dev dependencies
@@ -15,8 +15,8 @@ jobs:
         id: vars
         run: |
           cd build/spec
-          echo ::set-output name=pr_title::"Update models"
-          echo ::set-output name=pr_body::"OpenAPI spec or templates produced new models on $(date +%d-%m-%Y) \
+          echo ::set-output name=pr_title::"Update services + models"
+          echo ::set-output name=pr_body::"OpenAPI spec or templates produced new services + models on $(date +%d-%m-%Y) \
             by [commit](https://github.com/Adyen/adyen-openapi/commit/$(git rev-parse HEAD))."
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
@@ -25,7 +25,7 @@ jobs:
           committer: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
           author: ${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}
           base: develop
-          branch: automation/models
+          branch: automation/services
           title: ${{ steps.vars.outputs.pr_title }}
           body: ${{ steps.vars.outputs.pr_body }}
           add-paths: |

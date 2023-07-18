@@ -21,7 +21,6 @@ recurring: spec=RecurringService-v68
 payout: spec=PayoutService-v68
 management: spec=ManagementService-v1
 legalEntityManagement: spec=LegalEntityService-v3
-balancePlatform: spec=BalancePlatformService-v2
 platformsAccount: spec=AccountService-v6
 platformsFund: spec=FundService-v6
 platformsNotificationConfiguration: spec=NotificationConfigurationService-v6

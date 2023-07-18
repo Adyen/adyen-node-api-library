@@ -78,8 +78,9 @@ class Client {
     }
 
     public setEnvironment(environment: Environment, liveEndpointUrlPrefix?: string): void {
-        // ensure environment is set in config
+        // ensure environment and liveUrlPrefix is set in config
         this.config.environment = environment;
+        this.liveEndpointUrlPrefix = liveEndpointUrlPrefix || "";
 
         if (environment === "TEST") {
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
