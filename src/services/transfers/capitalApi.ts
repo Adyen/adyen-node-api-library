@@ -9,14 +9,23 @@
 
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
+import Client from "../../client";
 import { CapitalGrant } from "../../typings/transfers/models";
 import { CapitalGrantInfo } from "../../typings/transfers/models";
 import { CapitalGrants } from "../../typings/transfers/models";
 import { IRequest } from "../../typings/requestOptions";
+import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/transfers/models";
-import TransfersResource from "../resource/TransfersResource";
 
 export class CapitalApi extends Service {
+
+    private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/btl/v3";
+    private baseUrl: string;
+
+    public constructor(client: Client){
+        super(client);
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
 
     /**
     * @summary Get a capital account
@@ -25,8 +34,8 @@ export class CapitalApi extends Service {
     * @return {@link CapitalGrants }
     */
     public async getCapitalAccount(requestOptions?: IRequest.Options): Promise<CapitalGrants> {
-        const localVarPath = "/grants";
-        const resource = new TransfersResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/grants`;
+        const resource = new Resource(this, endpoint);
         const response = await getJsonResponse<string, CapitalGrants>(
             resource,
             "",
@@ -42,9 +51,9 @@ export class CapitalApi extends Service {
     * @return {@link CapitalGrant }
     */
     public async getGrantReferenceDetails(id: string, requestOptions?: IRequest.Options): Promise<CapitalGrant> {
-        const localVarPath = "/grants/{id}"
+        const endpoint = `${this.baseUrl}/grants/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new TransfersResource(this, localVarPath);
+        const resource = new Resource(this, endpoint);
         const response = await getJsonResponse<string, CapitalGrant>(
             resource,
             "",
@@ -60,8 +69,8 @@ export class CapitalApi extends Service {
     * @return {@link CapitalGrant }
     */
     public async requestGrantPayout(capitalGrantInfo: CapitalGrantInfo, requestOptions?: IRequest.Options): Promise<CapitalGrant> {
-        const localVarPath = "/grants";
-        const resource = new TransfersResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/grants`;
+        const resource = new Resource(this, endpoint);
         const request: CapitalGrantInfo = ObjectSerializer.serialize(capitalGrantInfo, "CapitalGrantInfo");
         const response = await getJsonResponse<CapitalGrantInfo, CapitalGrant>(
             resource,

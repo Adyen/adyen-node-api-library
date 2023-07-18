@@ -13,7 +13,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock(`${client.config.terminalManagementEndpoint}/${Client.TERMINAL_MANAGEMENT_API_VERSION}`);
+    scope = nock("https://postfmapi-test.adyen.com/postfmapi/terminal/v1");
     terminalManagementService = new TerminalManagementAPI(client);
 });
 

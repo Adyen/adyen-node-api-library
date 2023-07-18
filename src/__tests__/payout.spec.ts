@@ -92,7 +92,7 @@ beforeEach((): void => {
     client = createClient();
     clientStore = createClient(process.env.ADYEN_STOREPAYOUT_APIKEY);
     clientReview = createClient(process.env.ADYEN_REVIEWPAYOUT_APIKEY);
-    scope = nock(`${client.config.endpoint}/pal/servlet/Payout/${Client.API_VERSION}`);
+    scope = nock("https://pal-test.adyen.com/pal/servlet/Payout/v68");
     payoutService = new PayoutAPI(client);
 });
 

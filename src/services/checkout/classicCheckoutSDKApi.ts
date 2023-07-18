@@ -9,24 +9,35 @@
 
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
+import Client from "../../client";
 import { PaymentSetupRequest } from "../../typings/checkout/models";
 import { PaymentSetupResponse } from "../../typings/checkout/models";
 import { PaymentVerificationRequest } from "../../typings/checkout/models";
 import { PaymentVerificationResponse } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
-import CheckoutResource from "../resource/checkoutResource";
+import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class ClassicCheckoutSDKApi extends Service {
 
+    private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v70";
+    private baseUrl: string;
+
+    public constructor(client: Client){
+        super(client);
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
     /**
-     * @summary Create a payment session
-     * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-     * @param paymentSetupRequest 
-     */
+    * @summary Create a payment session
+    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+    * @param paymentSetupRequest {@link PaymentSetupRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link PaymentSetupResponse }
+    */
     public async paymentSession(paymentSetupRequest: PaymentSetupRequest, requestOptions?: IRequest.Options): Promise<PaymentSetupResponse> {
-        const localVarPath = "/paymentSession";
-        const resource = new CheckoutResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/paymentSession`;
+        const resource = new Resource(this, endpoint);
         const request: PaymentSetupRequest = ObjectSerializer.serialize(paymentSetupRequest, "PaymentSetupRequest");
         const response = await getJsonResponse<PaymentSetupRequest, PaymentSetupResponse>(
             resource,
@@ -37,13 +48,15 @@ export class ClassicCheckoutSDKApi extends Service {
     }
 
     /**
-     * @summary Verify a payment result
-     * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-     * @param paymentVerificationRequest 
-     */
+    * @summary Verify a payment result
+    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+    * @param paymentVerificationRequest {@link PaymentVerificationRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link PaymentVerificationResponse }
+    */
     public async verifyPaymentResult(paymentVerificationRequest: PaymentVerificationRequest, requestOptions?: IRequest.Options): Promise<PaymentVerificationResponse> {
-        const localVarPath = "/payments/result";
-        const resource = new CheckoutResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/payments/result`;
+        const resource = new Resource(this, endpoint);
         const request: PaymentVerificationRequest = ObjectSerializer.serialize(paymentVerificationRequest, "PaymentVerificationRequest");
         const response = await getJsonResponse<PaymentVerificationRequest, PaymentVerificationResponse>(
             resource,

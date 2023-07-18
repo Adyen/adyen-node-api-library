@@ -1,22 +1,31 @@
 {{>licenseInfo}}
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
+import Client from "../../client";
 {{#imports}}
 import { {{classname}} } from "../../typings/{{serviceName}}/models";
 {{/imports}}
 import { IRequest } from "../../typings/requestOptions";
-import {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource from "../resource/{{serviceName}}Resource";
+import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/{{serviceName}}/models";
 
 {{#operations}}
 export class {{classname}} extends Service {
+
+    private readonly API_BASEPATH: string = "{{{basePath}}}";
+    private baseUrl: string;
+
+    public constructor(client: Client){
+        super(client);
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
 {{#operation}}
 
 {{>api_summary}}
     public async {{#vendorExtensions.x-methodName}}{{.}}{{/vendorExtensions.x-methodName}}{{^vendorExtensions.x-methodName}}{{nickname}}{{/vendorExtensions.x-methodName}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
-        const localVarPath = "{{{path}}}"{{#pathParams}}
+        const endpoint = `${this.baseUrl}{{{path}}}`{{#pathParams}}
             .replace("{" + "{{baseName}}" + "}", encodeURIComponent(String({{paramName}}))){{/pathParams}};
-        const resource = new {{#lambda.titlecase}}{{serviceName}}{{/lambda.titlecase}}Resource(this, localVarPath);
+        const resource = new Resource(this, endpoint);
 {{#bodyParam}}
         const request: {{{dataType}}} = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}");
 {{/bodyParam}}

@@ -9,23 +9,34 @@
 
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
+import Client from "../../client";
 import { CreatePaymentLinkRequest } from "../../typings/checkout/models";
 import { PaymentLinkResponse } from "../../typings/checkout/models";
 import { UpdatePaymentLinkRequest } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
-import CheckoutResource from "../resource/checkoutResource";
+import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class PaymentLinksApi extends Service {
 
+    private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v70";
+    private baseUrl: string;
+
+    public constructor(client: Client){
+        super(client);
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
     /**
-     * @summary Get a payment link
-     * @param linkId Unique identifier of the payment link.
-     */
+    * @summary Get a payment link
+    * @param linkId {@link string } Unique identifier of the payment link.
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link PaymentLinkResponse }
+    */
     public async getPaymentLink(linkId: string, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
-        const localVarPath = "/paymentLinks/{linkId}"
+        const endpoint = `${this.baseUrl}/paymentLinks/{linkId}`
             .replace("{" + "linkId" + "}", encodeURIComponent(String(linkId)));
-        const resource = new CheckoutResource(this, localVarPath);
+        const resource = new Resource(this, endpoint);
         const response = await getJsonResponse<string, PaymentLinkResponse>(
             resource,
             "",
@@ -35,14 +46,16 @@ export class PaymentLinksApi extends Service {
     }
 
     /**
-     * @summary Update the status of a payment link
-     * @param linkId Unique identifier of the payment link.
-     * @param updatePaymentLinkRequest 
-     */
+    * @summary Update the status of a payment link
+    * @param linkId {@link string } Unique identifier of the payment link.
+    * @param updatePaymentLinkRequest {@link UpdatePaymentLinkRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link PaymentLinkResponse }
+    */
     public async updatePaymentLink(linkId: string, updatePaymentLinkRequest: UpdatePaymentLinkRequest, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
-        const localVarPath = "/paymentLinks/{linkId}"
+        const endpoint = `${this.baseUrl}/paymentLinks/{linkId}`
             .replace("{" + "linkId" + "}", encodeURIComponent(String(linkId)));
-        const resource = new CheckoutResource(this, localVarPath);
+        const resource = new Resource(this, endpoint);
         const request: UpdatePaymentLinkRequest = ObjectSerializer.serialize(updatePaymentLinkRequest, "UpdatePaymentLinkRequest");
         const response = await getJsonResponse<UpdatePaymentLinkRequest, PaymentLinkResponse>(
             resource,
@@ -53,13 +66,15 @@ export class PaymentLinksApi extends Service {
     }
 
     /**
-     * @summary Create a payment link
-     * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-     * @param createPaymentLinkRequest 
-     */
+    * @summary Create a payment link
+    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+    * @param createPaymentLinkRequest {@link CreatePaymentLinkRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link PaymentLinkResponse }
+    */
     public async paymentLinks(createPaymentLinkRequest: CreatePaymentLinkRequest, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
-        const localVarPath = "/paymentLinks";
-        const resource = new CheckoutResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/paymentLinks`;
+        const resource = new Resource(this, endpoint);
         const request: CreatePaymentLinkRequest = ObjectSerializer.serialize(createPaymentLinkRequest, "CreatePaymentLinkRequest");
         const response = await getJsonResponse<CreatePaymentLinkRequest, PaymentLinkResponse>(
             resource,

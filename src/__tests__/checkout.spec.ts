@@ -130,7 +130,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`);
+    scope = nock("https://checkout-test.adyen.com/v70");
     checkoutService = new CheckoutAPI(client);
 });
 
@@ -336,7 +336,7 @@ describe("Checkout", (): void => {
             fail();
         } catch (e) {
             if(e instanceof Error) {
-                expect(e.message).toEqual("Please provide your unique live url prefix on the setEnvironment() call on the Client or provide checkoutEndpoint in your config object.");
+                expect(e.message).toEqual("Please provide your unique live url prefix on the setEnvironment() call on the Client.");
 
             } else {
                 fail();
@@ -362,8 +362,8 @@ describe("Checkout", (): void => {
             originDomains: ["https://www.your-domain.com"],
         };
 
-        nock(`${client.config.checkoutEndpoint}`)
-            .post(`/${Client.CHECKOUT_API_VERSION}/originKeys`)
+        nock(`https://checkout-test.adyen.com`)
+            .post(`/v70/originKeys`)
             .reply(200, originKeysSuccess);
 
         const originKeysResponse = await checkoutUtility.UtilityApi.originKeys(originKeysRequest);

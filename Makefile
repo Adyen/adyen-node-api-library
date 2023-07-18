@@ -10,6 +10,7 @@ services:=balanceControl balancePlatform binlookup checkout configurationWebhook
 models: $(services)
 
 balanceControl: spec=BalanceControlService-v1
+balancePlatform: spec=BalancePlatformService-v2
 binLookup: spec=BinLookupService-v54
 checkout: spec=CheckoutService-v70
 dataProtection: spec=DataProtectionService-v1
@@ -20,7 +21,6 @@ recurring: spec=RecurringService-v68
 payout: spec=PayoutService-v68
 management: spec=ManagementService-v1
 legalEntityManagement: spec=LegalEntityService-v3
-balancePlatform: spec=BalancePlatformService-v2
 platformsAccount: spec=AccountService-v6
 platformsFund: spec=FundService-v6
 platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
@@ -45,8 +45,10 @@ $(services): build/spec $(openapi-generator-jar)
 	mv build/model src/typings/$@
 
 # Service + Models automation
-services:=checkout management legalEntityManagement payout transfers
-singleFileServices:=balanceControl payment recurring payout binLookup terminalManagement
+services:=balancePlatform checkout management legalEntityManagement payout transfers
+singleFileServices:=balanceControl dataProtection payment recurring binLookup storedValue terminalManagement
+
+services: $(services) $(singleFileServices)
 
 $(services): build/spec $(openapi-generator-jar)
 	rm -rf build/model src/typings/$@ src/services/$@

@@ -1,14 +1,14 @@
 import nock from "nock";
 import Client from "../client";
 import { createClient } from "../__mocks__/base";
-import { Management } from "../services";
+import { ManagemenAPI } from "../services";
 import { management } from "../typings";
 import * as requests from "../__mocks__/management/requests";
 import * as responses from "../__mocks__/management/responses";
 import HttpClientException from "../httpClient/httpClientException";
 
 let client: Client;
-let managementService: Management;
+let managementService: ManagemenAPI;
 let scope: nock.Scope;
 
 const merchantId = "merchantId";
@@ -25,8 +25,8 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock(`${client.config.managementEndpoint}/${Client.MANAGEMENT_API_VERSION}`);
-    managementService = new Management(client);
+    scope = nock("https://management-test.adyen.com/v1");
+    managementService = new ManagemenAPI(client);
 });
 
 afterEach(() => {
@@ -49,7 +49,7 @@ describe("Management", (): void => {
                 const createAllowedOriginRequest : management.CreateAllowedOriginRequest = {
                     domain: "test.com",
                 };
-                await managementService.Me.createAllowedOrigin(createAllowedOriginRequest);
+                await managementService.MyAPICredentialApi.addAllowedOrigin(createAllowedOriginRequest);
                 fail("No exception was thrown");
             } catch (error) {
                 expect(error instanceof HttpClientException).toBeTruthy();
@@ -89,7 +89,7 @@ describe("Management", (): void => {
                     "companyName": "Test",
                     "active": true,
                 });
-            const meResponse: management.MeApiCredential = await managementService.Me.retrieve();
+            const meResponse: management.MeApiCredential = await managementService.MyAPICredentialApi.getApiCredentialDetails();
             expect(meResponse.id).toEqual("S2-6262224667");
         });
 
@@ -108,7 +108,7 @@ describe("Management", (): void => {
                 "domain": "https://www.us.mystore.com"
             };
 
-            const allowedOriginsResponse: management.AllowedOrigin = await managementService.Me.createAllowedOrigin(allowedOriginRequest);
+            const allowedOriginsResponse: management.AllowedOrigin = await managementService.MyAPICredentialApi.addAllowedOrigin(allowedOriginRequest);
             expect(allowedOriginsResponse.domain).toEqual("https://www.us.mystore.com");
         });
 
@@ -128,7 +128,7 @@ describe("Management", (): void => {
                     ]
                 });
 
-            const allowedOriginsResponse: management.AllowedOriginsResponse = await managementService.Me.retrieveAllowedOrigins();
+            const allowedOriginsResponse: management.AllowedOriginsResponse = await managementService.MyAPICredentialApi.getAllowedOrigins();
             expect(allowedOriginsResponse.data?.length).toEqual(1);
         });
     });
@@ -145,15 +145,14 @@ describe("Management", (): void => {
                 }
             });
 
-        const allowedOriginResponse: management.AllowedOrigin = await managementService.Me.retrieveAllowedOrigin("S2-123123123123123");
+        const allowedOriginResponse: management.AllowedOrigin = await managementService.MyAPICredentialApi.getAllowedOriginDetails("S2-123123123123123");
         expect(allowedOriginResponse.id).toEqual("S2-123123123123123");
     });
 
     test("Should remove the allowed origin specified in the path", async () => {
         scope.delete("/me/allowedOrigins/S2-123123123123123").reply(204, {});
-        const allowedOriginResponse: Record<string, unknown> = await managementService.Me.deleteAllowerdOrigin("S2-123123123123123");
+        await managementService.MyAPICredentialApi.removeAllowedOrigin("S2-123123123123123");
         expect(scope.isDone()).toBe(true);
-        expect(Object.entries(allowedOriginResponse).length).toBe(0);
     });
 
     describe("MerchantAccount", (): void => {
@@ -161,7 +160,7 @@ describe("Management", (): void => {
             scope.get("/merchants?pageNumber=1&pageSize=1")
                 .reply(200, responses.listMerchantResponse);
 
-            const response:  management.ListMerchantResponse = await managementService.MerchantAccount.list({
+            const response:  management.ListMerchantResponse = await managementService.AccountMerchantLevelApi.listMerchantAccounts({
                 params: {
                     "pageNumber": "1",
                     "pageSize": "1"
@@ -175,7 +174,7 @@ describe("Management", (): void => {
             scope.post("/merchants")
                 .reply(200, responses.createMerchantResponse);
 
-            const response:  management.CreateMerchantResponse = await managementService.MerchantAccount.create(requests.createMerchantRequest);
+            const response:  management.CreateMerchantResponse = await managementService.AccountMerchantLevelApi.createMerchantAccount(requests.createMerchantRequest);
 
             expect(response).toBeTruthy();
         });
@@ -184,7 +183,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}`)
                 .reply(200, responses.merchant);
 
-            const response:  management.Merchant = await managementService.MerchantAccount.retrieve(merchantId);
+            const response:  management.Merchant = await managementService.AccountMerchantLevelApi.getMerchantAccount(merchantId);
 
             expect(response).toBeTruthy();
         });
@@ -193,7 +192,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/activate`)
                 .reply(200, responses.requestActivationResponse);
 
-            const response:  management.RequestActivationResponse = await managementService.MerchantAccount.activate(merchantId);
+            const response:  management.RequestActivationResponse = await managementService.AccountMerchantLevelApi.requestToActivateMerchantAccount(merchantId);
 
             expect(response).toBeTruthy();
         });
@@ -204,7 +203,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/apiCredentials/${apiCredentialId}/allowedOrigins`)
                 .reply(200, responses.allowedOriginsResponse);
 
-            const response:  management.AllowedOriginsResponse = await managementService.MerchantAllowedOrigins.list(merchantId, apiCredentialId);
+            const response:  management.AllowedOriginsResponse = await managementService.AllowedOriginsMerchantLevelApi.listAllowedOrigins(merchantId, apiCredentialId);
 
             expect(response).toBeTruthy();
         });
@@ -213,7 +212,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/apiCredentials/${apiCredentialId}/allowedOrigins`)
                 .reply(200, responses.allowedOriginsResponse);
 
-            const response:  management.AllowedOriginsResponse = await managementService.MerchantAllowedOrigins.create(merchantId, apiCredentialId, requests.allowedOrigin);
+            const response:  management.AllowedOriginsResponse = await managementService.AllowedOriginsMerchantLevelApi.createAllowedOrigin(merchantId, apiCredentialId, requests.allowedOrigin);
 
             expect(response).toBeTruthy();
         });
@@ -222,14 +221,14 @@ describe("Management", (): void => {
             scope.delete(`/merchants/${merchantId}/apiCredentials/${apiCredentialId}/allowedOrigins/${originId}`)
                 .reply(204);
 
-            await managementService.MerchantAllowedOrigins.delete(merchantId, apiCredentialId, originId);
+            await managementService.AllowedOriginsMerchantLevelApi.deleteAllowedOrigin(merchantId, apiCredentialId, originId);
         });
 
         it("should support GET /merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}", async (): Promise<void> => {
             scope.get(`/merchants/${merchantId}/apiCredentials/${apiCredentialId}/allowedOrigins/${originId}`)
                 .reply(200, responses.allowedOrigin);
 
-            const response:  management.AllowedOrigin = await managementService.MerchantAllowedOrigins.retrieve(merchantId, apiCredentialId, originId);
+            const response:  management.AllowedOrigin = await managementService.AllowedOriginsMerchantLevelApi.getAllowedOrigin(merchantId, apiCredentialId, originId);
 
             expect(response).toBeTruthy();
         });
@@ -240,7 +239,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/apiCredentials?pageNumber=1&pageSize=1`)
                 .reply(200, responses.listMerchantApiCredentialsResponse);
 
-            const response:  management.ListMerchantApiCredentialsResponse = await managementService.MerchantApiCredentials.list(merchantId, {
+            const response:  management.ListMerchantApiCredentialsResponse = await managementService.APICredentialsMerchantLevelApi.listApiCredentials(merchantId, {
                 params: {
                     "pageNumber": "1",
                     "pageSize": "1"
@@ -254,7 +253,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/apiCredentials`)
                 .reply(200, responses.createApiCredentialResponse);
 
-            const response:  management.CreateApiCredentialResponse = await managementService.MerchantApiCredentials.create(merchantId, requests.createMerchantApiCredentialRequest);
+            const response:  management.CreateApiCredentialResponse = await managementService.APICredentialsMerchantLevelApi.createApiCredential(merchantId, requests.createMerchantApiCredentialRequest);
 
             expect(response).toBeTruthy();
         });
@@ -263,7 +262,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/apiCredentials/${apiCredentialId}`)
                 .reply(200, responses.apiCredential);
 
-            const response:  management.ApiCredential = await managementService.MerchantApiCredentials.retrieve(merchantId, apiCredentialId);
+            const response:  management.ApiCredential = await managementService.APICredentialsMerchantLevelApi.getApiCredential(merchantId, apiCredentialId);
 
             expect(response).toBeTruthy();
         });
@@ -272,7 +271,7 @@ describe("Management", (): void => {
             scope.patch(`/merchants/${merchantId}/apiCredentials/${apiCredentialId}`)
                 .reply(200, responses.apiCredential);
 
-            const response:  management.ApiCredential = await managementService.MerchantApiCredentials.update(merchantId, apiCredentialId, requests.updateMerchantApiCredentialRequest);
+            const response:  management.ApiCredential = await managementService.APICredentialsMerchantLevelApi.updateApiCredential(merchantId, apiCredentialId, requests.updateMerchantApiCredentialRequest);
 
             expect(response).toBeTruthy();
         });
@@ -283,7 +282,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/apiCredentials/${apiCredentialId}/generateApiKey`)
                 .reply(200, responses.generateApiKeyResponse);
 
-            const response:  management.GenerateApiKeyResponse = await managementService.MerchantApiKey.create(merchantId, apiCredentialId);
+            const response:  management.GenerateApiKeyResponse = await managementService.APIKeyMerchantLevelApi.generateNewApiKey(merchantId, apiCredentialId);
 
             expect(response).toBeTruthy();
         });
@@ -294,7 +293,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/apiCredentials/${apiCredentialId}/generateClientKey`)
                 .reply(200, responses.generateClientKeyResponse);
 
-            const response:  management.GenerateClientKeyResponse = await managementService.MerchantClientKey.create(merchantId, apiCredentialId);
+            const response:  management.GenerateClientKeyResponse = await managementService.ClientKeyMerchantLevelApi.generateNewClientKey(merchantId, apiCredentialId);
 
             expect(response).toBeTruthy();
         });
@@ -305,7 +304,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/paymentMethodSettings?storeId=1&businessLineId=1&pageNumber=1&pageSize=1`)
                 .reply(200, responses.paymentMethodResponse);
 
-            const response:  management.PaymentMethodResponse = await managementService.MerchantPaymentMethods.listPaymentMethodSettings(merchantId, {
+            const response:  management.PaymentMethodResponse = await managementService.PaymentMethodsMerchantLevelApi.getAllPaymentMethods(merchantId, {
                 params: {
                     "storeId": "1",
                     "businessLineId": "1",
@@ -321,7 +320,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/paymentMethodSettings`)
                 .reply(200, responses.paymentMethod);
 
-            const response:  management.PaymentMethod = await managementService.MerchantPaymentMethods.create(merchantId, {
+            const response:  management.PaymentMethod = await managementService.PaymentMethodsMerchantLevelApi.requestPaymentMethod(merchantId, {
                 ...requests.paymentMethodSetupInfo,
                 type:  management.PaymentMethodSetupInfo.TypeEnum.Ideal
             });
@@ -333,7 +332,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/paymentMethodSettings/${paymentMethodId}`)
                 .reply(200, responses.paymentMethod);
 
-            const response:  management.PaymentMethod = await managementService.MerchantPaymentMethods.retrieve(merchantId, paymentMethodId);
+            const response:  management.PaymentMethod = await managementService.PaymentMethodsMerchantLevelApi.getPaymentMethodDetails(merchantId, paymentMethodId);
 
             expect(response).toBeTruthy();
         });
@@ -342,7 +341,7 @@ describe("Management", (): void => {
             scope.patch(`/merchants/${merchantId}/paymentMethodSettings/${paymentMethodId}`)
                 .reply(200, responses.paymentMethod);
 
-            const response:  management.PaymentMethod = await managementService.MerchantPaymentMethods.update(merchantId, paymentMethodId, requests.updatePaymentMethodInfo);
+            const response:  management.PaymentMethod = await managementService.PaymentMethodsMerchantLevelApi.updatePaymentMethod(merchantId, paymentMethodId, requests.updatePaymentMethodInfo);
 
             expect(response).toBeTruthy();
         });
@@ -353,7 +352,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/payoutSettings`)
                 .reply(200, responses.payoutSettingsResponse);
 
-            const response:  management.PayoutSettingsResponse = await managementService.MerchantPayoutSettings.listPayoutSettings(merchantId);
+            const response:  management.PayoutSettingsResponse = await managementService.PayoutSettingsMerchantLevelApi.listPayoutSettings(merchantId);
 
             expect(response).toBeTruthy();
         });
@@ -362,7 +361,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/payoutSettings`)
                 .reply(200, responses.payoutSettings);
 
-            const response:  management.PayoutSettings = await managementService.MerchantPayoutSettings.create(merchantId, requests.payoutSettingsRequest);
+            const response:  management.PayoutSettings = await managementService.PayoutSettingsMerchantLevelApi.addPayoutSetting(merchantId, requests.payoutSettingsRequest);
 
             expect(response).toBeTruthy();
         });
@@ -371,14 +370,14 @@ describe("Management", (): void => {
             scope.delete(`/merchants/${merchantId}/payoutSettings/${payoutSettingsId}`)
                 .reply(200);
 
-            await managementService.MerchantPayoutSettings.delete(merchantId, payoutSettingsId);
+            await managementService.PayoutSettingsMerchantLevelApi.deletePayoutSetting(merchantId, payoutSettingsId);
         });
 
         it("should support GET /merchants/{merchantId}/payoutSettings/{payoutSettingsId}", async (): Promise<void> => {
             scope.get(`/merchants/${merchantId}/payoutSettings/${payoutSettingsId}`)
                 .reply(200, responses.payoutSettings);
 
-            const response:  management.PayoutSettings = await managementService.MerchantPayoutSettings.retrieve(merchantId, payoutSettingsId);
+            const response:  management.PayoutSettings = await managementService.PayoutSettingsMerchantLevelApi.getPayoutSetting(merchantId, payoutSettingsId);
 
             expect(response).toBeTruthy();
         });
@@ -387,7 +386,7 @@ describe("Management", (): void => {
             scope.patch(`/merchants/${merchantId}/payoutSettings/${payoutSettingsId}`)
                 .reply(200, responses.payoutSettings);
 
-            const response:  management.PayoutSettings = await managementService.MerchantPayoutSettings.update(merchantId, payoutSettingsId, requests.updatePayoutSettingsRequest);
+            const response:  management.PayoutSettings = await managementService.PayoutSettingsMerchantLevelApi.updatePayoutSetting(merchantId, payoutSettingsId, requests.updatePayoutSettingsRequest);
 
             expect(response).toBeTruthy();
         });
@@ -398,7 +397,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/billingEntities?name=bill`)
                 .reply(200, responses.billingEntitiesResponse);
 
-            const response:  management.BillingEntitiesResponse = await managementService.MerchantTerminalOrders.listBillingEntities(merchantId, {
+            const response:  management.BillingEntitiesResponse = await managementService.TerminalOrdersMerchantLevelApi.listBillingEntities(merchantId, {
                 params: {
                     "name": "bill"
                 }
@@ -411,7 +410,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/shippingLocations?name=1&offset=1&limit=1`)
                 .reply(200, responses.shippingLocationsResponse);
 
-            const response:  management.ShippingLocationsResponse = await managementService.MerchantTerminalOrders.listShippingLocations(merchantId, {
+            const response:  management.ShippingLocationsResponse = await managementService.TerminalOrdersMerchantLevelApi.listShippingLocations(merchantId, {
                 params: {
                     "name": "1",
                     "offset": "1",
@@ -426,7 +425,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/shippingLocations`)
                 .reply(200, responses.shippingLocation);
 
-            const response:  management.ShippingLocation = await managementService.MerchantTerminalOrders.createShippingLocation(merchantId, requests.shippingLocation);
+            const response:  management.ShippingLocation = await managementService.TerminalOrdersMerchantLevelApi.createShippingLocation(merchantId, requests.shippingLocation);
 
             expect(response).toBeTruthy();
         });
@@ -435,7 +434,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/terminalModels`)
                 .reply(200, responses.terminalModelsResponse);
 
-            const response:  management.TerminalModelsResponse = await managementService.MerchantTerminalOrders.listTerminalModels(merchantId);
+            const response:  management.TerminalModelsResponse = await managementService.TerminalOrdersMerchantLevelApi.listTerminalModels(merchantId);
 
             expect(response).toBeTruthy();
         });
@@ -444,7 +443,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/terminalOrders?customerOrderReference=1&status=1&offset=1&limit=1`)
                 .reply(200, responses.terminalOrdersResponse);
 
-            const response:  management.TerminalOrdersResponse = await managementService.MerchantTerminalOrders.listTerminalOrders(merchantId, {
+            const response:  management.TerminalOrdersResponse = await managementService.TerminalOrdersMerchantLevelApi.listOrders(merchantId, {
                 params: {
                     "customerOrderReference": "1",
                     "status": "1",
@@ -460,7 +459,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/terminalOrders`)
                 .reply(200, responses.terminalOrder);
 
-            const response:  management.TerminalOrder = await managementService.MerchantTerminalOrders.create(merchantId, requests.terminalOrderRequest);
+            const response:  management.TerminalOrder = await managementService.TerminalOrdersMerchantLevelApi.createOrder(merchantId, requests.terminalOrderRequest);
 
             expect(response).toBeTruthy();
         });
@@ -469,7 +468,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/terminalOrders/${orderId}`)
                 .reply(200, responses.terminalOrder);
 
-            const response:  management.TerminalOrder = await managementService.MerchantTerminalOrders.retrieve(merchantId, orderId);
+            const response:  management.TerminalOrder = await managementService.TerminalOrdersMerchantLevelApi.getOrder(merchantId, orderId);
 
             expect(response).toBeTruthy();
         });
@@ -478,7 +477,7 @@ describe("Management", (): void => {
             scope.patch(`/merchants/${merchantId}/terminalOrders/${orderId}`)
                 .reply(200, responses.terminalOrder);
 
-            const response:  management.TerminalOrder = await managementService.MerchantTerminalOrders.update(merchantId, orderId, requests.terminalOrderRequest);
+            const response:  management.TerminalOrder = await managementService.TerminalOrdersMerchantLevelApi.updateOrder(merchantId, orderId, requests.terminalOrderRequest);
 
             expect(response).toBeTruthy();
         });
@@ -487,7 +486,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/terminalOrders/${orderId}/cancel`)
                 .reply(200, responses.terminalOrder);
 
-            const response:  management.TerminalOrder = await managementService.MerchantTerminalOrders.cancel(merchantId, orderId);
+            const response:  management.TerminalOrder = await managementService.TerminalOrdersMerchantLevelApi.cancelOrder(merchantId, orderId);
 
             expect(response).toBeTruthy();
         });
@@ -496,7 +495,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/terminalProducts?country=1&terminalModelId=1&offset=1&limit=1`)
                 .reply(200, responses.terminalProductsResponse);
 
-            const response:  management.TerminalProductsResponse = await managementService.MerchantTerminalOrders.listTerminalProducts(merchantId, {
+            const response:  management.TerminalProductsResponse = await managementService.TerminalOrdersMerchantLevelApi.listTerminalProducts(merchantId, {
                 params: {
                     "country": "1",
                     "terminalModelId": "1",
@@ -514,7 +513,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/terminalLogos?model=1`)
                 .reply(200, responses.logo);
 
-            const response:  management.Logo = await managementService.MerchantTerminalSettings.retrieveLogo(merchantId, {
+            const response:  management.Logo = await managementService.TerminalSettingsMerchantLevelApi.getTerminalLogo(merchantId, {
                 params: {
                     "model": "1"
                 }
@@ -527,7 +526,7 @@ describe("Management", (): void => {
             scope.patch(`/merchants/${merchantId}/terminalLogos?model=1`)
                 .reply(200, responses.logo);
 
-            const response:  management.Logo = await managementService.MerchantTerminalSettings.updateLogo(merchantId, requests.logo, {
+            const response:  management.Logo = await managementService.TerminalSettingsMerchantLevelApi.updateTerminalLogo(merchantId, requests.logo, {
                 params: {
                     "model": "1"
                 }
@@ -540,7 +539,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/terminalSettings`)
                 .reply(200, responses.terminalSettings);
 
-            const response:  management.TerminalSettings = await managementService.MerchantTerminalSettings.retrieve(merchantId);
+            const response:  management.TerminalSettings = await managementService.TerminalSettingsMerchantLevelApi.getTerminalSettings(merchantId);
 
             expect(response).toBeTruthy();
         });
@@ -549,7 +548,7 @@ describe("Management", (): void => {
             scope.patch(`/merchants/${merchantId}/terminalSettings`)
                 .reply(200, responses.terminalSettings);
 
-            const response:  management.TerminalSettings = await managementService.MerchantTerminalSettings.update(merchantId, requests.terminalSettings);
+            const response:  management.TerminalSettings = await managementService.TerminalSettingsMerchantLevelApi.updateTerminalSettings(merchantId, requests.terminalSettings);
 
             expect(response).toBeTruthy();
         });
@@ -560,7 +559,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/users?pageNumber=1&pageSize=1`)
                 .reply(200, responses.listMerchantUsersResponse);
 
-            const response:  management.ListMerchantUsersResponse = await managementService.MerchantUsers.list(merchantId, {
+            const response:  management.ListMerchantUsersResponse = await managementService.UsersMerchantLevelApi.listUsers(merchantId, {
                 params: {
                     "pageNumber": "1",
                     "pageSize": "1"
@@ -574,7 +573,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/users`)
                 .reply(200, responses.createUserResponse);
 
-            const response:  management.CreateUserResponse = await managementService.MerchantUsers.create(merchantId, requests.createMerchantUserRequest);
+            const response:  management.CreateUserResponse = await managementService.UsersMerchantLevelApi.createNewUser(merchantId, requests.createMerchantUserRequest);
 
             expect(response).toBeTruthy();
         });
@@ -583,7 +582,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/users/${userId}`)
                 .reply(200, responses.user);
 
-            const response:  management.User = await managementService.MerchantUsers.retrieve(merchantId, userId);
+            const response:  management.User = await managementService.UsersMerchantLevelApi.getUserDetails(merchantId, userId);
 
             expect(response).toBeTruthy();
         });
@@ -592,7 +591,7 @@ describe("Management", (): void => {
             scope.patch(`/merchants/${merchantId}/users/${userId}`)
                 .reply(200, responses.user);
 
-            const response:  management.User = await managementService.MerchantUsers.update(merchantId, userId, requests.updateMerchantUserRequest);
+            const response:  management.User = await managementService.UsersMerchantLevelApi.updateUser(merchantId, userId, requests.updateMerchantUserRequest);
 
             expect(response).toBeTruthy();
         });
@@ -603,7 +602,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/webhooks?pageNumber=1&pageSize=1`)
                 .reply(200, responses.listWebhooksResponse);
 
-            const response:  management.ListWebhooksResponse = await managementService.MerchantWebhooks.list(merchantId, {
+            const response:  management.ListWebhooksResponse = await managementService.WebhooksMerchantLevelApi.listAllWebhooks(merchantId, {
                 params: {
                     "pageNumber": "1",
                     "pageSize": "1"
@@ -617,11 +616,11 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/webhooks`)
                 .reply(200, responses.webhook);
 
-            const response:  management.Webhook = await managementService.MerchantWebhooks.create(merchantId, {
+            const response:  management.Webhook = await managementService.WebhooksMerchantLevelApi.setUpWebhook(merchantId, {
                 ...requests.createMerchantWebhookRequest,
                 communicationFormat:  management.CreateMerchantWebhookRequest.CommunicationFormatEnum.Json,
                 networkType:  management.CreateMerchantWebhookRequest.NetworkTypeEnum.Public,
-                sslVersion:  management.CreateMerchantWebhookRequest.SslVersionEnum.Tls
+                sslVersion:  management.CreateMerchantWebhookRequest.SslVersionEnum.Tlsv12
             });
 
             expect(response).toBeTruthy();
@@ -631,14 +630,14 @@ describe("Management", (): void => {
             scope.delete(`/merchants/${merchantId}/webhooks/${webhookId}`)
                 .reply(204);
 
-            await managementService.MerchantWebhooks.delete(merchantId, webhookId);
+            await managementService.WebhooksMerchantLevelApi.removeWebhook(merchantId, webhookId);
         });
 
         it("should support GET /merchants/{merchantId}/webhooks/{webhookId}", async (): Promise<void> => {
             scope.get(`/merchants/${merchantId}/webhooks/${webhookId}`)
                 .reply(200, responses.webhook);
 
-            const response:  management.Webhook = await managementService.MerchantWebhooks.retrieve(merchantId, webhookId);
+            const response:  management.Webhook = await managementService.WebhooksMerchantLevelApi.getWebhook(merchantId, webhookId);
 
             expect(response).toBeTruthy();
         });
@@ -647,11 +646,11 @@ describe("Management", (): void => {
             scope.patch(`/merchants/${merchantId}/webhooks/${webhookId}`)
                 .reply(200, responses.webhook);
 
-            const response:  management.Webhook = await managementService.MerchantWebhooks.update(merchantId, webhookId, {
+            const response:  management.Webhook = await managementService.WebhooksMerchantLevelApi.updateWebhook(merchantId, webhookId, {
                 ...requests.updateMerchantWebhookRequest,
                 communicationFormat:  management.CreateMerchantWebhookRequest.CommunicationFormatEnum.Soap,
                 networkType:  management.CreateMerchantWebhookRequest.NetworkTypeEnum.Local,
-                sslVersion:  management.CreateMerchantWebhookRequest.SslVersionEnum.Sslv3
+                sslVersion:  management.CreateMerchantWebhookRequest.SslVersionEnum.Tlsv13
             });
 
             expect(response).toBeTruthy();
@@ -661,7 +660,7 @@ describe("Management", (): void => {
             scope.post(`/merchants/${merchantId}/webhooks/${webhookId}/generateHmac`)
                 .reply(200, responses.generateHmacKeyResponse);
 
-            const response:  management.GenerateHmacKeyResponse = await managementService.MerchantWebhooks.generateHmac(merchantId, webhookId);
+            const response:  management.GenerateHmacKeyResponse = await managementService.WebhooksMerchantLevelApi.generateHmacKey(merchantId, webhookId);
 
             expect(response).toBeTruthy();
         });
@@ -685,7 +684,7 @@ describe("Management", (): void => {
                 },
                 "types": ["string"]
             };
-            const response:  management.TestWebhookResponse = await managementService.MerchantWebhooks.test(merchantId, webhookId, testWebhookRequest);
+            const response:  management.TestWebhookResponse = await managementService.WebhooksMerchantLevelApi.testWebhook(merchantId, webhookId, testWebhookRequest);
 
             expect(response).toBeTruthy();
         });

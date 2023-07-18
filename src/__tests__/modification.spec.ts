@@ -160,7 +160,7 @@ beforeEach((): void => {
     }
     client = createClient();
     checkout = new CheckoutAPI(client);
-    scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`);
+    scope = nock("https://checkout-test.adyen.com/v70");
 });
 
 afterEach(() => {

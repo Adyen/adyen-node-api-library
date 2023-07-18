@@ -13,7 +13,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock(`${client.config.paymentEndpoint}/${Client.PAYMENT_API_VERSION}`);
+    scope = nock("https://pal-test.adyen.com/pal/servlet/Payment/v68");
     classicIntegration = new ClassicIntegration(client);
 });
 

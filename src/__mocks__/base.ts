@@ -40,19 +40,8 @@ export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
     config.terminalApiLocalEndpoint = "https://mocked_local_endpoint.com";
     config.hmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
-    config.endpoint = Client.ENDPOINT_TEST;
-    config.checkoutEndpoint = Client.CHECKOUT_ENDPOINT_TEST;
     config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
-    config.apiKey = apiKey;
-    config.paymentEndpoint = Client.PAYMENT_API_ENDPOINT_TEST;
-    config.storedValueEndpoint = Client.STOREDVALUE_API_ENDPOINT_TEST;
-    config.terminalManagementEndpoint = Client.TERMINAL_MANAGEMENT_API_ENDPOINT_TEST;
-    config.managementEndpoint = Client.MANAGEMENT_API_ENDPOINT_TEST;
-    config.balancePlatformEndpoint = Client.BALANCE_PLATFORM_API_ENDPOINT_TEST;
-    config.legalEntityManagementEndpoint = Client.LEGAL_ENTITY_MANAGEMENT_API_ENDPOINT_TEST;
-    config.transfersEndpoint = Client.TRANSFERS_API_ENDPOINT_TEST;
-    config.dataProtectionEndpoint = Client.DATA_PROTECTION_API_ENDPOINT_TEST;
-
+    config.apiKey = apiKey == null ? "apiKey" : apiKey;
     return new Client({ config });
 };
 

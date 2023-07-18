@@ -9,6 +9,7 @@
 
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
+import Client from "../../client";
 import { CardDetailsRequest } from "../../typings/checkout/models";
 import { CardDetailsResponse } from "../../typings/checkout/models";
 import { CreateCheckoutSessionRequest } from "../../typings/checkout/models";
@@ -22,19 +23,29 @@ import { PaymentMethodsResponse } from "../../typings/checkout/models";
 import { PaymentRequest } from "../../typings/checkout/models";
 import { PaymentResponse } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
-import CheckoutResource from "../resource/checkoutResource";
+import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class PaymentsApi extends Service {
 
+    private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v70";
+    private baseUrl: string;
+
+    public constructor(client: Client){
+        super(client);
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
     /**
-     * @summary Get the list of brands on the card
-     * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-     * @param cardDetailsRequest 
-     */
+    * @summary Get the list of brands on the card
+    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+    * @param cardDetailsRequest {@link CardDetailsRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link CardDetailsResponse }
+    */
     public async cardDetails(cardDetailsRequest: CardDetailsRequest, requestOptions?: IRequest.Options): Promise<CardDetailsResponse> {
-        const localVarPath = "/cardDetails";
-        const resource = new CheckoutResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/cardDetails`;
+        const resource = new Resource(this, endpoint);
         const request: CardDetailsRequest = ObjectSerializer.serialize(cardDetailsRequest, "CardDetailsRequest");
         const response = await getJsonResponse<CardDetailsRequest, CardDetailsResponse>(
             resource,
@@ -45,13 +56,15 @@ export class PaymentsApi extends Service {
     }
 
     /**
-     * @summary Start a transaction for donations
-     * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-     * @param paymentDonationRequest 
-     */
+    * @summary Start a transaction for donations
+    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+    * @param paymentDonationRequest {@link PaymentDonationRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link DonationResponse }
+    */
     public async donations(paymentDonationRequest: PaymentDonationRequest, requestOptions?: IRequest.Options): Promise<DonationResponse> {
-        const localVarPath = "/donations";
-        const resource = new CheckoutResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/donations`;
+        const resource = new Resource(this, endpoint);
         const request: PaymentDonationRequest = ObjectSerializer.serialize(paymentDonationRequest, "PaymentDonationRequest");
         const response = await getJsonResponse<PaymentDonationRequest, DonationResponse>(
             resource,
@@ -62,13 +75,15 @@ export class PaymentsApi extends Service {
     }
 
     /**
-     * @summary Get a list of available payment methods
-     * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-     * @param paymentMethodsRequest 
-     */
+    * @summary Get a list of available payment methods
+    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+    * @param paymentMethodsRequest {@link PaymentMethodsRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link PaymentMethodsResponse }
+    */
     public async paymentMethods(paymentMethodsRequest: PaymentMethodsRequest, requestOptions?: IRequest.Options): Promise<PaymentMethodsResponse> {
-        const localVarPath = "/paymentMethods";
-        const resource = new CheckoutResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/paymentMethods`;
+        const resource = new Resource(this, endpoint);
         const request: PaymentMethodsRequest = ObjectSerializer.serialize(paymentMethodsRequest, "PaymentMethodsRequest");
         const response = await getJsonResponse<PaymentMethodsRequest, PaymentMethodsResponse>(
             resource,
@@ -79,13 +94,15 @@ export class PaymentsApi extends Service {
     }
 
     /**
-     * @summary Start a transaction
-     * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-     * @param paymentRequest 
-     */
+    * @summary Start a transaction
+    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+    * @param paymentRequest {@link PaymentRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link PaymentResponse }
+    */
     public async payments(paymentRequest: PaymentRequest, requestOptions?: IRequest.Options): Promise<PaymentResponse> {
-        const localVarPath = "/payments";
-        const resource = new CheckoutResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/payments`;
+        const resource = new Resource(this, endpoint);
         const request: PaymentRequest = ObjectSerializer.serialize(paymentRequest, "PaymentRequest");
         const response = await getJsonResponse<PaymentRequest, PaymentResponse>(
             resource,
@@ -96,13 +113,15 @@ export class PaymentsApi extends Service {
     }
 
     /**
-     * @summary Submit details for a payment
-     * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-     * @param detailsRequest 
-     */
+    * @summary Submit details for a payment
+    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+    * @param detailsRequest {@link DetailsRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link PaymentDetailsResponse }
+    */
     public async paymentsDetails(detailsRequest: DetailsRequest, requestOptions?: IRequest.Options): Promise<PaymentDetailsResponse> {
-        const localVarPath = "/payments/details";
-        const resource = new CheckoutResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/payments/details`;
+        const resource = new Resource(this, endpoint);
         const request: DetailsRequest = ObjectSerializer.serialize(detailsRequest, "DetailsRequest");
         const response = await getJsonResponse<DetailsRequest, PaymentDetailsResponse>(
             resource,
@@ -113,13 +132,15 @@ export class PaymentsApi extends Service {
     }
 
     /**
-     * @summary Create a payment session
-     * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-     * @param createCheckoutSessionRequest 
-     */
+    * @summary Create a payment session
+    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+    * @param createCheckoutSessionRequest {@link CreateCheckoutSessionRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link CreateCheckoutSessionResponse }
+    */
     public async sessions(createCheckoutSessionRequest: CreateCheckoutSessionRequest, requestOptions?: IRequest.Options): Promise<CreateCheckoutSessionResponse> {
-        const localVarPath = "/sessions";
-        const resource = new CheckoutResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/sessions`;
+        const resource = new Resource(this, endpoint);
         const request: CreateCheckoutSessionRequest = ObjectSerializer.serialize(createCheckoutSessionRequest, "CreateCheckoutSessionRequest");
         const response = await getJsonResponse<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse>(
             resource,

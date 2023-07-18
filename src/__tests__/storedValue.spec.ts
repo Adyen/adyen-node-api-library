@@ -1,12 +1,12 @@
 import nock from "nock";
 import Client from "../client";
 import {createClient} from "../__mocks__/base";
-import {StoredValue} from "../services";
+import {StoredValueAPI} from "../services";
 import { storedValue } from "../typings";
 
 
 let client: Client;
-let storedValueService: StoredValue;
+let storedValueService: StoredValueAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -14,8 +14,8 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock(`${client.config.storedValueEndpoint}/${Client.STOREDVALUE_API_VERSION}`);
-    storedValueService = new StoredValue(client);
+    scope = nock("https://pal-test.adyen.com/pal/servlet/StoredValue/v46");
+    storedValueService = new StoredValueAPI(client);
 });
 
 afterEach(() => {
@@ -228,7 +228,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const mergeBalanceResponse: storedValue.StoredValueBalanceMergeResponse = await storedValueService.mergebalance(mergeBalanceRequest);
+        const mergeBalanceResponse: storedValue.StoredValueBalanceMergeResponse = await storedValueService.mergeBalance(mergeBalanceRequest);
         expect(mergeBalanceResponse.pspReference).toEqual("881564657480267D");
     });
 

@@ -779,8 +779,8 @@ export const paymentMethodResponse = {
         "swish": { "swishNumber": "string" },
         "type": "string"
     }],
-    "itemsTotal": 0,
-    "pagesTotal": 0
+    "itemsTotal": "0",
+    "pagesTotal": "0"
 };
 
 export const paymentMethod = {

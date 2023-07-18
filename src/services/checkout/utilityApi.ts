@@ -9,24 +9,35 @@
 
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
+import Client from "../../client";
 import { ApplePaySessionResponse } from "../../typings/checkout/models";
 import { CheckoutUtilityRequest } from "../../typings/checkout/models";
 import { CheckoutUtilityResponse } from "../../typings/checkout/models";
 import { CreateApplePaySessionRequest } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
-import CheckoutResource from "../resource/checkoutResource";
+import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class UtilityApi extends Service {
 
+    private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v70";
+    private baseUrl: string;
+
+    public constructor(client: Client){
+        super(client);
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
     /**
-     * @summary Get an Apple Pay session
-     * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-     * @param createApplePaySessionRequest 
-     */
+    * @summary Get an Apple Pay session
+    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+    * @param createApplePaySessionRequest {@link CreateApplePaySessionRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link ApplePaySessionResponse }
+    */
     public async getApplePaySession(createApplePaySessionRequest: CreateApplePaySessionRequest, requestOptions?: IRequest.Options): Promise<ApplePaySessionResponse> {
-        const localVarPath = "/applePay/sessions";
-        const resource = new CheckoutResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/applePay/sessions`;
+        const resource = new Resource(this, endpoint);
         const request: CreateApplePaySessionRequest = ObjectSerializer.serialize(createApplePaySessionRequest, "CreateApplePaySessionRequest");
         const response = await getJsonResponse<CreateApplePaySessionRequest, ApplePaySessionResponse>(
             resource,
@@ -37,13 +48,15 @@ export class UtilityApi extends Service {
     }
 
     /**
-     * @summary Create originKey values for domains
-     * @param idempotencyKey A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-     * @param checkoutUtilityRequest 
-     */
+    * @summary Create originKey values for domains
+    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+    * @param checkoutUtilityRequest {@link CheckoutUtilityRequest } 
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link CheckoutUtilityResponse }
+    */
     public async originKeys(checkoutUtilityRequest: CheckoutUtilityRequest, requestOptions?: IRequest.Options): Promise<CheckoutUtilityResponse> {
-        const localVarPath = "/originKeys";
-        const resource = new CheckoutResource(this, localVarPath);
+        const endpoint = `${this.baseUrl}/originKeys`;
+        const resource = new Resource(this, endpoint);
         const request: CheckoutUtilityRequest = ObjectSerializer.serialize(checkoutUtilityRequest, "CheckoutUtilityRequest");
         const response = await getJsonResponse<CheckoutUtilityRequest, CheckoutUtilityResponse>(
             resource,
