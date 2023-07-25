@@ -252,6 +252,30 @@ describe("Checkout", (): void => {
         }
     });
 
+    test("Should properly handle invalid merchant account from API", async (): Promise<void> => {
+        try {
+            scope.post("/payments")
+                .reply(403, {
+                    "status": 403,
+                    "errorCode": "901",
+                    "message": "Invalid Merchant Account",
+                    "errorType": "security",
+                    "pspReference": "H9833RR6FASAAA82"
+                }});
+
+            const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
+            await checkoutService.PaymentsApi.payments(paymentsRequest);
+            fail("No exception was thrown");
+        } catch (error) {
+            expect(error instanceof HttpClientException).toBeTruthy();
+            if(error instanceof HttpClientException && error.responseBody) {
+                expect(JSON.parse(error.responseBody).errorType).toBe("security");
+            } else {
+                fail("Error did not contain the expected data");
+            }
+        }
+    });
+
     test("should have valid payment methods", async (): Promise<void> => {
         const paymentMethodsRequest: checkout.PaymentMethodsRequest = {merchantAccount};
 

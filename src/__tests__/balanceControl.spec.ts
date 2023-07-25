@@ -46,4 +46,20 @@ describe("Balance Control", (): void => {
         const response: BalanceTransferResponse = await balanceService.balanceTransfer(request);
         expect(response.status).toEqual(BalanceTransferResponse.StatusEnum.Transferred);
     });
+
+    test("Should return correct Validation error", async (): Promise<void> => {
+        const expected = {
+            "status": 422,
+            "errorCode": "30_004",
+            "message": "Merchant account code is invalid or missing",
+            "errorType": "validation"
+        };
+        const request: BalanceTransferRequest = new BalanceTransferRequest;
+
+        scope.post("/balanceTransfer")
+            .reply(422, expected);
+
+        const response: BalanceTransferResponse = await balanceService.balanceTransfer(request);
+        expect(response.status).toEqual(422);
+    });
 })
