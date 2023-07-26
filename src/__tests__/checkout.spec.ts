@@ -261,7 +261,7 @@ describe("Checkout", (): void => {
                     "message": "Invalid Merchant Account",
                     "errorType": "security",
                     "pspReference": "H9833RR6FASAAA82"
-                }});
+                });
 
             const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
             await checkoutService.PaymentsApi.payments(paymentsRequest);

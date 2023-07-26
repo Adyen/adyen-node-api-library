@@ -75,7 +75,7 @@ describe("Management", (): void => {
             } catch (error) {
                 expect(error instanceof HttpClientException).toBeTruthy();
                 if(error instanceof HttpClientException && error.responseBody) {
-                    expect(JSON.parse(error.responseBody).status).toBe("401");
+                    expect(JSON.parse(error.responseBody).status).toBe(401);
                 } else {
                     fail("Error did not contain the expected data");
                 }
@@ -94,7 +94,7 @@ describe("Management", (): void => {
             } catch (error) {
                 expect(error instanceof HttpClientException).toBeTruthy();
                 if(error instanceof HttpClientException && error.responseBody) {
-                    expect(JSON.parse(error.responseBody).status).toBe("403");
+                    expect(JSON.parse(error.responseBody).status).toBe(403);
                 } else {
                     fail("Error did not contain the expected data");
                 }
