@@ -21,10 +21,12 @@ jobs:
       - name: Create new release
         env:
           GH_TOKEN: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
+          CURRENT_VERSION: ${{steps.current-version.outputs.currentVersion}}
         run: |
-          gh release create v${{steps.current-version.outputs.currentVersion}} \
-            --title 'Adyen ${{ inputs.project-name }} API Library v${{steps.current-version.outputs.currentVersion}}' \
-            --generate-notes --target main
+          prerelease=$(node -pe "process.env.CURRENT_VERSION.includes('-') ? '--prerelease' : ''")
+          gh release create "v${CURRENT_VERSION}" \
+            --title "Adyen ${{ inputs.project-name }} API Library v${CURRENT_VERSION}" \
+            --generate-notes $prerelease --target main
       - name: Update develop branch
         run: |
           git checkout develop

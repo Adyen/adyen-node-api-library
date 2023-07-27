@@ -1,5 +1,11 @@
 on:
   workflow_call:
+    inputs:
+      prerelease:
+        required: false
+        type: boolean
+        default: false
+        description: "This release will be labeled as non-production ready"
 
 jobs:
   release:
@@ -24,15 +30,18 @@ jobs:
       - name: Prepare release request
         uses: actions/github-script@v6
         id: release
+        env:
+          CURRENT_VERSION: ${{steps.current-version.outputs.currentVersion}}
+          PRE_RELEASE: ${{ inputs.prerelease }}
         with:
           script: |
             const release = require('./.github/scripts/release.js')
-            const options = { github, context, core, getCurrentVersion: () => "${{ steps.current-version.outputs.currentVersion }}"};
+            const options = { github, context, core };
             await release.bump(options);
       - name: Bump version
         if: steps.release.outputs.nextVersion != steps.current-version.outputs.currentVersion
         run: make bump
-        env: 
+        env:
           CURRENT_VERSION: ${{steps.current-version.outputs.currentVersion}}
           NEXT_VERSION: ${{steps.release.outputs.nextVersion}}
       - name: Delete the release script

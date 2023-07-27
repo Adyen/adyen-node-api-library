@@ -1,6 +1,6 @@
 // deps='octokit @actions/core'; npm install -g $deps && npm link $deps
 // node --test .github/scripts/
-const test = require('node:test');
+const { test, beforeEach } = require('node:test');
 const assert = require('node:assert/strict');
 const { Octokit } = require("octokit");
 const core = require("@actions/core");
@@ -112,6 +112,11 @@ const comparisonFixture = {
   }
 };
 
+beforeEach(() => {
+  // Reset env variables
+  delete process.env.CURRENT_VERSION;
+  delete process.env.PRE_RELEASE;
+});
 
 test('Changelog', t => {
   const changelog = release.changelog(comparisonFixture);
@@ -177,6 +182,30 @@ test('Get next version', async t => {
 
     assert.strictEqual(ver, '1.2.3');
   });
+
+  await t.test('Start pre-release', async t => {
+    const ver = release.nextVersion('14.1.5', 'major', 'true');
+
+    assert.strictEqual(ver, '15.0.0-beta');
+  });
+
+  await t.test('Bump first pre-release', async t => {
+    const ver = release.nextVersion('15.0.0-beta', 'minor', '1');
+
+    assert.strictEqual(ver, '15.0.0-beta.1');
+  });
+
+  await t.test('Bump second pre-release', async t => {
+    const ver = release.nextVersion('15.0.0-beta.1', 'patch', '"true"');
+
+    assert.strictEqual(ver, '15.0.0-beta.2');
+  });
+
+  await t.test('End pre-release', async t => {
+    const ver = release.nextVersion('15.0.0-beta', 'major');
+
+    assert.strictEqual(ver, '15.0.0');
+  });
 });
 
 test('Compare branches', async t => {
@@ -194,8 +223,8 @@ test('Compare branches', async t => {
 test('Bump', async t => {
   t.mock.method(github, 'graphql', () => comparisonFixture);
   t.mock.method(core, 'setOutput', t.mock.fn());
-  const currentVersion = () => '1.2.3';
-  const options = { github, context, core, getCurrentVersion: currentVersion };
+  process.env.CURRENT_VERSION = '1.2.3';
+  const options = { github, context, core };
 
   await release.bump(options);
 
