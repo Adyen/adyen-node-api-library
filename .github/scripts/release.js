@@ -5,13 +5,15 @@ exports.packageVersion = () => {
 
 // List of merged pull requests in Markdown
 exports.changelog = (changeset) => {
-  let entries = [];
+  let entries = new Set();
+
   for (const { node: { associatedPullRequests: prs } } of changeset.repository.ref.compare.commits.edges) {
     for (const { node: { number: number } } of prs.edges) {
-      entries.push(`- #${number}`);
+      entries.add(number);
     }
   }
-  return entries;
+
+  return Array.from(entries).sort((a, b) => a - b).map(pr => `- #${pr}`);
 };
 
 // Get the current version of a Python package from setup.py

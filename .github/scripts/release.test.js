@@ -27,6 +27,27 @@ const comparisonFixture = {
           "edges": [
             {
               "node": {
+                "message": "Another commit in the same PR non squashed",
+                "associatedPullRequests": {
+                  "edges": [
+                    {
+                      "node": {
+                        "number": 20,
+                        "labels": {
+                          "nodes": [
+                            {
+                              "name": "Breaking change"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
                 "message": "Fixing the constructor",
                 "associatedPullRequests": {
                   "edges": [
