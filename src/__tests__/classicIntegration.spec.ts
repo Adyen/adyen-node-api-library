@@ -84,7 +84,7 @@ describe("Classic Integration", (): void => {
            await classicIntegration.authorise(paymentRequest);
         } catch (error) {
             expect(error instanceof HttpClientException).toBeTruthy();
-            if(error instanceof HttpClientException && error.responseBody) {
+            if(error instanceof HttpClientException && error.responseBody && error.stack) {
                 expect(JSON.parse(error.responseBody).errorType).toBe("security");
             } else {
                 fail("Error did not contain the expected data");

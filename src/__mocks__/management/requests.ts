@@ -157,6 +157,22 @@ export const createMerchantUserRequest = {
     ]
 };
 
+export const createMerchantUserRequestInvalidEmail = {
+    "name": {
+        "firstName": "John",
+        "lastName": "Smith"
+    },
+    "username": "johnsmith",
+    "email": "invalidemail",
+    "timeZoneCode": "Europe/Amsterdam",
+    "roles": [
+        "Merchant standard role"
+    ],
+    "associatedMerchantAccounts": [
+        "YOUR_MERCHANT_ACCOUNT"
+    ]
+};
+
 export const updateMerchantUserRequest = {
     "accountGroups": ["string"],
     "active": false,
