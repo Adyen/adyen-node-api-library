@@ -153,12 +153,6 @@ test('Detect changes', async t => {
   });
 });
 
-test('Node.js package version', t => {
-  const version = release.packageVersion();
-
-  assert.ok(version);
-});
-
 test('Get next version', async t => {
   await t.test('Major', async t => {
     const ver = release.nextVersion('13.1.2', 'major');

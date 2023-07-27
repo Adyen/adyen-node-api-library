@@ -1,8 +1,3 @@
-// Get the current version of a Node.js package
-exports.packageVersion = () => {
-  return require('../../package.json').version;
-};
-
 // List of merged pull requests in Markdown
 exports.changelog = (changeset) => {
   let entries = new Set();
