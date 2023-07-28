@@ -34,6 +34,7 @@ export * from './link';
 export * from './links';
 export * from './merchantData';
 export * from './nOLocalAccountIdentification';
+export * from './nZLocalAccountIdentification';
 export * from './nameLocation';
 export * from './numberAndBicAccountIdentification';
 export * from './pLLocalAccountIdentification';
@@ -81,6 +82,7 @@ import { Link } from './link';
 import { Links } from './links';
 import { MerchantData } from './merchantData';
 import { NOLocalAccountIdentification } from './nOLocalAccountIdentification';
+import { NZLocalAccountIdentification } from './nZLocalAccountIdentification';
 import { NameLocation } from './nameLocation';
 import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentification';
 import { PLLocalAccountIdentification } from './pLLocalAccountIdentification';
@@ -125,6 +127,7 @@ let enumsMap: {[index: string]: any} = {
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
+        "NZLocalAccountIdentification.TypeEnum": NZLocalAccountIdentification.TypeEnum,
         "NumberAndBicAccountIdentification.TypeEnum": NumberAndBicAccountIdentification.TypeEnum,
         "PLLocalAccountIdentification.TypeEnum": PLLocalAccountIdentification.TypeEnum,
         "PartyIdentification2.TypeEnum": PartyIdentification2.TypeEnum,
@@ -173,6 +176,7 @@ let typeMap: {[index: string]: any} = {
     "Links": Links,
     "MerchantData": MerchantData,
     "NOLocalAccountIdentification": NOLocalAccountIdentification,
+    "NZLocalAccountIdentification": NZLocalAccountIdentification,
     "NameLocation": NameLocation,
     "NumberAndBicAccountIdentification": NumberAndBicAccountIdentification,
     "PLLocalAccountIdentification": PLLocalAccountIdentification,
