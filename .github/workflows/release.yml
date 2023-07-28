@@ -2,6 +2,12 @@ name: Release request
 
 on:
     workflow_dispatch:
+      inputs:
+        prerelease:
+          required: false
+          type: boolean
+          default: false
+          description: "This release will be labeled as non-production ready"
     push:
       branches:
         - develop
@@ -12,4 +18,6 @@ jobs:
       contents: write
       pull-requests: write
     uses: ./.github/workflows/lib-release.yml
+    with:
+      prerelease: ${{ inputs.prerelease }}
     secrets: inherit
