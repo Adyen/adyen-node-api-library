@@ -14,7 +14,7 @@ export class TaxReportingClassification {
     */
     'businessType'?: TaxReportingClassification.BusinessTypeEnum;
     /**
-    * The Global Intermediary Identification Number (GIIN) required for FATCA.
+    * The Global Intermediary Identification Number (GIIN) required for FATCA. Only required if the organization is a US financial institution and the `businessType` is **financialInstitution**.
     */
     'financialInstitutionNumber'?: string;
     /**

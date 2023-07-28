@@ -196,6 +196,7 @@ export namespace Transaction {
         BankTransfer = 'bankTransfer',
         Capture = 'capture',
         CaptureReversal = 'captureReversal',
+        CardTransfer = 'cardTransfer',
         Chargeback = 'chargeback',
         ChargebackReversal = 'chargebackReversal',
         DepositCorrection = 'depositCorrection',
