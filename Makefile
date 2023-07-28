@@ -107,4 +107,11 @@ clean:
 	git checkout src/typings src/services/management
 	git clean -f -d src/typings src/services/management
 
-.PHONY: templates models $(services)
+## Release
+version:
+	echo currentVersion=$$(node -pe "require('./package.json').version") >> "$$GITHUB_OUTPUT"
+
+bump:
+	npm --no-git-tag-version version "$$NEXT_VERSION"
+
+.PHONY: templates models $(services) version bump

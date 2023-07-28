@@ -1,43 +1,38 @@
-// Get the current version of a Node.js package
-exports.packageVersion = () => {
-  return require('../../package.json').version;
-};
-
 // List of merged pull requests in Markdown
 exports.changelog = (changeset) => {
-  let entries = [];
+  let entries = new Set();
+
   for (const { node: { associatedPullRequests: prs } } of changeset.repository.ref.compare.commits.edges) {
     for (const { node: { number: number } } of prs.edges) {
-      entries.push(`- #${number}`);
+      entries.add(number);
     }
   }
-  return entries;
-};
 
-// Get the current version of a Python package from setup.py
-exports.setupPythonVersion = () => {
-  const fs = require('fs');
-  const re = /version='(\d{1,2}.\d.\d)\'/;
-  data = fs.readFileSync("setup.py", 'utf-8');
-  version = data.match(re)[1];
-  return version;
+  return Array.from(entries).sort((a, b) => a - b).map(pr => `- #${pr}`);
 };
-
-// Update the version in settings.py and setup.py
-exports.updatePythonVersion = async (version) => {
-  const fs = require('fs');
-  data = fs.readFileSync('Adyen/settings.py', 'utf-8');
-  newVersion = data.replace(/\d{1,2}\.\d\.\d/, version);
-  fs.writeFileSync('Adyen/settings.py', newVersion, 'utf-8');
-  
-  data = fs.readFileSync('setup.py', 'utf-8');
-  newVersion = data.replace(/\d{1,2}\.\d\.\d/, version);
-  fs.writeFileSync('setup.py', newVersion, 'utf-8');
-}
 
 // Next semantic version number
-exports.nextVersion = (current, increment) => {
+exports.nextVersion = (current, increment, preRelease) => {
   let [major, minor, patch] = current.split('.');
+  let [unstaged, stage] = current.split('-');
+  preRelease = preRelease === "true";
+
+  // end pre-release
+  if (!preRelease && stage) {
+    return unstaged;
+  }
+
+  // bump pre-release
+  if (preRelease && stage) {
+    let [_, stageVersion] = stage.split('.');
+    stageVersion = parseInt(stageVersion);
+    if (isNaN(stageVersion)) {
+      stageVersion = 0;
+    }
+    stageVersion++;
+    return `${unstaged}-beta.${stageVersion}`;
+  }
+
   switch (increment) {
     case 'patch':
       patch++;
@@ -52,7 +47,15 @@ exports.nextVersion = (current, increment) => {
       patch = 0;
       break;
   }
-  return [major, minor, patch].join('.');
+
+  let version = [major, minor, patch].join('.');
+
+  // start pre-release
+  if (preRelease && !stage) {
+    return `${version}-beta`;
+  }
+
+  return version;
 };
 
 // Compare two branches on Github
@@ -86,7 +89,7 @@ exports.compareBranches = async (github, { owner, repo, base, head }) => {
             }
           }
         }
-    } 
+    }
     `, { owner, repo, base, head });
 }
 
@@ -99,7 +102,7 @@ exports.detectChanges = (changeset) => {
 
   let increment = 'patch';
 
-  // increment based on the merged PR labels  
+  // increment based on the merged PR labels
   for (const { node: { associatedPullRequests: prs } } of changeset.repository.ref.compare.commits.edges) {
     for (const { node: { labels: { nodes: labels } } } of prs.edges) {
       for (const { name: label } of labels) {
@@ -120,7 +123,7 @@ exports.detectChanges = (changeset) => {
 };
 
 // Define next release
-exports.bump = async ({ github, context, core, getCurrentVersion }) => {
+exports.bump = async ({ github, context, core }) => {
   const changeset = await this.compareBranches(github, {
     owner: context.repo.owner,
     repo: context.repo.repo,
@@ -129,7 +132,7 @@ exports.bump = async ({ github, context, core, getCurrentVersion }) => {
   });
   const changelog = this.changelog(changeset);
   const increment = this.detectChanges(changeset);
-  const nextVersion = this.nextVersion(getCurrentVersion(), increment);
+  const nextVersion = this.nextVersion(process.env.CURRENT_VERSION, increment, process.env.PRE_RELEASE);
 
   core.setOutput('increment', increment);
   core.setOutput('nextVersion', nextVersion);
