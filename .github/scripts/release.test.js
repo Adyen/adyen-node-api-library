@@ -190,19 +190,19 @@ test('Get next version', async t => {
   });
 
   await t.test('Bump first pre-release', async t => {
-    const ver = release.nextVersion('15.0.0-beta', 'minor', '1');
+    const ver = release.nextVersion('15.0.0-beta', 'minor', 'true');
 
     assert.strictEqual(ver, '15.0.0-beta.1');
   });
 
   await t.test('Bump second pre-release', async t => {
-    const ver = release.nextVersion('15.0.0-beta.1', 'patch', '"true"');
+    const ver = release.nextVersion('15.0.0-beta.1', 'patch', 'true');
 
     assert.strictEqual(ver, '15.0.0-beta.2');
   });
 
   await t.test('End pre-release', async t => {
-    const ver = release.nextVersion('15.0.0-beta', 'major');
+    const ver = release.nextVersion('15.0.0-beta', 'major', 'false');
 
     assert.strictEqual(ver, '15.0.0');
   });

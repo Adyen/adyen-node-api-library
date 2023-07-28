@@ -11,32 +11,11 @@ exports.changelog = (changeset) => {
   return Array.from(entries).sort((a, b) => a - b).map(pr => `- #${pr}`);
 };
 
-// Deprecated: Get the current version of a Python package from setup.py
-exports.setupPythonVersion = () => {
-  const fs = require('fs');
-  const re = /version='(\d{1,2}.\d.\d)\'/;
-  data = fs.readFileSync("setup.py", 'utf-8');
-  version = data.match(re)[1];
-  return version;
-};
-
-// Deprecated: Update the version in settings.py and setup.py
-exports.updatePythonVersion = async (version) => {
-  const fs = require('fs');
-  data = fs.readFileSync('Adyen/settings.py', 'utf-8');
-  newVersion = data.replace(/\d{1,2}\.\d\.\d/, version);
-  fs.writeFileSync('Adyen/settings.py', newVersion, 'utf-8');
-
-  data = fs.readFileSync('setup.py', 'utf-8');
-  newVersion = data.replace(/\d{1,2}\.\d\.\d/, version);
-  fs.writeFileSync('setup.py', newVersion, 'utf-8');
-}
-
 // Next semantic version number
 exports.nextVersion = (current, increment, preRelease) => {
   let [major, minor, patch] = current.split('.');
   let [unstaged, stage] = current.split('-');
-  preRelease = Boolean(preRelease);
+  preRelease = preRelease === "true";
 
   // end pre-release
   if (!preRelease && stage) {
