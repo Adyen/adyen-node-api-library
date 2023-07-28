@@ -12,7 +12,7 @@ import { Address2 } from './address2';
 export class UltimatePartyIdentification {
     'address'?: Address2;
     /**
-    * The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**. Should not be before 1st January 1900.  Allowed only when `type` is **individual**.
+    * The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**. Should not be before January 1, 1900.  Allowed only when `type` is **individual**.
     */
     'dateOfBirth'?: string;
     /**
@@ -28,7 +28,7 @@ export class UltimatePartyIdentification {
     */
     'lastName'?: string;
     /**
-    * Your unique reference of the party. This should be consistent for all transfers initiated to/from the same party/counterparty. e.g Your client\'s unique wallet or payee ID
+    * A unique reference to identify the party or counterparty involved in transfers. This identifier ensures consistency and uniqueness throughout all transactions initiated to and from the same party. For example, your client\'s unique wallet or payee ID.
     */
     'reference'?: string;
     /**
