@@ -23,7 +23,7 @@ function createAmountObject(currency: string, value: number): checkout.Amount {
     };
 }
 
-function createPaymentsDetailsRequest(): checkout.DetailsRequest {
+function createPaymentsDetailsRequest(): checkout.PaymentDetailsRequest {
     return {
         details: {
             MD: "mdValue",
@@ -82,7 +82,7 @@ function getPaymentLinkSuccess(expiresAt: string): checkout.PaymentLinkResponse 
     };
 }
 
-function createPaymentLinkRequest(): checkout.CreatePaymentLinkRequest {
+function createPaymentLinkRequest(): checkout.PaymentLinkRequest {
     return {
         allowedPaymentMethods: ["scheme", "boletobancario"],
         amount: createAmountObject("USD", 1000),
@@ -188,7 +188,7 @@ describe("Checkout", (): void => {
         };
         await checkoutService.ClassicCheckoutSDKApi.verifyPaymentResult(paymentResultRequest, {idempotencyKey: "testKey"});
 
-        const orderRequest: checkout.CheckoutCreateOrderRequest = {
+        const orderRequest: checkout.CreateOrderRequest = {
             amount: createAmountObject("USD", 1000),
             merchantAccount,
             reference
@@ -382,7 +382,7 @@ describe("Checkout", (): void => {
 
     test("should get origin keys", async (): Promise<void> => {
         const checkoutUtility = new CheckoutAPI(client);
-        const originKeysRequest: checkout.CheckoutUtilityRequest = {
+        const originKeysRequest: checkout.UtilityRequest = {
             originDomains: ["https://www.your-domain.com"],
         };
 
@@ -399,74 +399,74 @@ describe("Checkout", (): void => {
 
     // TODO: add gift card to PaymentMethod and unmock test
     test("should get payment methods balance", async (): Promise<void> => {
-        const paymentMethodsRequest: checkout.CheckoutBalanceCheckRequest = {
+        const paymentMethodsRequest: checkout.BalanceCheckRequest = {
             merchantAccount,
             amount: createAmountObject("USD", 1000),
             paymentMethod: { },
             reference: "mocked_reference"
         };
 
-        const paymentMethodsBalanceResponse: checkout.CheckoutBalanceCheckResponse = {
+        const paymentMethodsBalanceResponse: checkout.BalanceCheckResponse = {
             balance: {currency: "USD", value: 1000},
-            resultCode: <checkout.CheckoutBalanceCheckResponse.ResultCodeEnum> "Success"
+            resultCode: <checkout.BalanceCheckResponse.ResultCodeEnum> "Success"
         };
         scope.post("/paymentMethods/balance")
             .reply(200,  paymentMethodsBalanceResponse);
 
-        const paymentsResponse: checkout.CheckoutBalanceCheckResponse = await checkoutService.OrdersApi.getBalanceOfGiftCard(paymentMethodsRequest);
+        const paymentsResponse: checkout.BalanceCheckResponse = await checkoutService.OrdersApi.getBalanceOfGiftCard(paymentMethodsRequest);
         expect(paymentsResponse.balance.value).toEqual(1000);
     });
 
     test("should create order", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const orderRequest: checkout.CheckoutCreateOrderRequest = {
+        const orderRequest: checkout.CreateOrderRequest = {
             amount: createAmountObject("USD", 1000),
             merchantAccount,
             reference
         };
 
-        const orderResponse: checkout.CheckoutCreateOrderResponse = {
+        const orderResponse: checkout.CreateOrderResponse = {
             expiresAt,
             amount: createAmountObject("USD", 500),
             orderData: "mocked_order_data",
             remainingAmount: {currency: "USD", value: 500} ,
-            resultCode: checkout.CheckoutCreateOrderResponse.ResultCodeEnum.Success
+            resultCode: checkout.CreateOrderResponse.ResultCodeEnum.Success
         };
         scope.post("/orders")
             .reply(200,  orderResponse);
 
-        const response: checkout.CheckoutCreateOrderResponse = await checkoutService.OrdersApi.orders(orderRequest);
+        const response: checkout.CreateOrderResponse = await checkoutService.OrdersApi.orders(orderRequest);
         expect(response).toBeTruthy();
     });
 
     test("should cancel order", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const orderRequest: checkout.CheckoutCreateOrderRequest = {
+        const orderRequest: checkout.CreateOrderRequest = {
             amount: createAmountObject("USD", 1000),
             merchantAccount,
             reference
         };
 
-        const orderResponse: checkout.CheckoutCreateOrderResponse = {
+        const orderResponse: checkout.CreateOrderResponse = {
             expiresAt,
             amount: createAmountObject("USD", 500),
             orderData: "mocked_order_data",
             remainingAmount: {currency: "USD", value: 500},
-            resultCode: checkout.CheckoutCreateOrderResponse.ResultCodeEnum.Success
+            resultCode: checkout.CreateOrderResponse.ResultCodeEnum.Success
         };
         scope.post("/orders")
             .reply(200,  orderResponse);
 
-        const createOrderResponse: checkout.CheckoutCreateOrderResponse = await checkoutService.OrdersApi.orders(orderRequest);
+        const createOrderResponse: checkout.CreateOrderResponse = await checkoutService.OrdersApi.orders(orderRequest);
 
-        const orderCancelResponse: checkout.CheckoutCancelOrderResponse = {
+        const orderCancelResponse: checkout.CancelOrderResponse = {
             pspReference: "mocked_psp_ref",
-            resultCode: checkout.CheckoutCancelOrderResponse.ResultCodeEnum.Received
+            resultCode: checkout.CancelOrderResponse.ResultCodeEnum.Received
         };
         scope.post("/orders/cancel")
             .reply(200,  orderCancelResponse);
 
-        const response: checkout.CheckoutCancelOrderResponse = await checkoutService.OrdersApi.cancelOrder({
+        const response: checkout.CancelOrderResponse = await checkoutService.OrdersApi.cancelOrder({
             order: {
                 orderData: createOrderResponse.orderData,
                 pspReference: createOrderResponse.pspReference!
@@ -512,13 +512,13 @@ describe("Checkout", (): void => {
             "data": "eyJ2Z...",
         });
 
-        const applePaySessionRequest: checkout.CreateApplePaySessionRequest = {
+        const applePaySessionRequest: checkout.ApplePaySessionRequest = {
             "displayName": "YOUR_MERCHANT_NAME",
             "domainName": "YOUR_DOMAIN_NAME",
             "merchantIdentifier": "YOUR_MERCHANT_ID"
         };
-        const applepaySessionResponse = await checkoutService.UtilityApi.getApplePaySession(applePaySessionRequest);
-        expect(applepaySessionResponse.data).toEqual("eyJ2Z...");
+        const applePaySessionResponse = await checkoutService.UtilityApi.getApplePaySession(applePaySessionRequest);
+        expect(applePaySessionResponse.data).toEqual("eyJ2Z...");
     });
 
     test("Should get stored paymentMethods", async (): Promise<void> => {
