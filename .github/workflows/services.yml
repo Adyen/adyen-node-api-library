@@ -1,11 +1,11 @@
-name: Node.js Services
+name: Node.js Services + Models
 
 on: [ workflow_dispatch ]
 
 jobs:
   generate:
     runs-on: ubuntu-latest
-    name: Generate Services
+    name: Generate Services + Models
     steps:
       - uses: actions/checkout@v3
       - name: install Node dev dependencies
@@ -30,3 +30,4 @@ jobs:
           body: ${{ steps.vars.outputs.pr_body }}
           add-paths: |
             src/typings
+            src/services
