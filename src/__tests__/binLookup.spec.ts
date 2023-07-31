@@ -55,7 +55,7 @@ describe("Bin Lookup", function (): void {
         };
 
         scope.post("/get3dsAvailability")
-            .reply(403, JSON.stringify({status: 403, message: "fail", errorCode: "171"}));
+            .reply(403, JSON.stringify({status: 403, message: "Invalid Merchant Account", errorCode: "901", errorType: "security"}));
 
         try {
             await binLookupService.get3dsAvailability(threeDSAvailabilityRequest as unknown as  binlookup.ThreeDSAvailabilityRequest);

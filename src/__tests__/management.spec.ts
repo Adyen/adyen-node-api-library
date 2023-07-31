@@ -6,6 +6,9 @@ import { management } from "../typings";
 import * as requests from "../__mocks__/management/requests";
 import * as responses from "../__mocks__/management/responses";
 import HttpClientException from "../httpClient/httpClientException";
+import {unauthorizedError} from "../__mocks__/management/unauthorized401";
+import {forbiddenError} from "../__mocks__/management/forbidden403";
+import {invalidUserCreated422} from "../__mocks__/management/invalidUserCreated422";
 
 let client: Client;
 let managementService: ManagemenAPI;
@@ -53,8 +56,46 @@ describe("Management", (): void => {
                 fail("No exception was thrown");
             } catch (error) {
                 expect(error instanceof HttpClientException).toBeTruthy();
-                if(error instanceof HttpClientException && error.responseBody) {
+                if(error instanceof HttpClientException && error.responseBody && error.stack) {
                     expect(JSON.parse(error.responseBody).requestId).toBe("KQZ5LXK2VMPRMC82");
+                } else {
+                    fail("Error did not contain the expected data");
+                }
+            }
+        });
+
+        test("Should return correct Unauthorized error", async (): Promise<void> => {
+            scope.post("/me/allowedOrigins")
+                .reply(401, unauthorizedError);
+            try {
+                const createAllowedOriginRequest : management.CreateAllowedOriginRequest = {
+                    domain: "test.com",
+                };
+                await managementService.MyAPICredentialApi.addAllowedOrigin(createAllowedOriginRequest);
+                fail("No exception was thrown");
+            } catch (error) {
+                expect(error instanceof HttpClientException).toBeTruthy();
+                if(error instanceof HttpClientException && error.responseBody && error.stack) {
+                    expect(JSON.parse(error.responseBody).status).toBe(401);
+                } else {
+                    fail("Error did not contain the expected data");
+                }
+            }
+        });
+
+        test("Should return correct Forbidden error", async (): Promise<void> => {
+            scope.post("/me/allowedOrigins")
+                .reply(403, forbiddenError);
+            try {
+                const createAllowedOriginRequest : management.CreateAllowedOriginRequest = {
+                    domain: "test.com",
+                };
+                await managementService.MyAPICredentialApi.addAllowedOrigin(createAllowedOriginRequest);
+                fail("No exception was thrown");
+            } catch (error) {
+                expect(error instanceof HttpClientException).toBeTruthy();
+                if(error instanceof HttpClientException && error.responseBody && error.stack) {
+                    expect(JSON.parse(error.responseBody).status).toBe(403);
                 } else {
                     fail("Error did not contain the expected data");
                 }
@@ -576,6 +617,23 @@ describe("Management", (): void => {
             const response:  management.CreateUserResponse = await managementService.UsersMerchantLevelApi.createNewUser(merchantId, requests.createMerchantUserRequest);
 
             expect(response).toBeTruthy();
+        });
+
+        it("should handle proper errors on POST /merchants/{merchantId}/users", async (): Promise<void> => {
+            scope.post(`/merchants/${merchantId}/users`)
+                .reply(422, invalidUserCreated422);
+
+            try{
+                await managementService.UsersMerchantLevelApi.createNewUser(merchantId, requests.createMerchantUserRequestInvalidEmail);
+            } catch (error) {
+                expect(error instanceof HttpClientException).toBeTruthy();
+                if(error instanceof HttpClientException && error.responseBody && error.stack) {
+                    expect(JSON.parse(error.responseBody).status).toBe(422);
+                    expect(JSON.parse(error.responseBody).invalidFields).toBeTruthy();
+                } else {
+                    fail("Error did not contain the expected data");
+                }
+            }
         });
 
         it("should support GET /merchants/{merchantId}/users/{userId}", async (): Promise<void> => {
