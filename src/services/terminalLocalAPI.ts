@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 
-import ApiKeyAuthenticatedService from "../apiKeyAuthenticatedService";
+import Service from "../service";
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import NexoCrypto from "../security/nexoCrypto";
@@ -32,12 +32,13 @@ import {
     TerminalApiSecuredResponse
 } from "../typings/terminal/models";
 
-class TerminalLocalAPI extends ApiKeyAuthenticatedService {
+class TerminalLocalAPI extends Service {
     private readonly localRequest: LocalRequest;
     private nexoCrypto: NexoCrypto;
 
     public constructor(client: Client) {
         super(client);
+        this.apiKeyRequired = true;
         this.localRequest = new LocalRequest(this);
         this.nexoCrypto = new NexoCrypto();
     }
