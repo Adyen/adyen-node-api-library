@@ -29,16 +29,17 @@ export class BankAccountValidationApi extends Service {
     * @summary Validate a bank account
     * @param bankAccountIdentificationValidationRequest {@link BankAccountIdentificationValidationRequest } 
     * @param requestOptions {@link IRequest.Options}
-    * @return {@link void }
+    * @return {@link object }
     */
-    public async validateBankAccountIdentification(bankAccountIdentificationValidationRequest: BankAccountIdentificationValidationRequest, requestOptions?: IRequest.Options): Promise<void> {
+    public async validateBankAccountIdentification(bankAccountIdentificationValidationRequest: BankAccountIdentificationValidationRequest, requestOptions?: IRequest.Options): Promise<object> {
         const endpoint = `${this.baseUrl}/validateBankAccountIdentification`;
         const resource = new Resource(this, endpoint);
         const request: BankAccountIdentificationValidationRequest = ObjectSerializer.serialize(bankAccountIdentificationValidationRequest, "BankAccountIdentificationValidationRequest");
-        await getJsonResponse<BankAccountIdentificationValidationRequest, object>(
+        const response = await getJsonResponse<BankAccountIdentificationValidationRequest, object>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+        return ObjectSerializer.deserialize(response, "object");
     }
 }
