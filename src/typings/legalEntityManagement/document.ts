@@ -15,7 +15,7 @@ export class Document {
     /**
     * Array that contains the document. The array supports multiple attachments for uploading different sides or pages of a document.
     */
-    'attachments': Array<Attachment>;
+    'attachments'?: Array<Attachment>;
     /**
     * The creation date of the document.
     */
@@ -52,7 +52,7 @@ export class Document {
     * The number in the document.
     */
     'number'?: string;
-    'owner': OwnerEntity;
+    'owner'?: OwnerEntity;
     /**
     * Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, or **proofOfFundingOrWealthSource**.  * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
     */

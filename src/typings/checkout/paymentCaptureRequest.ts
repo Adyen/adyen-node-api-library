@@ -11,7 +11,7 @@ import { Amount } from './amount';
 import { LineItem } from './lineItem';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { Split } from './split';
-import { SubMerchant2 } from './subMerchant2';
+import { SubMerchantInfo } from './subMerchantInfo';
 
 export class PaymentCaptureRequest {
     'amount': Amount;
@@ -35,7 +35,7 @@ export class PaymentCaptureRequest {
     /**
     * A List of sub-merchants.
     */
-    'subMerchants'?: Array<SubMerchant2>;
+    'subMerchants'?: Array<SubMerchantInfo>;
 
     static discriminator: string | undefined = undefined;
 
@@ -73,7 +73,7 @@ export class PaymentCaptureRequest {
         {
             "name": "subMerchants",
             "baseName": "subMerchants",
-            "type": "Array<SubMerchant2>"
+            "type": "Array<SubMerchantInfo>"
         }    ];
 
     static getAttributeTypeMap() {

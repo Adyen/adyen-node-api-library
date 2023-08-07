@@ -31,7 +31,7 @@ export class BusinessLineInfoUpdate {
     /**
     * The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**
     */
-    'service': BusinessLineInfoUpdate.ServiceEnum;
+    'service'?: BusinessLineInfoUpdate.ServiceEnum;
     'sourceOfFunds'?: SourceOfFunds;
     /**
     * List of website URLs where your user\'s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the `webDataExemption` object.

@@ -10,7 +10,7 @@
 
 export class AcceptTermsOfServiceRequest {
     /**
-    * The unique identifier of the user accepting the Terms of Service.
+    * The individual legal entity ID of the user accepting the Terms of Service. This can also be the legal entity ID of the signatory for an organization.
     */
     'acceptedBy': string;
     /**

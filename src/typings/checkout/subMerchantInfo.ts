@@ -9,7 +9,7 @@
 
 import { Address } from './address';
 
-export class SubMerchant2 {
+export class SubMerchantInfo {
     'address'?: Address;
     'id'?: string;
     'mcc'?: string;
@@ -46,7 +46,7 @@ export class SubMerchant2 {
         }    ];
 
     static getAttributeTypeMap() {
-        return SubMerchant2.attributeTypeMap;
+        return SubMerchantInfo.attributeTypeMap;
     }
 }
 
