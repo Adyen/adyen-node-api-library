@@ -1,6 +1,6 @@
-const path = require('path');
+import path from 'path';
 
-module.exports = {
+export default {
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint", "unused-imports"],
   env: {

@@ -105,7 +105,7 @@ describe("Platforms Test", function () {
                     const service = platforms.Account;
                     scope.post(`/Account/${Client.MARKETPAY_ACCOUNT_API_VERSION}/${args[0]}`).reply(200, args[2]);
                     const result = await service[args[0] as string](args[1] as never);
-                    expect(result).toMatchObject(args[2]);
+                    expect(result).toEqual(args[2]);
                 }
             );
         });
@@ -129,7 +129,7 @@ describe("Platforms Test", function () {
                 scope.post(`/Fund/${Client.MARKETPAY_FUND_API_VERSION}/${args[0]}`).reply(200, args[2]);
 
                 const result = await fund[args[0] as string](args[1] as never);
-                expect(result).toMatchObject(args[2]);
+                expect(result).toEqual(args[2]);
             }
         );
     });
@@ -151,7 +151,7 @@ describe("Platforms Test", function () {
                 scope.post(`/Notification/${Client.MARKETPAY_NOTIFICATION_CONFIGURATION_API_VERSION}/${args[0]}`).reply(200, args[2]);
 
                 const result = await notificationConfiguration[args[0] as string](args[1] as never);
-                expect(result).toMatchObject(args[2]);
+                expect(result).toEqual(args[2]);
             }
         );
     });
@@ -168,7 +168,7 @@ describe("Platforms Test", function () {
                 scope.post(`/Hop/${Client.MARKETPAY_HOP_API_VERSION}/${args[0]}`).reply(200, args[2]);
 
                 const result = await hostedOnboardingPage[args[0] as string](args[1] as never);
-                expect(result).toMatchObject(args[2]);
+                expect(result).toEqual(args[2]);
             }
         );
     });
