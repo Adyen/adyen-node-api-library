@@ -1,0 +1,11 @@
+templateDir: ./templates/typescript
+files:
+  api-index.mustache:
+    destinationFilename: index.ts
+    templateType: SupportingFiles
+  api-single.mustache:
+    destinationFilename: .ts
+    templateType: API
+  api-root.mustache:
+    destinationFilename: Root.ts
+    templateType: API

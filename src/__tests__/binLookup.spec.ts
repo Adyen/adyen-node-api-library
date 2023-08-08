@@ -1,6 +1,6 @@
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import BinLookup from "../services/binLookup";
+import BinLookup from "../services/binLookupApi";
 import Client from "../client";
 import HttpClientException from "../httpClient/httpClientException";
 import { binlookup } from "../typings";
@@ -24,7 +24,7 @@ beforeEach((): void => {
     }
     client = createClient();
     binLookupService = new BinLookup(client);
-    scope = nock(`${client.config.endpoint}${Client.BIN_LOOKUP_PAL_SUFFIX}${Client.BIN_LOOKUP_API_VERSION}`);
+    scope = nock("https://pal-test.adyen.com/pal/servlet/BinLookup/v54");
 });
 
 afterEach((): void => {
@@ -55,7 +55,7 @@ describe("Bin Lookup", function (): void {
         };
 
         scope.post("/get3dsAvailability")
-            .reply(403, JSON.stringify({status: 403, message: "fail", errorCode: "171"}));
+            .reply(403, JSON.stringify({status: 403, message: "Invalid Merchant Account", errorCode: "901", errorType: "security"}));
 
         try {
             await binLookupService.get3dsAvailability(threeDSAvailabilityRequest as unknown as  binlookup.ThreeDSAvailabilityRequest);

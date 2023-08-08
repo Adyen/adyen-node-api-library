@@ -1,11 +1,11 @@
 import nock from "nock";
 import Client from "../client";
 import { createClient } from "../__mocks__/base";
-import TerminalManagement from "../services/terminalManagement";
+import TerminalManagementAPI from "../services/terminalManagementApi";
 import { terminalManagement } from "../typings";
 
 let client: Client;
-let terminalManagementService: TerminalManagement;
+let terminalManagementService: TerminalManagementAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -13,8 +13,8 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock(`${client.config.terminalManagementEndpoint}/${Client.TERMINAL_MANAGEMENT_API_VERSION}`);
-    terminalManagementService = new TerminalManagement(client);
+    scope = nock("https://postfmapi-test.adyen.com/postfmapi/terminal/v1");
+    terminalManagementService = new TerminalManagementAPI(client);
 });
 
 afterEach(() => {

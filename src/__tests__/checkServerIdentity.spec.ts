@@ -34,7 +34,7 @@ const createMockedCertificate = (CN: string): PeerCertificate => ({
     raw: Buffer.from("test")
 });
 
-describe("Certificate Server Identiy", function () {
+describe("Certificate Server Identity", function () {
     test.each([
         ["legacy-terminal-certificate", "live"],
         ["legacy-terminal-certificate", "test"],

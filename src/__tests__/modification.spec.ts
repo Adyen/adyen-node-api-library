@@ -1,18 +1,8 @@
 import nock from "nock";
 import {createClient} from "../__mocks__/base";
-import Checkout from "../services/checkout";
+import {CheckoutAPI} from "../services/";
 import Client from "../client";
-import {
-    CreatePaymentAmountUpdateRequest,
-    CreatePaymentCancelRequest,
-    CreatePaymentCaptureRequest,
-    CreatePaymentRefundRequest, CreatePaymentReversalRequest,
-    CreateStandalonePaymentCancelRequest,
-    PaymentAmountUpdateResource,
-    PaymentCancelResource,
-    PaymentCaptureResource, PaymentRefundResource, PaymentReversalResource,
-    StandalonePaymentCancelResource
-} from "../typings/checkout/models";
+import { checkout } from "../typings";
 import HttpClientException from "../httpClient/httpClientException";
 
 const invalidModificationResult = {
@@ -22,7 +12,7 @@ const invalidModificationResult = {
     "errorType": "validation"
 };
 
-const createAmountUpdateRequest = (): CreatePaymentAmountUpdateRequest => {
+const createAmountUpdateRequest = (): checkout.PaymentAmountUpdateRequest => {
     return {
         reference: "863620292981235A",
         merchantAccount: process.env.ADYEN_MERCHANT!,
@@ -30,11 +20,11 @@ const createAmountUpdateRequest = (): CreatePaymentAmountUpdateRequest => {
             currency: "EUR",
             value: 420
         },
-        industryUsage: CreatePaymentAmountUpdateRequest.IndustryUsageEnum.DelayedCharge
+        industryUsage: checkout.PaymentAmountUpdateRequest.IndustryUsageEnum.DelayedCharge
     };
 };
 
-const createAmountUpdateResponse = (): PaymentAmountUpdateResource => {
+const createAmountUpdateResponse = (): checkout.PaymentAmountUpdateResponse => {
     return {
         paymentPspReference: "863620292981235A",
         pspReference: "863620292981235B",
@@ -44,27 +34,27 @@ const createAmountUpdateResponse = (): PaymentAmountUpdateResource => {
             currency: "EUR",
             value: 420,
         },
-        status: PaymentAmountUpdateResource.StatusEnum.Received,
+        status: checkout.PaymentAmountUpdateResponse.StatusEnum.Received,
     };
 };
 
-const createCancelsRequest = (): CreatePaymentCancelRequest => {
+const createCancelsRequest = (): checkout.PaymentCancelRequest => {
      return {
          reference: "863620292981235B",
          merchantAccount: process.env.ADYEN_MERCHANT!,
      };
 };
 
-const createCancelsResponse = (): PaymentCancelResource =>  {
+const createCancelsResponse = (): checkout.PaymentCancelResponse =>  {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
         pspReference: "863620292981235B",
         paymentPspReference: "863620292981235A",
-        status: PaymentCancelResource.StatusEnum.Received,
+        status: checkout.PaymentCancelResponse.StatusEnum.Received,
     };
 };
 
-const createStandaloneCancelsRequest = (): CreateStandalonePaymentCancelRequest => {
+const createStandaloneCancelsRequest = (): checkout.StandalonePaymentCancelRequest => {
     return {
         reference: "reference",
         merchantAccount: process.env.ADYEN_MERCHANT!,
@@ -72,17 +62,17 @@ const createStandaloneCancelsRequest = (): CreateStandalonePaymentCancelRequest 
     };
 };
 
-const createStandaloneCancelsResponse = (): StandalonePaymentCancelResource => {
+const createStandaloneCancelsResponse = (): checkout.StandalonePaymentCancelResponse => {
     return {
         reference: "reference",
         merchantAccount: process.env.ADYEN_MERCHANT!,
         paymentReference: "863620292981235B",
         pspReference: "863620292981235A",
-        status: StandalonePaymentCancelResource.StatusEnum.Received,
+        status: checkout.StandalonePaymentCancelResponse.StatusEnum.Received,
     };
 };
 
-const createCapturesRequest = (): CreatePaymentCaptureRequest => {
+const createCapturesRequest = (): checkout.PaymentCaptureRequest => {
     return {
         reference: "reference",
         merchantAccount: process.env.ADYEN_MERCHANT!,
@@ -93,7 +83,7 @@ const createCapturesRequest = (): CreatePaymentCaptureRequest => {
     };
 };
 
-function createCapturesResponse(): PaymentCaptureResource {
+function createCapturesResponse(): checkout.PaymentCaptureResponse {
     return {
         paymentPspReference: "863620292981235A",
         pspReference: "863620292981235B",
@@ -103,11 +93,11 @@ function createCapturesResponse(): PaymentCaptureResource {
             currency: "EUR",
             value: 420,
         },
-        status: PaymentCaptureResource.StatusEnum.Received,
+        status: checkout.PaymentCaptureResponse.StatusEnum.Received,
     };
 }
 
-const createRefundsRequest = (): CreatePaymentRefundRequest => {
+const createRefundsRequest = (): checkout.PaymentRefundRequest => {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
         amount: {
@@ -117,7 +107,7 @@ const createRefundsRequest = (): CreatePaymentRefundRequest => {
     };
 };
 
-const createRefundsResponse = (): PaymentRefundResource => {
+const createRefundsResponse = (): checkout.PaymentRefundResponse => {
     return {
         paymentPspReference: "863620292981235A",
         pspReference: "863620292981235B",
@@ -127,29 +117,29 @@ const createRefundsResponse = (): PaymentRefundResource => {
             currency: "EUR",
             value: 420,
         },
-        status: PaymentRefundResource.StatusEnum.Received,
+        status: checkout.PaymentRefundResponse.StatusEnum.Received,
     };
 };
 
-const createReversalsRequest = (): CreatePaymentReversalRequest => {
+const createReversalsRequest = (): checkout.PaymentReversalRequest => {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!
     };
 };
 
-const createReversalsResponse = (): PaymentReversalResource => {
+const createReversalsResponse = (): checkout.PaymentReversalResponse => {
     return {
         paymentPspReference: "863620292981235A",
         pspReference: "863620292981235B",
         reference: "reference",
         merchantAccount: process.env.ADYEN_MERCHANT!,
-        status: PaymentRefundResource.StatusEnum.Received,
+        status: checkout.PaymentReversalResponse.StatusEnum.Received,
     };
 };
 
 
 let client: Client;
-let checkout: Checkout;
+let checkoutAPI: CheckoutAPI;
 let scope: nock.Scope;
 const paymentPspReference = "863620292981235A";
 const invalidPaymentPspReference = "invalid_psp_reference";
@@ -159,8 +149,8 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    checkout = new Checkout(client);
-    scope = nock(`${client.config.checkoutEndpoint}/${Client.CHECKOUT_API_VERSION}`);
+    checkoutAPI = new CheckoutAPI(client);
+    scope = nock("https://checkout-test.adyen.com/v70");
 });
 
 afterEach(() => {
@@ -173,7 +163,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/amountUpdates`)
             .reply(200, createAmountUpdateResponse());
         try {
-            const result = await checkout.amountUpdates(paymentPspReference, request);
+            const result = await checkoutAPI.ModificationsApi.updateAuthorisedAmount(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -191,7 +181,7 @@ describe("Modification", (): void => {
             .reply(422, invalidModificationResult);
 
         try {
-            await checkout.amountUpdates(invalidPaymentPspReference, request);
+            await checkoutAPI.ModificationsApi.updateAuthorisedAmount(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
                 if(e.statusCode) expect(e.statusCode).toBe(422);
@@ -207,7 +197,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/cancels`)
             .reply(200, createCancelsResponse());
         try {
-            const result = await checkout.cancels(paymentPspReference, request);
+            const result = await checkoutAPI.ModificationsApi.cancelAuthorisedPaymentByPspReference(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -224,7 +214,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/cancels`)
             .reply(422, invalidModificationResult);
         try {
-            await checkout.cancels(invalidPaymentPspReference, request);
+            await checkoutAPI.ModificationsApi.cancelAuthorisedPaymentByPspReference(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
                 if(e.statusCode) expect(e.statusCode).toBe(422);
@@ -240,7 +230,7 @@ describe("Modification", (): void => {
         scope.post("/cancels")
             .reply(200, createStandaloneCancelsResponse());
         try {
-            const result = await checkout.cancelsStandalone(request);
+            const result = await checkoutAPI.ModificationsApi.cancelAuthorisedPayment(request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -256,7 +246,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/captures`)
             .reply(200, createCapturesResponse());
         try {
-            const result = await checkout.captures(paymentPspReference, request);
+            const result = await checkoutAPI.ModificationsApi.captureAuthorisedPayment(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -273,7 +263,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/captures`)
             .reply(422, invalidModificationResult);
         try {
-            await checkout.captures(invalidPaymentPspReference, request);
+            await checkoutAPI.ModificationsApi.captureAuthorisedPayment(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
                 if(e.statusCode) expect(e.statusCode).toBe(422);
@@ -289,7 +279,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/refunds`)
             .reply(200, createRefundsResponse());
         try {
-            const result = await checkout.refunds(paymentPspReference, request);
+            const result = await checkoutAPI.ModificationsApi.refundCapturedPayment(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -306,7 +296,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/refunds`)
             .reply(422, invalidModificationResult);
         try {
-            await checkout.refunds(invalidPaymentPspReference, request);
+            await checkoutAPI.ModificationsApi.refundCapturedPayment(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
                 if(e.statusCode) expect(e.statusCode).toBe(422);
@@ -322,7 +312,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${paymentPspReference}/reversals`)
             .reply(200, createReversalsResponse());
         try {
-            const result = await checkout.reversals(paymentPspReference, request);
+            const result = await checkoutAPI.ModificationsApi.refundOrCancelPayment(paymentPspReference, request);
             expect(result).toBeTruthy();
         } catch (e) {
             if(e instanceof Error) {
@@ -339,7 +329,7 @@ describe("Modification", (): void => {
         scope.post(`/payments/${invalidPaymentPspReference}/reversals`)
             .reply(422, invalidModificationResult);
         try {
-            await checkout.reversals(invalidPaymentPspReference, request);
+            await checkoutAPI.ModificationsApi.refundOrCancelPayment(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
                 if(e.statusCode) expect(e.statusCode).toBe(422);

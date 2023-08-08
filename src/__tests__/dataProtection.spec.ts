@@ -1,12 +1,12 @@
 import nock from "nock";
 import  { createClient } from "../__mocks__/base";
-import { DataProtection } from "../services";
+import { DataProtectionAPI } from "../services";
 import Client from "../client";
 import HttpClientException from "../httpClient/httpClientException";
 import { dataProtection } from "../typings";
 
 let client: Client,
-    dataProtectionService: DataProtection,
+    dataProtectionService: DataProtectionAPI,
     scope: nock.Scope;
 
 beforeEach((): void => {
@@ -14,8 +14,8 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    dataProtectionService = new DataProtection(client);
-    scope = nock(`${client.config.dataProtectionEndpoint}/${Client.DATA_PROTECTION_API_VERSION}`);
+    dataProtectionService = new DataProtectionAPI(client);
+    scope = nock( "https://ca-test.adyen.com/ca/services/DataProtectionService/v1");
 });
 
 afterEach(() => {

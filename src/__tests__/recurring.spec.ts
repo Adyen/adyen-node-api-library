@@ -3,7 +3,7 @@ import { createClient } from "../__mocks__/base";
 import { disableSuccess } from "../__mocks__/recurring/disableSuccess";
 import { listRecurringDetailsSuccess } from "../__mocks__/recurring/listRecurringDetailsSuccess";
 import { notifyShopperSuccess } from "../__mocks__/recurring/notifyShopperSuccess";
-import RecurringService from "../services/recurring";
+import RecurringService from "../services/recurringApi";
 import Client from "../client";
 import { recurring } from "../typings";
 import {Permit} from "../typings/recurring/permit";
@@ -28,7 +28,7 @@ beforeEach((): void => {
     }
     client = createClient();
     recurringService = new RecurringService(client);
-    scope = nock(`${client.config.endpoint}/pal/servlet/Recurring/${Client.RECURRING_API_VERSION}`);
+    scope = nock("https://pal-test.adyen.com/pal/servlet/Recurring/v68");
 });
 
 afterEach(() => {

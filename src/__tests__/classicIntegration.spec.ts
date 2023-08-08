@@ -1,8 +1,9 @@
 import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import Client from "../client";
-import ClassicIntegration from "../services/classicIntegration";
+import ClassicIntegration from "../services/paymentApi";
 import { payments } from "../typings";
+import HttpClientException from "../httpClient/httpClientException";
 
 let client: Client;
 let classicIntegration: ClassicIntegration;
@@ -13,7 +14,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock(`${client.config.paymentEndpoint}/${Client.PAYMENT_API_VERSION}`);
+    scope = nock("https://pal-test.adyen.com/pal/servlet/Payment/v68");
     classicIntegration = new ClassicIntegration(client);
 });
 
@@ -52,6 +53,43 @@ describe("Classic Integration", (): void => {
 
         const paymentResult: payments.PaymentResult = await classicIntegration.authorise(paymentRequest);
         expect(paymentResult.pspReference).toEqual("JVBXGSDM53RZNN82");
+    });
+
+    test("Should properly handle invalid merchant account from API", async (): Promise<void> => {
+        try {
+            scope.post("/authorise")
+                .reply(403, {
+                        "status": 403,
+                        "errorCode": "901",
+                        "message": "Invalid Merchant Account",
+                        "errorType": "security"
+                    }
+                );
+            const paymentRequest: payments.PaymentRequest = {
+                "card": {
+                    "number": "4111111111111111",
+                    "expiryMonth": "03",
+                    "expiryYear": "2030",
+                    "cvc": "737",
+                    "holderName": "John Smith"
+                },
+                "amount": {
+                    "value": 1500,
+                    "currency": "EUR"
+                },
+                "reference": "YOUR_REFERENCE",
+                "merchantAccount": "INVALID_MERCHANT_ACCOUNT"
+            };
+
+           await classicIntegration.authorise(paymentRequest);
+        } catch (error) {
+            expect(error instanceof HttpClientException).toBeTruthy();
+            if(error instanceof HttpClientException && error.responseBody && error.stack) {
+                expect(JSON.parse(error.responseBody).errorType).toBe("security");
+            } else {
+                fail("Error did not contain the expected data");
+            }
+        }
     });
 
     test("Should complete 3DS authorisation", async (): Promise<void> => {
@@ -134,7 +172,7 @@ describe("Classic Integration", (): void => {
         expect(retrieve3ds2ResultResponse?.threeDS2Result?.authenticationValue).toEqual("THREEDS2RESULT");
     });
 
-    test("Should succesfully send Capture request", async (): Promise<void> => {
+    test("Should successfully send Capture request", async (): Promise<void> => {
         scope.post("/capture")
             .reply(200, {
                 "pspReference": "YOUR_REFERENCE",
@@ -155,7 +193,7 @@ describe("Classic Integration", (): void => {
           expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.CaptureReceived);
     });
 
-    test("Should succesfully send Cancel request", async (): Promise<void> => {
+    test("Should successfully send Cancel request", async (): Promise<void> => {
         scope.post("/cancel")
             .reply(200, {
                 "pspReference": "YOUR_REFERENCE",
@@ -172,7 +210,7 @@ describe("Classic Integration", (): void => {
           expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.CancelReceived);
     });
 
-    test("Should succesfully send Refund request", async (): Promise<void> => {
+    test("Should successfully send Refund request", async (): Promise<void> => {
         scope.post("/refund")
             .reply(200, {
                 "pspReference": "YOUR_REFERENCE",
@@ -193,7 +231,7 @@ describe("Classic Integration", (): void => {
           expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.RefundReceived);
     });
 
-    test("Should succesfully send CancelOrRefund request", async (): Promise<void> => {
+    test("Should successfully send CancelOrRefund request", async (): Promise<void> => {
         scope.post("/cancelOrRefund")
             .reply(200, {
                 "pspReference": "YOUR_REFERENCE",
@@ -210,7 +248,7 @@ describe("Classic Integration", (): void => {
           expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.CancelOrRefundReceived);
     });
     
-    test("Should succesfully send TechnicalCancel request", async (): Promise<void> => {
+    test("Should successfully send TechnicalCancel request", async (): Promise<void> => {
         scope.post("/technicalCancel")
             .reply(200, {
                 "pspReference": "YOUR_REFERENCE",
@@ -231,7 +269,7 @@ describe("Classic Integration", (): void => {
           expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.TechnicalCancelReceived);
     });
 
-    test("Should succesfully send AdjustAuthorisation request", async (): Promise<void> => {
+    test("Should successfully send AdjustAuthorisation request", async (): Promise<void> => {
         scope.post("/adjustAuthorisation")
             .reply(200, {
                 "pspReference": "YOUR_REFERENCE",
@@ -252,7 +290,7 @@ describe("Classic Integration", (): void => {
           expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.AdjustAuthorisationReceived);
     });
 
-    test("Should succesfully send Donate request", async (): Promise<void> => {
+    test("Should successfully send Donate request", async (): Promise<void> => {
         scope.post("/donate")
             .reply(200, {
                 "pspReference": "YOUR_REFERENCE",
@@ -274,7 +312,7 @@ describe("Classic Integration", (): void => {
           expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.DonationReceived);
     });
 
-    test("Should succesfully send VoidPendingRefund request", async (): Promise<void> => {
+    test("Should successfully send VoidPendingRefund request", async (): Promise<void> => {
         scope.post("/voidPendingRefund")
             .reply(200, {
                 "pspReference": "YOUR_REFERENCE",

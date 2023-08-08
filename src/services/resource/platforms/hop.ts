@@ -8,7 +8,7 @@ class PlatformsHostedOnboardingPage extends Resource {
     public constructor(service: Service, endpoint: Endpoints) {
         super(
             service,
-            `${service.client.config.marketPayEndpoint}/Hop/${Client.MARKETPAY_HOP_API_VERSION}/${endpoint}`,
+            `${service.client.config.marketPayEndpoint}/Hop/${Client.MARKETPAY_HOP_API_VERSION}${endpoint}`,
         );
     }
 }
