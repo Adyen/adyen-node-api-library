@@ -21,7 +21,13 @@ jobs:
         run: |
           git fetch origin develop:develop
           git reset --hard develop
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v2
+        with: 
+          files: ".github/scripts/release.js"
       - name: Get the release script
+        if: steps.check_files.outputs.files_exists == 'false'
         run: |
           wget https://raw.githubusercontent.com/Adyen/adyen-node-api-library/develop/.github/scripts/release.js -P ./.github/scripts
       - name: Grab current version
