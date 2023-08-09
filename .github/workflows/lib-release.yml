@@ -22,6 +22,7 @@ jobs:
           git fetch origin develop:develop
           git reset --hard develop
       - name: Get the release script
+        if: github.repository != 'Adyen/adyen-node-api-library'
         run: |
           wget https://raw.githubusercontent.com/Adyen/adyen-node-api-library/develop/.github/scripts/release.js -P ./.github/scripts
       - name: Grab current version
@@ -45,6 +46,7 @@ jobs:
           CURRENT_VERSION: ${{steps.current-version.outputs.currentVersion}}
           NEXT_VERSION: ${{steps.release.outputs.nextVersion}}
       - name: Delete the release script
+        if: github.repository != 'Adyen/adyen-node-api-library'
         run: rm -f ./.github/scripts/release.js
       - name: Create Pull Request
         id: cpr
