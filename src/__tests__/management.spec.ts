@@ -1,7 +1,7 @@
 import nock from "nock";
 import Client from "../client";
 import { createClient } from "../__mocks__/base";
-import { ManagemenAPI } from "../services";
+import { ManagementAPI } from "../services";
 import { management } from "../typings";
 import * as requests from "../__mocks__/management/requests";
 import * as responses from "../__mocks__/management/responses";
