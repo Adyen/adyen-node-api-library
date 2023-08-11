@@ -8,7 +8,7 @@ export { default as PayoutAPI } from "./payout";
 export { default as Platforms } from "./platforms";
 export { default as StoredValueAPI} from "./storedValueApi";
 export { default as TerminalManagementAPI } from "./terminalManagementApi";
-export { default as ManagemenAPI } from "./management";
+export { default as ManagementAPI } from "./management";
 export { default as LegalEntityManagementAPI } from "./legalEntityManagement";
 export { default as TransfersAPI } from "./transfers";
 export { default as BalancePlatformAPI } from "./balancePlatform";
