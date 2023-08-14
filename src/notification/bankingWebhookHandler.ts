@@ -24,32 +24,32 @@ class BankingWebhookHandler {
         | reportWebhooks.ReportNotificationRequest
         | TransferNotificationRequest
         | void {
-        const type = this.payload['type'];
-        if(Object.values(configurationWebhooks.AccountHolderNotificationRequest.TypeEnum).includes(type)){
+        const type = this.payload['type'as keyof String];
+        if(Object.values(configurationWebhooks.AccountHolderNotificationRequest.TypeEnum).includes(type as configurationWebhooks.AccountHolderNotificationRequest.TypeEnum)){
             return this.getAccountHolderNotificationRequest();
         }
 
-        if(Object.values(configurationWebhooks.BalanceAccountNotificationRequest.TypeEnum).includes(type)){
+        if(Object.values(configurationWebhooks.BalanceAccountNotificationRequest.TypeEnum).includes(type as configurationWebhooks.BalanceAccountNotificationRequest.TypeEnum)){
             return this.getBalanceAccountNotificationRequest();
         }
 
-        if(Object.values(configurationWebhooks.CardOrderNotificationRequest.TypeEnum).includes(type)){
+        if(Object.values(configurationWebhooks.CardOrderNotificationRequest.TypeEnum).includes(type as configurationWebhooks.CardOrderNotificationRequest.TypeEnum)){
             return this.getCardOrderNotificationRequest();
         }
 
-        if(Object.values(configurationWebhooks.PaymentNotificationRequest.TypeEnum).includes(type)){
+        if(Object.values(configurationWebhooks.PaymentNotificationRequest.TypeEnum).includes(type as configurationWebhooks.PaymentNotificationRequest.TypeEnum)){
             return this.getPaymentNotificationRequest();
         }
 
-        if(Object.values(configurationWebhooks.SweepConfigurationNotificationRequest.TypeEnum).includes(type)){
+        if(Object.values(configurationWebhooks.SweepConfigurationNotificationRequest.TypeEnum).includes(type as configurationWebhooks.SweepConfigurationNotificationRequest.TypeEnum)){
             return this.getSweepConfigurationNotificationRequest();
         }
 
-        if(Object.values(reportWebhooks.ReportNotificationRequest.TypeEnum).includes(type)){
+        if(Object.values(reportWebhooks.ReportNotificationRequest.TypeEnum).includes(type as reportWebhooks.ReportNotificationRequest.TypeEnum)){
             return this.getReportNotificationRequest();
         }
 
-        if(Object.values(transferWebhooks.TransferNotificationRequest.TypeEnum).includes(type)){
+        if(Object.values(transferWebhooks.TransferNotificationRequest.TypeEnum).includes(type as transferWebhooks.TransferNotificationRequest.TypeEnum)){
             return this.getTransferNotificationRequest();
         }
     }

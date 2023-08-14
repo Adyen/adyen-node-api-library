@@ -1,24 +1,5 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function mergeDeep<T>(target: T, source: Record<string, unknown> | any): T {
+function mergeDeep<T>(target: Record<string, unknown> | any, source: Record<string, unknown> | any): T {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const isObject = (obj: Record<string, unknown> | any): boolean => obj && typeof obj === "object";
 
