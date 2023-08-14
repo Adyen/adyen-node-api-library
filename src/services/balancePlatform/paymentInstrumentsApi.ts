@@ -10,6 +10,7 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { ListNetworkTokensResponse } from "../../typings/balancePlatform/models";
 import { PaymentInstrument } from "../../typings/balancePlatform/models";
 import { PaymentInstrumentInfo } from "../../typings/balancePlatform/models";
 import { PaymentInstrumentRevealInfo } from "../../typings/balancePlatform/models";
@@ -46,6 +47,24 @@ export class PaymentInstrumentsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PaymentInstrument");
+    }
+
+    /**
+    * @summary List network tokens
+    * @param id {@link string } The unique identifier of the payment instrument.
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link ListNetworkTokensResponse }
+    */
+    public async listNetworkTokens(id: string, requestOptions?: IRequest.Options): Promise<ListNetworkTokensResponse> {
+        const endpoint = `${this.baseUrl}/paymentInstruments/{id}/networkTokens`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, ListNetworkTokensResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "ListNetworkTokensResponse");
     }
 
     /**

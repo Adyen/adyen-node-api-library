@@ -12,6 +12,7 @@ import { BalanceAccountsApi } from "./balanceAccountsApi";
 import { BankAccountValidationApi } from "./bankAccountValidationApi";
 import { GrantAccountsApi } from "./grantAccountsApi";
 import { GrantOffersApi } from "./grantOffersApi";
+import { NetworkTokensApi } from "./networkTokensApi";
 import { PaymentInstrumentGroupsApi } from "./paymentInstrumentGroupsApi";
 import { PaymentInstrumentsApi } from "./paymentInstrumentsApi";
 import { PlatformApi } from "./platformApi";
@@ -44,6 +45,10 @@ export default class BalancePlatformAPI extends Service {
 
     public get GrantOffersApi() {
         return new GrantOffersApi(this.client);
+    }
+
+    public get NetworkTokensApi() {
+        return new NetworkTokensApi(this.client);
     }
 
     public get PaymentInstrumentGroupsApi() {

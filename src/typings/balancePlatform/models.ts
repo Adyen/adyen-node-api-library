@@ -12,12 +12,14 @@ export * from './aULocalAccountIdentification';
 export * from './accountHolder';
 export * from './accountHolderCapability';
 export * from './accountHolderInfo';
+export * from './accountHolderUpdateRequest';
 export * from './accountSupportingEntityCapability';
 export * from './activeNetworkTokensRestriction';
 export * from './additionalBankIdentification';
 export * from './address';
 export * from './amount';
 export * from './authentication';
+export * from './bRLocalAccountIdentification';
 export * from './balance';
 export * from './balanceAccount';
 export * from './balanceAccountBase';
@@ -38,31 +40,37 @@ export * from './cardConfiguration';
 export * from './cardInfo';
 export * from './contactDetails';
 export * from './countriesRestriction';
-export * from './cronSweepSchedule';
+export * from './dKLocalAccountIdentification';
 export * from './dayOfWeekRestriction';
 export * from './deliveryAddress';
 export * from './deliveryContact';
+export * from './deviceInfo';
 export * from './differentCurrenciesRestriction';
 export * from './duration';
 export * from './entryModesRestriction';
 export * from './expiry';
 export * from './fee';
+export * from './getNetworkTokenResponse';
 export * from './grantLimit';
 export * from './grantOffer';
 export * from './grantOffers';
+export * from './hKLocalAccountIdentification';
 export * from './hULocalAccountIdentification';
 export * from './ibanAccountIdentification';
 export * from './internationalTransactionRestriction';
 export * from './invalidField';
 export * from './jSONObject';
 export * from './jSONPath';
+export * from './listNetworkTokensResponse';
 export * from './matchingTransactionsRestriction';
 export * from './mccsRestriction';
 export * from './merchantAcquirerPair';
 export * from './merchantNamesRestriction';
 export * from './merchantsRestriction';
 export * from './nOLocalAccountIdentification';
+export * from './nZLocalAccountIdentification';
 export * from './name';
+export * from './networkToken';
 export * from './numberAndBicAccountIdentification';
 export * from './pLLocalAccountIdentification';
 export * from './paginatedAccountHoldersResponse';
@@ -76,6 +84,7 @@ export * from './paymentInstrumentRevealInfo';
 export * from './paymentInstrumentUpdateRequest';
 export * from './phone';
 export * from './phoneNumber';
+export * from './platformPaymentConfiguration';
 export * from './processingTypesRestriction';
 export * from './repayment';
 export * from './repaymentTerm';
@@ -99,7 +108,9 @@ export * from './transactionRuleRestrictions';
 export * from './transactionRulesResponse';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
+export * from './updateNetworkTokenRequest';
 export * from './updatePaymentInstrument';
+export * from './updateSweepConfigurationV2';
 export * from './verificationDeadline';
 
 
@@ -107,12 +118,14 @@ import { AULocalAccountIdentification } from './aULocalAccountIdentification';
 import { AccountHolder } from './accountHolder';
 import { AccountHolderCapability } from './accountHolderCapability';
 import { AccountHolderInfo } from './accountHolderInfo';
+import { AccountHolderUpdateRequest } from './accountHolderUpdateRequest';
 import { AccountSupportingEntityCapability } from './accountSupportingEntityCapability';
 import { ActiveNetworkTokensRestriction } from './activeNetworkTokensRestriction';
 import { AdditionalBankIdentification } from './additionalBankIdentification';
 import { Address } from './address';
 import { Amount } from './amount';
 import { Authentication } from './authentication';
+import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
 import { Balance } from './balance';
 import { BalanceAccount } from './balanceAccount';
 import { BalanceAccountBase } from './balanceAccountBase';
@@ -133,31 +146,37 @@ import { CardConfiguration } from './cardConfiguration';
 import { CardInfo } from './cardInfo';
 import { ContactDetails } from './contactDetails';
 import { CountriesRestriction } from './countriesRestriction';
-import { CronSweepSchedule } from './cronSweepSchedule';
+import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
 import { DayOfWeekRestriction } from './dayOfWeekRestriction';
 import { DeliveryAddress } from './deliveryAddress';
 import { DeliveryContact } from './deliveryContact';
+import { DeviceInfo } from './deviceInfo';
 import { DifferentCurrenciesRestriction } from './differentCurrenciesRestriction';
 import { Duration } from './duration';
 import { EntryModesRestriction } from './entryModesRestriction';
 import { Expiry } from './expiry';
 import { Fee } from './fee';
+import { GetNetworkTokenResponse } from './getNetworkTokenResponse';
 import { GrantLimit } from './grantLimit';
 import { GrantOffer } from './grantOffer';
 import { GrantOffers } from './grantOffers';
+import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { InternationalTransactionRestriction } from './internationalTransactionRestriction';
 import { InvalidField } from './invalidField';
 import { JSONObject } from './jSONObject';
 import { JSONPath } from './jSONPath';
+import { ListNetworkTokensResponse } from './listNetworkTokensResponse';
 import { MatchingTransactionsRestriction } from './matchingTransactionsRestriction';
 import { MccsRestriction } from './mccsRestriction';
 import { MerchantAcquirerPair } from './merchantAcquirerPair';
 import { MerchantNamesRestriction } from './merchantNamesRestriction';
 import { MerchantsRestriction } from './merchantsRestriction';
 import { NOLocalAccountIdentification } from './nOLocalAccountIdentification';
+import { NZLocalAccountIdentification } from './nZLocalAccountIdentification';
 import { Name } from './name';
+import { NetworkToken } from './networkToken';
 import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentification';
 import { PLLocalAccountIdentification } from './pLLocalAccountIdentification';
 import { PaginatedAccountHoldersResponse } from './paginatedAccountHoldersResponse';
@@ -171,6 +190,7 @@ import { PaymentInstrumentRevealInfo } from './paymentInstrumentRevealInfo';
 import { PaymentInstrumentUpdateRequest } from './paymentInstrumentUpdateRequest';
 import { Phone } from './phone';
 import { PhoneNumber } from './phoneNumber';
+import { PlatformPaymentConfiguration } from './platformPaymentConfiguration';
 import { ProcessingTypesRestriction } from './processingTypesRestriction';
 import { Repayment } from './repayment';
 import { RepaymentTerm } from './repaymentTerm';
@@ -194,7 +214,9 @@ import { TransactionRuleRestrictions } from './transactionRuleRestrictions';
 import { TransactionRulesResponse } from './transactionRulesResponse';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
+import { UpdateNetworkTokenRequest } from './updateNetworkTokenRequest';
 import { UpdatePaymentInstrument } from './updatePaymentInstrument';
+import { UpdateSweepConfigurationV2 } from './updateSweepConfigurationV2';
 import { VerificationDeadline } from './verificationDeadline';
 
 /* tslint:disable:no-unused-variable */
@@ -215,10 +237,12 @@ let enumsMap: {[index: string]: any} = {
         "AccountHolderCapability.AllowedLevelEnum": AccountHolderCapability.AllowedLevelEnum,
         "AccountHolderCapability.RequestedLevelEnum": AccountHolderCapability.RequestedLevelEnum,
         "AccountHolderCapability.VerificationStatusEnum": AccountHolderCapability.VerificationStatusEnum,
+        "AccountHolderUpdateRequest.StatusEnum": AccountHolderUpdateRequest.StatusEnum,
         "AccountSupportingEntityCapability.AllowedLevelEnum": AccountSupportingEntityCapability.AllowedLevelEnum,
         "AccountSupportingEntityCapability.RequestedLevelEnum": AccountSupportingEntityCapability.RequestedLevelEnum,
         "AccountSupportingEntityCapability.VerificationStatusEnum": AccountSupportingEntityCapability.VerificationStatusEnum,
         "AdditionalBankIdentification.TypeEnum": AdditionalBankIdentification.TypeEnum,
+        "BRLocalAccountIdentification.TypeEnum": BRLocalAccountIdentification.TypeEnum,
         "BalanceAccount.StatusEnum": BalanceAccount.StatusEnum,
         "BalanceAccountBase.StatusEnum": BalanceAccountBase.StatusEnum,
         "BalanceAccountUpdateRequest.StatusEnum": BalanceAccountUpdateRequest.StatusEnum,
@@ -229,14 +253,17 @@ let enumsMap: {[index: string]: any} = {
         "CapabilitySettings.IntervalEnum": CapabilitySettings.IntervalEnum,
         "Card.FormFactorEnum": Card.FormFactorEnum,
         "CardInfo.FormFactorEnum": CardInfo.FormFactorEnum,
-        "CronSweepSchedule.TypeEnum": CronSweepSchedule.TypeEnum,
+        "DKLocalAccountIdentification.TypeEnum": DKLocalAccountIdentification.TypeEnum,
         "DayOfWeekRestriction.ValueEnum": DayOfWeekRestriction.ValueEnum,
         "Duration.UnitEnum": Duration.UnitEnum,
         "EntryModesRestriction.ValueEnum": EntryModesRestriction.ValueEnum,
         "GrantOffer.ContractTypeEnum": GrantOffer.ContractTypeEnum,
+        "HKLocalAccountIdentification.TypeEnum": HKLocalAccountIdentification.TypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
+        "NZLocalAccountIdentification.TypeEnum": NZLocalAccountIdentification.TypeEnum,
+        "NetworkToken.StatusEnum": NetworkToken.StatusEnum,
         "NumberAndBicAccountIdentification.TypeEnum": NumberAndBicAccountIdentification.TypeEnum,
         "PLLocalAccountIdentification.TypeEnum": PLLocalAccountIdentification.TypeEnum,
         "PaymentInstrument.StatusEnum": PaymentInstrument.StatusEnum,
@@ -272,9 +299,15 @@ let enumsMap: {[index: string]: any} = {
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
+        "UpdateNetworkTokenRequest.StatusEnum": UpdateNetworkTokenRequest.StatusEnum,
         "UpdatePaymentInstrument.StatusEnum": UpdatePaymentInstrument.StatusEnum,
         "UpdatePaymentInstrument.StatusReasonEnum": UpdatePaymentInstrument.StatusReasonEnum,
         "UpdatePaymentInstrument.TypeEnum": UpdatePaymentInstrument.TypeEnum,
+        "UpdateSweepConfigurationV2.CategoryEnum": UpdateSweepConfigurationV2.CategoryEnum,
+        "UpdateSweepConfigurationV2.PrioritiesEnum": UpdateSweepConfigurationV2.PrioritiesEnum,
+        "UpdateSweepConfigurationV2.ReasonEnum": UpdateSweepConfigurationV2.ReasonEnum,
+        "UpdateSweepConfigurationV2.StatusEnum": UpdateSweepConfigurationV2.StatusEnum,
+        "UpdateSweepConfigurationV2.TypeEnum": UpdateSweepConfigurationV2.TypeEnum,
         "VerificationDeadline.CapabilitiesEnum": VerificationDeadline.CapabilitiesEnum,
 }
 
@@ -283,12 +316,14 @@ let typeMap: {[index: string]: any} = {
     "AccountHolder": AccountHolder,
     "AccountHolderCapability": AccountHolderCapability,
     "AccountHolderInfo": AccountHolderInfo,
+    "AccountHolderUpdateRequest": AccountHolderUpdateRequest,
     "AccountSupportingEntityCapability": AccountSupportingEntityCapability,
     "ActiveNetworkTokensRestriction": ActiveNetworkTokensRestriction,
     "AdditionalBankIdentification": AdditionalBankIdentification,
     "Address": Address,
     "Amount": Amount,
     "Authentication": Authentication,
+    "BRLocalAccountIdentification": BRLocalAccountIdentification,
     "Balance": Balance,
     "BalanceAccount": BalanceAccount,
     "BalanceAccountBase": BalanceAccountBase,
@@ -309,31 +344,37 @@ let typeMap: {[index: string]: any} = {
     "CardInfo": CardInfo,
     "ContactDetails": ContactDetails,
     "CountriesRestriction": CountriesRestriction,
-    "CronSweepSchedule": CronSweepSchedule,
+    "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DayOfWeekRestriction": DayOfWeekRestriction,
     "DeliveryAddress": DeliveryAddress,
     "DeliveryContact": DeliveryContact,
+    "DeviceInfo": DeviceInfo,
     "DifferentCurrenciesRestriction": DifferentCurrenciesRestriction,
     "Duration": Duration,
     "EntryModesRestriction": EntryModesRestriction,
     "Expiry": Expiry,
     "Fee": Fee,
+    "GetNetworkTokenResponse": GetNetworkTokenResponse,
     "GrantLimit": GrantLimit,
     "GrantOffer": GrantOffer,
     "GrantOffers": GrantOffers,
+    "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
     "InternationalTransactionRestriction": InternationalTransactionRestriction,
     "InvalidField": InvalidField,
     "JSONObject": JSONObject,
     "JSONPath": JSONPath,
+    "ListNetworkTokensResponse": ListNetworkTokensResponse,
     "MatchingTransactionsRestriction": MatchingTransactionsRestriction,
     "MccsRestriction": MccsRestriction,
     "MerchantAcquirerPair": MerchantAcquirerPair,
     "MerchantNamesRestriction": MerchantNamesRestriction,
     "MerchantsRestriction": MerchantsRestriction,
     "NOLocalAccountIdentification": NOLocalAccountIdentification,
+    "NZLocalAccountIdentification": NZLocalAccountIdentification,
     "Name": Name,
+    "NetworkToken": NetworkToken,
     "NumberAndBicAccountIdentification": NumberAndBicAccountIdentification,
     "PLLocalAccountIdentification": PLLocalAccountIdentification,
     "PaginatedAccountHoldersResponse": PaginatedAccountHoldersResponse,
@@ -347,6 +388,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentInstrumentUpdateRequest": PaymentInstrumentUpdateRequest,
     "Phone": Phone,
     "PhoneNumber": PhoneNumber,
+    "PlatformPaymentConfiguration": PlatformPaymentConfiguration,
     "ProcessingTypesRestriction": ProcessingTypesRestriction,
     "Repayment": Repayment,
     "RepaymentTerm": RepaymentTerm,
@@ -370,7 +412,9 @@ let typeMap: {[index: string]: any} = {
     "TransactionRulesResponse": TransactionRulesResponse,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,
+    "UpdateNetworkTokenRequest": UpdateNetworkTokenRequest,
     "UpdatePaymentInstrument": UpdatePaymentInstrument,
+    "UpdateSweepConfigurationV2": UpdateSweepConfigurationV2,
     "VerificationDeadline": VerificationDeadline,
 }
 
