@@ -11,7 +11,7 @@ import {forbiddenError} from "../__mocks__/management/forbidden403";
 import {invalidUserCreated422} from "../__mocks__/management/invalidUserCreated422";
 
 let client: Client;
-let managementService: ManagemenAPI;
+let managementService: ManagementAPI;
 let scope: nock.Scope;
 
 const merchantId = "merchantId";
@@ -29,7 +29,7 @@ beforeEach((): void => {
     }
     client = createClient();
     scope = nock("https://management-test.adyen.com/v1");
-    managementService = new ManagemenAPI(client);
+    managementService = new ManagementAPI(client);
 });
 
 afterEach(() => {
