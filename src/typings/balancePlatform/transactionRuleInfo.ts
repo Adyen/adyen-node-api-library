@@ -138,6 +138,7 @@ export namespace TransactionRuleInfo {
     export enum RequestTypeEnum {
         Authentication = 'authentication',
         Authorization = 'authorization',
+        BankTransfer = 'bankTransfer',
         Tokenization = 'tokenization'
     }
     export enum StatusEnum {

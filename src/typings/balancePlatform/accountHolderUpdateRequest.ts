@@ -11,7 +11,7 @@ import { AccountHolderCapability } from './accountHolderCapability';
 import { ContactDetails } from './contactDetails';
 import { VerificationDeadline } from './verificationDeadline';
 
-export class AccountHolder {
+export class AccountHolderUpdateRequest {
     /**
     * The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id) to which the account holder belongs. Required in the request if your API credentials can be used for multiple balance platforms.
     */
@@ -25,14 +25,6 @@ export class AccountHolder {
     * Your description for the account holder, maximum 300 characters.
     */
     'description'?: string;
-    /**
-    * The unique identifier of the account holder.
-    */
-    'id': string;
-    /**
-    * The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) associated with the account holder. Adyen performs a verification process against the legal entity of the account holder.
-    */
-    'legalEntityId': string;
     /**
     * A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
     */
@@ -52,7 +44,7 @@ export class AccountHolder {
     /**
     * The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
     */
-    'status'?: AccountHolder.StatusEnum;
+    'status'?: AccountHolderUpdateRequest.StatusEnum;
     /**
     * The time zone of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
     */
@@ -86,16 +78,6 @@ export class AccountHolder {
             "type": "string"
         },
         {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
-        },
-        {
-            "name": "legalEntityId",
-            "baseName": "legalEntityId",
-            "type": "string"
-        },
-        {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
@@ -118,7 +100,7 @@ export class AccountHolder {
         {
             "name": "status",
             "baseName": "status",
-            "type": "AccountHolder.StatusEnum"
+            "type": "AccountHolderUpdateRequest.StatusEnum"
         },
         {
             "name": "timeZone",
@@ -132,11 +114,11 @@ export class AccountHolder {
         }    ];
 
     static getAttributeTypeMap() {
-        return AccountHolder.attributeTypeMap;
+        return AccountHolderUpdateRequest.attributeTypeMap;
     }
 }
 
-export namespace AccountHolder {
+export namespace AccountHolderUpdateRequest {
     export enum StatusEnum {
         Active = 'active',
         Closed = 'closed',

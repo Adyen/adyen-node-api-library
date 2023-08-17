@@ -25,6 +25,7 @@ export * from './counterpartyInfoV3';
 export * from './counterpartyV3';
 export * from './dKLocalAccountIdentification';
 export * from './fee';
+export * from './hKLocalAccountIdentification';
 export * from './hULocalAccountIdentification';
 export * from './ibanAccountIdentification';
 export * from './invalidField';
@@ -73,6 +74,7 @@ import { CounterpartyInfoV3 } from './counterpartyInfoV3';
 import { CounterpartyV3 } from './counterpartyV3';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
 import { Fee } from './fee';
+import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { InvalidField } from './invalidField';
@@ -124,6 +126,7 @@ let enumsMap: {[index: string]: any} = {
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
         "CapitalGrant.StatusEnum": CapitalGrant.StatusEnum,
         "DKLocalAccountIdentification.TypeEnum": DKLocalAccountIdentification.TypeEnum,
+        "HKLocalAccountIdentification.TypeEnum": HKLocalAccountIdentification.TypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
@@ -167,6 +170,7 @@ let typeMap: {[index: string]: any} = {
     "CounterpartyV3": CounterpartyV3,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "Fee": Fee,
+    "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
     "InvalidField": InvalidField,

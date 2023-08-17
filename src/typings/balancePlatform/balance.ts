@@ -22,6 +22,10 @@ export class Balance {
     */
     'currency': string;
     /**
+    * The amount pending to be paid out but not yet available in the balance.
+    */
+    'pending'?: number;
+    /**
     * The amount reserved for payments that have been authorised, but have not been captured yet.
     */
     'reserved': number;
@@ -43,6 +47,11 @@ export class Balance {
             "name": "currency",
             "baseName": "currency",
             "type": "string"
+        },
+        {
+            "name": "pending",
+            "baseName": "pending",
+            "type": "number"
         },
         {
             "name": "reserved",

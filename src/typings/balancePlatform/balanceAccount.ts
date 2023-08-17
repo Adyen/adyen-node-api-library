@@ -8,6 +8,7 @@
  */
 
 import { Balance } from './balance';
+import { PlatformPaymentConfiguration } from './platformPaymentConfiguration';
 
 export class BalanceAccount {
     /**
@@ -31,9 +32,14 @@ export class BalanceAccount {
     */
     'id': string;
     /**
-    * A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+    * A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
     */
     'metadata'?: { [key: string]: string; };
+    /**
+    * The unique identifier of the account of the migrated account holder in the classic integration.
+    */
+    'migratedAccountCode'?: string;
+    'platformPaymentConfiguration'?: PlatformPaymentConfiguration;
     /**
     * Your reference for the balance account, maximum 150 characters.
     */
@@ -79,6 +85,16 @@ export class BalanceAccount {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "migratedAccountCode",
+            "baseName": "migratedAccountCode",
+            "type": "string"
+        },
+        {
+            "name": "platformPaymentConfiguration",
+            "baseName": "platformPaymentConfiguration",
+            "type": "PlatformPaymentConfiguration"
         },
         {
             "name": "reference",

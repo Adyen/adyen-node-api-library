@@ -29,9 +29,13 @@ export class AccountHolderInfo {
     */
     'legalEntityId': string;
     /**
-    * A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+    * A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
     */
     'metadata'?: { [key: string]: string; };
+    /**
+    * The unique identifier of the migrated account holder in the classic integration.
+    */
+    'migratedAccountHolderCode'?: string;
     /**
     * Your reference for the account holder, maximum 150 characters.
     */
@@ -73,6 +77,11 @@ export class AccountHolderInfo {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "migratedAccountHolderCode",
+            "baseName": "migratedAccountHolderCode",
+            "type": "string"
         },
         {
             "name": "reference",
