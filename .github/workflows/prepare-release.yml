@@ -1,4 +1,4 @@
-name: Release request
+name: Prepare release
 
 on:
   push:

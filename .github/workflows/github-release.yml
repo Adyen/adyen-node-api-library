@@ -13,7 +13,7 @@ jobs:
     uses: michaelpaul/release-automation-action/.github/workflows/reusable-github-release.yml@v1.0.4
     with:
       release-title: Adyen Node API Library 
-      develop-branch: delelop
+      develop-branch: develop
       release-branch: main
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
