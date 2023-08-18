@@ -1,7 +1,7 @@
 import nock from "nock";
 import Client from "../client";
 import { createClient } from "../__mocks__/base";
-import { ManagemenAPI } from "../services";
+import { ManagementAPI } from "../services";
 import { management } from "../typings";
 import * as requests from "../__mocks__/management/requests";
 import * as responses from "../__mocks__/management/responses";
@@ -11,7 +11,7 @@ import {forbiddenError} from "../__mocks__/management/forbidden403";
 import {invalidUserCreated422} from "../__mocks__/management/invalidUserCreated422";
 
 let client: Client;
-let managementService: ManagemenAPI;
+let managementService: ManagementAPI;
 let scope: nock.Scope;
 
 const merchantId = "merchantId";
@@ -29,7 +29,7 @@ beforeEach((): void => {
     }
     client = createClient();
     scope = nock("https://management-test.adyen.com/v1");
-    managementService = new ManagemenAPI(client);
+    managementService = new ManagementAPI(client);
 });
 
 afterEach(() => {
