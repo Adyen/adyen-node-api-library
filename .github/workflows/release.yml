@@ -1,23 +1,21 @@
 name: Release request
 
 on:
-    workflow_dispatch:
-      inputs:
-        prerelease:
-          required: false
-          type: boolean
-          default: false
-          description: "This release will be labeled as non-production ready"
-    push:
-      branches:
-        - develop
+  push:
+    branches:
+      - develop
 
 jobs:
-  release:
+  main:
     permissions:
       contents: write
       pull-requests: write
-    uses: ./.github/workflows/lib-release.yml
-    with:
-      prerelease: ${{ inputs.prerelease || false }}
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare the next main release
+        uses: michaelpaul/release-automation-action@v1.0.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          develop-branch: develop
+          release-branch: main
+          version-files: package.json
