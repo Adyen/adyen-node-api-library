@@ -28,7 +28,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock("https://management-test.adyen.com/v1");
+    scope = nock("https://management-test.adyen.com/v3");
     managementService = new ManagementAPI(client);
 });
 
@@ -678,7 +678,7 @@ describe("Management", (): void => {
                 ...requests.createMerchantWebhookRequest,
                 communicationFormat:  management.CreateMerchantWebhookRequest.CommunicationFormatEnum.Json,
                 networkType:  management.CreateMerchantWebhookRequest.NetworkTypeEnum.Public,
-                sslVersion:  management.CreateMerchantWebhookRequest.SslVersionEnum.Tlsv12
+                encryptionProtocol:  management.CreateMerchantWebhookRequest.EncryptionProtocolEnum.Tlsv12
             });
 
             expect(response).toBeTruthy();
@@ -708,7 +708,7 @@ describe("Management", (): void => {
                 ...requests.updateMerchantWebhookRequest,
                 communicationFormat:  management.CreateMerchantWebhookRequest.CommunicationFormatEnum.Soap,
                 networkType:  management.CreateMerchantWebhookRequest.NetworkTypeEnum.Local,
-                sslVersion:  management.CreateMerchantWebhookRequest.SslVersionEnum.Tlsv13
+                encryptionProtocol:  management.CreateMerchantWebhookRequest.EncryptionProtocolEnum.Tlsv13
             });
 
             expect(response).toBeTruthy();
