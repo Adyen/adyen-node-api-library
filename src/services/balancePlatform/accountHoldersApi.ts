@@ -12,6 +12,7 @@ import Service from "../../service";
 import Client from "../../client";
 import { AccountHolder } from "../../typings/balancePlatform/models";
 import { AccountHolderInfo } from "../../typings/balancePlatform/models";
+import { AccountHolderUpdateRequest } from "../../typings/balancePlatform/models";
 import { PaginatedBalanceAccountsResponse } from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
@@ -68,16 +69,16 @@ export class AccountHoldersApi extends Service {
     /**
     * @summary Update an account holder
     * @param id {@link string } The unique identifier of the account holder.
-    * @param accountHolder {@link AccountHolder } 
+    * @param accountHolderUpdateRequest {@link AccountHolderUpdateRequest } 
     * @param requestOptions {@link IRequest.Options}
     * @return {@link AccountHolder }
     */
-    public async updateAccountHolder(id: string, accountHolder: AccountHolder, requestOptions?: IRequest.Options): Promise<AccountHolder> {
+    public async updateAccountHolder(id: string, accountHolderUpdateRequest: AccountHolderUpdateRequest, requestOptions?: IRequest.Options): Promise<AccountHolder> {
         const endpoint = `${this.baseUrl}/accountHolders/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: AccountHolder = ObjectSerializer.serialize(accountHolder, "AccountHolder");
-        const response = await getJsonResponse<AccountHolder, AccountHolder>(
+        const request: AccountHolderUpdateRequest = ObjectSerializer.serialize(accountHolderUpdateRequest, "AccountHolderUpdateRequest");
+        const response = await getJsonResponse<AccountHolderUpdateRequest, AccountHolder>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
