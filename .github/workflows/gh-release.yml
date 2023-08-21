@@ -10,7 +10,7 @@ jobs:
   main:
     permissions:
       contents: write
-    uses: michaelpaul/release-automation-action/.github/workflows/reusable-github-release.yml@v1.0.4
+    uses: Adyen/release-automation-action/.github/workflows/reusable-github-release.yml@v1.0.0
     with:
       release-title: Adyen Node API Library 
       develop-branch: develop

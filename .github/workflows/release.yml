@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Prepare the next main release
-        uses: michaelpaul/release-automation-action@v1.0.4
+        uses: Adyen/release-automation-action@v1.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           develop-branch: develop
