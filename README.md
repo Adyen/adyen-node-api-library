@@ -415,12 +415,12 @@ const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI
 ```
 
 ## Using the Local Terminal API Integration
-The request and response payloads are identical to the Cloud Terminal API, however, additional encryption details are required to perform the requests.
+The procedure to send In-Person requests using [Terminal API over Local Connection](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/local/) is similar to the Cloud Terminal API one, however, additional encryption details are required to perform the requests. Make sure to [install the certificate as described here](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/local/#protect-communications)
 ```javascript
 // Step 1: Require the parts of the module you want to use
 const {Client, TerminalLocalAPI} from "@adyen/api-library";
 
-// Step 2: Add your Merchant Account, Certificate Path and Local Endpoint to the config path. Install the certificate from [here](https://docs.adyen.com/point-of-sale/choose-your-architecture/local#protect-communications) and save it in your project folder as "cert.cer".
+// Step 2: Add your Merchant Account, Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer".
 const config: Config = new Config();
 config.merchantAccount = "Your merchant account";
 config.certificatePath = "./cert.cer";
