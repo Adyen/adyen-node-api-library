@@ -315,7 +315,7 @@ const serviceID = "123456789";
 const saleID = "POS-SystemID12345";
 const POIID = "Your Device Name(eg V400m-123456789)";
 
-// Use a unique transaction for every other transaction you perform
+// Use a unique transaction for every transaction you perform
 const transactionID = "TransactionID";
 const paymentRequest: SaleToPOIRequest = {
     MessageHeader: {
@@ -376,7 +376,7 @@ const abortRequest: SaleToPOIRequest = {
         MessageReference: {
             MessageCategory: MessageCategoryEnum.Payment,
             SaleID: saleID,
-            // Service ID of the payment you're aborting (hence serviceID)
+            // Service ID of the payment you're aborting
             ServiceID: serviceID,
             POIID: POIID
         }
@@ -420,14 +420,14 @@ The procedure to send In-Person requests using [Terminal API over Local Connecti
 // Step 1: Require the parts of the module you want to use
 const {Client, TerminalLocalAPI} from "@adyen/api-library";
 
-// Step 2: Add your Merchant Account, Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer".
+// Step 2: Add your Merchant Account, Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer"
 const config: Config = new Config();
 config.merchantAccount = "Your merchant account";
 config.certificatePath = "./cert.cer";
 config.terminalApiLocalEndpoint = "The IP of your terminal (eg https://192.168.47.169)";
 config.apiKey = "YOUR_API_KEY_HERE";
 
-// Step 3: Setup a security password for you terminal in CA, and import the security key object:
+// Step 3: Setup a security password for your terminal in CA, and import the security key object:
 const securityKey: SecurityKey = {
     AdyenCryptoVersion: 1,
     KeyIdentifier: "keyIdentifier",
