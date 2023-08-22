@@ -405,7 +405,7 @@ const statusRequest: SaleToPOIRequest = {
         DocumentQualifier: [DocumentQualifierEnum.CashierReceipt, DocumentQualifierEnum.CustomerReceipt],
         MessageReference: {
             SaleID: saleID,
-            // serviceID of the transaction you want the status update from
+            // serviceID of the transaction you want the status update for
             ServiceID: serviceID,
             MessageCategory: MessageCategoryEnum.Payment
         }
@@ -441,7 +441,7 @@ const terminalLocalAPI = new TerminalLocalAPI(client);
 
 // Step 5: Create the request object
 const paymentRequest: SaleToPOIRequest = {
-///....same as the one used for Cloud API
+// Similar to the saleToPOIRequest used for Cloud API
 }
 
 // Step 6: Make the request
