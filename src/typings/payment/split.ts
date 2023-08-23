@@ -78,7 +78,6 @@ export namespace Split {
         Remainder = 'Remainder',
         Surcharge = 'Surcharge',
         Tip = 'Tip',
-        TopUp = 'TopUp',
         Vat = 'VAT',
         Verification = 'Verification'
     }

@@ -50,7 +50,7 @@ export class AdditionalDataLodging {
     */
     'lodging_propertyPhoneNumber'?: string;
     /**
-    * The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 4 characters
+    * The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 2 characters
     */
     'lodging_room1_numberOfNights'?: string;
     /**
@@ -66,7 +66,7 @@ export class AdditionalDataLodging {
     */
     'lodging_totalTax'?: string;
     /**
-    * The number of nights. This should be included in the auth message. * Format: numeric * Max length: 4 characters
+    * The number of nights. This should be included in the auth message. * Format: numeric * Max length: 2 characters
     */
     'travelEntertainmentAuthData_duration'?: string;
     /**

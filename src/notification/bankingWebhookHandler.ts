@@ -8,6 +8,7 @@ import {configurationWebhooks} from "../typings";
 import {reportWebhooks} from "../typings";
 import {transferWebhooks} from "../typings";
 import {TransferNotificationRequest} from "../typings/transferWebhooks/transferNotificationRequest";
+import {CardOrderNotificationRequest} from "../typings/configurationWebhooks/cardOrderNotificationRequest";
 
 class BankingWebhookHandler {
     private readonly payload: string;
@@ -23,6 +24,7 @@ class BankingWebhookHandler {
         | configurationWebhooks.SweepConfigurationNotificationRequest
         | reportWebhooks.ReportNotificationRequest
         | TransferNotificationRequest
+        | CardOrderNotificationRequest
         | void {
         const type = this.payload['type'];
         if(Object.values(configurationWebhooks.AccountHolderNotificationRequest.TypeEnum).includes(type)){
