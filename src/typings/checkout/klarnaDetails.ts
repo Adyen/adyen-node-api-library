@@ -34,6 +34,10 @@ export class KlarnaDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
+    * The type of flow to initiate.
+    */
+    'subtype'?: string;
+    /**
     * **klarna**
     */
     'type': KlarnaDetails.TypeEnum;
@@ -69,6 +73,11 @@ export class KlarnaDetails {
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
+            "type": "string"
+        },
+        {
+            "name": "subtype",
+            "baseName": "subtype",
             "type": "string"
         },
         {

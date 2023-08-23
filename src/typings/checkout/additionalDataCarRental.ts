@@ -14,7 +14,7 @@ export class AdditionalDataCarRental {
     */
     'carRental_checkOutDate'?: string;
     /**
-    * The customer service phone number of the car rental company. * Format: Alphanumeric * maxLength: 17 * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -
+    * The customer service phone number of the car rental company. * Format: Alphanumeric * maxLength: 17 * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros.
     */
     'carRental_customerServiceTollFreeNumber'?: string;
     /**
@@ -26,11 +26,11 @@ export class AdditionalDataCarRental {
     */
     'carRental_fuelCharges'?: string;
     /**
-    * Any insurance charges associated with the rental, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: Numeric * maxLength: 12 * Must not be all spaces * Must not be all zeros
+    * Any insurance charges associated with the rental, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: Numeric * maxLength: 12 * Must not be all spaces *Must not be all zeros.
     */
     'carRental_insuranceCharges'?: string;
     /**
-    * The city where the car is rented. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces * Must not be all zeros
+    * The city where the car is rented. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces *Must not be all zeros.
     */
     'carRental_locationCity'?: string;
     /**
@@ -38,7 +38,7 @@ export class AdditionalDataCarRental {
     */
     'carRental_locationCountry'?: string;
     /**
-    * The state or province where the car is rented. * Format: Alphanumeric * maxLength: 2 * Must not start with a space or be all spaces * Must not be all zeros
+    * The state or province where the car is rented. * Format: Alphanumeric * maxLength: 2 * Must not start with a space or be all spaces *Must not be all zeros.
     */
     'carRental_locationStateProvince'?: string;
     /**
@@ -58,19 +58,19 @@ export class AdditionalDataCarRental {
     */
     'carRental_rateIndicator'?: string;
     /**
-    * The rental agreement number for the car rental. * Format: Alphanumeric * maxLength: 9 * Must not start with a space or be all spaces * Must not be all zeros
+    * The rental agreement number for the car rental. * Format: Alphanumeric * maxLength: 9 * Must not start with a space or be all spaces *Must not be all zeros.
     */
     'carRental_rentalAgreementNumber'?: string;
     /**
-    * The classification of the rental car. * Format: Alphanumeric * maxLength: 4 * Must not start with a space or be all spaces * Must not be all zeros
+    * The classification of the rental car. * Format: Alphanumeric * maxLength: 4 * Must not start with a space or be all spaces *Must not be all zeros.
     */
     'carRental_rentalClassId'?: string;
     /**
-    * The name of the person renting the car. * Format: Alphanumeric * maxLength: 26 * If you send more than 26 characters, the name is truncated * Must not start with a space or be all spaces * Must not be all zeros
+    * The name of the person renting the car. * Format: Alphanumeric * maxLength: 26 * If you send more than 26 characters, the name is truncated * Must not start with a space or be all spaces *Must not be all zeros.
     */
     'carRental_renterName'?: string;
     /**
-    * The city where the car must be returned. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces * Must not be all zeros
+    * The city where the car must be returned. * Format: Alphanumeric * maxLength: 18 * Must not start with a space or be all spaces *Must not be all zeros.
     */
     'carRental_returnCity'?: string;
     /**
@@ -82,11 +82,11 @@ export class AdditionalDataCarRental {
     */
     'carRental_returnDate'?: string;
     /**
-    * The agency code, phone number, or address abbreviation * Format: Alphanumeric * maxLength: 10 * Must not start with a space or be all spaces * Must not be all zeros
+    * The agency code, phone number, or address abbreviation * Format: Alphanumeric * maxLength: 10 * Must not start with a space or be all spaces *Must not be all zeros.
     */
     'carRental_returnLocationId'?: string;
     /**
-    * The state or province where the car must be returned. * Format: Alphanumeric * maxLength: 3 * Must not start with a space or be all spaces * Must not be all zeros
+    * The state or province where the car must be returned. * Format: Alphanumeric * maxLength: 3 * Must not start with a space or be all spaces *Must not be all zeros.
     */
     'carRental_returnStateProvince'?: string;
     /**

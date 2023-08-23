@@ -141,6 +141,7 @@ export class TransactionRule {
 
 export namespace TransactionRule {
     export enum OutcomeTypeEnum {
+        EnforceSca = 'enforceSCA',
         HardBlock = 'hardBlock',
         ScoreBased = 'scoreBased'
     }

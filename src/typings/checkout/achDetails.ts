@@ -14,6 +14,10 @@ export class AchDetails {
     */
     'bankAccountNumber': string;
     /**
+    * The bank account type (checking, savings...).
+    */
+    'bankAccountType'?: AchDetails.BankAccountTypeEnum;
+    /**
     * The bank routing number of the account. The field value is `nil` in most cases.
     */
     'bankLocationId'?: string;
@@ -53,6 +57,11 @@ export class AchDetails {
             "name": "bankAccountNumber",
             "baseName": "bankAccountNumber",
             "type": "string"
+        },
+        {
+            "name": "bankAccountType",
+            "baseName": "bankAccountType",
+            "type": "AchDetails.BankAccountTypeEnum"
         },
         {
             "name": "bankLocationId",
@@ -101,6 +110,15 @@ export class AchDetails {
 }
 
 export namespace AchDetails {
+    export enum BankAccountTypeEnum {
+        Balance = 'balance',
+        Checking = 'checking',
+        Deposit = 'deposit',
+        General = 'general',
+        Other = 'other',
+        Payment = 'payment',
+        Savings = 'savings'
+    }
     export enum TypeEnum {
         Ach = 'ach',
         AchPlaid = 'ach_plaid'
