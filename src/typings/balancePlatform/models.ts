@@ -32,6 +32,9 @@ export * from './brandVariantsRestriction';
 export * from './bulkAddress';
 export * from './cALocalAccountIdentification';
 export * from './cZLocalAccountIdentification';
+export * from './capabilityProblem';
+export * from './capabilityProblemEntity';
+export * from './capabilityProblemEntityRecursive';
 export * from './capabilitySettings';
 export * from './capitalBalance';
 export * from './capitalGrantAccount';
@@ -86,6 +89,7 @@ export * from './phone';
 export * from './phoneNumber';
 export * from './platformPaymentConfiguration';
 export * from './processingTypesRestriction';
+export * from './remediatingAction';
 export * from './repayment';
 export * from './repaymentTerm';
 export * from './restServiceError';
@@ -112,6 +116,8 @@ export * from './updateNetworkTokenRequest';
 export * from './updatePaymentInstrument';
 export * from './updateSweepConfigurationV2';
 export * from './verificationDeadline';
+export * from './verificationError';
+export * from './verificationErrorRecursive';
 
 
 import { AULocalAccountIdentification } from './aULocalAccountIdentification';
@@ -138,6 +144,9 @@ import { BrandVariantsRestriction } from './brandVariantsRestriction';
 import { BulkAddress } from './bulkAddress';
 import { CALocalAccountIdentification } from './cALocalAccountIdentification';
 import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
+import { CapabilityProblem } from './capabilityProblem';
+import { CapabilityProblemEntity } from './capabilityProblemEntity';
+import { CapabilityProblemEntityRecursive } from './capabilityProblemEntityRecursive';
 import { CapabilitySettings } from './capabilitySettings';
 import { CapitalBalance } from './capitalBalance';
 import { CapitalGrantAccount } from './capitalGrantAccount';
@@ -192,6 +201,7 @@ import { Phone } from './phone';
 import { PhoneNumber } from './phoneNumber';
 import { PlatformPaymentConfiguration } from './platformPaymentConfiguration';
 import { ProcessingTypesRestriction } from './processingTypesRestriction';
+import { RemediatingAction } from './remediatingAction';
 import { Repayment } from './repayment';
 import { RepaymentTerm } from './repaymentTerm';
 import { RestServiceError } from './restServiceError';
@@ -218,6 +228,8 @@ import { UpdateNetworkTokenRequest } from './updateNetworkTokenRequest';
 import { UpdatePaymentInstrument } from './updatePaymentInstrument';
 import { UpdateSweepConfigurationV2 } from './updateSweepConfigurationV2';
 import { VerificationDeadline } from './verificationDeadline';
+import { VerificationError } from './verificationError';
+import { VerificationErrorRecursive } from './verificationErrorRecursive';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -249,6 +261,8 @@ let enumsMap: {[index: string]: any} = {
         "CALocalAccountIdentification.AccountTypeEnum": CALocalAccountIdentification.AccountTypeEnum,
         "CALocalAccountIdentification.TypeEnum": CALocalAccountIdentification.TypeEnum,
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
+        "CapabilityProblemEntity.TypeEnum": CapabilityProblemEntity.TypeEnum,
+        "CapabilityProblemEntityRecursive.TypeEnum": CapabilityProblemEntityRecursive.TypeEnum,
         "CapabilitySettings.FundingSourceEnum": CapabilitySettings.FundingSourceEnum,
         "CapabilitySettings.IntervalEnum": CapabilitySettings.IntervalEnum,
         "Card.FormFactorEnum": Card.FormFactorEnum,
@@ -309,6 +323,10 @@ let enumsMap: {[index: string]: any} = {
         "UpdateSweepConfigurationV2.StatusEnum": UpdateSweepConfigurationV2.StatusEnum,
         "UpdateSweepConfigurationV2.TypeEnum": UpdateSweepConfigurationV2.TypeEnum,
         "VerificationDeadline.CapabilitiesEnum": VerificationDeadline.CapabilitiesEnum,
+        "VerificationError.CapabilitiesEnum": VerificationError.CapabilitiesEnum,
+        "VerificationError.TypeEnum": VerificationError.TypeEnum,
+        "VerificationErrorRecursive.CapabilitiesEnum": VerificationErrorRecursive.CapabilitiesEnum,
+        "VerificationErrorRecursive.TypeEnum": VerificationErrorRecursive.TypeEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -336,6 +354,9 @@ let typeMap: {[index: string]: any} = {
     "BulkAddress": BulkAddress,
     "CALocalAccountIdentification": CALocalAccountIdentification,
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
+    "CapabilityProblem": CapabilityProblem,
+    "CapabilityProblemEntity": CapabilityProblemEntity,
+    "CapabilityProblemEntityRecursive": CapabilityProblemEntityRecursive,
     "CapabilitySettings": CapabilitySettings,
     "CapitalBalance": CapitalBalance,
     "CapitalGrantAccount": CapitalGrantAccount,
@@ -390,6 +411,7 @@ let typeMap: {[index: string]: any} = {
     "PhoneNumber": PhoneNumber,
     "PlatformPaymentConfiguration": PlatformPaymentConfiguration,
     "ProcessingTypesRestriction": ProcessingTypesRestriction,
+    "RemediatingAction": RemediatingAction,
     "Repayment": Repayment,
     "RepaymentTerm": RepaymentTerm,
     "RestServiceError": RestServiceError,
@@ -416,6 +438,8 @@ let typeMap: {[index: string]: any} = {
     "UpdatePaymentInstrument": UpdatePaymentInstrument,
     "UpdateSweepConfigurationV2": UpdateSweepConfigurationV2,
     "VerificationDeadline": VerificationDeadline,
+    "VerificationError": VerificationError,
+    "VerificationErrorRecursive": VerificationErrorRecursive,
 }
 
 export class ObjectSerializer {

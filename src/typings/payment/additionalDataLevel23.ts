@@ -10,7 +10,7 @@
 
 export class AdditionalDataLevel23 {
     /**
-    * The customer code, if supplied by a customer.  Encoding: ASCII  Max length: 25 characters  Must not start with a space or be all spaces  Must not be all zeros
+    * The customer code.  Encoding: ASCII  Max length: 25 characters  Must not start with a space or be all spaces  Must not be all zeros
     */
     'enhancedSchemeData_customerReference'?: string;
     /**

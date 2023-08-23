@@ -40,6 +40,7 @@ export * from './getPciQuestionnaireResponse';
 export * from './getTermsOfServiceAcceptanceInfosResponse';
 export * from './getTermsOfServiceDocumentRequest';
 export * from './getTermsOfServiceDocumentResponse';
+export * from './hKLocalAccountIdentification';
 export * from './hULocalAccountIdentification';
 export * from './ibanAccountIdentification';
 export * from './identificationData';
@@ -119,6 +120,7 @@ import { GetPciQuestionnaireResponse } from './getPciQuestionnaireResponse';
 import { GetTermsOfServiceAcceptanceInfosResponse } from './getTermsOfServiceAcceptanceInfosResponse';
 import { GetTermsOfServiceDocumentRequest } from './getTermsOfServiceDocumentRequest';
 import { GetTermsOfServiceDocumentResponse } from './getTermsOfServiceDocumentResponse';
+import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { IdentificationData } from './identificationData';
@@ -200,6 +202,7 @@ let enumsMap: {[index: string]: any} = {
         "DocumentPage.TypeEnum": DocumentPage.TypeEnum,
         "GetTermsOfServiceDocumentRequest.TypeEnum": GetTermsOfServiceDocumentRequest.TypeEnum,
         "GetTermsOfServiceDocumentResponse.TypeEnum": GetTermsOfServiceDocumentResponse.TypeEnum,
+        "HKLocalAccountIdentification.TypeEnum": HKLocalAccountIdentification.TypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
         "IdentificationData.TypeEnum": IdentificationData.TypeEnum,
@@ -268,6 +271,7 @@ let typeMap: {[index: string]: any} = {
     "GetTermsOfServiceAcceptanceInfosResponse": GetTermsOfServiceAcceptanceInfosResponse,
     "GetTermsOfServiceDocumentRequest": GetTermsOfServiceDocumentRequest,
     "GetTermsOfServiceDocumentResponse": GetTermsOfServiceDocumentResponse,
+    "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
     "IdentificationData": IdentificationData,

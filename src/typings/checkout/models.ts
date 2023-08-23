@@ -395,6 +395,7 @@ let enumsMap: {[index: string]: any} = {
         "AcctInfo.ShipAddressUsageIndEnum": AcctInfo.ShipAddressUsageIndEnum,
         "AcctInfo.ShipNameIndicatorEnum": AcctInfo.ShipNameIndicatorEnum,
         "AcctInfo.SuspiciousAccActivityEnum": AcctInfo.SuspiciousAccActivityEnum,
+        "AchDetails.BankAccountTypeEnum": AchDetails.BankAccountTypeEnum,
         "AchDetails.TypeEnum": AchDetails.TypeEnum,
         "AdditionalData3DSecure.ChallengeWindowSizeEnum": AdditionalData3DSecure.ChallengeWindowSizeEnum,
         "AdditionalDataCommon.IndustryUsageEnum": AdditionalDataCommon.IndustryUsageEnum,
