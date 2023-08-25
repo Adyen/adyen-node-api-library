@@ -281,7 +281,7 @@ const isValid = hmacValidator.validateBankingHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SI
 ## Management Webhooks
 Management webhooks are verified the exact same way as the banking webhooks. To parse them however, instead you use;
 ``` typescript
-let managementWebhookHandler = new ManagementWebhookHandler(YOUR_BANKING_WEBHOOK);
+let managementWebhookHandler = new ManagementWebhookHandler(YOUR_MANAGEMENT_WEBHOOK);
 const genericWebhook = bankingWebhookHandler.getGenericWebhook();
 ```
 
