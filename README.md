@@ -39,12 +39,13 @@ This library supports the following:
 ## Supported Webhook versions
 The library supports all webhooks under the following model directories:
 
-| Webhooks                                                                                          | Description                                                                                                                                                                             | Model Name                                                     | Supported Version |
-|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|-------------------|
-| [Configuration Webhooks](https://docs.adyen.com/api-explorer/balanceplatform-webhooks/1/overview) | You can use these webhooks to build your implementation. For example, you can use this information to update internal statuses when the status of a capability is changed.              | [ConfigurationNotification](src/typings/configurationWebhooks) | **v1**            |
-| [Transfer Webhooks](https://docs.adyen.com/api-explorer/transfer-webhooks/3/overview)             | You can use these webhooks to build your implementation. For example, you can use this information to update balances in your own dashboards or to keep track of incoming funds.        | [TransferNotification](src/typings/transferWebhooks)           | **v3**            |
-| [Report Webhooks](https://docs.adyen.com/api-explorer/report-webhooks/1/overview)                 | You can download reports programmatically by making an HTTP GET request, or manually from your Balance Platform Customer Area                                                           | [ReportNotification](src/typings/reportWebhooks)               | **v1**            |
-| [Notification Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview)                  | We use webhooks to send you updates about payment status updates, newly available reports, and other events that you can subscribe to. For more information, refer to our documentation | [Notification](src/typings/notification)                       | **v1**            |
+| Webhooks                                                                                          | Description                                                                                                                                                                                 | Model Name                                                     | Supported Version |
+|---------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|-------------------|
+| [Configuration Webhooks](https://docs.adyen.com/api-explorer/balanceplatform-webhooks/1/overview) | You can use these webhooks to build your implementation. For example, you can use this information to update internal statuses when the status of a capability is changed.                  | [ConfigurationNotification](src/typings/configurationWebhooks) | **v1**            |
+| [Transfer Webhooks](https://docs.adyen.com/api-explorer/transfer-webhooks/3/overview)             | You can use these webhooks to build your implementation. For example, you can use this information to update balances in your own dashboards or to keep track of incoming funds.            | [TransferNotification](src/typings/transferWebhooks)           | **v3**            |
+| [Report Webhooks](https://docs.adyen.com/api-explorer/report-webhooks/1/overview)                 | You can download reports programmatically by making an HTTP GET request, or manually from your Balance Platform Customer Area                                                               | [ReportNotification](src/typings/reportWebhooks)               | **v1**            |
+| [Management Webhooks](https://docs.adyen.com/api-explorer/ManagementNotification/1/overview)      | Adyen uses webhooks to inform your system about events that happen with your Adyen company and merchant accounts, stores, payment terminals, and payment methods when using Management API. | [ManagementWebhooks](src/typings/managementWebhooks)           | **v1**            |
+| [Notification Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview)                  | We use webhooks to send you updates about payment status updates, newly available reports, and other events that you can subscribe to. For more information, refer to our documentation     | [Notification](src/typings/notification)                       | **v1**            |
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
 ## Before you begin
@@ -268,7 +269,7 @@ let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
 const accountHolderNotificationRequest: AccountHolderNotificationRequest = bankingWebhookHandler.getAccountHolderNotificationRequest();
 const genericWebhook = bankingWebhookHandler.getGenericWebhook();
 ```
-Parse a generic Banking webhook;
+You can also parse the webhook with a generic type, in case you do not know the webhook type in advance. In this case you can check the instance of the webhook in order to parse it to the respective type (or just use it dynamically);
 ``` typescript
 let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
 const genericWebhook = bankingWebhookHandler.getGenericWebhook();
@@ -276,6 +277,12 @@ const genericWebhook = bankingWebhookHandler.getGenericWebhook();
 Verify the authenticity (where you retrieve the hmac key from the CA and the signature from the webhook header);
 ``` typescript
 const isValid = hmacValidator.validateBankingHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGNATURE", jsonString)
+```
+## Management Webhooks
+Management webhooks are verified the exact same way as the banking webhooks. To parse them however, instead you use;
+``` typescript
+let managementWebhookHandler = new ManagementWebhookHandler(YOUR_BANKING_WEBHOOK);
+const genericWebhook = bankingWebhookHandler.getGenericWebhook();
 ```
 
 ## Proxy configuration

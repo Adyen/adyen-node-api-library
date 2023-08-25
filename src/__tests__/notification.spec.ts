@@ -10,6 +10,12 @@ import SuccessEnum = NotificationRequestItem.SuccessEnum;
 import BankingWebhookHandler from "../notification/bankingWebhookHandler";
 import {AccountHolderNotificationRequest} from "../typings/configurationWebhooks/accountHolderNotificationRequest";
 import HmacValidator from "../utils/hmacValidator";
+import ManagementWebhookHandler from "../notification/managementWebhookHandler";
+import managementWebhookHandler from "../notification/managementWebhookHandler";
+import {
+    PaymentMethodCreatedNotificationRequest
+} from "../typings/managementWebhooks/paymentMethodCreatedNotificationRequest";
+import {MerchantUpdatedNotificationRequest} from "../typings/managementWebhooks/merchantUpdatedNotificationRequest";
 
 describe("Notification Test", function (): void {
 
@@ -111,5 +117,27 @@ describe("Notification Test", function (): void {
         const jsonString = "{\"data\":{\"balancePlatform\":\"Integration_tools_test\",\"accountId\":\"BA32272223222H5HVKTBK4MLB\",\"sweep\":{\"id\":\"SWPC42272223222H5HVKV6H8C64DP5\",\"schedule\":{\"type\":\"balance\"},\"status\":\"active\",\"targetAmount\":{\"currency\":\"EUR\",\"value\":0},\"triggerAmount\":{\"currency\":\"EUR\",\"value\":0},\"type\":\"pull\",\"counterparty\":{\"balanceAccountId\":\"BA3227C223222H5HVKT3H9WLC\"},\"currency\":\"EUR\"}},\"environment\":\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
         const isValid = hmacValidator.validateBankingHMAC("9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=", "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F", jsonString)
         expect(isValid).toBe(true)
+    });
+
+    it("should deserialize Management Webhooks", function (): void {
+        const json = {
+            "createdAt" : "2022-01-24T14:59:11+01:00",
+            "data" : {
+                "id" : "PM3224R223224K5FH4M2K9B86",
+                "merchantId" : "MERCHANT_ACCOUNT",
+                "result" : "SUCCESS",
+                "storeId" : "ST322LJ223223K5F4SQNR9XL5",
+                "type" : "visa"
+            },
+            "environment" : "test",
+            "type" : "paymentMethod.created"
+        };
+        const jsonString = JSON.stringify(json);
+        let managementWebhookHandler = new ManagementWebhookHandler(jsonString);
+        const paymentMethodCreatedNotificationRequest: PaymentMethodCreatedNotificationRequest = managementWebhookHandler.getPaymentMethodCreatedNotificationRequest();
+        const genericWebhook = managementWebhookHandler.getGenericWebhook();
+        expect(genericWebhook instanceof PaymentMethodCreatedNotificationRequest).toBe(true)
+        expect(genericWebhook instanceof MerchantUpdatedNotificationRequest).toBe(false)
+        expect(paymentMethodCreatedNotificationRequest.type).toEqual(PaymentMethodCreatedNotificationRequest.TypeEnum.PaymentMethodCreated)
     });
 });
