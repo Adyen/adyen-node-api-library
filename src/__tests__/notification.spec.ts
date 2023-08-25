@@ -11,7 +11,6 @@ import BankingWebhookHandler from "../notification/bankingWebhookHandler";
 import {AccountHolderNotificationRequest} from "../typings/configurationWebhooks/accountHolderNotificationRequest";
 import HmacValidator from "../utils/hmacValidator";
 import ManagementWebhookHandler from "../notification/managementWebhookHandler";
-import managementWebhookHandler from "../notification/managementWebhookHandler";
 import {
     PaymentMethodCreatedNotificationRequest
 } from "../typings/managementWebhooks/paymentMethodCreatedNotificationRequest";
