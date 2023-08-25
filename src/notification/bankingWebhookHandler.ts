@@ -5,10 +5,9 @@
  * See the LICENSE file for more info.
  */
 import {configurationWebhooks} from "../typings";
+import {acsWebhooks} from "../typings"
 import {reportWebhooks} from "../typings";
 import {transferWebhooks} from "../typings";
-import {TransferNotificationRequest} from "../typings/transferWebhooks/transferNotificationRequest";
-import {CardOrderNotificationRequest} from "../typings/configurationWebhooks/cardOrderNotificationRequest";
 
 class BankingWebhookHandler {
     private readonly payload: string;
@@ -18,15 +17,20 @@ class BankingWebhookHandler {
     }
 
     // Return generic webhook type
-    public getGenericWebhook(): configurationWebhooks.AccountHolderNotificationRequest
+    public getGenericWebhook(): acsWebhooks.AuthenticationNotificationRequest
+        | configurationWebhooks.AccountHolderNotificationRequest
         | configurationWebhooks.BalanceAccountNotificationRequest
         | configurationWebhooks.PaymentNotificationRequest
         | configurationWebhooks.SweepConfigurationNotificationRequest
+        | configurationWebhooks.CardOrderNotificationRequest
         | reportWebhooks.ReportNotificationRequest
-        | TransferNotificationRequest
-        | CardOrderNotificationRequest
-        | void {
+        | transferWebhooks.TransferNotificationRequest {
         const type = this.payload['type'];
+
+        if(Object.values(acsWebhooks.AuthenticationNotificationRequest.TypeEnum).includes(type)){
+            return this.getAuthenticationNotificationRequest();
+        }
+
         if(Object.values(configurationWebhooks.AccountHolderNotificationRequest.TypeEnum).includes(type)){
             return this.getAccountHolderNotificationRequest();
         }
@@ -54,6 +58,12 @@ class BankingWebhookHandler {
         if(Object.values(transferWebhooks.TransferNotificationRequest.TypeEnum).includes(type)){
             return this.getTransferNotificationRequest();
         }
+
+        throw new Error("Could not parse the json payload: " + this.payload)
+    }
+
+    public getAuthenticationNotificationRequest(): acsWebhooks.AuthenticationNotificationRequest {
+        return acsWebhooks.ObjectSerializer.deserialize(this.payload, "AuthenticationNotificationRequest");
     }
 
     public getAccountHolderNotificationRequest(): configurationWebhooks.AccountHolderNotificationRequest {
@@ -81,7 +91,7 @@ class BankingWebhookHandler {
     }
 
     public getTransferNotificationRequest(): transferWebhooks.TransferNotificationRequest {
-        return reportWebhooks.ObjectSerializer.deserialize(this.payload, "TransferNotificationRequest");
+        return transferWebhooks.ObjectSerializer.deserialize(this.payload, "TransferNotificationRequest");
     }
 }
 
