@@ -14,7 +14,9 @@ class ManagementWebhookHandler {
     }
 
     // Return generic webhook type
-    public getGenericWebhook(): any {
+    public getGenericWebhook(): managementWebhooks.MerchantUpdatedNotificationRequest
+        | managementWebhooks.MerchantCreatedNotificationRequest
+        | managementWebhooks.PaymentMethodCreatedNotificationRequest {
         const type = this.payload['type'];
         if(Object.values(managementWebhooks.MerchantCreatedNotificationRequest.TypeEnum).includes(type)){
             return this.getMerchantCreatedNotificationRequest();
