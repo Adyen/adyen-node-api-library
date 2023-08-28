@@ -4,7 +4,7 @@ openapi-generator-url:=https://repo1.maven.org/maven2/org/openapitools/openapi-g
 openapi-generator-jar:=build/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
-services:=balanceControl balancePlatform binLookup checkout configurationWebhooks dataProtection legalEntityManagement management payment payout recurring reportWebhooks storedValue terminalManagement transfer transferWebhooks
+services:=acsWebhooks balanceControl balancePlatform binLookup checkout configurationWebhooks dataProtection legalEntityManagement management payment payout recurring reportWebhooks storedValue terminalManagement transfer transferWebhooks
 
 # Generate models (for each service)
 models: $(services)
@@ -26,7 +26,9 @@ platformsFund: spec=FundService-v6
 platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 platformsHostedOnboardingPage: spec=HopService-v6
 transfers: spec=TransferService-v3
+
 # BalanceWebhooks
+acsWebhooks: spec=BalancePlatformAcsNotification-v1
 configurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
 reportWebhooks: spec=BalancePlatformReportNotification-v1
 transferWebhooks: spec=BalancePlatformTransferNotification-v3
