@@ -279,7 +279,7 @@ Verify the authenticity (where you retrieve the hmac key from the CA and the sig
 const isValid = hmacValidator.validateBankingHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGNATURE", jsonString)
 ```
 ## Management Webhooks
-Management webhooks are verified the exact same way as the banking webhooks. To parse them however, instead you use;
+Management webhooks are verified the exact same way as the banking webhooks. To parse them however, instead you use:
 ``` typescript
 let managementWebhookHandler = new ManagementWebhookHandler(YOUR_MANAGEMENT_WEBHOOK);
 const genericWebhook = managementWebhookHandler.getGenericWebhook();
