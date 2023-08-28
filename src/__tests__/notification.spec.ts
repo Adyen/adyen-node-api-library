@@ -15,6 +15,8 @@ import {
     PaymentMethodCreatedNotificationRequest
 } from "../typings/managementWebhooks/paymentMethodCreatedNotificationRequest";
 import {MerchantUpdatedNotificationRequest} from "../typings/managementWebhooks/merchantUpdatedNotificationRequest";
+import {AuthenticationNotificationRequest} from "../typings/acsWebhooks/authenticationNotificationRequest";
+import {TransferNotificationRequest} from "../typings/transferWebhooks/transferNotificationRequest";
 
 describe("Notification Test", function (): void {
 
@@ -138,5 +140,55 @@ describe("Notification Test", function (): void {
         expect(genericWebhook instanceof PaymentMethodCreatedNotificationRequest).toBe(true)
         expect(genericWebhook instanceof MerchantUpdatedNotificationRequest).toBe(false)
         expect(paymentMethodCreatedNotificationRequest.type).toEqual(PaymentMethodCreatedNotificationRequest.TypeEnum.PaymentMethodCreated)
+
+    it("should deserialize Banking Authentication Webhook", function (): void {
+        const json = {
+            "data" : {
+                "balancePlatform" : "YOUR_BALANCE_PLATFORM",
+                "creationDate" : "2023-01-19T17:07:59+01:00",
+                "id" : "a8fc7a40-6e48-498a-bdc2-494daf0f490a",
+                "authentication" : {
+                    "acsTransId" : "a8fc7a40-6e48-498a-bdc2-494daf0f490a",
+                    "challenge" : {
+                        "flow" : "OTP_SMS",
+                        "lastInteraction" : "2023-01-19T17:37:13+01:00",
+                        "phoneNumber" : "******6789",
+                        "resends" : 0,
+                        "retries" : 2
+                    },
+                    "challengeIndicator" : "01",
+                    "createdAt" : "2023-01-19T17:07:17+01:00",
+                    "deviceChannel" : "app",
+                    "dsTransID" : "59de4e30-7f84-4a77-aaf8-1ca493092ef9",
+                    "exemptionIndicator" : "noExemptionApplied",
+                    "inPSD2Scope" : false,
+                    "messageCategory" : "payment",
+                    "messageVersion" : "2.2.0",
+                    "threeDSServerTransID" : "8bc0fdbd-5c8a-4bed-a171-9d10347e7798",
+                    "transStatus" : "N",
+                    "transStatusReason" : "19",
+                    "type" : "challenge"
+                },
+                "paymentInstrumentId" : "PI3227C223222B5BPCMFXD2XG",
+                "purchase" : {
+                    "date" : "2022-12-22T15:49:03+01:00",
+                    "merchantName" : "TeaShop_NL",
+                    "originalAmount" : {
+                        "currency" : "EUR",
+                        "value" : 1000
+                    }
+                },
+                "status" : "rejected"
+            },
+            "environment" : "test",
+            "type" : "balancePlatform.authentication.created"
+        };
+        const jsonString = JSON.stringify(json);
+        let bankingWebhookHandler = new BankingWebhookHandler(jsonString);
+        const accountHolderNotificationRequest: TransferNotificationRequest = bankingWebhookHandler.getTransferNotificationRequest();
+        const genericWebhook = bankingWebhookHandler.getGenericWebhook();
+        expect(accountHolderNotificationRequest.type).toEqual(AuthenticationNotificationRequest.TypeEnum.BalancePlatformAuthenticationCreated)
+        expect(genericWebhook instanceof AccountHolderNotificationRequest).toBe(false)
+        expect(genericWebhook instanceof AuthenticationNotificationRequest).toBe(true)
     });
 });
