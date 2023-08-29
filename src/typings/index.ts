@@ -30,3 +30,5 @@ export * as dataProtection from './dataProtection/models';
 export * as configurationWebhooks from './configurationWebhooks/models';
 export * as reportWebhooks from './reportWebhooks/models';
 export * as transferWebhooks from './transferWebhooks/models';
+export * as managementWebhooks from './managementWebhooks/models';
+export * as acsWebhooks from './acsWebhooks/models';
