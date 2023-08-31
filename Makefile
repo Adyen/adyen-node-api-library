@@ -4,7 +4,7 @@ openapi-generator-url:=https://repo1.maven.org/maven2/org/openapitools/openapi-g
 openapi-generator-jar:=build/openapi-generator-cli.jar
 openapi-generator-cli:=java -jar $(openapi-generator-jar)
 
-services:=acsWebhooks balanceControl balancePlatform binLookup checkout configurationWebhooks dataProtection legalEntityManagement management managementWebhooks payment payout recurring reportWebhooks storedValue terminalManagement transfer transferWebhooks
+services:=acsWebhooks balanceControl balancePlatform binLookup checkout configurationWebhooks dataProtection legalEntityManagement management managementWebhooks payment payout recurring reportWebhooks storedValue terminalManagement transfers transferWebhooks
 
 # Generate models (for each service)
 models: $(services)
