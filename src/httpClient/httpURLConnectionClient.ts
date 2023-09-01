@@ -26,12 +26,13 @@ import { URL, URLSearchParams } from "url";
 import Client from "../client";
 import Config from "../config";
 import HttpClientException from "./httpClientException";
-import checkServerIdentity from "../helpers/checkServerIdentity";
+
 import { ApiError } from "../typings/apiError";
 import ApiException from "../services/exception/apiException";
 import ClientInterface from "./clientInterface";
 import { ApiConstants } from "../constants/apiConstants";
 import { IRequest } from "../typings/requestOptions";
+import checkServerIdentity from "../helpers/checkServerIdentity";
 
 class HttpURLConnectionClient implements ClientInterface {
     private static CHARSET = "utf-8";
@@ -194,12 +195,17 @@ class HttpURLConnectionClient implements ClientInterface {
 
     private installCertificateVerifier(terminalCertificatePath: string): void | Promise<HttpClientException> {
         try {
-            const certificateInput = fs.readFileSync(terminalCertificatePath);
-
-            this.agentOptions = {
-                ca: certificateInput,
-                checkServerIdentity,
-            };
+            if (terminalCertificatePath == "unencrypted"){
+                this.agentOptions = {
+                    rejectUnauthorized: false
+                }
+            } else {
+                const certificateInput = fs.readFileSync(terminalCertificatePath);
+                this.agentOptions = {
+                    ca: certificateInput,
+                    checkServerIdentity,
+                };
+            }
 
         } catch (e) {
             const message = e instanceof Error ? e.message: "undefined";
