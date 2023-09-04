@@ -456,8 +456,30 @@ const paymentRequest: SaleToPOIRequest = {
 // Step 6: Make the request
 const terminalApiResponse: terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest, securityKey);
 ```
+## Using the Local Terminal API Integration without Encryption (Only on TEST)
+If you wish to develop the Local Terminal API integration parallel to your encryption implementation, you can opt for the unencrypted version. Be sure to remove any encryption details from the CA terminal config page. 
+```javascript
+// Step 1: Require the parts of the module you want to use
+const {Client, TerminalLocalAPIUnencrypted} from "@adyen/api-library";
 
+// Step 2: Add your Merchant Account, Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer"
+const config: Config = new Config();
+config.merchantAccount = "Your merchant account";
+config.terminalApiLocalEndpoint = "The IP of your terminal (eg https://192.168.47.169)";
+config.apiKey = "YOUR_API_KEY_HERE";
 
+// Step 3 Initialize the client and the API objects
+client = new Client({ config });
+const terminalLocalAPI = new TerminalLocalAPIUnencrypted(client);
+
+// Step 4: Create the request object
+const paymentRequest: SaleToPOIRequest = {
+// Similar to the saleToPOIRequest used for Cloud API
+}
+
+// Step 5: Make the request
+const terminalApiResponse: terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest);
+```
 ## Feedback
 We value your input! Help us enhance our API Libraries and improve the integration experience by providing your feedback. Please take a moment to fill out [our feedback form](https://forms.gle/A4EERrR6CWgKWe5r9) to share your thoughts, suggestions or ideas. 
 
