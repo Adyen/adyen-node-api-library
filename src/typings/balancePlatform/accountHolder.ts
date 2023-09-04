@@ -34,9 +34,13 @@ export class AccountHolder {
     */
     'legalEntityId': string;
     /**
-    * A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+    * A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
     */
     'metadata'?: { [key: string]: string; };
+    /**
+    * The unique identifier of the migrated account holder in the classic integration.
+    */
+    'migratedAccountHolderCode'?: string;
     /**
     * The ID of the account holder\'s primary balance account. By default, this is set to the first balance account that you create for the account holder. To assign a different balance account, send a PATCH request.
     */
@@ -95,6 +99,11 @@ export class AccountHolder {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "migratedAccountHolderCode",
+            "baseName": "migratedAccountHolderCode",
+            "type": "string"
         },
         {
             "name": "primaryBalanceAccount",

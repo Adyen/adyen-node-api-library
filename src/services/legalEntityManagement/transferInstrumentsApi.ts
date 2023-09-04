@@ -63,6 +63,7 @@ export class TransferInstrumentsApi extends Service {
     /**
     * @summary Update a transfer instrument
     * @param id {@link string } The unique identifier of the transfer instrument.
+    * @param xRequestedVerificationCode {@link string } Use the requested verification code 0_0001 to resolve any suberrors associated with the transfer instrument. Requested verification codes can only be used in your test environment.
     * @param transferInstrumentInfo {@link TransferInstrumentInfo } 
     * @param requestOptions {@link IRequest.Options}
     * @return {@link TransferInstrument }
@@ -82,6 +83,7 @@ export class TransferInstrumentsApi extends Service {
 
     /**
     * @summary Create a transfer instrument
+    * @param xRequestedVerificationCode {@link string } Use a suberror code as your requested verification code. You can include one code at a time in your request header. Requested verification codes can only be used in your test environment.
     * @param transferInstrumentInfo {@link TransferInstrumentInfo } 
     * @param requestOptions {@link IRequest.Options}
     * @return {@link TransferInstrument }

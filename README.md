@@ -15,36 +15,39 @@ This is the official Adyen API library for Node.js that we recommend for integra
 
 This library supports the following:
 
-| API name | API version | Description | API object |
-|----------|:-----------:|-------------|------------|
-| [BIN lookup API](https://docs.adyen.com/api-explorer/BinLookup/52/overview) | v52 | The BIN Lookup API provides endpoints for retrieving information based on a given BIN. | [BinLookup](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/binLookup.ts) |
-| [Checkout API](https://docs.adyen.com/api-explorer/Checkout/70/overview) | v70 | Our latest integration for accepting online payments. | [CheckoutAPI](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/checkout.ts) |
-| [Configuration API](https://docs.adyen.com/api-explorer/balanceplatform/2/overview) | v2 | The Configuration API enables you to create a platform where you can onboard your users as account holders and create balance accounts, cards, and business accounts. | [BalancePlatform](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/balancePlatform.ts) |
-| [DataProtection API](https://docs.adyen.com/development-resources/data-protection-api) | v1 | Adyen Data Protection API provides a way for you to process [Subject Erasure Requests](https://gdpr-info.eu/art-17-gdpr/) as mandated in GDPR. Use our API to submit a request to delete shopper's data, including payment details and other related information (for example, delivery address or shopper email) | [DataProtection](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/dataProtection.ts) |
-| [Legal Entity Management API](https://docs.adyen.com/api-explorer/legalentity/2/overview) | v2 | Manage legal entities that contain information required for verification. | [LegalEntityManagement](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/legalEntityManagement.ts) |
-| [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference) | - | Our point-of-sale integration. | [TerminalLocalAPI](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/terminalLocalAPI.ts) or [TerminalCloudAPI](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/terminalCloudAPI.ts) |
-| [Management API](https://docs.adyen.com/api-explorer/Management/1/overview) | v1 | Configure and manage your Adyen company and merchant accounts, stores, and payment terminals. | [Management](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/management.ts) |
-| [Payments API](https://docs.adyen.com/api-explorer/Payment/68/overview) | v68 | Our classic integration for online payments. | [ClassicIntegrationAPI](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/classicIntegration.ts) |
-| [Payouts API](https://docs.adyen.com/api-explorer/Payout/68/overview) | v68 | Endpoints for sending funds to your customers. | [Payout](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/payout.ts) |
-| [Platforms APIs](https://docs.adyen.com/platforms/api) | - | Set of APIs when using Adyen for Platforms. This API is used for the classic integration. | [Platforms](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/platforms.ts) |
-| [Account API](https://docs.adyen.com/api-explorer/Account/6/overview) | v6 | Provides endpoints for managing account-related entities on your platform. These related entities include account holders, accounts, bank accounts, shareholders, and verification-related documents. | [Account](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/balancePlatform.ts) |
-| [Fund API](https://docs.adyen.com/api-explorer/Fund/6/overview) | v6 | Provides endpoints for managing the funds in the accounts on your platform. These management operations include, for example, the transfer of funds from one account to another, the payout of funds to an account holder, and the retrieval of balances in an account. | [Fund](https://github.com/Adyen/adyen-node-api-library/blob/5631c99d12e470ef7a8147ec058e714fededdf37/src/services/platforms.ts) |
-| [Hosted onboarding API](https://docs.adyen.com/api-explorer/Hop/6/overview) | v6 | Provides endpoints that you can use to generate links to Adyen-hosted pages, such as an onboarding page or a PCI compliance questionnaire. You can provide these links to your account holders so that they can complete their onboarding. | [HostedOnboardingPage](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/legalEntityManagement/hostedOnboardingPage.ts) |
-| [Notification Configuration API](https://docs.adyen.com/api-explorer/NotificationConfiguration/6/overview) | v6 | Provides endpoints for setting up and testing notifications that inform you of events on your platform, for example when a verification check or a payout has been completed. | [NotificationConfiguration](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/resource/platforms/notificationConfiguration.ts) |
-| [POS Terminal Management API](https://docs.adyen.com/api-explorer/postfmapi/1/overview) | v1 | Endpoints for managing your point-of-sale payment terminals. | [TerminalManagement](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/terminalManagement.ts) |
-| [Recurring API](https://docs.adyen.com/api-explorer/Recurring/68/overview) | v68 | Endpoints for managing saved payment details. | [Recurring](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/recurring.ts) |
-| [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api) | v46 | Manage both online and point-of-sale gift cards and other stored-value cards. | [StoredValue](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/storedValue.ts) |
-| [Transfers API](https://docs.adyen.com/api-explorer/transfers/3/overview) | v3 | The Transfers API provides endpoints that can be used to get information about all your transactions, move funds within your balance platform or send funds from your balance platform to a transfer instrument. | [Transfers](https://github.com/Adyen/adyen-node-api-library/blob/develop/src/services/transfers.ts) |
+| API name                                                                                                   | API version | Description                                                                                                                                                                                                                                                                                                       | API object                                                                                                                                                                                                                       |
+|------------------------------------------------------------------------------------------------------------|:-----------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [BIN Lookup API](https://docs.adyen.com/api-explorer/BinLookup/54/overview)                                |     v54     | The BIN Lookup API provides endpoints for retrieving information based on a given BIN.                                                                                                                                                                                                                            | [BinLookup](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/binLookupApi.ts)                                                                                                                              |
+| [Checkout API](https://docs.adyen.com/api-explorer/Checkout/70/overview)                                   |     v70     | Our latest integration for accepting online payments.                                                                                                                                                                                                                                                             | [CheckoutAPI](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/checkout/index.ts)                                                                                                                          |
+| [Configuration API](https://docs.adyen.com/api-explorer/balanceplatform/2/overview)                        |     v2      | The Configuration API enables you to create a platform where you can onboard your users as account holders and create balance accounts, cards, and business accounts.                                                                                                                                             | [BalancePlatform](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/balancePlatform/index.ts)                                                                                                               |
+| [DataProtection API](https://docs.adyen.com/development-resources/data-protection-api)                     |     v1      | Adyen Data Protection API provides a way for you to process [Subject Erasure Requests](https://gdpr-info.eu/art-17-gdpr/) as mandated in GDPR. Use our API to submit a request to delete shopper's data, including payment details and other related information (for example, delivery address or shopper email) | [DataProtection](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/dataProtectionApi.ts)                                                                                                                    |
+| [Legal Entity Management API](https://docs.adyen.com/api-explorer/legalentity/3/overview)                  |     v3      | Manage legal entities that contain information required for verification.                                                                                                                                                                                                                                         | [LegalEntityManagement](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/legalEntityManagement/index.ts)                                                                                                   |
+| [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference)              |      -      | Our point-of-sale integration.                                                                                                                                                                                                                                                                                    | [TerminalLocalAPI](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/terminalLocalAPI.ts) or [TerminalCloudAPI](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/terminalCloudAPI.ts) |
+| [Management API](https://docs.adyen.com/api-explorer/Management/1/overview)                                |     v1      | Configure and manage your Adyen company and merchant accounts, stores, and payment terminals.                                                                                                                                                                                                                     | [Management](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/management/index.ts)                                                                                                                         |
+| [Payments API](https://docs.adyen.com/api-explorer/Payment/68/overview)                                    |     v68     | Our classic integration for online payments.                                                                                                                                                                                                                                                                      | [ClassicIntegrationAPI](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/paymentApi.ts)                                                                                                                    |
+| [Payouts API](https://docs.adyen.com/api-explorer/Payout/68/overview)                                      |     v68     | Endpoints for sending funds to your customers.                                                                                                                                                                                                                                                                    | [Payout](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/payout/index.ts)                                                                                                                                 |
+| [Platforms APIs](https://docs.adyen.com/platforms/api)                                                     |      -      | Set of APIs when using Adyen for Platforms. This API is used for the classic integration.                                                                                                                                                                                                                         | [Platforms](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/platforms.ts)                                                                                                                                 |
+| [Account API](https://docs.adyen.com/api-explorer/Account/6/overview)                                      |     v6      | Provides endpoints for managing account-related entities on your platform. These related entities include account holders, accounts, bank accounts, shareholders, and verification-related documents.                                                                                                             | [Account](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/platforms.ts)                                                                                                                                   |
+| [Fund API](https://docs.adyen.com/api-explorer/Fund/6/overview)                                            |     v6      | Provides endpoints for managing the funds in the accounts on your platform. These management operations include, for example, the transfer of funds from one account to another, the payout of funds to an account holder, and the retrieval of balances in an account.                                           | [Fund](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/platforms.ts)                                                                                                                                      |
+| [Hosted onboarding API](https://docs.adyen.com/api-explorer/Hop/6/overview)                                |     v6      | Provides endpoints that you can use to generate links to Adyen-hosted pages, such as an onboarding page or a PCI compliance questionnaire. You can provide these links to your account holders so that they can complete their onboarding.                                                                        | [HostedOnboardingPage](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/platforms.ts)                                                                                                                      |
+| [Notification Configuration API](https://docs.adyen.com/api-explorer/NotificationConfiguration/6/overview) |     v6      | Provides endpoints for setting up and testing notifications that inform you of events on your platform, for example when a verification check or a payout has been completed.                                                                                                                                     | [NotificationConfiguration](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/resource/platforms/notificationConfiguration.ts)                                                                              |
+| [POS Terminal Management API](https://docs.adyen.com/api-explorer/postfmapi/1/overview)                    |     v1      | Endpoints for managing your point-of-sale payment terminals.                                                                                                                                                                                                                                                      | [TerminalManagement](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/terminalManagementApi.ts)                                                                                                            |
+| [Recurring API](https://docs.adyen.com/api-explorer/Recurring/68/overview)                                 |     v68     | Endpoints for managing saved payment details.                                                                                                                                                                                                                                                                     | [Recurring](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/recurringApi.ts)                                                                                                                              |
+| [Stored Value API](https://docs.adyen.com/payment-methods/gift-cards/stored-value-api)                     |     v46     | Manage both online and point-of-sale gift cards and other stored-value cards.                                                                                                                                                                                                                                     | [StoredValue](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/storedValueApi.ts)                                                                                                                          |
+| [Transfers API](https://docs.adyen.com/api-explorer/transfers/3/overview)                                  |     v3      | The Transfers API provides endpoints that can be used to get information about all your transactions, move funds within your balance platform or send funds from your balance platform to a transfer instrument.                                                                                                  | [Transfers](https://github.com/Adyen/adyen-node-api-library/blob/main/src/services/transfers/index.ts)                                                                                                                           |
 
 ## Supported Webhook versions
 The library supports all webhooks under the following model directories:
 
-| Webhooks                                                                                          | Description                                                                                                                                                                             | Model Name                                                     | Supported Version |
-|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|-------------------|
-| [Configuration Webhooks](https://docs.adyen.com/api-explorer/balanceplatform-webhooks/1/overview) | You can use these webhooks to build your implementation. For example, you can use this information to update internal statuses when the status of a capability is changed.              | [ConfigurationNotification](src/typings/configurationWebhooks) | **v1**            |
-| [Transfer Webhooks](https://docs.adyen.com/api-explorer/transfer-webhooks/3/overview)             | You can use these webhooks to build your implementation. For example, you can use this information to update balances in your own dashboards or to keep track of incoming funds.        | [TransferNotification](src/typings/transferWebhooks)           | **v3**            |
-| [Report Webhooks](https://docs.adyen.com/api-explorer/report-webhooks/1/overview)                 | You can download reports programmatically by making an HTTP GET request, or manually from your Balance Platform Customer Area                                                           | [ReportNotification](src/typings/reportWebhooks)               | **v1**            |
-| [Notification Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview)                  | We use webhooks to send you updates about payment status updates, newly available reports, and other events that you can subscribe to. For more information, refer to our documentation | [Notification](src/typings/notification)                       | **v1**            |
+| Webhooks                                                                                          | Description                                                                                                                                                                                 | Model Name                                                     | Supported Version |
+|---------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|-------------------|
+| [Authentication Webhooks](https://docs.adyen.com/api-explorer/acs-webhook/1/overview)             | Adyen sends this webhook when the process of cardholder authentication is finalized, whether it is completed successfully, fails, or expires.                                               | [AcsWebhooks](src/typings/acsWebhooks)                         | **v1**            |
+| [Configuration Webhooks](https://docs.adyen.com/api-explorer/balanceplatform-webhooks/1/overview) | You can use these webhooks to build your implementation. For example, you can use this information to update internal statuses when the status of a capability is changed.                  | [ConfigurationNotification](src/typings/configurationWebhooks) | **v1**            |
+| [Transfer Webhooks](https://docs.adyen.com/api-explorer/transfer-webhooks/3/overview)             | You can use these webhooks to build your implementation. For example, you can use this information to update balances in your own dashboards or to keep track of incoming funds.            | [TransferNotification](src/typings/transferWebhooks)           | **v3**            |
+| [Report Webhooks](https://docs.adyen.com/api-explorer/report-webhooks/1/overview)                 | You can download reports programmatically by making an HTTP GET request, or manually from your Balance Platform Customer Area                                                               | [ReportNotification](src/typings/reportWebhooks)               | **v1**            |
+| [Management Webhooks](https://docs.adyen.com/api-explorer/ManagementNotification/1/overview)      | Adyen uses webhooks to inform your system about events that happen with your Adyen company and merchant accounts, stores, payment terminals, and payment methods when using Management API. | [ManagementWebhooks](src/typings/managementWebhooks)           | **v1**            |
+| [Notification Webhooks](https://docs.adyen.com/api-explorer/Webhooks/1/overview)                  | We use webhooks to send you updates about payment status updates, newly available reports, and other events that you can subscribe to. For more information, refer to our documentation     | [Notification](src/typings/notification)                       | **v1**            |
+
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
 ## Before you begin
@@ -268,7 +271,7 @@ let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
 const accountHolderNotificationRequest: AccountHolderNotificationRequest = bankingWebhookHandler.getAccountHolderNotificationRequest();
 const genericWebhook = bankingWebhookHandler.getGenericWebhook();
 ```
-Parse a generic Banking webhook;
+You can also parse the webhook with a generic type, in case you do not know the webhook type in advance. In this case you can check the instance of the webhook in order to parse it to the respective type (or just use it dynamically);
 ``` typescript
 let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
 const genericWebhook = bankingWebhookHandler.getGenericWebhook();
@@ -276,6 +279,12 @@ const genericWebhook = bankingWebhookHandler.getGenericWebhook();
 Verify the authenticity (where you retrieve the hmac key from the CA and the signature from the webhook header);
 ``` typescript
 const isValid = hmacValidator.validateBankingHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGNATURE", jsonString)
+```
+## Management Webhooks
+Management webhooks are verified the exact same way as the banking webhooks. To parse them however, instead you use:
+``` typescript
+let managementWebhookHandler = new ManagementWebhookHandler(YOUR_MANAGEMENT_WEBHOOK);
+const genericWebhook = managementWebhookHandler.getGenericWebhook();
 ```
 
 ## Proxy configuration
@@ -298,6 +307,179 @@ client.httpClient = httpClient;
 // ... more code
 ```
 
+## Using the Cloud Terminal API Integration
+In order to submit In-Person requests with [Terminal API over Cloud](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/) you need to initialize the client in a similar way as the steps listed above for Ecommerce transactions, but make sure to include `TerminalCloudAPI`:
+``` javascript
+// Step 1: Require the parts of the module you want to use
+const {Client, TerminalCloudAPI} from "@adyen/api-library";
+
+// Step 2: Initialize the client object
+const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
+
+// Step 3: Initialize the API object
+const terminalCloudAPI = new TerminalCloudAPI(client);
+
+// Step 4: Create the request object
+const serviceID = "123456789";
+const saleID = "POS-SystemID12345";
+const POIID = "Your Device Name(eg V400m-123456789)";
+
+// Use a unique transaction for every transaction you perform
+const transactionID = "TransactionID";
+const paymentRequest: SaleToPOIRequest = {
+    MessageHeader: {
+        MessageClass: MessageClassType.Service,
+        MessageCategory: MessageCategoryType.Payment,
+        MessageType: MessageType.Request,
+        ProtocolVersion: "3.0",
+        ServiceID: serviceID,
+        SaleID: saleID,
+        POIID: POIID
+    },
+    PaymentRequest: {
+        SaleData: {
+            SaleTransactionID: {
+                TransactionID: transactionID,
+                TimeStamp: this.GetDate().toISOString()
+            },
+
+            SaleToAcquirerData: {
+                applicationInfo: {
+                    merchantApplication: {
+                        version: "1",
+                        name: "test",
+                    }
+                }
+            }
+        },
+        PaymentTransaction: {
+            AmountsReq: {
+                Currency: "EUR",
+                RequestedAmount: 1000
+            }
+        }
+    }
+};
+
+// Step 5: Make the request
+const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(paymentRequest);
+```
+
+### Optional: perform an abort request
+
+To perform an [abort request](https://docs.adyen.com/point-of-sale/basic-tapi-integration/cancel-a-transaction/) you can use the following example:
+``` javascript
+const abortRequest: SaleToPOIRequest = {
+    MessageHeader: {
+        MessageClass: MessageClassType.Service,
+        MessageCategory: MessageCategoryType.Abort,
+        MessageType: MessageType.Request,
+        ProtocolVersion: "3.0",
+        // Different serviceID than the one you're aborting
+        ServiceID: "Different service ID",
+        SaleID: saleID,
+        POIID: POIID
+    },
+    AbortRequest: {
+        AbortReason: "MerchantAbort",
+        MessageReference: {
+            MessageCategory: MessageCategoryEnum.Payment,
+            SaleID: saleID,
+            // Service ID of the payment you're aborting
+            ServiceID: serviceID,
+            POIID: POIID
+        }
+
+    }
+};
+const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(abortRequest);
+```
+
+### Optional: perform a status request
+
+To perform a [status request](https://docs.adyen.com/point-of-sale/basic-tapi-integration/verify-transaction-status/) you can use the following example:
+``` javascript
+const statusRequest: SaleToPOIRequest = {
+    MessageHeader: {
+        MessageClass: MessageClassType.Service,
+        MessageCategory: MessageCategoryType.TransactionStatus,
+        MessageType: MessageType.Request,
+        ProtocolVersion: "3.0",
+        ServiceID: "Different service ID",
+        SaleID: saleID,
+        POIID: POIID
+    },
+    TransactionStatusRequest: {
+        ReceiptReprintFlag: true,
+        DocumentQualifier: [DocumentQualifierEnum.CashierReceipt, DocumentQualifierEnum.CustomerReceipt],
+        MessageReference: {
+            SaleID: saleID,
+            // serviceID of the transaction you want the status update for
+            ServiceID: serviceID,
+            MessageCategory: MessageCategoryEnum.Payment
+        }
+    }
+};
+const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(statusRequest);
+```
+
+## Using the Local Terminal API Integration
+The procedure to send In-Person requests using [Terminal API over Local Connection](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/local/) is similar to the Cloud Terminal API one, however, additional encryption details are required to perform the requests. Make sure to [install the certificate as described here](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/local/#protect-communications)
+```javascript
+// Step 1: Require the parts of the module you want to use
+const {Client, TerminalLocalAPI} from "@adyen/api-library";
+
+// Step 2: Add your Merchant Account, Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer"
+const config: Config = new Config();
+config.merchantAccount = "Your merchant account";
+config.certificatePath = "./cert.cer";
+config.terminalApiLocalEndpoint = "The IP of your terminal (eg https://192.168.47.169)";
+config.apiKey = "YOUR_API_KEY_HERE";
+
+// Step 3: Setup a security password for your terminal in CA, and import the security key object:
+const securityKey: SecurityKey = {
+    AdyenCryptoVersion: 1,
+    KeyIdentifier: "keyIdentifier",
+    KeyVersion: 1,
+    Passphrase: "passphrase",
+};
+
+// Step 4 Initialize the client and the API objects
+client = new Client({ config });
+const terminalLocalAPI = new TerminalLocalAPI(client);
+
+// Step 5: Create the request object
+const paymentRequest: SaleToPOIRequest = {
+// Similar to the saleToPOIRequest used for Cloud API
+}
+
+// Step 6: Make the request
+const terminalApiResponse: terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest, securityKey);
+```
+## Using the Local Terminal API Integration without Encryption (Only on TEST)
+If you wish to develop the Local Terminal API integration parallel to your encryption implementation, you can opt for the unencrypted version. Be sure to remove any encryption details from the CA terminal config page. 
+```javascript
+// Step 1: Require the parts of the module you want to use
+const {Client, TerminalLocalAPIUnencrypted} from "@adyen/api-library";
+
+// Step 2: Add your Merchant Account, Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer"
+const config: Config = new Config();
+config.merchantAccount = "Your merchant account";
+config.terminalApiLocalEndpoint = "The IP of your terminal (eg https://192.168.47.169)";
+config.apiKey = "YOUR_API_KEY_HERE";
+
+// Step 3 Initialize the client and the API objects
+client = new Client({ config });
+const terminalLocalAPI = new TerminalLocalAPIUnencrypted(client);
+
+// Step 4: Create the request object
+const paymentRequest: SaleToPOIRequest = {
+// Similar to the saleToPOIRequest used for Cloud API
+}
+
+// Step 5: Make the request
+const terminalApiResponse: terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest);
+```
 ## Feedback
 We value your input! Help us enhance our API Libraries and improve the integration experience by providing your feedback. Please take a moment to fill out [our feedback form](https://forms.gle/A4EERrR6CWgKWe5r9) to share your thoughts, suggestions or ideas. 
 

@@ -18,7 +18,7 @@ export class CardInfo {
     */
     'brand': string;
     /**
-    * The brand variant of the physical or the virtual card. >Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
+    * The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. >Reach out to your Adyen contact to get the values relevant for your integration.
     */
     'brandVariant': string;
     /**
@@ -31,6 +31,10 @@ export class CardInfo {
     * The form factor of the card. Possible values: **virtual**, **physical**.
     */
     'formFactor': CardInfo.FormFactorEnum;
+    /**
+    * Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+    */
+    'threeDSecure'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -69,6 +73,11 @@ export class CardInfo {
             "name": "formFactor",
             "baseName": "formFactor",
             "type": "CardInfo.FormFactorEnum"
+        },
+        {
+            "name": "threeDSecure",
+            "baseName": "threeDSecure",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

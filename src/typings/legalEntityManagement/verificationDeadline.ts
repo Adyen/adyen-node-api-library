@@ -14,6 +14,10 @@ export class VerificationDeadline {
     */
     'capabilities': Array<VerificationDeadline.CapabilitiesEnum>;
     /**
+    * The unique identifiers of the bank account(s) that the deadline applies to
+    */
+    'entityIds'?: Array<string>;
+    /**
     * The date that verification is due by before capabilities are disallowed.
     */
     'expiresAt': Date;
@@ -25,6 +29,11 @@ export class VerificationDeadline {
             "name": "capabilities",
             "baseName": "capabilities",
             "type": "Array<VerificationDeadline.CapabilitiesEnum>"
+        },
+        {
+            "name": "entityIds",
+            "baseName": "entityIds",
+            "type": "Array<string>"
         },
         {
             "name": "expiresAt",

@@ -2,8 +2,9 @@ import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import Client from "../client";
 import ClassicIntegration from "../services/paymentApi";
-import { payments } from "../typings";
+import { payment } from "../typings";
 import HttpClientException from "../httpClient/httpClientException";
+import {PaymentResult} from "../typings/payment/paymentResult";
 
 let client: Client;
 let classicIntegration: ClassicIntegration;
@@ -35,7 +36,7 @@ describe("Classic Integration", (): void => {
                 "authCode": "011381"
             }
         );
-        const paymentRequest: payments.PaymentRequest = {
+        const paymentRequest: payment.PaymentRequest = {
             "card": {
                 "number": "4111111111111111",
                 "expiryMonth": "03",
@@ -51,7 +52,7 @@ describe("Classic Integration", (): void => {
               "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
         };
 
-        const paymentResult: payments.PaymentResult = await classicIntegration.authorise(paymentRequest);
+        const paymentResult: PaymentResult = await classicIntegration.authorise(paymentRequest);
         expect(paymentResult.pspReference).toEqual("JVBXGSDM53RZNN82");
     });
 
@@ -65,7 +66,7 @@ describe("Classic Integration", (): void => {
                         "errorType": "security"
                     }
                 );
-            const paymentRequest: payments.PaymentRequest = {
+            const paymentRequest: payment.PaymentRequest = {
                 "card": {
                     "number": "4111111111111111",
                     "expiryMonth": "03",
@@ -104,14 +105,14 @@ describe("Classic Integration", (): void => {
                 "authCode": "011381"
             }
         );
-        const paymentRequest: payments.PaymentRequest3d = {
+        const paymentRequest: payment.PaymentRequest3d = {
             "md": "31h..........vOXek7w",
             "paResponse": "eNqtmF........wGVA4Ch",
             "shopperIP": "61.294.12.12",
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-        const paymentResult: payments.PaymentResult = await classicIntegration.authorise3d(paymentRequest);
+        const paymentResult: payment.PaymentResult = await classicIntegration.authorise3d(paymentRequest);
         expect(paymentResult.pspReference).toEqual("JVBXGSDM53RZNN82");
     });
 
@@ -127,7 +128,7 @@ describe("Classic Integration", (): void => {
                 "authCode": "011381"
             }
         );
-        const paymentRequest: payments.PaymentRequest3ds2 = {
+        const paymentRequest: payment.PaymentRequest3ds2 = {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "amount": {
                 "value": 1500,
@@ -141,7 +142,7 @@ describe("Classic Integration", (): void => {
             "threeDS2Token": "— - BINARY DATA - -"
           };
 
-        const paymentResult: payments.PaymentResult = await classicIntegration.authorise3ds2(paymentRequest);
+        const paymentResult: payment.PaymentResult = await classicIntegration.authorise3ds2(paymentRequest);
         expect(paymentResult.pspReference).toEqual("JVBXGSDM53RZNN82");
     });
 
@@ -150,12 +151,12 @@ describe("Classic Integration", (): void => {
             "threeDS2Result": { "authenticationValue": "THREEDS2RESULT"}
         });
 
-        const getAuthenticationResultrequest: payments.AuthenticationResultRequest = {
+        const getAuthenticationResultrequest: payment.AuthenticationResultRequest = {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "pspReference": "9935272408535455"
         };
 
-        const getAuthenticationResultResponse: payments.AuthenticationResultResponse = await classicIntegration.getAuthenticationResult(getAuthenticationResultrequest);
+        const getAuthenticationResultResponse: payment.AuthenticationResultResponse = await classicIntegration.getAuthenticationResult(getAuthenticationResultrequest);
         expect(getAuthenticationResultResponse?.threeDS2Result?.authenticationValue).toEqual("THREEDS2RESULT");
     });
 
@@ -163,12 +164,12 @@ describe("Classic Integration", (): void => {
         scope.post("/retrieve3ds2Result").reply(200, {
             "threeDS2Result": { "authenticationValue": "THREEDS2RESULT"}
         });
-        const retrieve3ds2ResultRequest: payments.ThreeDS2ResultRequest = {
+        const retrieve3ds2ResultRequest: payment.ThreeDS2ResultRequest = {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "pspReference": "9935272408535455"
           };
 
-        const retrieve3ds2ResultResponse: payments.ThreeDS2ResultResponse = await classicIntegration.retrieve3ds2Result(retrieve3ds2ResultRequest);
+        const retrieve3ds2ResultResponse: payment.ThreeDS2ResultResponse = await classicIntegration.retrieve3ds2Result(retrieve3ds2ResultRequest);
         expect(retrieve3ds2ResultResponse?.threeDS2Result?.authenticationValue).toEqual("THREEDS2RESULT");
     });
 
@@ -179,7 +180,7 @@ describe("Classic Integration", (): void => {
                 "response": "[capture-received]"
             });
 
-        const modificationRequest: payments.CaptureRequest = {
+        const modificationRequest: payment.CaptureRequest = {
             "originalReference": "COPY_PSP_REFERENCE_FROM_AUTHORISE_RESPONSE",
             "modificationAmount": {
               "value": 500,
@@ -189,8 +190,8 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payments.ModificationResult = await classicIntegration.capture(modificationRequest);
-          expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.CaptureReceived);
+          const modificationResult: payment.ModificationResult = await classicIntegration.capture(modificationRequest);
+          expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.CaptureReceived);
     });
 
     test("Should successfully send Cancel request", async (): Promise<void> => {
@@ -200,14 +201,14 @@ describe("Classic Integration", (): void => {
                 "response": "[cancel-received]"
             });
 
-        const modificationRequest: payments.CancelRequest = {
+        const modificationRequest: payment.CancelRequest = {
             "originalReference": "COPY_PSP_REFERENCE_FROM_AUTHORISE_RESPONSE",
             "reference": "YourModificationReference",
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payments.ModificationResult = await classicIntegration.cancel(modificationRequest);
-          expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.CancelReceived);
+          const modificationResult: payment.ModificationResult = await classicIntegration.cancel(modificationRequest);
+          expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.CancelReceived);
     });
 
     test("Should successfully send Refund request", async (): Promise<void> => {
@@ -217,7 +218,7 @@ describe("Classic Integration", (): void => {
                 "response": "[refund-received]"
             });
 
-        const modificationRequest: payments.RefundRequest = {
+        const modificationRequest: payment.RefundRequest = {
             "originalReference": "COPY_PSP_REFERENCE_FROM_AUTHORISE_RESPONSE",
             "modificationAmount": {
               "value": 500,
@@ -227,8 +228,8 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payments.ModificationResult = await classicIntegration.refund(modificationRequest);
-          expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.RefundReceived);
+          const modificationResult: payment.ModificationResult = await classicIntegration.refund(modificationRequest);
+          expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.RefundReceived);
     });
 
     test("Should successfully send CancelOrRefund request", async (): Promise<void> => {
@@ -238,14 +239,14 @@ describe("Classic Integration", (): void => {
                 "response": "[cancelOrRefund-received]"
             });
 
-        const modificationRequest: payments.CancelOrRefundRequest = {
+        const modificationRequest: payment.CancelOrRefundRequest = {
             "originalReference": "COPY_PSP_REFERENCE_FROM_AUTHORISE_RESPONSE",
             "reference": "YourModificationReference",
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payments.ModificationResult = await classicIntegration.cancelOrRefund(modificationRequest);
-          expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.CancelOrRefundReceived);
+          const modificationResult: payment.ModificationResult = await classicIntegration.cancelOrRefund(modificationRequest);
+          expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.CancelOrRefundReceived);
     });
     
     test("Should successfully send TechnicalCancel request", async (): Promise<void> => {
@@ -255,7 +256,7 @@ describe("Classic Integration", (): void => {
                 "response": "[technical-cancel-received]"
             });
 
-        const modificationRequest: payments.TechnicalCancelRequest = {
+        const modificationRequest: payment.TechnicalCancelRequest = {
             "originalMerchantReference": "COPY_PSP_REFERENCE_FROM_AUTHORISE_RESPONSE",
             "modificationAmount": {
               "value": 500,
@@ -265,8 +266,8 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payments.ModificationResult = await classicIntegration.technicalCancel(modificationRequest);
-          expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.TechnicalCancelReceived);
+          const modificationResult: payment.ModificationResult = await classicIntegration.technicalCancel(modificationRequest);
+          expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.TechnicalCancelReceived);
     });
 
     test("Should successfully send AdjustAuthorisation request", async (): Promise<void> => {
@@ -276,7 +277,7 @@ describe("Classic Integration", (): void => {
                 "response": "[adjustAuthorisation-received]"
             });
 
-        const modificationRequest: payments.AdjustAuthorisationRequest = {
+        const modificationRequest: payment.AdjustAuthorisationRequest = {
             "originalReference": "COPY_PSP_REFERENCE_FROM_AUTHORISE_RESPONSE",
             "modificationAmount": {
               "value": 500,
@@ -286,8 +287,8 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payments.ModificationResult = await classicIntegration.adjustAuthorisation(modificationRequest);
-          expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.AdjustAuthorisationReceived);
+          const modificationResult: payment.ModificationResult = await classicIntegration.adjustAuthorisation(modificationRequest);
+          expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.AdjustAuthorisationReceived);
     });
 
     test("Should successfully send Donate request", async (): Promise<void> => {
@@ -297,7 +298,7 @@ describe("Classic Integration", (): void => {
                 "response": "[donation-received]"
             });
 
-        const modificationRequest: payments.DonationRequest = {
+        const modificationRequest: payment.DonationRequest = {
             "originalReference": "COPY_PSP_REFERENCE_FROM_AUTHORISE_RESPONSE",
             "modificationAmount": {
               "value": 500,
@@ -308,8 +309,8 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payments.ModificationResult = await classicIntegration.donate(modificationRequest);
-          expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.DonationReceived);
+          const modificationResult: payment.ModificationResult = await classicIntegration.donate(modificationRequest);
+          expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.DonationReceived);
     });
 
     test("Should successfully send VoidPendingRefund request", async (): Promise<void> => {
@@ -319,13 +320,13 @@ describe("Classic Integration", (): void => {
                 "response": "[voidPendingRefund-received]"
             });
 
-        const modificationRequest: payments.VoidPendingRefundRequest = {
+        const modificationRequest: payment.VoidPendingRefundRequest = {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "tenderReference": "5Iw8001176969533005",
             "uniqueTerminalId": "VX820-123456789"
           };
 
-          const modificationResult: payments.ModificationResult = await classicIntegration.voidPendingRefund(modificationRequest);
-          expect(modificationResult.response).toEqual(payments.ModificationResult.ResponseEnum.VoidPendingRefundReceived);
+          const modificationResult: payment.ModificationResult = await classicIntegration.voidPendingRefund(modificationRequest);
+          expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.VoidPendingRefundReceived);
     });
 });

@@ -10,6 +10,13 @@ import SuccessEnum = NotificationRequestItem.SuccessEnum;
 import BankingWebhookHandler from "../notification/bankingWebhookHandler";
 import {AccountHolderNotificationRequest} from "../typings/configurationWebhooks/accountHolderNotificationRequest";
 import HmacValidator from "../utils/hmacValidator";
+import ManagementWebhookHandler from "../notification/managementWebhookHandler";
+import {
+    PaymentMethodCreatedNotificationRequest
+} from "../typings/managementWebhooks/paymentMethodCreatedNotificationRequest";
+import {MerchantUpdatedNotificationRequest} from "../typings/managementWebhooks/merchantUpdatedNotificationRequest";
+import {AuthenticationNotificationRequest} from "../typings/acsWebhooks/authenticationNotificationRequest";
+import {TransferNotificationRequest} from "../typings/transferWebhooks/transferNotificationRequest";
 
 describe("Notification Test", function (): void {
 
@@ -18,7 +25,7 @@ describe("Notification Test", function (): void {
         hmacValidator = new HmacValidator();
     });
 
-    it("should return authorisation success", function (): void  {
+    it("should return authorisation success", function (): void {
         const notificationRequest = new NotificationRequest(authorisationTrue as unknown as Notification);
         expect(notificationRequest.notificationItems).toHaveLength(1);
 
@@ -98,7 +105,21 @@ describe("Notification Test", function (): void {
     });
 
     it("should deserialize Banking Webhooks", function (): void {
-        const json = { "data": {"balancePlatform":"YOUR_BALANCE_PLATFORM","accountHolder":{"contactDetails":{"address":{"country":"NL","houseNumberOrName":"274","postalCode":"1020CD","street":"Brannan Street"},"email": "s.hopper@example.com","phone": {"number": "+315551231234","type": "Mobile"}},"description": "S.Hopper - Staff 123","id": "AH00000000000000000000001","status": "Active"}},"environment": "test","type": "balancePlatform.accountHolder.created"};
+        const json = {
+            "data": {
+                "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                "accountHolder": {
+                    "contactDetails": {
+                        "address": {
+                            "country": "NL",
+                            "houseNumberOrName": "274",
+                            "postalCode": "1020CD",
+                            "street": "Brannan Street"
+                        }, "email": "s.hopper@example.com", "phone": {"number": "+315551231234", "type": "Mobile"}
+                    }, "description": "S.Hopper - Staff 123", "id": "AH00000000000000000000001", "status": "Active"
+                }
+            }, "environment": "test", "type": "balancePlatform.accountHolder.created"
+        };
         const jsonString = JSON.stringify(json);
         let bankingWebhookHandler = new BankingWebhookHandler(jsonString);
         const accountHolderNotificationRequest: AccountHolderNotificationRequest = bankingWebhookHandler.getAccountHolderNotificationRequest();
@@ -111,5 +132,78 @@ describe("Notification Test", function (): void {
         const jsonString = "{\"data\":{\"balancePlatform\":\"Integration_tools_test\",\"accountId\":\"BA32272223222H5HVKTBK4MLB\",\"sweep\":{\"id\":\"SWPC42272223222H5HVKV6H8C64DP5\",\"schedule\":{\"type\":\"balance\"},\"status\":\"active\",\"targetAmount\":{\"currency\":\"EUR\",\"value\":0},\"triggerAmount\":{\"currency\":\"EUR\",\"value\":0},\"type\":\"pull\",\"counterparty\":{\"balanceAccountId\":\"BA3227C223222H5HVKT3H9WLC\"},\"currency\":\"EUR\"}},\"environment\":\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
         const isValid = hmacValidator.validateBankingHMAC("9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=", "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F", jsonString)
         expect(isValid).toBe(true)
+    });
+
+    it("should deserialize Management Webhooks", function (): void {
+        const json = {
+            "createdAt": "2022-01-24T14:59:11+01:00",
+            "data": {
+                "id": "PM3224R223224K5FH4M2K9B86",
+                "merchantId": "MERCHANT_ACCOUNT",
+                "result": "SUCCESS",
+                "storeId": "ST322LJ223223K5F4SQNR9XL5",
+                "type": "visa"
+            },
+            "environment": "test",
+            "type": "paymentMethod.created"
+        };
+        const jsonString = JSON.stringify(json);
+        let managementWebhookHandler = new ManagementWebhookHandler(jsonString);
+        const paymentMethodCreatedNotificationRequest: PaymentMethodCreatedNotificationRequest = managementWebhookHandler.getPaymentMethodCreatedNotificationRequest();
+        const genericWebhook = managementWebhookHandler.getGenericWebhook();
+        expect(genericWebhook instanceof PaymentMethodCreatedNotificationRequest).toBe(true)
+        expect(genericWebhook instanceof MerchantUpdatedNotificationRequest).toBe(false)
+        expect(paymentMethodCreatedNotificationRequest.type).toEqual(PaymentMethodCreatedNotificationRequest.TypeEnum.PaymentMethodCreated)
+    });
+
+    it("should deserialize Banking Authentication Webhook", function (): void {
+        const json = {
+            "data": {
+                "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                "creationDate": "2023-01-19T17:07:59+01:00",
+                "id": "a8fc7a40-6e48-498a-bdc2-494daf0f490a",
+                "authentication": {
+                    "acsTransId": "a8fc7a40-6e48-498a-bdc2-494daf0f490a",
+                    "challenge": {
+                        "flow": "OTP_SMS",
+                        "lastInteraction": "2023-01-19T17:37:13+01:00",
+                        "phoneNumber": "******6789",
+                        "resends": 0,
+                        "retries": 2
+                    },
+                    "challengeIndicator": "01",
+                    "createdAt": "2023-01-19T17:07:17+01:00",
+                    "deviceChannel": "app",
+                    "dsTransID": "59de4e30-7f84-4a77-aaf8-1ca493092ef9",
+                    "exemptionIndicator": "noExemptionApplied",
+                    "inPSD2Scope": false,
+                    "messageCategory": "payment",
+                    "messageVersion": "2.2.0",
+                    "threeDSServerTransID": "8bc0fdbd-5c8a-4bed-a171-9d10347e7798",
+                    "transStatus": "N",
+                    "transStatusReason": "19",
+                    "type": "challenge"
+                },
+                "paymentInstrumentId": "PI3227C223222B5BPCMFXD2XG",
+                "purchase": {
+                    "date": "2022-12-22T15:49:03+01:00",
+                    "merchantName": "TeaShop_NL",
+                    "originalAmount": {
+                        "currency": "EUR",
+                        "value": 1000
+                    }
+                },
+                "status": "rejected"
+            },
+            "environment": "test",
+            "type": "balancePlatform.authentication.created"
+        };
+        const jsonString = JSON.stringify(json);
+        let bankingWebhookHandler = new BankingWebhookHandler(jsonString);
+        const accountHolderNotificationRequest: TransferNotificationRequest = bankingWebhookHandler.getTransferNotificationRequest();
+        const genericWebhook = bankingWebhookHandler.getGenericWebhook();
+        expect(accountHolderNotificationRequest.type).toEqual(AuthenticationNotificationRequest.TypeEnum.BalancePlatformAuthenticationCreated)
+        expect(genericWebhook instanceof AccountHolderNotificationRequest).toBe(false)
+        expect(genericWebhook instanceof AuthenticationNotificationRequest).toBe(true)
     });
 });

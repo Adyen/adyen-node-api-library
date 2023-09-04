@@ -141,12 +141,14 @@ export class TransactionRule {
 
 export namespace TransactionRule {
     export enum OutcomeTypeEnum {
+        EnforceSca = 'enforceSCA',
         HardBlock = 'hardBlock',
         ScoreBased = 'scoreBased'
     }
     export enum RequestTypeEnum {
         Authentication = 'authentication',
         Authorization = 'authorization',
+        BankTransfer = 'bankTransfer',
         Tokenization = 'tokenization'
     }
     export enum StatusEnum {

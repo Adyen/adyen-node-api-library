@@ -38,9 +38,17 @@ export class Transaction {
     */
     'createdAt': Date;
     /**
+    * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+    */
+    'creationDate'?: Date;
+    /**
     * The `description` from the `/transfers` request.
     */
     'description'?: string;
+    /**
+    * The PSP reference in the journal.
+    */
+    'eventId'?: string;
     /**
     * Unique identifier of the transaction.
     */
@@ -119,8 +127,18 @@ export class Transaction {
             "type": "Date"
         },
         {
+            "name": "creationDate",
+            "baseName": "creationDate",
+            "type": "Date"
+        },
+        {
             "name": "description",
             "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "eventId",
+            "baseName": "eventId",
             "type": "string"
         },
         {

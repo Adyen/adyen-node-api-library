@@ -16,6 +16,7 @@ import { BalanceAccountUpdateRequest } from "../../typings/balancePlatform/model
 import { BalanceSweepConfigurationsResponse } from "../../typings/balancePlatform/models";
 import { PaginatedPaymentInstrumentsResponse } from "../../typings/balancePlatform/models";
 import { SweepConfigurationV2 } from "../../typings/balancePlatform/models";
+import { UpdateSweepConfigurationV2 } from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/balancePlatform/models";
@@ -130,17 +131,17 @@ export class BalanceAccountsApi extends Service {
     * @summary Update a sweep
     * @param balanceAccountId {@link string } The unique identifier of the balance account.
     * @param sweepId {@link string } The unique identifier of the sweep.
-    * @param sweepConfigurationV2 {@link SweepConfigurationV2 } 
+    * @param updateSweepConfigurationV2 {@link UpdateSweepConfigurationV2 } 
     * @param requestOptions {@link IRequest.Options}
     * @return {@link SweepConfigurationV2 }
     */
-    public async updateSweep(balanceAccountId: string, sweepId: string, sweepConfigurationV2: SweepConfigurationV2, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
+    public async updateSweep(balanceAccountId: string, sweepId: string, updateSweepConfigurationV2: UpdateSweepConfigurationV2, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
         const endpoint = `${this.baseUrl}/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}`
             .replace("{" + "balanceAccountId" + "}", encodeURIComponent(String(balanceAccountId)))
             .replace("{" + "sweepId" + "}", encodeURIComponent(String(sweepId)));
         const resource = new Resource(this, endpoint);
-        const request: SweepConfigurationV2 = ObjectSerializer.serialize(sweepConfigurationV2, "SweepConfigurationV2");
-        const response = await getJsonResponse<SweepConfigurationV2, SweepConfigurationV2>(
+        const request: UpdateSweepConfigurationV2 = ObjectSerializer.serialize(updateSweepConfigurationV2, "UpdateSweepConfigurationV2");
+        const response = await getJsonResponse<UpdateSweepConfigurationV2, SweepConfigurationV2>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }

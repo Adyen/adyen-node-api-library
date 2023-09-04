@@ -10,15 +10,15 @@
 
 export class BRLocalAccountIdentification {
     /**
-    * The bank account number (without separators or whitespace).
+    * The bank account number, without separators or whitespace.
     */
     'accountNumber': string;
     /**
-    * The 3-digit Brazilian bank code (with leading zeros).
+    * The 3-digit bank code, with leading zeros.
     */
     'bankCode': string;
     /**
-    * The bank account branch number (without separators or whitespace).
+    * The bank account branch number, without separators or whitespace.
     */
     'branchNumber': string;
     /**

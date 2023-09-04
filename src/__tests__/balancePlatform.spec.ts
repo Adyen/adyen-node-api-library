@@ -348,7 +348,7 @@ describe("Balance Platform", (): void => {
                     "status": balancePlatform.SweepConfigurationV2.StatusEnum.Inactive,
                     "currency": "EUR",
                         "schedule": {
-                            "type": balancePlatform.CronSweepSchedule.TypeEnum.Cron
+                            "type": balancePlatform.SweepSchedule.TypeEnum.Cron
                         }
                 };
 
