@@ -457,7 +457,7 @@ const paymentRequest: SaleToPOIRequest = {
 const terminalApiResponse: terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest, securityKey);
 ```
 ## Using the Local Terminal API Integration without Encryption (Only on TEST)
-In case you would like to develop the Local Terminal API integration parallel to you encryption implementation, you can opt for the unencrypted version. Be sure to remove any encryption details from the CA terminal config page. 
+If you wish to develop the Local Terminal API integration parallel to your encryption implementation, you can opt for the unencrypted version. Be sure to remove any encryption details from the CA terminal config page. 
 ```javascript
 // Step 1: Require the parts of the module you want to use
 const {Client, TerminalLocalAPIUnencrypted} from "@adyen/api-library";
