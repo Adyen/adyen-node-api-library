@@ -14,11 +14,11 @@ export class AdditionalDataTemporaryServices {
     */
     'enhancedSchemeData_customerReference'?: string;
     /**
-    * The name or ID of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces
+    * The name or ID of the person working in a temporary capacity. * maxLength: 40.   * Must not be all spaces.  *Must not be all zeros.
     */
     'enhancedSchemeData_employeeName'?: string;
     /**
-    * The job description of the person working in a temporary capacity. * maxLength: 40 * Must not be all zeros * Must not be all spaces
+    * The job description of the person working in a temporary capacity. * maxLength: 40  * Must not be all spaces.  *Must not be all zeros.
     */
     'enhancedSchemeData_jobDescription'?: string;
     /**

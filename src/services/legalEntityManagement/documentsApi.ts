@@ -62,6 +62,7 @@ export class DocumentsApi extends Service {
     /**
     * @summary Update a document
     * @param id {@link string } The unique identifier of the document to be updated.
+    * @param xRequestedVerificationCode {@link string } Use the requested verification code 0_0001 to resolve any suberrors associated with the document. Requested verification codes can only be used in your test environment.
     * @param document {@link Document } 
     * @param requestOptions {@link IRequest.Options}
     * @return {@link Document }

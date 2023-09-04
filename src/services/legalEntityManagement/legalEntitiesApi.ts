@@ -68,6 +68,7 @@ export class LegalEntitiesApi extends Service {
     /**
     * @summary Update a legal entity
     * @param id {@link string } The unique identifier of the legal entity.
+    * @param xRequestedVerificationCode {@link string } Use the requested verification code 0_0001 to resolve any suberrors associated with the legal entity. Requested verification codes can only be used in your test environment.
     * @param legalEntityInfo {@link LegalEntityInfo } 
     * @param requestOptions {@link IRequest.Options}
     * @return {@link LegalEntity }
