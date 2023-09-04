@@ -69,17 +69,9 @@ export namespace Split {
         Default = 'Default',
         MarketPlace = 'MarketPlace',
         PaymentFee = 'PaymentFee',
-        PaymentFeeAcquiring = 'PaymentFeeAcquiring',
-        PaymentFeeAdyen = 'PaymentFeeAdyen',
-        PaymentFeeAdyenCommission = 'PaymentFeeAdyenCommission',
-        PaymentFeeAdyenMarkup = 'PaymentFeeAdyenMarkup',
-        PaymentFeeInterchange = 'PaymentFeeInterchange',
-        PaymentFeeSchemeFee = 'PaymentFeeSchemeFee',
         Remainder = 'Remainder',
         Surcharge = 'Surcharge',
         Tip = 'Tip',
-        TopUp = 'TopUp',
-        Vat = 'VAT',
-        Verification = 'Verification'
+        Vat = 'VAT'
     }
 }

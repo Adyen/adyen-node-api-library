@@ -18,7 +18,7 @@ export class AdditionalDataLodging {
     */
     'lodging_checkOutDate'?: string;
     /**
-    * The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -
+    * The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros.
     */
     'lodging_customerServiceTollFreeNumber'?: string;
     /**
@@ -30,7 +30,7 @@ export class AdditionalDataLodging {
     */
     'lodging_folioCashAdvances'?: string;
     /**
-    * The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters. * Must not start with a space * Must not be all zeros
+    * The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters. * Must not start with a space *Must not be all zeros.
     */
     'lodging_folioNumber'?: string;
     /**
@@ -46,11 +46,11 @@ export class AdditionalDataLodging {
     */
     'lodging_prepaidExpenses'?: string;
     /**
-    * The lodging property location\'s phone number. * Format: numeric. * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not be all zeros * Must not contain any special characters such as + or -
+    * The lodging property location\'s phone number. * Format: numeric. * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros.
     */
     'lodging_propertyPhoneNumber'?: string;
     /**
-    * The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 2 characters
+    * The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 4 characters
     */
     'lodging_room1_numberOfNights'?: string;
     /**
@@ -66,7 +66,7 @@ export class AdditionalDataLodging {
     */
     'lodging_totalTax'?: string;
     /**
-    * The number of nights. This should be included in the auth message. * Format: numeric * Max length: 2 characters
+    * The number of nights. This should be included in the auth message. * Format: numeric * Max length: 4 characters
     */
     'travelEntertainmentAuthData_duration'?: string;
     /**
