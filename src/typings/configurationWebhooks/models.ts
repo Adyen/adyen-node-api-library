@@ -22,6 +22,9 @@ export * from './balanceAccountNotificationData';
 export * from './balanceAccountNotificationRequest';
 export * from './balancePlatformNotificationResponse';
 export * from './bulkAddress';
+export * from './capabilityProblem';
+export * from './capabilityProblemEntity';
+export * from './capabilityProblemEntityRecursive';
 export * from './capabilitySettings';
 export * from './card';
 export * from './cardConfiguration';
@@ -30,7 +33,6 @@ export * from './cardOrderItemDeliveryStatus';
 export * from './cardOrderNotificationRequest';
 export * from './contact';
 export * from './contactDetails';
-export * from './cronSweepSchedule';
 export * from './expiry';
 export * from './ibanAccountIdentification';
 export * from './name';
@@ -41,14 +43,17 @@ export * from './paymentNotificationRequest';
 export * from './personalData';
 export * from './phone';
 export * from './phoneNumber';
+export * from './platformPaymentConfiguration';
+export * from './remediatingAction';
 export * from './resource';
-export * from './sweepConfiguration';
 export * from './sweepConfigurationNotificationData';
 export * from './sweepConfigurationNotificationRequest';
 export * from './sweepConfigurationV2';
 export * from './sweepCounterparty';
 export * from './sweepSchedule';
 export * from './uSLocalAccountIdentification';
+export * from './verificationError';
+export * from './verificationErrorRecursive';
 
 
 import { AccountHolder } from './accountHolder';
@@ -65,6 +70,9 @@ import { BalanceAccountNotificationData } from './balanceAccountNotificationData
 import { BalanceAccountNotificationRequest } from './balanceAccountNotificationRequest';
 import { BalancePlatformNotificationResponse } from './balancePlatformNotificationResponse';
 import { BulkAddress } from './bulkAddress';
+import { CapabilityProblem } from './capabilityProblem';
+import { CapabilityProblemEntity } from './capabilityProblemEntity';
+import { CapabilityProblemEntityRecursive } from './capabilityProblemEntityRecursive';
 import { CapabilitySettings } from './capabilitySettings';
 import { Card } from './card';
 import { CardConfiguration } from './cardConfiguration';
@@ -73,7 +81,6 @@ import { CardOrderItemDeliveryStatus } from './cardOrderItemDeliveryStatus';
 import { CardOrderNotificationRequest } from './cardOrderNotificationRequest';
 import { Contact } from './contact';
 import { ContactDetails } from './contactDetails';
-import { CronSweepSchedule } from './cronSweepSchedule';
 import { Expiry } from './expiry';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { Name } from './name';
@@ -84,14 +91,17 @@ import { PaymentNotificationRequest } from './paymentNotificationRequest';
 import { PersonalData } from './personalData';
 import { Phone } from './phone';
 import { PhoneNumber } from './phoneNumber';
+import { PlatformPaymentConfiguration } from './platformPaymentConfiguration';
+import { RemediatingAction } from './remediatingAction';
 import { Resource } from './resource';
-import { SweepConfiguration } from './sweepConfiguration';
 import { SweepConfigurationNotificationData } from './sweepConfigurationNotificationData';
 import { SweepConfigurationNotificationRequest } from './sweepConfigurationNotificationRequest';
 import { SweepConfigurationV2 } from './sweepConfigurationV2';
 import { SweepCounterparty } from './sweepCounterparty';
 import { SweepSchedule } from './sweepSchedule';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
+import { VerificationError } from './verificationError';
+import { VerificationErrorRecursive } from './verificationErrorRecursive';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -116,20 +126,19 @@ let enumsMap: {[index: string]: any} = {
         "AccountSupportingEntityCapability.VerificationStatusEnum": AccountSupportingEntityCapability.VerificationStatusEnum,
         "BalanceAccount.StatusEnum": BalanceAccount.StatusEnum,
         "BalanceAccountNotificationRequest.TypeEnum": BalanceAccountNotificationRequest.TypeEnum,
+        "CapabilityProblemEntity.TypeEnum": CapabilityProblemEntity.TypeEnum,
+        "CapabilityProblemEntityRecursive.TypeEnum": CapabilityProblemEntityRecursive.TypeEnum,
         "CapabilitySettings.FundingSourceEnum": CapabilitySettings.FundingSourceEnum,
         "CapabilitySettings.IntervalEnum": CapabilitySettings.IntervalEnum,
         "Card.FormFactorEnum": Card.FormFactorEnum,
         "CardOrderItemDeliveryStatus.StatusEnum": CardOrderItemDeliveryStatus.StatusEnum,
         "CardOrderNotificationRequest.TypeEnum": CardOrderNotificationRequest.TypeEnum,
-        "CronSweepSchedule.TypeEnum": CronSweepSchedule.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
         "PaymentInstrument.StatusEnum": PaymentInstrument.StatusEnum,
         "PaymentInstrument.TypeEnum": PaymentInstrument.TypeEnum,
         "PaymentNotificationRequest.TypeEnum": PaymentNotificationRequest.TypeEnum,
         "Phone.TypeEnum": Phone.TypeEnum,
         "PhoneNumber.PhoneTypeEnum": PhoneNumber.PhoneTypeEnum,
-        "SweepConfiguration.StatusEnum": SweepConfiguration.StatusEnum,
-        "SweepConfiguration.TypeEnum": SweepConfiguration.TypeEnum,
         "SweepConfigurationNotificationRequest.TypeEnum": SweepConfigurationNotificationRequest.TypeEnum,
         "SweepConfigurationV2.ReasonEnum": SweepConfigurationV2.ReasonEnum,
         "SweepConfigurationV2.StatusEnum": SweepConfigurationV2.StatusEnum,
@@ -137,6 +146,10 @@ let enumsMap: {[index: string]: any} = {
         "SweepSchedule.TypeEnum": SweepSchedule.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
+        "VerificationError.CapabilitiesEnum": VerificationError.CapabilitiesEnum,
+        "VerificationError.TypeEnum": VerificationError.TypeEnum,
+        "VerificationErrorRecursive.CapabilitiesEnum": VerificationErrorRecursive.CapabilitiesEnum,
+        "VerificationErrorRecursive.TypeEnum": VerificationErrorRecursive.TypeEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -154,6 +167,9 @@ let typeMap: {[index: string]: any} = {
     "BalanceAccountNotificationRequest": BalanceAccountNotificationRequest,
     "BalancePlatformNotificationResponse": BalancePlatformNotificationResponse,
     "BulkAddress": BulkAddress,
+    "CapabilityProblem": CapabilityProblem,
+    "CapabilityProblemEntity": CapabilityProblemEntity,
+    "CapabilityProblemEntityRecursive": CapabilityProblemEntityRecursive,
     "CapabilitySettings": CapabilitySettings,
     "Card": Card,
     "CardConfiguration": CardConfiguration,
@@ -162,7 +178,6 @@ let typeMap: {[index: string]: any} = {
     "CardOrderNotificationRequest": CardOrderNotificationRequest,
     "Contact": Contact,
     "ContactDetails": ContactDetails,
-    "CronSweepSchedule": CronSweepSchedule,
     "Expiry": Expiry,
     "IbanAccountIdentification": IbanAccountIdentification,
     "Name": Name,
@@ -173,21 +188,23 @@ let typeMap: {[index: string]: any} = {
     "PersonalData": PersonalData,
     "Phone": Phone,
     "PhoneNumber": PhoneNumber,
+    "PlatformPaymentConfiguration": PlatformPaymentConfiguration,
+    "RemediatingAction": RemediatingAction,
     "Resource": Resource,
-    "SweepConfiguration": SweepConfiguration,
     "SweepConfigurationNotificationData": SweepConfigurationNotificationData,
     "SweepConfigurationNotificationRequest": SweepConfigurationNotificationRequest,
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,
     "SweepSchedule": SweepSchedule,
     "USLocalAccountIdentification": USLocalAccountIdentification,
+    "VerificationError": VerificationError,
+    "VerificationErrorRecursive": VerificationErrorRecursive,
 }
 
 export class ObjectSerializer {
     public static findCorrectType(data: any, expectedType: string) {
         if (data == undefined) {
             return expectedType;
-
         } else if (primitives.indexOf(expectedType.toLowerCase()) !== -1) {
             return expectedType;
         } else if (expectedType === "Date") {

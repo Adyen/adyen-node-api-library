@@ -17,7 +17,9 @@ export * from './accountSupportingEntityCapability';
 export * from './activeNetworkTokensRestriction';
 export * from './additionalBankIdentification';
 export * from './address';
+export * from './addressRequirement';
 export * from './amount';
+export * from './amountMinMaxRequirement';
 export * from './authentication';
 export * from './bRLocalAccountIdentification';
 export * from './balance';
@@ -27,6 +29,8 @@ export * from './balanceAccountInfo';
 export * from './balanceAccountUpdateRequest';
 export * from './balancePlatform';
 export * from './balanceSweepConfigurationsResponse';
+export * from './bankAccount';
+export * from './bankAccountIdentificationTypeRequirement';
 export * from './bankAccountIdentificationValidationRequest';
 export * from './brandVariantsRestriction';
 export * from './bulkAddress';
@@ -42,7 +46,9 @@ export * from './card';
 export * from './cardConfiguration';
 export * from './cardInfo';
 export * from './contactDetails';
+export * from './counterparty';
 export * from './countriesRestriction';
+export * from './createSweepConfigurationV2';
 export * from './dKLocalAccountIdentification';
 export * from './dayOfWeekRestriction';
 export * from './deliveryAddress';
@@ -83,6 +89,7 @@ export * from './paymentInstrument';
 export * from './paymentInstrumentGroup';
 export * from './paymentInstrumentGroupInfo';
 export * from './paymentInstrumentInfo';
+export * from './paymentInstrumentRequirement';
 export * from './paymentInstrumentRevealInfo';
 export * from './paymentInstrumentUpdateRequest';
 export * from './phone';
@@ -110,6 +117,9 @@ export * from './transactionRuleInterval';
 export * from './transactionRuleResponse';
 export * from './transactionRuleRestrictions';
 export * from './transactionRulesResponse';
+export * from './transferRoute';
+export * from './transferRouteRequest';
+export * from './transferRouteResponse';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
 export * from './updateNetworkTokenRequest';
@@ -129,7 +139,9 @@ import { AccountSupportingEntityCapability } from './accountSupportingEntityCapa
 import { ActiveNetworkTokensRestriction } from './activeNetworkTokensRestriction';
 import { AdditionalBankIdentification } from './additionalBankIdentification';
 import { Address } from './address';
+import { AddressRequirement } from './addressRequirement';
 import { Amount } from './amount';
+import { AmountMinMaxRequirement } from './amountMinMaxRequirement';
 import { Authentication } from './authentication';
 import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
 import { Balance } from './balance';
@@ -139,6 +151,8 @@ import { BalanceAccountInfo } from './balanceAccountInfo';
 import { BalanceAccountUpdateRequest } from './balanceAccountUpdateRequest';
 import { BalancePlatform } from './balancePlatform';
 import { BalanceSweepConfigurationsResponse } from './balanceSweepConfigurationsResponse';
+import { BankAccount } from './bankAccount';
+import { BankAccountIdentificationTypeRequirement } from './bankAccountIdentificationTypeRequirement';
 import { BankAccountIdentificationValidationRequest } from './bankAccountIdentificationValidationRequest';
 import { BrandVariantsRestriction } from './brandVariantsRestriction';
 import { BulkAddress } from './bulkAddress';
@@ -154,7 +168,9 @@ import { Card } from './card';
 import { CardConfiguration } from './cardConfiguration';
 import { CardInfo } from './cardInfo';
 import { ContactDetails } from './contactDetails';
+import { Counterparty } from './counterparty';
 import { CountriesRestriction } from './countriesRestriction';
+import { CreateSweepConfigurationV2 } from './createSweepConfigurationV2';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
 import { DayOfWeekRestriction } from './dayOfWeekRestriction';
 import { DeliveryAddress } from './deliveryAddress';
@@ -195,6 +211,7 @@ import { PaymentInstrument } from './paymentInstrument';
 import { PaymentInstrumentGroup } from './paymentInstrumentGroup';
 import { PaymentInstrumentGroupInfo } from './paymentInstrumentGroupInfo';
 import { PaymentInstrumentInfo } from './paymentInstrumentInfo';
+import { PaymentInstrumentRequirement } from './paymentInstrumentRequirement';
 import { PaymentInstrumentRevealInfo } from './paymentInstrumentRevealInfo';
 import { PaymentInstrumentUpdateRequest } from './paymentInstrumentUpdateRequest';
 import { Phone } from './phone';
@@ -222,6 +239,9 @@ import { TransactionRuleInterval } from './transactionRuleInterval';
 import { TransactionRuleResponse } from './transactionRuleResponse';
 import { TransactionRuleRestrictions } from './transactionRuleRestrictions';
 import { TransactionRulesResponse } from './transactionRulesResponse';
+import { TransferRoute } from './transferRoute';
+import { TransferRouteRequest } from './transferRouteRequest';
+import { TransferRouteResponse } from './transferRouteResponse';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 import { UpdateNetworkTokenRequest } from './updateNetworkTokenRequest';
@@ -254,10 +274,14 @@ let enumsMap: {[index: string]: any} = {
         "AccountSupportingEntityCapability.RequestedLevelEnum": AccountSupportingEntityCapability.RequestedLevelEnum,
         "AccountSupportingEntityCapability.VerificationStatusEnum": AccountSupportingEntityCapability.VerificationStatusEnum,
         "AdditionalBankIdentification.TypeEnum": AdditionalBankIdentification.TypeEnum,
+        "AddressRequirement.TypeEnum": AddressRequirement.TypeEnum,
+        "AmountMinMaxRequirement.TypeEnum": AmountMinMaxRequirement.TypeEnum,
         "BRLocalAccountIdentification.TypeEnum": BRLocalAccountIdentification.TypeEnum,
         "BalanceAccount.StatusEnum": BalanceAccount.StatusEnum,
         "BalanceAccountBase.StatusEnum": BalanceAccountBase.StatusEnum,
         "BalanceAccountUpdateRequest.StatusEnum": BalanceAccountUpdateRequest.StatusEnum,
+        "BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum": BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum,
+        "BankAccountIdentificationTypeRequirement.TypeEnum": BankAccountIdentificationTypeRequirement.TypeEnum,
         "CALocalAccountIdentification.AccountTypeEnum": CALocalAccountIdentification.AccountTypeEnum,
         "CALocalAccountIdentification.TypeEnum": CALocalAccountIdentification.TypeEnum,
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
@@ -267,6 +291,11 @@ let enumsMap: {[index: string]: any} = {
         "CapabilitySettings.IntervalEnum": CapabilitySettings.IntervalEnum,
         "Card.FormFactorEnum": Card.FormFactorEnum,
         "CardInfo.FormFactorEnum": CardInfo.FormFactorEnum,
+        "CreateSweepConfigurationV2.CategoryEnum": CreateSweepConfigurationV2.CategoryEnum,
+        "CreateSweepConfigurationV2.PrioritiesEnum": CreateSweepConfigurationV2.PrioritiesEnum,
+        "CreateSweepConfigurationV2.ReasonEnum": CreateSweepConfigurationV2.ReasonEnum,
+        "CreateSweepConfigurationV2.StatusEnum": CreateSweepConfigurationV2.StatusEnum,
+        "CreateSweepConfigurationV2.TypeEnum": CreateSweepConfigurationV2.TypeEnum,
         "DKLocalAccountIdentification.TypeEnum": DKLocalAccountIdentification.TypeEnum,
         "DayOfWeekRestriction.ValueEnum": DayOfWeekRestriction.ValueEnum,
         "Duration.UnitEnum": Duration.UnitEnum,
@@ -286,6 +315,8 @@ let enumsMap: {[index: string]: any} = {
         "PaymentInstrumentInfo.StatusEnum": PaymentInstrumentInfo.StatusEnum,
         "PaymentInstrumentInfo.StatusReasonEnum": PaymentInstrumentInfo.StatusReasonEnum,
         "PaymentInstrumentInfo.TypeEnum": PaymentInstrumentInfo.TypeEnum,
+        "PaymentInstrumentRequirement.PaymentInstrumentTypeEnum": PaymentInstrumentRequirement.PaymentInstrumentTypeEnum,
+        "PaymentInstrumentRequirement.TypeEnum": PaymentInstrumentRequirement.TypeEnum,
         "PaymentInstrumentUpdateRequest.StatusEnum": PaymentInstrumentUpdateRequest.StatusEnum,
         "PaymentInstrumentUpdateRequest.StatusReasonEnum": PaymentInstrumentUpdateRequest.StatusReasonEnum,
         "Phone.TypeEnum": Phone.TypeEnum,
@@ -310,6 +341,10 @@ let enumsMap: {[index: string]: any} = {
         "TransactionRuleInfo.TypeEnum": TransactionRuleInfo.TypeEnum,
         "TransactionRuleInterval.DayOfWeekEnum": TransactionRuleInterval.DayOfWeekEnum,
         "TransactionRuleInterval.TypeEnum": TransactionRuleInterval.TypeEnum,
+        "TransferRoute.CategoryEnum": TransferRoute.CategoryEnum,
+        "TransferRoute.PriorityEnum": TransferRoute.PriorityEnum,
+        "TransferRouteRequest.CategoryEnum": TransferRouteRequest.CategoryEnum,
+        "TransferRouteRequest.PrioritiesEnum": TransferRouteRequest.PrioritiesEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
@@ -339,7 +374,9 @@ let typeMap: {[index: string]: any} = {
     "ActiveNetworkTokensRestriction": ActiveNetworkTokensRestriction,
     "AdditionalBankIdentification": AdditionalBankIdentification,
     "Address": Address,
+    "AddressRequirement": AddressRequirement,
     "Amount": Amount,
+    "AmountMinMaxRequirement": AmountMinMaxRequirement,
     "Authentication": Authentication,
     "BRLocalAccountIdentification": BRLocalAccountIdentification,
     "Balance": Balance,
@@ -349,6 +386,8 @@ let typeMap: {[index: string]: any} = {
     "BalanceAccountUpdateRequest": BalanceAccountUpdateRequest,
     "BalancePlatform": BalancePlatform,
     "BalanceSweepConfigurationsResponse": BalanceSweepConfigurationsResponse,
+    "BankAccount": BankAccount,
+    "BankAccountIdentificationTypeRequirement": BankAccountIdentificationTypeRequirement,
     "BankAccountIdentificationValidationRequest": BankAccountIdentificationValidationRequest,
     "BrandVariantsRestriction": BrandVariantsRestriction,
     "BulkAddress": BulkAddress,
@@ -364,7 +403,9 @@ let typeMap: {[index: string]: any} = {
     "CardConfiguration": CardConfiguration,
     "CardInfo": CardInfo,
     "ContactDetails": ContactDetails,
+    "Counterparty": Counterparty,
     "CountriesRestriction": CountriesRestriction,
+    "CreateSweepConfigurationV2": CreateSweepConfigurationV2,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DayOfWeekRestriction": DayOfWeekRestriction,
     "DeliveryAddress": DeliveryAddress,
@@ -405,6 +446,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentInstrumentGroup": PaymentInstrumentGroup,
     "PaymentInstrumentGroupInfo": PaymentInstrumentGroupInfo,
     "PaymentInstrumentInfo": PaymentInstrumentInfo,
+    "PaymentInstrumentRequirement": PaymentInstrumentRequirement,
     "PaymentInstrumentRevealInfo": PaymentInstrumentRevealInfo,
     "PaymentInstrumentUpdateRequest": PaymentInstrumentUpdateRequest,
     "Phone": Phone,
@@ -432,6 +474,9 @@ let typeMap: {[index: string]: any} = {
     "TransactionRuleResponse": TransactionRuleResponse,
     "TransactionRuleRestrictions": TransactionRuleRestrictions,
     "TransactionRulesResponse": TransactionRulesResponse,
+    "TransferRoute": TransferRoute,
+    "TransferRouteRequest": TransferRouteRequest,
+    "TransferRouteResponse": TransferRouteResponse,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,
     "UpdateNetworkTokenRequest": UpdateNetworkTokenRequest,

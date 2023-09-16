@@ -7,31 +7,33 @@
  * Do not edit this class manually.
  */
 
-import { TransactionDescriptionInfo } from './transactionDescriptionInfo';
 
-export class CartesBancairesInfo {
+export class RemediatingAction {
     /**
-    * Cartes Bancaires SIRET. Format: 14 digits.
+    * The remediating action code.
     */
-    'siret': string;
-    'transactionDescription'?: TransactionDescriptionInfo;
+    'code'?: string;
+    /**
+    * A description of how you can resolve the verification error.
+    */
+    'message'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "siret",
-            "baseName": "siret",
+            "name": "code",
+            "baseName": "code",
             "type": "string"
         },
         {
-            "name": "transactionDescription",
-            "baseName": "transactionDescription",
-            "type": "TransactionDescriptionInfo"
+            "name": "message",
+            "baseName": "message",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return CartesBancairesInfo.attributeTypeMap;
+        return RemediatingAction.attributeTypeMap;
     }
 }
 
