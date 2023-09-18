@@ -14,6 +14,10 @@ export class AndroidApp {
     */
     'description'?: string;
     /**
+    * The error code of the app. It exists if the status is error or invalid.
+    */
+    'errorCode'?: string;
+    /**
     * The unique identifier of the app.
     */
     'id': string;
@@ -26,7 +30,7 @@ export class AndroidApp {
     */
     'packageName'?: string;
     /**
-    * The status of the app. Possible values:  * `processing`: The app is being signed and converted to a format that the terminal can handle. * `error`: Something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * `invalid`: There is something wrong with the APK file of the app. * `ready`: The app has been signed and converted. * `archived`: The app is no longer available.
+    * The status of the app. Possible values:  * `processing`: the app is being signed and converted to a format that the terminal can handle. * `error`: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * `invalid`: there is something wrong with the APK file of the app. * `ready`: the app has been signed and converted. * `archived`: the app is no longer available.
     */
     'status': string;
     /**
@@ -44,6 +48,11 @@ export class AndroidApp {
         {
             "name": "description",
             "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "errorCode",
+            "baseName": "errorCode",
             "type": "string"
         },
         {

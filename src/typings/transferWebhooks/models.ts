@@ -21,10 +21,12 @@ export * from './cALocalAccountIdentification';
 export * from './cZLocalAccountIdentification';
 export * from './counterpartyV3';
 export * from './dKLocalAccountIdentification';
+export * from './hKLocalAccountIdentification';
 export * from './hULocalAccountIdentification';
 export * from './ibanAccountIdentification';
 export * from './merchantData';
 export * from './nOLocalAccountIdentification';
+export * from './nZLocalAccountIdentification';
 export * from './nameLocation';
 export * from './numberAndBicAccountIdentification';
 export * from './pLLocalAccountIdentification';
@@ -44,6 +46,7 @@ export * from './transferEvent';
 export * from './transferNotificationRequest';
 export * from './transferNotificationTransferTracking';
 export * from './transferNotificationValidationFact';
+export * from './transferOperation';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
 
@@ -61,10 +64,12 @@ import { CALocalAccountIdentification } from './cALocalAccountIdentification';
 import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
 import { CounterpartyV3 } from './counterpartyV3';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
+import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { MerchantData } from './merchantData';
 import { NOLocalAccountIdentification } from './nOLocalAccountIdentification';
+import { NZLocalAccountIdentification } from './nZLocalAccountIdentification';
 import { NameLocation } from './nameLocation';
 import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentification';
 import { PLLocalAccountIdentification } from './pLLocalAccountIdentification';
@@ -84,6 +89,7 @@ import { TransferEvent } from './transferEvent';
 import { TransferNotificationRequest } from './transferNotificationRequest';
 import { TransferNotificationTransferTracking } from './transferNotificationTransferTracking';
 import { TransferNotificationValidationFact } from './transferNotificationValidationFact';
+import { TransferOperation } from './transferOperation';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 
@@ -108,9 +114,11 @@ let enumsMap: {[index: string]: any} = {
         "CALocalAccountIdentification.TypeEnum": CALocalAccountIdentification.TypeEnum,
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
         "DKLocalAccountIdentification.TypeEnum": DKLocalAccountIdentification.TypeEnum,
+        "HKLocalAccountIdentification.TypeEnum": HKLocalAccountIdentification.TypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
+        "NZLocalAccountIdentification.TypeEnum": NZLocalAccountIdentification.TypeEnum,
         "NumberAndBicAccountIdentification.TypeEnum": NumberAndBicAccountIdentification.TypeEnum,
         "PLLocalAccountIdentification.TypeEnum": PLLocalAccountIdentification.TypeEnum,
         "PartyIdentification.TypeEnum": PartyIdentification.TypeEnum,
@@ -119,6 +127,7 @@ let enumsMap: {[index: string]: any} = {
         "TransferData.CategoryEnum": TransferData.CategoryEnum,
         "TransferData.DirectionEnum": TransferData.DirectionEnum,
         "TransferData.PanEntryModeEnum": TransferData.PanEntryModeEnum,
+        "TransferData.PlatformPaymentTypeEnum": TransferData.PlatformPaymentTypeEnum,
         "TransferData.PriorityEnum": TransferData.PriorityEnum,
         "TransferData.ProcessingTypeEnum": TransferData.ProcessingTypeEnum,
         "TransferData.ReasonEnum": TransferData.ReasonEnum,
@@ -148,10 +157,12 @@ let typeMap: {[index: string]: any} = {
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
     "CounterpartyV3": CounterpartyV3,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
+    "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
     "MerchantData": MerchantData,
     "NOLocalAccountIdentification": NOLocalAccountIdentification,
+    "NZLocalAccountIdentification": NZLocalAccountIdentification,
     "NameLocation": NameLocation,
     "NumberAndBicAccountIdentification": NumberAndBicAccountIdentification,
     "PLLocalAccountIdentification": PLLocalAccountIdentification,
@@ -171,6 +182,7 @@ let typeMap: {[index: string]: any} = {
     "TransferNotificationRequest": TransferNotificationRequest,
     "TransferNotificationTransferTracking": TransferNotificationTransferTracking,
     "TransferNotificationValidationFact": TransferNotificationValidationFact,
+    "TransferOperation": TransferOperation,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,
 }

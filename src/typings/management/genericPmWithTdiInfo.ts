@@ -9,21 +9,12 @@
 
 import { TransactionDescriptionInfo } from './transactionDescriptionInfo';
 
-export class CartesBancairesInfo {
-    /**
-    * Cartes Bancaires SIRET. Format: 14 digits.
-    */
-    'siret': string;
+export class GenericPmWithTdiInfo {
     'transactionDescription'?: TransactionDescriptionInfo;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "siret",
-            "baseName": "siret",
-            "type": "string"
-        },
         {
             "name": "transactionDescription",
             "baseName": "transactionDescription",
@@ -31,7 +22,7 @@ export class CartesBancairesInfo {
         }    ];
 
     static getAttributeTypeMap() {
-        return CartesBancairesInfo.attributeTypeMap;
+        return GenericPmWithTdiInfo.attributeTypeMap;
     }
 }
 

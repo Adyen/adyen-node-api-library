@@ -10,6 +10,7 @@
 import { Amount } from './amount';
 import { AmountAdjustment } from './amountAdjustment';
 import { BalanceMutation } from './balanceMutation';
+import { TransferOperation } from './transferOperation';
 
 export class TransferEvent {
     'amount'?: Amount;
@@ -46,6 +47,7 @@ export class TransferEvent {
     * The id of the transaction that is related to this accounting event. Only sent for events of type **accounting** where the balance changes.
     */
     'transactionId'?: string;
+    'transferOperation'?: TransferOperation;
     /**
     * The type of the transfer event. Possible values: **accounting**, **tracking**.
     */
@@ -111,6 +113,11 @@ export class TransferEvent {
             "name": "transactionId",
             "baseName": "transactionId",
             "type": "string"
+        },
+        {
+            "name": "transferOperation",
+            "baseName": "transferOperation",
+            "type": "TransferOperation"
         },
         {
             "name": "type",
@@ -199,6 +206,10 @@ export namespace TransferEvent {
         MerchantPayinReversedPending = 'merchantPayinReversedPending',
         MiscCost = 'miscCost',
         MiscCostPending = 'miscCostPending',
+        OperationAuthorized = 'operationAuthorized',
+        OperationBooked = 'operationBooked',
+        OperationPending = 'operationPending',
+        OperationReceived = 'operationReceived',
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
         Received = 'received',

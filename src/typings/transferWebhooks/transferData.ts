@@ -81,6 +81,10 @@ export class TransferData {
     */
     'paymentMerchantReference'?: string;
     /**
+    * The type of the related split.
+    */
+    'platformPaymentType'?: TransferData.PlatformPaymentTypeEnum;
+    /**
     * The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
     */
     'priority'?: TransferData.PriorityEnum;
@@ -227,6 +231,11 @@ export class TransferData {
             "type": "string"
         },
         {
+            "name": "platformPaymentType",
+            "baseName": "platformPaymentType",
+            "type": "TransferData.PlatformPaymentTypeEnum"
+        },
+        {
             "name": "priority",
             "baseName": "priority",
             "type": "TransferData.PriorityEnum"
@@ -322,6 +331,13 @@ export namespace TransferData {
         Manual = 'manual',
         Token = 'token'
     }
+    export enum PlatformPaymentTypeEnum {
+        BalanceAccount = 'BalanceAccount',
+        Commission = 'Commission',
+        Default = 'Default',
+        PaymentFee = 'PaymentFee',
+        Vat = 'VAT'
+    }
     export enum PriorityEnum {
         CrossBorder = 'crossBorder',
         DirectDebit = 'directDebit',
@@ -406,6 +422,10 @@ export namespace TransferData {
         MerchantPayinReversedPending = 'merchantPayinReversedPending',
         MiscCost = 'miscCost',
         MiscCostPending = 'miscCostPending',
+        OperationAuthorized = 'operationAuthorized',
+        OperationBooked = 'operationBooked',
+        OperationPending = 'operationPending',
+        OperationReceived = 'operationReceived',
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
         Received = 'received',
@@ -430,6 +450,7 @@ export namespace TransferData {
         BankTransfer = 'bankTransfer',
         Capture = 'capture',
         CaptureReversal = 'captureReversal',
+        CardTransfer = 'cardTransfer',
         Chargeback = 'chargeback',
         ChargebackReversal = 'chargebackReversal',
         DepositCorrection = 'depositCorrection',

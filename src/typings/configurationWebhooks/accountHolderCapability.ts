@@ -8,6 +8,7 @@
  */
 
 import { AccountSupportingEntityCapability } from './accountSupportingEntityCapability';
+import { CapabilityProblem } from './capabilityProblem';
 import { CapabilitySettings } from './capabilitySettings';
 
 export class AccountHolderCapability {
@@ -27,7 +28,7 @@ export class AccountHolderCapability {
     /**
     * Contains verification errors and the actions that you can take to resolve them.
     */
-    'problems'?: Array<object>;
+    'problems'?: Array<CapabilityProblem>;
     /**
     * Indicates whether the capability is requested. To check whether the account holder is permitted to use the capability, refer to the `allowed` field.
     */
@@ -72,7 +73,7 @@ export class AccountHolderCapability {
         {
             "name": "problems",
             "baseName": "problems",
-            "type": "Array<object>"
+            "type": "Array<CapabilityProblem>"
         },
         {
             "name": "requested",

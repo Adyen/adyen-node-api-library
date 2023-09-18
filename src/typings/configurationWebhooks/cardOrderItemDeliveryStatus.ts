@@ -10,17 +10,13 @@
 
 export class CardOrderItemDeliveryStatus {
     /**
+    * Error message.
+    */
+    'errorMessage'?: string;
+    /**
     * Status of the delivery.
     */
     'status'?: CardOrderItemDeliveryStatus.StatusEnum;
-    /**
-    * Error status, if any.
-    */
-    'statusError'?: string;
-    /**
-    * Error message, if any.
-    */
-    'statusErrorMessage'?: string;
     /**
     * Tracking number of the delivery.
     */
@@ -30,19 +26,14 @@ export class CardOrderItemDeliveryStatus {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "errorMessage",
+            "baseName": "errorMessage",
+            "type": "string"
+        },
+        {
             "name": "status",
             "baseName": "status",
             "type": "CardOrderItemDeliveryStatus.StatusEnum"
-        },
-        {
-            "name": "statusError",
-            "baseName": "statusError",
-            "type": "string"
-        },
-        {
-            "name": "statusErrorMessage",
-            "baseName": "statusErrorMessage",
-            "type": "string"
         },
         {
             "name": "trackingNumber",
@@ -59,6 +50,7 @@ export namespace CardOrderItemDeliveryStatus {
     export enum StatusEnum {
         Created = 'created',
         Delivered = 'delivered',
+        NotApplicable = 'notApplicable',
         Processing = 'processing',
         Produced = 'produced',
         Rejected = 'rejected',

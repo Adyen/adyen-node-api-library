@@ -23,7 +23,7 @@ export class Card {
     */
     'brand': string;
     /**
-    * The brand variant of the physical or the virtual card. >Contact your Adyen Implementation Manager to get the values that are relevant to your integration. Examples: **visadebit**, **mcprepaid**.
+    * The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. >Reach out to your Adyen contact to get the values relevant for your integration.
     */
     'brandVariant': string;
     /**
@@ -49,6 +49,10 @@ export class Card {
     * The primary account number (PAN) of the card. > The PAN is masked by default and returned only for single-use virtual cards.
     */
     'number': string;
+    /**
+    * Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+    */
+    'threeDSecure'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -111,6 +115,11 @@ export class Card {
         {
             "name": "number",
             "baseName": "number",
+            "type": "string"
+        },
+        {
+            "name": "threeDSecure",
+            "baseName": "threeDSecure",
             "type": "string"
         }    ];
 

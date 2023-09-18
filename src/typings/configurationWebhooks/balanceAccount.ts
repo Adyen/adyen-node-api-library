@@ -9,7 +9,7 @@
 
 import { Balance } from './balance';
 import { PaymentInstrumentReference } from './paymentInstrumentReference';
-import { SweepConfiguration } from './sweepConfiguration';
+import { PlatformPaymentConfiguration } from './platformPaymentConfiguration';
 
 export class BalanceAccount {
     /**
@@ -33,13 +33,18 @@ export class BalanceAccount {
     */
     'id': string;
     /**
-    * A set of key and value pairs for general use by the merchant. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
+    * A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
     */
     'metadata'?: { [key: string]: string; };
+    /**
+    * The unique identifier of the account of the migrated account holder in the classic integration.
+    */
+    'migratedAccountCode'?: string;
     /**
     * List of [payment instruments](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments) associated with the balance account.
     */
     'paymentInstruments'?: Array<PaymentInstrumentReference>;
+    'platformPaymentConfiguration'?: PlatformPaymentConfiguration;
     /**
     * Your reference for the balance account, maximum 150 characters.
     */
@@ -48,10 +53,6 @@ export class BalanceAccount {
     * The status of the balance account, set to **Active** by default.  
     */
     'status'?: BalanceAccount.StatusEnum;
-    /**
-    * Contains key-value pairs that specify configurations for balance sweeps per currency code. A sweep pulls in or pushes out funds based on a defined schedule, amount, and a source (for pulling funds) or a destination (for pushing funds).  The key must be a three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**. The value must be an object containing the sweep configuration.
-    */
-    'sweepConfigurations'?: { [key: string]: SweepConfiguration; };
     /**
     * The time zone of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
     */
@@ -91,9 +92,19 @@ export class BalanceAccount {
             "type": "{ [key: string]: string; }"
         },
         {
+            "name": "migratedAccountCode",
+            "baseName": "migratedAccountCode",
+            "type": "string"
+        },
+        {
             "name": "paymentInstruments",
             "baseName": "paymentInstruments",
             "type": "Array<PaymentInstrumentReference>"
+        },
+        {
+            "name": "platformPaymentConfiguration",
+            "baseName": "platformPaymentConfiguration",
+            "type": "PlatformPaymentConfiguration"
         },
         {
             "name": "reference",
@@ -104,11 +115,6 @@ export class BalanceAccount {
             "name": "status",
             "baseName": "status",
             "type": "BalanceAccount.StatusEnum"
-        },
-        {
-            "name": "sweepConfigurations",
-            "baseName": "sweepConfigurations",
-            "type": "{ [key: string]: SweepConfiguration; }"
         },
         {
             "name": "timeZone",

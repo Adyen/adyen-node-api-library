@@ -12,6 +12,7 @@ import { ApplePayInfo } from './applePayInfo';
 import { BcmcInfo } from './bcmcInfo';
 import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { ClearpayInfo } from './clearpayInfo';
+import { GenericPmWithTdiInfo } from './genericPmWithTdiInfo';
 import { GiroPayInfo } from './giroPayInfo';
 import { GooglePayInfo } from './googlePayInfo';
 import { KlarnaInfo } from './klarnaInfo';
@@ -36,6 +37,7 @@ export class PaymentMethodSetupInfo {
     * The list of countries where a payment method is available. By default, all countries supported by the payment method.
     */
     'countries'?: Array<string>;
+    'cup'?: GenericPmWithTdiInfo;
     /**
     * The list of currencies that a payment method supports. By default, all currencies supported by the payment method.
     */
@@ -44,9 +46,18 @@ export class PaymentMethodSetupInfo {
     * The list of custom routing flags to route payment to the intended acquirer.
     */
     'customRoutingFlags'?: Array<string>;
+    'diners'?: GenericPmWithTdiInfo;
+    'discover'?: GenericPmWithTdiInfo;
+    'eftpos_australia'?: GenericPmWithTdiInfo;
     'giroPay'?: GiroPayInfo;
+    'girocard'?: GenericPmWithTdiInfo;
     'googlePay'?: GooglePayInfo;
+    'ideal'?: GenericPmWithTdiInfo;
+    'interac_card'?: GenericPmWithTdiInfo;
+    'jcb'?: GenericPmWithTdiInfo;
     'klarna'?: KlarnaInfo;
+    'maestro'?: GenericPmWithTdiInfo;
+    'mc'?: GenericPmWithTdiInfo;
     'mealVoucher_FR'?: MealVoucherFRInfo;
     'paypal'?: PayPalInfo;
     /**
@@ -69,6 +80,7 @@ export class PaymentMethodSetupInfo {
     */
     'type'?: PaymentMethodSetupInfo.TypeEnum;
     'vipps'?: VippsInfo;
+    'visa'?: GenericPmWithTdiInfo;
 
     static discriminator: string | undefined = undefined;
 
@@ -109,6 +121,11 @@ export class PaymentMethodSetupInfo {
             "type": "Array<string>"
         },
         {
+            "name": "cup",
+            "baseName": "cup",
+            "type": "GenericPmWithTdiInfo"
+        },
+        {
             "name": "currencies",
             "baseName": "currencies",
             "type": "Array<string>"
@@ -119,9 +136,29 @@ export class PaymentMethodSetupInfo {
             "type": "Array<string>"
         },
         {
+            "name": "diners",
+            "baseName": "diners",
+            "type": "GenericPmWithTdiInfo"
+        },
+        {
+            "name": "discover",
+            "baseName": "discover",
+            "type": "GenericPmWithTdiInfo"
+        },
+        {
+            "name": "eftpos_australia",
+            "baseName": "eftpos_australia",
+            "type": "GenericPmWithTdiInfo"
+        },
+        {
             "name": "giroPay",
             "baseName": "giroPay",
             "type": "GiroPayInfo"
+        },
+        {
+            "name": "girocard",
+            "baseName": "girocard",
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "googlePay",
@@ -129,9 +166,34 @@ export class PaymentMethodSetupInfo {
             "type": "GooglePayInfo"
         },
         {
+            "name": "ideal",
+            "baseName": "ideal",
+            "type": "GenericPmWithTdiInfo"
+        },
+        {
+            "name": "interac_card",
+            "baseName": "interac_card",
+            "type": "GenericPmWithTdiInfo"
+        },
+        {
+            "name": "jcb",
+            "baseName": "jcb",
+            "type": "GenericPmWithTdiInfo"
+        },
+        {
             "name": "klarna",
             "baseName": "klarna",
             "type": "KlarnaInfo"
+        },
+        {
+            "name": "maestro",
+            "baseName": "maestro",
+            "type": "GenericPmWithTdiInfo"
+        },
+        {
+            "name": "mc",
+            "baseName": "mc",
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "mealVoucher_FR",
@@ -182,6 +244,11 @@ export class PaymentMethodSetupInfo {
             "name": "vipps",
             "baseName": "vipps",
             "type": "VippsInfo"
+        },
+        {
+            "name": "visa",
+            "baseName": "visa",
+            "type": "GenericPmWithTdiInfo"
         }    ];
 
     static getAttributeTypeMap() {
