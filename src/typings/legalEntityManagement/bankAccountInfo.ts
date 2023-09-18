@@ -15,6 +15,7 @@ import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { NOLocalAccountIdentification } from './nOLocalAccountIdentification';
+import { NZLocalAccountIdentification } from './nZLocalAccountIdentification';
 import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentification';
 import { PLLocalAccountIdentification } from './pLLocalAccountIdentification';
 import { SELocalAccountIdentification } from './sELocalAccountIdentification';
@@ -26,11 +27,15 @@ export class BankAccountInfo {
     /**
     * Identification of the bank account.
     */
-    'accountIdentification'?: AULocalAccountIdentification | CALocalAccountIdentification | CZLocalAccountIdentification | DKLocalAccountIdentification | HKLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | SGLocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification;
+    'accountIdentification'?: AULocalAccountIdentification | CALocalAccountIdentification | CZLocalAccountIdentification | DKLocalAccountIdentification | HKLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NZLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | SGLocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification;
     /**
     * The type of bank account.
     */
     'accountType'?: string;
+    /**
+    * The name of the banking institution where the bank account is held.
+    */
+    'bankName'?: string;
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the bank account is registered. For example, **NL**.
     */
@@ -46,11 +51,16 @@ export class BankAccountInfo {
         {
             "name": "accountIdentification",
             "baseName": "accountIdentification",
-            "type": "AULocalAccountIdentification | CALocalAccountIdentification | CZLocalAccountIdentification | DKLocalAccountIdentification | HKLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | SGLocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification"
+            "type": "AULocalAccountIdentification | CALocalAccountIdentification | CZLocalAccountIdentification | DKLocalAccountIdentification | HKLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NZLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | SGLocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification"
         },
         {
             "name": "accountType",
             "baseName": "accountType",
+            "type": "string"
+        },
+        {
+            "name": "bankName",
+            "baseName": "bankName",
             "type": "string"
         },
         {

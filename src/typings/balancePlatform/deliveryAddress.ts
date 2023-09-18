@@ -18,15 +18,15 @@ export class DeliveryAddress {
     */
     'country': string;
     /**
-    * First line of the address.
+    * The street name. For example, if the address is \"Rokin 49\", provide \"Rokin\".
     */
     'line1'?: string;
     /**
-    * Second line of the address.
+    * The house number or name. For example, if the address is \"Rokin 49\", provide \"49\".
     */
     'line2'?: string;
     /**
-    * Third line of the address.
+    * Optional information about the address.
     */
     'line3'?: string;
     /**

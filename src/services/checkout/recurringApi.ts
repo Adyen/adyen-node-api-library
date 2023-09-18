@@ -11,7 +11,6 @@ import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
 import { ListStoredPaymentMethodsResponse } from "../../typings/checkout/models";
-import { StoredPaymentMethodResource } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/checkout/models";
@@ -32,18 +31,16 @@ export class RecurringApi extends Service {
     * @param shopperReference {@link string } Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
     * @param merchantAccount {@link string } Your merchant account.
     * @param requestOptions {@link IRequest.Options}
-    * @return {@link StoredPaymentMethodResource }
     */
-    public async deleteTokenForStoredPaymentDetails(storedPaymentMethodId: string, requestOptions?: IRequest.Options): Promise<StoredPaymentMethodResource> {
+    public async deleteTokenForStoredPaymentDetails(storedPaymentMethodId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/storedPaymentMethods/{storedPaymentMethodId}`
             .replace("{" + "storedPaymentMethodId" + "}", encodeURIComponent(String(storedPaymentMethodId)));
         const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, StoredPaymentMethodResource>(
+        await getJsonResponse<string, void>(
             resource,
             "",
             { ...requestOptions, method: "DELETE" }
         );
-        return ObjectSerializer.deserialize(response, "StoredPaymentMethodResource");
     }
 
     /**
