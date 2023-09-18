@@ -13,7 +13,6 @@ import {CheckoutAPI} from "../services";
 import HttpClientException from "../httpClient/httpClientException";
 import { checkout } from "../typings";
 import { IRequest } from "../typings/requestOptions";
-import ApiException from "../services/exception/apiException";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
 const reference = "Your order number";
