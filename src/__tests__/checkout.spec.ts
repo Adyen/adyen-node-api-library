@@ -544,11 +544,9 @@ describe("Checkout", (): void => {
 
     test("Should delete stored paymentMethod", async (): Promise<void> => {
         scope.delete("/storedPaymentMethods/12321")
-        .reply(200, {
-            "id": "123"
-        });
+        .reply(200);
 
         await checkoutService.RecurringApi.deleteTokenForStoredPaymentDetails("12321");
-        expect(async() => await checkoutService.RecurringApi.deleteTokenForStoredPaymentDetails("12321")).not.toThrow(ApiException)
+        expect(() => checkoutService.RecurringApi.deleteTokenForStoredPaymentDetails("12321")).not.toThrow(ApiException)
     });
 });
