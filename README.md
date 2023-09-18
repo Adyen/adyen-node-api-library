@@ -429,9 +429,8 @@ The procedure to send In-Person requests using [Terminal API over Local Connecti
 // Step 1: Require the parts of the module you want to use
 const {Client, TerminalLocalAPI} from "@adyen/api-library";
 
-// Step 2: Add your Merchant Account, Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer"
+// Step 2: Add your Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer"
 const config: Config = new Config();
-config.merchantAccount = "Your merchant account";
 config.certificatePath = "./cert.cer";
 config.terminalApiLocalEndpoint = "The IP of your terminal (eg https://192.168.47.169)";
 config.apiKey = "YOUR_API_KEY_HERE";
@@ -462,9 +461,8 @@ If you wish to develop the Local Terminal API integration parallel to your encry
 // Step 1: Require the parts of the module you want to use
 const {Client, TerminalLocalAPIUnencrypted} from "@adyen/api-library";
 
-// Step 2: Add your Merchant Account, Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer"
+// Step 2: Add your Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer"
 const config: Config = new Config();
-config.merchantAccount = "Your merchant account";
 config.terminalApiLocalEndpoint = "The IP of your terminal (eg https://192.168.47.169)";
 config.apiKey = "YOUR_API_KEY_HERE";
 
