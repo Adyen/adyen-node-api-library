@@ -8,23 +8,19 @@
  */
 
 
-export class BRLocalAccountIdentification {
+export class HKLocalAccountIdentification {
     /**
-    * The bank account number, without separators or whitespace.
+    * The 6- to 19-character bank account number (alphanumeric), without separators or whitespace.
     */
     'accountNumber': string;
     /**
-    * The 3-digit bank code, with leading zeros.
+    * The 6-digit bank code including the 3-digit bank code and 3-digit branch code, without separators or whitespace.
     */
     'bankCode': string;
     /**
-    * The bank account branch number, without separators or whitespace.
+    * **hkLocal**
     */
-    'branchNumber': string;
-    /**
-    * **brLocal**
-    */
-    'type': BRLocalAccountIdentification.TypeEnum;
+    'type': HKLocalAccountIdentification.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -40,23 +36,18 @@ export class BRLocalAccountIdentification {
             "type": "string"
         },
         {
-            "name": "branchNumber",
-            "baseName": "branchNumber",
-            "type": "string"
-        },
-        {
             "name": "type",
             "baseName": "type",
-            "type": "BRLocalAccountIdentification.TypeEnum"
+            "type": "HKLocalAccountIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return BRLocalAccountIdentification.attributeTypeMap;
+        return HKLocalAccountIdentification.attributeTypeMap;
     }
 }
 
-export namespace BRLocalAccountIdentification {
+export namespace HKLocalAccountIdentification {
     export enum TypeEnum {
-        BrLocal = 'brLocal'
+        HkLocal = 'hkLocal'
     }
 }

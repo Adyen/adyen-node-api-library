@@ -8,23 +8,23 @@
  */
 
 
-export class BRLocalAccountIdentification {
+export class NZLocalAccountIdentification {
     /**
-    * The bank account number, without separators or whitespace.
+    * The 7-digit bank account number, without separators or whitespace.
     */
     'accountNumber': string;
     /**
-    * The 3-digit bank code, with leading zeros.
+    * The 2- to 3-digit account suffix, without separators or whitespace.
+    */
+    'accountSuffix': string;
+    /**
+    * The 6-digit bank code including the 2-digit bank code and 4-digit branch code, without separators or whitespace.
     */
     'bankCode': string;
     /**
-    * The bank account branch number, without separators or whitespace.
+    * **nzLocal**
     */
-    'branchNumber': string;
-    /**
-    * **brLocal**
-    */
-    'type': BRLocalAccountIdentification.TypeEnum;
+    'type': NZLocalAccountIdentification.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -35,28 +35,28 @@ export class BRLocalAccountIdentification {
             "type": "string"
         },
         {
+            "name": "accountSuffix",
+            "baseName": "accountSuffix",
+            "type": "string"
+        },
+        {
             "name": "bankCode",
             "baseName": "bankCode",
             "type": "string"
         },
         {
-            "name": "branchNumber",
-            "baseName": "branchNumber",
-            "type": "string"
-        },
-        {
             "name": "type",
             "baseName": "type",
-            "type": "BRLocalAccountIdentification.TypeEnum"
+            "type": "NZLocalAccountIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return BRLocalAccountIdentification.attributeTypeMap;
+        return NZLocalAccountIdentification.attributeTypeMap;
     }
 }
 
-export namespace BRLocalAccountIdentification {
+export namespace NZLocalAccountIdentification {
     export enum TypeEnum {
-        BrLocal = 'brLocal'
+        NzLocal = 'nzLocal'
     }
 }
