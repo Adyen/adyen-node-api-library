@@ -70,7 +70,7 @@ export class PCIQuestionnairesApi extends Service {
 
     /**
     * @summary Generate PCI questionnaire
-    * @param id {@link string } The legal entity ID of the individual who will sign the PCI questionnaire.
+    * @param id {@link string } The unique identifier of the legal entity to get PCI questionnaire information.
     * @param generatePciDescriptionRequest {@link GeneratePciDescriptionRequest } 
     * @param requestOptions {@link IRequest.Options}
     * @return {@link GeneratePciDescriptionResponse }

@@ -17,6 +17,7 @@ import { PaymentInstrumentGroupsApi } from "./paymentInstrumentGroupsApi";
 import { PaymentInstrumentsApi } from "./paymentInstrumentsApi";
 import { PlatformApi } from "./platformApi";
 import { TransactionRulesApi } from "./transactionRulesApi";
+import { TransferRoutesApi } from "./transferRoutesApi";
 
 import Service from "../../service";
 import Client from "../../client";
@@ -65,5 +66,9 @@ export default class BalancePlatformAPI extends Service {
 
     public get TransactionRulesApi() {
         return new TransactionRulesApi(this.client);
+    }
+
+    public get TransferRoutesApi() {
+        return new TransferRoutesApi(this.client);
     }
 }
