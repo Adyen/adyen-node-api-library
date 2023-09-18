@@ -546,7 +546,9 @@ describe("Checkout", (): void => {
         scope.delete("/storedPaymentMethods/12321")
         .reply(200);
 
-        await checkoutService.RecurringApi.deleteTokenForStoredPaymentDetails("12321");
-        expect(() => checkoutService.RecurringApi.deleteTokenForStoredPaymentDetails("12321")).not.toThrow(ApiException)
+        await expect(
+            checkoutService.RecurringApi.deleteTokenForStoredPaymentDetails("12321"),
+        ).resolves.not.toThrowError();
+
     });
 });
