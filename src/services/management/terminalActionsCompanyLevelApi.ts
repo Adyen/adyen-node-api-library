@@ -10,8 +10,6 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { AndroidAppsResponse } from "../../typings/management/models";
-import { AndroidCertificatesResponse } from "../../typings/management/models";
 import { ExternalTerminalAction } from "../../typings/management/models";
 import { ListExternalTerminalActionsResponse } from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -26,49 +24,6 @@ export class TerminalActionsCompanyLevelApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
-    }
-
-    /**
-    * @summary Get a list of Android apps
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param pageNumber {@link number } The number of the page to fetch.
-    * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 20 items on a page.
-    * @param packageName {@link string } The package name that uniquely identifies the Android app.
-    * @param versionCode {@link number } The version number of the app.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link AndroidAppsResponse }
-    */
-    public async listAndroidApps(companyId: string, requestOptions?: IRequest.Options): Promise<AndroidAppsResponse> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/androidApps`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, AndroidAppsResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "AndroidAppsResponse");
-    }
-
-    /**
-    * @summary Get a list of Android certificates
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param pageNumber {@link number } The number of the page to fetch.
-    * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 20 items on a page.
-    * @param certificateName {@link string } The name of the certificate.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link AndroidCertificatesResponse }
-    */
-    public async listAndroidCertificates(companyId: string, requestOptions?: IRequest.Options): Promise<AndroidCertificatesResponse> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/androidCertificates`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, AndroidCertificatesResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "AndroidCertificatesResponse");
     }
 
     /**

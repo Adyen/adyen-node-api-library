@@ -8,7 +8,6 @@
  */
 
 import { Amount } from './amount';
-import { CronSweepSchedule } from './cronSweepSchedule';
 import { SweepCounterparty } from './sweepCounterparty';
 import { SweepSchedule } from './sweepSchedule';
 
@@ -30,10 +29,7 @@ export class SweepConfigurationV2 {
     * The reason for disabling the sweep.
     */
     'reason'?: SweepConfigurationV2.ReasonEnum;
-    /**
-    * The schedule when the `triggerAmount` is evaluated. If the balance meets the threshold, funds are pushed out of or pulled in to the balance account.
-    */
-    'schedule': CronSweepSchedule | SweepSchedule;
+    'schedule': SweepSchedule;
     /**
     * The status of the sweep. If not provided, by default, this is set to **active**.  Possible values:    * **active**:  the sweep is enabled and funds will be pulled in or pushed out based on the defined configuration.    * **inactive**: the sweep is disabled and cannot be triggered.   
     */
@@ -77,7 +73,7 @@ export class SweepConfigurationV2 {
         {
             "name": "schedule",
             "baseName": "schedule",
-            "type": "CronSweepSchedule | SweepSchedule"
+            "type": "SweepSchedule"
         },
         {
             "name": "status",

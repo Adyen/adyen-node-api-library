@@ -39,7 +39,7 @@ export class TransactionRule {
     */
     'reference': string;
     /**
-    * Indicates the type of request to which the rule applies.  Possible values: **authorization**, **authentication**, **tokenization**.
+    * Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**.
     */
     'requestType'?: TransactionRule.RequestTypeEnum;
     'ruleRestrictions': TransactionRuleRestrictions;

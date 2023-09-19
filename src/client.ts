@@ -107,9 +107,8 @@ class Client {
         this.config.applicationName = applicationName;
     }
 
-    public setTimeouts(connectionTimeoutMillis: number, readTimeoutMillis: number): void {
+    public setTimeouts(connectionTimeoutMillis: number): void {
         this.config.connectionTimeoutMillis = connectionTimeoutMillis;
-        this.config.readTimeoutMillis = readTimeoutMillis;
     }
 }
 

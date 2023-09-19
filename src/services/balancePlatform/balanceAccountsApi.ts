@@ -14,6 +14,7 @@ import { BalanceAccount } from "../../typings/balancePlatform/models";
 import { BalanceAccountInfo } from "../../typings/balancePlatform/models";
 import { BalanceAccountUpdateRequest } from "../../typings/balancePlatform/models";
 import { BalanceSweepConfigurationsResponse } from "../../typings/balancePlatform/models";
+import { CreateSweepConfigurationV2 } from "../../typings/balancePlatform/models";
 import { PaginatedPaymentInstrumentsResponse } from "../../typings/balancePlatform/models";
 import { SweepConfigurationV2 } from "../../typings/balancePlatform/models";
 import { UpdateSweepConfigurationV2 } from "../../typings/balancePlatform/models";
@@ -190,16 +191,16 @@ export class BalanceAccountsApi extends Service {
     /**
     * @summary Create a sweep
     * @param balanceAccountId {@link string } The unique identifier of the balance account.
-    * @param sweepConfigurationV2 {@link SweepConfigurationV2 } 
+    * @param createSweepConfigurationV2 {@link CreateSweepConfigurationV2 } 
     * @param requestOptions {@link IRequest.Options}
     * @return {@link SweepConfigurationV2 }
     */
-    public async createSweep(balanceAccountId: string, sweepConfigurationV2: SweepConfigurationV2, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
+    public async createSweep(balanceAccountId: string, createSweepConfigurationV2: CreateSweepConfigurationV2, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
         const endpoint = `${this.baseUrl}/balanceAccounts/{balanceAccountId}/sweeps`
             .replace("{" + "balanceAccountId" + "}", encodeURIComponent(String(balanceAccountId)));
         const resource = new Resource(this, endpoint);
-        const request: SweepConfigurationV2 = ObjectSerializer.serialize(sweepConfigurationV2, "SweepConfigurationV2");
-        const response = await getJsonResponse<SweepConfigurationV2, SweepConfigurationV2>(
+        const request: CreateSweepConfigurationV2 = ObjectSerializer.serialize(createSweepConfigurationV2, "CreateSweepConfigurationV2");
+        const response = await getJsonResponse<CreateSweepConfigurationV2, SweepConfigurationV2>(
             resource,
             request,
             { ...requestOptions, method: "POST" }

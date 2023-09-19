@@ -58,6 +58,7 @@ export * from './externalTerminalAction';
 export * from './generateApiKeyResponse';
 export * from './generateClientKeyResponse';
 export * from './generateHmacKeyResponse';
+export * from './genericPmWithTdiInfo';
 export * from './giroPayInfo';
 export * from './googlePayInfo';
 export * from './gratuity';
@@ -151,6 +152,7 @@ export * from './testOutput';
 export * from './testWebhookRequest';
 export * from './testWebhookResponse';
 export * from './timeouts';
+export * from './transactionDescriptionInfo';
 export * from './twintInfo';
 export * from './uninstallAndroidAppDetails';
 export * from './uninstallAndroidCertificateDetails';
@@ -225,6 +227,7 @@ import { ExternalTerminalAction } from './externalTerminalAction';
 import { GenerateApiKeyResponse } from './generateApiKeyResponse';
 import { GenerateClientKeyResponse } from './generateClientKeyResponse';
 import { GenerateHmacKeyResponse } from './generateHmacKeyResponse';
+import { GenericPmWithTdiInfo } from './genericPmWithTdiInfo';
 import { GiroPayInfo } from './giroPayInfo';
 import { GooglePayInfo } from './googlePayInfo';
 import { Gratuity } from './gratuity';
@@ -318,6 +321,7 @@ import { TestOutput } from './testOutput';
 import { TestWebhookRequest } from './testWebhookRequest';
 import { TestWebhookResponse } from './testWebhookResponse';
 import { Timeouts } from './timeouts';
+import { TransactionDescriptionInfo } from './transactionDescriptionInfo';
 import { TwintInfo } from './twintInfo';
 import { UninstallAndroidAppDetails } from './uninstallAndroidAppDetails';
 import { UninstallAndroidCertificateDetails } from './uninstallAndroidCertificateDetails';
@@ -381,6 +385,7 @@ let enumsMap: {[index: string]: any} = {
         "SplitConfigurationRule.FundingSourceEnum": SplitConfigurationRule.FundingSourceEnum,
         "SplitConfigurationRule.ShopperInteractionEnum": SplitConfigurationRule.ShopperInteractionEnum,
         "Store.StatusEnum": Store.StatusEnum,
+        "TransactionDescriptionInfo.TypeEnum": TransactionDescriptionInfo.TypeEnum,
         "UninstallAndroidAppDetails.TypeEnum": UninstallAndroidAppDetails.TypeEnum,
         "UninstallAndroidCertificateDetails.TypeEnum": UninstallAndroidCertificateDetails.TypeEnum,
         "UpdateCompanyWebhookRequest.CommunicationFormatEnum": UpdateCompanyWebhookRequest.CommunicationFormatEnum,
@@ -453,6 +458,7 @@ let typeMap: {[index: string]: any} = {
     "GenerateApiKeyResponse": GenerateApiKeyResponse,
     "GenerateClientKeyResponse": GenerateClientKeyResponse,
     "GenerateHmacKeyResponse": GenerateHmacKeyResponse,
+    "GenericPmWithTdiInfo": GenericPmWithTdiInfo,
     "GiroPayInfo": GiroPayInfo,
     "GooglePayInfo": GooglePayInfo,
     "Gratuity": Gratuity,
@@ -546,6 +552,7 @@ let typeMap: {[index: string]: any} = {
     "TestWebhookRequest": TestWebhookRequest,
     "TestWebhookResponse": TestWebhookResponse,
     "Timeouts": Timeouts,
+    "TransactionDescriptionInfo": TransactionDescriptionInfo,
     "TwintInfo": TwintInfo,
     "UninstallAndroidAppDetails": UninstallAndroidAppDetails,
     "UninstallAndroidCertificateDetails": UninstallAndroidCertificateDetails,

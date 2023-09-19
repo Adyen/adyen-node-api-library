@@ -51,6 +51,7 @@ export * from './legalEntityCapability';
 export * from './legalEntityInfo';
 export * from './legalEntityInfoRequiredType';
 export * from './nOLocalAccountIdentification';
+export * from './nZLocalAccountIdentification';
 export * from './name';
 export * from './numberAndBicAccountIdentification';
 export * from './onboardingLink';
@@ -131,6 +132,7 @@ import { LegalEntityCapability } from './legalEntityCapability';
 import { LegalEntityInfo } from './legalEntityInfo';
 import { LegalEntityInfoRequiredType } from './legalEntityInfoRequiredType';
 import { NOLocalAccountIdentification } from './nOLocalAccountIdentification';
+import { NZLocalAccountIdentification } from './nZLocalAccountIdentification';
 import { Name } from './name';
 import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentification';
 import { OnboardingLink } from './onboardingLink';
@@ -213,6 +215,7 @@ let enumsMap: {[index: string]: any} = {
         "LegalEntityInfo.TypeEnum": LegalEntityInfo.TypeEnum,
         "LegalEntityInfoRequiredType.TypeEnum": LegalEntityInfoRequiredType.TypeEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
+        "NZLocalAccountIdentification.TypeEnum": NZLocalAccountIdentification.TypeEnum,
         "NumberAndBicAccountIdentification.TypeEnum": NumberAndBicAccountIdentification.TypeEnum,
         "Organization.TypeEnum": Organization.TypeEnum,
         "Organization.VatAbsenceReasonEnum": Organization.VatAbsenceReasonEnum,
@@ -282,6 +285,7 @@ let typeMap: {[index: string]: any} = {
     "LegalEntityInfo": LegalEntityInfo,
     "LegalEntityInfoRequiredType": LegalEntityInfoRequiredType,
     "NOLocalAccountIdentification": NOLocalAccountIdentification,
+    "NZLocalAccountIdentification": NZLocalAccountIdentification,
     "Name": Name,
     "NumberAndBicAccountIdentification": NumberAndBicAccountIdentification,
     "OnboardingLink": OnboardingLink,
