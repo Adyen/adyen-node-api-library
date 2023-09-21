@@ -54,9 +54,9 @@ class Client {
         } else {
             this.config = new Config();
         }
-        this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix || '';
+        this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix ?? '';
 
-        const environment = options.environment || this.config.environment;
+        const environment = options.environment ?? this.config.environment;
         if (environment) {
             this.setEnvironment(environment, options.liveEndpointUrlPrefix);
             if (options.username && options.password) {
@@ -80,7 +80,7 @@ class Client {
     public setEnvironment(environment: Environment, liveEndpointUrlPrefix?: string): void {
         // ensure environment and liveUrlPrefix is set in config
         this.config.environment = environment;
-        this.liveEndpointUrlPrefix = liveEndpointUrlPrefix || "";
+        this.liveEndpointUrlPrefix = liveEndpointUrlPrefix ?? "";
 
         if (environment === "TEST") {
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
