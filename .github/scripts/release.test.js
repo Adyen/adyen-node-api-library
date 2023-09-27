@@ -431,7 +431,7 @@ test('Calculate version major', async t => {
 });
 
 test('Calculate version minor', async t => {
-  await t.test('Major', t => {
+  await t.test('Minor', t => {
     const ver = release.detectChanges(associatedPullRequestsMinor);
     
     assert.strictEqual(ver, 'minor');
