@@ -112,6 +112,195 @@ const comparisonFixture = {
   }
 };
 
+const associatedPullRequestsMajor = {
+  "repository": {
+    "name": "adyen-node-api-library",
+    "ref": {
+      "compare": {
+        "aheadBy": 8,
+        "commits": {
+          "edges": [
+            {
+              "node": {
+                "message": "Another commit in the same PR non squashed",
+                "associatedPullRequests": {
+                  "edges": [
+                    {
+                      "node": {
+                        "number": 20,
+                        "labels": {
+                          "nodes": [
+                            {
+                              "name": "Breaking change"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "message": "Fixing the constructor",
+                "associatedPullRequests": {
+                  "edges": [
+                    {
+                      "node": {
+                        "number": 10,
+                        "labels": {
+                          "nodes": [
+                            {
+                              "name": "Fix"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "message": "Upgrade some service",
+                "associatedPullRequests": {
+                  "edges": [
+                    {
+                      "node": {
+                        "number": 20,
+                        "labels": {
+                          "nodes": [
+                            {
+                              "name": "Feature"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "message": "Update CODEOWNERS (#965)",
+                "associatedPullRequests": {
+                  "edges": [
+                    {
+                      "node": {
+                        "number": 30,
+                        "labels": {
+                          "nodes": []
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+};
+
+const associatedPullRequestsMinor = {
+  "repository": {
+    "name": "adyen-node-api-library",
+    "ref": {
+      "compare": {
+        "aheadBy": 8,
+        "commits": {
+          "edges": [
+            {
+              "node": {
+                "message": "Another commit in the same PR non squashed",
+                "associatedPullRequests": {
+                  "edges": [
+                    {
+                      "node": {
+                        "number": 20,
+                        "labels": {
+                          "nodes": [
+                            {
+                              "name": ""
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "message": "Fixing the constructor",
+                "associatedPullRequests": {
+                  "edges": [
+                    {
+                      "node": {
+                        "number": 10,
+                        "labels": {
+                          "nodes": [
+                            {
+                              "name": "Feature"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "message": "Upgrade some service",
+                "associatedPullRequests": {
+                  "edges": [
+                    {
+                      "node": {
+                        "number": 20,
+                        "labels": {
+                          "nodes": [
+                            {
+                              "name": "Fix"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "message": "Update CODEOWNERS (#965)",
+                "associatedPullRequests": {
+                  "edges": [
+                    {
+                      "node": {
+                        "number": 30,
+                        "labels": {
+                          "nodes": []
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+};
 beforeEach(() => {
   // Reset env variables
   delete process.env.CURRENT_VERSION;
@@ -134,7 +323,7 @@ test('Detect changes', async t => {
 
     assert.strictEqual(ver, 'major');
   });
-
+  
   await t.test('Zero changes', t => {
     let sync = structuredClone(comparisonFixture);
     sync.repository.ref.compare.aheadBy = 0;
@@ -157,6 +346,7 @@ test('Detect changes', async t => {
     assert.strictEqual(ver, 'patch', 'Simple changelog should be a patch');
   });
 });
+
 
 test('Get next version', async t => {
   await t.test('Major', async t => {
@@ -230,3 +420,20 @@ test('Bump', async t => {
 
   assert.strictEqual(core.setOutput.mock.calls.length, 3);
 });
+
+
+test('Calculate version major', async t => {
+  await t.test('Major', t => {
+    const ver = release.detectChanges(associatedPullRequestsMajor);
+  
+    assert.strictEqual(ver, 'major');
+  })
+});
+
+test('Calculate version minor', async t => {
+  await t.test('Major', t => {
+    const ver = release.detectChanges(associatedPullRequestsMinor);
+    
+    assert.strictEqual(ver, 'minor');
+  });  
+});  
