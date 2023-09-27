@@ -47,8 +47,9 @@ export * from './resourceReference';
 export * from './restServiceError';
 export * from './sELocalAccountIdentification';
 export * from './sGLocalAccountIdentification';
+export * from './serviceError';
 export * from './thresholdRepayment';
-export * from './transaction';
+export * from './transactionData';
 export * from './transactionSearchResponse';
 export * from './transfer';
 export * from './transferInfo';
@@ -96,8 +97,9 @@ import { ResourceReference } from './resourceReference';
 import { RestServiceError } from './restServiceError';
 import { SELocalAccountIdentification } from './sELocalAccountIdentification';
 import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
+import { ServiceError } from './serviceError';
 import { ThresholdRepayment } from './thresholdRepayment';
-import { Transaction } from './transaction';
+import { TransactionData } from './transactionData';
 import { TransactionSearchResponse } from './transactionSearchResponse';
 import { Transfer } from './transfer';
 import { TransferInfo } from './transferInfo';
@@ -136,9 +138,9 @@ let enumsMap: {[index: string]: any} = {
         "PartyIdentification2.TypeEnum": PartyIdentification2.TypeEnum,
         "SELocalAccountIdentification.TypeEnum": SELocalAccountIdentification.TypeEnum,
         "SGLocalAccountIdentification.TypeEnum": SGLocalAccountIdentification.TypeEnum,
-        "Transaction.CategoryEnum": Transaction.CategoryEnum,
-        "Transaction.StatusEnum": Transaction.StatusEnum,
-        "Transaction.TypeEnum": Transaction.TypeEnum,
+        "TransactionData.CategoryEnum": TransactionData.CategoryEnum,
+        "TransactionData.StatusEnum": TransactionData.StatusEnum,
+        "TransactionData.TypeEnum": TransactionData.TypeEnum,
         "Transfer.CategoryEnum": Transfer.CategoryEnum,
         "Transfer.DirectionEnum": Transfer.DirectionEnum,
         "Transfer.PriorityEnum": Transfer.PriorityEnum,
@@ -192,8 +194,9 @@ let typeMap: {[index: string]: any} = {
     "RestServiceError": RestServiceError,
     "SELocalAccountIdentification": SELocalAccountIdentification,
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
+    "ServiceError": ServiceError,
     "ThresholdRepayment": ThresholdRepayment,
-    "Transaction": Transaction,
+    "TransactionData": TransactionData,
     "TransactionSearchResponse": TransactionSearchResponse,
     "Transfer": Transfer,
     "TransferInfo": TransferInfo,

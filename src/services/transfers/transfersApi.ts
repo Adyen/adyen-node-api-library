@@ -28,6 +28,7 @@ export class TransfersApi extends Service {
 
     /**
     * @summary Transfer funds
+    * @param wWWAuthenticate {@link string } Header for authenticating through SCA
     * @param transferInfo {@link TransferInfo } 
     * @param requestOptions {@link IRequest.Options}
     * @return {@link Transfer }

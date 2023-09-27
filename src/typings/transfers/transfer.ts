@@ -21,7 +21,7 @@ export class Transfer {
     */
     'balanceAccountId'?: string;
     /**
-    * The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
+    * The category of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
     */
     'category': Transfer.CategoryEnum;
     'counterparty': CounterpartyV3;
@@ -47,7 +47,7 @@ export class Transfer {
     */
     'paymentInstrumentId'?: string;
     /**
-    * The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
+    * The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN). This will be removed in v4 and replaced with a new field.
     */
     'priority'?: Transfer.PriorityEnum;
     /**
@@ -184,16 +184,19 @@ export namespace Transfer {
     export enum ReasonEnum {
         AmountLimitExceeded = 'amountLimitExceeded',
         Approved = 'approved',
+        BalanceAccountTemporarilyBlockedByTransactionRule = 'balanceAccountTemporarilyBlockedByTransactionRule',
         CounterpartyAccountBlocked = 'counterpartyAccountBlocked',
         CounterpartyAccountClosed = 'counterpartyAccountClosed',
         CounterpartyAccountNotFound = 'counterpartyAccountNotFound',
         CounterpartyAddressRequired = 'counterpartyAddressRequired',
         CounterpartyBankTimedOut = 'counterpartyBankTimedOut',
         CounterpartyBankUnavailable = 'counterpartyBankUnavailable',
+        DeclinedByTransactionRule = 'declinedByTransactionRule',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
         RouteNotFound = 'routeNotFound',
+        ScaFailed = 'scaFailed',
         Unknown = 'unknown'
     }
     export enum StatusEnum {
@@ -246,10 +249,6 @@ export namespace Transfer {
         MerchantPayinReversedPending = 'merchantPayinReversedPending',
         MiscCost = 'miscCost',
         MiscCostPending = 'miscCostPending',
-        OperationAuthorized = 'operationAuthorized',
-        OperationBooked = 'operationBooked',
-        OperationPending = 'operationPending',
-        OperationReceived = 'operationReceived',
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
         Received = 'received',

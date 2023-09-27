@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 import { CounterpartyV3 } from './counterpartyV3';
 
-export class Transaction {
+export class TransactionData {
     /**
     * Unique identifier of the account holder.
     */
@@ -21,17 +21,17 @@ export class Transaction {
     */
     'balanceAccountId': string;
     /**
-    * Unique identifier of the balance platform.
+    * The unique identifier of the balance platform.
     */
     'balancePlatform': string;
     /**
-    * The date the transaction was booked to the balance account.
+    * The date the transaction was booked into the balance account.
     */
     'bookingDate': Date;
     /**
     * The category of the transaction indicating the type of activity.   Possible values:  * **platformPayment**: The transaction is a payment or payment modification made with an Adyen merchant account.  * **internal**: The transaction resulted from an internal adjustment such as a deposit correction or invoice deduction.  * **bank**: The transaction is a bank-related activity, such as sending a payout or receiving funds.  * **issuedCard**: The transaction is a card-related activity, such as using an Adyen-issued card to pay online.  
     */
-    'category'?: Transaction.CategoryEnum;
+    'category'?: TransactionData.CategoryEnum;
     'counterparty': CounterpartyV3;
     /**
     * The date the transaction was created.
@@ -46,16 +46,16 @@ export class Transaction {
     */
     'description'?: string;
     /**
-    * The PSP reference in the journal.
+    * The PSP reference of the transaction in the journal.
     */
     'eventId'?: string;
     /**
-    * Unique identifier of the transaction.
+    * The unique identifier of the transaction.
     */
     'id': string;
     'instructedAmount'?: Amount;
     /**
-    * Unique identifier of the payment instrument that was used for the transaction.
+    * The unique identifier of the payment instrument that was used for the transaction.
     */
     'paymentInstrumentId'?: string;
     /**
@@ -69,7 +69,7 @@ export class Transaction {
     /**
     * The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.  
     */
-    'status': Transaction.StatusEnum;
+    'status': TransactionData.StatusEnum;
     /**
     * Unique identifier of the related transfer.
     */
@@ -77,7 +77,7 @@ export class Transaction {
     /**
     * The type of the transaction.   Possible values: **payment**, **capture**, **captureReversal**, **refund** **refundReversal**, **chargeback**, **chargebackReversal**, **secondChargeback**, **atmWithdrawal**, **atmWithdrawalReversal**, **internalTransfer**, **manualCorrection**, **invoiceDeduction**, **depositCorrection**, **bankTransfer**, **miscCost**, **paymentCost**, **fee**
     */
-    'type'?: Transaction.TypeEnum;
+    'type'?: TransactionData.TypeEnum;
     /**
     * The date the transfer amount becomes available in the balance account.
     */
@@ -114,7 +114,7 @@ export class Transaction {
         {
             "name": "category",
             "baseName": "category",
-            "type": "Transaction.CategoryEnum"
+            "type": "TransactionData.CategoryEnum"
         },
         {
             "name": "counterparty",
@@ -169,7 +169,7 @@ export class Transaction {
         {
             "name": "status",
             "baseName": "status",
-            "type": "Transaction.StatusEnum"
+            "type": "TransactionData.StatusEnum"
         },
         {
             "name": "transferId",
@@ -179,7 +179,7 @@ export class Transaction {
         {
             "name": "type",
             "baseName": "type",
-            "type": "Transaction.TypeEnum"
+            "type": "TransactionData.TypeEnum"
         },
         {
             "name": "valueDate",
@@ -188,11 +188,11 @@ export class Transaction {
         }    ];
 
     static getAttributeTypeMap() {
-        return Transaction.attributeTypeMap;
+        return TransactionData.attributeTypeMap;
     }
 }
 
-export namespace Transaction {
+export namespace TransactionData {
     export enum CategoryEnum {
         Bank = 'bank',
         Card = 'card',
@@ -200,7 +200,8 @@ export namespace Transaction {
         Internal = 'internal',
         IssuedCard = 'issuedCard',
         Migration = 'migration',
-        PlatformPayment = 'platformPayment'
+        PlatformPayment = 'platformPayment',
+        Upgrade = 'upgrade'
     }
     export enum StatusEnum {
         Booked = 'booked',
@@ -210,13 +211,19 @@ export namespace Transaction {
         AtmWithdrawal = 'atmWithdrawal',
         AtmWithdrawalReversal = 'atmWithdrawalReversal',
         BalanceAdjustment = 'balanceAdjustment',
+        BalanceMigration = 'balanceMigration',
         BalanceRollover = 'balanceRollover',
         BankTransfer = 'bankTransfer',
         Capture = 'capture',
         CaptureReversal = 'captureReversal',
         CardTransfer = 'cardTransfer',
+        CashOutFee = 'cashOutFee',
+        CashOutFunding = 'cashOutFunding',
+        CashOutInstruction = 'cashOutInstruction',
         Chargeback = 'chargeback',
+        ChargebackCorrection = 'chargebackCorrection',
         ChargebackReversal = 'chargebackReversal',
+        ChargebackReversalCorrection = 'chargebackReversalCorrection',
         DepositCorrection = 'depositCorrection',
         Fee = 'fee',
         Grant = 'grant',
@@ -233,6 +240,7 @@ export namespace Transaction {
         RefundReversal = 'refundReversal',
         Repayment = 'repayment',
         ReserveAdjustment = 'reserveAdjustment',
-        SecondChargeback = 'secondChargeback'
+        SecondChargeback = 'secondChargeback',
+        SecondChargebackCorrection = 'secondChargebackCorrection'
     }
 }
