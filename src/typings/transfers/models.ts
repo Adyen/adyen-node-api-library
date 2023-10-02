@@ -99,7 +99,7 @@ import { SELocalAccountIdentification } from './sELocalAccountIdentification';
 import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
 import { ServiceError } from './serviceError';
 import { ThresholdRepayment } from './thresholdRepayment';
-import { Transaction } from './Transaction';
+import { Transaction } from './transaction';
 import { TransactionSearchResponse } from './transactionSearchResponse';
 import { Transfer } from './transfer';
 import { TransferInfo } from './transferInfo';
