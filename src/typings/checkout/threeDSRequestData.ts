@@ -71,7 +71,7 @@ export namespace ThreeDSRequestData {
         Preferred = 'preferred'
     }
     export enum ThreeDSVersionEnum {
-        _10 = 'V_2_1_0',
-        _20 = 'V_2_2_0'
+        _10 = '2.1.0',
+        _20 = '2.2.0'
     }
 }
