@@ -10,7 +10,7 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { TransactionData } from "../../typings/transfers/models";
+import { Transaction } from "../../typings/transfers/models";
 import { TransactionSearchResponse } from "../../typings/transfers/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
@@ -54,17 +54,17 @@ export class TransactionsApi extends Service {
     * @summary Get a transaction
     * @param id {@link string } Unique identifier of the transaction.
     * @param requestOptions {@link IRequest.Options}
-    * @return {@link TransactionData }
+    * @return {@link Transaction }
     */
-    public async getTransaction(id: string, requestOptions?: IRequest.Options): Promise<TransactionData> {
+    public async getTransaction(id: string, requestOptions?: IRequest.Options): Promise<Transaction> {
         const endpoint = `${this.baseUrl}/transactions/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, TransactionData>(
+        const response = await getJsonResponse<string, Transaction>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "TransactionData");
+        return ObjectSerializer.deserialize(response, "Transaction");
     }
 }

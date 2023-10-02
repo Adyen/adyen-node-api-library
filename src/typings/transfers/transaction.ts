@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 import { CounterpartyV3 } from './counterpartyV3';
 
-export class TransactionData {
+export class Transaction {
     /**
     * Unique identifier of the account holder.
     */
@@ -31,7 +31,7 @@ export class TransactionData {
     /**
     * The category of the transaction indicating the type of activity.   Possible values:  * **platformPayment**: The transaction is a payment or payment modification made with an Adyen merchant account.  * **internal**: The transaction resulted from an internal adjustment such as a deposit correction or invoice deduction.  * **bank**: The transaction is a bank-related activity, such as sending a payout or receiving funds.  * **issuedCard**: The transaction is a card-related activity, such as using an Adyen-issued card to pay online.  
     */
-    'category'?: TransactionData.CategoryEnum;
+    'category'?: Transaction.CategoryEnum;
     'counterparty': CounterpartyV3;
     /**
     * The date the transaction was created.
@@ -69,7 +69,7 @@ export class TransactionData {
     /**
     * The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.  
     */
-    'status': TransactionData.StatusEnum;
+    'status': Transaction.StatusEnum;
     /**
     * Unique identifier of the related transfer.
     */
@@ -77,7 +77,7 @@ export class TransactionData {
     /**
     * The type of the transaction.   Possible values: **payment**, **capture**, **captureReversal**, **refund** **refundReversal**, **chargeback**, **chargebackReversal**, **secondChargeback**, **atmWithdrawal**, **atmWithdrawalReversal**, **internalTransfer**, **manualCorrection**, **invoiceDeduction**, **depositCorrection**, **bankTransfer**, **miscCost**, **paymentCost**, **fee**
     */
-    'type'?: TransactionData.TypeEnum;
+    'type'?: Transaction.TypeEnum;
     /**
     * The date the transfer amount becomes available in the balance account.
     */
@@ -114,7 +114,7 @@ export class TransactionData {
         {
             "name": "category",
             "baseName": "category",
-            "type": "TransactionData.CategoryEnum"
+            "type": "Transaction.CategoryEnum"
         },
         {
             "name": "counterparty",
@@ -169,7 +169,7 @@ export class TransactionData {
         {
             "name": "status",
             "baseName": "status",
-            "type": "TransactionData.StatusEnum"
+            "type": "Transaction.StatusEnum"
         },
         {
             "name": "transferId",
@@ -179,7 +179,7 @@ export class TransactionData {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TransactionData.TypeEnum"
+            "type": "Transaction.TypeEnum"
         },
         {
             "name": "valueDate",
@@ -188,11 +188,11 @@ export class TransactionData {
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionData.attributeTypeMap;
+        return Transaction.attributeTypeMap;
     }
 }
 
-export namespace TransactionData {
+export namespace Transaction {
     export enum CategoryEnum {
         Bank = 'bank',
         Card = 'card',

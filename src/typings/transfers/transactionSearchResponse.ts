@@ -8,14 +8,14 @@
  */
 
 import { Links } from './links';
-import { TransactionData } from './transactionData';
+import { Transaction } from './Transaction';
 
 export class TransactionSearchResponse {
     '_links'?: Links;
     /**
     * Contains the transactions that match the query parameters.
     */
-    'data'?: Array<TransactionData>;
+    'data'?: Array<Transaction>;
 
     static discriminator: string | undefined = undefined;
 
@@ -28,7 +28,7 @@ export class TransactionSearchResponse {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<TransactionData>"
+            "type": "Array<Transaction>"
         }    ];
 
     static getAttributeTypeMap() {

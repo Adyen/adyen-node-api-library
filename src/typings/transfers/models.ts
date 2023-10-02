@@ -49,7 +49,7 @@ export * from './sELocalAccountIdentification';
 export * from './sGLocalAccountIdentification';
 export * from './serviceError';
 export * from './thresholdRepayment';
-export * from './transactionData';
+export * from './Transaction';
 export * from './transactionSearchResponse';
 export * from './transfer';
 export * from './transferInfo';
@@ -99,7 +99,7 @@ import { SELocalAccountIdentification } from './sELocalAccountIdentification';
 import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
 import { ServiceError } from './serviceError';
 import { ThresholdRepayment } from './thresholdRepayment';
-import { TransactionData } from './transactionData';
+import { Transaction } from './Transaction';
 import { TransactionSearchResponse } from './transactionSearchResponse';
 import { Transfer } from './transfer';
 import { TransferInfo } from './transferInfo';
@@ -138,9 +138,9 @@ let enumsMap: {[index: string]: any} = {
         "PartyIdentification2.TypeEnum": PartyIdentification2.TypeEnum,
         "SELocalAccountIdentification.TypeEnum": SELocalAccountIdentification.TypeEnum,
         "SGLocalAccountIdentification.TypeEnum": SGLocalAccountIdentification.TypeEnum,
-        "TransactionData.CategoryEnum": TransactionData.CategoryEnum,
-        "TransactionData.StatusEnum": TransactionData.StatusEnum,
-        "TransactionData.TypeEnum": TransactionData.TypeEnum,
+        "Transaction.CategoryEnum": Transaction.CategoryEnum,
+        "Transaction.StatusEnum": Transaction.StatusEnum,
+        "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transfer.CategoryEnum": Transfer.CategoryEnum,
         "Transfer.DirectionEnum": Transfer.DirectionEnum,
         "Transfer.PriorityEnum": Transfer.PriorityEnum,
@@ -196,7 +196,7 @@ let typeMap: {[index: string]: any} = {
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
     "ServiceError": ServiceError,
     "ThresholdRepayment": ThresholdRepayment,
-    "TransactionData": TransactionData,
+    "Transaction": Transaction,
     "TransactionSearchResponse": TransactionSearchResponse,
     "Transfer": Transfer,
     "TransferInfo": TransferInfo,
