@@ -50,7 +50,7 @@ describe("Transfers", (): void => {
     test("should get transaction", async (): Promise<void> => {
         scope.get("/transactions/123")
         .reply(200, getTransactionSuccess);
-        const response: transfers.Transaction = await transfersAPI.TransactionsApi.getTransaction("123");
+        const response: transfers.TransactionData = await transfersAPI.TransactionsApi.getTransaction("123");
         expect(response.id).toEqual("IZK7C25U7DYVX03Y");
     });
 
