@@ -49,7 +49,7 @@ export * from './sELocalAccountIdentification';
 export * from './sGLocalAccountIdentification';
 export * from './serviceError';
 export * from './thresholdRepayment';
-export * from './Transaction';
+export * from './transaction';
 export * from './transactionSearchResponse';
 export * from './transfer';
 export * from './transferInfo';
