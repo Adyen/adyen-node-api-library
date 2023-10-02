@@ -8,7 +8,7 @@
  */
 
 import { Links } from './links';
-import { Transaction } from './Transaction';
+import { Transaction } from './transaction';
 
 export class TransactionSearchResponse {
     '_links'?: Links;
