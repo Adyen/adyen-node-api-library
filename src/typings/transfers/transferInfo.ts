@@ -27,10 +27,6 @@ export class TransferInfo {
     */
     'description'?: string;
     /**
-    * The ID of the resource.
-    */
-    'id'?: string;
-    /**
     * The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
     */
     'paymentInstrumentId'?: string;
@@ -74,11 +70,6 @@ export class TransferInfo {
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
             "type": "string"
         },
         {

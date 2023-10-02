@@ -21,11 +21,11 @@ export class Transaction {
     */
     'balanceAccountId': string;
     /**
-    * Unique identifier of the balance platform.
+    * The unique identifier of the balance platform.
     */
     'balancePlatform': string;
     /**
-    * The date the transaction was booked to the balance account.
+    * The date the transaction was booked into the balance account.
     */
     'bookingDate': Date;
     /**
@@ -46,16 +46,16 @@ export class Transaction {
     */
     'description'?: string;
     /**
-    * The PSP reference in the journal.
+    * The PSP reference of the transaction in the journal.
     */
     'eventId'?: string;
     /**
-    * Unique identifier of the transaction.
+    * The unique identifier of the transaction.
     */
     'id': string;
     'instructedAmount'?: Amount;
     /**
-    * Unique identifier of the payment instrument that was used for the transaction.
+    * The unique identifier of the payment instrument that was used for the transaction.
     */
     'paymentInstrumentId'?: string;
     /**
@@ -200,7 +200,8 @@ export namespace Transaction {
         Internal = 'internal',
         IssuedCard = 'issuedCard',
         Migration = 'migration',
-        PlatformPayment = 'platformPayment'
+        PlatformPayment = 'platformPayment',
+        Upgrade = 'upgrade'
     }
     export enum StatusEnum {
         Booked = 'booked',
@@ -210,13 +211,19 @@ export namespace Transaction {
         AtmWithdrawal = 'atmWithdrawal',
         AtmWithdrawalReversal = 'atmWithdrawalReversal',
         BalanceAdjustment = 'balanceAdjustment',
+        BalanceMigration = 'balanceMigration',
         BalanceRollover = 'balanceRollover',
         BankTransfer = 'bankTransfer',
         Capture = 'capture',
         CaptureReversal = 'captureReversal',
         CardTransfer = 'cardTransfer',
+        CashOutFee = 'cashOutFee',
+        CashOutFunding = 'cashOutFunding',
+        CashOutInstruction = 'cashOutInstruction',
         Chargeback = 'chargeback',
+        ChargebackCorrection = 'chargebackCorrection',
         ChargebackReversal = 'chargebackReversal',
+        ChargebackReversalCorrection = 'chargebackReversalCorrection',
         DepositCorrection = 'depositCorrection',
         Fee = 'fee',
         Grant = 'grant',
@@ -233,6 +240,7 @@ export namespace Transaction {
         RefundReversal = 'refundReversal',
         Repayment = 'repayment',
         ReserveAdjustment = 'reserveAdjustment',
-        SecondChargeback = 'secondChargeback'
+        SecondChargeback = 'secondChargeback',
+        SecondChargebackCorrection = 'secondChargebackCorrection'
     }
 }

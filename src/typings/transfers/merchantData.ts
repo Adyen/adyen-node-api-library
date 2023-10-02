@@ -11,6 +11,10 @@ import { NameLocation } from './nameLocation';
 
 export class MerchantData {
     /**
+    * The unique identifier of the merchant\'s acquirer.
+    */
+    'acquirerId'?: string;
+    /**
     * The merchant category code.
     */
     'mcc'?: string;
@@ -27,6 +31,11 @@ export class MerchantData {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "acquirerId",
+            "baseName": "acquirerId",
+            "type": "string"
+        },
         {
             "name": "mcc",
             "baseName": "mcc",

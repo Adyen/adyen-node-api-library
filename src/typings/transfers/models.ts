@@ -47,6 +47,7 @@ export * from './resourceReference';
 export * from './restServiceError';
 export * from './sELocalAccountIdentification';
 export * from './sGLocalAccountIdentification';
+export * from './serviceError';
 export * from './thresholdRepayment';
 export * from './transaction';
 export * from './transactionSearchResponse';
@@ -96,6 +97,7 @@ import { ResourceReference } from './resourceReference';
 import { RestServiceError } from './restServiceError';
 import { SELocalAccountIdentification } from './sELocalAccountIdentification';
 import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
+import { ServiceError } from './serviceError';
 import { ThresholdRepayment } from './thresholdRepayment';
 import { Transaction } from './transaction';
 import { TransactionSearchResponse } from './transactionSearchResponse';
@@ -192,6 +194,7 @@ let typeMap: {[index: string]: any} = {
     "RestServiceError": RestServiceError,
     "SELocalAccountIdentification": SELocalAccountIdentification,
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
+    "ServiceError": ServiceError,
     "ThresholdRepayment": ThresholdRepayment,
     "Transaction": Transaction,
     "TransactionSearchResponse": TransactionSearchResponse,

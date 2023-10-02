@@ -95,7 +95,6 @@ export namespace PaymentDetails {
         Knet = 'knet',
         Omannet = 'omannet',
         GopayWallet = 'gopay_wallet',
-        Poli = 'poli',
         KcpNaverpay = 'kcp_naverpay',
         OnlinebankingIn = 'onlinebanking_IN',
         Fawry = 'fawry',
