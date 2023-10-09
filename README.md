@@ -225,7 +225,7 @@ Alternatively, you can use the `Types` included in this module for Typescript an
       merchantAccount: "YOUR_MERCHANT_ACCOUNT"
     };
     const checkoutAPI = new CheckoutAPI(client);
-    const paymentResponse : Types.checkout.PaymentResponse = await checkoutAPI.PaymentsAPI.payments(paymentsRequest);
+    const paymentResponse : Types.checkout.PaymentResponse = await checkoutAPI.PaymentsApi.payments(paymentsRequest);
     console.log(paymentResponse.pspReference);
   }
 
