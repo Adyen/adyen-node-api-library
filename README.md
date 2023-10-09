@@ -113,7 +113,7 @@ const checkoutApi = new CheckoutAPI(client);
   };
   
 // Step 5: Make the request
-checkoutAPI.payments(paymentRequest)
+checkoutApi.PaymentsApi.payments(paymentRequest)
   .then(paymentResponse => console.log(paymentResponse.pspReference))
   .catch(error => console.log(error));
 ```
@@ -182,7 +182,7 @@ Create a the request object. For example, for a request to the `/payments` endpo
 Use the API object's method to make the request. For example, to make a request to the `/payments` endpoint using the `CheckoutAPI` object:
 
 ```
-checkoutAPI.payments(paymentRequest)
+checkoutApi.PaymentsAPI.payments(paymentRequest)
   .then(paymentResponse => console.log(paymentResponse.pspReference))
   .catch(error => console.log(error));
 ```
@@ -225,7 +225,7 @@ Alternatively, you can use the `Types` included in this module for Typescript an
       merchantAccount: "YOUR_MERCHANT_ACCOUNT"
     };
     const checkoutAPI = new CheckoutAPI(client);
-    const paymentResponse : Types.checkout.PaymentResponse = await checkoutAPI.payments(paymentsRequest);
+    const paymentResponse : Types.checkout.PaymentResponse = await checkoutAPI.PaymentsAPI.payments(paymentsRequest);
     console.log(paymentResponse.pspReference);
   }
 
