@@ -8,32 +8,32 @@
  */
 
 
-export class Amount {
+export class TransferData {
     /**
-    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+    * The ID of the resource.
     */
-    'currency': string;
+    'id'?: string;
     /**
-    * The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+    * The [`reference`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the `/transfers` request. If you haven\'t provided any, Adyen generates a unique reference.
     */
-    'value': number;
+    'reference': string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "currency",
-            "baseName": "currency",
+            "name": "id",
+            "baseName": "id",
             "type": "string"
         },
         {
-            "name": "value",
-            "baseName": "value",
-            "type": "number"
+            "name": "reference",
+            "baseName": "reference",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return Amount.attributeTypeMap;
+        return TransferData.attributeTypeMap;
     }
 }
 

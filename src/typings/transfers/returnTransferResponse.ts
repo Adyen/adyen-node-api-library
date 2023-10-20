@@ -8,32 +8,27 @@
  */
 
 
-export class PaymentInstrument {
+export class ReturnTransferResponse {
     /**
-    * The description of the resource.
-    */
-    'description'?: string;
-    /**
-    * The unique identifier of the resource.
+    * The unique identifier of the return.
     */
     'id'?: string;
     /**
-    * The reference for the resource.
+    * Your internal reference for the return.
     */
     'reference'?: string;
     /**
-    * The type of wallet the network token is associated with.
+    * The resulting status of the return.  For example: **authorised**, **booked**, **error**.
     */
-    'tokenType'?: string;
+    'status'?: ReturnTransferResponse.StatusEnum;
+    /**
+    * The unique identifier of the original transfer.
+    */
+    'transferId'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "description",
-            "baseName": "description",
-            "type": "string"
-        },
         {
             "name": "id",
             "baseName": "id",
@@ -45,13 +40,24 @@ export class PaymentInstrument {
             "type": "string"
         },
         {
-            "name": "tokenType",
-            "baseName": "tokenType",
+            "name": "status",
+            "baseName": "status",
+            "type": "ReturnTransferResponse.StatusEnum"
+        },
+        {
+            "name": "transferId",
+            "baseName": "transferId",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentInstrument.attributeTypeMap;
+        return ReturnTransferResponse.attributeTypeMap;
     }
 }
 
+export namespace ReturnTransferResponse {
+    export enum StatusEnum {
+        Authorised = 'Authorised',
+        Declined = 'Declined'
+    }
+}

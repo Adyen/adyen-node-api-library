@@ -8,17 +8,13 @@
  */
 
 
-export class ResourceReference {
+export class RelayedAuthorisationData {
     /**
-    * The description of the resource.
+    * Contains key-value pairs of your references and descriptions, for example, `customId`:`your-own-custom-field-12345`.
     */
-    'description'?: string;
+    'metadata'?: { [key: string]: string; };
     /**
-    * The unique identifier of the resource.
-    */
-    'id'?: string;
-    /**
-    * The reference for the resource.
+    * Your reference for the relayed authorisation data.
     */
     'reference'?: string;
 
@@ -26,14 +22,9 @@ export class ResourceReference {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "description",
-            "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "reference",
@@ -42,7 +33,7 @@ export class ResourceReference {
         }    ];
 
     static getAttributeTypeMap() {
-        return ResourceReference.attributeTypeMap;
+        return RelayedAuthorisationData.attributeTypeMap;
     }
 }
 

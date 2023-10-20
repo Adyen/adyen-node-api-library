@@ -7,18 +7,12 @@
  * Do not edit this class manually.
  */
 
+import { Amount } from './amount';
 
-export class ResourceReference {
+export class ReturnTransferRequest {
+    'amount': Amount;
     /**
-    * The description of the resource.
-    */
-    'description'?: string;
-    /**
-    * The unique identifier of the resource.
-    */
-    'id'?: string;
-    /**
-    * The reference for the resource.
+    * Your internal reference for the return. If you don\'t provide this in the request, Adyen generates a unique reference. This reference is used in all communication with you about the instruction status.  We recommend using a unique value per instruction. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). 
     */
     'reference'?: string;
 
@@ -26,14 +20,9 @@ export class ResourceReference {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "description",
-            "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
+            "name": "amount",
+            "baseName": "amount",
+            "type": "Amount"
         },
         {
             "name": "reference",
@@ -42,7 +31,7 @@ export class ResourceReference {
         }    ];
 
     static getAttributeTypeMap() {
-        return ResourceReference.attributeTypeMap;
+        return ReturnTransferRequest.attributeTypeMap;
     }
 }
 

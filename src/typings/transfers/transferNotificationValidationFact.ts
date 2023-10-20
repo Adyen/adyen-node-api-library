@@ -8,32 +8,32 @@
  */
 
 
-export class Amount {
+export class TransferNotificationValidationFact {
     /**
-    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+    * The evaluation result of the validation fact.
     */
-    'currency': string;
+    'result'?: string;
     /**
-    * The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+    * The type of the validation fact.
     */
-    'value': number;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "currency",
-            "baseName": "currency",
+            "name": "result",
+            "baseName": "result",
             "type": "string"
         },
         {
-            "name": "value",
-            "baseName": "value",
-            "type": "number"
+            "name": "type",
+            "baseName": "type",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return Amount.attributeTypeMap;
+        return TransferNotificationValidationFact.attributeTypeMap;
     }
 }
 
