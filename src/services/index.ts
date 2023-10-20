@@ -14,3 +14,4 @@ export { default as TransfersAPI } from "./transfers";
 export { default as BalancePlatformAPI } from "./balancePlatform";
 export { default as DataProtectionAPI } from "./dataProtectionApi";
 export { default as BalanceControlAPI } from "./balanceControlApi";
+export { default as DisputesAPI } from "./disputesApi";
