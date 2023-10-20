@@ -9,7 +9,7 @@
 
 import { MidServiceNotificationData } from './midServiceNotificationData';
 
-export class PaymentMethodCreatedNotificationRequest {
+export class NotificationDataMessage {
     /**
     * Timestamp for when the webhook was created.
     */
@@ -22,7 +22,7 @@ export class PaymentMethodCreatedNotificationRequest {
     /**
     * Type of notification.
     */
-    'type': PaymentMethodCreatedNotificationRequest.TypeEnum;
+    'type': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -45,16 +45,11 @@ export class PaymentMethodCreatedNotificationRequest {
         {
             "name": "type",
             "baseName": "type",
-            "type": "PaymentMethodCreatedNotificationRequest.TypeEnum"
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentMethodCreatedNotificationRequest.attributeTypeMap;
+        return NotificationDataMessage.attributeTypeMap;
     }
 }
 
-export namespace PaymentMethodCreatedNotificationRequest {
-    export enum TypeEnum {
-        PaymentMethodCreated = 'paymentMethod.created'
-    }
-}
