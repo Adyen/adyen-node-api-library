@@ -25,6 +25,10 @@ export class DSPublicKeyDetail {
     * Public key. The 3D Secure 2 SDK encrypts the device information by using the DS public key.
     */
     'publicKey'?: string;
+    /**
+    * Directory Server root certificates. The 3D Secure 2 SDK verifies the ACS signed content using the rootCertificates.
+    */
+    'rootCertificates'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -47,6 +51,11 @@ export class DSPublicKeyDetail {
         {
             "name": "publicKey",
             "baseName": "publicKey",
+            "type": "string"
+        },
+        {
+            "name": "rootCertificates",
+            "baseName": "rootCertificates",
             "type": "string"
         }    ];
 

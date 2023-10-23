@@ -7,10 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './address';
+import { BillingAddress } from './billingAddress';
 
 export class SubMerchantInfo {
-    'address'?: Address;
+    'address'?: BillingAddress;
     'id'?: string;
     'mcc'?: string;
     'name'?: string;
@@ -22,7 +22,7 @@ export class SubMerchantInfo {
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address"
+            "type": "BillingAddress"
         },
         {
             "name": "id",

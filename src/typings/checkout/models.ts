@@ -42,6 +42,7 @@ export * from './balanceCheckRequest';
 export * from './balanceCheckResponse';
 export * from './bankAccount';
 export * from './billDeskDetails';
+export * from './billingAddress';
 export * from './blikDetails';
 export * from './browserInfo';
 export * from './cancelOrderRequest';
@@ -69,6 +70,7 @@ export * from './createCheckoutSessionRequest';
 export * from './createCheckoutSessionResponse';
 export * from './createOrderRequest';
 export * from './createOrderResponse';
+export * from './deliveryAddress';
 export * from './detailsRequestAuthenticationData';
 export * from './deviceRenderOptions';
 export * from './dokuDetails';
@@ -223,6 +225,7 @@ import { BalanceCheckRequest } from './balanceCheckRequest';
 import { BalanceCheckResponse } from './balanceCheckResponse';
 import { BankAccount } from './bankAccount';
 import { BillDeskDetails } from './billDeskDetails';
+import { BillingAddress } from './billingAddress';
 import { BlikDetails } from './blikDetails';
 import { BrowserInfo } from './browserInfo';
 import { CancelOrderRequest } from './cancelOrderRequest';
@@ -250,6 +253,7 @@ import { CreateCheckoutSessionRequest } from './createCheckoutSessionRequest';
 import { CreateCheckoutSessionResponse } from './createCheckoutSessionResponse';
 import { CreateOrderRequest } from './createOrderRequest';
 import { CreateOrderResponse } from './createOrderResponse';
+import { DeliveryAddress } from './deliveryAddress';
 import { DetailsRequestAuthenticationData } from './detailsRequestAuthenticationData';
 import { DeviceRenderOptions } from './deviceRenderOptions';
 import { DokuDetails } from './dokuDetails';
@@ -441,6 +445,7 @@ let enumsMap: {[index: string]: any} = {
         "DokuDetails.TypeEnum": DokuDetails.TypeEnum,
         "DonationPaymentRequest.ChannelEnum": DonationPaymentRequest.ChannelEnum,
         "DonationPaymentRequest.EntityTypeEnum": DonationPaymentRequest.EntityTypeEnum,
+        "DonationPaymentRequest.FundingSourceEnum": DonationPaymentRequest.FundingSourceEnum,
         "DonationPaymentRequest.IndustryUsageEnum": DonationPaymentRequest.IndustryUsageEnum,
         "DonationPaymentRequest.RecurringProcessingModelEnum": DonationPaymentRequest.RecurringProcessingModelEnum,
         "DonationPaymentRequest.ShopperInteractionEnum": DonationPaymentRequest.ShopperInteractionEnum,
@@ -589,6 +594,7 @@ let typeMap: {[index: string]: any} = {
     "BalanceCheckResponse": BalanceCheckResponse,
     "BankAccount": BankAccount,
     "BillDeskDetails": BillDeskDetails,
+    "BillingAddress": BillingAddress,
     "BlikDetails": BlikDetails,
     "BrowserInfo": BrowserInfo,
     "CancelOrderRequest": CancelOrderRequest,
@@ -616,6 +622,7 @@ let typeMap: {[index: string]: any} = {
     "CreateCheckoutSessionResponse": CreateCheckoutSessionResponse,
     "CreateOrderRequest": CreateOrderRequest,
     "CreateOrderResponse": CreateOrderResponse,
+    "DeliveryAddress": DeliveryAddress,
     "DetailsRequestAuthenticationData": DetailsRequestAuthenticationData,
     "DeviceRenderOptions": DeviceRenderOptions,
     "DokuDetails": DokuDetails,

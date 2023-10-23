@@ -15,7 +15,7 @@ import { SupportingEntityCapability } from './supportingEntityCapability';
 export class TransferInstrument {
     'bankAccount': BankAccountInfo;
     /**
-    * List of capabilities for this supporting entity.
+    * List of capabilities for this transfer instrument.
     */
     'capabilities'?: { [key: string]: SupportingEntityCapability; };
     /**
@@ -31,7 +31,7 @@ export class TransferInstrument {
     */
     'legalEntityId': string;
     /**
-    * List of the verification errors from capabilities for this supporting entity.
+    * The verification errors related to capabilities for this transfer instrument.
     */
     'problems'?: Array<CapabilityProblem>;
     /**

@@ -32,6 +32,7 @@ export * from './balanceSweepConfigurationsResponse';
 export * from './bankAccount';
 export * from './bankAccountIdentificationTypeRequirement';
 export * from './bankAccountIdentificationValidationRequest';
+export * from './bankIdentification';
 export * from './brandVariantsRestriction';
 export * from './bulkAddress';
 export * from './cALocalAccountIdentification';
@@ -47,6 +48,7 @@ export * from './cardConfiguration';
 export * from './cardInfo';
 export * from './contactDetails';
 export * from './counterparty';
+export * from './counterpartyBankRestriction';
 export * from './countriesRestriction';
 export * from './createSweepConfigurationV2';
 export * from './dKLocalAccountIdentification';
@@ -60,6 +62,7 @@ export * from './entryModesRestriction';
 export * from './expiry';
 export * from './fee';
 export * from './getNetworkTokenResponse';
+export * from './getTaxFormResponse';
 export * from './grantLimit';
 export * from './grantOffer';
 export * from './grantOffers';
@@ -154,6 +157,7 @@ import { BalanceSweepConfigurationsResponse } from './balanceSweepConfigurations
 import { BankAccount } from './bankAccount';
 import { BankAccountIdentificationTypeRequirement } from './bankAccountIdentificationTypeRequirement';
 import { BankAccountIdentificationValidationRequest } from './bankAccountIdentificationValidationRequest';
+import { BankIdentification } from './bankIdentification';
 import { BrandVariantsRestriction } from './brandVariantsRestriction';
 import { BulkAddress } from './bulkAddress';
 import { CALocalAccountIdentification } from './cALocalAccountIdentification';
@@ -169,6 +173,7 @@ import { CardConfiguration } from './cardConfiguration';
 import { CardInfo } from './cardInfo';
 import { ContactDetails } from './contactDetails';
 import { Counterparty } from './counterparty';
+import { CounterpartyBankRestriction } from './counterpartyBankRestriction';
 import { CountriesRestriction } from './countriesRestriction';
 import { CreateSweepConfigurationV2 } from './createSweepConfigurationV2';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
@@ -182,6 +187,7 @@ import { EntryModesRestriction } from './entryModesRestriction';
 import { Expiry } from './expiry';
 import { Fee } from './fee';
 import { GetNetworkTokenResponse } from './getNetworkTokenResponse';
+import { GetTaxFormResponse } from './getTaxFormResponse';
 import { GrantLimit } from './grantLimit';
 import { GrantOffer } from './grantOffer';
 import { GrantOffers } from './grantOffers';
@@ -282,6 +288,7 @@ let enumsMap: {[index: string]: any} = {
         "BalanceAccountUpdateRequest.StatusEnum": BalanceAccountUpdateRequest.StatusEnum,
         "BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum": BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum,
         "BankAccountIdentificationTypeRequirement.TypeEnum": BankAccountIdentificationTypeRequirement.TypeEnum,
+        "BankIdentification.IdentificationTypeEnum": BankIdentification.IdentificationTypeEnum,
         "CALocalAccountIdentification.AccountTypeEnum": CALocalAccountIdentification.AccountTypeEnum,
         "CALocalAccountIdentification.TypeEnum": CALocalAccountIdentification.TypeEnum,
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
@@ -300,6 +307,7 @@ let enumsMap: {[index: string]: any} = {
         "DayOfWeekRestriction.ValueEnum": DayOfWeekRestriction.ValueEnum,
         "Duration.UnitEnum": Duration.UnitEnum,
         "EntryModesRestriction.ValueEnum": EntryModesRestriction.ValueEnum,
+        "GetTaxFormResponse.ContentTypeEnum": GetTaxFormResponse.ContentTypeEnum,
         "GrantOffer.ContractTypeEnum": GrantOffer.ContractTypeEnum,
         "HKLocalAccountIdentification.TypeEnum": HKLocalAccountIdentification.TypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
@@ -389,6 +397,7 @@ let typeMap: {[index: string]: any} = {
     "BankAccount": BankAccount,
     "BankAccountIdentificationTypeRequirement": BankAccountIdentificationTypeRequirement,
     "BankAccountIdentificationValidationRequest": BankAccountIdentificationValidationRequest,
+    "BankIdentification": BankIdentification,
     "BrandVariantsRestriction": BrandVariantsRestriction,
     "BulkAddress": BulkAddress,
     "CALocalAccountIdentification": CALocalAccountIdentification,
@@ -404,6 +413,7 @@ let typeMap: {[index: string]: any} = {
     "CardInfo": CardInfo,
     "ContactDetails": ContactDetails,
     "Counterparty": Counterparty,
+    "CounterpartyBankRestriction": CounterpartyBankRestriction,
     "CountriesRestriction": CountriesRestriction,
     "CreateSweepConfigurationV2": CreateSweepConfigurationV2,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
@@ -417,6 +427,7 @@ let typeMap: {[index: string]: any} = {
     "Expiry": Expiry,
     "Fee": Fee,
     "GetNetworkTokenResponse": GetNetworkTokenResponse,
+    "GetTaxFormResponse": GetTaxFormResponse,
     "GrantLimit": GrantLimit,
     "GrantOffer": GrantOffer,
     "GrantOffers": GrantOffers,

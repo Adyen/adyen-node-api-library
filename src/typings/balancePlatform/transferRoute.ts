@@ -14,10 +14,6 @@ import { PaymentInstrumentRequirement } from './paymentInstrumentRequirement';
 
 export class TransferRoute {
     /**
-    * The unique identifier assigned to the balance platform associated with the account holder.
-    */
-    'balancePlatform'?: string;
-    /**
     *  The type of transfer.   Possible values:    - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account. 
     */
     'category'?: TransferRoute.CategoryEnum;
@@ -41,11 +37,6 @@ export class TransferRoute {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "balancePlatform",
-            "baseName": "balancePlatform",
-            "type": "string"
-        },
         {
             "name": "category",
             "baseName": "category",
@@ -85,7 +76,8 @@ export namespace TransferRoute {
         Internal = 'internal',
         IssuedCard = 'issuedCard',
         Migration = 'migration',
-        PlatformPayment = 'platformPayment'
+        PlatformPayment = 'platformPayment',
+        Upgrade = 'upgrade'
     }
     export enum PriorityEnum {
         CrossBorder = 'crossBorder',

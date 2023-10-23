@@ -11,6 +11,7 @@ import { CardholderReceipt } from './cardholderReceipt';
 import { Connectivity } from './connectivity';
 import { Gratuity } from './gratuity';
 import { Hardware } from './hardware';
+import { Localization } from './localization';
 import { Nexo } from './nexo';
 import { OfflineProcessing } from './offlineProcessing';
 import { Opi } from './opi';
@@ -33,6 +34,7 @@ export class TerminalSettings {
     */
     'gratuities'?: Array<Gratuity>;
     'hardware'?: Hardware;
+    'localization'?: Localization;
     'nexo'?: Nexo;
     'offlineProcessing'?: OfflineProcessing;
     'opi'?: Opi;
@@ -69,6 +71,11 @@ export class TerminalSettings {
             "name": "hardware",
             "baseName": "hardware",
             "type": "Hardware"
+        },
+        {
+            "name": "localization",
+            "baseName": "localization",
+            "type": "Localization"
         },
         {
             "name": "nexo",

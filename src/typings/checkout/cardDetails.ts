@@ -192,11 +192,8 @@ export namespace CardDetails {
         Debit = 'debit'
     }
     export enum TypeEnum {
-        Bcmc = 'bcmc',
         Scheme = 'scheme',
         NetworkToken = 'networkToken',
-        Giftcard = 'giftcard',
-        Alliancedata = 'alliancedata',
         Card = 'card'
     }
 }
