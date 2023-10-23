@@ -8,12 +8,13 @@
  */
 
 import { AccountInfo } from './accountInfo';
-import { Address } from './address';
 import { Amount } from './amount';
 import { ApplicationInfo } from './applicationInfo';
 import { AuthenticationData } from './authenticationData';
+import { BillingAddress } from './billingAddress';
 import { CheckoutSessionInstallmentOption } from './checkoutSessionInstallmentOption';
 import { Company } from './company';
+import { DeliveryAddress } from './deliveryAddress';
 import { FundOrigin } from './fundOrigin';
 import { FundRecipient } from './fundRecipient';
 import { LineItem } from './lineItem';
@@ -38,7 +39,7 @@ export class CreateCheckoutSessionResponse {
     'amount': Amount;
     'applicationInfo'?: ApplicationInfo;
     'authenticationData'?: AuthenticationData;
-    'billingAddress'?: Address;
+    'billingAddress'?: BillingAddress;
     /**
     * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
@@ -64,7 +65,7 @@ export class CreateCheckoutSessionResponse {
     * The date and time when the purchased goods should be delivered.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
     */
     'deliverAt'?: Date;
-    'deliveryAddress'?: Address;
+    'deliveryAddress'?: DeliveryAddress;
     /**
     * When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future one-click payments.
     */
@@ -254,7 +255,7 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address"
+            "type": "BillingAddress"
         },
         {
             "name": "blockedPaymentMethods",
@@ -294,7 +295,7 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "Address"
+            "type": "DeliveryAddress"
         },
         {
             "name": "enableOneClick",

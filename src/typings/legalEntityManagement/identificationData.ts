@@ -84,6 +84,6 @@ export class IdentificationData {
 
 export namespace IdentificationData {
     export enum TypeEnum {
-        ProofOfNationalIdNumber = 'proofOfNationalIdNumber'
+        NationalIdNumber = 'nationalIdNumber'
     }
 }

@@ -74,6 +74,8 @@ export namespace DokuDetails {
         BriVa = 'doku_bri_va',
         BcaVa = 'doku_bca_va',
         Alfamart = 'doku_alfamart',
-        Indomaret = 'doku_indomaret'
+        Indomaret = 'doku_indomaret',
+        Wallet = 'doku_wallet',
+        Ovo = 'doku_ovo'
     }
 }

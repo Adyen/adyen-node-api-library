@@ -10,7 +10,7 @@
 
 export class HKLocalAccountIdentification {
     /**
-    * The 9- to 12-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.
+    * The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.
     */
     'accountNumber': string;
     /**

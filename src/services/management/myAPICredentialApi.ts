@@ -13,6 +13,7 @@ import Client from "../../client";
 import { AllowedOrigin } from "../../typings/management/models";
 import { AllowedOriginsResponse } from "../../typings/management/models";
 import { CreateAllowedOriginRequest } from "../../typings/management/models";
+import { GenerateClientKeyResponse } from "../../typings/management/models";
 import { MeApiCredential } from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
@@ -110,5 +111,21 @@ export class MyAPICredentialApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "AllowedOrigin");
+    }
+
+    /**
+    * @summary Generate new client key for self
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link GenerateClientKeyResponse }
+    */
+    public async generateNewClientKeyForSelf(requestOptions?: IRequest.Options): Promise<GenerateClientKeyResponse> {
+        const endpoint = `${this.baseUrl}/me/generateClientKey`;
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, GenerateClientKeyResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "GenerateClientKeyResponse");
     }
 }

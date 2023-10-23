@@ -83,6 +83,7 @@ export * from './listMerchantUsersResponse';
 export * from './listStoresResponse';
 export * from './listTerminalsResponse';
 export * from './listWebhooksResponse';
+export * from './localization';
 export * from './logo';
 export * from './meApiCredential';
 export * from './mealVoucherFRInfo';
@@ -258,6 +259,7 @@ import { ListMerchantUsersResponse } from './listMerchantUsersResponse';
 import { ListStoresResponse } from './listStoresResponse';
 import { ListTerminalsResponse } from './listTerminalsResponse';
 import { ListWebhooksResponse } from './listWebhooksResponse';
+import { Localization } from './localization';
 import { Logo } from './logo';
 import { MeApiCredential } from './meApiCredential';
 import { MealVoucherFRInfo } from './mealVoucherFRInfo';
@@ -511,6 +513,7 @@ let typeMap: {[index: string]: any} = {
     "ListStoresResponse": ListStoresResponse,
     "ListTerminalsResponse": ListTerminalsResponse,
     "ListWebhooksResponse": ListWebhooksResponse,
+    "Localization": Localization,
     "Logo": Logo,
     "MeApiCredential": MeApiCredential,
     "MealVoucherFRInfo": MealVoucherFRInfo,

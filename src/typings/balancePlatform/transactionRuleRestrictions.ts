@@ -9,6 +9,7 @@
 
 import { ActiveNetworkTokensRestriction } from './activeNetworkTokensRestriction';
 import { BrandVariantsRestriction } from './brandVariantsRestriction';
+import { CounterpartyBankRestriction } from './counterpartyBankRestriction';
 import { CountriesRestriction } from './countriesRestriction';
 import { DayOfWeekRestriction } from './dayOfWeekRestriction';
 import { DifferentCurrenciesRestriction } from './differentCurrenciesRestriction';
@@ -25,6 +26,7 @@ import { TotalAmountRestriction } from './totalAmountRestriction';
 export class TransactionRuleRestrictions {
     'activeNetworkTokens'?: ActiveNetworkTokensRestriction;
     'brandVariants'?: BrandVariantsRestriction;
+    'counterpartyBank'?: CounterpartyBankRestriction;
     'countries'?: CountriesRestriction;
     'dayOfWeek'?: DayOfWeekRestriction;
     'differentCurrencies'?: DifferentCurrenciesRestriction;
@@ -50,6 +52,11 @@ export class TransactionRuleRestrictions {
             "name": "brandVariants",
             "baseName": "brandVariants",
             "type": "BrandVariantsRestriction"
+        },
+        {
+            "name": "counterpartyBank",
+            "baseName": "counterpartyBank",
+            "type": "CounterpartyBankRestriction"
         },
         {
             "name": "countries",

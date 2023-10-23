@@ -13,6 +13,7 @@ import Client from "../../client";
 import { AccountHolder } from "../../typings/balancePlatform/models";
 import { AccountHolderInfo } from "../../typings/balancePlatform/models";
 import { AccountHolderUpdateRequest } from "../../typings/balancePlatform/models";
+import { GetTaxFormResponse } from "../../typings/balancePlatform/models";
 import { PaginatedBalanceAccountsResponse } from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
@@ -64,6 +65,26 @@ export class AccountHoldersApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PaginatedBalanceAccountsResponse");
+    }
+
+    /**
+    * @summary Get a tax form
+    * @param id {@link string } The unique identifier of the account holder.
+    * @param formType {@link &#39;US1099k&#39; | &#39;US1099nec&#39; } The type of tax form you want to retrieve. Accepted values are **us1099k** and **us1099nec**
+    * @param year {@link number } The tax year in YYYY format for the tax form you want to retrieve
+    * @param requestOptions {@link IRequest.Options}
+    * @return {@link GetTaxFormResponse }
+    */
+    public async getTaxForm(id: string, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
+        const endpoint = `${this.baseUrl}/accountHolders/{id}/taxForms`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, GetTaxFormResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "GetTaxFormResponse");
     }
 
     /**

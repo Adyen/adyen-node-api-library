@@ -123,7 +123,6 @@ export namespace CreateSweepConfigurationV2 {
     }
     export enum PrioritiesEnum {
         CrossBorder = 'crossBorder',
-        DirectDebit = 'directDebit',
         Fast = 'fast',
         Instant = 'instant',
         Internal = 'internal',
@@ -133,16 +132,19 @@ export namespace CreateSweepConfigurationV2 {
     export enum ReasonEnum {
         AmountLimitExceeded = 'amountLimitExceeded',
         Approved = 'approved',
+        BalanceAccountTemporarilyBlockedByTransactionRule = 'balanceAccountTemporarilyBlockedByTransactionRule',
         CounterpartyAccountBlocked = 'counterpartyAccountBlocked',
         CounterpartyAccountClosed = 'counterpartyAccountClosed',
         CounterpartyAccountNotFound = 'counterpartyAccountNotFound',
         CounterpartyAddressRequired = 'counterpartyAddressRequired',
         CounterpartyBankTimedOut = 'counterpartyBankTimedOut',
         CounterpartyBankUnavailable = 'counterpartyBankUnavailable',
+        DeclinedByTransactionRule = 'declinedByTransactionRule',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
         RouteNotFound = 'routeNotFound',
+        ScaFailed = 'scaFailed',
         Unknown = 'unknown'
     }
     export enum StatusEnum {

@@ -202,6 +202,7 @@ let enumsMap: {[index: string]: any} = {
         "DKLocalAccountIdentification.TypeEnum": DKLocalAccountIdentification.TypeEnum,
         "Document.TypeEnum": Document.TypeEnum,
         "DocumentPage.TypeEnum": DocumentPage.TypeEnum,
+        "GeneratePciDescriptionRequest.AdditionalSalesChannelsEnum": GeneratePciDescriptionRequest.AdditionalSalesChannelsEnum,
         "GetTermsOfServiceDocumentRequest.TypeEnum": GetTermsOfServiceDocumentRequest.TypeEnum,
         "GetTermsOfServiceDocumentResponse.TypeEnum": GetTermsOfServiceDocumentResponse.TypeEnum,
         "HKLocalAccountIdentification.TypeEnum": HKLocalAccountIdentification.TypeEnum,

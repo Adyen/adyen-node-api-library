@@ -8,65 +8,32 @@
  */
 
 import { AccountInfo } from './accountInfo';
-import { AchDetails } from './achDetails';
-import { Address } from './address';
-import { AfterpayDetails } from './afterpayDetails';
-import { AmazonPayDetails } from './amazonPayDetails';
 import { Amount } from './amount';
-import { AndroidPayDetails } from './androidPayDetails';
 import { ApplePayDetails } from './applePayDetails';
 import { ApplicationInfo } from './applicationInfo';
 import { AuthenticationData } from './authenticationData';
-import { BacsDirectDebitDetails } from './bacsDirectDebitDetails';
-import { BillDeskDetails } from './billDeskDetails';
-import { BlikDetails } from './blikDetails';
+import { BillingAddress } from './billingAddress';
 import { BrowserInfo } from './browserInfo';
 import { CardDetails } from './cardDetails';
-import { CellulantDetails } from './cellulantDetails';
 import { Company } from './company';
-import { DokuDetails } from './dokuDetails';
-import { DotpayDetails } from './dotpayDetails';
-import { DragonpayDetails } from './dragonpayDetails';
-import { EcontextVoucherDetails } from './econtextVoucherDetails';
+import { DeliveryAddress } from './deliveryAddress';
 import { EncryptedOrderData } from './encryptedOrderData';
 import { ForexQuote } from './forexQuote';
 import { FundOrigin } from './fundOrigin';
 import { FundRecipient } from './fundRecipient';
-import { GenericIssuerPaymentMethodDetails } from './genericIssuerPaymentMethodDetails';
-import { GiropayDetails } from './giropayDetails';
 import { GooglePayDetails } from './googlePayDetails';
 import { IdealDetails } from './idealDetails';
 import { Installments } from './installments';
-import { KlarnaDetails } from './klarnaDetails';
 import { LineItem } from './lineItem';
 import { Mandate } from './mandate';
-import { MasterpassDetails } from './masterpassDetails';
-import { MbwayDetails } from './mbwayDetails';
 import { MerchantRiskIndicator } from './merchantRiskIndicator';
-import { MobilePayDetails } from './mobilePayDetails';
-import { MolPayDetails } from './molPayDetails';
 import { Name } from './name';
-import { OpenInvoiceDetails } from './openInvoiceDetails';
-import { PayPalDetails } from './payPalDetails';
-import { PayUUpiDetails } from './payUUpiDetails';
 import { PayWithGoogleDetails } from './payWithGoogleDetails';
-import { PaymentDetails } from './paymentDetails';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
-import { RatepayDetails } from './ratepayDetails';
 import { RiskData } from './riskData';
-import { SamsungPayDetails } from './samsungPayDetails';
-import { SepaDirectDebitDetails } from './sepaDirectDebitDetails';
 import { Split } from './split';
-import { StoredPaymentMethodDetails } from './storedPaymentMethodDetails';
 import { ThreeDS2RequestData2 } from './threeDS2RequestData2';
 import { ThreeDSecureData } from './threeDSecureData';
-import { UpiCollectDetails } from './upiCollectDetails';
-import { UpiIntentDetails } from './upiIntentDetails';
-import { VippsDetails } from './vippsDetails';
-import { VisaCheckoutDetails } from './visaCheckoutDetails';
-import { WeChatPayDetails } from './weChatPayDetails';
-import { WeChatPayMiniProgramDetails } from './weChatPayMiniProgramDetails';
-import { ZipDetails } from './zipDetails';
 
 export class DonationPaymentRequest {
     'accountInfo'?: AccountInfo;
@@ -75,10 +42,18 @@ export class DonationPaymentRequest {
     * This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
     'additionalData'?: { [key: string]: string; };
+    /**
+    * List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
+    */
+    'allowedPaymentMethods'?: Array<string>;
     'amount': Amount;
     'applicationInfo'?: ApplicationInfo;
     'authenticationData'?: AuthenticationData;
-    'billingAddress'?: Address;
+    'billingAddress'?: BillingAddress;
+    /**
+    * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
+    */
+    'blockedPaymentMethods'?: Array<string>;
     'browserInfo'?: BrowserInfo;
     /**
     * The delay between the authorisation and scheduled auto-capture, specified in hours.
@@ -110,7 +85,7 @@ export class DonationPaymentRequest {
     * The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
     */
     'deliverAt'?: Date;
-    'deliveryAddress'?: Address;
+    'deliveryAddress'?: DeliveryAddress;
     /**
     * The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
     */
@@ -153,6 +128,10 @@ export class DonationPaymentRequest {
     'fraudOffset'?: number;
     'fundOrigin'?: FundOrigin;
     'fundRecipient'?: FundRecipient;
+    /**
+    * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
+    */
+    'fundingSource'?: DonationPaymentRequest.FundingSourceEnum;
     /**
     * The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**
     */
@@ -197,7 +176,7 @@ export class DonationPaymentRequest {
     /**
     * The type and required details of a payment method to use.
     */
-    'paymentMethod': AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
+    'paymentMethod': ApplePayDetails | CardDetails | GooglePayDetails | IdealDetails | PayWithGoogleDetails;
     'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
@@ -228,6 +207,10 @@ export class DonationPaymentRequest {
     */
     'returnUrl': string;
     'riskData'?: RiskData;
+    /**
+    * The `recurringDetailReference` you want to use for this payment. The value `LATEST` can be used to select the most recently stored recurring detail.
+    */
+    'selectedRecurringDetailReference'?: string;
     /**
     * The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.  For example: 2020-07-18T15:42:40.428+01:00
     */
@@ -306,6 +289,11 @@ export class DonationPaymentRequest {
             "type": "{ [key: string]: string; }"
         },
         {
+            "name": "allowedPaymentMethods",
+            "baseName": "allowedPaymentMethods",
+            "type": "Array<string>"
+        },
+        {
             "name": "amount",
             "baseName": "amount",
             "type": "Amount"
@@ -323,7 +311,12 @@ export class DonationPaymentRequest {
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address"
+            "type": "BillingAddress"
+        },
+        {
+            "name": "blockedPaymentMethods",
+            "baseName": "blockedPaymentMethods",
+            "type": "Array<string>"
         },
         {
             "name": "browserInfo",
@@ -378,7 +371,7 @@ export class DonationPaymentRequest {
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "Address"
+            "type": "DeliveryAddress"
         },
         {
             "name": "deliveryDate",
@@ -439,6 +432,11 @@ export class DonationPaymentRequest {
             "name": "fundRecipient",
             "baseName": "fundRecipient",
             "type": "FundRecipient"
+        },
+        {
+            "name": "fundingSource",
+            "baseName": "fundingSource",
+            "type": "DonationPaymentRequest.FundingSourceEnum"
         },
         {
             "name": "industryUsage",
@@ -513,7 +511,7 @@ export class DonationPaymentRequest {
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "AchDetails | AfterpayDetails | AmazonPayDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails"
+            "type": "ApplePayDetails | CardDetails | GooglePayDetails | IdealDetails | PayWithGoogleDetails"
         },
         {
             "name": "platformChargebackLogic",
@@ -559,6 +557,11 @@ export class DonationPaymentRequest {
             "name": "riskData",
             "baseName": "riskData",
             "type": "RiskData"
+        },
+        {
+            "name": "selectedRecurringDetailReference",
+            "baseName": "selectedRecurringDetailReference",
+            "type": "string"
         },
         {
             "name": "sessionValidity",
@@ -655,6 +658,9 @@ export namespace DonationPaymentRequest {
     export enum EntityTypeEnum {
         NaturalPerson = 'NaturalPerson',
         CompanyName = 'CompanyName'
+    }
+    export enum FundingSourceEnum {
+        Debit = 'debit'
     }
     export enum IndustryUsageEnum {
         DelayedCharge = 'delayedCharge',
