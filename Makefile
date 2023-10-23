@@ -20,21 +20,20 @@ terminalManagement: spec=TfmAPIService-v1
 payment: spec=PaymentService-v68
 recurring: spec=RecurringService-v68
 payout: spec=PayoutService-v68
-management: spec=ManagementService-v1
+management: spec=ManagementService-v3
 legalEntityManagement: spec=LegalEntityService-v3
 platformsAccount: spec=AccountService-v6
 platformsFund: spec=FundService-v6
 platformsNotificationConfiguration: spec=NotificationConfigurationService-v6
 platformsHostedOnboardingPage: spec=HopService-v6
-transfers: spec=TransferService-v3
-
+transfers: spec=TransferService-v4
 # BalanceWebhooks
 acsWebhooks: spec=BalancePlatformAcsNotification-v1
 configurationWebhooks: spec=BalancePlatformConfigurationNotification-v1
 reportWebhooks: spec=BalancePlatformReportNotification-v1
-transferWebhooks: spec=BalancePlatformTransferNotification-v3
+transferWebhooks: spec=BalancePlatformTransferNotification-v4
 # ManagementWebhooks
-managementWebhooks: spec=ManagementNotificationService-v1
+managementWebhooks: spec=ManagementNotificationService-v3
 
 $(services): build/spec $(openapi-generator-jar)  
 	rm -rf src/typings/$@ build/model

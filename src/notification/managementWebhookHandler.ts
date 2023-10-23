@@ -16,7 +16,9 @@ class ManagementWebhookHandler {
     // Return generic webhook type
     public getGenericWebhook(): managementWebhooks.MerchantUpdatedNotificationRequest
         | managementWebhooks.MerchantCreatedNotificationRequest
-        | managementWebhooks.PaymentMethodCreatedNotificationRequest {
+        | managementWebhooks.PaymentMethodCreatedNotificationRequest
+        | managementWebhooks.PaymentMethodRequestRemovedNotificationRequest
+        | managementWebhooks.PaymentMethodScheduledForRemovalNotificationRequest {
         const type = this.payload['type'];
         if(Object.values(managementWebhooks.MerchantCreatedNotificationRequest.TypeEnum).includes(type)){
             return this.getMerchantCreatedNotificationRequest();
@@ -28,6 +30,14 @@ class ManagementWebhookHandler {
 
         if(Object.values(managementWebhooks.PaymentMethodCreatedNotificationRequest.TypeEnum).includes(type)){
             return this.getPaymentMethodCreatedNotificationRequest();
+        }
+
+        if(Object.values(managementWebhooks.PaymentMethodRequestRemovedNotificationRequest.TypeEnum).includes(type)){
+            return this.getPaymentMethodRequestRemovedNotificationRequest();
+        }
+
+        if(Object.values(managementWebhooks.PaymentMethodScheduledForRemovalNotificationRequest.TypeEnum).includes(type)){
+            return this.getPaymentMethodScheduledForRemovalNotificationRequest();
         }
 
         throw new Error("Could not parse the json payload: " + this.payload)
@@ -43,6 +53,14 @@ class ManagementWebhookHandler {
 
     public getPaymentMethodCreatedNotificationRequest(): managementWebhooks.PaymentMethodCreatedNotificationRequest {
         return managementWebhooks.ObjectSerializer.deserialize(this.payload, "PaymentMethodCreatedNotificationRequest");
+    }
+
+    public getPaymentMethodRequestRemovedNotificationRequest(): managementWebhooks.PaymentMethodRequestRemovedNotificationRequest {
+        return managementWebhooks.ObjectSerializer.deserialize(this.payload, "PaymentMethodRequestRemovedNotificationRequest");
+    }
+
+    public getPaymentMethodScheduledForRemovalNotificationRequest(): managementWebhooks.PaymentMethodScheduledForRemovalNotificationRequest {
+        return managementWebhooks.ObjectSerializer.deserialize(this.payload, "PaymentMethodScheduledForRemovalNotificationRequest");
     }
 
 }
