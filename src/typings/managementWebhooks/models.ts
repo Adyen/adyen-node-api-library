@@ -18,9 +18,10 @@ export * from './capabilityProblemEntityRecursive';
 export * from './merchantCreatedNotificationRequest';
 export * from './merchantUpdatedNotificationRequest';
 export * from './midServiceNotificationData';
-export * from './notificationDataMessage';
 export * from './paymentMethodCreatedNotificationRequest';
 export * from './paymentMethodNotificationResponse';
+export * from './paymentMethodRequestRemovedNotificationRequest';
+export * from './paymentMethodScheduledForRemovalNotificationRequest';
 export * from './remediatingAction';
 export * from './verificationError';
 export * from './verificationErrorRecursive';
@@ -36,9 +37,10 @@ import { CapabilityProblemEntityRecursive } from './capabilityProblemEntityRecur
 import { MerchantCreatedNotificationRequest } from './merchantCreatedNotificationRequest';
 import { MerchantUpdatedNotificationRequest } from './merchantUpdatedNotificationRequest';
 import { MidServiceNotificationData } from './midServiceNotificationData';
-import { NotificationDataMessage } from './notificationDataMessage';
 import { PaymentMethodCreatedNotificationRequest } from './paymentMethodCreatedNotificationRequest';
 import { PaymentMethodNotificationResponse } from './paymentMethodNotificationResponse';
+import { PaymentMethodRequestRemovedNotificationRequest } from './paymentMethodRequestRemovedNotificationRequest';
+import { PaymentMethodScheduledForRemovalNotificationRequest } from './paymentMethodScheduledForRemovalNotificationRequest';
 import { RemediatingAction } from './remediatingAction';
 import { VerificationError } from './verificationError';
 import { VerificationErrorRecursive } from './verificationErrorRecursive';
@@ -63,6 +65,8 @@ let enumsMap: {[index: string]: any} = {
         "MidServiceNotificationData.StatusEnum": MidServiceNotificationData.StatusEnum,
         "MidServiceNotificationData.VerificationStatusEnum": MidServiceNotificationData.VerificationStatusEnum,
         "PaymentMethodCreatedNotificationRequest.TypeEnum": PaymentMethodCreatedNotificationRequest.TypeEnum,
+        "PaymentMethodRequestRemovedNotificationRequest.TypeEnum": PaymentMethodRequestRemovedNotificationRequest.TypeEnum,
+        "PaymentMethodScheduledForRemovalNotificationRequest.TypeEnum": PaymentMethodScheduledForRemovalNotificationRequest.TypeEnum,
         "VerificationError.TypeEnum": VerificationError.TypeEnum,
         "VerificationErrorRecursive.TypeEnum": VerificationErrorRecursive.TypeEnum,
 }
@@ -78,9 +82,10 @@ let typeMap: {[index: string]: any} = {
     "MerchantCreatedNotificationRequest": MerchantCreatedNotificationRequest,
     "MerchantUpdatedNotificationRequest": MerchantUpdatedNotificationRequest,
     "MidServiceNotificationData": MidServiceNotificationData,
-    "NotificationDataMessage": NotificationDataMessage,
     "PaymentMethodCreatedNotificationRequest": PaymentMethodCreatedNotificationRequest,
     "PaymentMethodNotificationResponse": PaymentMethodNotificationResponse,
+    "PaymentMethodRequestRemovedNotificationRequest": PaymentMethodRequestRemovedNotificationRequest,
+    "PaymentMethodScheduledForRemovalNotificationRequest": PaymentMethodScheduledForRemovalNotificationRequest,
     "RemediatingAction": RemediatingAction,
     "VerificationError": VerificationError,
     "VerificationErrorRecursive": VerificationErrorRecursive,

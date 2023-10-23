@@ -17,6 +17,8 @@ import {
 import {MerchantUpdatedNotificationRequest} from "../typings/managementWebhooks/merchantUpdatedNotificationRequest";
 import {AuthenticationNotificationRequest} from "../typings/acsWebhooks/authenticationNotificationRequest";
 import {TransferNotificationRequest} from "../typings/transferWebhooks/transferNotificationRequest";
+import { PaymentMethodRequestRemovedNotificationRequest } from "../typings/managementWebhooks/paymentMethodRequestRemovedNotificationRequest";
+import { PaymentMethodScheduledForRemovalNotificationRequest } from "../typings/managementWebhooks/paymentMethodScheduledForRemovalNotificationRequest";
 
 describe("Notification Test", function (): void {
 
@@ -205,5 +207,28 @@ describe("Notification Test", function (): void {
         expect(accountHolderNotificationRequest.type).toEqual(AuthenticationNotificationRequest.TypeEnum.BalancePlatformAuthenticationCreated)
         expect(genericWebhook instanceof AccountHolderNotificationRequest).toBe(false)
         expect(genericWebhook instanceof AuthenticationNotificationRequest).toBe(true)
+    });
+
+    it("should deserialize Management v3 Webhooks", function (): void {
+        const json = {
+            "type": "paymentMethod.requestRemoved",
+            "environment": "devl",
+            "createdAt": "2023-06-12T18:59:17+02:00",
+            "data": {
+              "id": "PM322WP223224M5HJ6PX77BW8",
+              "storeId": "TestStore",
+              "type": "amex",
+              "status": "dataRequired",
+              "merchantId": "TestMerchant",
+              "enabled": false
+            }
+          };
+        const jsonString = JSON.stringify(json);
+        let managementWebhookHandler = new ManagementWebhookHandler(jsonString);
+        const paymentMethodRequestRemoved: PaymentMethodRequestRemovedNotificationRequest = managementWebhookHandler.getPaymentMethodRequestRemovedNotificationRequest();
+        const genericWebhook = managementWebhookHandler.getGenericWebhook();
+        expect(genericWebhook instanceof PaymentMethodRequestRemovedNotificationRequest).toBe(true)
+        expect(genericWebhook instanceof PaymentMethodScheduledForRemovalNotificationRequest).toBe(false)
+        expect(paymentMethodRequestRemoved.type).toEqual(PaymentMethodRequestRemovedNotificationRequest.TypeEnum.PaymentMethodRequestRemoved)
     });
 });
