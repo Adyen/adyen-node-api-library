@@ -42,7 +42,7 @@ export class LegalEntity {
     'individual'?: Individual;
     'organization'?: Organization;
     /**
-    * List of the verification errors from capabilities for the legal entity.
+    * List of verification errors related to capabilities for the legal entity.
     */
     'problems'?: Array<CapabilityProblem>;
     /**

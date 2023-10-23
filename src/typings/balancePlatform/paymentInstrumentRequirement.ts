@@ -18,6 +18,10 @@ export class PaymentInstrumentRequirement {
     */
     'issuingCountryCode'?: string;
     /**
+    * Specifies if the requirement only applies to transfers to another balance platform.
+    */
+    'onlyForCrossBalancePlatform'?: boolean;
+    /**
     * The type of the payment instrument. For example, \"BankAccount\" or \"Card\".
     */
     'paymentInstrumentType'?: PaymentInstrumentRequirement.PaymentInstrumentTypeEnum;
@@ -38,6 +42,11 @@ export class PaymentInstrumentRequirement {
             "name": "issuingCountryCode",
             "baseName": "issuingCountryCode",
             "type": "string"
+        },
+        {
+            "name": "onlyForCrossBalancePlatform",
+            "baseName": "onlyForCrossBalancePlatform",
+            "type": "boolean"
         },
         {
             "name": "paymentInstrumentType",

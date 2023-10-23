@@ -15,10 +15,6 @@ export class BalanceAccountUpdateRequest {
     */
     'accountHolderId'?: string;
     /**
-    * The default currency code of this balance account, in three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) format.  The default value is **EUR**.
-    */
-    'defaultCurrencyCode'?: string;
-    /**
     * A human-readable description of the balance account, maximum 300 characters. You can use this parameter to distinguish between multiple balance accounts under an account holder.
     */
     'description'?: string;
@@ -46,11 +42,6 @@ export class BalanceAccountUpdateRequest {
         {
             "name": "accountHolderId",
             "baseName": "accountHolderId",
-            "type": "string"
-        },
-        {
-            "name": "defaultCurrencyCode",
-            "baseName": "defaultCurrencyCode",
             "type": "string"
         },
         {

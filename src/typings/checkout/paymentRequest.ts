@@ -9,7 +9,6 @@
 
 import { AccountInfo } from './accountInfo';
 import { AchDetails } from './achDetails';
-import { Address } from './address';
 import { AfterpayDetails } from './afterpayDetails';
 import { AmazonPayDetails } from './amazonPayDetails';
 import { Amount } from './amount';
@@ -19,11 +18,13 @@ import { ApplicationInfo } from './applicationInfo';
 import { AuthenticationData } from './authenticationData';
 import { BacsDirectDebitDetails } from './bacsDirectDebitDetails';
 import { BillDeskDetails } from './billDeskDetails';
+import { BillingAddress } from './billingAddress';
 import { BlikDetails } from './blikDetails';
 import { BrowserInfo } from './browserInfo';
 import { CardDetails } from './cardDetails';
 import { CellulantDetails } from './cellulantDetails';
 import { Company } from './company';
+import { DeliveryAddress } from './deliveryAddress';
 import { DokuDetails } from './dokuDetails';
 import { DotpayDetails } from './dotpayDetails';
 import { DragonpayDetails } from './dragonpayDetails';
@@ -78,7 +79,7 @@ export class PaymentRequest {
     'amount': Amount;
     'applicationInfo'?: ApplicationInfo;
     'authenticationData'?: AuthenticationData;
-    'billingAddress'?: Address;
+    'billingAddress'?: BillingAddress;
     'browserInfo'?: BrowserInfo;
     /**
     * The delay between the authorisation and scheduled auto-capture, specified in hours.
@@ -110,7 +111,7 @@ export class PaymentRequest {
     * The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
     */
     'deliverAt'?: Date;
-    'deliveryAddress'?: Address;
+    'deliveryAddress'?: DeliveryAddress;
     /**
     * The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
     */
@@ -311,7 +312,7 @@ export class PaymentRequest {
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address"
+            "type": "BillingAddress"
         },
         {
             "name": "browserInfo",
@@ -366,7 +367,7 @@ export class PaymentRequest {
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "Address"
+            "type": "DeliveryAddress"
         },
         {
             "name": "deliveryDate",

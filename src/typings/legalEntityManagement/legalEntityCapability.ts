@@ -12,7 +12,7 @@ import { SupportingEntityCapability } from './supportingEntityCapability';
 
 export class LegalEntityCapability {
     /**
-    * Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful 
+    * Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful.
     */
     'allowed'?: boolean;
     /**
@@ -21,7 +21,7 @@ export class LegalEntityCapability {
     'allowedLevel'?: LegalEntityCapability.AllowedLevelEnum;
     'allowedSettings'?: CapabilitySettings;
     /**
-    * Indicates whether the capability is requested. To check whether the Legal Entity is permitted to use the capability, 
+    * Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the `allowed` field.
     */
     'requested'?: boolean;
     /**
@@ -30,7 +30,7 @@ export class LegalEntityCapability {
     'requestedLevel'?: LegalEntityCapability.RequestedLevelEnum;
     'requestedSettings'?: CapabilitySettings;
     /**
-    * Capability status for transfer instruments associated with legal entity
+    * The capability status of transfer instruments associated with the legal entity.
     */
     'transferInstruments'?: Array<SupportingEntityCapability>;
     /**

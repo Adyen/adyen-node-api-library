@@ -15,7 +15,7 @@ beforeEach((): void => {
     }
     client = createClient();
     transfersAPI = new TransfersAPI(client);
-    scope = nock("https://balanceplatform-api-test.adyen.com/btl/v3");
+    scope = nock("https://balanceplatform-api-test.adyen.com/btl/v4");
 });
 
 afterEach(() => {

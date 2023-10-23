@@ -30,7 +30,7 @@ export class BusinessLine {
     */
     'legalEntityId': string;
     /**
-    * List of the verification errors from capabilities for this supporting entity.
+    * The verification errors related to capabilities for this supporting entity.
     */
     'problems'?: Array<CapabilityProblem>;
     /**
