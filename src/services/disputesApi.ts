@@ -20,11 +20,11 @@ import {
     DeleteDefenseDocumentRequest, 
     DeleteDefenseDocumentResponse, 
     SupplyDefenseDocumentRequest, 
-    SupplyDefenseDocumentResponse 
+    SupplyDefenseDocumentResponse,
+    ObjectSerializer 
 } from "../typings/disputes/models";
 import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
-import { ObjectSerializer } from "../typings/disputes/models";
 
 export class DisputesAPI extends Service {
     
