@@ -12,7 +12,7 @@ models: $(services)
 balanceControl: spec=BalanceControlService-v1
 balancePlatform: spec=BalancePlatformService-v2
 binLookup: spec=BinLookupService-v54
-checkout: spec=CheckoutService-v70
+checkout: spec=CheckoutService-v71
 dataProtection: spec=DataProtectionService-v1
 disputes: spec=DisputeService-v30
 storedValue: spec=StoredValueService-v46
