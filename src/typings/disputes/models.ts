@@ -20,8 +20,6 @@ export * from './defenseReasonsResponse';
 export * from './deleteDefenseDocumentRequest';
 export * from './deleteDefenseDocumentResponse';
 export * from './disputeServiceResult';
-export * from './downloadDefenseDocumentRequest';
-export * from './downloadDefenseDocumentResponse';
 export * from './serviceError';
 export * from './supplyDefenseDocumentRequest';
 export * from './supplyDefenseDocumentResponse';
@@ -39,8 +37,6 @@ import { DefenseReasonsResponse } from './defenseReasonsResponse';
 import { DeleteDefenseDocumentRequest } from './deleteDefenseDocumentRequest';
 import { DeleteDefenseDocumentResponse } from './deleteDefenseDocumentResponse';
 import { DisputeServiceResult } from './disputeServiceResult';
-import { DownloadDefenseDocumentRequest } from './downloadDefenseDocumentRequest';
-import { DownloadDefenseDocumentResponse } from './downloadDefenseDocumentResponse';
 import { ServiceError } from './serviceError';
 import { SupplyDefenseDocumentRequest } from './supplyDefenseDocumentRequest';
 import { SupplyDefenseDocumentResponse } from './supplyDefenseDocumentResponse';
@@ -73,8 +69,6 @@ let typeMap: {[index: string]: any} = {
     "DeleteDefenseDocumentRequest": DeleteDefenseDocumentRequest,
     "DeleteDefenseDocumentResponse": DeleteDefenseDocumentResponse,
     "DisputeServiceResult": DisputeServiceResult,
-    "DownloadDefenseDocumentRequest": DownloadDefenseDocumentRequest,
-    "DownloadDefenseDocumentResponse": DownloadDefenseDocumentResponse,
     "ServiceError": ServiceError,
     "SupplyDefenseDocumentRequest": SupplyDefenseDocumentRequest,
     "SupplyDefenseDocumentResponse": SupplyDefenseDocumentResponse,

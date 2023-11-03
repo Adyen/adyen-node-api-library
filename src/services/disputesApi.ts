@@ -18,8 +18,6 @@ import { DefenseReasonsRequest } from "../typings/disputes/models";
 import { DefenseReasonsResponse } from "../typings/disputes/models";
 import { DeleteDefenseDocumentRequest } from "../typings/disputes/models";
 import { DeleteDefenseDocumentResponse } from "../typings/disputes/models";
-import { DownloadDefenseDocumentRequest } from "../typings/disputes/models";
-import { DownloadDefenseDocumentResponse } from "../typings/disputes/models";
 import { SupplyDefenseDocumentRequest } from "../typings/disputes/models";
 import { SupplyDefenseDocumentResponse } from "../typings/disputes/models";
 import { IRequest } from "../typings/requestOptions";
@@ -88,24 +86,6 @@ export class DisputesAPI extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "DeleteDefenseDocumentResponse");
-    }
-
-    /**
-    * @summary Download a defense document
-    * @param downloadDefenseDocumentRequest {@link DownloadDefenseDocumentRequest } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link DownloadDefenseDocumentResponse }
-    */
-    public async downloadDisputeDefenseDocument(downloadDefenseDocumentRequest: DownloadDefenseDocumentRequest, requestOptions?: IRequest.Options): Promise<DownloadDefenseDocumentResponse> {
-        const endpoint = `${this.baseUrl}/downloadDisputeDefenseDocument`;
-        const resource = new Resource(this, endpoint);
-        const request: DownloadDefenseDocumentRequest = ObjectSerializer.serialize(downloadDefenseDocumentRequest, "DownloadDefenseDocumentRequest");
-        const response = await getJsonResponse<DownloadDefenseDocumentRequest, DownloadDefenseDocumentResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "DownloadDefenseDocumentResponse");
     }
 
     /**
