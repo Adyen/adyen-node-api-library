@@ -4,11 +4,7 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
-import {configurationWebhooks} from "../typings";
-import {acsWebhooks} from "../typings"
-import {reportWebhooks} from "../typings";
-import {transferWebhooks} from "../typings";
-import {transactionWebhooks} from "../typings";
+import {configurationWebhooks, acsWebhooks, reportWebhooks, transferWebhooks, transactionWebhooks} from "../typings";
 
 class BankingWebhookHandler {
     private readonly payload: string;
