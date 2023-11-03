@@ -19,6 +19,7 @@ import {AuthenticationNotificationRequest} from "../typings/acsWebhooks/authenti
 import {TransferNotificationRequest} from "../typings/transferWebhooks/transferNotificationRequest";
 import { PaymentMethodRequestRemovedNotificationRequest } from "../typings/managementWebhooks/paymentMethodRequestRemovedNotificationRequest";
 import { PaymentMethodScheduledForRemovalNotificationRequest } from "../typings/managementWebhooks/paymentMethodScheduledForRemovalNotificationRequest";
+import { TransactionNotificationRequestV4 } from "../typings/transactionWebhooks/transactionNotificationRequestV4";
 
 describe("Notification Test", function (): void {
 
@@ -230,5 +231,45 @@ describe("Notification Test", function (): void {
         expect(genericWebhook instanceof PaymentMethodRequestRemovedNotificationRequest).toBe(true)
         expect(genericWebhook instanceof PaymentMethodScheduledForRemovalNotificationRequest).toBe(false)
         expect(paymentMethodRequestRemoved.type).toEqual(PaymentMethodRequestRemovedNotificationRequest.TypeEnum.PaymentMethodRequestRemoved)
+    });
+
+    it("should deserialize Transaction v4 Webhooks", function (): void {
+        const json = 	{
+            "data": {
+                "id": "EVJN42272224222B5JB8BRC84N686ZEUR",
+                "amount": {
+                    "value": 7000,
+                    "currency": "EUR"
+                },
+                "status": "booked",
+                "transfer": {
+                    "id": "JN4227222422265",
+                    "reference": "Split_item_1",
+                },
+                "valueDate": "2023-03-01T00:00:00+02:00",
+                "bookingDate": "2023-02-28T13:30:20+02:00",
+                "creationDate": "2023-02-28T13:30:05+02:00",
+                "accountHolder": {
+                    "id": "AH00000000000000000000001",
+                    "description": "Your description for the account holder",
+                    "reference": "Your reference for the account holder"
+                },
+                "balanceAccount": {
+                    "id": "BA00000000000000000000001",
+                    "description": "Your description for the balance account",
+                    "reference": "Your reference for the balance account"
+                },
+                "balancePlatform": "YOUR_BALANCE_PLATFORM"
+            },
+            "type": "balancePlatform.transaction.created",
+            "environment": "test"
+        };
+        const jsonString = JSON.stringify(json);
+        let bankingWebhookHandler = new BankingWebhookHandler(jsonString);
+        const transactionCreated: TransactionNotificationRequestV4 = bankingWebhookHandler.getTransactionNotificationRequest();
+        const genericWebhook = bankingWebhookHandler.getGenericWebhook();
+        expect(genericWebhook instanceof TransactionNotificationRequestV4).toBe(true)
+        expect(genericWebhook instanceof PaymentMethodScheduledForRemovalNotificationRequest).toBe(false)
+        expect(transactionCreated.type).toEqual(TransactionNotificationRequestV4.TypeEnum.BalancePlatformTransactionCreated)
     });
 });
