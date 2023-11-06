@@ -70,7 +70,7 @@ function createUpdatePaymentLinkRequest(): checkout.UpdatePaymentLinkRequest {
         "status": checkout.UpdatePaymentLinkRequest.StatusEnum.Expired
     };
 }
-function getPaymentLinkSuccess(expiresAt: string): checkout.PaymentLinkResponse {
+function getPaymentLinkSuccess(expiresAt: Date): checkout.PaymentLinkResponse {
     return {
         amount: createAmountObject("USD", 1000),
         expiresAt,
@@ -130,7 +130,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock("https://checkout-test.adyen.com/v70");
+    scope = nock("https://checkout-test.adyen.com/v71");
     checkoutService = new CheckoutAPI(client);
 });
 
@@ -152,8 +152,8 @@ describe("Checkout", (): void => {
             .matchHeader("Idempotency-Key", "testKey");
         await checkoutService.PaymentsApi.paymentMethods(paymentMethodsRequest, {idempotencyKey: "testKey"});
 
-        const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
+        const expiresAt = "2020-12-18T10:15:30+01:00";
+        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
         scope.post("/paymentLinks")
             .reply(200, paymentLinkSuccess)
             .matchHeader("Idempotency-Key", "testKey");
@@ -292,7 +292,7 @@ describe("Checkout", (): void => {
 
     test("should have valid payment link", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
@@ -302,7 +302,7 @@ describe("Checkout", (): void => {
 
     test("should get payment link", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
@@ -315,7 +315,7 @@ describe("Checkout", (): void => {
 
     test("should patch payment link", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(expiresAt);
+        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
@@ -387,7 +387,7 @@ describe("Checkout", (): void => {
         };
 
         nock(`https://checkout-test.adyen.com`)
-            .post(`/v70/originKeys`)
+            .post(`/v71/originKeys`)
             .reply(200, originKeysSuccess);
 
         const originKeysResponse = await checkoutUtility.UtilityApi.originKeys(originKeysRequest);
