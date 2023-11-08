@@ -4,10 +4,7 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
-import {configurationWebhooks} from "../typings";
-import {acsWebhooks} from "../typings"
-import {reportWebhooks} from "../typings";
-import {transferWebhooks} from "../typings";
+import {configurationWebhooks, acsWebhooks, reportWebhooks, transferWebhooks, transactionWebhooks} from "../typings";
 
 class BankingWebhookHandler {
     private readonly payload: string;
@@ -24,7 +21,8 @@ class BankingWebhookHandler {
         | configurationWebhooks.SweepConfigurationNotificationRequest
         | configurationWebhooks.CardOrderNotificationRequest
         | reportWebhooks.ReportNotificationRequest
-        | transferWebhooks.TransferNotificationRequest {
+        | transferWebhooks.TransferNotificationRequest
+        | transactionWebhooks.TransactionNotificationRequestV4 {
         const type = this.payload['type'];
 
         if(Object.values(acsWebhooks.AuthenticationNotificationRequest.TypeEnum).includes(type)){
@@ -57,6 +55,10 @@ class BankingWebhookHandler {
 
         if(Object.values(transferWebhooks.TransferNotificationRequest.TypeEnum).includes(type)){
             return this.getTransferNotificationRequest();
+        }
+
+        if(Object.values(transactionWebhooks.TransactionNotificationRequestV4.TypeEnum).includes(type)){
+            return this.getTransactionNotificationRequest();
         }
 
         throw new Error("Could not parse the json payload: " + this.payload)
@@ -92,6 +94,10 @@ class BankingWebhookHandler {
 
     public getTransferNotificationRequest(): transferWebhooks.TransferNotificationRequest {
         return transferWebhooks.ObjectSerializer.deserialize(this.payload, "TransferNotificationRequest");
+    }
+
+    public getTransactionNotificationRequest(): transactionWebhooks.TransactionNotificationRequestV4 {
+        return transactionWebhooks.ObjectSerializer.deserialize(this.payload, "TransactionNotificationRequestV4");
     }
 }
 

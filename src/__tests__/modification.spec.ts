@@ -150,7 +150,7 @@ beforeEach((): void => {
     }
     client = createClient();
     checkoutAPI = new CheckoutAPI(client);
-    scope = nock("https://checkout-test.adyen.com/v70");
+    scope = nock("https://checkout-test.adyen.com/v71");
 });
 
 afterEach(() => {
