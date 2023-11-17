@@ -67,8 +67,6 @@ export * from './idName';
 export * from './installAndroidAppDetails';
 export * from './installAndroidCertificateDetails';
 export * from './invalidField';
-export * from './jSONObject';
-export * from './jSONPath';
 export * from './key';
 export * from './klarnaInfo';
 export * from './links';
@@ -243,8 +241,6 @@ import { IdName } from './idName';
 import { InstallAndroidAppDetails } from './installAndroidAppDetails';
 import { InstallAndroidCertificateDetails } from './installAndroidCertificateDetails';
 import { InvalidField } from './invalidField';
-import { JSONObject } from './jSONObject';
-import { JSONPath } from './jSONPath';
 import { Key } from './key';
 import { KlarnaInfo } from './klarnaInfo';
 import { Links } from './links';
@@ -497,8 +493,6 @@ let typeMap: {[index: string]: any} = {
     "InstallAndroidAppDetails": InstallAndroidAppDetails,
     "InstallAndroidCertificateDetails": InstallAndroidCertificateDetails,
     "InvalidField": InvalidField,
-    "JSONObject": JSONObject,
-    "JSONPath": JSONPath,
     "Key": Key,
     "KlarnaInfo": KlarnaInfo,
     "Links": Links,

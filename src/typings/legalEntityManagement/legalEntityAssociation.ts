@@ -30,7 +30,11 @@ export class LegalEntityAssociation {
     */
     'name'?: string;
     /**
-    * Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.
+    * Defines the Kyc Exemption Reason for a Settlor associated with a trust.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.
+    */
+    'settlorExemptionReason'?: Array<string>;
+    /**
+    * Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
     */
     'type': LegalEntityAssociation.TypeEnum;
 
@@ -63,6 +67,11 @@ export class LegalEntityAssociation {
             "type": "string"
         },
         {
+            "name": "settlorExemptionReason",
+            "baseName": "settlorExemptionReason",
+            "type": "Array<string>"
+        },
+        {
             "name": "type",
             "baseName": "type",
             "type": "LegalEntityAssociation.TypeEnum"
@@ -75,11 +84,19 @@ export class LegalEntityAssociation {
 
 export namespace LegalEntityAssociation {
     export enum TypeEnum {
+        DefinedBeneficiary = 'definedBeneficiary',
+        Director = 'director',
         PciSignatory = 'pciSignatory',
+        Protector = 'protector',
+        SecondaryTrustee = 'secondaryTrustee',
+        Settlor = 'settlor',
         Signatory = 'signatory',
         SoleProprietorship = 'soleProprietorship',
+        Trust = 'trust',
+        TrustOwnership = 'trustOwnership',
         UboThroughControl = 'uboThroughControl',
         UboThroughOwnership = 'uboThroughOwnership',
-        UltimateParentCompany = 'ultimateParentCompany'
+        UltimateParentCompany = 'ultimateParentCompany',
+        UndefinedBeneficiary = 'undefinedBeneficiary'
     }
 }

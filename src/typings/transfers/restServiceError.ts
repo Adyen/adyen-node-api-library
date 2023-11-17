@@ -8,7 +8,6 @@
  */
 
 import { InvalidField } from './invalidField';
-import { JSONObject } from './jSONObject';
 
 export class RestServiceError {
     /**
@@ -31,7 +30,10 @@ export class RestServiceError {
     * A unique reference for the request, essentially the same as `pspReference`.
     */
     'requestId'?: string;
-    'response'?: JSONObject;
+    /**
+    * JSON response payload.
+    */
+    'response'?: object;
     /**
     * The HTTP status code.
     */
@@ -76,7 +78,7 @@ export class RestServiceError {
         {
             "name": "response",
             "baseName": "response",
-            "type": "JSONObject"
+            "type": "object"
         },
         {
             "name": "status",

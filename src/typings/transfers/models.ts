@@ -32,8 +32,6 @@ export * from './ibanAccountIdentification';
 export * from './internalCategoryData';
 export * from './invalidField';
 export * from './issuedCard';
-export * from './jSONObject';
-export * from './jSONPath';
 export * from './link';
 export * from './links';
 export * from './merchantData';
@@ -91,8 +89,6 @@ import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { InternalCategoryData } from './internalCategoryData';
 import { InvalidField } from './invalidField';
 import { IssuedCard } from './issuedCard';
-import { JSONObject } from './jSONObject';
-import { JSONPath } from './jSONPath';
 import { Link } from './link';
 import { Links } from './links';
 import { MerchantData } from './merchantData';
@@ -203,8 +199,6 @@ let typeMap: {[index: string]: any} = {
     "InternalCategoryData": InternalCategoryData,
     "InvalidField": InvalidField,
     "IssuedCard": IssuedCard,
-    "JSONObject": JSONObject,
-    "JSONPath": JSONPath,
     "Link": Link,
     "Links": Links,
     "MerchantData": MerchantData,

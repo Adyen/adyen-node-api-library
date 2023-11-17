@@ -28,10 +28,6 @@ export class Transaction {
     */
     'creationDate'?: Date;
     /**
-    * The PSP reference of the transaction in the journal.
-    */
-    'eventId'?: string;
-    /**
     * The unique identifier of the transaction.
     */
     'id': string;
@@ -77,11 +73,6 @@ export class Transaction {
             "name": "creationDate",
             "baseName": "creationDate",
             "type": "Date"
-        },
-        {
-            "name": "eventId",
-            "baseName": "eventId",
-            "type": "string"
         },
         {
             "name": "id",
