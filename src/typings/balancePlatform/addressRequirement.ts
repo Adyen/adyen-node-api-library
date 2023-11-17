@@ -16,7 +16,7 @@ export class AddressRequirement {
     /**
     * List of address fields.
     */
-    'requiredAddressFields'?: Array<string>;
+    'requiredAddressFields'?: Array<AddressRequirement.RequiredAddressFieldsEnum>;
     /**
     * **addressRequirement**
     */
@@ -33,7 +33,7 @@ export class AddressRequirement {
         {
             "name": "requiredAddressFields",
             "baseName": "requiredAddressFields",
-            "type": "Array<string>"
+            "type": "Array<AddressRequirement.RequiredAddressFieldsEnum>"
         },
         {
             "name": "type",
@@ -47,6 +47,13 @@ export class AddressRequirement {
 }
 
 export namespace AddressRequirement {
+    export enum RequiredAddressFieldsEnum {
+        City = 'city',
+        Country = 'country',
+        Line1 = 'line1',
+        PostalCode = 'postalCode',
+        StateOrProvince = 'stateOrProvince'
+    }
     export enum TypeEnum {
         AddressRequirement = 'addressRequirement'
     }

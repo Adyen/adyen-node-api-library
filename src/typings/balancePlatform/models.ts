@@ -71,8 +71,6 @@ export * from './hULocalAccountIdentification';
 export * from './ibanAccountIdentification';
 export * from './internationalTransactionRestriction';
 export * from './invalidField';
-export * from './jSONObject';
-export * from './jSONPath';
 export * from './listNetworkTokensResponse';
 export * from './matchingTransactionsRestriction';
 export * from './mccsRestriction';
@@ -105,6 +103,8 @@ export * from './repaymentTerm';
 export * from './restServiceError';
 export * from './sELocalAccountIdentification';
 export * from './sGLocalAccountIdentification';
+export * from './sameAmountRestriction';
+export * from './sameCounterpartyRestriction';
 export * from './stringMatch';
 export * from './sweepConfigurationV2';
 export * from './sweepCounterparty';
@@ -196,8 +196,6 @@ import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { InternationalTransactionRestriction } from './internationalTransactionRestriction';
 import { InvalidField } from './invalidField';
-import { JSONObject } from './jSONObject';
-import { JSONPath } from './jSONPath';
 import { ListNetworkTokensResponse } from './listNetworkTokensResponse';
 import { MatchingTransactionsRestriction } from './matchingTransactionsRestriction';
 import { MccsRestriction } from './mccsRestriction';
@@ -230,6 +228,8 @@ import { RepaymentTerm } from './repaymentTerm';
 import { RestServiceError } from './restServiceError';
 import { SELocalAccountIdentification } from './sELocalAccountIdentification';
 import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
+import { SameAmountRestriction } from './sameAmountRestriction';
+import { SameCounterpartyRestriction } from './sameCounterpartyRestriction';
 import { StringMatch } from './stringMatch';
 import { SweepConfigurationV2 } from './sweepConfigurationV2';
 import { SweepCounterparty } from './sweepCounterparty';
@@ -280,6 +280,7 @@ let enumsMap: {[index: string]: any} = {
         "AccountSupportingEntityCapability.RequestedLevelEnum": AccountSupportingEntityCapability.RequestedLevelEnum,
         "AccountSupportingEntityCapability.VerificationStatusEnum": AccountSupportingEntityCapability.VerificationStatusEnum,
         "AdditionalBankIdentification.TypeEnum": AdditionalBankIdentification.TypeEnum,
+        "AddressRequirement.RequiredAddressFieldsEnum": AddressRequirement.RequiredAddressFieldsEnum,
         "AddressRequirement.TypeEnum": AddressRequirement.TypeEnum,
         "AmountMinMaxRequirement.TypeEnum": AmountMinMaxRequirement.TypeEnum,
         "BRLocalAccountIdentification.TypeEnum": BRLocalAccountIdentification.TypeEnum,
@@ -436,8 +437,6 @@ let typeMap: {[index: string]: any} = {
     "IbanAccountIdentification": IbanAccountIdentification,
     "InternationalTransactionRestriction": InternationalTransactionRestriction,
     "InvalidField": InvalidField,
-    "JSONObject": JSONObject,
-    "JSONPath": JSONPath,
     "ListNetworkTokensResponse": ListNetworkTokensResponse,
     "MatchingTransactionsRestriction": MatchingTransactionsRestriction,
     "MccsRestriction": MccsRestriction,
@@ -470,6 +469,8 @@ let typeMap: {[index: string]: any} = {
     "RestServiceError": RestServiceError,
     "SELocalAccountIdentification": SELocalAccountIdentification,
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
+    "SameAmountRestriction": SameAmountRestriction,
+    "SameCounterpartyRestriction": SameCounterpartyRestriction,
     "StringMatch": StringMatch,
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,

@@ -10,21 +10,19 @@
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
-import { 
-    AcceptDisputeRequest,
-    AcceptDisputeResponse,
-    DefendDisputeRequest, 
-    DefendDisputeResponse, 
-    DefenseReasonsRequest, 
-    DefenseReasonsResponse, 
-    DeleteDefenseDocumentRequest, 
-    DeleteDefenseDocumentResponse, 
-    SupplyDefenseDocumentRequest, 
-    SupplyDefenseDocumentResponse,
-    ObjectSerializer 
-} from "../typings/disputes/models";
+import { AcceptDisputeRequest } from "../typings/disputes/models";
+import { AcceptDisputeResponse } from "../typings/disputes/models";
+import { DefendDisputeRequest } from "../typings/disputes/models";
+import { DefendDisputeResponse } from "../typings/disputes/models";
+import { DefenseReasonsRequest } from "../typings/disputes/models";
+import { DefenseReasonsResponse } from "../typings/disputes/models";
+import { DeleteDefenseDocumentRequest } from "../typings/disputes/models";
+import { DeleteDefenseDocumentResponse } from "../typings/disputes/models";
+import { SupplyDefenseDocumentRequest } from "../typings/disputes/models";
+import { SupplyDefenseDocumentResponse } from "../typings/disputes/models";
 import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
+import { ObjectSerializer } from "../typings/disputes/models";
 
 export class DisputesAPI extends Service {
     

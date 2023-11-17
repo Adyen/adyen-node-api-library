@@ -114,11 +114,11 @@ export class MyAPICredentialApi extends Service {
     }
 
     /**
-    * @summary Generate new client key for self
+    * @summary Generate a client key
     * @param requestOptions {@link IRequest.Options}
     * @return {@link GenerateClientKeyResponse }
     */
-    public async generateNewClientKeyForSelf(requestOptions?: IRequest.Options): Promise<GenerateClientKeyResponse> {
+    public async generateClientKey(requestOptions?: IRequest.Options): Promise<GenerateClientKeyResponse> {
         const endpoint = `${this.baseUrl}/me/generateClientKey`;
         const resource = new Resource(this, endpoint);
         const response = await getJsonResponse<string, GenerateClientKeyResponse>(

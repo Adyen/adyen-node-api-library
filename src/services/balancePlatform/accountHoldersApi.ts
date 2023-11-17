@@ -70,7 +70,7 @@ export class AccountHoldersApi extends Service {
     /**
     * @summary Get a tax form
     * @param id {@link string } The unique identifier of the account holder.
-    * @param formType {@link &#39;US1099k&#39; | &#39;US1099nec&#39; } The type of tax form you want to retrieve. Accepted values are **us1099k** and **us1099nec**
+    * @param formType {@link &#39;US1099k&#39; | &#39;US1099nec&#39; } The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**
     * @param year {@link number } The tax year in YYYY format for the tax form you want to retrieve
     * @param requestOptions {@link IRequest.Options}
     * @return {@link GetTaxFormResponse }

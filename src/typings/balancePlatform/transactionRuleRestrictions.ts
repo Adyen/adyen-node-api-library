@@ -20,6 +20,8 @@ import { MccsRestriction } from './mccsRestriction';
 import { MerchantNamesRestriction } from './merchantNamesRestriction';
 import { MerchantsRestriction } from './merchantsRestriction';
 import { ProcessingTypesRestriction } from './processingTypesRestriction';
+import { SameAmountRestriction } from './sameAmountRestriction';
+import { SameCounterpartyRestriction } from './sameCounterpartyRestriction';
 import { TimeOfDayRestriction } from './timeOfDayRestriction';
 import { TotalAmountRestriction } from './totalAmountRestriction';
 
@@ -37,6 +39,8 @@ export class TransactionRuleRestrictions {
     'merchantNames'?: MerchantNamesRestriction;
     'merchants'?: MerchantsRestriction;
     'processingTypes'?: ProcessingTypesRestriction;
+    'sameAmountRestriction'?: SameAmountRestriction;
+    'sameCounterpartyRestriction'?: SameCounterpartyRestriction;
     'timeOfDay'?: TimeOfDayRestriction;
     'totalAmount'?: TotalAmountRestriction;
 
@@ -107,6 +111,16 @@ export class TransactionRuleRestrictions {
             "name": "processingTypes",
             "baseName": "processingTypes",
             "type": "ProcessingTypesRestriction"
+        },
+        {
+            "name": "sameAmountRestriction",
+            "baseName": "sameAmountRestriction",
+            "type": "SameAmountRestriction"
+        },
+        {
+            "name": "sameCounterpartyRestriction",
+            "baseName": "sameCounterpartyRestriction",
+            "type": "SameCounterpartyRestriction"
         },
         {
             "name": "timeOfDay",
