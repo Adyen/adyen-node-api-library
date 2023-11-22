@@ -30,4 +30,3 @@ jobs:
           develop-branch: main
           version-files: package.json
           pre-release: ${{ inputs.pre-release || false }}
-          separator: .pre.beta

@@ -1,6 +1,6 @@
-on: ["pull_request"]
-
 name: Coveralls
+
+on: ["pull_request"]
 
 jobs:
 
