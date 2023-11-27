@@ -167,7 +167,7 @@ describe("Balance Platform", (): void => {
                     "hasNext": true,
                     "hasPrevious": false
                 });
-            const requestOptions: IRequest = {
+            const requestOptions: IRequest.Options = {
                 params: {
                     limit: "5",
                     offset: "10"
