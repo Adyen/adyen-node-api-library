@@ -72,6 +72,8 @@ export namespace Recurring {
     }
     export enum TokenServiceEnum {
         Visatokenservice = 'VISATOKENSERVICE',
-        Mctokenservice = 'MCTOKENSERVICE'
+        Mctokenservice = 'MCTOKENSERVICE',
+        Amextokenservice = 'AMEXTOKENSERVICE',
+        TokenSharing = 'TOKEN_SHARING'
     }
 }

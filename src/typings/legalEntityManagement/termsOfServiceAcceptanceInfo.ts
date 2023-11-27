@@ -26,7 +26,7 @@ export class TermsOfServiceAcceptanceInfo {
     */
     'id'?: string;
     /**
-    * The type of Terms of Service.
+    * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  
     */
     'type'?: TermsOfServiceAcceptanceInfo.TypeEnum;
 

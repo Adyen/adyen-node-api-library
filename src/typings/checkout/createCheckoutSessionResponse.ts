@@ -210,6 +210,10 @@ export class CreateCheckoutSessionResponse {
     */
     'telephoneNumber'?: string;
     /**
+    * Sets a custom theme for the Adyen-hosted payment page. The value can be any of the **Theme ID** values from your Customer Area.
+    */
+    'themeId'?: string;
+    /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     */
     'threeDSAuthenticationOnly'?: boolean;
@@ -217,6 +221,10 @@ export class CreateCheckoutSessionResponse {
     * Set to true if the payment should be routed to a trusted MID.
     */
     'trustedShopper'?: boolean;
+    /**
+    * The URL for the Hosted Checkout page. Redirect the shopper to this URL so they can make the payment.
+    */
+    'url'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -507,6 +515,11 @@ export class CreateCheckoutSessionResponse {
             "type": "string"
         },
         {
+            "name": "themeId",
+            "baseName": "themeId",
+            "type": "string"
+        },
+        {
             "name": "threeDSAuthenticationOnly",
             "baseName": "threeDSAuthenticationOnly",
             "type": "boolean"
@@ -515,6 +528,11 @@ export class CreateCheckoutSessionResponse {
             "name": "trustedShopper",
             "baseName": "trustedShopper",
             "type": "boolean"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

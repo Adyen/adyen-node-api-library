@@ -7,28 +7,30 @@
  * Do not edit this class manually.
  */
 
-import { JSONPath } from './jSONPath';
 
-export class JSONObject {
-    'paths'?: Array<JSONPath>;
-    'rootPath'?: JSONPath;
+export class SameAmountRestriction {
+    /**
+    * Defines how the condition must be evaluated.
+    */
+    'operation': string;
+    'value'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "paths",
-            "baseName": "paths",
-            "type": "Array<JSONPath>"
+            "name": "operation",
+            "baseName": "operation",
+            "type": "string"
         },
         {
-            "name": "rootPath",
-            "baseName": "rootPath",
-            "type": "JSONPath"
+            "name": "value",
+            "baseName": "value",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return JSONObject.attributeTypeMap;
+        return SameAmountRestriction.attributeTypeMap;
     }
 }
 

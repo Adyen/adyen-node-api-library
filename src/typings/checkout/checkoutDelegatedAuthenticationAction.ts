@@ -14,7 +14,7 @@ export class CheckoutDelegatedAuthenticationAction {
     */
     'authorisationToken'?: string;
     /**
-    * A value that must be submitted to the `/payments/details` endpoint to verify this payment.
+    * Encoded payment data.
     */
     'paymentData'?: string;
     /**

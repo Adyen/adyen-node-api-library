@@ -79,8 +79,11 @@ export * from './termsOfServiceAcceptanceInfo';
 export * from './transferInstrument';
 export * from './transferInstrumentInfo';
 export * from './transferInstrumentReference';
+export * from './trust';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
+export * from './undefinedBeneficiary';
+export * from './unincorporatedPartnership';
 export * from './verificationDeadline';
 export * from './verificationError';
 export * from './verificationErrorRecursive';
@@ -160,8 +163,11 @@ import { TermsOfServiceAcceptanceInfo } from './termsOfServiceAcceptanceInfo';
 import { TransferInstrument } from './transferInstrument';
 import { TransferInstrumentInfo } from './transferInstrumentInfo';
 import { TransferInstrumentReference } from './transferInstrumentReference';
+import { Trust } from './trust';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
+import { UndefinedBeneficiary } from './undefinedBeneficiary';
+import { UnincorporatedPartnership } from './unincorporatedPartnership';
 import { VerificationDeadline } from './verificationDeadline';
 import { VerificationError } from './verificationError';
 import { VerificationErrorRecursive } from './verificationErrorRecursive';
@@ -231,9 +237,13 @@ let enumsMap: {[index: string]: any} = {
         "TermsOfServiceAcceptanceInfo.TypeEnum": TermsOfServiceAcceptanceInfo.TypeEnum,
         "TransferInstrument.TypeEnum": TransferInstrument.TypeEnum,
         "TransferInstrumentInfo.TypeEnum": TransferInstrumentInfo.TypeEnum,
+        "Trust.TypeEnum": Trust.TypeEnum,
+        "Trust.VatAbsenceReasonEnum": Trust.VatAbsenceReasonEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
+        "UnincorporatedPartnership.TypeEnum": UnincorporatedPartnership.TypeEnum,
+        "UnincorporatedPartnership.VatAbsenceReasonEnum": UnincorporatedPartnership.VatAbsenceReasonEnum,
         "VerificationDeadline.CapabilitiesEnum": VerificationDeadline.CapabilitiesEnum,
         "VerificationError.CapabilitiesEnum": VerificationError.CapabilitiesEnum,
         "VerificationError.TypeEnum": VerificationError.TypeEnum,
@@ -314,8 +324,11 @@ let typeMap: {[index: string]: any} = {
     "TransferInstrument": TransferInstrument,
     "TransferInstrumentInfo": TransferInstrumentInfo,
     "TransferInstrumentReference": TransferInstrumentReference,
+    "Trust": Trust,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,
+    "UndefinedBeneficiary": UndefinedBeneficiary,
+    "UnincorporatedPartnership": UnincorporatedPartnership,
     "VerificationDeadline": VerificationDeadline,
     "VerificationError": VerificationError,
     "VerificationErrorRecursive": VerificationErrorRecursive,

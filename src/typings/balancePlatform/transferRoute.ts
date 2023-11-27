@@ -77,6 +77,7 @@ export namespace TransferRoute {
         IssuedCard = 'issuedCard',
         Migration = 'migration',
         PlatformPayment = 'platformPayment',
+        TopUp = 'topUp',
         Upgrade = 'upgrade'
     }
     export enum PriorityEnum {

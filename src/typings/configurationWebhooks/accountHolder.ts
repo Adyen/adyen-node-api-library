@@ -9,6 +9,7 @@
 
 import { AccountHolderCapability } from './accountHolderCapability';
 import { ContactDetails } from './contactDetails';
+import { VerificationDeadline } from './verificationDeadline';
 
 export class AccountHolder {
     /**
@@ -56,6 +57,10 @@ export class AccountHolder {
     * The time zone of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
     */
     'timeZone'?: string;
+    /**
+    * List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
+    */
+    'verificationDeadlines'?: Array<VerificationDeadline>;
 
     static discriminator: string | undefined = undefined;
 
@@ -119,6 +124,11 @@ export class AccountHolder {
             "name": "timeZone",
             "baseName": "timeZone",
             "type": "string"
+        },
+        {
+            "name": "verificationDeadlines",
+            "baseName": "verificationDeadlines",
+            "type": "Array<VerificationDeadline>"
         }    ];
 
     static getAttributeTypeMap() {

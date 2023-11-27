@@ -16,6 +16,8 @@ import { LegalEntityCapability } from './legalEntityCapability';
 import { Organization } from './organization';
 import { SoleProprietorship } from './soleProprietorship';
 import { TransferInstrumentReference } from './transferInstrumentReference';
+import { Trust } from './trust';
+import { UnincorporatedPartnership } from './unincorporatedPartnership';
 import { VerificationDeadline } from './verificationDeadline';
 
 export class LegalEntity {
@@ -54,10 +56,12 @@ export class LegalEntity {
     * List of transfer instruments that the legal entity owns.
     */
     'transferInstruments'?: Array<TransferInstrumentReference>;
+    'trust'?: Trust;
     /**
-    * The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
+    * The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
     */
     'type'?: LegalEntity.TypeEnum;
+    'unincorporatedPartnership'?: UnincorporatedPartnership;
     /**
     * List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
     */
@@ -122,9 +126,19 @@ export class LegalEntity {
             "type": "Array<TransferInstrumentReference>"
         },
         {
+            "name": "trust",
+            "baseName": "trust",
+            "type": "Trust"
+        },
+        {
             "name": "type",
             "baseName": "type",
             "type": "LegalEntity.TypeEnum"
+        },
+        {
+            "name": "unincorporatedPartnership",
+            "baseName": "unincorporatedPartnership",
+            "type": "UnincorporatedPartnership"
         },
         {
             "name": "verificationDeadlines",

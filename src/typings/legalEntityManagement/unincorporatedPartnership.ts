@@ -10,7 +10,7 @@
 import { Address } from './address';
 import { TaxInformation } from './taxInformation';
 
-export class SoleProprietorship {
+export class UnincorporatedPartnership {
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.
     */
@@ -38,9 +38,13 @@ export class SoleProprietorship {
     */
     'taxInformation'?: Array<TaxInformation>;
     /**
+    * Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**.
+    */
+    'type': UnincorporatedPartnership.TypeEnum;
+    /**
     * The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
     */
-    'vatAbsenceReason'?: SoleProprietorship.VatAbsenceReasonEnum;
+    'vatAbsenceReason'?: UnincorporatedPartnership.VatAbsenceReasonEnum;
     /**
     * The VAT number.
     */
@@ -90,9 +94,14 @@ export class SoleProprietorship {
             "type": "Array<TaxInformation>"
         },
         {
+            "name": "type",
+            "baseName": "type",
+            "type": "UnincorporatedPartnership.TypeEnum"
+        },
+        {
             "name": "vatAbsenceReason",
             "baseName": "vatAbsenceReason",
-            "type": "SoleProprietorship.VatAbsenceReasonEnum"
+            "type": "UnincorporatedPartnership.VatAbsenceReasonEnum"
         },
         {
             "name": "vatNumber",
@@ -101,11 +110,28 @@ export class SoleProprietorship {
         }    ];
 
     static getAttributeTypeMap() {
-        return SoleProprietorship.attributeTypeMap;
+        return UnincorporatedPartnership.attributeTypeMap;
     }
 }
 
-export namespace SoleProprietorship {
+export namespace UnincorporatedPartnership {
+    export enum TypeEnum {
+        LimitedPartnership = 'limitedPartnership',
+        GeneralPartnership = 'generalPartnership',
+        FamilyPartnership = 'familyPartnership',
+        CommercialPartnership = 'commercialPartnership',
+        PublicPartnership = 'publicPartnership',
+        OtherPartnership = 'otherPartnership',
+        Gbr = 'gbr',
+        Gmbh = 'gmbh',
+        Kgaa = 'kgaa',
+        Cv = 'cv',
+        Vof = 'vof',
+        Maatschap = 'maatschap',
+        PrivateFundLimitedPartnership = 'privateFundLimitedPartnership',
+        BusinessTrustEntity = 'businessTrustEntity',
+        BusinessPartnership = 'businessPartnership'
+    }
     export enum VatAbsenceReasonEnum {
         IndustryExemption = 'industryExemption',
         BelowTaxThreshold = 'belowTaxThreshold'
