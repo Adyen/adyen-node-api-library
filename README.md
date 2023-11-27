@@ -128,7 +128,7 @@ const requestOptions: IRequest.Options = {
         offset: "10"
     }
 };
-await balancePlatformService.AccountHoldersApi.getAllBalanceAccountsOfAccountHolder("AH32272223222B5CM4MWJ892H", requestOptions);`
+await balancePlatformService.AccountHoldersApi.getAllBalanceAccountsOfAccountHolder("AH32272223222B5CM4MWJ892H", requestOptions);
 ```
 
 ### Step 1: Require the parts of the module you want to use
