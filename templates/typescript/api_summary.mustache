@@ -2,10 +2,16 @@
 {{#summary}}
     * @summary {{&summary}}
 {{/summary}}
-{{#allParams}}
+{{#pathParams}}
     * @param {{paramName}} {@link {{dataType}} } {{description}}
-{{/allParams}}
-    * @param requestOptions {@link IRequest.Options}
+{{/pathParams}}
+{{#bodyParams}}
+    * @param {{paramName}} {@link {{dataType}} } {{description}}
+{{/bodyParams}}
+    * @param requestOptions {@link IRequest.Options }
+{{#hasQueryParams}}
+    * @example send query parameters through requestOptions: { params: { {{#queryParams}}{{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}: "{{{dataType}}}"{{^-last}}, {{/-last}}{{/queryParams}} } }
+{{/hasQueryParams}}
 {{#returnType}}
     * @return {@link {{.}} }
 {{/returnType}}
