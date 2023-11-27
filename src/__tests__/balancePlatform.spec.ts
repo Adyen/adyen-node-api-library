@@ -3,6 +3,7 @@ import Client from "../client";
 import { createClient } from "../__mocks__/base";
 import BalancePlatform from "../services/balancePlatform";
 import { balancePlatform }  from "../typings";
+import {IRequest} from "../typings/requestOptions";
 
 let client: Client;
 let balancePlatformService: BalancePlatform;
@@ -166,13 +167,13 @@ describe("Balance Platform", (): void => {
                     "hasNext": true,
                     "hasPrevious": false
                 });
-
-            const response: balancePlatform.PaginatedBalanceAccountsResponse = await balancePlatformService.AccountHoldersApi.getAllBalanceAccountsOfAccountHolder("AH32272223222B5CM4MWJ892H", {
+            const requestOptions: IRequest.Options = {
                 params: {
-                    "limit": "5",
-                    "offset": "10"
+                    limit: "5",
+                    offset: "10"
                 }
-            });
+            };
+            const response: balancePlatform.PaginatedBalanceAccountsResponse = await balancePlatformService.AccountHoldersApi.getAllBalanceAccountsOfAccountHolder("AH32272223222B5CM4MWJ892H", requestOptions);
 
             expect(response.balanceAccounts[0].id).toBe("BA32272223222B59K6ZXHBFN6");
         });

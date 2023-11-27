@@ -119,6 +119,17 @@ checkoutApi.PaymentsApi.payments(paymentRequest)
   .then(paymentResponse => console.log(paymentResponse.pspReference))
   .catch(error => console.log(error));
 ```
+If you want to pass query string parameters, you can use the `params` field from [IRequest](/src/typings/requestOptions.ts) (also used for idempotency-key and other header fields). 
+The method descriptions contain an example of the possible values you can send to the API for the query parameters, just as stated in the API explorer.
+```javascript
+const requestOptions: IRequest.Options = {
+    params: {
+        limit: "5",
+        offset: "10"
+    }
+};
+await balancePlatformService.AccountHoldersApi.getAllBalanceAccountsOfAccountHolder("AH32272223222B5CM4MWJ892H", requestOptions);
+```
 
 ### Step 1: Require the parts of the module you want to use
 
