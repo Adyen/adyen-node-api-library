@@ -119,8 +119,8 @@ checkoutApi.PaymentsApi.payments(paymentRequest)
   .then(paymentResponse => console.log(paymentResponse.pspReference))
   .catch(error => console.log(error));
 ```
-If you want to pass query parameters you use the the following "param" field in the [IRequest](https://github.com/Adyen/adyen-node-api-library/blob/main/src/typings/requestOptions.ts) (also used for idempotency-key and other header fields). 
-The method descriptions contain an example of the possible values you can send to the API for the query parameters, just as as stated in the API explorer.
+If you want to pass query parameters you can use the following "param" field in the [IRequest](https://github.com/Adyen/adyen-node-api-library/blob/main/src/typings/requestOptions.ts) (also used for idempotency-key and other header fields). 
+The method descriptions contain an example of the possible values you can send to the API for the query parameters, just as stated in the API explorer.
 ```javascript
 const requestOptions: IRequest = {
     params: {
