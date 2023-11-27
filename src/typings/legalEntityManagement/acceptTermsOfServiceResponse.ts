@@ -30,7 +30,7 @@ export class AcceptTermsOfServiceResponse {
     */
     'termsOfServiceDocumentId'?: string;
     /**
-    * The type of Terms of Service.
+    * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  
     */
     'type'?: AcceptTermsOfServiceResponse.TypeEnum;
 

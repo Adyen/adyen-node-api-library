@@ -14,7 +14,7 @@ export class GetTermsOfServiceDocumentRequest {
     */
     'language': string;
     /**
-    * The type of Terms of Service.
+    * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  
     */
     'type': GetTermsOfServiceDocumentRequest.TypeEnum;
 

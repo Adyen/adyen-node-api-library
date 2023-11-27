@@ -8,20 +8,29 @@
  */
 
 
-export class JSONPath {
-    'content'?: Array<string>;
+export class SameCounterpartyRestriction {
+    /**
+    * Defines how the condition must be evaluated.
+    */
+    'operation': string;
+    'value'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "content",
-            "baseName": "content",
-            "type": "Array<string>"
+            "name": "operation",
+            "baseName": "operation",
+            "type": "string"
+        },
+        {
+            "name": "value",
+            "baseName": "value",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return JSONPath.attributeTypeMap;
+        return SameCounterpartyRestriction.attributeTypeMap;
     }
 }
 

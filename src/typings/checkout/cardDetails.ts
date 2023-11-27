@@ -189,6 +189,7 @@ export class CardDetails {
 
 export namespace CardDetails {
     export enum FundingSourceEnum {
+        Credit = 'credit',
         Debit = 'debit'
     }
     export enum TypeEnum {

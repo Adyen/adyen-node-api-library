@@ -12,6 +12,8 @@ import { LegalEntityAssociation } from './legalEntityAssociation';
 import { LegalEntityCapability } from './legalEntityCapability';
 import { Organization } from './organization';
 import { SoleProprietorship } from './soleProprietorship';
+import { Trust } from './trust';
+import { UnincorporatedPartnership } from './unincorporatedPartnership';
 
 export class LegalEntityInfo {
     /**
@@ -29,10 +31,12 @@ export class LegalEntityInfo {
     */
     'reference'?: string;
     'soleProprietorship'?: SoleProprietorship;
+    'trust'?: Trust;
     /**
-    * The type of legal entity.   Possible values: **individual**, **organization**, or **soleProprietorship**.
+    * The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
     */
     'type'?: LegalEntityInfo.TypeEnum;
+    'unincorporatedPartnership'?: UnincorporatedPartnership;
 
     static discriminator: string | undefined = undefined;
 
@@ -68,9 +72,19 @@ export class LegalEntityInfo {
             "type": "SoleProprietorship"
         },
         {
+            "name": "trust",
+            "baseName": "trust",
+            "type": "Trust"
+        },
+        {
             "name": "type",
             "baseName": "type",
             "type": "LegalEntityInfo.TypeEnum"
+        },
+        {
+            "name": "unincorporatedPartnership",
+            "baseName": "unincorporatedPartnership",
+            "type": "UnincorporatedPartnership"
         }    ];
 
     static getAttributeTypeMap() {

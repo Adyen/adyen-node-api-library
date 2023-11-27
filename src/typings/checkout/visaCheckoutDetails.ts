@@ -57,6 +57,7 @@ export class VisaCheckoutDetails {
 
 export namespace VisaCheckoutDetails {
     export enum FundingSourceEnum {
+        Credit = 'credit',
         Debit = 'debit'
     }
     export enum TypeEnum {

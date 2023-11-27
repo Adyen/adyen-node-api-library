@@ -118,6 +118,7 @@ export class RecurringDetail {
 
 export namespace RecurringDetail {
     export enum FundingSourceEnum {
+        Credit = 'credit',
         Debit = 'debit'
     }
 }

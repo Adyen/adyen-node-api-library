@@ -10,11 +10,11 @@
 
 export class SplitAmount {
     /**
-    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).  If this value is not provided, the currency in which the payment is made will be used.
+    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). By default, this is the original payment currency.
     */
     'currency'?: string;
     /**
-    * The amount in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+    * The value of the split amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
     */
     'value': number;
 

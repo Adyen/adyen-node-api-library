@@ -75,6 +75,7 @@ export class GooglePayDetails {
 
 export namespace GooglePayDetails {
     export enum FundingSourceEnum {
+        Credit = 'credit',
         Debit = 'debit'
     }
     export enum TypeEnum {
