@@ -1,0 +1,25 @@
+name: Node.js Format
+
+on:
+  push:
+    branches:
+      - 'sdk-automation/models'
+
+jobs:
+  format:
+    if: ! startsWith(github.event.head_commit.message, 'style(fmt)')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      - run: |
+          npm install 
+          npm run lint:fix
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "style(fmt): code formatted"
+          git push
