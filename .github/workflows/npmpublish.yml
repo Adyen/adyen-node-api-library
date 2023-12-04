@@ -15,6 +15,7 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: |
+          npm cache clean
           npm install
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_API_LIBRARY_TOKEN }}" > .npmrc
           npm adduser
