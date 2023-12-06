@@ -16,7 +16,7 @@ jobs:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
       - run: |
-          locate .npmrc
+          rm /home/runner/work/_temp/.npmrc
           npm install
       - run: npm ci
       - run: npm publish
