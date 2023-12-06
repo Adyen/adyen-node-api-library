@@ -16,7 +16,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: |
           npm install
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_ADYEN_NODE_API_LIBRARY_TOKEN }}" > .npmrc
+          npm config set _auth ${{ secrets.NPM_ADYEN_NODE_API_LIBRARY_TOKEN }}
+          npm config set registry "https://registry.npmjs.org/"
+          npm config set always-auth=true
           npm run build
           npm publish
         env:
