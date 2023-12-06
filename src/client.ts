@@ -1,6 +1,5 @@
 import Config from "./config";
 import HttpURLConnectionClient from "./httpClient/httpURLConnectionClient";
-import { version } from "../package.json";
 import ClientInterface from "./httpClient/clientInterface";
 
 type ClientParametersOverload =
@@ -38,8 +37,6 @@ class Client {
     public static MARKETPAY_HOP_API_VERSION = "v6";
     public static MARKETPAY_NOTIFICATION_API_VERSION = "v5";
     public static MARKETPAY_NOTIFICATION_CONFIGURATION_API_VERSION = "v6";
-    public static LIB_NAME = "adyen-node-api-library";
-    public static LIB_VERSION: string = version;
     public static TERMINAL_API_ENDPOINT_TEST = "https://terminal-api-test.adyen.com";
     public static TERMINAL_API_ENDPOINT_LIVE = "https://terminal-api-live.adyen.com";
 

@@ -19,7 +19,7 @@
 
 // Generated using typescript-generator version 2.14.505 on 2019-06-11 10:28:22.
 
-import Client from "../client";
+import LibraryConstants from "../constants/libraryConstants";
 
 export class ApplicationInfo {
     adyenLibrary?: CommonField;
@@ -32,8 +32,8 @@ export class ApplicationInfo {
 
     constructor() {
         this.adyenLibrary = {
-            name: Client.LIB_NAME,
-            version: Client.LIB_VERSION,
+            name: LibraryConstants.LIB_NAME,
+            version: LibraryConstants.LIB_VERSION,
         };
     }
 }
