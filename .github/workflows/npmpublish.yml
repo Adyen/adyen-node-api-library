@@ -18,6 +18,6 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@adyen/api-library'
       - run: yarn
-      - run: yarn npm publish // for Yarn version 1, use `yarn publish` instead
+      - run: yarn publish // for Yarn version 1, use `yarn publish` instead
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_API_LIBRARY_TOKEN }}
