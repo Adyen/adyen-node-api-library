@@ -15,10 +15,6 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: |
-          rm /home/runner/work/_temp/.npmrc
-          npm install
-          npm adduser
       - run: npm ci
       - run: npm publish
         env:
