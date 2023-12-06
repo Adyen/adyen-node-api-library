@@ -14,7 +14,9 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm install
+      - run: |
+          npm cache clean -f
+          npm install -g n
       - run: npm ci
       - run: npm publish
         env:
