@@ -23,7 +23,7 @@ import { HttpsProxyAgent } from "https-proxy-agent";
 
 import * as fs from "fs";
 import { URL, URLSearchParams } from "url";
-import Client from "../client";
+import LibraryConstants from "../constants/libraryConstants";
 import Config from "../config";
 import HttpClientException from "./httpClientException";
 
@@ -111,9 +111,9 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
         requestOptions.headers[ApiConstants.ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
-        requestOptions.headers[ApiConstants.USER_AGENT] = `${applicationName} ${Client.LIB_NAME}/${Client.LIB_VERSION}`;
-        requestOptions.headers[ApiConstants.ADYEN_LIBRARY_NAME] = Client.LIB_NAME;
-        requestOptions.headers[ApiConstants.ADYEN_LIBRARY_VERSION] = Client.LIB_VERSION;
+        requestOptions.headers[ApiConstants.USER_AGENT] = `${applicationName} ${LibraryConstants.LIB_NAME}/${LibraryConstants.LIB_VERSION}`;
+        requestOptions.headers[ApiConstants.ADYEN_LIBRARY_NAME] = LibraryConstants.LIB_NAME;
+        requestOptions.headers[ApiConstants.ADYEN_LIBRARY_VERSION] = LibraryConstants.LIB_VERSION;
 
         return httpsRequest(requestOptions);
     }
