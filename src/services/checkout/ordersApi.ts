@@ -32,9 +32,8 @@ export class OrdersApi extends Service {
 
     /**
     * @summary Create an order
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param createOrderRequest {@link CreateOrderRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CreateOrderResponse }
     */
     public async orders(createOrderRequest: CreateOrderRequest, requestOptions?: IRequest.Options): Promise<CreateOrderResponse> {
@@ -51,9 +50,8 @@ export class OrdersApi extends Service {
 
     /**
     * @summary Cancel an order
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param cancelOrderRequest {@link CancelOrderRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CancelOrderResponse }
     */
     public async cancelOrder(cancelOrderRequest: CancelOrderRequest, requestOptions?: IRequest.Options): Promise<CancelOrderResponse> {
@@ -70,9 +68,8 @@ export class OrdersApi extends Service {
 
     /**
     * @summary Get the balance of a gift card
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param balanceCheckRequest {@link BalanceCheckRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link BalanceCheckResponse }
     */
     public async getBalanceOfGiftCard(balanceCheckRequest: BalanceCheckRequest, requestOptions?: IRequest.Options): Promise<BalanceCheckResponse> {

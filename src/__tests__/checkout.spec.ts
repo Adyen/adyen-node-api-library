@@ -13,6 +13,7 @@ import {CheckoutAPI} from "../services";
 import HttpClientException from "../httpClient/httpClientException";
 import { checkout } from "../typings";
 import { IRequest } from "../typings/requestOptions";
+import { SessionResultResponse } from "../typings/checkout/sessionResultResponse";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
 const reference = "Your order number";
@@ -386,8 +387,8 @@ describe("Checkout", (): void => {
             originDomains: ["https://www.your-domain.com"],
         };
 
-        nock(`https://checkout-test.adyen.com`)
-            .post(`/v71/originKeys`)
+        nock("https://checkout-test.adyen.com")
+            .post("/v71/originKeys")
             .reply(200, originKeysSuccess);
 
         const originKeysResponse = await checkoutUtility.UtilityApi.originKeys(originKeysRequest);
@@ -521,7 +522,7 @@ describe("Checkout", (): void => {
         expect(applePaySessionResponse.data).toEqual("eyJ2Z...");
     });
 
-    test("Should get stored paymentMethods", async (): Promise<void> => {
+    test("Should get stored paymentMethods using params in requestOptions", async (): Promise<void> => {
         scope.get("/storedPaymentMethods?shopperReference=MYSHOPPERREFERENCE")
         .reply(200, {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
@@ -536,7 +537,7 @@ describe("Checkout", (): void => {
                 shopperReference: "MYSHOPPERREFERENCE"
             }
         };
-        const getStoredPaymentMethodsResponse = await checkoutService.RecurringApi.getTokensForStoredPaymentDetails(requestOptions);
+        const getStoredPaymentMethodsResponse = await checkoutService.RecurringApi.getTokensForStoredPaymentDetails(undefined, undefined, requestOptions);
         expect(getStoredPaymentMethodsResponse.merchantAccount).toEqual("YOUR_MERCHANT_ACCOUNT");
         expect(getStoredPaymentMethodsResponse?.storedPaymentMethods?.length).toBe(1);
     });
@@ -549,5 +550,29 @@ describe("Checkout", (): void => {
             checkoutService.RecurringApi.deleteTokenForStoredPaymentDetails("12321"),
         ).resolves.not.toThrowError();
 
+    });
+
+    test("Should handle request without query parameters for getResultOfPaymentSession", async(): Promise<void> => {
+        scope.get("/sessions/mySessionIdMock")
+        .reply(200, {
+            "id": "CS12345678",
+            "status": "completed"
+        });
+
+        const resultOfPaymentSessionResponse = await checkoutService.PaymentsApi.getResultOfPaymentSession("mySessionIdMock");
+        expect(resultOfPaymentSessionResponse.id).toEqual("CS12345678");
+        expect(resultOfPaymentSessionResponse.status).toEqual(SessionResultResponse.StatusEnum.Completed);
+    });
+
+    test("Should handle query parameters for getResultOfPaymentSession", async(): Promise<void> => {
+        scope.get("/sessions/mySessionIdMock?sessionResult=sessionResult")
+        .reply(200, {
+            "id": "CS12345678",
+            "status": "completed"
+        });
+
+        const resultOfPaymentSessionResponse = await checkoutService.PaymentsApi.getResultOfPaymentSession("mySessionIdMock", "sessionResult");
+        expect(resultOfPaymentSessionResponse.id).toEqual("CS12345678");
+        expect(resultOfPaymentSessionResponse.status).toEqual(SessionResultResponse.StatusEnum.Completed);
     });
 });

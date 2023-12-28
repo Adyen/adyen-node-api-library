@@ -10,6 +10,14 @@
 
 export class StoredPaymentMethod {
     /**
+    * The bank account number (without separators).
+    */
+    'bankAccountNumber'?: string;
+    /**
+    * The location id of the bank. The field value is `nil` in most cases.
+    */
+    'bankLocationId'?: string;
+    /**
     * The brand of the card.
     */
     'brand'?: string;
@@ -33,6 +41,10 @@ export class StoredPaymentMethod {
     * A unique identifier of this stored payment method.
     */
     'id'?: string;
+    /**
+    * The shopper’s issuer account label
+    */
+    'label'?: string;
     /**
     * The last four digits of the PAN.
     */
@@ -70,6 +82,16 @@ export class StoredPaymentMethod {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "bankAccountNumber",
+            "baseName": "bankAccountNumber",
+            "type": "string"
+        },
+        {
+            "name": "bankLocationId",
+            "baseName": "bankLocationId",
+            "type": "string"
+        },
+        {
             "name": "brand",
             "baseName": "brand",
             "type": "string"
@@ -97,6 +119,11 @@ export class StoredPaymentMethod {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "label",
+            "baseName": "label",
             "type": "string"
         },
         {

@@ -68,7 +68,7 @@ export class DonationPaymentRequest {
     /**
     * Donation account to which the transaction is credited.
     */
-    'donationAccount': string;
+    'donationAccount'?: string;
     /**
     * PSP reference of the transaction from which the donation token is generated. Required when `donationToken` is provided.
     */

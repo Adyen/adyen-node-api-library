@@ -30,9 +30,8 @@ export class UtilityApi extends Service {
 
     /**
     * @summary Get an Apple Pay session
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param applePaySessionRequest {@link ApplePaySessionRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ApplePaySessionResponse }
     */
     public async getApplePaySession(applePaySessionRequest: ApplePaySessionRequest, requestOptions?: IRequest.Options): Promise<ApplePaySessionResponse> {
@@ -49,9 +48,8 @@ export class UtilityApi extends Service {
 
     /**
     * @summary Create originKey values for domains
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param utilityRequest {@link UtilityRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link UtilityResponse }
     */
     public async originKeys(utilityRequest: UtilityRequest, requestOptions?: IRequest.Options): Promise<UtilityResponse> {

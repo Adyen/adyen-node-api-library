@@ -38,9 +38,8 @@ export class ModificationsApi extends Service {
 
     /**
     * @summary Cancel an authorised payment
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param standalonePaymentCancelRequest {@link StandalonePaymentCancelRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link StandalonePaymentCancelResponse }
     */
     public async cancelAuthorisedPayment(standalonePaymentCancelRequest: StandalonePaymentCancelRequest, requestOptions?: IRequest.Options): Promise<StandalonePaymentCancelResponse> {
@@ -58,9 +57,8 @@ export class ModificationsApi extends Service {
     /**
     * @summary Update an authorised amount
     * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param paymentAmountUpdateRequest {@link PaymentAmountUpdateRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentAmountUpdateResponse }
     */
     public async updateAuthorisedAmount(paymentPspReference: string, paymentAmountUpdateRequest: PaymentAmountUpdateRequest, requestOptions?: IRequest.Options): Promise<PaymentAmountUpdateResponse> {
@@ -79,9 +77,8 @@ export class ModificationsApi extends Service {
     /**
     * @summary Cancel an authorised payment
     * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. 
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param paymentCancelRequest {@link PaymentCancelRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentCancelResponse }
     */
     public async cancelAuthorisedPaymentByPspReference(paymentPspReference: string, paymentCancelRequest: PaymentCancelRequest, requestOptions?: IRequest.Options): Promise<PaymentCancelResponse> {
@@ -100,9 +97,8 @@ export class ModificationsApi extends Service {
     /**
     * @summary Capture an authorised payment
     * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param paymentCaptureRequest {@link PaymentCaptureRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentCaptureResponse }
     */
     public async captureAuthorisedPayment(paymentPspReference: string, paymentCaptureRequest: PaymentCaptureRequest, requestOptions?: IRequest.Options): Promise<PaymentCaptureResponse> {
@@ -121,9 +117,8 @@ export class ModificationsApi extends Service {
     /**
     * @summary Refund a captured payment
     * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to refund.
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param paymentRefundRequest {@link PaymentRefundRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentRefundResponse }
     */
     public async refundCapturedPayment(paymentPspReference: string, paymentRefundRequest: PaymentRefundRequest, requestOptions?: IRequest.Options): Promise<PaymentRefundResponse> {
@@ -142,9 +137,8 @@ export class ModificationsApi extends Service {
     /**
     * @summary Refund or cancel a payment
     * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to reverse. 
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param paymentReversalRequest {@link PaymentReversalRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentReversalResponse }
     */
     public async refundOrCancelPayment(paymentPspReference: string, paymentReversalRequest: PaymentReversalRequest, requestOptions?: IRequest.Options): Promise<PaymentReversalResponse> {

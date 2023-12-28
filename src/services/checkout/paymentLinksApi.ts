@@ -30,7 +30,7 @@ export class PaymentLinksApi extends Service {
     /**
     * @summary Get a payment link
     * @param linkId {@link string } Unique identifier of the payment link.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentLinkResponse }
     */
     public async getPaymentLink(linkId: string, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
@@ -49,7 +49,7 @@ export class PaymentLinksApi extends Service {
     * @summary Update the status of a payment link
     * @param linkId {@link string } Unique identifier of the payment link.
     * @param updatePaymentLinkRequest {@link UpdatePaymentLinkRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentLinkResponse }
     */
     public async updatePaymentLink(linkId: string, updatePaymentLinkRequest: UpdatePaymentLinkRequest, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
@@ -67,9 +67,8 @@ export class PaymentLinksApi extends Service {
 
     /**
     * @summary Create a payment link
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param paymentLinkRequest {@link PaymentLinkRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentLinkResponse }
     */
     public async paymentLinks(paymentLinkRequest: PaymentLinkRequest, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {

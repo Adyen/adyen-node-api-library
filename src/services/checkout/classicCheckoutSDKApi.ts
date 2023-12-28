@@ -30,9 +30,8 @@ export class ClassicCheckoutSDKApi extends Service {
 
     /**
     * @summary Create a payment session
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param paymentSetupRequest {@link PaymentSetupRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentSetupResponse }
     */
     public async paymentSession(paymentSetupRequest: PaymentSetupRequest, requestOptions?: IRequest.Options): Promise<PaymentSetupResponse> {
@@ -49,9 +48,8 @@ export class ClassicCheckoutSDKApi extends Service {
 
     /**
     * @summary Verify a payment result
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param paymentVerificationRequest {@link PaymentVerificationRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentVerificationResponse }
     */
     public async verifyPaymentResult(paymentVerificationRequest: PaymentVerificationRequest, requestOptions?: IRequest.Options): Promise<PaymentVerificationResponse> {
