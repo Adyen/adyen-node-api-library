@@ -36,20 +36,12 @@ export class RecurringApi extends Service {
         const endpoint = `${this.baseUrl}/storedPaymentMethods/{storedPaymentMethodId}`
             .replace("{" + "storedPaymentMethodId" + "}", encodeURIComponent(String(storedPaymentMethodId)));
         const resource = new Resource(this, endpoint);
-        if(!requestOptions) {
-            requestOptions = {};
-        }
-        if (shopperReference) {
-            if(!requestOptions.params) {
-                requestOptions.params = {};
-            }
-            requestOptions.params["shopperReference"] = shopperReference;
-        }
-        if (merchantAccount) {
-            if(!requestOptions.params) {
-                requestOptions.params = {};
-            }
-            requestOptions.params["merchantAccount"] = merchantAccount;
+        const hasDefinedQueryParams = shopperReference || merchantAccount;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(shopperReference) requestOptions.params["shopperReference"] = shopperReference;
+            if(merchantAccount) requestOptions.params["merchantAccount"] = merchantAccount;
         }
         await getJsonResponse<string, void>(
             resource,
@@ -68,20 +60,12 @@ export class RecurringApi extends Service {
     public async getTokensForStoredPaymentDetails(shopperReference?: string, merchantAccount?: string, requestOptions?: IRequest.Options): Promise<ListStoredPaymentMethodsResponse> {
         const endpoint = `${this.baseUrl}/storedPaymentMethods`;
         const resource = new Resource(this, endpoint);
-        if(!requestOptions) {
-            requestOptions = {};
-        }
-        if (shopperReference) {
-            if(!requestOptions.params) {
-                requestOptions.params = {};
-            }
-            requestOptions.params["shopperReference"] = shopperReference;
-        }
-        if (merchantAccount) {
-            if(!requestOptions.params) {
-                requestOptions.params = {};
-            }
-            requestOptions.params["merchantAccount"] = merchantAccount;
+        const hasDefinedQueryParams = shopperReference || merchantAccount;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(shopperReference) requestOptions.params["shopperReference"] = shopperReference;
+            if(merchantAccount) requestOptions.params["merchantAccount"] = merchantAccount;
         }
         const response = await getJsonResponse<string, ListStoredPaymentMethodsResponse>(
             resource,

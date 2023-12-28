@@ -46,14 +46,11 @@ export class PaymentsApi extends Service {
         const endpoint = `${this.baseUrl}/sessions/{sessionId}`
             .replace("{" + "sessionId" + "}", encodeURIComponent(String(sessionId)));
         const resource = new Resource(this, endpoint);
-        if(!requestOptions) {
-            requestOptions = {};
-        }
-        if (sessionResult) {
-            if(!requestOptions.params) {
-                requestOptions.params = {};
-            }
-            requestOptions.params["sessionResult"] = sessionResult;
+        const hasDefinedQueryParams = sessionResult;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(sessionResult) requestOptions.params["sessionResult"] = sessionResult;
         }
         const response = await getJsonResponse<string, SessionResultResponse>(
             resource,
