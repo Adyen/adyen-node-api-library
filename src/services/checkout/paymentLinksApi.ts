@@ -10,12 +10,14 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { PaymentLinkRequest } from "../../typings/checkout/models";
-import { PaymentLinkResponse } from "../../typings/checkout/models";
-import { UpdatePaymentLinkRequest } from "../../typings/checkout/models";
+import { 
+    PaymentLinkRequest,
+    PaymentLinkResponse,
+    UpdatePaymentLinkRequest,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class PaymentLinksApi extends Service {
 

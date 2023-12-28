@@ -2,12 +2,14 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
 {{#imports}}
-import { {{classname}} } from "../../typings/{{serviceName}}/models";
+    {{classname}},
 {{/imports}}
+    ObjectSerializer
+} from "../../typings/{{serviceName}}/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/{{serviceName}}/models";
 
 {{#operations}}
 export class {{classname}} extends Service {

@@ -10,11 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { DonationPaymentRequest } from "../../typings/checkout/models";
-import { DonationPaymentResponse } from "../../typings/checkout/models";
+import { 
+    DonationPaymentRequest,
+    DonationPaymentResponse,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class DonationsApi extends Service {
 

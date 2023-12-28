@@ -10,21 +10,23 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { PaymentAmountUpdateRequest } from "../../typings/checkout/models";
-import { PaymentAmountUpdateResponse } from "../../typings/checkout/models";
-import { PaymentCancelRequest } from "../../typings/checkout/models";
-import { PaymentCancelResponse } from "../../typings/checkout/models";
-import { PaymentCaptureRequest } from "../../typings/checkout/models";
-import { PaymentCaptureResponse } from "../../typings/checkout/models";
-import { PaymentRefundRequest } from "../../typings/checkout/models";
-import { PaymentRefundResponse } from "../../typings/checkout/models";
-import { PaymentReversalRequest } from "../../typings/checkout/models";
-import { PaymentReversalResponse } from "../../typings/checkout/models";
-import { StandalonePaymentCancelRequest } from "../../typings/checkout/models";
-import { StandalonePaymentCancelResponse } from "../../typings/checkout/models";
+import { 
+    PaymentAmountUpdateRequest,
+    PaymentAmountUpdateResponse,
+    PaymentCancelRequest,
+    PaymentCancelResponse,
+    PaymentCaptureRequest,
+    PaymentCaptureResponse,
+    PaymentRefundRequest,
+    PaymentRefundResponse,
+    PaymentReversalRequest,
+    PaymentReversalResponse,
+    StandalonePaymentCancelRequest,
+    StandalonePaymentCancelResponse,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class ModificationsApi extends Service {
 

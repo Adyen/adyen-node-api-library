@@ -10,13 +10,15 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { PaymentSetupRequest } from "../../typings/checkout/models";
-import { PaymentSetupResponse } from "../../typings/checkout/models";
-import { PaymentVerificationRequest } from "../../typings/checkout/models";
-import { PaymentVerificationResponse } from "../../typings/checkout/models";
+import { 
+    PaymentSetupRequest,
+    PaymentSetupResponse,
+    PaymentVerificationRequest,
+    PaymentVerificationResponse,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class ClassicCheckoutSDKApi extends Service {
 

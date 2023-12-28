@@ -10,13 +10,15 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ApplePaySessionRequest } from "../../typings/checkout/models";
-import { ApplePaySessionResponse } from "../../typings/checkout/models";
-import { UtilityRequest } from "../../typings/checkout/models";
-import { UtilityResponse } from "../../typings/checkout/models";
+import { 
+    ApplePaySessionRequest,
+    ApplePaySessionResponse,
+    UtilityRequest,
+    UtilityResponse,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class UtilityApi extends Service {
 

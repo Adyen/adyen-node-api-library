@@ -10,20 +10,22 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { CardDetailsRequest } from "../../typings/checkout/models";
-import { CardDetailsResponse } from "../../typings/checkout/models";
-import { CreateCheckoutSessionRequest } from "../../typings/checkout/models";
-import { CreateCheckoutSessionResponse } from "../../typings/checkout/models";
-import { PaymentDetailsRequest } from "../../typings/checkout/models";
-import { PaymentDetailsResponse } from "../../typings/checkout/models";
-import { PaymentMethodsRequest } from "../../typings/checkout/models";
-import { PaymentMethodsResponse } from "../../typings/checkout/models";
-import { PaymentRequest } from "../../typings/checkout/models";
-import { PaymentResponse } from "../../typings/checkout/models";
-import { SessionResultResponse } from "../../typings/checkout/models";
+import { 
+    CardDetailsRequest,
+    CardDetailsResponse,
+    CreateCheckoutSessionRequest,
+    CreateCheckoutSessionResponse,
+    PaymentDetailsRequest,
+    PaymentDetailsResponse,
+    PaymentMethodsRequest,
+    PaymentMethodsResponse,
+    PaymentRequest,
+    PaymentResponse,
+    SessionResultResponse,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class PaymentsApi extends Service {
 

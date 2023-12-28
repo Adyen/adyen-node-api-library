@@ -10,15 +10,17 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { BalanceCheckRequest } from "../../typings/checkout/models";
-import { BalanceCheckResponse } from "../../typings/checkout/models";
-import { CancelOrderRequest } from "../../typings/checkout/models";
-import { CancelOrderResponse } from "../../typings/checkout/models";
-import { CreateOrderRequest } from "../../typings/checkout/models";
-import { CreateOrderResponse } from "../../typings/checkout/models";
+import { 
+    BalanceCheckRequest,
+    BalanceCheckResponse,
+    CancelOrderRequest,
+    CancelOrderResponse,
+    CreateOrderRequest,
+    CreateOrderResponse,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class OrdersApi extends Service {
 

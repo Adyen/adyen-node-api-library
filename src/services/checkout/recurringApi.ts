@@ -10,10 +10,12 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ListStoredPaymentMethodsResponse } from "../../typings/checkout/models";
+import { 
+    ListStoredPaymentMethodsResponse,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class RecurringApi extends Service {
 
