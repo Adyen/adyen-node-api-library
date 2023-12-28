@@ -36,7 +36,7 @@ export class RecurringApi extends Service {
         const endpoint = `${this.baseUrl}/storedPaymentMethods/{storedPaymentMethodId}`
             .replace("{" + "storedPaymentMethodId" + "}", encodeURIComponent(String(storedPaymentMethodId)));
         const resource = new Resource(this, endpoint);
-        const hasDefinedQueryParams = shopperReference || merchantAccount;
+        const hasDefinedQueryParams = shopperReference ?? merchantAccount;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
             if(!requestOptions.params) requestOptions.params = {};
@@ -60,7 +60,7 @@ export class RecurringApi extends Service {
     public async getTokensForStoredPaymentDetails(shopperReference?: string, merchantAccount?: string, requestOptions?: IRequest.Options): Promise<ListStoredPaymentMethodsResponse> {
         const endpoint = `${this.baseUrl}/storedPaymentMethods`;
         const resource = new Resource(this, endpoint);
-        const hasDefinedQueryParams = shopperReference || merchantAccount;
+        const hasDefinedQueryParams = shopperReference ?? merchantAccount;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
             if(!requestOptions.params) requestOptions.params = {};

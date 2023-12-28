@@ -30,7 +30,7 @@ export class {{classname}} extends Service {
         const request: {{{dataType}}} = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}");
 {{/bodyParam}}
 {{#hasQueryParams}}
-        const hasDefinedQueryParams = {{#queryParams}}{{paramName}}{{^-last}} || {{/-last}}{{/queryParams}};
+        const hasDefinedQueryParams = {{#queryParams}}{{paramName}}{{^-last}} ?? {{/-last}}{{/queryParams}};
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
             if(!requestOptions.params) requestOptions.params = {};
