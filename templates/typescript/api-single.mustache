@@ -37,7 +37,7 @@ export class {{classname}} extends Service {
             if(!requestOptions) requestOptions = {};
             if(!requestOptions.params) requestOptions.params = {};
 {{#queryParams}}
-            if({{paramName}}) requestOptions.params["{{paramName}}"] = {{paramName}};
+            if({{paramName}}) requestOptions.params["{{paramName}}"] = {{paramName}}{{#isDateTime}}.toISOString(){{/isDateTime}};
 {{/queryParams}}
         }
 {{/hasQueryParams}}

@@ -10,12 +10,14 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { CapitalGrant } from "../../typings/transfers/models";
-import { CapitalGrantInfo } from "../../typings/transfers/models";
-import { CapitalGrants } from "../../typings/transfers/models";
+import { 
+    CapitalGrant,
+    CapitalGrantInfo,
+    CapitalGrants,
+    ObjectSerializer
+} from "../../typings/transfers/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/transfers/models";
 
 export class CapitalApi extends Service {
 
@@ -29,13 +31,19 @@ export class CapitalApi extends Service {
 
     /**
     * @summary Get a capital account
+    * @param requestOptions {@link IRequest.Options }
     * @param counterpartyAccountHolderId {@link string } The counterparty account holder id.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link CapitalGrants }
     */
-    public async getCapitalAccount(requestOptions?: IRequest.Options): Promise<CapitalGrants> {
+    public async getCapitalAccount(counterpartyAccountHolderId?: string, requestOptions?: IRequest.Options): Promise<CapitalGrants> {
         const endpoint = `${this.baseUrl}/grants`;
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = counterpartyAccountHolderId;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(counterpartyAccountHolderId) requestOptions.params["counterpartyAccountHolderId"] = counterpartyAccountHolderId;
+        }
         const response = await getJsonResponse<string, CapitalGrants>(
             resource,
             "",
@@ -47,7 +55,7 @@ export class CapitalApi extends Service {
     /**
     * @summary Get grant reference details
     * @param id {@link string } The unique identifier of the grant.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CapitalGrant }
     */
     public async getGrantReferenceDetails(id: string, requestOptions?: IRequest.Options): Promise<CapitalGrant> {
@@ -65,7 +73,7 @@ export class CapitalApi extends Service {
     /**
     * @summary Request a grant payout
     * @param capitalGrantInfo {@link CapitalGrantInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CapitalGrant }
     */
     public async requestGrantPayout(capitalGrantInfo: CapitalGrantInfo, requestOptions?: IRequest.Options): Promise<CapitalGrant> {

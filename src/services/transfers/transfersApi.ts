@@ -10,13 +10,15 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ReturnTransferRequest } from "../../typings/transfers/models";
-import { ReturnTransferResponse } from "../../typings/transfers/models";
-import { Transfer } from "../../typings/transfers/models";
-import { TransferInfo } from "../../typings/transfers/models";
+import {
+    ReturnTransferRequest,
+    ReturnTransferResponse,
+    Transfer,
+    TransferInfo,
+    ObjectSerializer
+} from "../../typings/transfers/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/transfers/models";
 
 export class TransfersApi extends Service {
 
@@ -30,9 +32,8 @@ export class TransfersApi extends Service {
 
     /**
     * @summary Transfer funds
-    * @param wWWAuthenticate {@link string } Header for authenticating through SCA
     * @param transferInfo {@link TransferInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Transfer }
     */
     public async transferFunds(transferInfo: TransferInfo, requestOptions?: IRequest.Options): Promise<Transfer> {
@@ -49,14 +50,14 @@ export class TransfersApi extends Service {
 
     /**
     * @summary Return a transfer
-    * @param id {@link string } The unique identifier of the transfer to be returned.
+    * @param transferId {@link string } The unique identifier of the transfer to be returned.
     * @param returnTransferRequest {@link ReturnTransferRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ReturnTransferResponse }
     */
-    public async returnTransfer(id: string, returnTransferRequest: ReturnTransferRequest, requestOptions?: IRequest.Options): Promise<ReturnTransferResponse> {
-        const endpoint = `${this.baseUrl}/transfers/{id}/returns`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+    public async returnTransfer(transferId: string, returnTransferRequest: ReturnTransferRequest, requestOptions?: IRequest.Options): Promise<ReturnTransferResponse> {
+        const endpoint = `${this.baseUrl}/transfers/{transferId}/returns`
+            .replace("{" + "transferId" + "}", encodeURIComponent(String(transferId)));
         const resource = new Resource(this, endpoint);
         const request: ReturnTransferRequest = ObjectSerializer.serialize(returnTransferRequest, "ReturnTransferRequest");
         const response = await getJsonResponse<ReturnTransferRequest, ReturnTransferResponse>(

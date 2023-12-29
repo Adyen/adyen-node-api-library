@@ -30,9 +30,6 @@ export class RestServiceError {
     * A unique reference for the request, essentially the same as `pspReference`.
     */
     'requestId'?: string;
-    /**
-    * JSON response payload.
-    */
     'response'?: object;
     /**
     * The HTTP status code.

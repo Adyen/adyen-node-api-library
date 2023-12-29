@@ -18,7 +18,7 @@ export class ReturnTransferResponse {
     */
     'reference'?: string;
     /**
-    * The resulting status of the return.  For example: **authorised**, **booked**, **error**.
+    * The resulting status of the return.  Possible values: **Authorised**, **Declined**.
     */
     'status'?: ReturnTransferResponse.StatusEnum;
     /**
