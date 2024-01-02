@@ -12,6 +12,10 @@ import { TransferNotificationValidationFact } from './transferNotificationValida
 
 export class IssuedCard {
     /**
+    * The authorisation type. For example, **defaultAuthorisation**, **preAuthorisation**, **finalAuthorisation**
+    */
+    'authorisationType'?: string;
+    /**
     * Indicates the method used for entering the PAN to initiate a transaction.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **ecommerce**, **token**.
     */
     'panEntryMode'?: IssuedCard.PanEntryModeEnum;
@@ -20,6 +24,14 @@ export class IssuedCard {
     */
     'processingType'?: IssuedCard.ProcessingTypeEnum;
     'relayedAuthorisationData'?: RelayedAuthorisationData;
+    /**
+    * The identifier of the original payment provided by the scheme. The Id could be alphanumeric or numeric depending on the scheme. The schemeTraceID should be referring to an original schemeUniqueTransactionID provided in an earlier payment (not necessarily processed by Adyen). Instances of available schemeTraceId is authAdjustment or recurring payments.
+    */
+    'schemeTraceId'?: string;
+    /**
+    * The unique identifier created by the scheme. The ID could be alphanumeric or numeric depending on the scheme.
+    */
+    'schemeUniqueTransactionId'?: string;
     /**
     * **issuedCard**
     */
@@ -32,6 +44,11 @@ export class IssuedCard {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "authorisationType",
+            "baseName": "authorisationType",
+            "type": "string"
+        },
         {
             "name": "panEntryMode",
             "baseName": "panEntryMode",
@@ -46,6 +63,16 @@ export class IssuedCard {
             "name": "relayedAuthorisationData",
             "baseName": "relayedAuthorisationData",
             "type": "RelayedAuthorisationData"
+        },
+        {
+            "name": "schemeTraceId",
+            "baseName": "schemeTraceId",
+            "type": "string"
+        },
+        {
+            "name": "schemeUniqueTransactionId",
+            "baseName": "schemeUniqueTransactionId",
+            "type": "string"
         },
         {
             "name": "type",

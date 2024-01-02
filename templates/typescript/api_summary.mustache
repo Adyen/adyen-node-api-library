@@ -9,9 +9,9 @@
     * @param {{paramName}} {@link {{dataType}} } {{description}}
 {{/bodyParams}}
     * @param requestOptions {@link IRequest.Options }
-{{#hasQueryParams}}
-    * @example send query parameters through requestOptions: { params: { {{#queryParams}}{{#lambda.camelcase}}{{paramName}}{{/lambda.camelcase}}: "{{{dataType}}}"{{^-last}}, {{/-last}}{{/queryParams}} } }
-{{/hasQueryParams}}
+{{#queryParams}}
+    * @param {{paramName}} {@link {{dataType}} } {{description}}
+{{/queryParams}}
 {{#returnType}}
     * @return {@link {{.}} }
 {{/returnType}}

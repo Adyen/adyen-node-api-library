@@ -10,22 +10,22 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { CardDetailsRequest } from "../../typings/checkout/models";
-import { CardDetailsResponse } from "../../typings/checkout/models";
-import { CreateCheckoutSessionRequest } from "../../typings/checkout/models";
-import { CreateCheckoutSessionResponse } from "../../typings/checkout/models";
-import { DonationPaymentRequest } from "../../typings/checkout/models";
-import { DonationPaymentResponse } from "../../typings/checkout/models";
-import { PaymentDetailsRequest } from "../../typings/checkout/models";
-import { PaymentDetailsResponse } from "../../typings/checkout/models";
-import { PaymentMethodsRequest } from "../../typings/checkout/models";
-import { PaymentMethodsResponse } from "../../typings/checkout/models";
-import { PaymentRequest } from "../../typings/checkout/models";
-import { PaymentResponse } from "../../typings/checkout/models";
-import { SessionResultResponse } from "../../typings/checkout/models";
+import { 
+    CardDetailsRequest,
+    CardDetailsResponse,
+    CreateCheckoutSessionRequest,
+    CreateCheckoutSessionResponse,
+    PaymentDetailsRequest,
+    PaymentDetailsResponse,
+    PaymentMethodsRequest,
+    PaymentMethodsResponse,
+    PaymentRequest,
+    PaymentResponse,
+    SessionResultResponse,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class PaymentsApi extends Service {
 
@@ -40,14 +40,20 @@ export class PaymentsApi extends Service {
     /**
     * @summary Get the result of a payment session
     * @param sessionId {@link string } A unique identifier of the session.
+    * @param requestOptions {@link IRequest.Options }
     * @param sessionResult {@link string } The &#x60;sessionResult&#x60; value from the Drop-in or Component.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link SessionResultResponse }
     */
-    public async getResultOfPaymentSession(sessionId: string, requestOptions?: IRequest.Options): Promise<SessionResultResponse> {
+    public async getResultOfPaymentSession(sessionId: string, sessionResult?: string, requestOptions?: IRequest.Options): Promise<SessionResultResponse> {
         const endpoint = `${this.baseUrl}/sessions/{sessionId}`
             .replace("{" + "sessionId" + "}", encodeURIComponent(String(sessionId)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = sessionResult;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(sessionResult) requestOptions.params["sessionResult"] = sessionResult;
+        }
         const response = await getJsonResponse<string, SessionResultResponse>(
             resource,
             "",
@@ -58,9 +64,8 @@ export class PaymentsApi extends Service {
 
     /**
     * @summary Get the list of brands on the card
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param cardDetailsRequest {@link CardDetailsRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CardDetailsResponse }
     */
     public async cardDetails(cardDetailsRequest: CardDetailsRequest, requestOptions?: IRequest.Options): Promise<CardDetailsResponse> {
@@ -76,29 +81,9 @@ export class PaymentsApi extends Service {
     }
 
     /**
-    * @summary Start a transaction for donations
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
-    * @param donationPaymentRequest {@link DonationPaymentRequest } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link DonationPaymentResponse }
-    */
-    public async donations(donationPaymentRequest: DonationPaymentRequest, requestOptions?: IRequest.Options): Promise<DonationPaymentResponse> {
-        const endpoint = `${this.baseUrl}/donations`;
-        const resource = new Resource(this, endpoint);
-        const request: DonationPaymentRequest = ObjectSerializer.serialize(donationPaymentRequest, "DonationPaymentRequest");
-        const response = await getJsonResponse<DonationPaymentRequest, DonationPaymentResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "DonationPaymentResponse");
-    }
-
-    /**
     * @summary Get a list of available payment methods
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param paymentMethodsRequest {@link PaymentMethodsRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentMethodsResponse }
     */
     public async paymentMethods(paymentMethodsRequest: PaymentMethodsRequest, requestOptions?: IRequest.Options): Promise<PaymentMethodsResponse> {
@@ -115,9 +100,8 @@ export class PaymentsApi extends Service {
 
     /**
     * @summary Start a transaction
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param paymentRequest {@link PaymentRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentResponse }
     */
     public async payments(paymentRequest: PaymentRequest, requestOptions?: IRequest.Options): Promise<PaymentResponse> {
@@ -134,9 +118,8 @@ export class PaymentsApi extends Service {
 
     /**
     * @summary Submit details for a payment
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param paymentDetailsRequest {@link PaymentDetailsRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentDetailsResponse }
     */
     public async paymentsDetails(paymentDetailsRequest: PaymentDetailsRequest, requestOptions?: IRequest.Options): Promise<PaymentDetailsResponse> {
@@ -153,9 +136,8 @@ export class PaymentsApi extends Service {
 
     /**
     * @summary Create a payment session
-    * @param idempotencyKey {@link string } A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
     * @param createCheckoutSessionRequest {@link CreateCheckoutSessionRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CreateCheckoutSessionResponse }
     */
     public async sessions(createCheckoutSessionRequest: CreateCheckoutSessionRequest, requestOptions?: IRequest.Options): Promise<CreateCheckoutSessionResponse> {

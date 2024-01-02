@@ -45,6 +45,10 @@ export class PaymentRefundResponse {
     * The status of your request. This will always have the value **received**.
     */
     'status': PaymentRefundResponse.StatusEnum;
+    /**
+    * The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails.
+    */
+    'store'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -93,6 +97,11 @@ export class PaymentRefundResponse {
             "name": "status",
             "baseName": "status",
             "type": "PaymentRefundResponse.StatusEnum"
+        },
+        {
+            "name": "store",
+            "baseName": "store",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

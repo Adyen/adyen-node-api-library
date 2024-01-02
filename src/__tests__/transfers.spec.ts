@@ -50,14 +50,14 @@ describe("Transfers", (): void => {
     test("should get transaction", async (): Promise<void> => {
         scope.get("/transactions/123")
         .reply(200, getTransactionSuccess);
-        const response: transfers.Transaction = await transfersAPI.TransactionsApi.getTransaction("123");
+        const response: transfers.Transaction = await transfersAPI.TransactionsApi.getTransaction("123",);
         expect(response.id).toEqual("IZK7C25U7DYVX03Y");
     });
 
     test("should list transactions", async (): Promise<void> => {
-        scope.get("/transactions")
+        scope.get("/transactions?balancePlatform=platform&createdSince=2023-12-12T00%3A00%3A00.000Z&createdUntil=2023-12-13T00%3A00%3A00.000Z")
         .reply(200, listTransactionsSuccess);
-        const response: transfers.TransactionSearchResponse = await transfersAPI.TransactionsApi.getAllTransactions();
+        const response: transfers.TransactionSearchResponse = await transfersAPI.TransactionsApi.getAllTransactions("platform", undefined, undefined, undefined, undefined, new Date("12-12-2023"), new Date("12-13-2023"));
         expect(response.data?.length).toEqual(3);
         if(response.data && response.data?.length > 0) {
             expect(response?.data[0]?.id).toEqual("1VVF0D5U66PIUIVP");

@@ -182,6 +182,10 @@ export class CreateCheckoutSessionResponse {
     */
     'showInstallmentAmount'?: boolean;
     /**
+    * Set to **true** to show a button that lets the shopper remove a stored payment method.
+    */
+    'showRemovePaymentMethodButton'?: boolean;
+    /**
     * The shopper\'s social security number.
     */
     'socialSecurityNumber'?: string;
@@ -210,7 +214,7 @@ export class CreateCheckoutSessionResponse {
     */
     'telephoneNumber'?: string;
     /**
-    * Sets a custom theme for the Adyen-hosted payment page. The value can be any of the **Theme ID** values from your Customer Area.
+    * Sets a custom theme for [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/?platform=Web&integration=Hosted+Checkout). The value can be any of the **Theme ID** values from your Customer Area.
     */
     'themeId'?: string;
     /**
@@ -477,6 +481,11 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "showInstallmentAmount",
             "baseName": "showInstallmentAmount",
+            "type": "boolean"
+        },
+        {
+            "name": "showRemovePaymentMethodButton",
+            "baseName": "showRemovePaymentMethodButton",
             "type": "boolean"
         },
         {

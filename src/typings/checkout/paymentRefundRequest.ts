@@ -35,6 +35,10 @@ export class PaymentRefundRequest {
     * An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information).
     */
     'splits'?: Array<Split>;
+    /**
+    * The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails.
+    */
+    'store'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -73,6 +77,11 @@ export class PaymentRefundRequest {
             "name": "splits",
             "baseName": "splits",
             "type": "Array<Split>"
+        },
+        {
+            "name": "store",
+            "baseName": "store",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

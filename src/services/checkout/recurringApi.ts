@@ -10,10 +10,12 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ListStoredPaymentMethodsResponse } from "../../typings/checkout/models";
+import { 
+    ListStoredPaymentMethodsResponse,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/checkout/models";
 
 export class RecurringApi extends Service {
 
@@ -28,14 +30,21 @@ export class RecurringApi extends Service {
     /**
     * @summary Delete a token for stored payment details
     * @param storedPaymentMethodId {@link string } The unique identifier of the token.
+    * @param requestOptions {@link IRequest.Options }
     * @param shopperReference {@link string } Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
     * @param merchantAccount {@link string } Your merchant account.
-    * @param requestOptions {@link IRequest.Options}
     */
-    public async deleteTokenForStoredPaymentDetails(storedPaymentMethodId: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async deleteTokenForStoredPaymentDetails(storedPaymentMethodId: string, shopperReference?: string, merchantAccount?: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/storedPaymentMethods/{storedPaymentMethodId}`
             .replace("{" + "storedPaymentMethodId" + "}", encodeURIComponent(String(storedPaymentMethodId)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = shopperReference ?? merchantAccount;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(shopperReference) requestOptions.params["shopperReference"] = shopperReference;
+            if(merchantAccount) requestOptions.params["merchantAccount"] = merchantAccount;
+        }
         await getJsonResponse<string, void>(
             resource,
             "",
@@ -45,14 +54,21 @@ export class RecurringApi extends Service {
 
     /**
     * @summary Get tokens for stored payment details
+    * @param requestOptions {@link IRequest.Options }
     * @param shopperReference {@link string } Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
     * @param merchantAccount {@link string } Your merchant account.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link ListStoredPaymentMethodsResponse }
     */
-    public async getTokensForStoredPaymentDetails(requestOptions?: IRequest.Options): Promise<ListStoredPaymentMethodsResponse> {
+    public async getTokensForStoredPaymentDetails(shopperReference?: string, merchantAccount?: string, requestOptions?: IRequest.Options): Promise<ListStoredPaymentMethodsResponse> {
         const endpoint = `${this.baseUrl}/storedPaymentMethods`;
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = shopperReference ?? merchantAccount;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(shopperReference) requestOptions.params["shopperReference"] = shopperReference;
+            if(merchantAccount) requestOptions.params["merchantAccount"] = merchantAccount;
+        }
         const response = await getJsonResponse<string, ListStoredPaymentMethodsResponse>(
             resource,
             "",
