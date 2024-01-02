@@ -140,6 +140,26 @@ afterEach(() => {
 });
 
 describe("Checkout", (): void => {
+    test("should deserialize JSON into valid paymentRequest object", async (): Promise<void> => {
+        const requestJson: JSON = JSON.parse(`{
+            "amount": {
+                "currency": "USD",
+                "value": 1000
+            },
+            "reference": "Your order number",
+            "paymentMethod": {
+                "type": "applepay",
+                "applePayToken": "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU..."
+            },
+            "returnUrl": "https://your-company.com/...",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
+        }`);
+        const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.deserialize(requestJson,"PaymentRequest");
+        expect(paymentRequest.returnUrl).toEqual("https://your-company.com/...");
+        expect(paymentRequest.amount.value).toBe(1000);
+        const paymentMethodDetails: checkout.ApplePayDetails = paymentRequest.paymentMethod as checkout.ApplePayDetails;
+        expect(paymentMethodDetails.applePayToken).toEqual("VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU...");
+    });
     test("should add idempotency key to request headers", async (): Promise<void> => {
         const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
         scope.post("/payments")

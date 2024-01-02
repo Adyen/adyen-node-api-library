@@ -199,7 +199,7 @@ checkoutApi.PaymentsApi.payments(paymentRequest)
   .then(paymentResponse => console.log(paymentResponse.pspReference))
   .catch(error => console.log(error));
 ```
-## Client setup when going live
+### Client setup when going live
 
 For APIS that require your [Live URL Prefix](https://docs.adyen.com/development-resources/live-endpoints#live-url-prefix) (Binlookup, BalanceControl, Checkout, Payout and Recurring) the client is set up as follows in order to start processing live payments:
 ``` typescript
@@ -208,7 +208,7 @@ const { Client } = require('@adyen/api-library');
 const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST", liveEndpointUrlPrefix: "YOUR_LIVE_URL_PREFIX"}); 
 ```
 
-## Usage in TypeScript
+### Usage in TypeScript
 
 Alternatively, you can use the `Types` included in this module for Typescript and `async` syntax.
 
@@ -244,8 +244,19 @@ Alternatively, you can use the `Types` included in this module for Typescript an
 
   makePaymentsRequest();
 ```
+
+#### Deserializing JSON Strings
+In some setups you might need to deserialize JSON strings to request objects. For example, when using the libraries in combination with [Dropin/Components](https://github.com/Adyen/adyen-web). Please use the built-in deserialization functions:
+``` typescript
+// Import the required model class
+import { checkout } from "../typings";
+
+// Deserialize using built-in ObjectSerializer class
+const requestJson: JSON = JSON.parse(`YOUR_JSON_STRING`);
+const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.deserialize(requestJson,"PaymentRequest");
+```
  
-## Custom HTTP client configuration
+### Custom HTTP client configuration
 
 By default, [Node.js https](https://nodejs.org/api/https.html) is used to make API requests. Alternatively, you can set a custom `HttpClient` for your `Client` object.
 
@@ -277,7 +288,7 @@ const client = new Client({
 // ... more code
 ```
 
-## Parsing and Authenticating Banking Webhooks
+### Parsing and Authenticating Banking Webhooks
 Parse an AccountHolderNotificationRequest webhook;
 ``` typescript
 let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
@@ -293,14 +304,14 @@ Verify the authenticity (where you retrieve the hmac key from the CA and the sig
 ``` typescript
 const isValid = hmacValidator.validateBankingHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGNATURE", jsonString)
 ```
-## Management Webhooks
+### Management Webhooks
 Management webhooks are verified the exact same way as the banking webhooks. To parse them however, instead you use:
 ``` typescript
 let managementWebhookHandler = new ManagementWebhookHandler(YOUR_MANAGEMENT_WEBHOOK);
 const genericWebhook = managementWebhookHandler.getGenericWebhook();
 ```
 
-## Proxy configuration
+### Proxy configuration
 
 To configure a proxy connection, set the `proxy` property of your `HttpURLConnectionClient` object.
 
@@ -320,7 +331,7 @@ client.httpClient = httpClient;
 // ... more code
 ```
 
-## Using the Cloud Terminal API Integration
+### Using the Cloud Terminal API Integration
 In order to submit In-Person requests with [Terminal API over Cloud](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/) you need to initialize the client in a similar way as the steps listed above for Ecommerce transactions, but make sure to include `TerminalCloudAPI`:
 ``` javascript
 // Step 1: Require the parts of the module you want to use
@@ -378,7 +389,7 @@ const paymentRequest: SaleToPOIRequest = {
 const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(paymentRequest);
 ```
 
-### Optional: perform an abort request
+#### Optional: perform an abort request
 
 To perform an [abort request](https://docs.adyen.com/point-of-sale/basic-tapi-integration/cancel-a-transaction/) you can use the following example:
 ``` javascript
@@ -408,7 +419,7 @@ const abortRequest: SaleToPOIRequest = {
 const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(abortRequest);
 ```
 
-### Optional: perform a status request
+#### Optional: perform a status request
 
 To perform a [status request](https://docs.adyen.com/point-of-sale/basic-tapi-integration/verify-transaction-status/) you can use the following example:
 ``` javascript
@@ -436,7 +447,7 @@ const statusRequest: SaleToPOIRequest = {
 const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(statusRequest);
 ```
 
-## Using the Local Terminal API Integration
+### Using the Local Terminal API Integration
 The procedure to send In-Person requests using [Terminal API over Local Connection](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/local/) is similar to the Cloud Terminal API one, however, additional encryption details are required to perform the requests. Make sure to [install the certificate as described here](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/local/#protect-communications)
 ```javascript
 // Step 1: Require the parts of the module you want to use
