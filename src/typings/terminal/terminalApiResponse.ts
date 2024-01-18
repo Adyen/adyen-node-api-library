@@ -1,31 +1,5 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2022 Adyen N.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
- */
-
-/**
- * Terminal API
- * Definition of Terminal API Schema
- *
- */
-
-
 import { SaleToPOIResponse } from './saleToPOIResponse';
-import {SaleToPOIRequest} from "./saleToPOIRequest";
+import { SaleToPOIRequest } from "./saleToPOIRequest";
 
 export class TerminalApiResponse {
     'SaleToPOIResponse'?: SaleToPOIResponse;
