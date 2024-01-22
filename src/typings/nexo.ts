@@ -5,7 +5,7 @@ import { ApplicationInfo } from "./applicationInfo";
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface AbortRequest {
+export interface AbortRequest {
     MessageReference: MessageReference;
     AbortReason: string;
     DisplayOutput?: DisplayOutput;
@@ -14,21 +14,21 @@ export  interface AbortRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface AdminRequest {
+export interface AdminRequest {
     ServiceIdentification?: string;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface AdminResponse {
+export interface AdminResponse {
     Response: Response;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface AlgorithmIdentifier {
+export interface AlgorithmIdentifier {
     Parameter?: Parameter;
     Algorithm: AlgorithmType;
 }
@@ -36,7 +36,7 @@ export  interface AlgorithmIdentifier {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface AllowedProduct {
+export interface AllowedProduct {
     ProductLabel?: string;
     AdditionalProductInfo?: string;
     ProductCode: string;
@@ -46,7 +46,7 @@ export  interface AllowedProduct {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface Amount {
+export interface Amount {
     value?: number;
     Currency?: string;
 }
@@ -54,7 +54,7 @@ export  interface Amount {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface AmountsReq {
+export interface AmountsReq {
     Currency: string;
     RequestedAmount?: number;
     CashBackAmount?: number;
@@ -68,7 +68,7 @@ export  interface AmountsReq {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface AmountsResp {
+export interface AmountsResp {
     Currency?: string;
     AuthorizedAmount: number;
     TotalRebatesAmount?: number;
@@ -80,7 +80,7 @@ export  interface AmountsResp {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface AreaSize {
+export interface AreaSize {
     X: string;
     Y: string;
 }
@@ -88,7 +88,7 @@ export  interface AreaSize {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface AuthenticatedData {
+export interface AuthenticatedData {
     keyTransportOrKEK?: any[];
     MACAlgorithm: AlgorithmIdentifier;
     EncapsulatedContent: EncapsulatedContent;
@@ -99,7 +99,7 @@ export  interface AuthenticatedData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface BalanceInquiryRequest {
+export interface BalanceInquiryRequest {
     PaymentAccountReq?: PaymentAccountReq;
     LoyaltyAccountReq?: LoyaltyAccountReq;
 }
@@ -107,7 +107,7 @@ export  interface BalanceInquiryRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface BalanceInquiryResponse {
+export interface BalanceInquiryResponse {
     Response: Response;
     PaymentAccountStatus?: PaymentAccountStatus;
     LoyaltyAccountStatus?: LoyaltyAccountStatus;
@@ -116,7 +116,7 @@ export  interface BalanceInquiryResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface BatchRequest {
+export interface BatchRequest {
     TransactionToPerform?: TransactionToPerform[];
     RemoveAllFlag?: boolean;
 }
@@ -124,7 +124,7 @@ export  interface BatchRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface BatchResponse {
+export interface BatchResponse {
     Response: Response;
     PerformedTransaction?: PerformedTransaction[];
 }
@@ -132,7 +132,7 @@ export  interface BatchResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CapturedSignature {
+export interface CapturedSignature {
     AreaSize?: AreaSize;
     SignaturePoint: SignaturePoint[];
 }
@@ -140,7 +140,7 @@ export  interface CapturedSignature {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CardAcquisitionRequest {
+export interface CardAcquisitionRequest {
     SaleData: SaleData;
     CardAcquisitionTransaction: CardAcquisitionTransaction;
 }
@@ -148,7 +148,7 @@ export  interface CardAcquisitionRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CardAcquisitionResponse {
+export interface CardAcquisitionResponse {
     Response: Response;
     SaleData: SaleData;
     POIData: POIData;
@@ -161,7 +161,7 @@ export  interface CardAcquisitionResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CardAcquisitionTransaction {
+export interface CardAcquisitionTransaction {
     AllowedPaymentBrand?: string[];
     AllowedLoyaltyBrand?: string[];
     ForceEntryMode?: ForceEntryModeType[];
@@ -176,7 +176,7 @@ export  interface CardAcquisitionTransaction {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CardData {
+export interface CardData {
     ProtectedCardData?: ContentInformation;
     SensitiveCardData?: SensitiveCardData;
     AllowedProductCode?: string[];
@@ -193,7 +193,7 @@ export  interface CardData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CardReaderAPDURequest {
+export interface CardReaderAPDURequest {
     APDUData?: any;
     APDUClass: any;
     APDUInstruction: any;
@@ -205,7 +205,7 @@ export  interface CardReaderAPDURequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CardReaderAPDUResponse {
+export interface CardReaderAPDUResponse {
     Response: Response;
     APDUData?: any;
     CardStatusWords: any;
@@ -214,7 +214,7 @@ export  interface CardReaderAPDUResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CardReaderInitRequest {
+export interface CardReaderInitRequest {
     ForceEntryMode?: ForceEntryModeType[];
     DisplayOutput?: DisplayOutput;
     WarmResetFlag?: boolean;
@@ -225,7 +225,7 @@ export  interface CardReaderInitRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CardReaderInitResponse {
+export interface CardReaderInitResponse {
     Response: Response;
     TrackData?: TrackData[];
     ICCResetData?: ICCResetData;
@@ -235,7 +235,7 @@ export  interface CardReaderInitResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CardReaderPowerOffRequest {
+export interface CardReaderPowerOffRequest {
     DisplayOutput?: DisplayOutput;
     MaxWaitingTime?: number;
 }
@@ -243,14 +243,14 @@ export  interface CardReaderPowerOffRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CardReaderPowerOffResponse {
+export interface CardReaderPowerOffResponse {
     Response: Response;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CardholderPIN {
+export interface CardholderPIN {
     EncrPINBlock: ContentInformation;
     PINFormat: PINFormatType;
     AdditionalInput?: string;
@@ -259,7 +259,7 @@ export  interface CardholderPIN {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CashHandlingDevice {
+export interface CashHandlingDevice {
     CoinsOrBills: CoinsOrBills[];
     CashHandlingOKFlag: boolean;
     Currency: string;
@@ -268,7 +268,7 @@ export  interface CashHandlingDevice {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CheckData {
+export interface CheckData {
     BankID?: string;
     AccountNumber?: string;
     CheckNumber?: string;
@@ -281,7 +281,7 @@ export  interface CheckData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CoinsOrBills {
+export interface CoinsOrBills {
     UnitValue: number;
     Number: number;
 }
@@ -289,7 +289,7 @@ export  interface CoinsOrBills {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface ContentInformation {
+export interface ContentInformation {
     EnvelopedData?: EnvelopedData;
     AuthenticatedData?: AuthenticatedData;
     SignedData?: SignedData;
@@ -301,7 +301,7 @@ export  interface ContentInformation {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CurrencyConversion {
+export interface CurrencyConversion {
     ConvertedAmount: Amount;
     Commission?: number;
     Declaration?: string;
@@ -313,7 +313,7 @@ export  interface CurrencyConversion {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface CustomerOrder {
+export interface CustomerOrder {
     AdditionalInformation?: string;
     CustomerOrderID: string;
     OpenOrderState?: boolean;
@@ -328,7 +328,7 @@ export  interface CustomerOrder {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface DiagnosisRequest {
+export interface DiagnosisRequest {
     AcquirerID?: string[];
     POIID?: string;
     HostDiagnosisFlag?: boolean;
@@ -337,7 +337,7 @@ export  interface DiagnosisRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface DiagnosisResponse {
+export interface DiagnosisResponse {
     Response: Response;
     LoggedSaleID?: string[];
     POIStatus?: POIStatus;
@@ -347,7 +347,7 @@ export  interface DiagnosisResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface DigestedData {
+export interface DigestedData {
     DigestAlgorithm: AlgorithmIdentifier;
     EncapsulatedContent: EncapsulatedContent;
     Digest: any;
@@ -357,7 +357,7 @@ export  interface DigestedData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface DisplayOutput {
+export interface DisplayOutput {
     OutputContent: OutputContent;
     MenuEntry?: MenuEntry[];
     OutputSignature?: any;
@@ -370,21 +370,21 @@ export  interface DisplayOutput {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface DisplayRequest {
+export interface DisplayRequest {
     DisplayOutput: DisplayOutput[];
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface DisplayResponse {
+export interface DisplayResponse {
     OutputResult: OutputResult[];
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface EnableServiceRequest {
+export interface EnableServiceRequest {
     ServicesEnabled?: ServicesEnabledType[];
     DisplayOutput?: DisplayOutput;
     TransactionAction: TransactionActionType;
@@ -393,14 +393,14 @@ export  interface EnableServiceRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface EnableServiceResponse {
+export interface EnableServiceResponse {
     Response: Response;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface EncapsulatedContent {
+export interface EncapsulatedContent {
     Content?: any;
     ContentType: ContentType;
 }
@@ -408,7 +408,7 @@ export  interface EncapsulatedContent {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface EncryptedContent {
+export interface EncryptedContent {
     ContentEncryptionAlgorithm: AlgorithmIdentifier;
     EncryptedData: any;
     ContentType: ContentType;
@@ -417,7 +417,7 @@ export  interface EncryptedContent {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface EnvelopedData {
+export interface EnvelopedData {
     keyTransportOrKEK?: any[];
     EncryptedContent: EncryptedContent;
     Version?: VersionType;
@@ -426,7 +426,7 @@ export  interface EnvelopedData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface EventNotification {
+export interface EventNotification {
     EventDetails?: string;
     RejectedMessage?: any;
     DisplayOutput?: DisplayOutput;
@@ -439,7 +439,7 @@ export  interface EventNotification {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface GeographicCoordinates {
+export interface GeographicCoordinates {
     Latitude: string;
     Longitude: string;
 }
@@ -447,7 +447,7 @@ export  interface GeographicCoordinates {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface Geolocation {
+export interface Geolocation {
     GeographicCoordinates?: GeographicCoordinates;
     UTMCoordinates?: UTMCoordinates;
 }
@@ -455,7 +455,7 @@ export  interface Geolocation {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface GetTotalsRequest {
+export interface GetTotalsRequest {
     TotalDetails?: TotalDetailsType[];
     TotalFilter?: TotalFilter;
 }
@@ -463,7 +463,7 @@ export  interface GetTotalsRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface GetTotalsResponse {
+export interface GetTotalsResponse {
     Response: Response;
     TransactionTotals?: TransactionTotals[];
     POIReconciliationID: string;
@@ -472,7 +472,7 @@ export  interface GetTotalsResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface HostStatus {
+export interface HostStatus {
     AcquirerID: string;
     IsReachableFlag?: boolean;
 }
@@ -480,7 +480,7 @@ export  interface HostStatus {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface ICCResetData {
+export interface ICCResetData {
     ATRValue?: any;
     CardStatusWords?: any;
 }
@@ -488,7 +488,7 @@ export  interface ICCResetData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface Input {
+export interface Input {
     ConfirmedFlag?: boolean;
     FunctionKey?: string;
     TextInput?: string;
@@ -501,7 +501,7 @@ export  interface Input {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface InputData {
+export interface InputData {
     DefaultInputString?: string;
     StringMask?: string;
     Device: DeviceType;
@@ -527,7 +527,7 @@ export  interface InputData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface InputRequest {
+export interface InputRequest {
     DisplayOutput?: DisplayOutput;
     InputData: InputData;
 }
@@ -535,7 +535,7 @@ export  interface InputRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface InputResponse {
+export interface InputResponse {
     OutputResult?: OutputResult;
     InputResult: InputResult;
 }
@@ -543,7 +543,7 @@ export  interface InputResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface InputResult {
+export interface InputResult {
     Response: Response;
     Input?: Input;
     Device: DeviceType;
@@ -553,7 +553,7 @@ export  interface InputResult {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface InputUpdate {
+export interface InputUpdate {
     MessageReference: MessageReference;
     OutputContent: OutputContent;
     MenuEntry?: MenuEntry[];
@@ -566,7 +566,7 @@ export  interface InputUpdate {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface Instalment {
+export interface Instalment {
     Instalment?: InstalmentType[];
     SequenceNumber?: number;
     PlanID?: string;
@@ -582,14 +582,14 @@ export  interface Instalment {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface Issuer {
+export interface Issuer {
     RelativeDistinguishedName: RelativeDistinguishedName[];
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface IssuerAndSerialNumber {
+export interface IssuerAndSerialNumber {
     Issuer: Issuer;
     SerialNumber: number;
 }
@@ -597,7 +597,7 @@ export  interface IssuerAndSerialNumber {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface KEK {
+export interface KEK {
     KEKIdentifier: KEKIdentifier;
     KeyEncryptionAlgorithm: AlgorithmIdentifier;
     Version?: VersionType;
@@ -607,7 +607,7 @@ export  interface KEK {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface KEKIdentifier {
+export interface KEKIdentifier {
     KeyIdentifier: string;
     KeyVersion: string;
     DerivationIdentifier?: any;
@@ -616,7 +616,7 @@ export  interface KEKIdentifier {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface KeyTransport {
+export interface KeyTransport {
     RecipientIdentifier: RecipientIdentifier;
     KeyEncryptionAlgorithm: AlgorithmIdentifier;
     Version?: VersionType;
@@ -626,7 +626,7 @@ export  interface KeyTransport {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoginRequest {
+export interface LoginRequest {
     DateTime: XMLGregorianCalendar;
     SaleSoftware: SaleSoftware;
     SaleTerminalData?: SaleTerminalData;
@@ -642,7 +642,7 @@ export  interface LoginRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoginResponse {
+export interface LoginResponse {
     Response: Response;
     POISystemData?: POISystemData;
 }
@@ -650,21 +650,21 @@ export  interface LoginResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LogoutRequest {
+export interface LogoutRequest {
     MaintenanceAllowed?: boolean;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LogoutResponse {
+export interface LogoutResponse {
     Response: Response;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyAccount {
+export interface LoyaltyAccount {
     LoyaltyAccountID: LoyaltyAccountID;
     LoyaltyBrand?: string;
 }
@@ -672,7 +672,7 @@ export  interface LoyaltyAccount {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyAccountID {
+export interface LoyaltyAccountID {
     value?: string;
     EntryMode: EntryModeType[];
     IdentificationType: IdentificationType;
@@ -682,7 +682,7 @@ export  interface LoyaltyAccountID {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyAccountReq {
+export interface LoyaltyAccountReq {
     CardAcquisitionReference?: TransactionIdentification;
     LoyaltyAccountID?: LoyaltyAccountID;
 }
@@ -690,7 +690,7 @@ export  interface LoyaltyAccountReq {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyAccountStatus {
+export interface LoyaltyAccountStatus {
     LoyaltyAccount: LoyaltyAccount;
     CurrentBalance?: number;
     LoyaltyUnit?: LoyaltyUnitType;
@@ -700,7 +700,7 @@ export  interface LoyaltyAccountStatus {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyAcquirerData {
+export interface LoyaltyAcquirerData {
     ApprovalCode?: string;
     LoyaltyTransactionID?: TransactionIdentification;
     LoyaltyAcquirerID?: string;
@@ -710,7 +710,7 @@ export  interface LoyaltyAcquirerData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyAmount {
+export interface LoyaltyAmount {
     value?: number;
     LoyaltyUnit?: LoyaltyUnitType;
     Currency?: string;
@@ -719,7 +719,7 @@ export  interface LoyaltyAmount {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyData {
+export interface LoyaltyData {
     CardAcquisitionReference?: TransactionIdentification;
     LoyaltyAccountID?: LoyaltyAccountID;
     LoyaltyAmount?: LoyaltyAmount;
@@ -728,7 +728,7 @@ export  interface LoyaltyData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyRequest {
+export interface LoyaltyRequest {
     SaleData: SaleData;
     LoyaltyTransaction: LoyaltyTransaction;
     LoyaltyData?: LoyaltyData[];
@@ -737,7 +737,7 @@ export  interface LoyaltyRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyResponse {
+export interface LoyaltyResponse {
     Response: Response;
     SaleData: SaleData;
     POIData: POIData;
@@ -748,7 +748,7 @@ export  interface LoyaltyResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyResult {
+export interface LoyaltyResult {
     LoyaltyAccount: LoyaltyAccount;
     LoyaltyAmount?: LoyaltyAmount;
     LoyaltyAcquirerData?: LoyaltyAcquirerData;
@@ -759,7 +759,7 @@ export  interface LoyaltyResult {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyTotals {
+export interface LoyaltyTotals {
     TransactionType: TransactionType;
     TransactionCount: number;
     TransactionAmount: number;
@@ -768,7 +768,7 @@ export  interface LoyaltyTotals {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface LoyaltyTransaction {
+export interface LoyaltyTransaction {
     OriginalPOITransaction?: OriginalPOITransaction;
     TransactionConditions?: TransactionConditions;
     SaleItem?: SaleItem[];
@@ -780,7 +780,7 @@ export  interface LoyaltyTransaction {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface MenuEntry {
+export interface MenuEntry {
     PredefinedContent?: PredefinedContent;
     OutputText?: OutputText[];
     OutputXHTML?: any;
@@ -792,7 +792,7 @@ export  interface MenuEntry {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface MessageHeader {
+export interface MessageHeader {
     ProtocolVersion?: string;
     MessageClass: MessageClassType;
     MessageCategory: MessageCategoryType;
@@ -806,7 +806,7 @@ export  interface MessageHeader {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface MessageReference {
+export interface MessageReference {
     MessageCategory?: MessageCategoryType;
     ServiceID?: string;
     DeviceID?: string;
@@ -817,7 +817,7 @@ export  interface MessageReference {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface MobileData {
+export interface MobileData {
     MobileCountryCode?: string;
     Geolocation?: Geolocation;
     ProtectedMobileData?: ContentInformation;
@@ -829,7 +829,7 @@ export  interface MobileData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface NamedKeyEncryptedData {
+export interface NamedKeyEncryptedData {
     KeyName?: string;
     EncryptedContent: EncryptedContent;
     Version?: VersionType;
@@ -838,13 +838,13 @@ export  interface NamedKeyEncryptedData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface ObjectFactory {
+export interface ObjectFactory {
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface OriginalPOITransaction {
+export interface OriginalPOITransaction {
     POITransactionID?: TransactionIdentification;
     ApprovalCode?: string;
     HostTransactionID?: TransactionIdentification;
@@ -858,7 +858,7 @@ export  interface OriginalPOITransaction {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface OutputBarcode {
+export interface OutputBarcode {
     value?: string;
     BarcodeType?: BarcodeType;
 }
@@ -866,7 +866,7 @@ export  interface OutputBarcode {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface OutputContent {
+export interface OutputContent {
     PredefinedContent?: PredefinedContent;
     OutputText?: OutputText[];
     OutputXHTML?: any;
@@ -877,7 +877,7 @@ export  interface OutputContent {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface OutputResult {
+export interface OutputResult {
     Response: Response;
     Device: DeviceType;
     InfoQualify: InfoQualifyType;
@@ -886,7 +886,7 @@ export  interface OutputResult {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface OutputText {
+export interface OutputText {
     Text?: string;
     CharacterSet?: number;
     Font?: string;
@@ -903,7 +903,7 @@ export  interface OutputText {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PINRequest {
+export interface PINRequest {
     CardholderPIN?: CardholderPIN;
     PINRequestType: PINRequestType;
     PINVerifMethod?: string;
@@ -917,7 +917,7 @@ export  interface PINRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PINResponse {
+export interface PINResponse {
     Response: Response;
     CardholderPIN?: CardholderPIN;
 }
@@ -925,7 +925,7 @@ export  interface PINResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface POIData {
+export interface POIData {
     POITransactionID: TransactionIdentification;
     POIReconciliationID?: string;
 }
@@ -933,7 +933,7 @@ export  interface POIData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface POIProfile {
+export interface POIProfile {
     ServiceProfiles?: ServiceProfilesType[];
     GenericProfile?: GenericProfileType;
 }
@@ -941,7 +941,7 @@ export  interface POIProfile {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface POISoftware {
+export interface POISoftware {
     ManufacturerID: string;
     ApplicationName: string;
     SoftwareVersion: string;
@@ -951,7 +951,7 @@ export  interface POISoftware {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface POIStatus {
+export interface POIStatus {
     CashHandlingDevice?: CashHandlingDevice[];
     GlobalStatus: GlobalStatusType;
     SecurityOKFlag?: boolean;
@@ -965,7 +965,7 @@ export  interface POIStatus {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface POISystemData {
+export interface POISystemData {
     DateTime: XMLGregorianCalendar;
     POISoftware: POISoftware;
     POITerminalData?: POITerminalData;
@@ -975,7 +975,7 @@ export  interface POISystemData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface POITerminalData {
+export interface POITerminalData {
     POICapabilities: POICapabilitiesType[];
     POIProfile?: POIProfile;
     TerminalEnvironment: TerminalEnvironmentType;
@@ -985,14 +985,14 @@ export  interface POITerminalData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface Parameter {
+export interface Parameter {
     InitialisationVector?: any;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentAccountReq {
+export interface PaymentAccountReq {
     CardAcquisitionReference?: TransactionIdentification;
     PaymentInstrumentData?: PaymentInstrumentData;
     AccountType?: AccountType;
@@ -1001,7 +1001,7 @@ export  interface PaymentAccountReq {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentAccountStatus {
+export interface PaymentAccountStatus {
     PaymentInstrumentData?: PaymentInstrumentData;
     PaymentAcquirerData?: PaymentAcquirerData;
     LoyaltyAccountStatus?: LoyaltyAccountStatus;
@@ -1012,7 +1012,7 @@ export  interface PaymentAccountStatus {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentAcquirerData {
+export interface PaymentAcquirerData {
     AcquirerTransactionID?: TransactionIdentification;
     ApprovalCode?: string;
     AcquirerID?: string;
@@ -1023,7 +1023,7 @@ export  interface PaymentAcquirerData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentData {
+export interface PaymentData {
     CardAcquisitionReference?: TransactionIdentification;
     RequestedValidityDate?: string;
     Instalment?: Instalment;
@@ -1036,7 +1036,7 @@ export  interface PaymentData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentInstrumentData {
+export interface PaymentInstrumentData {
     CardData?: CardData;
     CheckData?: CheckData;
     MobileData?: MobileData;
@@ -1048,7 +1048,7 @@ export  interface PaymentInstrumentData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentReceipt {
+export interface PaymentReceipt {
     OutputContent: OutputContent;
     DocumentQualifier: DocumentQualifierType;
     IntegratedPrintFlag?: boolean;
@@ -1058,7 +1058,7 @@ export  interface PaymentReceipt {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentRequest {
+export interface PaymentRequest {
     SaleData: SaleData;
     PaymentTransaction: PaymentTransaction;
     PaymentData?: PaymentData;
@@ -1068,7 +1068,7 @@ export  interface PaymentRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentResponse {
+export interface PaymentResponse {
     Response: Response;
     SaleData: SaleData;
     POIData: POIData;
@@ -1081,7 +1081,7 @@ export  interface PaymentResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentResult {
+export interface PaymentResult {
     PaymentInstrumentData?: PaymentInstrumentData;
     AmountsResp?: AmountsResp;
     Instalment?: Instalment;
@@ -1100,7 +1100,7 @@ export  interface PaymentResult {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentToken {
+export interface PaymentToken {
     TokenRequestedType: TokenRequestedType;
     TokenValue: string;
     ExpiryDateTime?: XMLGregorianCalendar;
@@ -1109,7 +1109,7 @@ export  interface PaymentToken {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentTotals {
+export interface PaymentTotals {
     TransactionType: TransactionType;
     TransactionCount: number;
     TransactionAmount: number;
@@ -1118,7 +1118,7 @@ export  interface PaymentTotals {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PaymentTransaction {
+export interface PaymentTransaction {
     AmountsReq: AmountsReq;
     OriginalPOITransaction?: OriginalPOITransaction;
     TransactionConditions?: TransactionConditions;
@@ -1128,7 +1128,7 @@ export  interface PaymentTransaction {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PerformedTransaction {
+export interface PerformedTransaction {
     Response: Response;
     SaleData?: SaleData;
     POIData: POIData;
@@ -1140,7 +1140,7 @@ export  interface PerformedTransaction {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PredefinedContent {
+export interface PredefinedContent {
     ReferenceID: string;
     Language?: string;
 }
@@ -1148,7 +1148,7 @@ export  interface PredefinedContent {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PrintOutput {
+export interface PrintOutput {
     OutputContent: OutputContent;
     OutputSignature?: any;
     DocumentQualifier: DocumentQualifierType;
@@ -1160,14 +1160,14 @@ export  interface PrintOutput {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PrintRequest {
+export interface PrintRequest {
     PrintOutput: PrintOutput;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface PrintResponse {
+export interface PrintResponse {
     Response: Response;
     DocumentQualifier: DocumentQualifierType;
 }
@@ -1175,7 +1175,7 @@ export  interface PrintResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface Rebates {
+export interface Rebates {
     TotalRebate?: number;
     RebateLabel?: string;
     SaleItemRebate?: SaleItemRebate[];
@@ -1184,14 +1184,14 @@ export  interface Rebates {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface RecipientIdentifier {
+export interface RecipientIdentifier {
     IssuerAndSerialNumber: IssuerAndSerialNumber;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface ReconciliationRequest {
+export interface ReconciliationRequest {
     AcquirerID?: string[];
     ReconciliationType: ReconciliationType;
     POIReconciliationID?: string;
@@ -1200,7 +1200,7 @@ export  interface ReconciliationRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface ReconciliationResponse {
+export interface ReconciliationResponse {
     Response: Response;
     TransactionTotals?: TransactionTotals[];
     ReconciliationType: ReconciliationType;
@@ -1210,7 +1210,7 @@ export  interface ReconciliationResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface RelativeDistinguishedName {
+export interface RelativeDistinguishedName {
     Attribute: string;
     AttributeValue: string;
 }
@@ -1218,7 +1218,7 @@ export  interface RelativeDistinguishedName {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface RepeatedMessageResponse {
+export interface RepeatedMessageResponse {
     RepeatedResponseMessageBody: RepeatedResponseMessageBody;
     MessageHeader: MessageHeader;
 }
@@ -1226,7 +1226,7 @@ export  interface RepeatedMessageResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface RepeatedMessageResponseBody {
+export interface RepeatedMessageResponseBody {
     LoyaltyResponse?: LoyaltyResponse;
     PaymentResponse?: PaymentResponse;
     ReversalResponse?: ReversalResponse;
@@ -1238,7 +1238,7 @@ export  interface RepeatedMessageResponseBody {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface RepeatedResponseMessageBody {
+export interface RepeatedResponseMessageBody {
     LoyaltyResponse?: LoyaltyResponse;
     PaymentResponse?: PaymentResponse;
     ReversalResponse?: ReversalResponse;
@@ -1250,7 +1250,7 @@ export  interface RepeatedResponseMessageBody {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface Response {
+export interface Response {
     AdditionalResponse?: string;
     Result: ResultType;
     ErrorCondition?: ErrorConditionType;
@@ -1259,7 +1259,7 @@ export  interface Response {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface ReversalRequest {
+export interface ReversalRequest {
     OriginalPOITransaction: OriginalPOITransaction;
     CustomerOrderID?: CustomerOrder;
     SaleReferenceID?: string;
@@ -1270,7 +1270,7 @@ export  interface ReversalRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface ReversalResponse {
+export interface ReversalResponse {
     Response: Response;
     POIData?: POIData;
     OriginalPOITransaction?: OriginalPOITransaction;
@@ -1282,7 +1282,7 @@ export  interface ReversalResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SaleData {
+export interface SaleData {
     SaleTransactionID: TransactionIdentification;
     SaleTerminalData?: SaleTerminalData;
     SponsoredMerchant?: SponsoredMerchant[];
@@ -1301,7 +1301,7 @@ export  interface SaleData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SaleItem {
+export interface SaleItem {
     UnitOfMeasure?: UnitOfMeasureType;
     Quantity?: number;
     UnitPrice?: number;
@@ -1318,7 +1318,7 @@ export  interface SaleItem {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SaleItemRebate {
+export interface SaleItemRebate {
     UnitOfMeasure?: UnitOfMeasureType;
     Quantity?: number;
     RebateLabel?: string;
@@ -1331,7 +1331,7 @@ export  interface SaleItemRebate {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SaleProfile {
+export interface SaleProfile {
     ServiceProfiles?: ServiceProfilesType[];
     GenericProfile?: GenericProfileType;
 }
@@ -1339,7 +1339,7 @@ export  interface SaleProfile {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SaleSoftware {
+export interface SaleSoftware {
     ManufacturerID: string;
     ApplicationName: string;
     SoftwareVersion: string;
@@ -1349,7 +1349,7 @@ export  interface SaleSoftware {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SaleTerminalData {
+export interface SaleTerminalData {
     SaleCapabilities?: SaleCapabilitiesType[];
     SaleProfile?: SaleProfile;
     TerminalEnvironment?: TerminalEnvironmentType;
@@ -1359,14 +1359,14 @@ export  interface SaleTerminalData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SaleToIssuerData {
+export interface SaleToIssuerData {
     StatementReference?: string;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SaleToPOIRequest {
+export interface SaleToPOIRequest {
     MessageHeader: MessageHeader;
     AbortRequest?: AbortRequest;
     BalanceInquiryRequest?: BalanceInquiryRequest;
@@ -1401,7 +1401,7 @@ export  interface SaleToPOIRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SaleToPOIResponse {
+export interface SaleToPOIResponse {
     MessageHeader: MessageHeader;
     BalanceInquiryResponse?: BalanceInquiryResponse;
     BatchResponse?: BatchResponse;
@@ -1433,7 +1433,7 @@ export  interface SaleToPOIResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SensitiveCardData {
+export interface SensitiveCardData {
     TrackData?: TrackData[];
     PAN?: string;
     CardSeqNumb?: string;
@@ -1443,7 +1443,7 @@ export  interface SensitiveCardData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SensitiveMobileData {
+export interface SensitiveMobileData {
     MSISDN: string;
     IMSI?: string;
     IMEI?: string;
@@ -1452,7 +1452,7 @@ export  interface SensitiveMobileData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SignaturePoint {
+export interface SignaturePoint {
     X: string;
     Y: string;
 }
@@ -1460,7 +1460,7 @@ export  interface SignaturePoint {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SignedData {
+export interface SignedData {
     DigestAlgorithm: AlgorithmIdentifier[];
     EncapsulatedContent: EncapsulatedContent;
     Certificate?: any[];
@@ -1471,7 +1471,7 @@ export  interface SignedData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface Signer {
+export interface Signer {
     SignerIdentifier: SignerIdentifier;
     DigestAlgorithm: AlgorithmIdentifier;
     SignatureAlgorithm: AlgorithmIdentifier;
@@ -1482,14 +1482,14 @@ export  interface Signer {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SignerIdentifier {
+export interface SignerIdentifier {
     IssuerAndSerialNumber: IssuerAndSerialNumber;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SoundContent {
+export interface SoundContent {
     value?: string;
     SoundFormat?: SoundFormatType;
     Language?: string;
@@ -1499,7 +1499,7 @@ export  interface SoundContent {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SoundRequest {
+export interface SoundRequest {
     SoundContent: SoundContent;
     ResponseMode?: ResponseModeType;
     SoundAction: SoundActionType;
@@ -1509,14 +1509,14 @@ export  interface SoundRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SoundResponse {
+export interface SoundResponse {
     Response: Response;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SponsoredMerchant {
+export interface SponsoredMerchant {
     MerchantName: string;
     MerchantAddress?: string;
     MerchantCountry: string;
@@ -1527,14 +1527,14 @@ export  interface SponsoredMerchant {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface SaleToAcquirerData {
+export interface SaleToAcquirerData {
     applicationInfo?: ApplicationInfo;
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface StoredValueAccountID {
+export interface StoredValueAccountID {
     value?: string;
     StoredValueAccountType: StoredValueAccountType;
     StoredValueProvider?: string;
@@ -1547,7 +1547,7 @@ export  interface StoredValueAccountID {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface StoredValueAccountStatus {
+export interface StoredValueAccountStatus {
     StoredValueAccountID: StoredValueAccountID;
     CurrentBalance?: number;
 }
@@ -1555,7 +1555,7 @@ export  interface StoredValueAccountStatus {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface StoredValueData {
+export interface StoredValueData {
     StoredValueAccountID?: StoredValueAccountID;
     OriginalPOITransaction?: OriginalPOITransaction;
     StoredValueProvider?: string;
@@ -1569,7 +1569,7 @@ export  interface StoredValueData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface StoredValueRequest {
+export interface StoredValueRequest {
     SaleData: SaleData;
     StoredValueData: StoredValueData[];
     CustomerLanguage?: string;
@@ -1578,7 +1578,7 @@ export  interface StoredValueRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface StoredValueResponse {
+export interface StoredValueResponse {
     Response: Response;
     SaleData: SaleData;
     POIData: POIData;
@@ -1588,7 +1588,7 @@ export  interface StoredValueResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface StoredValueResult {
+export interface StoredValueResult {
     StoredValueAccountStatus: StoredValueAccountStatus;
     HostTransactionID?: TransactionIdentification;
     StoredValueTransactionType: StoredValueTransactionType;
@@ -1601,7 +1601,7 @@ export  interface StoredValueResult {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface TotalFilter {
+export interface TotalFilter {
     POIID?: string;
     SaleID?: string;
     OperatorID?: string;
@@ -1612,7 +1612,7 @@ export  interface TotalFilter {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface TrackData {
+export interface TrackData {
     value?: string;
     TrackNumb?: number;
     TrackFormat?: TrackFormatType;
@@ -1621,7 +1621,7 @@ export  interface TrackData {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface TransactionConditions {
+export interface TransactionConditions {
     AllowedPaymentBrand?: string[];
     AcquirerID?: string[];
     AllowedLoyaltyBrand?: string[];
@@ -1636,7 +1636,7 @@ export  interface TransactionConditions {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface TransactionIdentification {
+export interface TransactionIdentification {
     TransactionID: string;
     TimeStamp: XMLGregorianCalendar;
 }
@@ -1644,7 +1644,7 @@ export  interface TransactionIdentification {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface TransactionStatusRequest {
+export interface TransactionStatusRequest {
     MessageReference?: MessageReference;
     DocumentQualifier?: DocumentQualifierType[];
     ReceiptReprintFlag?: boolean;
@@ -1653,7 +1653,7 @@ export  interface TransactionStatusRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface TransactionStatusResponse {
+export interface TransactionStatusResponse {
     Response: Response;
     MessageReference?: MessageReference;
     RepeatedMessageResponse?: RepeatedMessageResponse;
@@ -1662,7 +1662,7 @@ export  interface TransactionStatusResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface TransactionToPerform {
+export interface TransactionToPerform {
     PaymentRequest?: PaymentRequest;
     LoyaltyRequest?: LoyaltyRequest;
     ReversalRequest?: ReversalRequest;
@@ -1671,7 +1671,7 @@ export  interface TransactionToPerform {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface TransactionTotals {
+export interface TransactionTotals {
     PaymentTotals?: PaymentTotals[];
     LoyaltyTotals?: LoyaltyTotals[];
     PaymentInstrumentType: PaymentInstrumentType;
@@ -1692,7 +1692,7 @@ export  interface TransactionTotals {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface TransmitRequest {
+export interface TransmitRequest {
     Message: any;
     WaitResponseFlag?: boolean;
     MaximumTransmitTime: number;
@@ -1702,7 +1702,7 @@ export  interface TransmitRequest {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface TransmitResponse {
+export interface TransmitResponse {
     Response: Response;
     Message?: any;
 }
@@ -1710,7 +1710,7 @@ export  interface TransmitResponse {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface UTMCoordinates {
+export interface UTMCoordinates {
     UTMZone: string;
     UTMEastward: string;
     UTMNorthward: string;
@@ -1719,13 +1719,13 @@ export  interface UTMCoordinates {
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface XMLGregorianCalendar extends Cloneable {
+export interface XMLGregorianCalendar extends Cloneable {
 }
 
 /**
  * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-export  interface Cloneable {
+export interface Cloneable {
 }
 
 /**
