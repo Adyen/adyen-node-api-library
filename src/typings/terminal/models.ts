@@ -1,4 +1,5 @@
 export * from '../nexo/models';
+export * from './nexoDerivedKey';
 export * from './saleToPOIRequest';
 export * from './saleToPOIResponse';
 export * from './saleToPOISecuredMessage';

@@ -1,20 +1,5 @@
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
+/**
+ * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
 declare enum VatCategory {
     HIGH = "High",

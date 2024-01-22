@@ -21,18 +21,18 @@ import Client from "../client";
 import Config from "../config";
 import {
     AmountsReq,
-    MessageCategoryType,
-    MessageClassType,
+    MessageCategory,
+    MessageClass,
     MessageHeader,
     MessageType,
     PaymentRequest,
     PaymentTransaction,
-    ReversalReasonType,
+    ReversalReason,
     ReversalRequest,
     SaleData,
     SaleToPOIRequest,
     TerminalApiRequest,
-    TransactionIdentification
+    TransactionIDType,
 } from "../typings/terminal/models";
 
 export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
@@ -54,9 +54,9 @@ export const createBasicAuthClient = (): Client => {
 };
 
 const id = Math.floor(Math.random() * Math.floor(10000000)).toString();
-const getMessageHeader = ({ messageCategory = MessageCategoryType.Payment }: { messageCategory?: MessageCategoryType } = {}): MessageHeader => ({
+const getMessageHeader = ({ messageCategory = MessageCategory.Payment }: { messageCategory?: MessageCategory } = {}): MessageHeader => ({
     MessageCategory: messageCategory,
-    MessageClass: MessageClassType.Service,
+    MessageClass: MessageClass.Service,
     MessageType: MessageType.Request,
     POIID: process.env.ADYEN_TERMINAL_POIID!,
     ProtocolVersion: "3.0",
@@ -64,26 +64,26 @@ const getMessageHeader = ({ messageCategory = MessageCategoryType.Payment }: { m
     ServiceID: id,
 });
 
-const timestamp = (): string => new Date().toISOString();
-const transactionIdentification: TransactionIdentification = {
-    TimeStamp: timestamp(),
+const transactionIdentification: TransactionIDType = {
+    TimeStamp: new Date(),
     TransactionID: id,
 };
 
+const saleToAcquirerData = JSON.stringify({
+    applicationInfo: {
+        merchantApplication: {
+            version: "1",
+            name: "test"
+        }
+    },
+    metadata: {
+        someMetaDataKey1: "YOUR_VALUE",
+        someMetaDataKey2: "YOUR_VALUE"
+    },
+});
 const saleData: SaleData = {
     SaleTransactionID: transactionIdentification,
-    SaleToAcquirerData: {
-        applicationInfo: {
-            merchantApplication: {
-                version: "1",
-                name: "test"
-            }
-        },
-        metadata: {
-            someMetaDataKey1: "YOUR_VALUE",
-            someMetaDataKey2: "YOUR_VALUE"
-        },
-    }
+    SaleToAcquirerData: Buffer.from(saleToAcquirerData).toString("base64")
 };
 
 const amountsReq: AmountsReq = {
@@ -100,14 +100,14 @@ const paymentRequest: PaymentRequest = {
     SaleData: saleData,
 };
 
-const getReversalRequest = (poiTransaction: TransactionIdentification): ReversalRequest => ({
+const getReversalRequest = (poiTransaction: TransactionIDType): ReversalRequest => ({
     OriginalPOITransaction: {
         POITransactionID: {
             TransactionID: poiTransaction.TransactionID,
             TimeStamp: poiTransaction.TimeStamp
         },
     },
-    ReversalReason: ReversalReasonType.MerchantCancel,
+    ReversalReason: ReversalReason.MerchantCancel,
     SaleData: saleData
 });
 
@@ -123,8 +123,8 @@ export const createTerminalAPIPaymentRequest = (): TerminalApiRequest => {
     return { SaleToPOIRequest: saleToPOIRequest };
 };
 
-export const createTerminalAPIRefundRequest = (transactionIdentification: TransactionIdentification): TerminalApiRequest => {
-    const messageHeader = getMessageHeader({ messageCategory: MessageCategoryType.Reversal });
+export const createTerminalAPIRefundRequest = (transactionIdentification: TransactionIDType): TerminalApiRequest => {
+    const messageHeader = getMessageHeader({ messageCategory: MessageCategory.Reversal });
     const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { ReversalRequest: getReversalRequest(transactionIdentification) });
     return { SaleToPOIRequest: saleToPOIRequest };
 };
