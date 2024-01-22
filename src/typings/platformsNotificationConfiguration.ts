@@ -1,28 +1,6 @@
-
-/*
- *                       ######
- *                       ######
- * ############    ####( ######  #####. ######  ############   ############
- * #############  #####( ######  #####. ######  #############  #############
- *        ######  #####( ######  #####. ######  #####  ######  #####  ######
- * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
- * ###### ######  #####( ######  #####. ######  #####          #####  ######
- * #############  #############  #############  #############  #####  ######
- *  ############   ############  #############   ############  #####  ######
- *                                      ######
- *                               #############
- *                               ############
- *
- * Adyen NodeJS API Library
- *
- * Version of Platforms Notification Configuration: v6
- *
- * Copyright (c) 2020 Adyen B.V.
- * This file is open source and available under the MIT license.
- * See the LICENSE file for more info.
+/**
+ * @deprecated Use typings declared through 'Types' instead. See [README](https://github.com/Adyen/adyen-node-api-library?tab=readme-ov-file#usage-in-typescript) for details
  */
-
-
 declare namespace IPlatformsNotificationConfiguration {
     export interface CreateNotificationConfigurationRequest {
         /**
