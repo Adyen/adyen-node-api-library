@@ -14,7 +14,7 @@ export class Passcodes {
     */
     'adminMenuPin'?: string;
     /**
-    * The passcode for unreferenced refunds on standalone terminals.
+    * The passcode for referenced and unreferenced refunds on standalone terminals.
     */
     'refundPin'?: string;
     /**

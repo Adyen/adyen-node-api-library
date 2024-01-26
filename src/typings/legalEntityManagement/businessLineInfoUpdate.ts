@@ -29,7 +29,7 @@ export class BusinessLineInfoUpdate {
     */
     'salesChannels'?: Array<string>;
     /**
-    * The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**
+    * The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  
     */
     'service'?: BusinessLineInfoUpdate.ServiceEnum;
     'sourceOfFunds'?: SourceOfFunds;
@@ -96,7 +96,6 @@ export namespace BusinessLineInfoUpdate {
     }
     export enum ServiceEnum {
         PaymentProcessing = 'paymentProcessing',
-        Issuing = 'issuing',
         Banking = 'banking'
     }
 }

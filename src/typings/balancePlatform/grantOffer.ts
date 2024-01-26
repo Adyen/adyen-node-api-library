@@ -21,14 +21,20 @@ export class GrantOffer {
     * The contract type of the grant offer. Possible value: **cashAdvance**, **loan**.
     */
     'contractType'?: GrantOffer.ContractTypeEnum;
-    'expiresAt'?: object;
+    /**
+    * The end date of the grant offer validity period.
+    */
+    'expiresAt'?: Date;
     'fee'?: Fee;
     /**
     * The unique identifier of the grant offer.
     */
     'id'?: string;
     'repayment'?: Repayment;
-    'startsAt'?: object;
+    /**
+    * The starting date of the grant offer validity period.
+    */
+    'startsAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -51,7 +57,7 @@ export class GrantOffer {
         {
             "name": "expiresAt",
             "baseName": "expiresAt",
-            "type": "object"
+            "type": "Date"
         },
         {
             "name": "fee",
@@ -71,7 +77,7 @@ export class GrantOffer {
         {
             "name": "startsAt",
             "baseName": "startsAt",
-            "type": "object"
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {

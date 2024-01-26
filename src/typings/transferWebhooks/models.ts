@@ -48,6 +48,8 @@ export * from './transactionRuleSource';
 export * from './transactionRulesResult';
 export * from './transferData';
 export * from './transferEvent';
+export * from './transferNotificationCounterParty';
+export * from './transferNotificationMerchantData';
 export * from './transferNotificationRequest';
 export * from './transferNotificationTransferTracking';
 export * from './transferNotificationValidationFact';
@@ -95,6 +97,8 @@ import { TransactionRuleSource } from './transactionRuleSource';
 import { TransactionRulesResult } from './transactionRulesResult';
 import { TransferData } from './transferData';
 import { TransferEvent } from './transferEvent';
+import { TransferNotificationCounterParty } from './transferNotificationCounterParty';
+import { TransferNotificationMerchantData } from './transferNotificationMerchantData';
 import { TransferNotificationRequest } from './transferNotificationRequest';
 import { TransferNotificationTransferTracking } from './transferNotificationTransferTracking';
 import { TransferNotificationValidationFact } from './transferNotificationValidationFact';
@@ -197,6 +201,8 @@ let typeMap: {[index: string]: any} = {
     "TransactionRulesResult": TransactionRulesResult,
     "TransferData": TransferData,
     "TransferEvent": TransferEvent,
+    "TransferNotificationCounterParty": TransferNotificationCounterParty,
+    "TransferNotificationMerchantData": TransferNotificationMerchantData,
     "TransferNotificationRequest": TransferNotificationRequest,
     "TransferNotificationTransferTracking": TransferNotificationTransferTracking,
     "TransferNotificationValidationFact": TransferNotificationValidationFact,

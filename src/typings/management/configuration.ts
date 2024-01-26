@@ -15,6 +15,10 @@ export class Configuration {
     */
     'brand': string;
     /**
+    * Countries, to filter different surcharge amounts for domestic or international cards.
+    */
+    'country'?: Array<string>;
+    /**
     * Currency, and surcharge percentage or amount.
     */
     'currencies': Array<Currency>;
@@ -30,6 +34,11 @@ export class Configuration {
             "name": "brand",
             "baseName": "brand",
             "type": "string"
+        },
+        {
+            "name": "country",
+            "baseName": "country",
+            "type": "Array<string>"
         },
         {
             "name": "currencies",

@@ -14,6 +14,10 @@ export class ReceiptOptions {
     */
     'logo'?: string;
     /**
+    * Indicates whether a screen appears asking if you want to print the shopper receipt.
+    */
+    'promptBeforePrinting'?: boolean;
+    /**
     * Data to print on the receipt as a QR code. This can include static text and the following variables:  - `${merchantreference}`: the merchant reference of the transaction. - `${pspreference}`: the PSP reference of the transaction.   For example, **http://www.example.com/order/${pspreference}/${merchantreference}**.
     */
     'qrCodeData'?: string;
@@ -25,6 +29,11 @@ export class ReceiptOptions {
             "name": "logo",
             "baseName": "logo",
             "type": "string"
+        },
+        {
+            "name": "promptBeforePrinting",
+            "baseName": "promptBeforePrinting",
+            "type": "boolean"
         },
         {
             "name": "qrCodeData",
