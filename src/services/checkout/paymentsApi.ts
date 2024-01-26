@@ -21,6 +21,7 @@ import {
     PaymentMethodsResponse,
     PaymentRequest,
     PaymentResponse,
+    ServiceError,
     SessionResultResponse,
     ObjectSerializer
 } from "../../typings/checkout/models";
@@ -35,6 +36,24 @@ export class PaymentsApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
+    /**
+    * @summary Get the list of brands on the card
+    * @param cardDetailsRequest {@link CardDetailsRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CardDetailsResponse }
+    */
+    public async cardDetails(cardDetailsRequest: CardDetailsRequest, requestOptions?: IRequest.Options): Promise<CardDetailsResponse> {
+        const endpoint = `${this.baseUrl}/cardDetails`;
+        const resource = new Resource(this, endpoint);
+        const request: CardDetailsRequest = ObjectSerializer.serialize(cardDetailsRequest, "CardDetailsRequest");
+        const response = await getJsonResponse<CardDetailsRequest, CardDetailsResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "CardDetailsResponse");
     }
 
     /**
@@ -60,24 +79,6 @@ export class PaymentsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "SessionResultResponse");
-    }
-
-    /**
-    * @summary Get the list of brands on the card
-    * @param cardDetailsRequest {@link CardDetailsRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link CardDetailsResponse }
-    */
-    public async cardDetails(cardDetailsRequest: CardDetailsRequest, requestOptions?: IRequest.Options): Promise<CardDetailsResponse> {
-        const endpoint = `${this.baseUrl}/cardDetails`;
-        const resource = new Resource(this, endpoint);
-        const request: CardDetailsRequest = ObjectSerializer.serialize(cardDetailsRequest, "CardDetailsRequest");
-        const response = await getJsonResponse<CardDetailsRequest, CardDetailsResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "CardDetailsResponse");
     }
 
     /**

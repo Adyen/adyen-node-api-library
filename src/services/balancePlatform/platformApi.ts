@@ -10,11 +10,14 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { BalancePlatform } from "../../typings/balancePlatform/models";
-import { PaginatedAccountHoldersResponse } from "../../typings/balancePlatform/models";
+import { 
+    BalancePlatform,
+    PaginatedAccountHoldersResponse,
+    RestServiceError,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class PlatformApi extends Service {
 
@@ -27,9 +30,36 @@ export class PlatformApi extends Service {
     }
 
     /**
+    * @summary Get all account holders under a balance platform
+    * @param id {@link string } The unique identifier of the balance platform.
+    * @param requestOptions {@link IRequest.Options }
+    * @param offset {@link number } The number of items that you want to skip.
+    * @param limit {@link number } The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.
+    * @return {@link PaginatedAccountHoldersResponse }
+    */
+    public async getAllAccountHoldersUnderBalancePlatform(id: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<PaginatedAccountHoldersResponse> {
+        const endpoint = `${this.baseUrl}/balancePlatforms/{id}/accountHolders`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = offset ?? limit;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(offset) requestOptions.params["offset"] = offset;
+            if(limit) requestOptions.params["limit"] = limit;
+        }
+        const response = await getJsonResponse<string, PaginatedAccountHoldersResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "PaginatedAccountHoldersResponse");
+    }
+
+    /**
     * @summary Get a balance platform
     * @param id {@link string } The unique identifier of the balance platform.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link BalancePlatform }
     */
     public async getBalancePlatform(id: string, requestOptions?: IRequest.Options): Promise<BalancePlatform> {
@@ -42,25 +72,5 @@ export class PlatformApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "BalancePlatform");
-    }
-
-    /**
-    * @summary Get all account holders under a balance platform
-    * @param id {@link string } The unique identifier of the balance platform.
-    * @param offset {@link number } The number of items that you want to skip.
-    * @param limit {@link number } The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link PaginatedAccountHoldersResponse }
-    */
-    public async getAllAccountHoldersUnderBalancePlatform(id: string, requestOptions?: IRequest.Options): Promise<PaginatedAccountHoldersResponse> {
-        const endpoint = `${this.baseUrl}/balancePlatforms/{id}/accountHolders`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, PaginatedAccountHoldersResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "PaginatedAccountHoldersResponse");
     }
 }

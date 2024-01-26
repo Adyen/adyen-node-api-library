@@ -23,6 +23,7 @@ import { PaymentRequest3d } from "../typings/payment/models";
 import { PaymentRequest3ds2 } from "../typings/payment/models";
 import { PaymentResult } from "../typings/payment/models";
 import { RefundRequest } from "../typings/payment/models";
+import { ServiceError } from "../typings/payment/models";
 import { TechnicalCancelRequest } from "../typings/payment/models";
 import { ThreeDS2ResultRequest } from "../typings/payment/models";
 import { ThreeDS2ResultResponse } from "../typings/payment/models";
@@ -44,7 +45,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Change the authorised amount
     * @param adjustAuthorisationRequest {@link AdjustAuthorisationRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ModificationResult }
     */
     public async adjustAuthorisation(adjustAuthorisationRequest: AdjustAuthorisationRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
@@ -62,7 +63,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Create an authorisation
     * @param paymentRequest {@link PaymentRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentResult }
     */
     public async authorise(paymentRequest: PaymentRequest, requestOptions?: IRequest.Options): Promise<PaymentResult> {
@@ -80,7 +81,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Complete a 3DS authorisation
     * @param paymentRequest3d {@link PaymentRequest3d } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentResult }
     */
     public async authorise3d(paymentRequest3d: PaymentRequest3d, requestOptions?: IRequest.Options): Promise<PaymentResult> {
@@ -98,7 +99,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Complete a 3DS2 authorisation
     * @param paymentRequest3ds2 {@link PaymentRequest3ds2 } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentResult }
     */
     public async authorise3ds2(paymentRequest3ds2: PaymentRequest3ds2, requestOptions?: IRequest.Options): Promise<PaymentResult> {
@@ -116,7 +117,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Cancel an authorisation
     * @param cancelRequest {@link CancelRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ModificationResult }
     */
     public async cancel(cancelRequest: CancelRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
@@ -134,7 +135,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Cancel or refund a payment
     * @param cancelOrRefundRequest {@link CancelOrRefundRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ModificationResult }
     */
     public async cancelOrRefund(cancelOrRefundRequest: CancelOrRefundRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
@@ -152,7 +153,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Capture an authorisation
     * @param captureRequest {@link CaptureRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ModificationResult }
     */
     public async capture(captureRequest: CaptureRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
@@ -170,7 +171,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Create a donation
     * @param donationRequest {@link DonationRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ModificationResult }
     */
     public async donate(donationRequest: DonationRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
@@ -188,7 +189,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Get the 3DS authentication result
     * @param authenticationResultRequest {@link AuthenticationResultRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AuthenticationResultResponse }
     */
     public async getAuthenticationResult(authenticationResultRequest: AuthenticationResultRequest, requestOptions?: IRequest.Options): Promise<AuthenticationResultResponse> {
@@ -206,7 +207,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Refund a captured payment
     * @param refundRequest {@link RefundRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ModificationResult }
     */
     public async refund(refundRequest: RefundRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
@@ -224,7 +225,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Get the 3DS2 authentication result
     * @param threeDS2ResultRequest {@link ThreeDS2ResultRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ThreeDS2ResultResponse }
     */
     public async retrieve3ds2Result(threeDS2ResultRequest: ThreeDS2ResultRequest, requestOptions?: IRequest.Options): Promise<ThreeDS2ResultResponse> {
@@ -242,7 +243,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Cancel an authorisation using your reference
     * @param technicalCancelRequest {@link TechnicalCancelRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ModificationResult }
     */
     public async technicalCancel(technicalCancelRequest: TechnicalCancelRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
@@ -260,7 +261,7 @@ export class PaymentAPI extends Service {
     /**
     * @summary Cancel an in-person refund
     * @param voidPendingRefundRequest {@link VoidPendingRefundRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ModificationResult }
     */
     public async voidPendingRefund(voidPendingRefundRequest: VoidPendingRefundRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {

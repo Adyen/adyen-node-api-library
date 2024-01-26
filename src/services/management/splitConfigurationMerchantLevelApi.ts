@@ -10,15 +10,18 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { SplitConfiguration } from "../../typings/management/models";
-import { SplitConfigurationList } from "../../typings/management/models";
-import { SplitConfigurationRule } from "../../typings/management/models";
-import { UpdateSplitConfigurationLogicRequest } from "../../typings/management/models";
-import { UpdateSplitConfigurationRequest } from "../../typings/management/models";
-import { UpdateSplitConfigurationRuleRequest } from "../../typings/management/models";
+import { 
+    RestServiceError,
+    SplitConfiguration,
+    SplitConfigurationList,
+    SplitConfigurationRule,
+    UpdateSplitConfigurationLogicRequest,
+    UpdateSplitConfigurationRequest,
+    UpdateSplitConfigurationRuleRequest,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class SplitConfigurationMerchantLevelApi extends Service {
 
@@ -31,10 +34,52 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     }
 
     /**
+    * @summary Create a rule
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
+    * @param splitConfigurationRule {@link SplitConfigurationRule } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link SplitConfiguration }
+    */
+    public async createRule(merchantId: string, splitConfigurationId: string, splitConfigurationRule: SplitConfigurationRule, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
+            .replace("{" + "splitConfigurationId" + "}", encodeURIComponent(String(splitConfigurationId)));
+        const resource = new Resource(this, endpoint);
+        const request: SplitConfigurationRule = ObjectSerializer.serialize(splitConfigurationRule, "SplitConfigurationRule");
+        const response = await getJsonResponse<SplitConfigurationRule, SplitConfiguration>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "SplitConfiguration");
+    }
+
+    /**
+    * @summary Create a split configuration
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param splitConfiguration {@link SplitConfiguration } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link SplitConfiguration }
+    */
+    public async createSplitConfiguration(merchantId: string, splitConfiguration: SplitConfiguration, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/splitConfigurations`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const request: SplitConfiguration = ObjectSerializer.serialize(splitConfiguration, "SplitConfiguration");
+        const response = await getJsonResponse<SplitConfiguration, SplitConfiguration>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "SplitConfiguration");
+    }
+
+    /**
     * @summary Delete a split configuration
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async deleteSplitConfiguration(merchantId: string, splitConfigurationId: string, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -55,7 +100,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
     * @param ruleId {@link string } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async deleteSplitConfigurationRule(merchantId: string, splitConfigurationId: string, ruleId: string, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -73,28 +118,10 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Get a list of split configurations
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link SplitConfigurationList }
-    */
-    public async listSplitConfigurations(merchantId: string, requestOptions?: IRequest.Options): Promise<SplitConfigurationList> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/splitConfigurations`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, SplitConfigurationList>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "SplitConfigurationList");
-    }
-
-    /**
     * @summary Get a split configuration
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async getSplitConfiguration(merchantId: string, splitConfigurationId: string, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -111,25 +138,21 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Update split configuration description
+    * @summary Get a list of split configurations
     * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
-    * @param updateSplitConfigurationRequest {@link UpdateSplitConfigurationRequest } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link SplitConfiguration }
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link SplitConfigurationList }
     */
-    public async updateSplitConfigurationDescription(merchantId: string, splitConfigurationId: string, updateSplitConfigurationRequest: UpdateSplitConfigurationRequest, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
-            .replace("{" + "splitConfigurationId" + "}", encodeURIComponent(String(splitConfigurationId)));
+    public async listSplitConfigurations(merchantId: string, requestOptions?: IRequest.Options): Promise<SplitConfigurationList> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/splitConfigurations`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        const request: UpdateSplitConfigurationRequest = ObjectSerializer.serialize(updateSplitConfigurationRequest, "UpdateSplitConfigurationRequest");
-        const response = await getJsonResponse<UpdateSplitConfigurationRequest, SplitConfiguration>(
+        const response = await getJsonResponse<string, SplitConfigurationList>(
             resource,
-            request,
-            { ...requestOptions, method: "PATCH" }
+            "",
+            { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "SplitConfiguration");
+        return ObjectSerializer.deserialize(response, "SplitConfigurationList");
     }
 
     /**
@@ -138,7 +161,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     * @param splitConfigurationId {@link string } The identifier of the split configuration.
     * @param ruleId {@link string } The unique identifier of the split configuration rule.
     * @param updateSplitConfigurationRuleRequest {@link UpdateSplitConfigurationRuleRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async updateSplitConditions(merchantId: string, splitConfigurationId: string, ruleId: string, updateSplitConfigurationRuleRequest: UpdateSplitConfigurationRuleRequest, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -157,13 +180,35 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     }
 
     /**
+    * @summary Update split configuration description
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
+    * @param updateSplitConfigurationRequest {@link UpdateSplitConfigurationRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link SplitConfiguration }
+    */
+    public async updateSplitConfigurationDescription(merchantId: string, splitConfigurationId: string, updateSplitConfigurationRequest: UpdateSplitConfigurationRequest, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
+            .replace("{" + "splitConfigurationId" + "}", encodeURIComponent(String(splitConfigurationId)));
+        const resource = new Resource(this, endpoint);
+        const request: UpdateSplitConfigurationRequest = ObjectSerializer.serialize(updateSplitConfigurationRequest, "UpdateSplitConfigurationRequest");
+        const response = await getJsonResponse<UpdateSplitConfigurationRequest, SplitConfiguration>(
+            resource,
+            request,
+            { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "SplitConfiguration");
+    }
+
+    /**
     * @summary Update the split logic
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
     * @param ruleId {@link string } The unique identifier of the split configuration rule.
     * @param splitLogicId {@link string } The unique identifier of the split configuration split.
     * @param updateSplitConfigurationLogicRequest {@link UpdateSplitConfigurationLogicRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async updateSplitLogic(merchantId: string, splitConfigurationId: string, ruleId: string, splitLogicId: string, updateSplitConfigurationLogicRequest: UpdateSplitConfigurationLogicRequest, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -178,48 +223,6 @@ export class SplitConfigurationMerchantLevelApi extends Service {
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
-        );
-        return ObjectSerializer.deserialize(response, "SplitConfiguration");
-    }
-
-    /**
-    * @summary Create a split configuration
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param splitConfiguration {@link SplitConfiguration } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link SplitConfiguration }
-    */
-    public async createSplitConfiguration(merchantId: string, splitConfiguration: SplitConfiguration, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/splitConfigurations`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const request: SplitConfiguration = ObjectSerializer.serialize(splitConfiguration, "SplitConfiguration");
-        const response = await getJsonResponse<SplitConfiguration, SplitConfiguration>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "SplitConfiguration");
-    }
-
-    /**
-    * @summary Create a rule
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
-    * @param splitConfigurationRule {@link SplitConfigurationRule } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link SplitConfiguration }
-    */
-    public async createRule(merchantId: string, splitConfigurationId: string, splitConfigurationRule: SplitConfigurationRule, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
-            .replace("{" + "splitConfigurationId" + "}", encodeURIComponent(String(splitConfigurationId)));
-        const resource = new Resource(this, endpoint);
-        const request: SplitConfigurationRule = ObjectSerializer.serialize(splitConfigurationRule, "SplitConfigurationRule");
-        const response = await getJsonResponse<SplitConfigurationRule, SplitConfiguration>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "SplitConfiguration");
     }

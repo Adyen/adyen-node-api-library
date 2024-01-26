@@ -10,10 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { GenerateApiKeyResponse } from "../../typings/management/models";
+import { 
+    GenerateApiKeyResponse,
+    RestServiceError,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class APIKeyMerchantLevelApi extends Service {
 
@@ -29,7 +32,7 @@ export class APIKeyMerchantLevelApi extends Service {
     * @summary Generate new API key
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GenerateApiKeyResponse }
     */
     public async generateNewApiKey(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<GenerateApiKeyResponse> {

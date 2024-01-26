@@ -10,11 +10,14 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { TransferInstrument } from "../../typings/legalEntityManagement/models";
-import { TransferInstrumentInfo } from "../../typings/legalEntityManagement/models";
+import { 
+    ServiceError,
+    TransferInstrument,
+    TransferInstrumentInfo,
+    ObjectSerializer
+} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/legalEntityManagement/models";
 
 export class TransferInstrumentsApi extends Service {
 
@@ -27,9 +30,27 @@ export class TransferInstrumentsApi extends Service {
     }
 
     /**
+    * @summary Create a transfer instrument
+    * @param transferInstrumentInfo {@link TransferInstrumentInfo } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TransferInstrument }
+    */
+    public async createTransferInstrument(transferInstrumentInfo: TransferInstrumentInfo, requestOptions?: IRequest.Options): Promise<TransferInstrument> {
+        const endpoint = `${this.baseUrl}/transferInstruments`;
+        const resource = new Resource(this, endpoint);
+        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo");
+        const response = await getJsonResponse<TransferInstrumentInfo, TransferInstrument>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "TransferInstrument");
+    }
+
+    /**
     * @summary Delete a transfer instrument
     * @param id {@link string } The unique identifier of the transfer instrument to be deleted.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async deleteTransferInstrument(id: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/transferInstruments/{id}`
@@ -45,7 +66,7 @@ export class TransferInstrumentsApi extends Service {
     /**
     * @summary Get a transfer instrument
     * @param id {@link string } The unique identifier of the transfer instrument.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TransferInstrument }
     */
     public async getTransferInstrument(id: string, requestOptions?: IRequest.Options): Promise<TransferInstrument> {
@@ -63,9 +84,8 @@ export class TransferInstrumentsApi extends Service {
     /**
     * @summary Update a transfer instrument
     * @param id {@link string } The unique identifier of the transfer instrument.
-    * @param xRequestedVerificationCode {@link string } Use the requested verification code 0_0001 to resolve any suberrors associated with the transfer instrument. Requested verification codes can only be used in your test environment.
     * @param transferInstrumentInfo {@link TransferInstrumentInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TransferInstrument }
     */
     public async updateTransferInstrument(id: string, transferInstrumentInfo: TransferInstrumentInfo, requestOptions?: IRequest.Options): Promise<TransferInstrument> {
@@ -77,25 +97,6 @@ export class TransferInstrumentsApi extends Service {
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
-        );
-        return ObjectSerializer.deserialize(response, "TransferInstrument");
-    }
-
-    /**
-    * @summary Create a transfer instrument
-    * @param xRequestedVerificationCode {@link string } Use a suberror code as your requested verification code. You can include one code at a time in your request header. Requested verification codes can only be used in your test environment.
-    * @param transferInstrumentInfo {@link TransferInstrumentInfo } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link TransferInstrument }
-    */
-    public async createTransferInstrument(transferInstrumentInfo: TransferInstrumentInfo, requestOptions?: IRequest.Options): Promise<TransferInstrument> {
-        const endpoint = `${this.baseUrl}/transferInstruments`;
-        const resource = new Resource(this, endpoint);
-        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo");
-        const response = await getJsonResponse<TransferInstrumentInfo, TransferInstrument>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "TransferInstrument");
     }

@@ -20,6 +20,7 @@ import { GetTerminalDetailsRequest } from "../typings/terminalManagement/models"
 import { GetTerminalDetailsResponse } from "../typings/terminalManagement/models";
 import { GetTerminalsUnderAccountRequest } from "../typings/terminalManagement/models";
 import { GetTerminalsUnderAccountResponse } from "../typings/terminalManagement/models";
+import { ServiceError } from "../typings/terminalManagement/models";
 import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/terminalManagement/models";
@@ -37,7 +38,7 @@ export class TerminalManagementAPI extends Service {
     /**
     * @summary Assign terminals
     * @param assignTerminalsRequest {@link AssignTerminalsRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AssignTerminalsResponse }
     */
     public async assignTerminals(assignTerminalsRequest: AssignTerminalsRequest, requestOptions?: IRequest.Options): Promise<AssignTerminalsResponse> {
@@ -55,7 +56,7 @@ export class TerminalManagementAPI extends Service {
     /**
     * @summary Get the account or store of a terminal
     * @param findTerminalRequest {@link FindTerminalRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link FindTerminalResponse }
     */
     public async findTerminal(findTerminalRequest: FindTerminalRequest, requestOptions?: IRequest.Options): Promise<FindTerminalResponse> {
@@ -73,7 +74,7 @@ export class TerminalManagementAPI extends Service {
     /**
     * @summary Get the stores of an account
     * @param getStoresUnderAccountRequest {@link GetStoresUnderAccountRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GetStoresUnderAccountResponse }
     */
     public async getStoresUnderAccount(getStoresUnderAccountRequest: GetStoresUnderAccountRequest, requestOptions?: IRequest.Options): Promise<GetStoresUnderAccountResponse> {
@@ -91,7 +92,7 @@ export class TerminalManagementAPI extends Service {
     /**
     * @summary Get the details of a terminal
     * @param getTerminalDetailsRequest {@link GetTerminalDetailsRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GetTerminalDetailsResponse }
     */
     public async getTerminalDetails(getTerminalDetailsRequest: GetTerminalDetailsRequest, requestOptions?: IRequest.Options): Promise<GetTerminalDetailsResponse> {
@@ -109,7 +110,7 @@ export class TerminalManagementAPI extends Service {
     /**
     * @summary Get the list of terminals
     * @param getTerminalsUnderAccountRequest {@link GetTerminalsUnderAccountRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GetTerminalsUnderAccountResponse }
     */
     public async getTerminalsUnderAccount(getTerminalsUnderAccountRequest: GetTerminalsUnderAccountRequest, requestOptions?: IRequest.Options): Promise<GetTerminalsUnderAccountResponse> {

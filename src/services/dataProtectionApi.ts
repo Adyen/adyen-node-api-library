@@ -10,6 +10,7 @@
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
+import { ServiceError } from "../typings/dataProtection/models";
 import { SubjectErasureByPspReferenceRequest } from "../typings/dataProtection/models";
 import { SubjectErasureResponse } from "../typings/dataProtection/models";
 import { IRequest } from "../typings/requestOptions";
@@ -29,7 +30,7 @@ export class DataProtectionAPI extends Service {
     /**
     * @summary Submit a Subject Erasure Request.
     * @param subjectErasureByPspReferenceRequest {@link SubjectErasureByPspReferenceRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SubjectErasureResponse }
     */
     public async requestSubjectErasure(subjectErasureByPspReferenceRequest: SubjectErasureByPspReferenceRequest, requestOptions?: IRequest.Options): Promise<SubjectErasureResponse> {

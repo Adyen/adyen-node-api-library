@@ -32,6 +32,7 @@ export * from './balanceSweepConfigurationsResponse';
 export * from './bankAccount';
 export * from './bankAccountIdentificationTypeRequirement';
 export * from './bankAccountIdentificationValidationRequest';
+export * from './bankAccountModel';
 export * from './bankIdentification';
 export * from './brandVariantsRestriction';
 export * from './bulkAddress';
@@ -46,6 +47,9 @@ export * from './capitalGrantAccount';
 export * from './card';
 export * from './cardConfiguration';
 export * from './cardInfo';
+export * from './cardOrder';
+export * from './cardOrderItem';
+export * from './cardOrderItemDeliveryStatus';
 export * from './contactDetails';
 export * from './counterparty';
 export * from './counterpartyBankRestriction';
@@ -85,6 +89,8 @@ export * from './numberAndBicAccountIdentification';
 export * from './pLLocalAccountIdentification';
 export * from './paginatedAccountHoldersResponse';
 export * from './paginatedBalanceAccountsResponse';
+export * from './paginatedGetCardOrderItemResponse';
+export * from './paginatedGetCardOrderResponse';
 export * from './paginatedPaymentInstrumentsResponse';
 export * from './paymentInstrument';
 export * from './paymentInstrumentGroup';
@@ -95,12 +101,17 @@ export * from './paymentInstrumentRevealInfo';
 export * from './paymentInstrumentUpdateRequest';
 export * from './phone';
 export * from './phoneNumber';
+export * from './pinChangeRequest';
+export * from './pinChangeResponse';
 export * from './platformPaymentConfiguration';
 export * from './processingTypesRestriction';
+export * from './publicKeyResponse';
 export * from './remediatingAction';
 export * from './repayment';
 export * from './repaymentTerm';
 export * from './restServiceError';
+export * from './revealPinRequest';
+export * from './revealPinResponse';
 export * from './sELocalAccountIdentification';
 export * from './sGLocalAccountIdentification';
 export * from './sameAmountRestriction';
@@ -157,6 +168,7 @@ import { BalanceSweepConfigurationsResponse } from './balanceSweepConfigurations
 import { BankAccount } from './bankAccount';
 import { BankAccountIdentificationTypeRequirement } from './bankAccountIdentificationTypeRequirement';
 import { BankAccountIdentificationValidationRequest } from './bankAccountIdentificationValidationRequest';
+import { BankAccountModel } from './bankAccountModel';
 import { BankIdentification } from './bankIdentification';
 import { BrandVariantsRestriction } from './brandVariantsRestriction';
 import { BulkAddress } from './bulkAddress';
@@ -171,6 +183,9 @@ import { CapitalGrantAccount } from './capitalGrantAccount';
 import { Card } from './card';
 import { CardConfiguration } from './cardConfiguration';
 import { CardInfo } from './cardInfo';
+import { CardOrder } from './cardOrder';
+import { CardOrderItem } from './cardOrderItem';
+import { CardOrderItemDeliveryStatus } from './cardOrderItemDeliveryStatus';
 import { ContactDetails } from './contactDetails';
 import { Counterparty } from './counterparty';
 import { CounterpartyBankRestriction } from './counterpartyBankRestriction';
@@ -210,6 +225,8 @@ import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentifi
 import { PLLocalAccountIdentification } from './pLLocalAccountIdentification';
 import { PaginatedAccountHoldersResponse } from './paginatedAccountHoldersResponse';
 import { PaginatedBalanceAccountsResponse } from './paginatedBalanceAccountsResponse';
+import { PaginatedGetCardOrderItemResponse } from './paginatedGetCardOrderItemResponse';
+import { PaginatedGetCardOrderResponse } from './paginatedGetCardOrderResponse';
 import { PaginatedPaymentInstrumentsResponse } from './paginatedPaymentInstrumentsResponse';
 import { PaymentInstrument } from './paymentInstrument';
 import { PaymentInstrumentGroup } from './paymentInstrumentGroup';
@@ -220,12 +237,17 @@ import { PaymentInstrumentRevealInfo } from './paymentInstrumentRevealInfo';
 import { PaymentInstrumentUpdateRequest } from './paymentInstrumentUpdateRequest';
 import { Phone } from './phone';
 import { PhoneNumber } from './phoneNumber';
+import { PinChangeRequest } from './pinChangeRequest';
+import { PinChangeResponse } from './pinChangeResponse';
 import { PlatformPaymentConfiguration } from './platformPaymentConfiguration';
 import { ProcessingTypesRestriction } from './processingTypesRestriction';
+import { PublicKeyResponse } from './publicKeyResponse';
 import { RemediatingAction } from './remediatingAction';
 import { Repayment } from './repayment';
 import { RepaymentTerm } from './repaymentTerm';
 import { RestServiceError } from './restServiceError';
+import { RevealPinRequest } from './revealPinRequest';
+import { RevealPinResponse } from './revealPinResponse';
 import { SELocalAccountIdentification } from './sELocalAccountIdentification';
 import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
 import { SameAmountRestriction } from './sameAmountRestriction';
@@ -289,6 +311,7 @@ let enumsMap: {[index: string]: any} = {
         "BalanceAccountUpdateRequest.StatusEnum": BalanceAccountUpdateRequest.StatusEnum,
         "BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum": BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum,
         "BankAccountIdentificationTypeRequirement.TypeEnum": BankAccountIdentificationTypeRequirement.TypeEnum,
+        "BankAccountModel.FormFactorEnum": BankAccountModel.FormFactorEnum,
         "BankIdentification.IdentificationTypeEnum": BankIdentification.IdentificationTypeEnum,
         "CALocalAccountIdentification.AccountTypeEnum": CALocalAccountIdentification.AccountTypeEnum,
         "CALocalAccountIdentification.TypeEnum": CALocalAccountIdentification.TypeEnum,
@@ -299,6 +322,8 @@ let enumsMap: {[index: string]: any} = {
         "CapabilitySettings.IntervalEnum": CapabilitySettings.IntervalEnum,
         "Card.FormFactorEnum": Card.FormFactorEnum,
         "CardInfo.FormFactorEnum": CardInfo.FormFactorEnum,
+        "CardOrder.StatusEnum": CardOrder.StatusEnum,
+        "CardOrderItemDeliveryStatus.StatusEnum": CardOrderItemDeliveryStatus.StatusEnum,
         "CreateSweepConfigurationV2.CategoryEnum": CreateSweepConfigurationV2.CategoryEnum,
         "CreateSweepConfigurationV2.PrioritiesEnum": CreateSweepConfigurationV2.PrioritiesEnum,
         "CreateSweepConfigurationV2.ReasonEnum": CreateSweepConfigurationV2.ReasonEnum,
@@ -330,6 +355,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentInstrumentUpdateRequest.StatusReasonEnum": PaymentInstrumentUpdateRequest.StatusReasonEnum,
         "Phone.TypeEnum": Phone.TypeEnum,
         "PhoneNumber.PhoneTypeEnum": PhoneNumber.PhoneTypeEnum,
+        "PinChangeResponse.StatusEnum": PinChangeResponse.StatusEnum,
         "ProcessingTypesRestriction.ValueEnum": ProcessingTypesRestriction.ValueEnum,
         "SELocalAccountIdentification.TypeEnum": SELocalAccountIdentification.TypeEnum,
         "SGLocalAccountIdentification.TypeEnum": SGLocalAccountIdentification.TypeEnum,
@@ -398,6 +424,7 @@ let typeMap: {[index: string]: any} = {
     "BankAccount": BankAccount,
     "BankAccountIdentificationTypeRequirement": BankAccountIdentificationTypeRequirement,
     "BankAccountIdentificationValidationRequest": BankAccountIdentificationValidationRequest,
+    "BankAccountModel": BankAccountModel,
     "BankIdentification": BankIdentification,
     "BrandVariantsRestriction": BrandVariantsRestriction,
     "BulkAddress": BulkAddress,
@@ -412,6 +439,9 @@ let typeMap: {[index: string]: any} = {
     "Card": Card,
     "CardConfiguration": CardConfiguration,
     "CardInfo": CardInfo,
+    "CardOrder": CardOrder,
+    "CardOrderItem": CardOrderItem,
+    "CardOrderItemDeliveryStatus": CardOrderItemDeliveryStatus,
     "ContactDetails": ContactDetails,
     "Counterparty": Counterparty,
     "CounterpartyBankRestriction": CounterpartyBankRestriction,
@@ -451,6 +481,8 @@ let typeMap: {[index: string]: any} = {
     "PLLocalAccountIdentification": PLLocalAccountIdentification,
     "PaginatedAccountHoldersResponse": PaginatedAccountHoldersResponse,
     "PaginatedBalanceAccountsResponse": PaginatedBalanceAccountsResponse,
+    "PaginatedGetCardOrderItemResponse": PaginatedGetCardOrderItemResponse,
+    "PaginatedGetCardOrderResponse": PaginatedGetCardOrderResponse,
     "PaginatedPaymentInstrumentsResponse": PaginatedPaymentInstrumentsResponse,
     "PaymentInstrument": PaymentInstrument,
     "PaymentInstrumentGroup": PaymentInstrumentGroup,
@@ -461,12 +493,17 @@ let typeMap: {[index: string]: any} = {
     "PaymentInstrumentUpdateRequest": PaymentInstrumentUpdateRequest,
     "Phone": Phone,
     "PhoneNumber": PhoneNumber,
+    "PinChangeRequest": PinChangeRequest,
+    "PinChangeResponse": PinChangeResponse,
     "PlatformPaymentConfiguration": PlatformPaymentConfiguration,
     "ProcessingTypesRestriction": ProcessingTypesRestriction,
+    "PublicKeyResponse": PublicKeyResponse,
     "RemediatingAction": RemediatingAction,
     "Repayment": Repayment,
     "RepaymentTerm": RepaymentTerm,
     "RestServiceError": RestServiceError,
+    "RevealPinRequest": RevealPinRequest,
+    "RevealPinResponse": RevealPinResponse,
     "SELocalAccountIdentification": SELocalAccountIdentification,
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
     "SameAmountRestriction": SameAmountRestriction,

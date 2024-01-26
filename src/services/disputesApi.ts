@@ -10,21 +10,20 @@
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
-import { 
-    AcceptDisputeRequest,
-    AcceptDisputeResponse,
-    DefendDisputeRequest, 
-    DefendDisputeResponse, 
-    DefenseReasonsRequest, 
-    DefenseReasonsResponse, 
-    DeleteDefenseDocumentRequest, 
-    DeleteDefenseDocumentResponse, 
-    SupplyDefenseDocumentRequest, 
-    SupplyDefenseDocumentResponse,
-    ObjectSerializer 
-} from "../typings/disputes/models";
+import { AcceptDisputeRequest } from "../typings/disputes/models";
+import { AcceptDisputeResponse } from "../typings/disputes/models";
+import { DefendDisputeRequest } from "../typings/disputes/models";
+import { DefendDisputeResponse } from "../typings/disputes/models";
+import { DefenseReasonsRequest } from "../typings/disputes/models";
+import { DefenseReasonsResponse } from "../typings/disputes/models";
+import { DeleteDefenseDocumentRequest } from "../typings/disputes/models";
+import { DeleteDefenseDocumentResponse } from "../typings/disputes/models";
+import { ServiceError } from "../typings/disputes/models";
+import { SupplyDefenseDocumentRequest } from "../typings/disputes/models";
+import { SupplyDefenseDocumentResponse } from "../typings/disputes/models";
 import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
+import { ObjectSerializer } from "../typings/disputes/models";
 
 export class DisputesAPI extends Service {
     
@@ -39,7 +38,7 @@ export class DisputesAPI extends Service {
     /**
     * @summary Accept a dispute
     * @param acceptDisputeRequest {@link AcceptDisputeRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AcceptDisputeResponse }
     */
     public async acceptDispute(acceptDisputeRequest: AcceptDisputeRequest, requestOptions?: IRequest.Options): Promise<AcceptDisputeResponse> {
@@ -57,7 +56,7 @@ export class DisputesAPI extends Service {
     /**
     * @summary Defend a dispute
     * @param defendDisputeRequest {@link DefendDisputeRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link DefendDisputeResponse }
     */
     public async defendDispute(defendDisputeRequest: DefendDisputeRequest, requestOptions?: IRequest.Options): Promise<DefendDisputeResponse> {
@@ -75,7 +74,7 @@ export class DisputesAPI extends Service {
     /**
     * @summary Delete a defense document
     * @param deleteDefenseDocumentRequest {@link DeleteDefenseDocumentRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link DeleteDefenseDocumentResponse }
     */
     public async deleteDisputeDefenseDocument(deleteDefenseDocumentRequest: DeleteDefenseDocumentRequest, requestOptions?: IRequest.Options): Promise<DeleteDefenseDocumentResponse> {
@@ -93,7 +92,7 @@ export class DisputesAPI extends Service {
     /**
     * @summary Get applicable defense reasons
     * @param defenseReasonsRequest {@link DefenseReasonsRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link DefenseReasonsResponse }
     */
     public async retrieveApplicableDefenseReasons(defenseReasonsRequest: DefenseReasonsRequest, requestOptions?: IRequest.Options): Promise<DefenseReasonsResponse> {
@@ -111,7 +110,7 @@ export class DisputesAPI extends Service {
     /**
     * @summary Supply a defense document
     * @param supplyDefenseDocumentRequest {@link SupplyDefenseDocumentRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SupplyDefenseDocumentResponse }
     */
     public async supplyDefenseDocument(supplyDefenseDocumentRequest: SupplyDefenseDocumentRequest, requestOptions?: IRequest.Options): Promise<SupplyDefenseDocumentResponse> {

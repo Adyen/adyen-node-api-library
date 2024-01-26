@@ -33,7 +33,7 @@ export class CardOrderItem {
     'paymentInstrumentId'?: string;
     'pin'?: CardOrderItemDeliveryStatus;
     /**
-    * Shipping method used to deliver the card or the PIN.
+    * The shipping method used to deliver the card or the PIN.
     */
     'shippingMethod'?: string;
 

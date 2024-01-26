@@ -18,6 +18,10 @@ export class GooglePayDetails {
     */
     'fundingSource'?: GooglePayDetails.FundingSourceEnum;
     /**
+    * The selected payment card network. 
+    */
+    'googlePayCardNetwork'?: string;
+    /**
     * The `token` that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) `PaymentData` response.
     */
     'googlePayToken': string;
@@ -46,6 +50,11 @@ export class GooglePayDetails {
             "name": "fundingSource",
             "baseName": "fundingSource",
             "type": "GooglePayDetails.FundingSourceEnum"
+        },
+        {
+            "name": "googlePayCardNetwork",
+            "baseName": "googlePayCardNetwork",
+            "type": "string"
         },
         {
             "name": "googlePayToken",
