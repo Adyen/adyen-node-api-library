@@ -10,12 +10,14 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { BusinessLine } from "../../typings/legalEntityManagement/models";
-import { BusinessLineInfo } from "../../typings/legalEntityManagement/models";
-import { BusinessLineInfoUpdate } from "../../typings/legalEntityManagement/models";
+import { 
+    BusinessLine,
+    BusinessLineInfo,
+    BusinessLineInfoUpdate,
+    ObjectSerializer
+} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/legalEntityManagement/models";
 
 export class BusinessLinesApi extends Service {
 
@@ -30,7 +32,7 @@ export class BusinessLinesApi extends Service {
     /**
     * @summary Delete a business line
     * @param id {@link string } The unique identifier of the business line to be deleted.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async deleteBusinessLine(id: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/businessLines/{id}`
@@ -46,7 +48,7 @@ export class BusinessLinesApi extends Service {
     /**
     * @summary Get a business line
     * @param id {@link string } The unique identifier of the business line.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link BusinessLine }
     */
     public async getBusinessLine(id: string, requestOptions?: IRequest.Options): Promise<BusinessLine> {
@@ -65,7 +67,7 @@ export class BusinessLinesApi extends Service {
     * @summary Update a business line
     * @param id {@link string } The unique identifier of the business line.
     * @param businessLineInfoUpdate {@link BusinessLineInfoUpdate } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link BusinessLine }
     */
     public async updateBusinessLine(id: string, businessLineInfoUpdate: BusinessLineInfoUpdate, requestOptions?: IRequest.Options): Promise<BusinessLine> {
@@ -84,7 +86,7 @@ export class BusinessLinesApi extends Service {
     /**
     * @summary Create a business line
     * @param businessLineInfo {@link BusinessLineInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link BusinessLine }
     */
     public async createBusinessLine(businessLineInfo: BusinessLineInfo, requestOptions?: IRequest.Options): Promise<BusinessLine> {

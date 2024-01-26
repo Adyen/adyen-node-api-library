@@ -10,14 +10,16 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ApiCredential } from "../../typings/management/models";
-import { CreateApiCredentialResponse } from "../../typings/management/models";
-import { CreateMerchantApiCredentialRequest } from "../../typings/management/models";
-import { ListMerchantApiCredentialsResponse } from "../../typings/management/models";
-import { UpdateMerchantApiCredentialRequest } from "../../typings/management/models";
+import { 
+    ApiCredential,
+    CreateApiCredentialResponse,
+    CreateMerchantApiCredentialRequest,
+    ListMerchantApiCredentialsResponse,
+    UpdateMerchantApiCredentialRequest,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class APICredentialsMerchantLevelApi extends Service {
 
@@ -32,15 +34,22 @@ export class APICredentialsMerchantLevelApi extends Service {
     /**
     * @summary Get a list of API credentials
     * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param requestOptions {@link IRequest.Options }
     * @param pageNumber {@link number } The number of the page to fetch.
     * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 10 items on a page.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link ListMerchantApiCredentialsResponse }
     */
-    public async listApiCredentials(merchantId: string, requestOptions?: IRequest.Options): Promise<ListMerchantApiCredentialsResponse> {
+    public async listApiCredentials(merchantId: string, pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<ListMerchantApiCredentialsResponse> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = pageNumber ?? pageSize;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+        }
         const response = await getJsonResponse<string, ListMerchantApiCredentialsResponse>(
             resource,
             "",
@@ -53,7 +62,7 @@ export class APICredentialsMerchantLevelApi extends Service {
     * @summary Get an API credential
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ApiCredential }
     */
     public async getApiCredential(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<ApiCredential> {
@@ -74,7 +83,7 @@ export class APICredentialsMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
     * @param updateMerchantApiCredentialRequest {@link UpdateMerchantApiCredentialRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ApiCredential }
     */
     public async updateApiCredential(merchantId: string, apiCredentialId: string, updateMerchantApiCredentialRequest: UpdateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<ApiCredential> {
@@ -95,7 +104,7 @@ export class APICredentialsMerchantLevelApi extends Service {
     * @summary Create an API credential
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param createMerchantApiCredentialRequest {@link CreateMerchantApiCredentialRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CreateApiCredentialResponse }
     */
     public async createApiCredential(merchantId: string, createMerchantApiCredentialRequest: CreateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateApiCredentialResponse> {

@@ -10,11 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ModifyRequest } from "../../typings/payout/models";
-import { ModifyResponse } from "../../typings/payout/models";
+import { 
+    ModifyRequest,
+    ModifyResponse,
+    ObjectSerializer
+} from "../../typings/payout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/payout/models";
 
 export class ReviewingApi extends Service {
 
@@ -29,7 +31,7 @@ export class ReviewingApi extends Service {
     /**
     * @summary Confirm a payout
     * @param modifyRequest {@link ModifyRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ModifyResponse }
     */
     public async confirmThirdParty(modifyRequest: ModifyRequest, requestOptions?: IRequest.Options): Promise<ModifyResponse> {
@@ -47,7 +49,7 @@ export class ReviewingApi extends Service {
     /**
     * @summary Cancel a payout
     * @param modifyRequest {@link ModifyRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ModifyResponse }
     */
     public async declineThirdParty(modifyRequest: ModifyRequest, requestOptions?: IRequest.Options): Promise<ModifyResponse> {

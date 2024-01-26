@@ -10,17 +10,19 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { BalanceAccount } from "../../typings/balancePlatform/models";
-import { BalanceAccountInfo } from "../../typings/balancePlatform/models";
-import { BalanceAccountUpdateRequest } from "../../typings/balancePlatform/models";
-import { BalanceSweepConfigurationsResponse } from "../../typings/balancePlatform/models";
-import { CreateSweepConfigurationV2 } from "../../typings/balancePlatform/models";
-import { PaginatedPaymentInstrumentsResponse } from "../../typings/balancePlatform/models";
-import { SweepConfigurationV2 } from "../../typings/balancePlatform/models";
-import { UpdateSweepConfigurationV2 } from "../../typings/balancePlatform/models";
+import { 
+    BalanceAccount,
+    BalanceAccountInfo,
+    BalanceAccountUpdateRequest,
+    BalanceSweepConfigurationsResponse,
+    CreateSweepConfigurationV2,
+    PaginatedPaymentInstrumentsResponse,
+    SweepConfigurationV2,
+    UpdateSweepConfigurationV2,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class BalanceAccountsApi extends Service {
 
@@ -36,7 +38,7 @@ export class BalanceAccountsApi extends Service {
     * @summary Delete a sweep
     * @param balanceAccountId {@link string } The unique identifier of the balance account.
     * @param sweepId {@link string } The unique identifier of the sweep.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async deleteSweep(balanceAccountId: string, sweepId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}`
@@ -53,15 +55,22 @@ export class BalanceAccountsApi extends Service {
     /**
     * @summary Get all sweeps for a balance account
     * @param balanceAccountId {@link string } The unique identifier of the balance account.
+    * @param requestOptions {@link IRequest.Options }
     * @param offset {@link number } The number of items that you want to skip.
     * @param limit {@link number } The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link BalanceSweepConfigurationsResponse }
     */
-    public async getAllSweepsForBalanceAccount(balanceAccountId: string, requestOptions?: IRequest.Options): Promise<BalanceSweepConfigurationsResponse> {
+    public async getAllSweepsForBalanceAccount(balanceAccountId: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<BalanceSweepConfigurationsResponse> {
         const endpoint = `${this.baseUrl}/balanceAccounts/{balanceAccountId}/sweeps`
             .replace("{" + "balanceAccountId" + "}", encodeURIComponent(String(balanceAccountId)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = offset ?? limit;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(offset) requestOptions.params["offset"] = offset;
+            if(limit) requestOptions.params["limit"] = limit;
+        }
         const response = await getJsonResponse<string, BalanceSweepConfigurationsResponse>(
             resource,
             "",
@@ -74,7 +83,7 @@ export class BalanceAccountsApi extends Service {
     * @summary Get a sweep
     * @param balanceAccountId {@link string } The unique identifier of the balance account.
     * @param sweepId {@link string } The unique identifier of the sweep.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SweepConfigurationV2 }
     */
     public async getSweep(balanceAccountId: string, sweepId: string, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
@@ -93,7 +102,7 @@ export class BalanceAccountsApi extends Service {
     /**
     * @summary Get a balance account
     * @param id {@link string } The unique identifier of the balance account.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link BalanceAccount }
     */
     public async getBalanceAccount(id: string, requestOptions?: IRequest.Options): Promise<BalanceAccount> {
@@ -109,17 +118,26 @@ export class BalanceAccountsApi extends Service {
     }
 
     /**
-    * @summary Get all payment instruments for a balance account
+    * @summary Get payment instruments linked to a balance account
     * @param id {@link string } The unique identifier of the balance account.
+    * @param requestOptions {@link IRequest.Options }
     * @param offset {@link number } The number of items that you want to skip.
     * @param limit {@link number } The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.
-    * @param requestOptions {@link IRequest.Options}
+    * @param status {@link string } The status of the payment instruments that you want to get. By default, the response includes payment instruments with any status.
     * @return {@link PaginatedPaymentInstrumentsResponse }
     */
-    public async getAllPaymentInstrumentsForBalanceAccount(id: string, requestOptions?: IRequest.Options): Promise<PaginatedPaymentInstrumentsResponse> {
+    public async getPaymentInstrumentsLinkedToBalanceAccount(id: string, offset?: number, limit?: number, status?: string, requestOptions?: IRequest.Options): Promise<PaginatedPaymentInstrumentsResponse> {
         const endpoint = `${this.baseUrl}/balanceAccounts/{id}/paymentInstruments`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = offset ?? limit ?? status;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(offset) requestOptions.params["offset"] = offset;
+            if(limit) requestOptions.params["limit"] = limit;
+            if(status) requestOptions.params["status"] = status;
+        }
         const response = await getJsonResponse<string, PaginatedPaymentInstrumentsResponse>(
             resource,
             "",
@@ -133,7 +151,7 @@ export class BalanceAccountsApi extends Service {
     * @param balanceAccountId {@link string } The unique identifier of the balance account.
     * @param sweepId {@link string } The unique identifier of the sweep.
     * @param updateSweepConfigurationV2 {@link UpdateSweepConfigurationV2 } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SweepConfigurationV2 }
     */
     public async updateSweep(balanceAccountId: string, sweepId: string, updateSweepConfigurationV2: UpdateSweepConfigurationV2, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
@@ -154,7 +172,7 @@ export class BalanceAccountsApi extends Service {
     * @summary Update a balance account
     * @param id {@link string } The unique identifier of the balance account.
     * @param balanceAccountUpdateRequest {@link BalanceAccountUpdateRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link BalanceAccount }
     */
     public async updateBalanceAccount(id: string, balanceAccountUpdateRequest: BalanceAccountUpdateRequest, requestOptions?: IRequest.Options): Promise<BalanceAccount> {
@@ -173,7 +191,7 @@ export class BalanceAccountsApi extends Service {
     /**
     * @summary Create a balance account
     * @param balanceAccountInfo {@link BalanceAccountInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link BalanceAccount }
     */
     public async createBalanceAccount(balanceAccountInfo: BalanceAccountInfo, requestOptions?: IRequest.Options): Promise<BalanceAccount> {
@@ -192,7 +210,7 @@ export class BalanceAccountsApi extends Service {
     * @summary Create a sweep
     * @param balanceAccountId {@link string } The unique identifier of the balance account.
     * @param createSweepConfigurationV2 {@link CreateSweepConfigurationV2 } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SweepConfigurationV2 }
     */
     public async createSweep(balanceAccountId: string, createSweepConfigurationV2: CreateSweepConfigurationV2, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {

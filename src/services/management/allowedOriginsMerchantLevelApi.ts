@@ -10,11 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { AllowedOrigin } from "../../typings/management/models";
-import { AllowedOriginsResponse } from "../../typings/management/models";
+import { 
+    AllowedOrigin,
+    AllowedOriginsResponse,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class AllowedOriginsMerchantLevelApi extends Service {
 
@@ -31,7 +33,7 @@ export class AllowedOriginsMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
     * @param originId {@link string } Unique identifier of the allowed origin.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async deleteAllowedOrigin(merchantId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}`
@@ -50,7 +52,7 @@ export class AllowedOriginsMerchantLevelApi extends Service {
     * @summary Get a list of allowed origins
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AllowedOriginsResponse }
     */
     public async listAllowedOrigins(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
@@ -71,7 +73,7 @@ export class AllowedOriginsMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
     * @param originId {@link string } Unique identifier of the allowed origin.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AllowedOrigin }
     */
     public async getAllowedOrigin(merchantId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
@@ -93,7 +95,7 @@ export class AllowedOriginsMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
     * @param allowedOrigin {@link AllowedOrigin } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AllowedOriginsResponse }
     */
     public async createAllowedOrigin(merchantId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {

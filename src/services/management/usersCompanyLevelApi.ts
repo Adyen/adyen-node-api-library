@@ -10,14 +10,16 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { CompanyUser } from "../../typings/management/models";
-import { CreateCompanyUserRequest } from "../../typings/management/models";
-import { CreateCompanyUserResponse } from "../../typings/management/models";
-import { ListCompanyUsersResponse } from "../../typings/management/models";
-import { UpdateCompanyUserRequest } from "../../typings/management/models";
+import { 
+    CompanyUser,
+    CreateCompanyUserRequest,
+    CreateCompanyUserResponse,
+    ListCompanyUsersResponse,
+    UpdateCompanyUserRequest,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class UsersCompanyLevelApi extends Service {
 
@@ -32,16 +34,24 @@ export class UsersCompanyLevelApi extends Service {
     /**
     * @summary Get a list of users
     * @param companyId {@link string } The unique identifier of the company account.
+    * @param requestOptions {@link IRequest.Options }
     * @param pageNumber {@link number } The number of the page to return.
     * @param pageSize {@link number } The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page.
     * @param username {@link string } The partial or complete username to select all users that match.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link ListCompanyUsersResponse }
     */
-    public async listUsers(companyId: string, requestOptions?: IRequest.Options): Promise<ListCompanyUsersResponse> {
+    public async listUsers(companyId: string, pageNumber?: number, pageSize?: number, username?: string, requestOptions?: IRequest.Options): Promise<ListCompanyUsersResponse> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/users`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = pageNumber ?? pageSize ?? username;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+            if(username) requestOptions.params["username"] = username;
+        }
         const response = await getJsonResponse<string, ListCompanyUsersResponse>(
             resource,
             "",
@@ -54,7 +64,7 @@ export class UsersCompanyLevelApi extends Service {
     * @summary Get user details
     * @param companyId {@link string } The unique identifier of the company account.
     * @param userId {@link string } The unique identifier of the user.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CompanyUser }
     */
     public async getUserDetails(companyId: string, userId: string, requestOptions?: IRequest.Options): Promise<CompanyUser> {
@@ -75,7 +85,7 @@ export class UsersCompanyLevelApi extends Service {
     * @param companyId {@link string } The unique identifier of the company account.
     * @param userId {@link string } The unique identifier of the user.
     * @param updateCompanyUserRequest {@link UpdateCompanyUserRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CompanyUser }
     */
     public async updateUserDetails(companyId: string, userId: string, updateCompanyUserRequest: UpdateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CompanyUser> {
@@ -96,7 +106,7 @@ export class UsersCompanyLevelApi extends Service {
     * @summary Create a new user
     * @param companyId {@link string } The unique identifier of the company account.
     * @param createCompanyUserRequest {@link CreateCompanyUserRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CreateCompanyUserResponse }
     */
     public async createNewUser(companyId: string, createCompanyUserRequest: CreateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyUserResponse> {

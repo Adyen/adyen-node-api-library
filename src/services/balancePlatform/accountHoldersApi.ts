@@ -10,14 +10,16 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { AccountHolder } from "../../typings/balancePlatform/models";
-import { AccountHolderInfo } from "../../typings/balancePlatform/models";
-import { AccountHolderUpdateRequest } from "../../typings/balancePlatform/models";
-import { GetTaxFormResponse } from "../../typings/balancePlatform/models";
-import { PaginatedBalanceAccountsResponse } from "../../typings/balancePlatform/models";
+import { 
+    AccountHolder,
+    AccountHolderInfo,
+    AccountHolderUpdateRequest,
+    GetTaxFormResponse,
+    PaginatedBalanceAccountsResponse,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class AccountHoldersApi extends Service {
 
@@ -32,7 +34,7 @@ export class AccountHoldersApi extends Service {
     /**
     * @summary Get an account holder
     * @param id {@link string } The unique identifier of the account holder.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AccountHolder }
     */
     public async getAccountHolder(id: string, requestOptions?: IRequest.Options): Promise<AccountHolder> {
@@ -50,15 +52,22 @@ export class AccountHoldersApi extends Service {
     /**
     * @summary Get all balance accounts of an account holder
     * @param id {@link string } The unique identifier of the account holder.
+    * @param requestOptions {@link IRequest.Options }
     * @param offset {@link number } The number of items that you want to skip.
     * @param limit {@link number } The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link PaginatedBalanceAccountsResponse }
     */
-    public async getAllBalanceAccountsOfAccountHolder(id: string, requestOptions?: IRequest.Options): Promise<PaginatedBalanceAccountsResponse> {
+    public async getAllBalanceAccountsOfAccountHolder(id: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<PaginatedBalanceAccountsResponse> {
         const endpoint = `${this.baseUrl}/accountHolders/{id}/balanceAccounts`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = offset ?? limit;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(offset) requestOptions.params["offset"] = offset;
+            if(limit) requestOptions.params["limit"] = limit;
+        }
         const response = await getJsonResponse<string, PaginatedBalanceAccountsResponse>(
             resource,
             "",
@@ -70,15 +79,22 @@ export class AccountHoldersApi extends Service {
     /**
     * @summary Get a tax form
     * @param id {@link string } The unique identifier of the account holder.
-    * @param formType {@link &#39;US1099k&#39; | &#39;US1099nec&#39; } The type of tax form you want to retrieve. Accepted values are **us1099k** and **us1099nec**
+    * @param requestOptions {@link IRequest.Options }
+    * @param formType {@link &#39;US1099k&#39; | &#39;US1099nec&#39; } The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**
     * @param year {@link number } The tax year in YYYY format for the tax form you want to retrieve
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link GetTaxFormResponse }
     */
-    public async getTaxForm(id: string, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
+    public async getTaxForm(id: string, formType?: "US1099k" | "US1099nec", year?: number, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
         const endpoint = `${this.baseUrl}/accountHolders/{id}/taxForms`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = formType ?? year;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(formType) requestOptions.params["formType"] = formType;
+            if(year) requestOptions.params["year"] = year;
+        }
         const response = await getJsonResponse<string, GetTaxFormResponse>(
             resource,
             "",
@@ -91,7 +107,7 @@ export class AccountHoldersApi extends Service {
     * @summary Update an account holder
     * @param id {@link string } The unique identifier of the account holder.
     * @param accountHolderUpdateRequest {@link AccountHolderUpdateRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AccountHolder }
     */
     public async updateAccountHolder(id: string, accountHolderUpdateRequest: AccountHolderUpdateRequest, requestOptions?: IRequest.Options): Promise<AccountHolder> {
@@ -110,7 +126,7 @@ export class AccountHoldersApi extends Service {
     /**
     * @summary Create an account holder
     * @param accountHolderInfo {@link AccountHolderInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AccountHolder }
     */
     public async createAccountHolder(accountHolderInfo: AccountHolderInfo, requestOptions?: IRequest.Options): Promise<AccountHolder> {

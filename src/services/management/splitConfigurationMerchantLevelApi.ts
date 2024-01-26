@@ -10,15 +10,17 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { SplitConfiguration } from "../../typings/management/models";
-import { SplitConfigurationList } from "../../typings/management/models";
-import { SplitConfigurationRule } from "../../typings/management/models";
-import { UpdateSplitConfigurationLogicRequest } from "../../typings/management/models";
-import { UpdateSplitConfigurationRequest } from "../../typings/management/models";
-import { UpdateSplitConfigurationRuleRequest } from "../../typings/management/models";
+import {
+    SplitConfiguration,
+    SplitConfigurationList,
+    SplitConfigurationRule,
+    UpdateSplitConfigurationLogicRequest,
+    UpdateSplitConfigurationRequest,
+    UpdateSplitConfigurationRuleRequest,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class SplitConfigurationMerchantLevelApi extends Service {
 
@@ -34,7 +36,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     * @summary Delete a split configuration
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async deleteSplitConfiguration(merchantId: string, splitConfigurationId: string, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -55,7 +57,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
     * @param ruleId {@link string } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async deleteSplitConfigurationRule(merchantId: string, splitConfigurationId: string, ruleId: string, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -75,7 +77,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     /**
     * @summary Get a list of split configurations
     * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfigurationList }
     */
     public async listSplitConfigurations(merchantId: string, requestOptions?: IRequest.Options): Promise<SplitConfigurationList> {
@@ -94,7 +96,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     * @summary Get a split configuration
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async getSplitConfiguration(merchantId: string, splitConfigurationId: string, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -115,7 +117,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
     * @param updateSplitConfigurationRequest {@link UpdateSplitConfigurationRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async updateSplitConfigurationDescription(merchantId: string, splitConfigurationId: string, updateSplitConfigurationRequest: UpdateSplitConfigurationRequest, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -138,7 +140,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     * @param splitConfigurationId {@link string } The identifier of the split configuration.
     * @param ruleId {@link string } The unique identifier of the split configuration rule.
     * @param updateSplitConfigurationRuleRequest {@link UpdateSplitConfigurationRuleRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async updateSplitConditions(merchantId: string, splitConfigurationId: string, ruleId: string, updateSplitConfigurationRuleRequest: UpdateSplitConfigurationRuleRequest, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -163,7 +165,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     * @param ruleId {@link string } The unique identifier of the split configuration rule.
     * @param splitLogicId {@link string } The unique identifier of the split configuration split.
     * @param updateSplitConfigurationLogicRequest {@link UpdateSplitConfigurationLogicRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async updateSplitLogic(merchantId: string, splitConfigurationId: string, ruleId: string, splitLogicId: string, updateSplitConfigurationLogicRequest: UpdateSplitConfigurationLogicRequest, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -186,7 +188,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     * @summary Create a split configuration
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfiguration {@link SplitConfiguration } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async createSplitConfiguration(merchantId: string, splitConfiguration: SplitConfiguration, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {
@@ -207,7 +209,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
     * @param splitConfigurationRule {@link SplitConfigurationRule } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfiguration }
     */
     public async createRule(merchantId: string, splitConfigurationId: string, splitConfigurationRule: SplitConfigurationRule, requestOptions?: IRequest.Options): Promise<SplitConfiguration> {

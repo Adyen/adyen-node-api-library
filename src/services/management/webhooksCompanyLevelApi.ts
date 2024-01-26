@@ -10,16 +10,18 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { CreateCompanyWebhookRequest } from "../../typings/management/models";
-import { GenerateHmacKeyResponse } from "../../typings/management/models";
-import { ListWebhooksResponse } from "../../typings/management/models";
-import { TestCompanyWebhookRequest } from "../../typings/management/models";
-import { TestWebhookResponse } from "../../typings/management/models";
-import { UpdateCompanyWebhookRequest } from "../../typings/management/models";
-import { Webhook } from "../../typings/management/models";
+import { 
+    CreateCompanyWebhookRequest,
+    GenerateHmacKeyResponse,
+    ListWebhooksResponse,
+    TestCompanyWebhookRequest,
+    TestWebhookResponse,
+    UpdateCompanyWebhookRequest,
+    Webhook,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class WebhooksCompanyLevelApi extends Service {
 
@@ -35,7 +37,7 @@ export class WebhooksCompanyLevelApi extends Service {
     * @summary Remove a webhook
     * @param companyId {@link string } The unique identifier of the company account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async removeWebhook(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/webhooks/{webhookId}`
@@ -52,15 +54,22 @@ export class WebhooksCompanyLevelApi extends Service {
     /**
     * @summary List all webhooks
     * @param companyId {@link string } Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).
+    * @param requestOptions {@link IRequest.Options }
     * @param pageNumber {@link number } The number of the page to fetch.
     * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 10 items on a page.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link ListWebhooksResponse }
     */
-    public async listAllWebhooks(companyId: string, requestOptions?: IRequest.Options): Promise<ListWebhooksResponse> {
+    public async listAllWebhooks(companyId: string, pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<ListWebhooksResponse> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/webhooks`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = pageNumber ?? pageSize;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+        }
         const response = await getJsonResponse<string, ListWebhooksResponse>(
             resource,
             "",
@@ -73,7 +82,7 @@ export class WebhooksCompanyLevelApi extends Service {
     * @summary Get a webhook
     * @param companyId {@link string } Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Webhook }
     */
     public async getWebhook(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<Webhook> {
@@ -94,7 +103,7 @@ export class WebhooksCompanyLevelApi extends Service {
     * @param companyId {@link string } The unique identifier of the company account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
     * @param updateCompanyWebhookRequest {@link UpdateCompanyWebhookRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Webhook }
     */
     public async updateWebhook(companyId: string, webhookId: string, updateCompanyWebhookRequest: UpdateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
@@ -115,7 +124,7 @@ export class WebhooksCompanyLevelApi extends Service {
     * @summary Set up a webhook
     * @param companyId {@link string } Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).
     * @param createCompanyWebhookRequest {@link CreateCompanyWebhookRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Webhook }
     */
     public async setUpWebhook(companyId: string, createCompanyWebhookRequest: CreateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
@@ -135,7 +144,7 @@ export class WebhooksCompanyLevelApi extends Service {
     * @summary Generate an HMAC key
     * @param companyId {@link string } The unique identifier of the company account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GenerateHmacKeyResponse }
     */
     public async generateHmacKey(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<GenerateHmacKeyResponse> {
@@ -156,7 +165,7 @@ export class WebhooksCompanyLevelApi extends Service {
     * @param companyId {@link string } The unique identifier of the company account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
     * @param testCompanyWebhookRequest {@link TestCompanyWebhookRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TestWebhookResponse }
     */
     public async testWebhook(companyId: string, webhookId: string, testCompanyWebhookRequest: TestCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<TestWebhookResponse> {

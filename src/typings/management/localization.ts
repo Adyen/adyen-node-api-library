@@ -13,6 +13,14 @@ export class Localization {
     * Language of the terminal.
     */
     'language'?: string;
+    /**
+    * Secondary language of the terminal.
+    */
+    'secondaryLanguage'?: string;
+    /**
+    * The time zone of the terminal.
+    */
+    'timezone'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -20,6 +28,16 @@ export class Localization {
         {
             "name": "language",
             "baseName": "language",
+            "type": "string"
+        },
+        {
+            "name": "secondaryLanguage",
+            "baseName": "secondaryLanguage",
+            "type": "string"
+        },
+        {
+            "name": "timezone",
+            "baseName": "timezone",
             "type": "string"
         }    ];
 

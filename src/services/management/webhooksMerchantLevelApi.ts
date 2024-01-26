@@ -10,16 +10,18 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { CreateMerchantWebhookRequest } from "../../typings/management/models";
-import { GenerateHmacKeyResponse } from "../../typings/management/models";
-import { ListWebhooksResponse } from "../../typings/management/models";
-import { TestWebhookRequest } from "../../typings/management/models";
-import { TestWebhookResponse } from "../../typings/management/models";
-import { UpdateMerchantWebhookRequest } from "../../typings/management/models";
-import { Webhook } from "../../typings/management/models";
+import { 
+    CreateMerchantWebhookRequest,
+    GenerateHmacKeyResponse,
+    ListWebhooksResponse,
+    TestWebhookRequest,
+    TestWebhookResponse,
+    UpdateMerchantWebhookRequest,
+    Webhook,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class WebhooksMerchantLevelApi extends Service {
 
@@ -35,7 +37,7 @@ export class WebhooksMerchantLevelApi extends Service {
     * @summary Remove a webhook
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async removeWebhook(merchantId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/webhooks/{webhookId}`
@@ -52,15 +54,22 @@ export class WebhooksMerchantLevelApi extends Service {
     /**
     * @summary List all webhooks
     * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param requestOptions {@link IRequest.Options }
     * @param pageNumber {@link number } The number of the page to fetch.
     * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 10 items on a page.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link ListWebhooksResponse }
     */
-    public async listAllWebhooks(merchantId: string, requestOptions?: IRequest.Options): Promise<ListWebhooksResponse> {
+    public async listAllWebhooks(merchantId: string, pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<ListWebhooksResponse> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/webhooks`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = pageNumber ?? pageSize;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+        }
         const response = await getJsonResponse<string, ListWebhooksResponse>(
             resource,
             "",
@@ -73,7 +82,7 @@ export class WebhooksMerchantLevelApi extends Service {
     * @summary Get a webhook
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Webhook }
     */
     public async getWebhook(merchantId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<Webhook> {
@@ -94,7 +103,7 @@ export class WebhooksMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
     * @param updateMerchantWebhookRequest {@link UpdateMerchantWebhookRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Webhook }
     */
     public async updateWebhook(merchantId: string, webhookId: string, updateMerchantWebhookRequest: UpdateMerchantWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
@@ -115,7 +124,7 @@ export class WebhooksMerchantLevelApi extends Service {
     * @summary Set up a webhook
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param createMerchantWebhookRequest {@link CreateMerchantWebhookRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Webhook }
     */
     public async setUpWebhook(merchantId: string, createMerchantWebhookRequest: CreateMerchantWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
@@ -135,7 +144,7 @@ export class WebhooksMerchantLevelApi extends Service {
     * @summary Generate an HMAC key
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param webhookId {@link string } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GenerateHmacKeyResponse }
     */
     public async generateHmacKey(merchantId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<GenerateHmacKeyResponse> {
@@ -156,7 +165,7 @@ export class WebhooksMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
     * @param testWebhookRequest {@link TestWebhookRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TestWebhookResponse }
     */
     public async testWebhook(merchantId: string, webhookId: string, testWebhookRequest: TestWebhookRequest, requestOptions?: IRequest.Options): Promise<TestWebhookResponse> {

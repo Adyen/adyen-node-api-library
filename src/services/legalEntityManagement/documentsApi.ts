@@ -10,10 +10,12 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { Document } from "../../typings/legalEntityManagement/models";
+import { 
+    Document,
+    ObjectSerializer
+} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/legalEntityManagement/models";
 
 export class DocumentsApi extends Service {
 
@@ -28,7 +30,7 @@ export class DocumentsApi extends Service {
     /**
     * @summary Delete a document
     * @param id {@link string } The unique identifier of the document to be deleted.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async deleteDocument(id: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/documents/{id}`
@@ -44,7 +46,7 @@ export class DocumentsApi extends Service {
     /**
     * @summary Get a document
     * @param id {@link string } The unique identifier of the document.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Document }
     */
     public async getDocument(id: string, requestOptions?: IRequest.Options): Promise<Document> {
@@ -62,9 +64,8 @@ export class DocumentsApi extends Service {
     /**
     * @summary Update a document
     * @param id {@link string } The unique identifier of the document to be updated.
-    * @param xRequestedVerificationCode {@link string } Use the requested verification code 0_0001 to resolve any suberrors associated with the document. Requested verification codes can only be used in your test environment.
     * @param document {@link Document } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Document }
     */
     public async updateDocument(id: string, document: Document, requestOptions?: IRequest.Options): Promise<Document> {
@@ -82,9 +83,8 @@ export class DocumentsApi extends Service {
 
     /**
     * @summary Upload a document for verification checks
-    * @param xRequestedVerificationCode {@link string } Use a suberror code as your requested verification code. You can include one code at a time in your request header. Requested verification codes can only be used in your test environment.
     * @param document {@link Document } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Document }
     */
     public async uploadDocumentForVerificationChecks(document: Document, requestOptions?: IRequest.Options): Promise<Document> {

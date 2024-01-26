@@ -10,13 +10,15 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { OnboardingLink } from "../../typings/legalEntityManagement/models";
-import { OnboardingLinkInfo } from "../../typings/legalEntityManagement/models";
-import { OnboardingTheme } from "../../typings/legalEntityManagement/models";
-import { OnboardingThemes } from "../../typings/legalEntityManagement/models";
+import { 
+    OnboardingLink,
+    OnboardingLinkInfo,
+    OnboardingTheme,
+    OnboardingThemes,
+    ObjectSerializer
+} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/legalEntityManagement/models";
 
 export class HostedOnboardingApi extends Service {
 
@@ -30,7 +32,7 @@ export class HostedOnboardingApi extends Service {
 
     /**
     * @summary Get a list of hosted onboarding page themes
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link OnboardingThemes }
     */
     public async listHostedOnboardingPageThemes(requestOptions?: IRequest.Options): Promise<OnboardingThemes> {
@@ -47,7 +49,7 @@ export class HostedOnboardingApi extends Service {
     /**
     * @summary Get an onboarding link theme
     * @param id {@link string } The unique identifier of the theme
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link OnboardingTheme }
     */
     public async getOnboardingLinkTheme(id: string, requestOptions?: IRequest.Options): Promise<OnboardingTheme> {
@@ -66,7 +68,7 @@ export class HostedOnboardingApi extends Service {
     * @summary Get a link to an Adyen-hosted onboarding page
     * @param id {@link string } The unique identifier of the legal entity
     * @param onboardingLinkInfo {@link OnboardingLinkInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link OnboardingLink }
     */
     public async getLinkToAdyenhostedOnboardingPage(id: string, onboardingLinkInfo: OnboardingLinkInfo, requestOptions?: IRequest.Options): Promise<OnboardingLink> {

@@ -10,12 +10,14 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { PaymentInstrumentGroup } from "../../typings/balancePlatform/models";
-import { PaymentInstrumentGroupInfo } from "../../typings/balancePlatform/models";
-import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
+import { 
+    PaymentInstrumentGroup,
+    PaymentInstrumentGroupInfo,
+    TransactionRulesResponse,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class PaymentInstrumentGroupsApi extends Service {
 
@@ -30,7 +32,7 @@ export class PaymentInstrumentGroupsApi extends Service {
     /**
     * @summary Get a payment instrument group
     * @param id {@link string } The unique identifier of the payment instrument group.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentInstrumentGroup }
     */
     public async getPaymentInstrumentGroup(id: string, requestOptions?: IRequest.Options): Promise<PaymentInstrumentGroup> {
@@ -48,7 +50,7 @@ export class PaymentInstrumentGroupsApi extends Service {
     /**
     * @summary Get all transaction rules for a payment instrument group
     * @param id {@link string } The unique identifier of the payment instrument group.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TransactionRulesResponse }
     */
     public async getAllTransactionRulesForPaymentInstrumentGroup(id: string, requestOptions?: IRequest.Options): Promise<TransactionRulesResponse> {
@@ -66,7 +68,7 @@ export class PaymentInstrumentGroupsApi extends Service {
     /**
     * @summary Create a payment instrument group
     * @param paymentInstrumentGroupInfo {@link PaymentInstrumentGroupInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentInstrumentGroup }
     */
     public async createPaymentInstrumentGroup(paymentInstrumentGroupInfo: PaymentInstrumentGroupInfo, requestOptions?: IRequest.Options): Promise<PaymentInstrumentGroup> {

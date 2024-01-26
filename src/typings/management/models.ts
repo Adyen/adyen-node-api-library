@@ -111,6 +111,8 @@ export * from './payoutSettingsResponse';
 export * from './profile';
 export * from './receiptOptions';
 export * from './receiptPrinting';
+export * from './referenced';
+export * from './refunds';
 export * from './releaseUpdateDetails';
 export * from './requestActivationResponse';
 export * from './restServiceError';
@@ -133,6 +135,7 @@ export * from './storeLocation';
 export * from './storeSplitConfiguration';
 export * from './surcharge';
 export * from './swishInfo';
+export * from './tapToPay';
 export * from './terminal';
 export * from './terminalActionScheduleDetail';
 export * from './terminalAssignment';
@@ -285,6 +288,8 @@ import { PayoutSettingsResponse } from './payoutSettingsResponse';
 import { Profile } from './profile';
 import { ReceiptOptions } from './receiptOptions';
 import { ReceiptPrinting } from './receiptPrinting';
+import { Referenced } from './referenced';
+import { Refunds } from './refunds';
 import { ReleaseUpdateDetails } from './releaseUpdateDetails';
 import { RequestActivationResponse } from './requestActivationResponse';
 import { RestServiceError } from './restServiceError';
@@ -307,6 +312,7 @@ import { StoreLocation } from './storeLocation';
 import { StoreSplitConfiguration } from './storeSplitConfiguration';
 import { Surcharge } from './surcharge';
 import { SwishInfo } from './swishInfo';
+import { TapToPay } from './tapToPay';
 import { Terminal } from './terminal';
 import { TerminalActionScheduleDetail } from './terminalActionScheduleDetail';
 import { TerminalAssignment } from './terminalAssignment';
@@ -380,6 +386,7 @@ let enumsMap: {[index: string]: any} = {
         "InstallAndroidCertificateDetails.TypeEnum": InstallAndroidCertificateDetails.TypeEnum,
         "KlarnaInfo.RegionEnum": KlarnaInfo.RegionEnum,
         "PayAtTable.AuthenticationMethodEnum": PayAtTable.AuthenticationMethodEnum,
+        "PayAtTable.PaymentInstrumentEnum": PayAtTable.PaymentInstrumentEnum,
         "PaymentMethod.VerificationStatusEnum": PaymentMethod.VerificationStatusEnum,
         "PaymentMethodResponse.TypesWithErrorsEnum": PaymentMethodResponse.TypesWithErrorsEnum,
         "PaymentMethodSetupInfo.ShopperInteractionEnum": PaymentMethodSetupInfo.ShopperInteractionEnum,
@@ -537,6 +544,8 @@ let typeMap: {[index: string]: any} = {
     "Profile": Profile,
     "ReceiptOptions": ReceiptOptions,
     "ReceiptPrinting": ReceiptPrinting,
+    "Referenced": Referenced,
+    "Refunds": Refunds,
     "ReleaseUpdateDetails": ReleaseUpdateDetails,
     "RequestActivationResponse": RequestActivationResponse,
     "RestServiceError": RestServiceError,
@@ -559,6 +568,7 @@ let typeMap: {[index: string]: any} = {
     "StoreSplitConfiguration": StoreSplitConfiguration,
     "Surcharge": Surcharge,
     "SwishInfo": SwishInfo,
+    "TapToPay": TapToPay,
     "Terminal": Terminal,
     "TerminalActionScheduleDetail": TerminalActionScheduleDetail,
     "TerminalAssignment": TerminalAssignment,

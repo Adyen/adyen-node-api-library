@@ -10,11 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { Logo } from "../../typings/management/models";
-import { TerminalSettings } from "../../typings/management/models";
+import { 
+    Logo,
+    TerminalSettings,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class TerminalSettingsTerminalLevelApi extends Service {
 
@@ -29,7 +31,7 @@ export class TerminalSettingsTerminalLevelApi extends Service {
     /**
     * @summary Get the terminal logo
     * @param terminalId {@link string } The unique identifier of the payment terminal.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Logo }
     */
     public async getTerminalLogo(terminalId: string, requestOptions?: IRequest.Options): Promise<Logo> {
@@ -47,7 +49,7 @@ export class TerminalSettingsTerminalLevelApi extends Service {
     /**
     * @summary Get terminal settings
     * @param terminalId {@link string } The unique identifier of the payment terminal.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TerminalSettings }
     */
     public async getTerminalSettings(terminalId: string, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
@@ -66,7 +68,7 @@ export class TerminalSettingsTerminalLevelApi extends Service {
     * @summary Update the logo
     * @param terminalId {@link string } The unique identifier of the payment terminal.
     * @param logo {@link Logo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Logo }
     */
     public async updateLogo(terminalId: string, logo: Logo, requestOptions?: IRequest.Options): Promise<Logo> {
@@ -86,7 +88,7 @@ export class TerminalSettingsTerminalLevelApi extends Service {
     * @summary Update terminal settings
     * @param terminalId {@link string } The unique identifier of the payment terminal.
     * @param terminalSettings {@link TerminalSettings } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TerminalSettings }
     */
     public async updateTerminalSettings(terminalId: string, terminalSettings: TerminalSettings, requestOptions?: IRequest.Options): Promise<TerminalSettings> {

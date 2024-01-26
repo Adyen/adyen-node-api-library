@@ -10,11 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { TransferRouteRequest } from "../../typings/balancePlatform/models";
-import { TransferRouteResponse } from "../../typings/balancePlatform/models";
+import {
+    TransferRouteRequest,
+    TransferRouteResponse,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class TransferRoutesApi extends Service {
 
@@ -29,7 +31,7 @@ export class TransferRoutesApi extends Service {
     /**
     * @summary Calculate transfer routes
     * @param transferRouteRequest {@link TransferRouteRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TransferRouteResponse }
     */
     public async calculateTransferRoutes(transferRouteRequest: TransferRouteRequest, requestOptions?: IRequest.Options): Promise<TransferRouteResponse> {

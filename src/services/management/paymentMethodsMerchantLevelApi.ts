@@ -10,14 +10,16 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ApplePayInfo } from "../../typings/management/models";
-import { PaymentMethod } from "../../typings/management/models";
-import { PaymentMethodResponse } from "../../typings/management/models";
-import { PaymentMethodSetupInfo } from "../../typings/management/models";
-import { UpdatePaymentMethodInfo } from "../../typings/management/models";
+import { 
+    ApplePayInfo,
+    PaymentMethod,
+    PaymentMethodResponse,
+    PaymentMethodSetupInfo,
+    UpdatePaymentMethodInfo,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class PaymentMethodsMerchantLevelApi extends Service {
 
@@ -32,17 +34,26 @@ export class PaymentMethodsMerchantLevelApi extends Service {
     /**
     * @summary Get all payment methods
     * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param requestOptions {@link IRequest.Options }
     * @param storeId {@link string } The unique identifier of the store for which to return the payment methods.
     * @param businessLineId {@link string } The unique identifier of the Business Line for which to return the payment methods.
     * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 10 items on a page.
     * @param pageNumber {@link number } The number of the page to fetch.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link PaymentMethodResponse }
     */
-    public async getAllPaymentMethods(merchantId: string, requestOptions?: IRequest.Options): Promise<PaymentMethodResponse> {
+    public async getAllPaymentMethods(merchantId: string, storeId?: string, businessLineId?: string, pageSize?: number, pageNumber?: number, requestOptions?: IRequest.Options): Promise<PaymentMethodResponse> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/paymentMethodSettings`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = storeId ?? businessLineId ?? pageSize ?? pageNumber;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(storeId) requestOptions.params["storeId"] = storeId;
+            if(businessLineId) requestOptions.params["businessLineId"] = businessLineId;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+        }
         const response = await getJsonResponse<string, PaymentMethodResponse>(
             resource,
             "",
@@ -55,7 +66,7 @@ export class PaymentMethodsMerchantLevelApi extends Service {
     * @summary Get payment method details
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param paymentMethodId {@link string } The unique identifier of the payment method.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentMethod }
     */
     public async getPaymentMethodDetails(merchantId: string, paymentMethodId: string, requestOptions?: IRequest.Options): Promise<PaymentMethod> {
@@ -75,7 +86,7 @@ export class PaymentMethodsMerchantLevelApi extends Service {
     * @summary Get Apple Pay domains
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param paymentMethodId {@link string } The unique identifier of the payment method.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ApplePayInfo }
     */
     public async getApplePayDomains(merchantId: string, paymentMethodId: string, requestOptions?: IRequest.Options): Promise<ApplePayInfo> {
@@ -96,7 +107,7 @@ export class PaymentMethodsMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param paymentMethodId {@link string } The unique identifier of the payment method.
     * @param updatePaymentMethodInfo {@link UpdatePaymentMethodInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentMethod }
     */
     public async updatePaymentMethod(merchantId: string, paymentMethodId: string, updatePaymentMethodInfo: UpdatePaymentMethodInfo, requestOptions?: IRequest.Options): Promise<PaymentMethod> {
@@ -117,7 +128,7 @@ export class PaymentMethodsMerchantLevelApi extends Service {
     * @summary Request a payment method
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param paymentMethodSetupInfo {@link PaymentMethodSetupInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentMethod }
     */
     public async requestPaymentMethod(merchantId: string, paymentMethodSetupInfo: PaymentMethodSetupInfo, requestOptions?: IRequest.Options): Promise<PaymentMethod> {
@@ -138,7 +149,7 @@ export class PaymentMethodsMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param paymentMethodId {@link string } The unique identifier of the payment method.
     * @param applePayInfo {@link ApplePayInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async addApplePayDomain(merchantId: string, paymentMethodId: string, applePayInfo: ApplePayInfo, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains`

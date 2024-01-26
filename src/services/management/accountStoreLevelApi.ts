@@ -10,14 +10,16 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ListStoresResponse } from "../../typings/management/models";
-import { Store } from "../../typings/management/models";
-import { StoreCreationRequest } from "../../typings/management/models";
-import { StoreCreationWithMerchantCodeRequest } from "../../typings/management/models";
-import { UpdateStoreRequest } from "../../typings/management/models";
+import { 
+    ListStoresResponse,
+    Store,
+    StoreCreationRequest,
+    StoreCreationWithMerchantCodeRequest,
+    UpdateStoreRequest,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class AccountStoreLevelApi extends Service {
 
@@ -32,16 +34,24 @@ export class AccountStoreLevelApi extends Service {
     /**
     * @summary Get a list of stores
     * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param requestOptions {@link IRequest.Options }
     * @param pageNumber {@link number } The number of the page to fetch.
     * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 10 items on a page.
     * @param reference {@link string } The reference of the store.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link ListStoresResponse }
     */
-    public async listStoresByMerchantId(merchantId: string, requestOptions?: IRequest.Options): Promise<ListStoresResponse> {
+    public async listStoresByMerchantId(merchantId: string, pageNumber?: number, pageSize?: number, reference?: string, requestOptions?: IRequest.Options): Promise<ListStoresResponse> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = pageNumber ?? pageSize ?? reference;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+            if(reference) requestOptions.params["reference"] = reference;
+        }
         const response = await getJsonResponse<string, ListStoresResponse>(
             resource,
             "",
@@ -54,7 +64,7 @@ export class AccountStoreLevelApi extends Service {
     * @summary Get a store
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param storeId {@link string } The unique identifier of the store.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Store }
     */
     public async getStore(merchantId: string, storeId: string, requestOptions?: IRequest.Options): Promise<Store> {
@@ -72,16 +82,25 @@ export class AccountStoreLevelApi extends Service {
 
     /**
     * @summary Get a list of stores
+    * @param requestOptions {@link IRequest.Options }
     * @param pageNumber {@link number } The number of the page to fetch.
     * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 10 items on a page.
     * @param reference {@link string } The reference of the store.
     * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link ListStoresResponse }
     */
-    public async listStores(requestOptions?: IRequest.Options): Promise<ListStoresResponse> {
+    public async listStores(pageNumber?: number, pageSize?: number, reference?: string, merchantId?: string, requestOptions?: IRequest.Options): Promise<ListStoresResponse> {
         const endpoint = `${this.baseUrl}/stores`;
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = pageNumber ?? pageSize ?? reference ?? merchantId;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+            if(reference) requestOptions.params["reference"] = reference;
+            if(merchantId) requestOptions.params["merchantId"] = merchantId;
+        }
         const response = await getJsonResponse<string, ListStoresResponse>(
             resource,
             "",
@@ -93,7 +112,7 @@ export class AccountStoreLevelApi extends Service {
     /**
     * @summary Get a store
     * @param storeId {@link string } The unique identifier of the store.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Store }
     */
     public async getStoreById(storeId: string, requestOptions?: IRequest.Options): Promise<Store> {
@@ -113,7 +132,7 @@ export class AccountStoreLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param storeId {@link string } The unique identifier of the store.
     * @param updateStoreRequest {@link UpdateStoreRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Store }
     */
     public async updateStore(merchantId: string, storeId: string, updateStoreRequest: UpdateStoreRequest, requestOptions?: IRequest.Options): Promise<Store> {
@@ -134,7 +153,7 @@ export class AccountStoreLevelApi extends Service {
     * @summary Update a store
     * @param storeId {@link string } The unique identifier of the store.
     * @param updateStoreRequest {@link UpdateStoreRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Store }
     */
     public async updateStoreById(storeId: string, updateStoreRequest: UpdateStoreRequest, requestOptions?: IRequest.Options): Promise<Store> {
@@ -154,7 +173,7 @@ export class AccountStoreLevelApi extends Service {
     * @summary Create a store
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param storeCreationRequest {@link StoreCreationRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Store }
     */
     public async createStoreByMerchantId(merchantId: string, storeCreationRequest: StoreCreationRequest, requestOptions?: IRequest.Options): Promise<Store> {
@@ -173,7 +192,7 @@ export class AccountStoreLevelApi extends Service {
     /**
     * @summary Create a store
     * @param storeCreationWithMerchantCodeRequest {@link StoreCreationWithMerchantCodeRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Store }
     */
     public async createStore(storeCreationWithMerchantCodeRequest: StoreCreationWithMerchantCodeRequest, requestOptions?: IRequest.Options): Promise<Store> {

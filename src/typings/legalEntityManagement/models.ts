@@ -29,6 +29,7 @@ export * from './capabilityProblemEntity';
 export * from './capabilityProblemEntityRecursive';
 export * from './capabilitySettings';
 export * from './dKLocalAccountIdentification';
+export * from './dataReviewConfirmationResponse';
 export * from './document';
 export * from './documentPage';
 export * from './documentReference';
@@ -113,6 +114,7 @@ import { CapabilityProblemEntity } from './capabilityProblemEntity';
 import { CapabilityProblemEntityRecursive } from './capabilityProblemEntityRecursive';
 import { CapabilitySettings } from './capabilitySettings';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
+import { DataReviewConfirmationResponse } from './dataReviewConfirmationResponse';
 import { Document } from './document';
 import { DocumentPage } from './documentPage';
 import { DocumentReference } from './documentReference';
@@ -274,6 +276,7 @@ let typeMap: {[index: string]: any} = {
     "CapabilityProblemEntityRecursive": CapabilityProblemEntityRecursive,
     "CapabilitySettings": CapabilitySettings,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
+    "DataReviewConfirmationResponse": DataReviewConfirmationResponse,
     "Document": Document,
     "DocumentPage": DocumentPage,
     "DocumentReference": DocumentReference,

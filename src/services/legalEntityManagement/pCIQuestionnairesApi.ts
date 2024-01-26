@@ -10,15 +10,17 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { GeneratePciDescriptionRequest } from "../../typings/legalEntityManagement/models";
-import { GeneratePciDescriptionResponse } from "../../typings/legalEntityManagement/models";
-import { GetPciQuestionnaireInfosResponse } from "../../typings/legalEntityManagement/models";
-import { GetPciQuestionnaireResponse } from "../../typings/legalEntityManagement/models";
-import { PciSigningRequest } from "../../typings/legalEntityManagement/models";
-import { PciSigningResponse } from "../../typings/legalEntityManagement/models";
+import { 
+    GeneratePciDescriptionRequest,
+    GeneratePciDescriptionResponse,
+    GetPciQuestionnaireInfosResponse,
+    GetPciQuestionnaireResponse,
+    PciSigningRequest,
+    PciSigningResponse,
+    ObjectSerializer
+} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/legalEntityManagement/models";
 
 export class PCIQuestionnairesApi extends Service {
 
@@ -33,7 +35,7 @@ export class PCIQuestionnairesApi extends Service {
     /**
     * @summary Get PCI questionnaire details
     * @param id {@link string } The unique identifier of the legal entity to get PCI questionnaire information.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GetPciQuestionnaireInfosResponse }
     */
     public async getPciQuestionnaireDetails(id: string, requestOptions?: IRequest.Options): Promise<GetPciQuestionnaireInfosResponse> {
@@ -52,7 +54,7 @@ export class PCIQuestionnairesApi extends Service {
     * @summary Get PCI questionnaire
     * @param id {@link string } The legal entity ID of the individual who signed the PCI questionnaire.
     * @param pciid {@link string } The unique identifier of the signed PCI questionnaire.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GetPciQuestionnaireResponse }
     */
     public async getPciQuestionnaire(id: string, pciid: string, requestOptions?: IRequest.Options): Promise<GetPciQuestionnaireResponse> {
@@ -72,7 +74,7 @@ export class PCIQuestionnairesApi extends Service {
     * @summary Generate PCI questionnaire
     * @param id {@link string } The unique identifier of the legal entity to get PCI questionnaire information.
     * @param generatePciDescriptionRequest {@link GeneratePciDescriptionRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GeneratePciDescriptionResponse }
     */
     public async generatePciQuestionnaire(id: string, generatePciDescriptionRequest: GeneratePciDescriptionRequest, requestOptions?: IRequest.Options): Promise<GeneratePciDescriptionResponse> {
@@ -90,9 +92,9 @@ export class PCIQuestionnairesApi extends Service {
 
     /**
     * @summary Sign PCI questionnaire
-    * @param id {@link string } The legal entity ID of the individual who signed the PCI questionnaire.
+    * @param id {@link string } The legal entity ID of the user that has a contractual relationship with your platform.
     * @param pciSigningRequest {@link PciSigningRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PciSigningResponse }
     */
     public async signPciQuestionnaire(id: string, pciSigningRequest: PciSigningRequest, requestOptions?: IRequest.Options): Promise<PciSigningResponse> {

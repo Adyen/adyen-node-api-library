@@ -10,14 +10,16 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { CreateMerchantRequest } from "../../typings/management/models";
-import { CreateMerchantResponse } from "../../typings/management/models";
-import { ListMerchantResponse } from "../../typings/management/models";
-import { Merchant } from "../../typings/management/models";
-import { RequestActivationResponse } from "../../typings/management/models";
+import { 
+    CreateMerchantRequest,
+    CreateMerchantResponse,
+    ListMerchantResponse,
+    Merchant,
+    RequestActivationResponse,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class AccountMerchantLevelApi extends Service {
 
@@ -31,14 +33,21 @@ export class AccountMerchantLevelApi extends Service {
 
     /**
     * @summary Get a list of merchant accounts
+    * @param requestOptions {@link IRequest.Options }
     * @param pageNumber {@link number } The number of the page to fetch.
     * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 10 items on a page.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link ListMerchantResponse }
     */
-    public async listMerchantAccounts(requestOptions?: IRequest.Options): Promise<ListMerchantResponse> {
+    public async listMerchantAccounts(pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<ListMerchantResponse> {
         const endpoint = `${this.baseUrl}/merchants`;
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = pageNumber ?? pageSize;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+        }
         const response = await getJsonResponse<string, ListMerchantResponse>(
             resource,
             "",
@@ -50,7 +59,7 @@ export class AccountMerchantLevelApi extends Service {
     /**
     * @summary Get a merchant account
     * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link Merchant }
     */
     public async getMerchantAccount(merchantId: string, requestOptions?: IRequest.Options): Promise<Merchant> {
@@ -68,7 +77,7 @@ export class AccountMerchantLevelApi extends Service {
     /**
     * @summary Create a merchant account
     * @param createMerchantRequest {@link CreateMerchantRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CreateMerchantResponse }
     */
     public async createMerchantAccount(createMerchantRequest: CreateMerchantRequest, requestOptions?: IRequest.Options): Promise<CreateMerchantResponse> {
@@ -86,7 +95,7 @@ export class AccountMerchantLevelApi extends Service {
     /**
     * @summary Request to activate a merchant account
     * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link RequestActivationResponse }
     */
     public async requestToActivateMerchantAccount(merchantId: string, requestOptions?: IRequest.Options): Promise<RequestActivationResponse> {
