@@ -51,7 +51,7 @@ class Client {
         } else {
             this.config = new Config();
         }
-        this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix ?? '';
+        this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix ?? "";
 
         const environment = options.environment ?? this.config.environment;
         if (environment) {

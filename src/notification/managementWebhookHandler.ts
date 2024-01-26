@@ -10,7 +10,7 @@ class ManagementWebhookHandler {
     private readonly payload: string;
 
     public constructor(jsonPayload: string) {
-        this.payload = JSON.parse(jsonPayload)
+        this.payload = JSON.parse(jsonPayload);
     }
 
     // Return generic webhook type
@@ -19,7 +19,7 @@ class ManagementWebhookHandler {
         | managementWebhooks.PaymentMethodCreatedNotificationRequest
         | managementWebhooks.PaymentMethodRequestRemovedNotificationRequest
         | managementWebhooks.PaymentMethodScheduledForRemovalNotificationRequest {
-        const type = this.payload['type'];
+        const type = this.payload["type"];
         if(Object.values(managementWebhooks.MerchantCreatedNotificationRequest.TypeEnum).includes(type)){
             return this.getMerchantCreatedNotificationRequest();
         }
@@ -40,7 +40,7 @@ class ManagementWebhookHandler {
             return this.getPaymentMethodScheduledForRemovalNotificationRequest();
         }
 
-        throw new Error("Could not parse the json payload: " + this.payload)
+        throw new Error("Could not parse the json payload: " + this.payload);
     }
 
     public getMerchantCreatedNotificationRequest(): managementWebhooks.MerchantCreatedNotificationRequest {
