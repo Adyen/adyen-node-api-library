@@ -10,11 +10,14 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ListTerminalsResponse } from "../../typings/management/models";
-import { TerminalReassignmentRequest } from "../../typings/management/models";
+import { 
+    ListTerminalsResponse,
+    RestServiceError,
+    TerminalReassignmentRequest,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class TerminalsTerminalLevelApi extends Service {
 
@@ -28,6 +31,7 @@ export class TerminalsTerminalLevelApi extends Service {
 
     /**
     * @summary Get a list of terminals
+    * @param requestOptions {@link IRequest.Options }
     * @param searchQuery {@link string } Returns terminals with an ID that contains the specified string. If present, other query parameters are ignored.
     * @param otpQuery {@link string } Returns one or more terminals associated with the one-time passwords specified in the request. If this query parameter is used, other query parameters are ignored.
     * @param countries {@link string } Returns terminals located in the countries specified by their [two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
@@ -36,12 +40,24 @@ export class TerminalsTerminalLevelApi extends Service {
     * @param brandModels {@link string } Returns terminals of the [models](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) specified in the format *brand.model*.
     * @param pageNumber {@link number } The number of the page to fetch.
     * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 20 items on a page.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link ListTerminalsResponse }
     */
-    public async listTerminals(requestOptions?: IRequest.Options): Promise<ListTerminalsResponse> {
+    public async listTerminals(searchQuery?: string, otpQuery?: string, countries?: string, merchantIds?: string, storeIds?: string, brandModels?: string, pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<ListTerminalsResponse> {
         const endpoint = `${this.baseUrl}/terminals`;
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = searchQuery ?? otpQuery ?? countries ?? merchantIds ?? storeIds ?? brandModels ?? pageNumber ?? pageSize;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(searchQuery) requestOptions.params["searchQuery"] = searchQuery;
+            if(otpQuery) requestOptions.params["otpQuery"] = otpQuery;
+            if(countries) requestOptions.params["countries"] = countries;
+            if(merchantIds) requestOptions.params["merchantIds"] = merchantIds;
+            if(storeIds) requestOptions.params["storeIds"] = storeIds;
+            if(brandModels) requestOptions.params["brandModels"] = brandModels;
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+        }
         const response = await getJsonResponse<string, ListTerminalsResponse>(
             resource,
             "",
@@ -54,7 +70,7 @@ export class TerminalsTerminalLevelApi extends Service {
     * @summary Reassign a terminal
     * @param terminalId {@link string } The unique identifier of the payment terminal.
     * @param terminalReassignmentRequest {@link TerminalReassignmentRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async reassignTerminal(terminalId: string, terminalReassignmentRequest: TerminalReassignmentRequest, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/terminals/{terminalId}/reassign`

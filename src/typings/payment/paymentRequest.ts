@@ -461,6 +461,7 @@ export namespace PaymentRequest {
         CompanyName = 'CompanyName'
     }
     export enum FundingSourceEnum {
+        Credit = 'credit',
         Debit = 'debit'
     }
     export enum RecurringProcessingModelEnum {

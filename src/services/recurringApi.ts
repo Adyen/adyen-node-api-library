@@ -22,6 +22,7 @@ import { RecurringDetailsRequest } from "../typings/recurring/models";
 import { RecurringDetailsResult } from "../typings/recurring/models";
 import { ScheduleAccountUpdaterRequest } from "../typings/recurring/models";
 import { ScheduleAccountUpdaterResult } from "../typings/recurring/models";
+import { ServiceError } from "../typings/recurring/models";
 import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/recurring/models";
@@ -39,7 +40,7 @@ export class RecurringAPI extends Service {
     /**
     * @summary Create new permits linked to a recurring contract.
     * @param createPermitRequest {@link CreatePermitRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CreatePermitResult }
     */
     public async createPermit(createPermitRequest: CreatePermitRequest, requestOptions?: IRequest.Options): Promise<CreatePermitResult> {
@@ -57,7 +58,7 @@ export class RecurringAPI extends Service {
     /**
     * @summary Disable stored payment details
     * @param disableRequest {@link DisableRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link DisableResult }
     */
     public async disable(disableRequest: DisableRequest, requestOptions?: IRequest.Options): Promise<DisableResult> {
@@ -75,7 +76,7 @@ export class RecurringAPI extends Service {
     /**
     * @summary Disable an existing permit.
     * @param disablePermitRequest {@link DisablePermitRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link DisablePermitResult }
     */
     public async disablePermit(disablePermitRequest: DisablePermitRequest, requestOptions?: IRequest.Options): Promise<DisablePermitResult> {
@@ -93,7 +94,7 @@ export class RecurringAPI extends Service {
     /**
     * @summary Get stored payment details
     * @param recurringDetailsRequest {@link RecurringDetailsRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link RecurringDetailsResult }
     */
     public async listRecurringDetails(recurringDetailsRequest: RecurringDetailsRequest, requestOptions?: IRequest.Options): Promise<RecurringDetailsResult> {
@@ -111,7 +112,7 @@ export class RecurringAPI extends Service {
     /**
     * @summary Ask issuer to notify the shopper
     * @param notifyShopperRequest {@link NotifyShopperRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link NotifyShopperResult }
     */
     public async notifyShopper(notifyShopperRequest: NotifyShopperRequest, requestOptions?: IRequest.Options): Promise<NotifyShopperResult> {
@@ -129,7 +130,7 @@ export class RecurringAPI extends Service {
     /**
     * @summary Schedule running the Account Updater
     * @param scheduleAccountUpdaterRequest {@link ScheduleAccountUpdaterRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ScheduleAccountUpdaterResult }
     */
     public async scheduleAccountUpdater(scheduleAccountUpdaterRequest: ScheduleAccountUpdaterRequest, requestOptions?: IRequest.Options): Promise<ScheduleAccountUpdaterResult> {

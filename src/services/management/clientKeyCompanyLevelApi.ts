@@ -10,10 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { GenerateClientKeyResponse } from "../../typings/management/models";
+import { 
+    GenerateClientKeyResponse,
+    RestServiceError,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class ClientKeyCompanyLevelApi extends Service {
 
@@ -29,7 +32,7 @@ export class ClientKeyCompanyLevelApi extends Service {
     * @summary Generate new client key
     * @param companyId {@link string } The unique identifier of the company account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GenerateClientKeyResponse }
     */
     public async generateNewClientKey(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<GenerateClientKeyResponse> {

@@ -10,15 +10,18 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { StoreDetailAndSubmitRequest } from "../../typings/payout/models";
-import { StoreDetailAndSubmitResponse } from "../../typings/payout/models";
-import { StoreDetailRequest } from "../../typings/payout/models";
-import { StoreDetailResponse } from "../../typings/payout/models";
-import { SubmitRequest } from "../../typings/payout/models";
-import { SubmitResponse } from "../../typings/payout/models";
+import { 
+    ServiceError,
+    StoreDetailAndSubmitRequest,
+    StoreDetailAndSubmitResponse,
+    StoreDetailRequest,
+    StoreDetailResponse,
+    SubmitRequest,
+    SubmitResponse,
+    ObjectSerializer
+} from "../../typings/payout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/payout/models";
 
 export class InitializationApi extends Service {
 
@@ -33,7 +36,7 @@ export class InitializationApi extends Service {
     /**
     * @summary Store payout details
     * @param storeDetailRequest {@link StoreDetailRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link StoreDetailResponse }
     */
     public async storeDetail(storeDetailRequest: StoreDetailRequest, requestOptions?: IRequest.Options): Promise<StoreDetailResponse> {
@@ -51,7 +54,7 @@ export class InitializationApi extends Service {
     /**
     * @summary Store details and submit a payout
     * @param storeDetailAndSubmitRequest {@link StoreDetailAndSubmitRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link StoreDetailAndSubmitResponse }
     */
     public async storeDetailAndSubmitThirdParty(storeDetailAndSubmitRequest: StoreDetailAndSubmitRequest, requestOptions?: IRequest.Options): Promise<StoreDetailAndSubmitResponse> {
@@ -69,7 +72,7 @@ export class InitializationApi extends Service {
     /**
     * @summary Submit a payout
     * @param submitRequest {@link SubmitRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SubmitResponse }
     */
     public async submitThirdParty(submitRequest: SubmitRequest, requestOptions?: IRequest.Options): Promise<SubmitResponse> {

@@ -12,6 +12,7 @@ import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
 import { CostEstimateRequest } from "../typings/binLookup/models";
 import { CostEstimateResponse } from "../typings/binLookup/models";
+import { ServiceError } from "../typings/binLookup/models";
 import { ThreeDSAvailabilityRequest } from "../typings/binLookup/models";
 import { ThreeDSAvailabilityResponse } from "../typings/binLookup/models";
 import { IRequest } from "../typings/requestOptions";
@@ -31,7 +32,7 @@ export class BinLookupAPI extends Service {
     /**
     * @summary Check if 3D Secure is available
     * @param threeDSAvailabilityRequest {@link ThreeDSAvailabilityRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ThreeDSAvailabilityResponse }
     */
     public async get3dsAvailability(threeDSAvailabilityRequest: ThreeDSAvailabilityRequest, requestOptions?: IRequest.Options): Promise<ThreeDSAvailabilityResponse> {
@@ -49,7 +50,7 @@ export class BinLookupAPI extends Service {
     /**
     * @summary Get a fees cost estimate
     * @param costEstimateRequest {@link CostEstimateRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CostEstimateResponse }
     */
     public async getCostEstimate(costEstimateRequest: CostEstimateRequest, requestOptions?: IRequest.Options): Promise<CostEstimateResponse> {

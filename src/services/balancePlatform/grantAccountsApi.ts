@@ -10,10 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { CapitalGrantAccount } from "../../typings/balancePlatform/models";
+import { 
+    CapitalGrantAccount,
+    RestServiceError,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class GrantAccountsApi extends Service {
 
@@ -28,7 +31,7 @@ export class GrantAccountsApi extends Service {
     /**
     * @summary Get a grant account
     * @param id {@link string } The unique identifier of the grant account.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CapitalGrantAccount }
     */
     public async getGrantAccount(id: string, requestOptions?: IRequest.Options): Promise<CapitalGrantAccount> {

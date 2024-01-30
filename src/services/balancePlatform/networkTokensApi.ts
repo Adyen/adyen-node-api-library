@@ -10,11 +10,14 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { GetNetworkTokenResponse } from "../../typings/balancePlatform/models";
-import { UpdateNetworkTokenRequest } from "../../typings/balancePlatform/models";
+import { 
+    GetNetworkTokenResponse,
+    RestServiceError,
+    UpdateNetworkTokenRequest,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class NetworkTokensApi extends Service {
 
@@ -29,7 +32,7 @@ export class NetworkTokensApi extends Service {
     /**
     * @summary Get a network token
     * @param networkTokenId {@link string } The unique identifier of the network token.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GetNetworkTokenResponse }
     */
     public async getNetworkToken(networkTokenId: string, requestOptions?: IRequest.Options): Promise<GetNetworkTokenResponse> {
@@ -48,7 +51,7 @@ export class NetworkTokensApi extends Service {
     * @summary Update a network token
     * @param networkTokenId {@link string } The unique identifier of the network token.
     * @param updateNetworkTokenRequest {@link UpdateNetworkTokenRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async updateNetworkToken(networkTokenId: string, updateNetworkTokenRequest: UpdateNetworkTokenRequest, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/networkTokens/{networkTokenId}`

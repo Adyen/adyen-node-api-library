@@ -17,6 +17,7 @@ import {
     CancelOrderResponse,
     CreateOrderRequest,
     CreateOrderResponse,
+    ServiceError,
     ObjectSerializer
 } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -30,24 +31,6 @@ export class OrdersApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
-    }
-
-    /**
-    * @summary Create an order
-    * @param createOrderRequest {@link CreateOrderRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link CreateOrderResponse }
-    */
-    public async orders(createOrderRequest: CreateOrderRequest, requestOptions?: IRequest.Options): Promise<CreateOrderResponse> {
-        const endpoint = `${this.baseUrl}/orders`;
-        const resource = new Resource(this, endpoint);
-        const request: CreateOrderRequest = ObjectSerializer.serialize(createOrderRequest, "CreateOrderRequest");
-        const response = await getJsonResponse<CreateOrderRequest, CreateOrderResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "CreateOrderResponse");
     }
 
     /**
@@ -84,5 +67,23 @@ export class OrdersApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "BalanceCheckResponse");
+    }
+
+    /**
+    * @summary Create an order
+    * @param createOrderRequest {@link CreateOrderRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CreateOrderResponse }
+    */
+    public async orders(createOrderRequest: CreateOrderRequest, requestOptions?: IRequest.Options): Promise<CreateOrderResponse> {
+        const endpoint = `${this.baseUrl}/orders`;
+        const resource = new Resource(this, endpoint);
+        const request: CreateOrderRequest = ObjectSerializer.serialize(createOrderRequest, "CreateOrderRequest");
+        const response = await getJsonResponse<CreateOrderRequest, CreateOrderResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "CreateOrderResponse");
     }
 }

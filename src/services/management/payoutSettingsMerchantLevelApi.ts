@@ -10,13 +10,16 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { PayoutSettings } from "../../typings/management/models";
-import { PayoutSettingsRequest } from "../../typings/management/models";
-import { PayoutSettingsResponse } from "../../typings/management/models";
-import { UpdatePayoutSettingsRequest } from "../../typings/management/models";
+import { 
+    PayoutSettings,
+    PayoutSettingsRequest,
+    PayoutSettingsResponse,
+    RestServiceError,
+    UpdatePayoutSettingsRequest,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class PayoutSettingsMerchantLevelApi extends Service {
 
@@ -29,10 +32,30 @@ export class PayoutSettingsMerchantLevelApi extends Service {
     }
 
     /**
+    * @summary Add a payout setting
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param payoutSettingsRequest {@link PayoutSettingsRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link PayoutSettings }
+    */
+    public async addPayoutSetting(merchantId: string, payoutSettingsRequest: PayoutSettingsRequest, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/payoutSettings`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const request: PayoutSettingsRequest = ObjectSerializer.serialize(payoutSettingsRequest, "PayoutSettingsRequest");
+        const response = await getJsonResponse<PayoutSettingsRequest, PayoutSettings>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "PayoutSettings");
+    }
+
+    /**
     * @summary Delete a payout setting
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param payoutSettingsId {@link string } The unique identifier of the payout setting.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async deletePayoutSetting(merchantId: string, payoutSettingsId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/payoutSettings/{payoutSettingsId}`
@@ -47,28 +70,10 @@ export class PayoutSettingsMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Get a list of payout settings
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link PayoutSettingsResponse }
-    */
-    public async listPayoutSettings(merchantId: string, requestOptions?: IRequest.Options): Promise<PayoutSettingsResponse> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/payoutSettings`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, PayoutSettingsResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "PayoutSettingsResponse");
-    }
-
-    /**
     * @summary Get a payout setting
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param payoutSettingsId {@link string } The unique identifier of the payout setting.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PayoutSettings }
     */
     public async getPayoutSetting(merchantId: string, payoutSettingsId: string, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
@@ -85,11 +90,29 @@ export class PayoutSettingsMerchantLevelApi extends Service {
     }
 
     /**
+    * @summary Get a list of payout settings
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link PayoutSettingsResponse }
+    */
+    public async listPayoutSettings(merchantId: string, requestOptions?: IRequest.Options): Promise<PayoutSettingsResponse> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/payoutSettings`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, PayoutSettingsResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "PayoutSettingsResponse");
+    }
+
+    /**
     * @summary Update a payout setting
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param payoutSettingsId {@link string } The unique identifier of the payout setting.
     * @param updatePayoutSettingsRequest {@link UpdatePayoutSettingsRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PayoutSettings }
     */
     public async updatePayoutSetting(merchantId: string, payoutSettingsId: string, updatePayoutSettingsRequest: UpdatePayoutSettingsRequest, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
@@ -102,26 +125,6 @@ export class PayoutSettingsMerchantLevelApi extends Service {
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
-        );
-        return ObjectSerializer.deserialize(response, "PayoutSettings");
-    }
-
-    /**
-    * @summary Add a payout setting
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param payoutSettingsRequest {@link PayoutSettingsRequest } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link PayoutSettings }
-    */
-    public async addPayoutSetting(merchantId: string, payoutSettingsRequest: PayoutSettingsRequest, requestOptions?: IRequest.Options): Promise<PayoutSettings> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/payoutSettings`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const request: PayoutSettingsRequest = ObjectSerializer.serialize(payoutSettingsRequest, "PayoutSettingsRequest");
-        const response = await getJsonResponse<PayoutSettingsRequest, PayoutSettings>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "PayoutSettings");
     }

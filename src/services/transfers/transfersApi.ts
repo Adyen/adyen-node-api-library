@@ -10,9 +10,11 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import {
+import { 
+    RestServiceError,
     ReturnTransferRequest,
     ReturnTransferResponse,
+    ServiceError,
     Transfer,
     TransferInfo,
     ObjectSerializer
@@ -28,24 +30,6 @@ export class TransfersApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
-    }
-
-    /**
-    * @summary Transfer funds
-    * @param transferInfo {@link TransferInfo } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link Transfer }
-    */
-    public async transferFunds(transferInfo: TransferInfo, requestOptions?: IRequest.Options): Promise<Transfer> {
-        const endpoint = `${this.baseUrl}/transfers`;
-        const resource = new Resource(this, endpoint);
-        const request: TransferInfo = ObjectSerializer.serialize(transferInfo, "TransferInfo");
-        const response = await getJsonResponse<TransferInfo, Transfer>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "Transfer");
     }
 
     /**
@@ -66,5 +50,23 @@ export class TransfersApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "ReturnTransferResponse");
+    }
+
+    /**
+    * @summary Transfer funds
+    * @param transferInfo {@link TransferInfo } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link Transfer }
+    */
+    public async transferFunds(transferInfo: TransferInfo, requestOptions?: IRequest.Options): Promise<Transfer> {
+        const endpoint = `${this.baseUrl}/transfers`;
+        const resource = new Resource(this, endpoint);
+        const request: TransferInfo = ObjectSerializer.serialize(transferInfo, "TransferInfo");
+        const response = await getJsonResponse<TransferInfo, Transfer>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "Transfer");
     }
 }

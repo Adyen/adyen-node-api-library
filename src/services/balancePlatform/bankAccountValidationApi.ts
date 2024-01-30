@@ -10,10 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { BankAccountIdentificationValidationRequest } from "../../typings/balancePlatform/models";
+import { 
+    BankAccountIdentificationValidationRequest,
+    RestServiceError,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class BankAccountValidationApi extends Service {
 
@@ -28,7 +31,7 @@ export class BankAccountValidationApi extends Service {
     /**
     * @summary Validate a bank account
     * @param bankAccountIdentificationValidationRequest {@link BankAccountIdentificationValidationRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async validateBankAccountIdentification(bankAccountIdentificationValidationRequest: BankAccountIdentificationValidationRequest, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/validateBankAccountIdentification`;

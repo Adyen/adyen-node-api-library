@@ -10,11 +10,14 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { GrantOffer } from "../../typings/balancePlatform/models";
-import { GrantOffers } from "../../typings/balancePlatform/models";
+import { 
+    GrantOffer,
+    GrantOffers,
+    RestServiceError,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class GrantOffersApi extends Service {
 
@@ -28,13 +31,19 @@ export class GrantOffersApi extends Service {
 
     /**
     * @summary Get all available grant offers
+    * @param requestOptions {@link IRequest.Options }
     * @param accountHolderId {@link string } The unique identifier of the grant account.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link GrantOffers }
     */
-    public async getAllAvailableGrantOffers(requestOptions?: IRequest.Options): Promise<GrantOffers> {
+    public async getAllAvailableGrantOffers(accountHolderId?: string, requestOptions?: IRequest.Options): Promise<GrantOffers> {
         const endpoint = `${this.baseUrl}/grantOffers`;
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = accountHolderId;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(accountHolderId) requestOptions.params["accountHolderId"] = accountHolderId;
+        }
         const response = await getJsonResponse<string, GrantOffers>(
             resource,
             "",
@@ -46,7 +55,7 @@ export class GrantOffersApi extends Service {
     /**
     * @summary Get a grant offer
     * @param grantOfferId {@link string } The unique identifier of the grant offer.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GrantOffer }
     */
     public async getGrantOffer(grantOfferId: string, requestOptions?: IRequest.Options): Promise<GrantOffer> {

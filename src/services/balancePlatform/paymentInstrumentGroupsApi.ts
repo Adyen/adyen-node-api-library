@@ -10,12 +10,15 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { PaymentInstrumentGroup } from "../../typings/balancePlatform/models";
-import { PaymentInstrumentGroupInfo } from "../../typings/balancePlatform/models";
-import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
+import { 
+    PaymentInstrumentGroup,
+    PaymentInstrumentGroupInfo,
+    RestServiceError,
+    TransactionRulesResponse,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class PaymentInstrumentGroupsApi extends Service {
 
@@ -28,19 +31,19 @@ export class PaymentInstrumentGroupsApi extends Service {
     }
 
     /**
-    * @summary Get a payment instrument group
-    * @param id {@link string } The unique identifier of the payment instrument group.
-    * @param requestOptions {@link IRequest.Options}
+    * @summary Create a payment instrument group
+    * @param paymentInstrumentGroupInfo {@link PaymentInstrumentGroupInfo } 
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentInstrumentGroup }
     */
-    public async getPaymentInstrumentGroup(id: string, requestOptions?: IRequest.Options): Promise<PaymentInstrumentGroup> {
-        const endpoint = `${this.baseUrl}/paymentInstrumentGroups/{id}`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+    public async createPaymentInstrumentGroup(paymentInstrumentGroupInfo: PaymentInstrumentGroupInfo, requestOptions?: IRequest.Options): Promise<PaymentInstrumentGroup> {
+        const endpoint = `${this.baseUrl}/paymentInstrumentGroups`;
         const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, PaymentInstrumentGroup>(
+        const request: PaymentInstrumentGroupInfo = ObjectSerializer.serialize(paymentInstrumentGroupInfo, "PaymentInstrumentGroupInfo");
+        const response = await getJsonResponse<PaymentInstrumentGroupInfo, PaymentInstrumentGroup>(
             resource,
-            "",
-            { ...requestOptions, method: "GET" }
+            request,
+            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "PaymentInstrumentGroup");
     }
@@ -48,7 +51,7 @@ export class PaymentInstrumentGroupsApi extends Service {
     /**
     * @summary Get all transaction rules for a payment instrument group
     * @param id {@link string } The unique identifier of the payment instrument group.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TransactionRulesResponse }
     */
     public async getAllTransactionRulesForPaymentInstrumentGroup(id: string, requestOptions?: IRequest.Options): Promise<TransactionRulesResponse> {
@@ -64,19 +67,19 @@ export class PaymentInstrumentGroupsApi extends Service {
     }
 
     /**
-    * @summary Create a payment instrument group
-    * @param paymentInstrumentGroupInfo {@link PaymentInstrumentGroupInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @summary Get a payment instrument group
+    * @param id {@link string } The unique identifier of the payment instrument group.
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentInstrumentGroup }
     */
-    public async createPaymentInstrumentGroup(paymentInstrumentGroupInfo: PaymentInstrumentGroupInfo, requestOptions?: IRequest.Options): Promise<PaymentInstrumentGroup> {
-        const endpoint = `${this.baseUrl}/paymentInstrumentGroups`;
+    public async getPaymentInstrumentGroup(id: string, requestOptions?: IRequest.Options): Promise<PaymentInstrumentGroup> {
+        const endpoint = `${this.baseUrl}/paymentInstrumentGroups/{id}`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: PaymentInstrumentGroupInfo = ObjectSerializer.serialize(paymentInstrumentGroupInfo, "PaymentInstrumentGroupInfo");
-        const response = await getJsonResponse<PaymentInstrumentGroupInfo, PaymentInstrumentGroup>(
+        const response = await getJsonResponse<string, PaymentInstrumentGroup>(
             resource,
-            request,
-            { ...requestOptions, method: "POST" }
+            "",
+            { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PaymentInstrumentGroup");
     }
