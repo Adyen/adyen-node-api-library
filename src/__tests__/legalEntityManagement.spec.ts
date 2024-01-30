@@ -41,7 +41,7 @@ afterEach(() => {
 
 describe("Legal Entity Management", (): void => {
 
-    const id = "123456789"
+    const id = "123456789";
 
     describe("LegalEntities", (): void => {
         it("should support POST /legalEntities", async (): Promise<void> => {
@@ -251,7 +251,7 @@ describe("Legal Entity Management", (): void => {
 
             expect(response.id).toBe(id);
             expect(response.type).toBe(Document.TypeEnum.DriversLicense);
-            expect(response.owner).toEqual({id : "123456789", type : "passport" })
+            expect(response.owner).toEqual({id : "123456789", type : "passport" });
         });
 
         it("should support GET /documents/{id}", async (): Promise<void> => {
@@ -262,7 +262,7 @@ describe("Legal Entity Management", (): void => {
 
             expect(response.id).toBe(id);
             expect(response.type).toBe(Document.TypeEnum.DriversLicense);
-            expect(response.owner).toEqual({id : "123456789", type : "passport" })
+            expect(response.owner).toEqual({id : "123456789", type : "passport" });
         });
 
         it("should support PATCH /documents/{id}", async (): Promise<void> => {
@@ -289,7 +289,7 @@ describe("Legal Entity Management", (): void => {
 
             expect(response.id).toBe(id);
             expect(response.type).toBe(Document.TypeEnum.DriversLicense);
-            expect(response.owner).toEqual({id : "123456789", type : "passport" })
+            expect(response.owner).toEqual({id : "123456789", type : "passport" });
         });
 
         it("should support DELETE /documents/{id}", async (): Promise<void> => {
@@ -314,7 +314,7 @@ describe("Legal Entity Management", (): void => {
         });
 
         it("should support GET /themes", async (): Promise<void> => {
-            scope.get(`/themes`)
+            scope.get("/themes")
                 .reply(200, onboardingThemes);
 
             const response: models.OnboardingThemes = await legalEntityManagement.HostedOnboardingApi.listHostedOnboardingPageThemes();

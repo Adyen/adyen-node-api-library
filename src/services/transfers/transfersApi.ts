@@ -10,11 +10,9 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    RestServiceError,
+import {
     ReturnTransferRequest,
     ReturnTransferResponse,
-    ServiceError,
     Transfer,
     TransferInfo,
     ObjectSerializer

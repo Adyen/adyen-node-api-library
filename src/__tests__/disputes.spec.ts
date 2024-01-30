@@ -187,4 +187,4 @@ describe("Disputes", (): void => {
         const response: SupplyDefenseDocumentResponse = await disputesService.supplyDefenseDocument(request);
         expect(response.disputeServiceResult.success).toEqual(true);
     });
-})
+});

@@ -13,7 +13,6 @@ import Client from "../../client";
 import { 
     ApplePaySessionRequest,
     ApplePaySessionResponse,
-    ServiceError,
     UtilityRequest,
     UtilityResponse,
     ObjectSerializer

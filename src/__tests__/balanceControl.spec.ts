@@ -72,4 +72,4 @@ describe("Balance Control", (): void => {
             }
         }
     });
-})
+});

@@ -39,7 +39,7 @@ class Service {
         if (url.includes("pal-")) {
             if (this.client.liveEndpointUrlPrefix === "")
             {
-                throw new Error("Please provide your unique live url prefix on the setEnvironment() call on the Client.")
+                throw new Error("Please provide your unique live url prefix on the setEnvironment() call on the Client.");
             }
             return url.replace("https://pal-test.adyen.com/pal/servlet/",
                     `https://${this.client.liveEndpointUrlPrefix}-pal-live.adyenpayments.com/pal/servlet/`);
@@ -48,7 +48,7 @@ class Service {
         if (url.includes("checkout-")) {
             if (this.client.liveEndpointUrlPrefix === "")
             {
-                throw new Error("Please provide your unique live url prefix on the setEnvironment() call on the Client.")
+                throw new Error("Please provide your unique live url prefix on the setEnvironment() call on the Client.");
             }
             return url.replace("https://checkout-test.adyen.com/",
                     `https://${this.client.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/checkout/`);
