@@ -12,4 +12,4 @@ export const invalidUserCreated422 = {
         }
     ],
     "errorCode": "31_007"
-}
+};

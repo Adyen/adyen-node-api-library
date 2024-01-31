@@ -32,6 +32,7 @@ export * from './amazonPayDetails';
 export * from './amount';
 export * from './androidPayDetails';
 export * from './applePayDetails';
+export * from './applePayDonations';
 export * from './applePaySessionRequest';
 export * from './applePaySessionResponse';
 export * from './applicationInfo';
@@ -52,6 +53,7 @@ export * from './cardBrandDetails';
 export * from './cardDetails';
 export * from './cardDetailsRequest';
 export * from './cardDetailsResponse';
+export * from './cardDonations';
 export * from './cellulantDetails';
 export * from './checkoutAwaitAction';
 export * from './checkoutDelegatedAuthenticationAction';
@@ -89,7 +91,9 @@ export * from './fundRecipient';
 export * from './genericIssuerPaymentMethodDetails';
 export * from './giropayDetails';
 export * from './googlePayDetails';
+export * from './googlePayDonations';
 export * from './idealDetails';
+export * from './idealDonations';
 export * from './inputDetail';
 export * from './installmentOption';
 export * from './installments';
@@ -110,6 +114,7 @@ export * from './openInvoiceDetails';
 export * from './payPalDetails';
 export * from './payUUpiDetails';
 export * from './payWithGoogleDetails';
+export * from './payWithGoogleDonations';
 export * from './paymentAmountUpdateRequest';
 export * from './paymentAmountUpdateResponse';
 export * from './paymentCancelRequest';
@@ -216,6 +221,7 @@ import { AmazonPayDetails } from './amazonPayDetails';
 import { Amount } from './amount';
 import { AndroidPayDetails } from './androidPayDetails';
 import { ApplePayDetails } from './applePayDetails';
+import { ApplePayDonations } from './applePayDonations';
 import { ApplePaySessionRequest } from './applePaySessionRequest';
 import { ApplePaySessionResponse } from './applePaySessionResponse';
 import { ApplicationInfo } from './applicationInfo';
@@ -236,6 +242,7 @@ import { CardBrandDetails } from './cardBrandDetails';
 import { CardDetails } from './cardDetails';
 import { CardDetailsRequest } from './cardDetailsRequest';
 import { CardDetailsResponse } from './cardDetailsResponse';
+import { CardDonations } from './cardDonations';
 import { CellulantDetails } from './cellulantDetails';
 import { CheckoutAwaitAction } from './checkoutAwaitAction';
 import { CheckoutDelegatedAuthenticationAction } from './checkoutDelegatedAuthenticationAction';
@@ -273,7 +280,9 @@ import { FundRecipient } from './fundRecipient';
 import { GenericIssuerPaymentMethodDetails } from './genericIssuerPaymentMethodDetails';
 import { GiropayDetails } from './giropayDetails';
 import { GooglePayDetails } from './googlePayDetails';
+import { GooglePayDonations } from './googlePayDonations';
 import { IdealDetails } from './idealDetails';
+import { IdealDonations } from './idealDonations';
 import { InputDetail } from './inputDetail';
 import { InstallmentOption } from './installmentOption';
 import { Installments } from './installments';
@@ -294,6 +303,7 @@ import { OpenInvoiceDetails } from './openInvoiceDetails';
 import { PayPalDetails } from './payPalDetails';
 import { PayUUpiDetails } from './payUUpiDetails';
 import { PayWithGoogleDetails } from './payWithGoogleDetails';
+import { PayWithGoogleDonations } from './payWithGoogleDonations';
 import { PaymentAmountUpdateRequest } from './paymentAmountUpdateRequest';
 import { PaymentAmountUpdateResponse } from './paymentAmountUpdateResponse';
 import { PaymentCancelRequest } from './paymentCancelRequest';
@@ -410,6 +420,8 @@ let enumsMap: {[index: string]: any} = {
         "AndroidPayDetails.TypeEnum": AndroidPayDetails.TypeEnum,
         "ApplePayDetails.FundingSourceEnum": ApplePayDetails.FundingSourceEnum,
         "ApplePayDetails.TypeEnum": ApplePayDetails.TypeEnum,
+        "ApplePayDonations.FundingSourceEnum": ApplePayDonations.FundingSourceEnum,
+        "ApplePayDonations.TypeEnum": ApplePayDonations.TypeEnum,
         "AuthenticationData.AttemptAuthenticationEnum": AuthenticationData.AttemptAuthenticationEnum,
         "Avs.EnabledEnum": Avs.EnabledEnum,
         "BacsDirectDebitDetails.TypeEnum": BacsDirectDebitDetails.TypeEnum,
@@ -421,6 +433,8 @@ let enumsMap: {[index: string]: any} = {
         "CancelOrderResponse.ResultCodeEnum": CancelOrderResponse.ResultCodeEnum,
         "CardDetails.FundingSourceEnum": CardDetails.FundingSourceEnum,
         "CardDetails.TypeEnum": CardDetails.TypeEnum,
+        "CardDonations.FundingSourceEnum": CardDonations.FundingSourceEnum,
+        "CardDonations.TypeEnum": CardDonations.TypeEnum,
         "CellulantDetails.TypeEnum": CellulantDetails.TypeEnum,
         "CheckoutAwaitAction.TypeEnum": CheckoutAwaitAction.TypeEnum,
         "CheckoutDelegatedAuthenticationAction.TypeEnum": CheckoutDelegatedAuthenticationAction.TypeEnum,
@@ -457,7 +471,10 @@ let enumsMap: {[index: string]: any} = {
         "GiropayDetails.TypeEnum": GiropayDetails.TypeEnum,
         "GooglePayDetails.FundingSourceEnum": GooglePayDetails.FundingSourceEnum,
         "GooglePayDetails.TypeEnum": GooglePayDetails.TypeEnum,
+        "GooglePayDonations.FundingSourceEnum": GooglePayDonations.FundingSourceEnum,
+        "GooglePayDonations.TypeEnum": GooglePayDonations.TypeEnum,
         "IdealDetails.TypeEnum": IdealDetails.TypeEnum,
+        "IdealDonations.TypeEnum": IdealDonations.TypeEnum,
         "InstallmentOption.PlansEnum": InstallmentOption.PlansEnum,
         "Installments.PlanEnum": Installments.PlanEnum,
         "KlarnaDetails.TypeEnum": KlarnaDetails.TypeEnum,
@@ -477,6 +494,8 @@ let enumsMap: {[index: string]: any} = {
         "PayUUpiDetails.TypeEnum": PayUUpiDetails.TypeEnum,
         "PayWithGoogleDetails.FundingSourceEnum": PayWithGoogleDetails.FundingSourceEnum,
         "PayWithGoogleDetails.TypeEnum": PayWithGoogleDetails.TypeEnum,
+        "PayWithGoogleDonations.FundingSourceEnum": PayWithGoogleDonations.FundingSourceEnum,
+        "PayWithGoogleDonations.TypeEnum": PayWithGoogleDonations.TypeEnum,
         "PaymentAmountUpdateRequest.IndustryUsageEnum": PaymentAmountUpdateRequest.IndustryUsageEnum,
         "PaymentAmountUpdateResponse.IndustryUsageEnum": PaymentAmountUpdateResponse.IndustryUsageEnum,
         "PaymentAmountUpdateResponse.StatusEnum": PaymentAmountUpdateResponse.StatusEnum,
@@ -584,6 +603,7 @@ let typeMap: {[index: string]: any} = {
     "Amount": Amount,
     "AndroidPayDetails": AndroidPayDetails,
     "ApplePayDetails": ApplePayDetails,
+    "ApplePayDonations": ApplePayDonations,
     "ApplePaySessionRequest": ApplePaySessionRequest,
     "ApplePaySessionResponse": ApplePaySessionResponse,
     "ApplicationInfo": ApplicationInfo,
@@ -604,6 +624,7 @@ let typeMap: {[index: string]: any} = {
     "CardDetails": CardDetails,
     "CardDetailsRequest": CardDetailsRequest,
     "CardDetailsResponse": CardDetailsResponse,
+    "CardDonations": CardDonations,
     "CellulantDetails": CellulantDetails,
     "CheckoutAwaitAction": CheckoutAwaitAction,
     "CheckoutDelegatedAuthenticationAction": CheckoutDelegatedAuthenticationAction,
@@ -641,7 +662,9 @@ let typeMap: {[index: string]: any} = {
     "GenericIssuerPaymentMethodDetails": GenericIssuerPaymentMethodDetails,
     "GiropayDetails": GiropayDetails,
     "GooglePayDetails": GooglePayDetails,
+    "GooglePayDonations": GooglePayDonations,
     "IdealDetails": IdealDetails,
+    "IdealDonations": IdealDonations,
     "InputDetail": InputDetail,
     "InstallmentOption": InstallmentOption,
     "Installments": Installments,
@@ -662,6 +685,7 @@ let typeMap: {[index: string]: any} = {
     "PayPalDetails": PayPalDetails,
     "PayUUpiDetails": PayUUpiDetails,
     "PayWithGoogleDetails": PayWithGoogleDetails,
+    "PayWithGoogleDonations": PayWithGoogleDonations,
     "PaymentAmountUpdateRequest": PaymentAmountUpdateRequest,
     "PaymentAmountUpdateResponse": PaymentAmountUpdateResponse,
     "PaymentCancelRequest": PaymentCancelRequest,

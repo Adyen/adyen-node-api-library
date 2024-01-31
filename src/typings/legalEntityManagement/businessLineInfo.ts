@@ -17,7 +17,7 @@ export class BusinessLineInfo {
     */
     'capability'?: BusinessLineInfo.CapabilityEnum;
     /**
-    * A code that represents the industry of the legal entity. For example, **4431A** for computer software stores.
+    * A code that represents the [industry of the legal entity](https://docs.adyen.com/marketplaces-and-platforms/verification-requirements/reference-additional-products/#list-industry-codes). For example, **4431A** for computer software stores.
     */
     'industryCode': string;
     /**
@@ -29,7 +29,7 @@ export class BusinessLineInfo {
     */
     'salesChannels'?: Array<string>;
     /**
-    * The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**
+    * The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  
     */
     'service': BusinessLineInfo.ServiceEnum;
     'sourceOfFunds'?: SourceOfFunds;
@@ -96,7 +96,6 @@ export namespace BusinessLineInfo {
     }
     export enum ServiceEnum {
         PaymentProcessing = 'paymentProcessing',
-        Issuing = 'issuing',
         Banking = 'banking'
     }
 }

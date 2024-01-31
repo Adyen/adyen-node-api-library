@@ -41,14 +41,6 @@ export class TransferEvent {
     */
     'reason'?: TransferEvent.ReasonEnum;
     /**
-    * SchemeTraceID retrieved from scheme.
-    */
-    'schemeTraceID'?: string;
-    /**
-    * SchemeUniqueTransactionID retrieved from scheme.
-    */
-    'schemeUniqueTransactionID'?: string;
-    /**
     * The status of the transfer event.
     */
     'status'?: TransferEvent.StatusEnum;
@@ -116,16 +108,6 @@ export class TransferEvent {
             "name": "reason",
             "baseName": "reason",
             "type": "TransferEvent.ReasonEnum"
-        },
-        {
-            "name": "schemeTraceID",
-            "baseName": "schemeTraceID",
-            "type": "string"
-        },
-        {
-            "name": "schemeUniqueTransactionID",
-            "baseName": "schemeUniqueTransactionID",
-            "type": "string"
         },
         {
             "name": "status",

@@ -10,11 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { AllowedOrigin } from "../../typings/management/models";
-import { AllowedOriginsResponse } from "../../typings/management/models";
+import { 
+    AllowedOrigin,
+    AllowedOriginsResponse,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class AllowedOriginsCompanyLevelApi extends Service {
 
@@ -27,11 +29,33 @@ export class AllowedOriginsCompanyLevelApi extends Service {
     }
 
     /**
+    * @summary Create an allowed origin
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param apiCredentialId {@link string } Unique identifier of the API credential.
+    * @param allowedOrigin {@link AllowedOrigin } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link AllowedOriginsResponse }
+    */
+    public async createAllowedOrigin(companyId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
+            .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
+        const resource = new Resource(this, endpoint);
+        const request: AllowedOrigin = ObjectSerializer.serialize(allowedOrigin, "AllowedOrigin");
+        const response = await getJsonResponse<AllowedOrigin, AllowedOriginsResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
+    }
+
+    /**
     * @summary Delete an allowed origin
     * @param companyId {@link string } The unique identifier of the company account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
     * @param originId {@link string } Unique identifier of the allowed origin.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     */
     public async deleteAllowedOrigin(companyId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}`
@@ -47,31 +71,11 @@ export class AllowedOriginsCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Get a list of allowed origins
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param apiCredentialId {@link string } Unique identifier of the API credential.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link AllowedOriginsResponse }
-    */
-    public async listAllowedOrigins(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
-            .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, AllowedOriginsResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
-    }
-
-    /**
     * @summary Get an allowed origin
     * @param companyId {@link string } The unique identifier of the company account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
     * @param originId {@link string } Unique identifier of the allowed origin.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AllowedOrigin }
     */
     public async getAllowedOrigin(companyId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
@@ -89,23 +93,21 @@ export class AllowedOriginsCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Create an allowed origin
+    * @summary Get a list of allowed origins
     * @param companyId {@link string } The unique identifier of the company account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
-    * @param allowedOrigin {@link AllowedOrigin } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AllowedOriginsResponse }
     */
-    public async createAllowedOrigin(companyId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+    public async listAllowedOrigins(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
-        const request: AllowedOrigin = ObjectSerializer.serialize(allowedOrigin, "AllowedOrigin");
-        const response = await getJsonResponse<AllowedOrigin, AllowedOriginsResponse>(
+        const response = await getJsonResponse<string, AllowedOriginsResponse>(
             resource,
-            request,
-            { ...requestOptions, method: "POST" }
+            "",
+            { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
     }

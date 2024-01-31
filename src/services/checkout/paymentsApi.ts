@@ -38,6 +38,24 @@ export class PaymentsApi extends Service {
     }
 
     /**
+    * @summary Get the list of brands on the card
+    * @param cardDetailsRequest {@link CardDetailsRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CardDetailsResponse }
+    */
+    public async cardDetails(cardDetailsRequest: CardDetailsRequest, requestOptions?: IRequest.Options): Promise<CardDetailsResponse> {
+        const endpoint = `${this.baseUrl}/cardDetails`;
+        const resource = new Resource(this, endpoint);
+        const request: CardDetailsRequest = ObjectSerializer.serialize(cardDetailsRequest, "CardDetailsRequest");
+        const response = await getJsonResponse<CardDetailsRequest, CardDetailsResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "CardDetailsResponse");
+    }
+
+    /**
     * @summary Get the result of a payment session
     * @param sessionId {@link string } A unique identifier of the session.
     * @param requestOptions {@link IRequest.Options }
@@ -60,24 +78,6 @@ export class PaymentsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "SessionResultResponse");
-    }
-
-    /**
-    * @summary Get the list of brands on the card
-    * @param cardDetailsRequest {@link CardDetailsRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link CardDetailsResponse }
-    */
-    public async cardDetails(cardDetailsRequest: CardDetailsRequest, requestOptions?: IRequest.Options): Promise<CardDetailsResponse> {
-        const endpoint = `${this.baseUrl}/cardDetails`;
-        const resource = new Resource(this, endpoint);
-        const request: CardDetailsRequest = ObjectSerializer.serialize(cardDetailsRequest, "CardDetailsRequest");
-        const response = await getJsonResponse<CardDetailsRequest, CardDetailsResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "CardDetailsResponse");
     }
 
     /**

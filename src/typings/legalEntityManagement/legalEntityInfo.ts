@@ -37,6 +37,10 @@ export class LegalEntityInfo {
     */
     'type'?: LegalEntityInfo.TypeEnum;
     'unincorporatedPartnership'?: UnincorporatedPartnership;
+    /**
+    * A key-value pair that specifies the [verification process](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details/) for a legal entity. Set to **upfront** for [upfront verification](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details#upfront).
+    */
+    'verificationPlan'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -85,6 +89,11 @@ export class LegalEntityInfo {
             "name": "unincorporatedPartnership",
             "baseName": "unincorporatedPartnership",
             "type": "UnincorporatedPartnership"
+        },
+        {
+            "name": "verificationPlan",
+            "baseName": "verificationPlan",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

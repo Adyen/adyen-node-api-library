@@ -29,7 +29,7 @@ export class BalanceControlAPI extends Service {
     /**
     * @summary Start a balance transfer
     * @param balanceTransferRequest {@link BalanceTransferRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link BalanceTransferResponse }
     */
     public async balanceTransfer(balanceTransferRequest: BalanceTransferRequest, requestOptions?: IRequest.Options): Promise<BalanceTransferResponse> {

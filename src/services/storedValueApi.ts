@@ -39,7 +39,7 @@ export class StoredValueAPI extends Service {
     /**
     * @summary Changes the status of the payment method.
     * @param storedValueStatusChangeRequest {@link StoredValueStatusChangeRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link StoredValueStatusChangeResponse }
     */
     public async changeStatus(storedValueStatusChangeRequest: StoredValueStatusChangeRequest, requestOptions?: IRequest.Options): Promise<StoredValueStatusChangeResponse> {
@@ -57,7 +57,7 @@ export class StoredValueAPI extends Service {
     /**
     * @summary Checks the balance.
     * @param storedValueBalanceCheckRequest {@link StoredValueBalanceCheckRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link StoredValueBalanceCheckResponse }
     */
     public async checkBalance(storedValueBalanceCheckRequest: StoredValueBalanceCheckRequest, requestOptions?: IRequest.Options): Promise<StoredValueBalanceCheckResponse> {
@@ -75,7 +75,7 @@ export class StoredValueAPI extends Service {
     /**
     * @summary Issues a new card.
     * @param storedValueIssueRequest {@link StoredValueIssueRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link StoredValueIssueResponse }
     */
     public async issue(storedValueIssueRequest: StoredValueIssueRequest, requestOptions?: IRequest.Options): Promise<StoredValueIssueResponse> {
@@ -93,7 +93,7 @@ export class StoredValueAPI extends Service {
     /**
     * @summary Loads the payment method.
     * @param storedValueLoadRequest {@link StoredValueLoadRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link StoredValueLoadResponse }
     */
     public async load(storedValueLoadRequest: StoredValueLoadRequest, requestOptions?: IRequest.Options): Promise<StoredValueLoadResponse> {
@@ -111,7 +111,7 @@ export class StoredValueAPI extends Service {
     /**
     * @summary Merge the balance of two cards.
     * @param storedValueBalanceMergeRequest {@link StoredValueBalanceMergeRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link StoredValueBalanceMergeResponse }
     */
     public async mergeBalance(storedValueBalanceMergeRequest: StoredValueBalanceMergeRequest, requestOptions?: IRequest.Options): Promise<StoredValueBalanceMergeResponse> {
@@ -129,7 +129,7 @@ export class StoredValueAPI extends Service {
     /**
     * @summary Voids a transaction.
     * @param storedValueVoidRequest {@link StoredValueVoidRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link StoredValueVoidResponse }
     */
     public async voidTransaction(storedValueVoidRequest: StoredValueVoidRequest, requestOptions?: IRequest.Options): Promise<StoredValueVoidResponse> {

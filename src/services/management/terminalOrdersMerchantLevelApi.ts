@@ -10,17 +10,19 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { BillingEntitiesResponse } from "../../typings/management/models";
-import { ShippingLocation } from "../../typings/management/models";
-import { ShippingLocationsResponse } from "../../typings/management/models";
-import { TerminalModelsResponse } from "../../typings/management/models";
-import { TerminalOrder } from "../../typings/management/models";
-import { TerminalOrderRequest } from "../../typings/management/models";
-import { TerminalOrdersResponse } from "../../typings/management/models";
-import { TerminalProductsResponse } from "../../typings/management/models";
+import { 
+    BillingEntitiesResponse,
+    ShippingLocation,
+    ShippingLocationsResponse,
+    TerminalModelsResponse,
+    TerminalOrder,
+    TerminalOrderRequest,
+    TerminalOrdersResponse,
+    TerminalProductsResponse,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class TerminalOrdersMerchantLevelApi extends Service {
 
@@ -33,174 +35,30 @@ export class TerminalOrdersMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Get a list of billing entities
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param name {@link string } The name of the billing entity.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link BillingEntitiesResponse }
-    */
-    public async listBillingEntities(merchantId: string, requestOptions?: IRequest.Options): Promise<BillingEntitiesResponse> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/billingEntities`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, BillingEntitiesResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "BillingEntitiesResponse");
-    }
-
-    /**
-    * @summary Get a list of shipping locations
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param name {@link string } The name of the shipping location.
-    * @param offset {@link number } The number of locations to skip.
-    * @param limit {@link number } The number of locations to return.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link ShippingLocationsResponse }
-    */
-    public async listShippingLocations(merchantId: string, requestOptions?: IRequest.Options): Promise<ShippingLocationsResponse> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/shippingLocations`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, ShippingLocationsResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "ShippingLocationsResponse");
-    }
-
-    /**
-    * @summary Get a list of terminal models
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link TerminalModelsResponse }
-    */
-    public async listTerminalModels(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalModelsResponse> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalModels`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, TerminalModelsResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "TerminalModelsResponse");
-    }
-
-    /**
-    * @summary Get a list of orders
-    * @param merchantId {@link string } 
-    * @param customerOrderReference {@link string } Your purchase order number.
-    * @param status {@link string } The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered.
-    * @param offset {@link number } The number of orders to skip.
-    * @param limit {@link number } The number of orders to return.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link TerminalOrdersResponse }
-    */
-    public async listOrders(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalOrdersResponse> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalOrders`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, TerminalOrdersResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "TerminalOrdersResponse");
-    }
-
-    /**
-    * @summary Get an order
+    * @summary Cancel an order
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param orderId {@link string } The unique identifier of the order.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TerminalOrder }
     */
-    public async getOrder(merchantId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalOrders/{orderId}`
+    public async cancelOrder(merchantId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalOrders/{orderId}/cancel`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "orderId" + "}", encodeURIComponent(String(orderId)));
         const resource = new Resource(this, endpoint);
         const response = await getJsonResponse<string, TerminalOrder>(
             resource,
             "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "TerminalOrder");
-    }
-
-    /**
-    * @summary Get a list of terminal products
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param country {@link string } The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**
-    * @param terminalModelId {@link string } The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/merchants/{merchantId}/terminalModels) response. For example, **Verifone.M400**
-    * @param offset {@link number } The number of products to skip.
-    * @param limit {@link number } The number of products to return.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link TerminalProductsResponse }
-    */
-    public async listTerminalProducts(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalProductsResponse> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalProducts`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, TerminalProductsResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "TerminalProductsResponse");
-    }
-
-    /**
-    * @summary Update an order
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param orderId {@link string } The unique identifier of the order.
-    * @param terminalOrderRequest {@link TerminalOrderRequest } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link TerminalOrder }
-    */
-    public async updateOrder(merchantId: string, orderId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalOrders/{orderId}`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
-            .replace("{" + "orderId" + "}", encodeURIComponent(String(orderId)));
-        const resource = new Resource(this, endpoint);
-        const request: TerminalOrderRequest = ObjectSerializer.serialize(terminalOrderRequest, "TerminalOrderRequest");
-        const response = await getJsonResponse<TerminalOrderRequest, TerminalOrder>(
-            resource,
-            request,
-            { ...requestOptions, method: "PATCH" }
-        );
-        return ObjectSerializer.deserialize(response, "TerminalOrder");
-    }
-
-    /**
-    * @summary Create a shipping location
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param shippingLocation {@link ShippingLocation } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link ShippingLocation }
-    */
-    public async createShippingLocation(merchantId: string, shippingLocation: ShippingLocation, requestOptions?: IRequest.Options): Promise<ShippingLocation> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/shippingLocations`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const request: ShippingLocation = ObjectSerializer.serialize(shippingLocation, "ShippingLocation");
-        const response = await getJsonResponse<ShippingLocation, ShippingLocation>(
-            resource,
-            request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ShippingLocation");
+        return ObjectSerializer.deserialize(response, "TerminalOrder");
     }
 
     /**
     * @summary Create an order
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param terminalOrderRequest {@link TerminalOrderRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TerminalOrder }
     */
     public async createOrder(merchantId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
@@ -217,21 +75,197 @@ export class TerminalOrdersMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Cancel an order
+    * @summary Create a shipping location
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param shippingLocation {@link ShippingLocation } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link ShippingLocation }
+    */
+    public async createShippingLocation(merchantId: string, shippingLocation: ShippingLocation, requestOptions?: IRequest.Options): Promise<ShippingLocation> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/shippingLocations`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const request: ShippingLocation = ObjectSerializer.serialize(shippingLocation, "ShippingLocation");
+        const response = await getJsonResponse<ShippingLocation, ShippingLocation>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "ShippingLocation");
+    }
+
+    /**
+    * @summary Get an order
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param orderId {@link string } The unique identifier of the order.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TerminalOrder }
     */
-    public async cancelOrder(merchantId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalOrders/{orderId}/cancel`
+    public async getOrder(merchantId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalOrders/{orderId}`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "orderId" + "}", encodeURIComponent(String(orderId)));
         const resource = new Resource(this, endpoint);
         const response = await getJsonResponse<string, TerminalOrder>(
             resource,
             "",
-            { ...requestOptions, method: "POST" }
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TerminalOrder");
+    }
+
+    /**
+    * @summary Get a list of billing entities
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param requestOptions {@link IRequest.Options }
+    * @param name {@link string } The name of the billing entity.
+    * @return {@link BillingEntitiesResponse }
+    */
+    public async listBillingEntities(merchantId: string, name?: string, requestOptions?: IRequest.Options): Promise<BillingEntitiesResponse> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/billingEntities`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = name;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(name) requestOptions.params["name"] = name;
+        }
+        const response = await getJsonResponse<string, BillingEntitiesResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "BillingEntitiesResponse");
+    }
+
+    /**
+    * @summary Get a list of orders
+    * @param merchantId {@link string } 
+    * @param requestOptions {@link IRequest.Options }
+    * @param customerOrderReference {@link string } Your purchase order number.
+    * @param status {@link string } The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered.
+    * @param offset {@link number } The number of orders to skip.
+    * @param limit {@link number } The number of orders to return.
+    * @return {@link TerminalOrdersResponse }
+    */
+    public async listOrders(merchantId: string, customerOrderReference?: string, status?: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<TerminalOrdersResponse> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalOrders`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = customerOrderReference ?? status ?? offset ?? limit;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(customerOrderReference) requestOptions.params["customerOrderReference"] = customerOrderReference;
+            if(status) requestOptions.params["status"] = status;
+            if(offset) requestOptions.params["offset"] = offset;
+            if(limit) requestOptions.params["limit"] = limit;
+        }
+        const response = await getJsonResponse<string, TerminalOrdersResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TerminalOrdersResponse");
+    }
+
+    /**
+    * @summary Get a list of shipping locations
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param requestOptions {@link IRequest.Options }
+    * @param name {@link string } The name of the shipping location.
+    * @param offset {@link number } The number of locations to skip.
+    * @param limit {@link number } The number of locations to return.
+    * @return {@link ShippingLocationsResponse }
+    */
+    public async listShippingLocations(merchantId: string, name?: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<ShippingLocationsResponse> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/shippingLocations`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = name ?? offset ?? limit;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(name) requestOptions.params["name"] = name;
+            if(offset) requestOptions.params["offset"] = offset;
+            if(limit) requestOptions.params["limit"] = limit;
+        }
+        const response = await getJsonResponse<string, ShippingLocationsResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "ShippingLocationsResponse");
+    }
+
+    /**
+    * @summary Get a list of terminal models
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TerminalModelsResponse }
+    */
+    public async listTerminalModels(merchantId: string, requestOptions?: IRequest.Options): Promise<TerminalModelsResponse> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalModels`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, TerminalModelsResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TerminalModelsResponse");
+    }
+
+    /**
+    * @summary Get a list of terminal products
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param requestOptions {@link IRequest.Options }
+    * @param country {@link string } The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**
+    * @param terminalModelId {@link string } The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/merchants/{merchantId}/terminalModels) response. For example, **Verifone.M400**
+    * @param offset {@link number } The number of products to skip.
+    * @param limit {@link number } The number of products to return.
+    * @return {@link TerminalProductsResponse }
+    */
+    public async listTerminalProducts(merchantId: string, country?: string, terminalModelId?: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<TerminalProductsResponse> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalProducts`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = country ?? terminalModelId ?? offset ?? limit;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(country) requestOptions.params["country"] = country;
+            if(terminalModelId) requestOptions.params["terminalModelId"] = terminalModelId;
+            if(offset) requestOptions.params["offset"] = offset;
+            if(limit) requestOptions.params["limit"] = limit;
+        }
+        const response = await getJsonResponse<string, TerminalProductsResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TerminalProductsResponse");
+    }
+
+    /**
+    * @summary Update an order
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param orderId {@link string } The unique identifier of the order.
+    * @param terminalOrderRequest {@link TerminalOrderRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TerminalOrder }
+    */
+    public async updateOrder(merchantId: string, orderId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalOrders/{orderId}`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
+            .replace("{" + "orderId" + "}", encodeURIComponent(String(orderId)));
+        const resource = new Resource(this, endpoint);
+        const request: TerminalOrderRequest = ObjectSerializer.serialize(terminalOrderRequest, "TerminalOrderRequest");
+        const response = await getJsonResponse<TerminalOrderRequest, TerminalOrder>(
+            resource,
+            request,
+            { ...requestOptions, method: "PATCH" }
         );
         return ObjectSerializer.deserialize(response, "TerminalOrder");
     }

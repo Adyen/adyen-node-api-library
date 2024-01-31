@@ -10,11 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ScheduleTerminalActionsRequest } from "../../typings/management/models";
-import { ScheduleTerminalActionsResponse } from "../../typings/management/models";
+import {
+    ScheduleTerminalActionsRequest,
+    ScheduleTerminalActionsResponse,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class TerminalActionsTerminalLevelApi extends Service {
 
@@ -29,7 +31,7 @@ export class TerminalActionsTerminalLevelApi extends Service {
     /**
     * @summary Create a terminal action
     * @param scheduleTerminalActionsRequest {@link ScheduleTerminalActionsRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ScheduleTerminalActionsResponse }
     */
     public async createTerminalAction(scheduleTerminalActionsRequest: ScheduleTerminalActionsRequest, requestOptions?: IRequest.Options): Promise<ScheduleTerminalActionsResponse> {

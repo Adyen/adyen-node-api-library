@@ -14,7 +14,7 @@ export class PaymentInstrumentRequirement {
     */
     'description'?: string;
     /**
-    * The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.
+    * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.
     */
     'issuingCountryCode'?: string;
     /**

@@ -198,7 +198,7 @@ class HttpURLConnectionClient implements ClientInterface {
             if (terminalCertificatePath == "unencrypted"){
                 this.agentOptions = {
                     rejectUnauthorized: false
-                }
+                };
             } else {
                 const certificateInput = fs.readFileSync(terminalCertificatePath);
                 this.agentOptions = {

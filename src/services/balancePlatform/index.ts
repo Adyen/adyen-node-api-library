@@ -10,9 +10,11 @@
 import { AccountHoldersApi } from "./accountHoldersApi";
 import { BalanceAccountsApi } from "./balanceAccountsApi";
 import { BankAccountValidationApi } from "./bankAccountValidationApi";
+import { CardOrdersApi } from "./cardOrdersApi";
 import { GrantAccountsApi } from "./grantAccountsApi";
 import { GrantOffersApi } from "./grantOffersApi";
 import { NetworkTokensApi } from "./networkTokensApi";
+import { PINFunctionalityApi } from "./pINFunctionalityApi";
 import { PaymentInstrumentGroupsApi } from "./paymentInstrumentGroupsApi";
 import { PaymentInstrumentsApi } from "./paymentInstrumentsApi";
 import { PlatformApi } from "./platformApi";
@@ -40,6 +42,10 @@ export default class BalancePlatformAPI extends Service {
         return new BankAccountValidationApi(this.client);
     }
 
+    public get CardOrdersApi() {
+        return new CardOrdersApi(this.client);
+    }
+
     public get GrantAccountsApi() {
         return new GrantAccountsApi(this.client);
     }
@@ -50,6 +56,10 @@ export default class BalancePlatformAPI extends Service {
 
     public get NetworkTokensApi() {
         return new NetworkTokensApi(this.client);
+    }
+
+    public get PINFunctionalityApi() {
+        return new PINFunctionalityApi(this.client);
     }
 
     public get PaymentInstrumentGroupsApi() {

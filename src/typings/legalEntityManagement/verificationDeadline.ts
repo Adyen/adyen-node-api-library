@@ -10,7 +10,7 @@
 
 export class VerificationDeadline {
     /**
-    * The names of the capabilities to be disallowed.
+    * The list of capabilities that will be disallowed if information is not reviewed by the time of the deadline
     */
     'capabilities': Array<VerificationDeadline.CapabilitiesEnum>;
     /**

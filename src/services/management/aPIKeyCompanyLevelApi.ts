@@ -10,10 +10,12 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { GenerateApiKeyResponse } from "../../typings/management/models";
+import { 
+    GenerateApiKeyResponse,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class APIKeyCompanyLevelApi extends Service {
 
@@ -29,7 +31,7 @@ export class APIKeyCompanyLevelApi extends Service {
     * @summary Generate new API key
     * @param companyId {@link string } The unique identifier of the company account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GenerateApiKeyResponse }
     */
     public async generateNewApiKey(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<GenerateApiKeyResponse> {

@@ -20,6 +20,10 @@ export class UnincorporatedPartnership {
     */
     'dateOfIncorporation'?: string;
     /**
+    * Short description about the Legal Arrangement.
+    */
+    'description'?: string;
+    /**
     * The registered name, if different from the `name`.
     */
     'doingBusinessAs'?: string;
@@ -38,7 +42,7 @@ export class UnincorporatedPartnership {
     */
     'taxInformation'?: Array<TaxInformation>;
     /**
-    * Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**.
+    * Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership**  
     */
     'type': UnincorporatedPartnership.TypeEnum;
     /**
@@ -61,6 +65,11 @@ export class UnincorporatedPartnership {
         {
             "name": "dateOfIncorporation",
             "baseName": "dateOfIncorporation",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
             "type": "string"
         },
         {

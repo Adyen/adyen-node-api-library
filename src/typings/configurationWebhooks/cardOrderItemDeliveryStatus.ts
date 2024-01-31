@@ -10,15 +10,15 @@
 
 export class CardOrderItemDeliveryStatus {
     /**
-    * Error message.
+    * An error message.
     */
     'errorMessage'?: string;
     /**
-    * Status of the delivery.
+    * The status of the PIN delivery.
     */
     'status'?: CardOrderItemDeliveryStatus.StatusEnum;
     /**
-    * Tracking number of the delivery.
+    * The tracking number of the PIN delivery.
     */
     'trackingNumber'?: string;
 
