@@ -201,12 +201,7 @@ describe("Management", (): void => {
             scope.get("/merchants?pageNumber=1&pageSize=1")
                 .reply(200, responses.listMerchantResponse);
 
-            const response:  management.ListMerchantResponse = await managementService.AccountMerchantLevelApi.listMerchantAccounts({
-                params: {
-                    "pageNumber": "1",
-                    "pageSize": "1"
-                }
-            });
+            const response:  management.ListMerchantResponse = await managementService.AccountMerchantLevelApi.listMerchantAccounts(1,1);
 
             expect(response).toBeTruthy();
         });
@@ -280,12 +275,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/apiCredentials?pageNumber=1&pageSize=1`)
                 .reply(200, responses.listMerchantApiCredentialsResponse);
 
-            const response:  management.ListMerchantApiCredentialsResponse = await managementService.APICredentialsMerchantLevelApi.listApiCredentials(merchantId, {
-                params: {
-                    "pageNumber": "1",
-                    "pageSize": "1"
-                }
-            });
+            const response:  management.ListMerchantApiCredentialsResponse = await managementService.APICredentialsMerchantLevelApi.listApiCredentials(merchantId, 1,1,);
 
             expect(response).toBeTruthy();
         });
@@ -345,15 +335,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/paymentMethodSettings?storeId=1&businessLineId=1&pageNumber=1&pageSize=1`)
                 .reply(200, responses.paymentMethodResponse);
 
-            const response:  management.PaymentMethodResponse = await managementService.PaymentMethodsMerchantLevelApi.getAllPaymentMethods(merchantId, {
-                params: {
-                    "storeId": "1",
-                    "businessLineId": "1",
-                    "pageSize": "1",
-                    "pageNumber": "1"
-                }
-            });
-
+            const response:  management.PaymentMethodResponse = await managementService.PaymentMethodsMerchantLevelApi.getAllPaymentMethods(merchantId,"1","1",1,1);
             expect(response).toBeTruthy();
         });
 
@@ -438,11 +420,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/billingEntities?name=bill`)
                 .reply(200, responses.billingEntitiesResponse);
 
-            const response:  management.BillingEntitiesResponse = await managementService.TerminalOrdersMerchantLevelApi.listBillingEntities(merchantId, {
-                params: {
-                    "name": "bill"
-                }
-            });
+            const response:  management.BillingEntitiesResponse = await managementService.TerminalOrdersMerchantLevelApi.listBillingEntities(merchantId, "bill");
 
             expect(response).toBeTruthy();
         });
@@ -451,14 +429,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/shippingLocations?name=1&offset=1&limit=1`)
                 .reply(200, responses.shippingLocationsResponse);
 
-            const response:  management.ShippingLocationsResponse = await managementService.TerminalOrdersMerchantLevelApi.listShippingLocations(merchantId, {
-                params: {
-                    "name": "1",
-                    "offset": "1",
-                    "limit": "1"
-                }
-            });
-
+            const response:  management.ShippingLocationsResponse = await managementService.TerminalOrdersMerchantLevelApi.listShippingLocations(merchantId, "1", 1, 1);
             expect(response).toBeTruthy();
         });
 
@@ -484,7 +455,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/terminalOrders?customerOrderReference=1&status=1&offset=1&limit=1`)
                 .reply(200, responses.terminalOrdersResponse);
 
-            const response:  management.TerminalOrdersResponse = await managementService.TerminalOrdersMerchantLevelApi.listOrders(merchantId, {
+            const response:  management.TerminalOrdersResponse = await managementService.TerminalOrdersMerchantLevelApi.listOrders(merchantId, undefined, undefined, undefined, undefined, {
                 params: {
                     "customerOrderReference": "1",
                     "status": "1",
@@ -536,15 +507,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/terminalProducts?country=1&terminalModelId=1&offset=1&limit=1`)
                 .reply(200, responses.terminalProductsResponse);
 
-            const response:  management.TerminalProductsResponse = await managementService.TerminalOrdersMerchantLevelApi.listTerminalProducts(merchantId, {
-                params: {
-                    "country": "1",
-                    "terminalModelId": "1",
-                    "offset": "1",
-                    "limit": "1"
-                }
-            });
-
+            const response:  management.TerminalProductsResponse = await managementService.TerminalOrdersMerchantLevelApi.listTerminalProducts(merchantId, "1", "1", 1, 1);
             expect(response).toBeTruthy();
         });
     });
@@ -554,11 +517,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/terminalLogos?model=1`)
                 .reply(200, responses.logo);
 
-            const response:  management.Logo = await managementService.TerminalSettingsMerchantLevelApi.getTerminalLogo(merchantId, {
-                params: {
-                    "model": "1"
-                }
-            });
+            const response:  management.Logo = await managementService.TerminalSettingsMerchantLevelApi.getTerminalLogo(merchantId, "1");
 
             expect(response).toBeTruthy();
         });
@@ -567,12 +526,7 @@ describe("Management", (): void => {
             scope.patch(`/merchants/${merchantId}/terminalLogos?model=1`)
                 .reply(200, responses.logo);
 
-            const response:  management.Logo = await managementService.TerminalSettingsMerchantLevelApi.updateTerminalLogo(merchantId, requests.logo, {
-                params: {
-                    "model": "1"
-                }
-            });
-
+            const response:  management.Logo = await managementService.TerminalSettingsMerchantLevelApi.updateTerminalLogo(merchantId, requests.logo, "1");
             expect(response).toBeTruthy();
         });
 
@@ -600,12 +554,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/users?pageNumber=1&pageSize=1`)
                 .reply(200, responses.listMerchantUsersResponse);
 
-            const response:  management.ListMerchantUsersResponse = await managementService.UsersMerchantLevelApi.listUsers(merchantId, {
-                params: {
-                    "pageNumber": "1",
-                    "pageSize": "1"
-                }
-            });
+            const response:  management.ListMerchantUsersResponse = await managementService.UsersMerchantLevelApi.listUsers(merchantId, 1,1,);
 
             expect(response).toBeTruthy();
         });
@@ -660,13 +609,7 @@ describe("Management", (): void => {
             scope.get(`/merchants/${merchantId}/webhooks?pageNumber=1&pageSize=1`)
                 .reply(200, responses.listWebhooksResponse);
 
-            const response:  management.ListWebhooksResponse = await managementService.WebhooksMerchantLevelApi.listAllWebhooks(merchantId, {
-                params: {
-                    "pageNumber": "1",
-                    "pageSize": "1"
-                }
-            });
-
+            const response:  management.ListWebhooksResponse = await managementService.WebhooksMerchantLevelApi.listAllWebhooks(merchantId, 1,1,);
             expect(response).toBeTruthy();
         });
 

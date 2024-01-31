@@ -173,7 +173,7 @@ describe("Balance Platform", (): void => {
                     offset: "10"
                 }
             };
-            const response: balancePlatform.PaginatedBalanceAccountsResponse = await balancePlatformService.AccountHoldersApi.getAllBalanceAccountsOfAccountHolder("AH32272223222B5CM4MWJ892H", requestOptions);
+            const response: balancePlatform.PaginatedBalanceAccountsResponse = await balancePlatformService.AccountHoldersApi.getAllBalanceAccountsOfAccountHolder("AH32272223222B5CM4MWJ892H", undefined, undefined, requestOptions);
 
             expect(response.balanceAccounts[0].id).toBe("BA32272223222B59K6ZXHBFN6");
         });
@@ -236,7 +236,7 @@ describe("Balance Platform", (): void => {
                     ]
                 });
 
-            const response: balancePlatform.BalanceSweepConfigurationsResponse = await balancePlatformService.BalanceAccountsApi.getAllSweepsForBalanceAccount(balanceAccountId, {
+            const response: balancePlatform.BalanceSweepConfigurationsResponse = await balancePlatformService.BalanceAccountsApi.getAllSweepsForBalanceAccount(balanceAccountId, undefined, undefined, {
                 params: {
                     "limit": "5",
                     "offset": "10"
@@ -459,7 +459,7 @@ describe("Balance Platform", (): void => {
                     ]
                 });
 
-            const response: balancePlatform.PaginatedPaymentInstrumentsResponse = await balancePlatformService.BalanceAccountsApi.getAllPaymentInstrumentsForBalanceAccount(balanceAccountId, {
+            const response: balancePlatform.PaginatedPaymentInstrumentsResponse = await balancePlatformService.BalanceAccountsApi.getPaymentInstrumentsLinkedToBalanceAccount(balanceAccountId, undefined, undefined, undefined, {
                 params: {
                     limit: "3",
                     offset: "6",
