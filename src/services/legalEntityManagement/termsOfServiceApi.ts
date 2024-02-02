@@ -10,15 +10,17 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { AcceptTermsOfServiceRequest } from "../../typings/legalEntityManagement/models";
-import { AcceptTermsOfServiceResponse } from "../../typings/legalEntityManagement/models";
-import { CalculateTermsOfServiceStatusResponse } from "../../typings/legalEntityManagement/models";
-import { GetTermsOfServiceAcceptanceInfosResponse } from "../../typings/legalEntityManagement/models";
-import { GetTermsOfServiceDocumentRequest } from "../../typings/legalEntityManagement/models";
-import { GetTermsOfServiceDocumentResponse } from "../../typings/legalEntityManagement/models";
+import { 
+    AcceptTermsOfServiceRequest,
+    AcceptTermsOfServiceResponse,
+    CalculateTermsOfServiceStatusResponse,
+    GetTermsOfServiceAcceptanceInfosResponse,
+    GetTermsOfServiceDocumentRequest,
+    GetTermsOfServiceDocumentResponse,
+    ObjectSerializer
+} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/legalEntityManagement/models";
 
 export class TermsOfServiceApi extends Service {
 
@@ -31,47 +33,11 @@ export class TermsOfServiceApi extends Service {
     }
 
     /**
-    * @summary Get Terms of Service information for a legal entity
-    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link GetTermsOfServiceAcceptanceInfosResponse }
-    */
-    public async getTermsOfServiceInformationForLegalEntity(id: string, requestOptions?: IRequest.Options): Promise<GetTermsOfServiceAcceptanceInfosResponse> {
-        const endpoint = `${this.baseUrl}/legalEntities/{id}/termsOfServiceAcceptanceInfos`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, GetTermsOfServiceAcceptanceInfosResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "GetTermsOfServiceAcceptanceInfosResponse");
-    }
-
-    /**
-    * @summary Get Terms of Service status
-    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link CalculateTermsOfServiceStatusResponse }
-    */
-    public async getTermsOfServiceStatus(id: string, requestOptions?: IRequest.Options): Promise<CalculateTermsOfServiceStatusResponse> {
-        const endpoint = `${this.baseUrl}/legalEntities/{id}/termsOfServiceStatus`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, CalculateTermsOfServiceStatusResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "CalculateTermsOfServiceStatusResponse");
-    }
-
-    /**
     * @summary Accept Terms of Service
     * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.
     * @param termsofservicedocumentid {@link string } The unique identifier of the Terms of Service document.
     * @param acceptTermsOfServiceRequest {@link AcceptTermsOfServiceRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AcceptTermsOfServiceResponse }
     */
     public async acceptTermsOfService(id: string, termsofservicedocumentid: string, acceptTermsOfServiceRequest: AcceptTermsOfServiceRequest, requestOptions?: IRequest.Options): Promise<AcceptTermsOfServiceResponse> {
@@ -92,7 +58,7 @@ export class TermsOfServiceApi extends Service {
     * @summary Get Terms of Service document
     * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.
     * @param getTermsOfServiceDocumentRequest {@link GetTermsOfServiceDocumentRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link GetTermsOfServiceDocumentResponse }
     */
     public async getTermsOfServiceDocument(id: string, getTermsOfServiceDocumentRequest: GetTermsOfServiceDocumentRequest, requestOptions?: IRequest.Options): Promise<GetTermsOfServiceDocumentResponse> {
@@ -106,5 +72,41 @@ export class TermsOfServiceApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "GetTermsOfServiceDocumentResponse");
+    }
+
+    /**
+    * @summary Get Terms of Service information for a legal entity
+    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link GetTermsOfServiceAcceptanceInfosResponse }
+    */
+    public async getTermsOfServiceInformationForLegalEntity(id: string, requestOptions?: IRequest.Options): Promise<GetTermsOfServiceAcceptanceInfosResponse> {
+        const endpoint = `${this.baseUrl}/legalEntities/{id}/termsOfServiceAcceptanceInfos`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, GetTermsOfServiceAcceptanceInfosResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "GetTermsOfServiceAcceptanceInfosResponse");
+    }
+
+    /**
+    * @summary Get Terms of Service status
+    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CalculateTermsOfServiceStatusResponse }
+    */
+    public async getTermsOfServiceStatus(id: string, requestOptions?: IRequest.Options): Promise<CalculateTermsOfServiceStatusResponse> {
+        const endpoint = `${this.baseUrl}/legalEntities/{id}/termsOfServiceStatus`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, CalculateTermsOfServiceStatusResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "CalculateTermsOfServiceStatusResponse");
     }
 }

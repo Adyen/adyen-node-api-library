@@ -66,6 +66,7 @@ export * from './responseAdditionalData3DSecure';
 export * from './responseAdditionalDataBillingAddress';
 export * from './responseAdditionalDataCard';
 export * from './responseAdditionalDataCommon';
+export * from './responseAdditionalDataDomesticError';
 export * from './responseAdditionalDataInstallments';
 export * from './responseAdditionalDataNetworkTokens';
 export * from './responseAdditionalDataOpi';
@@ -146,6 +147,7 @@ import { ResponseAdditionalData3DSecure } from './responseAdditionalData3DSecure
 import { ResponseAdditionalDataBillingAddress } from './responseAdditionalDataBillingAddress';
 import { ResponseAdditionalDataCard } from './responseAdditionalDataCard';
 import { ResponseAdditionalDataCommon } from './responseAdditionalDataCommon';
+import { ResponseAdditionalDataDomesticError } from './responseAdditionalDataDomesticError';
 import { ResponseAdditionalDataInstallments } from './responseAdditionalDataInstallments';
 import { ResponseAdditionalDataNetworkTokens } from './responseAdditionalDataNetworkTokens';
 import { ResponseAdditionalDataOpi } from './responseAdditionalDataOpi';
@@ -294,6 +296,7 @@ let typeMap: {[index: string]: any} = {
     "ResponseAdditionalDataBillingAddress": ResponseAdditionalDataBillingAddress,
     "ResponseAdditionalDataCard": ResponseAdditionalDataCard,
     "ResponseAdditionalDataCommon": ResponseAdditionalDataCommon,
+    "ResponseAdditionalDataDomesticError": ResponseAdditionalDataDomesticError,
     "ResponseAdditionalDataInstallments": ResponseAdditionalDataInstallments,
     "ResponseAdditionalDataNetworkTokens": ResponseAdditionalDataNetworkTokens,
     "ResponseAdditionalDataOpi": ResponseAdditionalDataOpi,

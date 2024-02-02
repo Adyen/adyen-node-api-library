@@ -10,16 +10,18 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { ListNetworkTokensResponse } from "../../typings/balancePlatform/models";
-import { PaymentInstrument } from "../../typings/balancePlatform/models";
-import { PaymentInstrumentInfo } from "../../typings/balancePlatform/models";
-import { PaymentInstrumentRevealInfo } from "../../typings/balancePlatform/models";
-import { PaymentInstrumentUpdateRequest } from "../../typings/balancePlatform/models";
-import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
-import { UpdatePaymentInstrument } from "../../typings/balancePlatform/models";
+import { 
+    ListNetworkTokensResponse,
+    PaymentInstrument,
+    PaymentInstrumentInfo,
+    PaymentInstrumentRevealInfo,
+    PaymentInstrumentUpdateRequest,
+    TransactionRulesResponse,
+    UpdatePaymentInstrument,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class PaymentInstrumentsApi extends Service {
 
@@ -32,9 +34,63 @@ export class PaymentInstrumentsApi extends Service {
     }
 
     /**
+    * @summary Create a payment instrument
+    * @param paymentInstrumentInfo {@link PaymentInstrumentInfo } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link PaymentInstrument }
+    */
+    public async createPaymentInstrument(paymentInstrumentInfo: PaymentInstrumentInfo, requestOptions?: IRequest.Options): Promise<PaymentInstrument> {
+        const endpoint = `${this.baseUrl}/paymentInstruments`;
+        const resource = new Resource(this, endpoint);
+        const request: PaymentInstrumentInfo = ObjectSerializer.serialize(paymentInstrumentInfo, "PaymentInstrumentInfo");
+        const response = await getJsonResponse<PaymentInstrumentInfo, PaymentInstrument>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "PaymentInstrument");
+    }
+
+    /**
+    * @summary Get all transaction rules for a payment instrument
+    * @param id {@link string } The unique identifier of the payment instrument.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TransactionRulesResponse }
+    */
+    public async getAllTransactionRulesForPaymentInstrument(id: string, requestOptions?: IRequest.Options): Promise<TransactionRulesResponse> {
+        const endpoint = `${this.baseUrl}/paymentInstruments/{id}/transactionRules`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, TransactionRulesResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
+    }
+
+    /**
+    * @summary Get the PAN of a payment instrument
+    * @param id {@link string } The unique identifier of the payment instrument.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link PaymentInstrumentRevealInfo }
+    */
+    public async getPanOfPaymentInstrument(id: string, requestOptions?: IRequest.Options): Promise<PaymentInstrumentRevealInfo> {
+        const endpoint = `${this.baseUrl}/paymentInstruments/{id}/reveal`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, PaymentInstrumentRevealInfo>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "PaymentInstrumentRevealInfo");
+    }
+
+    /**
     * @summary Get a payment instrument
     * @param id {@link string } The unique identifier of the payment instrument.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentInstrument }
     */
     public async getPaymentInstrument(id: string, requestOptions?: IRequest.Options): Promise<PaymentInstrument> {
@@ -52,7 +108,7 @@ export class PaymentInstrumentsApi extends Service {
     /**
     * @summary List network tokens
     * @param id {@link string } The unique identifier of the payment instrument.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ListNetworkTokensResponse }
     */
     public async listNetworkTokens(id: string, requestOptions?: IRequest.Options): Promise<ListNetworkTokensResponse> {
@@ -68,46 +124,10 @@ export class PaymentInstrumentsApi extends Service {
     }
 
     /**
-    * @summary Get the PAN of a payment instrument
-    * @param id {@link string } The unique identifier of the payment instrument.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link PaymentInstrumentRevealInfo }
-    */
-    public async getPanOfPaymentInstrument(id: string, requestOptions?: IRequest.Options): Promise<PaymentInstrumentRevealInfo> {
-        const endpoint = `${this.baseUrl}/paymentInstruments/{id}/reveal`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, PaymentInstrumentRevealInfo>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "PaymentInstrumentRevealInfo");
-    }
-
-    /**
-    * @summary Get all transaction rules for a payment instrument
-    * @param id {@link string } The unique identifier of the payment instrument.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link TransactionRulesResponse }
-    */
-    public async getAllTransactionRulesForPaymentInstrument(id: string, requestOptions?: IRequest.Options): Promise<TransactionRulesResponse> {
-        const endpoint = `${this.baseUrl}/paymentInstruments/{id}/transactionRules`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, TransactionRulesResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
-    }
-
-    /**
     * @summary Update a payment instrument
     * @param id {@link string } The unique identifier of the payment instrument.
     * @param paymentInstrumentUpdateRequest {@link PaymentInstrumentUpdateRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link UpdatePaymentInstrument }
     */
     public async updatePaymentInstrument(id: string, paymentInstrumentUpdateRequest: PaymentInstrumentUpdateRequest, requestOptions?: IRequest.Options): Promise<UpdatePaymentInstrument> {
@@ -121,23 +141,5 @@ export class PaymentInstrumentsApi extends Service {
             { ...requestOptions, method: "PATCH" }
         );
         return ObjectSerializer.deserialize(response, "UpdatePaymentInstrument");
-    }
-
-    /**
-    * @summary Create a payment instrument
-    * @param paymentInstrumentInfo {@link PaymentInstrumentInfo } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link PaymentInstrument }
-    */
-    public async createPaymentInstrument(paymentInstrumentInfo: PaymentInstrumentInfo, requestOptions?: IRequest.Options): Promise<PaymentInstrument> {
-        const endpoint = `${this.baseUrl}/paymentInstruments`;
-        const resource = new Resource(this, endpoint);
-        const request: PaymentInstrumentInfo = ObjectSerializer.serialize(paymentInstrumentInfo, "PaymentInstrumentInfo");
-        const response = await getJsonResponse<PaymentInstrumentInfo, PaymentInstrument>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "PaymentInstrument");
     }
 }

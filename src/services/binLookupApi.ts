@@ -31,7 +31,7 @@ export class BinLookupAPI extends Service {
     /**
     * @summary Check if 3D Secure is available
     * @param threeDSAvailabilityRequest {@link ThreeDSAvailabilityRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link ThreeDSAvailabilityResponse }
     */
     public async get3dsAvailability(threeDSAvailabilityRequest: ThreeDSAvailabilityRequest, requestOptions?: IRequest.Options): Promise<ThreeDSAvailabilityResponse> {
@@ -49,7 +49,7 @@ export class BinLookupAPI extends Service {
     /**
     * @summary Get a fees cost estimate
     * @param costEstimateRequest {@link CostEstimateRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link CostEstimateResponse }
     */
     public async getCostEstimate(costEstimateRequest: CostEstimateRequest, requestOptions?: IRequest.Options): Promise<CostEstimateResponse> {

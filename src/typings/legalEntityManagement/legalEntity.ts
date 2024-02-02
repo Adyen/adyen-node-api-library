@@ -66,6 +66,10 @@ export class LegalEntity {
     * List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
     */
     'verificationDeadlines'?: Array<VerificationDeadline>;
+    /**
+    * A key-value pair that specifies the [verification process](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details/) for a legal entity. Set to **upfront** for [upfront verification](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details#upfront).
+    */
+    'verificationPlan'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -144,6 +148,11 @@ export class LegalEntity {
             "name": "verificationDeadlines",
             "baseName": "verificationDeadlines",
             "type": "Array<VerificationDeadline>"
+        },
+        {
+            "name": "verificationPlan",
+            "baseName": "verificationPlan",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

@@ -10,12 +10,15 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { AndroidApp } from "../../typings/management/models";
-import { AndroidAppsResponse } from "../../typings/management/models";
-import { AndroidCertificatesResponse } from "../../typings/management/models";
+import { 
+    AndroidApp,
+    AndroidAppsResponse,
+    AndroidCertificatesResponse,
+    UploadAndroidAppResponse,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/management/models";
 
 export class AndroidFilesCompanyLevelApi extends Service {
 
@@ -28,32 +31,10 @@ export class AndroidFilesCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Get a list of Android apps
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param pageNumber {@link number } The number of the page to fetch.
-    * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 20 items on a page.
-    * @param packageName {@link string } The package name that uniquely identifies the Android app.
-    * @param versionCode {@link number } The version number of the app.
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link AndroidAppsResponse }
-    */
-    public async listAndroidApps(companyId: string, requestOptions?: IRequest.Options): Promise<AndroidAppsResponse> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/androidApps`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, AndroidAppsResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "AndroidAppsResponse");
-    }
-
-    /**
     * @summary Get Android app
     * @param companyId {@link string } The unique identifier of the company account.
     * @param id {@link string } The unique identifier of the app.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link AndroidApp }
     */
     public async getAndroidApp(companyId: string, id: string, requestOptions?: IRequest.Options): Promise<AndroidApp> {
@@ -70,18 +51,57 @@ export class AndroidFilesCompanyLevelApi extends Service {
     }
 
     /**
+    * @summary Get a list of Android apps
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param requestOptions {@link IRequest.Options }
+    * @param pageNumber {@link number } The number of the page to fetch.
+    * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 20 items on a page.
+    * @param packageName {@link string } The package name that uniquely identifies the Android app.
+    * @param versionCode {@link number } The version number of the app.
+    * @return {@link AndroidAppsResponse }
+    */
+    public async listAndroidApps(companyId: string, pageNumber?: number, pageSize?: number, packageName?: string, versionCode?: number, requestOptions?: IRequest.Options): Promise<AndroidAppsResponse> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/androidApps`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
+        const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = pageNumber ?? pageSize ?? packageName ?? versionCode;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+            if(packageName) requestOptions.params["packageName"] = packageName;
+            if(versionCode) requestOptions.params["versionCode"] = versionCode;
+        }
+        const response = await getJsonResponse<string, AndroidAppsResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "AndroidAppsResponse");
+    }
+
+    /**
     * @summary Get a list of Android certificates
     * @param companyId {@link string } The unique identifier of the company account.
+    * @param requestOptions {@link IRequest.Options }
     * @param pageNumber {@link number } The number of the page to fetch.
     * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 20 items on a page.
     * @param certificateName {@link string } The name of the certificate.
-    * @param requestOptions {@link IRequest.Options}
     * @return {@link AndroidCertificatesResponse }
     */
-    public async listAndroidCertificates(companyId: string, requestOptions?: IRequest.Options): Promise<AndroidCertificatesResponse> {
+    public async listAndroidCertificates(companyId: string, pageNumber?: number, pageSize?: number, certificateName?: string, requestOptions?: IRequest.Options): Promise<AndroidCertificatesResponse> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/androidCertificates`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = pageNumber ?? pageSize ?? certificateName;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+            if(certificateName) requestOptions.params["certificateName"] = certificateName;
+        }
         const response = await getJsonResponse<string, AndroidCertificatesResponse>(
             resource,
             "",
@@ -93,16 +113,18 @@ export class AndroidFilesCompanyLevelApi extends Service {
     /**
     * @summary Upload Android App
     * @param companyId {@link string } The unique identifier of the company account.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link UploadAndroidAppResponse }
     */
-    public async uploadAndroidApp(companyId: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async uploadAndroidApp(companyId: string, requestOptions?: IRequest.Options): Promise<UploadAndroidAppResponse> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/androidApps`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        await getJsonResponse<string, void>(
+        const response = await getJsonResponse<string, UploadAndroidAppResponse>(
             resource,
             "",
             { ...requestOptions, method: "POST" }
         );
+        return ObjectSerializer.deserialize(response, "UploadAndroidAppResponse");
     }
 }

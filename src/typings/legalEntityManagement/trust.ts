@@ -21,6 +21,10 @@ export class Trust {
     */
     'dateOfIncorporation'?: string;
     /**
+    * Short description about the trust.
+    */
+    'description'?: string;
+    /**
     * The registered name, if different from the `name`.
     */
     'doingBusinessAs'?: string;
@@ -66,6 +70,11 @@ export class Trust {
         {
             "name": "dateOfIncorporation",
             "baseName": "dateOfIncorporation",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
             "type": "string"
         },
         {

@@ -9,19 +9,19 @@
 
 import { AccountInfo } from './accountInfo';
 import { Amount } from './amount';
-import { ApplePayDetails } from './applePayDetails';
+import { ApplePayDonations } from './applePayDonations';
 import { ApplicationInfo } from './applicationInfo';
 import { AuthenticationData } from './authenticationData';
 import { BillingAddress } from './billingAddress';
 import { BrowserInfo } from './browserInfo';
-import { CardDetails } from './cardDetails';
+import { CardDonations } from './cardDonations';
 import { DeliveryAddress } from './deliveryAddress';
-import { GooglePayDetails } from './googlePayDetails';
-import { IdealDetails } from './idealDetails';
+import { GooglePayDonations } from './googlePayDonations';
+import { IdealDonations } from './idealDonations';
 import { LineItem } from './lineItem';
 import { MerchantRiskIndicator } from './merchantRiskIndicator';
 import { Name } from './name';
-import { PayWithGoogleDetails } from './payWithGoogleDetails';
+import { PayWithGoogleDonations } from './payWithGoogleDonations';
 import { ThreeDS2RequestFields } from './threeDS2RequestFields';
 import { ThreeDSecureData } from './threeDSecureData';
 
@@ -98,7 +98,7 @@ export class DonationPaymentRequest {
     /**
     * The type and required details of a payment method to use.
     */
-    'paymentMethod': ApplePayDetails | CardDetails | GooglePayDetails | IdealDetails | PayWithGoogleDetails;
+    'paymentMethod': ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations;
     /**
     * Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
@@ -284,7 +284,7 @@ export class DonationPaymentRequest {
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "ApplePayDetails | CardDetails | GooglePayDetails | IdealDetails | PayWithGoogleDetails"
+            "type": "ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations"
         },
         {
             "name": "recurringProcessingModel",

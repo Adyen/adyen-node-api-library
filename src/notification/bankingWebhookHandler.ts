@@ -10,7 +10,7 @@ class BankingWebhookHandler {
     private readonly payload: string;
 
     public constructor(jsonPayload: string) {
-        this.payload = JSON.parse(jsonPayload)
+        this.payload = JSON.parse(jsonPayload);
     }
 
     // Return generic webhook type
@@ -23,7 +23,7 @@ class BankingWebhookHandler {
         | reportWebhooks.ReportNotificationRequest
         | transferWebhooks.TransferNotificationRequest
         | transactionWebhooks.TransactionNotificationRequestV4 {
-        const type = this.payload['type'];
+        const type = this.payload["type"];
 
         if(Object.values(acsWebhooks.AuthenticationNotificationRequest.TypeEnum).includes(type)){
             return this.getAuthenticationNotificationRequest();
@@ -61,7 +61,7 @@ class BankingWebhookHandler {
             return this.getTransactionNotificationRequest();
         }
 
-        throw new Error("Could not parse the json payload: " + this.payload)
+        throw new Error("Could not parse the json payload: " + this.payload);
     }
 
     public getAuthenticationNotificationRequest(): acsWebhooks.AuthenticationNotificationRequest {

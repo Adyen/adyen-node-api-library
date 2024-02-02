@@ -35,6 +35,10 @@ export class AccountCapabilityData {
     */
     'requestedLevel': string;
     /**
+    * The verification deadline for the capability that will be disallowed if verification errors are not resolved.
+    */
+    'verificationDeadline'?: Date;
+    /**
     * The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the `errors` array contains more information.  * **valid**: The verification was successful.  * **rejected**: Adyen checked the information and found reasons to not allow the capability. 
     */
     'verificationStatus'?: string;
@@ -71,6 +75,11 @@ export class AccountCapabilityData {
             "name": "requestedLevel",
             "baseName": "requestedLevel",
             "type": "string"
+        },
+        {
+            "name": "verificationDeadline",
+            "baseName": "verificationDeadline",
+            "type": "Date"
         },
         {
             "name": "verificationStatus",

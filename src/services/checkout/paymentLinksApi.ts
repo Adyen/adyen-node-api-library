@@ -48,6 +48,24 @@ export class PaymentLinksApi extends Service {
     }
 
     /**
+    * @summary Create a payment link
+    * @param paymentLinkRequest {@link PaymentLinkRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link PaymentLinkResponse }
+    */
+    public async paymentLinks(paymentLinkRequest: PaymentLinkRequest, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
+        const endpoint = `${this.baseUrl}/paymentLinks`;
+        const resource = new Resource(this, endpoint);
+        const request: PaymentLinkRequest = ObjectSerializer.serialize(paymentLinkRequest, "PaymentLinkRequest");
+        const response = await getJsonResponse<PaymentLinkRequest, PaymentLinkResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
+    }
+
+    /**
     * @summary Update the status of a payment link
     * @param linkId {@link string } Unique identifier of the payment link.
     * @param updatePaymentLinkRequest {@link UpdatePaymentLinkRequest } 
@@ -63,24 +81,6 @@ export class PaymentLinksApi extends Service {
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
-        );
-        return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
-    }
-
-    /**
-    * @summary Create a payment link
-    * @param paymentLinkRequest {@link PaymentLinkRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link PaymentLinkResponse }
-    */
-    public async paymentLinks(paymentLinkRequest: PaymentLinkRequest, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
-        const endpoint = `${this.baseUrl}/paymentLinks`;
-        const resource = new Resource(this, endpoint);
-        const request: PaymentLinkRequest = ObjectSerializer.serialize(paymentLinkRequest, "PaymentLinkRequest");
-        const response = await getJsonResponse<PaymentLinkRequest, PaymentLinkResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }

@@ -10,11 +10,13 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { PayoutRequest } from "../../typings/payout/models";
-import { PayoutResponse } from "../../typings/payout/models";
+import { 
+    PayoutRequest,
+    PayoutResponse,
+    ObjectSerializer
+} from "../../typings/payout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/payout/models";
 
 export class InstantPayoutsApi extends Service {
 
@@ -29,7 +31,7 @@ export class InstantPayoutsApi extends Service {
     /**
     * @summary Make an instant card payout
     * @param payoutRequest {@link PayoutRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link PayoutResponse }
     */
     public async payout(payoutRequest: PayoutRequest, requestOptions?: IRequest.Options): Promise<PayoutResponse> {

@@ -20,9 +20,11 @@ import { PayAtTable } from './payAtTable';
 import { Payment } from './payment';
 import { ReceiptOptions } from './receiptOptions';
 import { ReceiptPrinting } from './receiptPrinting';
+import { Refunds } from './refunds';
 import { Signature } from './signature';
 import { Standalone } from './standalone';
 import { Surcharge } from './surcharge';
+import { TapToPay } from './tapToPay';
 import { Timeouts } from './timeouts';
 import { WifiProfiles } from './wifiProfiles';
 
@@ -43,9 +45,11 @@ export class TerminalSettings {
     'payment'?: Payment;
     'receiptOptions'?: ReceiptOptions;
     'receiptPrinting'?: ReceiptPrinting;
+    'refunds'?: Refunds;
     'signature'?: Signature;
     'standalone'?: Standalone;
     'surcharge'?: Surcharge;
+    'tapToPay'?: TapToPay;
     'timeouts'?: Timeouts;
     'wifiProfiles'?: WifiProfiles;
 
@@ -118,6 +122,11 @@ export class TerminalSettings {
             "type": "ReceiptPrinting"
         },
         {
+            "name": "refunds",
+            "baseName": "refunds",
+            "type": "Refunds"
+        },
+        {
             "name": "signature",
             "baseName": "signature",
             "type": "Signature"
@@ -131,6 +140,11 @@ export class TerminalSettings {
             "name": "surcharge",
             "baseName": "surcharge",
             "type": "Surcharge"
+        },
+        {
+            "name": "tapToPay",
+            "baseName": "tapToPay",
+            "type": "TapToPay"
         },
         {
             "name": "timeouts",

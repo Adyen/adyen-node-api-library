@@ -10,12 +10,14 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { TransactionRule } from "../../typings/balancePlatform/models";
-import { TransactionRuleInfo } from "../../typings/balancePlatform/models";
-import { TransactionRuleResponse } from "../../typings/balancePlatform/models";
+import {
+    TransactionRule,
+    TransactionRuleInfo,
+    TransactionRuleResponse,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import { ObjectSerializer } from "../../typings/balancePlatform/models";
 
 export class TransactionRulesApi extends Service {
 
@@ -28,9 +30,27 @@ export class TransactionRulesApi extends Service {
     }
 
     /**
+    * @summary Create a transaction rule
+    * @param transactionRuleInfo {@link TransactionRuleInfo } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TransactionRule }
+    */
+    public async createTransactionRule(transactionRuleInfo: TransactionRuleInfo, requestOptions?: IRequest.Options): Promise<TransactionRule> {
+        const endpoint = `${this.baseUrl}/transactionRules`;
+        const resource = new Resource(this, endpoint);
+        const request: TransactionRuleInfo = ObjectSerializer.serialize(transactionRuleInfo, "TransactionRuleInfo");
+        const response = await getJsonResponse<TransactionRuleInfo, TransactionRule>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "TransactionRule");
+    }
+
+    /**
     * @summary Delete a transaction rule
     * @param transactionRuleId {@link string } The unique identifier of the transaction rule.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TransactionRule }
     */
     public async deleteTransactionRule(transactionRuleId: string, requestOptions?: IRequest.Options): Promise<TransactionRule> {
@@ -48,7 +68,7 @@ export class TransactionRulesApi extends Service {
     /**
     * @summary Get a transaction rule
     * @param transactionRuleId {@link string } The unique identifier of the transaction rule.
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TransactionRuleResponse }
     */
     public async getTransactionRule(transactionRuleId: string, requestOptions?: IRequest.Options): Promise<TransactionRuleResponse> {
@@ -67,7 +87,7 @@ export class TransactionRulesApi extends Service {
     * @summary Update a transaction rule
     * @param transactionRuleId {@link string } The unique identifier of the transaction rule.
     * @param transactionRuleInfo {@link TransactionRuleInfo } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link TransactionRule }
     */
     public async updateTransactionRule(transactionRuleId: string, transactionRuleInfo: TransactionRuleInfo, requestOptions?: IRequest.Options): Promise<TransactionRule> {
@@ -79,24 +99,6 @@ export class TransactionRulesApi extends Service {
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
-        );
-        return ObjectSerializer.deserialize(response, "TransactionRule");
-    }
-
-    /**
-    * @summary Create a transaction rule
-    * @param transactionRuleInfo {@link TransactionRuleInfo } 
-    * @param requestOptions {@link IRequest.Options}
-    * @return {@link TransactionRule }
-    */
-    public async createTransactionRule(transactionRuleInfo: TransactionRuleInfo, requestOptions?: IRequest.Options): Promise<TransactionRule> {
-        const endpoint = `${this.baseUrl}/transactionRules`;
-        const resource = new Resource(this, endpoint);
-        const request: TransactionRuleInfo = ObjectSerializer.serialize(transactionRuleInfo, "TransactionRuleInfo");
-        const response = await getJsonResponse<TransactionRuleInfo, TransactionRule>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "TransactionRule");
     }

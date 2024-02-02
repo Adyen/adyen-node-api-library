@@ -124,17 +124,17 @@ describe("Notification Test", function (): void {
             }, "environment": "test", "type": "balancePlatform.accountHolder.created"
         };
         const jsonString = JSON.stringify(json);
-        let bankingWebhookHandler = new BankingWebhookHandler(jsonString);
+        const bankingWebhookHandler = new BankingWebhookHandler(jsonString);
         const accountHolderNotificationRequest: AccountHolderNotificationRequest = bankingWebhookHandler.getAccountHolderNotificationRequest();
         const genericWebhook = bankingWebhookHandler.getGenericWebhook();
-        expect(genericWebhook instanceof AccountHolderNotificationRequest).toBe(true)
-        expect(accountHolderNotificationRequest.environment).toEqual("test")
+        expect(genericWebhook instanceof AccountHolderNotificationRequest).toBe(true);
+        expect(accountHolderNotificationRequest.environment).toEqual("test");
     });
 
     it("should verify the banking hmac", function (): void {
         const jsonString = "{\"data\":{\"balancePlatform\":\"Integration_tools_test\",\"accountId\":\"BA32272223222H5HVKTBK4MLB\",\"sweep\":{\"id\":\"SWPC42272223222H5HVKV6H8C64DP5\",\"schedule\":{\"type\":\"balance\"},\"status\":\"active\",\"targetAmount\":{\"currency\":\"EUR\",\"value\":0},\"triggerAmount\":{\"currency\":\"EUR\",\"value\":0},\"type\":\"pull\",\"counterparty\":{\"balanceAccountId\":\"BA3227C223222H5HVKT3H9WLC\"},\"currency\":\"EUR\"}},\"environment\":\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
-        const isValid = hmacValidator.validateBankingHMAC("9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=", "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F", jsonString)
-        expect(isValid).toBe(true)
+        const isValid = hmacValidator.validateBankingHMAC("9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=", "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F", jsonString);
+        expect(isValid).toBe(true);
     });
 
     it("should deserialize Management Webhooks", function (): void {
@@ -151,12 +151,12 @@ describe("Notification Test", function (): void {
             "type": "paymentMethod.created"
         };
         const jsonString = JSON.stringify(json);
-        let managementWebhookHandler = new ManagementWebhookHandler(jsonString);
+        const managementWebhookHandler = new ManagementWebhookHandler(jsonString);
         const paymentMethodCreatedNotificationRequest: PaymentMethodCreatedNotificationRequest = managementWebhookHandler.getPaymentMethodCreatedNotificationRequest();
         const genericWebhook = managementWebhookHandler.getGenericWebhook();
-        expect(genericWebhook instanceof PaymentMethodCreatedNotificationRequest).toBe(true)
-        expect(genericWebhook instanceof MerchantUpdatedNotificationRequest).toBe(false)
-        expect(paymentMethodCreatedNotificationRequest.type).toEqual(PaymentMethodCreatedNotificationRequest.TypeEnum.PaymentMethodCreated)
+        expect(genericWebhook instanceof PaymentMethodCreatedNotificationRequest).toBe(true);
+        expect(genericWebhook instanceof MerchantUpdatedNotificationRequest).toBe(false);
+        expect(paymentMethodCreatedNotificationRequest.type).toEqual(PaymentMethodCreatedNotificationRequest.TypeEnum.PaymentMethodCreated);
     });
 
     it("should deserialize Banking Authentication Webhook", function (): void {
@@ -202,12 +202,12 @@ describe("Notification Test", function (): void {
             "type": "balancePlatform.authentication.created"
         };
         const jsonString = JSON.stringify(json);
-        let bankingWebhookHandler = new BankingWebhookHandler(jsonString);
+        const bankingWebhookHandler = new BankingWebhookHandler(jsonString);
         const accountHolderNotificationRequest: TransferNotificationRequest = bankingWebhookHandler.getTransferNotificationRequest();
         const genericWebhook = bankingWebhookHandler.getGenericWebhook();
-        expect(accountHolderNotificationRequest.type).toEqual(AuthenticationNotificationRequest.TypeEnum.BalancePlatformAuthenticationCreated)
-        expect(genericWebhook instanceof AccountHolderNotificationRequest).toBe(false)
-        expect(genericWebhook instanceof AuthenticationNotificationRequest).toBe(true)
+        expect(accountHolderNotificationRequest.type).toEqual(AuthenticationNotificationRequest.TypeEnum.BalancePlatformAuthenticationCreated);
+        expect(genericWebhook instanceof AccountHolderNotificationRequest).toBe(false);
+        expect(genericWebhook instanceof AuthenticationNotificationRequest).toBe(true);
     });
 
     it("should deserialize Management v3 Webhooks", function (): void {
@@ -225,12 +225,12 @@ describe("Notification Test", function (): void {
             }
           };
         const jsonString = JSON.stringify(json);
-        let managementWebhookHandler = new ManagementWebhookHandler(jsonString);
+        const managementWebhookHandler = new ManagementWebhookHandler(jsonString);
         const paymentMethodRequestRemoved: PaymentMethodRequestRemovedNotificationRequest = managementWebhookHandler.getPaymentMethodRequestRemovedNotificationRequest();
         const genericWebhook = managementWebhookHandler.getGenericWebhook();
-        expect(genericWebhook instanceof PaymentMethodRequestRemovedNotificationRequest).toBe(true)
-        expect(genericWebhook instanceof PaymentMethodScheduledForRemovalNotificationRequest).toBe(false)
-        expect(paymentMethodRequestRemoved.type).toEqual(PaymentMethodRequestRemovedNotificationRequest.TypeEnum.PaymentMethodRequestRemoved)
+        expect(genericWebhook instanceof PaymentMethodRequestRemovedNotificationRequest).toBe(true);
+        expect(genericWebhook instanceof PaymentMethodScheduledForRemovalNotificationRequest).toBe(false);
+        expect(paymentMethodRequestRemoved.type).toEqual(PaymentMethodRequestRemovedNotificationRequest.TypeEnum.PaymentMethodRequestRemoved);
     });
 
     it("should deserialize Transaction v4 Webhooks", function (): void {
@@ -265,11 +265,11 @@ describe("Notification Test", function (): void {
             "environment": "test"
         };
         const jsonString = JSON.stringify(json);
-        let bankingWebhookHandler = new BankingWebhookHandler(jsonString);
+        const bankingWebhookHandler = new BankingWebhookHandler(jsonString);
         const transactionCreated: TransactionNotificationRequestV4 = bankingWebhookHandler.getTransactionNotificationRequest();
         const genericWebhook = bankingWebhookHandler.getGenericWebhook();
-        expect(genericWebhook instanceof TransactionNotificationRequestV4).toBe(true)
-        expect(genericWebhook instanceof PaymentMethodScheduledForRemovalNotificationRequest).toBe(false)
-        expect(transactionCreated.type).toEqual(TransactionNotificationRequestV4.TypeEnum.BalancePlatformTransactionCreated)
+        expect(genericWebhook instanceof TransactionNotificationRequestV4).toBe(true);
+        expect(genericWebhook instanceof PaymentMethodScheduledForRemovalNotificationRequest).toBe(false);
+        expect(transactionCreated.type).toEqual(TransactionNotificationRequestV4.TypeEnum.BalancePlatformTransactionCreated);
     });
 });

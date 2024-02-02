@@ -29,7 +29,7 @@ export class DataProtectionAPI extends Service {
     /**
     * @summary Submit a Subject Erasure Request.
     * @param subjectErasureByPspReferenceRequest {@link SubjectErasureByPspReferenceRequest } 
-    * @param requestOptions {@link IRequest.Options}
+    * @param requestOptions {@link IRequest.Options }
     * @return {@link SubjectErasureResponse }
     */
     public async requestSubjectErasure(subjectErasureByPspReferenceRequest: SubjectErasureByPspReferenceRequest, requestOptions?: IRequest.Options): Promise<SubjectErasureResponse> {

@@ -10,7 +10,6 @@
 import { Amount } from './amount';
 import { BalanceMutation } from './balanceMutation';
 import { BankCategoryData } from './bankCategoryData';
-import { CounterpartyV3 } from './counterpartyV3';
 import { InternalCategoryData } from './internalCategoryData';
 import { IssuedCard } from './issuedCard';
 import { PaymentInstrument } from './paymentInstrument';
@@ -18,6 +17,7 @@ import { PlatformPayment } from './platformPayment';
 import { ResourceReference } from './resourceReference';
 import { TransactionRulesResult } from './transactionRulesResult';
 import { TransferEvent } from './transferEvent';
+import { TransferNotificationCounterParty } from './transferNotificationCounterParty';
 import { TransferNotificationTransferTracking } from './transferNotificationTransferTracking';
 
 export class TransferData {
@@ -40,7 +40,7 @@ export class TransferData {
     * The relevant data according to the transfer category.
     */
     'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment;
-    'counterparty'?: CounterpartyV3;
+    'counterparty'?: TransferNotificationCounterParty;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
     */
@@ -130,7 +130,7 @@ export class TransferData {
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "CounterpartyV3"
+            "type": "TransferNotificationCounterParty"
         },
         {
             "name": "creationDate",

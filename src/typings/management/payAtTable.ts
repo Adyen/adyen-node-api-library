@@ -17,6 +17,10 @@ export class PayAtTable {
     * Enable Pay at table.
     */
     'enablePayAtTable'?: boolean;
+    /**
+    * Sets the allowed payment instrument for Pay at table transactions.  Can be: **cash** or **card**. If not set, the terminal presents both options.
+    */
+    'paymentInstrument'?: PayAtTable.PaymentInstrumentEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -30,6 +34,11 @@ export class PayAtTable {
             "name": "enablePayAtTable",
             "baseName": "enablePayAtTable",
             "type": "boolean"
+        },
+        {
+            "name": "paymentInstrument",
+            "baseName": "paymentInstrument",
+            "type": "PayAtTable.PaymentInstrumentEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -41,5 +50,9 @@ export namespace PayAtTable {
     export enum AuthenticationMethodEnum {
         Magswipe = 'MAGSWIPE',
         Mke = 'MKE'
+    }
+    export enum PaymentInstrumentEnum {
+        Cash = 'Cash',
+        Card = 'Card'
     }
 }

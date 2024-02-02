@@ -12,7 +12,16 @@ import { Name } from './name';
 
 export class FundOrigin {
     'billingAddress'?: Address;
+    /**
+    * Email address of the person.
+    */
+    'shopperEmail'?: string;
     'shopperName'?: Name;
+    /**
+    * Phone number of the person
+    */
+    'telephoneNumber'?: string;
+    'walletIdentifier'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -23,9 +32,24 @@ export class FundOrigin {
             "type": "Address"
         },
         {
+            "name": "shopperEmail",
+            "baseName": "shopperEmail",
+            "type": "string"
+        },
+        {
             "name": "shopperName",
             "baseName": "shopperName",
             "type": "Name"
+        },
+        {
+            "name": "telephoneNumber",
+            "baseName": "telephoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "walletIdentifier",
+            "baseName": "walletIdentifier",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
