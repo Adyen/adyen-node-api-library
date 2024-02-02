@@ -182,7 +182,8 @@ export namespace NotificationRequestItem {
         PostponedRefund = <any> 'POSTPONED_REFUND',
         OfferClosed = <any> 'OFFER_CLOSED',
         ManualReviewAccept = <any> 'MANUAL_REVIEW_ACCEPT',
-        ManualReviewReject = <any> 'MANUAL_REVIEW_REJECT'
+        ManualReviewReject = <any> 'MANUAL_REVIEW_REJECT',
+        Expire = <any> 'EXPIRE'
     }
     export enum OperationsEnum {
         Cancel = <any> 'CANCEL',
