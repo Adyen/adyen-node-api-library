@@ -1,6 +1,6 @@
 {
   "name": "@adyen/api-library",
-  "version": "16.0.0",
+  "version": "16.0.1",
   "description": "The Adyen API Library for NodeJS enables you to work with Adyen APIs.",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
@@ -40,7 +40,7 @@
     "@typescript-eslint/parser": "5.62.0",
     "acorn": "^8.0.1",
     "coveralls": "3.1.1",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "eslint": "8.56.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "jest": "^27.0.6",
