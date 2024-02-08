@@ -23,6 +23,10 @@ export class UpdatePaymentMethodInfo {
     * The list of currencies that a payment method supports. By default, all currencies supported by the payment method.
     */
     'currencies'?: Array<string>;
+    /**
+    * Custom routing flags for acquirer routing.
+    */
+    'customRoutingFlags'?: Array<string>;
     'diners'?: GenericPmWithTdiInfo;
     'discover'?: GenericPmWithTdiInfo;
     'eftpos_australia'?: GenericPmWithTdiInfo;
@@ -68,6 +72,11 @@ export class UpdatePaymentMethodInfo {
         {
             "name": "currencies",
             "baseName": "currencies",
+            "type": "Array<string>"
+        },
+        {
+            "name": "customRoutingFlags",
+            "baseName": "customRoutingFlags",
             "type": "Array<string>"
         },
         {
