@@ -16,6 +16,7 @@ import {
     PaymentInstrumentInfo,
     PaymentInstrumentRevealInfo,
     PaymentInstrumentUpdateRequest,
+    RestServiceError,
     TransactionRulesResponse,
     UpdatePaymentInstrument,
     ObjectSerializer
