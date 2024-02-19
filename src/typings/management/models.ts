@@ -385,6 +385,7 @@ let enumsMap: {[index: string]: any} = {
         "InstallAndroidAppDetails.TypeEnum": InstallAndroidAppDetails.TypeEnum,
         "InstallAndroidCertificateDetails.TypeEnum": InstallAndroidCertificateDetails.TypeEnum,
         "KlarnaInfo.RegionEnum": KlarnaInfo.RegionEnum,
+        "Notification.CategoryEnum": Notification.CategoryEnum,
         "PayAtTable.AuthenticationMethodEnum": PayAtTable.AuthenticationMethodEnum,
         "PayAtTable.PaymentInstrumentEnum": PayAtTable.PaymentInstrumentEnum,
         "PaymentMethod.VerificationStatusEnum": PaymentMethod.VerificationStatusEnum,
