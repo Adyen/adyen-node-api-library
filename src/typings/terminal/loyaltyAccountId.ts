@@ -36,7 +36,7 @@ export class LoyaltyAccountId {
     'EntryMode': Array<LoyaltyAccountId.EntryModeEnum>;
     'IdentificationSupport'?: LoyaltyAccountId.IdentificationSupportEnum;
     'IdentificationType': IdentificationType;
-    'Value'?: string;
+    'LoyaltyID'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -57,8 +57,8 @@ export class LoyaltyAccountId {
             "type": "IdentificationType"
         },
         {
-            "name": "Value",
-            "baseName": "Value",
+            "name": "LoyaltyID",
+            "baseName": "LoyaltyID",
             "type": "string"
         }    ];
 
