@@ -14,7 +14,6 @@ import {
     BusinessLine,
     BusinessLineInfo,
     BusinessLineInfoUpdate,
-    ServiceError,
     ObjectSerializer
 } from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
