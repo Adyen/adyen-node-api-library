@@ -24,7 +24,7 @@ export class PaymentRefundResponse {
     /**
     * Your reason for the refund request.
     */
-    'merchantRefundReason'?: PaymentRefundResponse.MerchantRefundReasonEnum;
+    'merchantRefundReason'?: PaymentRefundResponse.MerchantRefundReasonEnum | null;
     /**
     * The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to refund. 
     */
@@ -71,7 +71,7 @@ export class PaymentRefundResponse {
         {
             "name": "merchantRefundReason",
             "baseName": "merchantRefundReason",
-            "type": "PaymentRefundResponse.MerchantRefundReasonEnum"
+            "type": "PaymentRefundResponse.MerchantRefundReasonEnum | null"
         },
         {
             "name": "paymentPspReference",

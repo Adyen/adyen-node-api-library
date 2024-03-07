@@ -30,6 +30,7 @@ export * from './address';
 export * from './afterpayDetails';
 export * from './amazonPayDetails';
 export * from './amount';
+export * from './ancvDetails';
 export * from './androidPayDetails';
 export * from './applePayDetails';
 export * from './applePayDonations';
@@ -219,6 +220,7 @@ import { Address } from './address';
 import { AfterpayDetails } from './afterpayDetails';
 import { AmazonPayDetails } from './amazonPayDetails';
 import { Amount } from './amount';
+import { AncvDetails } from './ancvDetails';
 import { AndroidPayDetails } from './androidPayDetails';
 import { ApplePayDetails } from './applePayDetails';
 import { ApplePayDonations } from './applePayDonations';
@@ -417,6 +419,7 @@ let enumsMap: {[index: string]: any} = {
         "AdditionalDataCommon.IndustryUsageEnum": AdditionalDataCommon.IndustryUsageEnum,
         "AfterpayDetails.TypeEnum": AfterpayDetails.TypeEnum,
         "AmazonPayDetails.TypeEnum": AmazonPayDetails.TypeEnum,
+        "AncvDetails.TypeEnum": AncvDetails.TypeEnum,
         "AndroidPayDetails.TypeEnum": AndroidPayDetails.TypeEnum,
         "ApplePayDetails.FundingSourceEnum": ApplePayDetails.FundingSourceEnum,
         "ApplePayDetails.TypeEnum": ApplePayDetails.TypeEnum,
@@ -603,6 +606,7 @@ let typeMap: {[index: string]: any} = {
     "AfterpayDetails": AfterpayDetails,
     "AmazonPayDetails": AmazonPayDetails,
     "Amount": Amount,
+    "AncvDetails": AncvDetails,
     "AndroidPayDetails": AndroidPayDetails,
     "ApplePayDetails": ApplePayDetails,
     "ApplePayDonations": ApplePayDonations,

@@ -12,7 +12,9 @@ export * from './aULocalAccountIdentification';
 export * from './additionalBankIdentification';
 export * from './address';
 export * from './amount';
+export * from './amountAdjustment';
 export * from './bRLocalAccountIdentification';
+export * from './balanceMutation';
 export * from './bankAccountV3';
 export * from './bankCategoryData';
 export * from './cALocalAccountIdentification';
@@ -26,6 +28,7 @@ export * from './counterpartyInfoV3';
 export * from './counterpartyV3';
 export * from './dKLocalAccountIdentification';
 export * from './fee';
+export * from './findTransfersResponse';
 export * from './hKLocalAccountIdentification';
 export * from './hULocalAccountIdentification';
 export * from './ibanAccountIdentification';
@@ -35,6 +38,7 @@ export * from './issuedCard';
 export * from './link';
 export * from './links';
 export * from './merchantData';
+export * from './modification';
 export * from './nOLocalAccountIdentification';
 export * from './nZLocalAccountIdentification';
 export * from './nameLocation';
@@ -55,11 +59,20 @@ export * from './sGLocalAccountIdentification';
 export * from './serviceError';
 export * from './thresholdRepayment';
 export * from './transaction';
+export * from './transactionEventViolation';
+export * from './transactionRuleReference';
+export * from './transactionRuleSource';
+export * from './transactionRulesResult';
 export * from './transactionSearchResponse';
 export * from './transfer';
 export * from './transferData';
+export * from './transferEvent';
 export * from './transferInfo';
+export * from './transferNotificationCounterParty';
+export * from './transferNotificationMerchantData';
+export * from './transferNotificationTransferTracking';
 export * from './transferNotificationValidationFact';
+export * from './transferView';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
 export * from './ultimatePartyIdentification';
@@ -69,7 +82,9 @@ import { AULocalAccountIdentification } from './aULocalAccountIdentification';
 import { AdditionalBankIdentification } from './additionalBankIdentification';
 import { Address } from './address';
 import { Amount } from './amount';
+import { AmountAdjustment } from './amountAdjustment';
 import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
+import { BalanceMutation } from './balanceMutation';
 import { BankAccountV3 } from './bankAccountV3';
 import { BankCategoryData } from './bankCategoryData';
 import { CALocalAccountIdentification } from './cALocalAccountIdentification';
@@ -83,6 +98,7 @@ import { CounterpartyInfoV3 } from './counterpartyInfoV3';
 import { CounterpartyV3 } from './counterpartyV3';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
 import { Fee } from './fee';
+import { FindTransfersResponse } from './findTransfersResponse';
 import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
@@ -92,6 +108,7 @@ import { IssuedCard } from './issuedCard';
 import { Link } from './link';
 import { Links } from './links';
 import { MerchantData } from './merchantData';
+import { Modification } from './modification';
 import { NOLocalAccountIdentification } from './nOLocalAccountIdentification';
 import { NZLocalAccountIdentification } from './nZLocalAccountIdentification';
 import { NameLocation } from './nameLocation';
@@ -112,11 +129,20 @@ import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
 import { ServiceError } from './serviceError';
 import { ThresholdRepayment } from './thresholdRepayment';
 import { Transaction } from './transaction';
+import { TransactionEventViolation } from './transactionEventViolation';
+import { TransactionRuleReference } from './transactionRuleReference';
+import { TransactionRuleSource } from './transactionRuleSource';
+import { TransactionRulesResult } from './transactionRulesResult';
 import { TransactionSearchResponse } from './transactionSearchResponse';
 import { Transfer } from './transfer';
 import { TransferData } from './transferData';
+import { TransferEvent } from './transferEvent';
 import { TransferInfo } from './transferInfo';
+import { TransferNotificationCounterParty } from './transferNotificationCounterParty';
+import { TransferNotificationMerchantData } from './transferNotificationMerchantData';
+import { TransferNotificationTransferTracking } from './transferNotificationTransferTracking';
 import { TransferNotificationValidationFact } from './transferNotificationValidationFact';
+import { TransferView } from './transferView';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 import { UltimatePartyIdentification } from './ultimatePartyIdentification';
@@ -136,6 +162,7 @@ let primitives = [
 let enumsMap: {[index: string]: any} = {
         "AULocalAccountIdentification.TypeEnum": AULocalAccountIdentification.TypeEnum,
         "AdditionalBankIdentification.TypeEnum": AdditionalBankIdentification.TypeEnum,
+        "AmountAdjustment.AmountAdjustmentTypeEnum": AmountAdjustment.AmountAdjustmentTypeEnum,
         "BRLocalAccountIdentification.TypeEnum": BRLocalAccountIdentification.TypeEnum,
         "BankCategoryData.PriorityEnum": BankCategoryData.PriorityEnum,
         "BankCategoryData.TypeEnum": BankCategoryData.TypeEnum,
@@ -151,6 +178,7 @@ let enumsMap: {[index: string]: any} = {
         "IssuedCard.PanEntryModeEnum": IssuedCard.PanEntryModeEnum,
         "IssuedCard.ProcessingTypeEnum": IssuedCard.ProcessingTypeEnum,
         "IssuedCard.TypeEnum": IssuedCard.TypeEnum,
+        "Modification.StatusEnum": Modification.StatusEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
         "NZLocalAccountIdentification.TypeEnum": NZLocalAccountIdentification.TypeEnum,
         "NumberAndBicAccountIdentification.TypeEnum": NumberAndBicAccountIdentification.TypeEnum,
@@ -166,8 +194,18 @@ let enumsMap: {[index: string]: any} = {
         "Transfer.DirectionEnum": Transfer.DirectionEnum,
         "Transfer.ReasonEnum": Transfer.ReasonEnum,
         "Transfer.StatusEnum": Transfer.StatusEnum,
+        "Transfer.TypeEnum": Transfer.TypeEnum,
+        "TransferData.CategoryEnum": TransferData.CategoryEnum,
+        "TransferData.DirectionEnum": TransferData.DirectionEnum,
+        "TransferData.ReasonEnum": TransferData.ReasonEnum,
+        "TransferData.StatusEnum": TransferData.StatusEnum,
+        "TransferData.TypeEnum": TransferData.TypeEnum,
+        "TransferEvent.ReasonEnum": TransferEvent.ReasonEnum,
+        "TransferEvent.StatusEnum": TransferEvent.StatusEnum,
+        "TransferEvent.TypeEnum": TransferEvent.TypeEnum,
         "TransferInfo.CategoryEnum": TransferInfo.CategoryEnum,
         "TransferInfo.PriorityEnum": TransferInfo.PriorityEnum,
+        "TransferNotificationTransferTracking.StatusEnum": TransferNotificationTransferTracking.StatusEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
@@ -179,7 +217,9 @@ let typeMap: {[index: string]: any} = {
     "AdditionalBankIdentification": AdditionalBankIdentification,
     "Address": Address,
     "Amount": Amount,
+    "AmountAdjustment": AmountAdjustment,
     "BRLocalAccountIdentification": BRLocalAccountIdentification,
+    "BalanceMutation": BalanceMutation,
     "BankAccountV3": BankAccountV3,
     "BankCategoryData": BankCategoryData,
     "CALocalAccountIdentification": CALocalAccountIdentification,
@@ -193,6 +233,7 @@ let typeMap: {[index: string]: any} = {
     "CounterpartyV3": CounterpartyV3,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "Fee": Fee,
+    "FindTransfersResponse": FindTransfersResponse,
     "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
@@ -202,6 +243,7 @@ let typeMap: {[index: string]: any} = {
     "Link": Link,
     "Links": Links,
     "MerchantData": MerchantData,
+    "Modification": Modification,
     "NOLocalAccountIdentification": NOLocalAccountIdentification,
     "NZLocalAccountIdentification": NZLocalAccountIdentification,
     "NameLocation": NameLocation,
@@ -222,11 +264,20 @@ let typeMap: {[index: string]: any} = {
     "ServiceError": ServiceError,
     "ThresholdRepayment": ThresholdRepayment,
     "Transaction": Transaction,
+    "TransactionEventViolation": TransactionEventViolation,
+    "TransactionRuleReference": TransactionRuleReference,
+    "TransactionRuleSource": TransactionRuleSource,
+    "TransactionRulesResult": TransactionRulesResult,
     "TransactionSearchResponse": TransactionSearchResponse,
     "Transfer": Transfer,
     "TransferData": TransferData,
+    "TransferEvent": TransferEvent,
     "TransferInfo": TransferInfo,
+    "TransferNotificationCounterParty": TransferNotificationCounterParty,
+    "TransferNotificationMerchantData": TransferNotificationMerchantData,
+    "TransferNotificationTransferTracking": TransferNotificationTransferTracking,
     "TransferNotificationValidationFact": TransferNotificationValidationFact,
+    "TransferView": TransferView,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,
     "UltimatePartyIdentification": UltimatePartyIdentification,

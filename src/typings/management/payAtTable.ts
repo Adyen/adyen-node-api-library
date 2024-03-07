@@ -20,7 +20,7 @@ export class PayAtTable {
     /**
     * Sets the allowed payment instrument for Pay at table transactions.  Can be: **cash** or **card**. If not set, the terminal presents both options.
     */
-    'paymentInstrument'?: PayAtTable.PaymentInstrumentEnum;
+    'paymentInstrument'?: PayAtTable.PaymentInstrumentEnum | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -38,7 +38,7 @@ export class PayAtTable {
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PayAtTable.PaymentInstrumentEnum"
+            "type": "PayAtTable.PaymentInstrumentEnum | null"
         }    ];
 
     static getAttributeTypeMap() {

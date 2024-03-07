@@ -14,6 +14,10 @@ export class CardDetailsResponse {
     * The list of brands identified for the card.
     */
     'brands'?: Array<CardBrandDetails>;
+    /**
+    * The two-letter country code  of the country where the card was issued.
+    */
+    'issuingCountryCode'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -22,6 +26,11 @@ export class CardDetailsResponse {
             "name": "brands",
             "baseName": "brands",
             "type": "Array<CardBrandDetails>"
+        },
+        {
+            "name": "issuingCountryCode",
+            "baseName": "issuingCountryCode",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

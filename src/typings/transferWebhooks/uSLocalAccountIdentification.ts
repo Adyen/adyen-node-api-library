@@ -18,6 +18,10 @@ export class USLocalAccountIdentification {
     */
     'accountType'?: USLocalAccountIdentification.AccountTypeEnum;
     /**
+    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+    */
+    'formFactor'?: string | null;
+    /**
     * The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.
     */
     'routingNumber': string;
@@ -38,6 +42,11 @@ export class USLocalAccountIdentification {
             "name": "accountType",
             "baseName": "accountType",
             "type": "USLocalAccountIdentification.AccountTypeEnum"
+        },
+        {
+            "name": "formFactor",
+            "baseName": "formFactor",
+            "type": "string | null"
         },
         {
             "name": "routingNumber",

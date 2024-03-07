@@ -10,7 +10,7 @@
 
 export class PublicKeyResponse {
     /**
-    * The public key to be used for encrypting the symmetric session key.
+    * The public key you need for encrypting a symmetric session key.
     */
     'publicKey': string;
     /**

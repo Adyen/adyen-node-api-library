@@ -9,6 +9,9 @@
 
 
 export class Link {
+    /**
+    * The link to the resource.
+    */
     'href'?: string;
 
     static discriminator: string | undefined = undefined;

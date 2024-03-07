@@ -13,6 +13,7 @@ import Client from "../../client";
 import { 
     AllowedOrigin,
     AllowedOriginsResponse,
+    RestServiceError,
     ObjectSerializer
 } from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -34,20 +35,20 @@ export class AllowedOriginsCompanyLevelApi extends Service {
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
     * @param allowedOrigin {@link AllowedOrigin } 
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link AllowedOriginsResponse }
+    * @return {@link AllowedOrigin }
     */
-    public async createAllowedOrigin(companyId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+    public async createAllowedOrigin(companyId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
         const request: AllowedOrigin = ObjectSerializer.serialize(allowedOrigin, "AllowedOrigin");
-        const response = await getJsonResponse<AllowedOrigin, AllowedOriginsResponse>(
+        const response = await getJsonResponse<AllowedOrigin, AllowedOrigin>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
+        return ObjectSerializer.deserialize(response, "AllowedOrigin");
     }
 
     /**

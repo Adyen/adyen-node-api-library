@@ -42,7 +42,7 @@ export class UnincorporatedPartnership {
     */
     'taxInformation'?: Array<TaxInformation>;
     /**
-    * Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership**  
+    * Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership** *  **limitedLiabilityPartnership** *  **eg** *  **cooperative** *  **vos** *  **comunidadDeBienes** *  **herenciaYacente** *  **comunidadDePropietarios** *  **sep** *  **sca** *  **bt** *  **kkt** *  **scs** *  **snc**  
     */
     'type': UnincorporatedPartnership.TypeEnum;
     /**
@@ -139,7 +139,20 @@ export namespace UnincorporatedPartnership {
         Maatschap = 'maatschap',
         PrivateFundLimitedPartnership = 'privateFundLimitedPartnership',
         BusinessTrustEntity = 'businessTrustEntity',
-        BusinessPartnership = 'businessPartnership'
+        BusinessPartnership = 'businessPartnership',
+        LimitedLiabilityPartnership = 'limitedLiabilityPartnership',
+        Eg = 'eg',
+        Cooperative = 'cooperative',
+        Vos = 'vos',
+        ComunidadDeBienes = 'comunidadDeBienes',
+        HerenciaYacente = 'herenciaYacente',
+        ComunidadDePropietarios = 'comunidadDePropietarios',
+        Sep = 'sep',
+        Sca = 'sca',
+        Bt = 'bt',
+        Kkt = 'kkt',
+        Scs = 'scs',
+        Snc = 'snc'
     }
     export enum VatAbsenceReasonEnum {
         IndustryExemption = 'industryExemption',

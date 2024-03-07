@@ -9,9 +9,14 @@
 
 import { Card } from './card';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
+import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 
 export class PaymentInstrument {
+    /**
+    * Contains optional, additional business account details. Returned when you create a payment instrument with `type` **bankAccount**.
+    */
+    'additionalBankAccountIdentifications'?: Array<IbanAccountIdentification>;
     /**
     * The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.
     */
@@ -19,7 +24,7 @@ export class PaymentInstrument {
     /**
     * Contains the business account details. Returned when you create a payment instrument with `type` **bankAccount**.
     */
-    'bankAccount'?: IbanAccountIdentification | USLocalAccountIdentification;
+    'bankAccount'?: IbanAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification | null;
     'card'?: Card;
     /**
     * Your description for the payment instrument, maximum 300 characters.
@@ -58,6 +63,11 @@ export class PaymentInstrument {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "additionalBankAccountIdentifications",
+            "baseName": "additionalBankAccountIdentifications",
+            "type": "Array<IbanAccountIdentification>"
+        },
+        {
             "name": "balanceAccountId",
             "baseName": "balanceAccountId",
             "type": "string"
@@ -65,7 +75,7 @@ export class PaymentInstrument {
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "IbanAccountIdentification | USLocalAccountIdentification"
+            "type": "IbanAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification | null"
         },
         {
             "name": "card",

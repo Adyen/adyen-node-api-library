@@ -98,7 +98,7 @@ export class DonationPaymentRequest {
     /**
     * The type and required details of a payment method to use.
     */
-    'paymentMethod': ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations;
+    'paymentMethod': ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations | null;
     /**
     * Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
@@ -284,7 +284,7 @@ export class DonationPaymentRequest {
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations"
+            "type": "ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations | null"
         },
         {
             "name": "recurringProcessingModel",

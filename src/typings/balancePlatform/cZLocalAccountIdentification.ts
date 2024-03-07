@@ -18,6 +18,10 @@ export class CZLocalAccountIdentification {
     */
     'bankCode': string;
     /**
+    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+    */
+    'formFactor'?: string | null;
+    /**
     * **czLocal**
     */
     'type': CZLocalAccountIdentification.TypeEnum;
@@ -34,6 +38,11 @@ export class CZLocalAccountIdentification {
             "name": "bankCode",
             "baseName": "bankCode",
             "type": "string"
+        },
+        {
+            "name": "formFactor",
+            "baseName": "formFactor",
+            "type": "string | null"
         },
         {
             "name": "type",

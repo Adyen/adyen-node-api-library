@@ -26,7 +26,7 @@ export class PaymentRefundRequest {
     /**
     * Your reason for the refund request
     */
-    'merchantRefundReason'?: PaymentRefundRequest.MerchantRefundReasonEnum;
+    'merchantRefundReason'?: PaymentRefundRequest.MerchantRefundReasonEnum | null;
     /**
     * Your reference for the refund request. Maximum length: 80 characters.
     */
@@ -66,7 +66,7 @@ export class PaymentRefundRequest {
         {
             "name": "merchantRefundReason",
             "baseName": "merchantRefundReason",
-            "type": "PaymentRefundRequest.MerchantRefundReasonEnum"
+            "type": "PaymentRefundRequest.MerchantRefundReasonEnum | null"
         },
         {
             "name": "reference",

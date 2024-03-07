@@ -129,10 +129,12 @@ export * from './splitConfigurationLogic';
 export * from './splitConfigurationRule';
 export * from './standalone';
 export * from './store';
+export * from './storeAndForward';
 export * from './storeCreationRequest';
 export * from './storeCreationWithMerchantCodeRequest';
 export * from './storeLocation';
 export * from './storeSplitConfiguration';
+export * from './supportedCardTypes';
 export * from './surcharge';
 export * from './swishInfo';
 export * from './tapToPay';
@@ -144,6 +146,7 @@ export * from './terminalConnectivityBluetooth';
 export * from './terminalConnectivityCellular';
 export * from './terminalConnectivityEthernet';
 export * from './terminalConnectivityWifi';
+export * from './terminalInstructions';
 export * from './terminalModelsResponse';
 export * from './terminalOrder';
 export * from './terminalOrderRequest';
@@ -306,10 +309,12 @@ import { SplitConfigurationLogic } from './splitConfigurationLogic';
 import { SplitConfigurationRule } from './splitConfigurationRule';
 import { Standalone } from './standalone';
 import { Store } from './store';
+import { StoreAndForward } from './storeAndForward';
 import { StoreCreationRequest } from './storeCreationRequest';
 import { StoreCreationWithMerchantCodeRequest } from './storeCreationWithMerchantCodeRequest';
 import { StoreLocation } from './storeLocation';
 import { StoreSplitConfiguration } from './storeSplitConfiguration';
+import { SupportedCardTypes } from './supportedCardTypes';
 import { Surcharge } from './surcharge';
 import { SwishInfo } from './swishInfo';
 import { TapToPay } from './tapToPay';
@@ -321,6 +326,7 @@ import { TerminalConnectivityBluetooth } from './terminalConnectivityBluetooth';
 import { TerminalConnectivityCellular } from './terminalConnectivityCellular';
 import { TerminalConnectivityEthernet } from './terminalConnectivityEthernet';
 import { TerminalConnectivityWifi } from './terminalConnectivityWifi';
+import { TerminalInstructions } from './terminalInstructions';
 import { TerminalModelsResponse } from './terminalModelsResponse';
 import { TerminalOrder } from './terminalOrder';
 import { TerminalOrderRequest } from './terminalOrderRequest';
@@ -403,6 +409,8 @@ let enumsMap: {[index: string]: any} = {
         "SplitConfigurationLogic.ChargebackCostAllocationEnum": SplitConfigurationLogic.ChargebackCostAllocationEnum,
         "SplitConfigurationLogic.InterchangeEnum": SplitConfigurationLogic.InterchangeEnum,
         "SplitConfigurationLogic.PaymentFeeEnum": SplitConfigurationLogic.PaymentFeeEnum,
+        "SplitConfigurationLogic.RefundEnum": SplitConfigurationLogic.RefundEnum,
+        "SplitConfigurationLogic.RefundCostAllocationEnum": SplitConfigurationLogic.RefundCostAllocationEnum,
         "SplitConfigurationLogic.RemainderEnum": SplitConfigurationLogic.RemainderEnum,
         "SplitConfigurationLogic.SchemeFeeEnum": SplitConfigurationLogic.SchemeFeeEnum,
         "SplitConfigurationLogic.SurchargeEnum": SplitConfigurationLogic.SurchargeEnum,
@@ -430,6 +438,8 @@ let enumsMap: {[index: string]: any} = {
         "UpdateSplitConfigurationLogicRequest.ChargebackCostAllocationEnum": UpdateSplitConfigurationLogicRequest.ChargebackCostAllocationEnum,
         "UpdateSplitConfigurationLogicRequest.InterchangeEnum": UpdateSplitConfigurationLogicRequest.InterchangeEnum,
         "UpdateSplitConfigurationLogicRequest.PaymentFeeEnum": UpdateSplitConfigurationLogicRequest.PaymentFeeEnum,
+        "UpdateSplitConfigurationLogicRequest.RefundEnum": UpdateSplitConfigurationLogicRequest.RefundEnum,
+        "UpdateSplitConfigurationLogicRequest.RefundCostAllocationEnum": UpdateSplitConfigurationLogicRequest.RefundCostAllocationEnum,
         "UpdateSplitConfigurationLogicRequest.RemainderEnum": UpdateSplitConfigurationLogicRequest.RemainderEnum,
         "UpdateSplitConfigurationLogicRequest.SchemeFeeEnum": UpdateSplitConfigurationLogicRequest.SchemeFeeEnum,
         "UpdateSplitConfigurationLogicRequest.SurchargeEnum": UpdateSplitConfigurationLogicRequest.SurchargeEnum,
@@ -563,10 +573,12 @@ let typeMap: {[index: string]: any} = {
     "SplitConfigurationRule": SplitConfigurationRule,
     "Standalone": Standalone,
     "Store": Store,
+    "StoreAndForward": StoreAndForward,
     "StoreCreationRequest": StoreCreationRequest,
     "StoreCreationWithMerchantCodeRequest": StoreCreationWithMerchantCodeRequest,
     "StoreLocation": StoreLocation,
     "StoreSplitConfiguration": StoreSplitConfiguration,
+    "SupportedCardTypes": SupportedCardTypes,
     "Surcharge": Surcharge,
     "SwishInfo": SwishInfo,
     "TapToPay": TapToPay,
@@ -578,6 +590,7 @@ let typeMap: {[index: string]: any} = {
     "TerminalConnectivityCellular": TerminalConnectivityCellular,
     "TerminalConnectivityEthernet": TerminalConnectivityEthernet,
     "TerminalConnectivityWifi": TerminalConnectivityWifi,
+    "TerminalInstructions": TerminalInstructions,
     "TerminalModelsResponse": TerminalModelsResponse,
     "TerminalOrder": TerminalOrder,
     "TerminalOrderRequest": TerminalOrderRequest,

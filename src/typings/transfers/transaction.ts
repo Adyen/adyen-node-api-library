@@ -9,7 +9,7 @@
 
 import { Amount } from './amount';
 import { ResourceReference } from './resourceReference';
-import { TransferData } from './transferData';
+import { TransferView } from './transferView';
 
 export class Transaction {
     'accountHolder': ResourceReference;
@@ -35,7 +35,7 @@ export class Transaction {
     * The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.  
     */
     'status': Transaction.StatusEnum;
-    'transfer'?: TransferData;
+    'transfer'?: TransferView;
     /**
     * The date the transfer amount becomes available in the balance account.
     */
@@ -87,7 +87,7 @@ export class Transaction {
         {
             "name": "transfer",
             "baseName": "transfer",
-            "type": "TransferData"
+            "type": "TransferView"
         },
         {
             "name": "valueDate",

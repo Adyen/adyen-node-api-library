@@ -39,7 +39,7 @@ export class TransferData {
     /**
     * The relevant data according to the transfer category.
     */
-    'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment;
+    'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null;
     'counterparty'?: TransferNotificationCounterParty;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
@@ -125,7 +125,7 @@ export class TransferData {
         {
             "name": "categoryData",
             "baseName": "categoryData",
-            "type": "BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment"
+            "type": "BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null"
         },
         {
             "name": "counterparty",
@@ -296,6 +296,7 @@ export namespace TransferData {
         Refunded = 'refunded',
         RefundedExternally = 'refundedExternally',
         Refused = 'refused',
+        Rejected = 'rejected',
         ReserveAdjustment = 'reserveAdjustment',
         ReserveAdjustmentPending = 'reserveAdjustmentPending',
         Returned = 'returned',
@@ -309,6 +310,7 @@ export namespace TransferData {
         BalanceAdjustment = 'balanceAdjustment',
         BalanceMigration = 'balanceMigration',
         BalanceRollover = 'balanceRollover',
+        BankDirectDebit = 'bankDirectDebit',
         BankTransfer = 'bankTransfer',
         Capture = 'capture',
         CaptureReversal = 'captureReversal',
@@ -325,6 +327,7 @@ export namespace TransferData {
         Grant = 'grant',
         Installment = 'installment',
         InstallmentReversal = 'installmentReversal',
+        InternalDirectDebit = 'internalDirectDebit',
         InternalTransfer = 'internalTransfer',
         InvoiceDeduction = 'invoiceDeduction',
         Leftover = 'leftover',

@@ -10,7 +10,7 @@
 
 export class Name {
     /**
-    * The individual\'s first name.
+    * The individual\'s first name. Must not be blank.
     */
     'firstName': string;
     /**
@@ -18,7 +18,7 @@ export class Name {
     */
     'infix'?: string;
     /**
-    * The individual\'s last name.
+    * The individual\'s last name. Must not be blank.
     */
     'lastName': string;
 

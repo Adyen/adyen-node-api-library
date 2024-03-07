@@ -27,7 +27,7 @@ export class Transfer {
     /**
     * The relevant data according to the transfer category.
     */
-    'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment;
+    'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null;
     'counterparty': CounterpartyV3;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
@@ -62,6 +62,10 @@ export class Transfer {
     * The result of the transfer.   For example, **authorised**, **refused**, or **error**.
     */
     'status': Transfer.StatusEnum;
+    /**
+    * The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
+    */
+    'type'?: Transfer.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -89,7 +93,7 @@ export class Transfer {
         {
             "name": "categoryData",
             "baseName": "categoryData",
-            "type": "BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment"
+            "type": "BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null"
         },
         {
             "name": "counterparty",
@@ -140,6 +144,11 @@ export class Transfer {
             "name": "status",
             "baseName": "status",
             "type": "Transfer.StatusEnum"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "Transfer.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -235,11 +244,50 @@ export namespace Transfer {
         Refunded = 'refunded',
         RefundedExternally = 'refundedExternally',
         Refused = 'refused',
+        Rejected = 'rejected',
         ReserveAdjustment = 'reserveAdjustment',
         ReserveAdjustmentPending = 'reserveAdjustmentPending',
         Returned = 'returned',
         SecondChargeback = 'secondChargeback',
         SecondChargebackPending = 'secondChargebackPending',
         Undefined = 'undefined'
+    }
+    export enum TypeEnum {
+        AtmWithdrawal = 'atmWithdrawal',
+        AtmWithdrawalReversal = 'atmWithdrawalReversal',
+        BalanceAdjustment = 'balanceAdjustment',
+        BalanceMigration = 'balanceMigration',
+        BalanceRollover = 'balanceRollover',
+        BankDirectDebit = 'bankDirectDebit',
+        BankTransfer = 'bankTransfer',
+        Capture = 'capture',
+        CaptureReversal = 'captureReversal',
+        CardTransfer = 'cardTransfer',
+        CashOutFee = 'cashOutFee',
+        CashOutFunding = 'cashOutFunding',
+        CashOutInstruction = 'cashOutInstruction',
+        Chargeback = 'chargeback',
+        ChargebackCorrection = 'chargebackCorrection',
+        ChargebackReversal = 'chargebackReversal',
+        ChargebackReversalCorrection = 'chargebackReversalCorrection',
+        DepositCorrection = 'depositCorrection',
+        Fee = 'fee',
+        Grant = 'grant',
+        Installment = 'installment',
+        InstallmentReversal = 'installmentReversal',
+        InternalDirectDebit = 'internalDirectDebit',
+        InternalTransfer = 'internalTransfer',
+        InvoiceDeduction = 'invoiceDeduction',
+        Leftover = 'leftover',
+        ManualCorrection = 'manualCorrection',
+        MiscCost = 'miscCost',
+        Payment = 'payment',
+        PaymentCost = 'paymentCost',
+        Refund = 'refund',
+        RefundReversal = 'refundReversal',
+        Repayment = 'repayment',
+        ReserveAdjustment = 'reserveAdjustment',
+        SecondChargeback = 'secondChargeback',
+        SecondChargebackCorrection = 'secondChargebackCorrection'
     }
 }
