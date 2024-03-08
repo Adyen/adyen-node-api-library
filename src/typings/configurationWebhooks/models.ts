@@ -51,6 +51,7 @@ export * from './sweepConfigurationNotificationRequest';
 export * from './sweepConfigurationV2';
 export * from './sweepCounterparty';
 export * from './sweepSchedule';
+export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
 export * from './verificationDeadline';
 export * from './verificationError';
@@ -100,6 +101,7 @@ import { SweepConfigurationNotificationRequest } from './sweepConfigurationNotif
 import { SweepConfigurationV2 } from './sweepConfigurationV2';
 import { SweepCounterparty } from './sweepCounterparty';
 import { SweepSchedule } from './sweepSchedule';
+import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 import { VerificationDeadline } from './verificationDeadline';
 import { VerificationError } from './verificationError';
@@ -146,6 +148,7 @@ let enumsMap: {[index: string]: any} = {
         "SweepConfigurationV2.StatusEnum": SweepConfigurationV2.StatusEnum,
         "SweepConfigurationV2.TypeEnum": SweepConfigurationV2.TypeEnum,
         "SweepSchedule.TypeEnum": SweepSchedule.TypeEnum,
+        "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
         "VerificationDeadline.CapabilitiesEnum": VerificationDeadline.CapabilitiesEnum,
@@ -199,6 +202,7 @@ let typeMap: {[index: string]: any} = {
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,
     "SweepSchedule": SweepSchedule,
+    "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,
     "VerificationDeadline": VerificationDeadline,
     "VerificationError": VerificationError,

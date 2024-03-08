@@ -18,6 +18,10 @@ export class HKLocalAccountIdentification {
     */
     'clearingCode': string;
     /**
+    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+    */
+    'formFactor'?: string | null;
+    /**
     * **hkLocal**
     */
     'type': HKLocalAccountIdentification.TypeEnum;
@@ -34,6 +38,11 @@ export class HKLocalAccountIdentification {
             "name": "clearingCode",
             "baseName": "clearingCode",
             "type": "string"
+        },
+        {
+            "name": "formFactor",
+            "baseName": "formFactor",
+            "type": "string | null"
         },
         {
             "name": "type",

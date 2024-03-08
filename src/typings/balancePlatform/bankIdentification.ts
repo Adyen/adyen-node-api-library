@@ -9,8 +9,17 @@
 
 
 export class BankIdentification {
+    /**
+    * Two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
+    */
     'country'?: string;
+    /**
+    * The bank identification code.
+    */
     'identification'?: string;
+    /**
+    * The type of the identification.  Possible values: **iban**, **routingNumber**.
+    */
     'identificationType'?: BankIdentification.IdentificationTypeEnum;
 
     static discriminator: string | undefined = undefined;

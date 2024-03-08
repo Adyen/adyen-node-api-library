@@ -13,8 +13,8 @@ import { BankAccountValidationApi } from "./bankAccountValidationApi";
 import { CardOrdersApi } from "./cardOrdersApi";
 import { GrantAccountsApi } from "./grantAccountsApi";
 import { GrantOffersApi } from "./grantOffersApi";
+import { ManageCardPINApi } from "./manageCardPINApi";
 import { NetworkTokensApi } from "./networkTokensApi";
-import { PINFunctionalityApi } from "./pINFunctionalityApi";
 import { PaymentInstrumentGroupsApi } from "./paymentInstrumentGroupsApi";
 import { PaymentInstrumentsApi } from "./paymentInstrumentsApi";
 import { PlatformApi } from "./platformApi";
@@ -54,12 +54,12 @@ export default class BalancePlatformAPI extends Service {
         return new GrantOffersApi(this.client);
     }
 
-    public get NetworkTokensApi() {
-        return new NetworkTokensApi(this.client);
+    public get ManageCardPINApi() {
+        return new ManageCardPINApi(this.client);
     }
 
-    public get PINFunctionalityApi() {
-        return new PINFunctionalityApi(this.client);
+    public get NetworkTokensApi() {
+        return new NetworkTokensApi(this.client);
     }
 
     public get PaymentInstrumentGroupsApi() {

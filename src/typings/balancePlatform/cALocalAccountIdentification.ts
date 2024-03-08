@@ -18,6 +18,10 @@ export class CALocalAccountIdentification {
     */
     'accountType'?: CALocalAccountIdentification.AccountTypeEnum;
     /**
+    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+    */
+    'formFactor'?: string | null;
+    /**
     * The 3-digit institution number, without separators or whitespace.
     */
     'institutionNumber': string;
@@ -42,6 +46,11 @@ export class CALocalAccountIdentification {
             "name": "accountType",
             "baseName": "accountType",
             "type": "CALocalAccountIdentification.AccountTypeEnum"
+        },
+        {
+            "name": "formFactor",
+            "baseName": "formFactor",
+            "type": "string | null"
         },
         {
             "name": "institutionNumber",

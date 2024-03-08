@@ -15,6 +15,8 @@ import {
     PaymentInstrument,
     PaymentInstrumentInfo,
     PaymentInstrumentRevealInfo,
+    PaymentInstrumentRevealRequest,
+    PaymentInstrumentRevealResponse,
     PaymentInstrumentUpdateRequest,
     TransactionRulesResponse,
     UpdatePaymentInstrument,
@@ -121,6 +123,24 @@ export class PaymentInstrumentsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "ListNetworkTokensResponse");
+    }
+
+    /**
+    * @summary Reveal the data of a payment instrument
+    * @param paymentInstrumentRevealRequest {@link PaymentInstrumentRevealRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link PaymentInstrumentRevealResponse }
+    */
+    public async revealDataOfPaymentInstrument(paymentInstrumentRevealRequest: PaymentInstrumentRevealRequest, requestOptions?: IRequest.Options): Promise<PaymentInstrumentRevealResponse> {
+        const endpoint = `${this.baseUrl}/paymentInstruments/reveal`;
+        const resource = new Resource(this, endpoint);
+        const request: PaymentInstrumentRevealRequest = ObjectSerializer.serialize(paymentInstrumentRevealRequest, "PaymentInstrumentRevealRequest");
+        const response = await getJsonResponse<PaymentInstrumentRevealRequest, PaymentInstrumentRevealResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "PaymentInstrumentRevealResponse");
     }
 
     /**

@@ -10,7 +10,7 @@
 
 export class PinChangeResponse {
     /**
-    * The pin change status.
+    * The status of the request for PIN change.  Possible values: **completed**, **pending**, **unavailable**.
     */
     'status': PinChangeResponse.StatusEnum;
 

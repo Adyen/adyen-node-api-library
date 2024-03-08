@@ -18,6 +18,10 @@ export class PaymentInstrumentRequirement {
     */
     'issuingCountryCode'?: string;
     /**
+    * The two-character ISO-3166-1 alpha-2 country code list for payment instruments.
+    */
+    'issuingCountryCodes'?: Array<string>;
+    /**
     * Specifies if the requirement only applies to transfers to another balance platform.
     */
     'onlyForCrossBalancePlatform'?: boolean;
@@ -42,6 +46,11 @@ export class PaymentInstrumentRequirement {
             "name": "issuingCountryCode",
             "baseName": "issuingCountryCode",
             "type": "string"
+        },
+        {
+            "name": "issuingCountryCodes",
+            "baseName": "issuingCountryCodes",
+            "type": "Array<string>"
         },
         {
             "name": "onlyForCrossBalancePlatform",

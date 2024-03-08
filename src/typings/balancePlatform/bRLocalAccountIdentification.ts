@@ -22,6 +22,10 @@ export class BRLocalAccountIdentification {
     */
     'branchNumber': string;
     /**
+    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+    */
+    'formFactor'?: string | null;
+    /**
     * **brLocal**
     */
     'type': BRLocalAccountIdentification.TypeEnum;
@@ -43,6 +47,11 @@ export class BRLocalAccountIdentification {
             "name": "branchNumber",
             "baseName": "branchNumber",
             "type": "string"
+        },
+        {
+            "name": "formFactor",
+            "baseName": "formFactor",
+            "type": "string | null"
         },
         {
             "name": "type",

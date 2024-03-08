@@ -18,6 +18,10 @@ export class SGLocalAccountIdentification {
     */
     'bic': string;
     /**
+    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+    */
+    'formFactor'?: string | null;
+    /**
     * **sgLocal**
     */
     'type'?: SGLocalAccountIdentification.TypeEnum;
@@ -34,6 +38,11 @@ export class SGLocalAccountIdentification {
             "name": "bic",
             "baseName": "bic",
             "type": "string"
+        },
+        {
+            "name": "formFactor",
+            "baseName": "formFactor",
+            "type": "string | null"
         },
         {
             "name": "type",

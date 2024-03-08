@@ -47,12 +47,19 @@ export class DocumentsApi extends Service {
     * @summary Get a document
     * @param id {@link string } The unique identifier of the document.
     * @param requestOptions {@link IRequest.Options }
+    * @param skipContent {@link boolean } Do not load document content while fetching the document.
     * @return {@link Document }
     */
-    public async getDocument(id: string, requestOptions?: IRequest.Options): Promise<Document> {
+    public async getDocument(id: string, skipContent?: boolean, requestOptions?: IRequest.Options): Promise<Document> {
         const endpoint = `${this.baseUrl}/documents/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = skipContent;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(skipContent) requestOptions.params["skipContent"] = skipContent;
+        }
         const response = await getJsonResponse<string, Document>(
             resource,
             "",

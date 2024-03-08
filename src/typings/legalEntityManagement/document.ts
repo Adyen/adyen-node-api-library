@@ -54,7 +54,7 @@ export class Document {
     'number'?: string;
     'owner'?: OwnerEntity;
     /**
-    * Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, or **proofOfFundingOrWealthSource**.  * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+    * Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, **proofOfSignatory**, or **proofOfFundingOrWealthSource**.  * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **liveSelfie**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, or **proofOfFundingOrWealthSource**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
     */
     'type': Document.TypeEnum;
 
@@ -145,6 +145,10 @@ export namespace Document {
         RegistrationDocument = 'registrationDocument',
         VatDocument = 'vatDocument',
         ProofOfOrganizationTaxInfo = 'proofOfOrganizationTaxInfo',
+        ProofOfIndividualTaxId = 'proofOfIndividualTaxId',
+        ProofOfOwnership = 'proofOfOwnership',
+        ProofOfSignatory = 'proofOfSignatory',
+        LiveSelfie = 'liveSelfie',
         ProofOfIndustry = 'proofOfIndustry',
         ConstitutionalDocument = 'constitutionalDocument',
         ProofOfFundingOrWealthSource = 'proofOfFundingOrWealthSource'

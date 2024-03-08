@@ -10,11 +10,11 @@
 
 export class RevealPinResponse {
     /**
-    * The encrypted PIN block.
+    * The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).
     */
     'encryptedPinBlock': string;
     /**
-    * The encrypted PIN block extraction token.
+    * The 16-digit token that you need to extract the `encryptedPinBlock`.
     */
     'token': string;
 

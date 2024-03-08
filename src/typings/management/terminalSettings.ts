@@ -23,8 +23,10 @@ import { ReceiptPrinting } from './receiptPrinting';
 import { Refunds } from './refunds';
 import { Signature } from './signature';
 import { Standalone } from './standalone';
+import { StoreAndForward } from './storeAndForward';
 import { Surcharge } from './surcharge';
 import { TapToPay } from './tapToPay';
+import { TerminalInstructions } from './terminalInstructions';
 import { Timeouts } from './timeouts';
 import { WifiProfiles } from './wifiProfiles';
 
@@ -48,8 +50,10 @@ export class TerminalSettings {
     'refunds'?: Refunds;
     'signature'?: Signature;
     'standalone'?: Standalone;
+    'storeAndForward'?: StoreAndForward;
     'surcharge'?: Surcharge;
     'tapToPay'?: TapToPay;
+    'terminalInstructions'?: TerminalInstructions;
     'timeouts'?: Timeouts;
     'wifiProfiles'?: WifiProfiles;
 
@@ -137,6 +141,11 @@ export class TerminalSettings {
             "type": "Standalone"
         },
         {
+            "name": "storeAndForward",
+            "baseName": "storeAndForward",
+            "type": "StoreAndForward"
+        },
+        {
             "name": "surcharge",
             "baseName": "surcharge",
             "type": "Surcharge"
@@ -145,6 +154,11 @@ export class TerminalSettings {
             "name": "tapToPay",
             "baseName": "tapToPay",
             "type": "TapToPay"
+        },
+        {
+            "name": "terminalInstructions",
+            "baseName": "terminalInstructions",
+            "type": "TerminalInstructions"
         },
         {
             "name": "timeouts",

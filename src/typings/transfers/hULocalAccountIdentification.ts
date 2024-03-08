@@ -14,6 +14,10 @@ export class HULocalAccountIdentification {
     */
     'accountNumber': string;
     /**
+    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+    */
+    'formFactor'?: string | null;
+    /**
     * **huLocal**
     */
     'type': HULocalAccountIdentification.TypeEnum;
@@ -25,6 +29,11 @@ export class HULocalAccountIdentification {
             "name": "accountNumber",
             "baseName": "accountNumber",
             "type": "string"
+        },
+        {
+            "name": "formFactor",
+            "baseName": "formFactor",
+            "type": "string | null"
         },
         {
             "name": "type",

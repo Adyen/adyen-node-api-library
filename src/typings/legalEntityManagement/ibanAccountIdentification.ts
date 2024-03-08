@@ -10,6 +10,10 @@
 
 export class IbanAccountIdentification {
     /**
+    * Business accounts with a `formFactor` value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the `formFactor`å value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
+    */
+    'formFactor'?: string | null;
+    /**
     * The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
     */
     'iban': string;
@@ -21,6 +25,11 @@ export class IbanAccountIdentification {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "formFactor",
+            "baseName": "formFactor",
+            "type": "string | null"
+        },
         {
             "name": "iban",
             "baseName": "iban",

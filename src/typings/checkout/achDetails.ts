@@ -12,7 +12,7 @@ export class AchDetails {
     /**
     * The bank account number (without separators).
     */
-    'bankAccountNumber': string;
+    'bankAccountNumber'?: string;
     /**
     * The bank account type (checking, savings...).
     */

@@ -98,6 +98,8 @@ export * from './paymentInstrumentGroupInfo';
 export * from './paymentInstrumentInfo';
 export * from './paymentInstrumentRequirement';
 export * from './paymentInstrumentRevealInfo';
+export * from './paymentInstrumentRevealRequest';
+export * from './paymentInstrumentRevealResponse';
 export * from './paymentInstrumentUpdateRequest';
 export * from './phone';
 export * from './phoneNumber';
@@ -234,6 +236,8 @@ import { PaymentInstrumentGroupInfo } from './paymentInstrumentGroupInfo';
 import { PaymentInstrumentInfo } from './paymentInstrumentInfo';
 import { PaymentInstrumentRequirement } from './paymentInstrumentRequirement';
 import { PaymentInstrumentRevealInfo } from './paymentInstrumentRevealInfo';
+import { PaymentInstrumentRevealRequest } from './paymentInstrumentRevealRequest';
+import { PaymentInstrumentRevealResponse } from './paymentInstrumentRevealResponse';
 import { PaymentInstrumentUpdateRequest } from './paymentInstrumentUpdateRequest';
 import { Phone } from './phone';
 import { PhoneNumber } from './phoneNumber';
@@ -490,6 +494,8 @@ let typeMap: {[index: string]: any} = {
     "PaymentInstrumentInfo": PaymentInstrumentInfo,
     "PaymentInstrumentRequirement": PaymentInstrumentRequirement,
     "PaymentInstrumentRevealInfo": PaymentInstrumentRevealInfo,
+    "PaymentInstrumentRevealRequest": PaymentInstrumentRevealRequest,
+    "PaymentInstrumentRevealResponse": PaymentInstrumentRevealResponse,
     "PaymentInstrumentUpdateRequest": PaymentInstrumentUpdateRequest,
     "Phone": Phone,
     "PhoneNumber": PhoneNumber,

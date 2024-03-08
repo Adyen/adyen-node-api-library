@@ -224,6 +224,7 @@ let enumsMap: {[index: string]: any} = {
         "ThreeDS2RequestData.AcctTypeEnum": ThreeDS2RequestData.AcctTypeEnum,
         "ThreeDS2RequestData.AddrMatchEnum": ThreeDS2RequestData.AddrMatchEnum,
         "ThreeDS2RequestData.ChallengeIndicatorEnum": ThreeDS2RequestData.ChallengeIndicatorEnum,
+        "ThreeDS2RequestData.PlatformEnum": ThreeDS2RequestData.PlatformEnum,
         "ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum": ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum,
         "ThreeDS2RequestData.TransTypeEnum": ThreeDS2RequestData.TransTypeEnum,
         "ThreeDS2RequestData.TransactionTypeEnum": ThreeDS2RequestData.TransactionTypeEnum,

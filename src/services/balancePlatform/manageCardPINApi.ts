@@ -21,7 +21,7 @@ import {
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-export class PINFunctionalityApi extends Service {
+export class ManageCardPINApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
     private baseUrl: string;
@@ -32,12 +32,12 @@ export class PINFunctionalityApi extends Service {
     }
 
     /**
-    * @summary Change Pin
+    * @summary Change a card PIN
     * @param pinChangeRequest {@link PinChangeRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link PinChangeResponse }
     */
-    public async changePin(pinChangeRequest: PinChangeRequest, requestOptions?: IRequest.Options): Promise<PinChangeResponse> {
+    public async changeCardPin(pinChangeRequest: PinChangeRequest, requestOptions?: IRequest.Options): Promise<PinChangeResponse> {
         const endpoint = `${this.baseUrl}/pins/change`;
         const resource = new Resource(this, endpoint);
         const request: PinChangeRequest = ObjectSerializer.serialize(pinChangeRequest, "PinChangeRequest");
@@ -50,14 +50,14 @@ export class PINFunctionalityApi extends Service {
     }
 
     /**
-    * @summary Get RSA publicKey
+    * @summary Get an RSA public key
     * @param requestOptions {@link IRequest.Options }
-    * @param purpose {@link string } Purpose of publicKey.
-    * @param format {@link string } Format of publicKey.
+    * @param purpose {@link string } The purpose of the public key.  Possible values: **pinChange**, **pinReveal**, **panReveal**.  Default value: **pinReveal**.
+    * @param format {@link string } The encoding format of public key.  Possible values: **jwk**, **pem**.  Default value: **pem**.
     * @return {@link PublicKeyResponse }
     */
-    public async getRsaPublickey(purpose?: string, format?: string, requestOptions?: IRequest.Options): Promise<PublicKeyResponse> {
-        const endpoint = `${this.baseUrl}/pins/publicKey`;
+    public async publicKey(purpose?: string, format?: string, requestOptions?: IRequest.Options): Promise<PublicKeyResponse> {
+        const endpoint = `${this.baseUrl}/publicKey`;
         const resource = new Resource(this, endpoint);
         const hasDefinedQueryParams = purpose ?? format;
         if(hasDefinedQueryParams) {
@@ -75,12 +75,12 @@ export class PINFunctionalityApi extends Service {
     }
 
     /**
-    * @summary Reveal Pin
+    * @summary Reveal a card PIN
     * @param revealPinRequest {@link RevealPinRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link RevealPinResponse }
     */
-    public async revealPin(revealPinRequest: RevealPinRequest, requestOptions?: IRequest.Options): Promise<RevealPinResponse> {
+    public async revealCardPin(revealPinRequest: RevealPinRequest, requestOptions?: IRequest.Options): Promise<RevealPinResponse> {
         const endpoint = `${this.baseUrl}/pins/reveal`;
         const resource = new Resource(this, endpoint);
         const request: RevealPinRequest = ObjectSerializer.serialize(revealPinRequest, "RevealPinRequest");

@@ -10,11 +10,11 @@
 
 export class RevealPinRequest {
     /**
-    * Symmetric session key encrypted under the public key.
+    * The symmetric session key that you encrypted with the [public key](https://docs.adyen.com/api-explorer/balanceplatform/2/get/publicKey) that you received from Adyen.
     */
     'encryptedKey': string;
     /**
-    * The unique identifier of the payment instrument.
+    * The unique identifier of the payment instrument, which is the card for which you are managing the PIN.
     */
     'paymentInstrumentId': string;
 

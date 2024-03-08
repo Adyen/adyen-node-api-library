@@ -18,7 +18,7 @@ export class ScheduleTerminalActionsResponse {
     /**
     * Information about the action to take.
     */
-    'actionDetails'?: InstallAndroidAppDetails | InstallAndroidCertificateDetails | ReleaseUpdateDetails | UninstallAndroidAppDetails | UninstallAndroidCertificateDetails;
+    'actionDetails'?: InstallAndroidAppDetails | InstallAndroidCertificateDetails | ReleaseUpdateDetails | UninstallAndroidAppDetails | UninstallAndroidCertificateDetails | null;
     /**
     * A list containing a terminal ID and an action ID for each terminal that the action was scheduled for.
     */
@@ -50,7 +50,7 @@ export class ScheduleTerminalActionsResponse {
         {
             "name": "actionDetails",
             "baseName": "actionDetails",
-            "type": "InstallAndroidAppDetails | InstallAndroidCertificateDetails | ReleaseUpdateDetails | UninstallAndroidAppDetails | UninstallAndroidCertificateDetails"
+            "type": "InstallAndroidAppDetails | InstallAndroidCertificateDetails | ReleaseUpdateDetails | UninstallAndroidAppDetails | UninstallAndroidCertificateDetails | null"
         },
         {
             "name": "items",

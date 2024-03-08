@@ -10,6 +10,10 @@
 
 export class IbanAccountIdentification {
     /**
+    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+    */
+    'formFactor'?: string | null;
+    /**
     * The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
     */
     'iban': string;
@@ -21,6 +25,11 @@ export class IbanAccountIdentification {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "formFactor",
+            "baseName": "formFactor",
+            "type": "string | null"
+        },
         {
             "name": "iban",
             "baseName": "iban",
