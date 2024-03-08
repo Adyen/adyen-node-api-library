@@ -246,9 +246,9 @@ describe("Management", (): void => {
 
         it("should support POST /merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins", async (): Promise<void> => {
             scope.post(`/merchants/${merchantId}/apiCredentials/${apiCredentialId}/allowedOrigins`)
-                .reply(200, responses.allowedOriginsResponse);
+                .reply(200, responses.allowedOrigin);
 
-            const response:  management.AllowedOriginsResponse = await managementService.AllowedOriginsMerchantLevelApi.createAllowedOrigin(merchantId, apiCredentialId, requests.allowedOrigin);
+            const response:  management.AllowedOrigin = await managementService.AllowedOriginsMerchantLevelApi.createAllowedOrigin(merchantId, apiCredentialId, requests.allowedOrigin);
 
             expect(response).toBeTruthy();
         });
@@ -706,11 +706,7 @@ describe("Management", (): void => {
             scope.post("/merchants/YOUR_MERCHANT_ACCOUNT/apiCredentials/YOUR_API_CREDENTIAL/allowedOrigins", requestBody)
                 .reply(200, {
                     "id": "YOUR_ALLOWED_ORIGIN",
-                    "data": [
-                        {
-                            "domain": "https://www.eu.mystore.com",
-                        }
-                    ], 
+                    "domain": "https://www.eu.mystore.com",
                     "_links": {
                         "self": {
                             "href": "https://management-test.adyen.com/v1/merchants/YOUR_MERCHANT_ACCOUNT/apiCredentials/YOUR_API_CREDENTIAL/allowedOrigins/YOUR_ALLOWED_ORIGIN"
@@ -718,12 +714,12 @@ describe("Management", (): void => {
                     }
                 });
 
-            const response: management.AllowedOriginsResponse = await managementService.AllowedOriginsMerchantLevelApi
+            const response: management.AllowedOrigin = await managementService.AllowedOriginsMerchantLevelApi
                 .createAllowedOrigin("YOUR_MERCHANT_ACCOUNT", "YOUR_API_CREDENTIAL", {
                     domain: "https://www.eu.mystore.com",
                 });
 
-            expect(response.data![0].domain).toEqual("https://www.eu.mystore.com");
+            expect(response.domain).toEqual("https://www.eu.mystore.com");
         });
     });
 });
