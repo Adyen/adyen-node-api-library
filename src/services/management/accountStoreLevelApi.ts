@@ -32,41 +32,32 @@ export class AccountStoreLevelApi extends Service {
     }
 
     /**
-    * @summary Create a store
-    * @param storeCreationWithMerchantCodeRequest {@link StoreCreationWithMerchantCodeRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link Store }
-    */
-    public async createStore(storeCreationWithMerchantCodeRequest: StoreCreationWithMerchantCodeRequest, requestOptions?: IRequest.Options): Promise<Store> {
-        const endpoint = `${this.baseUrl}/stores`;
-        const resource = new Resource(this, endpoint);
-        const request: StoreCreationWithMerchantCodeRequest = ObjectSerializer.serialize(storeCreationWithMerchantCodeRequest, "StoreCreationWithMerchantCodeRequest");
-        const response = await getJsonResponse<StoreCreationWithMerchantCodeRequest, Store>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "Store");
-    }
-
-    /**
-    * @summary Create a store
+    * @summary Get a list of stores
     * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param storeCreationRequest {@link StoreCreationRequest } 
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link Store }
+    * @param pageNumber {@link number } The number of the page to fetch.
+    * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 10 items on a page.
+    * @param reference {@link string } The reference of the store.
+    * @return {@link ListStoresResponse }
     */
-    public async createStoreByMerchantId(merchantId: string, storeCreationRequest: StoreCreationRequest, requestOptions?: IRequest.Options): Promise<Store> {
+    public async listStoresByMerchantId(merchantId: string, pageNumber?: number, pageSize?: number, reference?: string, requestOptions?: IRequest.Options): Promise<ListStoresResponse> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        const request: StoreCreationRequest = ObjectSerializer.serialize(storeCreationRequest, "StoreCreationRequest");
-        const response = await getJsonResponse<StoreCreationRequest, Store>(
+        const hasDefinedQueryParams = pageNumber ?? pageSize ?? reference;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
+            if(pageSize) requestOptions.params["pageSize"] = pageSize;
+            if(reference) requestOptions.params["reference"] = reference;
+        }
+        const response = await getJsonResponse<string, ListStoresResponse>(
             resource,
-            request,
-            { ...requestOptions, method: "POST" }
+            "",
+            { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "Store");
+        return ObjectSerializer.deserialize(response, "ListStoresResponse");
     }
 
     /**
@@ -79,24 +70,6 @@ export class AccountStoreLevelApi extends Service {
     public async getStore(merchantId: string, storeId: string, requestOptions?: IRequest.Options): Promise<Store> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores/{storeId}`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
-            .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, Store>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "Store");
-    }
-
-    /**
-    * @summary Get a store
-    * @param storeId {@link string } The unique identifier of the store.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link Store }
-    */
-    public async getStoreById(storeId: string, requestOptions?: IRequest.Options): Promise<Store> {
-        const endpoint = `${this.baseUrl}/stores/{storeId}`
             .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);
         const response = await getJsonResponse<string, Store>(
@@ -137,32 +110,21 @@ export class AccountStoreLevelApi extends Service {
     }
 
     /**
-    * @summary Get a list of stores
-    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @summary Get a store
+    * @param storeId {@link string } The unique identifier of the store.
     * @param requestOptions {@link IRequest.Options }
-    * @param pageNumber {@link number } The number of the page to fetch.
-    * @param pageSize {@link number } The number of items to have on a page, maximum 100. The default is 10 items on a page.
-    * @param reference {@link string } The reference of the store.
-    * @return {@link ListStoresResponse }
+    * @return {@link Store }
     */
-    public async listStoresByMerchantId(merchantId: string, pageNumber?: number, pageSize?: number, reference?: string, requestOptions?: IRequest.Options): Promise<ListStoresResponse> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+    public async getStoreById(storeId: string, requestOptions?: IRequest.Options): Promise<Store> {
+        const endpoint = `${this.baseUrl}/stores/{storeId}`
+            .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);
-        const hasDefinedQueryParams = pageNumber ?? pageSize ?? reference;
-        if(hasDefinedQueryParams) {
-            if(!requestOptions) requestOptions = {};
-            if(!requestOptions.params) requestOptions.params = {};
-            if(pageNumber) requestOptions.params["pageNumber"] = pageNumber;
-            if(pageSize) requestOptions.params["pageSize"] = pageSize;
-            if(reference) requestOptions.params["reference"] = reference;
-        }
-        const response = await getJsonResponse<string, ListStoresResponse>(
+        const response = await getJsonResponse<string, Store>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "ListStoresResponse");
+        return ObjectSerializer.deserialize(response, "Store");
     }
 
     /**
@@ -203,6 +165,44 @@ export class AccountStoreLevelApi extends Service {
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "Store");
+    }
+
+    /**
+    * @summary Create a store
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param storeCreationRequest {@link StoreCreationRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link Store }
+    */
+    public async createStoreByMerchantId(merchantId: string, storeCreationRequest: StoreCreationRequest, requestOptions?: IRequest.Options): Promise<Store> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const request: StoreCreationRequest = ObjectSerializer.serialize(storeCreationRequest, "StoreCreationRequest");
+        const response = await getJsonResponse<StoreCreationRequest, Store>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "Store");
+    }
+
+    /**
+    * @summary Create a store
+    * @param storeCreationWithMerchantCodeRequest {@link StoreCreationWithMerchantCodeRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link Store }
+    */
+    public async createStore(storeCreationWithMerchantCodeRequest: StoreCreationWithMerchantCodeRequest, requestOptions?: IRequest.Options): Promise<Store> {
+        const endpoint = `${this.baseUrl}/stores`;
+        const resource = new Resource(this, endpoint);
+        const request: StoreCreationWithMerchantCodeRequest = ObjectSerializer.serialize(storeCreationWithMerchantCodeRequest, "StoreCreationWithMerchantCodeRequest");
+        const response = await getJsonResponse<StoreCreationWithMerchantCodeRequest, Store>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "Store");
     }

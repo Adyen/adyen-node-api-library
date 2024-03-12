@@ -32,46 +32,6 @@ export class APICredentialsMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Create an API credential
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param createMerchantApiCredentialRequest {@link CreateMerchantApiCredentialRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link CreateApiCredentialResponse }
-    */
-    public async createApiCredential(merchantId: string, createMerchantApiCredentialRequest: CreateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateApiCredentialResponse> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const request: CreateMerchantApiCredentialRequest = ObjectSerializer.serialize(createMerchantApiCredentialRequest, "CreateMerchantApiCredentialRequest");
-        const response = await getJsonResponse<CreateMerchantApiCredentialRequest, CreateApiCredentialResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "CreateApiCredentialResponse");
-    }
-
-    /**
-    * @summary Get an API credential
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param apiCredentialId {@link string } Unique identifier of the API credential.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link ApiCredential }
-    */
-    public async getApiCredential(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<ApiCredential> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials/{apiCredentialId}`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
-            .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, ApiCredential>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "ApiCredential");
-    }
-
-    /**
     * @summary Get a list of API credentials
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param requestOptions {@link IRequest.Options }
@@ -99,6 +59,26 @@ export class APICredentialsMerchantLevelApi extends Service {
     }
 
     /**
+    * @summary Get an API credential
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param apiCredentialId {@link string } Unique identifier of the API credential.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link ApiCredential }
+    */
+    public async getApiCredential(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<ApiCredential> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials/{apiCredentialId}`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
+            .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, ApiCredential>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "ApiCredential");
+    }
+
+    /**
     * @summary Update an API credential
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
@@ -118,5 +98,25 @@ export class APICredentialsMerchantLevelApi extends Service {
             { ...requestOptions, method: "PATCH" }
         );
         return ObjectSerializer.deserialize(response, "ApiCredential");
+    }
+
+    /**
+    * @summary Create an API credential
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param createMerchantApiCredentialRequest {@link CreateMerchantApiCredentialRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CreateApiCredentialResponse }
+    */
+    public async createApiCredential(merchantId: string, createMerchantApiCredentialRequest: CreateMerchantApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateApiCredentialResponse> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const request: CreateMerchantApiCredentialRequest = ObjectSerializer.serialize(createMerchantApiCredentialRequest, "CreateMerchantApiCredentialRequest");
+        const response = await getJsonResponse<CreateMerchantApiCredentialRequest, CreateApiCredentialResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "CreateApiCredentialResponse");
     }
 }

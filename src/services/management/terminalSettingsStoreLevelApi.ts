@@ -56,6 +56,26 @@ export class TerminalSettingsStoreLevelApi extends Service {
     }
 
     /**
+    * @summary Get terminal settings
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param reference {@link string } The reference that identifies the store.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TerminalSettings }
+    */
+    public async getTerminalSettings(merchantId: string, reference: string, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores/{reference}/terminalSettings`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
+            .replace("{" + "reference" + "}", encodeURIComponent(String(reference)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, TerminalSettings>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TerminalSettings");
+    }
+
+    /**
     * @summary Get the terminal logo
     * @param storeId {@link string } The unique identifier of the store.
     * @param requestOptions {@link IRequest.Options }
@@ -78,26 +98,6 @@ export class TerminalSettingsStoreLevelApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "Logo");
-    }
-
-    /**
-    * @summary Get terminal settings
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param reference {@link string } The reference that identifies the store.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link TerminalSettings }
-    */
-    public async getTerminalSettings(merchantId: string, reference: string, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores/{reference}/terminalSettings`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
-            .replace("{" + "reference" + "}", encodeURIComponent(String(reference)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, TerminalSettings>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "TerminalSettings");
     }
 
     /**
@@ -148,6 +148,28 @@ export class TerminalSettingsStoreLevelApi extends Service {
     }
 
     /**
+    * @summary Update terminal settings
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param reference {@link string } The reference that identifies the store.
+    * @param terminalSettings {@link TerminalSettings } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TerminalSettings }
+    */
+    public async updateTerminalSettings(merchantId: string, reference: string, terminalSettings: TerminalSettings, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores/{reference}/terminalSettings`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
+            .replace("{" + "reference" + "}", encodeURIComponent(String(reference)));
+        const resource = new Resource(this, endpoint);
+        const request: TerminalSettings = ObjectSerializer.serialize(terminalSettings, "TerminalSettings");
+        const response = await getJsonResponse<TerminalSettings, TerminalSettings>(
+            resource,
+            request,
+            { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "TerminalSettings");
+    }
+
+    /**
     * @summary Update the terminal logo
     * @param storeId {@link string } The unique identifier of the store.
     * @param logo {@link Logo } 
@@ -172,28 +194,6 @@ export class TerminalSettingsStoreLevelApi extends Service {
             { ...requestOptions, method: "PATCH" }
         );
         return ObjectSerializer.deserialize(response, "Logo");
-    }
-
-    /**
-    * @summary Update terminal settings
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param reference {@link string } The reference that identifies the store.
-    * @param terminalSettings {@link TerminalSettings } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link TerminalSettings }
-    */
-    public async updateTerminalSettings(merchantId: string, reference: string, terminalSettings: TerminalSettings, requestOptions?: IRequest.Options): Promise<TerminalSettings> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores/{reference}/terminalSettings`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
-            .replace("{" + "reference" + "}", encodeURIComponent(String(reference)));
-        const resource = new Resource(this, endpoint);
-        const request: TerminalSettings = ObjectSerializer.serialize(terminalSettings, "TerminalSettings");
-        const response = await getJsonResponse<TerminalSettings, TerminalSettings>(
-            resource,
-            request,
-            { ...requestOptions, method: "PATCH" }
-        );
-        return ObjectSerializer.deserialize(response, "TerminalSettings");
     }
 
     /**

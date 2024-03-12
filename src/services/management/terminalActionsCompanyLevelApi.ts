@@ -29,26 +29,6 @@ export class TerminalActionsCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Get terminal action
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param actionId {@link string } The unique identifier of the terminal action.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link ExternalTerminalAction }
-    */
-    public async getTerminalAction(companyId: string, actionId: string, requestOptions?: IRequest.Options): Promise<ExternalTerminalAction> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/terminalActions/{actionId}`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
-            .replace("{" + "actionId" + "}", encodeURIComponent(String(actionId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, ExternalTerminalAction>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "ExternalTerminalAction");
-    }
-
-    /**
     * @summary Get a list of terminal actions
     * @param companyId {@link string } The unique identifier of the company account.
     * @param requestOptions {@link IRequest.Options }
@@ -77,5 +57,25 @@ export class TerminalActionsCompanyLevelApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "ListExternalTerminalActionsResponse");
+    }
+
+    /**
+    * @summary Get terminal action
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param actionId {@link string } The unique identifier of the terminal action.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link ExternalTerminalAction }
+    */
+    public async getTerminalAction(companyId: string, actionId: string, requestOptions?: IRequest.Options): Promise<ExternalTerminalAction> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/terminalActions/{actionId}`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
+            .replace("{" + "actionId" + "}", encodeURIComponent(String(actionId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, ExternalTerminalAction>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "ExternalTerminalAction");
     }
 }

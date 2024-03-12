@@ -31,26 +31,6 @@ export class AndroidFilesCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Get Android app
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param id {@link string } The unique identifier of the app.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link AndroidApp }
-    */
-    public async getAndroidApp(companyId: string, id: string, requestOptions?: IRequest.Options): Promise<AndroidApp> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/androidApps/{id}`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, AndroidApp>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "AndroidApp");
-    }
-
-    /**
     * @summary Get a list of Android apps
     * @param companyId {@link string } The unique identifier of the company account.
     * @param requestOptions {@link IRequest.Options }
@@ -79,6 +59,26 @@ export class AndroidFilesCompanyLevelApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "AndroidAppsResponse");
+    }
+
+    /**
+    * @summary Get Android app
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param id {@link string } The unique identifier of the app.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link AndroidApp }
+    */
+    public async getAndroidApp(companyId: string, id: string, requestOptions?: IRequest.Options): Promise<AndroidApp> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/androidApps/{id}`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, AndroidApp>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "AndroidApp");
     }
 
     /**

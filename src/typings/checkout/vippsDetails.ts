@@ -21,6 +21,9 @@ export class VippsDetails {
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'storedPaymentMethodId'?: string;
+    /**
+    * 
+    */
     'telephoneNumber': string;
     /**
     * **vipps**

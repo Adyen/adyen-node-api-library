@@ -8,67 +8,28 @@
  */
 
 import { AccountInfo } from './accountInfo';
-import { AchDetails } from './achDetails';
-import { AfterpayDetails } from './afterpayDetails';
-import { AmazonPayDetails } from './amazonPayDetails';
 import { Amount } from './amount';
-import { AncvDetails } from './ancvDetails';
-import { AndroidPayDetails } from './androidPayDetails';
-import { ApplePayDetails } from './applePayDetails';
 import { ApplicationInfo } from './applicationInfo';
 import { AuthenticationData } from './authenticationData';
-import { BacsDirectDebitDetails } from './bacsDirectDebitDetails';
-import { BillDeskDetails } from './billDeskDetails';
 import { BillingAddress } from './billingAddress';
-import { BlikDetails } from './blikDetails';
 import { BrowserInfo } from './browserInfo';
-import { CardDetails } from './cardDetails';
-import { CellulantDetails } from './cellulantDetails';
 import { Company } from './company';
 import { DeliveryAddress } from './deliveryAddress';
-import { DokuDetails } from './dokuDetails';
-import { DotpayDetails } from './dotpayDetails';
-import { DragonpayDetails } from './dragonpayDetails';
-import { EcontextVoucherDetails } from './econtextVoucherDetails';
 import { EncryptedOrderData } from './encryptedOrderData';
 import { ForexQuote } from './forexQuote';
 import { FundOrigin } from './fundOrigin';
 import { FundRecipient } from './fundRecipient';
-import { GenericIssuerPaymentMethodDetails } from './genericIssuerPaymentMethodDetails';
-import { GiropayDetails } from './giropayDetails';
-import { GooglePayDetails } from './googlePayDetails';
-import { IdealDetails } from './idealDetails';
 import { Installments } from './installments';
-import { KlarnaDetails } from './klarnaDetails';
 import { LineItem } from './lineItem';
 import { Mandate } from './mandate';
-import { MasterpassDetails } from './masterpassDetails';
-import { MbwayDetails } from './mbwayDetails';
 import { MerchantRiskIndicator } from './merchantRiskIndicator';
-import { MobilePayDetails } from './mobilePayDetails';
-import { MolPayDetails } from './molPayDetails';
 import { Name } from './name';
-import { OpenInvoiceDetails } from './openInvoiceDetails';
-import { PayPalDetails } from './payPalDetails';
-import { PayUUpiDetails } from './payUUpiDetails';
-import { PayWithGoogleDetails } from './payWithGoogleDetails';
-import { PaymentDetails } from './paymentDetails';
+import { PaymentRequestPaymentMethod } from './paymentRequestPaymentMethod';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
-import { RatepayDetails } from './ratepayDetails';
 import { RiskData } from './riskData';
-import { SamsungPayDetails } from './samsungPayDetails';
-import { SepaDirectDebitDetails } from './sepaDirectDebitDetails';
 import { Split } from './split';
-import { StoredPaymentMethodDetails } from './storedPaymentMethodDetails';
 import { ThreeDS2RequestFields } from './threeDS2RequestFields';
 import { ThreeDSecureData } from './threeDSecureData';
-import { UpiCollectDetails } from './upiCollectDetails';
-import { UpiIntentDetails } from './upiIntentDetails';
-import { VippsDetails } from './vippsDetails';
-import { VisaCheckoutDetails } from './visaCheckoutDetails';
-import { WeChatPayDetails } from './weChatPayDetails';
-import { WeChatPayMiniProgramDetails } from './weChatPayMiniProgramDetails';
-import { ZipDetails } from './zipDetails';
 
 export class PaymentRequest {
     'accountInfo'?: AccountInfo;
@@ -184,10 +145,7 @@ export class PaymentRequest {
     * Required for the 3D Secure 2 `channel` **Web** integration.  Set this parameter to the origin URL of the page that you are loading the 3D Secure Component from.
     */
     'origin'?: string;
-    /**
-    * The type and required details of a payment method to use.
-    */
-    'paymentMethod': AchDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails | null;
+    'paymentMethod': PaymentRequestPaymentMethod;
     'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
@@ -488,7 +446,7 @@ export class PaymentRequest {
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "AchDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EcontextVoucherDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayPalDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails | null"
+            "type": "PaymentRequestPaymentMethod"
         },
         {
             "name": "platformChargebackLogic",

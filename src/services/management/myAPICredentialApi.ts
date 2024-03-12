@@ -32,6 +32,72 @@ export class MyAPICredentialApi extends Service {
     }
 
     /**
+    * @summary Remove allowed origin
+    * @param originId {@link string } Unique identifier of the allowed origin.
+    * @param requestOptions {@link IRequest.Options }
+    */
+    public async removeAllowedOrigin(originId: string, requestOptions?: IRequest.Options): Promise<void> {
+        const endpoint = `${this.baseUrl}/me/allowedOrigins/{originId}`
+            .replace("{" + "originId" + "}", encodeURIComponent(String(originId)));
+        const resource = new Resource(this, endpoint);
+        await getJsonResponse<string, void>(
+            resource,
+            "",
+            { ...requestOptions, method: "DELETE" }
+        );
+    }
+
+    /**
+    * @summary Get API credential details
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link MeApiCredential }
+    */
+    public async getApiCredentialDetails(requestOptions?: IRequest.Options): Promise<MeApiCredential> {
+        const endpoint = `${this.baseUrl}/me`;
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, MeApiCredential>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "MeApiCredential");
+    }
+
+    /**
+    * @summary Get allowed origins
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link AllowedOriginsResponse }
+    */
+    public async getAllowedOrigins(requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+        const endpoint = `${this.baseUrl}/me/allowedOrigins`;
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, AllowedOriginsResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
+    }
+
+    /**
+    * @summary Get allowed origin details
+    * @param originId {@link string } Unique identifier of the allowed origin.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link AllowedOrigin }
+    */
+    public async getAllowedOriginDetails(originId: string, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
+        const endpoint = `${this.baseUrl}/me/allowedOrigins/{originId}`
+            .replace("{" + "originId" + "}", encodeURIComponent(String(originId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, AllowedOrigin>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "AllowedOrigin");
+    }
+
+    /**
     * @summary Add allowed origin
     * @param createAllowedOriginRequest {@link CreateAllowedOriginRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -63,71 +129,5 @@ export class MyAPICredentialApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "GenerateClientKeyResponse");
-    }
-
-    /**
-    * @summary Get allowed origin details
-    * @param originId {@link string } Unique identifier of the allowed origin.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link AllowedOrigin }
-    */
-    public async getAllowedOriginDetails(originId: string, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
-        const endpoint = `${this.baseUrl}/me/allowedOrigins/{originId}`
-            .replace("{" + "originId" + "}", encodeURIComponent(String(originId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, AllowedOrigin>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "AllowedOrigin");
-    }
-
-    /**
-    * @summary Get allowed origins
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link AllowedOriginsResponse }
-    */
-    public async getAllowedOrigins(requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
-        const endpoint = `${this.baseUrl}/me/allowedOrigins`;
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, AllowedOriginsResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
-    }
-
-    /**
-    * @summary Get API credential details
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link MeApiCredential }
-    */
-    public async getApiCredentialDetails(requestOptions?: IRequest.Options): Promise<MeApiCredential> {
-        const endpoint = `${this.baseUrl}/me`;
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, MeApiCredential>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "MeApiCredential");
-    }
-
-    /**
-    * @summary Remove allowed origin
-    * @param originId {@link string } Unique identifier of the allowed origin.
-    * @param requestOptions {@link IRequest.Options }
-    */
-    public async removeAllowedOrigin(originId: string, requestOptions?: IRequest.Options): Promise<void> {
-        const endpoint = `${this.baseUrl}/me/allowedOrigins/{originId}`
-            .replace("{" + "originId" + "}", encodeURIComponent(String(originId)));
-        const resource = new Resource(this, endpoint);
-        await getJsonResponse<string, void>(
-            resource,
-            "",
-            { ...requestOptions, method: "DELETE" }
-        );
     }
 }

@@ -32,46 +32,6 @@ export class UsersCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Create a new user
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param createCompanyUserRequest {@link CreateCompanyUserRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link CreateCompanyUserResponse }
-    */
-    public async createNewUser(companyId: string, createCompanyUserRequest: CreateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyUserResponse> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/users`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
-        const resource = new Resource(this, endpoint);
-        const request: CreateCompanyUserRequest = ObjectSerializer.serialize(createCompanyUserRequest, "CreateCompanyUserRequest");
-        const response = await getJsonResponse<CreateCompanyUserRequest, CreateCompanyUserResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "CreateCompanyUserResponse");
-    }
-
-    /**
-    * @summary Get user details
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param userId {@link string } The unique identifier of the user.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link CompanyUser }
-    */
-    public async getUserDetails(companyId: string, userId: string, requestOptions?: IRequest.Options): Promise<CompanyUser> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/users/{userId}`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
-            .replace("{" + "userId" + "}", encodeURIComponent(String(userId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, CompanyUser>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "CompanyUser");
-    }
-
-    /**
     * @summary Get a list of users
     * @param companyId {@link string } The unique identifier of the company account.
     * @param requestOptions {@link IRequest.Options }
@@ -101,6 +61,26 @@ export class UsersCompanyLevelApi extends Service {
     }
 
     /**
+    * @summary Get user details
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param userId {@link string } The unique identifier of the user.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CompanyUser }
+    */
+    public async getUserDetails(companyId: string, userId: string, requestOptions?: IRequest.Options): Promise<CompanyUser> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/users/{userId}`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
+            .replace("{" + "userId" + "}", encodeURIComponent(String(userId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, CompanyUser>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "CompanyUser");
+    }
+
+    /**
     * @summary Update user details
     * @param companyId {@link string } The unique identifier of the company account.
     * @param userId {@link string } The unique identifier of the user.
@@ -120,5 +100,25 @@ export class UsersCompanyLevelApi extends Service {
             { ...requestOptions, method: "PATCH" }
         );
         return ObjectSerializer.deserialize(response, "CompanyUser");
+    }
+
+    /**
+    * @summary Create a new user
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param createCompanyUserRequest {@link CreateCompanyUserRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CreateCompanyUserResponse }
+    */
+    public async createNewUser(companyId: string, createCompanyUserRequest: CreateCompanyUserRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyUserResponse> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/users`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
+        const resource = new Resource(this, endpoint);
+        const request: CreateCompanyUserRequest = ObjectSerializer.serialize(createCompanyUserRequest, "CreateCompanyUserRequest");
+        const response = await getJsonResponse<CreateCompanyUserRequest, CreateCompanyUserResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "CreateCompanyUserResponse");
     }
 }

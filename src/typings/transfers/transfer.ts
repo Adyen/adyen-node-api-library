@@ -8,13 +8,10 @@
  */
 
 import { Amount } from './amount';
-import { BankCategoryData } from './bankCategoryData';
 import { CounterpartyV3 } from './counterpartyV3';
-import { InternalCategoryData } from './internalCategoryData';
-import { IssuedCard } from './issuedCard';
 import { PaymentInstrument } from './paymentInstrument';
-import { PlatformPayment } from './platformPayment';
 import { ResourceReference } from './resourceReference';
+import { TransferCategoryData } from './transferCategoryData';
 
 export class Transfer {
     'accountHolder'?: ResourceReference;
@@ -24,10 +21,7 @@ export class Transfer {
     * The category of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
     */
     'category': Transfer.CategoryEnum;
-    /**
-    * The relevant data according to the transfer category.
-    */
-    'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null;
+    'categoryData'?: TransferCategoryData;
     'counterparty': CounterpartyV3;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
@@ -93,7 +87,7 @@ export class Transfer {
         {
             "name": "categoryData",
             "baseName": "categoryData",
-            "type": "BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null"
+            "type": "TransferCategoryData"
         },
         {
             "name": "counterparty",

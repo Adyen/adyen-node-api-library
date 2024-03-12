@@ -10,9 +10,21 @@
 import { Amount } from './amount';
 
 export class CapabilitySettings {
+    /**
+    * 
+    */
     'amountPerIndustry'?: { [key: string]: Amount; };
+    /**
+    * 
+    */
     'authorizedCardUsers'?: boolean;
+    /**
+    * 
+    */
     'fundingSource'?: Array<CapabilitySettings.FundingSourceEnum>;
+    /**
+    * 
+    */
     'interval'?: CapabilitySettings.IntervalEnum;
     'maxAmount'?: Amount;
 

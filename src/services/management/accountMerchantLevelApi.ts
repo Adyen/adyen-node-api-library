@@ -32,42 +32,6 @@ export class AccountMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Create a merchant account
-    * @param createMerchantRequest {@link CreateMerchantRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link CreateMerchantResponse }
-    */
-    public async createMerchantAccount(createMerchantRequest: CreateMerchantRequest, requestOptions?: IRequest.Options): Promise<CreateMerchantResponse> {
-        const endpoint = `${this.baseUrl}/merchants`;
-        const resource = new Resource(this, endpoint);
-        const request: CreateMerchantRequest = ObjectSerializer.serialize(createMerchantRequest, "CreateMerchantRequest");
-        const response = await getJsonResponse<CreateMerchantRequest, CreateMerchantResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "CreateMerchantResponse");
-    }
-
-    /**
-    * @summary Get a merchant account
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link Merchant }
-    */
-    public async getMerchantAccount(merchantId: string, requestOptions?: IRequest.Options): Promise<Merchant> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, Merchant>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "Merchant");
-    }
-
-    /**
     * @summary Get a list of merchant accounts
     * @param requestOptions {@link IRequest.Options }
     * @param pageNumber {@link number } The number of the page to fetch.
@@ -90,6 +54,42 @@ export class AccountMerchantLevelApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "ListMerchantResponse");
+    }
+
+    /**
+    * @summary Get a merchant account
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link Merchant }
+    */
+    public async getMerchantAccount(merchantId: string, requestOptions?: IRequest.Options): Promise<Merchant> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, Merchant>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "Merchant");
+    }
+
+    /**
+    * @summary Create a merchant account
+    * @param createMerchantRequest {@link CreateMerchantRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CreateMerchantResponse }
+    */
+    public async createMerchantAccount(createMerchantRequest: CreateMerchantRequest, requestOptions?: IRequest.Options): Promise<CreateMerchantResponse> {
+        const endpoint = `${this.baseUrl}/merchants`;
+        const resource = new Resource(this, endpoint);
+        const request: CreateMerchantRequest = ObjectSerializer.serialize(createMerchantRequest, "CreateMerchantRequest");
+        const response = await getJsonResponse<CreateMerchantRequest, CreateMerchantResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "CreateMerchantResponse");
     }
 
     /**

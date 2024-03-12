@@ -34,43 +34,21 @@ export class WebhooksMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Generate an HMAC key
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param webhookId {@link string } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link GenerateHmacKeyResponse }
-    */
-    public async generateHmacKey(merchantId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<GenerateHmacKeyResponse> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/webhooks/{webhookId}/generateHmac`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
-            .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, GenerateHmacKeyResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "GenerateHmacKeyResponse");
-    }
-
-    /**
-    * @summary Get a webhook
+    * @summary Remove a webhook
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link Webhook }
     */
-    public async getWebhook(merchantId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<Webhook> {
+    public async removeWebhook(merchantId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/webhooks/{webhookId}`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, Webhook>(
+        await getJsonResponse<string, void>(
             resource,
             "",
-            { ...requestOptions, method: "GET" }
+            { ...requestOptions, method: "DELETE" }
         );
-        return ObjectSerializer.deserialize(response, "Webhook");
     }
 
     /**
@@ -101,21 +79,45 @@ export class WebhooksMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Remove a webhook
+    * @summary Get a webhook
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
     * @param requestOptions {@link IRequest.Options }
+    * @return {@link Webhook }
     */
-    public async removeWebhook(merchantId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async getWebhook(merchantId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<Webhook> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/webhooks/{webhookId}`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
-        await getJsonResponse<string, void>(
+        const response = await getJsonResponse<string, Webhook>(
             resource,
             "",
-            { ...requestOptions, method: "DELETE" }
+            { ...requestOptions, method: "GET" }
         );
+        return ObjectSerializer.deserialize(response, "Webhook");
+    }
+
+    /**
+    * @summary Update a webhook
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param webhookId {@link string } Unique identifier of the webhook configuration.
+    * @param updateMerchantWebhookRequest {@link UpdateMerchantWebhookRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link Webhook }
+    */
+    public async updateWebhook(merchantId: string, webhookId: string, updateMerchantWebhookRequest: UpdateMerchantWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/webhooks/{webhookId}`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
+            .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
+        const resource = new Resource(this, endpoint);
+        const request: UpdateMerchantWebhookRequest = ObjectSerializer.serialize(updateMerchantWebhookRequest, "UpdateMerchantWebhookRequest");
+        const response = await getJsonResponse<UpdateMerchantWebhookRequest, Webhook>(
+            resource,
+            request,
+            { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "Webhook");
     }
 
     /**
@@ -139,6 +141,26 @@ export class WebhooksMerchantLevelApi extends Service {
     }
 
     /**
+    * @summary Generate an HMAC key
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param webhookId {@link string } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link GenerateHmacKeyResponse }
+    */
+    public async generateHmacKey(merchantId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<GenerateHmacKeyResponse> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/webhooks/{webhookId}/generateHmac`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
+            .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, GenerateHmacKeyResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "GenerateHmacKeyResponse");
+    }
+
+    /**
     * @summary Test a webhook
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
@@ -158,27 +180,5 @@ export class WebhooksMerchantLevelApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "TestWebhookResponse");
-    }
-
-    /**
-    * @summary Update a webhook
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param webhookId {@link string } Unique identifier of the webhook configuration.
-    * @param updateMerchantWebhookRequest {@link UpdateMerchantWebhookRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link Webhook }
-    */
-    public async updateWebhook(merchantId: string, webhookId: string, updateMerchantWebhookRequest: UpdateMerchantWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/webhooks/{webhookId}`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
-            .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
-        const resource = new Resource(this, endpoint);
-        const request: UpdateMerchantWebhookRequest = ObjectSerializer.serialize(updateMerchantWebhookRequest, "UpdateMerchantWebhookRequest");
-        const response = await getJsonResponse<UpdateMerchantWebhookRequest, Webhook>(
-            resource,
-            request,
-            { ...requestOptions, method: "PATCH" }
-        );
-        return ObjectSerializer.deserialize(response, "Webhook");
     }
 }

@@ -13,7 +13,13 @@ export class MbwayDetails {
     * The checkout attempt identifier.
     */
     'checkoutAttemptId'?: string;
+    /**
+    * 
+    */
     'shopperEmail': string;
+    /**
+    * 
+    */
     'telephoneNumber': string;
     /**
     * **mbway**

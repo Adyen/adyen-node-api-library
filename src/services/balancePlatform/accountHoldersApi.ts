@@ -32,24 +32,6 @@ export class AccountHoldersApi extends Service {
     }
 
     /**
-    * @summary Create an account holder
-    * @param accountHolderInfo {@link AccountHolderInfo } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link AccountHolder }
-    */
-    public async createAccountHolder(accountHolderInfo: AccountHolderInfo, requestOptions?: IRequest.Options): Promise<AccountHolder> {
-        const endpoint = `${this.baseUrl}/accountHolders`;
-        const resource = new Resource(this, endpoint);
-        const request: AccountHolderInfo = ObjectSerializer.serialize(accountHolderInfo, "AccountHolderInfo");
-        const response = await getJsonResponse<AccountHolderInfo, AccountHolder>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "AccountHolder");
-    }
-
-    /**
     * @summary Get an account holder
     * @param id {@link string } The unique identifier of the account holder.
     * @param requestOptions {@link IRequest.Options }
@@ -137,6 +119,24 @@ export class AccountHoldersApi extends Service {
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "AccountHolder");
+    }
+
+    /**
+    * @summary Create an account holder
+    * @param accountHolderInfo {@link AccountHolderInfo } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link AccountHolder }
+    */
+    public async createAccountHolder(accountHolderInfo: AccountHolderInfo, requestOptions?: IRequest.Options): Promise<AccountHolder> {
+        const endpoint = `${this.baseUrl}/accountHolders`;
+        const resource = new Resource(this, endpoint);
+        const request: AccountHolderInfo = ObjectSerializer.serialize(accountHolderInfo, "AccountHolderInfo");
+        const response = await getJsonResponse<AccountHolderInfo, AccountHolder>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "AccountHolder");
     }

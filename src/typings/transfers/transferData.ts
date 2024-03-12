@@ -9,13 +9,10 @@
 
 import { Amount } from './amount';
 import { BalanceMutation } from './balanceMutation';
-import { BankCategoryData } from './bankCategoryData';
-import { InternalCategoryData } from './internalCategoryData';
-import { IssuedCard } from './issuedCard';
 import { PaymentInstrument } from './paymentInstrument';
-import { PlatformPayment } from './platformPayment';
 import { ResourceReference } from './resourceReference';
 import { TransactionRulesResult } from './transactionRulesResult';
+import { TransferCategoryData } from './transferCategoryData';
 import { TransferEvent } from './transferEvent';
 import { TransferNotificationCounterParty } from './transferNotificationCounterParty';
 import { TransferNotificationTransferTracking } from './transferNotificationTransferTracking';
@@ -36,10 +33,7 @@ export class TransferData {
     * The category of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
     */
     'category': TransferData.CategoryEnum;
-    /**
-    * The relevant data according to the transfer category.
-    */
-    'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null;
+    'categoryData'?: TransferCategoryData;
     'counterparty'?: TransferNotificationCounterParty;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
@@ -125,7 +119,7 @@ export class TransferData {
         {
             "name": "categoryData",
             "baseName": "categoryData",
-            "type": "BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null"
+            "type": "TransferCategoryData"
         },
         {
             "name": "counterparty",

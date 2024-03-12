@@ -92,6 +92,24 @@ export class TransfersApi extends Service {
     }
 
     /**
+    * @summary Transfer funds
+    * @param transferInfo {@link TransferInfo } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link Transfer }
+    */
+    public async transferFunds(transferInfo: TransferInfo, requestOptions?: IRequest.Options): Promise<Transfer> {
+        const endpoint = `${this.baseUrl}/transfers`;
+        const resource = new Resource(this, endpoint);
+        const request: TransferInfo = ObjectSerializer.serialize(transferInfo, "TransferInfo");
+        const response = await getJsonResponse<TransferInfo, Transfer>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "Transfer");
+    }
+
+    /**
     * @summary Return a transfer
     * @param transferId {@link string } The unique identifier of the transfer to be returned.
     * @param returnTransferRequest {@link ReturnTransferRequest } 
@@ -109,23 +127,5 @@ export class TransfersApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "ReturnTransferResponse");
-    }
-
-    /**
-    * @summary Transfer funds
-    * @param transferInfo {@link TransferInfo } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link Transfer }
-    */
-    public async transferFunds(transferInfo: TransferInfo, requestOptions?: IRequest.Options): Promise<Transfer> {
-        const endpoint = `${this.baseUrl}/transfers`;
-        const resource = new Resource(this, endpoint);
-        const request: TransferInfo = ObjectSerializer.serialize(transferInfo, "TransferInfo");
-        const response = await getJsonResponse<TransferInfo, Transfer>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "Transfer");
     }
 }

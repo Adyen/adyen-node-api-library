@@ -29,6 +29,24 @@ export class PlatformApi extends Service {
     }
 
     /**
+    * @summary Get a balance platform
+    * @param id {@link string } The unique identifier of the balance platform.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link BalancePlatform }
+    */
+    public async getBalancePlatform(id: string, requestOptions?: IRequest.Options): Promise<BalancePlatform> {
+        const endpoint = `${this.baseUrl}/balancePlatforms/{id}`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, BalancePlatform>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "BalancePlatform");
+    }
+
+    /**
     * @summary Get all account holders under a balance platform
     * @param id {@link string } The unique identifier of the balance platform.
     * @param requestOptions {@link IRequest.Options }
@@ -53,23 +71,5 @@ export class PlatformApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PaginatedAccountHoldersResponse");
-    }
-
-    /**
-    * @summary Get a balance platform
-    * @param id {@link string } The unique identifier of the balance platform.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link BalancePlatform }
-    */
-    public async getBalancePlatform(id: string, requestOptions?: IRequest.Options): Promise<BalancePlatform> {
-        const endpoint = `${this.baseUrl}/balancePlatforms/{id}`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, BalancePlatform>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "BalancePlatform");
     }
 }

@@ -31,23 +31,19 @@ export class HostedOnboardingApi extends Service {
     }
 
     /**
-    * @summary Get a link to an Adyen-hosted onboarding page
-    * @param id {@link string } The unique identifier of the legal entity
-    * @param onboardingLinkInfo {@link OnboardingLinkInfo } 
+    * @summary Get a list of hosted onboarding page themes
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link OnboardingLink }
+    * @return {@link OnboardingThemes }
     */
-    public async getLinkToAdyenhostedOnboardingPage(id: string, onboardingLinkInfo: OnboardingLinkInfo, requestOptions?: IRequest.Options): Promise<OnboardingLink> {
-        const endpoint = `${this.baseUrl}/legalEntities/{id}/onboardingLinks`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+    public async listHostedOnboardingPageThemes(requestOptions?: IRequest.Options): Promise<OnboardingThemes> {
+        const endpoint = `${this.baseUrl}/themes`;
         const resource = new Resource(this, endpoint);
-        const request: OnboardingLinkInfo = ObjectSerializer.serialize(onboardingLinkInfo, "OnboardingLinkInfo");
-        const response = await getJsonResponse<OnboardingLinkInfo, OnboardingLink>(
+        const response = await getJsonResponse<string, OnboardingThemes>(
             resource,
-            request,
-            { ...requestOptions, method: "POST" }
+            "",
+            { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "OnboardingLink");
+        return ObjectSerializer.deserialize(response, "OnboardingThemes");
     }
 
     /**
@@ -69,18 +65,22 @@ export class HostedOnboardingApi extends Service {
     }
 
     /**
-    * @summary Get a list of hosted onboarding page themes
+    * @summary Get a link to an Adyen-hosted onboarding page
+    * @param id {@link string } The unique identifier of the legal entity
+    * @param onboardingLinkInfo {@link OnboardingLinkInfo } 
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link OnboardingThemes }
+    * @return {@link OnboardingLink }
     */
-    public async listHostedOnboardingPageThemes(requestOptions?: IRequest.Options): Promise<OnboardingThemes> {
-        const endpoint = `${this.baseUrl}/themes`;
+    public async getLinkToAdyenhostedOnboardingPage(id: string, onboardingLinkInfo: OnboardingLinkInfo, requestOptions?: IRequest.Options): Promise<OnboardingLink> {
+        const endpoint = `${this.baseUrl}/legalEntities/{id}/onboardingLinks`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, OnboardingThemes>(
+        const request: OnboardingLinkInfo = ObjectSerializer.serialize(onboardingLinkInfo, "OnboardingLinkInfo");
+        const response = await getJsonResponse<OnboardingLinkInfo, OnboardingLink>(
             resource,
-            "",
-            { ...requestOptions, method: "GET" }
+            request,
+            { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "OnboardingThemes");
+        return ObjectSerializer.deserialize(response, "OnboardingLink");
     }
 }

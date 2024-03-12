@@ -33,23 +33,21 @@ export class PCIQuestionnairesApi extends Service {
     }
 
     /**
-    * @summary Generate PCI questionnaire
+    * @summary Get PCI questionnaire details
     * @param id {@link string } The unique identifier of the legal entity to get PCI questionnaire information.
-    * @param generatePciDescriptionRequest {@link GeneratePciDescriptionRequest } 
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link GeneratePciDescriptionResponse }
+    * @return {@link GetPciQuestionnaireInfosResponse }
     */
-    public async generatePciQuestionnaire(id: string, generatePciDescriptionRequest: GeneratePciDescriptionRequest, requestOptions?: IRequest.Options): Promise<GeneratePciDescriptionResponse> {
-        const endpoint = `${this.baseUrl}/legalEntities/{id}/pciQuestionnaires/generatePciTemplates`
+    public async getPciQuestionnaireDetails(id: string, requestOptions?: IRequest.Options): Promise<GetPciQuestionnaireInfosResponse> {
+        const endpoint = `${this.baseUrl}/legalEntities/{id}/pciQuestionnaires`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: GeneratePciDescriptionRequest = ObjectSerializer.serialize(generatePciDescriptionRequest, "GeneratePciDescriptionRequest");
-        const response = await getJsonResponse<GeneratePciDescriptionRequest, GeneratePciDescriptionResponse>(
+        const response = await getJsonResponse<string, GetPciQuestionnaireInfosResponse>(
             resource,
-            request,
-            { ...requestOptions, method: "POST" }
+            "",
+            { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "GeneratePciDescriptionResponse");
+        return ObjectSerializer.deserialize(response, "GetPciQuestionnaireInfosResponse");
     }
 
     /**
@@ -73,21 +71,23 @@ export class PCIQuestionnairesApi extends Service {
     }
 
     /**
-    * @summary Get PCI questionnaire details
+    * @summary Generate PCI questionnaire
     * @param id {@link string } The unique identifier of the legal entity to get PCI questionnaire information.
+    * @param generatePciDescriptionRequest {@link GeneratePciDescriptionRequest } 
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link GetPciQuestionnaireInfosResponse }
+    * @return {@link GeneratePciDescriptionResponse }
     */
-    public async getPciQuestionnaireDetails(id: string, requestOptions?: IRequest.Options): Promise<GetPciQuestionnaireInfosResponse> {
-        const endpoint = `${this.baseUrl}/legalEntities/{id}/pciQuestionnaires`
+    public async generatePciQuestionnaire(id: string, generatePciDescriptionRequest: GeneratePciDescriptionRequest, requestOptions?: IRequest.Options): Promise<GeneratePciDescriptionResponse> {
+        const endpoint = `${this.baseUrl}/legalEntities/{id}/pciQuestionnaires/generatePciTemplates`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, GetPciQuestionnaireInfosResponse>(
+        const request: GeneratePciDescriptionRequest = ObjectSerializer.serialize(generatePciDescriptionRequest, "GeneratePciDescriptionRequest");
+        const response = await getJsonResponse<GeneratePciDescriptionRequest, GeneratePciDescriptionResponse>(
             resource,
-            "",
-            { ...requestOptions, method: "GET" }
+            request,
+            { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "GetPciQuestionnaireInfosResponse");
+        return ObjectSerializer.deserialize(response, "GeneratePciDescriptionResponse");
     }
 
     /**

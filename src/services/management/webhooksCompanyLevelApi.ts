@@ -34,43 +34,21 @@ export class WebhooksCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Generate an HMAC key
+    * @summary Remove a webhook
     * @param companyId {@link string } The unique identifier of the company account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link GenerateHmacKeyResponse }
     */
-    public async generateHmacKey(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<GenerateHmacKeyResponse> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/webhooks/{webhookId}/generateHmac`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
-            .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, GenerateHmacKeyResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "GenerateHmacKeyResponse");
-    }
-
-    /**
-    * @summary Get a webhook
-    * @param companyId {@link string } Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).
-    * @param webhookId {@link string } Unique identifier of the webhook configuration.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link Webhook }
-    */
-    public async getWebhook(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<Webhook> {
+    public async removeWebhook(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/webhooks/{webhookId}`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, Webhook>(
+        await getJsonResponse<string, void>(
             resource,
             "",
-            { ...requestOptions, method: "GET" }
+            { ...requestOptions, method: "DELETE" }
         );
-        return ObjectSerializer.deserialize(response, "Webhook");
     }
 
     /**
@@ -101,21 +79,45 @@ export class WebhooksCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Remove a webhook
-    * @param companyId {@link string } The unique identifier of the company account.
+    * @summary Get a webhook
+    * @param companyId {@link string } Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
     * @param requestOptions {@link IRequest.Options }
+    * @return {@link Webhook }
     */
-    public async removeWebhook(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async getWebhook(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<Webhook> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/webhooks/{webhookId}`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
-        await getJsonResponse<string, void>(
+        const response = await getJsonResponse<string, Webhook>(
             resource,
             "",
-            { ...requestOptions, method: "DELETE" }
+            { ...requestOptions, method: "GET" }
         );
+        return ObjectSerializer.deserialize(response, "Webhook");
+    }
+
+    /**
+    * @summary Update a webhook
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param webhookId {@link string } Unique identifier of the webhook configuration.
+    * @param updateCompanyWebhookRequest {@link UpdateCompanyWebhookRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link Webhook }
+    */
+    public async updateWebhook(companyId: string, webhookId: string, updateCompanyWebhookRequest: UpdateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/webhooks/{webhookId}`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
+            .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
+        const resource = new Resource(this, endpoint);
+        const request: UpdateCompanyWebhookRequest = ObjectSerializer.serialize(updateCompanyWebhookRequest, "UpdateCompanyWebhookRequest");
+        const response = await getJsonResponse<UpdateCompanyWebhookRequest, Webhook>(
+            resource,
+            request,
+            { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "Webhook");
     }
 
     /**
@@ -139,6 +141,26 @@ export class WebhooksCompanyLevelApi extends Service {
     }
 
     /**
+    * @summary Generate an HMAC key
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param webhookId {@link string } Unique identifier of the webhook configuration.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link GenerateHmacKeyResponse }
+    */
+    public async generateHmacKey(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<GenerateHmacKeyResponse> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/webhooks/{webhookId}/generateHmac`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
+            .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, GenerateHmacKeyResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "GenerateHmacKeyResponse");
+    }
+
+    /**
     * @summary Test a webhook
     * @param companyId {@link string } The unique identifier of the company account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
@@ -158,27 +180,5 @@ export class WebhooksCompanyLevelApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "TestWebhookResponse");
-    }
-
-    /**
-    * @summary Update a webhook
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param webhookId {@link string } Unique identifier of the webhook configuration.
-    * @param updateCompanyWebhookRequest {@link UpdateCompanyWebhookRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link Webhook }
-    */
-    public async updateWebhook(companyId: string, webhookId: string, updateCompanyWebhookRequest: UpdateCompanyWebhookRequest, requestOptions?: IRequest.Options): Promise<Webhook> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/webhooks/{webhookId}`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
-            .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
-        const resource = new Resource(this, endpoint);
-        const request: UpdateCompanyWebhookRequest = ObjectSerializer.serialize(updateCompanyWebhookRequest, "UpdateCompanyWebhookRequest");
-        const response = await getJsonResponse<UpdateCompanyWebhookRequest, Webhook>(
-            resource,
-            request,
-            { ...requestOptions, method: "PATCH" }
-        );
-        return ObjectSerializer.deserialize(response, "Webhook");
     }
 }

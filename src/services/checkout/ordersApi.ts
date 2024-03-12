@@ -33,6 +33,24 @@ export class OrdersApi extends Service {
     }
 
     /**
+    * @summary Create an order
+    * @param createOrderRequest {@link CreateOrderRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CreateOrderResponse }
+    */
+    public async orders(createOrderRequest: CreateOrderRequest, requestOptions?: IRequest.Options): Promise<CreateOrderResponse> {
+        const endpoint = `${this.baseUrl}/orders`;
+        const resource = new Resource(this, endpoint);
+        const request: CreateOrderRequest = ObjectSerializer.serialize(createOrderRequest, "CreateOrderRequest");
+        const response = await getJsonResponse<CreateOrderRequest, CreateOrderResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "CreateOrderResponse");
+    }
+
+    /**
     * @summary Cancel an order
     * @param cancelOrderRequest {@link CancelOrderRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -66,23 +84,5 @@ export class OrdersApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "BalanceCheckResponse");
-    }
-
-    /**
-    * @summary Create an order
-    * @param createOrderRequest {@link CreateOrderRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link CreateOrderResponse }
-    */
-    public async orders(createOrderRequest: CreateOrderRequest, requestOptions?: IRequest.Options): Promise<CreateOrderResponse> {
-        const endpoint = `${this.baseUrl}/orders`;
-        const resource = new Resource(this, endpoint);
-        const request: CreateOrderRequest = ObjectSerializer.serialize(createOrderRequest, "CreateOrderRequest");
-        const response = await getJsonResponse<CreateOrderRequest, CreateOrderResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "CreateOrderResponse");
     }
 }

@@ -29,24 +29,6 @@ export class TransferInstrumentsApi extends Service {
     }
 
     /**
-    * @summary Create a transfer instrument
-    * @param transferInstrumentInfo {@link TransferInstrumentInfo } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link TransferInstrument }
-    */
-    public async createTransferInstrument(transferInstrumentInfo: TransferInstrumentInfo, requestOptions?: IRequest.Options): Promise<TransferInstrument> {
-        const endpoint = `${this.baseUrl}/transferInstruments`;
-        const resource = new Resource(this, endpoint);
-        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo");
-        const response = await getJsonResponse<TransferInstrumentInfo, TransferInstrument>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "TransferInstrument");
-    }
-
-    /**
     * @summary Delete a transfer instrument
     * @param id {@link string } The unique identifier of the transfer instrument to be deleted.
     * @param requestOptions {@link IRequest.Options }
@@ -96,6 +78,24 @@ export class TransferInstrumentsApi extends Service {
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "TransferInstrument");
+    }
+
+    /**
+    * @summary Create a transfer instrument
+    * @param transferInstrumentInfo {@link TransferInstrumentInfo } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TransferInstrument }
+    */
+    public async createTransferInstrument(transferInstrumentInfo: TransferInstrumentInfo, requestOptions?: IRequest.Options): Promise<TransferInstrument> {
+        const endpoint = `${this.baseUrl}/transferInstruments`;
+        const resource = new Resource(this, endpoint);
+        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo");
+        const response = await getJsonResponse<TransferInstrumentInfo, TransferInstrument>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "TransferInstrument");
     }

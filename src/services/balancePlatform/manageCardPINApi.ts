@@ -32,24 +32,6 @@ export class ManageCardPINApi extends Service {
     }
 
     /**
-    * @summary Change a card PIN
-    * @param pinChangeRequest {@link PinChangeRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link PinChangeResponse }
-    */
-    public async changeCardPin(pinChangeRequest: PinChangeRequest, requestOptions?: IRequest.Options): Promise<PinChangeResponse> {
-        const endpoint = `${this.baseUrl}/pins/change`;
-        const resource = new Resource(this, endpoint);
-        const request: PinChangeRequest = ObjectSerializer.serialize(pinChangeRequest, "PinChangeRequest");
-        const response = await getJsonResponse<PinChangeRequest, PinChangeResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "PinChangeResponse");
-    }
-
-    /**
     * @summary Get an RSA public key
     * @param requestOptions {@link IRequest.Options }
     * @param purpose {@link string } The purpose of the public key.  Possible values: **pinChange**, **pinReveal**, **panReveal**.  Default value: **pinReveal**.
@@ -72,6 +54,24 @@ export class ManageCardPINApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PublicKeyResponse");
+    }
+
+    /**
+    * @summary Change a card PIN
+    * @param pinChangeRequest {@link PinChangeRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link PinChangeResponse }
+    */
+    public async changeCardPin(pinChangeRequest: PinChangeRequest, requestOptions?: IRequest.Options): Promise<PinChangeResponse> {
+        const endpoint = `${this.baseUrl}/pins/change`;
+        const resource = new Resource(this, endpoint);
+        const request: PinChangeRequest = ObjectSerializer.serialize(pinChangeRequest, "PinChangeRequest");
+        const response = await getJsonResponse<PinChangeRequest, PinChangeResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "PinChangeResponse");
     }
 
     /**

@@ -29,33 +29,6 @@ export class CardOrdersApi extends Service {
     }
 
     /**
-    * @summary Get card order items
-    * @param id {@link string } The unique identifier of the card order.
-    * @param requestOptions {@link IRequest.Options }
-    * @param offset {@link number } Specifies the position of an element in a list of card orders. The response includes a list of card order items that starts at the specified offset.  **Default:** 0, which means that the response contains all the elements in the list of card order items.
-    * @param limit {@link number } The number of card order items returned per page. **Default:** 10.
-    * @return {@link PaginatedGetCardOrderItemResponse }
-    */
-    public async getCardOrderItems(id: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<PaginatedGetCardOrderItemResponse> {
-        const endpoint = `${this.baseUrl}/cardorders/{id}/items`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new Resource(this, endpoint);
-        const hasDefinedQueryParams = offset ?? limit;
-        if(hasDefinedQueryParams) {
-            if(!requestOptions) requestOptions = {};
-            if(!requestOptions.params) requestOptions.params = {};
-            if(offset) requestOptions.params["offset"] = offset;
-            if(limit) requestOptions.params["limit"] = limit;
-        }
-        const response = await getJsonResponse<string, PaginatedGetCardOrderItemResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "PaginatedGetCardOrderItemResponse");
-    }
-
-    /**
     * @summary Get a list of card orders
     * @param requestOptions {@link IRequest.Options }
     * @param id {@link string } The unique identifier of the card order. 
@@ -96,5 +69,32 @@ export class CardOrdersApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PaginatedGetCardOrderResponse");
+    }
+
+    /**
+    * @summary Get card order items
+    * @param id {@link string } The unique identifier of the card order.
+    * @param requestOptions {@link IRequest.Options }
+    * @param offset {@link number } Specifies the position of an element in a list of card orders. The response includes a list of card order items that starts at the specified offset.  **Default:** 0, which means that the response contains all the elements in the list of card order items.
+    * @param limit {@link number } The number of card order items returned per page. **Default:** 10.
+    * @return {@link PaginatedGetCardOrderItemResponse }
+    */
+    public async getCardOrderItems(id: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<PaginatedGetCardOrderItemResponse> {
+        const endpoint = `${this.baseUrl}/cardorders/{id}/items`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = offset ?? limit;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(offset) requestOptions.params["offset"] = offset;
+            if(limit) requestOptions.params["limit"] = limit;
+        }
+        const response = await getJsonResponse<string, PaginatedGetCardOrderItemResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "PaginatedGetCardOrderItemResponse");
     }
 }

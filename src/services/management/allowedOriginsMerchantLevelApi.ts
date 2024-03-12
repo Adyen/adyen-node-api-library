@@ -29,28 +29,6 @@ export class AllowedOriginsMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Create an allowed origin
-    * @param merchantId {@link string } The unique identifier of the merchant account.
-    * @param apiCredentialId {@link string } Unique identifier of the API credential.
-    * @param allowedOrigin {@link AllowedOrigin } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link AllowedOrigin }
-    */
-    public async createAllowedOrigin(merchantId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
-            .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
-        const resource = new Resource(this, endpoint);
-        const request: AllowedOrigin = ObjectSerializer.serialize(allowedOrigin, "AllowedOrigin");
-        const response = await getJsonResponse<AllowedOrigin, AllowedOrigin>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "AllowedOrigin");
-    }
-
-    /**
     * @summary Delete an allowed origin
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
@@ -68,6 +46,26 @@ export class AllowedOriginsMerchantLevelApi extends Service {
             "",
             { ...requestOptions, method: "DELETE" }
         );
+    }
+
+    /**
+    * @summary Get a list of allowed origins
+    * @param merchantId {@link string } The unique identifier of the merchant account.
+    * @param apiCredentialId {@link string } Unique identifier of the API credential.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link AllowedOriginsResponse }
+    */
+    public async listAllowedOrigins(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
+            .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, AllowedOriginsResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
     }
 
     /**
@@ -93,22 +91,24 @@ export class AllowedOriginsMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Get a list of allowed origins
+    * @summary Create an allowed origin
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
+    * @param allowedOrigin {@link AllowedOrigin } 
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link AllowedOriginsResponse }
+    * @return {@link AllowedOrigin }
     */
-    public async listAllowedOrigins(merchantId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<AllowedOriginsResponse> {
+    public async createAllowedOrigin(merchantId: string, apiCredentialId: string, allowedOrigin: AllowedOrigin, requestOptions?: IRequest.Options): Promise<AllowedOrigin> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, AllowedOriginsResponse>(
+        const request: AllowedOrigin = ObjectSerializer.serialize(allowedOrigin, "AllowedOrigin");
+        const response = await getJsonResponse<AllowedOrigin, AllowedOrigin>(
             resource,
-            "",
-            { ...requestOptions, method: "GET" }
+            request,
+            { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
+        return ObjectSerializer.deserialize(response, "AllowedOrigin");
     }
 }
