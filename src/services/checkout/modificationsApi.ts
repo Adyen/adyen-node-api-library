@@ -57,6 +57,26 @@ export class ModificationsApi extends Service {
     }
 
     /**
+    * @summary Update an authorised amount
+    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.
+    * @param paymentAmountUpdateRequest {@link PaymentAmountUpdateRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link PaymentAmountUpdateResponse }
+    */
+    public async updateAuthorisedAmount(paymentPspReference: string, paymentAmountUpdateRequest: PaymentAmountUpdateRequest, requestOptions?: IRequest.Options): Promise<PaymentAmountUpdateResponse> {
+        const endpoint = `${this.baseUrl}/payments/{paymentPspReference}/amountUpdates`
+            .replace("{" + "paymentPspReference" + "}", encodeURIComponent(String(paymentPspReference)));
+        const resource = new Resource(this, endpoint);
+        const request: PaymentAmountUpdateRequest = ObjectSerializer.serialize(paymentAmountUpdateRequest, "PaymentAmountUpdateRequest");
+        const response = await getJsonResponse<PaymentAmountUpdateRequest, PaymentAmountUpdateResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "PaymentAmountUpdateResponse");
+    }
+
+    /**
     * @summary Cancel an authorised payment
     * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. 
     * @param paymentCancelRequest {@link PaymentCancelRequest } 
@@ -134,25 +154,5 @@ export class ModificationsApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "PaymentReversalResponse");
-    }
-
-    /**
-    * @summary Update an authorised amount
-    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.
-    * @param paymentAmountUpdateRequest {@link PaymentAmountUpdateRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link PaymentAmountUpdateResponse }
-    */
-    public async updateAuthorisedAmount(paymentPspReference: string, paymentAmountUpdateRequest: PaymentAmountUpdateRequest, requestOptions?: IRequest.Options): Promise<PaymentAmountUpdateResponse> {
-        const endpoint = `${this.baseUrl}/payments/{paymentPspReference}/amountUpdates`
-            .replace("{" + "paymentPspReference" + "}", encodeURIComponent(String(paymentPspReference)));
-        const resource = new Resource(this, endpoint);
-        const request: PaymentAmountUpdateRequest = ObjectSerializer.serialize(paymentAmountUpdateRequest, "PaymentAmountUpdateRequest");
-        const response = await getJsonResponse<PaymentAmountUpdateRequest, PaymentAmountUpdateResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "PaymentAmountUpdateResponse");
     }
 }

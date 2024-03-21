@@ -35,86 +35,6 @@ export class TerminalOrdersCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Cancel an order
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param orderId {@link string } The unique identifier of the order.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link TerminalOrder }
-    */
-    public async cancelOrder(companyId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/terminalOrders/{orderId}/cancel`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
-            .replace("{" + "orderId" + "}", encodeURIComponent(String(orderId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, TerminalOrder>(
-            resource,
-            "",
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "TerminalOrder");
-    }
-
-    /**
-    * @summary Create an order
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param terminalOrderRequest {@link TerminalOrderRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link TerminalOrder }
-    */
-    public async createOrder(companyId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/terminalOrders`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
-        const resource = new Resource(this, endpoint);
-        const request: TerminalOrderRequest = ObjectSerializer.serialize(terminalOrderRequest, "TerminalOrderRequest");
-        const response = await getJsonResponse<TerminalOrderRequest, TerminalOrder>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "TerminalOrder");
-    }
-
-    /**
-    * @summary Create a shipping location
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param shippingLocation {@link ShippingLocation } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link ShippingLocation }
-    */
-    public async createShippingLocation(companyId: string, shippingLocation: ShippingLocation, requestOptions?: IRequest.Options): Promise<ShippingLocation> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/shippingLocations`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
-        const resource = new Resource(this, endpoint);
-        const request: ShippingLocation = ObjectSerializer.serialize(shippingLocation, "ShippingLocation");
-        const response = await getJsonResponse<ShippingLocation, ShippingLocation>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "ShippingLocation");
-    }
-
-    /**
-    * @summary Get an order
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param orderId {@link string } The unique identifier of the order.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link TerminalOrder }
-    */
-    public async getOrder(companyId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/terminalOrders/{orderId}`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
-            .replace("{" + "orderId" + "}", encodeURIComponent(String(orderId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, TerminalOrder>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "TerminalOrder");
-    }
-
-    /**
     * @summary Get a list of billing entities
     * @param companyId {@link string } The unique identifier of the company account.
     * @param requestOptions {@link IRequest.Options }
@@ -137,37 +57,6 @@ export class TerminalOrdersCompanyLevelApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "BillingEntitiesResponse");
-    }
-
-    /**
-    * @summary Get a list of orders
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param requestOptions {@link IRequest.Options }
-    * @param customerOrderReference {@link string } Your purchase order number.
-    * @param status {@link string } The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered.
-    * @param offset {@link number } The number of orders to skip.
-    * @param limit {@link number } The number of orders to return.
-    * @return {@link TerminalOrdersResponse }
-    */
-    public async listOrders(companyId: string, customerOrderReference?: string, status?: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<TerminalOrdersResponse> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/terminalOrders`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
-        const resource = new Resource(this, endpoint);
-        const hasDefinedQueryParams = customerOrderReference ?? status ?? offset ?? limit;
-        if(hasDefinedQueryParams) {
-            if(!requestOptions) requestOptions = {};
-            if(!requestOptions.params) requestOptions.params = {};
-            if(customerOrderReference) requestOptions.params["customerOrderReference"] = customerOrderReference;
-            if(status) requestOptions.params["status"] = status;
-            if(offset) requestOptions.params["offset"] = offset;
-            if(limit) requestOptions.params["limit"] = limit;
-        }
-        const response = await getJsonResponse<string, TerminalOrdersResponse>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "TerminalOrdersResponse");
     }
 
     /**
@@ -215,6 +104,57 @@ export class TerminalOrdersCompanyLevelApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "TerminalModelsResponse");
+    }
+
+    /**
+    * @summary Get a list of orders
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param requestOptions {@link IRequest.Options }
+    * @param customerOrderReference {@link string } Your purchase order number.
+    * @param status {@link string } The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered.
+    * @param offset {@link number } The number of orders to skip.
+    * @param limit {@link number } The number of orders to return.
+    * @return {@link TerminalOrdersResponse }
+    */
+    public async listOrders(companyId: string, customerOrderReference?: string, status?: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<TerminalOrdersResponse> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/terminalOrders`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
+        const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = customerOrderReference ?? status ?? offset ?? limit;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(customerOrderReference) requestOptions.params["customerOrderReference"] = customerOrderReference;
+            if(status) requestOptions.params["status"] = status;
+            if(offset) requestOptions.params["offset"] = offset;
+            if(limit) requestOptions.params["limit"] = limit;
+        }
+        const response = await getJsonResponse<string, TerminalOrdersResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TerminalOrdersResponse");
+    }
+
+    /**
+    * @summary Get an order
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param orderId {@link string } The unique identifier of the order.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TerminalOrder }
+    */
+    public async getOrder(companyId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/terminalOrders/{orderId}`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
+            .replace("{" + "orderId" + "}", encodeURIComponent(String(orderId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, TerminalOrder>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TerminalOrder");
     }
 
     /**
@@ -266,6 +206,66 @@ export class TerminalOrdersCompanyLevelApi extends Service {
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "TerminalOrder");
+    }
+
+    /**
+    * @summary Create a shipping location
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param shippingLocation {@link ShippingLocation } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link ShippingLocation }
+    */
+    public async createShippingLocation(companyId: string, shippingLocation: ShippingLocation, requestOptions?: IRequest.Options): Promise<ShippingLocation> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/shippingLocations`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
+        const resource = new Resource(this, endpoint);
+        const request: ShippingLocation = ObjectSerializer.serialize(shippingLocation, "ShippingLocation");
+        const response = await getJsonResponse<ShippingLocation, ShippingLocation>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "ShippingLocation");
+    }
+
+    /**
+    * @summary Create an order
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param terminalOrderRequest {@link TerminalOrderRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TerminalOrder }
+    */
+    public async createOrder(companyId: string, terminalOrderRequest: TerminalOrderRequest, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/terminalOrders`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
+        const resource = new Resource(this, endpoint);
+        const request: TerminalOrderRequest = ObjectSerializer.serialize(terminalOrderRequest, "TerminalOrderRequest");
+        const response = await getJsonResponse<TerminalOrderRequest, TerminalOrder>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "TerminalOrder");
+    }
+
+    /**
+    * @summary Cancel an order
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param orderId {@link string } The unique identifier of the order.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TerminalOrder }
+    */
+    public async cancelOrder(companyId: string, orderId: string, requestOptions?: IRequest.Options): Promise<TerminalOrder> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/terminalOrders/{orderId}/cancel`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
+            .replace("{" + "orderId" + "}", encodeURIComponent(String(orderId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, TerminalOrder>(
+            resource,
+            "",
+            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "TerminalOrder");
     }

@@ -33,6 +33,80 @@ export class LegalEntitiesApi extends Service {
     }
 
     /**
+    * @summary Get a legal entity
+    * @param id {@link string } The unique identifier of the legal entity.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link LegalEntity }
+    */
+    public async getLegalEntity(id: string, requestOptions?: IRequest.Options): Promise<LegalEntity> {
+        const endpoint = `${this.baseUrl}/legalEntities/{id}`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, LegalEntity>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "LegalEntity");
+    }
+
+    /**
+    * @summary Get all business lines under a legal entity
+    * @param id {@link string } The unique identifier of the legal entity.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link BusinessLines }
+    */
+    public async getAllBusinessLinesUnderLegalEntity(id: string, requestOptions?: IRequest.Options): Promise<BusinessLines> {
+        const endpoint = `${this.baseUrl}/legalEntities/{id}/businessLines`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, BusinessLines>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "BusinessLines");
+    }
+
+    /**
+    * @summary Update a legal entity
+    * @param id {@link string } The unique identifier of the legal entity.
+    * @param legalEntityInfo {@link LegalEntityInfo } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link LegalEntity }
+    */
+    public async updateLegalEntity(id: string, legalEntityInfo: LegalEntityInfo, requestOptions?: IRequest.Options): Promise<LegalEntity> {
+        const endpoint = `${this.baseUrl}/legalEntities/{id}`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const request: LegalEntityInfo = ObjectSerializer.serialize(legalEntityInfo, "LegalEntityInfo");
+        const response = await getJsonResponse<LegalEntityInfo, LegalEntity>(
+            resource,
+            request,
+            { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "LegalEntity");
+    }
+
+    /**
+    * @summary Create a legal entity
+    * @param legalEntityInfoRequiredType {@link LegalEntityInfoRequiredType } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link LegalEntity }
+    */
+    public async createLegalEntity(legalEntityInfoRequiredType: LegalEntityInfoRequiredType, requestOptions?: IRequest.Options): Promise<LegalEntity> {
+        const endpoint = `${this.baseUrl}/legalEntities`;
+        const resource = new Resource(this, endpoint);
+        const request: LegalEntityInfoRequiredType = ObjectSerializer.serialize(legalEntityInfoRequiredType, "LegalEntityInfoRequiredType");
+        const response = await getJsonResponse<LegalEntityInfoRequiredType, LegalEntity>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "LegalEntity");
+    }
+
+    /**
     * @summary Check a legal entity\'s verification errors
     * @param id {@link string } The unique identifier of the legal entity.
     * @param requestOptions {@link IRequest.Options }
@@ -66,79 +140,5 @@ export class LegalEntitiesApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "DataReviewConfirmationResponse");
-    }
-
-    /**
-    * @summary Create a legal entity
-    * @param legalEntityInfoRequiredType {@link LegalEntityInfoRequiredType } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link LegalEntity }
-    */
-    public async createLegalEntity(legalEntityInfoRequiredType: LegalEntityInfoRequiredType, requestOptions?: IRequest.Options): Promise<LegalEntity> {
-        const endpoint = `${this.baseUrl}/legalEntities`;
-        const resource = new Resource(this, endpoint);
-        const request: LegalEntityInfoRequiredType = ObjectSerializer.serialize(legalEntityInfoRequiredType, "LegalEntityInfoRequiredType");
-        const response = await getJsonResponse<LegalEntityInfoRequiredType, LegalEntity>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "LegalEntity");
-    }
-
-    /**
-    * @summary Get all business lines under a legal entity
-    * @param id {@link string } The unique identifier of the legal entity.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link BusinessLines }
-    */
-    public async getAllBusinessLinesUnderLegalEntity(id: string, requestOptions?: IRequest.Options): Promise<BusinessLines> {
-        const endpoint = `${this.baseUrl}/legalEntities/{id}/businessLines`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, BusinessLines>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "BusinessLines");
-    }
-
-    /**
-    * @summary Get a legal entity
-    * @param id {@link string } The unique identifier of the legal entity.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link LegalEntity }
-    */
-    public async getLegalEntity(id: string, requestOptions?: IRequest.Options): Promise<LegalEntity> {
-        const endpoint = `${this.baseUrl}/legalEntities/{id}`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, LegalEntity>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "LegalEntity");
-    }
-
-    /**
-    * @summary Update a legal entity
-    * @param id {@link string } The unique identifier of the legal entity.
-    * @param legalEntityInfo {@link LegalEntityInfo } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link LegalEntity }
-    */
-    public async updateLegalEntity(id: string, legalEntityInfo: LegalEntityInfo, requestOptions?: IRequest.Options): Promise<LegalEntity> {
-        const endpoint = `${this.baseUrl}/legalEntities/{id}`
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
-        const resource = new Resource(this, endpoint);
-        const request: LegalEntityInfo = ObjectSerializer.serialize(legalEntityInfo, "LegalEntityInfo");
-        const response = await getJsonResponse<LegalEntityInfo, LegalEntity>(
-            resource,
-            request,
-            { ...requestOptions, method: "PATCH" }
-        );
-        return ObjectSerializer.deserialize(response, "LegalEntity");
     }
 }

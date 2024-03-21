@@ -30,24 +30,6 @@ export class BusinessLinesApi extends Service {
     }
 
     /**
-    * @summary Create a business line
-    * @param businessLineInfo {@link BusinessLineInfo } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link BusinessLine }
-    */
-    public async createBusinessLine(businessLineInfo: BusinessLineInfo, requestOptions?: IRequest.Options): Promise<BusinessLine> {
-        const endpoint = `${this.baseUrl}/businessLines`;
-        const resource = new Resource(this, endpoint);
-        const request: BusinessLineInfo = ObjectSerializer.serialize(businessLineInfo, "BusinessLineInfo");
-        const response = await getJsonResponse<BusinessLineInfo, BusinessLine>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "BusinessLine");
-    }
-
-    /**
     * @summary Delete a business line
     * @param id {@link string } The unique identifier of the business line to be deleted.
     * @param requestOptions {@link IRequest.Options }
@@ -97,6 +79,24 @@ export class BusinessLinesApi extends Service {
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "BusinessLine");
+    }
+
+    /**
+    * @summary Create a business line
+    * @param businessLineInfo {@link BusinessLineInfo } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link BusinessLine }
+    */
+    public async createBusinessLine(businessLineInfo: BusinessLineInfo, requestOptions?: IRequest.Options): Promise<BusinessLine> {
+        const endpoint = `${this.baseUrl}/businessLines`;
+        const resource = new Resource(this, endpoint);
+        const request: BusinessLineInfo = ObjectSerializer.serialize(businessLineInfo, "BusinessLineInfo");
+        const response = await getJsonResponse<BusinessLineInfo, BusinessLine>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "BusinessLine");
     }

@@ -30,8 +30,10 @@ export * from './balanceAccountUpdateRequest';
 export * from './balancePlatform';
 export * from './balanceSweepConfigurationsResponse';
 export * from './bankAccount';
+export * from './bankAccountAccountIdentification';
 export * from './bankAccountIdentificationTypeRequirement';
 export * from './bankAccountIdentificationValidationRequest';
+export * from './bankAccountIdentificationValidationRequestAccountIdentification';
 export * from './bankAccountModel';
 export * from './bankIdentification';
 export * from './brandVariantsRestriction';
@@ -93,6 +95,8 @@ export * from './paginatedGetCardOrderItemResponse';
 export * from './paginatedGetCardOrderResponse';
 export * from './paginatedPaymentInstrumentsResponse';
 export * from './paymentInstrument';
+export * from './paymentInstrumentAdditionalBankAccountIdentificationsInner';
+export * from './paymentInstrumentBankAccount';
 export * from './paymentInstrumentGroup';
 export * from './paymentInstrumentGroupInfo';
 export * from './paymentInstrumentInfo';
@@ -135,6 +139,7 @@ export * from './transactionRuleRestrictions';
 export * from './transactionRulesResponse';
 export * from './transferRoute';
 export * from './transferRouteRequest';
+export * from './transferRouteRequirementsInner';
 export * from './transferRouteResponse';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
@@ -168,8 +173,10 @@ import { BalanceAccountUpdateRequest } from './balanceAccountUpdateRequest';
 import { BalancePlatform } from './balancePlatform';
 import { BalanceSweepConfigurationsResponse } from './balanceSweepConfigurationsResponse';
 import { BankAccount } from './bankAccount';
+import { BankAccountAccountIdentification } from './bankAccountAccountIdentification';
 import { BankAccountIdentificationTypeRequirement } from './bankAccountIdentificationTypeRequirement';
 import { BankAccountIdentificationValidationRequest } from './bankAccountIdentificationValidationRequest';
+import { BankAccountIdentificationValidationRequestAccountIdentification } from './bankAccountIdentificationValidationRequestAccountIdentification';
 import { BankAccountModel } from './bankAccountModel';
 import { BankIdentification } from './bankIdentification';
 import { BrandVariantsRestriction } from './brandVariantsRestriction';
@@ -231,6 +238,8 @@ import { PaginatedGetCardOrderItemResponse } from './paginatedGetCardOrderItemRe
 import { PaginatedGetCardOrderResponse } from './paginatedGetCardOrderResponse';
 import { PaginatedPaymentInstrumentsResponse } from './paginatedPaymentInstrumentsResponse';
 import { PaymentInstrument } from './paymentInstrument';
+import { PaymentInstrumentAdditionalBankAccountIdentificationsInner } from './paymentInstrumentAdditionalBankAccountIdentificationsInner';
+import { PaymentInstrumentBankAccount } from './paymentInstrumentBankAccount';
 import { PaymentInstrumentGroup } from './paymentInstrumentGroup';
 import { PaymentInstrumentGroupInfo } from './paymentInstrumentGroupInfo';
 import { PaymentInstrumentInfo } from './paymentInstrumentInfo';
@@ -273,6 +282,7 @@ import { TransactionRuleRestrictions } from './transactionRuleRestrictions';
 import { TransactionRulesResponse } from './transactionRulesResponse';
 import { TransferRoute } from './transferRoute';
 import { TransferRouteRequest } from './transferRouteRequest';
+import { TransferRouteRequirementsInner } from './transferRouteRequirementsInner';
 import { TransferRouteResponse } from './transferRouteResponse';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
@@ -313,8 +323,12 @@ let enumsMap: {[index: string]: any} = {
         "BalanceAccount.StatusEnum": BalanceAccount.StatusEnum,
         "BalanceAccountBase.StatusEnum": BalanceAccountBase.StatusEnum,
         "BalanceAccountUpdateRequest.StatusEnum": BalanceAccountUpdateRequest.StatusEnum,
+        "BankAccountAccountIdentification.TypeEnum": BankAccountAccountIdentification.TypeEnum,
+        "BankAccountAccountIdentification.AccountTypeEnum": BankAccountAccountIdentification.AccountTypeEnum,
         "BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum": BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum,
         "BankAccountIdentificationTypeRequirement.TypeEnum": BankAccountIdentificationTypeRequirement.TypeEnum,
+        "BankAccountIdentificationValidationRequestAccountIdentification.TypeEnum": BankAccountIdentificationValidationRequestAccountIdentification.TypeEnum,
+        "BankAccountIdentificationValidationRequestAccountIdentification.AccountTypeEnum": BankAccountIdentificationValidationRequestAccountIdentification.AccountTypeEnum,
         "BankAccountModel.FormFactorEnum": BankAccountModel.FormFactorEnum,
         "BankIdentification.IdentificationTypeEnum": BankIdentification.IdentificationTypeEnum,
         "CALocalAccountIdentification.AccountTypeEnum": CALocalAccountIdentification.AccountTypeEnum,
@@ -350,6 +364,9 @@ let enumsMap: {[index: string]: any} = {
         "PaymentInstrument.StatusEnum": PaymentInstrument.StatusEnum,
         "PaymentInstrument.StatusReasonEnum": PaymentInstrument.StatusReasonEnum,
         "PaymentInstrument.TypeEnum": PaymentInstrument.TypeEnum,
+        "PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum": PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum,
+        "PaymentInstrumentBankAccount.TypeEnum": PaymentInstrumentBankAccount.TypeEnum,
+        "PaymentInstrumentBankAccount.AccountTypeEnum": PaymentInstrumentBankAccount.AccountTypeEnum,
         "PaymentInstrumentInfo.StatusEnum": PaymentInstrumentInfo.StatusEnum,
         "PaymentInstrumentInfo.StatusReasonEnum": PaymentInstrumentInfo.StatusReasonEnum,
         "PaymentInstrumentInfo.TypeEnum": PaymentInstrumentInfo.TypeEnum,
@@ -384,6 +401,10 @@ let enumsMap: {[index: string]: any} = {
         "TransferRoute.PriorityEnum": TransferRoute.PriorityEnum,
         "TransferRouteRequest.CategoryEnum": TransferRouteRequest.CategoryEnum,
         "TransferRouteRequest.PrioritiesEnum": TransferRouteRequest.PrioritiesEnum,
+        "TransferRouteRequirementsInner.RequiredAddressFieldsEnum": TransferRouteRequirementsInner.RequiredAddressFieldsEnum,
+        "TransferRouteRequirementsInner.TypeEnum": TransferRouteRequirementsInner.TypeEnum,
+        "TransferRouteRequirementsInner.BankAccountIdentificationTypesEnum": TransferRouteRequirementsInner.BankAccountIdentificationTypesEnum,
+        "TransferRouteRequirementsInner.PaymentInstrumentTypeEnum": TransferRouteRequirementsInner.PaymentInstrumentTypeEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
@@ -426,8 +447,10 @@ let typeMap: {[index: string]: any} = {
     "BalancePlatform": BalancePlatform,
     "BalanceSweepConfigurationsResponse": BalanceSweepConfigurationsResponse,
     "BankAccount": BankAccount,
+    "BankAccountAccountIdentification": BankAccountAccountIdentification,
     "BankAccountIdentificationTypeRequirement": BankAccountIdentificationTypeRequirement,
     "BankAccountIdentificationValidationRequest": BankAccountIdentificationValidationRequest,
+    "BankAccountIdentificationValidationRequestAccountIdentification": BankAccountIdentificationValidationRequestAccountIdentification,
     "BankAccountModel": BankAccountModel,
     "BankIdentification": BankIdentification,
     "BrandVariantsRestriction": BrandVariantsRestriction,
@@ -489,6 +512,8 @@ let typeMap: {[index: string]: any} = {
     "PaginatedGetCardOrderResponse": PaginatedGetCardOrderResponse,
     "PaginatedPaymentInstrumentsResponse": PaginatedPaymentInstrumentsResponse,
     "PaymentInstrument": PaymentInstrument,
+    "PaymentInstrumentAdditionalBankAccountIdentificationsInner": PaymentInstrumentAdditionalBankAccountIdentificationsInner,
+    "PaymentInstrumentBankAccount": PaymentInstrumentBankAccount,
     "PaymentInstrumentGroup": PaymentInstrumentGroup,
     "PaymentInstrumentGroupInfo": PaymentInstrumentGroupInfo,
     "PaymentInstrumentInfo": PaymentInstrumentInfo,
@@ -531,6 +556,7 @@ let typeMap: {[index: string]: any} = {
     "TransactionRulesResponse": TransactionRulesResponse,
     "TransferRoute": TransferRoute,
     "TransferRouteRequest": TransferRouteRequest,
+    "TransferRouteRequirementsInner": TransferRouteRequirementsInner,
     "TransferRouteResponse": TransferRouteResponse,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,

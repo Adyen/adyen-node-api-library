@@ -16,6 +16,7 @@ export * from './address';
 export * from './amount';
 export * from './attachment';
 export * from './bankAccountInfo';
+export * from './bankAccountInfoAccountIdentification';
 export * from './birthData';
 export * from './businessLine';
 export * from './businessLineInfo';
@@ -84,7 +85,6 @@ export * from './trust';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
 export * from './undefinedBeneficiary';
-export * from './unincorporatedPartnership';
 export * from './verificationDeadline';
 export * from './verificationError';
 export * from './verificationErrorRecursive';
@@ -101,6 +101,7 @@ import { Address } from './address';
 import { Amount } from './amount';
 import { Attachment } from './attachment';
 import { BankAccountInfo } from './bankAccountInfo';
+import { BankAccountInfoAccountIdentification } from './bankAccountInfoAccountIdentification';
 import { BirthData } from './birthData';
 import { BusinessLine } from './businessLine';
 import { BusinessLineInfo } from './businessLineInfo';
@@ -169,7 +170,6 @@ import { Trust } from './trust';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 import { UndefinedBeneficiary } from './undefinedBeneficiary';
-import { UnincorporatedPartnership } from './unincorporatedPartnership';
 import { VerificationDeadline } from './verificationDeadline';
 import { VerificationError } from './verificationError';
 import { VerificationErrorRecursive } from './verificationErrorRecursive';
@@ -193,6 +193,8 @@ let enumsMap: {[index: string]: any} = {
         "AULocalAccountIdentification.TypeEnum": AULocalAccountIdentification.TypeEnum,
         "AcceptTermsOfServiceResponse.TypeEnum": AcceptTermsOfServiceResponse.TypeEnum,
         "AdditionalBankIdentification.TypeEnum": AdditionalBankIdentification.TypeEnum,
+        "BankAccountInfoAccountIdentification.TypeEnum": BankAccountInfoAccountIdentification.TypeEnum,
+        "BankAccountInfoAccountIdentification.AccountTypeEnum": BankAccountInfoAccountIdentification.AccountTypeEnum,
         "BusinessLine.CapabilityEnum": BusinessLine.CapabilityEnum,
         "BusinessLine.ServiceEnum": BusinessLine.ServiceEnum,
         "BusinessLineInfo.CapabilityEnum": BusinessLineInfo.CapabilityEnum,
@@ -244,8 +246,6 @@ let enumsMap: {[index: string]: any} = {
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
-        "UnincorporatedPartnership.TypeEnum": UnincorporatedPartnership.TypeEnum,
-        "UnincorporatedPartnership.VatAbsenceReasonEnum": UnincorporatedPartnership.VatAbsenceReasonEnum,
         "VerificationDeadline.CapabilitiesEnum": VerificationDeadline.CapabilitiesEnum,
         "VerificationError.CapabilitiesEnum": VerificationError.CapabilitiesEnum,
         "VerificationError.TypeEnum": VerificationError.TypeEnum,
@@ -263,6 +263,7 @@ let typeMap: {[index: string]: any} = {
     "Amount": Amount,
     "Attachment": Attachment,
     "BankAccountInfo": BankAccountInfo,
+    "BankAccountInfoAccountIdentification": BankAccountInfoAccountIdentification,
     "BirthData": BirthData,
     "BusinessLine": BusinessLine,
     "BusinessLineInfo": BusinessLineInfo,
@@ -331,7 +332,6 @@ let typeMap: {[index: string]: any} = {
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,
     "UndefinedBeneficiary": UndefinedBeneficiary,
-    "UnincorporatedPartnership": UnincorporatedPartnership,
     "VerificationDeadline": VerificationDeadline,
     "VerificationError": VerificationError,
     "VerificationErrorRecursive": VerificationErrorRecursive,

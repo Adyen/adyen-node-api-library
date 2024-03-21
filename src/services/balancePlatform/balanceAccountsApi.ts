@@ -35,44 +35,6 @@ export class BalanceAccountsApi extends Service {
     }
 
     /**
-    * @summary Create a balance account
-    * @param balanceAccountInfo {@link BalanceAccountInfo } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link BalanceAccount }
-    */
-    public async createBalanceAccount(balanceAccountInfo: BalanceAccountInfo, requestOptions?: IRequest.Options): Promise<BalanceAccount> {
-        const endpoint = `${this.baseUrl}/balanceAccounts`;
-        const resource = new Resource(this, endpoint);
-        const request: BalanceAccountInfo = ObjectSerializer.serialize(balanceAccountInfo, "BalanceAccountInfo");
-        const response = await getJsonResponse<BalanceAccountInfo, BalanceAccount>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "BalanceAccount");
-    }
-
-    /**
-    * @summary Create a sweep
-    * @param balanceAccountId {@link string } The unique identifier of the balance account.
-    * @param createSweepConfigurationV2 {@link CreateSweepConfigurationV2 } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link SweepConfigurationV2 }
-    */
-    public async createSweep(balanceAccountId: string, createSweepConfigurationV2: CreateSweepConfigurationV2, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
-        const endpoint = `${this.baseUrl}/balanceAccounts/{balanceAccountId}/sweeps`
-            .replace("{" + "balanceAccountId" + "}", encodeURIComponent(String(balanceAccountId)));
-        const resource = new Resource(this, endpoint);
-        const request: CreateSweepConfigurationV2 = ObjectSerializer.serialize(createSweepConfigurationV2, "CreateSweepConfigurationV2");
-        const response = await getJsonResponse<CreateSweepConfigurationV2, SweepConfigurationV2>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "SweepConfigurationV2");
-    }
-
-    /**
     * @summary Delete a sweep
     * @param balanceAccountId {@link string } The unique identifier of the balance account.
     * @param sweepId {@link string } The unique identifier of the sweep.
@@ -115,6 +77,26 @@ export class BalanceAccountsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "BalanceSweepConfigurationsResponse");
+    }
+
+    /**
+    * @summary Get a sweep
+    * @param balanceAccountId {@link string } The unique identifier of the balance account.
+    * @param sweepId {@link string } The unique identifier of the sweep.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link SweepConfigurationV2 }
+    */
+    public async getSweep(balanceAccountId: string, sweepId: string, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
+        const endpoint = `${this.baseUrl}/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}`
+            .replace("{" + "balanceAccountId" + "}", encodeURIComponent(String(balanceAccountId)))
+            .replace("{" + "sweepId" + "}", encodeURIComponent(String(sweepId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, SweepConfigurationV2>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "SweepConfigurationV2");
     }
 
     /**
@@ -165,21 +147,23 @@ export class BalanceAccountsApi extends Service {
     }
 
     /**
-    * @summary Get a sweep
+    * @summary Update a sweep
     * @param balanceAccountId {@link string } The unique identifier of the balance account.
     * @param sweepId {@link string } The unique identifier of the sweep.
+    * @param updateSweepConfigurationV2 {@link UpdateSweepConfigurationV2 } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link SweepConfigurationV2 }
     */
-    public async getSweep(balanceAccountId: string, sweepId: string, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
+    public async updateSweep(balanceAccountId: string, sweepId: string, updateSweepConfigurationV2: UpdateSweepConfigurationV2, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
         const endpoint = `${this.baseUrl}/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}`
             .replace("{" + "balanceAccountId" + "}", encodeURIComponent(String(balanceAccountId)))
             .replace("{" + "sweepId" + "}", encodeURIComponent(String(sweepId)));
         const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, SweepConfigurationV2>(
+        const request: UpdateSweepConfigurationV2 = ObjectSerializer.serialize(updateSweepConfigurationV2, "UpdateSweepConfigurationV2");
+        const response = await getJsonResponse<UpdateSweepConfigurationV2, SweepConfigurationV2>(
             resource,
-            "",
-            { ...requestOptions, method: "GET" }
+            request,
+            { ...requestOptions, method: "PATCH" }
         );
         return ObjectSerializer.deserialize(response, "SweepConfigurationV2");
     }
@@ -205,23 +189,39 @@ export class BalanceAccountsApi extends Service {
     }
 
     /**
-    * @summary Update a sweep
+    * @summary Create a balance account
+    * @param balanceAccountInfo {@link BalanceAccountInfo } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link BalanceAccount }
+    */
+    public async createBalanceAccount(balanceAccountInfo: BalanceAccountInfo, requestOptions?: IRequest.Options): Promise<BalanceAccount> {
+        const endpoint = `${this.baseUrl}/balanceAccounts`;
+        const resource = new Resource(this, endpoint);
+        const request: BalanceAccountInfo = ObjectSerializer.serialize(balanceAccountInfo, "BalanceAccountInfo");
+        const response = await getJsonResponse<BalanceAccountInfo, BalanceAccount>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "BalanceAccount");
+    }
+
+    /**
+    * @summary Create a sweep
     * @param balanceAccountId {@link string } The unique identifier of the balance account.
-    * @param sweepId {@link string } The unique identifier of the sweep.
-    * @param updateSweepConfigurationV2 {@link UpdateSweepConfigurationV2 } 
+    * @param createSweepConfigurationV2 {@link CreateSweepConfigurationV2 } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link SweepConfigurationV2 }
     */
-    public async updateSweep(balanceAccountId: string, sweepId: string, updateSweepConfigurationV2: UpdateSweepConfigurationV2, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
-        const endpoint = `${this.baseUrl}/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}`
-            .replace("{" + "balanceAccountId" + "}", encodeURIComponent(String(balanceAccountId)))
-            .replace("{" + "sweepId" + "}", encodeURIComponent(String(sweepId)));
+    public async createSweep(balanceAccountId: string, createSweepConfigurationV2: CreateSweepConfigurationV2, requestOptions?: IRequest.Options): Promise<SweepConfigurationV2> {
+        const endpoint = `${this.baseUrl}/balanceAccounts/{balanceAccountId}/sweeps`
+            .replace("{" + "balanceAccountId" + "}", encodeURIComponent(String(balanceAccountId)));
         const resource = new Resource(this, endpoint);
-        const request: UpdateSweepConfigurationV2 = ObjectSerializer.serialize(updateSweepConfigurationV2, "UpdateSweepConfigurationV2");
-        const response = await getJsonResponse<UpdateSweepConfigurationV2, SweepConfigurationV2>(
+        const request: CreateSweepConfigurationV2 = ObjectSerializer.serialize(createSweepConfigurationV2, "CreateSweepConfigurationV2");
+        const response = await getJsonResponse<CreateSweepConfigurationV2, SweepConfigurationV2>(
             resource,
             request,
-            { ...requestOptions, method: "PATCH" }
+            { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "SweepConfigurationV2");
     }

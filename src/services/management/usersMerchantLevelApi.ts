@@ -32,46 +32,6 @@ export class UsersMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Create a new user
-    * @param merchantId {@link string } Unique identifier of the merchant.
-    * @param createMerchantUserRequest {@link CreateMerchantUserRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link CreateUserResponse }
-    */
-    public async createNewUser(merchantId: string, createMerchantUserRequest: CreateMerchantUserRequest, requestOptions?: IRequest.Options): Promise<CreateUserResponse> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/users`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
-        const resource = new Resource(this, endpoint);
-        const request: CreateMerchantUserRequest = ObjectSerializer.serialize(createMerchantUserRequest, "CreateMerchantUserRequest");
-        const response = await getJsonResponse<CreateMerchantUserRequest, CreateUserResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "CreateUserResponse");
-    }
-
-    /**
-    * @summary Get user details
-    * @param merchantId {@link string } Unique identifier of the merchant.
-    * @param userId {@link string } Unique identifier of the user.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link User }
-    */
-    public async getUserDetails(merchantId: string, userId: string, requestOptions?: IRequest.Options): Promise<User> {
-        const endpoint = `${this.baseUrl}/merchants/{merchantId}/users/{userId}`
-            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
-            .replace("{" + "userId" + "}", encodeURIComponent(String(userId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, User>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "User");
-    }
-
-    /**
     * @summary Get a list of users
     * @param merchantId {@link string } Unique identifier of the merchant.
     * @param requestOptions {@link IRequest.Options }
@@ -101,6 +61,26 @@ export class UsersMerchantLevelApi extends Service {
     }
 
     /**
+    * @summary Get user details
+    * @param merchantId {@link string } Unique identifier of the merchant.
+    * @param userId {@link string } Unique identifier of the user.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link User }
+    */
+    public async getUserDetails(merchantId: string, userId: string, requestOptions?: IRequest.Options): Promise<User> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/users/{userId}`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
+            .replace("{" + "userId" + "}", encodeURIComponent(String(userId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, User>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "User");
+    }
+
+    /**
     * @summary Update a user
     * @param merchantId {@link string } Unique identifier of the merchant.
     * @param userId {@link string } Unique identifier of the user.
@@ -120,5 +100,25 @@ export class UsersMerchantLevelApi extends Service {
             { ...requestOptions, method: "PATCH" }
         );
         return ObjectSerializer.deserialize(response, "User");
+    }
+
+    /**
+    * @summary Create a new user
+    * @param merchantId {@link string } Unique identifier of the merchant.
+    * @param createMerchantUserRequest {@link CreateMerchantUserRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CreateUserResponse }
+    */
+    public async createNewUser(merchantId: string, createMerchantUserRequest: CreateMerchantUserRequest, requestOptions?: IRequest.Options): Promise<CreateUserResponse> {
+        const endpoint = `${this.baseUrl}/merchants/{merchantId}/users`
+            .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
+        const resource = new Resource(this, endpoint);
+        const request: CreateMerchantUserRequest = ObjectSerializer.serialize(createMerchantUserRequest, "CreateMerchantUserRequest");
+        const response = await getJsonResponse<CreateMerchantUserRequest, CreateUserResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "CreateUserResponse");
     }
 }

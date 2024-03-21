@@ -117,6 +117,7 @@ export * from './releaseUpdateDetails';
 export * from './requestActivationResponse';
 export * from './restServiceError';
 export * from './scheduleTerminalActionsRequest';
+export * from './scheduleTerminalActionsRequestActionDetails';
 export * from './scheduleTerminalActionsResponse';
 export * from './settings';
 export * from './shippingLocation';
@@ -297,6 +298,7 @@ import { ReleaseUpdateDetails } from './releaseUpdateDetails';
 import { RequestActivationResponse } from './requestActivationResponse';
 import { RestServiceError } from './restServiceError';
 import { ScheduleTerminalActionsRequest } from './scheduleTerminalActionsRequest';
+import { ScheduleTerminalActionsRequestActionDetails } from './scheduleTerminalActionsRequestActionDetails';
 import { ScheduleTerminalActionsResponse } from './scheduleTerminalActionsResponse';
 import { Settings } from './settings';
 import { ShippingLocation } from './shippingLocation';
@@ -401,6 +403,7 @@ let enumsMap: {[index: string]: any} = {
         "PayoutSettings.PriorityEnum": PayoutSettings.PriorityEnum,
         "PayoutSettings.VerificationStatusEnum": PayoutSettings.VerificationStatusEnum,
         "ReleaseUpdateDetails.TypeEnum": ReleaseUpdateDetails.TypeEnum,
+        "ScheduleTerminalActionsRequestActionDetails.TypeEnum": ScheduleTerminalActionsRequestActionDetails.TypeEnum,
         "SplitConfigurationLogic.AcquiringFeesEnum": SplitConfigurationLogic.AcquiringFeesEnum,
         "SplitConfigurationLogic.AdyenCommissionEnum": SplitConfigurationLogic.AdyenCommissionEnum,
         "SplitConfigurationLogic.AdyenFeesEnum": SplitConfigurationLogic.AdyenFeesEnum,
@@ -561,6 +564,7 @@ let typeMap: {[index: string]: any} = {
     "RequestActivationResponse": RequestActivationResponse,
     "RestServiceError": RestServiceError,
     "ScheduleTerminalActionsRequest": ScheduleTerminalActionsRequest,
+    "ScheduleTerminalActionsRequestActionDetails": ScheduleTerminalActionsRequestActionDetails,
     "ScheduleTerminalActionsResponse": ScheduleTerminalActionsResponse,
     "Settings": Settings,
     "ShippingLocation": ShippingLocation,

@@ -16,6 +16,7 @@ export * from './amountAdjustment';
 export * from './bRLocalAccountIdentification';
 export * from './balanceMutation';
 export * from './bankAccountV3';
+export * from './bankAccountV3AccountIdentification';
 export * from './bankCategoryData';
 export * from './cALocalAccountIdentification';
 export * from './cZLocalAccountIdentification';
@@ -65,6 +66,7 @@ export * from './transactionRuleSource';
 export * from './transactionRulesResult';
 export * from './transactionSearchResponse';
 export * from './transfer';
+export * from './transferCategoryData';
 export * from './transferData';
 export * from './transferEvent';
 export * from './transferInfo';
@@ -86,6 +88,7 @@ import { AmountAdjustment } from './amountAdjustment';
 import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
 import { BalanceMutation } from './balanceMutation';
 import { BankAccountV3 } from './bankAccountV3';
+import { BankAccountV3AccountIdentification } from './bankAccountV3AccountIdentification';
 import { BankCategoryData } from './bankCategoryData';
 import { CALocalAccountIdentification } from './cALocalAccountIdentification';
 import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
@@ -135,6 +138,7 @@ import { TransactionRuleSource } from './transactionRuleSource';
 import { TransactionRulesResult } from './transactionRulesResult';
 import { TransactionSearchResponse } from './transactionSearchResponse';
 import { Transfer } from './transfer';
+import { TransferCategoryData } from './transferCategoryData';
 import { TransferData } from './transferData';
 import { TransferEvent } from './transferEvent';
 import { TransferInfo } from './transferInfo';
@@ -164,6 +168,8 @@ let enumsMap: {[index: string]: any} = {
         "AdditionalBankIdentification.TypeEnum": AdditionalBankIdentification.TypeEnum,
         "AmountAdjustment.AmountAdjustmentTypeEnum": AmountAdjustment.AmountAdjustmentTypeEnum,
         "BRLocalAccountIdentification.TypeEnum": BRLocalAccountIdentification.TypeEnum,
+        "BankAccountV3AccountIdentification.TypeEnum": BankAccountV3AccountIdentification.TypeEnum,
+        "BankAccountV3AccountIdentification.AccountTypeEnum": BankAccountV3AccountIdentification.AccountTypeEnum,
         "BankCategoryData.PriorityEnum": BankCategoryData.PriorityEnum,
         "BankCategoryData.TypeEnum": BankCategoryData.TypeEnum,
         "CALocalAccountIdentification.AccountTypeEnum": CALocalAccountIdentification.AccountTypeEnum,
@@ -195,6 +201,11 @@ let enumsMap: {[index: string]: any} = {
         "Transfer.ReasonEnum": Transfer.ReasonEnum,
         "Transfer.StatusEnum": Transfer.StatusEnum,
         "Transfer.TypeEnum": Transfer.TypeEnum,
+        "TransferCategoryData.PriorityEnum": TransferCategoryData.PriorityEnum,
+        "TransferCategoryData.TypeEnum": TransferCategoryData.TypeEnum,
+        "TransferCategoryData.PanEntryModeEnum": TransferCategoryData.PanEntryModeEnum,
+        "TransferCategoryData.ProcessingTypeEnum": TransferCategoryData.ProcessingTypeEnum,
+        "TransferCategoryData.PlatformPaymentTypeEnum": TransferCategoryData.PlatformPaymentTypeEnum,
         "TransferData.CategoryEnum": TransferData.CategoryEnum,
         "TransferData.DirectionEnum": TransferData.DirectionEnum,
         "TransferData.ReasonEnum": TransferData.ReasonEnum,
@@ -221,6 +232,7 @@ let typeMap: {[index: string]: any} = {
     "BRLocalAccountIdentification": BRLocalAccountIdentification,
     "BalanceMutation": BalanceMutation,
     "BankAccountV3": BankAccountV3,
+    "BankAccountV3AccountIdentification": BankAccountV3AccountIdentification,
     "BankCategoryData": BankCategoryData,
     "CALocalAccountIdentification": CALocalAccountIdentification,
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
@@ -270,6 +282,7 @@ let typeMap: {[index: string]: any} = {
     "TransactionRulesResult": TransactionRulesResult,
     "TransactionSearchResponse": TransactionSearchResponse,
     "Transfer": Transfer,
+    "TransferCategoryData": TransferCategoryData,
     "TransferData": TransferData,
     "TransferEvent": TransferEvent,
     "TransferInfo": TransferInfo,

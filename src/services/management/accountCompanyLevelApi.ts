@@ -30,24 +30,6 @@ export class AccountCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Get a company account
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link Company }
-    */
-    public async getCompanyAccount(companyId: string, requestOptions?: IRequest.Options): Promise<Company> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, Company>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "Company");
-    }
-
-    /**
     * @summary Get a list of company accounts
     * @param requestOptions {@link IRequest.Options }
     * @param pageNumber {@link number } The number of the page to fetch.
@@ -70,6 +52,24 @@ export class AccountCompanyLevelApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "ListCompanyResponse");
+    }
+
+    /**
+    * @summary Get a company account
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link Company }
+    */
+    public async getCompanyAccount(companyId: string, requestOptions?: IRequest.Options): Promise<Company> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, Company>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "Company");
     }
 
     /**

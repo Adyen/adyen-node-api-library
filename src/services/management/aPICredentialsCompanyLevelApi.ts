@@ -32,46 +32,6 @@ export class APICredentialsCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Create an API credential.
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param createCompanyApiCredentialRequest {@link CreateCompanyApiCredentialRequest } 
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link CreateCompanyApiCredentialResponse }
-    */
-    public async createApiCredential(companyId: string, createCompanyApiCredentialRequest: CreateCompanyApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyApiCredentialResponse> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
-        const resource = new Resource(this, endpoint);
-        const request: CreateCompanyApiCredentialRequest = ObjectSerializer.serialize(createCompanyApiCredentialRequest, "CreateCompanyApiCredentialRequest");
-        const response = await getJsonResponse<CreateCompanyApiCredentialRequest, CreateCompanyApiCredentialResponse>(
-            resource,
-            request,
-            { ...requestOptions, method: "POST" }
-        );
-        return ObjectSerializer.deserialize(response, "CreateCompanyApiCredentialResponse");
-    }
-
-    /**
-    * @summary Get an API credential
-    * @param companyId {@link string } The unique identifier of the company account.
-    * @param apiCredentialId {@link string } Unique identifier of the API credential.
-    * @param requestOptions {@link IRequest.Options }
-    * @return {@link CompanyApiCredential }
-    */
-    public async getApiCredential(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<CompanyApiCredential> {
-        const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials/{apiCredentialId}`
-            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
-            .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
-        const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<string, CompanyApiCredential>(
-            resource,
-            "",
-            { ...requestOptions, method: "GET" }
-        );
-        return ObjectSerializer.deserialize(response, "CompanyApiCredential");
-    }
-
-    /**
     * @summary Get a list of API credentials
     * @param companyId {@link string } The unique identifier of the company account.
     * @param requestOptions {@link IRequest.Options }
@@ -99,6 +59,26 @@ export class APICredentialsCompanyLevelApi extends Service {
     }
 
     /**
+    * @summary Get an API credential
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param apiCredentialId {@link string } Unique identifier of the API credential.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CompanyApiCredential }
+    */
+    public async getApiCredential(companyId: string, apiCredentialId: string, requestOptions?: IRequest.Options): Promise<CompanyApiCredential> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials/{apiCredentialId}`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
+            .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, CompanyApiCredential>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "CompanyApiCredential");
+    }
+
+    /**
     * @summary Update an API credential.
     * @param companyId {@link string } The unique identifier of the company account.
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
@@ -118,5 +98,25 @@ export class APICredentialsCompanyLevelApi extends Service {
             { ...requestOptions, method: "PATCH" }
         );
         return ObjectSerializer.deserialize(response, "CompanyApiCredential");
+    }
+
+    /**
+    * @summary Create an API credential.
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param createCompanyApiCredentialRequest {@link CreateCompanyApiCredentialRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CreateCompanyApiCredentialResponse }
+    */
+    public async createApiCredential(companyId: string, createCompanyApiCredentialRequest: CreateCompanyApiCredentialRequest, requestOptions?: IRequest.Options): Promise<CreateCompanyApiCredentialResponse> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
+        const resource = new Resource(this, endpoint);
+        const request: CreateCompanyApiCredentialRequest = ObjectSerializer.serialize(createCompanyApiCredentialRequest, "CreateCompanyApiCredentialRequest");
+        const response = await getJsonResponse<CreateCompanyApiCredentialRequest, CreateCompanyApiCredentialResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "CreateCompanyApiCredentialResponse");
     }
 }
