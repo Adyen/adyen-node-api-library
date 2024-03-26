@@ -74,6 +74,7 @@ export * from './createCheckoutSessionResponse';
 export * from './createOrderRequest';
 export * from './createOrderResponse';
 export * from './deliveryAddress';
+export * from './deliveryMethod';
 export * from './detailsRequestAuthenticationData';
 export * from './deviceRenderOptions';
 export * from './dokuDetails';
@@ -131,6 +132,7 @@ export * from './paymentLinkResponse';
 export * from './paymentMethod';
 export * from './paymentMethodGroup';
 export * from './paymentMethodIssuer';
+export * from './paymentMethodToStore';
 export * from './paymentMethodsRequest';
 export * from './paymentMethodsResponse';
 export * from './paymentRefundRequest';
@@ -143,6 +145,8 @@ export * from './paymentSetupRequest';
 export * from './paymentSetupResponse';
 export * from './paymentVerificationRequest';
 export * from './paymentVerificationResponse';
+export * from './paypalUpdateOrderRequest';
+export * from './paypalUpdateOrderResponse';
 export * from './phone';
 export * from './platformChargebackLogic';
 export * from './ratepayDetails';
@@ -174,6 +178,7 @@ export * from './standalonePaymentCancelResponse';
 export * from './storedDetails';
 export * from './storedPaymentMethod';
 export * from './storedPaymentMethodDetails';
+export * from './storedPaymentMethodRequest';
 export * from './storedPaymentMethodResource';
 export * from './subInputDetail';
 export * from './subMerchant';
@@ -264,6 +269,7 @@ import { CreateCheckoutSessionResponse } from './createCheckoutSessionResponse';
 import { CreateOrderRequest } from './createOrderRequest';
 import { CreateOrderResponse } from './createOrderResponse';
 import { DeliveryAddress } from './deliveryAddress';
+import { DeliveryMethod } from './deliveryMethod';
 import { DetailsRequestAuthenticationData } from './detailsRequestAuthenticationData';
 import { DeviceRenderOptions } from './deviceRenderOptions';
 import { DokuDetails } from './dokuDetails';
@@ -321,6 +327,7 @@ import { PaymentLinkResponse } from './paymentLinkResponse';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodGroup } from './paymentMethodGroup';
 import { PaymentMethodIssuer } from './paymentMethodIssuer';
+import { PaymentMethodToStore } from './paymentMethodToStore';
 import { PaymentMethodsRequest } from './paymentMethodsRequest';
 import { PaymentMethodsResponse } from './paymentMethodsResponse';
 import { PaymentRefundRequest } from './paymentRefundRequest';
@@ -333,6 +340,8 @@ import { PaymentSetupRequest } from './paymentSetupRequest';
 import { PaymentSetupResponse } from './paymentSetupResponse';
 import { PaymentVerificationRequest } from './paymentVerificationRequest';
 import { PaymentVerificationResponse } from './paymentVerificationResponse';
+import { PaypalUpdateOrderRequest } from './paypalUpdateOrderRequest';
+import { PaypalUpdateOrderResponse } from './paypalUpdateOrderResponse';
 import { Phone } from './phone';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { RatepayDetails } from './ratepayDetails';
@@ -364,6 +373,7 @@ import { StandalonePaymentCancelResponse } from './standalonePaymentCancelRespon
 import { StoredDetails } from './storedDetails';
 import { StoredPaymentMethod } from './storedPaymentMethod';
 import { StoredPaymentMethodDetails } from './storedPaymentMethodDetails';
+import { StoredPaymentMethodRequest } from './storedPaymentMethodRequest';
 import { StoredPaymentMethodResource } from './storedPaymentMethodResource';
 import { SubInputDetail } from './subInputDetail';
 import { SubMerchant } from './subMerchant';
@@ -460,6 +470,7 @@ let enumsMap: {[index: string]: any} = {
         "CreateCheckoutSessionResponse.ShopperInteractionEnum": CreateCheckoutSessionResponse.ShopperInteractionEnum,
         "CreateCheckoutSessionResponse.StorePaymentMethodModeEnum": CreateCheckoutSessionResponse.StorePaymentMethodModeEnum,
         "CreateOrderResponse.ResultCodeEnum": CreateOrderResponse.ResultCodeEnum,
+        "DeliveryMethod.TypeEnum": DeliveryMethod.TypeEnum,
         "DeviceRenderOptions.SdkInterfaceEnum": DeviceRenderOptions.SdkInterfaceEnum,
         "DeviceRenderOptions.SdkUiTypeEnum": DeviceRenderOptions.SdkUiTypeEnum,
         "DokuDetails.TypeEnum": DokuDetails.TypeEnum,
@@ -515,6 +526,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentLinkResponse.StorePaymentMethodModeEnum": PaymentLinkResponse.StorePaymentMethodModeEnum,
         "PaymentMethod.FundingSourceEnum": PaymentMethod.FundingSourceEnum,
         "PaymentMethodsRequest.ChannelEnum": PaymentMethodsRequest.ChannelEnum,
+        "PaymentMethodsRequest.StoreFiltrationModeEnum": PaymentMethodsRequest.StoreFiltrationModeEnum,
         "PaymentRefundRequest.MerchantRefundReasonEnum": PaymentRefundRequest.MerchantRefundReasonEnum,
         "PaymentRefundResponse.MerchantRefundReasonEnum": PaymentRefundResponse.MerchantRefundReasonEnum,
         "PaymentRefundResponse.StatusEnum": PaymentRefundResponse.StatusEnum,
@@ -529,6 +541,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentSetupRequest.EntityTypeEnum": PaymentSetupRequest.EntityTypeEnum,
         "PaymentSetupRequest.ShopperInteractionEnum": PaymentSetupRequest.ShopperInteractionEnum,
         "PaymentVerificationResponse.ResultCodeEnum": PaymentVerificationResponse.ResultCodeEnum,
+        "PaypalUpdateOrderResponse.StatusEnum": PaypalUpdateOrderResponse.StatusEnum,
         "PlatformChargebackLogic.BehaviorEnum": PlatformChargebackLogic.BehaviorEnum,
         "RatepayDetails.TypeEnum": RatepayDetails.TypeEnum,
         "Recurring.ContractEnum": Recurring.ContractEnum,
@@ -546,17 +559,16 @@ let enumsMap: {[index: string]: any} = {
         "Split.TypeEnum": Split.TypeEnum,
         "StandalonePaymentCancelResponse.StatusEnum": StandalonePaymentCancelResponse.StatusEnum,
         "StoredPaymentMethodDetails.TypeEnum": StoredPaymentMethodDetails.TypeEnum,
+        "StoredPaymentMethodRequest.RecurringProcessingModelEnum": StoredPaymentMethodRequest.RecurringProcessingModelEnum,
         "ThreeDS2RequestData.AcctTypeEnum": ThreeDS2RequestData.AcctTypeEnum,
         "ThreeDS2RequestData.AddrMatchEnum": ThreeDS2RequestData.AddrMatchEnum,
         "ThreeDS2RequestData.ChallengeIndicatorEnum": ThreeDS2RequestData.ChallengeIndicatorEnum,
-        "ThreeDS2RequestData.PlatformEnum": ThreeDS2RequestData.PlatformEnum,
         "ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum": ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum,
         "ThreeDS2RequestData.TransTypeEnum": ThreeDS2RequestData.TransTypeEnum,
         "ThreeDS2RequestData.TransactionTypeEnum": ThreeDS2RequestData.TransactionTypeEnum,
         "ThreeDS2RequestFields.AcctTypeEnum": ThreeDS2RequestFields.AcctTypeEnum,
         "ThreeDS2RequestFields.AddrMatchEnum": ThreeDS2RequestFields.AddrMatchEnum,
         "ThreeDS2RequestFields.ChallengeIndicatorEnum": ThreeDS2RequestFields.ChallengeIndicatorEnum,
-        "ThreeDS2RequestFields.PlatformEnum": ThreeDS2RequestFields.PlatformEnum,
         "ThreeDS2RequestFields.ThreeDSRequestorChallengeIndEnum": ThreeDS2RequestFields.ThreeDSRequestorChallengeIndEnum,
         "ThreeDS2RequestFields.TransTypeEnum": ThreeDS2RequestFields.TransTypeEnum,
         "ThreeDS2RequestFields.TransactionTypeEnum": ThreeDS2RequestFields.TransactionTypeEnum,
@@ -650,6 +662,7 @@ let typeMap: {[index: string]: any} = {
     "CreateOrderRequest": CreateOrderRequest,
     "CreateOrderResponse": CreateOrderResponse,
     "DeliveryAddress": DeliveryAddress,
+    "DeliveryMethod": DeliveryMethod,
     "DetailsRequestAuthenticationData": DetailsRequestAuthenticationData,
     "DeviceRenderOptions": DeviceRenderOptions,
     "DokuDetails": DokuDetails,
@@ -707,6 +720,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentMethod": PaymentMethod,
     "PaymentMethodGroup": PaymentMethodGroup,
     "PaymentMethodIssuer": PaymentMethodIssuer,
+    "PaymentMethodToStore": PaymentMethodToStore,
     "PaymentMethodsRequest": PaymentMethodsRequest,
     "PaymentMethodsResponse": PaymentMethodsResponse,
     "PaymentRefundRequest": PaymentRefundRequest,
@@ -719,6 +733,8 @@ let typeMap: {[index: string]: any} = {
     "PaymentSetupResponse": PaymentSetupResponse,
     "PaymentVerificationRequest": PaymentVerificationRequest,
     "PaymentVerificationResponse": PaymentVerificationResponse,
+    "PaypalUpdateOrderRequest": PaypalUpdateOrderRequest,
+    "PaypalUpdateOrderResponse": PaypalUpdateOrderResponse,
     "Phone": Phone,
     "PlatformChargebackLogic": PlatformChargebackLogic,
     "RatepayDetails": RatepayDetails,
@@ -750,6 +766,7 @@ let typeMap: {[index: string]: any} = {
     "StoredDetails": StoredDetails,
     "StoredPaymentMethod": StoredPaymentMethod,
     "StoredPaymentMethodDetails": StoredPaymentMethodDetails,
+    "StoredPaymentMethodRequest": StoredPaymentMethodRequest,
     "StoredPaymentMethodResource": StoredPaymentMethodResource,
     "SubInputDetail": SubInputDetail,
     "SubMerchant": SubMerchant,

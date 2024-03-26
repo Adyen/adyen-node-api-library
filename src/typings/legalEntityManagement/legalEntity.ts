@@ -17,7 +17,6 @@ import { Organization } from './organization';
 import { SoleProprietorship } from './soleProprietorship';
 import { TransferInstrumentReference } from './transferInstrumentReference';
 import { Trust } from './trust';
-import { UnincorporatedPartnership } from './unincorporatedPartnership';
 import { VerificationDeadline } from './verificationDeadline';
 
 export class LegalEntity {
@@ -61,13 +60,12 @@ export class LegalEntity {
     * The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
     */
     'type'?: LegalEntity.TypeEnum;
-    'unincorporatedPartnership'?: UnincorporatedPartnership;
     /**
     * List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
     */
     'verificationDeadlines'?: Array<VerificationDeadline>;
     /**
-    * A key-value pair that specifies the [verification process](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details/) for a legal entity. Set to **upfront** for [upfront verification](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details#upfront).
+    * A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/onboard-users#upfront).
     */
     'verificationPlan'?: string;
 
@@ -138,11 +136,6 @@ export class LegalEntity {
             "name": "type",
             "baseName": "type",
             "type": "LegalEntity.TypeEnum"
-        },
-        {
-            "name": "unincorporatedPartnership",
-            "baseName": "unincorporatedPartnership",
-            "type": "UnincorporatedPartnership"
         },
         {
             "name": "verificationDeadlines",

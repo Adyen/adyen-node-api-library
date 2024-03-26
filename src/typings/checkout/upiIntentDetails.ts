@@ -10,6 +10,10 @@
 
 export class UpiIntentDetails {
     /**
+    * TPAP (Third Party Application) Id that is being used to make the UPI payment
+    */
+    'appId'?: string;
+    /**
     * The checkout attempt identifier.
     */
     'checkoutAttemptId'?: string;
@@ -33,6 +37,11 @@ export class UpiIntentDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "appId",
+            "baseName": "appId",
+            "type": "string"
+        },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",

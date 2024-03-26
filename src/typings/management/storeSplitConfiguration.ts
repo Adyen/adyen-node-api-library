@@ -14,7 +14,7 @@ export class StoreSplitConfiguration {
     */
     'balanceAccountId'?: string;
     /**
-    * The unique identifier of the [split configuration profile](https://docs.adyen.com/marketplaces-and-platforms/automatic-split-configuration/create-split-configuration/).
+    * The unique identifier of the [split configuration profile](https://docs.adyen.com/platforms/automatic-split-configuration/create-split-configuration/).
     */
     'splitConfigurationId'?: string;
 

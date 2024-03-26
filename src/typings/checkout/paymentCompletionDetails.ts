@@ -78,6 +78,10 @@ export class PaymentCompletionDetails {
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `threeDSCompInd`.
     */
     'threeds2_fingerprint'?: string;
+    /**
+    * PayPalv2-generated token for recurring payments.
+    */
+    'vaultToken'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -170,6 +174,11 @@ export class PaymentCompletionDetails {
         {
             "name": "threeds2_fingerprint",
             "baseName": "threeds2.fingerprint",
+            "type": "string"
+        },
+        {
+            "name": "vaultToken",
+            "baseName": "vaultToken",
             "type": "string"
         }    ];
 
