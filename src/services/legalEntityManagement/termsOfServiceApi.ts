@@ -17,7 +17,6 @@ import {
     GetTermsOfServiceAcceptanceInfosResponse,
     GetTermsOfServiceDocumentRequest,
     GetTermsOfServiceDocumentResponse,
-    ServiceError,
     ObjectSerializer
 } from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
