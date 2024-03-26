@@ -32,7 +32,7 @@ export class PaymentMethod {
     'applePay'?: ApplePayInfo;
     'bcmc'?: BcmcInfo;
     /**
-    * The unique identifier of the business line. Required if you have a [platform setup](https://docs.adyen.com/marketplaces-and-platforms/platform-structure-resources/platform-setup/).
+    * The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms).
     */
     'businessLineId'?: string;
     'cartesBancaires'?: CartesBancairesInfo;

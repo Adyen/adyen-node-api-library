@@ -13,6 +13,7 @@ import Client from "../../client";
 import { 
     DonationPaymentRequest,
     DonationPaymentResponse,
+    ServiceError,
     ObjectSerializer
 } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";

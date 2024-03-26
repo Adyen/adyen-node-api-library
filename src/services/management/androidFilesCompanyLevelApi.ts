@@ -14,6 +14,7 @@ import {
     AndroidApp,
     AndroidAppsResponse,
     AndroidCertificatesResponse,
+    RestServiceError,
     UploadAndroidAppResponse,
     ObjectSerializer
 } from "../../typings/management/models";

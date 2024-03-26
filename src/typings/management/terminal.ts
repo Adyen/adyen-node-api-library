@@ -34,6 +34,10 @@ export class Terminal {
     */
     'model'?: string;
     /**
+    * The exact time of the terminal reboot, in the timezone of the terminal in **HH:mm** format.
+    */
+    'restartLocalTime'?: string;
+    /**
     * The serial number of the terminal.
     */
     'serialNumber'?: string;
@@ -74,6 +78,11 @@ export class Terminal {
         {
             "name": "model",
             "baseName": "model",
+            "type": "string"
+        },
+        {
+            "name": "restartLocalTime",
+            "baseName": "restartLocalTime",
             "type": "string"
         },
         {

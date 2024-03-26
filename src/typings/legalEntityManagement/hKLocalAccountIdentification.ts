@@ -14,13 +14,17 @@ export class HKLocalAccountIdentification {
     */
     'accountNumber': string;
     /**
+    * The bank\'s name.
+    */
+    'bankName'?: string;
+    /**
+    * The bank\'s 8- or 11-character BIC or SWIFT code.
+    */
+    'bic'?: string;
+    /**
     * The 3-digit clearing code, without separators or whitespace.
     */
     'clearingCode': string;
-    /**
-    * Business accounts with a `formFactor` value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the `formFactor`å value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
-    */
-    'formFactor'?: string | null;
     /**
     * **hkLocal**
     */
@@ -35,14 +39,19 @@ export class HKLocalAccountIdentification {
             "type": "string"
         },
         {
-            "name": "clearingCode",
-            "baseName": "clearingCode",
+            "name": "bankName",
+            "baseName": "bankName",
             "type": "string"
         },
         {
-            "name": "formFactor",
-            "baseName": "formFactor",
-            "type": "string | null"
+            "name": "bic",
+            "baseName": "bic",
+            "type": "string"
+        },
+        {
+            "name": "clearingCode",
+            "baseName": "clearingCode",
+            "type": "string"
         },
         {
             "name": "type",
