@@ -13,6 +13,9 @@ import Client from "../../client";
 import { 
     ApplePaySessionRequest,
     ApplePaySessionResponse,
+    PaypalUpdateOrderRequest,
+    PaypalUpdateOrderResponse,
+    ServiceError,
     UtilityRequest,
     UtilityResponse,
     ObjectSerializer
@@ -64,5 +67,23 @@ export class UtilityApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "UtilityResponse");
+    }
+
+    /**
+    * @summary Updates the order for PayPal Express Checkout
+    * @param paypalUpdateOrderRequest {@link PaypalUpdateOrderRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link PaypalUpdateOrderResponse }
+    */
+    public async updatesOrderForPaypalExpressCheckout(paypalUpdateOrderRequest: PaypalUpdateOrderRequest, requestOptions?: IRequest.Options): Promise<PaypalUpdateOrderResponse> {
+        const endpoint = `${this.baseUrl}/paypal/updateOrder`;
+        const resource = new Resource(this, endpoint);
+        const request: PaypalUpdateOrderRequest = ObjectSerializer.serialize(paypalUpdateOrderRequest, "PaypalUpdateOrderRequest");
+        const response = await getJsonResponse<PaypalUpdateOrderRequest, PaypalUpdateOrderResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "PaypalUpdateOrderResponse");
     }
 }

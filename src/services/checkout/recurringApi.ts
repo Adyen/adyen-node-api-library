@@ -12,6 +12,8 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     ListStoredPaymentMethodsResponse,
+    StoredPaymentMethodRequest,
+    StoredPaymentMethodResource,
     ObjectSerializer
 } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -75,5 +77,23 @@ export class RecurringApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "ListStoredPaymentMethodsResponse");
+    }
+
+    /**
+    * @summary Create a token to store payment details
+    * @param storedPaymentMethodRequest {@link StoredPaymentMethodRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link StoredPaymentMethodResource }
+    */
+    public async storedPaymentMethods(storedPaymentMethodRequest: StoredPaymentMethodRequest, requestOptions?: IRequest.Options): Promise<StoredPaymentMethodResource> {
+        const endpoint = `${this.baseUrl}/storedPaymentMethods`;
+        const resource = new Resource(this, endpoint);
+        const request: StoredPaymentMethodRequest = ObjectSerializer.serialize(storedPaymentMethodRequest, "StoredPaymentMethodRequest");
+        const response = await getJsonResponse<StoredPaymentMethodRequest, StoredPaymentMethodResource>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "StoredPaymentMethodResource");
     }
 }
