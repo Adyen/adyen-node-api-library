@@ -14,7 +14,7 @@ export class VerificationDeadline {
     */
     'capabilities': Array<VerificationDeadline.CapabilitiesEnum>;
     /**
-    * The unique identifiers of the bank account(s) that the deadline applies to
+    * The unique identifiers of the legal entity or supporting entities that the deadline applies to
     */
     'entityIds'?: Array<string>;
     /**

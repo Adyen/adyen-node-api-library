@@ -68,10 +68,6 @@ export class ThreeDS2RequestFields {
     */
     'paymentAuthenticationUseCase'?: string;
     /**
-    * The platform of the shopper. Allowed values: * `iOS` * `android` * `browser`
-    */
-    'platform'?: ThreeDS2RequestFields.PlatformEnum;
-    /**
     * Indicates the maximum number of authorisations permitted for instalment payments. Length: 1–3 characters.
     */
     'purchaseInstalData'?: string;
@@ -224,11 +220,6 @@ export class ThreeDS2RequestFields {
             "type": "string"
         },
         {
-            "name": "platform",
-            "baseName": "platform",
-            "type": "ThreeDS2RequestFields.PlatformEnum"
-        },
-        {
             "name": "purchaseInstalData",
             "baseName": "purchaseInstalData",
             "type": "string"
@@ -349,11 +340,6 @@ export namespace ThreeDS2RequestFields {
         RequestNoChallenge = 'requestNoChallenge',
         RequestChallenge = 'requestChallenge',
         RequestChallengeAsMandate = 'requestChallengeAsMandate'
-    }
-    export enum PlatformEnum {
-        IOs = 'iOS',
-        Android = 'android',
-        Browser = 'browser'
     }
     export enum ThreeDSRequestorChallengeIndEnum {
         _01 = '01',
