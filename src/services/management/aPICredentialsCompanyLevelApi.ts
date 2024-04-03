@@ -15,6 +15,7 @@ import {
     CreateCompanyApiCredentialRequest,
     CreateCompanyApiCredentialResponse,
     ListCompanyApiCredentialsResponse,
+    RestServiceError,
     UpdateCompanyApiCredentialRequest,
     ObjectSerializer
 } from "../../typings/management/models";

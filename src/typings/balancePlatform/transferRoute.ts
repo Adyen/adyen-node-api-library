@@ -8,6 +8,7 @@
  */
 
 import { AddressRequirement } from './addressRequirement';
+import { AddressRequirement | AmountMinMaxRequirement | BankAccountIdentificationTypeRequirement | PaymentInstrumentRequirement } from './addressRequirement | AmountMinMaxRequirement | BankAccountIdentificationTypeRequirement | PaymentInstrumentRequirement';
 import { AmountMinMaxRequirement } from './amountMinMaxRequirement';
 import { BankAccountIdentificationTypeRequirement } from './bankAccountIdentificationTypeRequirement';
 import { PaymentInstrumentRequirement } from './paymentInstrumentRequirement';

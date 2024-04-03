@@ -180,6 +180,7 @@ export * from './updateSplitConfigurationRequest';
 export * from './updateSplitConfigurationRuleRequest';
 export * from './updateStoreRequest';
 export * from './uploadAndroidAppResponse';
+export * from './uploadAndroidCertificateResponse';
 export * from './url';
 export * from './user';
 export * from './vippsInfo';
@@ -360,6 +361,7 @@ import { UpdateSplitConfigurationRequest } from './updateSplitConfigurationReque
 import { UpdateSplitConfigurationRuleRequest } from './updateSplitConfigurationRuleRequest';
 import { UpdateStoreRequest } from './updateStoreRequest';
 import { UploadAndroidAppResponse } from './uploadAndroidAppResponse';
+import { UploadAndroidCertificateResponse } from './uploadAndroidCertificateResponse';
 import { Url } from './url';
 import { User } from './user';
 import { VippsInfo } from './vippsInfo';
@@ -624,6 +626,7 @@ let typeMap: {[index: string]: any} = {
     "UpdateSplitConfigurationRuleRequest": UpdateSplitConfigurationRuleRequest,
     "UpdateStoreRequest": UpdateStoreRequest,
     "UploadAndroidAppResponse": UploadAndroidAppResponse,
+    "UploadAndroidCertificateResponse": UploadAndroidCertificateResponse,
     "Url": Url,
     "User": User,
     "VippsInfo": VippsInfo,

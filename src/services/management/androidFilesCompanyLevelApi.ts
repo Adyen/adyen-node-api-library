@@ -14,7 +14,9 @@ import {
     AndroidApp,
     AndroidAppsResponse,
     AndroidCertificatesResponse,
+    RestServiceError,
     UploadAndroidAppResponse,
+    UploadAndroidCertificateResponse,
     ObjectSerializer
 } from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -126,5 +128,23 @@ export class AndroidFilesCompanyLevelApi extends Service {
             { ...requestOptions, method: "POST" }
         );
         return ObjectSerializer.deserialize(response, "UploadAndroidAppResponse");
+    }
+
+    /**
+    * @summary Upload Android Certificate
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link UploadAndroidCertificateResponse }
+    */
+    public async uploadAndroidCertificate(companyId: string, requestOptions?: IRequest.Options): Promise<UploadAndroidCertificateResponse> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/androidCertificates`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, UploadAndroidCertificateResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "UploadAndroidCertificateResponse");
     }
 }
