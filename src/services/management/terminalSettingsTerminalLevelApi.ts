@@ -12,7 +12,6 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     Logo,
-    RestServiceError,
     TerminalSettings,
     ObjectSerializer
 } from "../../typings/management/models";

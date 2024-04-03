@@ -10,7 +10,6 @@
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
-import { ServiceError } from "../typings/storedValue/models";
 import { StoredValueBalanceCheckRequest } from "../typings/storedValue/models";
 import { StoredValueBalanceCheckResponse } from "../typings/storedValue/models";
 import { StoredValueBalanceMergeRequest } from "../typings/storedValue/models";
