@@ -16,7 +16,7 @@ export class FundRecipient {
     'billingAddress'?: Address;
     'paymentMethod'?: CardDetails;
     /**
-    * the email address of the person
+    * The email address of the shopper.
     */
     'shopperEmail'?: string;
     'shopperName'?: Name;
@@ -30,15 +30,15 @@ export class FundRecipient {
     'storedPaymentMethodId'?: string;
     'subMerchant'?: SubMerchant;
     /**
-    * the telephone number of the person
+    * The telephone number of the shopper.
     */
     'telephoneNumber'?: string;
     /**
-    * indicates where the money is going
+    * Indicates where the money is going.
     */
     'walletIdentifier'?: string;
     /**
-    * indicates the tax identifier of the fund recepient
+    * Indicates the tax identifier of the fund recepient
     */
     'walletOwnerTaxId'?: string;
 
