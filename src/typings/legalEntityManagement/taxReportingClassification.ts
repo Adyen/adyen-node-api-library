@@ -62,7 +62,7 @@ export namespace TaxReportingClassification {
         SubsidiaryOfListedPublicCompany = 'subsidiaryOfListedPublicCompany',
         GovernmentalOrganization = 'governmentalOrganization',
         InternationalOrganization = 'internationalOrganization',
-        FinancialInstitution = 'financialInstitution.'
+        FinancialInstitution = 'financialInstitution'
     }
     export enum MainSourceOfIncomeEnum {
         BusinessOperation = 'businessOperation',
