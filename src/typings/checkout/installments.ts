@@ -10,17 +10,26 @@
 
 export class Installments {
     /**
-    * The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving** 
+    * Defines the bonus percentage, refund percentage or if the transaction is Buy now Pay later. Used for [card installments in Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico) 
+    */
+    'extra'?: number;
+    /**
+    * The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. 
     */
     'plan'?: Installments.PlanEnum;
     /**
-    * Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.
+    * Defines the number of installments. Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary. This value can be zero for Installments processed in Mexico
     */
     'value': number;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "extra",
+            "baseName": "extra",
+            "type": "number"
+        },
         {
             "name": "plan",
             "baseName": "plan",
@@ -39,7 +48,14 @@ export class Installments {
 
 export namespace Installments {
     export enum PlanEnum {
+        BuynowPaylater = 'buynow_paylater',
+        InteresRefundPrctg = 'interes_refund_prctg',
+        InterestBonus = 'interest_bonus',
+        NointeresRefundPrctg = 'nointeres_refund_prctg',
+        NointerestBonus = 'nointerest_bonus',
+        RefundPrctg = 'refund_prctg',
         Regular = 'regular',
-        Revolving = 'revolving'
+        Revolving = 'revolving',
+        WithInterest = 'with_interest'
     }
 }

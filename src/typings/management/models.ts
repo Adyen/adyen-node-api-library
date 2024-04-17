@@ -15,6 +15,7 @@ export * from './address';
 export * from './afterpayTouchInfo';
 export * from './allowedOrigin';
 export * from './allowedOriginsResponse';
+export * from './amexInfo';
 export * from './amount';
 export * from './androidApp';
 export * from './androidAppsResponse';
@@ -196,6 +197,7 @@ import { Address } from './address';
 import { AfterpayTouchInfo } from './afterpayTouchInfo';
 import { AllowedOrigin } from './allowedOrigin';
 import { AllowedOriginsResponse } from './allowedOriginsResponse';
+import { AmexInfo } from './amexInfo';
 import { Amount } from './amount';
 import { AndroidApp } from './androidApp';
 import { AndroidAppsResponse } from './androidAppsResponse';
@@ -382,6 +384,7 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
+        "AmexInfo.ServiceLevelEnum": AmexInfo.ServiceLevelEnum,
         "Connectivity.SimcardStatusEnum": Connectivity.SimcardStatusEnum,
         "CreateCompanyWebhookRequest.CommunicationFormatEnum": CreateCompanyWebhookRequest.CommunicationFormatEnum,
         "CreateCompanyWebhookRequest.EncryptionProtocolEnum": CreateCompanyWebhookRequest.EncryptionProtocolEnum,
@@ -461,6 +464,7 @@ let typeMap: {[index: string]: any} = {
     "AfterpayTouchInfo": AfterpayTouchInfo,
     "AllowedOrigin": AllowedOrigin,
     "AllowedOriginsResponse": AllowedOriginsResponse,
+    "AmexInfo": AmexInfo,
     "Amount": Amount,
     "AndroidApp": AndroidApp,
     "AndroidAppsResponse": AndroidAppsResponse,

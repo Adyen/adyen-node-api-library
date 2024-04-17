@@ -8,6 +8,7 @@
  */
 
 import { AfterpayTouchInfo } from './afterpayTouchInfo';
+import { AmexInfo } from './amexInfo';
 import { ApplePayInfo } from './applePayInfo';
 import { BcmcInfo } from './bcmcInfo';
 import { CartesBancairesInfo } from './cartesBancairesInfo';
@@ -29,6 +30,7 @@ export class PaymentMethod {
     * Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
     */
     'allowed'?: boolean;
+    'amex'?: AmexInfo;
     'applePay'?: ApplePayInfo;
     'bcmc'?: BcmcInfo;
     /**
@@ -110,6 +112,11 @@ export class PaymentMethod {
             "name": "allowed",
             "baseName": "allowed",
             "type": "boolean"
+        },
+        {
+            "name": "amex",
+            "baseName": "amex",
+            "type": "AmexInfo"
         },
         {
             "name": "applePay",

@@ -11,7 +11,7 @@ import { OrderItem } from './orderItem';
 
 export class TerminalOrderRequest {
     /**
-    * The identification of the billing entity to use for the order.
+    * The identification of the billing entity to use for the order.    > When ordering products in Brazil, you do not need to include the `billingEntityId` in the request.
     */
     'billingEntityId'?: string;
     /**
