@@ -14,14 +14,6 @@ export class HKLocalAccountIdentification {
     */
     'accountNumber': string;
     /**
-    * The bank\'s name.
-    */
-    'bankName'?: string;
-    /**
-    * The bank\'s 8- or 11-character BIC or SWIFT code.
-    */
-    'bic'?: string;
-    /**
     * The 3-digit clearing code, without separators or whitespace.
     */
     'clearingCode': string;
@@ -36,16 +28,6 @@ export class HKLocalAccountIdentification {
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string"
-        },
-        {
-            "name": "bankName",
-            "baseName": "bankName",
-            "type": "string"
-        },
-        {
-            "name": "bic",
-            "baseName": "bic",
             "type": "string"
         },
         {

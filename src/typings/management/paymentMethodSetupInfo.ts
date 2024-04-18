@@ -8,6 +8,7 @@
  */
 
 import { AfterpayTouchInfo } from './afterpayTouchInfo';
+import { AmexInfo } from './amexInfo';
 import { ApplePayInfo } from './applePayInfo';
 import { BcmcInfo } from './bcmcInfo';
 import { CartesBancairesInfo } from './cartesBancairesInfo';
@@ -25,6 +26,7 @@ import { VippsInfo } from './vippsInfo';
 
 export class PaymentMethodSetupInfo {
     'afterpayTouch'?: AfterpayTouchInfo;
+    'amex'?: AmexInfo;
     'applePay'?: ApplePayInfo;
     'bcmc'?: BcmcInfo;
     /**
@@ -89,6 +91,11 @@ export class PaymentMethodSetupInfo {
             "name": "afterpayTouch",
             "baseName": "afterpayTouch",
             "type": "AfterpayTouchInfo"
+        },
+        {
+            "name": "amex",
+            "baseName": "amex",
+            "type": "AmexInfo"
         },
         {
             "name": "applePay",
@@ -273,6 +280,7 @@ export namespace PaymentMethodSetupInfo {
         Blik = 'blik',
         Cartebancaire = 'cartebancaire',
         Clearpay = 'clearpay',
+        Clicktopay = 'clicktopay',
         Cup = 'cup',
         Diners = 'diners',
         DirectdebitGb = 'directdebit_GB',

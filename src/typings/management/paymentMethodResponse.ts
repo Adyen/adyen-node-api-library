@@ -74,6 +74,7 @@ export namespace PaymentMethodResponse {
         Blik = 'blik',
         Cartebancaire = 'cartebancaire',
         Clearpay = 'clearpay',
+        Clicktopay = 'clicktopay',
         Cup = 'cup',
         Diners = 'diners',
         DirectdebitGb = 'directdebit_GB',

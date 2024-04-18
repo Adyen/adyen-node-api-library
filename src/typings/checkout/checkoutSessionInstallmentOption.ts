@@ -48,7 +48,14 @@ export class CheckoutSessionInstallmentOption {
 
 export namespace CheckoutSessionInstallmentOption {
     export enum PlansEnum {
+        BuynowPaylater = 'buynow_paylater',
+        InteresRefundPrctg = 'interes_refund_prctg',
+        InterestBonus = 'interest_bonus',
+        NointeresRefundPrctg = 'nointeres_refund_prctg',
+        NointerestBonus = 'nointerest_bonus',
+        RefundPrctg = 'refund_prctg',
         Regular = 'regular',
-        Revolving = 'revolving'
+        Revolving = 'revolving',
+        WithInterest = 'with_interest'
     }
 }

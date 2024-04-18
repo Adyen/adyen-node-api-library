@@ -55,6 +55,7 @@ export * from './cardDetails';
 export * from './cardDetailsRequest';
 export * from './cardDetailsResponse';
 export * from './cardDonations';
+export * from './cashAppDetails';
 export * from './cellulantDetails';
 export * from './checkoutAwaitAction';
 export * from './checkoutDelegatedAuthenticationAction';
@@ -250,6 +251,7 @@ import { CardDetails } from './cardDetails';
 import { CardDetailsRequest } from './cardDetailsRequest';
 import { CardDetailsResponse } from './cardDetailsResponse';
 import { CardDonations } from './cardDonations';
+import { CashAppDetails } from './cashAppDetails';
 import { CellulantDetails } from './cellulantDetails';
 import { CheckoutAwaitAction } from './checkoutAwaitAction';
 import { CheckoutDelegatedAuthenticationAction } from './checkoutDelegatedAuthenticationAction';
@@ -448,6 +450,7 @@ let enumsMap: {[index: string]: any} = {
         "CardDetails.TypeEnum": CardDetails.TypeEnum,
         "CardDonations.FundingSourceEnum": CardDonations.FundingSourceEnum,
         "CardDonations.TypeEnum": CardDonations.TypeEnum,
+        "CashAppDetails.TypeEnum": CashAppDetails.TypeEnum,
         "CellulantDetails.TypeEnum": CellulantDetails.TypeEnum,
         "CheckoutAwaitAction.TypeEnum": CheckoutAwaitAction.TypeEnum,
         "CheckoutDelegatedAuthenticationAction.TypeEnum": CheckoutDelegatedAuthenticationAction.TypeEnum,
@@ -643,6 +646,7 @@ let typeMap: {[index: string]: any} = {
     "CardDetailsRequest": CardDetailsRequest,
     "CardDetailsResponse": CardDetailsResponse,
     "CardDonations": CardDonations,
+    "CashAppDetails": CashAppDetails,
     "CellulantDetails": CellulantDetails,
     "CheckoutAwaitAction": CheckoutAwaitAction,
     "CheckoutDelegatedAuthenticationAction": CheckoutDelegatedAuthenticationAction,
