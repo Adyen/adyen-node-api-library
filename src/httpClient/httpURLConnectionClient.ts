@@ -43,7 +43,7 @@ class HttpURLConnectionClient implements ClientInterface {
         endpoint: string, json: string, config: Config, isApiRequired: boolean,
         requestOptions: IRequest.Options,
     ): Promise<string | HttpClientException | ApiException> {
-        requestOptions.headers = {};
+        requestOptions.headers ??= {};
         requestOptions.timeout = config.connectionTimeoutMillis;
 
         if (config.certificatePath) {
