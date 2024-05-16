@@ -20,6 +20,7 @@ import { GetTerminalDetailsRequest } from "../typings/terminalManagement/models"
 import { GetTerminalDetailsResponse } from "../typings/terminalManagement/models";
 import { GetTerminalsUnderAccountRequest } from "../typings/terminalManagement/models";
 import { GetTerminalsUnderAccountResponse } from "../typings/terminalManagement/models";
+import { ServiceError } from "../typings/terminalManagement/models";
 import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/terminalManagement/models";

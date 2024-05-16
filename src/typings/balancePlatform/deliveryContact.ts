@@ -14,6 +14,10 @@ import { PhoneNumber } from './phoneNumber';
 export class DeliveryContact {
     'address': DeliveryAddress;
     /**
+    * The company name of the contact.
+    */
+    'company'?: string;
+    /**
     * The email address of the contact.
     */
     'email'?: string;
@@ -35,6 +39,11 @@ export class DeliveryContact {
             "name": "address",
             "baseName": "address",
             "type": "DeliveryAddress"
+        },
+        {
+            "name": "company",
+            "baseName": "company",
+            "type": "string"
         },
         {
             "name": "email",

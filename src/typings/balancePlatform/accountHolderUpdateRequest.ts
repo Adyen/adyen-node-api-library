@@ -22,7 +22,7 @@ export class AccountHolderUpdateRequest {
     'capabilities'?: { [key: string]: AccountHolderCapability; };
     'contactDetails'?: ContactDetails;
     /**
-    * Your description for the account holder, maximum 300 characters.
+    * Your description for the account holder.
     */
     'description'?: string;
     /**
@@ -38,11 +38,11 @@ export class AccountHolderUpdateRequest {
     */
     'primaryBalanceAccount'?: string;
     /**
-    * Your reference for the account holder, maximum 150 characters.
+    * Your reference for the account holder.
     */
     'reference'?: string;
     /**
-    * The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
+    * The status of the account holder.  Possible values:    * **active**: The account holder is active. This is the default status when creating an account holder.    * **suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **closed**: The account holder is permanently deactivated by you. This action cannot be undone.
     */
     'status'?: AccountHolderUpdateRequest.StatusEnum;
     /**
@@ -122,7 +122,6 @@ export namespace AccountHolderUpdateRequest {
     export enum StatusEnum {
         Active = 'active',
         Closed = 'closed',
-        Inactive = 'inactive',
         Suspended = 'suspended'
     }
 }

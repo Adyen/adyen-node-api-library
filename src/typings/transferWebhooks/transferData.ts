@@ -10,7 +10,10 @@
 import { Amount } from './amount';
 import { BalanceMutation } from './balanceMutation';
 import { BankCategoryData } from './bankCategoryData';
+import { ConfirmationTrackingData } from './confirmationTrackingData';
+import { EstimationTrackingData } from './estimationTrackingData';
 import { InternalCategoryData } from './internalCategoryData';
+import { InternalReviewTrackingData } from './internalReviewTrackingData';
 import { IssuedCard } from './issuedCard';
 import { PaymentInstrument } from './paymentInstrument';
 import { PlatformPayment } from './platformPayment';
@@ -18,7 +21,6 @@ import { ResourceReference } from './resourceReference';
 import { TransactionRulesResult } from './transactionRulesResult';
 import { TransferEvent } from './transferEvent';
 import { TransferNotificationCounterParty } from './transferNotificationCounterParty';
-import { TransferNotificationTransferTracking } from './transferNotificationTransferTracking';
 
 export class TransferData {
     'accountHolder'?: ResourceReference;
@@ -82,7 +84,10 @@ export class TransferData {
     * The result of the transfer.   For example, **authorised**, **refused**, or **error**.
     */
     'status': TransferData.StatusEnum;
-    'tracking'?: TransferNotificationTransferTracking;
+    /**
+    * Most recent tracking information for the transfer.
+    */
+    'tracking'?: ConfirmationTrackingData | EstimationTrackingData | InternalReviewTrackingData | null;
     'transactionRulesResult'?: TransactionRulesResult;
     /**
     * The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
@@ -190,7 +195,7 @@ export class TransferData {
         {
             "name": "tracking",
             "baseName": "tracking",
-            "type": "TransferNotificationTransferTracking"
+            "type": "ConfirmationTrackingData | EstimationTrackingData | InternalReviewTrackingData | null"
         },
         {
             "name": "transactionRulesResult",
@@ -232,6 +237,7 @@ export namespace TransferData {
         DeclinedByTransactionRule = 'declinedByTransactionRule',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
+        PendingApproval = 'pendingApproval',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
         RouteNotFound = 'routeNotFound',
         ScaFailed = 'scaFailed',
@@ -312,6 +318,7 @@ export namespace TransferData {
         BalanceRollover = 'balanceRollover',
         BankDirectDebit = 'bankDirectDebit',
         BankTransfer = 'bankTransfer',
+        CapitalFundsCollection = 'capitalFundsCollection',
         Capture = 'capture',
         CaptureReversal = 'captureReversal',
         CardTransfer = 'cardTransfer',

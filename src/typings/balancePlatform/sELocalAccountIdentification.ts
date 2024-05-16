@@ -18,10 +18,6 @@ export class SELocalAccountIdentification {
     */
     'clearingNumber': string;
     /**
-    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
-    */
-    'formFactor'?: string | null;
-    /**
     * **seLocal**
     */
     'type': SELocalAccountIdentification.TypeEnum;
@@ -38,11 +34,6 @@ export class SELocalAccountIdentification {
             "name": "clearingNumber",
             "baseName": "clearingNumber",
             "type": "string"
-        },
-        {
-            "name": "formFactor",
-            "baseName": "formFactor",
-            "type": "string | null"
         },
         {
             "name": "type",

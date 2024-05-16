@@ -23,16 +23,20 @@ export * from './capitalBalance';
 export * from './capitalGrant';
 export * from './capitalGrantInfo';
 export * from './capitalGrants';
+export * from './confirmationTrackingData';
 export * from './counterparty';
 export * from './counterpartyInfoV3';
 export * from './counterpartyV3';
 export * from './dKLocalAccountIdentification';
+export * from './estimationTrackingData';
+export * from './externalReason';
 export * from './fee';
 export * from './findTransfersResponse';
 export * from './hKLocalAccountIdentification';
 export * from './hULocalAccountIdentification';
 export * from './ibanAccountIdentification';
 export * from './internalCategoryData';
+export * from './internalReviewTrackingData';
 export * from './invalidField';
 export * from './issuedCard';
 export * from './link';
@@ -70,7 +74,6 @@ export * from './transferEvent';
 export * from './transferInfo';
 export * from './transferNotificationCounterParty';
 export * from './transferNotificationMerchantData';
-export * from './transferNotificationTransferTracking';
 export * from './transferNotificationValidationFact';
 export * from './transferView';
 export * from './uKLocalAccountIdentification';
@@ -93,16 +96,20 @@ import { CapitalBalance } from './capitalBalance';
 import { CapitalGrant } from './capitalGrant';
 import { CapitalGrantInfo } from './capitalGrantInfo';
 import { CapitalGrants } from './capitalGrants';
+import { ConfirmationTrackingData } from './confirmationTrackingData';
 import { Counterparty } from './counterparty';
 import { CounterpartyInfoV3 } from './counterpartyInfoV3';
 import { CounterpartyV3 } from './counterpartyV3';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
+import { EstimationTrackingData } from './estimationTrackingData';
+import { ExternalReason } from './externalReason';
 import { Fee } from './fee';
 import { FindTransfersResponse } from './findTransfersResponse';
 import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { InternalCategoryData } from './internalCategoryData';
+import { InternalReviewTrackingData } from './internalReviewTrackingData';
 import { InvalidField } from './invalidField';
 import { IssuedCard } from './issuedCard';
 import { Link } from './link';
@@ -140,7 +147,6 @@ import { TransferEvent } from './transferEvent';
 import { TransferInfo } from './transferInfo';
 import { TransferNotificationCounterParty } from './transferNotificationCounterParty';
 import { TransferNotificationMerchantData } from './transferNotificationMerchantData';
-import { TransferNotificationTransferTracking } from './transferNotificationTransferTracking';
 import { TransferNotificationValidationFact } from './transferNotificationValidationFact';
 import { TransferView } from './transferView';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
@@ -170,11 +176,17 @@ let enumsMap: {[index: string]: any} = {
         "CALocalAccountIdentification.TypeEnum": CALocalAccountIdentification.TypeEnum,
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
         "CapitalGrant.StatusEnum": CapitalGrant.StatusEnum,
+        "ConfirmationTrackingData.StatusEnum": ConfirmationTrackingData.StatusEnum,
+        "ConfirmationTrackingData.TypeEnum": ConfirmationTrackingData.TypeEnum,
         "DKLocalAccountIdentification.TypeEnum": DKLocalAccountIdentification.TypeEnum,
+        "EstimationTrackingData.TypeEnum": EstimationTrackingData.TypeEnum,
         "HKLocalAccountIdentification.TypeEnum": HKLocalAccountIdentification.TypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
         "InternalCategoryData.TypeEnum": InternalCategoryData.TypeEnum,
+        "InternalReviewTrackingData.ReasonEnum": InternalReviewTrackingData.ReasonEnum,
+        "InternalReviewTrackingData.StatusEnum": InternalReviewTrackingData.StatusEnum,
+        "InternalReviewTrackingData.TypeEnum": InternalReviewTrackingData.TypeEnum,
         "IssuedCard.PanEntryModeEnum": IssuedCard.PanEntryModeEnum,
         "IssuedCard.ProcessingTypeEnum": IssuedCard.ProcessingTypeEnum,
         "IssuedCard.TypeEnum": IssuedCard.TypeEnum,
@@ -205,7 +217,6 @@ let enumsMap: {[index: string]: any} = {
         "TransferEvent.TypeEnum": TransferEvent.TypeEnum,
         "TransferInfo.CategoryEnum": TransferInfo.CategoryEnum,
         "TransferInfo.PriorityEnum": TransferInfo.PriorityEnum,
-        "TransferNotificationTransferTracking.StatusEnum": TransferNotificationTransferTracking.StatusEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
@@ -228,16 +239,20 @@ let typeMap: {[index: string]: any} = {
     "CapitalGrant": CapitalGrant,
     "CapitalGrantInfo": CapitalGrantInfo,
     "CapitalGrants": CapitalGrants,
+    "ConfirmationTrackingData": ConfirmationTrackingData,
     "Counterparty": Counterparty,
     "CounterpartyInfoV3": CounterpartyInfoV3,
     "CounterpartyV3": CounterpartyV3,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
+    "EstimationTrackingData": EstimationTrackingData,
+    "ExternalReason": ExternalReason,
     "Fee": Fee,
     "FindTransfersResponse": FindTransfersResponse,
     "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
     "InternalCategoryData": InternalCategoryData,
+    "InternalReviewTrackingData": InternalReviewTrackingData,
     "InvalidField": InvalidField,
     "IssuedCard": IssuedCard,
     "Link": Link,
@@ -275,7 +290,6 @@ let typeMap: {[index: string]: any} = {
     "TransferInfo": TransferInfo,
     "TransferNotificationCounterParty": TransferNotificationCounterParty,
     "TransferNotificationMerchantData": TransferNotificationMerchantData,
-    "TransferNotificationTransferTracking": TransferNotificationTransferTracking,
     "TransferNotificationValidationFact": TransferNotificationValidationFact,
     "TransferView": TransferView,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,

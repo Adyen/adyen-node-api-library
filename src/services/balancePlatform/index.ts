@@ -14,6 +14,7 @@ import { CardOrdersApi } from "./cardOrdersApi";
 import { GrantAccountsApi } from "./grantAccountsApi";
 import { GrantOffersApi } from "./grantOffersApi";
 import { ManageCardPINApi } from "./manageCardPINApi";
+import { ManageSCADevicesApi } from "./manageSCADevicesApi";
 import { NetworkTokensApi } from "./networkTokensApi";
 import { PaymentInstrumentGroupsApi } from "./paymentInstrumentGroupsApi";
 import { PaymentInstrumentsApi } from "./paymentInstrumentsApi";
@@ -56,6 +57,10 @@ export default class BalancePlatformAPI extends Service {
 
     public get ManageCardPINApi() {
         return new ManageCardPINApi(this.client);
+    }
+
+    public get ManageSCADevicesApi() {
+        return new ManageSCADevicesApi(this.client);
     }
 
     public get NetworkTokensApi() {

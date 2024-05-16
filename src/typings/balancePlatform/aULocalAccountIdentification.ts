@@ -18,10 +18,6 @@ export class AULocalAccountIdentification {
     */
     'bsbCode': string;
     /**
-    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
-    */
-    'formFactor'?: string | null;
-    /**
     * **auLocal**
     */
     'type': AULocalAccountIdentification.TypeEnum;
@@ -38,11 +34,6 @@ export class AULocalAccountIdentification {
             "name": "bsbCode",
             "baseName": "bsbCode",
             "type": "string"
-        },
-        {
-            "name": "formFactor",
-            "baseName": "formFactor",
-            "type": "string | null"
         },
         {
             "name": "type",
