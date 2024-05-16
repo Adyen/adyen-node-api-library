@@ -37,6 +37,10 @@ export class FundDestination {
     * the telephone number of the person
     */
     'telephoneNumber'?: string;
+    /**
+    * The purpose of a digital wallet transaction.
+    */
+    'walletPurpose'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -84,6 +88,11 @@ export class FundDestination {
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
+            "type": "string"
+        },
+        {
+            "name": "walletPurpose",
+            "baseName": "walletPurpose",
             "type": "string"
         }    ];
 

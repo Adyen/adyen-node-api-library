@@ -23,6 +23,9 @@ export * from './paymentMethodNotificationResponse';
 export * from './paymentMethodRequestRemovedNotificationRequest';
 export * from './paymentMethodScheduledForRemovalNotificationRequest';
 export * from './remediatingAction';
+export * from './terminalSettingsData';
+export * from './terminalSettingsNotificationRequest';
+export * from './terminalSettingsNotificationResponse';
 export * from './verificationError';
 export * from './verificationErrorRecursive';
 
@@ -42,6 +45,9 @@ import { PaymentMethodNotificationResponse } from './paymentMethodNotificationRe
 import { PaymentMethodRequestRemovedNotificationRequest } from './paymentMethodRequestRemovedNotificationRequest';
 import { PaymentMethodScheduledForRemovalNotificationRequest } from './paymentMethodScheduledForRemovalNotificationRequest';
 import { RemediatingAction } from './remediatingAction';
+import { TerminalSettingsData } from './terminalSettingsData';
+import { TerminalSettingsNotificationRequest } from './terminalSettingsNotificationRequest';
+import { TerminalSettingsNotificationResponse } from './terminalSettingsNotificationResponse';
 import { VerificationError } from './verificationError';
 import { VerificationErrorRecursive } from './verificationErrorRecursive';
 
@@ -67,6 +73,8 @@ let enumsMap: {[index: string]: any} = {
         "PaymentMethodCreatedNotificationRequest.TypeEnum": PaymentMethodCreatedNotificationRequest.TypeEnum,
         "PaymentMethodRequestRemovedNotificationRequest.TypeEnum": PaymentMethodRequestRemovedNotificationRequest.TypeEnum,
         "PaymentMethodScheduledForRemovalNotificationRequest.TypeEnum": PaymentMethodScheduledForRemovalNotificationRequest.TypeEnum,
+        "TerminalSettingsData.UpdateSourceEnum": TerminalSettingsData.UpdateSourceEnum,
+        "TerminalSettingsNotificationRequest.TypeEnum": TerminalSettingsNotificationRequest.TypeEnum,
         "VerificationError.TypeEnum": VerificationError.TypeEnum,
         "VerificationErrorRecursive.TypeEnum": VerificationErrorRecursive.TypeEnum,
 }
@@ -87,6 +95,9 @@ let typeMap: {[index: string]: any} = {
     "PaymentMethodRequestRemovedNotificationRequest": PaymentMethodRequestRemovedNotificationRequest,
     "PaymentMethodScheduledForRemovalNotificationRequest": PaymentMethodScheduledForRemovalNotificationRequest,
     "RemediatingAction": RemediatingAction,
+    "TerminalSettingsData": TerminalSettingsData,
+    "TerminalSettingsNotificationRequest": TerminalSettingsNotificationRequest,
+    "TerminalSettingsNotificationResponse": TerminalSettingsNotificationResponse,
     "VerificationError": VerificationError,
     "VerificationErrorRecursive": VerificationErrorRecursive,
 }

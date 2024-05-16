@@ -21,10 +21,6 @@ export class Trust {
     */
     'dateOfIncorporation'?: string;
     /**
-    * Short description about the trust.
-    */
-    'description'?: string;
-    /**
     * The registered name, if different from the `name`.
     */
     'doingBusinessAs'?: string;
@@ -38,6 +34,10 @@ export class Trust {
     * The registration number.
     */
     'registrationNumber'?: string;
+    /**
+    * The tax information is absent.
+    */
+    'taxAbsent'?: boolean | null;
     /**
     * The tax information of the entity.
     */
@@ -73,11 +73,6 @@ export class Trust {
             "type": "string"
         },
         {
-            "name": "description",
-            "baseName": "description",
-            "type": "string"
-        },
-        {
             "name": "doingBusinessAs",
             "baseName": "doingBusinessAs",
             "type": "string"
@@ -101,6 +96,11 @@ export class Trust {
             "name": "registrationNumber",
             "baseName": "registrationNumber",
             "type": "string"
+        },
+        {
+            "name": "taxAbsent",
+            "baseName": "taxAbsent",
+            "type": "boolean | null"
         },
         {
             "name": "taxInformation",

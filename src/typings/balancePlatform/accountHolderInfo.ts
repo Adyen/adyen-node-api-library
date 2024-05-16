@@ -21,7 +21,7 @@ export class AccountHolderInfo {
     'capabilities'?: { [key: string]: AccountHolderCapability; };
     'contactDetails'?: ContactDetails;
     /**
-    * Your description for the account holder, maximum 300 characters.
+    * Your description for the account holder.
     */
     'description'?: string;
     /**
@@ -37,7 +37,7 @@ export class AccountHolderInfo {
     */
     'migratedAccountHolderCode'?: string;
     /**
-    * Your reference for the account holder, maximum 150 characters.
+    * Your reference for the account holder.
     */
     'reference'?: string;
     /**

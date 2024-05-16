@@ -7,8 +7,16 @@
  * Do not edit this class manually.
  */
 
+import { BankCategoryData } from './bankCategoryData';
+import { InternalCategoryData } from './internalCategoryData';
+import { IssuedCard } from './issuedCard';
+import { PlatformPayment } from './platformPayment';
 
 export class TransferView {
+    /**
+    * The relevant data according to the transfer category.
+    */
+    'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null;
     /**
     * The ID of the resource.
     */
@@ -21,6 +29,11 @@ export class TransferView {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "categoryData",
+            "baseName": "categoryData",
+            "type": "BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null"
+        },
         {
             "name": "id",
             "baseName": "id",

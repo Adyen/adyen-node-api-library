@@ -15,7 +15,7 @@ export class BalanceAccountUpdateRequest {
     */
     'accountHolderId'?: string;
     /**
-    * A human-readable description of the balance account, maximum 300 characters. You can use this parameter to distinguish between multiple balance accounts under an account holder.
+    * A human-readable description of the balance account. You can use this parameter to distinguish between multiple balance accounts under an account holder.
     */
     'description'?: string;
     /**
@@ -24,11 +24,11 @@ export class BalanceAccountUpdateRequest {
     'metadata'?: { [key: string]: string; };
     'platformPaymentConfiguration'?: PlatformPaymentConfiguration;
     /**
-    * Your reference to the balance account, maximum 150 characters.
+    * Your reference to the balance account.
     */
     'reference'?: string;
     /**
-    * The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **inactive**, **closed**, **suspended**.
+    * The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **closed**, **suspended**.
     */
     'status'?: BalanceAccountUpdateRequest.StatusEnum;
     /**

@@ -10,7 +10,7 @@
 
 export class BalancePlatform {
     /**
-    * Your description of the balance platform, maximum 300 characters.
+    * Your description of the balance platform.
     */
     'description'?: string;
     /**

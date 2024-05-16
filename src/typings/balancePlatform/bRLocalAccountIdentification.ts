@@ -22,9 +22,9 @@ export class BRLocalAccountIdentification {
     */
     'branchNumber': string;
     /**
-    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+    * The 8-digit ISPB, with leading zeros.
     */
-    'formFactor'?: string | null;
+    'ispb'?: string;
     /**
     * **brLocal**
     */
@@ -49,9 +49,9 @@ export class BRLocalAccountIdentification {
             "type": "string"
         },
         {
-            "name": "formFactor",
-            "baseName": "formFactor",
-            "type": "string | null"
+            "name": "ispb",
+            "baseName": "ispb",
+            "type": "string"
         },
         {
             "name": "type",

@@ -30,13 +30,21 @@ export class SweepConfigurationV2 {
     */
     'id': string;
     /**
-    * The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority listed first, and if that\'s not possible, it moves on to the next option in the order of provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set `category` to **bank**. For more details, see [optional priorities setup](https://docs.adyen.com/marketplaces-and-platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
+    * The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that\'s not possible, it moves on to the next option in the order of your provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set `category` to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
     */
     'priorities'?: Array<SweepConfigurationV2.PrioritiesEnum>;
     /**
     * The reason for disabling the sweep.
     */
     'reason'?: SweepConfigurationV2.ReasonEnum;
+    /**
+    * Your reference for the sweep configuration.
+    */
+    'reference'?: string;
+    /**
+    * The reference sent to or received from the counterparty. Only alphanumeric characters are allowed.
+    */
+    'referenceForBeneficiary'?: string;
     'schedule': SweepSchedule;
     /**
     * The status of the sweep. If not provided, by default, this is set to **active**.  Possible values:    * **active**:  the sweep is enabled and funds will be pulled in or pushed out based on the defined configuration.    * **inactive**: the sweep is disabled and cannot be triggered.   
@@ -87,6 +95,16 @@ export class SweepConfigurationV2 {
             "name": "reason",
             "baseName": "reason",
             "type": "SweepConfigurationV2.ReasonEnum"
+        },
+        {
+            "name": "reference",
+            "baseName": "reference",
+            "type": "string"
+        },
+        {
+            "name": "referenceForBeneficiary",
+            "baseName": "referenceForBeneficiary",
+            "type": "string"
         },
         {
             "name": "schedule",
@@ -151,6 +169,7 @@ export namespace SweepConfigurationV2 {
         DeclinedByTransactionRule = 'declinedByTransactionRule',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
+        PendingApproval = 'pendingApproval',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
         RouteNotFound = 'routeNotFound',
         ScaFailed = 'scaFailed',

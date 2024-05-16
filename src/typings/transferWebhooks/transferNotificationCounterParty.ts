@@ -12,13 +12,13 @@ import { TransferNotificationMerchantData } from './transferNotificationMerchant
 
 export class TransferNotificationCounterParty {
     /**
-    * Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+    * The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
     */
     'balanceAccountId'?: string;
     'bankAccount'?: BankAccountV3;
     'merchant'?: TransferNotificationMerchantData;
     /**
-    * Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+    * The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
     */
     'transferInstrumentId'?: string;
 

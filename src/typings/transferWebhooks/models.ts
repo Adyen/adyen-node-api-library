@@ -20,12 +20,16 @@ export * from './bankAccountV3';
 export * from './bankCategoryData';
 export * from './cALocalAccountIdentification';
 export * from './cZLocalAccountIdentification';
+export * from './confirmationTrackingData';
 export * from './counterpartyV3';
 export * from './dKLocalAccountIdentification';
+export * from './estimationTrackingData';
+export * from './externalReason';
 export * from './hKLocalAccountIdentification';
 export * from './hULocalAccountIdentification';
 export * from './ibanAccountIdentification';
 export * from './internalCategoryData';
+export * from './internalReviewTrackingData';
 export * from './issuedCard';
 export * from './merchantData';
 export * from './modification';
@@ -51,7 +55,6 @@ export * from './transferEvent';
 export * from './transferNotificationCounterParty';
 export * from './transferNotificationMerchantData';
 export * from './transferNotificationRequest';
-export * from './transferNotificationTransferTracking';
 export * from './transferNotificationValidationFact';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
@@ -69,12 +72,16 @@ import { BankAccountV3 } from './bankAccountV3';
 import { BankCategoryData } from './bankCategoryData';
 import { CALocalAccountIdentification } from './cALocalAccountIdentification';
 import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
+import { ConfirmationTrackingData } from './confirmationTrackingData';
 import { CounterpartyV3 } from './counterpartyV3';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
+import { EstimationTrackingData } from './estimationTrackingData';
+import { ExternalReason } from './externalReason';
 import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { InternalCategoryData } from './internalCategoryData';
+import { InternalReviewTrackingData } from './internalReviewTrackingData';
 import { IssuedCard } from './issuedCard';
 import { MerchantData } from './merchantData';
 import { Modification } from './modification';
@@ -100,7 +107,6 @@ import { TransferEvent } from './transferEvent';
 import { TransferNotificationCounterParty } from './transferNotificationCounterParty';
 import { TransferNotificationMerchantData } from './transferNotificationMerchantData';
 import { TransferNotificationRequest } from './transferNotificationRequest';
-import { TransferNotificationTransferTracking } from './transferNotificationTransferTracking';
 import { TransferNotificationValidationFact } from './transferNotificationValidationFact';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
@@ -127,11 +133,17 @@ let enumsMap: {[index: string]: any} = {
         "CALocalAccountIdentification.AccountTypeEnum": CALocalAccountIdentification.AccountTypeEnum,
         "CALocalAccountIdentification.TypeEnum": CALocalAccountIdentification.TypeEnum,
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
+        "ConfirmationTrackingData.StatusEnum": ConfirmationTrackingData.StatusEnum,
+        "ConfirmationTrackingData.TypeEnum": ConfirmationTrackingData.TypeEnum,
         "DKLocalAccountIdentification.TypeEnum": DKLocalAccountIdentification.TypeEnum,
+        "EstimationTrackingData.TypeEnum": EstimationTrackingData.TypeEnum,
         "HKLocalAccountIdentification.TypeEnum": HKLocalAccountIdentification.TypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
         "InternalCategoryData.TypeEnum": InternalCategoryData.TypeEnum,
+        "InternalReviewTrackingData.ReasonEnum": InternalReviewTrackingData.ReasonEnum,
+        "InternalReviewTrackingData.StatusEnum": InternalReviewTrackingData.StatusEnum,
+        "InternalReviewTrackingData.TypeEnum": InternalReviewTrackingData.TypeEnum,
         "IssuedCard.PanEntryModeEnum": IssuedCard.PanEntryModeEnum,
         "IssuedCard.ProcessingTypeEnum": IssuedCard.ProcessingTypeEnum,
         "IssuedCard.TypeEnum": IssuedCard.TypeEnum,
@@ -154,7 +166,6 @@ let enumsMap: {[index: string]: any} = {
         "TransferEvent.StatusEnum": TransferEvent.StatusEnum,
         "TransferEvent.TypeEnum": TransferEvent.TypeEnum,
         "TransferNotificationRequest.TypeEnum": TransferNotificationRequest.TypeEnum,
-        "TransferNotificationTransferTracking.StatusEnum": TransferNotificationTransferTracking.StatusEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
@@ -173,12 +184,16 @@ let typeMap: {[index: string]: any} = {
     "BankCategoryData": BankCategoryData,
     "CALocalAccountIdentification": CALocalAccountIdentification,
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
+    "ConfirmationTrackingData": ConfirmationTrackingData,
     "CounterpartyV3": CounterpartyV3,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
+    "EstimationTrackingData": EstimationTrackingData,
+    "ExternalReason": ExternalReason,
     "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
     "InternalCategoryData": InternalCategoryData,
+    "InternalReviewTrackingData": InternalReviewTrackingData,
     "IssuedCard": IssuedCard,
     "MerchantData": MerchantData,
     "Modification": Modification,
@@ -204,7 +219,6 @@ let typeMap: {[index: string]: any} = {
     "TransferNotificationCounterParty": TransferNotificationCounterParty,
     "TransferNotificationMerchantData": TransferNotificationMerchantData,
     "TransferNotificationRequest": TransferNotificationRequest,
-    "TransferNotificationTransferTracking": TransferNotificationTransferTracking,
     "TransferNotificationValidationFact": TransferNotificationValidationFact,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,

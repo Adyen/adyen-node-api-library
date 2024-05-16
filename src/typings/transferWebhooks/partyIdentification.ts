@@ -16,15 +16,15 @@ export class PartyIdentification {
     */
     'dateOfBirth'?: string;
     /**
-    * First name of the individual.  Allowed only when `type` is **individual**.
+    * First name of the individual.  Allowed only when `type` is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. 
     */
     'firstName'?: string;
     /**
-    * The name of the entity.
+    * The name of the entity.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" \' and Space. 
     */
     'fullName': string;
     /**
-    * Last name of the individual.  Allowed only when `type` is **individual**.
+    * Last name of the individual.  Allowed only when `type` is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. 
     */
     'lastName'?: string;
     /**

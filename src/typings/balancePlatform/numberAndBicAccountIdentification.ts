@@ -20,10 +20,6 @@ export class NumberAndBicAccountIdentification {
     */
     'bic': string;
     /**
-    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
-    */
-    'formFactor'?: string | null;
-    /**
     * **numberAndBic**
     */
     'type': NumberAndBicAccountIdentification.TypeEnum;
@@ -45,11 +41,6 @@ export class NumberAndBicAccountIdentification {
             "name": "bic",
             "baseName": "bic",
             "type": "string"
-        },
-        {
-            "name": "formFactor",
-            "baseName": "formFactor",
-            "type": "string | null"
         },
         {
             "name": "type",
