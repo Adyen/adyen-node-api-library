@@ -34,7 +34,7 @@ export class IdentificationData {
     */
     'number'?: string;
     /**
-    * Type of identity data. For **individual**, the `type` value is **nationalIdNumber**.
+    * Type of identity data. For individuals, the `type` value is **nationalIdNumber**. For individuals in these countries, the following types are supported.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   
     */
     'type': IdentificationData.TypeEnum;
 
@@ -84,6 +84,9 @@ export class IdentificationData {
 
 export namespace IdentificationData {
     export enum TypeEnum {
-        NationalIdNumber = 'nationalIdNumber'
+        NationalIdNumber = 'nationalIdNumber',
+        Passport = 'passport',
+        DriversLicense = 'driversLicense',
+        IdentityCard = 'identityCard'
     }
 }

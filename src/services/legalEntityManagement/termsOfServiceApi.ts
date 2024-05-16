@@ -34,7 +34,7 @@ export class TermsOfServiceApi extends Service {
 
     /**
     * @summary Accept Terms of Service
-    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.
+    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.
     * @param termsofservicedocumentid {@link string } The unique identifier of the Terms of Service document.
     * @param acceptTermsOfServiceRequest {@link AcceptTermsOfServiceRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -56,7 +56,7 @@ export class TermsOfServiceApi extends Service {
 
     /**
     * @summary Get Terms of Service document
-    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.
+    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.
     * @param getTermsOfServiceDocumentRequest {@link GetTermsOfServiceDocumentRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link GetTermsOfServiceDocumentResponse }
@@ -76,7 +76,7 @@ export class TermsOfServiceApi extends Service {
 
     /**
     * @summary Get Terms of Service information for a legal entity
-    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.
+    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.
     * @param requestOptions {@link IRequest.Options }
     * @return {@link GetTermsOfServiceAcceptanceInfosResponse }
     */
@@ -94,7 +94,7 @@ export class TermsOfServiceApi extends Service {
 
     /**
     * @summary Get Terms of Service status
-    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.
+    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.
     * @param requestOptions {@link IRequest.Options }
     * @return {@link CalculateTermsOfServiceStatusResponse }
     */

@@ -14,7 +14,7 @@ export class PaymentInstrumentGroupInfo {
     */
     'balancePlatform': string;
     /**
-    * Your description for the payment instrument group, maximum 300 characters.
+    * Your description for the payment instrument group.
     */
     'description'?: string;
     /**
@@ -22,7 +22,7 @@ export class PaymentInstrumentGroupInfo {
     */
     'properties'?: { [key: string]: string; };
     /**
-    * Your reference for the payment instrument group, maximum 150 characters.
+    * Your reference for the payment instrument group.
     */
     'reference'?: string;
     /**

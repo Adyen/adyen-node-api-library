@@ -17,7 +17,7 @@ export class TransactionRule {
     */
     'aggregationLevel'?: string;
     /**
-    * Your description for the transaction rule, maximum 300 characters.
+    * Your description for the transaction rule.
     */
     'description': string;
     /**
@@ -35,7 +35,7 @@ export class TransactionRule {
     */
     'outcomeType'?: TransactionRule.OutcomeTypeEnum;
     /**
-    * Your reference for the transaction rule, maximum 150 characters.
+    * Your reference for the transaction rule.
     */
     'reference': string;
     /**
@@ -143,7 +143,8 @@ export namespace TransactionRule {
     export enum OutcomeTypeEnum {
         EnforceSca = 'enforceSCA',
         HardBlock = 'hardBlock',
-        ScoreBased = 'scoreBased'
+        ScoreBased = 'scoreBased',
+        TimedBlock = 'timedBlock'
     }
     export enum RequestTypeEnum {
         Authentication = 'authentication',

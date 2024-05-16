@@ -14,10 +14,6 @@ export class PLLocalAccountIdentification {
     */
     'accountNumber': string;
     /**
-    * The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
-    */
-    'formFactor'?: string | null;
-    /**
     * **plLocal**
     */
     'type': PLLocalAccountIdentification.TypeEnum;
@@ -29,11 +25,6 @@ export class PLLocalAccountIdentification {
             "name": "accountNumber",
             "baseName": "accountNumber",
             "type": "string"
-        },
-        {
-            "name": "formFactor",
-            "baseName": "formFactor",
-            "type": "string | null"
         },
         {
             "name": "type",

@@ -36,7 +36,7 @@ export class TerminalSettings {
     /**
     * Settings for tipping with or without predefined options to choose from. The maximum number of predefined options is four, or three plus the option to enter a custom tip.
     */
-    'gratuities'?: Array<Gratuity>;
+    'gratuities'?: Array<Gratuity> | null;
     'hardware'?: Hardware;
     'localization'?: Localization;
     'nexo'?: Nexo;
@@ -73,7 +73,7 @@ export class TerminalSettings {
         {
             "name": "gratuities",
             "baseName": "gratuities",
-            "type": "Array<Gratuity>"
+            "type": "Array<Gratuity> | null"
         },
         {
             "name": "hardware",

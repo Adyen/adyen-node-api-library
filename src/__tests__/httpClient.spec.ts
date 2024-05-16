@@ -79,12 +79,12 @@ describe("HTTP Client", function (): void {
         const binLookupService = new BinLookupAPI(client);
         const scope = nock("https://pal-test.adyen.com/pal/servlet/BinLookup/v54", {
             reqheaders: {
-                'Content-Type' : ApiConstants.APPLICATION_JSON_TYPE,
+                "Content-Type" : ApiConstants.APPLICATION_JSON_TYPE,
                 "foo" : "bar"
              },
         })
-            .get('/')
-            .reply(200)
+            .get("/")
+            .reply(200);
 
         const threeDSAvailabilityRequest: binlookup.ThreeDSAvailabilityRequest = {
             merchantAccount: process.env.ADYEN_MERCHANT!,
@@ -95,7 +95,7 @@ describe("HTTP Client", function (): void {
         scope.post("/get3dsAvailability")
             .reply(200, threeDSAvailabilitySuccessResponse);
 
-        const requestOptions = { headers: { foo : "bar" }}
+        const requestOptions = { headers: { foo : "bar" }};
         const response = await binLookupService.get3dsAvailability(threeDSAvailabilityRequest, requestOptions);
         expect(response).toEqual< binlookup.ThreeDSAvailabilityResponse>(threeDSAvailabilitySuccessResponse);
     });

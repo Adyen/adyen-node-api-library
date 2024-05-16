@@ -30,6 +30,7 @@ export * from './balanceAccountUpdateRequest';
 export * from './balancePlatform';
 export * from './balanceSweepConfigurationsResponse';
 export * from './bankAccount';
+export * from './bankAccountDetails';
 export * from './bankAccountIdentificationTypeRequirement';
 export * from './bankAccountIdentificationValidationRequest';
 export * from './bankAccountModel';
@@ -57,8 +58,10 @@ export * from './countriesRestriction';
 export * from './createSweepConfigurationV2';
 export * from './dKLocalAccountIdentification';
 export * from './dayOfWeekRestriction';
+export * from './delegatedAuthenticationData';
 export * from './deliveryAddress';
 export * from './deliveryContact';
+export * from './device';
 export * from './deviceInfo';
 export * from './differentCurrenciesRestriction';
 export * from './duration';
@@ -72,9 +75,11 @@ export * from './grantOffer';
 export * from './grantOffers';
 export * from './hKLocalAccountIdentification';
 export * from './hULocalAccountIdentification';
+export * from './href';
 export * from './ibanAccountIdentification';
 export * from './internationalTransactionRestriction';
 export * from './invalidField';
+export * from './link';
 export * from './listNetworkTokensResponse';
 export * from './matchingTransactionsRestriction';
 export * from './mccsRestriction';
@@ -108,16 +113,22 @@ export * from './pinChangeResponse';
 export * from './platformPaymentConfiguration';
 export * from './processingTypesRestriction';
 export * from './publicKeyResponse';
+export * from './registerSCAFinalResponse';
+export * from './registerSCARequest';
+export * from './registerSCAResponse';
 export * from './remediatingAction';
 export * from './repayment';
 export * from './repaymentTerm';
 export * from './restServiceError';
 export * from './revealPinRequest';
 export * from './revealPinResponse';
+export * from './riskScores';
+export * from './riskScoresRestriction';
 export * from './sELocalAccountIdentification';
 export * from './sGLocalAccountIdentification';
 export * from './sameAmountRestriction';
 export * from './sameCounterpartyRestriction';
+export * from './searchRegisteredDevicesResponse';
 export * from './stringMatch';
 export * from './sweepConfigurationV2';
 export * from './sweepCounterparty';
@@ -168,6 +179,7 @@ import { BalanceAccountUpdateRequest } from './balanceAccountUpdateRequest';
 import { BalancePlatform } from './balancePlatform';
 import { BalanceSweepConfigurationsResponse } from './balanceSweepConfigurationsResponse';
 import { BankAccount } from './bankAccount';
+import { BankAccountDetails } from './bankAccountDetails';
 import { BankAccountIdentificationTypeRequirement } from './bankAccountIdentificationTypeRequirement';
 import { BankAccountIdentificationValidationRequest } from './bankAccountIdentificationValidationRequest';
 import { BankAccountModel } from './bankAccountModel';
@@ -195,8 +207,10 @@ import { CountriesRestriction } from './countriesRestriction';
 import { CreateSweepConfigurationV2 } from './createSweepConfigurationV2';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
 import { DayOfWeekRestriction } from './dayOfWeekRestriction';
+import { DelegatedAuthenticationData } from './delegatedAuthenticationData';
 import { DeliveryAddress } from './deliveryAddress';
 import { DeliveryContact } from './deliveryContact';
+import { Device } from './device';
 import { DeviceInfo } from './deviceInfo';
 import { DifferentCurrenciesRestriction } from './differentCurrenciesRestriction';
 import { Duration } from './duration';
@@ -210,9 +224,11 @@ import { GrantOffer } from './grantOffer';
 import { GrantOffers } from './grantOffers';
 import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
+import { Href } from './href';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { InternationalTransactionRestriction } from './internationalTransactionRestriction';
 import { InvalidField } from './invalidField';
+import { Link } from './link';
 import { ListNetworkTokensResponse } from './listNetworkTokensResponse';
 import { MatchingTransactionsRestriction } from './matchingTransactionsRestriction';
 import { MccsRestriction } from './mccsRestriction';
@@ -246,16 +262,22 @@ import { PinChangeResponse } from './pinChangeResponse';
 import { PlatformPaymentConfiguration } from './platformPaymentConfiguration';
 import { ProcessingTypesRestriction } from './processingTypesRestriction';
 import { PublicKeyResponse } from './publicKeyResponse';
+import { RegisterSCAFinalResponse } from './registerSCAFinalResponse';
+import { RegisterSCARequest } from './registerSCARequest';
+import { RegisterSCAResponse } from './registerSCAResponse';
 import { RemediatingAction } from './remediatingAction';
 import { Repayment } from './repayment';
 import { RepaymentTerm } from './repaymentTerm';
 import { RestServiceError } from './restServiceError';
 import { RevealPinRequest } from './revealPinRequest';
 import { RevealPinResponse } from './revealPinResponse';
+import { RiskScores } from './riskScores';
+import { RiskScoresRestriction } from './riskScoresRestriction';
 import { SELocalAccountIdentification } from './sELocalAccountIdentification';
 import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
 import { SameAmountRestriction } from './sameAmountRestriction';
 import { SameCounterpartyRestriction } from './sameCounterpartyRestriction';
+import { SearchRegisteredDevicesResponse } from './searchRegisteredDevicesResponse';
 import { StringMatch } from './stringMatch';
 import { SweepConfigurationV2 } from './sweepConfigurationV2';
 import { SweepCounterparty } from './sweepCounterparty';
@@ -335,6 +357,7 @@ let enumsMap: {[index: string]: any} = {
         "CreateSweepConfigurationV2.TypeEnum": CreateSweepConfigurationV2.TypeEnum,
         "DKLocalAccountIdentification.TypeEnum": DKLocalAccountIdentification.TypeEnum,
         "DayOfWeekRestriction.ValueEnum": DayOfWeekRestriction.ValueEnum,
+        "Device.TypeEnum": Device.TypeEnum,
         "Duration.UnitEnum": Duration.UnitEnum,
         "EntryModesRestriction.ValueEnum": EntryModesRestriction.ValueEnum,
         "GetTaxFormResponse.ContentTypeEnum": GetTaxFormResponse.ContentTypeEnum,
@@ -426,6 +449,7 @@ let typeMap: {[index: string]: any} = {
     "BalancePlatform": BalancePlatform,
     "BalanceSweepConfigurationsResponse": BalanceSweepConfigurationsResponse,
     "BankAccount": BankAccount,
+    "BankAccountDetails": BankAccountDetails,
     "BankAccountIdentificationTypeRequirement": BankAccountIdentificationTypeRequirement,
     "BankAccountIdentificationValidationRequest": BankAccountIdentificationValidationRequest,
     "BankAccountModel": BankAccountModel,
@@ -453,8 +477,10 @@ let typeMap: {[index: string]: any} = {
     "CreateSweepConfigurationV2": CreateSweepConfigurationV2,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DayOfWeekRestriction": DayOfWeekRestriction,
+    "DelegatedAuthenticationData": DelegatedAuthenticationData,
     "DeliveryAddress": DeliveryAddress,
     "DeliveryContact": DeliveryContact,
+    "Device": Device,
     "DeviceInfo": DeviceInfo,
     "DifferentCurrenciesRestriction": DifferentCurrenciesRestriction,
     "Duration": Duration,
@@ -468,9 +494,11 @@ let typeMap: {[index: string]: any} = {
     "GrantOffers": GrantOffers,
     "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
+    "Href": Href,
     "IbanAccountIdentification": IbanAccountIdentification,
     "InternationalTransactionRestriction": InternationalTransactionRestriction,
     "InvalidField": InvalidField,
+    "Link": Link,
     "ListNetworkTokensResponse": ListNetworkTokensResponse,
     "MatchingTransactionsRestriction": MatchingTransactionsRestriction,
     "MccsRestriction": MccsRestriction,
@@ -504,16 +532,22 @@ let typeMap: {[index: string]: any} = {
     "PlatformPaymentConfiguration": PlatformPaymentConfiguration,
     "ProcessingTypesRestriction": ProcessingTypesRestriction,
     "PublicKeyResponse": PublicKeyResponse,
+    "RegisterSCAFinalResponse": RegisterSCAFinalResponse,
+    "RegisterSCARequest": RegisterSCARequest,
+    "RegisterSCAResponse": RegisterSCAResponse,
     "RemediatingAction": RemediatingAction,
     "Repayment": Repayment,
     "RepaymentTerm": RepaymentTerm,
     "RestServiceError": RestServiceError,
     "RevealPinRequest": RevealPinRequest,
     "RevealPinResponse": RevealPinResponse,
+    "RiskScores": RiskScores,
+    "RiskScoresRestriction": RiskScoresRestriction,
     "SELocalAccountIdentification": SELocalAccountIdentification,
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
     "SameAmountRestriction": SameAmountRestriction,
     "SameCounterpartyRestriction": SameCounterpartyRestriction,
+    "SearchRegisteredDevicesResponse": SearchRegisteredDevicesResponse,
     "StringMatch": StringMatch,
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,

@@ -10,7 +10,7 @@
 
 export class Address {
     /**
-    * The name of the city.
+    * The name of the city.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ | and Space.
     */
     'city'?: string;
     /**
@@ -18,19 +18,19 @@ export class Address {
     */
     'country': string;
     /**
-    * First line of the street address.
+    * First line of the street address.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ | and Space.
     */
     'line1'?: string;
     /**
-    * Second line of the street address.
+    * Second line of the street address.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ | and Space.
     */
     'line2'?: string;
     /**
-    * The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.
+    * The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: [a-z] [A-Z] [0-9] and Space. 
     */
     'postalCode'?: string;
     /**
-    * The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
+    *    The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.    > Required for the US and Canada. 
     */
     'stateOrProvince'?: string;
 

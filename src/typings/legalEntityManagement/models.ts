@@ -57,6 +57,7 @@ export * from './name';
 export * from './numberAndBicAccountIdentification';
 export * from './onboardingLink';
 export * from './onboardingLinkInfo';
+export * from './onboardingLinkSettings';
 export * from './onboardingTheme';
 export * from './onboardingThemes';
 export * from './organization';
@@ -141,6 +142,7 @@ import { Name } from './name';
 import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentification';
 import { OnboardingLink } from './onboardingLink';
 import { OnboardingLinkInfo } from './onboardingLinkInfo';
+import { OnboardingLinkSettings } from './onboardingLinkSettings';
 import { OnboardingTheme } from './onboardingTheme';
 import { OnboardingThemes } from './onboardingThemes';
 import { Organization } from './organization';
@@ -300,6 +302,7 @@ let typeMap: {[index: string]: any} = {
     "NumberAndBicAccountIdentification": NumberAndBicAccountIdentification,
     "OnboardingLink": OnboardingLink,
     "OnboardingLinkInfo": OnboardingLinkInfo,
+    "OnboardingLinkSettings": OnboardingLinkSettings,
     "OnboardingTheme": OnboardingTheme,
     "OnboardingThemes": OnboardingThemes,
     "Organization": Organization,

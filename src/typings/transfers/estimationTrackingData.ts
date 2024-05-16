@@ -8,15 +8,15 @@
  */
 
 
-export class TransferNotificationTransferTracking {
+export class EstimationTrackingData {
     /**
     * The estimated time the beneficiary should have access to the funds.
     */
-    'estimatedArrivalTime'?: Date;
+    'estimatedArrivalTime': Date;
     /**
-    * The tracking status of the transfer.
+    * **estimation**
     */
-    'status'?: TransferNotificationTransferTracking.StatusEnum;
+    'type': EstimationTrackingData.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -27,18 +27,18 @@ export class TransferNotificationTransferTracking {
             "type": "Date"
         },
         {
-            "name": "status",
-            "baseName": "status",
-            "type": "TransferNotificationTransferTracking.StatusEnum"
+            "name": "type",
+            "baseName": "type",
+            "type": "EstimationTrackingData.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return TransferNotificationTransferTracking.attributeTypeMap;
+        return EstimationTrackingData.attributeTypeMap;
     }
 }
 
-export namespace TransferNotificationTransferTracking {
-    export enum StatusEnum {
-        Credited = 'credited'
+export namespace EstimationTrackingData {
+    export enum TypeEnum {
+        Estimation = 'estimation'
     }
 }
