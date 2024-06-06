@@ -86,6 +86,8 @@ export namespace PlatformPayment {
         PaymentFee = 'PaymentFee',
         Remainder = 'Remainder',
         SchemeFee = 'SchemeFee',
+        Surcharge = 'Surcharge',
+        Tip = 'Tip',
         TopUp = 'TopUp',
         Vat = 'VAT'
     }

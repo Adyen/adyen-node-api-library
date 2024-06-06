@@ -10,8 +10,13 @@
 import { InputDetail } from './inputDetail';
 import { PaymentMethodGroup } from './paymentMethodGroup';
 import { PaymentMethodIssuer } from './paymentMethodIssuer';
+import { PaymentMethodUPIApps } from './paymentMethodUPIApps';
 
 export class PaymentMethod {
+    /**
+    * A list of apps for this payment method.
+    */
+    'apps'?: Array<PaymentMethodUPIApps>;
     /**
     * Brand for the selected gift card. For example: plastix, hmclub.
     */
@@ -49,6 +54,11 @@ export class PaymentMethod {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "apps",
+            "baseName": "apps",
+            "type": "Array<PaymentMethodUPIApps>"
+        },
         {
             "name": "brand",
             "baseName": "brand",

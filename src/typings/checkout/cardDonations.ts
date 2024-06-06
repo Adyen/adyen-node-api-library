@@ -71,6 +71,18 @@ export class CardDonations {
     */
     'shopperNotificationReference'?: string;
     /**
+    * An identifier used for the Click to Pay transaction.
+    */
+    'srcCorrelationId'?: string;
+    /**
+    * The scheme that is being used for Click to Pay.
+    */
+    'srcScheme'?: string;
+    /**
+    * The reference for the Click to Pay token.
+    */
+    'srcTokenReference'?: string;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'storedPaymentMethodId'?: string;
@@ -164,6 +176,21 @@ export class CardDonations {
         {
             "name": "shopperNotificationReference",
             "baseName": "shopperNotificationReference",
+            "type": "string"
+        },
+        {
+            "name": "srcCorrelationId",
+            "baseName": "srcCorrelationId",
+            "type": "string"
+        },
+        {
+            "name": "srcScheme",
+            "baseName": "srcScheme",
+            "type": "string"
+        },
+        {
+            "name": "srcTokenReference",
+            "baseName": "srcTokenReference",
             "type": "string"
         },
         {

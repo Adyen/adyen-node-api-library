@@ -10,11 +10,11 @@
 
 export class ConfirmationTrackingData {
     /**
-    * Possible values:   - **credited**: Transfer is credited to beneficiary.
+    * The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user\'s transfer instrument or bank account.
     */
     'status': ConfirmationTrackingData.StatusEnum;
     /**
-    * **confirmation**
+    * The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen\'s internal review.
     */
     'type': ConfirmationTrackingData.TypeEnum;
 

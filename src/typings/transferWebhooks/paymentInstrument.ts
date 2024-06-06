@@ -22,7 +22,7 @@ export class PaymentInstrument {
     */
     'reference'?: string;
     /**
-    * The type of wallet the network token is associated with.
+    * The type of wallet that the network token is associated with.
     */
     'tokenType'?: string;
 

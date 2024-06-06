@@ -23,6 +23,8 @@ import { SofortInfo } from './sofortInfo';
 import { SwishInfo } from './swishInfo';
 import { TwintInfo } from './twintInfo';
 import { VippsInfo } from './vippsInfo';
+import { WeChatPayInfo } from './weChatPayInfo';
+import { WeChatPayPosInfo } from './weChatPayPosInfo';
 
 export class PaymentMethodSetupInfo {
     'afterpayTouch'?: AfterpayTouchInfo;
@@ -83,6 +85,8 @@ export class PaymentMethodSetupInfo {
     'type': PaymentMethodSetupInfo.TypeEnum;
     'vipps'?: VippsInfo;
     'visa'?: GenericPmWithTdiInfo;
+    'wechatpay'?: WeChatPayInfo;
+    'wechatpay_pos'?: WeChatPayPosInfo;
 
     static discriminator: string | undefined = undefined;
 
@@ -256,6 +260,16 @@ export class PaymentMethodSetupInfo {
             "name": "visa",
             "baseName": "visa",
             "type": "GenericPmWithTdiInfo"
+        },
+        {
+            "name": "wechatpay",
+            "baseName": "wechatpay",
+            "type": "WeChatPayInfo"
+        },
+        {
+            "name": "wechatpay_pos",
+            "baseName": "wechatpay_pos",
+            "type": "WeChatPayPosInfo"
         }    ];
 
     static getAttributeTypeMap() {

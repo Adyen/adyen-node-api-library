@@ -13,6 +13,7 @@ import { ApplicationInfo } from './applicationInfo';
 import { AuthenticationData } from './authenticationData';
 import { BillingAddress } from './billingAddress';
 import { CheckoutSessionInstallmentOption } from './checkoutSessionInstallmentOption';
+import { CheckoutSessionThreeDS2RequestData } from './checkoutSessionThreeDS2RequestData';
 import { Company } from './company';
 import { DeliveryAddress } from './deliveryAddress';
 import { FundOrigin } from './fundOrigin';
@@ -67,7 +68,7 @@ export class CreateCheckoutSessionRequest {
     'deliverAt'?: Date;
     'deliveryAddress'?: DeliveryAddress;
     /**
-    * When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future one-click payments.
+    * When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition).
     */
     'enableOneClick'?: boolean;
     /**
@@ -75,7 +76,7 @@ export class CreateCheckoutSessionRequest {
     */
     'enablePayOut'?: boolean;
     /**
-    * When true and `shopperReference` is provided, the payment details will be tokenized for recurring payments.
+    * When true and `shopperReference` is provided, the payment details will be stored for [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types) where the shopper is not present, such as subscription or automatic top-up payments.
     */
     'enableRecurring'?: boolean;
     /**
@@ -194,7 +195,7 @@ export class CreateCheckoutSessionRequest {
     */
     'store'?: string;
     /**
-    * When this is set to **true** and the `shopperReference` is provided, the payment details will be stored.
+    * When true and `shopperReference` is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types).
     */
     'storePaymentMethod'?: boolean;
     /**
@@ -209,6 +210,7 @@ export class CreateCheckoutSessionRequest {
     * Sets a custom theme for [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/?platform=Web&integration=Hosted+Checkout). The value can be any of the **Theme ID** values from your Customer Area.
     */
     'themeId'?: string;
+    'threeDS2RequestData'?: CheckoutSessionThreeDS2RequestData;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     */
@@ -505,6 +507,11 @@ export class CreateCheckoutSessionRequest {
             "name": "themeId",
             "baseName": "themeId",
             "type": "string"
+        },
+        {
+            "name": "threeDS2RequestData",
+            "baseName": "threeDS2RequestData",
+            "type": "CheckoutSessionThreeDS2RequestData"
         },
         {
             "name": "threeDSAuthenticationOnly",

@@ -65,6 +65,7 @@ export * from './checkoutQrCodeAction';
 export * from './checkoutRedirectAction';
 export * from './checkoutSDKAction';
 export * from './checkoutSessionInstallmentOption';
+export * from './checkoutSessionThreeDS2RequestData';
 export * from './checkoutThreeDS2Action';
 export * from './checkoutVoucherAction';
 export * from './commonField';
@@ -134,6 +135,7 @@ export * from './paymentMethod';
 export * from './paymentMethodGroup';
 export * from './paymentMethodIssuer';
 export * from './paymentMethodToStore';
+export * from './paymentMethodUPIApps';
 export * from './paymentMethodsRequest';
 export * from './paymentMethodsResponse';
 export * from './paymentRefundRequest';
@@ -166,6 +168,7 @@ export * from './responsePaymentMethod';
 export * from './riskData';
 export * from './sDKEphemPubKey';
 export * from './samsungPayDetails';
+export * from './secureRemoteCommerceCheckoutData';
 export * from './sepaDirectDebitDetails';
 export * from './serviceError';
 export * from './serviceErrorDetails';
@@ -184,6 +187,7 @@ export * from './storedPaymentMethodResource';
 export * from './subInputDetail';
 export * from './subMerchant';
 export * from './subMerchantInfo';
+export * from './taxTotal';
 export * from './threeDS2RequestData';
 export * from './threeDS2RequestFields';
 export * from './threeDS2ResponseData';
@@ -261,6 +265,7 @@ import { CheckoutQrCodeAction } from './checkoutQrCodeAction';
 import { CheckoutRedirectAction } from './checkoutRedirectAction';
 import { CheckoutSDKAction } from './checkoutSDKAction';
 import { CheckoutSessionInstallmentOption } from './checkoutSessionInstallmentOption';
+import { CheckoutSessionThreeDS2RequestData } from './checkoutSessionThreeDS2RequestData';
 import { CheckoutThreeDS2Action } from './checkoutThreeDS2Action';
 import { CheckoutVoucherAction } from './checkoutVoucherAction';
 import { CommonField } from './commonField';
@@ -330,6 +335,7 @@ import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodGroup } from './paymentMethodGroup';
 import { PaymentMethodIssuer } from './paymentMethodIssuer';
 import { PaymentMethodToStore } from './paymentMethodToStore';
+import { PaymentMethodUPIApps } from './paymentMethodUPIApps';
 import { PaymentMethodsRequest } from './paymentMethodsRequest';
 import { PaymentMethodsResponse } from './paymentMethodsResponse';
 import { PaymentRefundRequest } from './paymentRefundRequest';
@@ -362,6 +368,7 @@ import { ResponsePaymentMethod } from './responsePaymentMethod';
 import { RiskData } from './riskData';
 import { SDKEphemPubKey } from './sDKEphemPubKey';
 import { SamsungPayDetails } from './samsungPayDetails';
+import { SecureRemoteCommerceCheckoutData } from './secureRemoteCommerceCheckoutData';
 import { SepaDirectDebitDetails } from './sepaDirectDebitDetails';
 import { ServiceError } from './serviceError';
 import { ServiceErrorDetails } from './serviceErrorDetails';
@@ -380,6 +387,7 @@ import { StoredPaymentMethodResource } from './storedPaymentMethodResource';
 import { SubInputDetail } from './subInputDetail';
 import { SubMerchant } from './subMerchant';
 import { SubMerchantInfo } from './subMerchantInfo';
+import { TaxTotal } from './taxTotal';
 import { ThreeDS2RequestData } from './threeDS2RequestData';
 import { ThreeDS2RequestFields } from './threeDS2RequestFields';
 import { ThreeDS2ResponseData } from './threeDS2ResponseData';
@@ -459,6 +467,7 @@ let enumsMap: {[index: string]: any} = {
         "CheckoutRedirectAction.TypeEnum": CheckoutRedirectAction.TypeEnum,
         "CheckoutSDKAction.TypeEnum": CheckoutSDKAction.TypeEnum,
         "CheckoutSessionInstallmentOption.PlansEnum": CheckoutSessionInstallmentOption.PlansEnum,
+        "CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum": CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum,
         "CheckoutThreeDS2Action.TypeEnum": CheckoutThreeDS2Action.TypeEnum,
         "CheckoutVoucherAction.TypeEnum": CheckoutVoucherAction.TypeEnum,
         "Configuration.CardHolderNameEnum": Configuration.CardHolderNameEnum,
@@ -554,6 +563,7 @@ let enumsMap: {[index: string]: any} = {
         "ResponseAdditionalDataCommon.RecurringProcessingModelEnum": ResponseAdditionalDataCommon.RecurringProcessingModelEnum,
         "SamsungPayDetails.FundingSourceEnum": SamsungPayDetails.FundingSourceEnum,
         "SamsungPayDetails.TypeEnum": SamsungPayDetails.TypeEnum,
+        "SecureRemoteCommerceCheckoutData.SchemeEnum": SecureRemoteCommerceCheckoutData.SchemeEnum,
         "SepaDirectDebitDetails.TypeEnum": SepaDirectDebitDetails.TypeEnum,
         "SessionResultResponse.StatusEnum": SessionResultResponse.StatusEnum,
         "ShopperInput.BillingAddressEnum": ShopperInput.BillingAddressEnum,
@@ -656,6 +666,7 @@ let typeMap: {[index: string]: any} = {
     "CheckoutRedirectAction": CheckoutRedirectAction,
     "CheckoutSDKAction": CheckoutSDKAction,
     "CheckoutSessionInstallmentOption": CheckoutSessionInstallmentOption,
+    "CheckoutSessionThreeDS2RequestData": CheckoutSessionThreeDS2RequestData,
     "CheckoutThreeDS2Action": CheckoutThreeDS2Action,
     "CheckoutVoucherAction": CheckoutVoucherAction,
     "CommonField": CommonField,
@@ -725,6 +736,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentMethodGroup": PaymentMethodGroup,
     "PaymentMethodIssuer": PaymentMethodIssuer,
     "PaymentMethodToStore": PaymentMethodToStore,
+    "PaymentMethodUPIApps": PaymentMethodUPIApps,
     "PaymentMethodsRequest": PaymentMethodsRequest,
     "PaymentMethodsResponse": PaymentMethodsResponse,
     "PaymentRefundRequest": PaymentRefundRequest,
@@ -757,6 +769,7 @@ let typeMap: {[index: string]: any} = {
     "RiskData": RiskData,
     "SDKEphemPubKey": SDKEphemPubKey,
     "SamsungPayDetails": SamsungPayDetails,
+    "SecureRemoteCommerceCheckoutData": SecureRemoteCommerceCheckoutData,
     "SepaDirectDebitDetails": SepaDirectDebitDetails,
     "ServiceError": ServiceError,
     "ServiceErrorDetails": ServiceErrorDetails,
@@ -775,6 +788,7 @@ let typeMap: {[index: string]: any} = {
     "SubInputDetail": SubInputDetail,
     "SubMerchant": SubMerchant,
     "SubMerchantInfo": SubMerchantInfo,
+    "TaxTotal": TaxTotal,
     "ThreeDS2RequestData": ThreeDS2RequestData,
     "ThreeDS2RequestFields": ThreeDS2RequestFields,
     "ThreeDS2ResponseData": ThreeDS2ResponseData,

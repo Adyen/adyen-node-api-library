@@ -8,23 +8,23 @@
  */
 
 
-export class PaymentMethodNotificationResponse {
+export class ReprocessAndroidAppResponse {
     /**
-    * Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+    * The result of the reprocess.
     */
-    'notificationResponse'?: string;
+    'Message'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "notificationResponse",
-            "baseName": "notificationResponse",
+            "name": "Message",
+            "baseName": "Message",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentMethodNotificationResponse.attributeTypeMap;
+        return ReprocessAndroidAppResponse.attributeTypeMap;
     }
 }
 

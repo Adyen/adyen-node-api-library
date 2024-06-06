@@ -18,7 +18,7 @@ export class TaxReportingClassification {
     */
     'financialInstitutionNumber'?: string;
     /**
-    * The organization\'s main source of income.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
+    * The organization\'s main source of income. Only required if `businessType` is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
     */
     'mainSourceOfIncome'?: TaxReportingClassification.MainSourceOfIncomeEnum;
     /**

@@ -115,6 +115,7 @@ export * from './receiptPrinting';
 export * from './referenced';
 export * from './refunds';
 export * from './releaseUpdateDetails';
+export * from './reprocessAndroidAppResponse';
 export * from './requestActivationResponse';
 export * from './restServiceError';
 export * from './scheduleTerminalActionsRequest';
@@ -185,6 +186,8 @@ export * from './uploadAndroidCertificateResponse';
 export * from './url';
 export * from './user';
 export * from './vippsInfo';
+export * from './weChatPayInfo';
+export * from './weChatPayPosInfo';
 export * from './webhook';
 export * from './webhookLinks';
 export * from './wifiProfiles';
@@ -297,6 +300,7 @@ import { ReceiptPrinting } from './receiptPrinting';
 import { Referenced } from './referenced';
 import { Refunds } from './refunds';
 import { ReleaseUpdateDetails } from './releaseUpdateDetails';
+import { ReprocessAndroidAppResponse } from './reprocessAndroidAppResponse';
 import { RequestActivationResponse } from './requestActivationResponse';
 import { RestServiceError } from './restServiceError';
 import { ScheduleTerminalActionsRequest } from './scheduleTerminalActionsRequest';
@@ -367,6 +371,8 @@ import { UploadAndroidCertificateResponse } from './uploadAndroidCertificateResp
 import { Url } from './url';
 import { User } from './user';
 import { VippsInfo } from './vippsInfo';
+import { WeChatPayInfo } from './weChatPayInfo';
+import { WeChatPayPosInfo } from './weChatPayPosInfo';
 import { Webhook } from './webhook';
 import { WebhookLinks } from './webhookLinks';
 import { WifiProfiles } from './wifiProfiles';
@@ -564,6 +570,7 @@ let typeMap: {[index: string]: any} = {
     "Referenced": Referenced,
     "Refunds": Refunds,
     "ReleaseUpdateDetails": ReleaseUpdateDetails,
+    "ReprocessAndroidAppResponse": ReprocessAndroidAppResponse,
     "RequestActivationResponse": RequestActivationResponse,
     "RestServiceError": RestServiceError,
     "ScheduleTerminalActionsRequest": ScheduleTerminalActionsRequest,
@@ -634,6 +641,8 @@ let typeMap: {[index: string]: any} = {
     "Url": Url,
     "User": User,
     "VippsInfo": VippsInfo,
+    "WeChatPayInfo": WeChatPayInfo,
+    "WeChatPayPosInfo": WeChatPayPosInfo,
     "Webhook": Webhook,
     "WebhookLinks": WebhookLinks,
     "WifiProfiles": WifiProfiles,

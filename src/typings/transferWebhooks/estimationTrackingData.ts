@@ -14,7 +14,7 @@ export class EstimationTrackingData {
     */
     'estimatedArrivalTime': Date;
     /**
-    * **estimation**
+    * The type of tracking event.   Possible values:   - **estimation**: the estimated date and time of when the funds will be credited has been determined.
     */
     'type': EstimationTrackingData.TypeEnum;
 

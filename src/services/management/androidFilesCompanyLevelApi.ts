@@ -14,6 +14,7 @@ import {
     AndroidApp,
     AndroidAppsResponse,
     AndroidCertificatesResponse,
+    ReprocessAndroidAppResponse,
     UploadAndroidAppResponse,
     UploadAndroidCertificateResponse,
     ObjectSerializer
@@ -109,6 +110,26 @@ export class AndroidFilesCompanyLevelApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "AndroidCertificatesResponse");
+    }
+
+    /**
+    * @summary Reprocess Android App
+    * @param companyId {@link string } The unique identifier of the company account.
+    * @param id {@link string } The unique identifier of the app.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link ReprocessAndroidAppResponse }
+    */
+    public async reprocessAndroidApp(companyId: string, id: string, requestOptions?: IRequest.Options): Promise<ReprocessAndroidAppResponse> {
+        const endpoint = `${this.baseUrl}/companies/{companyId}/androidApps/{id}`
+            .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, ReprocessAndroidAppResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "ReprocessAndroidAppResponse");
     }
 
     /**

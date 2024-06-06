@@ -19,6 +19,7 @@ import { Mandate } from './mandate';
 import { Name } from './name';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { RiskData } from './riskData';
+import { SecureRemoteCommerceCheckoutData } from './secureRemoteCommerceCheckoutData';
 import { Split } from './split';
 
 export class PaymentSetupRequest {
@@ -146,6 +147,7 @@ export class PaymentSetupRequest {
     * The version of the SDK you are using (for Web SDK integrations only).
     */
     'sdkVersion'?: string;
+    'secureRemoteCommerceCheckoutData'?: SecureRemoteCommerceCheckoutData;
     /**
     * The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.  For example: 2020-07-18T15:42:40.428+01:00
     */
@@ -410,6 +412,11 @@ export class PaymentSetupRequest {
             "name": "sdkVersion",
             "baseName": "sdkVersion",
             "type": "string"
+        },
+        {
+            "name": "secureRemoteCommerceCheckoutData",
+            "baseName": "secureRemoteCommerceCheckoutData",
+            "type": "SecureRemoteCommerceCheckoutData"
         },
         {
             "name": "sessionValidity",

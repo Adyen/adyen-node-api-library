@@ -10,15 +10,15 @@
 
 export class InternalReviewTrackingData {
     /**
-    * Possible values:   - **refusedForRegulatoryReasons**.
+    * The reason why the transfer failed Adyen\'s internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen\'s risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). 
     */
     'reason'?: InternalReviewTrackingData.ReasonEnum;
     /**
-    * Possible values:   - **pending**: Transfer is under internal review.  - **failed**: Transfer failed to pass internal review. See field **reason** for details.  
+    * The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review.  - **failed**: the transfer failed Adyen\'s internal review. For details, see `reason`.  
     */
     'status': InternalReviewTrackingData.StatusEnum;
     /**
-    * **internalReview**
+    * The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen\'s risk policy.
     */
     'type': InternalReviewTrackingData.TypeEnum;
 

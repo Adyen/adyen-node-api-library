@@ -8,23 +8,32 @@
  */
 
 
-export class PaymentMethodNotificationResponse {
+export class WeChatPayPosInfo {
     /**
-    * Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+    * The name of the contact person from merchant support.
     */
-    'notificationResponse'?: string;
+    'contactPersonName': string;
+    /**
+    * The email address of merchant support.
+    */
+    'email': string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "notificationResponse",
-            "baseName": "notificationResponse",
+            "name": "contactPersonName",
+            "baseName": "contactPersonName",
+            "type": "string"
+        },
+        {
+            "name": "email",
+            "baseName": "email",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentMethodNotificationResponse.attributeTypeMap;
+        return WeChatPayPosInfo.attributeTypeMap;
     }
 }
 

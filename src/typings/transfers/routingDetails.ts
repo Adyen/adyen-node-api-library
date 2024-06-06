@@ -8,36 +8,54 @@
  */
 
 
-export class BankCategoryData {
+export class RoutingDetails {
+    /**
+    * A human-readable explanation specific to this occurrence of the problem.
+    */
+    'detail'?: string;
+    /**
+    * A code that identifies the problem type.
+    */
+    'errorCode'?: string;
     /**
     * The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
     */
-    'priority'?: BankCategoryData.PriorityEnum;
+    'priority'?: RoutingDetails.PriorityEnum;
     /**
-    * **bank**
+    * A short, human-readable summary of the problem type.
     */
-    'type'?: BankCategoryData.TypeEnum;
+    'title'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "priority",
-            "baseName": "priority",
-            "type": "BankCategoryData.PriorityEnum"
+            "name": "detail",
+            "baseName": "detail",
+            "type": "string"
         },
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "BankCategoryData.TypeEnum"
+            "name": "errorCode",
+            "baseName": "errorCode",
+            "type": "string"
+        },
+        {
+            "name": "priority",
+            "baseName": "priority",
+            "type": "RoutingDetails.PriorityEnum"
+        },
+        {
+            "name": "title",
+            "baseName": "title",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return BankCategoryData.attributeTypeMap;
+        return RoutingDetails.attributeTypeMap;
     }
 }
 
-export namespace BankCategoryData {
+export namespace RoutingDetails {
     export enum PriorityEnum {
         CrossBorder = 'crossBorder',
         Fast = 'fast',
@@ -45,8 +63,5 @@ export namespace BankCategoryData {
         Internal = 'internal',
         Regular = 'regular',
         Wire = 'wire'
-    }
-    export enum TypeEnum {
-        Bank = 'bank'
     }
 }

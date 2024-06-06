@@ -123,7 +123,7 @@ export class PaymentRequest {
     */
     'deviceFingerprint'?: string;
     /**
-    * When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future one-click payments.
+    * When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition).
     */
     'enableOneClick'?: boolean;
     /**
@@ -131,7 +131,7 @@ export class PaymentRequest {
     */
     'enablePayOut'?: boolean;
     /**
-    * When true and `shopperReference` is provided, the payment details will be tokenized for recurring payments.
+    * When true and `shopperReference` is provided, the payment details will be stored for [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types) where the shopper is not present, such as subscription or automatic top-up payments.
     */
     'enableRecurring'?: boolean;
     /**
@@ -261,7 +261,7 @@ export class PaymentRequest {
     */
     'store'?: string;
     /**
-    * When true and `shopperReference` is provided, the payment details will be stored.
+    * When true and `shopperReference` is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types).
     */
     'storePaymentMethod'?: boolean;
     /**

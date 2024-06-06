@@ -86,6 +86,7 @@ export namespace LegalEntityAssociation {
     export enum TypeEnum {
         DefinedBeneficiary = 'definedBeneficiary',
         Director = 'director',
+        ImmediateParentCompany = 'immediateParentCompany',
         PciSignatory = 'pciSignatory',
         Protector = 'protector',
         SecondaryTrustee = 'secondaryTrustee',

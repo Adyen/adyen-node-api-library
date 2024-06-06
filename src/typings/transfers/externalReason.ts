@@ -10,15 +10,15 @@
 
 export class ExternalReason {
     /**
-    * The code for this reason code.
+    * The reason code.
     */
     'code'?: string;
     /**
-    * The description for this reason code.
+    * The description of the reason code.
     */
     'description'?: string;
     /**
-    * The namespace for this reason code.
+    * The namespace for the reason code.
     */
     'namespace'?: string;
 

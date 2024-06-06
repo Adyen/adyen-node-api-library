@@ -10,6 +10,7 @@
 import { Address } from './address';
 import { Amount } from './amount';
 import { ApplicationInfo } from './applicationInfo';
+import { CheckoutSessionThreeDS2RequestData } from './checkoutSessionThreeDS2RequestData';
 import { InstallmentOption } from './installmentOption';
 import { LineItem } from './lineItem';
 import { Name } from './name';
@@ -151,6 +152,7 @@ export class PaymentLinkRequest {
     * A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area.
     */
     'themeId'?: string;
+    'threeDS2RequestData'?: CheckoutSessionThreeDS2RequestData;
 
     static discriminator: string | undefined = undefined;
 
@@ -344,6 +346,11 @@ export class PaymentLinkRequest {
             "name": "themeId",
             "baseName": "themeId",
             "type": "string"
+        },
+        {
+            "name": "threeDS2RequestData",
+            "baseName": "threeDS2RequestData",
+            "type": "CheckoutSessionThreeDS2RequestData"
         }    ];
 
     static getAttributeTypeMap() {
