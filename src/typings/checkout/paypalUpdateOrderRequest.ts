@@ -9,6 +9,7 @@
 
 import { Amount } from './amount';
 import { DeliveryMethod } from './deliveryMethod';
+import { TaxTotal } from './taxTotal';
 
 export class PaypalUpdateOrderRequest {
     'amount'?: Amount;
@@ -28,6 +29,7 @@ export class PaypalUpdateOrderRequest {
     * The original `sessionId` from the `/sessions` response.
     */
     'sessionId'?: string;
+    'taxTotal'?: TaxTotal;
 
     static discriminator: string | undefined = undefined;
 
@@ -56,6 +58,11 @@ export class PaypalUpdateOrderRequest {
             "name": "sessionId",
             "baseName": "sessionId",
             "type": "string"
+        },
+        {
+            "name": "taxTotal",
+            "baseName": "taxTotal",
+            "type": "TaxTotal"
         }    ];
 
     static getAttributeTypeMap() {

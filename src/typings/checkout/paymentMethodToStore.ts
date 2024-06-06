@@ -49,6 +49,10 @@ export class PaymentMethodToStore {
     * The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
     'number'?: string;
+    /**
+    * Set to **scheme**.
+    */
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -101,6 +105,11 @@ export class PaymentMethodToStore {
         {
             "name": "number",
             "baseName": "number",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
             "type": "string"
         }    ];
 

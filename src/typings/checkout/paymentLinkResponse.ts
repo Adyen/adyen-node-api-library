@@ -10,6 +10,7 @@
 import { Address } from './address';
 import { Amount } from './amount';
 import { ApplicationInfo } from './applicationInfo';
+import { CheckoutSessionThreeDS2RequestData } from './checkoutSessionThreeDS2RequestData';
 import { InstallmentOption } from './installmentOption';
 import { LineItem } from './lineItem';
 import { Name } from './name';
@@ -159,6 +160,7 @@ export class PaymentLinkResponse {
     * A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area.
     */
     'themeId'?: string;
+    'threeDS2RequestData'?: CheckoutSessionThreeDS2RequestData;
     /**
     * The date when the payment link status was updated.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
     */
@@ -370,6 +372,11 @@ export class PaymentLinkResponse {
             "name": "themeId",
             "baseName": "themeId",
             "type": "string"
+        },
+        {
+            "name": "threeDS2RequestData",
+            "baseName": "threeDS2RequestData",
+            "type": "CheckoutSessionThreeDS2RequestData"
         },
         {
             "name": "updatedAt",

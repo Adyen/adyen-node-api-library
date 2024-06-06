@@ -58,6 +58,7 @@ export * from './resourceReference';
 export * from './restServiceError';
 export * from './returnTransferRequest';
 export * from './returnTransferResponse';
+export * from './routingDetails';
 export * from './sELocalAccountIdentification';
 export * from './sGLocalAccountIdentification';
 export * from './serviceError';
@@ -75,6 +76,7 @@ export * from './transferInfo';
 export * from './transferNotificationCounterParty';
 export * from './transferNotificationMerchantData';
 export * from './transferNotificationValidationFact';
+export * from './transferServiceRestServiceError';
 export * from './transferView';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
@@ -131,6 +133,7 @@ import { ResourceReference } from './resourceReference';
 import { RestServiceError } from './restServiceError';
 import { ReturnTransferRequest } from './returnTransferRequest';
 import { ReturnTransferResponse } from './returnTransferResponse';
+import { RoutingDetails } from './routingDetails';
 import { SELocalAccountIdentification } from './sELocalAccountIdentification';
 import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
 import { ServiceError } from './serviceError';
@@ -148,6 +151,7 @@ import { TransferInfo } from './transferInfo';
 import { TransferNotificationCounterParty } from './transferNotificationCounterParty';
 import { TransferNotificationMerchantData } from './transferNotificationMerchantData';
 import { TransferNotificationValidationFact } from './transferNotificationValidationFact';
+import { TransferServiceRestServiceError } from './transferServiceRestServiceError';
 import { TransferView } from './transferView';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
@@ -199,6 +203,7 @@ let enumsMap: {[index: string]: any} = {
         "PlatformPayment.PlatformPaymentTypeEnum": PlatformPayment.PlatformPaymentTypeEnum,
         "PlatformPayment.TypeEnum": PlatformPayment.TypeEnum,
         "ReturnTransferResponse.StatusEnum": ReturnTransferResponse.StatusEnum,
+        "RoutingDetails.PriorityEnum": RoutingDetails.PriorityEnum,
         "SELocalAccountIdentification.TypeEnum": SELocalAccountIdentification.TypeEnum,
         "SGLocalAccountIdentification.TypeEnum": SGLocalAccountIdentification.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
@@ -274,6 +279,7 @@ let typeMap: {[index: string]: any} = {
     "RestServiceError": RestServiceError,
     "ReturnTransferRequest": ReturnTransferRequest,
     "ReturnTransferResponse": ReturnTransferResponse,
+    "RoutingDetails": RoutingDetails,
     "SELocalAccountIdentification": SELocalAccountIdentification,
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
     "ServiceError": ServiceError,
@@ -291,6 +297,7 @@ let typeMap: {[index: string]: any} = {
     "TransferNotificationCounterParty": TransferNotificationCounterParty,
     "TransferNotificationMerchantData": TransferNotificationMerchantData,
     "TransferNotificationValidationFact": TransferNotificationValidationFact,
+    "TransferServiceRestServiceError": TransferServiceRestServiceError,
     "TransferView": TransferView,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,

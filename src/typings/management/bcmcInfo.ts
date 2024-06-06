@@ -7,14 +7,12 @@
  * Do not edit this class manually.
  */
 
-import { TransactionDescriptionInfo } from './transactionDescriptionInfo';
 
 export class BcmcInfo {
     /**
     * Indicates if [Bancontact mobile](https://docs.adyen.com/payment-methods/bancontact/bancontact-mobile) is enabled.
     */
     'enableBcmcMobile'?: boolean;
-    'transactionDescription'?: TransactionDescriptionInfo;
 
     static discriminator: string | undefined = undefined;
 
@@ -23,11 +21,6 @@ export class BcmcInfo {
             "name": "enableBcmcMobile",
             "baseName": "enableBcmcMobile",
             "type": "boolean"
-        },
-        {
-            "name": "transactionDescription",
-            "baseName": "transactionDescription",
-            "type": "TransactionDescriptionInfo"
         }    ];
 
     static getAttributeTypeMap() {

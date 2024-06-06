@@ -14,6 +14,7 @@ export class SubMerchantInfo {
     'id'?: string;
     'mcc'?: string;
     'name'?: string;
+    'registeredSince'?: string;
     'taxId'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -37,6 +38,11 @@ export class SubMerchantInfo {
         {
             "name": "name",
             "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "registeredSince",
+            "baseName": "registeredSince",
             "type": "string"
         },
         {

@@ -67,6 +67,10 @@ export class PaymentCompletionDetails {
     */
     'resultCode'?: string;
     /**
+    * The query string as appended to the `returnURL` when using direct issuer links .
+    */
+    'returnUrlQueryString'?: string;
+    /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: `transStatus`, `authorisationToken`.
     */
     'threeDSResult'?: string;
@@ -159,6 +163,11 @@ export class PaymentCompletionDetails {
         {
             "name": "resultCode",
             "baseName": "resultCode",
+            "type": "string"
+        },
+        {
+            "name": "returnUrlQueryString",
+            "baseName": "returnUrlQueryString",
             "type": "string"
         },
         {

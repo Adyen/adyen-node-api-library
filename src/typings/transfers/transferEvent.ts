@@ -27,7 +27,7 @@ export class TransferEvent {
     */
     'bookingDate'?: Date;
     /**
-    * The estimated time the beneficiary should have access to the funds.
+    * The estimated time when the beneficiary should have access to the funds.
     */
     'estimatedArrivalTime'?: Date;
     'externalReason'?: ExternalReason;
@@ -37,7 +37,7 @@ export class TransferEvent {
     'id'?: string;
     'modification'?: Modification;
     /**
-    * The list of the balance mutation per event.
+    * The list of balance mutations per event.
     */
     'mutations'?: Array<BalanceMutation>;
     'originalAmount'?: Amount;

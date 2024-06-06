@@ -46,6 +46,10 @@ export class LineItem {
     */
     'manufacturer'?: string;
     /**
+    * Marketplace seller id.
+    */
+    'marketplaceSellerId'?: string;
+    /**
     * Link to the purchased item.
     */
     'productUrl'?: string;
@@ -124,6 +128,11 @@ export class LineItem {
         {
             "name": "manufacturer",
             "baseName": "manufacturer",
+            "type": "string"
+        },
+        {
+            "name": "marketplaceSellerId",
+            "baseName": "marketplaceSellerId",
             "type": "string"
         },
         {
