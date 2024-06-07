@@ -18,6 +18,7 @@ export * from './allowedOriginsResponse';
 export * from './amexInfo';
 export * from './amount';
 export * from './androidApp';
+export * from './androidAppError';
 export * from './androidAppsResponse';
 export * from './androidCertificate';
 export * from './androidCertificatesResponse';
@@ -203,6 +204,7 @@ import { AllowedOriginsResponse } from './allowedOriginsResponse';
 import { AmexInfo } from './amexInfo';
 import { Amount } from './amount';
 import { AndroidApp } from './androidApp';
+import { AndroidAppError } from './androidAppError';
 import { AndroidAppsResponse } from './androidAppsResponse';
 import { AndroidCertificate } from './androidCertificate';
 import { AndroidCertificatesResponse } from './androidCertificatesResponse';
@@ -473,6 +475,7 @@ let typeMap: {[index: string]: any} = {
     "AmexInfo": AmexInfo,
     "Amount": Amount,
     "AndroidApp": AndroidApp,
+    "AndroidAppError": AndroidAppError,
     "AndroidAppsResponse": AndroidAppsResponse,
     "AndroidCertificate": AndroidCertificate,
     "AndroidCertificatesResponse": AndroidCertificatesResponse,

@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { AndroidAppError } from './androidAppError';
 
 export class AndroidApp {
     /**
@@ -14,9 +15,13 @@ export class AndroidApp {
     */
     'description'?: string;
     /**
-    * The error code of the app. It exists if the status is error or invalid.
+    * The error code of the Android app with the `status` of either **error** or **invalid**.
     */
     'errorCode'?: string;
+    /**
+    * The list of errors of the Android app.
+    */
+    'errors'?: Array<AndroidAppError>;
     /**
     * The unique identifier of the app.
     */
@@ -54,6 +59,11 @@ export class AndroidApp {
             "name": "errorCode",
             "baseName": "errorCode",
             "type": "string"
+        },
+        {
+            "name": "errors",
+            "baseName": "errors",
+            "type": "Array<AndroidAppError>"
         },
         {
             "name": "id",
