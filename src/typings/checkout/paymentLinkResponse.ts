@@ -14,6 +14,7 @@ import { CheckoutSessionThreeDS2RequestData } from './checkoutSessionThreeDS2Req
 import { InstallmentOption } from './installmentOption';
 import { LineItem } from './lineItem';
 import { Name } from './name';
+import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { RiskData } from './riskData';
 import { Split } from './split';
 
@@ -86,6 +87,7 @@ export class PaymentLinkResponse {
     * Metadata consists of entries, each of which includes a key and a value. Limitations: * Maximum 20 key-value pairs per request. Otherwise, error \"177\" occurs: \"Metadata size exceeds limit\" * Maximum 20 characters per key. Otherwise, error \"178\" occurs: \"Metadata key size exceeds limit\" * A key cannot have the name `checkout.linkId`. Any value that you provide with this key is going to be replaced by the real payment link ID.
     */
     'metadata'?: { [key: string]: string; };
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
@@ -137,7 +139,7 @@ export class PaymentLinkResponse {
     */
     'splitCardFundingSources'?: boolean;
     /**
-    * An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
+    * An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
     */
     'splits'?: Array<Split>;
     /**
@@ -272,6 +274,11 @@ export class PaymentLinkResponse {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "platformChargebackLogic",
+            "baseName": "platformChargebackLogic",
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "recurringProcessingModel",

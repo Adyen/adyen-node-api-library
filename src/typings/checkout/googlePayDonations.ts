@@ -34,6 +34,10 @@ export class GooglePayDonations {
     */
     'storedPaymentMethodId'?: string;
     /**
+    * Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
+    */
+    'threeDS2SdkVersion'?: string;
+    /**
     * **googlepay**, **paywithgoogle**
     */
     'type'?: GooglePayDonations.TypeEnum;
@@ -69,6 +73,11 @@ export class GooglePayDonations {
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
+            "type": "string"
+        },
+        {
+            "name": "threeDS2SdkVersion",
+            "baseName": "threeDS2SdkVersion",
             "type": "string"
         },
         {

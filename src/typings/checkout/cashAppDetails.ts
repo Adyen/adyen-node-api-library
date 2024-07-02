@@ -42,6 +42,10 @@ export class CashAppDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
+    * The payment method subtype.
+    */
+    'subtype'?: string;
+    /**
     * cashapp
     */
     'type'?: CashAppDetails.TypeEnum;
@@ -87,6 +91,11 @@ export class CashAppDetails {
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
+            "type": "string"
+        },
+        {
+            "name": "subtype",
+            "baseName": "subtype",
             "type": "string"
         },
         {

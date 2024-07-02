@@ -72,6 +72,7 @@ export * from './responseAdditionalDataNetworkTokens';
 export * from './responseAdditionalDataOpi';
 export * from './responseAdditionalDataSepa';
 export * from './sDKEphemPubKey';
+export * from './secureRemoteCommerceCheckoutData';
 export * from './serviceError';
 export * from './shopperInteractionDevice';
 export * from './split';
@@ -153,6 +154,7 @@ import { ResponseAdditionalDataNetworkTokens } from './responseAdditionalDataNet
 import { ResponseAdditionalDataOpi } from './responseAdditionalDataOpi';
 import { ResponseAdditionalDataSepa } from './responseAdditionalDataSepa';
 import { SDKEphemPubKey } from './sDKEphemPubKey';
+import { SecureRemoteCommerceCheckoutData } from './secureRemoteCommerceCheckoutData';
 import { ServiceError } from './serviceError';
 import { ShopperInteractionDevice } from './shopperInteractionDevice';
 import { Split } from './split';
@@ -220,6 +222,7 @@ let enumsMap: {[index: string]: any} = {
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
         "ResponseAdditionalDataCommon.FraudResultTypeEnum": ResponseAdditionalDataCommon.FraudResultTypeEnum,
         "ResponseAdditionalDataCommon.RecurringProcessingModelEnum": ResponseAdditionalDataCommon.RecurringProcessingModelEnum,
+        "SecureRemoteCommerceCheckoutData.SchemeEnum": SecureRemoteCommerceCheckoutData.SchemeEnum,
         "Split.TypeEnum": Split.TypeEnum,
         "ThreeDS2RequestData.AcctTypeEnum": ThreeDS2RequestData.AcctTypeEnum,
         "ThreeDS2RequestData.AddrMatchEnum": ThreeDS2RequestData.AddrMatchEnum,
@@ -302,6 +305,7 @@ let typeMap: {[index: string]: any} = {
     "ResponseAdditionalDataOpi": ResponseAdditionalDataOpi,
     "ResponseAdditionalDataSepa": ResponseAdditionalDataSepa,
     "SDKEphemPubKey": SDKEphemPubKey,
+    "SecureRemoteCommerceCheckoutData": SecureRemoteCommerceCheckoutData,
     "ServiceError": ServiceError,
     "ShopperInteractionDevice": ShopperInteractionDevice,
     "Split": Split,

@@ -30,6 +30,10 @@ export class PayWithGoogleDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
+    * Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
+    */
+    'threeDS2SdkVersion'?: string;
+    /**
     * **paywithgoogle**
     */
     'type'?: PayWithGoogleDetails.TypeEnum;
@@ -60,6 +64,11 @@ export class PayWithGoogleDetails {
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
+            "type": "string"
+        },
+        {
+            "name": "threeDS2SdkVersion",
+            "baseName": "threeDS2SdkVersion",
             "type": "string"
         },
         {

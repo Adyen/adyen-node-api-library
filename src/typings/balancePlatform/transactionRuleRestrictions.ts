@@ -16,6 +16,7 @@ import { DifferentCurrenciesRestriction } from './differentCurrenciesRestriction
 import { EntryModesRestriction } from './entryModesRestriction';
 import { InternationalTransactionRestriction } from './internationalTransactionRestriction';
 import { MatchingTransactionsRestriction } from './matchingTransactionsRestriction';
+import { MatchingValuesRestriction } from './matchingValuesRestriction';
 import { MccsRestriction } from './mccsRestriction';
 import { MerchantNamesRestriction } from './merchantNamesRestriction';
 import { MerchantsRestriction } from './merchantsRestriction';
@@ -36,6 +37,7 @@ export class TransactionRuleRestrictions {
     'entryModes'?: EntryModesRestriction;
     'internationalTransaction'?: InternationalTransactionRestriction;
     'matchingTransactions'?: MatchingTransactionsRestriction;
+    'matchingValues'?: MatchingValuesRestriction;
     'mccs'?: MccsRestriction;
     'merchantNames'?: MerchantNamesRestriction;
     'merchants'?: MerchantsRestriction;
@@ -93,6 +95,11 @@ export class TransactionRuleRestrictions {
             "name": "matchingTransactions",
             "baseName": "matchingTransactions",
             "type": "MatchingTransactionsRestriction"
+        },
+        {
+            "name": "matchingValues",
+            "baseName": "matchingValues",
+            "type": "MatchingValuesRestriction"
         },
         {
             "name": "mccs",

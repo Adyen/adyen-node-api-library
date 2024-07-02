@@ -14,7 +14,7 @@ import { UltimatePartyIdentification } from './ultimatePartyIdentification';
 export class TransferInfo {
     'amount': Amount;
     /**
-    * The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+    * The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount** assigned to the balance account, you must specify the [payment instrument ID](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id) of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account.
     */
     'balanceAccountId'?: string;
     /**
@@ -27,7 +27,7 @@ export class TransferInfo {
     */
     'description'?: string;
     /**
-    * The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
+    * The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount**, you must specify the payment instrument ID of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account.
     */
     'paymentInstrumentId'?: string;
     /**
@@ -42,6 +42,10 @@ export class TransferInfo {
     *  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both parties involved in the funds movement.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
     'referenceForBeneficiary'?: string;
+    /**
+    * The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The `category` must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The `category` must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The `category` must be **internal**.   
+    */
+    'type'?: TransferInfo.TypeEnum;
     'ultimateParty'?: UltimatePartyIdentification;
 
     static discriminator: string | undefined = undefined;
@@ -93,6 +97,11 @@ export class TransferInfo {
             "type": "string"
         },
         {
+            "name": "type",
+            "baseName": "type",
+            "type": "TransferInfo.TypeEnum"
+        },
+        {
             "name": "ultimateParty",
             "baseName": "ultimateParty",
             "type": "UltimatePartyIdentification"
@@ -118,5 +127,10 @@ export namespace TransferInfo {
         Internal = 'internal',
         Regular = 'regular',
         Wire = 'wire'
+    }
+    export enum TypeEnum {
+        BankTransfer = 'bankTransfer',
+        InternalTransfer = 'internalTransfer',
+        InternalDirectDebit = 'internalDirectDebit'
     }
 }

@@ -187,7 +187,7 @@ export class CreateCheckoutSessionRequest {
     */
     'splitCardFundingSources'?: boolean;
     /**
-    * An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
+    * An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
     */
     'splits'?: Array<Split>;
     /**

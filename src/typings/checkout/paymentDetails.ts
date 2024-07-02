@@ -69,7 +69,6 @@ export namespace PaymentDetails {
         UpiQr = 'upi_qr',
         Paytm = 'paytm',
         MolpayEbankingVn = 'molpay_ebanking_VN',
-        Paybybank = 'paybybank',
         EbankingFi = 'ebanking_FI',
         MolpayEbankingMy = 'molpay_ebanking_MY',
         MolpayEbankingDirectMy = 'molpay_ebanking_direct_MY',
