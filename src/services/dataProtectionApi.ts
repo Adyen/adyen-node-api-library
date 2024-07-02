@@ -10,6 +10,7 @@
 import Client from "../client";
 import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
+import { ServiceError } from "../typings/dataProtection/models";
 import { SubjectErasureByPspReferenceRequest } from "../typings/dataProtection/models";
 import { SubjectErasureResponse } from "../typings/dataProtection/models";
 import { IRequest } from "../typings/requestOptions";

@@ -15,6 +15,7 @@ import {
     PaymentSetupResponse,
     PaymentVerificationRequest,
     PaymentVerificationResponse,
+    ServiceError,
     ObjectSerializer
 } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";

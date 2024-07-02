@@ -23,6 +23,10 @@ export class TransferEvent {
     */
     'amountAdjustments'?: Array<AmountAdjustment>;
     /**
+    * Scheme unique arn identifier useful for tracing captures, chargebacks, refunds, etc.
+    */
+    'arn'?: string;
+    /**
     * The date when the transfer request was sent.
     */
     'bookingDate'?: Date;
@@ -82,6 +86,11 @@ export class TransferEvent {
             "name": "amountAdjustments",
             "baseName": "amountAdjustments",
             "type": "Array<AmountAdjustment>"
+        },
+        {
+            "name": "arn",
+            "baseName": "arn",
+            "type": "string"
         },
         {
             "name": "bookingDate",
@@ -170,6 +179,7 @@ export namespace TransferEvent {
         CounterpartyAddressRequired = 'counterpartyAddressRequired',
         CounterpartyBankTimedOut = 'counterpartyBankTimedOut',
         CounterpartyBankUnavailable = 'counterpartyBankUnavailable',
+        Declined = 'declined',
         DeclinedByTransactionRule = 'declinedByTransactionRule',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',

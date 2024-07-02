@@ -46,6 +46,10 @@ export class AdditionalDataAirline {
     */
     'airline_flight_date'?: string;
     /**
+    * The date that the ticket was issued to the passenger. * minLength: 6 characters * maxLength: 6 characters * Date format: YYMMDD
+    */
+    'airline_issue_date'?: string;
+    /**
     * The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM = KL * minLength: 2 characters * maxLength: 2 characters * Must not be all spaces *Must not be all zeros.
     */
     'airline_leg_carrier_code'?: string;
@@ -168,6 +172,11 @@ export class AdditionalDataAirline {
         {
             "name": "airline_flight_date",
             "baseName": "airline.flight_date",
+            "type": "string"
+        },
+        {
+            "name": "airline_issue_date",
+            "baseName": "airline.issue_date",
             "type": "string"
         },
         {

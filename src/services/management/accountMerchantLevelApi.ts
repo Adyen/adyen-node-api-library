@@ -16,6 +16,7 @@ import {
     ListMerchantResponse,
     Merchant,
     RequestActivationResponse,
+    RestServiceError,
     ObjectSerializer
 } from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";

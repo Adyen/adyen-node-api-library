@@ -14,6 +14,7 @@ import {
     RegisterSCAFinalResponse,
     RegisterSCARequest,
     RegisterSCAResponse,
+    RestServiceError,
     SearchRegisteredDevicesResponse,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";

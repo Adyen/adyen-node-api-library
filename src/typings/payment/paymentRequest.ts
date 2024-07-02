@@ -23,6 +23,7 @@ import { MerchantRiskIndicator } from './merchantRiskIndicator';
 import { Name } from './name';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { Recurring } from './recurring';
+import { SecureRemoteCommerceCheckoutData } from './secureRemoteCommerceCheckoutData';
 import { Split } from './split';
 import { ThreeDS2RequestData } from './threeDS2RequestData';
 import { ThreeDSecureData } from './threeDSecureData';
@@ -114,6 +115,7 @@ export class PaymentRequest {
     * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.
     */
     'reference': string;
+    'secureRemoteCommerceCheckoutData'?: SecureRemoteCommerceCheckoutData;
     /**
     * Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * `maestro` (default), to be processed like a Maestro card, or * `bcmc`, to be processed like a Bancontact card.
     */
@@ -358,6 +360,11 @@ export class PaymentRequest {
             "name": "reference",
             "baseName": "reference",
             "type": "string"
+        },
+        {
+            "name": "secureRemoteCommerceCheckoutData",
+            "baseName": "secureRemoteCommerceCheckoutData",
+            "type": "SecureRemoteCommerceCheckoutData"
         },
         {
             "name": "selectedBrand",
