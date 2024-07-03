@@ -115,6 +115,7 @@ export * from './mobilePayDetails';
 export * from './molPayDetails';
 export * from './name';
 export * from './openInvoiceDetails';
+export * from './payByBankDetails';
 export * from './payPalDetails';
 export * from './payUUpiDetails';
 export * from './payWithGoogleDetails';
@@ -315,6 +316,7 @@ import { MobilePayDetails } from './mobilePayDetails';
 import { MolPayDetails } from './molPayDetails';
 import { Name } from './name';
 import { OpenInvoiceDetails } from './openInvoiceDetails';
+import { PayByBankDetails } from './payByBankDetails';
 import { PayPalDetails } from './payPalDetails';
 import { PayUUpiDetails } from './payUUpiDetails';
 import { PayWithGoogleDetails } from './payWithGoogleDetails';
@@ -515,6 +517,7 @@ let enumsMap: {[index: string]: any} = {
         "MobilePayDetails.TypeEnum": MobilePayDetails.TypeEnum,
         "MolPayDetails.TypeEnum": MolPayDetails.TypeEnum,
         "OpenInvoiceDetails.TypeEnum": OpenInvoiceDetails.TypeEnum,
+        "PayByBankDetails.TypeEnum": PayByBankDetails.TypeEnum,
         "PayPalDetails.SubtypeEnum": PayPalDetails.SubtypeEnum,
         "PayPalDetails.TypeEnum": PayPalDetails.TypeEnum,
         "PayUUpiDetails.TypeEnum": PayUUpiDetails.TypeEnum,
@@ -716,6 +719,7 @@ let typeMap: {[index: string]: any} = {
     "MolPayDetails": MolPayDetails,
     "Name": Name,
     "OpenInvoiceDetails": OpenInvoiceDetails,
+    "PayByBankDetails": PayByBankDetails,
     "PayPalDetails": PayPalDetails,
     "PayUUpiDetails": PayUUpiDetails,
     "PayWithGoogleDetails": PayWithGoogleDetails,

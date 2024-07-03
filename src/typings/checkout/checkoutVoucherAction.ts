@@ -52,7 +52,7 @@ export class CheckoutVoucherAction {
     */
     'merchantReference'?: string;
     /**
-    * A base64 encoded signature of all properties
+    * A Base64-encoded token containing all properties of the voucher. For iOS, you can use this to pass a voucher to Apple Wallet.
     */
     'passCreationToken'?: string;
     /**

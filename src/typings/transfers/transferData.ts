@@ -234,6 +234,7 @@ export namespace TransferData {
         CounterpartyAddressRequired = 'counterpartyAddressRequired',
         CounterpartyBankTimedOut = 'counterpartyBankTimedOut',
         CounterpartyBankUnavailable = 'counterpartyBankUnavailable',
+        Declined = 'declined',
         DeclinedByTransactionRule = 'declinedByTransactionRule',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
