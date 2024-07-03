@@ -16,7 +16,6 @@ import {
     LegalEntity,
     LegalEntityInfo,
     LegalEntityInfoRequiredType,
-    ServiceError,
     VerificationErrors,
     ObjectSerializer
 } from "../../typings/legalEntityManagement/models";
