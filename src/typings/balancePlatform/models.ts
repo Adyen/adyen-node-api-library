@@ -82,6 +82,7 @@ export * from './invalidField';
 export * from './link';
 export * from './listNetworkTokensResponse';
 export * from './matchingTransactionsRestriction';
+export * from './matchingValuesRestriction';
 export * from './mccsRestriction';
 export * from './merchantAcquirerPair';
 export * from './merchantNamesRestriction';
@@ -231,6 +232,7 @@ import { InvalidField } from './invalidField';
 import { Link } from './link';
 import { ListNetworkTokensResponse } from './listNetworkTokensResponse';
 import { MatchingTransactionsRestriction } from './matchingTransactionsRestriction';
+import { MatchingValuesRestriction } from './matchingValuesRestriction';
 import { MccsRestriction } from './mccsRestriction';
 import { MerchantAcquirerPair } from './merchantAcquirerPair';
 import { MerchantNamesRestriction } from './merchantNamesRestriction';
@@ -365,6 +367,7 @@ let enumsMap: {[index: string]: any} = {
         "HKLocalAccountIdentification.TypeEnum": HKLocalAccountIdentification.TypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
+        "MatchingValuesRestriction.ValueEnum": MatchingValuesRestriction.ValueEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
         "NZLocalAccountIdentification.TypeEnum": NZLocalAccountIdentification.TypeEnum,
         "NetworkToken.StatusEnum": NetworkToken.StatusEnum,
@@ -501,6 +504,7 @@ let typeMap: {[index: string]: any} = {
     "Link": Link,
     "ListNetworkTokensResponse": ListNetworkTokensResponse,
     "MatchingTransactionsRestriction": MatchingTransactionsRestriction,
+    "MatchingValuesRestriction": MatchingValuesRestriction,
     "MccsRestriction": MccsRestriction,
     "MerchantAcquirerPair": MerchantAcquirerPair,
     "MerchantNamesRestriction": MerchantNamesRestriction,

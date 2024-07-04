@@ -10,6 +10,10 @@
 
 export class AdditionalDataLodging {
     /**
+    * A code that corresponds to the category of lodging charges for the payment. Possible values: * 1: Lodging * 2: No show reservation * 3: Advanced deposit
+    */
+    'lodging_SpecialProgramCode'?: string;
+    /**
     * The arrival date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**.
     */
     'lodging_checkInDate'?: string;
@@ -77,6 +81,11 @@ export class AdditionalDataLodging {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "lodging_SpecialProgramCode",
+            "baseName": "lodging.SpecialProgramCode",
+            "type": "string"
+        },
         {
             "name": "lodging_checkInDate",
             "baseName": "lodging.checkInDate",

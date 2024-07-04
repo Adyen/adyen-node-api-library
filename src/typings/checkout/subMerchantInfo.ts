@@ -7,15 +7,20 @@
  * Do not edit this class manually.
  */
 
+import { Amount } from './amount';
 import { BillingAddress } from './billingAddress';
 
 export class SubMerchantInfo {
     'address'?: BillingAddress;
+    'amount'?: Amount;
+    'email'?: string;
     'id'?: string;
     'mcc'?: string;
     'name'?: string;
+    'phoneNumber'?: string;
     'registeredSince'?: string;
     'taxId'?: string;
+    'url'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -24,6 +29,16 @@ export class SubMerchantInfo {
             "name": "address",
             "baseName": "address",
             "type": "BillingAddress"
+        },
+        {
+            "name": "amount",
+            "baseName": "amount",
+            "type": "Amount"
+        },
+        {
+            "name": "email",
+            "baseName": "email",
+            "type": "string"
         },
         {
             "name": "id",
@@ -41,6 +56,11 @@ export class SubMerchantInfo {
             "type": "string"
         },
         {
+            "name": "phoneNumber",
+            "baseName": "phoneNumber",
+            "type": "string"
+        },
+        {
             "name": "registeredSince",
             "baseName": "registeredSince",
             "type": "string"
@@ -48,6 +68,11 @@ export class SubMerchantInfo {
         {
             "name": "taxId",
             "baseName": "taxId",
+            "type": "string"
+        },
+        {
+            "name": "url",
+            "baseName": "url",
             "type": "string"
         }    ];
 
