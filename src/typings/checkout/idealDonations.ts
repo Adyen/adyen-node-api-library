@@ -16,7 +16,7 @@ export class IdealDonations {
     /**
     * The iDEAL issuer value of the shopper\'s selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
     */
-    'issuer': string;
+    'issuer'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */

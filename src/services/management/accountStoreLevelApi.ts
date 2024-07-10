@@ -12,6 +12,7 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     ListStoresResponse,
+    RestServiceError,
     Store,
     StoreCreationRequest,
     StoreCreationWithMerchantCodeRequest,
