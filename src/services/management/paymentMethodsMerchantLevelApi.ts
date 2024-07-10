@@ -15,7 +15,6 @@ import {
     PaymentMethod,
     PaymentMethodResponse,
     PaymentMethodSetupInfo,
-    RestServiceError,
     UpdatePaymentMethodInfo,
     ObjectSerializer
 } from "../../typings/management/models";
