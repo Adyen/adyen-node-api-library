@@ -41,7 +41,6 @@ export namespace PaymentDetails {
     export enum TypeEnum {
         Alipay = 'alipay',
         Multibanco = 'multibanco',
-        BankTransferIban = 'bankTransfer_IBAN',
         Paybright = 'paybright',
         Paynow = 'paynow',
         Affirm = 'affirm',

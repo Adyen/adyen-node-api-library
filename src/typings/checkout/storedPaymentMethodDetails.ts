@@ -60,6 +60,7 @@ export namespace StoredPaymentMethodDetails {
         BcmcMobile = 'bcmc_mobile',
         BcmcMobileQr = 'bcmc_mobile_QR',
         BcmcMobileApp = 'bcmc_mobile_app',
+        BankTransferIban = 'bankTransfer_IBAN',
         MomoWallet = 'momo_wallet',
         MomoWalletApp = 'momo_wallet_app',
         Twint = 'twint',

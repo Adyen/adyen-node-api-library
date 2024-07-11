@@ -31,6 +31,10 @@ export class TransferInfo {
     */
     'paymentInstrumentId'?: string;
     /**
+    *  The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that\'s not possible, it moves on to the next option in the order of your provided priorities.   Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Required for transfers with `category` **bank**. For more details, see [fallback priorities](https://docs.adyen.com/payouts/payout-service/payout-to-users/#fallback-priorities).
+    */
+    'priorities'?: Array<TransferInfo.PrioritiesEnum>;
+    /**
     * The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with `category` **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
     */
     'priority'?: TransferInfo.PriorityEnum;
@@ -82,6 +86,11 @@ export class TransferInfo {
             "type": "string"
         },
         {
+            "name": "priorities",
+            "baseName": "priorities",
+            "type": "Array<TransferInfo.PrioritiesEnum>"
+        },
+        {
             "name": "priority",
             "baseName": "priority",
             "type": "TransferInfo.PriorityEnum"
@@ -119,6 +128,14 @@ export namespace TransferInfo {
         IssuedCard = 'issuedCard',
         PlatformPayment = 'platformPayment',
         Card = 'card'
+    }
+    export enum PrioritiesEnum {
+        CrossBorder = 'crossBorder',
+        Fast = 'fast',
+        Instant = 'instant',
+        Internal = 'internal',
+        Regular = 'regular',
+        Wire = 'wire'
     }
     export enum PriorityEnum {
         CrossBorder = 'crossBorder',
