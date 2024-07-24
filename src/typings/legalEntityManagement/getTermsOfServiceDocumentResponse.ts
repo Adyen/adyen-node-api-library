@@ -22,6 +22,10 @@ export class GetTermsOfServiceDocumentResponse {
     */
     'language'?: string;
     /**
+    * The format of the Terms of Service document.
+    */
+    'termsOfServiceDocumentFormat'?: string;
+    /**
     * The unique identifier of the Terms of Service document.
     */
     'termsOfServiceDocumentId'?: string;
@@ -46,6 +50,11 @@ export class GetTermsOfServiceDocumentResponse {
         {
             "name": "language",
             "baseName": "language",
+            "type": "string"
+        },
+        {
+            "name": "termsOfServiceDocumentFormat",
+            "baseName": "termsOfServiceDocumentFormat",
             "type": "string"
         },
         {

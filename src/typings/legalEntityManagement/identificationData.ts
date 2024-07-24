@@ -34,7 +34,7 @@ export class IdentificationData {
     */
     'number'?: string;
     /**
-    * Type of identity data. For individuals, the `type` value is **nationalIdNumber**. For individuals in these countries, the following types are supported.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   
+    * Type of identity data. For individuals, the following types are supported:  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber
     */
     'type': IdentificationData.TypeEnum;
 
