@@ -13,7 +13,6 @@ import Client from "../../client";
 import { 
     BoardingTokenRequest,
     BoardingTokenResponse,
-    DefaultErrorResponseEntity,
     PaymentsAppResponse,
     ObjectSerializer
 } from "../../typings/paymentsApp/models";
