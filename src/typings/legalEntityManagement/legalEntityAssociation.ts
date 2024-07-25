@@ -30,11 +30,15 @@ export class LegalEntityAssociation {
     */
     'name'?: string;
     /**
+    * The individual\'s relationship to a legal representative if the `type` is **legalRepresentative**. Possible values: **parent**, **guardian**.
+    */
+    'relationship'?: string;
+    /**
     * Defines the Kyc Exemption Reason for a Settlor associated with a trust.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.
     */
     'settlorExemptionReason'?: Array<string>;
     /**
-    * Defines the relationship of the legal entity to the current legal entity.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
+    * Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
     */
     'type': LegalEntityAssociation.TypeEnum;
 
@@ -67,6 +71,11 @@ export class LegalEntityAssociation {
             "type": "string"
         },
         {
+            "name": "relationship",
+            "baseName": "relationship",
+            "type": "string"
+        },
+        {
             "name": "settlorExemptionReason",
             "baseName": "settlorExemptionReason",
             "type": "Array<string>"
@@ -87,6 +96,7 @@ export namespace LegalEntityAssociation {
         DefinedBeneficiary = 'definedBeneficiary',
         Director = 'director',
         ImmediateParentCompany = 'immediateParentCompany',
+        LegalRepresentative = 'legalRepresentative',
         PciSignatory = 'pciSignatory',
         Protector = 'protector',
         SecondaryTrustee = 'secondaryTrustee',

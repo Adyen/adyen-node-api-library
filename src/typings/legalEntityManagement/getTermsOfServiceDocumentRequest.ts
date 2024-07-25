@@ -14,6 +14,10 @@ export class GetTermsOfServiceDocumentRequest {
     */
     'language': string;
     /**
+    * The requested format for the Terms of Service document. Default value: JSON.
+    */
+    'termsOfServiceDocumentFormat'?: string;
+    /**
     * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**  
     */
     'type': GetTermsOfServiceDocumentRequest.TypeEnum;
@@ -24,6 +28,11 @@ export class GetTermsOfServiceDocumentRequest {
         {
             "name": "language",
             "baseName": "language",
+            "type": "string"
+        },
+        {
+            "name": "termsOfServiceDocumentFormat",
+            "baseName": "termsOfServiceDocumentFormat",
             "type": "string"
         },
         {

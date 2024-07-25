@@ -65,7 +65,7 @@ export class LegalEntity {
     */
     'verificationDeadlines'?: Array<VerificationDeadline>;
     /**
-    * A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/onboard-users#upfront).
+    * A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification).
     */
     'verificationPlan'?: string;
 
