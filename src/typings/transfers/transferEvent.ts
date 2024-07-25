@@ -241,6 +241,7 @@ export namespace TransferEvent {
         MiscCostPending = 'miscCostPending',
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
+        PendingApproval = 'pendingApproval',
         Received = 'received',
         RefundPending = 'refundPending',
         RefundReversalPending = 'refundReversalPending',

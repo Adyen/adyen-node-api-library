@@ -75,6 +75,10 @@ export class CardDonations {
     */
     'srcCorrelationId'?: string;
     /**
+    * The SRC reference for the Click to Pay token.
+    */
+    'srcDigitalCardId'?: string;
+    /**
     * The scheme that is being used for Click to Pay.
     */
     'srcScheme'?: string;
@@ -181,6 +185,11 @@ export class CardDonations {
         {
             "name": "srcCorrelationId",
             "baseName": "srcCorrelationId",
+            "type": "string"
+        },
+        {
+            "name": "srcDigitalCardId",
+            "baseName": "srcDigitalCardId",
             "type": "string"
         },
         {
