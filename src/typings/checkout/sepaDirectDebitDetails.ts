@@ -30,6 +30,10 @@ export class SepaDirectDebitDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
+    * The unique identifier of your user\'s verified transfer instrument, which you can use to top up their balance accounts.
+    */
+    'transferInstrumentId'?: string;
+    /**
     * **sepadirectdebit**
     */
     'type'?: SepaDirectDebitDetails.TypeEnum;
@@ -60,6 +64,11 @@ export class SepaDirectDebitDetails {
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
+            "type": "string"
+        },
+        {
+            "name": "transferInstrumentId",
+            "baseName": "transferInstrumentId",
             "type": "string"
         },
         {

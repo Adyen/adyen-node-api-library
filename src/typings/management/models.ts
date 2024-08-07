@@ -164,6 +164,7 @@ export * from './testCompanyWebhookRequest';
 export * from './testOutput';
 export * from './testWebhookRequest';
 export * from './testWebhookResponse';
+export * from './ticketInfo';
 export * from './timeouts';
 export * from './transactionDescriptionInfo';
 export * from './twintInfo';
@@ -350,6 +351,7 @@ import { TestCompanyWebhookRequest } from './testCompanyWebhookRequest';
 import { TestOutput } from './testOutput';
 import { TestWebhookRequest } from './testWebhookRequest';
 import { TestWebhookResponse } from './testWebhookResponse';
+import { TicketInfo } from './ticketInfo';
 import { Timeouts } from './timeouts';
 import { TransactionDescriptionInfo } from './transactionDescriptionInfo';
 import { TwintInfo } from './twintInfo';
@@ -621,6 +623,7 @@ let typeMap: {[index: string]: any} = {
     "TestOutput": TestOutput,
     "TestWebhookRequest": TestWebhookRequest,
     "TestWebhookResponse": TestWebhookResponse,
+    "TicketInfo": TicketInfo,
     "Timeouts": Timeouts,
     "TransactionDescriptionInfo": TransactionDescriptionInfo,
     "TwintInfo": TwintInfo,

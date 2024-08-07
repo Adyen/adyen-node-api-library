@@ -8,17 +8,19 @@
  */
 
 import { BankAccountV3 } from './bankAccountV3';
+import { Card } from './card';
 import { MerchantData } from './merchantData';
 
 export class CounterpartyV3 {
     /**
-    * The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+    * The unique identifier of the counterparty [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).
     */
     'balanceAccountId'?: string;
     'bankAccount'?: BankAccountV3;
+    'card'?: Card;
     'merchant'?: MerchantData;
     /**
-    * The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+    * The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).
     */
     'transferInstrumentId'?: string;
 
@@ -34,6 +36,11 @@ export class CounterpartyV3 {
             "name": "bankAccount",
             "baseName": "bankAccount",
             "type": "BankAccountV3"
+        },
+        {
+            "name": "card",
+            "baseName": "card",
+            "type": "Card"
         },
         {
             "name": "merchant",
