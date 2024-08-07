@@ -20,6 +20,8 @@ export * from './bankAccountV3';
 export * from './bankCategoryData';
 export * from './cALocalAccountIdentification';
 export * from './cZLocalAccountIdentification';
+export * from './card';
+export * from './cardIdentification';
 export * from './confirmationTrackingData';
 export * from './counterpartyV3';
 export * from './dKLocalAccountIdentification';
@@ -72,6 +74,8 @@ import { BankAccountV3 } from './bankAccountV3';
 import { BankCategoryData } from './bankCategoryData';
 import { CALocalAccountIdentification } from './cALocalAccountIdentification';
 import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
+import { Card } from './card';
+import { CardIdentification } from './cardIdentification';
 import { ConfirmationTrackingData } from './confirmationTrackingData';
 import { CounterpartyV3 } from './counterpartyV3';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
@@ -184,6 +188,8 @@ let typeMap: {[index: string]: any} = {
     "BankCategoryData": BankCategoryData,
     "CALocalAccountIdentification": CALocalAccountIdentification,
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
+    "Card": Card,
+    "CardIdentification": CardIdentification,
     "ConfirmationTrackingData": ConfirmationTrackingData,
     "CounterpartyV3": CounterpartyV3,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,

@@ -21,6 +21,7 @@ import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { PayPalInfo } from './payPalInfo';
 import { SofortInfo } from './sofortInfo';
 import { SwishInfo } from './swishInfo';
+import { TicketInfo } from './ticketInfo';
 import { TwintInfo } from './twintInfo';
 import { VippsInfo } from './vippsInfo';
 import { WeChatPayInfo } from './weChatPayInfo';
@@ -90,6 +91,7 @@ export class PaymentMethod {
     */
     'storeIds'?: Array<string>;
     'swish'?: SwishInfo;
+    'ticket'?: TicketInfo;
     'twint'?: TwintInfo;
     /**
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
@@ -271,6 +273,11 @@ export class PaymentMethod {
             "name": "swish",
             "baseName": "swish",
             "type": "SwishInfo"
+        },
+        {
+            "name": "ticket",
+            "baseName": "ticket",
+            "type": "TicketInfo"
         },
         {
             "name": "twint",

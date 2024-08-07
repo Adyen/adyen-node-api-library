@@ -16,6 +16,10 @@ import { WebData } from './webData';
 
 export class Organization {
     /**
+    * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.
+    */
+    'countryOfGoverningLaw'?: string;
+    /**
     * The date when the organization was incorporated in YYYY-MM-DD format.
     */
     'dateOfIncorporation'?: string;
@@ -65,6 +69,11 @@ export class Organization {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "countryOfGoverningLaw",
+            "baseName": "countryOfGoverningLaw",
+            "type": "string"
+        },
         {
             "name": "dateOfIncorporation",
             "baseName": "dateOfIncorporation",

@@ -11,8 +11,11 @@ import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
 import { 
+    DonationCampaignsRequest,
+    DonationCampaignsResponse,
     DonationPaymentRequest,
     DonationPaymentResponse,
+    ServiceError,
     ObjectSerializer
 } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -26,6 +29,24 @@ export class DonationsApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
+    /**
+    * @summary Get a list of donation campaigns.
+    * @param donationCampaignsRequest {@link DonationCampaignsRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link DonationCampaignsResponse }
+    */
+    public async donationCampaigns(donationCampaignsRequest: DonationCampaignsRequest, requestOptions?: IRequest.Options): Promise<DonationCampaignsResponse> {
+        const endpoint = `${this.baseUrl}/donationCampaigns`;
+        const resource = new Resource(this, endpoint);
+        const request: DonationCampaignsRequest = ObjectSerializer.serialize(donationCampaignsRequest, "DonationCampaignsRequest");
+        const response = await getJsonResponse<DonationCampaignsRequest, DonationCampaignsResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "DonationCampaignsResponse");
     }
 
     /**
