@@ -15,6 +15,7 @@ import {
     CreateApiCredentialResponse,
     CreateMerchantApiCredentialRequest,
     ListMerchantApiCredentialsResponse,
+    RestServiceError,
     UpdateMerchantApiCredentialRequest,
     ObjectSerializer
 } from "../../typings/management/models";

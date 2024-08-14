@@ -46,6 +46,10 @@ export class AchDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
+    * The unique identifier of your user\'s verified transfer instrument, which you can use to top up their balance accounts.
+    */
+    'transferInstrumentId'?: string;
+    /**
     * **ach**
     */
     'type'?: AchDetails.TypeEnum;
@@ -96,6 +100,11 @@ export class AchDetails {
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
+            "type": "string"
+        },
+        {
+            "name": "transferInstrumentId",
+            "baseName": "transferInstrumentId",
             "type": "string"
         },
         {

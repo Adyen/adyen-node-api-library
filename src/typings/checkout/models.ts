@@ -30,6 +30,7 @@ export * from './address';
 export * from './afterpayDetails';
 export * from './amazonPayDetails';
 export * from './amount';
+export * from './amounts';
 export * from './ancvDetails';
 export * from './androidPayDetails';
 export * from './applePayDetails';
@@ -80,6 +81,10 @@ export * from './deliveryMethod';
 export * from './detailsRequestAuthenticationData';
 export * from './deviceRenderOptions';
 export * from './dokuDetails';
+export * from './donation';
+export * from './donationCampaign';
+export * from './donationCampaignsRequest';
+export * from './donationCampaignsResponse';
 export * from './donationPaymentRequest';
 export * from './donationPaymentResponse';
 export * from './dotpayDetails';
@@ -231,6 +236,7 @@ import { Address } from './address';
 import { AfterpayDetails } from './afterpayDetails';
 import { AmazonPayDetails } from './amazonPayDetails';
 import { Amount } from './amount';
+import { Amounts } from './amounts';
 import { AncvDetails } from './ancvDetails';
 import { AndroidPayDetails } from './androidPayDetails';
 import { ApplePayDetails } from './applePayDetails';
@@ -281,6 +287,10 @@ import { DeliveryMethod } from './deliveryMethod';
 import { DetailsRequestAuthenticationData } from './detailsRequestAuthenticationData';
 import { DeviceRenderOptions } from './deviceRenderOptions';
 import { DokuDetails } from './dokuDetails';
+import { Donation } from './donation';
+import { DonationCampaign } from './donationCampaign';
+import { DonationCampaignsRequest } from './donationCampaignsRequest';
+import { DonationCampaignsResponse } from './donationCampaignsResponse';
 import { DonationPaymentRequest } from './donationPaymentRequest';
 import { DonationPaymentResponse } from './donationPaymentResponse';
 import { DotpayDetails } from './dotpayDetails';
@@ -477,11 +487,13 @@ let enumsMap: {[index: string]: any} = {
         "CreateCheckoutSessionRequest.ModeEnum": CreateCheckoutSessionRequest.ModeEnum,
         "CreateCheckoutSessionRequest.RecurringProcessingModelEnum": CreateCheckoutSessionRequest.RecurringProcessingModelEnum,
         "CreateCheckoutSessionRequest.ShopperInteractionEnum": CreateCheckoutSessionRequest.ShopperInteractionEnum,
+        "CreateCheckoutSessionRequest.StoreFiltrationModeEnum": CreateCheckoutSessionRequest.StoreFiltrationModeEnum,
         "CreateCheckoutSessionRequest.StorePaymentMethodModeEnum": CreateCheckoutSessionRequest.StorePaymentMethodModeEnum,
         "CreateCheckoutSessionResponse.ChannelEnum": CreateCheckoutSessionResponse.ChannelEnum,
         "CreateCheckoutSessionResponse.ModeEnum": CreateCheckoutSessionResponse.ModeEnum,
         "CreateCheckoutSessionResponse.RecurringProcessingModelEnum": CreateCheckoutSessionResponse.RecurringProcessingModelEnum,
         "CreateCheckoutSessionResponse.ShopperInteractionEnum": CreateCheckoutSessionResponse.ShopperInteractionEnum,
+        "CreateCheckoutSessionResponse.StoreFiltrationModeEnum": CreateCheckoutSessionResponse.StoreFiltrationModeEnum,
         "CreateCheckoutSessionResponse.StorePaymentMethodModeEnum": CreateCheckoutSessionResponse.StorePaymentMethodModeEnum,
         "CreateOrderResponse.ResultCodeEnum": CreateOrderResponse.ResultCodeEnum,
         "DeliveryMethod.TypeEnum": DeliveryMethod.TypeEnum,
@@ -634,6 +646,7 @@ let typeMap: {[index: string]: any} = {
     "AfterpayDetails": AfterpayDetails,
     "AmazonPayDetails": AmazonPayDetails,
     "Amount": Amount,
+    "Amounts": Amounts,
     "AncvDetails": AncvDetails,
     "AndroidPayDetails": AndroidPayDetails,
     "ApplePayDetails": ApplePayDetails,
@@ -684,6 +697,10 @@ let typeMap: {[index: string]: any} = {
     "DetailsRequestAuthenticationData": DetailsRequestAuthenticationData,
     "DeviceRenderOptions": DeviceRenderOptions,
     "DokuDetails": DokuDetails,
+    "Donation": Donation,
+    "DonationCampaign": DonationCampaign,
+    "DonationCampaignsRequest": DonationCampaignsRequest,
+    "DonationCampaignsResponse": DonationCampaignsResponse,
     "DonationPaymentRequest": DonationPaymentRequest,
     "DonationPaymentResponse": DonationPaymentResponse,
     "DotpayDetails": DotpayDetails,

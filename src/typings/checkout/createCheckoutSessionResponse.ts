@@ -203,6 +203,10 @@ export class CreateCheckoutSessionResponse {
     */
     'store'?: string;
     /**
+    * Specifies how payment methods should be filtered based on the \'store\' parameter:   - \'exclusive\': Only payment methods belonging to the specified \'store\' are returned.   - \'inclusive\': Payment methods from the \'store\' and those not associated with any other store are returned.   - \'skipFilter\': All payment methods are returned, regardless of store association.
+    */
+    'storeFiltrationMode'?: CreateCheckoutSessionResponse.StoreFiltrationModeEnum;
+    /**
     * When true and `shopperReference` is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types).
     */
     'storePaymentMethod'?: boolean;
@@ -511,6 +515,11 @@ export class CreateCheckoutSessionResponse {
             "type": "string"
         },
         {
+            "name": "storeFiltrationMode",
+            "baseName": "storeFiltrationMode",
+            "type": "CreateCheckoutSessionResponse.StoreFiltrationModeEnum"
+        },
+        {
             "name": "storePaymentMethod",
             "baseName": "storePaymentMethod",
             "type": "boolean"
@@ -576,6 +585,11 @@ export namespace CreateCheckoutSessionResponse {
         ContAuth = 'ContAuth',
         Moto = 'Moto',
         Pos = 'POS'
+    }
+    export enum StoreFiltrationModeEnum {
+        Exclusive = 'exclusive',
+        Inclusive = 'inclusive',
+        SkipFilter = 'skipFilter'
     }
     export enum StorePaymentMethodModeEnum {
         AskForConsent = 'askForConsent',

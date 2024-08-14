@@ -21,6 +21,7 @@ import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { PayPalInfo } from './payPalInfo';
 import { SofortInfo } from './sofortInfo';
 import { SwishInfo } from './swishInfo';
+import { TicketInfo } from './ticketInfo';
 import { TwintInfo } from './twintInfo';
 import { VippsInfo } from './vippsInfo';
 import { WeChatPayInfo } from './weChatPayInfo';
@@ -78,6 +79,7 @@ export class PaymentMethodSetupInfo {
     */
     'storeIds'?: Array<string>;
     'swish'?: SwishInfo;
+    'ticket'?: TicketInfo;
     'twint'?: TwintInfo;
     /**
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
@@ -242,6 +244,11 @@ export class PaymentMethodSetupInfo {
             "type": "SwishInfo"
         },
         {
+            "name": "ticket",
+            "baseName": "ticket",
+            "type": "TicketInfo"
+        },
+        {
             "name": "twint",
             "baseName": "twint",
             "type": "TwintInfo"
@@ -323,9 +330,12 @@ export namespace PaymentMethodSetupInfo {
         Multibanco = 'multibanco',
         OnlineBankingPl = 'onlineBanking_PL',
         Paybybank = 'paybybank',
+        Paynow = 'paynow',
+        PaynowPos = 'paynow_pos',
         Paypal = 'paypal',
         Payshop = 'payshop',
         Swish = 'swish',
+        Ticket = 'ticket',
         Trustly = 'trustly',
         Twint = 'twint',
         TwintPos = 'twint_pos',

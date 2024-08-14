@@ -13,6 +13,7 @@ import Client from "../../client";
 import { 
     PaymentInstrumentGroup,
     PaymentInstrumentGroupInfo,
+    RestServiceError,
     TransactionRulesResponse,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
