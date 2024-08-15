@@ -14,7 +14,7 @@ export class GetTermsOfServiceDocumentRequest {
     */
     'language': string;
     /**
-    * The requested format for the Terms of Service document. Default value: JSON.
+    * The requested format for the Terms of Service document. Default value: JSON. Possible values: JSON or PDF.
     */
     'termsOfServiceDocumentFormat'?: string;
     /**

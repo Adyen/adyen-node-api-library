@@ -12,27 +12,27 @@ import { Address } from './address';
 export class UltimatePartyIdentification {
     'address'?: Address;
     /**
-    * The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**. Should not be before January 1, 1900.  Allowed only when `type` is **individual**.
+    * The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when `type` is **individual**.
     */
     'dateOfBirth'?: string;
     /**
-    * First name of the individual.  Allowed only when `type` is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. 
+    * The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
     */
     'firstName'?: string;
     /**
-    * The name of the entity.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" \' and Space. 
+    * The full name of the entity that owns the bank account or card.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" \' and space.  Required when `category` is **bank**.
     */
-    'fullName': string;
+    'fullName'?: string;
     /**
-    * Last name of the individual.  Allowed only when `type` is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. 
+    * The last name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
     */
     'lastName'?: string;
     /**
-    * A unique reference to identify the party or counterparty involved in transfers. This identifier ensures consistency and uniqueness throughout all transactions initiated to and from the same party. For example, your client\'s unique wallet or payee ID.
+    * A unique reference to identify the party or counterparty involved in the transfer. For example, your client\'s unique wallet or payee ID.  Required when you include `cardIdentification.storedPaymentMethodId`.
     */
     'reference'?: string;
     /**
-    * The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**.
+    * The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when `category` is **card**. In this case, the value must be **individual**.
     */
     'type'?: UltimatePartyIdentification.TypeEnum;
 

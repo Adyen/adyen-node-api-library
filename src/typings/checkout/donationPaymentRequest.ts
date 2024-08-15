@@ -70,6 +70,10 @@ export class DonationPaymentRequest {
     */
     'donationAccount'?: string;
     /**
+    * The donation campaign ID received in the `/donationCampaigns` call.
+    */
+    'donationCampaignId'?: string;
+    /**
     * PSP reference of the transaction from which the donation token is generated. Required when `donationToken` is provided.
     */
     'donationOriginalPspReference'?: string;
@@ -239,6 +243,11 @@ export class DonationPaymentRequest {
         {
             "name": "donationAccount",
             "baseName": "donationAccount",
+            "type": "string"
+        },
+        {
+            "name": "donationCampaignId",
+            "baseName": "donationCampaignId",
             "type": "string"
         },
         {

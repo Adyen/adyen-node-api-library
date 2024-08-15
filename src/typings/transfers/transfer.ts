@@ -21,7 +21,7 @@ export class Transfer {
     'amount': Amount;
     'balanceAccount'?: ResourceReference;
     /**
-    * The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
+    * The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
     */
     'category': Transfer.CategoryEnum;
     /**
@@ -159,6 +159,7 @@ export class Transfer {
 export namespace Transfer {
     export enum CategoryEnum {
         Bank = 'bank',
+        Card = 'card',
         Internal = 'internal',
         IssuedCard = 'issuedCard',
         PlatformPayment = 'platformPayment'
@@ -256,45 +257,43 @@ export namespace Transfer {
         Undefined = 'undefined'
     }
     export enum TypeEnum {
-        AtmWithdrawal = 'atmWithdrawal',
-        AtmWithdrawalReversal = 'atmWithdrawalReversal',
-        BalanceAdjustment = 'balanceAdjustment',
-        BalanceMigration = 'balanceMigration',
-        BalanceRollover = 'balanceRollover',
-        BankDirectDebit = 'bankDirectDebit',
-        BankTransfer = 'bankTransfer',
-        CapitalFundsCollection = 'capitalFundsCollection',
+        Payment = 'payment',
         Capture = 'capture',
         CaptureReversal = 'captureReversal',
-        CardTransfer = 'cardTransfer',
-        CashOutFee = 'cashOutFee',
-        CashOutFunding = 'cashOutFunding',
-        CashOutInstruction = 'cashOutInstruction',
-        CashoutFee = 'cashoutFee',
-        CashoutFunding = 'cashoutFunding',
-        CashoutRepayment = 'cashoutRepayment',
+        Refund = 'refund',
+        RefundReversal = 'refundReversal',
         Chargeback = 'chargeback',
         ChargebackCorrection = 'chargebackCorrection',
         ChargebackReversal = 'chargebackReversal',
         ChargebackReversalCorrection = 'chargebackReversalCorrection',
+        SecondChargeback = 'secondChargeback',
+        SecondChargebackCorrection = 'secondChargebackCorrection',
+        AtmWithdrawal = 'atmWithdrawal',
+        AtmWithdrawalReversal = 'atmWithdrawalReversal',
+        InternalTransfer = 'internalTransfer',
+        InternalDirectDebit = 'internalDirectDebit',
+        ManualCorrection = 'manualCorrection',
+        InvoiceDeduction = 'invoiceDeduction',
         DepositCorrection = 'depositCorrection',
+        ReserveAdjustment = 'reserveAdjustment',
+        BankTransfer = 'bankTransfer',
+        BankDirectDebit = 'bankDirectDebit',
+        CardTransfer = 'cardTransfer',
+        MiscCost = 'miscCost',
+        PaymentCost = 'paymentCost',
         Fee = 'fee',
+        Leftover = 'leftover',
         Grant = 'grant',
+        CapitalFundsCollection = 'capitalFundsCollection',
+        CashOutInstruction = 'cashOutInstruction',
+        CashoutFee = 'cashoutFee',
+        CashoutRepayment = 'cashoutRepayment',
+        CashoutFunding = 'cashoutFunding',
+        Repayment = 'repayment',
         Installment = 'installment',
         InstallmentReversal = 'installmentReversal',
-        InternalDirectDebit = 'internalDirectDebit',
-        InternalTransfer = 'internalTransfer',
-        InvoiceDeduction = 'invoiceDeduction',
-        Leftover = 'leftover',
-        ManualCorrection = 'manualCorrection',
-        MiscCost = 'miscCost',
-        Payment = 'payment',
-        PaymentCost = 'paymentCost',
-        Refund = 'refund',
-        RefundReversal = 'refundReversal',
-        Repayment = 'repayment',
-        ReserveAdjustment = 'reserveAdjustment',
-        SecondChargeback = 'secondChargeback',
-        SecondChargebackCorrection = 'secondChargebackCorrection'
+        BalanceAdjustment = 'balanceAdjustment',
+        BalanceRollover = 'balanceRollover',
+        BalanceMigration = 'balanceMigration'
     }
 }

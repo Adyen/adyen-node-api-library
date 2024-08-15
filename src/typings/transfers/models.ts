@@ -23,6 +23,8 @@ export * from './capitalBalance';
 export * from './capitalGrant';
 export * from './capitalGrantInfo';
 export * from './capitalGrants';
+export * from './card';
+export * from './cardIdentification';
 export * from './confirmationTrackingData';
 export * from './counterparty';
 export * from './counterpartyInfoV3';
@@ -98,6 +100,8 @@ import { CapitalBalance } from './capitalBalance';
 import { CapitalGrant } from './capitalGrant';
 import { CapitalGrantInfo } from './capitalGrantInfo';
 import { CapitalGrants } from './capitalGrants';
+import { Card } from './card';
+import { CardIdentification } from './cardIdentification';
 import { ConfirmationTrackingData } from './confirmationTrackingData';
 import { Counterparty } from './counterparty';
 import { CounterpartyInfoV3 } from './counterpartyInfoV3';
@@ -246,6 +250,8 @@ let typeMap: {[index: string]: any} = {
     "CapitalGrant": CapitalGrant,
     "CapitalGrantInfo": CapitalGrantInfo,
     "CapitalGrants": CapitalGrants,
+    "Card": Card,
+    "CardIdentification": CardIdentification,
     "ConfirmationTrackingData": ConfirmationTrackingData,
     "Counterparty": Counterparty,
     "CounterpartyInfoV3": CounterpartyInfoV3,
