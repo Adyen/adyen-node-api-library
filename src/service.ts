@@ -33,7 +33,7 @@ class Service {
         const config: Config = this.client.config;
 
         if (config.environment !== "LIVE") {
-            return url;
+            return url.replace("-live", "-test");
         }
 
         if (url.includes("pal-")) {
