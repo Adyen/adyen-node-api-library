@@ -12,7 +12,6 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     Document,
-    ServiceError,
     ObjectSerializer
 } from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
