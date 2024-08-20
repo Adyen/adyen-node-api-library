@@ -13,6 +13,10 @@ import { Name } from './name';
 import { SubMerchant } from './subMerchant';
 
 export class FundRecipient {
+    /**
+    * Fund Recipient Iban for C2C payments
+    */
+    'IBAN'?: string;
     'billingAddress'?: Address;
     'paymentMethod'?: CardDetails;
     /**
@@ -45,6 +49,11 @@ export class FundRecipient {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IBAN",
+            "baseName": "IBAN",
+            "type": "string"
+        },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",

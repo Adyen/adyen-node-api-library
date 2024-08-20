@@ -11,6 +11,8 @@ import { Address } from './address';
 import { Amount } from './amount';
 import { ApplicationInfo } from './applicationInfo';
 import { CheckoutSessionThreeDS2RequestData } from './checkoutSessionThreeDS2RequestData';
+import { FundOrigin } from './fundOrigin';
+import { FundRecipient } from './fundRecipient';
 import { InstallmentOption } from './installmentOption';
 import { LineItem } from './lineItem';
 import { Name } from './name';
@@ -55,6 +57,8 @@ export class PaymentLinkRequest {
     * The date when the payment link expires.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format with time zone offset: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.  The maximum expiry date is 70 days after the payment link is created.  If not provided, the payment link expires 24 hours after it was created.
     */
     'expiresAt'?: Date;
+    'fundOrigin'?: FundOrigin;
+    'fundRecipient'?: FundRecipient;
     /**
     * A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options.
     */
@@ -218,6 +222,16 @@ export class PaymentLinkRequest {
             "name": "expiresAt",
             "baseName": "expiresAt",
             "type": "Date"
+        },
+        {
+            "name": "fundOrigin",
+            "baseName": "fundOrigin",
+            "type": "FundOrigin"
+        },
+        {
+            "name": "fundRecipient",
+            "baseName": "fundRecipient",
+            "type": "FundRecipient"
         },
         {
             "name": "installmentOptions",

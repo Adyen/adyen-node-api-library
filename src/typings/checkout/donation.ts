@@ -14,7 +14,7 @@ export class Donation {
     */
     'currency': string;
     /**
-    * The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).\"Possible values:\\n\\n**roundup**: a donation where the original transaction amount is rounded up as a donation.**fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.
+    * The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.
     */
     'donationType': string;
     /**

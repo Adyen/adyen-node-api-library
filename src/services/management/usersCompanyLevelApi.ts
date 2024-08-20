@@ -15,6 +15,7 @@ import {
     CreateCompanyUserRequest,
     CreateCompanyUserResponse,
     ListCompanyUsersResponse,
+    RestServiceError,
     UpdateCompanyUserRequest,
     ObjectSerializer
 } from "../../typings/management/models";
