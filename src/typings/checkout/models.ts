@@ -122,6 +122,7 @@ export * from './name';
 export * from './openInvoiceDetails';
 export * from './payByBankDetails';
 export * from './payPalDetails';
+export * from './payToDetails';
 export * from './payUUpiDetails';
 export * from './payWithGoogleDetails';
 export * from './payWithGoogleDonations';
@@ -328,6 +329,7 @@ import { Name } from './name';
 import { OpenInvoiceDetails } from './openInvoiceDetails';
 import { PayByBankDetails } from './payByBankDetails';
 import { PayPalDetails } from './payPalDetails';
+import { PayToDetails } from './payToDetails';
 import { PayUUpiDetails } from './payUUpiDetails';
 import { PayWithGoogleDetails } from './payWithGoogleDetails';
 import { PayWithGoogleDonations } from './payWithGoogleDonations';
@@ -532,6 +534,7 @@ let enumsMap: {[index: string]: any} = {
         "PayByBankDetails.TypeEnum": PayByBankDetails.TypeEnum,
         "PayPalDetails.SubtypeEnum": PayPalDetails.SubtypeEnum,
         "PayPalDetails.TypeEnum": PayPalDetails.TypeEnum,
+        "PayToDetails.TypeEnum": PayToDetails.TypeEnum,
         "PayUUpiDetails.TypeEnum": PayUUpiDetails.TypeEnum,
         "PayWithGoogleDetails.FundingSourceEnum": PayWithGoogleDetails.FundingSourceEnum,
         "PayWithGoogleDetails.TypeEnum": PayWithGoogleDetails.TypeEnum,
@@ -738,6 +741,7 @@ let typeMap: {[index: string]: any} = {
     "OpenInvoiceDetails": OpenInvoiceDetails,
     "PayByBankDetails": PayByBankDetails,
     "PayPalDetails": PayPalDetails,
+    "PayToDetails": PayToDetails,
     "PayUUpiDetails": PayUUpiDetails,
     "PayWithGoogleDetails": PayWithGoogleDetails,
     "PayWithGoogleDonations": PayWithGoogleDonations,
