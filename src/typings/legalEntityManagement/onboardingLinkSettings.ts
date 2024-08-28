@@ -30,19 +30,19 @@ export class OnboardingLinkSettings {
     */
     'editPrefilledCountry'?: boolean;
     /**
-    * Default value: **false**  Indicates if the user of the individual legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+    * Default value: **true**  Indicates whether the introduction screen is hidden for the user of the individual legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
     */
     'hideOnboardingIntroductionIndividual'?: boolean;
     /**
-    * Default value: **false**  Indicates if the user of the organization legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+    * Default value: **true**  Indicates whether the introduction screen is hidden for the user of the organization legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
     */
     'hideOnboardingIntroductionOrganization'?: boolean;
     /**
-    * Default value: **false**  Indicates if the user of the sole proprietorship legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+    * Default value: **true**  Indicates whether the introduction screen is hidden for the user of the sole proprietorship legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
     */
     'hideOnboardingIntroductionSoleProprietor'?: boolean;
     /**
-    * Default value: **false**  Indicates if the user of the trust legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+    * Default value: **true**  Indicates whether the introduction screen is hidden for the user of the trust legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
     */
     'hideOnboardingIntroductionTrust'?: boolean;
     /**
