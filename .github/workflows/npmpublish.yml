@@ -15,8 +15,8 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: |
+          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_ADYEN_NODE_API_LIBRARY_TOKEN }}
           npm install
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_ADYEN_NODE_API_LIBRARY_TOKEN }}" > .npmrc
           npm run build
           npm publish
         env:
