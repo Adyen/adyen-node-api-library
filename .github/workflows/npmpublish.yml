@@ -8,6 +8,7 @@ on:
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
+    environment: release
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -15,7 +16,7 @@ jobs:
           node-version: 18.x
           registry-url: https://registry.npmjs.org/
       - run: |
-          npm install
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_ADYEN_NODE_API_LIBRARY_TOKEN }}
+          npm install
           npm run build
           npm publish
