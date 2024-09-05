@@ -13,10 +13,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18.x
-          registry-url: https://registry.npmjs.org/
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
       - run: |
-          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_ADYEN_NODE_API_LIBRARY_TOKEN }}
           npm install
           npm run build
-          npm publish
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ADYEN_NODE_API_LIBRARY_TOKEN }}
