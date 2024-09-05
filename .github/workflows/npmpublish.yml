@@ -17,7 +17,6 @@ jobs:
       - run: |
           npm install
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_ADYEN_NODE_API_LIBRARY_TOKEN }}" > .npmrc
-          npm whoami
           npm run build
           npm publish
         env:
