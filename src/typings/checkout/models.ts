@@ -59,6 +59,7 @@ export * from './cardDonations';
 export * from './cashAppDetails';
 export * from './cellulantDetails';
 export * from './checkoutAwaitAction';
+export * from './checkoutBankTransferAction';
 export * from './checkoutDelegatedAuthenticationAction';
 export * from './checkoutNativeRedirectAction';
 export * from './checkoutOrderResponse';
@@ -90,6 +91,7 @@ export * from './donationPaymentResponse';
 export * from './dotpayDetails';
 export * from './dragonpayDetails';
 export * from './econtextVoucherDetails';
+export * from './eftDetails';
 export * from './encryptedOrderData';
 export * from './externalPlatform';
 export * from './forexQuote';
@@ -266,6 +268,7 @@ import { CardDonations } from './cardDonations';
 import { CashAppDetails } from './cashAppDetails';
 import { CellulantDetails } from './cellulantDetails';
 import { CheckoutAwaitAction } from './checkoutAwaitAction';
+import { CheckoutBankTransferAction } from './checkoutBankTransferAction';
 import { CheckoutDelegatedAuthenticationAction } from './checkoutDelegatedAuthenticationAction';
 import { CheckoutNativeRedirectAction } from './checkoutNativeRedirectAction';
 import { CheckoutOrderResponse } from './checkoutOrderResponse';
@@ -297,6 +300,7 @@ import { DonationPaymentResponse } from './donationPaymentResponse';
 import { DotpayDetails } from './dotpayDetails';
 import { DragonpayDetails } from './dragonpayDetails';
 import { EcontextVoucherDetails } from './econtextVoucherDetails';
+import { EftDetails } from './eftDetails';
 import { EncryptedOrderData } from './encryptedOrderData';
 import { ExternalPlatform } from './externalPlatform';
 import { ForexQuote } from './forexQuote';
@@ -475,6 +479,7 @@ let enumsMap: {[index: string]: any} = {
         "CashAppDetails.TypeEnum": CashAppDetails.TypeEnum,
         "CellulantDetails.TypeEnum": CellulantDetails.TypeEnum,
         "CheckoutAwaitAction.TypeEnum": CheckoutAwaitAction.TypeEnum,
+        "CheckoutBankTransferAction.TypeEnum": CheckoutBankTransferAction.TypeEnum,
         "CheckoutDelegatedAuthenticationAction.TypeEnum": CheckoutDelegatedAuthenticationAction.TypeEnum,
         "CheckoutNativeRedirectAction.TypeEnum": CheckoutNativeRedirectAction.TypeEnum,
         "CheckoutQrCodeAction.TypeEnum": CheckoutQrCodeAction.TypeEnum,
@@ -509,6 +514,7 @@ let enumsMap: {[index: string]: any} = {
         "DotpayDetails.TypeEnum": DotpayDetails.TypeEnum,
         "DragonpayDetails.TypeEnum": DragonpayDetails.TypeEnum,
         "EcontextVoucherDetails.TypeEnum": EcontextVoucherDetails.TypeEnum,
+        "EftDetails.TypeEnum": EftDetails.TypeEnum,
         "GenericIssuerPaymentMethodDetails.TypeEnum": GenericIssuerPaymentMethodDetails.TypeEnum,
         "GiropayDetails.TypeEnum": GiropayDetails.TypeEnum,
         "GooglePayDetails.FundingSourceEnum": GooglePayDetails.FundingSourceEnum,
@@ -678,6 +684,7 @@ let typeMap: {[index: string]: any} = {
     "CashAppDetails": CashAppDetails,
     "CellulantDetails": CellulantDetails,
     "CheckoutAwaitAction": CheckoutAwaitAction,
+    "CheckoutBankTransferAction": CheckoutBankTransferAction,
     "CheckoutDelegatedAuthenticationAction": CheckoutDelegatedAuthenticationAction,
     "CheckoutNativeRedirectAction": CheckoutNativeRedirectAction,
     "CheckoutOrderResponse": CheckoutOrderResponse,
@@ -709,6 +716,7 @@ let typeMap: {[index: string]: any} = {
     "DotpayDetails": DotpayDetails,
     "DragonpayDetails": DragonpayDetails,
     "EcontextVoucherDetails": EcontextVoucherDetails,
+    "EftDetails": EftDetails,
     "EncryptedOrderData": EncryptedOrderData,
     "ExternalPlatform": ExternalPlatform,
     "ForexQuote": ForexQuote,

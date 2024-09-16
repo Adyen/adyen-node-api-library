@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { AccelInfo } from './accelInfo';
 import { AfterpayTouchInfo } from './afterpayTouchInfo';
 import { AmexInfo } from './amexInfo';
 import { ApplePayInfo } from './applePayInfo';
@@ -18,8 +19,13 @@ import { GiroPayInfo } from './giroPayInfo';
 import { GooglePayInfo } from './googlePayInfo';
 import { KlarnaInfo } from './klarnaInfo';
 import { MealVoucherFRInfo } from './mealVoucherFRInfo';
+import { NyceInfo } from './nyceInfo';
+import { PayMeInfo } from './payMeInfo';
 import { PayPalInfo } from './payPalInfo';
+import { PulseInfo } from './pulseInfo';
+import { SodexoInfo } from './sodexoInfo';
 import { SofortInfo } from './sofortInfo';
+import { StarInfo } from './starInfo';
 import { SwishInfo } from './swishInfo';
 import { TicketInfo } from './ticketInfo';
 import { TwintInfo } from './twintInfo';
@@ -28,6 +34,7 @@ import { WeChatPayInfo } from './weChatPayInfo';
 import { WeChatPayPosInfo } from './weChatPayPosInfo';
 
 export class PaymentMethodSetupInfo {
+    'accel'?: AccelInfo;
     'afterpayTouch'?: AfterpayTouchInfo;
     'amex'?: AmexInfo;
     'applePay'?: ApplePayInfo;
@@ -64,7 +71,10 @@ export class PaymentMethodSetupInfo {
     'maestro'?: GenericPmWithTdiInfo;
     'mc'?: GenericPmWithTdiInfo;
     'mealVoucher_FR'?: MealVoucherFRInfo;
+    'nyce'?: NyceInfo;
+    'payme'?: PayMeInfo;
     'paypal'?: PayPalInfo;
+    'pulse'?: PulseInfo;
     /**
     * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
     */
@@ -73,7 +83,9 @@ export class PaymentMethodSetupInfo {
     * The sales channel. Required if the merchant account does not have a sales channel. When you provide this field, it overrides the default sales channel set on the merchant account.  Possible values: **eCommerce**, **pos**, **contAuth**, and **moto**. 
     */
     'shopperInteraction'?: PaymentMethodSetupInfo.ShopperInteractionEnum;
+    'sodexo'?: SodexoInfo;
     'sofort'?: SofortInfo;
+    'star'?: StarInfo;
     /**
     * The unique identifier of the store for which to configure the payment method, if any.
     */
@@ -93,6 +105,11 @@ export class PaymentMethodSetupInfo {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "accel",
+            "baseName": "accel",
+            "type": "AccelInfo"
+        },
         {
             "name": "afterpayTouch",
             "baseName": "afterpayTouch",
@@ -214,9 +231,24 @@ export class PaymentMethodSetupInfo {
             "type": "MealVoucherFRInfo"
         },
         {
+            "name": "nyce",
+            "baseName": "nyce",
+            "type": "NyceInfo"
+        },
+        {
+            "name": "payme",
+            "baseName": "payme",
+            "type": "PayMeInfo"
+        },
+        {
             "name": "paypal",
             "baseName": "paypal",
             "type": "PayPalInfo"
+        },
+        {
+            "name": "pulse",
+            "baseName": "pulse",
+            "type": "PulseInfo"
         },
         {
             "name": "reference",
@@ -229,9 +261,19 @@ export class PaymentMethodSetupInfo {
             "type": "PaymentMethodSetupInfo.ShopperInteractionEnum"
         },
         {
+            "name": "sodexo",
+            "baseName": "sodexo",
+            "type": "SodexoInfo"
+        },
+        {
             "name": "sofort",
             "baseName": "sofort",
             "type": "SofortInfo"
+        },
+        {
+            "name": "star",
+            "baseName": "star",
+            "type": "StarInfo"
         },
         {
             "name": "storeIds",
@@ -292,16 +334,25 @@ export namespace PaymentMethodSetupInfo {
         ContAuth = 'contAuth'
     }
     export enum TypeEnum {
+        Accel = 'accel',
         Afterpaytouch = 'afterpaytouch',
+        Alelo = 'alelo',
         Alipay = 'alipay',
         AlipayHk = 'alipay_hk',
         Amex = 'amex',
         Applepay = 'applepay',
+        BaneseCard = 'banese_card',
+        BaneseCardCredit = 'banese_card_credit',
+        BaneseCardDebit = 'banese_card_debit',
+        BaneseCardPrepaid = 'banese_card_prepaid',
         Bcmc = 'bcmc',
         Blik = 'blik',
         Cartebancaire = 'cartebancaire',
         Clearpay = 'clearpay',
         Clicktopay = 'clicktopay',
+        Credtodos = 'credtodos',
+        CredtodosPrivateCredit = 'credtodos_private_credit',
+        CredtodosPrivateDebit = 'credtodos_private_debit',
         Cup = 'cup',
         Diners = 'diners',
         DirectdebitGb = 'directdebit_GB',
@@ -328,17 +379,27 @@ export namespace PaymentMethodSetupInfo {
         MealVoucherFr = 'mealVoucher_FR',
         Mobilepay = 'mobilepay',
         Multibanco = 'multibanco',
+        Nyce = 'nyce',
         OnlineBankingPl = 'onlineBanking_PL',
         Paybybank = 'paybybank',
+        Payme = 'payme',
+        PaymePos = 'payme_pos',
         Paynow = 'paynow',
         PaynowPos = 'paynow_pos',
         Paypal = 'paypal',
         Payshop = 'payshop',
+        Pulse = 'pulse',
+        Sodexo = 'sodexo',
+        Star = 'star',
         Swish = 'swish',
         Ticket = 'ticket',
+        TodoGiftcard = 'todo_giftcard',
         Trustly = 'trustly',
         Twint = 'twint',
         TwintPos = 'twint_pos',
+        UpBrazilCredit = 'up_brazil_credit',
+        ValeRefeicao = 'vale_refeicao',
+        ValeRefeicaoPrepaid = 'vale_refeicao_prepaid',
         Vipps = 'vipps',
         Visa = 'visa',
         Visadebit = 'visadebit',

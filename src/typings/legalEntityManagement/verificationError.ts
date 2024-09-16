@@ -32,7 +32,7 @@ export class VerificationError {
     */
     'subErrors'?: Array<VerificationErrorRecursive>;
     /**
-    * The type of error.
+    * The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  
     */
     'type'?: VerificationError.TypeEnum;
 
@@ -98,6 +98,7 @@ export namespace VerificationError {
         IssueCard = 'issueCard',
         IssueCardCommercial = 'issueCardCommercial',
         IssueCardConsumer = 'issueCardConsumer',
+        IssueCreditLimit = 'issueCreditLimit',
         LocalAcceptance = 'localAcceptance',
         Payout = 'payout',
         PayoutToTransferInstrument = 'payoutToTransferInstrument',
