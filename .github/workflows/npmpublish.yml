@@ -18,7 +18,7 @@ jobs:
           npm install
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_API_LIBRARY_TOKEN }}" > .npmrc
           npm run build
-          npm publish
+          npm publish --tag archive
         env:
           GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_API_LIBRARY_TOKEN}}
