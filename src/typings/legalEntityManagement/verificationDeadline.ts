@@ -69,6 +69,7 @@ export namespace VerificationDeadline {
         IssueCard = 'issueCard',
         IssueCardCommercial = 'issueCardCommercial',
         IssueCardConsumer = 'issueCardConsumer',
+        IssueCreditLimit = 'issueCreditLimit',
         LocalAcceptance = 'localAcceptance',
         Payout = 'payout',
         PayoutToTransferInstrument = 'payoutToTransferInstrument',

@@ -7,11 +7,16 @@
  * Do not edit this class manually.
  */
 
+import { AccelInfo } from './accelInfo';
 import { BcmcInfo } from './bcmcInfo';
 import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { GenericPmWithTdiInfo } from './genericPmWithTdiInfo';
+import { NyceInfo } from './nyceInfo';
+import { PulseInfo } from './pulseInfo';
+import { StarInfo } from './starInfo';
 
 export class UpdatePaymentMethodInfo {
+    'accel'?: AccelInfo;
     'bcmc'?: BcmcInfo;
     'cartesBancaires'?: CartesBancairesInfo;
     /**
@@ -40,6 +45,9 @@ export class UpdatePaymentMethodInfo {
     'jcb'?: GenericPmWithTdiInfo;
     'maestro'?: GenericPmWithTdiInfo;
     'mc'?: GenericPmWithTdiInfo;
+    'nyce'?: NyceInfo;
+    'pulse'?: PulseInfo;
+    'star'?: StarInfo;
     /**
     * The list of stores for this payment method
     */
@@ -49,6 +57,11 @@ export class UpdatePaymentMethodInfo {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "accel",
+            "baseName": "accel",
+            "type": "AccelInfo"
+        },
         {
             "name": "bcmc",
             "baseName": "bcmc",
@@ -128,6 +141,21 @@ export class UpdatePaymentMethodInfo {
             "name": "mc",
             "baseName": "mc",
             "type": "GenericPmWithTdiInfo"
+        },
+        {
+            "name": "nyce",
+            "baseName": "nyce",
+            "type": "NyceInfo"
+        },
+        {
+            "name": "pulse",
+            "baseName": "pulse",
+            "type": "PulseInfo"
+        },
+        {
+            "name": "star",
+            "baseName": "star",
+            "type": "StarInfo"
         },
         {
             "name": "storeIds",

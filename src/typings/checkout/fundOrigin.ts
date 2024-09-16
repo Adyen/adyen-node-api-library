@@ -13,14 +13,17 @@ import { Name } from './name';
 export class FundOrigin {
     'billingAddress'?: Address;
     /**
-    * Email address of the person.
+    * The email address of the person funding the money.
     */
     'shopperEmail'?: string;
     'shopperName'?: Name;
     /**
-    * Phone number of the person
+    * The phone number of the person funding the money.
     */
     'telephoneNumber'?: string;
+    /**
+    * The unique identifier of the wallet where the funds are coming from.
+    */
     'walletIdentifier'?: string;
 
     static discriminator: string | undefined = undefined;

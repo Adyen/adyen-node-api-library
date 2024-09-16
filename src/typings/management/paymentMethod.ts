@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { AccelInfo } from './accelInfo';
 import { AfterpayTouchInfo } from './afterpayTouchInfo';
 import { AmexInfo } from './amexInfo';
 import { ApplePayInfo } from './applePayInfo';
@@ -18,8 +19,13 @@ import { GiroPayInfo } from './giroPayInfo';
 import { GooglePayInfo } from './googlePayInfo';
 import { KlarnaInfo } from './klarnaInfo';
 import { MealVoucherFRInfo } from './mealVoucherFRInfo';
+import { NyceInfo } from './nyceInfo';
+import { PayMeInfo } from './payMeInfo';
 import { PayPalInfo } from './payPalInfo';
+import { PulseInfo } from './pulseInfo';
+import { SodexoInfo } from './sodexoInfo';
 import { SofortInfo } from './sofortInfo';
+import { StarInfo } from './starInfo';
 import { SwishInfo } from './swishInfo';
 import { TicketInfo } from './ticketInfo';
 import { TwintInfo } from './twintInfo';
@@ -28,6 +34,7 @@ import { WeChatPayInfo } from './weChatPayInfo';
 import { WeChatPayPosInfo } from './weChatPayPosInfo';
 
 export class PaymentMethod {
+    'accel'?: AccelInfo;
     'afterpayTouch'?: AfterpayTouchInfo;
     /**
     * Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
@@ -76,7 +83,10 @@ export class PaymentMethod {
     'maestro'?: GenericPmWithTdiInfo;
     'mc'?: GenericPmWithTdiInfo;
     'mealVoucher_FR'?: MealVoucherFRInfo;
+    'nyce'?: NyceInfo;
+    'payme'?: PayMeInfo;
     'paypal'?: PayPalInfo;
+    'pulse'?: PulseInfo;
     /**
     * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
     */
@@ -85,7 +95,9 @@ export class PaymentMethod {
     * The sales channel.
     */
     'shopperInteraction'?: string;
+    'sodexo'?: SodexoInfo;
     'sofort'?: SofortInfo;
+    'star'?: StarInfo;
     /**
     * The unique identifier of the store for which to configure the payment method, if any.
     */
@@ -109,6 +121,11 @@ export class PaymentMethod {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "accel",
+            "baseName": "accel",
+            "type": "AccelInfo"
+        },
         {
             "name": "afterpayTouch",
             "baseName": "afterpayTouch",
@@ -245,9 +262,24 @@ export class PaymentMethod {
             "type": "MealVoucherFRInfo"
         },
         {
+            "name": "nyce",
+            "baseName": "nyce",
+            "type": "NyceInfo"
+        },
+        {
+            "name": "payme",
+            "baseName": "payme",
+            "type": "PayMeInfo"
+        },
+        {
             "name": "paypal",
             "baseName": "paypal",
             "type": "PayPalInfo"
+        },
+        {
+            "name": "pulse",
+            "baseName": "pulse",
+            "type": "PulseInfo"
         },
         {
             "name": "reference",
@@ -260,9 +292,19 @@ export class PaymentMethod {
             "type": "string"
         },
         {
+            "name": "sodexo",
+            "baseName": "sodexo",
+            "type": "SodexoInfo"
+        },
+        {
             "name": "sofort",
             "baseName": "sofort",
             "type": "SofortInfo"
+        },
+        {
+            "name": "star",
+            "baseName": "star",
+            "type": "StarInfo"
         },
         {
             "name": "storeIds",

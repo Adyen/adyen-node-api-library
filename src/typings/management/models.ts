@@ -8,6 +8,7 @@
  */
 
 
+export * from './accelInfo';
 export * from './additionalCommission';
 export * from './additionalSettings';
 export * from './additionalSettingsResponse';
@@ -96,12 +97,14 @@ export * from './name2';
 export * from './nexo';
 export * from './notification';
 export * from './notificationUrl';
+export * from './nyceInfo';
 export * from './offlineProcessing';
 export * from './opi';
 export * from './orderItem';
 export * from './paginationLinks';
 export * from './passcodes';
 export * from './payAtTable';
+export * from './payMeInfo';
 export * from './payPalInfo';
 export * from './payment';
 export * from './paymentMethod';
@@ -111,6 +114,7 @@ export * from './payoutSettings';
 export * from './payoutSettingsRequest';
 export * from './payoutSettingsResponse';
 export * from './profile';
+export * from './pulseInfo';
 export * from './receiptOptions';
 export * from './receiptPrinting';
 export * from './referenced';
@@ -125,12 +129,14 @@ export * from './settings';
 export * from './shippingLocation';
 export * from './shippingLocationsResponse';
 export * from './signature';
+export * from './sodexoInfo';
 export * from './sofortInfo';
 export * from './splitConfiguration';
 export * from './splitConfigurationList';
 export * from './splitConfigurationLogic';
 export * from './splitConfigurationRule';
 export * from './standalone';
+export * from './starInfo';
 export * from './store';
 export * from './storeAndForward';
 export * from './storeCreationRequest';
@@ -195,6 +201,7 @@ export * from './webhookLinks';
 export * from './wifiProfiles';
 
 
+import { AccelInfo } from './accelInfo';
 import { AdditionalCommission } from './additionalCommission';
 import { AdditionalSettings } from './additionalSettings';
 import { AdditionalSettingsResponse } from './additionalSettingsResponse';
@@ -283,12 +290,14 @@ import { Name2 } from './name2';
 import { Nexo } from './nexo';
 import { Notification } from './notification';
 import { NotificationUrl } from './notificationUrl';
+import { NyceInfo } from './nyceInfo';
 import { OfflineProcessing } from './offlineProcessing';
 import { Opi } from './opi';
 import { OrderItem } from './orderItem';
 import { PaginationLinks } from './paginationLinks';
 import { Passcodes } from './passcodes';
 import { PayAtTable } from './payAtTable';
+import { PayMeInfo } from './payMeInfo';
 import { PayPalInfo } from './payPalInfo';
 import { Payment } from './payment';
 import { PaymentMethod } from './paymentMethod';
@@ -298,6 +307,7 @@ import { PayoutSettings } from './payoutSettings';
 import { PayoutSettingsRequest } from './payoutSettingsRequest';
 import { PayoutSettingsResponse } from './payoutSettingsResponse';
 import { Profile } from './profile';
+import { PulseInfo } from './pulseInfo';
 import { ReceiptOptions } from './receiptOptions';
 import { ReceiptPrinting } from './receiptPrinting';
 import { Referenced } from './referenced';
@@ -312,12 +322,14 @@ import { Settings } from './settings';
 import { ShippingLocation } from './shippingLocation';
 import { ShippingLocationsResponse } from './shippingLocationsResponse';
 import { Signature } from './signature';
+import { SodexoInfo } from './sodexoInfo';
 import { SofortInfo } from './sofortInfo';
 import { SplitConfiguration } from './splitConfiguration';
 import { SplitConfigurationList } from './splitConfigurationList';
 import { SplitConfigurationLogic } from './splitConfigurationLogic';
 import { SplitConfigurationRule } from './splitConfigurationRule';
 import { Standalone } from './standalone';
+import { StarInfo } from './starInfo';
 import { Store } from './store';
 import { StoreAndForward } from './storeAndForward';
 import { StoreCreationRequest } from './storeCreationRequest';
@@ -394,6 +406,7 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
+        "AccelInfo.ProcessingTypeEnum": AccelInfo.ProcessingTypeEnum,
         "AmexInfo.ServiceLevelEnum": AmexInfo.ServiceLevelEnum,
         "Connectivity.SimcardStatusEnum": Connectivity.SimcardStatusEnum,
         "CreateCompanyWebhookRequest.CommunicationFormatEnum": CreateCompanyWebhookRequest.CommunicationFormatEnum,
@@ -407,6 +420,7 @@ let enumsMap: {[index: string]: any} = {
         "InstallAndroidCertificateDetails.TypeEnum": InstallAndroidCertificateDetails.TypeEnum,
         "KlarnaInfo.RegionEnum": KlarnaInfo.RegionEnum,
         "Notification.CategoryEnum": Notification.CategoryEnum,
+        "NyceInfo.ProcessingTypeEnum": NyceInfo.ProcessingTypeEnum,
         "PayAtTable.AuthenticationMethodEnum": PayAtTable.AuthenticationMethodEnum,
         "PayAtTable.PaymentInstrumentEnum": PayAtTable.PaymentInstrumentEnum,
         "PaymentMethod.VerificationStatusEnum": PaymentMethod.VerificationStatusEnum,
@@ -415,6 +429,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentMethodSetupInfo.TypeEnum": PaymentMethodSetupInfo.TypeEnum,
         "PayoutSettings.PriorityEnum": PayoutSettings.PriorityEnum,
         "PayoutSettings.VerificationStatusEnum": PayoutSettings.VerificationStatusEnum,
+        "PulseInfo.ProcessingTypeEnum": PulseInfo.ProcessingTypeEnum,
         "ReleaseUpdateDetails.TypeEnum": ReleaseUpdateDetails.TypeEnum,
         "SplitConfigurationLogic.AcquiringFeesEnum": SplitConfigurationLogic.AcquiringFeesEnum,
         "SplitConfigurationLogic.AdyenCommissionEnum": SplitConfigurationLogic.AdyenCommissionEnum,
@@ -432,6 +447,7 @@ let enumsMap: {[index: string]: any} = {
         "SplitConfigurationLogic.TipEnum": SplitConfigurationLogic.TipEnum,
         "SplitConfigurationRule.FundingSourceEnum": SplitConfigurationRule.FundingSourceEnum,
         "SplitConfigurationRule.ShopperInteractionEnum": SplitConfigurationRule.ShopperInteractionEnum,
+        "StarInfo.ProcessingTypeEnum": StarInfo.ProcessingTypeEnum,
         "Store.StatusEnum": Store.StatusEnum,
         "TerminalAssignment.StatusEnum": TerminalAssignment.StatusEnum,
         "TerminalConnectivityCellular.StatusEnum": TerminalConnectivityCellular.StatusEnum,
@@ -467,6 +483,7 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
+    "AccelInfo": AccelInfo,
     "AdditionalCommission": AdditionalCommission,
     "AdditionalSettings": AdditionalSettings,
     "AdditionalSettingsResponse": AdditionalSettingsResponse,
@@ -555,12 +572,14 @@ let typeMap: {[index: string]: any} = {
     "Nexo": Nexo,
     "Notification": Notification,
     "NotificationUrl": NotificationUrl,
+    "NyceInfo": NyceInfo,
     "OfflineProcessing": OfflineProcessing,
     "Opi": Opi,
     "OrderItem": OrderItem,
     "PaginationLinks": PaginationLinks,
     "Passcodes": Passcodes,
     "PayAtTable": PayAtTable,
+    "PayMeInfo": PayMeInfo,
     "PayPalInfo": PayPalInfo,
     "Payment": Payment,
     "PaymentMethod": PaymentMethod,
@@ -570,6 +589,7 @@ let typeMap: {[index: string]: any} = {
     "PayoutSettingsRequest": PayoutSettingsRequest,
     "PayoutSettingsResponse": PayoutSettingsResponse,
     "Profile": Profile,
+    "PulseInfo": PulseInfo,
     "ReceiptOptions": ReceiptOptions,
     "ReceiptPrinting": ReceiptPrinting,
     "Referenced": Referenced,
@@ -584,12 +604,14 @@ let typeMap: {[index: string]: any} = {
     "ShippingLocation": ShippingLocation,
     "ShippingLocationsResponse": ShippingLocationsResponse,
     "Signature": Signature,
+    "SodexoInfo": SodexoInfo,
     "SofortInfo": SofortInfo,
     "SplitConfiguration": SplitConfiguration,
     "SplitConfigurationList": SplitConfigurationList,
     "SplitConfigurationLogic": SplitConfigurationLogic,
     "SplitConfigurationRule": SplitConfigurationRule,
     "Standalone": Standalone,
+    "StarInfo": StarInfo,
     "Store": Store,
     "StoreAndForward": StoreAndForward,
     "StoreCreationRequest": StoreCreationRequest,
