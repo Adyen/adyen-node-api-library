@@ -14,6 +14,10 @@ import { SubMerchant } from './subMerchant';
 
 export class FundDestination {
     /**
+    * Bank Account Number of the recipient
+    */
+    'IBAN'?: string;
+    /**
     * a map of name/value pairs for passing in additional/industry-specific data
     */
     'additionalData'?: { [key: string]: string; };
@@ -45,6 +49,11 @@ export class FundDestination {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "IBAN",
+            "baseName": "IBAN",
+            "type": "string"
+        },
         {
             "name": "additionalData",
             "baseName": "additionalData",
