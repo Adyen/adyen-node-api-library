@@ -17,6 +17,7 @@ import {
     GetTermsOfServiceAcceptanceInfosResponse,
     GetTermsOfServiceDocumentRequest,
     GetTermsOfServiceDocumentResponse,
+    ServiceError,
     ObjectSerializer
 } from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -34,7 +35,7 @@ export class TermsOfServiceApi extends Service {
 
     /**
     * @summary Accept Terms of Service
-    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.
+    * @param id {@link string } The unique identifier of the legal entity.  For sole proprietorships, this is the individual legal entity ID of the owner.  For organizations, this is the ID of the organization.  For legal representatives of individuals, this is the ID of the individual.  
     * @param termsofservicedocumentid {@link string } The unique identifier of the Terms of Service document.
     * @param acceptTermsOfServiceRequest {@link AcceptTermsOfServiceRequest } 
     * @param requestOptions {@link IRequest.Options }

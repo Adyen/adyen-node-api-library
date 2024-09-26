@@ -12,6 +12,7 @@ import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
 import { BoardingTokenRequest } from "../typings/paymentsApp/models";
 import { BoardingTokenResponse } from "../typings/paymentsApp/models";
+import { DefaultErrorResponseEntity } from "../typings/paymentsApp/models";
 import { PaymentsAppResponse } from "../typings/paymentsApp/models";
 import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";

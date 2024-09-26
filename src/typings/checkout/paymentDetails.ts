@@ -74,6 +74,7 @@ export namespace PaymentDetails {
         MolpayEbankingDirectMy = 'molpay_ebanking_direct_MY',
         Swish = 'swish',
         Pix = 'pix',
+        Bizum = 'bizum',
         Walley = 'walley',
         WalleyB2b = 'walley_b2b',
         Alma = 'alma',

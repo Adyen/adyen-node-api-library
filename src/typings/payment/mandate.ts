@@ -26,6 +26,10 @@ export class Mandate {
     */
     'billingDay'?: string;
     /**
+    * The number of transactions that can be performed within the given frequency.
+    */
+    'count'?: string;
+    /**
     * End date of the billing plan, in YYYY-MM-DD format.
     */
     'endsAt': string;
@@ -63,6 +67,11 @@ export class Mandate {
         {
             "name": "billingDay",
             "baseName": "billingDay",
+            "type": "string"
+        },
+        {
+            "name": "count",
+            "baseName": "count",
             "type": "string"
         },
         {

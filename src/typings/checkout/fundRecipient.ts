@@ -42,7 +42,7 @@ export class FundRecipient {
     */
     'walletIdentifier'?: string;
     /**
-    * Indicates the tax identifier of the fund recepient
+    * Indicates the tax identifier of the fund recipient
     */
     'walletOwnerTaxId'?: string;
 
