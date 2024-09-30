@@ -10,7 +10,7 @@
 
 export class AdditionalSettings {
     /**
-    * Object containing list of event codes for which the notifcation will be sent. 
+    * Object containing list of event codes for which the notification will be sent. 
     */
     'includeEventCodes'?: Array<string>;
     /**

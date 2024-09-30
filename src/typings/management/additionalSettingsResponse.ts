@@ -10,11 +10,11 @@
 
 export class AdditionalSettingsResponse {
     /**
-    * Object containing list of event codes for which the notifcation will not be sent. 
+    * Object containing list of event codes for which the notification will not be sent. 
     */
     'excludeEventCodes'?: Array<string>;
     /**
-    * Object containing list of event codes for which the notifcation will be sent. 
+    * Object containing list of event codes for which the notification will be sent. 
     */
     'includeEventCodes'?: Array<string>;
     /**

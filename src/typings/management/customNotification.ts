@@ -28,7 +28,7 @@ export class CustomNotification {
     */
     'paymentMethod'?: string;
     /**
-    * A descripton of what caused the notification.
+    * A description of what caused the notification.
     */
     'reason'?: string;
     /**
