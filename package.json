@@ -1,6 +1,6 @@
 {
   "name": "@adyen/api-library",
-  "version": "19.3.0",
+  "version": "19.4.0",
   "description": "The Adyen API Library for NodeJS enables you to work with Adyen APIs.",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
