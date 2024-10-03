@@ -15,4 +15,9 @@
 {{#returnType}}
     * @return {@link {{.}} }
 {{/returnType}}
+{{#isDeprecated}}
+    *
+	* @deprecated since v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}
+	* {{#vendorExtensions.x-deprecatedMessage}}{{{.}}}{{/vendorExtensions.x-deprecatedMessage}}
+{{/isDeprecated}}
     */
