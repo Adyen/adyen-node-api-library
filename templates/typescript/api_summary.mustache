@@ -17,7 +17,7 @@
 {{/returnType}}
 {{#isDeprecated}}
     *
-	* @deprecated since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}
-	* {{#vendorExtensions.x-deprecatedMessage}}{{{.}}}{{/vendorExtensions.x-deprecatedMessage}}
+	* @deprecated {{#vendorExtensions.x-deprecatedInVersion}}since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}
+	* {{#vendorExtensions.x-deprecatedMessage}}{{{.}}}{{/vendorExtensions.x-deprecatedMessage}}{{/vendorExtensions.x-deprecatedInVersion}}
 {{/isDeprecated}}
     */

@@ -18,16 +18,16 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
     * {{{.}}}
     {{#deprecated}}
     *
-	* @deprecated since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}
-    * {{#vendorExtensions.x-deprecatedMessage}}{{{.}}}{{/vendorExtensions.x-deprecatedMessage}}
+	* @deprecated {{#vendorExtensions.x-deprecatedInVersion}}since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}
+    * {{#vendorExtensions.x-deprecatedMessage}}{{{.}}}{{/vendorExtensions.x-deprecatedMessage}}{{/vendorExtensions.x-deprecatedInVersion}}
     {{/deprecated}}
     */
 {{/description}}
 {{^description}}
     {{#deprecated}}
     /**
-	* @deprecated since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}
-    * {{#vendorExtensions.x-deprecatedMessage}}{{{.}}}{{/vendorExtensions.x-deprecatedMessage}}
+	* @deprecated {{#vendorExtensions.x-deprecatedInVersion}}since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}
+    * {{#vendorExtensions.x-deprecatedMessage}}{{{.}}}{{/vendorExtensions.x-deprecatedMessage}}{{/vendorExtensions.x-deprecatedInVersion}}
     */
     {{/deprecated}}
 {{/description}}
