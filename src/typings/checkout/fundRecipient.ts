@@ -45,6 +45,10 @@ export class FundRecipient {
     * Indicates the tax identifier of the fund recipient
     */
     'walletOwnerTaxId'?: string;
+    /**
+    * The purpose of a digital wallet transaction
+    */
+    'walletPurpose'?: FundRecipient.WalletPurposeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -103,6 +107,11 @@ export class FundRecipient {
             "name": "walletOwnerTaxId",
             "baseName": "walletOwnerTaxId",
             "type": "string"
+        },
+        {
+            "name": "walletPurpose",
+            "baseName": "walletPurpose",
+            "type": "FundRecipient.WalletPurposeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -110,3 +119,12 @@ export class FundRecipient {
     }
 }
 
+export namespace FundRecipient {
+    export enum WalletPurposeEnum {
+        IdentifiedBoleto = 'identifiedBoleto',
+        TransferDifferentWallet = 'transferDifferentWallet',
+        TransferOwnWallet = 'transferOwnWallet',
+        TransferSameWallet = 'transferSameWallet',
+        UnidentifiedBoleto = 'unidentifiedBoleto'
+    }
+}

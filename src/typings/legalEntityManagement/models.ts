@@ -28,6 +28,7 @@ export * from './capabilityProblem';
 export * from './capabilityProblemEntity';
 export * from './capabilityProblemEntityRecursive';
 export * from './capabilitySettings';
+export * from './checkTaxElectronicDeliveryConsentResponse';
 export * from './dKLocalAccountIdentification';
 export * from './dataReviewConfirmationResponse';
 export * from './document';
@@ -71,6 +72,7 @@ export * from './remediatingAction';
 export * from './sELocalAccountIdentification';
 export * from './sGLocalAccountIdentification';
 export * from './serviceError';
+export * from './setTaxElectronicDeliveryConsentRequest';
 export * from './soleProprietorship';
 export * from './sourceOfFunds';
 export * from './stockData';
@@ -113,6 +115,7 @@ import { CapabilityProblem } from './capabilityProblem';
 import { CapabilityProblemEntity } from './capabilityProblemEntity';
 import { CapabilityProblemEntityRecursive } from './capabilityProblemEntityRecursive';
 import { CapabilitySettings } from './capabilitySettings';
+import { CheckTaxElectronicDeliveryConsentResponse } from './checkTaxElectronicDeliveryConsentResponse';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
 import { DataReviewConfirmationResponse } from './dataReviewConfirmationResponse';
 import { Document } from './document';
@@ -156,6 +159,7 @@ import { RemediatingAction } from './remediatingAction';
 import { SELocalAccountIdentification } from './sELocalAccountIdentification';
 import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
 import { ServiceError } from './serviceError';
+import { SetTaxElectronicDeliveryConsentRequest } from './setTaxElectronicDeliveryConsentRequest';
 import { SoleProprietorship } from './soleProprietorship';
 import { SourceOfFunds } from './sourceOfFunds';
 import { StockData } from './stockData';
@@ -197,8 +201,6 @@ let enumsMap: {[index: string]: any} = {
         "BusinessLine.ServiceEnum": BusinessLine.ServiceEnum,
         "BusinessLineInfo.CapabilityEnum": BusinessLineInfo.CapabilityEnum,
         "BusinessLineInfo.ServiceEnum": BusinessLineInfo.ServiceEnum,
-        "BusinessLineInfoUpdate.CapabilityEnum": BusinessLineInfoUpdate.CapabilityEnum,
-        "BusinessLineInfoUpdate.ServiceEnum": BusinessLineInfoUpdate.ServiceEnum,
         "CALocalAccountIdentification.AccountTypeEnum": CALocalAccountIdentification.AccountTypeEnum,
         "CALocalAccountIdentification.TypeEnum": CALocalAccountIdentification.TypeEnum,
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
@@ -273,6 +275,7 @@ let typeMap: {[index: string]: any} = {
     "CapabilityProblemEntity": CapabilityProblemEntity,
     "CapabilityProblemEntityRecursive": CapabilityProblemEntityRecursive,
     "CapabilitySettings": CapabilitySettings,
+    "CheckTaxElectronicDeliveryConsentResponse": CheckTaxElectronicDeliveryConsentResponse,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DataReviewConfirmationResponse": DataReviewConfirmationResponse,
     "Document": Document,
@@ -316,6 +319,7 @@ let typeMap: {[index: string]: any} = {
     "SELocalAccountIdentification": SELocalAccountIdentification,
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
     "ServiceError": ServiceError,
+    "SetTaxElectronicDeliveryConsentRequest": SetTaxElectronicDeliveryConsentRequest,
     "SoleProprietorship": SoleProprietorship,
     "SourceOfFunds": SourceOfFunds,
     "StockData": StockData,

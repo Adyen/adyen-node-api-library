@@ -17,6 +17,7 @@ import { ClearpayInfo } from './clearpayInfo';
 import { GenericPmWithTdiInfo } from './genericPmWithTdiInfo';
 import { GiroPayInfo } from './giroPayInfo';
 import { GooglePayInfo } from './googlePayInfo';
+import { JCBInfo } from './jCBInfo';
 import { KlarnaInfo } from './klarnaInfo';
 import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { NyceInfo } from './nyceInfo';
@@ -66,7 +67,7 @@ export class PaymentMethodSetupInfo {
     'googlePay'?: GooglePayInfo;
     'ideal'?: GenericPmWithTdiInfo;
     'interac_card'?: GenericPmWithTdiInfo;
-    'jcb'?: GenericPmWithTdiInfo;
+    'jcb'?: JCBInfo;
     'klarna'?: KlarnaInfo;
     'maestro'?: GenericPmWithTdiInfo;
     'mc'?: GenericPmWithTdiInfo;
@@ -208,7 +209,7 @@ export class PaymentMethodSetupInfo {
         {
             "name": "jcb",
             "baseName": "jcb",
-            "type": "GenericPmWithTdiInfo"
+            "type": "JCBInfo"
         },
         {
             "name": "klarna",

@@ -18,10 +18,6 @@ export class OnboardingLinkSettings {
     */
     'allowBankAccountFormatSelection'?: boolean;
     /**
-    * Default value: **true**  Indicates if the user may press a hidden key combination to open the HO debugging UI.
-    */
-    'allowDebugUi'?: boolean;
-    /**
     * Default value: **false**  Indicates if the user can select a payout account in a different EU/EEA location (including Switzerland and the UK) than the location of their legal entity.
     */
     'allowIntraRegionCrossBorderPayout'?: boolean;
@@ -85,11 +81,6 @@ export class OnboardingLinkSettings {
         {
             "name": "allowBankAccountFormatSelection",
             "baseName": "allowBankAccountFormatSelection",
-            "type": "boolean"
-        },
-        {
-            "name": "allowDebugUi",
-            "baseName": "allowDebugUi",
             "type": "boolean"
         },
         {

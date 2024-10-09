@@ -13,25 +13,13 @@ import { WebDataExemption } from './webDataExemption';
 
 export class BusinessLineInfoUpdate {
     /**
-    * The capability for which you are creating the business line. For example, **receivePayments**.
-    */
-    'capability'?: BusinessLineInfoUpdate.CapabilityEnum;
-    /**
     * A code that represents the industry of your legal entity. For example, **4431A** for computer software stores.
     */
     'industryCode'?: string;
     /**
-    * Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.
-    */
-    'legalEntityId'?: string;
-    /**
     * A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the `service` **paymentProcessing**.
     */
     'salesChannels'?: Array<string>;
-    /**
-    * The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  
-    */
-    'service'?: BusinessLineInfoUpdate.ServiceEnum;
     'sourceOfFunds'?: SourceOfFunds;
     /**
     * List of website URLs where your user\'s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the `webDataExemption` object.
@@ -43,29 +31,14 @@ export class BusinessLineInfoUpdate {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "capability",
-            "baseName": "capability",
-            "type": "BusinessLineInfoUpdate.CapabilityEnum"
-        },
-        {
             "name": "industryCode",
             "baseName": "industryCode",
-            "type": "string"
-        },
-        {
-            "name": "legalEntityId",
-            "baseName": "legalEntityId",
             "type": "string"
         },
         {
             "name": "salesChannels",
             "baseName": "salesChannels",
             "type": "Array<string>"
-        },
-        {
-            "name": "service",
-            "baseName": "service",
-            "type": "BusinessLineInfoUpdate.ServiceEnum"
         },
         {
             "name": "sourceOfFunds",
@@ -88,14 +61,3 @@ export class BusinessLineInfoUpdate {
     }
 }
 
-export namespace BusinessLineInfoUpdate {
-    export enum CapabilityEnum {
-        ReceivePayments = 'receivePayments',
-        ReceiveFromPlatformPayments = 'receiveFromPlatformPayments',
-        IssueBankAccount = 'issueBankAccount'
-    }
-    export enum ServiceEnum {
-        PaymentProcessing = 'paymentProcessing',
-        Banking = 'banking'
-    }
-}
