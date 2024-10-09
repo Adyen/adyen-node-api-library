@@ -14,9 +14,17 @@ export class PayToDetails {
     */
     'checkoutAttemptId'?: string;
     /**
+    * This is the `recurringDetailReference` returned in the response when you created the token.
+    */
+    'recurringDetailReference'?: string;
+    /**
     * The shopper\'s banking details or payId reference, used to complete payment.
     */
     'shopperAccountIdentifier'?: string;
+    /**
+    * This is the `recurringDetailReference` returned in the response when you created the token.
+    */
+    'storedPaymentMethodId'?: string;
     /**
     * **payto**
     */
@@ -31,8 +39,18 @@ export class PayToDetails {
             "type": "string"
         },
         {
+            "name": "recurringDetailReference",
+            "baseName": "recurringDetailReference",
+            "type": "string"
+        },
+        {
             "name": "shopperAccountIdentifier",
             "baseName": "shopperAccountIdentifier",
+            "type": "string"
+        },
+        {
+            "name": "storedPaymentMethodId",
+            "baseName": "storedPaymentMethodId",
             "type": "string"
         },
         {
