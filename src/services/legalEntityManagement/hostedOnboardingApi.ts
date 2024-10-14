@@ -15,6 +15,7 @@ import {
     OnboardingLinkInfo,
     OnboardingTheme,
     OnboardingThemes,
+    ServiceError,
     ObjectSerializer
 } from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";

@@ -11,6 +11,7 @@ import { Amount } from './amount';
 import { BalanceMutation } from './balanceMutation';
 import { BankCategoryData } from './bankCategoryData';
 import { ConfirmationTrackingData } from './confirmationTrackingData';
+import { DirectDebitInformation } from './directDebitInformation';
 import { EstimationTrackingData } from './estimationTrackingData';
 import { InternalCategoryData } from './internalCategoryData';
 import { InternalReviewTrackingData } from './internalReviewTrackingData';
@@ -21,6 +22,7 @@ import { ResourceReference } from './resourceReference';
 import { TransactionRulesResult } from './transactionRulesResult';
 import { TransferEvent } from './transferEvent';
 import { TransferNotificationCounterParty } from './transferNotificationCounterParty';
+import { TransferReview } from './transferReview';
 
 export class TransferData {
     'accountHolder'?: ResourceReference;
@@ -51,6 +53,7 @@ export class TransferData {
     * Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , \' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ \' \" ! ?**
     */
     'description'?: string;
+    'directDebitInformation'?: DirectDebitInformation;
     /**
     * The direction of the transfer.  Possible values: **incoming**, **outgoing**.
     */
@@ -76,6 +79,7 @@ export class TransferData {
     *  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the `category`.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
     'referenceForBeneficiary'?: string;
+    'review'?: TransferReview;
     /**
     * The sequence number of the transfer webhook. The numbers start from 1 and increase with each new webhook for a specific transfer.  The sequence number can help you restore the correct sequence of events even if they arrive out of order.
     */
@@ -148,6 +152,11 @@ export class TransferData {
             "type": "string"
         },
         {
+            "name": "directDebitInformation",
+            "baseName": "directDebitInformation",
+            "type": "DirectDebitInformation"
+        },
+        {
             "name": "direction",
             "baseName": "direction",
             "type": "TransferData.DirectionEnum"
@@ -181,6 +190,11 @@ export class TransferData {
             "name": "referenceForBeneficiary",
             "baseName": "referenceForBeneficiary",
             "type": "string"
+        },
+        {
+            "name": "review",
+            "baseName": "review",
+            "type": "TransferReview"
         },
         {
             "name": "sequenceNumber",
@@ -226,6 +240,7 @@ export namespace TransferData {
         Outgoing = 'outgoing'
     }
     export enum ReasonEnum {
+        AccountHierarchyNotActive = 'accountHierarchyNotActive',
         AmountLimitExceeded = 'amountLimitExceeded',
         Approved = 'approved',
         BalanceAccountTemporarilyBlockedByTransactionRule = 'balanceAccountTemporarilyBlockedByTransactionRule',
@@ -237,12 +252,15 @@ export namespace TransferData {
         CounterpartyBankUnavailable = 'counterpartyBankUnavailable',
         Declined = 'declined',
         DeclinedByTransactionRule = 'declinedByTransactionRule',
+        DirectDebitNotSupported = 'directDebitNotSupported',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
         PendingApproval = 'pendingApproval',
+        PendingExecution = 'pendingExecution',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
         RouteNotFound = 'routeNotFound',
         ScaFailed = 'scaFailed',
+        TransferInstrumentDoesNotExist = 'transferInstrumentDoesNotExist',
         Unknown = 'unknown'
     }
     export enum StatusEnum {
@@ -298,6 +316,7 @@ export namespace TransferData {
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
         PendingApproval = 'pendingApproval',
+        PendingExecution = 'pendingExecution',
         Received = 'received',
         RefundPending = 'refundPending',
         RefundReversalPending = 'refundReversalPending',

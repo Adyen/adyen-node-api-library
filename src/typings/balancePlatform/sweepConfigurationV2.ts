@@ -157,6 +157,7 @@ export namespace SweepConfigurationV2 {
         Wire = 'wire'
     }
     export enum ReasonEnum {
+        AccountHierarchyNotActive = 'accountHierarchyNotActive',
         AmountLimitExceeded = 'amountLimitExceeded',
         Approved = 'approved',
         BalanceAccountTemporarilyBlockedByTransactionRule = 'balanceAccountTemporarilyBlockedByTransactionRule',
@@ -168,12 +169,15 @@ export namespace SweepConfigurationV2 {
         CounterpartyBankUnavailable = 'counterpartyBankUnavailable',
         Declined = 'declined',
         DeclinedByTransactionRule = 'declinedByTransactionRule',
+        DirectDebitNotSupported = 'directDebitNotSupported',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
         PendingApproval = 'pendingApproval',
+        PendingExecution = 'pendingExecution',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
         RouteNotFound = 'routeNotFound',
         ScaFailed = 'scaFailed',
+        TransferInstrumentDoesNotExist = 'transferInstrumentDoesNotExist',
         Unknown = 'unknown'
     }
     export enum StatusEnum {

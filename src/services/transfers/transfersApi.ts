@@ -11,12 +11,16 @@ import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
 import { 
+    ApproveTransfersRequest,
+    CancelTransfersRequest,
     FindTransfersResponse,
     ReturnTransferRequest,
     ReturnTransferResponse,
+    ServiceError,
     Transfer,
     TransferData,
     TransferInfo,
+    TransferServiceRestServiceError,
     ObjectSerializer
 } from "../../typings/transfers/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -30,6 +34,38 @@ export class TransfersApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
+    /**
+    * @summary Approve initiated transfers
+    * @param approveTransfersRequest {@link ApproveTransfersRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    */
+    public async approveInitiatedTransfers(approveTransfersRequest: ApproveTransfersRequest, requestOptions?: IRequest.Options): Promise<void> {
+        const endpoint = `${this.baseUrl}/transfers/approve`;
+        const resource = new Resource(this, endpoint);
+        const request: ApproveTransfersRequest = ObjectSerializer.serialize(approveTransfersRequest, "ApproveTransfersRequest");
+        await getJsonResponse<ApproveTransfersRequest, void>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+    }
+
+    /**
+    * @summary Cancel initiated transfers
+    * @param cancelTransfersRequest {@link CancelTransfersRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    */
+    public async cancelInitiatedTransfers(cancelTransfersRequest: CancelTransfersRequest, requestOptions?: IRequest.Options): Promise<void> {
+        const endpoint = `${this.baseUrl}/transfers/cancel`;
+        const resource = new Resource(this, endpoint);
+        const request: CancelTransfersRequest = ObjectSerializer.serialize(cancelTransfersRequest, "CancelTransfersRequest");
+        await getJsonResponse<CancelTransfersRequest, void>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
     }
 
     /**
@@ -47,7 +83,7 @@ export class TransfersApi extends Service {
     * @param limit {@link number } The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.
     * @return {@link FindTransfersResponse }
     */
-    public async getAllTransfers(balancePlatform?: string, accountHolderId?: string, balanceAccountId?: string, paymentInstrumentId?: string, reference?: string, category?: "bank" | "card" | "grants" | "internal" | "issuedCard" | "migration" | "platformPayment" | "topUp" | "upgrade", createdSince?: Date, createdUntil?: Date, cursor?: string, limit?: number, requestOptions?: IRequest.Options): Promise<FindTransfersResponse> {
+    public async getAllTransfers(balancePlatform?: string, accountHolderId?: string, balanceAccountId?: string, paymentInstrumentId?: string, reference?: string, category?: 'bank' | 'card' | 'grants' | 'internal' | 'issuedCard' | 'migration' | 'platformPayment' | 'topUp' | 'upgrade', createdSince?: Date, createdUntil?: Date, cursor?: string, limit?: number, requestOptions?: IRequest.Options): Promise<FindTransfersResponse> {
         const endpoint = `${this.baseUrl}/transfers`;
         const resource = new Resource(this, endpoint);
         const hasDefinedQueryParams = balancePlatform ?? accountHolderId ?? balanceAccountId ?? paymentInstrumentId ?? reference ?? category ?? createdSince ?? createdUntil ?? cursor ?? limit;

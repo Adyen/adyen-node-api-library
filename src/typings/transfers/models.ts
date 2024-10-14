@@ -13,12 +13,14 @@ export * from './additionalBankIdentification';
 export * from './address';
 export * from './amount';
 export * from './amountAdjustment';
+export * from './approveTransfersRequest';
 export * from './bRLocalAccountIdentification';
 export * from './balanceMutation';
 export * from './bankAccountV3';
 export * from './bankCategoryData';
 export * from './cALocalAccountIdentification';
 export * from './cZLocalAccountIdentification';
+export * from './cancelTransfersRequest';
 export * from './capitalBalance';
 export * from './capitalGrant';
 export * from './capitalGrantInfo';
@@ -30,6 +32,7 @@ export * from './counterparty';
 export * from './counterpartyInfoV3';
 export * from './counterpartyV3';
 export * from './dKLocalAccountIdentification';
+export * from './directDebitInformation';
 export * from './estimationTrackingData';
 export * from './externalReason';
 export * from './fee';
@@ -78,6 +81,8 @@ export * from './transferInfo';
 export * from './transferNotificationCounterParty';
 export * from './transferNotificationMerchantData';
 export * from './transferNotificationValidationFact';
+export * from './transferRequestReview';
+export * from './transferReview';
 export * from './transferServiceRestServiceError';
 export * from './transferView';
 export * from './uKLocalAccountIdentification';
@@ -90,12 +95,14 @@ import { AdditionalBankIdentification } from './additionalBankIdentification';
 import { Address } from './address';
 import { Amount } from './amount';
 import { AmountAdjustment } from './amountAdjustment';
+import { ApproveTransfersRequest } from './approveTransfersRequest';
 import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
 import { BalanceMutation } from './balanceMutation';
 import { BankAccountV3 } from './bankAccountV3';
 import { BankCategoryData } from './bankCategoryData';
 import { CALocalAccountIdentification } from './cALocalAccountIdentification';
 import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
+import { CancelTransfersRequest } from './cancelTransfersRequest';
 import { CapitalBalance } from './capitalBalance';
 import { CapitalGrant } from './capitalGrant';
 import { CapitalGrantInfo } from './capitalGrantInfo';
@@ -107,6 +114,7 @@ import { Counterparty } from './counterparty';
 import { CounterpartyInfoV3 } from './counterpartyInfoV3';
 import { CounterpartyV3 } from './counterpartyV3';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
+import { DirectDebitInformation } from './directDebitInformation';
 import { EstimationTrackingData } from './estimationTrackingData';
 import { ExternalReason } from './externalReason';
 import { Fee } from './fee';
@@ -155,6 +163,8 @@ import { TransferInfo } from './transferInfo';
 import { TransferNotificationCounterParty } from './transferNotificationCounterParty';
 import { TransferNotificationMerchantData } from './transferNotificationMerchantData';
 import { TransferNotificationValidationFact } from './transferNotificationValidationFact';
+import { TransferRequestReview } from './transferRequestReview';
+import { TransferReview } from './transferReview';
 import { TransferServiceRestServiceError } from './transferServiceRestServiceError';
 import { TransferView } from './transferView';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
@@ -228,6 +238,7 @@ let enumsMap: {[index: string]: any} = {
         "TransferInfo.PrioritiesEnum": TransferInfo.PrioritiesEnum,
         "TransferInfo.PriorityEnum": TransferInfo.PriorityEnum,
         "TransferInfo.TypeEnum": TransferInfo.TypeEnum,
+        "TransferReview.ScaOnApprovalEnum": TransferReview.ScaOnApprovalEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
@@ -240,12 +251,14 @@ let typeMap: {[index: string]: any} = {
     "Address": Address,
     "Amount": Amount,
     "AmountAdjustment": AmountAdjustment,
+    "ApproveTransfersRequest": ApproveTransfersRequest,
     "BRLocalAccountIdentification": BRLocalAccountIdentification,
     "BalanceMutation": BalanceMutation,
     "BankAccountV3": BankAccountV3,
     "BankCategoryData": BankCategoryData,
     "CALocalAccountIdentification": CALocalAccountIdentification,
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
+    "CancelTransfersRequest": CancelTransfersRequest,
     "CapitalBalance": CapitalBalance,
     "CapitalGrant": CapitalGrant,
     "CapitalGrantInfo": CapitalGrantInfo,
@@ -257,6 +270,7 @@ let typeMap: {[index: string]: any} = {
     "CounterpartyInfoV3": CounterpartyInfoV3,
     "CounterpartyV3": CounterpartyV3,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
+    "DirectDebitInformation": DirectDebitInformation,
     "EstimationTrackingData": EstimationTrackingData,
     "ExternalReason": ExternalReason,
     "Fee": Fee,
@@ -305,6 +319,8 @@ let typeMap: {[index: string]: any} = {
     "TransferNotificationCounterParty": TransferNotificationCounterParty,
     "TransferNotificationMerchantData": TransferNotificationMerchantData,
     "TransferNotificationValidationFact": TransferNotificationValidationFact,
+    "TransferRequestReview": TransferRequestReview,
+    "TransferReview": TransferReview,
     "TransferServiceRestServiceError": TransferServiceRestServiceError,
     "TransferView": TransferView,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,

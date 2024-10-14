@@ -15,6 +15,14 @@ export class CardDetailsResponse {
     */
     'brands'?: Array<CardBrandDetails>;
     /**
+    * The funding source of the card, for example **DEBIT**, **CREDIT**, or **PREPAID**.
+    */
+    'fundingSource'?: string;
+    /**
+    * Indicates if this is a commercial card or a consumer card. If **true**, it is a commercial card. If **false**, it is a consumer card.
+    */
+    'isCardCommercial'?: boolean;
+    /**
     * The two-letter country code  of the country where the card was issued.
     */
     'issuingCountryCode'?: string;
@@ -26,6 +34,16 @@ export class CardDetailsResponse {
             "name": "brands",
             "baseName": "brands",
             "type": "Array<CardBrandDetails>"
+        },
+        {
+            "name": "fundingSource",
+            "baseName": "fundingSource",
+            "type": "string"
+        },
+        {
+            "name": "isCardCommercial",
+            "baseName": "isCardCommercial",
+            "type": "boolean"
         },
         {
             "name": "issuingCountryCode",

@@ -118,6 +118,7 @@ export namespace Modification {
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
         PendingApproval = 'pendingApproval',
+        PendingExecution = 'pendingExecution',
         Received = 'received',
         RefundPending = 'refundPending',
         RefundReversalPending = 'refundReversalPending',

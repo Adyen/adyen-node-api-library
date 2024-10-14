@@ -25,6 +25,7 @@ export * from './cardIdentification';
 export * from './confirmationTrackingData';
 export * from './counterpartyV3';
 export * from './dKLocalAccountIdentification';
+export * from './directDebitInformation';
 export * from './estimationTrackingData';
 export * from './externalReason';
 export * from './hKLocalAccountIdentification';
@@ -58,6 +59,7 @@ export * from './transferNotificationCounterParty';
 export * from './transferNotificationMerchantData';
 export * from './transferNotificationRequest';
 export * from './transferNotificationValidationFact';
+export * from './transferReview';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
 
@@ -79,6 +81,7 @@ import { CardIdentification } from './cardIdentification';
 import { ConfirmationTrackingData } from './confirmationTrackingData';
 import { CounterpartyV3 } from './counterpartyV3';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
+import { DirectDebitInformation } from './directDebitInformation';
 import { EstimationTrackingData } from './estimationTrackingData';
 import { ExternalReason } from './externalReason';
 import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
@@ -112,6 +115,7 @@ import { TransferNotificationCounterParty } from './transferNotificationCounterP
 import { TransferNotificationMerchantData } from './transferNotificationMerchantData';
 import { TransferNotificationRequest } from './transferNotificationRequest';
 import { TransferNotificationValidationFact } from './transferNotificationValidationFact';
+import { TransferReview } from './transferReview';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 
@@ -170,6 +174,7 @@ let enumsMap: {[index: string]: any} = {
         "TransferEvent.StatusEnum": TransferEvent.StatusEnum,
         "TransferEvent.TypeEnum": TransferEvent.TypeEnum,
         "TransferNotificationRequest.TypeEnum": TransferNotificationRequest.TypeEnum,
+        "TransferReview.ScaOnApprovalEnum": TransferReview.ScaOnApprovalEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
@@ -193,6 +198,7 @@ let typeMap: {[index: string]: any} = {
     "ConfirmationTrackingData": ConfirmationTrackingData,
     "CounterpartyV3": CounterpartyV3,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
+    "DirectDebitInformation": DirectDebitInformation,
     "EstimationTrackingData": EstimationTrackingData,
     "ExternalReason": ExternalReason,
     "HKLocalAccountIdentification": HKLocalAccountIdentification,
@@ -226,6 +232,7 @@ let typeMap: {[index: string]: any} = {
     "TransferNotificationMerchantData": TransferNotificationMerchantData,
     "TransferNotificationRequest": TransferNotificationRequest,
     "TransferNotificationValidationFact": TransferNotificationValidationFact,
+    "TransferReview": TransferReview,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,
 }

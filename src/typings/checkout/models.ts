@@ -515,6 +515,7 @@ let enumsMap: {[index: string]: any} = {
         "DragonpayDetails.TypeEnum": DragonpayDetails.TypeEnum,
         "EcontextVoucherDetails.TypeEnum": EcontextVoucherDetails.TypeEnum,
         "EftDetails.TypeEnum": EftDetails.TypeEnum,
+        "FundRecipient.WalletPurposeEnum": FundRecipient.WalletPurposeEnum,
         "GenericIssuerPaymentMethodDetails.TypeEnum": GenericIssuerPaymentMethodDetails.TypeEnum,
         "GiropayDetails.TypeEnum": GiropayDetails.TypeEnum,
         "GooglePayDetails.FundingSourceEnum": GooglePayDetails.FundingSourceEnum,

@@ -12,6 +12,7 @@ import { DocumentsApi } from "./documentsApi";
 import { HostedOnboardingApi } from "./hostedOnboardingApi";
 import { LegalEntitiesApi } from "./legalEntitiesApi";
 import { PCIQuestionnairesApi } from "./pCIQuestionnairesApi";
+import { TaxEDeliveryConsentApi } from "./taxEDeliveryConsentApi";
 import { TermsOfServiceApi } from "./termsOfServiceApi";
 import { TransferInstrumentsApi } from "./transferInstrumentsApi";
 
@@ -42,6 +43,10 @@ export default class LegalEntityManagementAPI extends Service {
 
     public get PCIQuestionnairesApi() {
         return new PCIQuestionnairesApi(this.client);
+    }
+
+    public get TaxEDeliveryConsentApi() {
+        return new TaxEDeliveryConsentApi(this.client);
     }
 
     public get TermsOfServiceApi() {

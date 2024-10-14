@@ -9,6 +9,7 @@
 
 import { Amount } from './amount';
 import { CounterpartyInfoV3 } from './counterpartyInfoV3';
+import { TransferRequestReview } from './transferRequestReview';
 import { UltimatePartyIdentification } from './ultimatePartyIdentification';
 
 export class TransferInfo {
@@ -46,6 +47,7 @@ export class TransferInfo {
     *  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both parties involved in the funds movement.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
     'referenceForBeneficiary'?: string;
+    'review'?: TransferRequestReview;
     /**
     * The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The `category` must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The `category` must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The `category` must be **internal**.   
     */
@@ -104,6 +106,11 @@ export class TransferInfo {
             "name": "referenceForBeneficiary",
             "baseName": "referenceForBeneficiary",
             "type": "string"
+        },
+        {
+            "name": "review",
+            "baseName": "review",
+            "type": "TransferRequestReview"
         },
         {
             "name": "type",
