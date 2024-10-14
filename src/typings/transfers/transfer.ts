@@ -10,11 +10,13 @@
 import { Amount } from './amount';
 import { BankCategoryData } from './bankCategoryData';
 import { CounterpartyV3 } from './counterpartyV3';
+import { DirectDebitInformation } from './directDebitInformation';
 import { InternalCategoryData } from './internalCategoryData';
 import { IssuedCard } from './issuedCard';
 import { PaymentInstrument } from './paymentInstrument';
 import { PlatformPayment } from './platformPayment';
 import { ResourceReference } from './resourceReference';
+import { TransferReview } from './transferReview';
 
 export class Transfer {
     'accountHolder'?: ResourceReference;
@@ -37,6 +39,7 @@ export class Transfer {
     * Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , \' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ \' \" ! ?**
     */
     'description'?: string;
+    'directDebitInformation'?: DirectDebitInformation;
     /**
     * The direction of the transfer.  Possible values: **incoming**, **outgoing**.
     */
@@ -58,6 +61,7 @@ export class Transfer {
     *  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the `category`.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
     'referenceForBeneficiary'?: string;
+    'review'?: TransferReview;
     /**
     * The result of the transfer.   For example, **authorised**, **refused**, or **error**.
     */
@@ -111,6 +115,11 @@ export class Transfer {
             "type": "string"
         },
         {
+            "name": "directDebitInformation",
+            "baseName": "directDebitInformation",
+            "type": "DirectDebitInformation"
+        },
+        {
             "name": "direction",
             "baseName": "direction",
             "type": "Transfer.DirectionEnum"
@@ -141,6 +150,11 @@ export class Transfer {
             "type": "string"
         },
         {
+            "name": "review",
+            "baseName": "review",
+            "type": "TransferReview"
+        },
+        {
             "name": "status",
             "baseName": "status",
             "type": "Transfer.StatusEnum"
@@ -169,6 +183,7 @@ export namespace Transfer {
         Outgoing = 'outgoing'
     }
     export enum ReasonEnum {
+        AccountHierarchyNotActive = 'accountHierarchyNotActive',
         AmountLimitExceeded = 'amountLimitExceeded',
         Approved = 'approved',
         BalanceAccountTemporarilyBlockedByTransactionRule = 'balanceAccountTemporarilyBlockedByTransactionRule',
@@ -180,12 +195,15 @@ export namespace Transfer {
         CounterpartyBankUnavailable = 'counterpartyBankUnavailable',
         Declined = 'declined',
         DeclinedByTransactionRule = 'declinedByTransactionRule',
+        DirectDebitNotSupported = 'directDebitNotSupported',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
         PendingApproval = 'pendingApproval',
+        PendingExecution = 'pendingExecution',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
         RouteNotFound = 'routeNotFound',
         ScaFailed = 'scaFailed',
+        TransferInstrumentDoesNotExist = 'transferInstrumentDoesNotExist',
         Unknown = 'unknown'
     }
     export enum StatusEnum {
@@ -241,6 +259,7 @@ export namespace Transfer {
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
         PendingApproval = 'pendingApproval',
+        PendingExecution = 'pendingExecution',
         Received = 'received',
         RefundPending = 'refundPending',
         RefundReversalPending = 'refundReversalPending',

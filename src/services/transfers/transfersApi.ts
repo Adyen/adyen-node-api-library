@@ -11,6 +11,8 @@ import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
 import { 
+    ApproveTransfersRequest,
+    CancelTransfersRequest,
     FindTransfersResponse,
     ReturnTransferRequest,
     ReturnTransferResponse,
@@ -30,6 +32,38 @@ export class TransfersApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
+    /**
+    * @summary Approve initiated transfers
+    * @param approveTransfersRequest {@link ApproveTransfersRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    */
+    public async approveInitiatedTransfers(approveTransfersRequest: ApproveTransfersRequest, requestOptions?: IRequest.Options): Promise<void> {
+        const endpoint = `${this.baseUrl}/transfers/approve`;
+        const resource = new Resource(this, endpoint);
+        const request: ApproveTransfersRequest = ObjectSerializer.serialize(approveTransfersRequest, "ApproveTransfersRequest");
+        await getJsonResponse<ApproveTransfersRequest, void>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+    }
+
+    /**
+    * @summary Cancel initiated transfers
+    * @param cancelTransfersRequest {@link CancelTransfersRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    */
+    public async cancelInitiatedTransfers(cancelTransfersRequest: CancelTransfersRequest, requestOptions?: IRequest.Options): Promise<void> {
+        const endpoint = `${this.baseUrl}/transfers/cancel`;
+        const resource = new Resource(this, endpoint);
+        const request: CancelTransfersRequest = ObjectSerializer.serialize(cancelTransfersRequest, "CancelTransfersRequest");
+        await getJsonResponse<CancelTransfersRequest, void>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
     }
 
     /**

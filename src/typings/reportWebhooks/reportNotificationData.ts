@@ -29,7 +29,7 @@ export class ReportNotificationData {
     */
     'fileName': string;
     /**
-    * Type of report.
+    * The type of report. Possible values:  - `balanceplatform_accounting_interactive_report` - `balanceplatform_accounting_report` - `balanceplatform_balance_report` - `balanceplatform_fee_report` - `balanceplatform_payment_instrument_report` - `balanceplatform_payout_report` - `balanceplatform_statement_report`  
     */
     'reportType': string;
 

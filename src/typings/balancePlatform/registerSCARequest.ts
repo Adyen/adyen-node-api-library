@@ -11,6 +11,10 @@ import { DelegatedAuthenticationData } from './delegatedAuthenticationData';
 
 export class RegisterSCARequest {
     /**
+    * The name of the SCA device that you are registering. You can use it to help your users identify the device.  If you do not specify a `name`, Adyen automatically generates one.
+    */
+    'name'?: string;
+    /**
     * The unique identifier of the payment instrument for which you are registering the SCA device.
     */
     'paymentInstrumentId': string;
@@ -19,6 +23,11 @@ export class RegisterSCARequest {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",

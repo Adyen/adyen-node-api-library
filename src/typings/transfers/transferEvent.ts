@@ -170,6 +170,7 @@ export class TransferEvent {
 
 export namespace TransferEvent {
     export enum ReasonEnum {
+        AccountHierarchyNotActive = 'accountHierarchyNotActive',
         AmountLimitExceeded = 'amountLimitExceeded',
         Approved = 'approved',
         BalanceAccountTemporarilyBlockedByTransactionRule = 'balanceAccountTemporarilyBlockedByTransactionRule',
@@ -181,12 +182,15 @@ export namespace TransferEvent {
         CounterpartyBankUnavailable = 'counterpartyBankUnavailable',
         Declined = 'declined',
         DeclinedByTransactionRule = 'declinedByTransactionRule',
+        DirectDebitNotSupported = 'directDebitNotSupported',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
         PendingApproval = 'pendingApproval',
+        PendingExecution = 'pendingExecution',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
         RouteNotFound = 'routeNotFound',
         ScaFailed = 'scaFailed',
+        TransferInstrumentDoesNotExist = 'transferInstrumentDoesNotExist',
         Unknown = 'unknown'
     }
     export enum StatusEnum {
@@ -242,6 +246,7 @@ export namespace TransferEvent {
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
         PendingApproval = 'pendingApproval',
+        PendingExecution = 'pendingExecution',
         Received = 'received',
         RefundPending = 'refundPending',
         RefundReversalPending = 'refundReversalPending',
