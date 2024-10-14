@@ -14,7 +14,6 @@ import {
     CreateMerchantWebhookRequest,
     GenerateHmacKeyResponse,
     ListWebhooksResponse,
-    RestServiceError,
     TestWebhookRequest,
     TestWebhookResponse,
     UpdateMerchantWebhookRequest,
