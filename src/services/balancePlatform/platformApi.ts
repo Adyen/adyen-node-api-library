@@ -13,6 +13,7 @@ import Client from "../../client";
 import { 
     BalancePlatform,
     PaginatedAccountHoldersResponse,
+    RestServiceError,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
