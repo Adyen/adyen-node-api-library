@@ -15,7 +15,7 @@ export class Surcharge {
     */
     'askConfirmation'?: boolean;
     /**
-    * Surcharge fees or percentages for specific payment methods, funding sources (credit or debit), and currencies.
+    * Surcharge fees or percentages for specific cards, funding sources (credit or debit), and currencies.
     */
     'configurations'?: Array<Configuration>;
 

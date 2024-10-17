@@ -22,10 +22,6 @@ export class SplitConfiguration {
     * Unique identifier of the split configuration.
     */
     'splitConfigurationId'?: string;
-    /**
-    * List of stores to which the split configuration applies.
-    */
-    'stores'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -44,11 +40,6 @@ export class SplitConfiguration {
             "name": "splitConfigurationId",
             "baseName": "splitConfigurationId",
             "type": "string"
-        },
-        {
-            "name": "stores",
-            "baseName": "stores",
-            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
