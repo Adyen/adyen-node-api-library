@@ -30,6 +30,8 @@ export class BankAccountInfo {
     'accountIdentification'?: AULocalAccountIdentification | CALocalAccountIdentification | CZLocalAccountIdentification | DKLocalAccountIdentification | HKLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NZLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | SGLocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification | null;
     /**
     * The type of bank account.
+    *
+	* @deprecated since Legal Entity Management API v2
     */
     'accountType'?: string;
     /**

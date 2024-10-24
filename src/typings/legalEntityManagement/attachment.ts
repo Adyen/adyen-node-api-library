@@ -15,10 +15,14 @@ export class Attachment {
     'content': string;
     /**
     * The file format.   Possible values: **application/pdf**, **image/jpg**, **image/jpeg**, **image/png**. 
+    *
+	* @deprecated since Legal Entity Management API v1
     */
     'contentType'?: string;
     /**
     * The name of the file including the file extension.
+    *
+	* @deprecated since Legal Entity Management API v1
     */
     'filename'?: string;
     /**

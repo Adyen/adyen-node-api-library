@@ -172,6 +172,8 @@ export class PaymentAPI extends Service {
     * @param donationRequest {@link DonationRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link ModificationResult }
+    *
+	* @deprecated 
     */
     public async donate(donationRequest: DonationRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
         const endpoint = `${this.baseUrl}/donate`;

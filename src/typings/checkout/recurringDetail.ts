@@ -37,6 +37,8 @@ export class RecurringDetail {
     'group'?: PaymentMethodGroup;
     /**
     * All input details to be provided to complete the payment with this payment method.
+    *
+	* @deprecated 
     */
     'inputDetails'?: Array<InputDetail>;
     /**

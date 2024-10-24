@@ -26,6 +26,8 @@ export class Document {
     'description': string;
     /**
     * The expiry date of the document, in YYYY-MM-DD format.
+    *
+	* @deprecated since Legal Entity Management API v1
     */
     'expiryDate'?: string;
     /**
@@ -38,10 +40,14 @@ export class Document {
     'id'?: string;
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the document was issued. For example, **US**.
+    *
+	* @deprecated since Legal Entity Management API v1
     */
     'issuerCountry'?: string;
     /**
     * The state or province where the document was issued (AU only).
+    *
+	* @deprecated since Legal Entity Management API v1
     */
     'issuerState'?: string;
     /**

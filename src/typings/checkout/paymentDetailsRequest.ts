@@ -19,6 +19,9 @@ export class PaymentDetailsRequest {
     'paymentData'?: string;
     /**
     * Change the `authenticationOnly` indicator originally set in the `/payments` request. Only needs to be set if you want to modify the value set previously.
+    *
+	* @deprecated since Adyen Checkout API v69
+	* Use `authenticationData.authenticationOnly` instead.
     */
     'threeDSAuthenticationOnly'?: boolean;
 

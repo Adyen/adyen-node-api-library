@@ -14,6 +14,9 @@ import { WebDataExemption } from './webDataExemption';
 export class BusinessLineInfo {
     /**
     * The capability for which you are creating the business line.  Possible values: **receivePayments**, **receiveFromPlatformPayments**, **issueBankAccount**
+    *
+	* @deprecated since Legal Entity Management API v3
+	* Use `service` instead.
     */
     'capability'?: BusinessLineInfo.CapabilityEnum;
     /**

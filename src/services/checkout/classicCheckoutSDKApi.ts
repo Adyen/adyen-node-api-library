@@ -35,6 +35,8 @@ export class ClassicCheckoutSDKApi extends Service {
     * @param paymentSetupRequest {@link PaymentSetupRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentSetupResponse }
+    *
+	* @deprecated since Adyen Checkout API v37
     */
     public async paymentSession(paymentSetupRequest: PaymentSetupRequest, requestOptions?: IRequest.Options): Promise<PaymentSetupResponse> {
         const endpoint = `${this.baseUrl}/paymentSession`;
@@ -53,6 +55,8 @@ export class ClassicCheckoutSDKApi extends Service {
     * @param paymentVerificationRequest {@link PaymentVerificationRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentVerificationResponse }
+    *
+	* @deprecated since Adyen Checkout API v37
     */
     public async verifyPaymentResult(paymentVerificationRequest: PaymentVerificationRequest, requestOptions?: IRequest.Options): Promise<PaymentVerificationResponse> {
         const endpoint = `${this.baseUrl}/payments/result`;
