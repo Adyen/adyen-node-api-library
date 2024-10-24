@@ -14,7 +14,6 @@ import {
     CreateCompanyWebhookRequest,
     GenerateHmacKeyResponse,
     ListWebhooksResponse,
-    RestServiceError,
     TestCompanyWebhookRequest,
     TestWebhookResponse,
     UpdateCompanyWebhookRequest,
