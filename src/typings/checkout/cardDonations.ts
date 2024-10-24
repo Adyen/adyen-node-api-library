@@ -17,6 +17,9 @@ export class CardDonations {
     * The checkout attempt identifier.
     */
     'checkoutAttemptId'?: string;
+    /**
+	* @deprecated 
+    */
     'cupsecureplus_smscode'?: string;
     /**
     * The card verification code. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
@@ -64,6 +67,9 @@ export class CardDonations {
     'number'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
+    *
+	* @deprecated since Adyen Checkout API v49
+	* Use `storedPaymentMethodId` instead.
     */
     'recurringDetailReference'?: string;
     /**

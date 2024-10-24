@@ -14,6 +14,9 @@ import { IbanAccountIdentification } from './ibanAccountIdentification';
 export class UpdatePaymentInstrument {
     /**
     * Contains optional, additional business account details. Returned when you create a payment instrument with `type` **bankAccount**.
+    *
+	* @deprecated since Configuration API v2
+	* Please use `bankAccount` object instead
     */
     'additionalBankAccountIdentifications'?: Array<IbanAccountIdentification>;
     /**

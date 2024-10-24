@@ -18,6 +18,9 @@ export class Nexo {
     'eventUrls'?: EventUrl;
     /**
     * One or more URLs to send event messages to when using Terminal API.
+    *
+	* @deprecated since Management API v1
+	* Use `eventUrls` instead.
     */
     'nexoEventUrls'?: Array<string>;
     'notification'?: Notification;

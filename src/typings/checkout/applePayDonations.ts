@@ -23,6 +23,9 @@ export class ApplePayDonations {
     'fundingSource'?: ApplePayDonations.FundingSourceEnum;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
+    *
+	* @deprecated since Adyen Checkout API v49
+	* Use `storedPaymentMethodId` instead.
     */
     'recurringDetailReference'?: string;
     /**

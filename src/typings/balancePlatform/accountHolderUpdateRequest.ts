@@ -20,6 +20,9 @@ export class AccountHolderUpdateRequest {
     * Contains key-value pairs that specify the actions that an account holder can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing. The value is an object containing the settings for the capability.
     */
     'capabilities'?: { [key: string]: AccountHolderCapability; };
+    /**
+	* @deprecated 
+    */
     'contactDetails'?: ContactDetails;
     /**
     * Your description for the account holder.
