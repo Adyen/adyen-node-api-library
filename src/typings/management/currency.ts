@@ -18,6 +18,10 @@ export class Currency {
     */
     'currencyCode': string;
     /**
+    * The maximum surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+    */
+    'maxAmount'?: number;
+    /**
     * Surcharge percentage per transaction. The maximum number of decimal places is two. For example, **1%** or **2.27%**.
     */
     'percentage'?: number;
@@ -34,6 +38,11 @@ export class Currency {
             "name": "currencyCode",
             "baseName": "currencyCode",
             "type": "string"
+        },
+        {
+            "name": "maxAmount",
+            "baseName": "maxAmount",
+            "type": "number"
         },
         {
             "name": "percentage",

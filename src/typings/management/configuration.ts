@@ -15,11 +15,15 @@ export class Configuration {
     */
     'brand': string;
     /**
-    * Countries, to filter different surcharge amounts for domestic or international cards.
+    * Set to **true** to apply surcharges only to commercial/business cards.
+    */
+    'commercial'?: boolean;
+    /**
+    * The country/region of the card issuer. If used, the surcharge settings only apply to the card issued in that country/region.
     */
     'country'?: Array<string>;
     /**
-    * Currency, and surcharge percentage or amount.
+    * Currency and percentage or amount of the surcharge.
     */
     'currencies': Array<Currency>;
     /**
@@ -34,6 +38,11 @@ export class Configuration {
             "name": "brand",
             "baseName": "brand",
             "type": "string"
+        },
+        {
+            "name": "commercial",
+            "baseName": "commercial",
+            "type": "boolean"
         },
         {
             "name": "country",

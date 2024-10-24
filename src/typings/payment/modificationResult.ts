@@ -55,6 +55,7 @@ export namespace ModificationResult {
         AdjustAuthorisationReceived = '[adjustAuthorisation-received]',
         DonationReceived = '[donation-received]',
         TechnicalCancelReceived = '[technical-cancel-received]',
-        VoidPendingRefundReceived = '[voidPendingRefund-received]'
+        VoidPendingRefundReceived = '[voidPendingRefund-received]',
+        Authorised = 'Authorised'
     }
 }
