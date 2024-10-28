@@ -43,10 +43,16 @@ export class AccountInfo {
     'deliveryAddressUsageIndicator'?: AccountInfo.DeliveryAddressUsageIndicatorEnum;
     /**
     * Shopper\'s home phone number (including the country code).
+    *
+	* @deprecated since Adyen Payment API v68
+	* Use `ThreeDS2RequestData.homePhone` instead.
     */
     'homePhone'?: string;
     /**
     * Shopper\'s mobile phone number (including the country code).
+    *
+	* @deprecated since Adyen Payment API v68
+	* Use `ThreeDS2RequestData.mobilePhone` instead.
     */
     'mobilePhone'?: string;
     /**
@@ -83,6 +89,9 @@ export class AccountInfo {
     'suspiciousActivity'?: boolean;
     /**
     * Shopper\'s work phone number (including the country code).
+    *
+	* @deprecated since Adyen Payment API v68
+	* Use `ThreeDS2RequestData.workPhone` instead.
     */
     'workPhone'?: string;
 

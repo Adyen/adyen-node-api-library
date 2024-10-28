@@ -20,6 +20,9 @@ export class MerchantRiskIndicator {
     'deliveryAddressIndicator'?: MerchantRiskIndicator.DeliveryAddressIndicatorEnum;
     /**
     * The delivery email address (for digital goods).
+    *
+	* @deprecated since Adyen Checkout API v68
+	* Use `deliveryEmailAddress` instead.
     */
     'deliveryEmail'?: string;
     /**

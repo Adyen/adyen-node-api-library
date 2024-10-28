@@ -55,6 +55,8 @@ export class UtilityApi extends Service {
     * @param utilityRequest {@link UtilityRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link UtilityResponse }
+    *
+	* @deprecated since Adyen Checkout API v67
     */
     public async originKeys(utilityRequest: UtilityRequest, requestOptions?: IRequest.Options): Promise<UtilityResponse> {
         const endpoint = `${this.baseUrl}/originKeys`;

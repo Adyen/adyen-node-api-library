@@ -30,6 +30,9 @@ export class LegalEntity {
     'documentDetails'?: Array<DocumentReference>;
     /**
     * List of documents uploaded for the legal entity.
+    *
+	* @deprecated since Legal Entity Management API v1
+	* Use the `documentDetails` array instead.
     */
     'documents'?: Array<EntityReference>;
     /**

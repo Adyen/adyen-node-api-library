@@ -34,10 +34,16 @@ export class ThreeDS2RequestData {
     'addrMatch'?: ThreeDS2RequestData.AddrMatchEnum;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
+    *
+	* @deprecated since Adyen Payment API v50
+	* Use `threeDSAuthenticationOnly` instead.
     */
     'authenticationOnly'?: boolean;
     /**
     * Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate` 
+    *
+	* @deprecated since Adyen Payment API v68
+	* Use `threeDSRequestorChallengeInd` instead.
     */
     'challengeIndicator'?: ThreeDS2RequestData.ChallengeIndicatorEnum;
     /**

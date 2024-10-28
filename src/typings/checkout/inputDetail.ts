@@ -21,6 +21,8 @@ export class InputDetail {
     'details'?: Array<SubInputDetail>;
     /**
     * Input details can also be provided recursively (deprecated).
+    *
+	* @deprecated 
     */
     'inputDetails'?: Array<SubInputDetail>;
     /**

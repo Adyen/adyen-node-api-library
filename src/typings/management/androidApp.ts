@@ -16,6 +16,9 @@ export class AndroidApp {
     'description'?: string;
     /**
     * The error code of the Android app with the `status` of either **error** or **invalid**.
+    *
+	* @deprecated since Management API v3
+	* Use `errors` instead.
     */
     'errorCode'?: string;
     /**
