@@ -8,8 +8,9 @@
  */
 
 import { Amount } from './amount';
+import { PaymentInstrument } from './paymentInstrument';
 import { ResourceReference } from './resourceReference';
-import { TransferData } from './transferData';
+import { TransferView } from './transferView';
 
 export class Transaction {
     'accountHolder': ResourceReference;
@@ -28,14 +29,23 @@ export class Transaction {
     */
     'creationDate'?: Date;
     /**
+    * The `description` from the `/transfers` request.
+    */
+    'description'?: string;
+    /**
     * The unique identifier of the transaction.
     */
     'id': string;
+    'paymentInstrument'?: PaymentInstrument;
+    /**
+    * The reference sent to or received from the counterparty.  * For outgoing funds, this is the [`referenceForBeneficiary`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__resParam_referenceForBeneficiary) from the  [`/transfers`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_referenceForBeneficiary) request.   * For incoming funds, this is the reference from the sender.
+    */
+    'referenceForBeneficiary'?: string;
     /**
     * The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.  
     */
     'status': Transaction.StatusEnum;
-    'transfer'?: TransferData;
+    'transfer'?: TransferView;
     /**
     * The date the transfer amount becomes available in the balance account.
     */
@@ -75,8 +85,23 @@ export class Transaction {
             "type": "Date"
         },
         {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "paymentInstrument",
+            "baseName": "paymentInstrument",
+            "type": "PaymentInstrument"
+        },
+        {
+            "name": "referenceForBeneficiary",
+            "baseName": "referenceForBeneficiary",
             "type": "string"
         },
         {
@@ -87,7 +112,7 @@ export class Transaction {
         {
             "name": "transfer",
             "baseName": "transfer",
-            "type": "TransferData"
+            "type": "TransferView"
         },
         {
             "name": "valueDate",

@@ -37,6 +37,7 @@ export * from './documentReference';
 export * from './entityReference';
 export * from './generatePciDescriptionRequest';
 export * from './generatePciDescriptionResponse';
+export * from './getAcceptedTermsOfServiceDocumentResponse';
 export * from './getPciQuestionnaireInfosResponse';
 export * from './getPciQuestionnaireResponse';
 export * from './getTermsOfServiceAcceptanceInfosResponse';
@@ -124,6 +125,7 @@ import { DocumentReference } from './documentReference';
 import { EntityReference } from './entityReference';
 import { GeneratePciDescriptionRequest } from './generatePciDescriptionRequest';
 import { GeneratePciDescriptionResponse } from './generatePciDescriptionResponse';
+import { GetAcceptedTermsOfServiceDocumentResponse } from './getAcceptedTermsOfServiceDocumentResponse';
 import { GetPciQuestionnaireInfosResponse } from './getPciQuestionnaireInfosResponse';
 import { GetPciQuestionnaireResponse } from './getPciQuestionnaireResponse';
 import { GetTermsOfServiceAcceptanceInfosResponse } from './getTermsOfServiceAcceptanceInfosResponse';
@@ -213,6 +215,7 @@ let enumsMap: {[index: string]: any} = {
         "Document.TypeEnum": Document.TypeEnum,
         "DocumentPage.TypeEnum": DocumentPage.TypeEnum,
         "GeneratePciDescriptionRequest.AdditionalSalesChannelsEnum": GeneratePciDescriptionRequest.AdditionalSalesChannelsEnum,
+        "GetAcceptedTermsOfServiceDocumentResponse.TermsOfServiceDocumentFormatEnum": GetAcceptedTermsOfServiceDocumentResponse.TermsOfServiceDocumentFormatEnum,
         "GetTermsOfServiceDocumentRequest.TypeEnum": GetTermsOfServiceDocumentRequest.TypeEnum,
         "GetTermsOfServiceDocumentResponse.TypeEnum": GetTermsOfServiceDocumentResponse.TypeEnum,
         "HKLocalAccountIdentification.TypeEnum": HKLocalAccountIdentification.TypeEnum,
@@ -284,6 +287,7 @@ let typeMap: {[index: string]: any} = {
     "EntityReference": EntityReference,
     "GeneratePciDescriptionRequest": GeneratePciDescriptionRequest,
     "GeneratePciDescriptionResponse": GeneratePciDescriptionResponse,
+    "GetAcceptedTermsOfServiceDocumentResponse": GetAcceptedTermsOfServiceDocumentResponse,
     "GetPciQuestionnaireInfosResponse": GetPciQuestionnaireInfosResponse,
     "GetPciQuestionnaireResponse": GetPciQuestionnaireResponse,
     "GetTermsOfServiceAcceptanceInfosResponse": GetTermsOfServiceAcceptanceInfosResponse,

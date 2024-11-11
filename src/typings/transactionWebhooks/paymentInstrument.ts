@@ -8,19 +8,32 @@
  */
 
 
-export class TransferData {
+export class PaymentInstrument {
     /**
-    * The ID of the resource.
+    * The description of the resource.
+    */
+    'description'?: string;
+    /**
+    * The unique identifier of the resource.
     */
     'id'?: string;
     /**
-    * The [`reference`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the `/transfers` request. If you haven\'t provided any, Adyen generates a unique reference.
+    * The reference for the resource.
     */
-    'reference': string;
+    'reference'?: string;
+    /**
+    * The type of wallet that the network token is associated with.
+    */
+    'tokenType'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
         {
             "name": "id",
             "baseName": "id",
@@ -30,10 +43,15 @@ export class TransferData {
             "name": "reference",
             "baseName": "reference",
             "type": "string"
+        },
+        {
+            "name": "tokenType",
+            "baseName": "tokenType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return TransferData.attributeTypeMap;
+        return PaymentInstrument.attributeTypeMap;
     }
 }
 

@@ -8,7 +8,7 @@
  */
 
 
-export class StoredPaymentMethodDetails {
+export class PayByBankAISDirectDebitDetails {
     /**
     * The checkout attempt identifier.
     */
@@ -25,9 +25,9 @@ export class StoredPaymentMethodDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
-    * The payment method type.
+    * **paybybank_**
     */
-    'type'?: StoredPaymentMethodDetails.TypeEnum;
+    'type': PayByBankAISDirectDebitDetails.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -50,32 +50,16 @@ export class StoredPaymentMethodDetails {
         {
             "name": "type",
             "baseName": "type",
-            "type": "StoredPaymentMethodDetails.TypeEnum"
+            "type": "PayByBankAISDirectDebitDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return StoredPaymentMethodDetails.attributeTypeMap;
+        return PayByBankAISDirectDebitDetails.attributeTypeMap;
     }
 }
 
-export namespace StoredPaymentMethodDetails {
+export namespace PayByBankAISDirectDebitDetails {
     export enum TypeEnum {
-        BcmcMobile = 'bcmc_mobile',
-        BcmcMobileQr = 'bcmc_mobile_QR',
-        BcmcMobileApp = 'bcmc_mobile_app',
-        MomoWallet = 'momo_wallet',
-        MomoWalletApp = 'momo_wallet_app',
-        PaymayaWallet = 'paymaya_wallet',
-        GrabpaySg = 'grabpay_SG',
-        GrabpayMy = 'grabpay_MY',
-        GrabpayTh = 'grabpay_TH',
-        GrabpayId = 'grabpay_ID',
-        GrabpayVn = 'grabpay_VN',
-        GrabpayPh = 'grabpay_PH',
-        Oxxo = 'oxxo',
-        Gcash = 'gcash',
-        Dana = 'dana',
-        Kakaopay = 'kakaopay',
-        Truemoney = 'truemoney'
+        PaybybankAisDd = 'paybybank_AIS_DD'
     }
 }

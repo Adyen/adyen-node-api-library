@@ -14,7 +14,7 @@ import { SubMerchant } from './subMerchant';
 
 export class FundRecipient {
     /**
-    * Fund Recipient Iban for C2C payments
+    * The IBAN of the bank account where the funds are being transferred to.
     */
     'IBAN'?: string;
     'billingAddress'?: Address;
@@ -38,15 +38,15 @@ export class FundRecipient {
     */
     'telephoneNumber'?: string;
     /**
-    * Indicates where the money is going.
+    * The unique identifier for the wallet the funds are being transferred to. You can use the shopper reference or any other identifier.
     */
     'walletIdentifier'?: string;
     /**
-    * Indicates the tax identifier of the fund recipient
+    * The tax identifier of the person receiving the funds.
     */
     'walletOwnerTaxId'?: string;
     /**
-    * The purpose of a digital wallet transaction
+    * The purpose of a digital wallet transaction.
     */
     'walletPurpose'?: FundRecipient.WalletPurposeEnum;
 

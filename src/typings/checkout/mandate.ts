@@ -34,7 +34,7 @@ export class Mandate {
     */
     'endsAt': string;
     /**
-    * The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.
+    * The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.
     */
     'frequency': Mandate.FrequencyEnum;
     /**

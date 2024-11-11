@@ -8,23 +8,32 @@
  */
 
 
-export class BalancePlatformNotificationResponse {
+export class TransferNotificationValidationFact {
     /**
-    * Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+    * The evaluation result of the validation fact.
     */
-    'notificationResponse'?: string;
+    'result'?: string;
+    /**
+    * The type of the validation fact.
+    */
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "notificationResponse",
-            "baseName": "notificationResponse",
+            "name": "result",
+            "baseName": "result",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return BalancePlatformNotificationResponse.attributeTypeMap;
+        return TransferNotificationValidationFact.attributeTypeMap;
     }
 }
 

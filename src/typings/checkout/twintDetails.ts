@@ -8,7 +8,7 @@
  */
 
 
-export class StoredPaymentMethodDetails {
+export class TwintDetails {
     /**
     * The checkout attempt identifier.
     */
@@ -25,9 +25,13 @@ export class StoredPaymentMethodDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
+    * The type of flow to initiate.
+    */
+    'subtype'?: string;
+    /**
     * The payment method type.
     */
-    'type'?: StoredPaymentMethodDetails.TypeEnum;
+    'type'?: TwintDetails.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,34 +52,23 @@ export class StoredPaymentMethodDetails {
             "type": "string"
         },
         {
+            "name": "subtype",
+            "baseName": "subtype",
+            "type": "string"
+        },
+        {
             "name": "type",
             "baseName": "type",
-            "type": "StoredPaymentMethodDetails.TypeEnum"
+            "type": "TwintDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return StoredPaymentMethodDetails.attributeTypeMap;
+        return TwintDetails.attributeTypeMap;
     }
 }
 
-export namespace StoredPaymentMethodDetails {
+export namespace TwintDetails {
     export enum TypeEnum {
-        BcmcMobile = 'bcmc_mobile',
-        BcmcMobileQr = 'bcmc_mobile_QR',
-        BcmcMobileApp = 'bcmc_mobile_app',
-        MomoWallet = 'momo_wallet',
-        MomoWalletApp = 'momo_wallet_app',
-        PaymayaWallet = 'paymaya_wallet',
-        GrabpaySg = 'grabpay_SG',
-        GrabpayMy = 'grabpay_MY',
-        GrabpayTh = 'grabpay_TH',
-        GrabpayId = 'grabpay_ID',
-        GrabpayVn = 'grabpay_VN',
-        GrabpayPh = 'grabpay_PH',
-        Oxxo = 'oxxo',
-        Gcash = 'gcash',
-        Dana = 'dana',
-        Kakaopay = 'kakaopay',
-        Truemoney = 'truemoney'
+        Twint = 'twint'
     }
 }

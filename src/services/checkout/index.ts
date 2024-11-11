@@ -7,7 +7,6 @@
  * Do not edit this class manually.
  */
 
-import { ClassicCheckoutSDKApi } from "./classicCheckoutSDKApi";
 import { DonationsApi } from "./donationsApi";
 import { ModificationsApi } from "./modificationsApi";
 import { OrdersApi } from "./ordersApi";
@@ -23,10 +22,6 @@ export default class CheckoutAPI extends Service {
     
     public constructor(client: Client) {
         super(client);
-    }
-
-    public get ClassicCheckoutSDKApi() {
-        return new ClassicCheckoutSDKApi(this.client);
     }
 
     public get DonationsApi() {
