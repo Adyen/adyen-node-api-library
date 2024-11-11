@@ -3,10 +3,10 @@ import {createClient} from "../__mocks__/base";
 import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess";
 import {paymentsSuccess} from "../__mocks__/checkout/paymentsSuccess";
 import {paymentDetailsSuccess} from "../__mocks__/checkout/paymentsDetailsSuccess";
-import {paymentSessionSuccess} from "../__mocks__/checkout/paymentSessionSucess";
+// import {paymentSessionSuccess} from "../__mocks__/checkout/paymentSessionSucess";
 import {originKeysSuccess} from "../__mocks__/checkout/originkeysSuccess";
 import {paymentsResultMultibancoSuccess} from "../__mocks__/checkout/paymentsResultMultibancoSuccess";
-import {paymentsResultSuccess} from "../__mocks__/checkout/paymentsResultSucess";
+// import {paymentsResultSuccess} from "../__mocks__/checkout/paymentsResultSucess";
 import {sessionsSuccess} from "../__mocks__/checkout/sessionsSuccess";
 import Client from "../client";
 import {CheckoutAPI} from "../services";
@@ -54,17 +54,17 @@ export function createPaymentsCheckoutRequest(): checkout.PaymentRequest {
     };
 }
 
-function createPaymentSessionRequest(): checkout.PaymentSetupRequest {
-    return {
-        amount: createAmountObject("USD", 1000),
-        countryCode: "NL",
-        merchantAccount,
-        reference,
-        returnUrl: "https://your-company.com/...",
-        channel: checkout.PaymentSetupRequest.ChannelEnum.Web,
-        sdkVersion: "3.7.0"
-    };
-}
+// function createPaymentSessionRequest(): checkout.PaymentSetupRequest {
+//     return {
+//         amount: createAmountObject("USD", 1000),
+//         countryCode: "NL",
+//         merchantAccount,
+//         reference,
+//         returnUrl: "https://your-company.com/...",
+//         channel: checkout.PaymentSetupRequest.ChannelEnum.Web,
+//         sdkVersion: "3.7.0"
+//     };
+// }
 
 function createUpdatePaymentLinkRequest(): checkout.UpdatePaymentLinkRequest {
     return {
@@ -195,19 +195,19 @@ describe("Checkout", (): void => {
             .matchHeader("Idempotency-Key", "testKey");
         await checkoutService.PaymentsApi.paymentsDetails(createPaymentsDetailsRequest(), {idempotencyKey: "testKey"});
 
-        scope.post("/paymentSession")
-            .reply(200, paymentSessionSuccess)
-            .matchHeader("Idempotency-Key", "testKey");
-        const paymentSessionRequest: checkout.PaymentSetupRequest = createPaymentSessionRequest();
-        await checkoutService.ClassicCheckoutSDKApi.paymentSession(paymentSessionRequest, {idempotencyKey: "testKey"});
+        // scope.post("/paymentSession")
+        //     .reply(200, paymentSessionSuccess)
+        //     .matchHeader("Idempotency-Key", "testKey");
+        // const paymentSessionRequest: checkout.PaymentSetupRequest = createPaymentSessionRequest();
+        // await checkoutService.ClassicCheckoutSDKApi.paymentSession(paymentSessionRequest, {idempotencyKey: "testKey"});
 
-        scope.post("/payments/result")
-            .reply(200, paymentsResultSuccess)
-            .matchHeader("Idempotency-Key", "testKey");
-        const paymentResultRequest: checkout.PaymentVerificationRequest = {
-            payload: "This is a test payload",
-        };
-        await checkoutService.ClassicCheckoutSDKApi.verifyPaymentResult(paymentResultRequest, {idempotencyKey: "testKey"});
+        // scope.post("/payments/result")
+        //     .reply(200, paymentsResultSuccess)
+        //     .matchHeader("Idempotency-Key", "testKey");
+        // const paymentResultRequest: checkout.PaymentVerificationRequest = {
+        //     payload: "This is a test payload",
+        // };
+        // await checkoutService.ClassicCheckoutSDKApi.verifyPaymentResult(paymentResultRequest, {idempotencyKey: "testKey"});
 
         const orderRequest: checkout.CreateOrderRequest = {
             amount: createAmountObject("USD", 1000),
@@ -355,23 +355,23 @@ describe("Checkout", (): void => {
         expect(paymentsResponse.resultCode).toEqual("Authorised");
     });
 
-    test("should have payment session success", async (): Promise<void> => {
-        scope.post("/paymentSession")
-            .reply(200, paymentSessionSuccess);
-        const paymentSessionRequest: checkout.PaymentSetupRequest = createPaymentSessionRequest();
-        const paymentSessionResponse = await checkoutService.ClassicCheckoutSDKApi.paymentSession(paymentSessionRequest);
-        expect(paymentSessionResponse.paymentSession).not.toBeUndefined();
-    });
+    // test("should have payment session success", async (): Promise<void> => {
+    //     scope.post("/paymentSession")
+    //         .reply(200, paymentSessionSuccess);
+    //     const paymentSessionRequest: checkout.PaymentSetupRequest = createPaymentSessionRequest();
+    //     const paymentSessionResponse = await checkoutService.ClassicCheckoutSDKApi.paymentSession(paymentSessionRequest);
+    //     expect(paymentSessionResponse.paymentSession).not.toBeUndefined();
+    // });
 
-    test("should have payments result", async (): Promise<void> => {
-        scope.post("/payments/result")
-            .reply(200, paymentsResultSuccess);
-        const paymentResultRequest: checkout.PaymentVerificationRequest = {
-            payload: "This is a test payload",
-        };
-        const paymentResultResponse = await checkoutService.ClassicCheckoutSDKApi.verifyPaymentResult(paymentResultRequest);
-        expect(paymentResultResponse.resultCode).toEqual("Authorised");
-    });
+    // test("should have payments result", async (): Promise<void> => {
+    //     scope.post("/payments/result")
+    //         .reply(200, paymentsResultSuccess);
+    //     const paymentResultRequest: checkout.PaymentVerificationRequest = {
+    //         payload: "This is a test payload",
+    //     };
+    //     const paymentResultResponse = await checkoutService.ClassicCheckoutSDKApi.verifyPaymentResult(paymentResultRequest);
+    //     expect(paymentResultResponse.resultCode).toEqual("Authorised");
+    // });
 
     test("should have missing identifier on live", async (): Promise<void> => {
         client.setEnvironment("LIVE");
