@@ -26,7 +26,7 @@ export class TermsOfServiceAcceptanceInfo {
     */
     'id'?: string;
     /**
-    * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**  
+    * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**  
     */
     'type'?: TermsOfServiceAcceptanceInfo.TypeEnum;
 
@@ -69,6 +69,7 @@ export namespace TermsOfServiceAcceptanceInfo {
         AdyenAccount = 'adyenAccount',
         AdyenCapital = 'adyenCapital',
         AdyenCard = 'adyenCard',
+        AdyenChargeCard = 'adyenChargeCard',
         AdyenForPlatformsAdvanced = 'adyenForPlatformsAdvanced',
         AdyenForPlatformsManage = 'adyenForPlatformsManage',
         AdyenFranchisee = 'adyenFranchisee',

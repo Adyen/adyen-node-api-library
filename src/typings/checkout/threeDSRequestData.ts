@@ -18,7 +18,7 @@ export class ThreeDSRequestData {
     */
     'dataOnly'?: ThreeDSRequestData.DataOnlyEnum;
     /**
-    * Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available.
+    * Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Only use the redirect 3D Secure authentication flow.
     */
     'nativeThreeDS'?: ThreeDSRequestData.NativeThreeDSEnum;
     /**
@@ -68,7 +68,8 @@ export namespace ThreeDSRequestData {
         True = 'true'
     }
     export enum NativeThreeDSEnum {
-        Preferred = 'preferred'
+        Preferred = 'preferred',
+        Disabled = 'disabled'
     }
     export enum ThreeDSVersionEnum {
         _10 = '2.1.0',

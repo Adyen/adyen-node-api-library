@@ -14,9 +14,11 @@ import {
     AcceptTermsOfServiceRequest,
     AcceptTermsOfServiceResponse,
     CalculateTermsOfServiceStatusResponse,
+    GetAcceptedTermsOfServiceDocumentResponse,
     GetTermsOfServiceAcceptanceInfosResponse,
     GetTermsOfServiceDocumentRequest,
     GetTermsOfServiceDocumentResponse,
+    ServiceError,
     ObjectSerializer
 } from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -52,6 +54,33 @@ export class TermsOfServiceApi extends Service {
             { ...requestOptions, method: "PATCH" }
         );
         return ObjectSerializer.deserialize(response, "AcceptTermsOfServiceResponse");
+    }
+
+    /**
+    * @summary Get accepted Terms of Service document
+    * @param id {@link string } The unique identifier of the legal entity. For sole proprietorship, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.
+    * @param termsofserviceacceptancereference {@link string } An Adyen-generated reference for the accepted Terms of Service.
+    * @param requestOptions {@link IRequest.Options }
+    * @param termsOfServiceDocumentFormat {@link string } The format of the Terms of Service document. Possible values: **JSON**, **PDF**, or **TXT**
+    * @return {@link GetAcceptedTermsOfServiceDocumentResponse }
+    */
+    public async getAcceptedTermsOfServiceDocument(id: string, termsofserviceacceptancereference: string, termsOfServiceDocumentFormat?: string, requestOptions?: IRequest.Options): Promise<GetAcceptedTermsOfServiceDocumentResponse> {
+        const endpoint = `${this.baseUrl}/legalEntities/{id}/acceptedTermsOfServiceDocument/{termsofserviceacceptancereference}`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)))
+            .replace("{" + "termsofserviceacceptancereference" + "}", encodeURIComponent(String(termsofserviceacceptancereference)));
+        const resource = new Resource(this, endpoint);
+        const hasDefinedQueryParams = termsOfServiceDocumentFormat;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(termsOfServiceDocumentFormat) requestOptions.params["termsOfServiceDocumentFormat"] = termsOfServiceDocumentFormat;
+        }
+        const response = await getJsonResponse<string, GetAcceptedTermsOfServiceDocumentResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "GetAcceptedTermsOfServiceDocumentResponse");
     }
 
     /**

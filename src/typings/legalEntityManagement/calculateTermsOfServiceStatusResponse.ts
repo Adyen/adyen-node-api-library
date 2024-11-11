@@ -33,6 +33,7 @@ export namespace CalculateTermsOfServiceStatusResponse {
         AdyenAccount = 'adyenAccount',
         AdyenCapital = 'adyenCapital',
         AdyenCard = 'adyenCard',
+        AdyenChargeCard = 'adyenChargeCard',
         AdyenForPlatformsAdvanced = 'adyenForPlatformsAdvanced',
         AdyenForPlatformsManage = 'adyenForPlatformsManage',
         AdyenFranchisee = 'adyenFranchisee',

@@ -10,20 +10,34 @@
 
 export * from './amount';
 export * from './balancePlatformNotificationResponse';
+export * from './bankCategoryData';
+export * from './internalCategoryData';
+export * from './issuedCard';
+export * from './paymentInstrument';
+export * from './platformPayment';
+export * from './relayedAuthorisationData';
 export * from './resource';
 export * from './resourceReference';
 export * from './transaction';
 export * from './transactionNotificationRequestV4';
-export * from './transferData';
+export * from './transferNotificationValidationFact';
+export * from './transferView';
 
 
 import { Amount } from './amount';
 import { BalancePlatformNotificationResponse } from './balancePlatformNotificationResponse';
+import { BankCategoryData } from './bankCategoryData';
+import { InternalCategoryData } from './internalCategoryData';
+import { IssuedCard } from './issuedCard';
+import { PaymentInstrument } from './paymentInstrument';
+import { PlatformPayment } from './platformPayment';
+import { RelayedAuthorisationData } from './relayedAuthorisationData';
 import { Resource } from './resource';
 import { ResourceReference } from './resourceReference';
 import { Transaction } from './transaction';
 import { TransactionNotificationRequestV4 } from './transactionNotificationRequestV4';
-import { TransferData } from './transferData';
+import { TransferNotificationValidationFact } from './transferNotificationValidationFact';
+import { TransferView } from './transferView';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -38,6 +52,14 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
+        "BankCategoryData.PriorityEnum": BankCategoryData.PriorityEnum,
+        "BankCategoryData.TypeEnum": BankCategoryData.TypeEnum,
+        "InternalCategoryData.TypeEnum": InternalCategoryData.TypeEnum,
+        "IssuedCard.PanEntryModeEnum": IssuedCard.PanEntryModeEnum,
+        "IssuedCard.ProcessingTypeEnum": IssuedCard.ProcessingTypeEnum,
+        "IssuedCard.TypeEnum": IssuedCard.TypeEnum,
+        "PlatformPayment.PlatformPaymentTypeEnum": PlatformPayment.PlatformPaymentTypeEnum,
+        "PlatformPayment.TypeEnum": PlatformPayment.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
         "TransactionNotificationRequestV4.TypeEnum": TransactionNotificationRequestV4.TypeEnum,
 }
@@ -45,11 +67,18 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "Amount": Amount,
     "BalancePlatformNotificationResponse": BalancePlatformNotificationResponse,
+    "BankCategoryData": BankCategoryData,
+    "InternalCategoryData": InternalCategoryData,
+    "IssuedCard": IssuedCard,
+    "PaymentInstrument": PaymentInstrument,
+    "PlatformPayment": PlatformPayment,
+    "RelayedAuthorisationData": RelayedAuthorisationData,
     "Resource": Resource,
     "ResourceReference": ResourceReference,
     "Transaction": Transaction,
     "TransactionNotificationRequestV4": TransactionNotificationRequestV4,
-    "TransferData": TransferData,
+    "TransferNotificationValidationFact": TransferNotificationValidationFact,
+    "TransferView": TransferView,
 }
 
 export class ObjectSerializer {
