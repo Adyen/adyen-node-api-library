@@ -56,6 +56,7 @@ export * from './cardDonations';
 export * from './cashAppDetails';
 export * from './cellulantDetails';
 export * from './checkoutAwaitAction';
+export * from './checkoutBankAccount';
 export * from './checkoutBankTransferAction';
 export * from './checkoutDelegatedAuthenticationAction';
 export * from './checkoutNativeRedirectAction';
@@ -167,6 +168,7 @@ export * from './responseAdditionalDataOpi';
 export * from './responseAdditionalDataSepa';
 export * from './responsePaymentMethod';
 export * from './riskData';
+export * from './rivertyDetails';
 export * from './sDKEphemPubKey';
 export * from './samsungPayDetails';
 export * from './sepaDirectDebitDetails';
@@ -254,6 +256,7 @@ import { CardDonations } from './cardDonations';
 import { CashAppDetails } from './cashAppDetails';
 import { CellulantDetails } from './cellulantDetails';
 import { CheckoutAwaitAction } from './checkoutAwaitAction';
+import { CheckoutBankAccount } from './checkoutBankAccount';
 import { CheckoutBankTransferAction } from './checkoutBankTransferAction';
 import { CheckoutDelegatedAuthenticationAction } from './checkoutDelegatedAuthenticationAction';
 import { CheckoutNativeRedirectAction } from './checkoutNativeRedirectAction';
@@ -365,6 +368,7 @@ import { ResponseAdditionalDataOpi } from './responseAdditionalDataOpi';
 import { ResponseAdditionalDataSepa } from './responseAdditionalDataSepa';
 import { ResponsePaymentMethod } from './responsePaymentMethod';
 import { RiskData } from './riskData';
+import { RivertyDetails } from './rivertyDetails';
 import { SDKEphemPubKey } from './sDKEphemPubKey';
 import { SamsungPayDetails } from './samsungPayDetails';
 import { SepaDirectDebitDetails } from './sepaDirectDebitDetails';
@@ -456,6 +460,7 @@ let enumsMap: {[index: string]: any} = {
         "CashAppDetails.TypeEnum": CashAppDetails.TypeEnum,
         "CellulantDetails.TypeEnum": CellulantDetails.TypeEnum,
         "CheckoutAwaitAction.TypeEnum": CheckoutAwaitAction.TypeEnum,
+        "CheckoutBankAccount.AccountTypeEnum": CheckoutBankAccount.AccountTypeEnum,
         "CheckoutBankTransferAction.TypeEnum": CheckoutBankTransferAction.TypeEnum,
         "CheckoutDelegatedAuthenticationAction.TypeEnum": CheckoutDelegatedAuthenticationAction.TypeEnum,
         "CheckoutNativeRedirectAction.TypeEnum": CheckoutNativeRedirectAction.TypeEnum,
@@ -560,6 +565,7 @@ let enumsMap: {[index: string]: any} = {
         "ResponseAdditionalDataCard.CardProductIdEnum": ResponseAdditionalDataCard.CardProductIdEnum,
         "ResponseAdditionalDataCommon.FraudResultTypeEnum": ResponseAdditionalDataCommon.FraudResultTypeEnum,
         "ResponseAdditionalDataCommon.RecurringProcessingModelEnum": ResponseAdditionalDataCommon.RecurringProcessingModelEnum,
+        "RivertyDetails.TypeEnum": RivertyDetails.TypeEnum,
         "SamsungPayDetails.FundingSourceEnum": SamsungPayDetails.FundingSourceEnum,
         "SamsungPayDetails.TypeEnum": SamsungPayDetails.TypeEnum,
         "SepaDirectDebitDetails.TypeEnum": SepaDirectDebitDetails.TypeEnum,
@@ -653,6 +659,7 @@ let typeMap: {[index: string]: any} = {
     "CashAppDetails": CashAppDetails,
     "CellulantDetails": CellulantDetails,
     "CheckoutAwaitAction": CheckoutAwaitAction,
+    "CheckoutBankAccount": CheckoutBankAccount,
     "CheckoutBankTransferAction": CheckoutBankTransferAction,
     "CheckoutDelegatedAuthenticationAction": CheckoutDelegatedAuthenticationAction,
     "CheckoutNativeRedirectAction": CheckoutNativeRedirectAction,
@@ -764,6 +771,7 @@ let typeMap: {[index: string]: any} = {
     "ResponseAdditionalDataSepa": ResponseAdditionalDataSepa,
     "ResponsePaymentMethod": ResponsePaymentMethod,
     "RiskData": RiskData,
+    "RivertyDetails": RivertyDetails,
     "SDKEphemPubKey": SDKEphemPubKey,
     "SamsungPayDetails": SamsungPayDetails,
     "SepaDirectDebitDetails": SepaDirectDebitDetails,

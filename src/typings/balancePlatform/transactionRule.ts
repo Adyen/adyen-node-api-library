@@ -31,7 +31,7 @@ export class TransactionRule {
     'id'?: string;
     'interval': TransactionRuleInterval;
     /**
-    * The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the `score` you specified. Adyen calculates the total score and if it exceeds 100, declines the Transaction.  Default value: **hardBlock**.  > **scoreBased** is not allowed when `requestType` is **bankTransfer**.
+    * The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the `score` you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined.  Default value: **hardBlock**.  > **scoreBased** is not allowed when `requestType` is **bankTransfer**.
     */
     'outcomeType'?: TransactionRule.OutcomeTypeEnum;
     /**

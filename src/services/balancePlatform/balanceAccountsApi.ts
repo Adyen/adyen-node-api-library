@@ -17,7 +17,9 @@ import {
     BalanceSweepConfigurationsResponse,
     CreateSweepConfigurationV2,
     PaginatedPaymentInstrumentsResponse,
+    RestServiceError,
     SweepConfigurationV2,
+    TransactionRulesResponse,
     UpdateSweepConfigurationV2,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
@@ -115,6 +117,24 @@ export class BalanceAccountsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "BalanceSweepConfigurationsResponse");
+    }
+
+    /**
+    * @summary Get all transaction rules for a balance account
+    * @param id {@link string } The unique identifier of the balance account.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TransactionRulesResponse }
+    */
+    public async getAllTransactionRulesForBalanceAccount(id: string, requestOptions?: IRequest.Options): Promise<TransactionRulesResponse> {
+        const endpoint = `${this.baseUrl}/balanceAccounts/{id}/transactionRules`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, TransactionRulesResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
     }
 
     /**

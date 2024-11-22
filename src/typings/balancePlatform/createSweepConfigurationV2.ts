@@ -34,6 +34,10 @@ export class CreateSweepConfigurationV2 {
     */
     'reason'?: CreateSweepConfigurationV2.ReasonEnum;
     /**
+    * The human readable reason for disabling the sweep.
+    */
+    'reasonDetail'?: string;
+    /**
     * Your reference for the sweep configuration.
     */
     'reference'?: string;
@@ -86,6 +90,11 @@ export class CreateSweepConfigurationV2 {
             "name": "reason",
             "baseName": "reason",
             "type": "CreateSweepConfigurationV2.ReasonEnum"
+        },
+        {
+            "name": "reasonDetail",
+            "baseName": "reasonDetail",
+            "type": "string"
         },
         {
             "name": "reference",
@@ -166,6 +175,7 @@ export namespace CreateSweepConfigurationV2 {
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
+        RefusedByCustomer = 'refusedByCustomer',
         RouteNotFound = 'routeNotFound',
         ScaFailed = 'scaFailed',
         TransferInstrumentDoesNotExist = 'transferInstrumentDoesNotExist',

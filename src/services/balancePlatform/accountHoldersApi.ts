@@ -16,6 +16,8 @@ import {
     AccountHolderUpdateRequest,
     GetTaxFormResponse,
     PaginatedBalanceAccountsResponse,
+    RestServiceError,
+    TransactionRulesResponse,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -95,6 +97,24 @@ export class AccountHoldersApi extends Service {
     }
 
     /**
+    * @summary Get all transaction rules for an account holder
+    * @param id {@link string } The unique identifier of the account holder.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TransactionRulesResponse }
+    */
+    public async getAllTransactionRulesForAccountHolder(id: string, requestOptions?: IRequest.Options): Promise<TransactionRulesResponse> {
+        const endpoint = `${this.baseUrl}/accountHolders/{id}/transactionRules`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, TransactionRulesResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
+    }
+
+    /**
     * @summary Get a tax form
     * @param id {@link string } The unique identifier of the account holder.
     * @param requestOptions {@link IRequest.Options }
@@ -102,7 +122,7 @@ export class AccountHoldersApi extends Service {
     * @param year {@link number } The tax year in YYYY format for the tax form you want to retrieve
     * @return {@link GetTaxFormResponse }
     */
-    public async getTaxForm(id: string, formType?: "US1099k" | "US1099nec", year?: number, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
+    public async getTaxForm(id: string, formType?: 'US1099k' | 'US1099nec', year?: number, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
         const endpoint = `${this.baseUrl}/accountHolders/{id}/taxForms`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);

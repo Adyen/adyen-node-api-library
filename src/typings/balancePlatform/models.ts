@@ -20,6 +20,7 @@ export * from './address';
 export * from './addressRequirement';
 export * from './amount';
 export * from './amountMinMaxRequirement';
+export * from './amountNonZeroDecimalsRequirement';
 export * from './authentication';
 export * from './bRLocalAccountIdentification';
 export * from './balance';
@@ -77,6 +78,7 @@ export * from './hKLocalAccountIdentification';
 export * from './hULocalAccountIdentification';
 export * from './href';
 export * from './ibanAccountIdentification';
+export * from './ibanAccountIdentificationRequirement';
 export * from './internationalTransactionRestriction';
 export * from './invalidField';
 export * from './link';
@@ -149,6 +151,7 @@ export * from './transferRoute';
 export * from './transferRouteRequest';
 export * from './transferRouteResponse';
 export * from './uKLocalAccountIdentification';
+export * from './uSInternationalAchAddressRequirement';
 export * from './uSLocalAccountIdentification';
 export * from './updateNetworkTokenRequest';
 export * from './updatePaymentInstrument';
@@ -170,6 +173,7 @@ import { Address } from './address';
 import { AddressRequirement } from './addressRequirement';
 import { Amount } from './amount';
 import { AmountMinMaxRequirement } from './amountMinMaxRequirement';
+import { AmountNonZeroDecimalsRequirement } from './amountNonZeroDecimalsRequirement';
 import { Authentication } from './authentication';
 import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
 import { Balance } from './balance';
@@ -227,6 +231,7 @@ import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
 import { Href } from './href';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
+import { IbanAccountIdentificationRequirement } from './ibanAccountIdentificationRequirement';
 import { InternationalTransactionRestriction } from './internationalTransactionRestriction';
 import { InvalidField } from './invalidField';
 import { Link } from './link';
@@ -299,6 +304,7 @@ import { TransferRoute } from './transferRoute';
 import { TransferRouteRequest } from './transferRouteRequest';
 import { TransferRouteResponse } from './transferRouteResponse';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
+import { USInternationalAchAddressRequirement } from './uSInternationalAchAddressRequirement';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 import { UpdateNetworkTokenRequest } from './updateNetworkTokenRequest';
 import { UpdatePaymentInstrument } from './updatePaymentInstrument';
@@ -333,6 +339,7 @@ let enumsMap: {[index: string]: any} = {
         "AddressRequirement.RequiredAddressFieldsEnum": AddressRequirement.RequiredAddressFieldsEnum,
         "AddressRequirement.TypeEnum": AddressRequirement.TypeEnum,
         "AmountMinMaxRequirement.TypeEnum": AmountMinMaxRequirement.TypeEnum,
+        "AmountNonZeroDecimalsRequirement.TypeEnum": AmountNonZeroDecimalsRequirement.TypeEnum,
         "BRLocalAccountIdentification.TypeEnum": BRLocalAccountIdentification.TypeEnum,
         "BalanceAccount.StatusEnum": BalanceAccount.StatusEnum,
         "BalanceAccountBase.StatusEnum": BalanceAccountBase.StatusEnum,
@@ -367,6 +374,7 @@ let enumsMap: {[index: string]: any} = {
         "HKLocalAccountIdentification.TypeEnum": HKLocalAccountIdentification.TypeEnum,
         "HULocalAccountIdentification.TypeEnum": HULocalAccountIdentification.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
+        "IbanAccountIdentificationRequirement.TypeEnum": IbanAccountIdentificationRequirement.TypeEnum,
         "MatchingValuesRestriction.ValueEnum": MatchingValuesRestriction.ValueEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
         "NZLocalAccountIdentification.TypeEnum": NZLocalAccountIdentification.TypeEnum,
@@ -411,6 +419,7 @@ let enumsMap: {[index: string]: any} = {
         "TransferRouteRequest.CategoryEnum": TransferRouteRequest.CategoryEnum,
         "TransferRouteRequest.PrioritiesEnum": TransferRouteRequest.PrioritiesEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
+        "USInternationalAchAddressRequirement.TypeEnum": USInternationalAchAddressRequirement.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
         "UpdateNetworkTokenRequest.StatusEnum": UpdateNetworkTokenRequest.StatusEnum,
@@ -442,6 +451,7 @@ let typeMap: {[index: string]: any} = {
     "AddressRequirement": AddressRequirement,
     "Amount": Amount,
     "AmountMinMaxRequirement": AmountMinMaxRequirement,
+    "AmountNonZeroDecimalsRequirement": AmountNonZeroDecimalsRequirement,
     "Authentication": Authentication,
     "BRLocalAccountIdentification": BRLocalAccountIdentification,
     "Balance": Balance,
@@ -499,6 +509,7 @@ let typeMap: {[index: string]: any} = {
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "Href": Href,
     "IbanAccountIdentification": IbanAccountIdentification,
+    "IbanAccountIdentificationRequirement": IbanAccountIdentificationRequirement,
     "InternationalTransactionRestriction": InternationalTransactionRestriction,
     "InvalidField": InvalidField,
     "Link": Link,
@@ -571,6 +582,7 @@ let typeMap: {[index: string]: any} = {
     "TransferRouteRequest": TransferRouteRequest,
     "TransferRouteResponse": TransferRouteResponse,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
+    "USInternationalAchAddressRequirement": USInternationalAchAddressRequirement,
     "USLocalAccountIdentification": USLocalAccountIdentification,
     "UpdateNetworkTokenRequest": UpdateNetworkTokenRequest,
     "UpdatePaymentInstrument": UpdatePaymentInstrument,

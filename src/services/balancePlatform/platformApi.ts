@@ -13,6 +13,8 @@ import Client from "../../client";
 import { 
     BalancePlatform,
     PaginatedAccountHoldersResponse,
+    RestServiceError,
+    TransactionRulesResponse,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -53,6 +55,24 @@ export class PlatformApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PaginatedAccountHoldersResponse");
+    }
+
+    /**
+    * @summary Get all transaction rules for a balance platform
+    * @param id {@link string } The unique identifier of the balance platform.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TransactionRulesResponse }
+    */
+    public async getAllTransactionRulesForBalancePlatform(id: string, requestOptions?: IRequest.Options): Promise<TransactionRulesResponse> {
+        const endpoint = `${this.baseUrl}/balancePlatforms/{id}/transactionRules`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, TransactionRulesResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
     }
 
     /**
