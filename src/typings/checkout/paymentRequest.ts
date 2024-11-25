@@ -25,6 +25,7 @@ import { BrowserInfo } from './browserInfo';
 import { CardDetails } from './cardDetails';
 import { CashAppDetails } from './cashAppDetails';
 import { CellulantDetails } from './cellulantDetails';
+import { CheckoutBankAccount } from './checkoutBankAccount';
 import { Company } from './company';
 import { DeliveryAddress } from './deliveryAddress';
 import { DokuDetails } from './dokuDetails';
@@ -62,6 +63,7 @@ import { PaymentDetails } from './paymentDetails';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { RatepayDetails } from './ratepayDetails';
 import { RiskData } from './riskData';
+import { RivertyDetails } from './rivertyDetails';
 import { SamsungPayDetails } from './samsungPayDetails';
 import { SepaDirectDebitDetails } from './sepaDirectDebitDetails';
 import { Split } from './split';
@@ -88,6 +90,7 @@ export class PaymentRequest {
     'amount': Amount;
     'applicationInfo'?: ApplicationInfo;
     'authenticationData'?: AuthenticationData;
+    'bankAccount'?: CheckoutBankAccount;
     'billingAddress'?: BillingAddress;
     'browserInfo'?: BrowserInfo;
     /**
@@ -201,7 +204,7 @@ export class PaymentRequest {
     /**
     * The type and required details of a payment method to use.
     */
-    'paymentMethod': AchDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails | null;
+    'paymentMethod': AchDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails | null;
     'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
@@ -236,6 +239,10 @@ export class PaymentRequest {
     * The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.  For example: 2020-07-18T15:42:40.428+01:00
     */
     'sessionValidity'?: string;
+    /**
+    * A unique ID that can be used to associate `/paymentMethods` and `/payments` requests with the same shopper transaction, offering insights into conversion rates.
+    */
+    'shopperConversionId'?: string;
     /**
     * The shopper\'s email address. We recommend that you provide this data, as it is used in velocity fraud checks. > For 3D Secure 2 transactions, schemes require `shopperEmail` for all browser-based and mobile implementations.
     */
@@ -330,6 +337,11 @@ export class PaymentRequest {
             "name": "authenticationData",
             "baseName": "authenticationData",
             "type": "AuthenticationData"
+        },
+        {
+            "name": "bankAccount",
+            "baseName": "bankAccount",
+            "type": "CheckoutBankAccount"
         },
         {
             "name": "billingAddress",
@@ -509,7 +521,7 @@ export class PaymentRequest {
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "AchDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | RatepayDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails | null"
+            "type": "AchDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails | null"
         },
         {
             "name": "platformChargebackLogic",
@@ -559,6 +571,11 @@ export class PaymentRequest {
         {
             "name": "sessionValidity",
             "baseName": "sessionValidity",
+            "type": "string"
+        },
+        {
+            "name": "shopperConversionId",
+            "baseName": "shopperConversionId",
             "type": "string"
         },
         {

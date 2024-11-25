@@ -70,7 +70,7 @@ export class TransferEvent {
     */
     'updateDate'?: Date;
     /**
-    * A future date, when the funds are expected to be deducted from or credited to the balance account.
+    * The date when the funds are expected to be deducted from or credited to the balance account. This date can be in either the past or future.
     */
     'valueDate'?: Date;
 
@@ -188,6 +188,7 @@ export namespace TransferEvent {
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
+        RefusedByCustomer = 'refusedByCustomer',
         RouteNotFound = 'routeNotFound',
         ScaFailed = 'scaFailed',
         TransferInstrumentDoesNotExist = 'transferInstrumentDoesNotExist',

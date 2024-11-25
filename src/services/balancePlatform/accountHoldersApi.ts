@@ -16,6 +16,7 @@ import {
     AccountHolderUpdateRequest,
     GetTaxFormResponse,
     PaginatedBalanceAccountsResponse,
+    TransactionRulesResponse,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -92,6 +93,24 @@ export class AccountHoldersApi extends Service {
             { ...requestOptions, method: "GET" }
         );
         return ObjectSerializer.deserialize(response, "PaginatedBalanceAccountsResponse");
+    }
+
+    /**
+    * @summary Get all transaction rules for an account holder
+    * @param id {@link string } The unique identifier of the account holder.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link TransactionRulesResponse }
+    */
+    public async getAllTransactionRulesForAccountHolder(id: string, requestOptions?: IRequest.Options): Promise<TransactionRulesResponse> {
+        const endpoint = `${this.baseUrl}/accountHolders/{id}/transactionRules`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, TransactionRulesResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
     }
 
     /**

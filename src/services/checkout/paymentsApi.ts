@@ -38,7 +38,7 @@ export class PaymentsApi extends Service {
     }
 
     /**
-    * @summary Get the list of brands on the card
+    * @summary Get the brands and other details of a card
     * @param cardDetailsRequest {@link CardDetailsRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link CardDetailsResponse }

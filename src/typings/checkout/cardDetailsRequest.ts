@@ -10,7 +10,7 @@
 
 export class CardDetailsRequest {
     /**
-    * A minimum of the first 8 digits of the card number and a maximum of the full card number. 11 digits gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data.
+    * A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data.
     */
     'cardNumber': string;
     /**

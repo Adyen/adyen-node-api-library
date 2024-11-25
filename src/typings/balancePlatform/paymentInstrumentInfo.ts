@@ -46,7 +46,7 @@ export class PaymentInstrumentInfo {
     */
     'statusReason'?: PaymentInstrumentInfo.StatusReasonEnum;
     /**
-    * Type of payment instrument.  Possible value: **card**, **bankAccount**. 
+    * The type of payment instrument.  Possible values: **card**, **bankAccount**.
     */
     'type': PaymentInstrumentInfo.TypeEnum;
 
