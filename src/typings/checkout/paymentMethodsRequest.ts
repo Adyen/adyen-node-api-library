@@ -38,6 +38,10 @@ export class PaymentMethodsRequest {
     'merchantAccount': string;
     'order'?: EncryptedOrderData;
     /**
+    * A unique ID that can be used to associate `/paymentMethods` and `/payments` requests with the same shopper transaction, offering insights into conversion rates.
+    */
+    'shopperConversionId'?: string;
+    /**
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
     'shopperLocale'?: string;
@@ -100,6 +104,11 @@ export class PaymentMethodsRequest {
             "name": "order",
             "baseName": "order",
             "type": "EncryptedOrderData"
+        },
+        {
+            "name": "shopperConversionId",
+            "baseName": "shopperConversionId",
+            "type": "string"
         },
         {
             "name": "shopperLocale",

@@ -201,6 +201,7 @@ export namespace Transfer {
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
+        RefusedByCustomer = 'refusedByCustomer',
         RouteNotFound = 'routeNotFound',
         ScaFailed = 'scaFailed',
         TransferInstrumentDoesNotExist = 'transferInstrumentDoesNotExist',
