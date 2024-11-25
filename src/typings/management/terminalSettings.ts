@@ -31,31 +31,31 @@ import { Timeouts } from './timeouts';
 import { WifiProfiles } from './wifiProfiles';
 
 export class TerminalSettings {
-    'cardholderReceipt'?: CardholderReceipt;
-    'connectivity'?: Connectivity;
+    'cardholderReceipt'?: CardholderReceipt | null;
+    'connectivity'?: Connectivity | null;
     /**
     * Settings for tipping with or without predefined options to choose from. The maximum number of predefined options is four, or three plus the option to enter a custom tip.
     */
     'gratuities'?: Array<Gratuity> | null;
-    'hardware'?: Hardware;
-    'localization'?: Localization;
-    'nexo'?: Nexo;
-    'offlineProcessing'?: OfflineProcessing;
-    'opi'?: Opi;
-    'passcodes'?: Passcodes;
-    'payAtTable'?: PayAtTable;
-    'payment'?: Payment;
-    'receiptOptions'?: ReceiptOptions;
-    'receiptPrinting'?: ReceiptPrinting;
-    'refunds'?: Refunds;
-    'signature'?: Signature;
-    'standalone'?: Standalone;
-    'storeAndForward'?: StoreAndForward;
-    'surcharge'?: Surcharge;
-    'tapToPay'?: TapToPay;
-    'terminalInstructions'?: TerminalInstructions;
-    'timeouts'?: Timeouts;
-    'wifiProfiles'?: WifiProfiles;
+    'hardware'?: Hardware | null;
+    'localization'?: Localization | null;
+    'nexo'?: Nexo | null;
+    'offlineProcessing'?: OfflineProcessing | null;
+    'opi'?: Opi | null;
+    'passcodes'?: Passcodes | null;
+    'payAtTable'?: PayAtTable | null;
+    'payment'?: Payment | null;
+    'receiptOptions'?: ReceiptOptions | null;
+    'receiptPrinting'?: ReceiptPrinting | null;
+    'refunds'?: Refunds | null;
+    'signature'?: Signature | null;
+    'standalone'?: Standalone | null;
+    'storeAndForward'?: StoreAndForward | null;
+    'surcharge'?: Surcharge | null;
+    'tapToPay'?: TapToPay | null;
+    'terminalInstructions'?: TerminalInstructions | null;
+    'timeouts'?: Timeouts | null;
+    'wifiProfiles'?: WifiProfiles | null;
 
     static discriminator: string | undefined = undefined;
 
