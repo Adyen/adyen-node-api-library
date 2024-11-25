@@ -42,7 +42,6 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
     {{/discriminator}}
 
     {{^isArray}}
-
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {{#vars}}
         {
