@@ -42,8 +42,6 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
     {{/discriminator}}
 
     {{^isArray}}
-    '{{name}}'{{^required}}?{{/required}}: 
-    {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}};
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {{#vars}}
