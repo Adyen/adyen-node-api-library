@@ -45,15 +45,12 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
     '{{name}}'{{^required}}?{{/required}}: 
     {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}};
 
-    /**
-    * Attribute Type Map
-    */
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {{#vars}}
         {
-        "name": "{{name}}",
-        "baseName": "{{baseName}}",
-        "type": "{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}}"
+            "name": "{{name}}",
+            "baseName": "{{baseName}}",
+            "type": "{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}}"
         }{{^-last}},
         {{/-last}}
         {{/vars}}
