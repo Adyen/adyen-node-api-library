@@ -1,4 +1,4 @@
-import { TerminalSettings } from './TerminalSettings';
+import { TerminalSettings } from '../typings/management/terminalSettings';
 
 describe('TerminalSettings properties', () => {
   let terminalSettings: TerminalSettings;
