@@ -66,6 +66,7 @@ export class PaymentMethodResponse {
 export namespace PaymentMethodResponse {
     export enum TypesWithErrorsEnum {
         Accel = 'accel',
+        Affirm = 'affirm',
         Afterpaytouch = 'afterpaytouch',
         Alelo = 'alelo',
         Alipay = 'alipay',

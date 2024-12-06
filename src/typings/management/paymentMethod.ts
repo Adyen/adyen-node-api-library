@@ -14,6 +14,7 @@ import { ApplePayInfo } from './applePayInfo';
 import { BcmcInfo } from './bcmcInfo';
 import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { ClearpayInfo } from './clearpayInfo';
+import { DinersInfo } from './dinersInfo';
 import { GenericPmWithTdiInfo } from './genericPmWithTdiInfo';
 import { GiroPayInfo } from './giroPayInfo';
 import { GooglePayInfo } from './googlePayInfo';
@@ -63,7 +64,7 @@ export class PaymentMethod {
     * The list of custom routing flags to route payment to the intended acquirer.
     */
     'customRoutingFlags'?: Array<string>;
-    'diners'?: GenericPmWithTdiInfo;
+    'diners'?: DinersInfo;
     'discover'?: GenericPmWithTdiInfo;
     'eftpos_australia'?: GenericPmWithTdiInfo;
     /**
@@ -190,7 +191,7 @@ export class PaymentMethod {
         {
             "name": "diners",
             "baseName": "diners",
-            "type": "GenericPmWithTdiInfo"
+            "type": "DinersInfo"
         },
         {
             "name": "discover",

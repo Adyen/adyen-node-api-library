@@ -14,6 +14,7 @@ import {
     CapitalGrant,
     CapitalGrantInfo,
     CapitalGrants,
+    RestServiceError,
     ObjectSerializer
 } from "../../typings/transfers/models";
 import { IRequest } from "../../typings/requestOptions";
