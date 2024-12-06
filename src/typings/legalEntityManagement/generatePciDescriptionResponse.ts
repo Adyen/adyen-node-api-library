@@ -18,7 +18,7 @@ export class GeneratePciDescriptionResponse {
     */
     'language'?: string;
     /**
-    * The array of Adyen-generated unique identifiers for the questionnaires.
+    * The array of Adyen-generated unique identifiers for the questionnaires. If empty, the user is not required to sign questionnaires.
     */
     'pciTemplateReferences'?: Array<string>;
 
