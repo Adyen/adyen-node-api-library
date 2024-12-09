@@ -11,6 +11,7 @@
 export * from './aULocalAccountIdentification';
 export * from './additionalBankIdentification';
 export * from './address';
+export * from './airline';
 export * from './amount';
 export * from './amountAdjustment';
 export * from './bRLocalAccountIdentification';
@@ -34,7 +35,9 @@ export * from './ibanAccountIdentification';
 export * from './internalCategoryData';
 export * from './internalReviewTrackingData';
 export * from './issuedCard';
+export * from './leg';
 export * from './merchantData';
+export * from './merchantPurchaseData';
 export * from './modification';
 export * from './nOLocalAccountIdentification';
 export * from './nZLocalAccountIdentification';
@@ -67,6 +70,7 @@ export * from './uSLocalAccountIdentification';
 import { AULocalAccountIdentification } from './aULocalAccountIdentification';
 import { AdditionalBankIdentification } from './additionalBankIdentification';
 import { Address } from './address';
+import { Airline } from './airline';
 import { Amount } from './amount';
 import { AmountAdjustment } from './amountAdjustment';
 import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
@@ -90,7 +94,9 @@ import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { InternalCategoryData } from './internalCategoryData';
 import { InternalReviewTrackingData } from './internalReviewTrackingData';
 import { IssuedCard } from './issuedCard';
+import { Leg } from './leg';
 import { MerchantData } from './merchantData';
+import { MerchantPurchaseData } from './merchantPurchaseData';
 import { Modification } from './modification';
 import { NOLocalAccountIdentification } from './nOLocalAccountIdentification';
 import { NZLocalAccountIdentification } from './nZLocalAccountIdentification';
@@ -155,6 +161,7 @@ let enumsMap: {[index: string]: any} = {
         "IssuedCard.PanEntryModeEnum": IssuedCard.PanEntryModeEnum,
         "IssuedCard.ProcessingTypeEnum": IssuedCard.ProcessingTypeEnum,
         "IssuedCard.TypeEnum": IssuedCard.TypeEnum,
+        "MerchantPurchaseData.TypeEnum": MerchantPurchaseData.TypeEnum,
         "Modification.StatusEnum": Modification.StatusEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
         "NZLocalAccountIdentification.TypeEnum": NZLocalAccountIdentification.TypeEnum,
@@ -184,6 +191,7 @@ let typeMap: {[index: string]: any} = {
     "AULocalAccountIdentification": AULocalAccountIdentification,
     "AdditionalBankIdentification": AdditionalBankIdentification,
     "Address": Address,
+    "Airline": Airline,
     "Amount": Amount,
     "AmountAdjustment": AmountAdjustment,
     "BRLocalAccountIdentification": BRLocalAccountIdentification,
@@ -207,7 +215,9 @@ let typeMap: {[index: string]: any} = {
     "InternalCategoryData": InternalCategoryData,
     "InternalReviewTrackingData": InternalReviewTrackingData,
     "IssuedCard": IssuedCard,
+    "Leg": Leg,
     "MerchantData": MerchantData,
+    "MerchantPurchaseData": MerchantPurchaseData,
     "Modification": Modification,
     "NOLocalAccountIdentification": NOLocalAccountIdentification,
     "NZLocalAccountIdentification": NZLocalAccountIdentification,

@@ -23,6 +23,8 @@ export * from './businessLineInfoUpdate';
 export * from './businessLines';
 export * from './cALocalAccountIdentification';
 export * from './cZLocalAccountIdentification';
+export * from './calculatePciStatusRequest';
+export * from './calculatePciStatusResponse';
 export * from './calculateTermsOfServiceStatusResponse';
 export * from './capabilityProblem';
 export * from './capabilityProblemEntity';
@@ -88,6 +90,7 @@ export * from './trust';
 export * from './uKLocalAccountIdentification';
 export * from './uSLocalAccountIdentification';
 export * from './undefinedBeneficiary';
+export * from './unincorporatedPartnership';
 export * from './verificationDeadline';
 export * from './verificationError';
 export * from './verificationErrorRecursive';
@@ -111,6 +114,8 @@ import { BusinessLineInfoUpdate } from './businessLineInfoUpdate';
 import { BusinessLines } from './businessLines';
 import { CALocalAccountIdentification } from './cALocalAccountIdentification';
 import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
+import { CalculatePciStatusRequest } from './calculatePciStatusRequest';
+import { CalculatePciStatusResponse } from './calculatePciStatusResponse';
 import { CalculateTermsOfServiceStatusResponse } from './calculateTermsOfServiceStatusResponse';
 import { CapabilityProblem } from './capabilityProblem';
 import { CapabilityProblemEntity } from './capabilityProblemEntity';
@@ -176,6 +181,7 @@ import { Trust } from './trust';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 import { UndefinedBeneficiary } from './undefinedBeneficiary';
+import { UnincorporatedPartnership } from './unincorporatedPartnership';
 import { VerificationDeadline } from './verificationDeadline';
 import { VerificationError } from './verificationError';
 import { VerificationErrorRecursive } from './verificationErrorRecursive';
@@ -206,6 +212,7 @@ let enumsMap: {[index: string]: any} = {
         "CALocalAccountIdentification.AccountTypeEnum": CALocalAccountIdentification.AccountTypeEnum,
         "CALocalAccountIdentification.TypeEnum": CALocalAccountIdentification.TypeEnum,
         "CZLocalAccountIdentification.TypeEnum": CZLocalAccountIdentification.TypeEnum,
+        "CalculatePciStatusRequest.AdditionalSalesChannelsEnum": CalculatePciStatusRequest.AdditionalSalesChannelsEnum,
         "CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum": CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum,
         "CapabilityProblemEntity.TypeEnum": CapabilityProblemEntity.TypeEnum,
         "CapabilityProblemEntityRecursive.TypeEnum": CapabilityProblemEntityRecursive.TypeEnum,
@@ -249,6 +256,8 @@ let enumsMap: {[index: string]: any} = {
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
+        "UnincorporatedPartnership.TypeEnum": UnincorporatedPartnership.TypeEnum,
+        "UnincorporatedPartnership.VatAbsenceReasonEnum": UnincorporatedPartnership.VatAbsenceReasonEnum,
         "VerificationDeadline.CapabilitiesEnum": VerificationDeadline.CapabilitiesEnum,
         "VerificationError.CapabilitiesEnum": VerificationError.CapabilitiesEnum,
         "VerificationError.TypeEnum": VerificationError.TypeEnum,
@@ -273,6 +282,8 @@ let typeMap: {[index: string]: any} = {
     "BusinessLines": BusinessLines,
     "CALocalAccountIdentification": CALocalAccountIdentification,
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
+    "CalculatePciStatusRequest": CalculatePciStatusRequest,
+    "CalculatePciStatusResponse": CalculatePciStatusResponse,
     "CalculateTermsOfServiceStatusResponse": CalculateTermsOfServiceStatusResponse,
     "CapabilityProblem": CapabilityProblem,
     "CapabilityProblemEntity": CapabilityProblemEntity,
@@ -338,6 +349,7 @@ let typeMap: {[index: string]: any} = {
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,
     "UndefinedBeneficiary": UndefinedBeneficiary,
+    "UnincorporatedPartnership": UnincorporatedPartnership,
     "VerificationDeadline": VerificationDeadline,
     "VerificationError": VerificationError,
     "VerificationErrorRecursive": VerificationErrorRecursive,

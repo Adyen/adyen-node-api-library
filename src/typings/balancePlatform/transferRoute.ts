@@ -8,6 +8,7 @@
  */
 
 import { AddressRequirement } from './addressRequirement';
+import { AddressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInternationalAchAddressRequirement } from './addressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInternationalAchAddressRequirement';
 import { AmountMinMaxRequirement } from './amountMinMaxRequirement';
 import { AmountNonZeroDecimalsRequirement } from './amountNonZeroDecimalsRequirement';
 import { BankAccountIdentificationTypeRequirement } from './bankAccountIdentificationTypeRequirement';
