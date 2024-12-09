@@ -30,6 +30,10 @@ export class OnboardingLinkSettings {
     */
     'editPrefilledCountry'?: boolean;
     /**
+    * Default value: **false**  Indicates if only users above the age of 18 can be onboarded.
+    */
+    'enforceLegalAge'?: boolean;
+    /**
     * Default value: **true**  Indicates whether the introduction screen is hidden for the user of the individual legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
     */
     'hideOnboardingIntroductionIndividual'?: boolean;
@@ -96,6 +100,11 @@ export class OnboardingLinkSettings {
         {
             "name": "editPrefilledCountry",
             "baseName": "editPrefilledCountry",
+            "type": "boolean"
+        },
+        {
+            "name": "enforceLegalAge",
+            "baseName": "enforceLegalAge",
             "type": "boolean"
         },
         {
