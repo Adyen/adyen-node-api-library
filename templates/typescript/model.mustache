@@ -7,32 +7,39 @@ import { {{classname}} } from '{{filename}}';
 
 {{#description}}
 /**
-* {{{.}}}
-*/
+ * {{{.}}}
+ */
 {{/description}}
+
 {{^isEnum}}
 export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
-{{#vars}}
-{{#description}}
+    {{#vars}}
+    {{#description}}
     /**
-    * {{{.}}}
-    {{#deprecated}}
-    *
-	* @deprecated {{#vendorExtensions.x-deprecatedInVersion}}since {{#appName}}{{{.}}}{{/appName}} v{{.}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}}
-	* {{{.}}}{{/vendorExtensions.x-deprecatedMessage}}
-    {{/deprecated}}
-    */
-{{/description}}
-{{^description}}
+     * {{{.}}}
+     {{#deprecated}}
+     *
+     * @deprecated {{#vendorExtensions.x-deprecatedInVersion}}since {{#appName}}{{{.}}}{{/appName}} v{{.}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}}
+     * {{{.}}}{{/vendorExtensions.x-deprecatedMessage}}
+     {{/deprecated}}
+     */
+    {{/description}}
+    {{^description}}
     {{#deprecated}}
     /**
-	* @deprecated {{#vendorExtensions.x-deprecatedInVersion}}since {{#appName}}{{{.}}}{{/appName}} v{{.}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}}
-	* {{{.}}}{{/vendorExtensions.x-deprecatedMessage}}
-    */
+     * @deprecated {{#vendorExtensions.x-deprecatedInVersion}}since {{#appName}}{{{.}}}{{/appName}} v{{.}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}}
+     * {{{.}}}{{/vendorExtensions.x-deprecatedMessage}}
+     */
     {{/deprecated}}
-{{/description}}
+    {{/description}}
+    {{! This section checks whether a variable is a model. If the variable is an enum and not required, it is marked as nullable. Otherwise, it handles regular data types or models accordingly. }}
+    {{#isModel}}
+    '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^isRequired}} | null{{/isRequired}};
+    {{/isModel}}
+    {{^isModel}}
     '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}};
-{{/vars}}
+    {{/isModel}}
+    {{/vars}}
 
     {{#discriminator}}
     static discriminator: string | undefined = "{{discriminatorName}}";
@@ -66,8 +73,8 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
 
 {{#hasEnums}}
 export namespace {{classname}} {
-{{#vars}}
-{{#isEnum}}
+    {{#vars}}
+    {{#isEnum}}
     export enum {{enumName}} {
         {{#allowableValues}}
         {{#enumVars}}
@@ -75,11 +82,12 @@ export namespace {{classname}} {
         {{/enumVars}}
         {{/allowableValues}}
     }
-{{/isEnum}}
-{{/vars}}
+    {{/isEnum}}
+    {{/vars}}
 }
 {{/hasEnums}}
 {{/isEnum}}
+
 {{#isEnum}}
 export enum {{classname}} {
     {{#allowableValues}}
