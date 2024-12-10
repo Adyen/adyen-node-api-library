@@ -9,9 +9,8 @@
 
 import { Address } from './address';
 import { TaxInformation } from './taxInformation';
-import { UndefinedBeneficiary } from './undefinedBeneficiary';
 
-export class Trust {
+export class UnincorporatedPartnership {
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.
     */
@@ -21,7 +20,7 @@ export class Trust {
     */
     'dateOfIncorporation'?: string;
     /**
-    * A short description about the trust. Only applicable for charitable trusts in New Zealand.
+    * Short description about the Legal Arrangement.
     */
     'description'?: string;
     /**
@@ -43,17 +42,13 @@ export class Trust {
     */
     'taxInformation'?: Array<TaxInformation>;
     /**
-    * Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab=trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab=trust_3_4#trust-types-in-new-zealand).
+    * Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership** *  **limitedLiabilityPartnership** *  **eg** *  **cooperative** *  **vos** *  **comunidadDeBienes** *  **herenciaYacente** *  **comunidadDePropietarios** *  **sep** *  **sca** *  **bt** *  **kkt** *  **scs** *  **snc**  
     */
-    'type': Trust.TypeEnum;
-    /**
-    * The undefined beneficiary information of the entity.
-    */
-    'undefinedBeneficiaryInfo'?: Array<UndefinedBeneficiary>;
+    'type'?: UnincorporatedPartnership.TypeEnum;
     /**
     * The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
     */
-    'vatAbsenceReason'?: Trust.VatAbsenceReasonEnum;
+    'vatAbsenceReason'?: UnincorporatedPartnership.VatAbsenceReasonEnum;
     /**
     * The VAT number.
     */
@@ -110,17 +105,12 @@ export class Trust {
         {
             "name": "type",
             "baseName": "type",
-            "type": "Trust.TypeEnum"
-        },
-        {
-            "name": "undefinedBeneficiaryInfo",
-            "baseName": "undefinedBeneficiaryInfo",
-            "type": "Array<UndefinedBeneficiary>"
+            "type": "UnincorporatedPartnership.TypeEnum"
         },
         {
             "name": "vatAbsenceReason",
             "baseName": "vatAbsenceReason",
-            "type": "Trust.VatAbsenceReasonEnum"
+            "type": "UnincorporatedPartnership.VatAbsenceReasonEnum"
         },
         {
             "name": "vatNumber",
@@ -129,31 +119,40 @@ export class Trust {
         }    ];
 
     static getAttributeTypeMap() {
-        return Trust.attributeTypeMap;
+        return UnincorporatedPartnership.attributeTypeMap;
     }
 }
 
-export namespace Trust {
+export namespace UnincorporatedPartnership {
     export enum TypeEnum {
-        BusinessTrust = 'businessTrust',
-        CashManagementTrust = 'cashManagementTrust',
-        CharitableTrust = 'charitableTrust',
-        CorporateUnitTrust = 'corporateUnitTrust',
-        DeceasedEstate = 'deceasedEstate',
-        DiscretionaryTrust = 'discretionaryTrust',
-        DiscretionaryInvestmentTrust = 'discretionaryInvestmentTrust',
-        DiscretionaryServicesManagementTrust = 'discretionaryServicesManagementTrust',
-        DiscretionaryTradingTrust = 'discretionaryTradingTrust',
-        FamilyTrust = 'familyTrust',
-        FirstHomeSaverAccountsTrust = 'firstHomeSaverAccountsTrust',
-        FixedTrust = 'fixedTrust',
-        FixedUnitTrust = 'fixedUnitTrust',
-        HybridTrust = 'hybridTrust',
-        ListedPublicUnitTrust = 'listedPublicUnitTrust',
-        OtherTrust = 'otherTrust',
-        PooledSuperannuationTrust = 'pooledSuperannuationTrust',
-        PublicTradingTrust = 'publicTradingTrust',
-        UnlistedPublicUnitTrust = 'unlistedPublicUnitTrust'
+        LimitedPartnership = 'limitedPartnership',
+        GeneralPartnership = 'generalPartnership',
+        FamilyPartnership = 'familyPartnership',
+        CommercialPartnership = 'commercialPartnership',
+        PublicPartnership = 'publicPartnership',
+        OtherPartnership = 'otherPartnership',
+        Gbr = 'gbr',
+        Gmbh = 'gmbh',
+        Kgaa = 'kgaa',
+        Cv = 'cv',
+        Vof = 'vof',
+        Maatschap = 'maatschap',
+        PrivateFundLimitedPartnership = 'privateFundLimitedPartnership',
+        BusinessTrustEntity = 'businessTrustEntity',
+        BusinessPartnership = 'businessPartnership',
+        LimitedLiabilityPartnership = 'limitedLiabilityPartnership',
+        Eg = 'eg',
+        Cooperative = 'cooperative',
+        Vos = 'vos',
+        ComunidadDeBienes = 'comunidadDeBienes',
+        HerenciaYacente = 'herenciaYacente',
+        ComunidadDePropietarios = 'comunidadDePropietarios',
+        Sep = 'sep',
+        Sca = 'sca',
+        Bt = 'bt',
+        Kkt = 'kkt',
+        Scs = 'scs',
+        Snc = 'snc'
     }
     export enum VatAbsenceReasonEnum {
         IndustryExemption = 'industryExemption',

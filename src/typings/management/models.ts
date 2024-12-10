@@ -56,6 +56,7 @@ export * from './createUserResponse';
 export * from './currency';
 export * from './customNotification';
 export * from './dataCenter';
+export * from './dinersInfo';
 export * from './eventUrl';
 export * from './externalTerminalAction';
 export * from './generateApiKeyResponse';
@@ -250,6 +251,7 @@ import { CreateUserResponse } from './createUserResponse';
 import { Currency } from './currency';
 import { CustomNotification } from './customNotification';
 import { DataCenter } from './dataCenter';
+import { DinersInfo } from './dinersInfo';
 import { EventUrl } from './eventUrl';
 import { ExternalTerminalAction } from './externalTerminalAction';
 import { GenerateApiKeyResponse } from './generateApiKeyResponse';
@@ -418,6 +420,7 @@ let enumsMap: {[index: string]: any} = {
         "CreateMerchantWebhookRequest.CommunicationFormatEnum": CreateMerchantWebhookRequest.CommunicationFormatEnum,
         "CreateMerchantWebhookRequest.EncryptionProtocolEnum": CreateMerchantWebhookRequest.EncryptionProtocolEnum,
         "CreateMerchantWebhookRequest.NetworkTypeEnum": CreateMerchantWebhookRequest.NetworkTypeEnum,
+        "DinersInfo.ServiceLevelEnum": DinersInfo.ServiceLevelEnum,
         "InstallAndroidAppDetails.TypeEnum": InstallAndroidAppDetails.TypeEnum,
         "InstallAndroidCertificateDetails.TypeEnum": InstallAndroidCertificateDetails.TypeEnum,
         "JCBInfo.ServiceLevelEnum": JCBInfo.ServiceLevelEnum,
@@ -534,6 +537,7 @@ let typeMap: {[index: string]: any} = {
     "Currency": Currency,
     "CustomNotification": CustomNotification,
     "DataCenter": DataCenter,
+    "DinersInfo": DinersInfo,
     "EventUrl": EventUrl,
     "ExternalTerminalAction": ExternalTerminalAction,
     "GenerateApiKeyResponse": GenerateApiKeyResponse,

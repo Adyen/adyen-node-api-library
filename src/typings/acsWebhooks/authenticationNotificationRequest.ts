@@ -16,6 +16,10 @@ export class AuthenticationNotificationRequest {
     */
     'environment': string;
     /**
+    * When the event was queued.
+    */
+    'timestamp'?: Date;
+    /**
     * Type of notification.
     */
     'type': AuthenticationNotificationRequest.TypeEnum;
@@ -32,6 +36,11 @@ export class AuthenticationNotificationRequest {
             "name": "environment",
             "baseName": "environment",
             "type": "string"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "Date"
         },
         {
             "name": "type",

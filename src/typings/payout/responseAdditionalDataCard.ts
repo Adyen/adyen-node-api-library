@@ -34,6 +34,10 @@ export class ResponseAdditionalDataCard {
     */
     'cardPaymentMethod'?: string;
     /**
+    * The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit 
+    */
+    'cardProductId'?: ResponseAdditionalDataCard.CardProductIdEnum;
+    /**
     * The last four digits of a card number.  > Returned only in case of a card payment.
     */
     'cardSummary'?: string;
@@ -76,6 +80,11 @@ export class ResponseAdditionalDataCard {
             "type": "string"
         },
         {
+            "name": "cardProductId",
+            "baseName": "cardProductId",
+            "type": "ResponseAdditionalDataCard.CardProductIdEnum"
+        },
+        {
             "name": "cardSummary",
             "baseName": "cardSummary",
             "type": "string"
@@ -91,3 +100,18 @@ export class ResponseAdditionalDataCard {
     }
 }
 
+export namespace ResponseAdditionalDataCard {
+    export enum CardProductIdEnum {
+        A = 'A',
+        B = 'B',
+        C = 'C',
+        D = 'D',
+        F = 'F',
+        Mcc = 'MCC',
+        Mce = 'MCE',
+        Mcf = 'MCF',
+        Mcg = 'MCG',
+        Mch = 'MCH',
+        Mci = 'MCI'
+    }
+}

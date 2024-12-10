@@ -14,6 +14,7 @@ import { ConfirmationTrackingData } from './confirmationTrackingData';
 import { EstimationTrackingData } from './estimationTrackingData';
 import { ExternalReason } from './externalReason';
 import { InternalReviewTrackingData } from './internalReviewTrackingData';
+import { MerchantPurchaseData } from './merchantPurchaseData';
 import { Modification } from './modification';
 
 export class TransferEvent {
@@ -34,6 +35,10 @@ export class TransferEvent {
     * The estimated time when the beneficiary should have access to the funds.
     */
     'estimatedArrivalTime'?: Date;
+    /**
+    * A list of event data.
+    */
+    'eventsData'?: Array<MerchantPurchaseData>;
     'externalReason'?: ExternalReason;
     /**
     * The unique identifier of the transfer event.
@@ -101,6 +106,11 @@ export class TransferEvent {
             "name": "estimatedArrivalTime",
             "baseName": "estimatedArrivalTime",
             "type": "Date"
+        },
+        {
+            "name": "eventsData",
+            "baseName": "eventsData",
+            "type": "Array<MerchantPurchaseData>"
         },
         {
             "name": "externalReason",
