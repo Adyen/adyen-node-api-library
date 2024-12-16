@@ -50,7 +50,7 @@ export class CheckoutBankTransferAction {
     * The sort code of the bank transfer.
     */
     'sortCode'?: string;
-    'totalAmount'?: Amount;
+    'totalAmount'?: Amount | null;
     /**
     * The type of the action.
     */
@@ -116,7 +116,7 @@ export class CheckoutBankTransferAction {
         {
             "name": "totalAmount",
             "baseName": "totalAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "type",

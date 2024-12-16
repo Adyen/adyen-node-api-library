@@ -11,7 +11,7 @@ import { PaginationLinks } from './paginationLinks';
 import { User } from './user';
 
 export class ListMerchantUsersResponse {
-    '_links'?: PaginationLinks;
+    '_links'?: PaginationLinks | null;
     /**
     * The list of users.
     */
@@ -31,7 +31,7 @@ export class ListMerchantUsersResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks"
+            "type": "PaginationLinks | null"
         },
         {
             "name": "data",

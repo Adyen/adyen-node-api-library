@@ -26,6 +26,10 @@ export class CardDonations {
     */
     'cvc'?: string;
     /**
+    * Only include this for JSON Web Encryption (JWE) implementations. The JWE-encrypted card details.
+    */
+    'encryptedCard'?: string;
+    /**
     * The encrypted card number.
     */
     'encryptedCardNumber'?: string;
@@ -126,6 +130,11 @@ export class CardDonations {
         {
             "name": "cvc",
             "baseName": "cvc",
+            "type": "string"
+        },
+        {
+            "name": "encryptedCard",
+            "baseName": "encryptedCard",
             "type": "string"
         },
         {
@@ -239,6 +248,7 @@ export namespace CardDonations {
         Scheme = 'scheme',
         NetworkToken = 'networkToken',
         Giftcard = 'giftcard',
-        Card = 'card'
+        Card = 'card',
+        Clicktopay = 'clicktopay'
     }
 }

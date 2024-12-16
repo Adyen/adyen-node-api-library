@@ -11,12 +11,15 @@ import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
 import { 
+    CalculatePciStatusRequest,
+    CalculatePciStatusResponse,
     GeneratePciDescriptionRequest,
     GeneratePciDescriptionResponse,
     GetPciQuestionnaireInfosResponse,
     GetPciQuestionnaireResponse,
     PciSigningRequest,
     PciSigningResponse,
+    ServiceError,
     ObjectSerializer
 } from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
@@ -30,6 +33,26 @@ export class PCIQuestionnairesApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
+    /**
+    * @summary Calculate PCI status of a legal entity
+    * @param id {@link string } The unique identifier of the legal entity to calculate PCI status.
+    * @param calculatePciStatusRequest {@link CalculatePciStatusRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CalculatePciStatusResponse }
+    */
+    public async calculatePciStatusOfLegalEntity(id: string, calculatePciStatusRequest: CalculatePciStatusRequest, requestOptions?: IRequest.Options): Promise<CalculatePciStatusResponse> {
+        const endpoint = `${this.baseUrl}/legalEntities/{id}/pciQuestionnaires/signingRequired`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const request: CalculatePciStatusRequest = ObjectSerializer.serialize(calculatePciStatusRequest, "CalculatePciStatusRequest");
+        const response = await getJsonResponse<CalculatePciStatusRequest, CalculatePciStatusResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "CalculatePciStatusResponse");
     }
 
     /**

@@ -25,9 +25,9 @@ import { TransferNotificationCounterParty } from './transferNotificationCounterP
 import { TransferReview } from './transferReview';
 
 export class TransferData {
-    'accountHolder'?: ResourceReference;
+    'accountHolder'?: ResourceReference | null;
     'amount': Amount;
-    'balanceAccount'?: ResourceReference;
+    'balanceAccount'?: ResourceReference | null;
     /**
     * The unique identifier of the balance platform.
     */
@@ -37,14 +37,14 @@ export class TransferData {
     */
     'balances'?: Array<BalanceMutation>;
     /**
-    * The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
+    * The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.
     */
     'category': TransferData.CategoryEnum;
     /**
     * The relevant data according to the transfer category.
     */
     'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null;
-    'counterparty'?: TransferNotificationCounterParty;
+    'counterparty'?: TransferNotificationCounterParty | null;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
     */
@@ -53,11 +53,15 @@ export class TransferData {
     * Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , \' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ \' \" ! ?**
     */
     'description'?: string;
-    'directDebitInformation'?: DirectDebitInformation;
+    'directDebitInformation'?: DirectDebitInformation | null;
     /**
     * The direction of the transfer.  Possible values: **incoming**, **outgoing**.
     */
     'direction'?: TransferData.DirectionEnum;
+    /**
+    * The event id listed under events, that triggered the notification.
+    */
+    'eventId'?: string;
     /**
     * The list of events leading up to the current status of the transfer.
     */
@@ -66,7 +70,7 @@ export class TransferData {
     * The ID of the resource.
     */
     'id'?: string;
-    'paymentInstrument'?: PaymentInstrument;
+    'paymentInstrument'?: PaymentInstrument | null;
     /**
     * Additional information about the status of the transfer.
     */
@@ -79,7 +83,7 @@ export class TransferData {
     *  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the `category`.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
     'referenceForBeneficiary'?: string;
-    'review'?: TransferReview;
+    'review'?: TransferReview | null;
     /**
     * The sequence number of the transfer webhook. The numbers start from 1 and increase with each new webhook for a specific transfer.  The sequence number can help you restore the correct sequence of events even if they arrive out of order.
     */
@@ -92,7 +96,7 @@ export class TransferData {
     * The latest tracking information of the transfer.
     */
     'tracking'?: ConfirmationTrackingData | EstimationTrackingData | InternalReviewTrackingData | null;
-    'transactionRulesResult'?: TransactionRulesResult;
+    'transactionRulesResult'?: TransactionRulesResult | null;
     /**
     * The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
     */
@@ -104,7 +108,7 @@ export class TransferData {
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "ResourceReference"
+            "type": "ResourceReference | null"
         },
         {
             "name": "amount",
@@ -114,7 +118,7 @@ export class TransferData {
         {
             "name": "balanceAccount",
             "baseName": "balanceAccount",
-            "type": "ResourceReference"
+            "type": "ResourceReference | null"
         },
         {
             "name": "balancePlatform",
@@ -139,7 +143,7 @@ export class TransferData {
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "TransferNotificationCounterParty"
+            "type": "TransferNotificationCounterParty | null"
         },
         {
             "name": "creationDate",
@@ -154,12 +158,17 @@ export class TransferData {
         {
             "name": "directDebitInformation",
             "baseName": "directDebitInformation",
-            "type": "DirectDebitInformation"
+            "type": "DirectDebitInformation | null"
         },
         {
             "name": "direction",
             "baseName": "direction",
             "type": "TransferData.DirectionEnum"
+        },
+        {
+            "name": "eventId",
+            "baseName": "eventId",
+            "type": "string"
         },
         {
             "name": "events",
@@ -174,7 +183,7 @@ export class TransferData {
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PaymentInstrument"
+            "type": "PaymentInstrument | null"
         },
         {
             "name": "reason",
@@ -194,7 +203,7 @@ export class TransferData {
         {
             "name": "review",
             "baseName": "review",
-            "type": "TransferReview"
+            "type": "TransferReview | null"
         },
         {
             "name": "sequenceNumber",
@@ -214,7 +223,7 @@ export class TransferData {
         {
             "name": "transactionRulesResult",
             "baseName": "transactionRulesResult",
-            "type": "TransactionRulesResult"
+            "type": "TransactionRulesResult | null"
         },
         {
             "name": "type",
@@ -233,7 +242,8 @@ export namespace TransferData {
         Card = 'card',
         Internal = 'internal',
         IssuedCard = 'issuedCard',
-        PlatformPayment = 'platformPayment'
+        PlatformPayment = 'platformPayment',
+        TopUp = 'topUp'
     }
     export enum DirectionEnum {
         Incoming = 'incoming',

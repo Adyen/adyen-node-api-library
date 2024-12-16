@@ -10,13 +10,13 @@
 import { Phone } from './phone';
 
 export class CheckoutSessionThreeDS2RequestData {
-    'homePhone'?: Phone;
-    'mobilePhone'?: Phone;
+    'homePhone'?: Phone | null;
+    'mobilePhone'?: Phone | null;
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
     'threeDSRequestorChallengeInd'?: CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
-    'workPhone'?: Phone;
+    'workPhone'?: Phone | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -24,12 +24,12 @@ export class CheckoutSessionThreeDS2RequestData {
         {
             "name": "homePhone",
             "baseName": "homePhone",
-            "type": "Phone"
+            "type": "Phone | null"
         },
         {
             "name": "mobilePhone",
             "baseName": "mobilePhone",
-            "type": "Phone"
+            "type": "Phone | null"
         },
         {
             "name": "threeDSRequestorChallengeInd",
@@ -39,7 +39,7 @@ export class CheckoutSessionThreeDS2RequestData {
         {
             "name": "workPhone",
             "baseName": "workPhone",
-            "type": "Phone"
+            "type": "Phone | null"
         }    ];
 
     static getAttributeTypeMap() {

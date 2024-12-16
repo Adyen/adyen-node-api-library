@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 
 export class StoredValueVoidResponse {
-    'currentBalance'?: Amount;
+    'currentBalance'?: Amount | null;
     /**
     * Adyen\'s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
@@ -34,7 +34,7 @@ export class StoredValueVoidResponse {
         {
             "name": "currentBalance",
             "baseName": "currentBalance",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "pspReference",

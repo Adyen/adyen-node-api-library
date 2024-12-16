@@ -14,7 +14,7 @@ export class PaymentInstrumentNotificationData {
     * The unique identifier of the balance platform.
     */
     'balancePlatform'?: string;
-    'paymentInstrument'?: PaymentInstrument;
+    'paymentInstrument'?: PaymentInstrument | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -27,7 +27,7 @@ export class PaymentInstrumentNotificationData {
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PaymentInstrument"
+            "type": "PaymentInstrument | null"
         }    ];
 
     static getAttributeTypeMap() {

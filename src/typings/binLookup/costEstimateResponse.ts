@@ -11,8 +11,8 @@ import { Amount } from './amount';
 import { CardBin } from './cardBin';
 
 export class CostEstimateResponse {
-    'cardBin'?: CardBin;
-    'costEstimateAmount'?: Amount;
+    'cardBin'?: CardBin | null;
+    'costEstimateAmount'?: Amount | null;
     /**
     * Adyen\'s 16-character reference associated with the request.
     */
@@ -32,12 +32,12 @@ export class CostEstimateResponse {
         {
             "name": "cardBin",
             "baseName": "cardBin",
-            "type": "CardBin"
+            "type": "CardBin | null"
         },
         {
             "name": "costEstimateAmount",
             "baseName": "costEstimateAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "costEstimateReference",

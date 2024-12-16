@@ -50,7 +50,7 @@ export class SubmitRequest {
     * The shopper\'s email address.
     */
     'shopperEmail': string;
-    'shopperName'?: Name;
+    'shopperName'?: Name | null;
     /**
     * The shopper\'s reference for the payout transaction.
     */
@@ -125,7 +125,7 @@ export class SubmitRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name"
+            "type": "Name | null"
         },
         {
             "name": "shopperReference",

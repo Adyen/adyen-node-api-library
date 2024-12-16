@@ -26,16 +26,16 @@ import { ThreeDS2RequestFields } from './threeDS2RequestFields';
 import { ThreeDSecureData } from './threeDSecureData';
 
 export class DonationPaymentRequest {
-    'accountInfo'?: AccountInfo;
+    'accountInfo'?: AccountInfo | null;
     /**
     * This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
     'additionalData'?: { [key: string]: string; };
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo;
-    'authenticationData'?: AuthenticationData;
-    'billingAddress'?: BillingAddress;
-    'browserInfo'?: BrowserInfo;
+    'applicationInfo'?: ApplicationInfo | null;
+    'authenticationData'?: AuthenticationData | null;
+    'billingAddress'?: BillingAddress | null;
+    'browserInfo'?: BrowserInfo | null;
     /**
     * The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.  Possible values: * iOS * Android * Web
     */
@@ -63,7 +63,7 @@ export class DonationPaymentRequest {
     * The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
     */
     'deliverAt'?: Date;
-    'deliveryAddress'?: DeliveryAddress;
+    'deliveryAddress'?: DeliveryAddress | null;
     /**
     * A string containing the shopper\'s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).
     */
@@ -92,12 +92,12 @@ export class DonationPaymentRequest {
     * The merchant account identifier, with which you want to process the transaction.
     */
     'merchantAccount': string;
-    'merchantRiskIndicator'?: MerchantRiskIndicator;
+    'merchantRiskIndicator'?: MerchantRiskIndicator | null;
     /**
     * Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\". * Maximum 20 characters per key. * Maximum 80 characters per value. 
     */
     'metadata'?: { [key: string]: string; };
-    'mpiData'?: ThreeDSecureData;
+    'mpiData'?: ThreeDSecureData | null;
     /**
     * Required for the 3D Secure 2 `channel` **Web** integration.  Set this parameter to the origin URL of the page that you are loading the 3D Secure Component from.
     */
@@ -105,7 +105,7 @@ export class DonationPaymentRequest {
     /**
     * The type and required details of a payment method to use.
     */
-    'paymentMethod': ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations | null;
+    'paymentMethod': ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations;
     /**
     * Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
@@ -146,7 +146,7 @@ export class DonationPaymentRequest {
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
     'shopperLocale'?: string;
-    'shopperName'?: Name;
+    'shopperName'?: Name | null;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
@@ -159,7 +159,7 @@ export class DonationPaymentRequest {
     * The shopper\'s telephone number.
     */
     'telephoneNumber'?: string;
-    'threeDS2RequestData'?: ThreeDS2RequestFields;
+    'threeDS2RequestData'?: ThreeDS2RequestFields | null;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     *
@@ -174,7 +174,7 @@ export class DonationPaymentRequest {
         {
             "name": "accountInfo",
             "baseName": "accountInfo",
-            "type": "AccountInfo"
+            "type": "AccountInfo | null"
         },
         {
             "name": "additionalData",
@@ -189,22 +189,22 @@ export class DonationPaymentRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo"
+            "type": "ApplicationInfo | null"
         },
         {
             "name": "authenticationData",
             "baseName": "authenticationData",
-            "type": "AuthenticationData"
+            "type": "AuthenticationData | null"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "BillingAddress"
+            "type": "BillingAddress | null"
         },
         {
             "name": "browserInfo",
             "baseName": "browserInfo",
-            "type": "BrowserInfo"
+            "type": "BrowserInfo | null"
         },
         {
             "name": "channel",
@@ -239,7 +239,7 @@ export class DonationPaymentRequest {
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "DeliveryAddress"
+            "type": "DeliveryAddress | null"
         },
         {
             "name": "deviceFingerprint",
@@ -279,7 +279,7 @@ export class DonationPaymentRequest {
         {
             "name": "merchantRiskIndicator",
             "baseName": "merchantRiskIndicator",
-            "type": "MerchantRiskIndicator"
+            "type": "MerchantRiskIndicator | null"
         },
         {
             "name": "metadata",
@@ -289,7 +289,7 @@ export class DonationPaymentRequest {
         {
             "name": "mpiData",
             "baseName": "mpiData",
-            "type": "ThreeDSecureData"
+            "type": "ThreeDSecureData | null"
         },
         {
             "name": "origin",
@@ -299,7 +299,7 @@ export class DonationPaymentRequest {
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations | null"
+            "type": "ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations"
         },
         {
             "name": "recurringProcessingModel",
@@ -354,7 +354,7 @@ export class DonationPaymentRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name"
+            "type": "Name | null"
         },
         {
             "name": "shopperReference",
@@ -374,7 +374,7 @@ export class DonationPaymentRequest {
         {
             "name": "threeDS2RequestData",
             "baseName": "threeDS2RequestData",
-            "type": "ThreeDS2RequestFields"
+            "type": "ThreeDS2RequestFields | null"
         },
         {
             "name": "threeDSAuthenticationOnly",

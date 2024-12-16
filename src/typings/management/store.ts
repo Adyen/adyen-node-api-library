@@ -12,8 +12,8 @@ import { StoreLocation } from './storeLocation';
 import { StoreSplitConfiguration } from './storeSplitConfiguration';
 
 export class Store {
-    '_links'?: Links;
-    'address'?: StoreLocation;
+    '_links'?: Links | null;
+    'address'?: StoreLocation | null;
     /**
     * The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businesslines__resParam_id) that the store is associated with.  If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.
     */
@@ -46,7 +46,7 @@ export class Store {
     * The store name shown on the shopper\'s bank or credit card statement and on the shopper receipt.
     */
     'shopperStatement'?: string;
-    'splitConfiguration'?: StoreSplitConfiguration;
+    'splitConfiguration'?: StoreSplitConfiguration | null;
     /**
     * The status of the store. Possible values are:  - **active**. This value is assigned automatically when a store is created.  - **inactive**. The terminals under the store are blocked from accepting new transactions, but capturing outstanding transactions is still possible. - **closed**. This status is irreversible. The terminals under the store are reassigned to the merchant inventory.
     */
@@ -58,12 +58,12 @@ export class Store {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "Links"
+            "type": "Links | null"
         },
         {
             "name": "address",
             "baseName": "address",
-            "type": "StoreLocation"
+            "type": "StoreLocation | null"
         },
         {
             "name": "businessLineIds",
@@ -108,7 +108,7 @@ export class Store {
         {
             "name": "splitConfiguration",
             "baseName": "splitConfiguration",
-            "type": "StoreSplitConfiguration"
+            "type": "StoreSplitConfiguration | null"
         },
         {
             "name": "status",

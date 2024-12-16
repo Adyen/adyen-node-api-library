@@ -16,14 +16,14 @@ import { PulseInfo } from './pulseInfo';
 import { StarInfo } from './starInfo';
 
 export class UpdatePaymentMethodInfo {
-    'accel'?: AccelInfo;
-    'bcmc'?: BcmcInfo;
-    'cartesBancaires'?: CartesBancairesInfo;
+    'accel'?: AccelInfo | null;
+    'bcmc'?: BcmcInfo | null;
+    'cartesBancaires'?: CartesBancairesInfo | null;
     /**
     * The list of countries where a payment method is available. By default, all countries supported by the payment method.
     */
     'countries'?: Array<string>;
-    'cup'?: GenericPmWithTdiInfo;
+    'cup'?: GenericPmWithTdiInfo | null;
     /**
     * The list of currencies that a payment method supports. By default, all currencies supported by the payment method.
     */
@@ -32,27 +32,34 @@ export class UpdatePaymentMethodInfo {
     * Custom routing flags for acquirer routing.
     */
     'customRoutingFlags'?: Array<string>;
-    'diners'?: GenericPmWithTdiInfo;
-    'discover'?: GenericPmWithTdiInfo;
-    'eftpos_australia'?: GenericPmWithTdiInfo;
+    'diners'?: GenericPmWithTdiInfo | null;
+    'discover'?: GenericPmWithTdiInfo | null;
+    'eftpos_australia'?: GenericPmWithTdiInfo | null;
     /**
     * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
     */
     'enabled'?: boolean;
-    'girocard'?: GenericPmWithTdiInfo;
-    'ideal'?: GenericPmWithTdiInfo;
-    'interac_card'?: GenericPmWithTdiInfo;
-    'jcb'?: GenericPmWithTdiInfo;
-    'maestro'?: GenericPmWithTdiInfo;
-    'mc'?: GenericPmWithTdiInfo;
-    'nyce'?: NyceInfo;
-    'pulse'?: PulseInfo;
-    'star'?: StarInfo;
+    'girocard'?: GenericPmWithTdiInfo | null;
+    'ideal'?: GenericPmWithTdiInfo | null;
+    'interac_card'?: GenericPmWithTdiInfo | null;
+    'jcb'?: GenericPmWithTdiInfo | null;
+    'maestro'?: GenericPmWithTdiInfo | null;
+    'mc'?: GenericPmWithTdiInfo | null;
+    'nyce'?: NyceInfo | null;
+    'pulse'?: PulseInfo | null;
+    'star'?: StarInfo | null;
+    /**
+    * The store for this payment method
+    */
+    'storeId'?: string;
     /**
     * The list of stores for this payment method
+    *
+	* @deprecated since Management API v3
+	* Use `storeId` instead. Only one store per payment method is allowed.
     */
     'storeIds'?: Array<string>;
-    'visa'?: GenericPmWithTdiInfo;
+    'visa'?: GenericPmWithTdiInfo | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -60,17 +67,17 @@ export class UpdatePaymentMethodInfo {
         {
             "name": "accel",
             "baseName": "accel",
-            "type": "AccelInfo"
+            "type": "AccelInfo | null"
         },
         {
             "name": "bcmc",
             "baseName": "bcmc",
-            "type": "BcmcInfo"
+            "type": "BcmcInfo | null"
         },
         {
             "name": "cartesBancaires",
             "baseName": "cartesBancaires",
-            "type": "CartesBancairesInfo"
+            "type": "CartesBancairesInfo | null"
         },
         {
             "name": "countries",
@@ -80,7 +87,7 @@ export class UpdatePaymentMethodInfo {
         {
             "name": "cup",
             "baseName": "cup",
-            "type": "GenericPmWithTdiInfo"
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "currencies",
@@ -95,17 +102,17 @@ export class UpdatePaymentMethodInfo {
         {
             "name": "diners",
             "baseName": "diners",
-            "type": "GenericPmWithTdiInfo"
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "discover",
             "baseName": "discover",
-            "type": "GenericPmWithTdiInfo"
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "eftpos_australia",
             "baseName": "eftpos_australia",
-            "type": "GenericPmWithTdiInfo"
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "enabled",
@@ -115,47 +122,52 @@ export class UpdatePaymentMethodInfo {
         {
             "name": "girocard",
             "baseName": "girocard",
-            "type": "GenericPmWithTdiInfo"
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "ideal",
             "baseName": "ideal",
-            "type": "GenericPmWithTdiInfo"
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "interac_card",
             "baseName": "interac_card",
-            "type": "GenericPmWithTdiInfo"
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "jcb",
             "baseName": "jcb",
-            "type": "GenericPmWithTdiInfo"
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "maestro",
             "baseName": "maestro",
-            "type": "GenericPmWithTdiInfo"
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "mc",
             "baseName": "mc",
-            "type": "GenericPmWithTdiInfo"
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "nyce",
             "baseName": "nyce",
-            "type": "NyceInfo"
+            "type": "NyceInfo | null"
         },
         {
             "name": "pulse",
             "baseName": "pulse",
-            "type": "PulseInfo"
+            "type": "PulseInfo | null"
         },
         {
             "name": "star",
             "baseName": "star",
-            "type": "StarInfo"
+            "type": "StarInfo | null"
+        },
+        {
+            "name": "storeId",
+            "baseName": "storeId",
+            "type": "string"
         },
         {
             "name": "storeIds",
@@ -165,7 +177,7 @@ export class UpdatePaymentMethodInfo {
         {
             "name": "visa",
             "baseName": "visa",
-            "type": "GenericPmWithTdiInfo"
+            "type": "GenericPmWithTdiInfo | null"
         }    ];
 
     static getAttributeTypeMap() {

@@ -14,7 +14,7 @@ export class Split {
     * The unique identifier of the account to which the split amount is booked. Required if `type` is **MarketPlace** or **BalanceAccount**.  * [Classic Platforms integration](https://docs.adyen.com/classic-platforms): The [`accountCode`](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccount#request-accountCode) of the account to which the split amount is booked. * [Balance Platform](https://docs.adyen.com/adyen-for-platforms-model): The [`balanceAccountId`](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/balanceAccounts/_id_#path-id) of the account to which the split amount is booked.
     */
     'account'?: string;
-    'amount'?: SplitAmount;
+    'amount'?: SplitAmount | null;
     /**
     * Your description for the split item.
     */
@@ -39,7 +39,7 @@ export class Split {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "SplitAmount"
+            "type": "SplitAmount | null"
         },
         {
             "name": "description",

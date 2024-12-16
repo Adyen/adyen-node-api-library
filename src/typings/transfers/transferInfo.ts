@@ -19,7 +19,7 @@ export class TransferInfo {
     */
     'balanceAccountId'?: string;
     /**
-    * The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
+    * The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.
     */
     'category': TransferInfo.CategoryEnum;
     'counterparty': CounterpartyInfoV3;
@@ -47,12 +47,12 @@ export class TransferInfo {
     *  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both parties involved in the funds movement.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
     'referenceForBeneficiary'?: string;
-    'review'?: TransferRequestReview;
+    'review'?: TransferRequestReview | null;
     /**
     * The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The `category` must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The `category` must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The `category` must be **internal**.   
     */
     'type'?: TransferInfo.TypeEnum;
-    'ultimateParty'?: UltimatePartyIdentification;
+    'ultimateParty'?: UltimatePartyIdentification | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -110,7 +110,7 @@ export class TransferInfo {
         {
             "name": "review",
             "baseName": "review",
-            "type": "TransferRequestReview"
+            "type": "TransferRequestReview | null"
         },
         {
             "name": "type",
@@ -120,7 +120,7 @@ export class TransferInfo {
         {
             "name": "ultimateParty",
             "baseName": "ultimateParty",
-            "type": "UltimatePartyIdentification"
+            "type": "UltimatePartyIdentification | null"
         }    ];
 
     static getAttributeTypeMap() {
@@ -134,7 +134,8 @@ export namespace TransferInfo {
         Card = 'card',
         Internal = 'internal',
         IssuedCard = 'issuedCard',
-        PlatformPayment = 'platformPayment'
+        PlatformPayment = 'platformPayment',
+        TopUp = 'topUp'
     }
     export enum PrioritiesEnum {
         CrossBorder = 'crossBorder',

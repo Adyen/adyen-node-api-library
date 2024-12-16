@@ -11,7 +11,7 @@ import { PaginationLinks } from './paginationLinks';
 import { PaymentMethod } from './paymentMethod';
 
 export class PaymentMethodResponse {
-    '_links'?: PaginationLinks;
+    '_links'?: PaginationLinks | null;
     /**
     * The list of supported payment methods and their details.
     */
@@ -35,7 +35,7 @@ export class PaymentMethodResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks"
+            "type": "PaginationLinks | null"
         },
         {
             "name": "data",
@@ -66,6 +66,7 @@ export class PaymentMethodResponse {
 export namespace PaymentMethodResponse {
     export enum TypesWithErrorsEnum {
         Accel = 'accel',
+        Affirm = 'affirm',
         Afterpaytouch = 'afterpaytouch',
         Alelo = 'alelo',
         Alipay = 'alipay',

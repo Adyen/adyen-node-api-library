@@ -15,7 +15,7 @@ import { ThreeDSRequestorAuthenticationInfo } from './threeDSRequestorAuthentica
 import { ThreeDSRequestorPriorAuthenticationInfo } from './threeDSRequestorPriorAuthenticationInfo';
 
 export class ThreeDS2RequestData {
-    'acctInfo'?: AcctInfo;
+    'acctInfo'?: AcctInfo | null;
     /**
     * Indicates the type of account. For example, for a multi-account card product. Length: 2 characters. Allowed values: * **01** — Not applicable * **02** — Credit * **03** — Debit
     */
@@ -50,8 +50,8 @@ export class ThreeDS2RequestData {
     * The environment of the shopper. Allowed values: * `app` * `browser`
     */
     'deviceChannel': string;
-    'deviceRenderOptions'?: DeviceRenderOptions;
-    'homePhone'?: Phone;
+    'deviceRenderOptions'?: DeviceRenderOptions | null;
+    'homePhone'?: Phone | null;
     /**
     * Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The `mcc` is a four-digit code with which the previously given `acquirerMerchantID` is registered at the scheme.
     */
@@ -64,7 +64,7 @@ export class ThreeDS2RequestData {
     * The `messageVersion` value indicating the 3D Secure 2 protocol version.
     */
     'messageVersion'?: string;
-    'mobilePhone'?: Phone;
+    'mobilePhone'?: Phone | null;
     /**
     * URL to where the issuer should send the `CRes`. Required if you are not using components for `channel` **Web** or if you are using classic integration `deviceChannel` **browser**.
     */
@@ -97,7 +97,7 @@ export class ThreeDS2RequestData {
     * The `sdkEncData` value as received from the 3D Secure 2 SDK. Required for `deviceChannel` set to **app**.
     */
     'sdkEncData'?: string;
-    'sdkEphemPubKey'?: SDKEphemPubKey;
+    'sdkEphemPubKey'?: SDKEphemPubKey | null;
     /**
     * The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for `deviceChannel` set to **app**. Defaults to **60** minutes.
     */
@@ -122,7 +122,7 @@ export class ThreeDS2RequestData {
     * Indicates the type of Authentication request.
     */
     'threeDSRequestorAuthenticationInd'?: string;
-    'threeDSRequestorAuthenticationInfo'?: ThreeDSRequestorAuthenticationInfo;
+    'threeDSRequestorAuthenticationInfo'?: ThreeDSRequestorAuthenticationInfo | null;
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
@@ -135,7 +135,7 @@ export class ThreeDS2RequestData {
     * Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor name assigned by the Directory Server when you enrol for 3D Secure 2.
     */
     'threeDSRequestorName'?: string;
-    'threeDSRequestorPriorAuthenticationInfo'?: ThreeDSRequestorPriorAuthenticationInfo;
+    'threeDSRequestorPriorAuthenticationInfo'?: ThreeDSRequestorPriorAuthenticationInfo | null;
     /**
     * URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3D Secure 2 process.
     */
@@ -152,7 +152,7 @@ export class ThreeDS2RequestData {
     * The `whiteListStatus` value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.
     */
     'whiteListStatus'?: string;
-    'workPhone'?: Phone;
+    'workPhone'?: Phone | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -160,7 +160,7 @@ export class ThreeDS2RequestData {
         {
             "name": "acctInfo",
             "baseName": "acctInfo",
-            "type": "AcctInfo"
+            "type": "AcctInfo | null"
         },
         {
             "name": "acctType",
@@ -200,12 +200,12 @@ export class ThreeDS2RequestData {
         {
             "name": "deviceRenderOptions",
             "baseName": "deviceRenderOptions",
-            "type": "DeviceRenderOptions"
+            "type": "DeviceRenderOptions | null"
         },
         {
             "name": "homePhone",
             "baseName": "homePhone",
-            "type": "Phone"
+            "type": "Phone | null"
         },
         {
             "name": "mcc",
@@ -225,7 +225,7 @@ export class ThreeDS2RequestData {
         {
             "name": "mobilePhone",
             "baseName": "mobilePhone",
-            "type": "Phone"
+            "type": "Phone | null"
         },
         {
             "name": "notificationURL",
@@ -270,7 +270,7 @@ export class ThreeDS2RequestData {
         {
             "name": "sdkEphemPubKey",
             "baseName": "sdkEphemPubKey",
-            "type": "SDKEphemPubKey"
+            "type": "SDKEphemPubKey | null"
         },
         {
             "name": "sdkMaxTimeout",
@@ -305,7 +305,7 @@ export class ThreeDS2RequestData {
         {
             "name": "threeDSRequestorAuthenticationInfo",
             "baseName": "threeDSRequestorAuthenticationInfo",
-            "type": "ThreeDSRequestorAuthenticationInfo"
+            "type": "ThreeDSRequestorAuthenticationInfo | null"
         },
         {
             "name": "threeDSRequestorChallengeInd",
@@ -325,7 +325,7 @@ export class ThreeDS2RequestData {
         {
             "name": "threeDSRequestorPriorAuthenticationInfo",
             "baseName": "threeDSRequestorPriorAuthenticationInfo",
-            "type": "ThreeDSRequestorPriorAuthenticationInfo"
+            "type": "ThreeDSRequestorPriorAuthenticationInfo | null"
         },
         {
             "name": "threeDSRequestorURL",
@@ -350,7 +350,7 @@ export class ThreeDS2RequestData {
         {
             "name": "workPhone",
             "baseName": "workPhone",
-            "type": "Phone"
+            "type": "Phone | null"
         }    ];
 
     static getAttributeTypeMap() {

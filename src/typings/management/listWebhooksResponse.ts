@@ -11,7 +11,7 @@ import { PaginationLinks } from './paginationLinks';
 import { Webhook } from './webhook';
 
 export class ListWebhooksResponse {
-    '_links'?: PaginationLinks;
+    '_links'?: PaginationLinks | null;
     /**
     * Reference to the account.
     */
@@ -35,7 +35,7 @@ export class ListWebhooksResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks"
+            "type": "PaginationLinks | null"
         },
         {
             "name": "accountReference",

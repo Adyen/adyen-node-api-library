@@ -21,6 +21,10 @@ export class Trust {
     */
     'dateOfIncorporation'?: string;
     /**
+    * A short description about the trust. Only applicable for charitable trusts in New Zealand.
+    */
+    'description'?: string;
+    /**
     * The registered name, if different from the `name`.
     */
     'doingBusinessAs'?: string;
@@ -28,22 +32,18 @@ export class Trust {
     * The legal name.
     */
     'name': string;
-    'principalPlaceOfBusiness'?: Address;
+    'principalPlaceOfBusiness'?: Address | null;
     'registeredAddress': Address;
     /**
     * The registration number.
     */
     'registrationNumber'?: string;
     /**
-    * The tax information is absent.
-    */
-    'taxAbsent'?: boolean | null;
-    /**
     * The tax information of the entity.
     */
     'taxInformation'?: Array<TaxInformation>;
     /**
-    * Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**.
+    * Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab=trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab=trust_3_4#trust-types-in-new-zealand).
     */
     'type': Trust.TypeEnum;
     /**
@@ -73,6 +73,11 @@ export class Trust {
             "type": "string"
         },
         {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
             "name": "doingBusinessAs",
             "baseName": "doingBusinessAs",
             "type": "string"
@@ -85,7 +90,7 @@ export class Trust {
         {
             "name": "principalPlaceOfBusiness",
             "baseName": "principalPlaceOfBusiness",
-            "type": "Address"
+            "type": "Address | null"
         },
         {
             "name": "registeredAddress",
@@ -96,11 +101,6 @@ export class Trust {
             "name": "registrationNumber",
             "baseName": "registrationNumber",
             "type": "string"
-        },
-        {
-            "name": "taxAbsent",
-            "baseName": "taxAbsent",
-            "type": "boolean | null"
         },
         {
             "name": "taxInformation",
@@ -135,12 +135,16 @@ export class Trust {
 
 export namespace Trust {
     export enum TypeEnum {
+        BusinessTrust = 'businessTrust',
         CashManagementTrust = 'cashManagementTrust',
+        CharitableTrust = 'charitableTrust',
         CorporateUnitTrust = 'corporateUnitTrust',
         DeceasedEstate = 'deceasedEstate',
+        DiscretionaryTrust = 'discretionaryTrust',
         DiscretionaryInvestmentTrust = 'discretionaryInvestmentTrust',
         DiscretionaryServicesManagementTrust = 'discretionaryServicesManagementTrust',
         DiscretionaryTradingTrust = 'discretionaryTradingTrust',
+        FamilyTrust = 'familyTrust',
         FirstHomeSaverAccountsTrust = 'firstHomeSaverAccountsTrust',
         FixedTrust = 'fixedTrust',
         FixedUnitTrust = 'fixedUnitTrust',

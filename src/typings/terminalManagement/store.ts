@@ -10,7 +10,7 @@
 import { Address } from './address';
 
 export class Store {
-    'address'?: Address;
+    'address'?: Address | null;
     /**
     * The description of the store.
     */
@@ -38,7 +38,7 @@ export class Store {
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address"
+            "type": "Address | null"
         },
         {
             "name": "description",

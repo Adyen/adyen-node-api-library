@@ -15,7 +15,7 @@ export class SplitConfigurationLogic {
     * Deducts the acquiring fees (the aggregated amount of interchange and scheme fee) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
     'acquiringFees'?: SplitConfigurationLogic.AcquiringFeesEnum;
-    'additionalCommission'?: AdditionalCommission;
+    'additionalCommission'?: AdditionalCommission | null;
     /**
     * Deducts the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
@@ -85,7 +85,7 @@ export class SplitConfigurationLogic {
         {
             "name": "additionalCommission",
             "baseName": "additionalCommission",
-            "type": "AdditionalCommission"
+            "type": "AdditionalCommission | null"
         },
         {
             "name": "adyenCommission",

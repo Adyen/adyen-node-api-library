@@ -15,7 +15,7 @@ export class CapabilityProblemEntity {
     */
     'documents'?: Array<string>;
     'id'?: string;
-    'owner'?: CapabilityProblemEntityRecursive;
+    'owner'?: CapabilityProblemEntityRecursive | null;
     'type'?: CapabilityProblemEntity.TypeEnum;
 
     static discriminator: string | undefined = undefined;
@@ -34,7 +34,7 @@ export class CapabilityProblemEntity {
         {
             "name": "owner",
             "baseName": "owner",
-            "type": "CapabilityProblemEntityRecursive"
+            "type": "CapabilityProblemEntityRecursive | null"
         },
         {
             "name": "type",

@@ -39,19 +39,19 @@ export class Organization {
     * The organization\'s legal name.
     */
     'legalName': string;
-    'phone'?: PhoneNumber;
-    'principalPlaceOfBusiness'?: Address;
+    'phone'?: PhoneNumber | null;
+    'principalPlaceOfBusiness'?: Address | null;
     'registeredAddress': Address;
     /**
     * The organization\'s registration number.
     */
     'registrationNumber'?: string;
-    'stockData'?: StockData;
+    'stockData'?: StockData | null;
     /**
     * The tax information of the organization.
     */
     'taxInformation'?: Array<TaxInformation>;
-    'taxReportingClassification'?: TaxReportingClassification;
+    'taxReportingClassification'?: TaxReportingClassification | null;
     /**
     * Type of organization.  Possible values: **associationIncorporated**, **governmentalOrganization**, **listedPublicCompany**, **nonProfit**, **partnershipIncorporated**, **privateCompany**.
     */
@@ -64,7 +64,7 @@ export class Organization {
     * The organization\'s VAT number.
     */
     'vatNumber'?: string;
-    'webData'?: WebData;
+    'webData'?: WebData | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -102,12 +102,12 @@ export class Organization {
         {
             "name": "phone",
             "baseName": "phone",
-            "type": "PhoneNumber"
+            "type": "PhoneNumber | null"
         },
         {
             "name": "principalPlaceOfBusiness",
             "baseName": "principalPlaceOfBusiness",
-            "type": "Address"
+            "type": "Address | null"
         },
         {
             "name": "registeredAddress",
@@ -122,7 +122,7 @@ export class Organization {
         {
             "name": "stockData",
             "baseName": "stockData",
-            "type": "StockData"
+            "type": "StockData | null"
         },
         {
             "name": "taxInformation",
@@ -132,7 +132,7 @@ export class Organization {
         {
             "name": "taxReportingClassification",
             "baseName": "taxReportingClassification",
-            "type": "TaxReportingClassification"
+            "type": "TaxReportingClassification | null"
         },
         {
             "name": "type",
@@ -152,7 +152,7 @@ export class Organization {
         {
             "name": "webData",
             "baseName": "webData",
-            "type": "WebData"
+            "type": "WebData | null"
         }    ];
 
     static getAttributeTypeMap() {

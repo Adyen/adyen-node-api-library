@@ -16,18 +16,18 @@ import { Recurring } from './recurring';
 
 export class PayoutRequest {
     'amount': Amount;
-    'billingAddress'?: Address;
-    'card'?: Card;
+    'billingAddress'?: Address | null;
+    'card'?: Card | null;
     /**
     * An integer value that is added to the normal fraud score. The value can be either positive or negative.
     */
     'fraudOffset'?: number;
-    'fundSource'?: FundSource;
+    'fundSource'?: FundSource | null;
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
     'merchantAccount': string;
-    'recurring'?: Recurring;
+    'recurring'?: Recurring | null;
     /**
     * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.
     */
@@ -44,7 +44,7 @@ export class PayoutRequest {
     * Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
     */
     'shopperInteraction'?: PayoutRequest.ShopperInteractionEnum;
-    'shopperName'?: Name;
+    'shopperName'?: Name | null;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
@@ -65,12 +65,12 @@ export class PayoutRequest {
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address"
+            "type": "Address | null"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card"
+            "type": "Card | null"
         },
         {
             "name": "fraudOffset",
@@ -80,7 +80,7 @@ export class PayoutRequest {
         {
             "name": "fundSource",
             "baseName": "fundSource",
-            "type": "FundSource"
+            "type": "FundSource | null"
         },
         {
             "name": "merchantAccount",
@@ -90,7 +90,7 @@ export class PayoutRequest {
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring"
+            "type": "Recurring | null"
         },
         {
             "name": "reference",
@@ -115,7 +115,7 @@ export class PayoutRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name"
+            "type": "Name | null"
         },
         {
             "name": "shopperReference",

@@ -14,10 +14,11 @@ import { ConfirmationTrackingData } from './confirmationTrackingData';
 import { EstimationTrackingData } from './estimationTrackingData';
 import { ExternalReason } from './externalReason';
 import { InternalReviewTrackingData } from './internalReviewTrackingData';
+import { MerchantPurchaseData } from './merchantPurchaseData';
 import { Modification } from './modification';
 
 export class TransferEvent {
-    'amount'?: Amount;
+    'amount'?: Amount | null;
     /**
     * The amount adjustments in this transfer.
     */
@@ -34,17 +35,21 @@ export class TransferEvent {
     * The estimated time when the beneficiary should have access to the funds.
     */
     'estimatedArrivalTime'?: Date;
-    'externalReason'?: ExternalReason;
+    /**
+    * A list of event data.
+    */
+    'eventsData'?: Array<MerchantPurchaseData>;
+    'externalReason'?: ExternalReason | null;
     /**
     * The unique identifier of the transfer event.
     */
     'id'?: string;
-    'modification'?: Modification;
+    'modification'?: Modification | null;
     /**
     * The list of balance mutations per event.
     */
     'mutations'?: Array<BalanceMutation>;
-    'originalAmount'?: Amount;
+    'originalAmount'?: Amount | null;
     /**
     * The reason for the transfer status.
     */
@@ -80,7 +85,7 @@ export class TransferEvent {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "amountAdjustments",
@@ -103,9 +108,14 @@ export class TransferEvent {
             "type": "Date"
         },
         {
+            "name": "eventsData",
+            "baseName": "eventsData",
+            "type": "Array<MerchantPurchaseData>"
+        },
+        {
             "name": "externalReason",
             "baseName": "externalReason",
-            "type": "ExternalReason"
+            "type": "ExternalReason | null"
         },
         {
             "name": "id",
@@ -115,7 +125,7 @@ export class TransferEvent {
         {
             "name": "modification",
             "baseName": "modification",
-            "type": "Modification"
+            "type": "Modification | null"
         },
         {
             "name": "mutations",
@@ -125,7 +135,7 @@ export class TransferEvent {
         {
             "name": "originalAmount",
             "baseName": "originalAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "reason",

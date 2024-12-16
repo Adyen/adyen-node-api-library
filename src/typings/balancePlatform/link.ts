@@ -10,11 +10,11 @@
 import { Href } from './href';
 
 export class Link {
-    'first'?: Href;
-    'last'?: Href;
-    'next'?: Href;
-    'previous'?: Href;
-    'self'?: Href;
+    'first'?: Href | null;
+    'last'?: Href | null;
+    'next'?: Href | null;
+    'previous'?: Href | null;
+    'self'?: Href | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -22,27 +22,27 @@ export class Link {
         {
             "name": "first",
             "baseName": "first",
-            "type": "Href"
+            "type": "Href | null"
         },
         {
             "name": "last",
             "baseName": "last",
-            "type": "Href"
+            "type": "Href | null"
         },
         {
             "name": "next",
             "baseName": "next",
-            "type": "Href"
+            "type": "Href | null"
         },
         {
             "name": "previous",
             "baseName": "previous",
-            "type": "Href"
+            "type": "Href | null"
         },
         {
             "name": "self",
             "baseName": "self",
-            "type": "Href"
+            "type": "Href | null"
         }    ];
 
     static getAttributeTypeMap() {

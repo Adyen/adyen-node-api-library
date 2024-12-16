@@ -12,7 +12,7 @@ import { CardConfiguration } from './cardConfiguration';
 import { DeliveryContact } from './deliveryContact';
 
 export class CardInfo {
-    'authentication'?: Authentication;
+    'authentication'?: Authentication | null;
     /**
     * The brand of the physical or the virtual card. Possible values: **visa**, **mc**.
     */
@@ -25,8 +25,8 @@ export class CardInfo {
     * The name of the cardholder.  Maximum length: 26 characters.
     */
     'cardholderName': string;
-    'configuration'?: CardConfiguration;
-    'deliveryContact'?: DeliveryContact;
+    'configuration'?: CardConfiguration | null;
+    'deliveryContact'?: DeliveryContact | null;
     /**
     * The form factor of the card. Possible values: **virtual**, **physical**.
     */
@@ -42,7 +42,7 @@ export class CardInfo {
         {
             "name": "authentication",
             "baseName": "authentication",
-            "type": "Authentication"
+            "type": "Authentication | null"
         },
         {
             "name": "brand",
@@ -62,12 +62,12 @@ export class CardInfo {
         {
             "name": "configuration",
             "baseName": "configuration",
-            "type": "CardConfiguration"
+            "type": "CardConfiguration | null"
         },
         {
             "name": "deliveryContact",
             "baseName": "deliveryContact",
-            "type": "DeliveryContact"
+            "type": "DeliveryContact | null"
         },
         {
             "name": "formFactor",

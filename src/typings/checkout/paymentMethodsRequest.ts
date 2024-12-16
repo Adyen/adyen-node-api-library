@@ -19,7 +19,7 @@ export class PaymentMethodsRequest {
     * List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
     'allowedPaymentMethods'?: Array<string>;
-    'amount'?: Amount;
+    'amount'?: Amount | null;
     /**
     * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
@@ -36,7 +36,7 @@ export class PaymentMethodsRequest {
     * The merchant account identifier, with which you want to process the transaction.
     */
     'merchantAccount': string;
-    'order'?: EncryptedOrderData;
+    'order'?: EncryptedOrderData | null;
     /**
     * A unique ID that can be used to associate `/paymentMethods` and `/payments` requests with the same shopper transaction, offering insights into conversion rates.
     */
@@ -78,7 +78,7 @@ export class PaymentMethodsRequest {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "blockedPaymentMethods",
@@ -103,7 +103,7 @@ export class PaymentMethodsRequest {
         {
             "name": "order",
             "baseName": "order",
-            "type": "EncryptedOrderData"
+            "type": "EncryptedOrderData | null"
         },
         {
             "name": "shopperConversionId",

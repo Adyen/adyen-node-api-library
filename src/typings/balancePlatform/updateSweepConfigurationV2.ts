@@ -16,7 +16,7 @@ export class UpdateSweepConfigurationV2 {
     * The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting `priorities`.
     */
     'category'?: UpdateSweepConfigurationV2.CategoryEnum;
-    'counterparty'?: SweepCounterparty;
+    'counterparty'?: SweepCounterparty | null;
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances).
     */
@@ -49,14 +49,14 @@ export class UpdateSweepConfigurationV2 {
     * The reference sent to or received from the counterparty. Only alphanumeric characters are allowed.
     */
     'referenceForBeneficiary'?: string;
-    'schedule'?: SweepSchedule;
+    'schedule'?: SweepSchedule | null;
     /**
     * The status of the sweep. If not provided, by default, this is set to **active**.  Possible values:    * **active**:  the sweep is enabled and funds will be pulled in or pushed out based on the defined configuration.    * **inactive**: the sweep is disabled and cannot be triggered.   
     */
     'status'?: UpdateSweepConfigurationV2.StatusEnum;
-    'sweepAmount'?: Amount;
-    'targetAmount'?: Amount;
-    'triggerAmount'?: Amount;
+    'sweepAmount'?: Amount | null;
+    'targetAmount'?: Amount | null;
+    'triggerAmount'?: Amount | null;
     /**
     * The direction of sweep, whether pushing out or pulling in funds to the balance account. If not provided, by default, this is set to **push**.  Possible values:   * **push**: _push out funds_ to a destination balance account or transfer instrument.   * **pull**: _pull in funds_ from a source merchant account, transfer instrument, or balance account.
     */
@@ -73,7 +73,7 @@ export class UpdateSweepConfigurationV2 {
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "SweepCounterparty"
+            "type": "SweepCounterparty | null"
         },
         {
             "name": "currency",
@@ -118,7 +118,7 @@ export class UpdateSweepConfigurationV2 {
         {
             "name": "schedule",
             "baseName": "schedule",
-            "type": "SweepSchedule"
+            "type": "SweepSchedule | null"
         },
         {
             "name": "status",
@@ -128,17 +128,17 @@ export class UpdateSweepConfigurationV2 {
         {
             "name": "sweepAmount",
             "baseName": "sweepAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "targetAmount",
             "baseName": "targetAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "triggerAmount",
             "baseName": "triggerAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "type",
