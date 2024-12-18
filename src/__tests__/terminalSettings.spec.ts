@@ -1,13 +1,13 @@
-import { TerminalSettings } from '../typings/management/terminalSettings';
+import { TerminalSettings } from "../typings/management/terminalSettings";
 
-describe('TerminalSettings properties', () => {
+describe("TerminalSettings properties", () => {
   let terminalSettings: TerminalSettings;
 
   beforeEach(() => {
     terminalSettings = new TerminalSettings();
   });
 
-  test('should allow properties to be null', () => {
+  test("should allow properties to be null", () => {
     terminalSettings.cardholderReceipt = null;
     terminalSettings.connectivity = null;
     terminalSettings.gratuities = null;
@@ -19,7 +19,7 @@ describe('TerminalSettings properties', () => {
     expect(terminalSettings.hardware).toBeNull();
   });
 
-  test('should allow properties to be undefined', () => {
+  test("should allow properties to be undefined", () => {
     terminalSettings.cardholderReceipt = undefined;
     terminalSettings.connectivity = undefined;
 
@@ -27,7 +27,7 @@ describe('TerminalSettings properties', () => {
     expect(terminalSettings.connectivity).toBeUndefined();
   });
 
-  test('should allow properties to have valid type values', () => {
+  test("should allow properties to have valid type values", () => {
     const mockGratuities = [{ /* mock Gratuity object */ }];
     terminalSettings.gratuities = mockGratuities;
 
