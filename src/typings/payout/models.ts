@@ -88,6 +88,7 @@ let enumsMap: {[index: string]: any} = {
         "PayoutResponse.ResultCodeEnum": PayoutResponse.ResultCodeEnum,
         "Recurring.ContractEnum": Recurring.ContractEnum,
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
+        "ResponseAdditionalDataCard.CardProductIdEnum": ResponseAdditionalDataCard.CardProductIdEnum,
         "ResponseAdditionalDataCommon.FraudResultTypeEnum": ResponseAdditionalDataCommon.FraudResultTypeEnum,
         "ResponseAdditionalDataCommon.RecurringProcessingModelEnum": ResponseAdditionalDataCommon.RecurringProcessingModelEnum,
         "StoreDetailAndSubmitRequest.EntityTypeEnum": StoreDetailAndSubmitRequest.EntityTypeEnum,

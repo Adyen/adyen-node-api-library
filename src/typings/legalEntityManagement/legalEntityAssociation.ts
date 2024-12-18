@@ -34,11 +34,11 @@ export class LegalEntityAssociation {
     */
     'relationship'?: string;
     /**
-    * Defines the Kyc Exemption Reason for a Settlor associated with a trust.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.
+    * Defines the KYC exemption reason for a settlor associated with a trust. Only applicable to trusts in Australia.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.
     */
     'settlorExemptionReason'?: Array<string>;
     /**
-    * Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
+    * Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.  Possible value for unincorporated partnership: **unincorporatedPartnership**.  Possible values for unincorporated partnership members: **secondaryPartner**, **uboThroughControl**, **uboThroughOwnership**
     */
     'type': LegalEntityAssociation.TypeEnum;
 
@@ -99,6 +99,7 @@ export namespace LegalEntityAssociation {
         LegalRepresentative = 'legalRepresentative',
         PciSignatory = 'pciSignatory',
         Protector = 'protector',
+        SecondaryPartner = 'secondaryPartner',
         SecondaryTrustee = 'secondaryTrustee',
         Settlor = 'settlor',
         Signatory = 'signatory',
@@ -108,6 +109,7 @@ export namespace LegalEntityAssociation {
         UboThroughControl = 'uboThroughControl',
         UboThroughOwnership = 'uboThroughOwnership',
         UltimateParentCompany = 'ultimateParentCompany',
-        UndefinedBeneficiary = 'undefinedBeneficiary'
+        UndefinedBeneficiary = 'undefinedBeneficiary',
+        UnincorporatedPartnership = 'unincorporatedPartnership'
     }
 }

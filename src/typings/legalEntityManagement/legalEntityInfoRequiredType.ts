@@ -13,6 +13,7 @@ import { LegalEntityCapability } from './legalEntityCapability';
 import { Organization } from './organization';
 import { SoleProprietorship } from './soleProprietorship';
 import { Trust } from './trust';
+import { UnincorporatedPartnership } from './unincorporatedPartnership';
 
 export class LegalEntityInfoRequiredType {
     /**
@@ -35,6 +36,7 @@ export class LegalEntityInfoRequiredType {
     * The type of legal entity.   Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
     */
     'type': LegalEntityInfoRequiredType.TypeEnum;
+    'unincorporatedPartnership'?: UnincorporatedPartnership;
     /**
     * A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification).
     */
@@ -82,6 +84,11 @@ export class LegalEntityInfoRequiredType {
             "name": "type",
             "baseName": "type",
             "type": "LegalEntityInfoRequiredType.TypeEnum"
+        },
+        {
+            "name": "unincorporatedPartnership",
+            "baseName": "unincorporatedPartnership",
+            "type": "UnincorporatedPartnership"
         },
         {
             "name": "verificationPlan",

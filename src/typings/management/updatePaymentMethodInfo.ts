@@ -49,7 +49,14 @@ export class UpdatePaymentMethodInfo {
     'pulse'?: PulseInfo;
     'star'?: StarInfo;
     /**
+    * The store for this payment method
+    */
+    'storeId'?: string;
+    /**
     * The list of stores for this payment method
+    *
+	* @deprecated since Management API v3
+	* Use `storeId` instead. Only one store per payment method is allowed.
     */
     'storeIds'?: Array<string>;
     'visa'?: GenericPmWithTdiInfo;
@@ -156,6 +163,11 @@ export class UpdatePaymentMethodInfo {
             "name": "star",
             "baseName": "star",
             "type": "StarInfo"
+        },
+        {
+            "name": "storeId",
+            "baseName": "storeId",
+            "type": "string"
         },
         {
             "name": "storeIds",
