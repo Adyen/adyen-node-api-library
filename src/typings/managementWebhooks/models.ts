@@ -23,6 +23,8 @@ export * from './paymentMethodNotificationResponse';
 export * from './paymentMethodRequestRemovedNotificationRequest';
 export * from './paymentMethodScheduledForRemovalNotificationRequest';
 export * from './remediatingAction';
+export * from './terminalAssignmentNotificationRequest';
+export * from './terminalAssignmentNotificationResponse';
 export * from './terminalBoardingData';
 export * from './terminalBoardingNotificationRequest';
 export * from './terminalBoardingNotificationResponse';
@@ -48,6 +50,8 @@ import { PaymentMethodNotificationResponse } from './paymentMethodNotificationRe
 import { PaymentMethodRequestRemovedNotificationRequest } from './paymentMethodRequestRemovedNotificationRequest';
 import { PaymentMethodScheduledForRemovalNotificationRequest } from './paymentMethodScheduledForRemovalNotificationRequest';
 import { RemediatingAction } from './remediatingAction';
+import { TerminalAssignmentNotificationRequest } from './terminalAssignmentNotificationRequest';
+import { TerminalAssignmentNotificationResponse } from './terminalAssignmentNotificationResponse';
 import { TerminalBoardingData } from './terminalBoardingData';
 import { TerminalBoardingNotificationRequest } from './terminalBoardingNotificationRequest';
 import { TerminalBoardingNotificationResponse } from './terminalBoardingNotificationResponse';
@@ -102,6 +106,8 @@ let typeMap: {[index: string]: any} = {
     "PaymentMethodRequestRemovedNotificationRequest": PaymentMethodRequestRemovedNotificationRequest,
     "PaymentMethodScheduledForRemovalNotificationRequest": PaymentMethodScheduledForRemovalNotificationRequest,
     "RemediatingAction": RemediatingAction,
+    "TerminalAssignmentNotificationRequest": TerminalAssignmentNotificationRequest,
+    "TerminalAssignmentNotificationResponse": TerminalAssignmentNotificationResponse,
     "TerminalBoardingData": TerminalBoardingData,
     "TerminalBoardingNotificationRequest": TerminalBoardingNotificationRequest,
     "TerminalBoardingNotificationResponse": TerminalBoardingNotificationResponse,

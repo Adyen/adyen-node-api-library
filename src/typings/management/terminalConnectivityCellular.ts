@@ -10,11 +10,15 @@
 
 export class TerminalConnectivityCellular {
     /**
-    * The integrated circuit card identifier (ICCID) of the SIM card in the terminal.
+    * The integrated circuit card identifier (ICCID) of the primary SIM card in the terminal.
     */
     'iccid'?: string;
     /**
-    * On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal.
+    * The integrated circuit card identifier (ICCID) of the secondary SIM card in the terminal, typically used for a [third-party SIM card](https://docs.adyen.com/point-of-sale/design-your-integration/network-and-connectivity/cellular-failover/#using-a-third-party-sim-card).
+    */
+    'iccid2'?: string;
+    /**
+    * On a terminal that supports 3G or 4G connectivity, indicates the status of the primary SIM card in the terminal.
     */
     'status'?: TerminalConnectivityCellular.StatusEnum;
 
@@ -24,6 +28,11 @@ export class TerminalConnectivityCellular {
         {
             "name": "iccid",
             "baseName": "iccid",
+            "type": "string"
+        },
+        {
+            "name": "iccid2",
+            "baseName": "iccid2",
             "type": "string"
         },
         {

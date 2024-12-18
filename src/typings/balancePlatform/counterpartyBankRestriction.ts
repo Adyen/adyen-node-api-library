@@ -15,7 +15,7 @@ export class CounterpartyBankRestriction {
     */
     'operation': string;
     /**
-    * List of counterparty Bank Institutions and the operation.
+    * The list of counterparty bank institutions to be evaluated.
     */
     'value'?: Array<BankIdentification>;
 

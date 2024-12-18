@@ -155,6 +155,7 @@ export * from './paypalUpdateOrderRequest';
 export * from './paypalUpdateOrderResponse';
 export * from './phone';
 export * from './platformChargebackLogic';
+export * from './pseDetails';
 export * from './ratepayDetails';
 export * from './recurring';
 export * from './responseAdditionalData3DSecure';
@@ -355,6 +356,7 @@ import { PaypalUpdateOrderRequest } from './paypalUpdateOrderRequest';
 import { PaypalUpdateOrderResponse } from './paypalUpdateOrderResponse';
 import { Phone } from './phone';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
+import { PseDetails } from './pseDetails';
 import { RatepayDetails } from './ratepayDetails';
 import { Recurring } from './recurring';
 import { ResponseAdditionalData3DSecure } from './responseAdditionalData3DSecure';
@@ -559,6 +561,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentReversalResponse.StatusEnum": PaymentReversalResponse.StatusEnum,
         "PaypalUpdateOrderResponse.StatusEnum": PaypalUpdateOrderResponse.StatusEnum,
         "PlatformChargebackLogic.BehaviorEnum": PlatformChargebackLogic.BehaviorEnum,
+        "PseDetails.TypeEnum": PseDetails.TypeEnum,
         "RatepayDetails.TypeEnum": RatepayDetails.TypeEnum,
         "Recurring.ContractEnum": Recurring.ContractEnum,
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
@@ -758,6 +761,7 @@ let typeMap: {[index: string]: any} = {
     "PaypalUpdateOrderResponse": PaypalUpdateOrderResponse,
     "Phone": Phone,
     "PlatformChargebackLogic": PlatformChargebackLogic,
+    "PseDetails": PseDetails,
     "RatepayDetails": RatepayDetails,
     "Recurring": Recurring,
     "ResponseAdditionalData3DSecure": ResponseAdditionalData3DSecure,

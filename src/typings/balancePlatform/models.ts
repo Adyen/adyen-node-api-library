@@ -55,6 +55,7 @@ export * from './cardOrderItemDeliveryStatus';
 export * from './contactDetails';
 export * from './counterparty';
 export * from './counterpartyBankRestriction';
+export * from './counterpartyTypesRestriction';
 export * from './countriesRestriction';
 export * from './createSweepConfigurationV2';
 export * from './dKLocalAccountIdentification';
@@ -132,6 +133,7 @@ export * from './sGLocalAccountIdentification';
 export * from './sameAmountRestriction';
 export * from './sameCounterpartyRestriction';
 export * from './searchRegisteredDevicesResponse';
+export * from './sourceAccountTypesRestriction';
 export * from './stringMatch';
 export * from './sweepConfigurationV2';
 export * from './sweepCounterparty';
@@ -208,6 +210,7 @@ import { CardOrderItemDeliveryStatus } from './cardOrderItemDeliveryStatus';
 import { ContactDetails } from './contactDetails';
 import { Counterparty } from './counterparty';
 import { CounterpartyBankRestriction } from './counterpartyBankRestriction';
+import { CounterpartyTypesRestriction } from './counterpartyTypesRestriction';
 import { CountriesRestriction } from './countriesRestriction';
 import { CreateSweepConfigurationV2 } from './createSweepConfigurationV2';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
@@ -285,6 +288,7 @@ import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
 import { SameAmountRestriction } from './sameAmountRestriction';
 import { SameCounterpartyRestriction } from './sameCounterpartyRestriction';
 import { SearchRegisteredDevicesResponse } from './searchRegisteredDevicesResponse';
+import { SourceAccountTypesRestriction } from './sourceAccountTypesRestriction';
 import { StringMatch } from './stringMatch';
 import { SweepConfigurationV2 } from './sweepConfigurationV2';
 import { SweepCounterparty } from './sweepCounterparty';
@@ -359,6 +363,7 @@ let enumsMap: {[index: string]: any} = {
         "CardInfo.FormFactorEnum": CardInfo.FormFactorEnum,
         "CardOrder.StatusEnum": CardOrder.StatusEnum,
         "CardOrderItemDeliveryStatus.StatusEnum": CardOrderItemDeliveryStatus.StatusEnum,
+        "CounterpartyTypesRestriction.ValueEnum": CounterpartyTypesRestriction.ValueEnum,
         "CreateSweepConfigurationV2.CategoryEnum": CreateSweepConfigurationV2.CategoryEnum,
         "CreateSweepConfigurationV2.PrioritiesEnum": CreateSweepConfigurationV2.PrioritiesEnum,
         "CreateSweepConfigurationV2.ReasonEnum": CreateSweepConfigurationV2.ReasonEnum,
@@ -397,6 +402,7 @@ let enumsMap: {[index: string]: any} = {
         "ProcessingTypesRestriction.ValueEnum": ProcessingTypesRestriction.ValueEnum,
         "SELocalAccountIdentification.TypeEnum": SELocalAccountIdentification.TypeEnum,
         "SGLocalAccountIdentification.TypeEnum": SGLocalAccountIdentification.TypeEnum,
+        "SourceAccountTypesRestriction.ValueEnum": SourceAccountTypesRestriction.ValueEnum,
         "StringMatch.OperationEnum": StringMatch.OperationEnum,
         "SweepConfigurationV2.CategoryEnum": SweepConfigurationV2.CategoryEnum,
         "SweepConfigurationV2.PrioritiesEnum": SweepConfigurationV2.PrioritiesEnum,
@@ -486,6 +492,7 @@ let typeMap: {[index: string]: any} = {
     "ContactDetails": ContactDetails,
     "Counterparty": Counterparty,
     "CounterpartyBankRestriction": CounterpartyBankRestriction,
+    "CounterpartyTypesRestriction": CounterpartyTypesRestriction,
     "CountriesRestriction": CountriesRestriction,
     "CreateSweepConfigurationV2": CreateSweepConfigurationV2,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
@@ -563,6 +570,7 @@ let typeMap: {[index: string]: any} = {
     "SameAmountRestriction": SameAmountRestriction,
     "SameCounterpartyRestriction": SameCounterpartyRestriction,
     "SearchRegisteredDevicesResponse": SearchRegisteredDevicesResponse,
+    "SourceAccountTypesRestriction": SourceAccountTypesRestriction,
     "StringMatch": StringMatch,
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,

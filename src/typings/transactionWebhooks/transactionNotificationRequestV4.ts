@@ -16,6 +16,10 @@ export class TransactionNotificationRequestV4 {
     */
     'environment': string;
     /**
+    * When the event was queued.
+    */
+    'timestamp'?: Date;
+    /**
     * Type of the webhook.
     */
     'type'?: TransactionNotificationRequestV4.TypeEnum;
@@ -32,6 +36,11 @@ export class TransactionNotificationRequestV4 {
             "name": "environment",
             "baseName": "environment",
             "type": "string"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "Date"
         },
         {
             "name": "type",
