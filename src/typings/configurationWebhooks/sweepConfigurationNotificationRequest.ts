@@ -16,6 +16,10 @@ export class SweepConfigurationNotificationRequest {
     */
     'environment': string;
     /**
+    * When the event was queued.
+    */
+    'timestamp'?: Date;
+    /**
     * Type of webhook.
     */
     'type': SweepConfigurationNotificationRequest.TypeEnum;
@@ -32,6 +36,11 @@ export class SweepConfigurationNotificationRequest {
             "name": "environment",
             "baseName": "environment",
             "type": "string"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "Date"
         },
         {
             "name": "type",

@@ -16,6 +16,10 @@ export class AccountHolderNotificationRequest {
     */
     'environment': string;
     /**
+    * When the event was queued.
+    */
+    'timestamp'?: Date;
+    /**
     * Type of webhook.
     */
     'type': AccountHolderNotificationRequest.TypeEnum;
@@ -32,6 +36,11 @@ export class AccountHolderNotificationRequest {
             "name": "environment",
             "baseName": "environment",
             "type": "string"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "Date"
         },
         {
             "name": "type",

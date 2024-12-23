@@ -11,17 +11,17 @@ import { TransactionDescriptionInfo } from './transactionDescriptionInfo';
 
 export class JCBInfo {
     /**
-    * MID (Merchant ID) number. Format: 10 numeric characters.  Must be provided for both `noContract` and `gatewayContract` service levels.
+    * MID (Merchant ID) number. Required for merchants operating in Japan.Format: 14 numeric characters.
     */
     'midNumber'?: string;
     /**
-    * Indicates whether the JCB Merchant ID is reused from a previously setup JCB payment method.  This is applicable for both `noContract` and `gatewayContract` service levels.  The default value is `false`.
+    * Indicates whether the JCB Merchant ID is reused from a previously setup JCB payment method.  The default value is **false**.For merchants operating in Japan, this field is required and must be set to **true**.
     */
     'reuseMidNumber'?: boolean;
     /**
-    * Specifies the service level (settlement type) of this payment method. Possible values: * **noContract** — Adyen holds the contract with JCB. * **gatewayContract** — JCB receives the settlement and handles disputes. They then pay out to the merchant directly.
+    * Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.
     */
-    'serviceLevel': JCBInfo.ServiceLevelEnum;
+    'serviceLevel'?: JCBInfo.ServiceLevelEnum;
     'transactionDescription'?: TransactionDescriptionInfo;
 
     static discriminator: string | undefined = undefined;

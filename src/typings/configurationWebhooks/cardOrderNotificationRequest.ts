@@ -16,6 +16,10 @@ export class CardOrderNotificationRequest {
     */
     'environment': string;
     /**
+    * When the event was queued.
+    */
+    'timestamp'?: Date;
+    /**
     * Type of webhook.
     */
     'type': CardOrderNotificationRequest.TypeEnum;
@@ -32,6 +36,11 @@ export class CardOrderNotificationRequest {
             "name": "environment",
             "baseName": "environment",
             "type": "string"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "Date"
         },
         {
             "name": "type",

@@ -14,6 +14,7 @@ import { ApplePayInfo } from './applePayInfo';
 import { BcmcInfo } from './bcmcInfo';
 import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { ClearpayInfo } from './clearpayInfo';
+import { DinersInfo } from './dinersInfo';
 import { GenericPmWithTdiInfo } from './genericPmWithTdiInfo';
 import { GiroPayInfo } from './giroPayInfo';
 import { GooglePayInfo } from './googlePayInfo';
@@ -59,7 +60,7 @@ export class PaymentMethodSetupInfo {
     * The list of custom routing flags to route payment to the intended acquirer.
     */
     'customRoutingFlags'?: Array<string>;
-    'diners'?: GenericPmWithTdiInfo;
+    'diners'?: DinersInfo;
     'discover'?: GenericPmWithTdiInfo;
     'eftpos_australia'?: GenericPmWithTdiInfo;
     'giroPay'?: GiroPayInfo;
@@ -169,7 +170,7 @@ export class PaymentMethodSetupInfo {
         {
             "name": "diners",
             "baseName": "diners",
-            "type": "GenericPmWithTdiInfo"
+            "type": "DinersInfo"
         },
         {
             "name": "discover",
@@ -336,6 +337,7 @@ export namespace PaymentMethodSetupInfo {
     }
     export enum TypeEnum {
         Accel = 'accel',
+        Affirm = 'affirm',
         Afterpaytouch = 'afterpaytouch',
         Alelo = 'alelo',
         Alipay = 'alipay',

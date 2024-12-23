@@ -10,6 +10,7 @@
 import { ActiveNetworkTokensRestriction } from './activeNetworkTokensRestriction';
 import { BrandVariantsRestriction } from './brandVariantsRestriction';
 import { CounterpartyBankRestriction } from './counterpartyBankRestriction';
+import { CounterpartyTypesRestriction } from './counterpartyTypesRestriction';
 import { CountriesRestriction } from './countriesRestriction';
 import { DayOfWeekRestriction } from './dayOfWeekRestriction';
 import { DifferentCurrenciesRestriction } from './differentCurrenciesRestriction';
@@ -24,6 +25,7 @@ import { ProcessingTypesRestriction } from './processingTypesRestriction';
 import { RiskScoresRestriction } from './riskScoresRestriction';
 import { SameAmountRestriction } from './sameAmountRestriction';
 import { SameCounterpartyRestriction } from './sameCounterpartyRestriction';
+import { SourceAccountTypesRestriction } from './sourceAccountTypesRestriction';
 import { TimeOfDayRestriction } from './timeOfDayRestriction';
 import { TotalAmountRestriction } from './totalAmountRestriction';
 
@@ -31,6 +33,7 @@ export class TransactionRuleRestrictions {
     'activeNetworkTokens'?: ActiveNetworkTokensRestriction;
     'brandVariants'?: BrandVariantsRestriction;
     'counterpartyBank'?: CounterpartyBankRestriction;
+    'counterpartyTypes'?: CounterpartyTypesRestriction;
     'countries'?: CountriesRestriction;
     'dayOfWeek'?: DayOfWeekRestriction;
     'differentCurrencies'?: DifferentCurrenciesRestriction;
@@ -45,6 +48,7 @@ export class TransactionRuleRestrictions {
     'riskScores'?: RiskScoresRestriction;
     'sameAmountRestriction'?: SameAmountRestriction;
     'sameCounterpartyRestriction'?: SameCounterpartyRestriction;
+    'sourceAccountTypes'?: SourceAccountTypesRestriction;
     'timeOfDay'?: TimeOfDayRestriction;
     'totalAmount'?: TotalAmountRestriction;
 
@@ -65,6 +69,11 @@ export class TransactionRuleRestrictions {
             "name": "counterpartyBank",
             "baseName": "counterpartyBank",
             "type": "CounterpartyBankRestriction"
+        },
+        {
+            "name": "counterpartyTypes",
+            "baseName": "counterpartyTypes",
+            "type": "CounterpartyTypesRestriction"
         },
         {
             "name": "countries",
@@ -135,6 +144,11 @@ export class TransactionRuleRestrictions {
             "name": "sameCounterpartyRestriction",
             "baseName": "sameCounterpartyRestriction",
             "type": "SameCounterpartyRestriction"
+        },
+        {
+            "name": "sourceAccountTypes",
+            "baseName": "sourceAccountTypes",
+            "type": "SourceAccountTypesRestriction"
         },
         {
             "name": "timeOfDay",
