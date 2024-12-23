@@ -31,7 +31,12 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
     */
     {{/deprecated}}
 {{/description}}
+    {{#isModel}}
+    '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}} | null{{/required}};
+    {{/isModel}}
+    {{^isModel}}
     '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}};
+    {{/isModel}}
 {{/vars}}
 
     {{#discriminator}}
@@ -47,7 +52,12 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
         {
             "name": "{{name}}",
             "baseName": "{{baseName}}",
+            {{#isModel}}
+            "type": "{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}} | null{{/required}}"
+            {{/isModel}}
+            {{^isModel}}
             "type": "{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}}"
+            {{/isModel}}
         }{{^-last}},
         {{/-last}}
         {{/vars}}
