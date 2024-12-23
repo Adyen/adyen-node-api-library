@@ -31,13 +31,13 @@ import { Timeouts } from './timeouts';
 import { WifiProfiles } from './wifiProfiles';
 
 export class TerminalSettings {
-    'cardholderReceipt'?: CardholderReceipt;
-    'connectivity'?: Connectivity;
+    'cardholderReceipt'?: CardholderReceipt | null;
+    'connectivity'?: Connectivity | null;
     /**
     * Settings for tipping with or without predefined options to choose from. The maximum number of predefined options is four, or three plus the option to enter a custom tip.
     */
     'gratuities'?: Array<Gratuity> | null;
-    'hardware'?: Hardware; | null;
+    'hardware'?: Hardware | null;
     'localization'?: Localization | null;
     'nexo'?: Nexo | null;
     'offlineProcessing'?: OfflineProcessing | null;
