@@ -39,7 +39,7 @@ export class BalanceAccount {
     * The unique identifier of the account of the migrated account holder in the classic integration.
     */
     'migratedAccountCode'?: string;
-    'platformPaymentConfiguration'?: PlatformPaymentConfiguration;
+    'platformPaymentConfiguration'?: PlatformPaymentConfiguration | null;
     /**
     * Your reference for the balance account, maximum 150 characters.
     */
@@ -94,7 +94,7 @@ export class BalanceAccount {
         {
             "name": "platformPaymentConfiguration",
             "baseName": "platformPaymentConfiguration",
-            "type": "PlatformPaymentConfiguration"
+            "type": "PlatformPaymentConfiguration | null"
         },
         {
             "name": "reference",

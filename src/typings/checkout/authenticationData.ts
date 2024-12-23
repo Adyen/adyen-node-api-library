@@ -18,7 +18,7 @@ export class AuthenticationData {
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. Default: **false**.
     */
     'authenticationOnly'?: boolean;
-    'threeDSRequestData'?: ThreeDSRequestData;
+    'threeDSRequestData'?: ThreeDSRequestData | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -36,7 +36,7 @@ export class AuthenticationData {
         {
             "name": "threeDSRequestData",
             "baseName": "threeDSRequestData",
-            "type": "ThreeDSRequestData"
+            "type": "ThreeDSRequestData | null"
         }    ];
 
     static getAttributeTypeMap() {

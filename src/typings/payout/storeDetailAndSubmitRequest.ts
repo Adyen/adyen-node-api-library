@@ -20,9 +20,9 @@ export class StoreDetailAndSubmitRequest {
     */
     'additionalData'?: { [key: string]: string; };
     'amount': Amount;
-    'bank'?: BankAccount;
-    'billingAddress'?: Address;
-    'card'?: Card;
+    'bank'?: BankAccount | null;
+    'billingAddress'?: Address | null;
+    'card'?: Card | null;
     /**
     * The date of birth. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD For Paysafecard it must be the same as used when registering the Paysafecard account. > This field is mandatory for natural persons.
     */
@@ -56,7 +56,7 @@ export class StoreDetailAndSubmitRequest {
     * The shopper\'s email address.
     */
     'shopperEmail': string;
-    'shopperName'?: Name;
+    'shopperName'?: Name | null;
     /**
     * The shopper\'s reference for the payment transaction.
     */
@@ -90,17 +90,17 @@ export class StoreDetailAndSubmitRequest {
         {
             "name": "bank",
             "baseName": "bank",
-            "type": "BankAccount"
+            "type": "BankAccount | null"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address"
+            "type": "Address | null"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card"
+            "type": "Card | null"
         },
         {
             "name": "dateOfBirth",
@@ -150,7 +150,7 @@ export class StoreDetailAndSubmitRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name"
+            "type": "Name | null"
         },
         {
             "name": "shopperReference",

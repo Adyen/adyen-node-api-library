@@ -14,7 +14,7 @@ export class ScheduleAccountUpdaterRequest {
     * This field contains additional data, which may be required for a particular request.
     */
     'additionalData'?: { [key: string]: string; };
-    'card'?: Card;
+    'card'?: Card | null;
     /**
     * Account of the merchant.
     */
@@ -43,7 +43,7 @@ export class ScheduleAccountUpdaterRequest {
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card"
+            "type": "Card | null"
         },
         {
             "name": "merchantAccount",

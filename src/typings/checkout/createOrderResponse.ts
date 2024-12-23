@@ -20,7 +20,7 @@ export class CreateOrderResponse {
     * The date that the order will expire.
     */
     'expiresAt': string;
-    'fraudResult'?: FraudResult;
+    'fraudResult'?: FraudResult | null;
     /**
     * The encrypted data that will be used by merchant for adding payments to the order.
     */
@@ -64,7 +64,7 @@ export class CreateOrderResponse {
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult"
+            "type": "FraudResult | null"
         },
         {
             "name": "orderData",

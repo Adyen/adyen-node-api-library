@@ -13,10 +13,10 @@ import { TerminalConnectivityEthernet } from './terminalConnectivityEthernet';
 import { TerminalConnectivityWifi } from './terminalConnectivityWifi';
 
 export class TerminalConnectivity {
-    'bluetooth'?: TerminalConnectivityBluetooth;
-    'cellular'?: TerminalConnectivityCellular;
-    'ethernet'?: TerminalConnectivityEthernet;
-    'wifi'?: TerminalConnectivityWifi;
+    'bluetooth'?: TerminalConnectivityBluetooth | null;
+    'cellular'?: TerminalConnectivityCellular | null;
+    'ethernet'?: TerminalConnectivityEthernet | null;
+    'wifi'?: TerminalConnectivityWifi | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -24,22 +24,22 @@ export class TerminalConnectivity {
         {
             "name": "bluetooth",
             "baseName": "bluetooth",
-            "type": "TerminalConnectivityBluetooth"
+            "type": "TerminalConnectivityBluetooth | null"
         },
         {
             "name": "cellular",
             "baseName": "cellular",
-            "type": "TerminalConnectivityCellular"
+            "type": "TerminalConnectivityCellular | null"
         },
         {
             "name": "ethernet",
             "baseName": "ethernet",
-            "type": "TerminalConnectivityEthernet"
+            "type": "TerminalConnectivityEthernet | null"
         },
         {
             "name": "wifi",
             "baseName": "wifi",
-            "type": "TerminalConnectivityWifi"
+            "type": "TerminalConnectivityWifi | null"
         }    ];
 
     static getAttributeTypeMap() {

@@ -25,9 +25,9 @@ import { TransferNotificationCounterParty } from './transferNotificationCounterP
 import { TransferReview } from './transferReview';
 
 export class TransferData {
-    'accountHolder'?: ResourceReference;
+    'accountHolder'?: ResourceReference | null;
     'amount': Amount;
-    'balanceAccount'?: ResourceReference;
+    'balanceAccount'?: ResourceReference | null;
     /**
     * The unique identifier of the balance platform.
     */
@@ -44,7 +44,7 @@ export class TransferData {
     * The relevant data according to the transfer category.
     */
     'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null;
-    'counterparty'?: TransferNotificationCounterParty;
+    'counterparty'?: TransferNotificationCounterParty | null;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
     */
@@ -53,7 +53,7 @@ export class TransferData {
     * Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , \' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ \' \" ! ?**
     */
     'description'?: string;
-    'directDebitInformation'?: DirectDebitInformation;
+    'directDebitInformation'?: DirectDebitInformation | null;
     /**
     * The direction of the transfer.  Possible values: **incoming**, **outgoing**.
     */
@@ -70,7 +70,7 @@ export class TransferData {
     * The ID of the resource.
     */
     'id'?: string;
-    'paymentInstrument'?: PaymentInstrument;
+    'paymentInstrument'?: PaymentInstrument | null;
     /**
     * Additional information about the status of the transfer.
     */
@@ -83,7 +83,7 @@ export class TransferData {
     *  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the `category`.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
     'referenceForBeneficiary'?: string;
-    'review'?: TransferReview;
+    'review'?: TransferReview | null;
     /**
     * The sequence number of the transfer webhook. The numbers start from 1 and increase with each new webhook for a specific transfer.  The sequence number can help you restore the correct sequence of events even if they arrive out of order.
     */
@@ -96,7 +96,7 @@ export class TransferData {
     * The latest tracking information of the transfer.
     */
     'tracking'?: ConfirmationTrackingData | EstimationTrackingData | InternalReviewTrackingData | null;
-    'transactionRulesResult'?: TransactionRulesResult;
+    'transactionRulesResult'?: TransactionRulesResult | null;
     /**
     * The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
     */
@@ -108,7 +108,7 @@ export class TransferData {
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "ResourceReference"
+            "type": "ResourceReference | null"
         },
         {
             "name": "amount",
@@ -118,7 +118,7 @@ export class TransferData {
         {
             "name": "balanceAccount",
             "baseName": "balanceAccount",
-            "type": "ResourceReference"
+            "type": "ResourceReference | null"
         },
         {
             "name": "balancePlatform",
@@ -143,7 +143,7 @@ export class TransferData {
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "TransferNotificationCounterParty"
+            "type": "TransferNotificationCounterParty | null"
         },
         {
             "name": "creationDate",
@@ -158,7 +158,7 @@ export class TransferData {
         {
             "name": "directDebitInformation",
             "baseName": "directDebitInformation",
-            "type": "DirectDebitInformation"
+            "type": "DirectDebitInformation | null"
         },
         {
             "name": "direction",
@@ -183,7 +183,7 @@ export class TransferData {
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PaymentInstrument"
+            "type": "PaymentInstrument | null"
         },
         {
             "name": "reason",
@@ -203,7 +203,7 @@ export class TransferData {
         {
             "name": "review",
             "baseName": "review",
-            "type": "TransferReview"
+            "type": "TransferReview | null"
         },
         {
             "name": "sequenceNumber",
@@ -223,7 +223,7 @@ export class TransferData {
         {
             "name": "transactionRulesResult",
             "baseName": "transactionRulesResult",
-            "type": "TransactionRulesResult"
+            "type": "TransactionRulesResult | null"
         },
         {
             "name": "type",

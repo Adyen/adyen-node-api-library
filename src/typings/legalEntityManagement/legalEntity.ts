@@ -44,8 +44,8 @@ export class LegalEntity {
     * The unique identifier of the legal entity.
     */
     'id': string;
-    'individual'?: Individual;
-    'organization'?: Organization;
+    'individual'?: Individual | null;
+    'organization'?: Organization | null;
     /**
     * List of verification errors related to capabilities for the legal entity.
     */
@@ -54,17 +54,17 @@ export class LegalEntity {
     * Your reference for the legal entity, maximum 150 characters.
     */
     'reference'?: string;
-    'soleProprietorship'?: SoleProprietorship;
+    'soleProprietorship'?: SoleProprietorship | null;
     /**
     * List of transfer instruments that the legal entity owns.
     */
     'transferInstruments'?: Array<TransferInstrumentReference>;
-    'trust'?: Trust;
+    'trust'?: Trust | null;
     /**
     * The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
     */
     'type'?: LegalEntity.TypeEnum;
-    'unincorporatedPartnership'?: UnincorporatedPartnership;
+    'unincorporatedPartnership'?: UnincorporatedPartnership | null;
     /**
     * List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
     */
@@ -105,12 +105,12 @@ export class LegalEntity {
         {
             "name": "individual",
             "baseName": "individual",
-            "type": "Individual"
+            "type": "Individual | null"
         },
         {
             "name": "organization",
             "baseName": "organization",
-            "type": "Organization"
+            "type": "Organization | null"
         },
         {
             "name": "problems",
@@ -125,7 +125,7 @@ export class LegalEntity {
         {
             "name": "soleProprietorship",
             "baseName": "soleProprietorship",
-            "type": "SoleProprietorship"
+            "type": "SoleProprietorship | null"
         },
         {
             "name": "transferInstruments",
@@ -135,7 +135,7 @@ export class LegalEntity {
         {
             "name": "trust",
             "baseName": "trust",
-            "type": "Trust"
+            "type": "Trust | null"
         },
         {
             "name": "type",
@@ -145,7 +145,7 @@ export class LegalEntity {
         {
             "name": "unincorporatedPartnership",
             "baseName": "unincorporatedPartnership",
-            "type": "UnincorporatedPartnership"
+            "type": "UnincorporatedPartnership | null"
         },
         {
             "name": "verificationDeadlines",

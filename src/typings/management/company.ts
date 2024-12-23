@@ -11,7 +11,7 @@ import { CompanyLinks } from './companyLinks';
 import { DataCenter } from './dataCenter';
 
 export class Company {
-    '_links'?: CompanyLinks;
+    '_links'?: CompanyLinks | null;
     /**
     * List of available data centers.  Adyen has several data centers around the world.In the URL that you use for making API requests, we recommend you use the live URL prefix from the data center closest to your shoppers.
     */
@@ -43,7 +43,7 @@ export class Company {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "CompanyLinks"
+            "type": "CompanyLinks | null"
         },
         {
             "name": "dataCenters",

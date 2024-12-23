@@ -14,7 +14,7 @@ import { Split } from './split';
 
 export class PaymentRefundRequest {
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo;
+    'applicationInfo'?: ApplicationInfo | null;
     /**
     * Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
     */
@@ -51,7 +51,7 @@ export class PaymentRefundRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo"
+            "type": "ApplicationInfo | null"
         },
         {
             "name": "lineItems",

@@ -54,9 +54,9 @@ export class SweepConfigurationV2 {
     * The status of the sweep. If not provided, by default, this is set to **active**.  Possible values:    * **active**:  the sweep is enabled and funds will be pulled in or pushed out based on the defined configuration.    * **inactive**: the sweep is disabled and cannot be triggered.   
     */
     'status'?: SweepConfigurationV2.StatusEnum;
-    'sweepAmount'?: Amount;
-    'targetAmount'?: Amount;
-    'triggerAmount'?: Amount;
+    'sweepAmount'?: Amount | null;
+    'targetAmount'?: Amount | null;
+    'triggerAmount'?: Amount | null;
     /**
     * The direction of sweep, whether pushing out or pulling in funds to the balance account. If not provided, by default, this is set to **push**.  Possible values:   * **push**: _push out funds_ to a destination balance account or transfer instrument.   * **pull**: _pull in funds_ from a source merchant account, transfer instrument, or balance account.
     */
@@ -128,17 +128,17 @@ export class SweepConfigurationV2 {
         {
             "name": "sweepAmount",
             "baseName": "sweepAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "targetAmount",
             "baseName": "targetAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "triggerAmount",
             "baseName": "triggerAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "type",

@@ -63,12 +63,12 @@ export class TerminalSettings {
         {
             "name": "cardholderReceipt",
             "baseName": "cardholderReceipt",
-            "type": "CardholderReceipt"
+            "type": "CardholderReceipt | null"
         },
         {
             "name": "connectivity",
             "baseName": "connectivity",
-            "type": "Connectivity"
+            "type": "Connectivity | null"
         },
         {
             "name": "gratuities",
@@ -78,97 +78,97 @@ export class TerminalSettings {
         {
             "name": "hardware",
             "baseName": "hardware",
-            "type": "Hardware"
+            "type": "Hardware | null"
         },
         {
             "name": "localization",
             "baseName": "localization",
-            "type": "Localization"
+            "type": "Localization | null"
         },
         {
             "name": "nexo",
             "baseName": "nexo",
-            "type": "Nexo"
+            "type": "Nexo | null"
         },
         {
             "name": "offlineProcessing",
             "baseName": "offlineProcessing",
-            "type": "OfflineProcessing"
+            "type": "OfflineProcessing | null"
         },
         {
             "name": "opi",
             "baseName": "opi",
-            "type": "Opi"
+            "type": "Opi | null"
         },
         {
             "name": "passcodes",
             "baseName": "passcodes",
-            "type": "Passcodes"
+            "type": "Passcodes | null"
         },
         {
             "name": "payAtTable",
             "baseName": "payAtTable",
-            "type": "PayAtTable"
+            "type": "PayAtTable | null"
         },
         {
             "name": "payment",
             "baseName": "payment",
-            "type": "Payment"
+            "type": "Payment | null"
         },
         {
             "name": "receiptOptions",
             "baseName": "receiptOptions",
-            "type": "ReceiptOptions"
+            "type": "ReceiptOptions | null"
         },
         {
             "name": "receiptPrinting",
             "baseName": "receiptPrinting",
-            "type": "ReceiptPrinting"
+            "type": "ReceiptPrinting | null"
         },
         {
             "name": "refunds",
             "baseName": "refunds",
-            "type": "Refunds"
+            "type": "Refunds | null"
         },
         {
             "name": "signature",
             "baseName": "signature",
-            "type": "Signature"
+            "type": "Signature | null"
         },
         {
             "name": "standalone",
             "baseName": "standalone",
-            "type": "Standalone"
+            "type": "Standalone | null"
         },
         {
             "name": "storeAndForward",
             "baseName": "storeAndForward",
-            "type": "StoreAndForward"
+            "type": "StoreAndForward | null"
         },
         {
             "name": "surcharge",
             "baseName": "surcharge",
-            "type": "Surcharge"
+            "type": "Surcharge | null"
         },
         {
             "name": "tapToPay",
             "baseName": "tapToPay",
-            "type": "TapToPay"
+            "type": "TapToPay | null"
         },
         {
             "name": "terminalInstructions",
             "baseName": "terminalInstructions",
-            "type": "TerminalInstructions"
+            "type": "TerminalInstructions | null"
         },
         {
             "name": "timeouts",
             "baseName": "timeouts",
-            "type": "Timeouts"
+            "type": "Timeouts | null"
         },
         {
             "name": "wifiProfiles",
             "baseName": "wifiProfiles",
-            "type": "WifiProfiles"
+            "type": "WifiProfiles | null"
         }    ];
 
     static getAttributeTypeMap() {

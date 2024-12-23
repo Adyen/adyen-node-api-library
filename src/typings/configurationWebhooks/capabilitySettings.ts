@@ -14,7 +14,7 @@ export class CapabilitySettings {
     'authorizedCardUsers'?: boolean;
     'fundingSource'?: Array<CapabilitySettings.FundingSourceEnum>;
     'interval'?: CapabilitySettings.IntervalEnum;
-    'maxAmount'?: Amount;
+    'maxAmount'?: Amount | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -42,7 +42,7 @@ export class CapabilitySettings {
         {
             "name": "maxAmount",
             "baseName": "maxAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         }    ];
 
     static getAttributeTypeMap() {

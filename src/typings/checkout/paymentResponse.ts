@@ -32,18 +32,18 @@ export class PaymentResponse {
     * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
     */
     'additionalData'?: { [key: string]: string; };
-    'amount'?: Amount;
+    'amount'?: Amount | null;
     /**
     * Donation Token containing payment details for Adyen Giving.
     */
     'donationToken'?: string;
-    'fraudResult'?: FraudResult;
+    'fraudResult'?: FraudResult | null;
     /**
     * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.
     */
     'merchantReference'?: string;
-    'order'?: CheckoutOrderResponse;
-    'paymentMethod'?: ResponsePaymentMethod;
+    'order'?: CheckoutOrderResponse | null;
+    'paymentMethod'?: ResponsePaymentMethod | null;
     /**
     * Adyen\'s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  > For payment methods that require a redirect or additional action, you will get this value in the `/payments/details` response.
     */
@@ -60,8 +60,8 @@ export class PaymentResponse {
     * The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the `refusalReason` field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper\'s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **PartiallyAuthorised** – The payment has been authorised for a partial amount. This happens for card payments when the merchant supports Partial Authorisations and the cardholder has insufficient funds. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the `refusalReason` field. This is a final state.
     */
     'resultCode'?: PaymentResponse.ResultCodeEnum;
-    'threeDS2ResponseData'?: ThreeDS2ResponseData;
-    'threeDS2Result'?: ThreeDS2Result;
+    'threeDS2ResponseData'?: ThreeDS2ResponseData | null;
+    'threeDS2Result'?: ThreeDS2Result | null;
     /**
     * When non-empty, contains a value that you must submit to the `/payments/details` endpoint as `paymentData`.
     */
@@ -83,7 +83,7 @@ export class PaymentResponse {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "donationToken",
@@ -93,7 +93,7 @@ export class PaymentResponse {
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult"
+            "type": "FraudResult | null"
         },
         {
             "name": "merchantReference",
@@ -103,12 +103,12 @@ export class PaymentResponse {
         {
             "name": "order",
             "baseName": "order",
-            "type": "CheckoutOrderResponse"
+            "type": "CheckoutOrderResponse | null"
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "ResponsePaymentMethod"
+            "type": "ResponsePaymentMethod | null"
         },
         {
             "name": "pspReference",
@@ -133,12 +133,12 @@ export class PaymentResponse {
         {
             "name": "threeDS2ResponseData",
             "baseName": "threeDS2ResponseData",
-            "type": "ThreeDS2ResponseData"
+            "type": "ThreeDS2ResponseData | null"
         },
         {
             "name": "threeDS2Result",
             "baseName": "threeDS2Result",
-            "type": "ThreeDS2Result"
+            "type": "ThreeDS2Result | null"
         },
         {
             "name": "threeDSPaymentData",

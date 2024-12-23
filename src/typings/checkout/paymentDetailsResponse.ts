@@ -19,18 +19,18 @@ export class PaymentDetailsResponse {
     * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
     */
     'additionalData'?: { [key: string]: string; };
-    'amount'?: Amount;
+    'amount'?: Amount | null;
     /**
     * Donation Token containing payment details for Adyen Giving.
     */
     'donationToken'?: string;
-    'fraudResult'?: FraudResult;
+    'fraudResult'?: FraudResult | null;
     /**
     * The reference used during the /payments request.
     */
     'merchantReference'?: string;
-    'order'?: CheckoutOrderResponse;
-    'paymentMethod'?: ResponsePaymentMethod;
+    'order'?: CheckoutOrderResponse | null;
+    'paymentMethod'?: ResponsePaymentMethod | null;
     /**
     * Adyen\'s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
@@ -51,8 +51,8 @@ export class PaymentDetailsResponse {
     * The shopperLocale.
     */
     'shopperLocale'?: string;
-    'threeDS2ResponseData'?: ThreeDS2ResponseData;
-    'threeDS2Result'?: ThreeDS2Result;
+    'threeDS2ResponseData'?: ThreeDS2ResponseData | null;
+    'threeDS2Result'?: ThreeDS2Result | null;
     /**
     * When non-empty, contains a value that you must submit to the `/payments/details` endpoint as `paymentData`.
     */
@@ -69,7 +69,7 @@ export class PaymentDetailsResponse {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "donationToken",
@@ -79,7 +79,7 @@ export class PaymentDetailsResponse {
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult"
+            "type": "FraudResult | null"
         },
         {
             "name": "merchantReference",
@@ -89,12 +89,12 @@ export class PaymentDetailsResponse {
         {
             "name": "order",
             "baseName": "order",
-            "type": "CheckoutOrderResponse"
+            "type": "CheckoutOrderResponse | null"
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "ResponsePaymentMethod"
+            "type": "ResponsePaymentMethod | null"
         },
         {
             "name": "pspReference",
@@ -124,12 +124,12 @@ export class PaymentDetailsResponse {
         {
             "name": "threeDS2ResponseData",
             "baseName": "threeDS2ResponseData",
-            "type": "ThreeDS2ResponseData"
+            "type": "ThreeDS2ResponseData | null"
         },
         {
             "name": "threeDS2Result",
             "baseName": "threeDS2Result",
-            "type": "ThreeDS2Result"
+            "type": "ThreeDS2Result | null"
         },
         {
             "name": "threeDSPaymentData",

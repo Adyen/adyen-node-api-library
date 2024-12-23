@@ -11,7 +11,7 @@ import { Merchant } from './merchant';
 import { PaginationLinks } from './paginationLinks';
 
 export class ListMerchantResponse {
-    '_links'?: PaginationLinks;
+    '_links'?: PaginationLinks | null;
     /**
     * The list of merchant accounts.
     */
@@ -31,7 +31,7 @@ export class ListMerchantResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks"
+            "type": "PaginationLinks | null"
         },
         {
             "name": "data",

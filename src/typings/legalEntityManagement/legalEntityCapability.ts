@@ -19,7 +19,7 @@ export class LegalEntityCapability {
     * The capability level that is allowed for the legal entity.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
     'allowedLevel'?: LegalEntityCapability.AllowedLevelEnum;
-    'allowedSettings'?: CapabilitySettings;
+    'allowedSettings'?: CapabilitySettings | null;
     /**
     * Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the `allowed` field.
     */
@@ -28,7 +28,7 @@ export class LegalEntityCapability {
     * The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
     'requestedLevel'?: LegalEntityCapability.RequestedLevelEnum;
-    'requestedSettings'?: CapabilitySettings;
+    'requestedSettings'?: CapabilitySettings | null;
     /**
     * The capability status of transfer instruments associated with the legal entity.
     */
@@ -54,7 +54,7 @@ export class LegalEntityCapability {
         {
             "name": "allowedSettings",
             "baseName": "allowedSettings",
-            "type": "CapabilitySettings"
+            "type": "CapabilitySettings | null"
         },
         {
             "name": "requested",
@@ -69,7 +69,7 @@ export class LegalEntityCapability {
         {
             "name": "requestedSettings",
             "baseName": "requestedSettings",
-            "type": "CapabilitySettings"
+            "type": "CapabilitySettings | null"
         },
         {
             "name": "transferInstruments",

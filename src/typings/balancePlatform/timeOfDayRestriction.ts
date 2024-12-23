@@ -14,7 +14,7 @@ export class TimeOfDayRestriction {
     * Defines how the condition must be evaluated.
     */
     'operation': string;
-    'value'?: TimeOfDay;
+    'value'?: TimeOfDay | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -27,7 +27,7 @@ export class TimeOfDayRestriction {
         {
             "name": "value",
             "baseName": "value",
-            "type": "TimeOfDay"
+            "type": "TimeOfDay | null"
         }    ];
 
     static getAttributeTypeMap() {

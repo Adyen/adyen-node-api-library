@@ -20,12 +20,12 @@ export class BusinessLineInfoUpdate {
     * A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the `service` **paymentProcessing**.
     */
     'salesChannels'?: Array<string>;
-    'sourceOfFunds'?: SourceOfFunds;
+    'sourceOfFunds'?: SourceOfFunds | null;
     /**
     * List of website URLs where your user\'s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the `webDataExemption` object.
     */
     'webData'?: Array<WebData>;
-    'webDataExemption'?: WebDataExemption;
+    'webDataExemption'?: WebDataExemption | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -43,7 +43,7 @@ export class BusinessLineInfoUpdate {
         {
             "name": "sourceOfFunds",
             "baseName": "sourceOfFunds",
-            "type": "SourceOfFunds"
+            "type": "SourceOfFunds | null"
         },
         {
             "name": "webData",
@@ -53,7 +53,7 @@ export class BusinessLineInfoUpdate {
         {
             "name": "webDataExemption",
             "baseName": "webDataExemption",
-            "type": "WebDataExemption"
+            "type": "WebDataExemption | null"
         }    ];
 
     static getAttributeTypeMap() {

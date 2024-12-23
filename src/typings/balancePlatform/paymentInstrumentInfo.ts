@@ -15,8 +15,8 @@ export class PaymentInstrumentInfo {
     * The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.
     */
     'balanceAccountId': string;
-    'bankAccount'?: BankAccountModel;
-    'card'?: CardInfo;
+    'bankAccount'?: BankAccountModel | null;
+    'card'?: CardInfo | null;
     /**
     * Your description for the payment instrument, maximum 300 characters.
     */
@@ -61,12 +61,12 @@ export class PaymentInstrumentInfo {
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccountModel"
+            "type": "BankAccountModel | null"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "CardInfo"
+            "type": "CardInfo | null"
         },
         {
             "name": "description",

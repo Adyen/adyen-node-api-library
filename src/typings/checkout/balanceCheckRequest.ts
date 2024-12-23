@@ -21,16 +21,16 @@ import { Split } from './split';
 import { ThreeDS2RequestData } from './threeDS2RequestData';
 
 export class BalanceCheckRequest {
-    'accountInfo'?: AccountInfo;
-    'additionalAmount'?: Amount;
+    'accountInfo'?: AccountInfo | null;
+    'additionalAmount'?: Amount | null;
     /**
     * This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
     'additionalData'?: { [key: string]: string; };
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo;
-    'billingAddress'?: Address;
-    'browserInfo'?: BrowserInfo;
+    'applicationInfo'?: ApplicationInfo | null;
+    'billingAddress'?: Address | null;
+    'browserInfo'?: BrowserInfo | null;
     /**
     * The delay between the authorisation and scheduled auto-capture, specified in hours.
     */
@@ -39,8 +39,8 @@ export class BalanceCheckRequest {
     * The shopper\'s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
     */
     'dateOfBirth'?: string;
-    'dccQuote'?: ForexQuote;
-    'deliveryAddress'?: Address;
+    'dccQuote'?: ForexQuote | null;
+    'deliveryAddress'?: Address | null;
     /**
     * The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
     */
@@ -53,7 +53,7 @@ export class BalanceCheckRequest {
     * An integer value that is added to the normal fraud score. The value can be either positive or negative.
     */
     'fraudOffset'?: number;
-    'installments'?: Installments;
+    'installments'?: Installments | null;
     /**
     * The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If not supplied, left empty, or for cross-border transactions, **shopperStatement** is used.  Adyen currently supports the ja-Kana character set for Visa and Mastercard payments in Japan using Japanese cards. This character set supports:  * UTF-8 based Katakana, capital letters, numbers and special characters.  * Half-width or full-width characters.
     */
@@ -70,7 +70,7 @@ export class BalanceCheckRequest {
     * This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. > We strongly recommend you send the `merchantOrderReference` value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide `retry.orderAttemptNumber`, `retry.chainAttemptNumber`, and `retry.skipRetry` values in `PaymentRequest.additionalData`.
     */
     'merchantOrderReference'?: string;
-    'merchantRiskIndicator'?: MerchantRiskIndicator;
+    'merchantRiskIndicator'?: MerchantRiskIndicator | null;
     /**
     * Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\". * Maximum 20 characters per key. * Maximum 80 characters per value. 
     */
@@ -83,7 +83,7 @@ export class BalanceCheckRequest {
     * The collection that contains the type of the payment method and its specific information.
     */
     'paymentMethod': { [key: string]: string; };
-    'recurring'?: Recurring;
+    'recurring'?: Recurring | null;
     /**
     * Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
@@ -120,7 +120,7 @@ export class BalanceCheckRequest {
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
     'shopperLocale'?: string;
-    'shopperName'?: Name;
+    'shopperName'?: Name | null;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
@@ -145,7 +145,7 @@ export class BalanceCheckRequest {
     * The shopper\'s telephone number.
     */
     'telephoneNumber'?: string;
-    'threeDS2RequestData'?: ThreeDS2RequestData;
+    'threeDS2RequestData'?: ThreeDS2RequestData | null;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     *
@@ -168,12 +168,12 @@ export class BalanceCheckRequest {
         {
             "name": "accountInfo",
             "baseName": "accountInfo",
-            "type": "AccountInfo"
+            "type": "AccountInfo | null"
         },
         {
             "name": "additionalAmount",
             "baseName": "additionalAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "additionalData",
@@ -188,17 +188,17 @@ export class BalanceCheckRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo"
+            "type": "ApplicationInfo | null"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address"
+            "type": "Address | null"
         },
         {
             "name": "browserInfo",
             "baseName": "browserInfo",
-            "type": "BrowserInfo"
+            "type": "BrowserInfo | null"
         },
         {
             "name": "captureDelayHours",
@@ -213,12 +213,12 @@ export class BalanceCheckRequest {
         {
             "name": "dccQuote",
             "baseName": "dccQuote",
-            "type": "ForexQuote"
+            "type": "ForexQuote | null"
         },
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "Address"
+            "type": "Address | null"
         },
         {
             "name": "deliveryDate",
@@ -238,7 +238,7 @@ export class BalanceCheckRequest {
         {
             "name": "installments",
             "baseName": "installments",
-            "type": "Installments"
+            "type": "Installments | null"
         },
         {
             "name": "localizedShopperStatement",
@@ -263,7 +263,7 @@ export class BalanceCheckRequest {
         {
             "name": "merchantRiskIndicator",
             "baseName": "merchantRiskIndicator",
-            "type": "MerchantRiskIndicator"
+            "type": "MerchantRiskIndicator | null"
         },
         {
             "name": "metadata",
@@ -283,7 +283,7 @@ export class BalanceCheckRequest {
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring"
+            "type": "Recurring | null"
         },
         {
             "name": "recurringProcessingModel",
@@ -333,7 +333,7 @@ export class BalanceCheckRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name"
+            "type": "Name | null"
         },
         {
             "name": "shopperReference",
@@ -368,7 +368,7 @@ export class BalanceCheckRequest {
         {
             "name": "threeDS2RequestData",
             "baseName": "threeDS2RequestData",
-            "type": "ThreeDS2RequestData"
+            "type": "ThreeDS2RequestData | null"
         },
         {
             "name": "threeDSAuthenticationOnly",

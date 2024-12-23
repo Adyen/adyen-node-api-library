@@ -19,9 +19,9 @@ import { ResourceReference } from './resourceReference';
 import { TransferReview } from './transferReview';
 
 export class Transfer {
-    'accountHolder'?: ResourceReference;
+    'accountHolder'?: ResourceReference | null;
     'amount': Amount;
-    'balanceAccount'?: ResourceReference;
+    'balanceAccount'?: ResourceReference | null;
     /**
     * The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.
     */
@@ -39,7 +39,7 @@ export class Transfer {
     * Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , \' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ \' \" ! ?**
     */
     'description'?: string;
-    'directDebitInformation'?: DirectDebitInformation;
+    'directDebitInformation'?: DirectDebitInformation | null;
     /**
     * The direction of the transfer.  Possible values: **incoming**, **outgoing**.
     */
@@ -48,7 +48,7 @@ export class Transfer {
     * The ID of the resource.
     */
     'id'?: string;
-    'paymentInstrument'?: PaymentInstrument;
+    'paymentInstrument'?: PaymentInstrument | null;
     /**
     * Additional information about the status of the transfer.
     */
@@ -61,7 +61,7 @@ export class Transfer {
     *  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the `category`.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
     'referenceForBeneficiary'?: string;
-    'review'?: TransferReview;
+    'review'?: TransferReview | null;
     /**
     * The result of the transfer.   For example, **authorised**, **refused**, or **error**.
     */
@@ -77,7 +77,7 @@ export class Transfer {
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "ResourceReference"
+            "type": "ResourceReference | null"
         },
         {
             "name": "amount",
@@ -87,7 +87,7 @@ export class Transfer {
         {
             "name": "balanceAccount",
             "baseName": "balanceAccount",
-            "type": "ResourceReference"
+            "type": "ResourceReference | null"
         },
         {
             "name": "category",
@@ -117,7 +117,7 @@ export class Transfer {
         {
             "name": "directDebitInformation",
             "baseName": "directDebitInformation",
-            "type": "DirectDebitInformation"
+            "type": "DirectDebitInformation | null"
         },
         {
             "name": "direction",
@@ -132,7 +132,7 @@ export class Transfer {
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PaymentInstrument"
+            "type": "PaymentInstrument | null"
         },
         {
             "name": "reason",
@@ -152,7 +152,7 @@ export class Transfer {
         {
             "name": "review",
             "baseName": "review",
-            "type": "TransferReview"
+            "type": "TransferReview | null"
         },
         {
             "name": "status",

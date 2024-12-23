@@ -10,7 +10,7 @@
 import { ThreeDS2Result } from './threeDS2Result';
 
 export class ThreeDS2ResultResponse {
-    'threeDS2Result'?: ThreeDS2Result;
+    'threeDS2Result'?: ThreeDS2Result | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -18,7 +18,7 @@ export class ThreeDS2ResultResponse {
         {
             "name": "threeDS2Result",
             "baseName": "threeDS2Result",
-            "type": "ThreeDS2Result"
+            "type": "ThreeDS2Result | null"
         }    ];
 
     static getAttributeTypeMap() {

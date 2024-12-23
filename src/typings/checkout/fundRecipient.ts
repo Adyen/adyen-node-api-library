@@ -17,13 +17,13 @@ export class FundRecipient {
     * The IBAN of the bank account where the funds are being transferred to.
     */
     'IBAN'?: string;
-    'billingAddress'?: Address;
-    'paymentMethod'?: CardDetails;
+    'billingAddress'?: Address | null;
+    'paymentMethod'?: CardDetails | null;
     /**
     * The email address of the shopper.
     */
     'shopperEmail'?: string;
-    'shopperName'?: Name;
+    'shopperName'?: Name | null;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
@@ -32,7 +32,7 @@ export class FundRecipient {
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'storedPaymentMethodId'?: string;
-    'subMerchant'?: SubMerchant;
+    'subMerchant'?: SubMerchant | null;
     /**
     * The telephone number of the shopper.
     */
@@ -61,12 +61,12 @@ export class FundRecipient {
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address"
+            "type": "Address | null"
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "CardDetails"
+            "type": "CardDetails | null"
         },
         {
             "name": "shopperEmail",
@@ -76,7 +76,7 @@ export class FundRecipient {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name"
+            "type": "Name | null"
         },
         {
             "name": "shopperReference",
@@ -91,7 +91,7 @@ export class FundRecipient {
         {
             "name": "subMerchant",
             "baseName": "subMerchant",
-            "type": "SubMerchant"
+            "type": "SubMerchant | null"
         },
         {
             "name": "telephoneNumber",
