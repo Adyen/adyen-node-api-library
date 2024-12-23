@@ -26,7 +26,7 @@ export class DisputeEventNotification {
     * Contains information about the dispute.
     */
     'description'?: string;
-    'disputedAmount'?: Amount;
+    'disputedAmount'?: Amount | null;
     /**
     * The ID of the resource.
     */
@@ -74,7 +74,7 @@ export class DisputeEventNotification {
         {
             "name": "disputedAmount",
             "baseName": "disputedAmount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "id",

@@ -22,7 +22,7 @@ export class AccountHolderInfo {
     /**
 	* @deprecated 
     */
-    'contactDetails'?: ContactDetails;
+    'contactDetails'?: ContactDetails | null;
     /**
     * Your description for the account holder.
     */
@@ -64,7 +64,7 @@ export class AccountHolderInfo {
         {
             "name": "contactDetails",
             "baseName": "contactDetails",
-            "type": "ContactDetails"
+            "type": "ContactDetails | null"
         },
         {
             "name": "description",

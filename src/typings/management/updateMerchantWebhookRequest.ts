@@ -26,7 +26,7 @@ export class UpdateMerchantWebhookRequest {
     * Indicates if the webhook configuration is active. The field must be **true** for us to send webhooks about events related an account.
     */
     'active'?: boolean;
-    'additionalSettings'?: AdditionalSettings;
+    'additionalSettings'?: AdditionalSettings | null;
     /**
     * Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** 
     */
@@ -86,7 +86,7 @@ export class UpdateMerchantWebhookRequest {
         {
             "name": "additionalSettings",
             "baseName": "additionalSettings",
-            "type": "AdditionalSettings"
+            "type": "AdditionalSettings | null"
         },
         {
             "name": "communicationFormat",

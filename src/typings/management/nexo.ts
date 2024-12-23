@@ -13,9 +13,9 @@ import { Notification } from './notification';
 import { NotificationUrl } from './notificationUrl';
 
 export class Nexo {
-    'displayUrls'?: NotificationUrl;
-    'encryptionKey'?: Key;
-    'eventUrls'?: EventUrl;
+    'displayUrls'?: NotificationUrl | null;
+    'encryptionKey'?: Key | null;
+    'eventUrls'?: EventUrl | null;
     /**
     * One or more URLs to send event messages to when using Terminal API.
     *
@@ -23,7 +23,7 @@ export class Nexo {
 	* Use `eventUrls` instead.
     */
     'nexoEventUrls'?: Array<string>;
-    'notification'?: Notification;
+    'notification'?: Notification | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -31,17 +31,17 @@ export class Nexo {
         {
             "name": "displayUrls",
             "baseName": "displayUrls",
-            "type": "NotificationUrl"
+            "type": "NotificationUrl | null"
         },
         {
             "name": "encryptionKey",
             "baseName": "encryptionKey",
-            "type": "Key"
+            "type": "Key | null"
         },
         {
             "name": "eventUrls",
             "baseName": "eventUrls",
-            "type": "EventUrl"
+            "type": "EventUrl | null"
         },
         {
             "name": "nexoEventUrls",
@@ -51,7 +51,7 @@ export class Nexo {
         {
             "name": "notification",
             "baseName": "notification",
-            "type": "Notification"
+            "type": "Notification | null"
         }    ];
 
     static getAttributeTypeMap() {

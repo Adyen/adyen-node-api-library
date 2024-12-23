@@ -10,7 +10,7 @@
 import { Airline } from './airline';
 
 export class MerchantPurchaseData {
-    'airline'?: Airline;
+    'airline'?: Airline | null;
     /**
     * The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data
     */
@@ -22,7 +22,7 @@ export class MerchantPurchaseData {
         {
             "name": "airline",
             "baseName": "airline",
-            "type": "Airline"
+            "type": "Airline | null"
         },
         {
             "name": "type",

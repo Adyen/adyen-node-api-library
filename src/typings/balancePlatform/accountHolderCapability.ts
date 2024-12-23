@@ -20,7 +20,7 @@ export class AccountHolderCapability {
     * The capability level that is allowed for the account holder.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
     'allowedLevel'?: AccountHolderCapability.AllowedLevelEnum;
-    'allowedSettings'?: CapabilitySettings;
+    'allowedSettings'?: CapabilitySettings | null;
     /**
     * Indicates whether the capability is enabled. If **false**, the capability is temporarily disabled for the account holder.
     */
@@ -37,7 +37,7 @@ export class AccountHolderCapability {
     * The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
     'requestedLevel'?: AccountHolderCapability.RequestedLevelEnum;
-    'requestedSettings'?: CapabilitySettings;
+    'requestedSettings'?: CapabilitySettings | null;
     /**
     * Contains the status of the transfer instruments associated with this capability. 
     */
@@ -63,7 +63,7 @@ export class AccountHolderCapability {
         {
             "name": "allowedSettings",
             "baseName": "allowedSettings",
-            "type": "CapabilitySettings"
+            "type": "CapabilitySettings | null"
         },
         {
             "name": "enabled",
@@ -88,7 +88,7 @@ export class AccountHolderCapability {
         {
             "name": "requestedSettings",
             "baseName": "requestedSettings",
-            "type": "CapabilitySettings"
+            "type": "CapabilitySettings | null"
         },
         {
             "name": "transferInstruments",

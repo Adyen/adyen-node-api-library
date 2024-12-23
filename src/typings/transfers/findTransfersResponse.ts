@@ -11,7 +11,7 @@ import { Links } from './links';
 import { TransferData } from './transferData';
 
 export class FindTransfersResponse {
-    '_links'?: Links;
+    '_links'?: Links | null;
     /**
     * Contains the transfers that match the query parameters.
     */
@@ -23,7 +23,7 @@ export class FindTransfersResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "Links"
+            "type": "Links | null"
         },
         {
             "name": "data",

@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 
 export class StoredValueBalanceMergeRequest {
-    'amount'?: Amount;
+    'amount'?: Amount | null;
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
@@ -44,7 +44,7 @@ export class StoredValueBalanceMergeRequest {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount | null"
         },
         {
             "name": "merchantAccount",

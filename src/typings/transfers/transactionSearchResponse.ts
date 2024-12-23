@@ -11,7 +11,7 @@ import { Links } from './links';
 import { Transaction } from './transaction';
 
 export class TransactionSearchResponse {
-    '_links'?: Links;
+    '_links'?: Links | null;
     /**
     * Contains the transactions that match the query parameters.
     */
@@ -23,7 +23,7 @@ export class TransactionSearchResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "Links"
+            "type": "Links | null"
         },
         {
             "name": "data",

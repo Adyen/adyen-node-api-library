@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 
 export class GrantLimit {
-    'amount'?: Amount;
+    'amount'?: Amount | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -18,7 +18,7 @@ export class GrantLimit {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount | null"
         }    ];
 
     static getAttributeTypeMap() {

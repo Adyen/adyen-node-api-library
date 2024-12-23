@@ -10,7 +10,7 @@
 import { BankAccount } from './bankAccount';
 
 export class Counterparty {
-    'bankAccount'?: BankAccount;
+    'bankAccount'?: BankAccount | null;
     /**
     * The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
     */
@@ -22,7 +22,7 @@ export class Counterparty {
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccount"
+            "type": "BankAccount | null"
         },
         {
             "name": "transferInstrumentId",

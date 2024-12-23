@@ -18,7 +18,7 @@ export class NetworkToken {
     * Date and time when the network token was created, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) extended format. For example, **2020-12-18T10:15:30+01:00**..
     */
     'creationDate'?: Date;
-    'device'?: DeviceInfo;
+    'device'?: DeviceInfo | null;
     /**
     * The unique identifier of the network token.
     */
@@ -56,7 +56,7 @@ export class NetworkToken {
         {
             "name": "device",
             "baseName": "device",
-            "type": "DeviceInfo"
+            "type": "DeviceInfo | null"
         },
         {
             "name": "id",

@@ -90,7 +90,7 @@ export class GetTerminalDetailsResponse {
     * The store code of the store that the terminal is assigned to.
     */
     'store'?: string;
-    'storeDetails'?: Store;
+    'storeDetails'?: Store | null;
     /**
     * The unique terminal ID.
     */
@@ -214,7 +214,7 @@ export class GetTerminalDetailsResponse {
         {
             "name": "storeDetails",
             "baseName": "storeDetails",
-            "type": "Store"
+            "type": "Store | null"
         },
         {
             "name": "terminal",
