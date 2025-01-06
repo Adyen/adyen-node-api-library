@@ -21,6 +21,7 @@ import { MatchingValuesRestriction } from './matchingValuesRestriction';
 import { MccsRestriction } from './mccsRestriction';
 import { MerchantNamesRestriction } from './merchantNamesRestriction';
 import { MerchantsRestriction } from './merchantsRestriction';
+import { PriorityRestriction } from './priorityRestriction';
 import { ProcessingTypesRestriction } from './processingTypesRestriction';
 import { RiskScoresRestriction } from './riskScoresRestriction';
 import { SameAmountRestriction } from './sameAmountRestriction';
@@ -44,6 +45,7 @@ export class TransactionRuleRestrictions {
     'mccs'?: MccsRestriction | null;
     'merchantNames'?: MerchantNamesRestriction | null;
     'merchants'?: MerchantsRestriction | null;
+    'priority'?: PriorityRestriction | null;
     'processingTypes'?: ProcessingTypesRestriction | null;
     'riskScores'?: RiskScoresRestriction | null;
     'sameAmountRestriction'?: SameAmountRestriction | null;
@@ -124,6 +126,11 @@ export class TransactionRuleRestrictions {
             "name": "merchants",
             "baseName": "merchants",
             "type": "MerchantsRestriction | null"
+        },
+        {
+            "name": "priority",
+            "baseName": "priority",
+            "type": "PriorityRestriction | null"
         },
         {
             "name": "processingTypes",

@@ -115,6 +115,7 @@ export * from './phoneNumber';
 export * from './pinChangeRequest';
 export * from './pinChangeResponse';
 export * from './platformPaymentConfiguration';
+export * from './priorityRestriction';
 export * from './processingTypesRestriction';
 export * from './publicKeyResponse';
 export * from './registerSCAFinalResponse';
@@ -270,6 +271,7 @@ import { PhoneNumber } from './phoneNumber';
 import { PinChangeRequest } from './pinChangeRequest';
 import { PinChangeResponse } from './pinChangeResponse';
 import { PlatformPaymentConfiguration } from './platformPaymentConfiguration';
+import { PriorityRestriction } from './priorityRestriction';
 import { ProcessingTypesRestriction } from './processingTypesRestriction';
 import { PublicKeyResponse } from './publicKeyResponse';
 import { RegisterSCAFinalResponse } from './registerSCAFinalResponse';
@@ -399,6 +401,7 @@ let enumsMap: {[index: string]: any} = {
         "Phone.TypeEnum": Phone.TypeEnum,
         "PhoneNumber.PhoneTypeEnum": PhoneNumber.PhoneTypeEnum,
         "PinChangeResponse.StatusEnum": PinChangeResponse.StatusEnum,
+        "PriorityRestriction.ValueEnum": PriorityRestriction.ValueEnum,
         "ProcessingTypesRestriction.ValueEnum": ProcessingTypesRestriction.ValueEnum,
         "SELocalAccountIdentification.TypeEnum": SELocalAccountIdentification.TypeEnum,
         "SGLocalAccountIdentification.TypeEnum": SGLocalAccountIdentification.TypeEnum,
@@ -552,6 +555,7 @@ let typeMap: {[index: string]: any} = {
     "PinChangeRequest": PinChangeRequest,
     "PinChangeResponse": PinChangeResponse,
     "PlatformPaymentConfiguration": PlatformPaymentConfiguration,
+    "PriorityRestriction": PriorityRestriction,
     "ProcessingTypesRestriction": ProcessingTypesRestriction,
     "PublicKeyResponse": PublicKeyResponse,
     "RegisterSCAFinalResponse": RegisterSCAFinalResponse,

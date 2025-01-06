@@ -24,7 +24,7 @@ export class PaymentRefundRequest {
     */
     'merchantAccount': string;
     /**
-    * Your reason for the refund request
+    * The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  
     */
     'merchantRefundReason'?: PaymentRefundRequest.MerchantRefundReasonEnum | null;
     /**

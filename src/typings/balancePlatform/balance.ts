@@ -14,7 +14,7 @@ export class Balance {
     */
     'available': number;
     /**
-    * The sum of transactions that have already been settled.
+    * The sum of the transactions that have already been settled.
     */
     'balance': number;
     /**
