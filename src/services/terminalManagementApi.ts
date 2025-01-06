@@ -20,6 +20,7 @@ import { GetTerminalDetailsRequest } from "../typings/terminalManagement/models"
 import { GetTerminalDetailsResponse } from "../typings/terminalManagement/models";
 import { GetTerminalsUnderAccountRequest } from "../typings/terminalManagement/models";
 import { GetTerminalsUnderAccountResponse } from "../typings/terminalManagement/models";
+import { ServiceError } from "../typings/terminalManagement/models";
 import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/terminalManagement/models";
@@ -39,6 +40,9 @@ export class TerminalManagementAPI extends Service {
     * @param assignTerminalsRequest {@link AssignTerminalsRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link AssignTerminalsResponse }
+    *
+	* @deprecated since POS Terminal Management API v1
+	* Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).
     */
     public async assignTerminals(assignTerminalsRequest: AssignTerminalsRequest, requestOptions?: IRequest.Options): Promise<AssignTerminalsResponse> {
         const endpoint = `${this.baseUrl}/assignTerminals`;
@@ -57,6 +61,9 @@ export class TerminalManagementAPI extends Service {
     * @param findTerminalRequest {@link FindTerminalRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link FindTerminalResponse }
+    *
+	* @deprecated since POS Terminal Management API v1
+	* Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).
     */
     public async findTerminal(findTerminalRequest: FindTerminalRequest, requestOptions?: IRequest.Options): Promise<FindTerminalResponse> {
         const endpoint = `${this.baseUrl}/findTerminal`;
@@ -75,6 +82,9 @@ export class TerminalManagementAPI extends Service {
     * @param getStoresUnderAccountRequest {@link GetStoresUnderAccountRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link GetStoresUnderAccountResponse }
+    *
+	* @deprecated since POS Terminal Management API v1
+	* Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).
     */
     public async getStoresUnderAccount(getStoresUnderAccountRequest: GetStoresUnderAccountRequest, requestOptions?: IRequest.Options): Promise<GetStoresUnderAccountResponse> {
         const endpoint = `${this.baseUrl}/getStoresUnderAccount`;
@@ -93,6 +103,9 @@ export class TerminalManagementAPI extends Service {
     * @param getTerminalDetailsRequest {@link GetTerminalDetailsRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link GetTerminalDetailsResponse }
+    *
+	* @deprecated since POS Terminal Management API v1
+	* Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).
     */
     public async getTerminalDetails(getTerminalDetailsRequest: GetTerminalDetailsRequest, requestOptions?: IRequest.Options): Promise<GetTerminalDetailsResponse> {
         const endpoint = `${this.baseUrl}/getTerminalDetails`;
@@ -111,6 +124,9 @@ export class TerminalManagementAPI extends Service {
     * @param getTerminalsUnderAccountRequest {@link GetTerminalsUnderAccountRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link GetTerminalsUnderAccountResponse }
+    *
+	* @deprecated since POS Terminal Management API v1
+	* Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).
     */
     public async getTerminalsUnderAccount(getTerminalsUnderAccountRequest: GetTerminalsUnderAccountRequest, requestOptions?: IRequest.Options): Promise<GetTerminalsUnderAccountResponse> {
         const endpoint = `${this.baseUrl}/getTerminalsUnderAccount`;

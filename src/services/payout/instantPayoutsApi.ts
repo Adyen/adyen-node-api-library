@@ -13,6 +13,7 @@ import Client from "../../client";
 import { 
     PayoutRequest,
     PayoutResponse,
+    ServiceError,
     ObjectSerializer
 } from "../../typings/payout/models";
 import { IRequest } from "../../typings/requestOptions";
