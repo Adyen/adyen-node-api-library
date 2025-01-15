@@ -19,6 +19,7 @@ import {
     GetPciQuestionnaireResponse,
     PciSigningRequest,
     PciSigningResponse,
+    ServiceError,
     ObjectSerializer
 } from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
