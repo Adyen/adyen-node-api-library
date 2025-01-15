@@ -22,6 +22,10 @@ export class AdditionalDataCommon {
     */
     'authorisationType'?: string;
     /**
+    * Set to **true** to enable [Auto Rescue](https://docs.adyen.com/online-payments/auto-rescue/) for a transaction. Use the `maxDaysToRescue` to specify a rescue window.
+    */
+    'autoRescue'?: string;
+    /**
     * Allows you to determine or override the acquirer account that should be used for the transaction.  If you need to process a payment with an acquirer different from a default one, you can set up a corresponding configuration on the Adyen payments platform. Then you can pass a custom routing flag in a payment request\'s additional data to target a specific acquirer.  To enable this functionality, contact [Support](https://www.adyen.help/hc/en-us/requests/new).
     */
     'customRoutingFlag'?: string;
@@ -33,6 +37,10 @@ export class AdditionalDataCommon {
     * Set to **true** to require [manual capture](https://docs.adyen.com/online-payments/capture) for the transaction.
     */
     'manualCapture'?: string;
+    /**
+    * The rescue window for a transaction, in days, when `autoRescue` is set to **true**. You can specify a value between 1 and 48.  * For [cards](https://docs.adyen.com/online-payments/auto-rescue/cards/), the default is one calendar month.  * For [SEPA](https://docs.adyen.com/online-payments/auto-rescue/sepa/), the default is 42 days.
+    */
+    'maxDaysToRescue'?: string;
     /**
     * Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain. This field is required for token-based transactions where Adyen does not tokenize the card.  Transaction identifier from card schemes, for example, Mastercard Trace ID or the Visa Transaction ID.  Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.  Make sure you are sending `shopperInteraction` **ContAuth** and `recurringProcessingModel` **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT.
     */
@@ -93,6 +101,11 @@ export class AdditionalDataCommon {
             "type": "string"
         },
         {
+            "name": "autoRescue",
+            "baseName": "autoRescue",
+            "type": "string"
+        },
+        {
             "name": "customRoutingFlag",
             "baseName": "customRoutingFlag",
             "type": "string"
@@ -105,6 +118,11 @@ export class AdditionalDataCommon {
         {
             "name": "manualCapture",
             "baseName": "manualCapture",
+            "type": "string"
+        },
+        {
+            "name": "maxDaysToRescue",
+            "baseName": "maxDaysToRescue",
             "type": "string"
         },
         {
