@@ -31,7 +31,9 @@ const createMockedCertificate = (CN: string): PeerCertificate => ({
     fingerprint256: "MOCKED_FINGERPRINT_256",
     ext_key_usage: ["1.2.3.4.5.6.7.8"],
     serialNumber: "1000",
-    raw: Buffer.from("test")
+    raw: Buffer.from("test"),
+    ca: false,
+    fingerprint512: "MOCKED_FINGERPRINT_512",
 });
 
 describe("Certificate Server Identity", function () {
