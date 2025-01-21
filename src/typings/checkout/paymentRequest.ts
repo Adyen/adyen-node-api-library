@@ -9,6 +9,7 @@
 
 import { AccountInfo } from './accountInfo';
 import { AchDetails } from './achDetails';
+import { AffirmDetails } from './affirmDetails';
 import { AfterpayDetails } from './afterpayDetails';
 import { AmazonPayDetails } from './amazonPayDetails';
 import { Amount } from './amount';
@@ -56,6 +57,7 @@ import { OpenInvoiceDetails } from './openInvoiceDetails';
 import { PayByBankAISDirectDebitDetails } from './payByBankAISDirectDebitDetails';
 import { PayByBankDetails } from './payByBankDetails';
 import { PayPalDetails } from './payPalDetails';
+import { PayPayDetails } from './payPayDetails';
 import { PayToDetails } from './payToDetails';
 import { PayUUpiDetails } from './payUUpiDetails';
 import { PayWithGoogleDetails } from './payWithGoogleDetails';
@@ -205,7 +207,7 @@ export class PaymentRequest {
     /**
     * The type and required details of a payment method to use.
     */
-    'paymentMethod': AchDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PseDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
+    'paymentMethod': AchDetails | AffirmDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayPayDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PseDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
     'platformChargebackLogic'?: PlatformChargebackLogic | null;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
@@ -522,7 +524,7 @@ export class PaymentRequest {
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "AchDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PseDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails"
+            "type": "AchDetails | AffirmDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayPayDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PseDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails"
         },
         {
             "name": "platformChargebackLogic",

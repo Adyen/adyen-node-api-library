@@ -44,7 +44,6 @@ export namespace PaymentDetails {
         BankTransferIban = 'bankTransfer_IBAN',
         Paybright = 'paybright',
         Paynow = 'paynow',
-        Affirm = 'affirm',
         AffirmPos = 'affirm_pos',
         Trustly = 'trustly',
         Trustlyvector = 'trustlyvector',
