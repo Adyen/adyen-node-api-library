@@ -1,3 +1,4 @@
+# Workflow to create a new GitHub release
 name: Release
 
 on:
