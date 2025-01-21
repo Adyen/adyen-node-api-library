@@ -27,6 +27,7 @@ export * from './additionalDataSubMerchant';
 export * from './additionalDataTemporaryServices';
 export * from './additionalDataWallets';
 export * from './address';
+export * from './affirmDetails';
 export * from './afterpayDetails';
 export * from './amazonPayDetails';
 export * from './amount';
@@ -122,6 +123,7 @@ export * from './openInvoiceDetails';
 export * from './payByBankAISDirectDebitDetails';
 export * from './payByBankDetails';
 export * from './payPalDetails';
+export * from './payPayDetails';
 export * from './payToDetails';
 export * from './payUUpiDetails';
 export * from './payWithGoogleDetails';
@@ -228,6 +230,7 @@ import { AdditionalDataSubMerchant } from './additionalDataSubMerchant';
 import { AdditionalDataTemporaryServices } from './additionalDataTemporaryServices';
 import { AdditionalDataWallets } from './additionalDataWallets';
 import { Address } from './address';
+import { AffirmDetails } from './affirmDetails';
 import { AfterpayDetails } from './afterpayDetails';
 import { AmazonPayDetails } from './amazonPayDetails';
 import { Amount } from './amount';
@@ -323,6 +326,7 @@ import { OpenInvoiceDetails } from './openInvoiceDetails';
 import { PayByBankAISDirectDebitDetails } from './payByBankAISDirectDebitDetails';
 import { PayByBankDetails } from './payByBankDetails';
 import { PayPalDetails } from './payPalDetails';
+import { PayPayDetails } from './payPayDetails';
 import { PayToDetails } from './payToDetails';
 import { PayUUpiDetails } from './payUUpiDetails';
 import { PayWithGoogleDetails } from './payWithGoogleDetails';
@@ -439,6 +443,7 @@ let enumsMap: {[index: string]: any} = {
         "AchDetails.TypeEnum": AchDetails.TypeEnum,
         "AdditionalData3DSecure.ChallengeWindowSizeEnum": AdditionalData3DSecure.ChallengeWindowSizeEnum,
         "AdditionalDataCommon.IndustryUsageEnum": AdditionalDataCommon.IndustryUsageEnum,
+        "AffirmDetails.TypeEnum": AffirmDetails.TypeEnum,
         "AfterpayDetails.TypeEnum": AfterpayDetails.TypeEnum,
         "AmazonPayDetails.TypeEnum": AmazonPayDetails.TypeEnum,
         "AncvDetails.TypeEnum": AncvDetails.TypeEnum,
@@ -526,6 +531,7 @@ let enumsMap: {[index: string]: any} = {
         "PayByBankDetails.TypeEnum": PayByBankDetails.TypeEnum,
         "PayPalDetails.SubtypeEnum": PayPalDetails.SubtypeEnum,
         "PayPalDetails.TypeEnum": PayPalDetails.TypeEnum,
+        "PayPayDetails.TypeEnum": PayPayDetails.TypeEnum,
         "PayToDetails.TypeEnum": PayToDetails.TypeEnum,
         "PayUUpiDetails.TypeEnum": PayUUpiDetails.TypeEnum,
         "PayWithGoogleDetails.FundingSourceEnum": PayWithGoogleDetails.FundingSourceEnum,
@@ -633,6 +639,7 @@ let typeMap: {[index: string]: any} = {
     "AdditionalDataTemporaryServices": AdditionalDataTemporaryServices,
     "AdditionalDataWallets": AdditionalDataWallets,
     "Address": Address,
+    "AffirmDetails": AffirmDetails,
     "AfterpayDetails": AfterpayDetails,
     "AmazonPayDetails": AmazonPayDetails,
     "Amount": Amount,
@@ -728,6 +735,7 @@ let typeMap: {[index: string]: any} = {
     "PayByBankAISDirectDebitDetails": PayByBankAISDirectDebitDetails,
     "PayByBankDetails": PayByBankDetails,
     "PayPalDetails": PayPalDetails,
+    "PayPayDetails": PayPayDetails,
     "PayToDetails": PayToDetails,
     "PayUUpiDetails": PayUUpiDetails,
     "PayWithGoogleDetails": PayWithGoogleDetails,

@@ -78,6 +78,7 @@ export namespace Split {
         SchemeFee = 'SchemeFee',
         Surcharge = 'Surcharge',
         Tip = 'Tip',
+        TopUp = 'TopUp',
         Vat = 'VAT'
     }
 }
