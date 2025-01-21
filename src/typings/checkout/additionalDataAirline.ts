@@ -100,7 +100,7 @@ export class AdditionalDataAirline {
     /**
     * The passenger\'s telephone number, including country code. This is an alphanumeric field that can include the \'+\' and \'-\' signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters
     */
-    'airline_passenger_phone_number'?: string;
+    'airline_passenger_telephone_number'?: string;
     /**
     * The IATA passenger type code (PTC). * Encoding: ASCII * minLength: 3 characters * maxLength: 6 characters
     */
