@@ -1,3 +1,4 @@
+# Workflow to verify we can access (publish) to NPM
 name: NPM debug
 
 on:

@@ -1,4 +1,6 @@
-name: Node.js Package
+# Workflow to publish a new release on NPM
+# https://www.npmjs.com/package/@adyen/api-library
+name: Publish to NPM
 
 on:
   workflow_dispatch:
