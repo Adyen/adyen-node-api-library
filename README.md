@@ -1,3 +1,6 @@
+
+![Node js](https://user-images.githubusercontent.com/62436079/207373079-9cf9377f-f530-4b02-a515-9b64ef7b06e7.png)
+
 # Adyen API library for Node.js 
 [![Build Status](https://github.com/adyen/Adyen-node-api-library/actions/workflows/npmpublish.yml/badge.svg)](https://github.com/Adyen/adyen-node-api-library/actions/workflows/npmpublish.yml)
 [![Coverage Status](https://coveralls.io/repos/github/Adyen/adyen-node-api-library/badge.svg?branch=main)](https://coveralls.io/github/Adyen/adyen-node-api-library?branch=main)
