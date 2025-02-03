@@ -4,7 +4,8 @@
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
-import {configurationWebhooks, acsWebhooks, reportWebhooks, transferWebhooks, transactionWebhooks} from "../typings";
+
+import {configurationWebhooks, acsWebhooks, reportWebhooks, transferWebhooks, transactionWebhooks, negativeBalanceWarningWebhooks} from "../typings";
 
 class BankingWebhookHandler {
     private readonly payload: string;
@@ -20,6 +21,7 @@ class BankingWebhookHandler {
         | configurationWebhooks.PaymentNotificationRequest
         | configurationWebhooks.SweepConfigurationNotificationRequest
         | configurationWebhooks.CardOrderNotificationRequest
+        | negativeBalanceWarningWebhooks.NegativeBalanceCompensationWarningNotificationRequest
         | reportWebhooks.ReportNotificationRequest
         | transferWebhooks.TransferNotificationRequest
         | transactionWebhooks.TransactionNotificationRequestV4 {
@@ -47,6 +49,10 @@ class BankingWebhookHandler {
 
         if(Object.values(configurationWebhooks.SweepConfigurationNotificationRequest.TypeEnum).includes(type)){
             return this.getSweepConfigurationNotificationRequest();
+        }
+
+        if(Object.values(negativeBalanceWarningWebhooks.NegativeBalanceCompensationWarningNotificationRequest.TypeEnum).includes(type)){
+            return this.getNegativeBalanceCompensationWarningNotificationRequest();
         }
 
         if(Object.values(reportWebhooks.ReportNotificationRequest.TypeEnum).includes(type)){
@@ -86,6 +92,10 @@ class BankingWebhookHandler {
 
     public getSweepConfigurationNotificationRequest(): configurationWebhooks.SweepConfigurationNotificationRequest {
         return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "SweepConfigurationNotificationRequest");
+    }
+    
+    public getNegativeBalanceCompensationWarningNotificationRequest(): negativeBalanceWarningWebhooks.NegativeBalanceCompensationWarningNotificationRequest {
+        return negativeBalanceWarningWebhooks.ObjectSerializer.deserialize(this.payload, "NegativeBalanceCompensationWarningNotificationRequest");
     }
 
     public getReportNotificationRequest(): reportWebhooks.ReportNotificationRequest {
