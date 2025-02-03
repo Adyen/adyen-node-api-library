@@ -33,3 +33,4 @@ export * as transferWebhooks from './transferWebhooks/models';
 export * as managementWebhooks from './managementWebhooks/models';
 export * as acsWebhooks from './acsWebhooks/models';
 export * as transactionWebhooks from './transactionWebhooks/models';
+export * as negativeBalanceWarningWebhooks from './negativeBalanceWarningWebhooks/models';
