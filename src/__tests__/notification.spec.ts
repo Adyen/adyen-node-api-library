@@ -20,6 +20,7 @@ import {TransferNotificationRequest} from "../typings/transferWebhooks/transferN
 import { PaymentMethodRequestRemovedNotificationRequest } from "../typings/managementWebhooks/paymentMethodRequestRemovedNotificationRequest";
 import { PaymentMethodScheduledForRemovalNotificationRequest } from "../typings/managementWebhooks/paymentMethodScheduledForRemovalNotificationRequest";
 import { TransactionNotificationRequestV4 } from "../typings/transactionWebhooks/transactionNotificationRequestV4";
+import { NegativeBalanceCompensationWarningNotificationRequest } from "../typings/negativeBalanceWarningWebhooks/negativeBalanceCompensationWarningNotificationRequest";
 
 describe("Notification Test", function (): void {
 
@@ -271,5 +272,43 @@ describe("Notification Test", function (): void {
         expect(genericWebhook instanceof TransactionNotificationRequestV4).toBe(true);
         expect(genericWebhook instanceof PaymentMethodScheduledForRemovalNotificationRequest).toBe(false);
         expect(transactionCreated.type).toEqual(TransactionNotificationRequestV4.TypeEnum.BalancePlatformTransactionCreated);
+    });
+
+    it("should deserialize NegativeBalanceCompensationWarning Webhook", function (): void {
+        const json = {
+            "data": {
+              "balancePlatform": "YOUR_BALANCE_PLATFORM",
+              "creationDate": "2024-07-02T02:01:08+02:00",
+              "id": "BA00000000000000000001",
+              "accountHolder": {
+                "description": "Description for the account holder.",
+                "reference": "YOUR_REFERENCE",
+                "id": "AH00000000000000000001"
+              },
+              "amount": {
+                "currency": "EUR",
+                "value": -145050
+              },
+              "liableBalanceAccountId": "BA11111111111111111111",
+              "negativeBalanceSince": "2024-10-19T00:33:13+02:00",
+              "scheduledCompensationAt": "2024-12-01T01:00:00+01:00"
+            },
+            "environment": "test",
+            "timestamp": "2024-10-22T00:00:00+02:00",
+            "type": "balancePlatform.negativeBalanceCompensationWarning.scheduled"
+          };
+        const jsonString = JSON.stringify(json);
+        const bankingWebhookHandler = new BankingWebhookHandler(jsonString);
+        const negativeBalanceCompensationWarningNotificationRequest = bankingWebhookHandler.getNegativeBalanceCompensationWarningNotificationRequest();
+        expect(negativeBalanceCompensationWarningNotificationRequest).toBeTruthy();
+        expect(negativeBalanceCompensationWarningNotificationRequest.type).toBe(NegativeBalanceCompensationWarningNotificationRequest
+            .TypeEnum.BalancePlatformNegativeBalanceCompensationWarningScheduled
+        );
+        expect(negativeBalanceCompensationWarningNotificationRequest.environment).toBe("test");
+        expect(negativeBalanceCompensationWarningNotificationRequest.timestamp?.toISOString()).toBe(new Date("2024-10-22T00:00:00+02:00").toISOString());
+        expect(negativeBalanceCompensationWarningNotificationRequest.data).toBeDefined();
+        expect(negativeBalanceCompensationWarningNotificationRequest.data.balancePlatform).toBe("YOUR_BALANCE_PLATFORM");
+        expect(negativeBalanceCompensationWarningNotificationRequest.data.id).toBe("BA00000000000000000001");
+        expect(negativeBalanceCompensationWarningNotificationRequest.data.creationDate?.toISOString()).toBe(new Date("2024-07-02T02:01:08+02:00").toISOString());
     });
 });

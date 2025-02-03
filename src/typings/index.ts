@@ -9,8 +9,6 @@
 /// <reference path="platformsFund.ts" />
 /// <reference path="platformsNotificationConfiguration.ts" />
 
-import { NegativeBalanceCompensationWarningNotificationRequest } from './negativeBalanceWarningWebhooks/negativeBalanceCompensationWarningNotificationRequest';
-
 export * as balancePlatform from './balancePlatform/models';
 export * as binlookup from './binLookup/models';
 export * as checkout from './checkout/models';
