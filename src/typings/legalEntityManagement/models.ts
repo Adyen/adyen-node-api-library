@@ -37,6 +37,7 @@ export * from './document';
 export * from './documentPage';
 export * from './documentReference';
 export * from './entityReference';
+export * from './financialReport';
 export * from './generatePciDescriptionRequest';
 export * from './generatePciDescriptionResponse';
 export * from './getAcceptedTermsOfServiceDocumentResponse';
@@ -128,6 +129,7 @@ import { Document } from './document';
 import { DocumentPage } from './documentPage';
 import { DocumentReference } from './documentReference';
 import { EntityReference } from './entityReference';
+import { FinancialReport } from './financialReport';
 import { GeneratePciDescriptionRequest } from './generatePciDescriptionRequest';
 import { GeneratePciDescriptionResponse } from './generatePciDescriptionResponse';
 import { GetAcceptedTermsOfServiceDocumentResponse } from './getAcceptedTermsOfServiceDocumentResponse';
@@ -296,6 +298,7 @@ let typeMap: {[index: string]: any} = {
     "DocumentPage": DocumentPage,
     "DocumentReference": DocumentReference,
     "EntityReference": EntityReference,
+    "FinancialReport": FinancialReport,
     "GeneratePciDescriptionRequest": GeneratePciDescriptionRequest,
     "GeneratePciDescriptionResponse": GeneratePciDescriptionResponse,
     "GetAcceptedTermsOfServiceDocumentResponse": GetAcceptedTermsOfServiceDocumentResponse,
