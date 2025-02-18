@@ -8,6 +8,7 @@
  */
 
 import { Address } from './address';
+import { FinancialReport } from './financialReport';
 import { PhoneNumber } from './phoneNumber';
 import { StockData } from './stockData';
 import { TaxInformation } from './taxInformation';
@@ -35,6 +36,10 @@ export class Organization {
     * The email address of the legal entity.
     */
     'email'?: string;
+    /**
+    * The financial report information of the organization.
+    */
+    'financialReports'?: Array<FinancialReport>;
     /**
     * The organization\'s legal name.
     */
@@ -93,6 +98,11 @@ export class Organization {
             "name": "email",
             "baseName": "email",
             "type": "string"
+        },
+        {
+            "name": "financialReports",
+            "baseName": "financialReports",
+            "type": "Array<FinancialReport>"
         },
         {
             "name": "legalName",

@@ -36,7 +36,7 @@ export class NetworkToken {
     */
     'tokenLastFour'?: string;
     /**
-    * The type of wallet the network token is associated with. For example, **applePay**.
+    * The type of network token. For example, **wallet**, **cof**.
     */
     'type'?: string;
 

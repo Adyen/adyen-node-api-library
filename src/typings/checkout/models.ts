@@ -93,6 +93,7 @@ export * from './econtextVoucherDetails';
 export * from './eftDetails';
 export * from './encryptedOrderData';
 export * from './externalPlatform';
+export * from './fastlaneDetails';
 export * from './forexQuote';
 export * from './fraudCheckResult';
 export * from './fraudResult';
@@ -296,6 +297,7 @@ import { EcontextVoucherDetails } from './econtextVoucherDetails';
 import { EftDetails } from './eftDetails';
 import { EncryptedOrderData } from './encryptedOrderData';
 import { ExternalPlatform } from './externalPlatform';
+import { FastlaneDetails } from './fastlaneDetails';
 import { ForexQuote } from './forexQuote';
 import { FraudCheckResult } from './fraudCheckResult';
 import { FraudResult } from './fraudResult';
@@ -504,6 +506,7 @@ let enumsMap: {[index: string]: any} = {
         "EBankingFinlandDetails.TypeEnum": EBankingFinlandDetails.TypeEnum,
         "EcontextVoucherDetails.TypeEnum": EcontextVoucherDetails.TypeEnum,
         "EftDetails.TypeEnum": EftDetails.TypeEnum,
+        "FastlaneDetails.TypeEnum": FastlaneDetails.TypeEnum,
         "FundRecipient.WalletPurposeEnum": FundRecipient.WalletPurposeEnum,
         "GenericIssuerPaymentMethodDetails.TypeEnum": GenericIssuerPaymentMethodDetails.TypeEnum,
         "GiropayDetails.TypeEnum": GiropayDetails.TypeEnum,
@@ -705,6 +708,7 @@ let typeMap: {[index: string]: any} = {
     "EftDetails": EftDetails,
     "EncryptedOrderData": EncryptedOrderData,
     "ExternalPlatform": ExternalPlatform,
+    "FastlaneDetails": FastlaneDetails,
     "ForexQuote": ForexQuote,
     "FraudCheckResult": FraudCheckResult,
     "FraudResult": FraudResult,

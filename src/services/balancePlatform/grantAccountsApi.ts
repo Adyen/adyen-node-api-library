@@ -32,6 +32,9 @@ export class GrantAccountsApi extends Service {
     * @param id {@link string } The unique identifier of the grant account.
     * @param requestOptions {@link IRequest.Options }
     * @return {@link CapitalGrantAccount }
+    *
+	* @deprecated since Configuration API v2
+	* Use the `/grantAccounts/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantAccounts/(id)) instead.
     */
     public async getGrantAccount(id: string, requestOptions?: IRequest.Options): Promise<CapitalGrantAccount> {
         const endpoint = `${this.baseUrl}/grantAccounts/{id}`

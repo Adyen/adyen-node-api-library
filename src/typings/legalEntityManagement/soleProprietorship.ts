@@ -8,6 +8,7 @@
  */
 
 import { Address } from './address';
+import { FinancialReport } from './financialReport';
 import { TaxInformation } from './taxInformation';
 
 export class SoleProprietorship {
@@ -23,6 +24,10 @@ export class SoleProprietorship {
     * The registered name, if different from the `name`.
     */
     'doingBusinessAs'?: string;
+    /**
+    * The information from the financial report of the sole proprietorship.
+    */
+    'financialReports'?: Array<FinancialReport>;
     /**
     * The legal name.
     */
@@ -67,6 +72,11 @@ export class SoleProprietorship {
             "name": "doingBusinessAs",
             "baseName": "doingBusinessAs",
             "type": "string"
+        },
+        {
+            "name": "financialReports",
+            "baseName": "financialReports",
+            "type": "Array<FinancialReport>"
         },
         {
             "name": "name",
