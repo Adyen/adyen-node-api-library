@@ -30,6 +30,10 @@ export class LegalEntityAssociation {
     */
     'name'?: string;
     /**
+    * Default value: **false** Set to **true** if the entity association `type` **director**, **secondaryPartner** or **shareholder** is also a nominee. Only applicable to New Zealand.
+    */
+    'nominee'?: boolean;
+    /**
     * The individual\'s relationship to a legal representative if the `type` is **legalRepresentative**. Possible values: **parent**, **guardian**.
     */
     'relationship'?: string;
@@ -69,6 +73,11 @@ export class LegalEntityAssociation {
             "name": "name",
             "baseName": "name",
             "type": "string"
+        },
+        {
+            "name": "nominee",
+            "baseName": "nominee",
+            "type": "boolean"
         },
         {
             "name": "relationship",

@@ -34,6 +34,9 @@ export class CapitalApi extends Service {
     * @param requestOptions {@link IRequest.Options }
     * @param counterpartyAccountHolderId {@link string } The counterparty account holder id.
     * @return {@link CapitalGrants }
+    *
+	* @deprecated since Transfers API v4
+	* Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants) instead.
     */
     public async getCapitalAccount(counterpartyAccountHolderId?: string, requestOptions?: IRequest.Options): Promise<CapitalGrants> {
         const endpoint = `${this.baseUrl}/grants`;
@@ -57,6 +60,9 @@ export class CapitalApi extends Service {
     * @param id {@link string } The unique identifier of the grant.
     * @param requestOptions {@link IRequest.Options }
     * @return {@link CapitalGrant }
+    *
+	* @deprecated since Transfers API v4
+	* Use the `/grants/{grantId}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants/(grantId)) instead.
     */
     public async getGrantReferenceDetails(id: string, requestOptions?: IRequest.Options): Promise<CapitalGrant> {
         const endpoint = `${this.baseUrl}/grants/{id}`
@@ -75,6 +81,9 @@ export class CapitalApi extends Service {
     * @param capitalGrantInfo {@link CapitalGrantInfo } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link CapitalGrant }
+    *
+	* @deprecated since Transfers API v4
+	* Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/post/grants) instead.
     */
     public async requestGrantPayout(capitalGrantInfo: CapitalGrantInfo, requestOptions?: IRequest.Options): Promise<CapitalGrant> {
         const endpoint = `${this.baseUrl}/grants`;

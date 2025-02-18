@@ -81,7 +81,6 @@ describe("Bin Lookup", function (): void {
                 value: 10
             },
             resultCode: "Unsupported",
-            surchargeType: "ZERO"
         };
         const costEstimateRequest:  binlookup.CostEstimateRequest = {
             amount: { currency: "EUR", value: 1000 },

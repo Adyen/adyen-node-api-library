@@ -21,13 +21,13 @@ import { MatchingValuesRestriction } from './matchingValuesRestriction';
 import { MccsRestriction } from './mccsRestriction';
 import { MerchantNamesRestriction } from './merchantNamesRestriction';
 import { MerchantsRestriction } from './merchantsRestriction';
-import { PriorityRestriction } from './priorityRestriction';
 import { ProcessingTypesRestriction } from './processingTypesRestriction';
 import { RiskScoresRestriction } from './riskScoresRestriction';
 import { SameAmountRestriction } from './sameAmountRestriction';
 import { SameCounterpartyRestriction } from './sameCounterpartyRestriction';
 import { SourceAccountTypesRestriction } from './sourceAccountTypesRestriction';
 import { TimeOfDayRestriction } from './timeOfDayRestriction';
+import { TokenRequestorsRestriction } from './tokenRequestorsRestriction';
 import { TotalAmountRestriction } from './totalAmountRestriction';
 
 export class TransactionRuleRestrictions {
@@ -45,13 +45,13 @@ export class TransactionRuleRestrictions {
     'mccs'?: MccsRestriction | null;
     'merchantNames'?: MerchantNamesRestriction | null;
     'merchants'?: MerchantsRestriction | null;
-    'priority'?: PriorityRestriction | null;
     'processingTypes'?: ProcessingTypesRestriction | null;
     'riskScores'?: RiskScoresRestriction | null;
     'sameAmountRestriction'?: SameAmountRestriction | null;
     'sameCounterpartyRestriction'?: SameCounterpartyRestriction | null;
     'sourceAccountTypes'?: SourceAccountTypesRestriction | null;
     'timeOfDay'?: TimeOfDayRestriction | null;
+    'tokenRequestors'?: TokenRequestorsRestriction | null;
     'totalAmount'?: TotalAmountRestriction | null;
 
     static discriminator: string | undefined = undefined;
@@ -128,11 +128,6 @@ export class TransactionRuleRestrictions {
             "type": "MerchantsRestriction | null"
         },
         {
-            "name": "priority",
-            "baseName": "priority",
-            "type": "PriorityRestriction | null"
-        },
-        {
             "name": "processingTypes",
             "baseName": "processingTypes",
             "type": "ProcessingTypesRestriction | null"
@@ -161,6 +156,11 @@ export class TransactionRuleRestrictions {
             "name": "timeOfDay",
             "baseName": "timeOfDay",
             "type": "TimeOfDayRestriction | null"
+        },
+        {
+            "name": "tokenRequestors",
+            "baseName": "tokenRequestors",
+            "type": "TokenRequestorsRestriction | null"
         },
         {
             "name": "totalAmount",

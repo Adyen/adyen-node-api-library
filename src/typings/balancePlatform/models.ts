@@ -21,6 +21,11 @@ export * from './addressRequirement';
 export * from './amount';
 export * from './amountMinMaxRequirement';
 export * from './amountNonZeroDecimalsRequirement';
+export * from './associationDelegatedAuthenticationData';
+export * from './associationFinaliseRequest';
+export * from './associationFinaliseResponse';
+export * from './associationInitiateRequest';
+export * from './associationInitiateResponse';
 export * from './authentication';
 export * from './bRLocalAccountIdentification';
 export * from './balance';
@@ -115,7 +120,6 @@ export * from './phoneNumber';
 export * from './pinChangeRequest';
 export * from './pinChangeResponse';
 export * from './platformPaymentConfiguration';
-export * from './priorityRestriction';
 export * from './processingTypesRestriction';
 export * from './publicKeyResponse';
 export * from './registerSCAFinalResponse';
@@ -142,6 +146,7 @@ export * from './sweepSchedule';
 export * from './thresholdRepayment';
 export * from './timeOfDay';
 export * from './timeOfDayRestriction';
+export * from './tokenRequestorsRestriction';
 export * from './totalAmountRestriction';
 export * from './transactionRule';
 export * from './transactionRuleEntityKey';
@@ -177,6 +182,11 @@ import { AddressRequirement } from './addressRequirement';
 import { Amount } from './amount';
 import { AmountMinMaxRequirement } from './amountMinMaxRequirement';
 import { AmountNonZeroDecimalsRequirement } from './amountNonZeroDecimalsRequirement';
+import { AssociationDelegatedAuthenticationData } from './associationDelegatedAuthenticationData';
+import { AssociationFinaliseRequest } from './associationFinaliseRequest';
+import { AssociationFinaliseResponse } from './associationFinaliseResponse';
+import { AssociationInitiateRequest } from './associationInitiateRequest';
+import { AssociationInitiateResponse } from './associationInitiateResponse';
 import { Authentication } from './authentication';
 import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
 import { Balance } from './balance';
@@ -271,7 +281,6 @@ import { PhoneNumber } from './phoneNumber';
 import { PinChangeRequest } from './pinChangeRequest';
 import { PinChangeResponse } from './pinChangeResponse';
 import { PlatformPaymentConfiguration } from './platformPaymentConfiguration';
-import { PriorityRestriction } from './priorityRestriction';
 import { ProcessingTypesRestriction } from './processingTypesRestriction';
 import { PublicKeyResponse } from './publicKeyResponse';
 import { RegisterSCAFinalResponse } from './registerSCAFinalResponse';
@@ -298,6 +307,7 @@ import { SweepSchedule } from './sweepSchedule';
 import { ThresholdRepayment } from './thresholdRepayment';
 import { TimeOfDay } from './timeOfDay';
 import { TimeOfDayRestriction } from './timeOfDayRestriction';
+import { TokenRequestorsRestriction } from './tokenRequestorsRestriction';
 import { TotalAmountRestriction } from './totalAmountRestriction';
 import { TransactionRule } from './transactionRule';
 import { TransactionRuleEntityKey } from './transactionRuleEntityKey';
@@ -346,6 +356,9 @@ let enumsMap: {[index: string]: any} = {
         "AddressRequirement.TypeEnum": AddressRequirement.TypeEnum,
         "AmountMinMaxRequirement.TypeEnum": AmountMinMaxRequirement.TypeEnum,
         "AmountNonZeroDecimalsRequirement.TypeEnum": AmountNonZeroDecimalsRequirement.TypeEnum,
+        "AssociationFinaliseRequest.TypeEnum": AssociationFinaliseRequest.TypeEnum,
+        "AssociationFinaliseResponse.TypeEnum": AssociationFinaliseResponse.TypeEnum,
+        "AssociationInitiateRequest.TypeEnum": AssociationInitiateRequest.TypeEnum,
         "BRLocalAccountIdentification.TypeEnum": BRLocalAccountIdentification.TypeEnum,
         "BalanceAccount.StatusEnum": BalanceAccount.StatusEnum,
         "BalanceAccountBase.StatusEnum": BalanceAccountBase.StatusEnum,
@@ -401,7 +414,6 @@ let enumsMap: {[index: string]: any} = {
         "Phone.TypeEnum": Phone.TypeEnum,
         "PhoneNumber.PhoneTypeEnum": PhoneNumber.PhoneTypeEnum,
         "PinChangeResponse.StatusEnum": PinChangeResponse.StatusEnum,
-        "PriorityRestriction.ValueEnum": PriorityRestriction.ValueEnum,
         "ProcessingTypesRestriction.ValueEnum": ProcessingTypesRestriction.ValueEnum,
         "SELocalAccountIdentification.TypeEnum": SELocalAccountIdentification.TypeEnum,
         "SGLocalAccountIdentification.TypeEnum": SGLocalAccountIdentification.TypeEnum,
@@ -461,6 +473,11 @@ let typeMap: {[index: string]: any} = {
     "Amount": Amount,
     "AmountMinMaxRequirement": AmountMinMaxRequirement,
     "AmountNonZeroDecimalsRequirement": AmountNonZeroDecimalsRequirement,
+    "AssociationDelegatedAuthenticationData": AssociationDelegatedAuthenticationData,
+    "AssociationFinaliseRequest": AssociationFinaliseRequest,
+    "AssociationFinaliseResponse": AssociationFinaliseResponse,
+    "AssociationInitiateRequest": AssociationInitiateRequest,
+    "AssociationInitiateResponse": AssociationInitiateResponse,
     "Authentication": Authentication,
     "BRLocalAccountIdentification": BRLocalAccountIdentification,
     "Balance": Balance,
@@ -555,7 +572,6 @@ let typeMap: {[index: string]: any} = {
     "PinChangeRequest": PinChangeRequest,
     "PinChangeResponse": PinChangeResponse,
     "PlatformPaymentConfiguration": PlatformPaymentConfiguration,
-    "PriorityRestriction": PriorityRestriction,
     "ProcessingTypesRestriction": ProcessingTypesRestriction,
     "PublicKeyResponse": PublicKeyResponse,
     "RegisterSCAFinalResponse": RegisterSCAFinalResponse,
@@ -582,6 +598,7 @@ let typeMap: {[index: string]: any} = {
     "ThresholdRepayment": ThresholdRepayment,
     "TimeOfDay": TimeOfDay,
     "TimeOfDayRestriction": TimeOfDayRestriction,
+    "TokenRequestorsRestriction": TokenRequestorsRestriction,
     "TotalAmountRestriction": TotalAmountRestriction,
     "TransactionRule": TransactionRule,
     "TransactionRuleEntityKey": TransactionRuleEntityKey,
