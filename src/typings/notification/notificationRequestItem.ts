@@ -183,7 +183,8 @@ export namespace NotificationRequestItem {
         OfferClosed = <any> 'OFFER_CLOSED',
         ManualReviewAccept = <any> 'MANUAL_REVIEW_ACCEPT',
         ManualReviewReject = <any> 'MANUAL_REVIEW_REJECT',
-        Expire = <any> 'EXPIRE'
+        Expire = <any> 'EXPIRE',
+        TechnicalCancel = <any> 'TECHNICAL_CANCEL'
     }
     export enum OperationsEnum {
         Cancel = <any> 'CANCEL',
