@@ -56,7 +56,7 @@ body:
   - type: input
     id: adyen-api-version
     attributes:
-      label: "Adyen API Library version"
+      label: "Adyen Node API Library version"
       description: "Specify the version of the Adyen API library you're using."
       placeholder: "Example: 20.1.2"
     validations:
