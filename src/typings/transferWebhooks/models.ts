@@ -181,7 +181,6 @@ let enumsMap: {[index: string]: any} = {
         "TransferEvent.StatusEnum": TransferEvent.StatusEnum,
         "TransferEvent.TypeEnum": TransferEvent.TypeEnum,
         "TransferNotificationRequest.TypeEnum": TransferNotificationRequest.TypeEnum,
-        "TransferReview.ScaOnApprovalEnum": TransferReview.ScaOnApprovalEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,

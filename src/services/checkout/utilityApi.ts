@@ -15,6 +15,7 @@ import {
     ApplePaySessionResponse,
     PaypalUpdateOrderRequest,
     PaypalUpdateOrderResponse,
+    ServiceError,
     UtilityRequest,
     UtilityResponse,
     ObjectSerializer

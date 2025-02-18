@@ -54,6 +54,10 @@ export class CardDetails {
     */
     'expiryYear'?: string;
     /**
+    * The encoded fastlane data blob
+    */
+    'fastlaneData'?: string;
+    /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
     'fundingSource'?: CardDetails.FundingSourceEnum;
@@ -165,6 +169,11 @@ export class CardDetails {
         {
             "name": "expiryYear",
             "baseName": "expiryYear",
+            "type": "string"
+        },
+        {
+            "name": "fastlaneData",
+            "baseName": "fastlaneData",
             "type": "string"
         },
         {

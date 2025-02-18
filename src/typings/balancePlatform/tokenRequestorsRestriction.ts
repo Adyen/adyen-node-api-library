@@ -8,12 +8,12 @@
  */
 
 
-export class PriorityRestriction {
+export class TokenRequestorsRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
     'operation': string;
-    'value'?: Array<PriorityRestriction.ValueEnum>;
+    'value'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -26,20 +26,11 @@ export class PriorityRestriction {
         {
             "name": "value",
             "baseName": "value",
-            "type": "Array<PriorityRestriction.ValueEnum>"
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
-        return PriorityRestriction.attributeTypeMap;
+        return TokenRequestorsRestriction.attributeTypeMap;
     }
 }
 
-export namespace PriorityRestriction {
-    export enum ValueEnum {
-        CrossBorder = 'crossBorder',
-        Fast = 'fast',
-        Instant = 'instant',
-        IntraBank = 'intraBank',
-        Regular = 'regular'
-    }
-}

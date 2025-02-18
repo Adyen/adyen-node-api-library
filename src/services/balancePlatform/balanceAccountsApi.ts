@@ -17,6 +17,7 @@ import {
     BalanceSweepConfigurationsResponse,
     CreateSweepConfigurationV2,
     PaginatedPaymentInstrumentsResponse,
+    RestServiceError,
     SweepConfigurationV2,
     TransactionRulesResponse,
     UpdateSweepConfigurationV2,
