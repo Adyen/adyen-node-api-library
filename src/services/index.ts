@@ -6,6 +6,7 @@ export { default as RecurringAPI } from "./recurringApi";
 export { default as BinLookupAPI } from "./binLookupApi";
 export { default as PayoutAPI } from "./payout";
 export { default as Platforms } from "./platforms";
+export { default as PosMobileAPI } from "./posMobileApi";
 export { default as StoredValueAPI} from "./storedValueApi";
 export { default as TerminalManagementAPI } from "./terminalManagementApi";
 export { default as ManagementAPI } from "./management";

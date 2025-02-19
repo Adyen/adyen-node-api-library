@@ -11,6 +11,10 @@ import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
 import { 
+    AssociationFinaliseRequest,
+    AssociationFinaliseResponse,
+    AssociationInitiateRequest,
+    AssociationInitiateResponse,
     RegisterSCAFinalResponse,
     RegisterSCARequest,
     RegisterSCAResponse,
@@ -28,6 +32,26 @@ export class ManageSCADevicesApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
+    /**
+    * @summary Complete an association between an SCA device and a resource
+    * @param deviceId {@link string } The unique identifier of the SCA device that you are associating with a resource.
+    * @param associationFinaliseRequest {@link AssociationFinaliseRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link AssociationFinaliseResponse }
+    */
+    public async completeAssociationBetweenScaDeviceAndResource(deviceId: string, associationFinaliseRequest: AssociationFinaliseRequest, requestOptions?: IRequest.Options): Promise<AssociationFinaliseResponse> {
+        const endpoint = `${this.baseUrl}/registeredDevices/{deviceId}/associations`
+            .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
+        const resource = new Resource(this, endpoint);
+        const request: AssociationFinaliseRequest = ObjectSerializer.serialize(associationFinaliseRequest, "AssociationFinaliseRequest");
+        const response = await getJsonResponse<AssociationFinaliseRequest, AssociationFinaliseResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "PATCH" }
+        );
+        return ObjectSerializer.deserialize(response, "AssociationFinaliseResponse");
     }
 
     /**
@@ -71,6 +95,26 @@ export class ManageSCADevicesApi extends Service {
             "",
             { ...requestOptions, method: "DELETE" }
         );
+    }
+
+    /**
+    * @summary Initiate an association between an SCA device and a resource
+    * @param deviceId {@link string } The unique identifier of the SCA device that you are associating with a resource.
+    * @param associationInitiateRequest {@link AssociationInitiateRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link AssociationInitiateResponse }
+    */
+    public async initiateAssociationBetweenScaDeviceAndResource(deviceId: string, associationInitiateRequest: AssociationInitiateRequest, requestOptions?: IRequest.Options): Promise<AssociationInitiateResponse> {
+        const endpoint = `${this.baseUrl}/registeredDevices/{deviceId}/associations`
+            .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
+        const resource = new Resource(this, endpoint);
+        const request: AssociationInitiateRequest = ObjectSerializer.serialize(associationInitiateRequest, "AssociationInitiateRequest");
+        const response = await getJsonResponse<AssociationInitiateRequest, AssociationInitiateResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "AssociationInitiateResponse");
     }
 
     /**
