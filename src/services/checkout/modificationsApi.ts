@@ -21,6 +21,7 @@ import {
     PaymentRefundResponse,
     PaymentReversalRequest,
     PaymentReversalResponse,
+    ServiceError,
     StandalonePaymentCancelRequest,
     StandalonePaymentCancelResponse,
     ObjectSerializer
