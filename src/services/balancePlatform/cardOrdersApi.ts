@@ -13,7 +13,6 @@ import Client from "../../client";
 import { 
     PaginatedGetCardOrderItemResponse,
     PaginatedGetCardOrderResponse,
-    RestServiceError,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
