@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a bug or issue
+description: Report a bug or issue. See closed issues before reporting the bug.
 title: "[Bug]: "
 labels: ["bug"]
 assignees: []
