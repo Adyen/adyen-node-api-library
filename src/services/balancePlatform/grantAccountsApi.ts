@@ -12,6 +12,7 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     CapitalGrantAccount,
+    RestServiceError,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
