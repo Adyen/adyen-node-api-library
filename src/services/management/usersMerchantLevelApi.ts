@@ -14,7 +14,6 @@ import {
     CreateMerchantUserRequest,
     CreateUserResponse,
     ListMerchantUsersResponse,
-    RestServiceError,
     UpdateMerchantUserRequest,
     User,
     ObjectSerializer
