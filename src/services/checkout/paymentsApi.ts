@@ -10,7 +10,7 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
+import {
     CardDetailsRequest,
     CardDetailsResponse,
     CreateCheckoutSessionRequest,
@@ -32,7 +32,7 @@ export class PaymentsApi extends Service {
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v71";
     private baseUrl: string;
 
-    public constructor(client: Client){
+    public constructor(client: Client) {
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
     }
@@ -62,15 +62,15 @@ export class PaymentsApi extends Service {
     * @param sessionResult {@link string } The &#x60;sessionResult&#x60; value from the Drop-in or Component.
     * @return {@link SessionResultResponse }
     */
-    public async getResultOfPaymentSession(sessionId: string, sessionResult?: string, requestOptions?: IRequest.Options): Promise<SessionResultResponse> {
+    public async getResultOfPaymentSession(sessionId: string, sessionResult: string, requestOptions?: IRequest.Options): Promise<SessionResultResponse> {
         const endpoint = `${this.baseUrl}/sessions/{sessionId}`
             .replace("{" + "sessionId" + "}", encodeURIComponent(String(sessionId)));
         const resource = new Resource(this, endpoint);
         const hasDefinedQueryParams = sessionResult;
-        if(hasDefinedQueryParams) {
-            if(!requestOptions) requestOptions = {};
-            if(!requestOptions.params) requestOptions.params = {};
-            if(sessionResult) requestOptions.params["sessionResult"] = sessionResult;
+        if (hasDefinedQueryParams) {
+            if (!requestOptions) requestOptions = {};
+            if (!requestOptions.params) requestOptions.params = {};
+            if (sessionResult) requestOptions.params["sessionResult"] = sessionResult;
         }
         const response = await getJsonResponse<string, SessionResultResponse>(
             resource,
