@@ -1,0 +1,15 @@
+{
+  "name": "hmac-troubleshooting",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Scripts to troubleshooting HMAC signature calculation",
+  "dependencies": {
+    "@adyen/api-library": "^25.0.0"
+  }
+}
