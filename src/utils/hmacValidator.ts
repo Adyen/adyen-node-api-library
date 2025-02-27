@@ -35,8 +35,7 @@ class HmacValidator {
      */
     public calculateHmac(data: string | NotificationRequestItem, key: string): string {
         const dataString = typeof data !== "string" ? this.getDataToSign(data) : data;
-        const rawKey = Buffer.from(key, "hex");
-        return createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, rawKey).update(dataString, "utf8").digest("base64");
+        return this.calculateHmacSignature(dataString, key);
     }
 
     /**
@@ -131,6 +130,13 @@ class HmacValidator {
             return [...keys, ...values].join(HmacValidator.DATA_SEPARATOR);
         }
     }
+
+    public calculateHmacSignature(data: string, key: string): string {
+        const rawKey = Buffer.from(key, "hex");
+        return createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, rawKey).update(data, "utf8").digest("base64");
+    }
+    
 }
+
 
 export default HmacValidator;
