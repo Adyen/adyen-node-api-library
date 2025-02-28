@@ -119,7 +119,7 @@ export class PaymentRequest3ds2 {
     'shopperLocale'?: string;
     'shopperName'?: Name | null;
     /**
-    * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
+    * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
     'shopperReference'?: string;
     /**

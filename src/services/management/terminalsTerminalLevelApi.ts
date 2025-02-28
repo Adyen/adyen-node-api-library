@@ -12,6 +12,7 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     ListTerminalsResponse,
+    RestServiceError,
     TerminalReassignmentRequest,
     ObjectSerializer
 } from "../../typings/management/models";
