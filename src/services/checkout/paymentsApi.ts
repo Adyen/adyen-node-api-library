@@ -21,7 +21,6 @@ import {
     PaymentMethodsResponse,
     PaymentRequest,
     PaymentResponse,
-    ServiceError,
     SessionResultResponse,
     ObjectSerializer
 } from "../../typings/checkout/models";
