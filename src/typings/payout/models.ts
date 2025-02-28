@@ -91,6 +91,7 @@ let enumsMap: {[index: string]: any} = {
         "ResponseAdditionalDataCard.CardProductIdEnum": ResponseAdditionalDataCard.CardProductIdEnum,
         "ResponseAdditionalDataCommon.FraudResultTypeEnum": ResponseAdditionalDataCommon.FraudResultTypeEnum,
         "ResponseAdditionalDataCommon.RecurringProcessingModelEnum": ResponseAdditionalDataCommon.RecurringProcessingModelEnum,
+        "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum": ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum,
         "StoreDetailAndSubmitRequest.EntityTypeEnum": StoreDetailAndSubmitRequest.EntityTypeEnum,
         "StoreDetailRequest.EntityTypeEnum": StoreDetailRequest.EntityTypeEnum,
         "SubmitRequest.EntityTypeEnum": SubmitRequest.EntityTypeEnum,

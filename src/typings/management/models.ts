@@ -13,6 +13,7 @@ export * from './additionalCommission';
 export * from './additionalSettings';
 export * from './additionalSettingsResponse';
 export * from './address';
+export * from './affirmInfo';
 export * from './afterpayTouchInfo';
 export * from './allowedOrigin';
 export * from './allowedOriginsResponse';
@@ -108,6 +109,7 @@ export * from './passcodes';
 export * from './payAtTable';
 export * from './payMeInfo';
 export * from './payPalInfo';
+export * from './payToInfo';
 export * from './payment';
 export * from './paymentMethod';
 export * from './paymentMethodResponse';
@@ -208,6 +210,7 @@ import { AdditionalCommission } from './additionalCommission';
 import { AdditionalSettings } from './additionalSettings';
 import { AdditionalSettingsResponse } from './additionalSettingsResponse';
 import { Address } from './address';
+import { AffirmInfo } from './affirmInfo';
 import { AfterpayTouchInfo } from './afterpayTouchInfo';
 import { AllowedOrigin } from './allowedOrigin';
 import { AllowedOriginsResponse } from './allowedOriginsResponse';
@@ -303,6 +306,7 @@ import { Passcodes } from './passcodes';
 import { PayAtTable } from './payAtTable';
 import { PayMeInfo } from './payMeInfo';
 import { PayPalInfo } from './payPalInfo';
+import { PayToInfo } from './payToInfo';
 import { Payment } from './payment';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodResponse } from './paymentMethodResponse';
@@ -412,6 +416,7 @@ let primitives = [
 let enumsMap: {[index: string]: any} = {
         "AccelInfo.ProcessingTypeEnum": AccelInfo.ProcessingTypeEnum,
         "AmexInfo.ServiceLevelEnum": AmexInfo.ServiceLevelEnum,
+        "AndroidApp.StatusEnum": AndroidApp.StatusEnum,
         "Connectivity.SimcardStatusEnum": Connectivity.SimcardStatusEnum,
         "CreateCompanyWebhookRequest.CommunicationFormatEnum": CreateCompanyWebhookRequest.CommunicationFormatEnum,
         "CreateCompanyWebhookRequest.EncryptionProtocolEnum": CreateCompanyWebhookRequest.EncryptionProtocolEnum,
@@ -494,6 +499,7 @@ let typeMap: {[index: string]: any} = {
     "AdditionalSettings": AdditionalSettings,
     "AdditionalSettingsResponse": AdditionalSettingsResponse,
     "Address": Address,
+    "AffirmInfo": AffirmInfo,
     "AfterpayTouchInfo": AfterpayTouchInfo,
     "AllowedOrigin": AllowedOrigin,
     "AllowedOriginsResponse": AllowedOriginsResponse,
@@ -589,6 +595,7 @@ let typeMap: {[index: string]: any} = {
     "PayAtTable": PayAtTable,
     "PayMeInfo": PayMeInfo,
     "PayPalInfo": PayPalInfo,
+    "PayToInfo": PayToInfo,
     "Payment": Payment,
     "PaymentMethod": PaymentMethod,
     "PaymentMethodResponse": PaymentMethodResponse,

@@ -14,7 +14,7 @@ export class UpdateSplitConfigurationRuleRequest {
     */
     'currency': string;
     /**
-    * The funding source condition of the payment method (only for cards).  Possible values: **credit**, **debit**, or **ANY**.
+    * The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
     */
     'fundingSource'?: string;
     /**

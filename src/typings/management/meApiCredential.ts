@@ -25,10 +25,6 @@ export class MeApiCredential {
     */
     'allowedOrigins'?: Array<AllowedOrigin>;
     /**
-    * List of merchant accounts that the API credential has explicit access to.   If the credential has access to a company, this implies access to all merchant accounts and no merchants for that company will be included.
-    */
-    'associatedMerchantAccounts'?: Array<string>;
-    /**
     * Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations.
     */
     'clientKey': string;
@@ -75,11 +71,6 @@ export class MeApiCredential {
             "name": "allowedOrigins",
             "baseName": "allowedOrigins",
             "type": "Array<AllowedOrigin>"
-        },
-        {
-            "name": "associatedMerchantAccounts",
-            "baseName": "associatedMerchantAccounts",
-            "type": "Array<string>"
         },
         {
             "name": "clientKey",

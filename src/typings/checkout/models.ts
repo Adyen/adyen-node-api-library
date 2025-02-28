@@ -157,6 +157,8 @@ export * from './paymentReversalResponse';
 export * from './paypalUpdateOrderRequest';
 export * from './paypalUpdateOrderResponse';
 export * from './phone';
+export * from './pixDetails';
+export * from './pixRecurring';
 export * from './platformChargebackLogic';
 export * from './pseDetails';
 export * from './ratepayDetails';
@@ -361,6 +363,8 @@ import { PaymentReversalResponse } from './paymentReversalResponse';
 import { PaypalUpdateOrderRequest } from './paypalUpdateOrderRequest';
 import { PaypalUpdateOrderResponse } from './paypalUpdateOrderResponse';
 import { Phone } from './phone';
+import { PixDetails } from './pixDetails';
+import { PixRecurring } from './pixRecurring';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { PseDetails } from './pseDetails';
 import { RatepayDetails } from './ratepayDetails';
@@ -569,6 +573,8 @@ let enumsMap: {[index: string]: any} = {
         "PaymentResponse.ResultCodeEnum": PaymentResponse.ResultCodeEnum,
         "PaymentReversalResponse.StatusEnum": PaymentReversalResponse.StatusEnum,
         "PaypalUpdateOrderResponse.StatusEnum": PaypalUpdateOrderResponse.StatusEnum,
+        "PixDetails.TypeEnum": PixDetails.TypeEnum,
+        "PixRecurring.FrequencyEnum": PixRecurring.FrequencyEnum,
         "PlatformChargebackLogic.BehaviorEnum": PlatformChargebackLogic.BehaviorEnum,
         "PseDetails.TypeEnum": PseDetails.TypeEnum,
         "RatepayDetails.TypeEnum": RatepayDetails.TypeEnum,
@@ -577,6 +583,7 @@ let enumsMap: {[index: string]: any} = {
         "ResponseAdditionalDataCard.CardProductIdEnum": ResponseAdditionalDataCard.CardProductIdEnum,
         "ResponseAdditionalDataCommon.FraudResultTypeEnum": ResponseAdditionalDataCommon.FraudResultTypeEnum,
         "ResponseAdditionalDataCommon.RecurringProcessingModelEnum": ResponseAdditionalDataCommon.RecurringProcessingModelEnum,
+        "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum": ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum,
         "RivertyDetails.TypeEnum": RivertyDetails.TypeEnum,
         "SamsungPayDetails.FundingSourceEnum": SamsungPayDetails.FundingSourceEnum,
         "SamsungPayDetails.TypeEnum": SamsungPayDetails.TypeEnum,
@@ -772,6 +779,8 @@ let typeMap: {[index: string]: any} = {
     "PaypalUpdateOrderRequest": PaypalUpdateOrderRequest,
     "PaypalUpdateOrderResponse": PaypalUpdateOrderResponse,
     "Phone": Phone,
+    "PixDetails": PixDetails,
+    "PixRecurring": PixRecurring,
     "PlatformChargebackLogic": PlatformChargebackLogic,
     "PseDetails": PseDetails,
     "RatepayDetails": RatepayDetails,

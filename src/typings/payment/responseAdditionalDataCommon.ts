@@ -238,11 +238,23 @@ export class ResponseAdditionalDataCommon {
     */
     'threeDSVersion'?: string;
     /**
+    * The provided reference of the shopper.
+    */
+    'tokenization_shopperReference'?: string;
+    /**
+    * The store operation performed on the token.
+    */
+    'tokenization_store_operationType'?: ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum;
+    /**
+    * The reference that uniquely identifies tokenized payment details.
+    */
+    'tokenization_storedPaymentMethodId'?: string;
+    /**
     * The `visaTransactionId`, has a fixed length of 15 numeric characters.  > Contact Support Team to enable this field.
     */
     'visaTransactionId'?: string;
     /**
-    * The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse \'N\' or \'Y\'. If you want to submit the xid in your 3D Secure 1 request, use the `mpiData.xid`, field.  Example: ODgxNDc2MDg2MDExODk5MAAAAAA=
+    * The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse \'N\' or \'Y\'.   Example: ODgxNDc2MDg2MDExODk5MAAAAAA=
     */
     'xid'?: string;
 
@@ -535,6 +547,21 @@ export class ResponseAdditionalDataCommon {
             "type": "string"
         },
         {
+            "name": "tokenization_shopperReference",
+            "baseName": "tokenization.shopperReference",
+            "type": "string"
+        },
+        {
+            "name": "tokenization_store_operationType",
+            "baseName": "tokenization.store.operationType",
+            "type": "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum"
+        },
+        {
+            "name": "tokenization_storedPaymentMethodId",
+            "baseName": "tokenization.storedPaymentMethodId",
+            "type": "string"
+        },
+        {
             "name": "visaTransactionId",
             "baseName": "visaTransactionId",
             "type": "string"
@@ -559,5 +586,10 @@ export namespace ResponseAdditionalDataCommon {
         CardOnFile = 'CardOnFile',
         Subscription = 'Subscription',
         UnscheduledCardOnFile = 'UnscheduledCardOnFile'
+    }
+    export enum TokenizationStoreOperationTypeEnum {
+        Created = 'created',
+        Updated = 'updated',
+        AlreadyStored = 'alreadyStored'
     }
 }

@@ -34,6 +34,7 @@ export class UpdatePaymentMethodInfo {
     'customRoutingFlags'?: Array<string>;
     'diners'?: GenericPmWithTdiInfo | null;
     'discover'?: GenericPmWithTdiInfo | null;
+    'eft_directdebit_CA'?: GenericPmWithTdiInfo | null;
     'eftpos_australia'?: GenericPmWithTdiInfo | null;
     /**
     * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
@@ -107,6 +108,11 @@ export class UpdatePaymentMethodInfo {
         {
             "name": "discover",
             "baseName": "discover",
+            "type": "GenericPmWithTdiInfo | null"
+        },
+        {
+            "name": "eft_directdebit_CA",
+            "baseName": "eft_directdebit_CA",
             "type": "GenericPmWithTdiInfo | null"
         },
         {
