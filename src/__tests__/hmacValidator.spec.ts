@@ -2,6 +2,7 @@ import HmacValidator from "../utils/hmacValidator";
 import {NotificationItem, NotificationRequestItem } from "../typings/notification/models";
 import { ApiConstants } from "../constants/apiConstants";
 import NotificationRequestService from "../notification/notificationRequest";
+import { readFileSync } from "fs";
 
 const key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
 const expectedSign = "ZNBPtI+oDyyRrLyD1XirkKnQgIAlFc07Vj27TeHsDRE=";
@@ -127,4 +128,21 @@ describe("HMAC Validator", function (): void {
         notification.notificationItems![0].additionalData![ApiConstants.HMAC_SIGNATURE] = "notValidSign";
         expect(hmacValidator.validateHMAC(notification.notificationItems![0], key)).toBeFalsy();
     });
+
+    it("should calculate Banking webhook correctly", function (): void {
+        const data = readFileSync("./src/__mocks__/notification/accountHolderCreated.json", "utf8"); 
+        const encrypted = hmacValidator.calculateHmac(data, "11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB");
+        
+        expect(encrypted).toEqual("UVBzHbDayhfT1XgaRGAkuKvxwoxrLoVCBdfi3WZU8lI=");
+    });
+
+    it("should validate Banking webhook correctly", function (): void {
+        const hmacKey = "11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB";
+        const hmacSignature = "UVBzHbDayhfT1XgaRGAkuKvxwoxrLoVCBdfi3WZU8lI=";
+        const data = readFileSync("./src/__mocks__/notification/accountHolderCreated.json", "utf8");
+        const isValid = hmacValidator.validateHMACSignature(hmacKey, hmacSignature, data);
+        
+        expect(isValid).toBeTruthy;
+    });
+
 });
