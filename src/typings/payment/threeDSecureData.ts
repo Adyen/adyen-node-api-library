@@ -10,7 +10,7 @@
 
 export class ThreeDSecureData {
     /**
-    * In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.
+    * In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.  
     */
     'authenticationResponse'?: ThreeDSecureData.AuthenticationResponseEnum;
     /**
@@ -26,7 +26,7 @@ export class ThreeDSecureData {
     */
     'challengeCancel'?: ThreeDSecureData.ChallengeCancelEnum;
     /**
-    * In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the `transStatus` from the `ARes`.
+    * In 3D Secure 2, this is the `transStatus` from the `ARes`.  
     */
     'directoryResponse'?: ThreeDSecureData.DirectoryResponseEnum;
     /**
