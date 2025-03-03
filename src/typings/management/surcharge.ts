@@ -18,6 +18,10 @@ export class Surcharge {
     * Surcharge fees or percentages for specific cards, funding sources (credit or debit), and currencies.
     */
     'configurations'?: Array<Configuration>;
+    /**
+    * Exclude the tip amount from the surcharge calculation.
+    */
+    'excludeGratuityFromSurcharge'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -31,6 +35,11 @@ export class Surcharge {
             "name": "configurations",
             "baseName": "configurations",
             "type": "Array<Configuration>"
+        },
+        {
+            "name": "excludeGratuityFromSurcharge",
+            "baseName": "excludeGratuityFromSurcharge",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

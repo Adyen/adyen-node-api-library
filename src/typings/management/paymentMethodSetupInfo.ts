@@ -8,6 +8,7 @@
  */
 
 import { AccelInfo } from './accelInfo';
+import { AffirmInfo } from './affirmInfo';
 import { AfterpayTouchInfo } from './afterpayTouchInfo';
 import { AmexInfo } from './amexInfo';
 import { ApplePayInfo } from './applePayInfo';
@@ -24,6 +25,7 @@ import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { NyceInfo } from './nyceInfo';
 import { PayMeInfo } from './payMeInfo';
 import { PayPalInfo } from './payPalInfo';
+import { PayToInfo } from './payToInfo';
 import { PulseInfo } from './pulseInfo';
 import { SodexoInfo } from './sodexoInfo';
 import { SofortInfo } from './sofortInfo';
@@ -37,6 +39,7 @@ import { WeChatPayPosInfo } from './weChatPayPosInfo';
 
 export class PaymentMethodSetupInfo {
     'accel'?: AccelInfo | null;
+    'affirm'?: AffirmInfo | null;
     'afterpayTouch'?: AfterpayTouchInfo | null;
     'amex'?: AmexInfo | null;
     'applePay'?: ApplePayInfo | null;
@@ -62,6 +65,7 @@ export class PaymentMethodSetupInfo {
     'customRoutingFlags'?: Array<string>;
     'diners'?: DinersInfo | null;
     'discover'?: GenericPmWithTdiInfo | null;
+    'eft_directdebit_CA'?: GenericPmWithTdiInfo | null;
     'eftpos_australia'?: GenericPmWithTdiInfo | null;
     'giroPay'?: GiroPayInfo | null;
     'girocard'?: GenericPmWithTdiInfo | null;
@@ -76,6 +80,7 @@ export class PaymentMethodSetupInfo {
     'nyce'?: NyceInfo | null;
     'payme'?: PayMeInfo | null;
     'paypal'?: PayPalInfo | null;
+    'payto'?: PayToInfo | null;
     'pulse'?: PulseInfo | null;
     /**
     * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
@@ -111,6 +116,11 @@ export class PaymentMethodSetupInfo {
             "name": "accel",
             "baseName": "accel",
             "type": "AccelInfo | null"
+        },
+        {
+            "name": "affirm",
+            "baseName": "affirm",
+            "type": "AffirmInfo | null"
         },
         {
             "name": "afterpayTouch",
@@ -175,6 +185,11 @@ export class PaymentMethodSetupInfo {
         {
             "name": "discover",
             "baseName": "discover",
+            "type": "GenericPmWithTdiInfo | null"
+        },
+        {
+            "name": "eft_directdebit_CA",
+            "baseName": "eft_directdebit_CA",
             "type": "GenericPmWithTdiInfo | null"
         },
         {
@@ -246,6 +261,11 @@ export class PaymentMethodSetupInfo {
             "name": "paypal",
             "baseName": "paypal",
             "type": "PayPalInfo | null"
+        },
+        {
+            "name": "payto",
+            "baseName": "payto",
+            "type": "PayToInfo | null"
         },
         {
             "name": "pulse",
@@ -337,11 +357,13 @@ export namespace PaymentMethodSetupInfo {
     }
     export enum TypeEnum {
         Accel = 'accel',
+        Ach = 'ach',
         Affirm = 'affirm',
         Afterpaytouch = 'afterpaytouch',
         Alelo = 'alelo',
         Alipay = 'alipay',
         AlipayHk = 'alipay_hk',
+        AlipayWap = 'alipay_wap',
         Amex = 'amex',
         Applepay = 'applepay',
         BaneseCard = 'banese_card',
@@ -361,6 +383,7 @@ export namespace PaymentMethodSetupInfo {
         DirectdebitGb = 'directdebit_GB',
         Discover = 'discover',
         EbankingFi = 'ebanking_FI',
+        EftDirectdebitCa = 'eft_directdebit_CA',
         EftposAustralia = 'eftpos_australia',
         Elo = 'elo',
         Elocredit = 'elocredit',
@@ -391,6 +414,7 @@ export namespace PaymentMethodSetupInfo {
         PaynowPos = 'paynow_pos',
         Paypal = 'paypal',
         Payshop = 'payshop',
+        Payto = 'payto',
         Pulse = 'pulse',
         Sodexo = 'sodexo',
         Star = 'star',
