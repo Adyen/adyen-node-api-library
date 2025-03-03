@@ -213,7 +213,7 @@ describe("Notification Test", function (): void {
 
     it("should deserialize Management v3 Webhooks", function (): void {
         const json = {
-            "type": "paymentMethod.requestRemoved",
+            "type": "paymentMethodRequest.removed",
             "environment": "devl",
             "createdAt": "2023-06-12T18:59:17+02:00",
             "data": {
