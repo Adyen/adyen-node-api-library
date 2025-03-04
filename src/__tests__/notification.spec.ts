@@ -311,4 +311,73 @@ describe("Notification Test", function (): void {
         expect(negativeBalanceCompensationWarningNotificationRequest.data.id).toBe("BA00000000000000000001");
         expect(negativeBalanceCompensationWarningNotificationRequest.data.creationDate?.toISOString()).toBe(new Date("2024-07-02T02:01:08+02:00").toISOString());
     });
+
+    it("should correctly deserialize notificationItems and handle additionalData.metadata", () => {
+        // Scenario 1: Valid metadata with string values
+        const validNotification = {
+            live: "true",
+            notificationItems: [
+                {
+                    NotificationRequestItem: {
+                        pspReference: "123456789",
+                        eventCode: "AUTHORISATION",
+                        eventDate: "2021-01-01T00:00:00+00:00",
+                        merchantAccountCode: "TestAccount",
+                        merchantReference: "TestRef",
+                        success: "true",
+                        amount: { currency: "EUR", value: 100 },
+                        additionalData: {
+                            metadata: {
+                                key1: "value1",
+                                key2: "value2"
+                            }
+                        }
+                    }
+                }
+            ]
+        };
+    
+        const validRequest = new NotificationRequest(validNotification as any);
+        const validItem = validRequest.notificationItems![0];
+        const validMetadata = validItem.additionalData?.metadata as unknown as Record<string, string>;
+        expect(validMetadata).toEqual({
+            key1: "value1",
+            key2: "value2"
+        });
+    
+        // Scenario 2: Metadata containing a nested object (which is not a plain string)
+        const invalidNotification = {
+            live: "true",
+            notificationItems: [
+                {
+                    NotificationRequestItem: {
+                        pspReference: "123456789",
+                        eventCode: "AUTHORISATION",
+                        eventDate: "2021-01-01T00:00:00+00:00",
+                        merchantAccountCode: "TestAccount",
+                        merchantReference: "TestRef",
+                        success: "true",
+                        amount: { currency: "EUR", value: 100 },
+                        additionalData: {
+                            metadata: {
+                                key1: { nestedKey: "nestedValue" }
+                            }
+                        }
+                    }
+                }
+            ]
+        };
+    
+        const invalidRequest = new NotificationRequest(invalidNotification as any);
+        // type expects string, check that the value is not a string, accepts nested?
+        // Get the first notification item from the invalidRequest.
+        const invalidItem = invalidRequest.notificationItems![0];
+        const additionalData = invalidItem.additionalData;
+        const metadata = additionalData ? additionalData.metadata : undefined;
+        const key1Value = metadata ? metadata["key1"] : undefined;
+        const key1ValueType = typeof key1Value;
+        // Assert that the type of key1Value is not "string".
+        expect(key1ValueType).not.toBe("string");
+    });
+    
 });
