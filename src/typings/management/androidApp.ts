@@ -40,7 +40,7 @@ export class AndroidApp {
     /**
     * The status of the app. Possible values:  * `processing`: the app is being signed and converted to a format that the terminal can handle. * `error`: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * `invalid`: there is something wrong with the APK file of the app. * `ready`: the app has been signed and converted. * `archived`: the app is no longer available.
     */
-    'status': string;
+    'status': AndroidApp.StatusEnum;
     /**
     * The version number of the app.
     */
@@ -86,7 +86,7 @@ export class AndroidApp {
         {
             "name": "status",
             "baseName": "status",
-            "type": "string"
+            "type": "AndroidApp.StatusEnum"
         },
         {
             "name": "versionCode",
@@ -104,3 +104,12 @@ export class AndroidApp {
     }
 }
 
+export namespace AndroidApp {
+    export enum StatusEnum {
+        Archived = 'archived',
+        Error = 'error',
+        Invalid = 'invalid',
+        Processing = 'processing',
+        Ready = 'ready'
+    }
+}

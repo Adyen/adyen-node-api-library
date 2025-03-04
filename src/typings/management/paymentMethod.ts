@@ -8,6 +8,7 @@
  */
 
 import { AccelInfo } from './accelInfo';
+import { AffirmInfo } from './affirmInfo';
 import { AfterpayTouchInfo } from './afterpayTouchInfo';
 import { AmexInfo } from './amexInfo';
 import { ApplePayInfo } from './applePayInfo';
@@ -24,6 +25,7 @@ import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { NyceInfo } from './nyceInfo';
 import { PayMeInfo } from './payMeInfo';
 import { PayPalInfo } from './payPalInfo';
+import { PayToInfo } from './payToInfo';
 import { PulseInfo } from './pulseInfo';
 import { SodexoInfo } from './sodexoInfo';
 import { SofortInfo } from './sofortInfo';
@@ -37,6 +39,7 @@ import { WeChatPayPosInfo } from './weChatPayPosInfo';
 
 export class PaymentMethod {
     'accel'?: AccelInfo | null;
+    'affirm'?: AffirmInfo | null;
     'afterpayTouch'?: AfterpayTouchInfo | null;
     /**
     * Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
@@ -66,6 +69,7 @@ export class PaymentMethod {
     'customRoutingFlags'?: Array<string>;
     'diners'?: DinersInfo | null;
     'discover'?: GenericPmWithTdiInfo | null;
+    'eft_directdebit_CA'?: GenericPmWithTdiInfo | null;
     'eftpos_australia'?: GenericPmWithTdiInfo | null;
     /**
     * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
@@ -88,6 +92,7 @@ export class PaymentMethod {
     'nyce'?: NyceInfo | null;
     'payme'?: PayMeInfo | null;
     'paypal'?: PayPalInfo | null;
+    'payto'?: PayToInfo | null;
     'pulse'?: PulseInfo | null;
     /**
     * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
@@ -127,6 +132,11 @@ export class PaymentMethod {
             "name": "accel",
             "baseName": "accel",
             "type": "AccelInfo | null"
+        },
+        {
+            "name": "affirm",
+            "baseName": "affirm",
+            "type": "AffirmInfo | null"
         },
         {
             "name": "afterpayTouch",
@@ -196,6 +206,11 @@ export class PaymentMethod {
         {
             "name": "discover",
             "baseName": "discover",
+            "type": "GenericPmWithTdiInfo | null"
+        },
+        {
+            "name": "eft_directdebit_CA",
+            "baseName": "eft_directdebit_CA",
             "type": "GenericPmWithTdiInfo | null"
         },
         {
@@ -277,6 +292,11 @@ export class PaymentMethod {
             "name": "paypal",
             "baseName": "paypal",
             "type": "PayPalInfo | null"
+        },
+        {
+            "name": "payto",
+            "baseName": "payto",
+            "type": "PayToInfo | null"
         },
         {
             "name": "pulse",
