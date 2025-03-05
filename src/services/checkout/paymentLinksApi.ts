@@ -13,7 +13,6 @@ import Client from "../../client";
 import { 
     PaymentLinkRequest,
     PaymentLinkResponse,
-    ServiceError,
     UpdatePaymentLinkRequest,
     ObjectSerializer
 } from "../../typings/checkout/models";

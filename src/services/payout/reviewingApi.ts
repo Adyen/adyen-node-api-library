@@ -13,7 +13,6 @@ import Client from "../../client";
 import { 
     ModifyRequest,
     ModifyResponse,
-    ServiceError,
     ObjectSerializer
 } from "../../typings/payout/models";
 import { IRequest } from "../../typings/requestOptions";
