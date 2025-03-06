@@ -8,9 +8,9 @@ Note: make sure you are using the HMAC key used to generate the signature associ
 ### Payments webhooks
 
 Copy the content of the webhook in the payload.json (or provide a different file), then run with: 
-`node hmacValidatorPayments.js {hmacKey} {path to JSON file}`
+`node calculateHmacPayments.js {hmacKey} {path to JSON file}`
 ```
 cd tools/hmac
-node hmacValidatorPayments.js 11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB tools/hmac/payload.json
+node calculateHmacPayments.js 11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB payload.json
 ```
 
