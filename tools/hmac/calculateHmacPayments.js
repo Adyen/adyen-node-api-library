@@ -1,17 +1,17 @@
 // script to calculate the HMAC signature of Payments webhooks (where the signature is calculated considering
 // a subset of the fields in the payload - i.e. NotificationRequestItem object)
 //
-// Run with: `node hmacValidatorPayments.js {hmacKey} {path to JSON file}
+// Run with: `node calculateHmacPayments.js {hmacKey} {path to JSON file}
 //
 // cd tools/hmac
-// node hmacValidatorPayments.js 11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB payload.json
+// node calculateHmacPayments.js 11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB payload.json
 
 const fs = require('fs');
 const { hmacValidator } = require('@adyen/api-library');
 
 // Ensure correct arguments
 if (process.argv.length !== 4) {
-    console.error("Usage: node HMACValidatorPayments.js <hmacKey> <payloadFile>");
+    console.error("Usage: node calculateHmacPayments.js <hmacKey> <payloadFile>");
     process.exit(1);
 }
 
@@ -55,5 +55,5 @@ if (!notificationRequestItem) {
 const validator = new hmacValidator()
 const hmacSignature = validator.calculateHmac(notificationRequestItem, hmacKey);
 
-console.log(`HMAC Validation Result: ${hmacSignature}`);
+console.log(`HMAC signature: ${hmacSignature}`);
 process.exit(0);
