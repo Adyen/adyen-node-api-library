@@ -312,72 +312,48 @@ describe("Notification Test", function (): void {
         expect(negativeBalanceCompensationWarningNotificationRequest.data.creationDate?.toISOString()).toBe(new Date("2024-07-02T02:01:08+02:00").toISOString());
     });
 
-    it("should correctly deserialize notificationItems and handle additionalData.metadata", () => {
-        // Scenario 1: Valid metadata with string values
-        const validNotification = {
-            live: "true",
-            notificationItems: [
-                {
-                    NotificationRequestItem: {
-                        pspReference: "123456789",
-                        eventCode: "AUTHORISATION",
-                        eventDate: "2021-01-01T00:00:00+00:00",
-                        merchantAccountCode: "TestAccount",
-                        merchantReference: "TestRef",
-                        success: "true",
-                        amount: { currency: "EUR", value: 100 },
-                        additionalData: {
-                            metadata: {
-                                key1: "value1",
-                                key2: "value2"
-                            }
-                        }
-                    }
-                }
-            ]
-        };
-    
-        const validRequest = new NotificationRequest(validNotification as any);
-        const validItem = validRequest.notificationItems![0];
-        const validMetadata = validItem.additionalData?.metadata as unknown as Record<string, string>;
-        expect(validMetadata).toEqual({
-            key1: "value1",
-            key2: "value2"
-        });
-    
-        // Scenario 2: Metadata containing a nested object (which is not a plain string)
-        const invalidNotification = {
-            live: "true",
-            notificationItems: [
-                {
-                    NotificationRequestItem: {
-                        pspReference: "123456789",
-                        eventCode: "AUTHORISATION",
-                        eventDate: "2021-01-01T00:00:00+00:00",
-                        merchantAccountCode: "TestAccount",
-                        merchantReference: "TestRef",
-                        success: "true",
-                        amount: { currency: "EUR", value: 100 },
-                        additionalData: {
-                            metadata: {
-                                key1: { nestedKey: "nestedValue" }
-                            }
-                        }
-                    }
-                }
-            ]
-        };
-    
-        const invalidRequest = new NotificationRequest(invalidNotification as any);
-        // type expects string, check that the value is not a string, accepts nested?
-        // Get the first notification item from the invalidRequest.
-        const invalidItem = invalidRequest.notificationItems![0];
-        const additionalData = invalidItem.additionalData;
-        const metadata = additionalData ? additionalData.metadata : undefined;
-        const key1Value = metadata ? metadata["key1"] : undefined;
-        const key1ValueType = typeof key1Value;
-        // Assert that the type of key1Value is not "string".
-        expect(key1ValueType).not.toBe("string");
+    // test additionalData without metadata
+    it("should correctly store additionalData as a key-value strings", () => {
+        const notification = new NotificationRequestItem();
+        notification.amount = { currency: "EUR", value: 1000 };
+        notification.pspReference = "1234567890123456";
+        notification.eventCode = NotificationEnum.Authorisation;
+        notification.eventDate = "2024-03-05T12:00:00Z";
+        notification.merchantAccountCode = "TestMerchant";
+        notification.merchantReference = "Order-12345";
+        notification.success = SuccessEnum.True;
+        notification.additionalData = {
+            orderId: "12345",
+            customerId: "54321",
+        }    
+
+        expect(notification.additionalData).toBeDefined();
+        expect(notification.additionalData?.orderId).toBe("12345");
+        expect(notification.additionalData?.customerId).toBe("54321");
+        expect(notification.additionalData.metadata).toBeUndefined;
+    }); 
+
+    // test additionalData with metadata as set of key-value pairs prefixed with 'metadata.'. For example, 'metadata.myField: myValue'
+    it("should correctly store additionalData as a key-value object", () => {
+        const notification = new NotificationRequestItem();
+        notification.amount = { currency: "EUR", value: 1000 };
+        notification.pspReference = "1234567890123456";
+        notification.eventCode = NotificationEnum.Authorisation;
+        notification.eventDate = "2024-03-05T12:00:00Z";
+        notification.merchantAccountCode = "TestMerchant";
+        notification.merchantReference = "Order-12345";
+        notification.success = SuccessEnum.True;
+        notification.additionalData = {
+            orderId: "12345",
+            customerId: "54321",
+            "metadata.myField": "myValue",
+            "metadata.anotherField": "anotherValue"
+        }    
+
+        expect(notification.additionalData).toBeDefined();
+        expect(notification.additionalData?.orderId).toBe("12345");
+        expect(notification.additionalData?.customerId).toBe("54321");
+        expect(notification.additionalData["metadata.myField"]).toBe("myValue");
     });
     
 });
