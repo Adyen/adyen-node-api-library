@@ -12,6 +12,7 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     GenerateClientKeyResponse,
+    RestServiceError,
     ObjectSerializer
 } from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
