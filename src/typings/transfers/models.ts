@@ -48,6 +48,7 @@ export * from './issuedCard';
 export * from './leg';
 export * from './link';
 export * from './links';
+export * from './lodging';
 export * from './merchantData';
 export * from './merchantPurchaseData';
 export * from './modification';
@@ -133,6 +134,7 @@ import { IssuedCard } from './issuedCard';
 import { Leg } from './leg';
 import { Link } from './link';
 import { Links } from './links';
+import { Lodging } from './lodging';
 import { MerchantData } from './merchantData';
 import { MerchantPurchaseData } from './merchantPurchaseData';
 import { Modification } from './modification';
@@ -292,6 +294,7 @@ let typeMap: {[index: string]: any} = {
     "Leg": Leg,
     "Link": Link,
     "Links": Links,
+    "Lodging": Lodging,
     "MerchantData": MerchantData,
     "MerchantPurchaseData": MerchantPurchaseData,
     "Modification": Modification,
