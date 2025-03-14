@@ -50,6 +50,12 @@ class Service {
             {
                 throw new Error("Please provide your unique live url prefix on the setEnvironment() call on the Client.");
             }
+
+            if (url.includes('/possdk/v68')) {
+                return url.replace("https://checkout-test.adyen.com/",
+                  `https://${this.client.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/`);
+            }
+
             return url.replace("https://checkout-test.adyen.com/",
                     `https://${this.client.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/checkout/`);
         }
