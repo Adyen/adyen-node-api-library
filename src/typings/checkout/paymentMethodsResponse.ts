@@ -8,6 +8,8 @@
  */
 
 import { PaymentMethod } from './paymentMethod';
+import { PixStoredPaymentMethod } from './pixStoredPaymentMethod';
+import { PixStoredPaymentMethod | StoredPaymentMethod } from './pixStoredPaymentMethod | StoredPaymentMethod';
 import { StoredPaymentMethod } from './storedPaymentMethod';
 
 export class PaymentMethodsResponse {
@@ -18,7 +20,7 @@ export class PaymentMethodsResponse {
     /**
     * List of all stored payment methods.
     */
-    'storedPaymentMethods'?: Array<StoredPaymentMethod>;
+    'storedPaymentMethods'?: Array<PixStoredPaymentMethod | StoredPaymentMethod>;
 
     static discriminator: string | undefined = undefined;
 
@@ -31,7 +33,7 @@ export class PaymentMethodsResponse {
         {
             "name": "storedPaymentMethods",
             "baseName": "storedPaymentMethods",
-            "type": "Array<StoredPaymentMethod>"
+            "type": "Array<PixStoredPaymentMethod | StoredPaymentMethod>"
         }    ];
 
     static getAttributeTypeMap() {
