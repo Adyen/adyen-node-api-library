@@ -59,7 +59,7 @@ export class TransferData {
     */
     'direction'?: TransferData.DirectionEnum;
     /**
-    * The event id listed under events, that triggered the notification.
+    * The unique identifier of the latest transfer event. Included only when the `category` is **issuedCard**.
     */
     'eventId'?: string;
     /**
@@ -265,6 +265,7 @@ export namespace TransferData {
         DirectDebitNotSupported = 'directDebitNotSupported',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
+        Pending = 'pending',
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',

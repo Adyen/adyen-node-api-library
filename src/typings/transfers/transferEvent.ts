@@ -20,7 +20,7 @@ import { Modification } from './modification';
 export class TransferEvent {
     'amount'?: Amount | null;
     /**
-    * The amount adjustments in this transfer.
+    * The amount adjustments in this transfer. Only applicable for [issuing](https://docs.adyen.com/issuing/) integrations.
     */
     'amountAdjustments'?: Array<AmountAdjustment>;
     /**
@@ -195,6 +195,7 @@ export namespace TransferEvent {
         DirectDebitNotSupported = 'directDebitNotSupported',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
+        Pending = 'pending',
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',

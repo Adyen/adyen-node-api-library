@@ -35,6 +35,9 @@ export * from './balanceAccountInfo';
 export * from './balanceAccountUpdateRequest';
 export * from './balancePlatform';
 export * from './balanceSweepConfigurationsResponse';
+export * from './balanceWebhookSettingsRequest';
+export * from './balanceWebhookSettingsResponse';
+export * from './balanceWebhookSettingsResponseAllOf';
 export * from './bankAccount';
 export * from './bankAccountDetails';
 export * from './bankAccountIdentificationTypeRequirement';
@@ -57,6 +60,7 @@ export * from './cardInfo';
 export * from './cardOrder';
 export * from './cardOrderItem';
 export * from './cardOrderItemDeliveryStatus';
+export * from './condition';
 export * from './contactDetails';
 export * from './counterparty';
 export * from './counterpartyBankRestriction';
@@ -65,6 +69,7 @@ export * from './countriesRestriction';
 export * from './createSweepConfigurationV2';
 export * from './dKLocalAccountIdentification';
 export * from './dayOfWeekRestriction';
+export * from './defaultErrorResponseEntity';
 export * from './delegatedAuthenticationData';
 export * from './deliveryAddress';
 export * from './deliveryContact';
@@ -106,6 +111,8 @@ export * from './paginatedBalanceAccountsResponse';
 export * from './paginatedGetCardOrderItemResponse';
 export * from './paginatedGetCardOrderResponse';
 export * from './paginatedPaymentInstrumentsResponse';
+export * from './patchableBalanceWebhookSettingsRequest';
+export * from './patchableTarget';
 export * from './paymentInstrument';
 export * from './paymentInstrumentGroup';
 export * from './paymentInstrumentGroupInfo';
@@ -138,11 +145,13 @@ export * from './sGLocalAccountIdentification';
 export * from './sameAmountRestriction';
 export * from './sameCounterpartyRestriction';
 export * from './searchRegisteredDevicesResponse';
+export * from './settingType';
 export * from './sourceAccountTypesRestriction';
 export * from './stringMatch';
 export * from './sweepConfigurationV2';
 export * from './sweepCounterparty';
 export * from './sweepSchedule';
+export * from './target';
 export * from './thresholdRepayment';
 export * from './timeOfDay';
 export * from './timeOfDayRestriction';
@@ -159,6 +168,7 @@ export * from './transferRoute';
 export * from './transferRouteRequest';
 export * from './transferRouteResponse';
 export * from './uKLocalAccountIdentification';
+export * from './uSInstantPayoutAddressRequirement';
 export * from './uSInternationalAchAddressRequirement';
 export * from './uSLocalAccountIdentification';
 export * from './updateNetworkTokenRequest';
@@ -167,6 +177,7 @@ export * from './updateSweepConfigurationV2';
 export * from './verificationDeadline';
 export * from './verificationError';
 export * from './verificationErrorRecursive';
+export * from './webhookSettingResponse';
 
 
 import { AULocalAccountIdentification } from './aULocalAccountIdentification';
@@ -196,6 +207,9 @@ import { BalanceAccountInfo } from './balanceAccountInfo';
 import { BalanceAccountUpdateRequest } from './balanceAccountUpdateRequest';
 import { BalancePlatform } from './balancePlatform';
 import { BalanceSweepConfigurationsResponse } from './balanceSweepConfigurationsResponse';
+import { BalanceWebhookSettingsRequest } from './balanceWebhookSettingsRequest';
+import { BalanceWebhookSettingsResponse } from './balanceWebhookSettingsResponse';
+import { BalanceWebhookSettingsResponseAllOf } from './balanceWebhookSettingsResponseAllOf';
 import { BankAccount } from './bankAccount';
 import { BankAccountDetails } from './bankAccountDetails';
 import { BankAccountIdentificationTypeRequirement } from './bankAccountIdentificationTypeRequirement';
@@ -218,6 +232,7 @@ import { CardInfo } from './cardInfo';
 import { CardOrder } from './cardOrder';
 import { CardOrderItem } from './cardOrderItem';
 import { CardOrderItemDeliveryStatus } from './cardOrderItemDeliveryStatus';
+import { Condition } from './condition';
 import { ContactDetails } from './contactDetails';
 import { Counterparty } from './counterparty';
 import { CounterpartyBankRestriction } from './counterpartyBankRestriction';
@@ -226,6 +241,7 @@ import { CountriesRestriction } from './countriesRestriction';
 import { CreateSweepConfigurationV2 } from './createSweepConfigurationV2';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
 import { DayOfWeekRestriction } from './dayOfWeekRestriction';
+import { DefaultErrorResponseEntity } from './defaultErrorResponseEntity';
 import { DelegatedAuthenticationData } from './delegatedAuthenticationData';
 import { DeliveryAddress } from './deliveryAddress';
 import { DeliveryContact } from './deliveryContact';
@@ -267,6 +283,8 @@ import { PaginatedBalanceAccountsResponse } from './paginatedBalanceAccountsResp
 import { PaginatedGetCardOrderItemResponse } from './paginatedGetCardOrderItemResponse';
 import { PaginatedGetCardOrderResponse } from './paginatedGetCardOrderResponse';
 import { PaginatedPaymentInstrumentsResponse } from './paginatedPaymentInstrumentsResponse';
+import { PatchableBalanceWebhookSettingsRequest } from './patchableBalanceWebhookSettingsRequest';
+import { PatchableTarget } from './patchableTarget';
 import { PaymentInstrument } from './paymentInstrument';
 import { PaymentInstrumentGroup } from './paymentInstrumentGroup';
 import { PaymentInstrumentGroupInfo } from './paymentInstrumentGroupInfo';
@@ -299,11 +317,13 @@ import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
 import { SameAmountRestriction } from './sameAmountRestriction';
 import { SameCounterpartyRestriction } from './sameCounterpartyRestriction';
 import { SearchRegisteredDevicesResponse } from './searchRegisteredDevicesResponse';
+import { SettingType } from './settingType';
 import { SourceAccountTypesRestriction } from './sourceAccountTypesRestriction';
 import { StringMatch } from './stringMatch';
 import { SweepConfigurationV2 } from './sweepConfigurationV2';
 import { SweepCounterparty } from './sweepCounterparty';
 import { SweepSchedule } from './sweepSchedule';
+import { Target } from './target';
 import { ThresholdRepayment } from './thresholdRepayment';
 import { TimeOfDay } from './timeOfDay';
 import { TimeOfDayRestriction } from './timeOfDayRestriction';
@@ -320,6 +340,7 @@ import { TransferRoute } from './transferRoute';
 import { TransferRouteRequest } from './transferRouteRequest';
 import { TransferRouteResponse } from './transferRouteResponse';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
+import { USInstantPayoutAddressRequirement } from './uSInstantPayoutAddressRequirement';
 import { USInternationalAchAddressRequirement } from './uSInternationalAchAddressRequirement';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 import { UpdateNetworkTokenRequest } from './updateNetworkTokenRequest';
@@ -328,6 +349,7 @@ import { UpdateSweepConfigurationV2 } from './updateSweepConfigurationV2';
 import { VerificationDeadline } from './verificationDeadline';
 import { VerificationError } from './verificationError';
 import { VerificationErrorRecursive } from './verificationErrorRecursive';
+import { WebhookSettingResponse } from './webhookSettingResponse';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -363,6 +385,8 @@ let enumsMap: {[index: string]: any} = {
         "BalanceAccount.StatusEnum": BalanceAccount.StatusEnum,
         "BalanceAccountBase.StatusEnum": BalanceAccountBase.StatusEnum,
         "BalanceAccountUpdateRequest.StatusEnum": BalanceAccountUpdateRequest.StatusEnum,
+        "BalanceWebhookSettingsRequest.StatusEnum": BalanceWebhookSettingsRequest.StatusEnum,
+        "BalanceWebhookSettingsRequest.TypeEnum": BalanceWebhookSettingsRequest.TypeEnum,
         "BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum": BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum,
         "BankAccountIdentificationTypeRequirement.TypeEnum": BankAccountIdentificationTypeRequirement.TypeEnum,
         "BankAccountModel.FormFactorEnum": BankAccountModel.FormFactorEnum,
@@ -378,6 +402,8 @@ let enumsMap: {[index: string]: any} = {
         "CardInfo.FormFactorEnum": CardInfo.FormFactorEnum,
         "CardOrder.StatusEnum": CardOrder.StatusEnum,
         "CardOrderItemDeliveryStatus.StatusEnum": CardOrderItemDeliveryStatus.StatusEnum,
+        "Condition.BalanceTypeEnum": Condition.BalanceTypeEnum,
+        "Condition.ConditionTypeEnum": Condition.ConditionTypeEnum,
         "CounterpartyTypesRestriction.ValueEnum": CounterpartyTypesRestriction.ValueEnum,
         "CreateSweepConfigurationV2.CategoryEnum": CreateSweepConfigurationV2.CategoryEnum,
         "CreateSweepConfigurationV2.PrioritiesEnum": CreateSweepConfigurationV2.PrioritiesEnum,
@@ -401,6 +427,9 @@ let enumsMap: {[index: string]: any} = {
         "NetworkToken.StatusEnum": NetworkToken.StatusEnum,
         "NumberAndBicAccountIdentification.TypeEnum": NumberAndBicAccountIdentification.TypeEnum,
         "PLLocalAccountIdentification.TypeEnum": PLLocalAccountIdentification.TypeEnum,
+        "PatchableBalanceWebhookSettingsRequest.StatusEnum": PatchableBalanceWebhookSettingsRequest.StatusEnum,
+        "PatchableBalanceWebhookSettingsRequest.TypeEnum": PatchableBalanceWebhookSettingsRequest.TypeEnum,
+        "PatchableTarget.TypeEnum": PatchableTarget.TypeEnum,
         "PaymentInstrument.StatusEnum": PaymentInstrument.StatusEnum,
         "PaymentInstrument.StatusReasonEnum": PaymentInstrument.StatusReasonEnum,
         "PaymentInstrument.TypeEnum": PaymentInstrument.TypeEnum,
@@ -417,6 +446,7 @@ let enumsMap: {[index: string]: any} = {
         "ProcessingTypesRestriction.ValueEnum": ProcessingTypesRestriction.ValueEnum,
         "SELocalAccountIdentification.TypeEnum": SELocalAccountIdentification.TypeEnum,
         "SGLocalAccountIdentification.TypeEnum": SGLocalAccountIdentification.TypeEnum,
+        "SettingType": SettingType,
         "SourceAccountTypesRestriction.ValueEnum": SourceAccountTypesRestriction.ValueEnum,
         "StringMatch.OperationEnum": StringMatch.OperationEnum,
         "SweepConfigurationV2.CategoryEnum": SweepConfigurationV2.CategoryEnum,
@@ -425,6 +455,7 @@ let enumsMap: {[index: string]: any} = {
         "SweepConfigurationV2.StatusEnum": SweepConfigurationV2.StatusEnum,
         "SweepConfigurationV2.TypeEnum": SweepConfigurationV2.TypeEnum,
         "SweepSchedule.TypeEnum": SweepSchedule.TypeEnum,
+        "Target.TypeEnum": Target.TypeEnum,
         "TransactionRule.OutcomeTypeEnum": TransactionRule.OutcomeTypeEnum,
         "TransactionRule.RequestTypeEnum": TransactionRule.RequestTypeEnum,
         "TransactionRule.StatusEnum": TransactionRule.StatusEnum,
@@ -440,6 +471,7 @@ let enumsMap: {[index: string]: any} = {
         "TransferRouteRequest.CategoryEnum": TransferRouteRequest.CategoryEnum,
         "TransferRouteRequest.PrioritiesEnum": TransferRouteRequest.PrioritiesEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
+        "USInstantPayoutAddressRequirement.TypeEnum": USInstantPayoutAddressRequirement.TypeEnum,
         "USInternationalAchAddressRequirement.TypeEnum": USInternationalAchAddressRequirement.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
@@ -487,6 +519,9 @@ let typeMap: {[index: string]: any} = {
     "BalanceAccountUpdateRequest": BalanceAccountUpdateRequest,
     "BalancePlatform": BalancePlatform,
     "BalanceSweepConfigurationsResponse": BalanceSweepConfigurationsResponse,
+    "BalanceWebhookSettingsRequest": BalanceWebhookSettingsRequest,
+    "BalanceWebhookSettingsResponse": BalanceWebhookSettingsResponse,
+    "BalanceWebhookSettingsResponseAllOf": BalanceWebhookSettingsResponseAllOf,
     "BankAccount": BankAccount,
     "BankAccountDetails": BankAccountDetails,
     "BankAccountIdentificationTypeRequirement": BankAccountIdentificationTypeRequirement,
@@ -509,6 +544,7 @@ let typeMap: {[index: string]: any} = {
     "CardOrder": CardOrder,
     "CardOrderItem": CardOrderItem,
     "CardOrderItemDeliveryStatus": CardOrderItemDeliveryStatus,
+    "Condition": Condition,
     "ContactDetails": ContactDetails,
     "Counterparty": Counterparty,
     "CounterpartyBankRestriction": CounterpartyBankRestriction,
@@ -517,6 +553,7 @@ let typeMap: {[index: string]: any} = {
     "CreateSweepConfigurationV2": CreateSweepConfigurationV2,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DayOfWeekRestriction": DayOfWeekRestriction,
+    "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
     "DelegatedAuthenticationData": DelegatedAuthenticationData,
     "DeliveryAddress": DeliveryAddress,
     "DeliveryContact": DeliveryContact,
@@ -558,6 +595,8 @@ let typeMap: {[index: string]: any} = {
     "PaginatedGetCardOrderItemResponse": PaginatedGetCardOrderItemResponse,
     "PaginatedGetCardOrderResponse": PaginatedGetCardOrderResponse,
     "PaginatedPaymentInstrumentsResponse": PaginatedPaymentInstrumentsResponse,
+    "PatchableBalanceWebhookSettingsRequest": PatchableBalanceWebhookSettingsRequest,
+    "PatchableTarget": PatchableTarget,
     "PaymentInstrument": PaymentInstrument,
     "PaymentInstrumentGroup": PaymentInstrumentGroup,
     "PaymentInstrumentGroupInfo": PaymentInstrumentGroupInfo,
@@ -595,6 +634,7 @@ let typeMap: {[index: string]: any} = {
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,
     "SweepSchedule": SweepSchedule,
+    "Target": Target,
     "ThresholdRepayment": ThresholdRepayment,
     "TimeOfDay": TimeOfDay,
     "TimeOfDayRestriction": TimeOfDayRestriction,
@@ -611,6 +651,7 @@ let typeMap: {[index: string]: any} = {
     "TransferRouteRequest": TransferRouteRequest,
     "TransferRouteResponse": TransferRouteResponse,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
+    "USInstantPayoutAddressRequirement": USInstantPayoutAddressRequirement,
     "USInternationalAchAddressRequirement": USInternationalAchAddressRequirement,
     "USLocalAccountIdentification": USLocalAccountIdentification,
     "UpdateNetworkTokenRequest": UpdateNetworkTokenRequest,
@@ -619,6 +660,7 @@ let typeMap: {[index: string]: any} = {
     "VerificationDeadline": VerificationDeadline,
     "VerificationError": VerificationError,
     "VerificationErrorRecursive": VerificationErrorRecursive,
+    "WebhookSettingResponse": WebhookSettingResponse,
 }
 
 export class ObjectSerializer {

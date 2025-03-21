@@ -16,6 +16,7 @@ import {
     AccountHolderUpdateRequest,
     GetTaxFormResponse,
     PaginatedBalanceAccountsResponse,
+    RestServiceError,
     TransactionRulesResponse,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
@@ -121,7 +122,7 @@ export class AccountHoldersApi extends Service {
     * @param year {@link number } The tax year in YYYY format for the tax form you want to retrieve
     * @return {@link GetTaxFormResponse }
     */
-    public async getTaxForm(id: string, formType?: "US1099k" | "US1099nec", year?: number, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
+    public async getTaxForm(id: string, formType?: 'US1099k' | 'US1099nec', year?: number, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
         const endpoint = `${this.baseUrl}/accountHolders/{id}/taxForms`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
