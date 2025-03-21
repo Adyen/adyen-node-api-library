@@ -15,7 +15,6 @@ import {
     DonationCampaignsResponse,
     DonationPaymentRequest,
     DonationPaymentResponse,
-    ServiceError,
     ObjectSerializer
 } from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
