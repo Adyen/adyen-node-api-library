@@ -12,7 +12,6 @@ import getJsonResponse from "../helpers/getJsonResponse";
 import Service from "../service";
 import { CostEstimateRequest } from "../typings/binLookup/models";
 import { CostEstimateResponse } from "../typings/binLookup/models";
-import { ServiceError } from "../typings/binLookup/models";
 import { ThreeDSAvailabilityRequest } from "../typings/binLookup/models";
 import { ThreeDSAvailabilityResponse } from "../typings/binLookup/models";
 import { IRequest } from "../typings/requestOptions";
