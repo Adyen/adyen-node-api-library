@@ -12,6 +12,7 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     CheckTaxElectronicDeliveryConsentResponse,
+    ServiceError,
     SetTaxElectronicDeliveryConsentRequest,
     ObjectSerializer
 } from "../../typings/legalEntityManagement/models";

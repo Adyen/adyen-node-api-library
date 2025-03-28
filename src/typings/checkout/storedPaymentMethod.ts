@@ -22,7 +22,7 @@ export class StoredPaymentMethod {
     */
     'brand'?: string;
     /**
-    * The month the card expires.
+    * The two-digit month when the card expires
     */
     'expiryMonth'?: string;
     /**
