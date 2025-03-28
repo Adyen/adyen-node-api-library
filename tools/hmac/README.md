@@ -20,3 +20,15 @@ npm list @adyen/api-library // check version of library and update if needed
 node calculateHmacPayments.js 11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB payload.json
 ```
 
+### Platform webhooks (AfP, Management API, etc..)
+
+Copy the content of the webhook in the payload2.json (or provide a different file), then run with: 
+`node calculateHmacPlatform.js {hmacKey} {path to JSON file}`
+```
+cd tools/hmac
+npm install 
+
+npm list @adyen/api-library // check version of library and update if needed
+
+node calculateHmacPlatform.js 11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB payload2.json
+```
