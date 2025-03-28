@@ -14,7 +14,7 @@ export class ChallengeInfo {
     */
     'challengeCancel'?: ChallengeInfo.ChallengeCancelEnum;
     /**
-    * The flow used in the challenge. Possible values:  * **OTP_SMS**: one-time password (OTP) flow * **OOB**: out-of-band (OOB) flow
+    * The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow
     */
     'flow': ChallengeInfo.FlowEnum;
     /**
@@ -86,7 +86,8 @@ export namespace ChallengeInfo {
         _08 = '08'
     }
     export enum FlowEnum {
-        OtpSms = 'OTP_SMS',
-        Oob = 'OOB'
+        PwdOtpPhoneFl = 'PWD_OTP_PHONE_FL',
+        PwdOtpEmailFl = 'PWD_OTP_EMAIL_FL',
+        OobTriggerFl = 'OOB_TRIGGER_FL'
     }
 }
