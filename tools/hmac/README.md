@@ -1,6 +1,6 @@
 ## HMAC Tools
 
-This folder contains PHP scripts to calculate the HMAC signature of the webhook payload.  
+This folder contains the scripts/tool to calculate the HMAC signature of the webhook payload.  
 They can be used to troubleshoot the HMAC signature calculation.
 
 Check tools/hmac/package.json to confirm the Adyen Node API library version
