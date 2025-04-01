@@ -24,13 +24,15 @@ if (!fs.existsSync(payloadFile)) {
     process.exit(1);
 }
 
-console.log(`Calculating HMAC signature with payload from '${payloadFile}'`);
+console.log(`Calculating HMAC signature...`);
 
 // Load and parse JSON file
 let jsonData;
+let payload;
+
 try {
-    const fileContent = fs.readFileSync(payloadFile, 'utf8');
-    jsonData = JSON.parse(fileContent);
+    payload = fs.readFileSync(payloadFile, 'utf8');
+    jsonData = JSON.parse(payload);
 } catch (error) {
     console.error("Error: Invalid JSON in payload file.");
     process.exit(1);
@@ -55,5 +57,17 @@ if (!notificationRequestItem) {
 const validator = new hmacValidator()
 const hmacSignature = validator.calculateHmac(notificationRequestItem, hmacKey);
 
+console.log('********');
+console.log(`Payload file: ${payloadFile}`);
+console.log(`Payload length: ${payload.length} characters`);
+/*
+// uncomment if needed
+const newlineCount = (payload.match(/\n/g) || []).length;
+const spaceCount = (payload.match(/ /g) || []).length;
+
+console.log(`Newline count: ${newlineCount}`);
+console.log(`Space count: ${spaceCount}`);
+*/
+console.log('********');
 console.log(`HMAC signature: ${hmacSignature}`);
 process.exit(0);
