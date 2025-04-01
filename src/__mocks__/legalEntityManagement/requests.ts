@@ -61,7 +61,7 @@ export const document = {
 
 export const onboardingLinkInfo = {
     "locale": "cs-CZ",
-    "redirectUrl": "https://your.redirect-url.com",
+    "redirectUrl": "https://example.com/",
     "themeId": "123456789"
 };
 
