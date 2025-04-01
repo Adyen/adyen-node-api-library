@@ -310,7 +310,7 @@ describe("Legal Entity Management", (): void => {
 
             const response: models.OnboardingLink = await legalEntityManagement.HostedOnboardingApi.getLinkToAdyenhostedOnboardingPage(id, request);
 
-            expect(response.url).toBe("https://your.redirect-url.com");
+            expect(response.url).toBe("https://example.com/");
         });
 
         it("should support GET /themes", async (): Promise<void> => {
