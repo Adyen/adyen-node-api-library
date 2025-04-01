@@ -43,7 +43,7 @@ export const document = {
     "type": "driversLicense"
 };
 
-export const onboardingLink = { "url": "https://your.redirect-url.com" };
+export const onboardingLink = { "url": "https://example.com/" };
 
 export const onboardingThemes = {
     "next": "string",
