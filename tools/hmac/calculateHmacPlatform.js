@@ -7,7 +7,8 @@
 // node calculateHmacPlatform.js 11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB payload2.json
 
 const fs = require('fs');
-const crypto = require('crypto');
+const { hmacValidator } = require('@adyen/api-library');
+
 
 // Ensure correct arguments
 if (process.argv.length !== 4) {
@@ -24,10 +25,11 @@ if (!fs.existsSync(payloadFile)) {
     process.exit(1);
 }
 
-console.log(`Calculating HMAC signature with payload from '${payloadFile}'`);
+console.log(`Calculating HMAC signature...`);
 
 // Load payload as raw string
 let payload;
+
 try {
     payload = fs.readFileSync(payloadFile, 'utf8');
 } catch (error) {
@@ -35,15 +37,21 @@ try {
     process.exit(1);
 }
 
-// Calculate HMAC signature
-function calculateHmacSignature(hmacKey, payload) {
-    const key = Buffer.from(hmacKey, 'hex');
-    const hmac = crypto.createHmac('sha256', key);
-    hmac.update(payload, 'utf8');
-    return hmac.digest('base64');
-}
+const validator = new hmacValidator()
+const hmacSignature = validator.calculateHmac(payload, hmacKey);
 
-const signature = calculateHmacSignature(hmacKey, payload);
+console.log('********');
+console.log(`Payload file: ${payloadFile}`);
+console.log(`Payload length: ${payload.length} characters`);
+/*
+// uncomment if needed
+const newlineCount = (payload.match(/\n/g) || []).length;
+const spaceCount = (payload.match(/ /g) || []).length;
 
-console.log(`HMAC signature: ${signature}`);
+console.log(`Newline count: ${newlineCount}`);
+console.log(`Space count: ${spaceCount}`);
+*/
+console.log('********');
+
+console.log(`HMAC signature: ${hmacSignature}`);
 process.exit(0);
