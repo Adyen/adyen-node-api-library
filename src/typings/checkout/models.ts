@@ -159,8 +159,10 @@ export * from './paypalUpdateOrderResponse';
 export * from './phone';
 export * from './pixDetails';
 export * from './pixRecurring';
+export * from './pixStoredPaymentMethod';
 export * from './platformChargebackLogic';
 export * from './pseDetails';
+export * from './rakutenPayDetails';
 export * from './ratepayDetails';
 export * from './recurring';
 export * from './responseAdditionalData3DSecure';
@@ -365,8 +367,10 @@ import { PaypalUpdateOrderResponse } from './paypalUpdateOrderResponse';
 import { Phone } from './phone';
 import { PixDetails } from './pixDetails';
 import { PixRecurring } from './pixRecurring';
+import { PixStoredPaymentMethod } from './pixStoredPaymentMethod';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { PseDetails } from './pseDetails';
+import { RakutenPayDetails } from './rakutenPayDetails';
 import { RatepayDetails } from './ratepayDetails';
 import { Recurring } from './recurring';
 import { ResponseAdditionalData3DSecure } from './responseAdditionalData3DSecure';
@@ -445,6 +449,7 @@ let enumsMap: {[index: string]: any} = {
         "AcctInfo.ShipAddressUsageIndEnum": AcctInfo.ShipAddressUsageIndEnum,
         "AcctInfo.ShipNameIndicatorEnum": AcctInfo.ShipNameIndicatorEnum,
         "AcctInfo.SuspiciousAccActivityEnum": AcctInfo.SuspiciousAccActivityEnum,
+        "AchDetails.AccountHolderTypeEnum": AchDetails.AccountHolderTypeEnum,
         "AchDetails.BankAccountTypeEnum": AchDetails.BankAccountTypeEnum,
         "AchDetails.TypeEnum": AchDetails.TypeEnum,
         "AdditionalData3DSecure.ChallengeWindowSizeEnum": AdditionalData3DSecure.ChallengeWindowSizeEnum,
@@ -575,8 +580,10 @@ let enumsMap: {[index: string]: any} = {
         "PaypalUpdateOrderResponse.StatusEnum": PaypalUpdateOrderResponse.StatusEnum,
         "PixDetails.TypeEnum": PixDetails.TypeEnum,
         "PixRecurring.FrequencyEnum": PixRecurring.FrequencyEnum,
+        "PixStoredPaymentMethod.TypeEnum": PixStoredPaymentMethod.TypeEnum,
         "PlatformChargebackLogic.BehaviorEnum": PlatformChargebackLogic.BehaviorEnum,
         "PseDetails.TypeEnum": PseDetails.TypeEnum,
+        "RakutenPayDetails.TypeEnum": RakutenPayDetails.TypeEnum,
         "RatepayDetails.TypeEnum": RatepayDetails.TypeEnum,
         "Recurring.ContractEnum": Recurring.ContractEnum,
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
@@ -781,8 +788,10 @@ let typeMap: {[index: string]: any} = {
     "Phone": Phone,
     "PixDetails": PixDetails,
     "PixRecurring": PixRecurring,
+    "PixStoredPaymentMethod": PixStoredPaymentMethod,
     "PlatformChargebackLogic": PlatformChargebackLogic,
     "PseDetails": PseDetails,
+    "RakutenPayDetails": RakutenPayDetails,
     "RatepayDetails": RatepayDetails,
     "Recurring": Recurring,
     "ResponseAdditionalData3DSecure": ResponseAdditionalData3DSecure,
