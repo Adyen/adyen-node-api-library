@@ -13,6 +13,7 @@ import Client from "../../client";
 import { 
     ExternalTerminalAction,
     ListExternalTerminalActionsResponse,
+    RestServiceError,
     ObjectSerializer
 } from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";

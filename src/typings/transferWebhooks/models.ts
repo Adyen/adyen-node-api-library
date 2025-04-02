@@ -36,6 +36,7 @@ export * from './internalCategoryData';
 export * from './internalReviewTrackingData';
 export * from './issuedCard';
 export * from './leg';
+export * from './lodging';
 export * from './merchantData';
 export * from './merchantPurchaseData';
 export * from './modification';
@@ -95,6 +96,7 @@ import { InternalCategoryData } from './internalCategoryData';
 import { InternalReviewTrackingData } from './internalReviewTrackingData';
 import { IssuedCard } from './issuedCard';
 import { Leg } from './leg';
+import { Lodging } from './lodging';
 import { MerchantData } from './merchantData';
 import { MerchantPurchaseData } from './merchantPurchaseData';
 import { Modification } from './modification';
@@ -181,6 +183,7 @@ let enumsMap: {[index: string]: any} = {
         "TransferEvent.StatusEnum": TransferEvent.StatusEnum,
         "TransferEvent.TypeEnum": TransferEvent.TypeEnum,
         "TransferNotificationRequest.TypeEnum": TransferNotificationRequest.TypeEnum,
+        "TransferReview.ScaOnApprovalEnum": TransferReview.ScaOnApprovalEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
@@ -215,6 +218,7 @@ let typeMap: {[index: string]: any} = {
     "InternalReviewTrackingData": InternalReviewTrackingData,
     "IssuedCard": IssuedCard,
     "Leg": Leg,
+    "Lodging": Lodging,
     "MerchantData": MerchantData,
     "MerchantPurchaseData": MerchantPurchaseData,
     "Modification": Modification,

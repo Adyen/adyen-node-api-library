@@ -57,6 +57,7 @@ export class InstallmentOption {
 
 export namespace InstallmentOption {
     export enum PlansEnum {
+        Bonus = 'bonus',
         BuynowPaylater = 'buynow_paylater',
         InteresRefundPrctg = 'interes_refund_prctg',
         InterestBonus = 'interest_bonus',

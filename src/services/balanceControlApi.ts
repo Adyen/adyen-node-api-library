@@ -31,6 +31,8 @@ export class BalanceControlAPI extends Service {
     * @param balanceTransferRequest {@link BalanceTransferRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link BalanceTransferResponse }
+    *
+	* @deprecated since Adyen Balance Control API v1
     */
     public async balanceTransfer(balanceTransferRequest: BalanceTransferRequest, requestOptions?: IRequest.Options): Promise<BalanceTransferResponse> {
         const endpoint = `${this.baseUrl}/balanceTransfer`;
