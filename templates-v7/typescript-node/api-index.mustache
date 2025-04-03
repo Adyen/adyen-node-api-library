@@ -1,0 +1,28 @@
+{{>licenseInfo}}
+{{#apiInfo}}
+{{#apis}}
+{{#operations}}
+import { {{ classname }} } from "./{{ classFilename }}";
+{{/operations}}
+{{/apis}}
+{{/apiInfo}}
+
+import Service from "../../service";
+import Client from "../../client";
+
+export default class {{#lambda.pascalcase}}{{ apiPackage }}{{/lambda.pascalcase}}API extends Service {
+    
+    public constructor(client: Client) {
+        super(client);
+    }
+{{#apiInfo}}
+{{#apis}}
+{{#operations}}
+
+    public get {{classname}}() {
+        return new {{classname}}(this.client);
+    }
+{{/operations}}
+{{/apis}}
+{{/apiInfo}}
+}

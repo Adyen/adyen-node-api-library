@@ -1,0 +1,23 @@
+    /**
+{{#summary}}
+    * @summary {{&summary}}
+{{/summary}}
+{{#pathParams}}
+    * @param {{paramName}} {@link {{dataType}} } {{description}}
+{{/pathParams}}
+{{#bodyParams}}
+    * @param {{paramName}} {@link {{dataType}} } {{description}}
+{{/bodyParams}}
+    * @param requestOptions {@link IRequest.Options }
+{{#queryParams}}
+    * @param {{paramName}} {@link {{dataType}} } {{description}}
+{{/queryParams}}
+{{#returnType}}
+    * @return {@link {{.}} }
+{{/returnType}}
+{{#isDeprecated}}
+    *
+	* @deprecated {{#vendorExtensions.x-deprecatedInVersion}}since {{#appName}}{{{.}}}{{/appName}} v{{.}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}}
+	* {{{.}}}{{/vendorExtensions.x-deprecatedMessage}}
+{{/isDeprecated}}
+    */

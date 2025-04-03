@@ -1,0 +1,103 @@
+{{>licenseInfo}}
+{{#models}}
+{{#model}}
+{{#tsImports}}
+import { {{classname}} } from '{{filename}}';
+{{/tsImports}}
+
+{{#description}}
+/**
+* {{{.}}}
+*/
+{{/description}}
+{{^isEnum}}
+export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
+{{#vars}}
+{{#description}}
+    /**
+    * {{{.}}}
+    {{#deprecated}}
+    *
+	* @deprecated {{#vendorExtensions.x-deprecatedInVersion}}since {{#appName}}{{{.}}}{{/appName}} v{{.}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}}
+	* {{{.}}}{{/vendorExtensions.x-deprecatedMessage}}
+    {{/deprecated}}
+    */
+{{/description}}
+{{^description}}
+    {{#deprecated}}
+    /**
+	* @deprecated {{#vendorExtensions.x-deprecatedInVersion}}since {{#appName}}{{{.}}}{{/appName}} v{{.}}{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}}
+	* {{{.}}}{{/vendorExtensions.x-deprecatedMessage}}
+    */
+    {{/deprecated}}
+{{/description}}
+    {{#isModel}}
+    '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}} | null{{/required}};
+    {{/isModel}}
+    {{^isModel}}
+    '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}};
+    {{/isModel}}
+{{/vars}}
+
+    {{#discriminator}}
+    static discriminator: string | undefined = "{{discriminatorName}}";
+    {{/discriminator}}
+    {{^discriminator}}
+    static discriminator: string | undefined = undefined;
+    {{/discriminator}}
+
+    {{^isArray}}
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {{#vars}}
+        {
+            "name": "{{name}}",
+            "baseName": "{{baseName}}",
+            {{#isModel}}
+            "type": "{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}} | null{{/required}}"
+            {{/isModel}}
+            {{^isModel}}
+            "type": "{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}}"
+            {{/isModel}}
+        }{{^-last}},
+        {{/-last}}
+        {{/vars}}
+    ];
+
+    static getAttributeTypeMap() {
+        {{#parent}}
+        return super.getAttributeTypeMap().concat({{classname}}.attributeTypeMap);
+        {{/parent}}
+        {{^parent}}
+        return {{classname}}.attributeTypeMap;
+        {{/parent}}
+    }
+    {{/isArray}}
+}
+
+{{#hasEnums}}
+export namespace {{classname}} {
+{{#vars}}
+{{#isEnum}}
+    export enum {{enumName}} {
+        {{#allowableValues}}
+        {{#enumVars}}
+        {{name}} = {{{value}}}{{^-last}},{{/-last}}
+        {{/enumVars}}
+        {{/allowableValues}}
+    }
+{{/isEnum}}
+{{/vars}}
+}
+{{/hasEnums}}
+{{/isEnum}}
+{{#isEnum}}
+export enum {{classname}} {
+    {{#allowableValues}}
+    {{#enumVars}}
+    {{name}} = {{{value}}}{{^-last}},{{/-last}}
+    {{/enumVars}}
+    {{/allowableValues}}
+}
+{{/isEnum}}
+{{/model}}
+{{/models}}
