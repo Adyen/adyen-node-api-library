@@ -201,41 +201,41 @@ export class AccountInfo {
 
 export namespace AccountInfo {
     export enum AccountAgeIndicatorEnum {
-        NotApplicable = 'notApplicable',
-        ThisTransaction = 'thisTransaction',
-        LessThan30Days = 'lessThan30Days',
-        From30To60Days = 'from30To60Days',
-        MoreThan60Days = 'moreThan60Days'
+        NotApplicable = <any> 'notApplicable',
+        ThisTransaction = <any> 'thisTransaction',
+        LessThan30Days = <any> 'lessThan30Days',
+        From30To60Days = <any> 'from30To60Days',
+        MoreThan60Days = <any> 'moreThan60Days'
     }
     export enum AccountChangeIndicatorEnum {
-        ThisTransaction = 'thisTransaction',
-        LessThan30Days = 'lessThan30Days',
-        From30To60Days = 'from30To60Days',
-        MoreThan60Days = 'moreThan60Days'
+        ThisTransaction = <any> 'thisTransaction',
+        LessThan30Days = <any> 'lessThan30Days',
+        From30To60Days = <any> 'from30To60Days',
+        MoreThan60Days = <any> 'moreThan60Days'
     }
     export enum AccountTypeEnum {
-        NotApplicable = 'notApplicable',
-        Credit = 'credit',
-        Debit = 'debit'
+        NotApplicable = <any> 'notApplicable',
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
     }
     export enum DeliveryAddressUsageIndicatorEnum {
-        ThisTransaction = 'thisTransaction',
-        LessThan30Days = 'lessThan30Days',
-        From30To60Days = 'from30To60Days',
-        MoreThan60Days = 'moreThan60Days'
+        ThisTransaction = <any> 'thisTransaction',
+        LessThan30Days = <any> 'lessThan30Days',
+        From30To60Days = <any> 'from30To60Days',
+        MoreThan60Days = <any> 'moreThan60Days'
     }
     export enum PasswordChangeIndicatorEnum {
-        NotApplicable = 'notApplicable',
-        ThisTransaction = 'thisTransaction',
-        LessThan30Days = 'lessThan30Days',
-        From30To60Days = 'from30To60Days',
-        MoreThan60Days = 'moreThan60Days'
+        NotApplicable = <any> 'notApplicable',
+        ThisTransaction = <any> 'thisTransaction',
+        LessThan30Days = <any> 'lessThan30Days',
+        From30To60Days = <any> 'from30To60Days',
+        MoreThan60Days = <any> 'moreThan60Days'
     }
     export enum PaymentAccountIndicatorEnum {
-        NotApplicable = 'notApplicable',
-        ThisTransaction = 'thisTransaction',
-        LessThan30Days = 'lessThan30Days',
-        From30To60Days = 'from30To60Days',
-        MoreThan60Days = 'moreThan60Days'
+        NotApplicable = <any> 'notApplicable',
+        ThisTransaction = <any> 'thisTransaction',
+        LessThan30Days = <any> 'lessThan30Days',
+        From30To60Days = <any> 'from30To60Days',
+        MoreThan60Days = <any> 'moreThan60Days'
     }
 }

@@ -12,8 +12,8 @@ import { LinksElement } from './linksElement';
 export class PaginationLinks {
     'first': LinksElement;
     'last': LinksElement;
-    'next'?: LinksElement | null;
-    'prev'?: LinksElement | null;
+    'next'?: LinksElement;
+    'prev'?: LinksElement;
     'self': LinksElement;
 
     static discriminator: string | undefined = undefined;
@@ -32,12 +32,12 @@ export class PaginationLinks {
         {
             "name": "next",
             "baseName": "next",
-            "type": "LinksElement | null"
+            "type": "LinksElement"
         },
         {
             "name": "prev",
             "baseName": "prev",
-            "type": "LinksElement | null"
+            "type": "LinksElement"
         },
         {
             "name": "self",

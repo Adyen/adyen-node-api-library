@@ -13,12 +13,18 @@ export class MbwayDetails {
     * The checkout attempt identifier.
     */
     'checkoutAttemptId'?: string;
+    /**
+    * 
+    */
     'shopperEmail': string;
+    /**
+    * 
+    */
     'telephoneNumber': string;
     /**
     * **mbway**
     */
-    'type'?: MbwayDetails.TypeEnum;
+    'type'?: MbwayDetails.TypeEnum = MbwayDetails.TypeEnum.Mbway;
 
     static discriminator: string | undefined = undefined;
 
@@ -51,6 +57,6 @@ export class MbwayDetails {
 
 export namespace MbwayDetails {
     export enum TypeEnum {
-        Mbway = 'mbway'
+        Mbway = <any> 'mbway'
     }
 }

@@ -24,19 +24,19 @@ export class LegalEntityInfo {
     * List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories.
     */
     'entityAssociations'?: Array<LegalEntityAssociation>;
-    'individual'?: Individual | null;
-    'organization'?: Organization | null;
+    'individual'?: Individual;
+    'organization'?: Organization;
     /**
     * Your reference for the legal entity, maximum 150 characters.
     */
     'reference'?: string;
-    'soleProprietorship'?: SoleProprietorship | null;
-    'trust'?: Trust | null;
+    'soleProprietorship'?: SoleProprietorship;
+    'trust'?: Trust;
     /**
     * The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
     */
     'type'?: LegalEntityInfo.TypeEnum;
-    'unincorporatedPartnership'?: UnincorporatedPartnership | null;
+    'unincorporatedPartnership'?: UnincorporatedPartnership;
     /**
     * A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification).
     */
@@ -58,12 +58,12 @@ export class LegalEntityInfo {
         {
             "name": "individual",
             "baseName": "individual",
-            "type": "Individual | null"
+            "type": "Individual"
         },
         {
             "name": "organization",
             "baseName": "organization",
-            "type": "Organization | null"
+            "type": "Organization"
         },
         {
             "name": "reference",
@@ -73,12 +73,12 @@ export class LegalEntityInfo {
         {
             "name": "soleProprietorship",
             "baseName": "soleProprietorship",
-            "type": "SoleProprietorship | null"
+            "type": "SoleProprietorship"
         },
         {
             "name": "trust",
             "baseName": "trust",
-            "type": "Trust | null"
+            "type": "Trust"
         },
         {
             "name": "type",
@@ -88,7 +88,7 @@ export class LegalEntityInfo {
         {
             "name": "unincorporatedPartnership",
             "baseName": "unincorporatedPartnership",
-            "type": "UnincorporatedPartnership | null"
+            "type": "UnincorporatedPartnership"
         },
         {
             "name": "verificationPlan",
@@ -103,10 +103,10 @@ export class LegalEntityInfo {
 
 export namespace LegalEntityInfo {
     export enum TypeEnum {
-        Individual = 'individual',
-        Organization = 'organization',
-        SoleProprietorship = 'soleProprietorship',
-        Trust = 'trust',
-        UnincorporatedPartnership = 'unincorporatedPartnership'
+        Individual = <any> 'individual',
+        Organization = <any> 'organization',
+        SoleProprietorship = <any> 'soleProprietorship',
+        Trust = <any> 'trust',
+        UnincorporatedPartnership = <any> 'unincorporatedPartnership'
     }
 }

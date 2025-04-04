@@ -165,44 +165,44 @@ export class AcctInfo {
 
 export namespace AcctInfo {
     export enum ChAccAgeIndEnum {
-        _01 = '01',
-        _02 = '02',
-        _03 = '03',
-        _04 = '04',
-        _05 = '05'
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05'
     }
     export enum ChAccChangeIndEnum {
-        _01 = '01',
-        _02 = '02',
-        _03 = '03',
-        _04 = '04'
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04'
     }
     export enum ChAccPwChangeIndEnum {
-        _01 = '01',
-        _02 = '02',
-        _03 = '03',
-        _04 = '04',
-        _05 = '05'
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05'
     }
     export enum PaymentAccIndEnum {
-        _01 = '01',
-        _02 = '02',
-        _03 = '03',
-        _04 = '04',
-        _05 = '05'
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05'
     }
     export enum ShipAddressUsageIndEnum {
-        _01 = '01',
-        _02 = '02',
-        _03 = '03',
-        _04 = '04'
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04'
     }
     export enum ShipNameIndicatorEnum {
-        _01 = '01',
-        _02 = '02'
+        _01 = <any> '01',
+        _02 = <any> '02'
     }
     export enum SuspiciousAccActivityEnum {
-        _01 = '01',
-        _02 = '02'
+        _01 = <any> '01',
+        _02 = <any> '02'
     }
 }

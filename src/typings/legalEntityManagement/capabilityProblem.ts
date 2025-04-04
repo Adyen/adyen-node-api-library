@@ -11,7 +11,7 @@ import { CapabilityProblemEntity } from './capabilityProblemEntity';
 import { VerificationError } from './verificationError';
 
 export class CapabilityProblem {
-    'entity'?: CapabilityProblemEntity | null;
+    'entity'?: CapabilityProblemEntity;
     'verificationErrors'?: Array<VerificationError>;
 
     static discriminator: string | undefined = undefined;
@@ -20,7 +20,7 @@ export class CapabilityProblem {
         {
             "name": "entity",
             "baseName": "entity",
-            "type": "CapabilityProblemEntity | null"
+            "type": "CapabilityProblemEntity"
         },
         {
             "name": "verificationErrors",

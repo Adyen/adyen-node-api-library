@@ -39,9 +39,9 @@ export class GeneratePciDescriptionRequest {
 
 export namespace GeneratePciDescriptionRequest {
     export enum AdditionalSalesChannelsEnum {
-        ECommerce = 'eCommerce',
-        EcomMoto = 'ecomMoto',
-        Pos = 'pos',
-        PosMoto = 'posMoto'
+        ECommerce = <any> 'eCommerce',
+        EcomMoto = <any> 'ecomMoto',
+        Pos = <any> 'pos',
+        PosMoto = <any> 'posMoto'
     }
 }

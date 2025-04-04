@@ -14,7 +14,7 @@ import { Recurring } from './recurring';
 
 export class CostEstimateRequest {
     'amount': Amount;
-    'assumptions'?: CostEstimateAssumptions | null;
+    'assumptions'?: CostEstimateAssumptions;
     /**
     * The card number (4-19 characters) for PCI compliant use cases. Do not use any separators.  > Either the `cardNumber` or `encryptedCardNumber` field must be provided in a payment request.
     */
@@ -27,8 +27,8 @@ export class CostEstimateRequest {
     * The merchant account identifier you want to process the (transaction) request with.
     */
     'merchantAccount': string;
-    'merchantDetails'?: MerchantDetails | null;
-    'recurring'?: Recurring | null;
+    'merchantDetails'?: MerchantDetails;
+    'recurring'?: Recurring;
     /**
     * The `recurringDetailReference` you want to use for this cost estimate. The value `LATEST` can be used to select the most recently stored recurring detail.
     */
@@ -53,7 +53,7 @@ export class CostEstimateRequest {
         {
             "name": "assumptions",
             "baseName": "assumptions",
-            "type": "CostEstimateAssumptions | null"
+            "type": "CostEstimateAssumptions"
         },
         {
             "name": "cardNumber",
@@ -73,12 +73,12 @@ export class CostEstimateRequest {
         {
             "name": "merchantDetails",
             "baseName": "merchantDetails",
-            "type": "MerchantDetails | null"
+            "type": "MerchantDetails"
         },
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring | null"
+            "type": "Recurring"
         },
         {
             "name": "selectedRecurringDetailReference",
@@ -103,9 +103,9 @@ export class CostEstimateRequest {
 
 export namespace CostEstimateRequest {
     export enum ShopperInteractionEnum {
-        Ecommerce = 'Ecommerce',
-        ContAuth = 'ContAuth',
-        Moto = 'Moto',
-        Pos = 'POS'
+        Ecommerce = <any> 'Ecommerce',
+        ContAuth = <any> 'ContAuth',
+        Moto = <any> 'Moto',
+        Pos = <any> 'POS'
     }
 }

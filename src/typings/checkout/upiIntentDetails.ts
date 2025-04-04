@@ -35,7 +35,7 @@ export class UpiIntentDetails {
     /**
     * **upi_intent**
     */
-    'type': UpiIntentDetails.TypeEnum;
+    'type': UpiIntentDetails.TypeEnum = UpiIntentDetails.TypeEnum.UpiIntent;
 
     static discriminator: string | undefined = undefined;
 
@@ -78,6 +78,6 @@ export class UpiIntentDetails {
 
 export namespace UpiIntentDetails {
     export enum TypeEnum {
-        UpiIntent = 'upi_intent'
+        UpiIntent = <any> 'upi_intent'
     }
 }

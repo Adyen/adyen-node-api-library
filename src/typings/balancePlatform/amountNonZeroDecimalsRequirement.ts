@@ -16,7 +16,7 @@ export class AmountNonZeroDecimalsRequirement {
     /**
     * **amountNonZeroDecimalsRequirement**
     */
-    'type': AmountNonZeroDecimalsRequirement.TypeEnum;
+    'type': AmountNonZeroDecimalsRequirement.TypeEnum = AmountNonZeroDecimalsRequirement.TypeEnum.AmountNonZeroDecimalsRequirement;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class AmountNonZeroDecimalsRequirement {
 
 export namespace AmountNonZeroDecimalsRequirement {
     export enum TypeEnum {
-        AmountNonZeroDecimalsRequirement = 'amountNonZeroDecimalsRequirement'
+        AmountNonZeroDecimalsRequirement = <any> 'amountNonZeroDecimalsRequirement'
     }
 }

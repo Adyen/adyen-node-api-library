@@ -73,11 +73,11 @@ export class BalanceTransferRequest {
 
 export namespace BalanceTransferRequest {
     export enum TypeEnum {
-        Tax = 'tax',
-        Fee = 'fee',
-        TerminalSale = 'terminalSale',
-        Credit = 'credit',
-        Debit = 'debit',
-        Adjustment = 'adjustment'
+        Tax = <any> 'tax',
+        Fee = <any> 'fee',
+        TerminalSale = <any> 'terminalSale',
+        Credit = <any> 'credit',
+        Debit = <any> 'debit',
+        Adjustment = <any> 'adjustment'
     }
 }

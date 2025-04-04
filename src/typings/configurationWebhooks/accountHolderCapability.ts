@@ -20,7 +20,7 @@ export class AccountHolderCapability {
     * The capability level that is allowed for the account holder.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
     'allowedLevel'?: AccountHolderCapability.AllowedLevelEnum;
-    'allowedSettings'?: CapabilitySettings | null;
+    'allowedSettings'?: CapabilitySettings;
     /**
     * Indicates whether the capability is enabled. If **false**, the capability is temporarily disabled for the account holder.
     */
@@ -37,7 +37,7 @@ export class AccountHolderCapability {
     * The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
     'requestedLevel'?: AccountHolderCapability.RequestedLevelEnum;
-    'requestedSettings'?: CapabilitySettings | null;
+    'requestedSettings'?: CapabilitySettings;
     /**
     * Contains the status of the transfer instruments associated with this capability. 
     */
@@ -63,7 +63,7 @@ export class AccountHolderCapability {
         {
             "name": "allowedSettings",
             "baseName": "allowedSettings",
-            "type": "CapabilitySettings | null"
+            "type": "CapabilitySettings"
         },
         {
             "name": "enabled",
@@ -88,7 +88,7 @@ export class AccountHolderCapability {
         {
             "name": "requestedSettings",
             "baseName": "requestedSettings",
-            "type": "CapabilitySettings | null"
+            "type": "CapabilitySettings"
         },
         {
             "name": "transferInstruments",
@@ -108,21 +108,21 @@ export class AccountHolderCapability {
 
 export namespace AccountHolderCapability {
     export enum AllowedLevelEnum {
-        High = 'high',
-        Low = 'low',
-        Medium = 'medium',
-        NotApplicable = 'notApplicable'
+        High = <any> 'high',
+        Low = <any> 'low',
+        Medium = <any> 'medium',
+        NotApplicable = <any> 'notApplicable'
     }
     export enum RequestedLevelEnum {
-        High = 'high',
-        Low = 'low',
-        Medium = 'medium',
-        NotApplicable = 'notApplicable'
+        High = <any> 'high',
+        Low = <any> 'low',
+        Medium = <any> 'medium',
+        NotApplicable = <any> 'notApplicable'
     }
     export enum VerificationStatusEnum {
-        Invalid = 'invalid',
-        Pending = 'pending',
-        Rejected = 'rejected',
-        Valid = 'valid'
+        Invalid = <any> 'invalid',
+        Pending = <any> 'pending',
+        Rejected = <any> 'rejected',
+        Valid = <any> 'valid'
     }
 }

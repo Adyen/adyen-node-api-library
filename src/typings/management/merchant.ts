@@ -11,7 +11,7 @@ import { DataCenter } from './dataCenter';
 import { MerchantLinks } from './merchantLinks';
 
 export class Merchant {
-    '_links'?: MerchantLinks | null;
+    '_links'?: MerchantLinks;
     /**
     * The [capture delay](https://docs.adyen.com/online-payments/capture#capture-delay) set for the merchant account.  Possible values: * **Immediate** * **Manual** * Number of days from **1** to **29**
     */
@@ -71,7 +71,7 @@ export class Merchant {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "MerchantLinks | null"
+            "type": "MerchantLinks"
         },
         {
             "name": "captureDelay",

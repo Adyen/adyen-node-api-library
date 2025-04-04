@@ -20,7 +20,7 @@ export class DotpayDetails {
     /**
     * **dotpay**
     */
-    'type'?: DotpayDetails.TypeEnum;
+    'type'?: DotpayDetails.TypeEnum = DotpayDetails.TypeEnum.Dotpay;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class DotpayDetails {
 
 export namespace DotpayDetails {
     export enum TypeEnum {
-        Dotpay = 'dotpay'
+        Dotpay = <any> 'dotpay'
     }
 }

@@ -55,6 +55,6 @@ export class MerchantCreatedNotificationRequest {
 
 export namespace MerchantCreatedNotificationRequest {
     export enum TypeEnum {
-        MerchantCreated = 'merchant.created'
+        MerchantCreated = <any> 'merchant.created'
     }
 }

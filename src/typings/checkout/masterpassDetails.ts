@@ -24,7 +24,7 @@ export class MasterpassDetails {
     /**
     * **masterpass**
     */
-    'type'?: MasterpassDetails.TypeEnum;
+    'type'?: MasterpassDetails.TypeEnum = MasterpassDetails.TypeEnum.Masterpass;
 
     static discriminator: string | undefined = undefined;
 
@@ -57,10 +57,10 @@ export class MasterpassDetails {
 
 export namespace MasterpassDetails {
     export enum FundingSourceEnum {
-        Credit = 'credit',
-        Debit = 'debit'
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
     }
     export enum TypeEnum {
-        Masterpass = 'masterpass'
+        Masterpass = <any> 'masterpass'
     }
 }

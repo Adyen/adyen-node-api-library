@@ -102,16 +102,16 @@ export class MidServiceNotificationData {
 
 export namespace MidServiceNotificationData {
     export enum StatusEnum {
-        Success = 'success',
-        Failure = 'failure',
-        CapabilityPending = 'capabilityPending',
-        DataRequired = 'dataRequired',
-        UpdatesExpected = 'updatesExpected'
+        Success = <any> 'success',
+        Failure = <any> 'failure',
+        CapabilityPending = <any> 'capabilityPending',
+        DataRequired = <any> 'dataRequired',
+        UpdatesExpected = <any> 'updatesExpected'
     }
     export enum VerificationStatusEnum {
-        Valid = 'valid',
-        Pending = 'pending',
-        Invalid = 'invalid',
-        Rejected = 'rejected'
+        Valid = <any> 'valid',
+        Pending = <any> 'pending',
+        Invalid = <any> 'invalid',
+        Rejected = <any> 'rejected'
     }
 }

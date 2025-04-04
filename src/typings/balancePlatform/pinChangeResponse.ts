@@ -30,8 +30,8 @@ export class PinChangeResponse {
 
 export namespace PinChangeResponse {
     export enum StatusEnum {
-        Completed = 'completed',
-        Pending = 'pending',
-        Unavailable = 'unavailable'
+        Completed = <any> 'completed',
+        Pending = <any> 'pending',
+        Unavailable = <any> 'unavailable'
     }
 }

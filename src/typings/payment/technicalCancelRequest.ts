@@ -21,13 +21,13 @@ export class TechnicalCancelRequest {
     * The merchant account that is used to process the payment.
     */
     'merchantAccount': string;
-    'modificationAmount'?: Amount | null;
-    'mpiData'?: ThreeDSecureData | null;
+    'modificationAmount'?: Amount;
+    'mpiData'?: ThreeDSecureData;
     /**
     * The original merchant reference to cancel.
     */
     'originalMerchantReference': string;
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
     */
@@ -61,12 +61,12 @@ export class TechnicalCancelRequest {
         {
             "name": "modificationAmount",
             "baseName": "modificationAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "mpiData",
             "baseName": "mpiData",
-            "type": "ThreeDSecureData | null"
+            "type": "ThreeDSecureData"
         },
         {
             "name": "originalMerchantReference",
@@ -76,7 +76,7 @@ export class TechnicalCancelRequest {
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "reference",

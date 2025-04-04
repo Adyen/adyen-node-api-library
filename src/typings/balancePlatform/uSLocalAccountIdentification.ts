@@ -16,7 +16,7 @@ export class USLocalAccountIdentification {
     /**
     * The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
     */
-    'accountType'?: USLocalAccountIdentification.AccountTypeEnum;
+    'accountType'?: USLocalAccountIdentification.AccountTypeEnum = USLocalAccountIdentification.AccountTypeEnum.Checking;
     /**
     * The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.
     */
@@ -24,7 +24,7 @@ export class USLocalAccountIdentification {
     /**
     * **usLocal**
     */
-    'type': USLocalAccountIdentification.TypeEnum;
+    'type': USLocalAccountIdentification.TypeEnum = USLocalAccountIdentification.TypeEnum.UsLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -57,10 +57,10 @@ export class USLocalAccountIdentification {
 
 export namespace USLocalAccountIdentification {
     export enum AccountTypeEnum {
-        Checking = 'checking',
-        Savings = 'savings'
+        Checking = <any> 'checking',
+        Savings = <any> 'savings'
     }
     export enum TypeEnum {
-        UsLocal = 'usLocal'
+        UsLocal = <any> 'usLocal'
     }
 }

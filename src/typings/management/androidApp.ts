@@ -106,10 +106,10 @@ export class AndroidApp {
 
 export namespace AndroidApp {
     export enum StatusEnum {
-        Archived = 'archived',
-        Error = 'error',
-        Invalid = 'invalid',
-        Processing = 'processing',
-        Ready = 'ready'
+        Archived = <any> 'archived',
+        Error = <any> 'error',
+        Invalid = <any> 'invalid',
+        Processing = <any> 'processing',
+        Ready = <any> 'ready'
     }
 }

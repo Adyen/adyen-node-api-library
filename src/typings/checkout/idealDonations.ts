@@ -31,7 +31,7 @@ export class IdealDonations {
     /**
     * **ideal**
     */
-    'type'?: IdealDonations.TypeEnum;
+    'type'?: IdealDonations.TypeEnum = IdealDonations.TypeEnum.Ideal;
 
     static discriminator: string | undefined = undefined;
 
@@ -69,6 +69,6 @@ export class IdealDonations {
 
 export namespace IdealDonations {
     export enum TypeEnum {
-        Ideal = 'ideal'
+        Ideal = <any> 'ideal'
     }
 }

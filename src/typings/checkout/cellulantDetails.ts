@@ -20,7 +20,7 @@ export class CellulantDetails {
     /**
     * **Cellulant**
     */
-    'type'?: CellulantDetails.TypeEnum;
+    'type'?: CellulantDetails.TypeEnum = CellulantDetails.TypeEnum.Cellulant;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class CellulantDetails {
 
 export namespace CellulantDetails {
     export enum TypeEnum {
-        Cellulant = 'cellulant'
+        Cellulant = <any> 'cellulant'
     }
 }

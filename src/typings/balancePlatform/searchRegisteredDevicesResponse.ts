@@ -19,7 +19,7 @@ export class SearchRegisteredDevicesResponse {
     * The total amount of registered SCA devices that match the query parameters.
     */
     'itemsTotal'?: number;
-    'link'?: Link | null;
+    'link'?: Link;
     /**
     * The total amount of list pages.
     */
@@ -41,7 +41,7 @@ export class SearchRegisteredDevicesResponse {
         {
             "name": "link",
             "baseName": "link",
-            "type": "Link | null"
+            "type": "Link"
         },
         {
             "name": "pagesTotal",

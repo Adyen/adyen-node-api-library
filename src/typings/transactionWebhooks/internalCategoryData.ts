@@ -20,7 +20,7 @@ export class InternalCategoryData {
     /**
     * **internal**
     */
-    'type'?: InternalCategoryData.TypeEnum;
+    'type'?: InternalCategoryData.TypeEnum = InternalCategoryData.TypeEnum.Internal;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class InternalCategoryData {
 
 export namespace InternalCategoryData {
     export enum TypeEnum {
-        Internal = 'internal'
+        Internal = <any> 'internal'
     }
 }

@@ -16,7 +16,7 @@ export class UninstallAndroidCertificateDetails {
     /**
     * Type of terminal action: Uninstall an Android certificate.
     */
-    'type'?: UninstallAndroidCertificateDetails.TypeEnum;
+    'type'?: UninstallAndroidCertificateDetails.TypeEnum = UninstallAndroidCertificateDetails.TypeEnum.UninstallAndroidCertificate;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class UninstallAndroidCertificateDetails {
 
 export namespace UninstallAndroidCertificateDetails {
     export enum TypeEnum {
-        UninstallAndroidCertificate = 'UninstallAndroidCertificate'
+        UninstallAndroidCertificate = <any> 'UninstallAndroidCertificate'
     }
 }

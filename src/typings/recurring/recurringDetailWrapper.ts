@@ -10,7 +10,7 @@
 import { RecurringDetail } from './recurringDetail';
 
 export class RecurringDetailWrapper {
-    'RecurringDetail'?: RecurringDetail | null;
+    'RecurringDetail'?: RecurringDetail;
 
     static discriminator: string | undefined = undefined;
 
@@ -18,7 +18,7 @@ export class RecurringDetailWrapper {
         {
             "name": "RecurringDetail",
             "baseName": "RecurringDetail",
-            "type": "RecurringDetail | null"
+            "type": "RecurringDetail"
         }    ];
 
     static getAttributeTypeMap() {

@@ -57,6 +57,6 @@ export class CheckoutAwaitAction {
 
 export namespace CheckoutAwaitAction {
     export enum TypeEnum {
-        Await = 'await'
+        Await = <any> 'await'
     }
 }

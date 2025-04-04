@@ -14,7 +14,7 @@ export class Split {
     * The unique identifier of the account to which the split amount is booked. Required if `type` is **MarketPlace** or **BalanceAccount**.  * [Classic Platforms integration](https://docs.adyen.com/classic-platforms): The [`accountCode`](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccount#request-accountCode) of the account to which the split amount is booked. * [Balance Platform](https://docs.adyen.com/adyen-for-platforms-model): The [`balanceAccountId`](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/balanceAccounts/_id_#path-id) of the account to which the split amount is booked.
     */
     'account'?: string;
-    'amount'?: SplitAmount | null;
+    'amount'?: SplitAmount;
     /**
     * Your description for the split item.
     */
@@ -39,7 +39,7 @@ export class Split {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "SplitAmount | null"
+            "type": "SplitAmount"
         },
         {
             "name": "description",
@@ -64,21 +64,21 @@ export class Split {
 
 export namespace Split {
     export enum TypeEnum {
-        AcquiringFees = 'AcquiringFees',
-        AdyenCommission = 'AdyenCommission',
-        AdyenFees = 'AdyenFees',
-        AdyenMarkup = 'AdyenMarkup',
-        BalanceAccount = 'BalanceAccount',
-        Commission = 'Commission',
-        Default = 'Default',
-        Interchange = 'Interchange',
-        MarketPlace = 'MarketPlace',
-        PaymentFee = 'PaymentFee',
-        Remainder = 'Remainder',
-        SchemeFee = 'SchemeFee',
-        Surcharge = 'Surcharge',
-        Tip = 'Tip',
-        TopUp = 'TopUp',
-        Vat = 'VAT'
+        AcquiringFees = <any> 'AcquiringFees',
+        AdyenCommission = <any> 'AdyenCommission',
+        AdyenFees = <any> 'AdyenFees',
+        AdyenMarkup = <any> 'AdyenMarkup',
+        BalanceAccount = <any> 'BalanceAccount',
+        Commission = <any> 'Commission',
+        Default = <any> 'Default',
+        Interchange = <any> 'Interchange',
+        MarketPlace = <any> 'MarketPlace',
+        PaymentFee = <any> 'PaymentFee',
+        Remainder = <any> 'Remainder',
+        SchemeFee = <any> 'SchemeFee',
+        Surcharge = <any> 'Surcharge',
+        Tip = <any> 'Tip',
+        TopUp = <any> 'TopUp',
+        Vat = <any> 'VAT'
     }
 }

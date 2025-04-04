@@ -16,7 +16,7 @@ export class UninstallAndroidAppDetails {
     /**
     * Type of terminal action: Uninstall an Android app.
     */
-    'type'?: UninstallAndroidAppDetails.TypeEnum;
+    'type'?: UninstallAndroidAppDetails.TypeEnum = UninstallAndroidAppDetails.TypeEnum.UninstallAndroidApp;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class UninstallAndroidAppDetails {
 
 export namespace UninstallAndroidAppDetails {
     export enum TypeEnum {
-        UninstallAndroidApp = 'UninstallAndroidApp'
+        UninstallAndroidApp = <any> 'UninstallAndroidApp'
     }
 }

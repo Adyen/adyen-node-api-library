@@ -31,7 +31,7 @@ export class PayUUpiDetails {
     /**
     * **payu_IN_upi**
     */
-    'type': PayUUpiDetails.TypeEnum;
+    'type': PayUUpiDetails.TypeEnum = PayUUpiDetails.TypeEnum.PayuInUpi;
     /**
     * The virtual payment address for UPI.
     */
@@ -78,6 +78,6 @@ export class PayUUpiDetails {
 
 export namespace PayUUpiDetails {
     export enum TypeEnum {
-        PayuInUpi = 'payu_IN_upi'
+        PayuInUpi = <any> 'payu_IN_upi'
     }
 }

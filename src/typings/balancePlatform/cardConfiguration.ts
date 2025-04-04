@@ -18,7 +18,7 @@ export class CardConfiguration {
     * Your app\'s URL, if you want to activate cards through your app. For example, **my-app://ref1236a7d**. A QR code is created based on this URL, and is included in the carrier. Before you use this field, reach out to your Adyen contact to set up the QR code process.   Maximum length: 255 characters.
     */
     'activationUrl'?: string;
-    'bulkAddress'?: BulkAddress | null;
+    'bulkAddress'?: BulkAddress;
     /**
     * The ID of the card image. This is the image that will be printed on the full front of the card.
     */
@@ -80,7 +80,7 @@ export class CardConfiguration {
         {
             "name": "bulkAddress",
             "baseName": "bulkAddress",
-            "type": "BulkAddress | null"
+            "type": "BulkAddress"
         },
         {
             "name": "cardImageId",

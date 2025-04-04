@@ -10,8 +10,8 @@
 import { Amount } from './amount';
 
 export class PermitRestriction {
-    'maxAmount'?: Amount | null;
-    'singleTransactionLimit'?: Amount | null;
+    'maxAmount'?: Amount;
+    'singleTransactionLimit'?: Amount;
     /**
     * Only a single payment can be made using this permit if set to true, otherwise multiple payments are allowed.
     */
@@ -23,12 +23,12 @@ export class PermitRestriction {
         {
             "name": "maxAmount",
             "baseName": "maxAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "singleTransactionLimit",
             "baseName": "singleTransactionLimit",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "singleUse",

@@ -19,18 +19,18 @@ export class PaymentDetailsResponse {
     * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
     */
     'additionalData'?: { [key: string]: string; };
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * Donation Token containing payment details for Adyen Giving.
     */
     'donationToken'?: string;
-    'fraudResult'?: FraudResult | null;
+    'fraudResult'?: FraudResult;
     /**
     * The reference used during the /payments request.
     */
     'merchantReference'?: string;
-    'order'?: CheckoutOrderResponse | null;
-    'paymentMethod'?: ResponsePaymentMethod | null;
+    'order'?: CheckoutOrderResponse;
+    'paymentMethod'?: ResponsePaymentMethod;
     /**
     * Adyen\'s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
@@ -51,8 +51,8 @@ export class PaymentDetailsResponse {
     * The shopperLocale.
     */
     'shopperLocale'?: string;
-    'threeDS2ResponseData'?: ThreeDS2ResponseData | null;
-    'threeDS2Result'?: ThreeDS2Result | null;
+    'threeDS2ResponseData'?: ThreeDS2ResponseData;
+    'threeDS2Result'?: ThreeDS2Result;
     /**
     * When non-empty, contains a value that you must submit to the `/payments/details` endpoint as `paymentData`.
     */
@@ -69,7 +69,7 @@ export class PaymentDetailsResponse {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "donationToken",
@@ -79,7 +79,7 @@ export class PaymentDetailsResponse {
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult | null"
+            "type": "FraudResult"
         },
         {
             "name": "merchantReference",
@@ -89,12 +89,12 @@ export class PaymentDetailsResponse {
         {
             "name": "order",
             "baseName": "order",
-            "type": "CheckoutOrderResponse | null"
+            "type": "CheckoutOrderResponse"
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "ResponsePaymentMethod | null"
+            "type": "ResponsePaymentMethod"
         },
         {
             "name": "pspReference",
@@ -124,12 +124,12 @@ export class PaymentDetailsResponse {
         {
             "name": "threeDS2ResponseData",
             "baseName": "threeDS2ResponseData",
-            "type": "ThreeDS2ResponseData | null"
+            "type": "ThreeDS2ResponseData"
         },
         {
             "name": "threeDS2Result",
             "baseName": "threeDS2Result",
-            "type": "ThreeDS2Result | null"
+            "type": "ThreeDS2Result"
         },
         {
             "name": "threeDSPaymentData",
@@ -144,19 +144,19 @@ export class PaymentDetailsResponse {
 
 export namespace PaymentDetailsResponse {
     export enum ResultCodeEnum {
-        AuthenticationFinished = 'AuthenticationFinished',
-        AuthenticationNotRequired = 'AuthenticationNotRequired',
-        Authorised = 'Authorised',
-        Cancelled = 'Cancelled',
-        ChallengeShopper = 'ChallengeShopper',
-        Error = 'Error',
-        IdentifyShopper = 'IdentifyShopper',
-        PartiallyAuthorised = 'PartiallyAuthorised',
-        Pending = 'Pending',
-        PresentToShopper = 'PresentToShopper',
-        Received = 'Received',
-        RedirectShopper = 'RedirectShopper',
-        Refused = 'Refused',
-        Success = 'Success'
+        AuthenticationFinished = <any> 'AuthenticationFinished',
+        AuthenticationNotRequired = <any> 'AuthenticationNotRequired',
+        Authorised = <any> 'Authorised',
+        Cancelled = <any> 'Cancelled',
+        ChallengeShopper = <any> 'ChallengeShopper',
+        Error = <any> 'Error',
+        IdentifyShopper = <any> 'IdentifyShopper',
+        PartiallyAuthorised = <any> 'PartiallyAuthorised',
+        Pending = <any> 'Pending',
+        PresentToShopper = <any> 'PresentToShopper',
+        Received = <any> 'Received',
+        RedirectShopper = <any> 'RedirectShopper',
+        Refused = <any> 'Refused',
+        Success = <any> 'Success'
     }
 }

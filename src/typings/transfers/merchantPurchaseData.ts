@@ -8,13 +8,18 @@
  */
 
 import { Airline } from './airline';
+import { Lodging } from './lodging';
 
 export class MerchantPurchaseData {
-    'airline'?: Airline | null;
+    'airline'?: Airline;
+    /**
+    * Lodging information.
+    */
+    'lodging'?: Array<Lodging>;
     /**
     * The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data
     */
-    'type': MerchantPurchaseData.TypeEnum;
+    'type': MerchantPurchaseData.TypeEnum = MerchantPurchaseData.TypeEnum.MerchantPurchaseData;
 
     static discriminator: string | undefined = undefined;
 
@@ -22,7 +27,12 @@ export class MerchantPurchaseData {
         {
             "name": "airline",
             "baseName": "airline",
-            "type": "Airline | null"
+            "type": "Airline"
+        },
+        {
+            "name": "lodging",
+            "baseName": "lodging",
+            "type": "Array<Lodging>"
         },
         {
             "name": "type",
@@ -37,6 +47,6 @@ export class MerchantPurchaseData {
 
 export namespace MerchantPurchaseData {
     export enum TypeEnum {
-        MerchantPurchaseData = 'merchantPurchaseData'
+        MerchantPurchaseData = <any> 'merchantPurchaseData'
     }
 }

@@ -86,9 +86,9 @@ export class IdentificationData {
 
 export namespace IdentificationData {
     export enum TypeEnum {
-        NationalIdNumber = 'nationalIdNumber',
-        Passport = 'passport',
-        DriversLicense = 'driversLicense',
-        IdentityCard = 'identityCard'
+        NationalIdNumber = <any> 'nationalIdNumber',
+        Passport = <any> 'passport',
+        DriversLicense = <any> 'driversLicense',
+        IdentityCard = <any> 'identityCard'
     }
 }

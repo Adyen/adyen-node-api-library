@@ -22,7 +22,7 @@ export class PlatformPayment {
     */
     'paymentMerchantReference'?: string;
     /**
-    * Specifies the nature of the transfer. This parameter helps categorize transfers so you can reconcile transactions at a later time, using the Balance Platform Accounting Report for [marketplaces](https://docs.adyen.com/marketplaces/reports-and-fees/balance-platform-accounting-report/) or [platforms](https://docs.adyen.com/platforms/reports-and-fees/balance-platform-accounting-report/).  Possible values:  * **AcquiringFees**: for the acquiring fee incurred on a transaction.  * **AdyenCommission**: for the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing).  * **AdyenFees**: for all the transaction fees due to Adyen. This is the sum of Adyen\'s commission and Adyen\'s markup.  * **AdyenMarkup**: for the transaction fee due to Adyen under [Interchange++ pricing](https://www.adyen.com/pricing).  * **BalanceAccount**: or the sale amount of a transaction.  * **Commission**: for your platform\'s commission on a transaction.  * **Interchange**: for the interchange fee (fee paid to the issuer) incurred on a transaction.  * **PaymentFee**: for all of the transaction fees.  * **Remainder**: for the left over amount after currency conversion.  * **SchemeFee**: for the scheme fee incurred on a transaction. This is the sum of the interchange fees and the acquiring fees.  * **Surcharge**: for the surcharge paid by the customer on a transaction.  * **Tip**: for the tip paid by the customer.  * **TopUp**: for an incoming transfer to top up your user\'s balance account.  * **VAT**: for the Value Added Tax.
+    * Specifies the nature of the transfer. This parameter helps categorize transfers so you can reconcile transactions at a later time, using the Balance Platform Accounting Report for [marketplaces](https://docs.adyen.com/marketplaces/reports-and-fees/balance-platform-accounting-report/) or [platforms](https://docs.adyen.com/platforms/reports-and-fees/balance-platform-accounting-report/).  Possible values:  * **AcquiringFees**: for the acquiring fee incurred on a transaction.  * **AdyenCommission**: for the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing).  * **AdyenFees**: for all the transaction fees due to Adyen. This is the sum of Adyen\'s commission and Adyen\'s markup.  * **AdyenMarkup**: for the transaction fee due to Adyen under [Interchange++ pricing](https://www.adyen.com/pricing).  * **BalanceAccount**: or the sale amount of a transaction.  * **Commission**: for your platform\'s commission on a transaction.  * **DCCPlatformCommission**: for the DCC Commission for the platform on a transaction.  * **Interchange**: for the interchange fee (fee paid to the issuer) incurred on a transaction.  * **PaymentFee**: for all of the transaction fees.  * **Remainder**: for the left over amount after currency conversion.  * **SchemeFee**: for the scheme fee incurred on a transaction. This is the sum of the interchange fees and the acquiring fees.  * **Surcharge**: for the surcharge paid by the customer on a transaction.  * **Tip**: for the tip paid by the customer.  * **TopUp**: for an incoming transfer to top up your user\'s balance account.  * **VAT**: for the Value Added Tax.
     */
     'platformPaymentType'?: PlatformPayment.PlatformPaymentTypeEnum;
     /**
@@ -32,7 +32,7 @@ export class PlatformPayment {
     /**
     * **platformPayment**
     */
-    'type'?: PlatformPayment.TypeEnum;
+    'type'?: PlatformPayment.TypeEnum = PlatformPayment.TypeEnum.PlatformPayment;
 
     static discriminator: string | undefined = undefined;
 
@@ -75,23 +75,24 @@ export class PlatformPayment {
 
 export namespace PlatformPayment {
     export enum PlatformPaymentTypeEnum {
-        AcquiringFees = 'AcquiringFees',
-        AdyenCommission = 'AdyenCommission',
-        AdyenFees = 'AdyenFees',
-        AdyenMarkup = 'AdyenMarkup',
-        BalanceAccount = 'BalanceAccount',
-        Commission = 'Commission',
-        Default = 'Default',
-        Interchange = 'Interchange',
-        PaymentFee = 'PaymentFee',
-        Remainder = 'Remainder',
-        SchemeFee = 'SchemeFee',
-        Surcharge = 'Surcharge',
-        Tip = 'Tip',
-        TopUp = 'TopUp',
-        Vat = 'VAT'
+        AcquiringFees = <any> 'AcquiringFees',
+        AdyenCommission = <any> 'AdyenCommission',
+        AdyenFees = <any> 'AdyenFees',
+        AdyenMarkup = <any> 'AdyenMarkup',
+        BalanceAccount = <any> 'BalanceAccount',
+        Commission = <any> 'Commission',
+        DccPlatformCommission = <any> 'DCCPlatformCommission',
+        Default = <any> 'Default',
+        Interchange = <any> 'Interchange',
+        PaymentFee = <any> 'PaymentFee',
+        Remainder = <any> 'Remainder',
+        SchemeFee = <any> 'SchemeFee',
+        Surcharge = <any> 'Surcharge',
+        Tip = <any> 'Tip',
+        TopUp = <any> 'TopUp',
+        Vat = <any> 'VAT'
     }
     export enum TypeEnum {
-        PlatformPayment = 'platformPayment'
+        PlatformPayment = <any> 'platformPayment'
     }
 }

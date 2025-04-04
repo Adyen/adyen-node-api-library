@@ -11,7 +11,7 @@ import { Company } from './company';
 import { PaginationLinks } from './paginationLinks';
 
 export class ListCompanyResponse {
-    '_links'?: PaginationLinks | null;
+    '_links'?: PaginationLinks;
     /**
     * The list of companies.
     */
@@ -31,7 +31,7 @@ export class ListCompanyResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks | null"
+            "type": "PaginationLinks"
         },
         {
             "name": "data",

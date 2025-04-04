@@ -57,24 +57,24 @@ export class TaxReportingClassification {
 
 export namespace TaxReportingClassification {
     export enum BusinessTypeEnum {
-        Other = 'other',
-        ListedPublicCompany = 'listedPublicCompany',
-        SubsidiaryOfListedPublicCompany = 'subsidiaryOfListedPublicCompany',
-        GovernmentalOrganization = 'governmentalOrganization',
-        InternationalOrganization = 'internationalOrganization',
-        FinancialInstitution = 'financialInstitution'
+        Other = <any> 'other',
+        ListedPublicCompany = <any> 'listedPublicCompany',
+        SubsidiaryOfListedPublicCompany = <any> 'subsidiaryOfListedPublicCompany',
+        GovernmentalOrganization = <any> 'governmentalOrganization',
+        InternationalOrganization = <any> 'internationalOrganization',
+        FinancialInstitution = <any> 'financialInstitution'
     }
     export enum MainSourceOfIncomeEnum {
-        BusinessOperation = 'businessOperation',
-        RealEstateSales = 'realEstateSales',
-        InvestmentInterestOrRoyalty = 'investmentInterestOrRoyalty',
-        PropertyRental = 'propertyRental',
-        Other = 'other'
+        BusinessOperation = <any> 'businessOperation',
+        RealEstateSales = <any> 'realEstateSales',
+        InvestmentInterestOrRoyalty = <any> 'investmentInterestOrRoyalty',
+        PropertyRental = <any> 'propertyRental',
+        Other = <any> 'other'
     }
     export enum TypeEnum {
-        NonFinancialNonReportable = 'nonFinancialNonReportable',
-        FinancialNonReportable = 'financialNonReportable',
-        NonFinancialActive = 'nonFinancialActive',
-        NonFinancialPassive = 'nonFinancialPassive'
+        NonFinancialNonReportable = <any> 'nonFinancialNonReportable',
+        FinancialNonReportable = <any> 'financialNonReportable',
+        NonFinancialActive = <any> 'nonFinancialActive',
+        NonFinancialPassive = <any> 'nonFinancialPassive'
     }
 }

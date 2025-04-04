@@ -15,8 +15,8 @@ export class CounterpartyInfoV3 {
     * The unique identifier of the counterparty [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).
     */
     'balanceAccountId'?: string;
-    'bankAccount'?: BankAccountV3 | null;
-    'card'?: Card | null;
+    'bankAccount'?: BankAccountV3;
+    'card'?: Card;
     /**
     * The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).
     */
@@ -33,12 +33,12 @@ export class CounterpartyInfoV3 {
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccountV3 | null"
+            "type": "BankAccountV3"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null"
+            "type": "Card"
         },
         {
             "name": "transferInstrumentId",

@@ -10,7 +10,7 @@
 import { TransactionRule } from './transactionRule';
 
 export class TransactionRuleResponse {
-    'transactionRule'?: TransactionRule | null;
+    'transactionRule'?: TransactionRule;
 
     static discriminator: string | undefined = undefined;
 
@@ -18,7 +18,7 @@ export class TransactionRuleResponse {
         {
             "name": "transactionRule",
             "baseName": "transactionRule",
-            "type": "TransactionRule | null"
+            "type": "TransactionRule"
         }    ];
 
     static getAttributeTypeMap() {

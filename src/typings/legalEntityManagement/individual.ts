@@ -16,24 +16,24 @@ import { TaxInformation } from './taxInformation';
 import { WebData } from './webData';
 
 export class Individual {
-    'birthData'?: BirthData | null;
+    'birthData'?: BirthData;
     /**
     * The email address of the legal entity.
     */
     'email'?: string;
-    'identificationData'?: IdentificationData | null;
+    'identificationData'?: IdentificationData;
     'name': Name;
     /**
     * The individual\'s nationality.
     */
     'nationality'?: string;
-    'phone'?: PhoneNumber | null;
+    'phone'?: PhoneNumber;
     'residentialAddress': Address;
     /**
     * The tax information of the individual.
     */
     'taxInformation'?: Array<TaxInformation>;
-    'webData'?: WebData | null;
+    'webData'?: WebData;
 
     static discriminator: string | undefined = undefined;
 
@@ -41,7 +41,7 @@ export class Individual {
         {
             "name": "birthData",
             "baseName": "birthData",
-            "type": "BirthData | null"
+            "type": "BirthData"
         },
         {
             "name": "email",
@@ -51,7 +51,7 @@ export class Individual {
         {
             "name": "identificationData",
             "baseName": "identificationData",
-            "type": "IdentificationData | null"
+            "type": "IdentificationData"
         },
         {
             "name": "name",
@@ -66,7 +66,7 @@ export class Individual {
         {
             "name": "phone",
             "baseName": "phone",
-            "type": "PhoneNumber | null"
+            "type": "PhoneNumber"
         },
         {
             "name": "residentialAddress",
@@ -81,7 +81,7 @@ export class Individual {
         {
             "name": "webData",
             "baseName": "webData",
-            "type": "WebData | null"
+            "type": "WebData"
         }    ];
 
     static getAttributeTypeMap() {

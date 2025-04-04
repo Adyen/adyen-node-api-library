@@ -16,7 +16,7 @@ export class MobilePayDetails {
     /**
     * **mobilepay**
     */
-    'type'?: MobilePayDetails.TypeEnum;
+    'type'?: MobilePayDetails.TypeEnum = MobilePayDetails.TypeEnum.Mobilepay;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class MobilePayDetails {
 
 export namespace MobilePayDetails {
     export enum TypeEnum {
-        Mobilepay = 'mobilepay'
+        Mobilepay = <any> 'mobilepay'
     }
 }

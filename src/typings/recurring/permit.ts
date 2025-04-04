@@ -18,7 +18,7 @@ export class Permit {
     * The profile to apply to this permit (when using the shared permits model).
     */
     'profileReference'?: string;
-    'restriction'?: PermitRestriction | null;
+    'restriction'?: PermitRestriction;
     /**
     * The key to link permit requests to permit results.
     */
@@ -44,7 +44,7 @@ export class Permit {
         {
             "name": "restriction",
             "baseName": "restriction",
-            "type": "PermitRestriction | null"
+            "type": "PermitRestriction"
         },
         {
             "name": "resultKey",

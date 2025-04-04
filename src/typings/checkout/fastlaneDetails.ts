@@ -31,7 +31,7 @@ export class FastlaneDetails {
     /**
     * **fastlane**
     */
-    'type': FastlaneDetails.TypeEnum;
+    'type': FastlaneDetails.TypeEnum = FastlaneDetails.TypeEnum.Fastlane;
 
     static discriminator: string | undefined = undefined;
 
@@ -69,6 +69,6 @@ export class FastlaneDetails {
 
 export namespace FastlaneDetails {
     export enum TypeEnum {
-        Fastlane = 'fastlane'
+        Fastlane = <any> 'fastlane'
     }
 }

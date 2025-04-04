@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 
 export class StoredValueBalanceCheckResponse {
-    'currentBalance'?: Amount | null;
+    'currentBalance'?: Amount;
     /**
     * Adyen\'s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
@@ -34,7 +34,7 @@ export class StoredValueBalanceCheckResponse {
         {
             "name": "currentBalance",
             "baseName": "currentBalance",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "pspReference",
@@ -64,9 +64,9 @@ export class StoredValueBalanceCheckResponse {
 
 export namespace StoredValueBalanceCheckResponse {
     export enum ResultCodeEnum {
-        Success = 'Success',
-        Refused = 'Refused',
-        Error = 'Error',
-        NotEnoughBalance = 'NotEnoughBalance'
+        Success = <any> 'Success',
+        Refused = <any> 'Refused',
+        Error = <any> 'Error',
+        NotEnoughBalance = <any> 'NotEnoughBalance'
     }
 }

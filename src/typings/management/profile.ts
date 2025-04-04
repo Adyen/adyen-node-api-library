@@ -33,9 +33,9 @@ export class Profile {
     * For `authType` **wpa-eap** or **wpa2-eap**. Possible values: **tls**, **peap**, **leap**, **fast**
     */
     'eap'?: string;
-    'eapCaCert'?: any | null;
-    'eapClientCert'?: any | null;
-    'eapClientKey'?: any | null;
+    'eapCaCert'?: any;
+    'eapClientCert'?: any;
+    'eapClientKey'?: any;
     /**
     * For `eap` **tls**. The password of the RSA key file, if that file is password-protected.
     */
@@ -44,7 +44,7 @@ export class Profile {
     * For `authType` **wpa-eap** or **wpa2-eap**. The EAP-PEAP username from your MS-CHAP account. Must match the configuration of your RADIUS server.
     */
     'eapIdentity'?: string;
-    'eapIntermediateCert'?: any | null;
+    'eapIntermediateCert'?: any;
     /**
     * For `eap` **peap**. The EAP-PEAP password from your MS-CHAP account. Must match the configuration of your RADIUS server.
     */
@@ -106,17 +106,17 @@ export class Profile {
         {
             "name": "eapCaCert",
             "baseName": "eapCaCert",
-            "type": "any | null"
+            "type": "any"
         },
         {
             "name": "eapClientCert",
             "baseName": "eapClientCert",
-            "type": "any | null"
+            "type": "any"
         },
         {
             "name": "eapClientKey",
             "baseName": "eapClientKey",
-            "type": "any | null"
+            "type": "any"
         },
         {
             "name": "eapClientPwd",
@@ -131,7 +131,7 @@ export class Profile {
         {
             "name": "eapIntermediateCert",
             "baseName": "eapIntermediateCert",
-            "type": "any | null"
+            "type": "any"
         },
         {
             "name": "eapPwd",

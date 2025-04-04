@@ -8,96 +8,44 @@
  */
 
 import { AccountInfo } from './accountInfo';
-import { AchDetails } from './achDetails';
-import { AffirmDetails } from './affirmDetails';
-import { AfterpayDetails } from './afterpayDetails';
-import { AmazonPayDetails } from './amazonPayDetails';
 import { Amount } from './amount';
-import { AncvDetails } from './ancvDetails';
-import { AndroidPayDetails } from './androidPayDetails';
-import { ApplePayDetails } from './applePayDetails';
 import { ApplicationInfo } from './applicationInfo';
 import { AuthenticationData } from './authenticationData';
-import { BacsDirectDebitDetails } from './bacsDirectDebitDetails';
-import { BillDeskDetails } from './billDeskDetails';
 import { BillingAddress } from './billingAddress';
-import { BlikDetails } from './blikDetails';
 import { BrowserInfo } from './browserInfo';
-import { CardDetails } from './cardDetails';
-import { CashAppDetails } from './cashAppDetails';
-import { CellulantDetails } from './cellulantDetails';
 import { CheckoutBankAccount } from './checkoutBankAccount';
 import { Company } from './company';
 import { DeliveryAddress } from './deliveryAddress';
-import { DokuDetails } from './dokuDetails';
-import { DotpayDetails } from './dotpayDetails';
-import { DragonpayDetails } from './dragonpayDetails';
-import { EBankingFinlandDetails } from './eBankingFinlandDetails';
-import { EcontextVoucherDetails } from './econtextVoucherDetails';
-import { EftDetails } from './eftDetails';
 import { EncryptedOrderData } from './encryptedOrderData';
-import { FastlaneDetails } from './fastlaneDetails';
 import { ForexQuote } from './forexQuote';
 import { FundOrigin } from './fundOrigin';
 import { FundRecipient } from './fundRecipient';
-import { GenericIssuerPaymentMethodDetails } from './genericIssuerPaymentMethodDetails';
-import { GiropayDetails } from './giropayDetails';
-import { GooglePayDetails } from './googlePayDetails';
-import { IdealDetails } from './idealDetails';
 import { Installments } from './installments';
-import { KlarnaDetails } from './klarnaDetails';
 import { LineItem } from './lineItem';
 import { Mandate } from './mandate';
-import { MasterpassDetails } from './masterpassDetails';
-import { MbwayDetails } from './mbwayDetails';
 import { MerchantRiskIndicator } from './merchantRiskIndicator';
-import { MobilePayDetails } from './mobilePayDetails';
-import { MolPayDetails } from './molPayDetails';
 import { Name } from './name';
-import { OpenInvoiceDetails } from './openInvoiceDetails';
-import { PayByBankAISDirectDebitDetails } from './payByBankAISDirectDebitDetails';
-import { PayByBankDetails } from './payByBankDetails';
-import { PayPalDetails } from './payPalDetails';
-import { PayPayDetails } from './payPayDetails';
-import { PayToDetails } from './payToDetails';
-import { PayUUpiDetails } from './payUUpiDetails';
-import { PayWithGoogleDetails } from './payWithGoogleDetails';
-import { PaymentDetails } from './paymentDetails';
-import { PixDetails } from './pixDetails';
+import { PaymentRequestPaymentMethod } from './paymentRequestPaymentMethod';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
-import { PseDetails } from './pseDetails';
-import { RatepayDetails } from './ratepayDetails';
 import { RiskData } from './riskData';
-import { RivertyDetails } from './rivertyDetails';
-import { SamsungPayDetails } from './samsungPayDetails';
-import { SepaDirectDebitDetails } from './sepaDirectDebitDetails';
 import { Split } from './split';
-import { StoredPaymentMethodDetails } from './storedPaymentMethodDetails';
 import { SubMerchantInfo } from './subMerchantInfo';
 import { ThreeDS2RequestFields } from './threeDS2RequestFields';
 import { ThreeDSecureData } from './threeDSecureData';
-import { TwintDetails } from './twintDetails';
-import { UpiCollectDetails } from './upiCollectDetails';
-import { UpiIntentDetails } from './upiIntentDetails';
-import { VippsDetails } from './vippsDetails';
-import { VisaCheckoutDetails } from './visaCheckoutDetails';
-import { WeChatPayDetails } from './weChatPayDetails';
-import { WeChatPayMiniProgramDetails } from './weChatPayMiniProgramDetails';
-import { ZipDetails } from './zipDetails';
 
 export class PaymentRequest {
-    'accountInfo'?: AccountInfo | null;
-    'additionalAmount'?: Amount | null;
+    'accountInfo'?: AccountInfo;
+    'additionalAmount'?: Amount;
     /**
     * This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
     'additionalData'?: { [key: string]: string; };
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
-    'authenticationData'?: AuthenticationData | null;
-    'bankAccount'?: CheckoutBankAccount | null;
-    'billingAddress'?: BillingAddress | null;
-    'browserInfo'?: BrowserInfo | null;
+    'applicationInfo'?: ApplicationInfo;
+    'authenticationData'?: AuthenticationData;
+    'bankAccount'?: CheckoutBankAccount;
+    'billingAddress'?: BillingAddress;
+    'browserInfo'?: BrowserInfo;
     /**
     * The delay between the authorisation and scheduled auto-capture, specified in hours.
     */
@@ -110,7 +58,7 @@ export class PaymentRequest {
     * Checkout attempt ID that corresponds to the Id generated by the client SDK for tracking user payment journey.
     */
     'checkoutAttemptId'?: string;
-    'company'?: Company | null;
+    'company'?: Company;
     /**
     * Conversion ID that corresponds to the Id generated by the client SDK for tracking user payment journey.
     *
@@ -126,12 +74,12 @@ export class PaymentRequest {
     * The shopper\'s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
     */
     'dateOfBirth'?: Date;
-    'dccQuote'?: ForexQuote | null;
+    'dccQuote'?: ForexQuote;
     /**
     * The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
     */
     'deliverAt'?: Date;
-    'deliveryAddress'?: DeliveryAddress | null;
+    'deliveryAddress'?: DeliveryAddress;
     /**
     * The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
     *
@@ -163,13 +111,13 @@ export class PaymentRequest {
     * An integer value that is added to the normal fraud score. The value can be either positive or negative.
     */
     'fraudOffset'?: number;
-    'fundOrigin'?: FundOrigin | null;
-    'fundRecipient'?: FundRecipient | null;
+    'fundOrigin'?: FundOrigin;
+    'fundRecipient'?: FundRecipient;
     /**
     * The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**
     */
     'industryUsage'?: PaymentRequest.IndustryUsageEnum;
-    'installments'?: Installments | null;
+    'installments'?: Installments;
     /**
     * Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Riverty, and Zip.
     */
@@ -178,7 +126,7 @@ export class PaymentRequest {
     * The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If not supplied, left empty, or for cross-border transactions, **shopperStatement** is used.  Adyen currently supports the ja-Kana character set for Visa and Mastercard payments in Japan using Japanese cards. This character set supports:  * UTF-8 based Katakana, capital letters, numbers and special characters.  * Half-width or full-width characters.
     */
     'localizedShopperStatement'?: { [key: string]: string; };
-    'mandate'?: Mandate | null;
+    'mandate'?: Mandate;
     /**
     * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
     */
@@ -191,13 +139,13 @@ export class PaymentRequest {
     * This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. > We strongly recommend you send the `merchantOrderReference` value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide `retry.orderAttemptNumber`, `retry.chainAttemptNumber`, and `retry.skipRetry` values in `PaymentRequest.additionalData`.
     */
     'merchantOrderReference'?: string;
-    'merchantRiskIndicator'?: MerchantRiskIndicator | null;
+    'merchantRiskIndicator'?: MerchantRiskIndicator;
     /**
     * Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\". * Maximum 20 characters per key. * Maximum 80 characters per value. 
     */
     'metadata'?: { [key: string]: string; };
-    'mpiData'?: ThreeDSecureData | null;
-    'order'?: EncryptedOrderData | null;
+    'mpiData'?: ThreeDSecureData;
+    'order'?: EncryptedOrderData;
     /**
     * When you are doing multiple partial (gift card) payments, this is the `pspReference` of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the `merchantOrderReference`instead.
     */
@@ -206,11 +154,8 @@ export class PaymentRequest {
     * Required for the 3D Secure 2 `channel` **Web** integration.  Set this parameter to the origin URL of the page that you are loading the 3D Secure Component from.
     */
     'origin'?: string;
-    /**
-    * The type and required details of a payment method to use.
-    */
-    'paymentMethod': AchDetails | AffirmDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | FastlaneDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayPayDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PixDetails | PseDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
+    'paymentMethod': PaymentRequestPaymentMethod;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
     */
@@ -239,7 +184,7 @@ export class PaymentRequest {
     * The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value. > The URL must not include personally identifiable information (PII), for example name or email address.
     */
     'returnUrl': string;
-    'riskData'?: RiskData | null;
+    'riskData'?: RiskData;
     /**
     * The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.  For example: 2020-07-18T15:42:40.428+01:00
     */
@@ -264,7 +209,7 @@ export class PaymentRequest {
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
     'shopperLocale'?: string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
@@ -297,14 +242,14 @@ export class PaymentRequest {
     * The shopper\'s telephone number.
     */
     'telephoneNumber'?: string;
-    'threeDS2RequestData'?: ThreeDS2RequestFields | null;
+    'threeDS2RequestData'?: ThreeDS2RequestFields;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     *
 	* @deprecated since Adyen Checkout API v69
 	* Use `authenticationData.authenticationOnly` instead.
     */
-    'threeDSAuthenticationOnly'?: boolean;
+    'threeDSAuthenticationOnly'?: boolean = false;
     /**
     * Set to true if the payment should be routed to a trusted MID.
     */
@@ -316,12 +261,12 @@ export class PaymentRequest {
         {
             "name": "accountInfo",
             "baseName": "accountInfo",
-            "type": "AccountInfo | null"
+            "type": "AccountInfo"
         },
         {
             "name": "additionalAmount",
             "baseName": "additionalAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "additionalData",
@@ -336,27 +281,27 @@ export class PaymentRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo"
         },
         {
             "name": "authenticationData",
             "baseName": "authenticationData",
-            "type": "AuthenticationData | null"
+            "type": "AuthenticationData"
         },
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "CheckoutBankAccount | null"
+            "type": "CheckoutBankAccount"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "BillingAddress | null"
+            "type": "BillingAddress"
         },
         {
             "name": "browserInfo",
             "baseName": "browserInfo",
-            "type": "BrowserInfo | null"
+            "type": "BrowserInfo"
         },
         {
             "name": "captureDelayHours",
@@ -376,7 +321,7 @@ export class PaymentRequest {
         {
             "name": "company",
             "baseName": "company",
-            "type": "Company | null"
+            "type": "Company"
         },
         {
             "name": "conversionId",
@@ -396,7 +341,7 @@ export class PaymentRequest {
         {
             "name": "dccQuote",
             "baseName": "dccQuote",
-            "type": "ForexQuote | null"
+            "type": "ForexQuote"
         },
         {
             "name": "deliverAt",
@@ -406,7 +351,7 @@ export class PaymentRequest {
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "DeliveryAddress | null"
+            "type": "DeliveryAddress"
         },
         {
             "name": "deliveryDate",
@@ -446,12 +391,12 @@ export class PaymentRequest {
         {
             "name": "fundOrigin",
             "baseName": "fundOrigin",
-            "type": "FundOrigin | null"
+            "type": "FundOrigin"
         },
         {
             "name": "fundRecipient",
             "baseName": "fundRecipient",
-            "type": "FundRecipient | null"
+            "type": "FundRecipient"
         },
         {
             "name": "industryUsage",
@@ -461,7 +406,7 @@ export class PaymentRequest {
         {
             "name": "installments",
             "baseName": "installments",
-            "type": "Installments | null"
+            "type": "Installments"
         },
         {
             "name": "lineItems",
@@ -476,7 +421,7 @@ export class PaymentRequest {
         {
             "name": "mandate",
             "baseName": "mandate",
-            "type": "Mandate | null"
+            "type": "Mandate"
         },
         {
             "name": "mcc",
@@ -496,7 +441,7 @@ export class PaymentRequest {
         {
             "name": "merchantRiskIndicator",
             "baseName": "merchantRiskIndicator",
-            "type": "MerchantRiskIndicator | null"
+            "type": "MerchantRiskIndicator"
         },
         {
             "name": "metadata",
@@ -506,12 +451,12 @@ export class PaymentRequest {
         {
             "name": "mpiData",
             "baseName": "mpiData",
-            "type": "ThreeDSecureData | null"
+            "type": "ThreeDSecureData"
         },
         {
             "name": "order",
             "baseName": "order",
-            "type": "EncryptedOrderData | null"
+            "type": "EncryptedOrderData"
         },
         {
             "name": "orderReference",
@@ -526,12 +471,12 @@ export class PaymentRequest {
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "AchDetails | AffirmDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DotpayDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | FastlaneDetails | GenericIssuerPaymentMethodDetails | GiropayDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayPayDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PixDetails | PseDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails"
+            "type": "PaymentRequestPaymentMethod"
         },
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "recurringExpiry",
@@ -571,7 +516,7 @@ export class PaymentRequest {
         {
             "name": "riskData",
             "baseName": "riskData",
-            "type": "RiskData | null"
+            "type": "RiskData"
         },
         {
             "name": "sessionValidity",
@@ -606,7 +551,7 @@ export class PaymentRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name"
         },
         {
             "name": "shopperReference",
@@ -651,7 +596,7 @@ export class PaymentRequest {
         {
             "name": "threeDS2RequestData",
             "baseName": "threeDS2RequestData",
-            "type": "ThreeDS2RequestFields | null"
+            "type": "ThreeDS2RequestFields"
         },
         {
             "name": "threeDSAuthenticationOnly",
@@ -671,28 +616,28 @@ export class PaymentRequest {
 
 export namespace PaymentRequest {
     export enum ChannelEnum {
-        IOs = 'iOS',
-        Android = 'Android',
-        Web = 'Web'
+        IOs = <any> 'iOS',
+        Android = <any> 'Android',
+        Web = <any> 'Web'
     }
     export enum EntityTypeEnum {
-        NaturalPerson = 'NaturalPerson',
-        CompanyName = 'CompanyName'
+        NaturalPerson = <any> 'NaturalPerson',
+        CompanyName = <any> 'CompanyName'
     }
     export enum IndustryUsageEnum {
-        DelayedCharge = 'delayedCharge',
-        Installment = 'installment',
-        NoShow = 'noShow'
+        DelayedCharge = <any> 'delayedCharge',
+        Installment = <any> 'installment',
+        NoShow = <any> 'noShow'
     }
     export enum RecurringProcessingModelEnum {
-        CardOnFile = 'CardOnFile',
-        Subscription = 'Subscription',
-        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
+        CardOnFile = <any> 'CardOnFile',
+        Subscription = <any> 'Subscription',
+        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
     }
     export enum ShopperInteractionEnum {
-        Ecommerce = 'Ecommerce',
-        ContAuth = 'ContAuth',
-        Moto = 'Moto',
-        Pos = 'POS'
+        Ecommerce = <any> 'Ecommerce',
+        ContAuth = <any> 'ContAuth',
+        Moto = <any> 'Moto',
+        Pos = <any> 'POS'
     }
 }

@@ -14,7 +14,7 @@ export class CartesBancairesInfo {
     * Cartes Bancaires SIRET. Format: 14 digits.
     */
     'siret': string;
-    'transactionDescription'?: TransactionDescriptionInfo | null;
+    'transactionDescription'?: TransactionDescriptionInfo;
 
     static discriminator: string | undefined = undefined;
 
@@ -27,7 +27,7 @@ export class CartesBancairesInfo {
         {
             "name": "transactionDescription",
             "baseName": "transactionDescription",
-            "type": "TransactionDescriptionInfo | null"
+            "type": "TransactionDescriptionInfo"
         }    ];
 
     static getAttributeTypeMap() {

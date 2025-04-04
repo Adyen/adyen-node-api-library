@@ -55,6 +55,6 @@ export class TerminalBoardingNotificationRequest {
 
 export namespace TerminalBoardingNotificationRequest {
     export enum TypeEnum {
-        TerminalBoardingTriggered = 'terminalBoarding.triggered'
+        TerminalBoardingTriggered = <any> 'terminalBoarding.triggered'
     }
 }

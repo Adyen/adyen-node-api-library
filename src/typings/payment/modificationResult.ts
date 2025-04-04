@@ -48,14 +48,14 @@ export class ModificationResult {
 
 export namespace ModificationResult {
     export enum ResponseEnum {
-        CaptureReceived = '[capture-received]',
-        CancelReceived = '[cancel-received]',
-        RefundReceived = '[refund-received]',
-        CancelOrRefundReceived = '[cancelOrRefund-received]',
-        AdjustAuthorisationReceived = '[adjustAuthorisation-received]',
-        DonationReceived = '[donation-received]',
-        TechnicalCancelReceived = '[technical-cancel-received]',
-        VoidPendingRefundReceived = '[voidPendingRefund-received]',
-        Authorised = 'Authorised'
+        CaptureReceived = <any> '[capture-received]',
+        CancelReceived = <any> '[cancel-received]',
+        RefundReceived = <any> '[refund-received]',
+        CancelOrRefundReceived = <any> '[cancelOrRefund-received]',
+        AdjustAuthorisationReceived = <any> '[adjustAuthorisation-received]',
+        DonationReceived = <any> '[donation-received]',
+        TechnicalCancelReceived = <any> '[technical-cancel-received]',
+        VoidPendingRefundReceived = <any> '[voidPendingRefund-received]',
+        Authorised = <any> 'Authorised'
     }
 }

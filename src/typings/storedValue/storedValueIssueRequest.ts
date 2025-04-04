@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 
 export class StoredValueIssueRequest {
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
@@ -40,7 +40,7 @@ export class StoredValueIssueRequest {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "merchantAccount",
@@ -85,9 +85,9 @@ export class StoredValueIssueRequest {
 
 export namespace StoredValueIssueRequest {
     export enum ShopperInteractionEnum {
-        Ecommerce = 'Ecommerce',
-        ContAuth = 'ContAuth',
-        Moto = 'Moto',
-        Pos = 'POS'
+        Ecommerce = <any> 'Ecommerce',
+        ContAuth = <any> 'ContAuth',
+        Moto = <any> 'Moto',
+        Pos = <any> 'POS'
     }
 }

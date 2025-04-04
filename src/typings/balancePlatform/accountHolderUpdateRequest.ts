@@ -23,7 +23,7 @@ export class AccountHolderUpdateRequest {
     /**
 	* @deprecated 
     */
-    'contactDetails'?: ContactDetails | null;
+    'contactDetails'?: ContactDetails;
     /**
     * Your description for the account holder.
     */
@@ -73,7 +73,7 @@ export class AccountHolderUpdateRequest {
         {
             "name": "contactDetails",
             "baseName": "contactDetails",
-            "type": "ContactDetails | null"
+            "type": "ContactDetails"
         },
         {
             "name": "description",
@@ -123,8 +123,8 @@ export class AccountHolderUpdateRequest {
 
 export namespace AccountHolderUpdateRequest {
     export enum StatusEnum {
-        Active = 'active',
-        Closed = 'closed',
-        Suspended = 'suspended'
+        Active = <any> 'active',
+        Closed = <any> 'closed',
+        Suspended = <any> 'suspended'
     }
 }

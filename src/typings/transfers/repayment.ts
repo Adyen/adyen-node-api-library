@@ -15,8 +15,8 @@ export class Repayment {
     * The repayment that is deducted daily from incoming net volume, in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).
     */
     'basisPoints': number;
-    'term'?: RepaymentTerm | null;
-    'threshold'?: ThresholdRepayment | null;
+    'term'?: RepaymentTerm;
+    'threshold'?: ThresholdRepayment;
 
     static discriminator: string | undefined = undefined;
 
@@ -29,12 +29,12 @@ export class Repayment {
         {
             "name": "term",
             "baseName": "term",
-            "type": "RepaymentTerm | null"
+            "type": "RepaymentTerm"
         },
         {
             "name": "threshold",
             "baseName": "threshold",
-            "type": "ThresholdRepayment | null"
+            "type": "ThresholdRepayment"
         }    ];
 
     static getAttributeTypeMap() {

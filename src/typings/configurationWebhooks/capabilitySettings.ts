@@ -10,11 +10,23 @@
 import { Amount } from './amount';
 
 export class CapabilitySettings {
+    /**
+    * 
+    */
     'amountPerIndustry'?: { [key: string]: Amount; };
+    /**
+    * 
+    */
     'authorizedCardUsers'?: boolean;
+    /**
+    * 
+    */
     'fundingSource'?: Array<CapabilitySettings.FundingSourceEnum>;
+    /**
+    * 
+    */
     'interval'?: CapabilitySettings.IntervalEnum;
-    'maxAmount'?: Amount | null;
+    'maxAmount'?: Amount;
 
     static discriminator: string | undefined = undefined;
 
@@ -42,7 +54,7 @@ export class CapabilitySettings {
         {
             "name": "maxAmount",
             "baseName": "maxAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         }    ];
 
     static getAttributeTypeMap() {
@@ -52,13 +64,13 @@ export class CapabilitySettings {
 
 export namespace CapabilitySettings {
     export enum FundingSourceEnum {
-        Credit = 'credit',
-        Debit = 'debit',
-        Prepaid = 'prepaid'
+        Credit = <any> 'credit',
+        Debit = <any> 'debit',
+        Prepaid = <any> 'prepaid'
     }
     export enum IntervalEnum {
-        Daily = 'daily',
-        Monthly = 'monthly',
-        Weekly = 'weekly'
+        Daily = <any> 'daily',
+        Monthly = <any> 'monthly',
+        Weekly = <any> 'weekly'
     }
 }

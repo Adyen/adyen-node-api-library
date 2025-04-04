@@ -19,7 +19,7 @@ export class PaymentMethodsRequest {
     * List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
     'allowedPaymentMethods'?: Array<string>;
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
@@ -36,7 +36,7 @@ export class PaymentMethodsRequest {
     * The merchant account identifier, with which you want to process the transaction.
     */
     'merchantAccount': string;
-    'order'?: EncryptedOrderData | null;
+    'order'?: EncryptedOrderData;
     /**
     * A unique ID that can be used to associate `/paymentMethods` and `/payments` requests with the same shopper transaction, offering insights into conversion rates.
     */
@@ -52,7 +52,7 @@ export class PaymentMethodsRequest {
     /**
     * Boolean value indicating whether the card payment method should be split into separate debit and credit options.
     */
-    'splitCardFundingSources'?: boolean;
+    'splitCardFundingSources'?: boolean = false;
     /**
     * Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.
     */
@@ -78,7 +78,7 @@ export class PaymentMethodsRequest {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "blockedPaymentMethods",
@@ -103,7 +103,7 @@ export class PaymentMethodsRequest {
         {
             "name": "order",
             "baseName": "order",
-            "type": "EncryptedOrderData | null"
+            "type": "EncryptedOrderData"
         },
         {
             "name": "shopperConversionId",
@@ -143,13 +143,13 @@ export class PaymentMethodsRequest {
 
 export namespace PaymentMethodsRequest {
     export enum ChannelEnum {
-        IOs = 'iOS',
-        Android = 'Android',
-        Web = 'Web'
+        IOs = <any> 'iOS',
+        Android = <any> 'Android',
+        Web = <any> 'Web'
     }
     export enum StoreFiltrationModeEnum {
-        Exclusive = 'exclusive',
-        Inclusive = 'inclusive',
-        SkipFilter = 'skipFilter'
+        Exclusive = <any> 'exclusive',
+        Inclusive = <any> 'inclusive',
+        SkipFilter = <any> 'skipFilter'
     }
 }

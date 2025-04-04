@@ -16,7 +16,7 @@ export class GrantOffer {
     * The identifier of the account holder to which the grant is offered.
     */
     'accountHolderId': string;
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * The contract type of the grant offer. Possible value: **cashAdvance**, **loan**.
     */
@@ -25,12 +25,12 @@ export class GrantOffer {
     * The end date of the grant offer validity period.
     */
     'expiresAt'?: Date;
-    'fee'?: Fee | null;
+    'fee'?: Fee;
     /**
     * The unique identifier of the grant offer.
     */
     'id'?: string;
-    'repayment'?: Repayment | null;
+    'repayment'?: Repayment;
     /**
     * The starting date of the grant offer validity period.
     */
@@ -47,7 +47,7 @@ export class GrantOffer {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "contractType",
@@ -62,7 +62,7 @@ export class GrantOffer {
         {
             "name": "fee",
             "baseName": "fee",
-            "type": "Fee | null"
+            "type": "Fee"
         },
         {
             "name": "id",
@@ -72,7 +72,7 @@ export class GrantOffer {
         {
             "name": "repayment",
             "baseName": "repayment",
-            "type": "Repayment | null"
+            "type": "Repayment"
         },
         {
             "name": "startsAt",
@@ -87,7 +87,7 @@ export class GrantOffer {
 
 export namespace GrantOffer {
     export enum ContractTypeEnum {
-        CashAdvance = 'cashAdvance',
-        Loan = 'loan'
+        CashAdvance = <any> 'cashAdvance',
+        Loan = <any> 'loan'
     }
 }

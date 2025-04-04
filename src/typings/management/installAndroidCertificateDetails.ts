@@ -16,7 +16,7 @@ export class InstallAndroidCertificateDetails {
     /**
     * Type of terminal action: Install an Android certificate.
     */
-    'type'?: InstallAndroidCertificateDetails.TypeEnum;
+    'type'?: InstallAndroidCertificateDetails.TypeEnum = InstallAndroidCertificateDetails.TypeEnum.InstallAndroidCertificate;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class InstallAndroidCertificateDetails {
 
 export namespace InstallAndroidCertificateDetails {
     export enum TypeEnum {
-        InstallAndroidCertificate = 'InstallAndroidCertificate'
+        InstallAndroidCertificate = <any> 'InstallAndroidCertificate'
     }
 }

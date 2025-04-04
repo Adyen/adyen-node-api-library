@@ -55,6 +55,6 @@ export class PaymentMethodCreatedNotificationRequest {
 
 export namespace PaymentMethodCreatedNotificationRequest {
     export enum TypeEnum {
-        PaymentMethodCreated = 'paymentMethod.created'
+        PaymentMethodCreated = <any> 'paymentMethod.created'
     }
 }

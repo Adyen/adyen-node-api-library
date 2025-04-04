@@ -34,7 +34,7 @@ export class BalanceAccountBase {
     * The unique identifier of the account of the migrated account holder in the classic integration.
     */
     'migratedAccountCode'?: string;
-    'platformPaymentConfiguration'?: PlatformPaymentConfiguration | null;
+    'platformPaymentConfiguration'?: PlatformPaymentConfiguration;
     /**
     * Your reference for the balance account, maximum 150 characters.
     */
@@ -84,7 +84,7 @@ export class BalanceAccountBase {
         {
             "name": "platformPaymentConfiguration",
             "baseName": "platformPaymentConfiguration",
-            "type": "PlatformPaymentConfiguration | null"
+            "type": "PlatformPaymentConfiguration"
         },
         {
             "name": "reference",
@@ -109,9 +109,9 @@ export class BalanceAccountBase {
 
 export namespace BalanceAccountBase {
     export enum StatusEnum {
-        Active = 'active',
-        Closed = 'closed',
-        Inactive = 'inactive',
-        Suspended = 'suspended'
+        Active = <any> 'active',
+        Closed = <any> 'closed',
+        Inactive = <any> 'inactive',
+        Suspended = <any> 'suspended'
     }
 }

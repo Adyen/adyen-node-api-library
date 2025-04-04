@@ -69,6 +69,6 @@ export class AncvDetails {
 
 export namespace AncvDetails {
     export enum TypeEnum {
-        Ancv = 'ancv'
+        Ancv = <any> 'ancv'
     }
 }

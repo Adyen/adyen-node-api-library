@@ -16,7 +16,7 @@ export class EstimationTrackingData {
     /**
     * The type of tracking event.   Possible values:   - **estimation**: the estimated date and time of when the funds will be credited has been determined.
     */
-    'type': EstimationTrackingData.TypeEnum;
+    'type': EstimationTrackingData.TypeEnum = EstimationTrackingData.TypeEnum.Estimation;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class EstimationTrackingData {
 
 export namespace EstimationTrackingData {
     export enum TypeEnum {
-        Estimation = 'estimation'
+        Estimation = <any> 'estimation'
     }
 }

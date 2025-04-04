@@ -16,7 +16,7 @@ export class ConfirmationTrackingData {
     /**
     * The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen\'s internal review.
     */
-    'type': ConfirmationTrackingData.TypeEnum;
+    'type': ConfirmationTrackingData.TypeEnum = ConfirmationTrackingData.TypeEnum.Confirmation;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,9 +39,9 @@ export class ConfirmationTrackingData {
 
 export namespace ConfirmationTrackingData {
     export enum StatusEnum {
-        Credited = 'credited'
+        Credited = <any> 'credited'
     }
     export enum TypeEnum {
-        Confirmation = 'confirmation'
+        Confirmation = <any> 'confirmation'
     }
 }

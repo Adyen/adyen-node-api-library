@@ -141,25 +141,25 @@ export class TransactionRule {
 
 export namespace TransactionRule {
     export enum OutcomeTypeEnum {
-        EnforceSca = 'enforceSCA',
-        HardBlock = 'hardBlock',
-        ScoreBased = 'scoreBased',
-        TimedBlock = 'timedBlock'
+        EnforceSca = <any> 'enforceSCA',
+        HardBlock = <any> 'hardBlock',
+        ScoreBased = <any> 'scoreBased',
+        TimedBlock = <any> 'timedBlock'
     }
     export enum RequestTypeEnum {
-        Authentication = 'authentication',
-        Authorization = 'authorization',
-        BankTransfer = 'bankTransfer',
-        Tokenization = 'tokenization'
+        Authentication = <any> 'authentication',
+        Authorization = <any> 'authorization',
+        BankTransfer = <any> 'bankTransfer',
+        Tokenization = <any> 'tokenization'
     }
     export enum StatusEnum {
-        Active = 'active',
-        Inactive = 'inactive'
+        Active = <any> 'active',
+        Inactive = <any> 'inactive'
     }
     export enum TypeEnum {
-        AllowList = 'allowList',
-        BlockList = 'blockList',
-        MaxUsage = 'maxUsage',
-        Velocity = 'velocity'
+        AllowList = <any> 'allowList',
+        BlockList = <any> 'blockList',
+        MaxUsage = <any> 'maxUsage',
+        Velocity = <any> 'velocity'
     }
 }

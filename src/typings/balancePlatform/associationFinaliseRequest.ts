@@ -46,6 +46,6 @@ export class AssociationFinaliseRequest {
 
 export namespace AssociationFinaliseRequest {
     export enum TypeEnum {
-        PaymentInstrument = 'PaymentInstrument'
+        PaymentInstrument = <any> 'PaymentInstrument'
     }
 }

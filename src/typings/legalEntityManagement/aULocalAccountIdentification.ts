@@ -20,7 +20,7 @@ export class AULocalAccountIdentification {
     /**
     * **auLocal**
     */
-    'type': AULocalAccountIdentification.TypeEnum;
+    'type': AULocalAccountIdentification.TypeEnum = AULocalAccountIdentification.TypeEnum.AuLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class AULocalAccountIdentification {
 
 export namespace AULocalAccountIdentification {
     export enum TypeEnum {
-        AuLocal = 'auLocal'
+        AuLocal = <any> 'auLocal'
     }
 }

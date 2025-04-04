@@ -50,7 +50,7 @@ export class SubmitRequest {
     * The shopper\'s email address.
     */
     'shopperEmail': string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * The shopper\'s reference for the payout transaction.
     */
@@ -125,7 +125,7 @@ export class SubmitRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name"
         },
         {
             "name": "shopperReference",
@@ -150,7 +150,7 @@ export class SubmitRequest {
 
 export namespace SubmitRequest {
     export enum EntityTypeEnum {
-        NaturalPerson = 'NaturalPerson',
-        Company = 'Company'
+        NaturalPerson = <any> 'NaturalPerson',
+        Company = <any> 'Company'
     }
 }

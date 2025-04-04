@@ -18,18 +18,18 @@ export class ForexQuote {
     * The account type.
     */
     'accountType'?: string;
-    'baseAmount'?: Amount | null;
+    'baseAmount'?: Amount;
     /**
     * The base points.
     */
     'basePoints': number;
-    'buy'?: Amount | null;
-    'interbank'?: Amount | null;
+    'buy'?: Amount;
+    'interbank'?: Amount;
     /**
     * The reference assigned to the forex quote request.
     */
     'reference'?: string;
-    'sell'?: Amount | null;
+    'sell'?: Amount;
     /**
     * The signature to validate the integrity.
     */
@@ -63,7 +63,7 @@ export class ForexQuote {
         {
             "name": "baseAmount",
             "baseName": "baseAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "basePoints",
@@ -73,12 +73,12 @@ export class ForexQuote {
         {
             "name": "buy",
             "baseName": "buy",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "interbank",
             "baseName": "interbank",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "reference",
@@ -88,7 +88,7 @@ export class ForexQuote {
         {
             "name": "sell",
             "baseName": "sell",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "signature",

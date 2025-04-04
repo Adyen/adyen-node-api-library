@@ -26,9 +26,9 @@ export class RecurringDetail {
     * The alias type of the credit card number.  Applies only to recurring contracts storing credit card details.
     */
     'aliasType'?: string;
-    'bank'?: BankAccount | null;
-    'billingAddress'?: Address | null;
-    'card'?: Card | null;
+    'bank'?: BankAccount;
+    'billingAddress'?: Address;
+    'card'?: Card;
     /**
     * Types of recurring contracts.
     */
@@ -57,12 +57,12 @@ export class RecurringDetail {
     * The reference that uniquely identifies the recurring detail.
     */
     'recurringDetailReference': string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * A shopper\'s social security number (only in countries where it is legal to collect).
     */
     'socialSecurityNumber'?: string;
-    'tokenDetails'?: TokenDetails | null;
+    'tokenDetails'?: TokenDetails;
     /**
     * The payment method, such as “mc\", \"visa\", \"ideal\", \"paypal\".
     */
@@ -89,17 +89,17 @@ export class RecurringDetail {
         {
             "name": "bank",
             "baseName": "bank",
-            "type": "BankAccount | null"
+            "type": "BankAccount"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null"
+            "type": "Card"
         },
         {
             "name": "contractTypes",
@@ -139,7 +139,7 @@ export class RecurringDetail {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name"
         },
         {
             "name": "socialSecurityNumber",
@@ -149,7 +149,7 @@ export class RecurringDetail {
         {
             "name": "tokenDetails",
             "baseName": "tokenDetails",
-            "type": "TokenDetails | null"
+            "type": "TokenDetails"
         },
         {
             "name": "variant",

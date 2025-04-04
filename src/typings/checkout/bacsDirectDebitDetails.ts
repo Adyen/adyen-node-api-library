@@ -43,7 +43,7 @@ export class BacsDirectDebitDetails {
     /**
     * **directdebit_GB**
     */
-    'type'?: BacsDirectDebitDetails.TypeEnum;
+    'type'?: BacsDirectDebitDetails.TypeEnum = BacsDirectDebitDetails.TypeEnum.DirectdebitGb;
 
     static discriminator: string | undefined = undefined;
 
@@ -96,6 +96,6 @@ export class BacsDirectDebitDetails {
 
 export namespace BacsDirectDebitDetails {
     export enum TypeEnum {
-        DirectdebitGb = 'directdebit_GB'
+        DirectdebitGb = <any> 'directdebit_GB'
     }
 }

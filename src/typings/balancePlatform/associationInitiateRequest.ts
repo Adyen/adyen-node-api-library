@@ -39,6 +39,6 @@ export class AssociationInitiateRequest {
 
 export namespace AssociationInitiateRequest {
     export enum TypeEnum {
-        PaymentInstrument = 'PaymentInstrument'
+        PaymentInstrument = <any> 'PaymentInstrument'
     }
 }

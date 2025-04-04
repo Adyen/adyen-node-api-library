@@ -16,7 +16,7 @@ export class NZLocalAccountIdentification {
     /**
     * **nzLocal**
     */
-    'type': NZLocalAccountIdentification.TypeEnum;
+    'type': NZLocalAccountIdentification.TypeEnum = NZLocalAccountIdentification.TypeEnum.NzLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class NZLocalAccountIdentification {
 
 export namespace NZLocalAccountIdentification {
     export enum TypeEnum {
-        NzLocal = 'nzLocal'
+        NzLocal = <any> 'nzLocal'
     }
 }

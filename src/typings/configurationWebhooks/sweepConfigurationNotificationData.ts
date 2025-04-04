@@ -18,7 +18,7 @@ export class SweepConfigurationNotificationData {
     * The unique identifier of the balance platform.
     */
     'balancePlatform'?: string;
-    'sweep'?: SweepConfigurationV2 | null;
+    'sweep'?: SweepConfigurationV2;
 
     static discriminator: string | undefined = undefined;
 
@@ -36,7 +36,7 @@ export class SweepConfigurationNotificationData {
         {
             "name": "sweep",
             "baseName": "sweep",
-            "type": "SweepConfigurationV2 | null"
+            "type": "SweepConfigurationV2"
         }    ];
 
     static getAttributeTypeMap() {

@@ -39,9 +39,9 @@ export class CounterpartyTypesRestriction {
 
 export namespace CounterpartyTypesRestriction {
     export enum ValueEnum {
-        BalanceAccount = 'balanceAccount',
-        BankAccount = 'bankAccount',
-        Card = 'card',
-        TransferInstrument = 'transferInstrument'
+        BalanceAccount = <any> 'balanceAccount',
+        BankAccount = <any> 'bankAccount',
+        Card = <any> 'card',
+        TransferInstrument = <any> 'transferInstrument'
     }
 }
