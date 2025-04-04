@@ -75,7 +75,7 @@ export class TerminalSettingsData {
 
 export namespace TerminalSettingsData {
     export enum UpdateSourceEnum {
-        CustomerArea = 'Customer Area',
-        ManagementApi = 'Management Api'
+        CustomerArea = <any> 'Customer Area',
+        ManagementApi = <any> 'Management Api'
     }
 }

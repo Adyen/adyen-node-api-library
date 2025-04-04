@@ -11,7 +11,7 @@ import { Links } from './links';
 import { Name } from './name';
 
 export class User {
-    '_links'?: Links | null;
+    '_links'?: Links;
     /**
     * The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user.
     */
@@ -32,7 +32,7 @@ export class User {
     * The unique identifier of the user.
     */
     'id': string;
-    'name'?: Name | null;
+    'name'?: Name;
     /**
     * The list of [roles](https://docs.adyen.com/account/user-roles) for this user.
     */
@@ -52,7 +52,7 @@ export class User {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "Links | null"
+            "type": "Links"
         },
         {
             "name": "accountGroups",
@@ -82,7 +82,7 @@ export class User {
         {
             "name": "name",
             "baseName": "name",
-            "type": "Name | null"
+            "type": "Name"
         },
         {
             "name": "roles",

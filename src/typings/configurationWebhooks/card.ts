@@ -13,7 +13,7 @@ import { DeliveryContact } from './deliveryContact';
 import { Expiry } from './expiry';
 
 export class Card {
-    'authentication'?: Authentication | null;
+    'authentication'?: Authentication;
     /**
     * The bank identification number (BIN) of the card number.
     */
@@ -30,13 +30,13 @@ export class Card {
     * The name of the cardholder.  Maximum length: 26 characters.
     */
     'cardholderName': string;
-    'configuration'?: CardConfiguration | null;
+    'configuration'?: CardConfiguration;
     /**
     * The CVC2 value of the card. > The CVC2 is not sent by default. This is only returned in the `POST` response for single-use virtual cards.
     */
     'cvc'?: string;
-    'deliveryContact'?: DeliveryContact | null;
-    'expiration'?: Expiry | null;
+    'deliveryContact'?: DeliveryContact;
+    'expiration'?: Expiry;
     /**
     * The form factor of the card. Possible values: **virtual**, **physical**.
     */
@@ -60,7 +60,7 @@ export class Card {
         {
             "name": "authentication",
             "baseName": "authentication",
-            "type": "Authentication | null"
+            "type": "Authentication"
         },
         {
             "name": "bin",
@@ -85,7 +85,7 @@ export class Card {
         {
             "name": "configuration",
             "baseName": "configuration",
-            "type": "CardConfiguration | null"
+            "type": "CardConfiguration"
         },
         {
             "name": "cvc",
@@ -95,12 +95,12 @@ export class Card {
         {
             "name": "deliveryContact",
             "baseName": "deliveryContact",
-            "type": "DeliveryContact | null"
+            "type": "DeliveryContact"
         },
         {
             "name": "expiration",
             "baseName": "expiration",
-            "type": "Expiry | null"
+            "type": "Expiry"
         },
         {
             "name": "formFactor",
@@ -130,8 +130,8 @@ export class Card {
 
 export namespace Card {
     export enum FormFactorEnum {
-        Physical = 'physical',
-        Unknown = 'unknown',
-        Virtual = 'virtual'
+        Physical = <any> 'physical',
+        Unknown = <any> 'unknown',
+        Virtual = <any> 'virtual'
     }
 }

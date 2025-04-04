@@ -102,23 +102,23 @@ export class LegalEntityAssociation {
 
 export namespace LegalEntityAssociation {
     export enum TypeEnum {
-        DefinedBeneficiary = 'definedBeneficiary',
-        Director = 'director',
-        ImmediateParentCompany = 'immediateParentCompany',
-        LegalRepresentative = 'legalRepresentative',
-        PciSignatory = 'pciSignatory',
-        Protector = 'protector',
-        SecondaryPartner = 'secondaryPartner',
-        SecondaryTrustee = 'secondaryTrustee',
-        Settlor = 'settlor',
-        Signatory = 'signatory',
-        SoleProprietorship = 'soleProprietorship',
-        Trust = 'trust',
-        TrustOwnership = 'trustOwnership',
-        UboThroughControl = 'uboThroughControl',
-        UboThroughOwnership = 'uboThroughOwnership',
-        UltimateParentCompany = 'ultimateParentCompany',
-        UndefinedBeneficiary = 'undefinedBeneficiary',
-        UnincorporatedPartnership = 'unincorporatedPartnership'
+        DefinedBeneficiary = <any> 'definedBeneficiary',
+        Director = <any> 'director',
+        ImmediateParentCompany = <any> 'immediateParentCompany',
+        LegalRepresentative = <any> 'legalRepresentative',
+        PciSignatory = <any> 'pciSignatory',
+        Protector = <any> 'protector',
+        SecondaryPartner = <any> 'secondaryPartner',
+        SecondaryTrustee = <any> 'secondaryTrustee',
+        Settlor = <any> 'settlor',
+        Signatory = <any> 'signatory',
+        SoleProprietorship = <any> 'soleProprietorship',
+        Trust = <any> 'trust',
+        TrustOwnership = <any> 'trustOwnership',
+        UboThroughControl = <any> 'uboThroughControl',
+        UboThroughOwnership = <any> 'uboThroughOwnership',
+        UltimateParentCompany = <any> 'ultimateParentCompany',
+        UndefinedBeneficiary = <any> 'undefinedBeneficiary',
+        UnincorporatedPartnership = <any> 'unincorporatedPartnership'
     }
 }

@@ -14,10 +14,10 @@ import { Fee } from './fee';
 import { Repayment } from './repayment';
 
 export class CapitalGrant {
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     'balances': CapitalBalance;
-    'counterparty'?: Counterparty | null;
-    'fee'?: Fee | null;
+    'counterparty'?: Counterparty;
+    'fee'?: Fee;
     /**
     * The identifier of the grant account used for the grant.
     */
@@ -30,9 +30,9 @@ export class CapitalGrant {
     * The identifier of the grant reference.
     */
     'id': string;
-    'repayment'?: Repayment | null;
+    'repayment'?: Repayment;
     /**
-    * The current status of the grant. Possible values: **Pending**, **Active**, **Repaid**.
+    * The current status of the grant. Possible values: **Pending**, **Active**, **Repaid**, **WrittenOff**, **Failed**, **Revoked**.
     */
     'status': CapitalGrant.StatusEnum;
 
@@ -42,7 +42,7 @@ export class CapitalGrant {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "balances",
@@ -52,12 +52,12 @@ export class CapitalGrant {
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "Counterparty | null"
+            "type": "Counterparty"
         },
         {
             "name": "fee",
             "baseName": "fee",
-            "type": "Fee | null"
+            "type": "Fee"
         },
         {
             "name": "grantAccountId",
@@ -77,7 +77,7 @@ export class CapitalGrant {
         {
             "name": "repayment",
             "baseName": "repayment",
-            "type": "Repayment | null"
+            "type": "Repayment"
         },
         {
             "name": "status",
@@ -92,8 +92,11 @@ export class CapitalGrant {
 
 export namespace CapitalGrant {
     export enum StatusEnum {
-        Pending = 'Pending',
-        Active = 'Active',
-        Repaid = 'Repaid'
+        Pending = <any> 'Pending',
+        Active = <any> 'Active',
+        Repaid = <any> 'Repaid',
+        Failed = <any> 'Failed',
+        WrittenOff = <any> 'WrittenOff',
+        Revoked = <any> 'Revoked'
     }
 }

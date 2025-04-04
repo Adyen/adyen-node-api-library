@@ -66,14 +66,14 @@ export class Recurring {
 
 export namespace Recurring {
     export enum ContractEnum {
-        Oneclick = 'ONECLICK',
-        Recurring = 'RECURRING',
-        Payout = 'PAYOUT'
+        Oneclick = <any> 'ONECLICK',
+        Recurring = <any> 'RECURRING',
+        Payout = <any> 'PAYOUT'
     }
     export enum TokenServiceEnum {
-        Visatokenservice = 'VISATOKENSERVICE',
-        Mctokenservice = 'MCTOKENSERVICE',
-        Amextokenservice = 'AMEXTOKENSERVICE',
-        TokenSharing = 'TOKEN_SHARING'
+        Visatokenservice = <any> 'VISATOKENSERVICE',
+        Mctokenservice = <any> 'MCTOKENSERVICE',
+        Amextokenservice = <any> 'AMEXTOKENSERVICE',
+        TokenSharing = <any> 'TOKEN_SHARING'
     }
 }

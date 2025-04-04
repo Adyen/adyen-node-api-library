@@ -14,7 +14,7 @@ export class PixDetails {
     * The checkout attempt identifier.
     */
     'checkoutAttemptId'?: string;
-    'pixRecurring'?: PixRecurring | null;
+    'pixRecurring'?: PixRecurring;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
@@ -42,7 +42,7 @@ export class PixDetails {
         {
             "name": "pixRecurring",
             "baseName": "pixRecurring",
-            "type": "PixRecurring | null"
+            "type": "PixRecurring"
         },
         {
             "name": "recurringDetailReference",
@@ -67,6 +67,6 @@ export class PixDetails {
 
 export namespace PixDetails {
     export enum TypeEnum {
-        Pix = 'pix'
+        Pix = <any> 'pix'
     }
 }

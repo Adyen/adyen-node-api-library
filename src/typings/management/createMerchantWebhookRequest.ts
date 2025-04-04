@@ -26,7 +26,7 @@ export class CreateMerchantWebhookRequest {
     * Indicates if the webhook configuration is active. The field must be **true** for us to send webhooks about events related an account.
     */
     'active': boolean;
-    'additionalSettings'?: AdditionalSettings | null;
+    'additionalSettings'?: AdditionalSettings;
     /**
     * Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** 
     */
@@ -90,7 +90,7 @@ export class CreateMerchantWebhookRequest {
         {
             "name": "additionalSettings",
             "baseName": "additionalSettings",
-            "type": "AdditionalSettings | null"
+            "type": "AdditionalSettings"
         },
         {
             "name": "communicationFormat",
@@ -145,17 +145,17 @@ export class CreateMerchantWebhookRequest {
 
 export namespace CreateMerchantWebhookRequest {
     export enum CommunicationFormatEnum {
-        Http = 'http',
-        Json = 'json',
-        Soap = 'soap'
+        Http = <any> 'http',
+        Json = <any> 'json',
+        Soap = <any> 'soap'
     }
     export enum EncryptionProtocolEnum {
-        Http = 'HTTP',
-        Tlsv12 = 'TLSv1.2',
-        Tlsv13 = 'TLSv1.3'
+        Http = <any> 'HTTP',
+        Tlsv12 = <any> 'TLSv1.2',
+        Tlsv13 = <any> 'TLSv1.3'
     }
     export enum NetworkTypeEnum {
-        Local = 'local',
-        Public = 'public'
+        Local = <any> 'local',
+        Public = <any> 'public'
     }
 }

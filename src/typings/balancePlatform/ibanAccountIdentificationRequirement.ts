@@ -20,7 +20,7 @@ export class IbanAccountIdentificationRequirement {
     /**
     * **ibanAccountIdentificationRequirement**
     */
-    'type': IbanAccountIdentificationRequirement.TypeEnum;
+    'type': IbanAccountIdentificationRequirement.TypeEnum = IbanAccountIdentificationRequirement.TypeEnum.IbanAccountIdentificationRequirement;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class IbanAccountIdentificationRequirement {
 
 export namespace IbanAccountIdentificationRequirement {
     export enum TypeEnum {
-        IbanAccountIdentificationRequirement = 'ibanAccountIdentificationRequirement'
+        IbanAccountIdentificationRequirement = <any> 'ibanAccountIdentificationRequirement'
     }
 }

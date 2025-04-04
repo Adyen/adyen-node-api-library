@@ -20,7 +20,7 @@ export class VisaCheckoutDetails {
     /**
     * **visacheckout**
     */
-    'type'?: VisaCheckoutDetails.TypeEnum;
+    'type'?: VisaCheckoutDetails.TypeEnum = VisaCheckoutDetails.TypeEnum.Visacheckout;
     /**
     * The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID.
     */
@@ -57,10 +57,10 @@ export class VisaCheckoutDetails {
 
 export namespace VisaCheckoutDetails {
     export enum FundingSourceEnum {
-        Credit = 'credit',
-        Debit = 'debit'
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
     }
     export enum TypeEnum {
-        Visacheckout = 'visacheckout'
+        Visacheckout = <any> 'visacheckout'
     }
 }

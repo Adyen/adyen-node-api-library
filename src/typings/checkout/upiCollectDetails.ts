@@ -35,7 +35,7 @@ export class UpiCollectDetails {
     /**
     * **upi_collect**
     */
-    'type': UpiCollectDetails.TypeEnum;
+    'type': UpiCollectDetails.TypeEnum = UpiCollectDetails.TypeEnum.UpiCollect;
     /**
     * The virtual payment address for UPI.
     */
@@ -87,6 +87,6 @@ export class UpiCollectDetails {
 
 export namespace UpiCollectDetails {
     export enum TypeEnum {
-        UpiCollect = 'upi_collect'
+        UpiCollect = <any> 'upi_collect'
     }
 }

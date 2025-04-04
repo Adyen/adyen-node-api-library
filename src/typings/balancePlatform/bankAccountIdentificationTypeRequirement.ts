@@ -20,7 +20,7 @@ export class BankAccountIdentificationTypeRequirement {
     /**
     * **bankAccountIdentificationTypeRequirement**
     */
-    'type': BankAccountIdentificationTypeRequirement.TypeEnum;
+    'type': BankAccountIdentificationTypeRequirement.TypeEnum = BankAccountIdentificationTypeRequirement.TypeEnum.BankAccountIdentificationTypeRequirement;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,25 +48,25 @@ export class BankAccountIdentificationTypeRequirement {
 
 export namespace BankAccountIdentificationTypeRequirement {
     export enum BankAccountIdentificationTypesEnum {
-        AuLocal = 'auLocal',
-        BrLocal = 'brLocal',
-        CaLocal = 'caLocal',
-        CzLocal = 'czLocal',
-        DkLocal = 'dkLocal',
-        HkLocal = 'hkLocal',
-        HuLocal = 'huLocal',
-        Iban = 'iban',
-        Legacy = 'legacy',
-        NoLocal = 'noLocal',
-        NumberAndBic = 'numberAndBic',
-        NzLocal = 'nzLocal',
-        PlLocal = 'plLocal',
-        SeLocal = 'seLocal',
-        SgLocal = 'sgLocal',
-        UkLocal = 'ukLocal',
-        UsLocal = 'usLocal'
+        AuLocal = <any> 'auLocal',
+        BrLocal = <any> 'brLocal',
+        CaLocal = <any> 'caLocal',
+        CzLocal = <any> 'czLocal',
+        DkLocal = <any> 'dkLocal',
+        HkLocal = <any> 'hkLocal',
+        HuLocal = <any> 'huLocal',
+        Iban = <any> 'iban',
+        Legacy = <any> 'legacy',
+        NoLocal = <any> 'noLocal',
+        NumberAndBic = <any> 'numberAndBic',
+        NzLocal = <any> 'nzLocal',
+        PlLocal = <any> 'plLocal',
+        SeLocal = <any> 'seLocal',
+        SgLocal = <any> 'sgLocal',
+        UkLocal = <any> 'ukLocal',
+        UsLocal = <any> 'usLocal'
     }
     export enum TypeEnum {
-        BankAccountIdentificationTypeRequirement = 'bankAccountIdentificationTypeRequirement'
+        BankAccountIdentificationTypeRequirement = <any> 'bankAccountIdentificationTypeRequirement'
     }
 }

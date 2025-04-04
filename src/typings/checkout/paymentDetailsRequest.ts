@@ -11,7 +11,7 @@ import { DetailsRequestAuthenticationData } from './detailsRequestAuthentication
 import { PaymentCompletionDetails } from './paymentCompletionDetails';
 
 export class PaymentDetailsRequest {
-    'authenticationData'?: DetailsRequestAuthenticationData | null;
+    'authenticationData'?: DetailsRequestAuthenticationData;
     'details': PaymentCompletionDetails;
     /**
     * Encoded payment data. For [authorizing a payment after using 3D Secure 2 Authentication-only](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only/#authorise-the-payment-with-adyen):  If you received `resultCode`: **AuthenticationNotRequired** in the `/payments` response, use the `threeDSPaymentData` from the same response.  If you received `resultCode`: **AuthenticationFinished** in the `/payments` response, use the `action.paymentData` from the same response.
@@ -31,7 +31,7 @@ export class PaymentDetailsRequest {
         {
             "name": "authenticationData",
             "baseName": "authenticationData",
-            "type": "DetailsRequestAuthenticationData | null"
+            "type": "DetailsRequestAuthenticationData"
         },
         {
             "name": "details",

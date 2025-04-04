@@ -11,7 +11,7 @@ import { CompanyApiCredential } from './companyApiCredential';
 import { PaginationLinks } from './paginationLinks';
 
 export class ListCompanyApiCredentialsResponse {
-    '_links'?: PaginationLinks | null;
+    '_links'?: PaginationLinks;
     /**
     * The list of API credentials.
     */
@@ -31,7 +31,7 @@ export class ListCompanyApiCredentialsResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks | null"
+            "type": "PaginationLinks"
         },
         {
             "name": "data",

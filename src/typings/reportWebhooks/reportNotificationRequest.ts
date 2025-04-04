@@ -55,6 +55,6 @@ export class ReportNotificationRequest {
 
 export namespace ReportNotificationRequest {
     export enum TypeEnum {
-        BalancePlatformReportCreated = 'balancePlatform.report.created'
+        BalancePlatformReportCreated = <any> 'balancePlatform.report.created'
     }
 }

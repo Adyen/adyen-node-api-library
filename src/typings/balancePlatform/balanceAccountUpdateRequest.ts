@@ -22,7 +22,7 @@ export class BalanceAccountUpdateRequest {
     * A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
     */
     'metadata'?: { [key: string]: string; };
-    'platformPaymentConfiguration'?: PlatformPaymentConfiguration | null;
+    'platformPaymentConfiguration'?: PlatformPaymentConfiguration;
     /**
     * Your reference to the balance account.
     */
@@ -57,7 +57,7 @@ export class BalanceAccountUpdateRequest {
         {
             "name": "platformPaymentConfiguration",
             "baseName": "platformPaymentConfiguration",
-            "type": "PlatformPaymentConfiguration | null"
+            "type": "PlatformPaymentConfiguration"
         },
         {
             "name": "reference",
@@ -82,9 +82,9 @@ export class BalanceAccountUpdateRequest {
 
 export namespace BalanceAccountUpdateRequest {
     export enum StatusEnum {
-        Active = 'active',
-        Closed = 'closed',
-        Inactive = 'inactive',
-        Suspended = 'suspended'
+        Active = <any> 'active',
+        Closed = <any> 'closed',
+        Inactive = <any> 'inactive',
+        Suspended = <any> 'suspended'
     }
 }

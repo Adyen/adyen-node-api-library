@@ -57,7 +57,7 @@ export class ReturnTransferResponse {
 
 export namespace ReturnTransferResponse {
     export enum StatusEnum {
-        Authorised = 'Authorised',
-        Declined = 'Declined'
+        Authorised = <any> 'Authorised',
+        Declined = <any> 'Declined'
     }
 }

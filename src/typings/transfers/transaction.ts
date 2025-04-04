@@ -36,7 +36,7 @@ export class Transaction {
     * The unique identifier of the transaction.
     */
     'id': string;
-    'paymentInstrument'?: PaymentInstrument | null;
+    'paymentInstrument'?: PaymentInstrument;
     /**
     * The reference sent to or received from the counterparty.  * For outgoing funds, this is the [`referenceForBeneficiary`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__resParam_referenceForBeneficiary) from the  [`/transfers`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_referenceForBeneficiary) request.   * For incoming funds, this is the reference from the sender.
     */
@@ -45,7 +45,7 @@ export class Transaction {
     * The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.  
     */
     'status': Transaction.StatusEnum;
-    'transfer'?: TransferView | null;
+    'transfer'?: TransferView;
     /**
     * The date the transfer amount becomes available in the balance account.
     */
@@ -97,7 +97,7 @@ export class Transaction {
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PaymentInstrument | null"
+            "type": "PaymentInstrument"
         },
         {
             "name": "referenceForBeneficiary",
@@ -112,7 +112,7 @@ export class Transaction {
         {
             "name": "transfer",
             "baseName": "transfer",
-            "type": "TransferView | null"
+            "type": "TransferView"
         },
         {
             "name": "valueDate",
@@ -127,7 +127,7 @@ export class Transaction {
 
 export namespace Transaction {
     export enum StatusEnum {
-        Booked = 'booked',
-        Pending = 'pending'
+        Booked = <any> 'booked',
+        Pending = <any> 'pending'
     }
 }

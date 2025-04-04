@@ -14,7 +14,7 @@ export class NumberAndBicAccountIdentification {
     * The bank account number, without separators or whitespace. The length and format depends on the bank or country.
     */
     'accountNumber': string;
-    'additionalBankIdentification'?: AdditionalBankIdentification | null;
+    'additionalBankIdentification'?: AdditionalBankIdentification;
     /**
     * The bank\'s 8- or 11-character BIC or SWIFT code.
     */
@@ -22,7 +22,7 @@ export class NumberAndBicAccountIdentification {
     /**
     * **numberAndBic**
     */
-    'type': NumberAndBicAccountIdentification.TypeEnum;
+    'type': NumberAndBicAccountIdentification.TypeEnum = NumberAndBicAccountIdentification.TypeEnum.NumberAndBic;
 
     static discriminator: string | undefined = undefined;
 
@@ -35,7 +35,7 @@ export class NumberAndBicAccountIdentification {
         {
             "name": "additionalBankIdentification",
             "baseName": "additionalBankIdentification",
-            "type": "AdditionalBankIdentification | null"
+            "type": "AdditionalBankIdentification"
         },
         {
             "name": "bic",
@@ -55,6 +55,6 @@ export class NumberAndBicAccountIdentification {
 
 export namespace NumberAndBicAccountIdentification {
     export enum TypeEnum {
-        NumberAndBic = 'numberAndBic'
+        NumberAndBic = <any> 'numberAndBic'
     }
 }

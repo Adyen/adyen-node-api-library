@@ -10,11 +10,11 @@
 import { LinksElement } from './linksElement';
 
 export class ApiCredentialLinks {
-    'allowedOrigins'?: LinksElement | null;
-    'company'?: LinksElement | null;
-    'generateApiKey'?: LinksElement | null;
-    'generateClientKey'?: LinksElement | null;
-    'merchant'?: LinksElement | null;
+    'allowedOrigins'?: LinksElement;
+    'company'?: LinksElement;
+    'generateApiKey'?: LinksElement;
+    'generateClientKey'?: LinksElement;
+    'merchant'?: LinksElement;
     'self': LinksElement;
 
     static discriminator: string | undefined = undefined;
@@ -23,27 +23,27 @@ export class ApiCredentialLinks {
         {
             "name": "allowedOrigins",
             "baseName": "allowedOrigins",
-            "type": "LinksElement | null"
+            "type": "LinksElement"
         },
         {
             "name": "company",
             "baseName": "company",
-            "type": "LinksElement | null"
+            "type": "LinksElement"
         },
         {
             "name": "generateApiKey",
             "baseName": "generateApiKey",
-            "type": "LinksElement | null"
+            "type": "LinksElement"
         },
         {
             "name": "generateClientKey",
             "baseName": "generateClientKey",
-            "type": "LinksElement | null"
+            "type": "LinksElement"
         },
         {
             "name": "merchant",
             "baseName": "merchant",
-            "type": "LinksElement | null"
+            "type": "LinksElement"
         },
         {
             "name": "self",

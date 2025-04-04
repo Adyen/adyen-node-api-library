@@ -9,7 +9,7 @@
 
 import { BankAccountDetails } from './bankAccountDetails';
 import { Card } from './card';
-import { IbanAccountIdentification } from './ibanAccountIdentification';
+import { PaymentInstrumentAdditionalBankAccountIdentificationsInner } from './paymentInstrumentAdditionalBankAccountIdentificationsInner';
 
 export class PaymentInstrument {
     /**
@@ -18,13 +18,13 @@ export class PaymentInstrument {
 	* @deprecated since Configuration API v2
 	* Please use `bankAccount` object instead
     */
-    'additionalBankAccountIdentifications'?: Array<IbanAccountIdentification>;
+    'additionalBankAccountIdentifications'?: Array<PaymentInstrumentAdditionalBankAccountIdentificationsInner>;
     /**
     * The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.
     */
     'balanceAccountId': string;
-    'bankAccount'?: BankAccountDetails | null;
-    'card'?: Card | null;
+    'bankAccount'?: BankAccountDetails;
+    'card'?: Card;
     /**
     * Your description for the payment instrument, maximum 300 characters.
     */
@@ -68,7 +68,7 @@ export class PaymentInstrument {
         {
             "name": "additionalBankAccountIdentifications",
             "baseName": "additionalBankAccountIdentifications",
-            "type": "Array<IbanAccountIdentification>"
+            "type": "Array<PaymentInstrumentAdditionalBankAccountIdentificationsInner>"
         },
         {
             "name": "balanceAccountId",
@@ -78,12 +78,12 @@ export class PaymentInstrument {
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccountDetails | null"
+            "type": "BankAccountDetails"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null"
+            "type": "Card"
         },
         {
             "name": "description",
@@ -138,24 +138,24 @@ export class PaymentInstrument {
 
 export namespace PaymentInstrument {
     export enum StatusEnum {
-        Active = 'active',
-        Closed = 'closed',
-        Inactive = 'inactive',
-        Suspended = 'suspended'
+        Active = <any> 'active',
+        Closed = <any> 'closed',
+        Inactive = <any> 'inactive',
+        Suspended = <any> 'suspended'
     }
     export enum StatusReasonEnum {
-        AccountClosure = 'accountClosure',
-        Damaged = 'damaged',
-        EndOfLife = 'endOfLife',
-        Expired = 'expired',
-        Lost = 'lost',
-        Other = 'other',
-        Stolen = 'stolen',
-        SuspectedFraud = 'suspectedFraud',
-        TransactionRule = 'transactionRule'
+        AccountClosure = <any> 'accountClosure',
+        Damaged = <any> 'damaged',
+        EndOfLife = <any> 'endOfLife',
+        Expired = <any> 'expired',
+        Lost = <any> 'lost',
+        Other = <any> 'other',
+        Stolen = <any> 'stolen',
+        SuspectedFraud = <any> 'suspectedFraud',
+        TransactionRule = <any> 'transactionRule'
     }
     export enum TypeEnum {
-        BankAccount = 'bankAccount',
-        Card = 'card'
+        BankAccount = <any> 'bankAccount',
+        Card = <any> 'card'
     }
 }

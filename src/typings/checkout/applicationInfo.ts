@@ -13,12 +13,12 @@ import { MerchantDevice } from './merchantDevice';
 import { ShopperInteractionDevice } from './shopperInteractionDevice';
 
 export class ApplicationInfo {
-    'adyenLibrary'?: CommonField | null;
-    'adyenPaymentSource'?: CommonField | null;
-    'externalPlatform'?: ExternalPlatform | null;
-    'merchantApplication'?: CommonField | null;
-    'merchantDevice'?: MerchantDevice | null;
-    'shopperInteractionDevice'?: ShopperInteractionDevice | null;
+    'adyenLibrary'?: CommonField;
+    'adyenPaymentSource'?: CommonField;
+    'externalPlatform'?: ExternalPlatform;
+    'merchantApplication'?: CommonField;
+    'merchantDevice'?: MerchantDevice;
+    'shopperInteractionDevice'?: ShopperInteractionDevice;
 
     static discriminator: string | undefined = undefined;
 
@@ -26,32 +26,32 @@ export class ApplicationInfo {
         {
             "name": "adyenLibrary",
             "baseName": "adyenLibrary",
-            "type": "CommonField | null"
+            "type": "CommonField"
         },
         {
             "name": "adyenPaymentSource",
             "baseName": "adyenPaymentSource",
-            "type": "CommonField | null"
+            "type": "CommonField"
         },
         {
             "name": "externalPlatform",
             "baseName": "externalPlatform",
-            "type": "ExternalPlatform | null"
+            "type": "ExternalPlatform"
         },
         {
             "name": "merchantApplication",
             "baseName": "merchantApplication",
-            "type": "CommonField | null"
+            "type": "CommonField"
         },
         {
             "name": "merchantDevice",
             "baseName": "merchantDevice",
-            "type": "MerchantDevice | null"
+            "type": "MerchantDevice"
         },
         {
             "name": "shopperInteractionDevice",
             "baseName": "shopperInteractionDevice",
-            "type": "ShopperInteractionDevice | null"
+            "type": "ShopperInteractionDevice"
         }    ];
 
     static getAttributeTypeMap() {

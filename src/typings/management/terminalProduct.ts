@@ -26,7 +26,7 @@ export class TerminalProduct {
     * The descriptive name of the product.
     */
     'name'?: string;
-    'price'?: TerminalProductPrice | null;
+    'price'?: TerminalProductPrice;
 
     static discriminator: string | undefined = undefined;
 
@@ -54,7 +54,7 @@ export class TerminalProduct {
         {
             "name": "price",
             "baseName": "price",
-            "type": "TerminalProductPrice | null"
+            "type": "TerminalProductPrice"
         }    ];
 
     static getAttributeTypeMap() {

@@ -75,6 +75,6 @@ export class CheckoutDelegatedAuthenticationAction {
 
 export namespace CheckoutDelegatedAuthenticationAction {
     export enum TypeEnum {
-        DelegatedAuthentication = 'delegatedAuthentication'
+        DelegatedAuthentication = <any> 'delegatedAuthentication'
     }
 }

@@ -27,7 +27,7 @@ export class PaymentCaptureResponse {
     * The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to capture. 
     */
     'paymentPspReference': string;
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Adyen\'s 16-character reference associated with the capture request.
     */
@@ -75,7 +75,7 @@ export class PaymentCaptureResponse {
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "pspReference",
@@ -110,6 +110,6 @@ export class PaymentCaptureResponse {
 
 export namespace PaymentCaptureResponse {
     export enum StatusEnum {
-        Received = 'received'
+        Received = <any> 'received'
     }
 }

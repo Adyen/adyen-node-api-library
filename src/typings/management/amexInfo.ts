@@ -16,7 +16,7 @@ export class AmexInfo {
     /**
     * Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for `gatewayContract` and `paymentDesignatorContract` service levels.  The default value is **false**.
     */
-    'reuseMidNumber'?: boolean;
+    'reuseMidNumber'?: boolean = false;
     /**
     * Specifies the service level (settlement type) of this payment method. Possible values: * **noContract**: Adyen holds the contract with American Express. * **gatewayContract**: American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Adyen receives the settlement, and handles disputes and payouts.
     */
@@ -48,8 +48,8 @@ export class AmexInfo {
 
 export namespace AmexInfo {
     export enum ServiceLevelEnum {
-        NoContract = 'noContract',
-        GatewayContract = 'gatewayContract',
-        PaymentDesignatorContract = 'paymentDesignatorContract'
+        NoContract = <any> 'noContract',
+        GatewayContract = <any> 'gatewayContract',
+        PaymentDesignatorContract = <any> 'paymentDesignatorContract'
     }
 }

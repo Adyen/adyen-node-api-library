@@ -20,7 +20,7 @@ export class EBankingFinlandDetails {
     /**
     * **ebanking_FI**
     */
-    'type': EBankingFinlandDetails.TypeEnum;
+    'type': EBankingFinlandDetails.TypeEnum = EBankingFinlandDetails.TypeEnum.EbankingFi;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class EBankingFinlandDetails {
 
 export namespace EBankingFinlandDetails {
     export enum TypeEnum {
-        EbankingFi = 'ebanking_FI'
+        EbankingFi = <any> 'ebanking_FI'
     }
 }

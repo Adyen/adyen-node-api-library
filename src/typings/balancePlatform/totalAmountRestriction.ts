@@ -14,7 +14,7 @@ export class TotalAmountRestriction {
     * Defines how the condition must be evaluated.
     */
     'operation': string;
-    'value'?: Amount | null;
+    'value'?: Amount;
 
     static discriminator: string | undefined = undefined;
 
@@ -27,7 +27,7 @@ export class TotalAmountRestriction {
         {
             "name": "value",
             "baseName": "value",
-            "type": "Amount | null"
+            "type": "Amount"
         }    ];
 
     static getAttributeTypeMap() {

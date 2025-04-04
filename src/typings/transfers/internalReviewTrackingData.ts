@@ -20,7 +20,7 @@ export class InternalReviewTrackingData {
     /**
     * The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen\'s risk policy.
     */
-    'type': InternalReviewTrackingData.TypeEnum;
+    'type': InternalReviewTrackingData.TypeEnum = InternalReviewTrackingData.TypeEnum.InternalReview;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,13 +48,13 @@ export class InternalReviewTrackingData {
 
 export namespace InternalReviewTrackingData {
     export enum ReasonEnum {
-        RefusedForRegulatoryReasons = 'refusedForRegulatoryReasons'
+        RefusedForRegulatoryReasons = <any> 'refusedForRegulatoryReasons'
     }
     export enum StatusEnum {
-        Pending = 'pending',
-        Failed = 'failed'
+        Pending = <any> 'pending',
+        Failed = <any> 'failed'
     }
     export enum TypeEnum {
-        InternalReview = 'internalReview'
+        InternalReview = <any> 'internalReview'
     }
 }

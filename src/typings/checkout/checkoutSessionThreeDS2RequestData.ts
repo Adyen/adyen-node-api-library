@@ -10,13 +10,13 @@
 import { Phone } from './phone';
 
 export class CheckoutSessionThreeDS2RequestData {
-    'homePhone'?: Phone | null;
-    'mobilePhone'?: Phone | null;
+    'homePhone'?: Phone;
+    'mobilePhone'?: Phone;
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
     'threeDSRequestorChallengeInd'?: CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
-    'workPhone'?: Phone | null;
+    'workPhone'?: Phone;
 
     static discriminator: string | undefined = undefined;
 
@@ -24,12 +24,12 @@ export class CheckoutSessionThreeDS2RequestData {
         {
             "name": "homePhone",
             "baseName": "homePhone",
-            "type": "Phone | null"
+            "type": "Phone"
         },
         {
             "name": "mobilePhone",
             "baseName": "mobilePhone",
-            "type": "Phone | null"
+            "type": "Phone"
         },
         {
             "name": "threeDSRequestorChallengeInd",
@@ -39,7 +39,7 @@ export class CheckoutSessionThreeDS2RequestData {
         {
             "name": "workPhone",
             "baseName": "workPhone",
-            "type": "Phone | null"
+            "type": "Phone"
         }    ];
 
     static getAttributeTypeMap() {
@@ -49,11 +49,11 @@ export class CheckoutSessionThreeDS2RequestData {
 
 export namespace CheckoutSessionThreeDS2RequestData {
     export enum ThreeDSRequestorChallengeIndEnum {
-        _01 = '01',
-        _02 = '02',
-        _03 = '03',
-        _04 = '04',
-        _05 = '05',
-        _06 = '06'
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05',
+        _06 = <any> '06'
     }
 }

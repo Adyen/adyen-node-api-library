@@ -90,7 +90,7 @@ export class GetTerminalDetailsResponse {
     * The store code of the store that the terminal is assigned to.
     */
     'store'?: string;
-    'storeDetails'?: Store | null;
+    'storeDetails'?: Store;
     /**
     * The unique terminal ID.
     */
@@ -214,7 +214,7 @@ export class GetTerminalDetailsResponse {
         {
             "name": "storeDetails",
             "baseName": "storeDetails",
-            "type": "Store | null"
+            "type": "Store"
         },
         {
             "name": "terminal",
@@ -244,17 +244,17 @@ export class GetTerminalDetailsResponse {
 
 export namespace GetTerminalDetailsResponse {
     export enum TerminalStatusEnum {
-        OnlineLast1Day = 'OnlineLast1Day',
-        OnlineLast2Days = 'OnlineLast2Days',
-        OnlineLast3Days = 'OnlineLast3Days',
-        OnlineLast4Days = 'OnlineLast4Days',
-        OnlineLast5Days = 'OnlineLast5Days',
-        OnlineLast6Days = 'OnlineLast6Days',
-        OnlineLast7Days = 'OnlineLast7Days',
-        OnlineToday = 'OnlineToday',
-        ReAssignToInventoryPending = 'ReAssignToInventoryPending',
-        ReAssignToMerchantInventoryPending = 'ReAssignToMerchantInventoryPending',
-        ReAssignToStorePending = 'ReAssignToStorePending',
-        SwitchedOff = 'SwitchedOff'
+        OnlineLast1Day = <any> 'OnlineLast1Day',
+        OnlineLast2Days = <any> 'OnlineLast2Days',
+        OnlineLast3Days = <any> 'OnlineLast3Days',
+        OnlineLast4Days = <any> 'OnlineLast4Days',
+        OnlineLast5Days = <any> 'OnlineLast5Days',
+        OnlineLast6Days = <any> 'OnlineLast6Days',
+        OnlineLast7Days = <any> 'OnlineLast7Days',
+        OnlineToday = <any> 'OnlineToday',
+        ReAssignToInventoryPending = <any> 'ReAssignToInventoryPending',
+        ReAssignToMerchantInventoryPending = <any> 'ReAssignToMerchantInventoryPending',
+        ReAssignToStorePending = <any> 'ReAssignToStorePending',
+        SwitchedOff = <any> 'SwitchedOff'
     }
 }

@@ -16,13 +16,13 @@ export class FundSource {
     * A map of name-value pairs for passing additional or industry-specific data.
     */
     'additionalData'?: { [key: string]: string; };
-    'billingAddress'?: Address | null;
-    'card'?: Card | null;
+    'billingAddress'?: Address;
+    'card'?: Card;
     /**
     * Email address of the person.
     */
     'shopperEmail'?: string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * Phone number of the person
     */
@@ -39,12 +39,12 @@ export class FundSource {
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null"
+            "type": "Card"
         },
         {
             "name": "shopperEmail",
@@ -54,7 +54,7 @@ export class FundSource {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name"
         },
         {
             "name": "telephoneNumber",

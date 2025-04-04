@@ -7,27 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { AULocalAccountIdentification } from './aULocalAccountIdentification';
-import { CALocalAccountIdentification } from './cALocalAccountIdentification';
-import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
-import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
-import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
-import { HULocalAccountIdentification } from './hULocalAccountIdentification';
-import { IbanAccountIdentification } from './ibanAccountIdentification';
-import { NOLocalAccountIdentification } from './nOLocalAccountIdentification';
-import { NZLocalAccountIdentification } from './nZLocalAccountIdentification';
-import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentification';
-import { PLLocalAccountIdentification } from './pLLocalAccountIdentification';
-import { SELocalAccountIdentification } from './sELocalAccountIdentification';
-import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
-import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
-import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
+import { BankAccountInfoAccountIdentification } from './bankAccountInfoAccountIdentification';
 
 export class BankAccountInfo {
-    /**
-    * Identification of the bank account.
-    */
-    'accountIdentification'?: AULocalAccountIdentification | CALocalAccountIdentification | CZLocalAccountIdentification | DKLocalAccountIdentification | HKLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NZLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | SGLocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification | null;
+    'accountIdentification'?: BankAccountInfoAccountIdentification;
     /**
     * The type of bank account.
     *
@@ -53,7 +36,7 @@ export class BankAccountInfo {
         {
             "name": "accountIdentification",
             "baseName": "accountIdentification",
-            "type": "AULocalAccountIdentification | CALocalAccountIdentification | CZLocalAccountIdentification | DKLocalAccountIdentification | HKLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NZLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | SGLocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification | null"
+            "type": "BankAccountInfoAccountIdentification"
         },
         {
             "name": "accountType",

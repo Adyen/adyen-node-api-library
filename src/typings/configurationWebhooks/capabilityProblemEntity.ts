@@ -18,7 +18,7 @@ export class CapabilityProblemEntity {
     * The ID of the entity.
     */
     'id'?: string;
-    'owner'?: CapabilityProblemEntityRecursive | null;
+    'owner'?: CapabilityProblemEntityRecursive;
     /**
     * Type of entity.   Possible values: **LegalEntity**, **BankAccount**, **Document**.
     */
@@ -40,7 +40,7 @@ export class CapabilityProblemEntity {
         {
             "name": "owner",
             "baseName": "owner",
-            "type": "CapabilityProblemEntityRecursive | null"
+            "type": "CapabilityProblemEntityRecursive"
         },
         {
             "name": "type",
@@ -55,8 +55,8 @@ export class CapabilityProblemEntity {
 
 export namespace CapabilityProblemEntity {
     export enum TypeEnum {
-        BankAccount = 'BankAccount',
-        Document = 'Document',
-        LegalEntity = 'LegalEntity'
+        BankAccount = <any> 'BankAccount',
+        Document = <any> 'Document',
+        LegalEntity = <any> 'LegalEntity'
     }
 }

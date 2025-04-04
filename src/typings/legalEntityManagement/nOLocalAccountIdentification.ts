@@ -16,7 +16,7 @@ export class NOLocalAccountIdentification {
     /**
     * **noLocal**
     */
-    'type': NOLocalAccountIdentification.TypeEnum;
+    'type': NOLocalAccountIdentification.TypeEnum = NOLocalAccountIdentification.TypeEnum.NoLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class NOLocalAccountIdentification {
 
 export namespace NOLocalAccountIdentification {
     export enum TypeEnum {
-        NoLocal = 'noLocal'
+        NoLocal = <any> 'noLocal'
     }
 }

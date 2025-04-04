@@ -39,6 +39,6 @@ export class CancelOrderResponse {
 
 export namespace CancelOrderResponse {
     export enum ResultCodeEnum {
-        Received = 'Received'
+        Received = <any> 'Received'
     }
 }

@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 
 export class AmountAdjustment {
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * The type of markup that is applied to an authorised payment.  Possible values: **exchange**, **forexMarkup**, **authHoldReserve**, **atmMarkup**.
     */
@@ -26,7 +26,7 @@ export class AmountAdjustment {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "amountAdjustmentType",
@@ -46,9 +46,9 @@ export class AmountAdjustment {
 
 export namespace AmountAdjustment {
     export enum AmountAdjustmentTypeEnum {
-        AtmMarkup = 'atmMarkup',
-        AuthHoldReserve = 'authHoldReserve',
-        Exchange = 'exchange',
-        ForexMarkup = 'forexMarkup'
+        AtmMarkup = <any> 'atmMarkup',
+        AuthHoldReserve = <any> 'authHoldReserve',
+        Exchange = <any> 'exchange',
+        ForexMarkup = <any> 'forexMarkup'
     }
 }

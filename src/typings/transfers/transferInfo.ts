@@ -47,12 +47,12 @@ export class TransferInfo {
     *  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both parties involved in the funds movement.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
     'referenceForBeneficiary'?: string;
-    'review'?: TransferRequestReview | null;
+    'review'?: TransferRequestReview;
     /**
     * The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The `category` must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The `category` must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The `category` must be **internal**.   
     */
     'type'?: TransferInfo.TypeEnum;
-    'ultimateParty'?: UltimatePartyIdentification | null;
+    'ultimateParty'?: UltimatePartyIdentification;
 
     static discriminator: string | undefined = undefined;
 
@@ -110,7 +110,7 @@ export class TransferInfo {
         {
             "name": "review",
             "baseName": "review",
-            "type": "TransferRequestReview | null"
+            "type": "TransferRequestReview"
         },
         {
             "name": "type",
@@ -120,7 +120,7 @@ export class TransferInfo {
         {
             "name": "ultimateParty",
             "baseName": "ultimateParty",
-            "type": "UltimatePartyIdentification | null"
+            "type": "UltimatePartyIdentification"
         }    ];
 
     static getAttributeTypeMap() {
@@ -130,32 +130,32 @@ export class TransferInfo {
 
 export namespace TransferInfo {
     export enum CategoryEnum {
-        Bank = 'bank',
-        Card = 'card',
-        Internal = 'internal',
-        IssuedCard = 'issuedCard',
-        PlatformPayment = 'platformPayment',
-        TopUp = 'topUp'
+        Bank = <any> 'bank',
+        Card = <any> 'card',
+        Internal = <any> 'internal',
+        IssuedCard = <any> 'issuedCard',
+        PlatformPayment = <any> 'platformPayment',
+        TopUp = <any> 'topUp'
     }
     export enum PrioritiesEnum {
-        CrossBorder = 'crossBorder',
-        Fast = 'fast',
-        Instant = 'instant',
-        Internal = 'internal',
-        Regular = 'regular',
-        Wire = 'wire'
+        CrossBorder = <any> 'crossBorder',
+        Fast = <any> 'fast',
+        Instant = <any> 'instant',
+        Internal = <any> 'internal',
+        Regular = <any> 'regular',
+        Wire = <any> 'wire'
     }
     export enum PriorityEnum {
-        CrossBorder = 'crossBorder',
-        Fast = 'fast',
-        Instant = 'instant',
-        Internal = 'internal',
-        Regular = 'regular',
-        Wire = 'wire'
+        CrossBorder = <any> 'crossBorder',
+        Fast = <any> 'fast',
+        Instant = <any> 'instant',
+        Internal = <any> 'internal',
+        Regular = <any> 'regular',
+        Wire = <any> 'wire'
     }
     export enum TypeEnum {
-        BankTransfer = 'bankTransfer',
-        InternalTransfer = 'internalTransfer',
-        InternalDirectDebit = 'internalDirectDebit'
+        BankTransfer = <any> 'bankTransfer',
+        InternalTransfer = <any> 'internalTransfer',
+        InternalDirectDebit = <any> 'internalDirectDebit'
     }
 }

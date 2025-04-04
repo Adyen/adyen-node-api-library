@@ -47,7 +47,7 @@ export class PayPalDetails {
     /**
     * **paypal**
     */
-    'type': PayPalDetails.TypeEnum;
+    'type': PayPalDetails.TypeEnum = PayPalDetails.TypeEnum.Paypal;
 
     static discriminator: string | undefined = undefined;
 
@@ -105,11 +105,11 @@ export class PayPalDetails {
 
 export namespace PayPalDetails {
     export enum SubtypeEnum {
-        Express = 'express',
-        Redirect = 'redirect',
-        Sdk = 'sdk'
+        Express = <any> 'express',
+        Redirect = <any> 'redirect',
+        Sdk = <any> 'sdk'
     }
     export enum TypeEnum {
-        Paypal = 'paypal'
+        Paypal = <any> 'paypal'
     }
 }

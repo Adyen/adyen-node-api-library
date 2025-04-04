@@ -39,7 +39,7 @@ export class RatepayDetails {
     /**
     * **ratepay**
     */
-    'type': RatepayDetails.TypeEnum;
+    'type': RatepayDetails.TypeEnum = RatepayDetails.TypeEnum.Ratepay;
 
     static discriminator: string | undefined = undefined;
 
@@ -87,7 +87,7 @@ export class RatepayDetails {
 
 export namespace RatepayDetails {
     export enum TypeEnum {
-        Ratepay = 'ratepay',
-        RatepayDirectdebit = 'ratepay_directdebit'
+        Ratepay = <any> 'ratepay',
+        RatepayDirectdebit = <any> 'ratepay_directdebit'
     }
 }

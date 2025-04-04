@@ -20,7 +20,7 @@ export class PayByBankDetails {
     /**
     * **paybybank**
     */
-    'type': PayByBankDetails.TypeEnum;
+    'type': PayByBankDetails.TypeEnum = PayByBankDetails.TypeEnum.Paybybank;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class PayByBankDetails {
 
 export namespace PayByBankDetails {
     export enum TypeEnum {
-        Paybybank = 'paybybank'
+        Paybybank = <any> 'paybybank'
     }
 }

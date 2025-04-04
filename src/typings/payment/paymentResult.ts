@@ -19,12 +19,12 @@ export class PaymentResult {
     * Authorisation code: * When the payment is authorised successfully, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.
     */
     'authCode'?: string;
-    'dccAmount'?: Amount | null;
+    'dccAmount'?: Amount;
     /**
     * Cryptographic signature used to verify `dccQuote`. > This value only applies if you have implemented Dynamic Currency Conversion. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).
     */
     'dccSignature'?: string;
-    'fraudResult'?: FraudResult | null;
+    'fraudResult'?: FraudResult;
     /**
     * The URL to direct the shopper to. > In case of SecurePlus, do not redirect a shopper to this URL.
     */
@@ -66,7 +66,7 @@ export class PaymentResult {
         {
             "name": "dccAmount",
             "baseName": "dccAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "dccSignature",
@@ -76,7 +76,7 @@ export class PaymentResult {
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult | null"
+            "type": "FraudResult"
         },
         {
             "name": "issuerUrl",
@@ -116,19 +116,19 @@ export class PaymentResult {
 
 export namespace PaymentResult {
     export enum ResultCodeEnum {
-        AuthenticationFinished = 'AuthenticationFinished',
-        AuthenticationNotRequired = 'AuthenticationNotRequired',
-        Authorised = 'Authorised',
-        Cancelled = 'Cancelled',
-        ChallengeShopper = 'ChallengeShopper',
-        Error = 'Error',
-        IdentifyShopper = 'IdentifyShopper',
-        PartiallyAuthorised = 'PartiallyAuthorised',
-        Pending = 'Pending',
-        PresentToShopper = 'PresentToShopper',
-        Received = 'Received',
-        RedirectShopper = 'RedirectShopper',
-        Refused = 'Refused',
-        Success = 'Success'
+        AuthenticationFinished = <any> 'AuthenticationFinished',
+        AuthenticationNotRequired = <any> 'AuthenticationNotRequired',
+        Authorised = <any> 'Authorised',
+        Cancelled = <any> 'Cancelled',
+        ChallengeShopper = <any> 'ChallengeShopper',
+        Error = <any> 'Error',
+        IdentifyShopper = <any> 'IdentifyShopper',
+        PartiallyAuthorised = <any> 'PartiallyAuthorised',
+        Pending = <any> 'Pending',
+        PresentToShopper = <any> 'PresentToShopper',
+        Received = <any> 'Received',
+        RedirectShopper = <any> 'RedirectShopper',
+        Refused = <any> 'Refused',
+        Success = <any> 'Success'
     }
 }

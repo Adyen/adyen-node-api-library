@@ -14,7 +14,7 @@ export class StoredValueIssueResponse {
     * Authorisation code: * When the payment is authorised, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.
     */
     'authCode'?: string;
-    'currentBalance'?: Amount | null;
+    'currentBalance'?: Amount;
     /**
     * The collection that contains the type of the payment method and its specific information if available
     */
@@ -47,7 +47,7 @@ export class StoredValueIssueResponse {
         {
             "name": "currentBalance",
             "baseName": "currentBalance",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "paymentMethod",
@@ -82,9 +82,9 @@ export class StoredValueIssueResponse {
 
 export namespace StoredValueIssueResponse {
     export enum ResultCodeEnum {
-        Success = 'Success',
-        Refused = 'Refused',
-        Error = 'Error',
-        NotEnoughBalance = 'NotEnoughBalance'
+        Success = <any> 'Success',
+        Refused = <any> 'Refused',
+        Error = <any> 'Error',
+        NotEnoughBalance = <any> 'NotEnoughBalance'
     }
 }

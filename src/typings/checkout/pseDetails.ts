@@ -75,6 +75,6 @@ export class PseDetails {
 
 export namespace PseDetails {
     export enum TypeEnum {
-        PsePayulatam = 'pse_payulatam'
+        PsePayulatam = <any> 'pse_payulatam'
     }
 }

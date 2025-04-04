@@ -10,8 +10,8 @@
 import { Link } from './link';
 
 export class Links {
-    'next'?: Link | null;
-    'prev'?: Link | null;
+    'next'?: Link;
+    'prev'?: Link;
 
     static discriminator: string | undefined = undefined;
 
@@ -19,12 +19,12 @@ export class Links {
         {
             "name": "next",
             "baseName": "next",
-            "type": "Link | null"
+            "type": "Link"
         },
         {
             "name": "prev",
             "baseName": "prev",
-            "type": "Link | null"
+            "type": "Link"
         }    ];
 
     static getAttributeTypeMap() {

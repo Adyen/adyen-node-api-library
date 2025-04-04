@@ -24,7 +24,7 @@ export class BrowserInfo {
     /**
     * Boolean value indicating if the shopper\'s browser is able to execute JavaScript. A default \'true\' value is assumed if the field is not present.
     */
-    'javaScriptEnabled'?: boolean;
+    'javaScriptEnabled'?: boolean = true;
     /**
     * The `navigator.language` value of the shopper\'s browser (as defined in IETF BCP 47).
     */

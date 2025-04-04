@@ -10,7 +10,7 @@
 import { FraudCheckResult } from './fraudCheckResult';
 
 export class FraudCheckResultWrapper {
-    'FraudCheckResult'?: FraudCheckResult | null;
+    'FraudCheckResult'?: FraudCheckResult;
 
     static discriminator: string | undefined = undefined;
 
@@ -18,7 +18,7 @@ export class FraudCheckResultWrapper {
         {
             "name": "FraudCheckResult",
             "baseName": "FraudCheckResult",
-            "type": "FraudCheckResult | null"
+            "type": "FraudCheckResult"
         }    ];
 
     static getAttributeTypeMap() {

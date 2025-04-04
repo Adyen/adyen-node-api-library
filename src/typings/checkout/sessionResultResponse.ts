@@ -39,11 +39,11 @@ export class SessionResultResponse {
 
 export namespace SessionResultResponse {
     export enum StatusEnum {
-        Active = 'active',
-        Canceled = 'canceled',
-        Completed = 'completed',
-        Expired = 'expired',
-        PaymentPending = 'paymentPending',
-        Refused = 'refused'
+        Active = <any> 'active',
+        Canceled = <any> 'canceled',
+        Completed = <any> 'completed',
+        Expired = <any> 'expired',
+        PaymentPending = <any> 'paymentPending',
+        Refused = <any> 'refused'
     }
 }

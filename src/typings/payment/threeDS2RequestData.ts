@@ -15,7 +15,7 @@ import { ThreeDSRequestorAuthenticationInfo } from './threeDSRequestorAuthentica
 import { ThreeDSRequestorPriorAuthenticationInfo } from './threeDSRequestorPriorAuthenticationInfo';
 
 export class ThreeDS2RequestData {
-    'acctInfo'?: AcctInfo | null;
+    'acctInfo'?: AcctInfo;
     /**
     * Indicates the type of account. For example, for a multi-account card product. Length: 2 characters. Allowed values: * **01** — Not applicable * **02** — Credit * **03** — Debit
     */
@@ -38,7 +38,7 @@ export class ThreeDS2RequestData {
 	* @deprecated since Adyen Payment API v50
 	* Use `threeDSAuthenticationOnly` instead.
     */
-    'authenticationOnly'?: boolean;
+    'authenticationOnly'?: boolean = false;
     /**
     * Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate` 
     *
@@ -50,8 +50,8 @@ export class ThreeDS2RequestData {
     * The environment of the shopper. Allowed values: * `app` * `browser`
     */
     'deviceChannel': string;
-    'deviceRenderOptions'?: DeviceRenderOptions | null;
-    'homePhone'?: Phone | null;
+    'deviceRenderOptions'?: DeviceRenderOptions;
+    'homePhone'?: Phone;
     /**
     * Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The `mcc` is a four-digit code with which the previously given `acquirerMerchantID` is registered at the scheme.
     */
@@ -64,7 +64,7 @@ export class ThreeDS2RequestData {
     * The `messageVersion` value indicating the 3D Secure 2 protocol version.
     */
     'messageVersion'?: string;
-    'mobilePhone'?: Phone | null;
+    'mobilePhone'?: Phone;
     /**
     * URL to where the issuer should send the `CRes`. Required if you are not using components for `channel` **Web** or if you are using classic integration `deviceChannel` **browser**.
     */
@@ -97,11 +97,11 @@ export class ThreeDS2RequestData {
     * The `sdkEncData` value as received from the 3D Secure 2 SDK. Required for `deviceChannel` set to **app**.
     */
     'sdkEncData'?: string;
-    'sdkEphemPubKey'?: SDKEphemPubKey | null;
+    'sdkEphemPubKey'?: SDKEphemPubKey;
     /**
     * The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for `deviceChannel` set to **app**. Defaults to **60** minutes.
     */
-    'sdkMaxTimeout'?: number;
+    'sdkMaxTimeout'?: number = 60;
     /**
     * The `sdkReferenceNumber` value as received from the 3D Secure 2 SDK. Only for `deviceChannel` set to **app**.
     */
@@ -122,7 +122,7 @@ export class ThreeDS2RequestData {
     * Indicates the type of Authentication request.
     */
     'threeDSRequestorAuthenticationInd'?: string;
-    'threeDSRequestorAuthenticationInfo'?: ThreeDSRequestorAuthenticationInfo | null;
+    'threeDSRequestorAuthenticationInfo'?: ThreeDSRequestorAuthenticationInfo;
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
@@ -135,7 +135,7 @@ export class ThreeDS2RequestData {
     * Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor name assigned by the Directory Server when you enrol for 3D Secure 2.
     */
     'threeDSRequestorName'?: string;
-    'threeDSRequestorPriorAuthenticationInfo'?: ThreeDSRequestorPriorAuthenticationInfo | null;
+    'threeDSRequestorPriorAuthenticationInfo'?: ThreeDSRequestorPriorAuthenticationInfo;
     /**
     * URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3D Secure 2 process.
     */
@@ -152,7 +152,7 @@ export class ThreeDS2RequestData {
     * The `whiteListStatus` value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.
     */
     'whiteListStatus'?: string;
-    'workPhone'?: Phone | null;
+    'workPhone'?: Phone;
 
     static discriminator: string | undefined = undefined;
 
@@ -160,7 +160,7 @@ export class ThreeDS2RequestData {
         {
             "name": "acctInfo",
             "baseName": "acctInfo",
-            "type": "AcctInfo | null"
+            "type": "AcctInfo"
         },
         {
             "name": "acctType",
@@ -200,12 +200,12 @@ export class ThreeDS2RequestData {
         {
             "name": "deviceRenderOptions",
             "baseName": "deviceRenderOptions",
-            "type": "DeviceRenderOptions | null"
+            "type": "DeviceRenderOptions"
         },
         {
             "name": "homePhone",
             "baseName": "homePhone",
-            "type": "Phone | null"
+            "type": "Phone"
         },
         {
             "name": "mcc",
@@ -225,7 +225,7 @@ export class ThreeDS2RequestData {
         {
             "name": "mobilePhone",
             "baseName": "mobilePhone",
-            "type": "Phone | null"
+            "type": "Phone"
         },
         {
             "name": "notificationURL",
@@ -270,7 +270,7 @@ export class ThreeDS2RequestData {
         {
             "name": "sdkEphemPubKey",
             "baseName": "sdkEphemPubKey",
-            "type": "SDKEphemPubKey | null"
+            "type": "SDKEphemPubKey"
         },
         {
             "name": "sdkMaxTimeout",
@@ -305,7 +305,7 @@ export class ThreeDS2RequestData {
         {
             "name": "threeDSRequestorAuthenticationInfo",
             "baseName": "threeDSRequestorAuthenticationInfo",
-            "type": "ThreeDSRequestorAuthenticationInfo | null"
+            "type": "ThreeDSRequestorAuthenticationInfo"
         },
         {
             "name": "threeDSRequestorChallengeInd",
@@ -325,7 +325,7 @@ export class ThreeDS2RequestData {
         {
             "name": "threeDSRequestorPriorAuthenticationInfo",
             "baseName": "threeDSRequestorPriorAuthenticationInfo",
-            "type": "ThreeDSRequestorPriorAuthenticationInfo | null"
+            "type": "ThreeDSRequestorPriorAuthenticationInfo"
         },
         {
             "name": "threeDSRequestorURL",
@@ -350,7 +350,7 @@ export class ThreeDS2RequestData {
         {
             "name": "workPhone",
             "baseName": "workPhone",
-            "type": "Phone | null"
+            "type": "Phone"
         }    ];
 
     static getAttributeTypeMap() {
@@ -360,40 +360,40 @@ export class ThreeDS2RequestData {
 
 export namespace ThreeDS2RequestData {
     export enum AcctTypeEnum {
-        _01 = '01',
-        _02 = '02',
-        _03 = '03'
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03'
     }
     export enum AddrMatchEnum {
-        Y = 'Y',
-        N = 'N'
+        Y = <any> 'Y',
+        N = <any> 'N'
     }
     export enum ChallengeIndicatorEnum {
-        NoPreference = 'noPreference',
-        RequestNoChallenge = 'requestNoChallenge',
-        RequestChallenge = 'requestChallenge',
-        RequestChallengeAsMandate = 'requestChallengeAsMandate'
+        NoPreference = <any> 'noPreference',
+        RequestNoChallenge = <any> 'requestNoChallenge',
+        RequestChallenge = <any> 'requestChallenge',
+        RequestChallengeAsMandate = <any> 'requestChallengeAsMandate'
     }
     export enum ThreeDSRequestorChallengeIndEnum {
-        _01 = '01',
-        _02 = '02',
-        _03 = '03',
-        _04 = '04',
-        _05 = '05',
-        _06 = '06'
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05',
+        _06 = <any> '06'
     }
     export enum TransTypeEnum {
-        _01 = '01',
-        _03 = '03',
-        _10 = '10',
-        _11 = '11',
-        _28 = '28'
+        _01 = <any> '01',
+        _03 = <any> '03',
+        _10 = <any> '10',
+        _11 = <any> '11',
+        _28 = <any> '28'
     }
     export enum TransactionTypeEnum {
-        GoodsOrServicePurchase = 'goodsOrServicePurchase',
-        CheckAcceptance = 'checkAcceptance',
-        AccountFunding = 'accountFunding',
-        QuasiCashTransaction = 'quasiCashTransaction',
-        PrepaidActivationAndLoad = 'prepaidActivationAndLoad'
+        GoodsOrServicePurchase = <any> 'goodsOrServicePurchase',
+        CheckAcceptance = <any> 'checkAcceptance',
+        AccountFunding = <any> 'accountFunding',
+        QuasiCashTransaction = <any> 'quasiCashTransaction',
+        PrepaidActivationAndLoad = <any> 'prepaidActivationAndLoad'
     }
 }

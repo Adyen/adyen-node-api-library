@@ -20,7 +20,7 @@ export class DKLocalAccountIdentification {
     /**
     * **dkLocal**
     */
-    'type': DKLocalAccountIdentification.TypeEnum;
+    'type': DKLocalAccountIdentification.TypeEnum = DKLocalAccountIdentification.TypeEnum.DkLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class DKLocalAccountIdentification {
 
 export namespace DKLocalAccountIdentification {
     export enum TypeEnum {
-        DkLocal = 'dkLocal'
+        DkLocal = <any> 'dkLocal'
     }
 }

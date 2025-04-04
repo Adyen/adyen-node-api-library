@@ -39,13 +39,13 @@ export class ProcessingTypesRestriction {
 
 export namespace ProcessingTypesRestriction {
     export enum ValueEnum {
-        AtmWithdraw = 'atmWithdraw',
-        BalanceInquiry = 'balanceInquiry',
-        Ecommerce = 'ecommerce',
-        Moto = 'moto',
-        Pos = 'pos',
-        Recurring = 'recurring',
-        Token = 'token',
-        Unknown = 'unknown'
+        AtmWithdraw = <any> 'atmWithdraw',
+        BalanceInquiry = <any> 'balanceInquiry',
+        Ecommerce = <any> 'ecommerce',
+        Moto = <any> 'moto',
+        Pos = <any> 'pos',
+        Recurring = <any> 'recurring',
+        Token = <any> 'token',
+        Unknown = <any> 'unknown'
     }
 }

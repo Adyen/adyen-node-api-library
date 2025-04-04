@@ -111,12 +111,12 @@ export class CheckoutBankAccount {
 
 export namespace CheckoutBankAccount {
     export enum AccountTypeEnum {
-        Balance = 'balance',
-        Checking = 'checking',
-        Deposit = 'deposit',
-        General = 'general',
-        Other = 'other',
-        Payment = 'payment',
-        Savings = 'savings'
+        Balance = <any> 'balance',
+        Checking = <any> 'checking',
+        Deposit = <any> 'deposit',
+        General = <any> 'general',
+        Other = <any> 'other',
+        Payment = <any> 'payment',
+        Savings = <any> 'savings'
     }
 }

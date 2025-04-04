@@ -14,7 +14,7 @@ import { Split } from './split';
 
 export class PaymentRefundRequest {
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
+    'applicationInfo'?: ApplicationInfo;
     /**
     * Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
     */
@@ -26,7 +26,7 @@ export class PaymentRefundRequest {
     /**
     * The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  
     */
-    'merchantRefundReason'?: PaymentRefundRequest.MerchantRefundReasonEnum | null;
+    'merchantRefundReason'?: PaymentRefundRequest.MerchantRefundReasonEnum;
     /**
     * Your reference for the refund request. Maximum length: 80 characters.
     */
@@ -51,7 +51,7 @@ export class PaymentRefundRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo"
         },
         {
             "name": "lineItems",
@@ -66,7 +66,7 @@ export class PaymentRefundRequest {
         {
             "name": "merchantRefundReason",
             "baseName": "merchantRefundReason",
-            "type": "PaymentRefundRequest.MerchantRefundReasonEnum | null"
+            "type": "PaymentRefundRequest.MerchantRefundReasonEnum"
         },
         {
             "name": "reference",
@@ -91,10 +91,10 @@ export class PaymentRefundRequest {
 
 export namespace PaymentRefundRequest {
     export enum MerchantRefundReasonEnum {
-        Fraud = 'FRAUD',
-        CustomerRequest = 'CUSTOMER REQUEST',
-        Return = 'RETURN',
-        Duplicate = 'DUPLICATE',
-        Other = 'OTHER'
+        Fraud = <any> 'FRAUD',
+        CustomerRequest = <any> 'CUSTOMER REQUEST',
+        Return = <any> 'RETURN',
+        Duplicate = <any> 'DUPLICATE',
+        Other = <any> 'OTHER'
     }
 }

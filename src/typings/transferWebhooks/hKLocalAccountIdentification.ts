@@ -20,7 +20,7 @@ export class HKLocalAccountIdentification {
     /**
     * **hkLocal**
     */
-    'type': HKLocalAccountIdentification.TypeEnum;
+    'type': HKLocalAccountIdentification.TypeEnum = HKLocalAccountIdentification.TypeEnum.HkLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class HKLocalAccountIdentification {
 
 export namespace HKLocalAccountIdentification {
     export enum TypeEnum {
-        HkLocal = 'hkLocal'
+        HkLocal = <any> 'hkLocal'
     }
 }

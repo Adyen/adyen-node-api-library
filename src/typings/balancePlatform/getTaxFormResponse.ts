@@ -39,6 +39,6 @@ export class GetTaxFormResponse {
 
 export namespace GetTaxFormResponse {
     export enum ContentTypeEnum {
-        ApplicationPdf = 'application/pdf'
+        ApplicationPdf = <any> 'application/pdf'
     }
 }

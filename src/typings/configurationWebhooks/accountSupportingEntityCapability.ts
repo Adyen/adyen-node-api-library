@@ -84,21 +84,21 @@ export class AccountSupportingEntityCapability {
 
 export namespace AccountSupportingEntityCapability {
     export enum AllowedLevelEnum {
-        High = 'high',
-        Low = 'low',
-        Medium = 'medium',
-        NotApplicable = 'notApplicable'
+        High = <any> 'high',
+        Low = <any> 'low',
+        Medium = <any> 'medium',
+        NotApplicable = <any> 'notApplicable'
     }
     export enum RequestedLevelEnum {
-        High = 'high',
-        Low = 'low',
-        Medium = 'medium',
-        NotApplicable = 'notApplicable'
+        High = <any> 'high',
+        Low = <any> 'low',
+        Medium = <any> 'medium',
+        NotApplicable = <any> 'notApplicable'
     }
     export enum VerificationStatusEnum {
-        Invalid = 'invalid',
-        Pending = 'pending',
-        Rejected = 'rejected',
-        Valid = 'valid'
+        Invalid = <any> 'invalid',
+        Pending = <any> 'pending',
+        Rejected = <any> 'rejected',
+        Valid = <any> 'valid'
     }
 }

@@ -39,7 +39,7 @@ export class AfterpayDetails {
     /**
     * **afterpay_default**
     */
-    'type': AfterpayDetails.TypeEnum;
+    'type': AfterpayDetails.TypeEnum = AfterpayDetails.TypeEnum.AfterpayDefault;
 
     static discriminator: string | undefined = undefined;
 
@@ -87,9 +87,9 @@ export class AfterpayDetails {
 
 export namespace AfterpayDetails {
     export enum TypeEnum {
-        AfterpayDefault = 'afterpay_default',
-        Afterpaytouch = 'afterpaytouch',
-        AfterpayB2b = 'afterpay_b2b',
-        Clearpay = 'clearpay'
+        AfterpayDefault = <any> 'afterpay_default',
+        Afterpaytouch = <any> 'afterpaytouch',
+        AfterpayB2b = <any> 'afterpay_b2b',
+        Clearpay = <any> 'clearpay'
     }
 }

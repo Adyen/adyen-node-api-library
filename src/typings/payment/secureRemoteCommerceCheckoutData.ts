@@ -75,7 +75,7 @@ export class SecureRemoteCommerceCheckoutData {
 
 export namespace SecureRemoteCommerceCheckoutData {
     export enum SchemeEnum {
-        Mc = 'mc',
-        Visa = 'visa'
+        Mc = <any> 'mc',
+        Visa = <any> 'visa'
     }
 }

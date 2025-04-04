@@ -57,8 +57,8 @@ export class Device {
 
 export namespace Device {
     export enum TypeEnum {
-        Ios = 'ios',
-        Android = 'android',
-        Browser = 'browser'
+        Ios = <any> 'ios',
+        Android = <any> 'android',
+        Browser = <any> 'browser'
     }
 }

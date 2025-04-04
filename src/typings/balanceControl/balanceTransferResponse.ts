@@ -100,17 +100,17 @@ export class BalanceTransferResponse {
 
 export namespace BalanceTransferResponse {
     export enum StatusEnum {
-        Error = 'error',
-        Failed = 'failed',
-        NotEnoughBalance = 'notEnoughBalance',
-        Transferred = 'transferred'
+        Error = <any> 'error',
+        Failed = <any> 'failed',
+        NotEnoughBalance = <any> 'notEnoughBalance',
+        Transferred = <any> 'transferred'
     }
     export enum TypeEnum {
-        Tax = 'tax',
-        Fee = 'fee',
-        TerminalSale = 'terminalSale',
-        Credit = 'credit',
-        Debit = 'debit',
-        Adjustment = 'adjustment'
+        Tax = <any> 'tax',
+        Fee = <any> 'fee',
+        TerminalSale = <any> 'terminalSale',
+        Credit = <any> 'credit',
+        Debit = <any> 'debit',
+        Adjustment = <any> 'adjustment'
     }
 }

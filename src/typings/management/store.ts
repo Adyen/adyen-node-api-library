@@ -12,8 +12,8 @@ import { StoreLocation } from './storeLocation';
 import { StoreSplitConfiguration } from './storeSplitConfiguration';
 
 export class Store {
-    '_links'?: Links | null;
-    'address'?: StoreLocation | null;
+    '_links'?: Links;
+    'address'?: StoreLocation;
     /**
     * The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businesslines__resParam_id) that the store is associated with.  If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.
     */
@@ -46,7 +46,7 @@ export class Store {
     * The store name shown on the shopper\'s bank or credit card statement and on the shopper receipt.
     */
     'shopperStatement'?: string;
-    'splitConfiguration'?: StoreSplitConfiguration | null;
+    'splitConfiguration'?: StoreSplitConfiguration;
     /**
     * The status of the store. Possible values are:  - **active**. This value is assigned automatically when a store is created.  - **inactive**. The terminals under the store are blocked from accepting new transactions, but capturing outstanding transactions is still possible. - **closed**. This status is irreversible. The terminals under the store are reassigned to the merchant inventory.
     */
@@ -58,12 +58,12 @@ export class Store {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "Links | null"
+            "type": "Links"
         },
         {
             "name": "address",
             "baseName": "address",
-            "type": "StoreLocation | null"
+            "type": "StoreLocation"
         },
         {
             "name": "businessLineIds",
@@ -108,7 +108,7 @@ export class Store {
         {
             "name": "splitConfiguration",
             "baseName": "splitConfiguration",
-            "type": "StoreSplitConfiguration | null"
+            "type": "StoreSplitConfiguration"
         },
         {
             "name": "status",
@@ -123,8 +123,8 @@ export class Store {
 
 export namespace Store {
     export enum StatusEnum {
-        Active = 'active',
-        Closed = 'closed',
-        Inactive = 'inactive'
+        Active = <any> 'active',
+        Closed = <any> 'closed',
+        Inactive = <any> 'inactive'
     }
 }

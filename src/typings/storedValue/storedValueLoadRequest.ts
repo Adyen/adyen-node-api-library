@@ -94,13 +94,13 @@ export class StoredValueLoadRequest {
 
 export namespace StoredValueLoadRequest {
     export enum LoadTypeEnum {
-        MerchandiseReturn = 'merchandiseReturn',
-        Load = 'load'
+        MerchandiseReturn = <any> 'merchandiseReturn',
+        Load = <any> 'load'
     }
     export enum ShopperInteractionEnum {
-        Ecommerce = 'Ecommerce',
-        ContAuth = 'ContAuth',
-        Moto = 'Moto',
-        Pos = 'POS'
+        Ecommerce = <any> 'Ecommerce',
+        ContAuth = <any> 'ContAuth',
+        Moto = <any> 'Moto',
+        Pos = <any> 'POS'
     }
 }

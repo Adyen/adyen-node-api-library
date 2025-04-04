@@ -179,10 +179,16 @@ export class ResponseAdditionalDataCommon {
     'recurring_firstPspReference'?: string;
     /**
     * The reference that uniquely identifies the recurring transaction.
+    *
+	* @deprecated since Adyen Payment API v68
+	* Use tokenization.storedPaymentMethodId instead.
     */
     'recurring_recurringDetailReference'?: string;
     /**
     * The provided reference of the shopper for a recurring transaction.
+    *
+	* @deprecated since Adyen Payment API v68
+	* Use tokenization.shopperReference instead.
     */
     'recurring_shopperReference'?: string;
     /**
@@ -238,11 +244,11 @@ export class ResponseAdditionalDataCommon {
     */
     'threeDSVersion'?: string;
     /**
-    * The provided reference of the shopper.
+    * The reference for the shopper that you sent when tokenizing the payment details.
     */
     'tokenization_shopperReference'?: string;
     /**
-    * The store operation performed on the token.
+    * The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. 
     */
     'tokenization_store_operationType'?: ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum;
     /**
@@ -579,17 +585,17 @@ export class ResponseAdditionalDataCommon {
 
 export namespace ResponseAdditionalDataCommon {
     export enum FraudResultTypeEnum {
-        Green = 'GREEN',
-        Fraud = 'FRAUD'
+        Green = <any> 'GREEN',
+        Fraud = <any> 'FRAUD'
     }
     export enum RecurringProcessingModelEnum {
-        CardOnFile = 'CardOnFile',
-        Subscription = 'Subscription',
-        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
+        CardOnFile = <any> 'CardOnFile',
+        Subscription = <any> 'Subscription',
+        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
     }
     export enum TokenizationStoreOperationTypeEnum {
-        Created = 'created',
-        Updated = 'updated',
-        AlreadyStored = 'alreadyStored'
+        Created = <any> 'created',
+        Updated = <any> 'updated',
+        AlreadyExisting = <any> 'alreadyExisting'
     }
 }

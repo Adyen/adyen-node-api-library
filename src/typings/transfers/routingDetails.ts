@@ -57,11 +57,11 @@ export class RoutingDetails {
 
 export namespace RoutingDetails {
     export enum PriorityEnum {
-        CrossBorder = 'crossBorder',
-        Fast = 'fast',
-        Instant = 'instant',
-        Internal = 'internal',
-        Regular = 'regular',
-        Wire = 'wire'
+        CrossBorder = <any> 'crossBorder',
+        Fast = <any> 'fast',
+        Instant = <any> 'instant',
+        Internal = <any> 'internal',
+        Regular = <any> 'regular',
+        Wire = <any> 'wire'
     }
 }

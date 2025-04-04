@@ -18,7 +18,7 @@ export class TerminalAssignment {
     * The unique identifier of the merchant account to which terminal is assigned.
     */
     'merchantId'?: string;
-    'reassignmentTarget'?: TerminalReassignmentTarget | null;
+    'reassignmentTarget'?: TerminalReassignmentTarget;
     /**
     * The status of the reassignment. Possible values:   * `reassignmentInProgress`: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * `deployed`: the terminal is deployed and reassigned.   * `inventory`: the terminal is in inventory and cannot process transactions.   * `boarded`: the terminal is boarded to a store, or a merchant account representing a store, and can process transactions.  
     */
@@ -44,7 +44,7 @@ export class TerminalAssignment {
         {
             "name": "reassignmentTarget",
             "baseName": "reassignmentTarget",
-            "type": "TerminalReassignmentTarget | null"
+            "type": "TerminalReassignmentTarget"
         },
         {
             "name": "status",
@@ -64,9 +64,9 @@ export class TerminalAssignment {
 
 export namespace TerminalAssignment {
     export enum StatusEnum {
-        Boarded = 'boarded',
-        Deployed = 'deployed',
-        Inventory = 'inventory',
-        ReassignmentInProgress = 'reassignmentInProgress'
+        Boarded = <any> 'boarded',
+        Deployed = <any> 'deployed',
+        Inventory = <any> 'inventory',
+        ReassignmentInProgress = <any> 'reassignmentInProgress'
     }
 }

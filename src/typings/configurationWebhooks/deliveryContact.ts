@@ -26,7 +26,7 @@ export class DeliveryContact {
     */
     'fullPhoneNumber'?: string;
     'name': Name;
-    'phoneNumber'?: PhoneNumber | null;
+    'phoneNumber'?: PhoneNumber;
     /**
     * The URL of the contact\'s website.
     */
@@ -63,7 +63,7 @@ export class DeliveryContact {
         {
             "name": "phoneNumber",
             "baseName": "phoneNumber",
-            "type": "PhoneNumber | null"
+            "type": "PhoneNumber"
         },
         {
             "name": "webAddress",

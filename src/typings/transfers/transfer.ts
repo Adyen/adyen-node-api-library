@@ -8,28 +8,22 @@
  */
 
 import { Amount } from './amount';
-import { BankCategoryData } from './bankCategoryData';
 import { CounterpartyV3 } from './counterpartyV3';
 import { DirectDebitInformation } from './directDebitInformation';
-import { InternalCategoryData } from './internalCategoryData';
-import { IssuedCard } from './issuedCard';
 import { PaymentInstrument } from './paymentInstrument';
-import { PlatformPayment } from './platformPayment';
 import { ResourceReference } from './resourceReference';
+import { TransferCategoryData } from './transferCategoryData';
 import { TransferReview } from './transferReview';
 
 export class Transfer {
-    'accountHolder'?: ResourceReference | null;
+    'accountHolder'?: ResourceReference;
     'amount': Amount;
-    'balanceAccount'?: ResourceReference | null;
+    'balanceAccount'?: ResourceReference;
     /**
     * The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.
     */
     'category': Transfer.CategoryEnum;
-    /**
-    * The relevant data according to the transfer category.
-    */
-    'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null;
+    'categoryData'?: TransferCategoryData;
     'counterparty': CounterpartyV3;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
@@ -39,7 +33,7 @@ export class Transfer {
     * Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , \' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ \' \" ! ?**
     */
     'description'?: string;
-    'directDebitInformation'?: DirectDebitInformation | null;
+    'directDebitInformation'?: DirectDebitInformation;
     /**
     * The direction of the transfer.  Possible values: **incoming**, **outgoing**.
     */
@@ -48,7 +42,7 @@ export class Transfer {
     * The ID of the resource.
     */
     'id'?: string;
-    'paymentInstrument'?: PaymentInstrument | null;
+    'paymentInstrument'?: PaymentInstrument;
     /**
     * Additional information about the status of the transfer.
     */
@@ -61,7 +55,7 @@ export class Transfer {
     *  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the `category`.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
     'referenceForBeneficiary'?: string;
-    'review'?: TransferReview | null;
+    'review'?: TransferReview;
     /**
     * The result of the transfer.   For example, **authorised**, **refused**, or **error**.
     */
@@ -77,7 +71,7 @@ export class Transfer {
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "ResourceReference | null"
+            "type": "ResourceReference"
         },
         {
             "name": "amount",
@@ -87,7 +81,7 @@ export class Transfer {
         {
             "name": "balanceAccount",
             "baseName": "balanceAccount",
-            "type": "ResourceReference | null"
+            "type": "ResourceReference"
         },
         {
             "name": "category",
@@ -97,7 +91,7 @@ export class Transfer {
         {
             "name": "categoryData",
             "baseName": "categoryData",
-            "type": "BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null"
+            "type": "TransferCategoryData"
         },
         {
             "name": "counterparty",
@@ -117,7 +111,7 @@ export class Transfer {
         {
             "name": "directDebitInformation",
             "baseName": "directDebitInformation",
-            "type": "DirectDebitInformation | null"
+            "type": "DirectDebitInformation"
         },
         {
             "name": "direction",
@@ -132,7 +126,7 @@ export class Transfer {
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PaymentInstrument | null"
+            "type": "PaymentInstrument"
         },
         {
             "name": "reason",
@@ -152,7 +146,7 @@ export class Transfer {
         {
             "name": "review",
             "baseName": "review",
-            "type": "TransferReview | null"
+            "type": "TransferReview"
         },
         {
             "name": "status",
@@ -172,149 +166,149 @@ export class Transfer {
 
 export namespace Transfer {
     export enum CategoryEnum {
-        Bank = 'bank',
-        Card = 'card',
-        Internal = 'internal',
-        IssuedCard = 'issuedCard',
-        PlatformPayment = 'platformPayment',
-        TopUp = 'topUp'
+        Bank = <any> 'bank',
+        Card = <any> 'card',
+        Internal = <any> 'internal',
+        IssuedCard = <any> 'issuedCard',
+        PlatformPayment = <any> 'platformPayment',
+        TopUp = <any> 'topUp'
     }
     export enum DirectionEnum {
-        Incoming = 'incoming',
-        Outgoing = 'outgoing'
+        Incoming = <any> 'incoming',
+        Outgoing = <any> 'outgoing'
     }
     export enum ReasonEnum {
-        AccountHierarchyNotActive = 'accountHierarchyNotActive',
-        AmountLimitExceeded = 'amountLimitExceeded',
-        Approved = 'approved',
-        BalanceAccountTemporarilyBlockedByTransactionRule = 'balanceAccountTemporarilyBlockedByTransactionRule',
-        CounterpartyAccountBlocked = 'counterpartyAccountBlocked',
-        CounterpartyAccountClosed = 'counterpartyAccountClosed',
-        CounterpartyAccountNotFound = 'counterpartyAccountNotFound',
-        CounterpartyAddressRequired = 'counterpartyAddressRequired',
-        CounterpartyBankTimedOut = 'counterpartyBankTimedOut',
-        CounterpartyBankUnavailable = 'counterpartyBankUnavailable',
-        Declined = 'declined',
-        DeclinedByTransactionRule = 'declinedByTransactionRule',
-        DirectDebitNotSupported = 'directDebitNotSupported',
-        Error = 'error',
-        NotEnoughBalance = 'notEnoughBalance',
-        PendingApproval = 'pendingApproval',
-        PendingExecution = 'pendingExecution',
-        RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
-        RefusedByCustomer = 'refusedByCustomer',
-        RouteNotFound = 'routeNotFound',
-        ScaFailed = 'scaFailed',
-        TransferInstrumentDoesNotExist = 'transferInstrumentDoesNotExist',
-        Unknown = 'unknown'
+        AccountHierarchyNotActive = <any> 'accountHierarchyNotActive',
+        AmountLimitExceeded = <any> 'amountLimitExceeded',
+        Approved = <any> 'approved',
+        BalanceAccountTemporarilyBlockedByTransactionRule = <any> 'balanceAccountTemporarilyBlockedByTransactionRule',
+        CounterpartyAccountBlocked = <any> 'counterpartyAccountBlocked',
+        CounterpartyAccountClosed = <any> 'counterpartyAccountClosed',
+        CounterpartyAccountNotFound = <any> 'counterpartyAccountNotFound',
+        CounterpartyAddressRequired = <any> 'counterpartyAddressRequired',
+        CounterpartyBankTimedOut = <any> 'counterpartyBankTimedOut',
+        CounterpartyBankUnavailable = <any> 'counterpartyBankUnavailable',
+        Declined = <any> 'declined',
+        DeclinedByTransactionRule = <any> 'declinedByTransactionRule',
+        DirectDebitNotSupported = <any> 'directDebitNotSupported',
+        Error = <any> 'error',
+        NotEnoughBalance = <any> 'notEnoughBalance',
+        PendingApproval = <any> 'pendingApproval',
+        PendingExecution = <any> 'pendingExecution',
+        RefusedByCounterpartyBank = <any> 'refusedByCounterpartyBank',
+        RefusedByCustomer = <any> 'refusedByCustomer',
+        RouteNotFound = <any> 'routeNotFound',
+        ScaFailed = <any> 'scaFailed',
+        TransferInstrumentDoesNotExist = <any> 'transferInstrumentDoesNotExist',
+        Unknown = <any> 'unknown'
     }
     export enum StatusEnum {
-        ApprovalPending = 'approvalPending',
-        AtmWithdrawal = 'atmWithdrawal',
-        AtmWithdrawalReversalPending = 'atmWithdrawalReversalPending',
-        AtmWithdrawalReversed = 'atmWithdrawalReversed',
-        AuthAdjustmentAuthorised = 'authAdjustmentAuthorised',
-        AuthAdjustmentError = 'authAdjustmentError',
-        AuthAdjustmentRefused = 'authAdjustmentRefused',
-        Authorised = 'authorised',
-        BankTransfer = 'bankTransfer',
-        BankTransferPending = 'bankTransferPending',
-        Booked = 'booked',
-        BookingPending = 'bookingPending',
-        Cancelled = 'cancelled',
-        CapturePending = 'capturePending',
-        CaptureReversalPending = 'captureReversalPending',
-        CaptureReversed = 'captureReversed',
-        Captured = 'captured',
-        CapturedExternally = 'capturedExternally',
-        Chargeback = 'chargeback',
-        ChargebackExternally = 'chargebackExternally',
-        ChargebackPending = 'chargebackPending',
-        ChargebackReversalPending = 'chargebackReversalPending',
-        ChargebackReversed = 'chargebackReversed',
-        Credited = 'credited',
-        DepositCorrection = 'depositCorrection',
-        DepositCorrectionPending = 'depositCorrectionPending',
-        Dispute = 'dispute',
-        DisputeClosed = 'disputeClosed',
-        DisputeExpired = 'disputeExpired',
-        DisputeNeedsReview = 'disputeNeedsReview',
-        Error = 'error',
-        Expired = 'expired',
-        Failed = 'failed',
-        Fee = 'fee',
-        FeePending = 'feePending',
-        InternalTransfer = 'internalTransfer',
-        InternalTransferPending = 'internalTransferPending',
-        InvoiceDeduction = 'invoiceDeduction',
-        InvoiceDeductionPending = 'invoiceDeductionPending',
-        ManualCorrectionPending = 'manualCorrectionPending',
-        ManuallyCorrected = 'manuallyCorrected',
-        MatchedStatement = 'matchedStatement',
-        MatchedStatementPending = 'matchedStatementPending',
-        MerchantPayin = 'merchantPayin',
-        MerchantPayinPending = 'merchantPayinPending',
-        MerchantPayinReversed = 'merchantPayinReversed',
-        MerchantPayinReversedPending = 'merchantPayinReversedPending',
-        MiscCost = 'miscCost',
-        MiscCostPending = 'miscCostPending',
-        PaymentCost = 'paymentCost',
-        PaymentCostPending = 'paymentCostPending',
-        PendingApproval = 'pendingApproval',
-        PendingExecution = 'pendingExecution',
-        Received = 'received',
-        RefundPending = 'refundPending',
-        RefundReversalPending = 'refundReversalPending',
-        RefundReversed = 'refundReversed',
-        Refunded = 'refunded',
-        RefundedExternally = 'refundedExternally',
-        Refused = 'refused',
-        Rejected = 'rejected',
-        ReserveAdjustment = 'reserveAdjustment',
-        ReserveAdjustmentPending = 'reserveAdjustmentPending',
-        Returned = 'returned',
-        SecondChargeback = 'secondChargeback',
-        SecondChargebackPending = 'secondChargebackPending',
-        Undefined = 'undefined'
+        ApprovalPending = <any> 'approvalPending',
+        AtmWithdrawal = <any> 'atmWithdrawal',
+        AtmWithdrawalReversalPending = <any> 'atmWithdrawalReversalPending',
+        AtmWithdrawalReversed = <any> 'atmWithdrawalReversed',
+        AuthAdjustmentAuthorised = <any> 'authAdjustmentAuthorised',
+        AuthAdjustmentError = <any> 'authAdjustmentError',
+        AuthAdjustmentRefused = <any> 'authAdjustmentRefused',
+        Authorised = <any> 'authorised',
+        BankTransfer = <any> 'bankTransfer',
+        BankTransferPending = <any> 'bankTransferPending',
+        Booked = <any> 'booked',
+        BookingPending = <any> 'bookingPending',
+        Cancelled = <any> 'cancelled',
+        CapturePending = <any> 'capturePending',
+        CaptureReversalPending = <any> 'captureReversalPending',
+        CaptureReversed = <any> 'captureReversed',
+        Captured = <any> 'captured',
+        CapturedExternally = <any> 'capturedExternally',
+        Chargeback = <any> 'chargeback',
+        ChargebackExternally = <any> 'chargebackExternally',
+        ChargebackPending = <any> 'chargebackPending',
+        ChargebackReversalPending = <any> 'chargebackReversalPending',
+        ChargebackReversed = <any> 'chargebackReversed',
+        Credited = <any> 'credited',
+        DepositCorrection = <any> 'depositCorrection',
+        DepositCorrectionPending = <any> 'depositCorrectionPending',
+        Dispute = <any> 'dispute',
+        DisputeClosed = <any> 'disputeClosed',
+        DisputeExpired = <any> 'disputeExpired',
+        DisputeNeedsReview = <any> 'disputeNeedsReview',
+        Error = <any> 'error',
+        Expired = <any> 'expired',
+        Failed = <any> 'failed',
+        Fee = <any> 'fee',
+        FeePending = <any> 'feePending',
+        InternalTransfer = <any> 'internalTransfer',
+        InternalTransferPending = <any> 'internalTransferPending',
+        InvoiceDeduction = <any> 'invoiceDeduction',
+        InvoiceDeductionPending = <any> 'invoiceDeductionPending',
+        ManualCorrectionPending = <any> 'manualCorrectionPending',
+        ManuallyCorrected = <any> 'manuallyCorrected',
+        MatchedStatement = <any> 'matchedStatement',
+        MatchedStatementPending = <any> 'matchedStatementPending',
+        MerchantPayin = <any> 'merchantPayin',
+        MerchantPayinPending = <any> 'merchantPayinPending',
+        MerchantPayinReversed = <any> 'merchantPayinReversed',
+        MerchantPayinReversedPending = <any> 'merchantPayinReversedPending',
+        MiscCost = <any> 'miscCost',
+        MiscCostPending = <any> 'miscCostPending',
+        PaymentCost = <any> 'paymentCost',
+        PaymentCostPending = <any> 'paymentCostPending',
+        PendingApproval = <any> 'pendingApproval',
+        PendingExecution = <any> 'pendingExecution',
+        Received = <any> 'received',
+        RefundPending = <any> 'refundPending',
+        RefundReversalPending = <any> 'refundReversalPending',
+        RefundReversed = <any> 'refundReversed',
+        Refunded = <any> 'refunded',
+        RefundedExternally = <any> 'refundedExternally',
+        Refused = <any> 'refused',
+        Rejected = <any> 'rejected',
+        ReserveAdjustment = <any> 'reserveAdjustment',
+        ReserveAdjustmentPending = <any> 'reserveAdjustmentPending',
+        Returned = <any> 'returned',
+        SecondChargeback = <any> 'secondChargeback',
+        SecondChargebackPending = <any> 'secondChargebackPending',
+        Undefined = <any> 'undefined'
     }
     export enum TypeEnum {
-        Payment = 'payment',
-        Capture = 'capture',
-        CaptureReversal = 'captureReversal',
-        Refund = 'refund',
-        RefundReversal = 'refundReversal',
-        Chargeback = 'chargeback',
-        ChargebackCorrection = 'chargebackCorrection',
-        ChargebackReversal = 'chargebackReversal',
-        ChargebackReversalCorrection = 'chargebackReversalCorrection',
-        SecondChargeback = 'secondChargeback',
-        SecondChargebackCorrection = 'secondChargebackCorrection',
-        AtmWithdrawal = 'atmWithdrawal',
-        AtmWithdrawalReversal = 'atmWithdrawalReversal',
-        InternalTransfer = 'internalTransfer',
-        InternalDirectDebit = 'internalDirectDebit',
-        ManualCorrection = 'manualCorrection',
-        InvoiceDeduction = 'invoiceDeduction',
-        DepositCorrection = 'depositCorrection',
-        ReserveAdjustment = 'reserveAdjustment',
-        BankTransfer = 'bankTransfer',
-        BankDirectDebit = 'bankDirectDebit',
-        CardTransfer = 'cardTransfer',
-        MiscCost = 'miscCost',
-        PaymentCost = 'paymentCost',
-        Fee = 'fee',
-        Leftover = 'leftover',
-        Grant = 'grant',
-        CapitalFundsCollection = 'capitalFundsCollection',
-        CashOutInstruction = 'cashOutInstruction',
-        CashoutFee = 'cashoutFee',
-        CashoutRepayment = 'cashoutRepayment',
-        CashoutFunding = 'cashoutFunding',
-        Repayment = 'repayment',
-        Installment = 'installment',
-        InstallmentReversal = 'installmentReversal',
-        BalanceAdjustment = 'balanceAdjustment',
-        BalanceRollover = 'balanceRollover',
-        BalanceMigration = 'balanceMigration'
+        Payment = <any> 'payment',
+        Capture = <any> 'capture',
+        CaptureReversal = <any> 'captureReversal',
+        Refund = <any> 'refund',
+        RefundReversal = <any> 'refundReversal',
+        Chargeback = <any> 'chargeback',
+        ChargebackCorrection = <any> 'chargebackCorrection',
+        ChargebackReversal = <any> 'chargebackReversal',
+        ChargebackReversalCorrection = <any> 'chargebackReversalCorrection',
+        SecondChargeback = <any> 'secondChargeback',
+        SecondChargebackCorrection = <any> 'secondChargebackCorrection',
+        AtmWithdrawal = <any> 'atmWithdrawal',
+        AtmWithdrawalReversal = <any> 'atmWithdrawalReversal',
+        InternalTransfer = <any> 'internalTransfer',
+        InternalDirectDebit = <any> 'internalDirectDebit',
+        ManualCorrection = <any> 'manualCorrection',
+        InvoiceDeduction = <any> 'invoiceDeduction',
+        DepositCorrection = <any> 'depositCorrection',
+        ReserveAdjustment = <any> 'reserveAdjustment',
+        BankTransfer = <any> 'bankTransfer',
+        BankDirectDebit = <any> 'bankDirectDebit',
+        CardTransfer = <any> 'cardTransfer',
+        MiscCost = <any> 'miscCost',
+        PaymentCost = <any> 'paymentCost',
+        Fee = <any> 'fee',
+        Leftover = <any> 'leftover',
+        Grant = <any> 'grant',
+        CapitalFundsCollection = <any> 'capitalFundsCollection',
+        CashOutInstruction = <any> 'cashOutInstruction',
+        CashoutFee = <any> 'cashoutFee',
+        CashoutRepayment = <any> 'cashoutRepayment',
+        CashoutFunding = <any> 'cashoutFunding',
+        Repayment = <any> 'repayment',
+        Installment = <any> 'installment',
+        InstallmentReversal = <any> 'installmentReversal',
+        BalanceAdjustment = <any> 'balanceAdjustment',
+        BalanceRollover = <any> 'balanceRollover',
+        BalanceMigration = <any> 'balanceMigration'
     }
 }

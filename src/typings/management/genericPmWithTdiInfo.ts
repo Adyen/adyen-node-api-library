@@ -10,7 +10,7 @@
 import { TransactionDescriptionInfo } from './transactionDescriptionInfo';
 
 export class GenericPmWithTdiInfo {
-    'transactionDescription'?: TransactionDescriptionInfo | null;
+    'transactionDescription'?: TransactionDescriptionInfo;
 
     static discriminator: string | undefined = undefined;
 
@@ -18,7 +18,7 @@ export class GenericPmWithTdiInfo {
         {
             "name": "transactionDescription",
             "baseName": "transactionDescription",
-            "type": "TransactionDescriptionInfo | null"
+            "type": "TransactionDescriptionInfo"
         }    ];
 
     static getAttributeTypeMap() {

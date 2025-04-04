@@ -48,13 +48,13 @@ export class CardOrderItemDeliveryStatus {
 
 export namespace CardOrderItemDeliveryStatus {
     export enum StatusEnum {
-        Created = 'created',
-        Delivered = 'delivered',
-        NotApplicable = 'notApplicable',
-        Processing = 'processing',
-        Produced = 'produced',
-        Rejected = 'rejected',
-        Shipped = 'shipped',
-        Unknown = 'unknown'
+        Created = <any> 'created',
+        Delivered = <any> 'delivered',
+        NotApplicable = <any> 'notApplicable',
+        Processing = <any> 'processing',
+        Produced = <any> 'produced',
+        Rejected = <any> 'rejected',
+        Shipped = <any> 'shipped',
+        Unknown = <any> 'unknown'
     }
 }

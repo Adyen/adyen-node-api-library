@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 
 export class StoredValueStatusChangeRequest {
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
@@ -44,7 +44,7 @@ export class StoredValueStatusChangeRequest {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "merchantAccount",
@@ -94,13 +94,13 @@ export class StoredValueStatusChangeRequest {
 
 export namespace StoredValueStatusChangeRequest {
     export enum ShopperInteractionEnum {
-        Ecommerce = 'Ecommerce',
-        ContAuth = 'ContAuth',
-        Moto = 'Moto',
-        Pos = 'POS'
+        Ecommerce = <any> 'Ecommerce',
+        ContAuth = <any> 'ContAuth',
+        Moto = <any> 'Moto',
+        Pos = <any> 'POS'
     }
     export enum StatusEnum {
-        Active = 'active',
-        Inactive = 'inactive'
+        Active = <any> 'active',
+        Inactive = <any> 'inactive'
     }
 }

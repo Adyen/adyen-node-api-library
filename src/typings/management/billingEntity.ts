@@ -10,7 +10,7 @@
 import { Address } from './address';
 
 export class BillingEntity {
-    'address'?: Address | null;
+    'address'?: Address;
     /**
     * The email address of the billing entity.
     */
@@ -34,7 +34,7 @@ export class BillingEntity {
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "email",

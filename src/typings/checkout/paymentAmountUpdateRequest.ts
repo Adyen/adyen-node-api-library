@@ -14,7 +14,7 @@ import { Split } from './split';
 
 export class PaymentAmountUpdateRequest {
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
+    'applicationInfo'?: ApplicationInfo;
     /**
     * The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**
     */
@@ -47,7 +47,7 @@ export class PaymentAmountUpdateRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo"
         },
         {
             "name": "industryUsage",
@@ -82,8 +82,8 @@ export class PaymentAmountUpdateRequest {
 
 export namespace PaymentAmountUpdateRequest {
     export enum IndustryUsageEnum {
-        DelayedCharge = 'delayedCharge',
-        Installment = 'installment',
-        NoShow = 'noShow'
+        DelayedCharge = <any> 'delayedCharge',
+        Installment = <any> 'installment',
+        NoShow = <any> 'noShow'
     }
 }

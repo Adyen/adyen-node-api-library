@@ -39,10 +39,10 @@ export class Duration {
 
 export namespace Duration {
     export enum UnitEnum {
-        Days = 'days',
-        Hours = 'hours',
-        Minutes = 'minutes',
-        Months = 'months',
-        Weeks = 'weeks'
+        Days = <any> 'days',
+        Hours = <any> 'hours',
+        Minutes = <any> 'minutes',
+        Months = <any> 'months',
+        Weeks = <any> 'weeks'
     }
 }

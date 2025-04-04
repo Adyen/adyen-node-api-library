@@ -26,8 +26,8 @@ export class PaymentLinkRequest {
     */
     'allowedPaymentMethods'?: Array<string>;
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
-    'billingAddress'?: Address | null;
+    'applicationInfo'?: ApplicationInfo;
+    'billingAddress'?: Address;
     /**
     * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
@@ -48,7 +48,7 @@ export class PaymentLinkRequest {
     * The date and time when the purchased goods should be delivered.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
     */
     'deliverAt'?: Date;
-    'deliveryAddress'?: Address | null;
+    'deliveryAddress'?: Address;
     /**
     * A short description visible on the payment page. Maximum length: 280 characters.
     */
@@ -57,8 +57,8 @@ export class PaymentLinkRequest {
     * The date when the payment link expires.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format with time zone offset: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.  The maximum expiry date is 70 days after the payment link is created.  If not provided, the payment link expires 24 hours after it was created.
     */
     'expiresAt'?: Date;
-    'fundOrigin'?: FundOrigin | null;
-    'fundRecipient'?: FundRecipient | null;
+    'fundOrigin'?: FundOrigin;
+    'fundRecipient'?: FundRecipient;
     /**
     * A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options.
     */
@@ -87,7 +87,7 @@ export class PaymentLinkRequest {
     * Metadata consists of entries, each of which includes a key and a value. Limitations: * Maximum 20 key-value pairs per request. Otherwise, error \"177\" occurs: \"Metadata size exceeds limit\" * Maximum 20 characters per key. Otherwise, error \"178\" occurs: \"Metadata key size exceeds limit\" * A key cannot have the name `checkout.linkId`. Any value that you provide with this key is going to be replaced by the real payment link ID.
     */
     'metadata'?: { [key: string]: string; };
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
@@ -108,7 +108,7 @@ export class PaymentLinkRequest {
     * Indicates whether the payment link can be reused for multiple payments. If not provided, this defaults to **false** which means the link can be used for one successful payment only.
     */
     'reusable'?: boolean;
-    'riskData'?: RiskData | null;
+    'riskData'?: RiskData;
     /**
     * The shopper\'s email address.
     */
@@ -117,7 +117,7 @@ export class PaymentLinkRequest {
     * The language to be used in the payment page, specified by a combination of a language and country code. For example, `en-US`.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#language).
     */
     'shopperLocale'?: string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
@@ -129,7 +129,7 @@ export class PaymentLinkRequest {
     /**
     * Set to **false** to hide the button that lets the shopper remove a stored payment method.
     */
-    'showRemovePaymentMethodButton'?: boolean;
+    'showRemovePaymentMethodButton'?: boolean = true;
     /**
     * The shopper\'s social security number.
     */
@@ -137,7 +137,7 @@ export class PaymentLinkRequest {
     /**
     * Boolean value indicating whether the card payment method should be split into separate debit and credit options.
     */
-    'splitCardFundingSources'?: boolean;
+    'splitCardFundingSources'?: boolean = false;
     /**
     * An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
     */
@@ -158,7 +158,7 @@ export class PaymentLinkRequest {
     * A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area.
     */
     'themeId'?: string;
-    'threeDS2RequestData'?: CheckoutSessionThreeDS2RequestData | null;
+    'threeDS2RequestData'?: CheckoutSessionThreeDS2RequestData;
 
     static discriminator: string | undefined = undefined;
 
@@ -176,12 +176,12 @@ export class PaymentLinkRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "blockedPaymentMethods",
@@ -211,7 +211,7 @@ export class PaymentLinkRequest {
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "description",
@@ -226,12 +226,12 @@ export class PaymentLinkRequest {
         {
             "name": "fundOrigin",
             "baseName": "fundOrigin",
-            "type": "FundOrigin | null"
+            "type": "FundOrigin"
         },
         {
             "name": "fundRecipient",
             "baseName": "fundRecipient",
-            "type": "FundRecipient | null"
+            "type": "FundRecipient"
         },
         {
             "name": "installmentOptions",
@@ -271,7 +271,7 @@ export class PaymentLinkRequest {
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "recurringProcessingModel",
@@ -301,7 +301,7 @@ export class PaymentLinkRequest {
         {
             "name": "riskData",
             "baseName": "riskData",
-            "type": "RiskData | null"
+            "type": "RiskData"
         },
         {
             "name": "shopperEmail",
@@ -316,7 +316,7 @@ export class PaymentLinkRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name"
         },
         {
             "name": "shopperReference",
@@ -371,7 +371,7 @@ export class PaymentLinkRequest {
         {
             "name": "threeDS2RequestData",
             "baseName": "threeDS2RequestData",
-            "type": "CheckoutSessionThreeDS2RequestData | null"
+            "type": "CheckoutSessionThreeDS2RequestData"
         }    ];
 
     static getAttributeTypeMap() {
@@ -381,20 +381,20 @@ export class PaymentLinkRequest {
 
 export namespace PaymentLinkRequest {
     export enum RecurringProcessingModelEnum {
-        CardOnFile = 'CardOnFile',
-        Subscription = 'Subscription',
-        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
+        CardOnFile = <any> 'CardOnFile',
+        Subscription = <any> 'Subscription',
+        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
     }
     export enum RequiredShopperFieldsEnum {
-        BillingAddress = 'billingAddress',
-        DeliveryAddress = 'deliveryAddress',
-        ShopperEmail = 'shopperEmail',
-        ShopperName = 'shopperName',
-        TelephoneNumber = 'telephoneNumber'
+        BillingAddress = <any> 'billingAddress',
+        DeliveryAddress = <any> 'deliveryAddress',
+        ShopperEmail = <any> 'shopperEmail',
+        ShopperName = <any> 'shopperName',
+        TelephoneNumber = <any> 'telephoneNumber'
     }
     export enum StorePaymentMethodModeEnum {
-        AskForConsent = 'askForConsent',
-        Disabled = 'disabled',
-        Enabled = 'enabled'
+        AskForConsent = <any> 'askForConsent',
+        Disabled = <any> 'disabled',
+        Enabled = <any> 'enabled'
     }
 }

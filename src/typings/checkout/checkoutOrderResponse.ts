@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 
 export class CheckoutOrderResponse {
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * The expiry date for the order.
     */
@@ -27,7 +27,7 @@ export class CheckoutOrderResponse {
     * The merchant reference for the order.
     */
     'reference'?: string;
-    'remainingAmount'?: Amount | null;
+    'remainingAmount'?: Amount;
 
     static discriminator: string | undefined = undefined;
 
@@ -35,7 +35,7 @@ export class CheckoutOrderResponse {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "expiresAt",
@@ -60,7 +60,7 @@ export class CheckoutOrderResponse {
         {
             "name": "remainingAmount",
             "baseName": "remainingAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         }    ];
 
     static getAttributeTypeMap() {

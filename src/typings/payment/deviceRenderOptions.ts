@@ -12,7 +12,7 @@ export class DeviceRenderOptions {
     /**
     * Supported SDK interface types. Allowed values: * native * html * both
     */
-    'sdkInterface'?: DeviceRenderOptions.SdkInterfaceEnum;
+    'sdkInterface'?: DeviceRenderOptions.SdkInterfaceEnum = DeviceRenderOptions.SdkInterfaceEnum.Both;
     /**
     * UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect
     */
@@ -39,15 +39,15 @@ export class DeviceRenderOptions {
 
 export namespace DeviceRenderOptions {
     export enum SdkInterfaceEnum {
-        Native = 'native',
-        Html = 'html',
-        Both = 'both'
+        Native = <any> 'native',
+        Html = <any> 'html',
+        Both = <any> 'both'
     }
     export enum SdkUiTypeEnum {
-        MultiSelect = 'multiSelect',
-        OtherHtml = 'otherHtml',
-        OutOfBand = 'outOfBand',
-        SingleSelect = 'singleSelect',
-        Text = 'text'
+        MultiSelect = <any> 'multiSelect',
+        OtherHtml = <any> 'otherHtml',
+        OutOfBand = <any> 'outOfBand',
+        SingleSelect = <any> 'singleSelect',
+        Text = <any> 'text'
     }
 }

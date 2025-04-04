@@ -18,7 +18,7 @@ export class TransactionRuleInterval {
     * The day of week, used when the `duration.unit` is **weeks**. If not provided, by default, this is set to **monday**.  Possible values: **sunday**, **monday**, **tuesday**, **wednesday**, **thursday**, **friday**.
     */
     'dayOfWeek'?: TransactionRuleInterval.DayOfWeekEnum;
-    'duration'?: Duration | null;
+    'duration'?: Duration;
     /**
     * The time of day, in **hh:mm:ss** format, used when the `duration.unit` is **hours**. If not provided, by default, this is set to **00:00:00**.
     */
@@ -48,7 +48,7 @@ export class TransactionRuleInterval {
         {
             "name": "duration",
             "baseName": "duration",
-            "type": "Duration | null"
+            "type": "Duration"
         },
         {
             "name": "timeOfDay",
@@ -73,21 +73,21 @@ export class TransactionRuleInterval {
 
 export namespace TransactionRuleInterval {
     export enum DayOfWeekEnum {
-        Friday = 'friday',
-        Monday = 'monday',
-        Saturday = 'saturday',
-        Sunday = 'sunday',
-        Thursday = 'thursday',
-        Tuesday = 'tuesday',
-        Wednesday = 'wednesday'
+        Friday = <any> 'friday',
+        Monday = <any> 'monday',
+        Saturday = <any> 'saturday',
+        Sunday = <any> 'sunday',
+        Thursday = <any> 'thursday',
+        Tuesday = <any> 'tuesday',
+        Wednesday = <any> 'wednesday'
     }
     export enum TypeEnum {
-        Daily = 'daily',
-        Lifetime = 'lifetime',
-        Monthly = 'monthly',
-        PerTransaction = 'perTransaction',
-        Rolling = 'rolling',
-        Sliding = 'sliding',
-        Weekly = 'weekly'
+        Daily = <any> 'daily',
+        Lifetime = <any> 'lifetime',
+        Monthly = <any> 'monthly',
+        PerTransaction = <any> 'perTransaction',
+        Rolling = <any> 'rolling',
+        Sliding = <any> 'sliding',
+        Weekly = <any> 'weekly'
     }
 }

@@ -39,7 +39,7 @@ export class SourceAccountTypesRestriction {
 
 export namespace SourceAccountTypesRestriction {
     export enum ValueEnum {
-        BalanceAccount = 'balanceAccount',
-        BusinessAccount = 'businessAccount'
+        BalanceAccount = <any> 'balanceAccount',
+        BusinessAccount = <any> 'businessAccount'
     }
 }

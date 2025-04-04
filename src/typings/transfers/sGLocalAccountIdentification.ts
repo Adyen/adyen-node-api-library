@@ -20,7 +20,7 @@ export class SGLocalAccountIdentification {
     /**
     * **sgLocal**
     */
-    'type'?: SGLocalAccountIdentification.TypeEnum;
+    'type'?: SGLocalAccountIdentification.TypeEnum = SGLocalAccountIdentification.TypeEnum.SgLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class SGLocalAccountIdentification {
 
 export namespace SGLocalAccountIdentification {
     export enum TypeEnum {
-        SgLocal = 'sgLocal'
+        SgLocal = <any> 'sgLocal'
     }
 }

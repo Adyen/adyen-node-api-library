@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 
 export class StoredValueBalanceMergeRequest {
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
@@ -44,7 +44,7 @@ export class StoredValueBalanceMergeRequest {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "merchantAccount",
@@ -94,9 +94,9 @@ export class StoredValueBalanceMergeRequest {
 
 export namespace StoredValueBalanceMergeRequest {
     export enum ShopperInteractionEnum {
-        Ecommerce = 'Ecommerce',
-        ContAuth = 'ContAuth',
-        Moto = 'Moto',
-        Pos = 'POS'
+        Ecommerce = <any> 'Ecommerce',
+        ContAuth = <any> 'ContAuth',
+        Moto = <any> 'Moto',
+        Pos = <any> 'POS'
     }
 }

@@ -14,7 +14,7 @@ export class RiskScoresRestriction {
     * Defines how the condition must be evaluated.
     */
     'operation': string;
-    'value'?: RiskScores | null;
+    'value'?: RiskScores;
 
     static discriminator: string | undefined = undefined;
 
@@ -27,7 +27,7 @@ export class RiskScoresRestriction {
         {
             "name": "value",
             "baseName": "value",
-            "type": "RiskScores | null"
+            "type": "RiskScores"
         }    ];
 
     static getAttributeTypeMap() {

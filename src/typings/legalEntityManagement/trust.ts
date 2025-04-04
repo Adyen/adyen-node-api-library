@@ -32,7 +32,7 @@ export class Trust {
     * The legal name.
     */
     'name': string;
-    'principalPlaceOfBusiness'?: Address | null;
+    'principalPlaceOfBusiness'?: Address;
     'registeredAddress': Address;
     /**
     * The registration number.
@@ -90,7 +90,7 @@ export class Trust {
         {
             "name": "principalPlaceOfBusiness",
             "baseName": "principalPlaceOfBusiness",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "registeredAddress",
@@ -135,28 +135,28 @@ export class Trust {
 
 export namespace Trust {
     export enum TypeEnum {
-        BusinessTrust = 'businessTrust',
-        CashManagementTrust = 'cashManagementTrust',
-        CharitableTrust = 'charitableTrust',
-        CorporateUnitTrust = 'corporateUnitTrust',
-        DeceasedEstate = 'deceasedEstate',
-        DiscretionaryTrust = 'discretionaryTrust',
-        DiscretionaryInvestmentTrust = 'discretionaryInvestmentTrust',
-        DiscretionaryServicesManagementTrust = 'discretionaryServicesManagementTrust',
-        DiscretionaryTradingTrust = 'discretionaryTradingTrust',
-        FamilyTrust = 'familyTrust',
-        FirstHomeSaverAccountsTrust = 'firstHomeSaverAccountsTrust',
-        FixedTrust = 'fixedTrust',
-        FixedUnitTrust = 'fixedUnitTrust',
-        HybridTrust = 'hybridTrust',
-        ListedPublicUnitTrust = 'listedPublicUnitTrust',
-        OtherTrust = 'otherTrust',
-        PooledSuperannuationTrust = 'pooledSuperannuationTrust',
-        PublicTradingTrust = 'publicTradingTrust',
-        UnlistedPublicUnitTrust = 'unlistedPublicUnitTrust'
+        BusinessTrust = <any> 'businessTrust',
+        CashManagementTrust = <any> 'cashManagementTrust',
+        CharitableTrust = <any> 'charitableTrust',
+        CorporateUnitTrust = <any> 'corporateUnitTrust',
+        DeceasedEstate = <any> 'deceasedEstate',
+        DiscretionaryTrust = <any> 'discretionaryTrust',
+        DiscretionaryInvestmentTrust = <any> 'discretionaryInvestmentTrust',
+        DiscretionaryServicesManagementTrust = <any> 'discretionaryServicesManagementTrust',
+        DiscretionaryTradingTrust = <any> 'discretionaryTradingTrust',
+        FamilyTrust = <any> 'familyTrust',
+        FirstHomeSaverAccountsTrust = <any> 'firstHomeSaverAccountsTrust',
+        FixedTrust = <any> 'fixedTrust',
+        FixedUnitTrust = <any> 'fixedUnitTrust',
+        HybridTrust = <any> 'hybridTrust',
+        ListedPublicUnitTrust = <any> 'listedPublicUnitTrust',
+        OtherTrust = <any> 'otherTrust',
+        PooledSuperannuationTrust = <any> 'pooledSuperannuationTrust',
+        PublicTradingTrust = <any> 'publicTradingTrust',
+        UnlistedPublicUnitTrust = <any> 'unlistedPublicUnitTrust'
     }
     export enum VatAbsenceReasonEnum {
-        IndustryExemption = 'industryExemption',
-        BelowTaxThreshold = 'belowTaxThreshold'
+        IndustryExemption = <any> 'industryExemption',
+        BelowTaxThreshold = <any> 'belowTaxThreshold'
     }
 }

@@ -20,7 +20,7 @@ export class CZLocalAccountIdentification {
     /**
     * **czLocal**
     */
-    'type': CZLocalAccountIdentification.TypeEnum;
+    'type': CZLocalAccountIdentification.TypeEnum = CZLocalAccountIdentification.TypeEnum.CzLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class CZLocalAccountIdentification {
 
 export namespace CZLocalAccountIdentification {
     export enum TypeEnum {
-        CzLocal = 'czLocal'
+        CzLocal = <any> 'czLocal'
     }
 }

@@ -55,6 +55,6 @@ export class PaymentMethodScheduledForRemovalNotificationRequest {
 
 export namespace PaymentMethodScheduledForRemovalNotificationRequest {
     export enum TypeEnum {
-        PaymentMethodRequestScheduledForRemoval = 'paymentMethodRequest.scheduledForRemoval'
+        PaymentMethodRequestScheduledForRemoval = <any> 'paymentMethodRequest.scheduledForRemoval'
     }
 }

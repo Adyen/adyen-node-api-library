@@ -48,10 +48,10 @@ export class TerminalConnectivityCellular {
 
 export namespace TerminalConnectivityCellular {
     export enum StatusEnum {
-        Activated = 'activated',
-        Deactivated = 'deactivated',
-        Deprecated = 'deprecated',
-        Inventory = 'inventory',
-        ReadyForActivation = 'readyForActivation'
+        Activated = <any> 'activated',
+        Deactivated = <any> 'deactivated',
+        Deprecated = <any> 'deprecated',
+        Inventory = <any> 'inventory',
+        ReadyForActivation = <any> 'readyForActivation'
     }
 }

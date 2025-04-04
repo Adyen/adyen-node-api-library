@@ -10,8 +10,8 @@
 import { ResourceReference } from './resourceReference';
 
 export class ReportNotificationData {
-    'accountHolder'?: ResourceReference | null;
-    'balanceAccount'?: ResourceReference | null;
+    'accountHolder'?: ResourceReference;
+    'balanceAccount'?: ResourceReference;
     /**
     * The unique identifier of the balance platform.
     */
@@ -43,12 +43,12 @@ export class ReportNotificationData {
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "ResourceReference | null"
+            "type": "ResourceReference"
         },
         {
             "name": "balanceAccount",
             "baseName": "balanceAccount",
-            "type": "ResourceReference | null"
+            "type": "ResourceReference"
         },
         {
             "name": "balancePlatform",

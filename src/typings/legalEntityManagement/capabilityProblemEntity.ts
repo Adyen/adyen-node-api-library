@@ -15,7 +15,7 @@ export class CapabilityProblemEntity {
     */
     'documents'?: Array<string>;
     'id'?: string;
-    'owner'?: CapabilityProblemEntityRecursive | null;
+    'owner'?: CapabilityProblemEntityRecursive;
     'type'?: CapabilityProblemEntity.TypeEnum;
 
     static discriminator: string | undefined = undefined;
@@ -34,7 +34,7 @@ export class CapabilityProblemEntity {
         {
             "name": "owner",
             "baseName": "owner",
-            "type": "CapabilityProblemEntityRecursive | null"
+            "type": "CapabilityProblemEntityRecursive"
         },
         {
             "name": "type",
@@ -49,9 +49,9 @@ export class CapabilityProblemEntity {
 
 export namespace CapabilityProblemEntity {
     export enum TypeEnum {
-        BankAccount = 'BankAccount',
-        Document = 'Document',
-        LegalEntity = 'LegalEntity',
-        Product = 'product'
+        BankAccount = <any> 'BankAccount',
+        Document = <any> 'Document',
+        LegalEntity = <any> 'LegalEntity',
+        Product = <any> 'product'
     }
 }

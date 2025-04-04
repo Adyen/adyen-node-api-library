@@ -66,8 +66,8 @@ export class Notification {
 
 export namespace Notification {
     export enum CategoryEnum {
-        SaleWakeUp = 'SaleWakeUp',
-        KeyPressed = 'KeyPressed',
-        Empty = ''
+        SaleWakeUp = <any> 'SaleWakeUp',
+        KeyPressed = <any> 'KeyPressed',
+        Empty = <any> ''
     }
 }

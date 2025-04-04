@@ -39,9 +39,9 @@ export class StringMatch {
 
 export namespace StringMatch {
     export enum OperationEnum {
-        Contains = 'contains',
-        EndsWith = 'endsWith',
-        IsEqualTo = 'isEqualTo',
-        StartsWith = 'startsWith'
+        Contains = <any> 'contains',
+        EndsWith = <any> 'endsWith',
+        IsEqualTo = <any> 'isEqualTo',
+        StartsWith = <any> 'startsWith'
     }
 }

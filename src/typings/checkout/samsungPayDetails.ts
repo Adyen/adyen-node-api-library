@@ -35,7 +35,7 @@ export class SamsungPayDetails {
     /**
     * **samsungpay**
     */
-    'type'?: SamsungPayDetails.TypeEnum;
+    'type'?: SamsungPayDetails.TypeEnum = SamsungPayDetails.TypeEnum.Samsungpay;
 
     static discriminator: string | undefined = undefined;
 
@@ -78,10 +78,10 @@ export class SamsungPayDetails {
 
 export namespace SamsungPayDetails {
     export enum FundingSourceEnum {
-        Credit = 'credit',
-        Debit = 'debit'
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
     }
     export enum TypeEnum {
-        Samsungpay = 'samsungpay'
+        Samsungpay = <any> 'samsungpay'
     }
 }

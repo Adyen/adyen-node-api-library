@@ -36,10 +36,10 @@ export class MatchingValuesRestriction {
 
 export namespace MatchingValuesRestriction {
     export enum ValueEnum {
-        AcquirerId = 'acquirerId',
-        Amount = 'amount',
-        Currency = 'currency',
-        MerchantId = 'merchantId',
-        MerchantName = 'merchantName'
+        AcquirerId = <any> 'acquirerId',
+        Amount = <any> 'amount',
+        Currency = <any> 'currency',
+        MerchantId = <any> 'merchantId',
+        MerchantName = <any> 'merchantName'
     }
 }

@@ -22,12 +22,12 @@ export class PixRecurring {
     * The frequency at which the shopper will be charged.
     */
     'frequency'?: PixRecurring.FrequencyEnum;
-    'minAmount'?: Amount | null;
+    'minAmount'?: Amount;
     /**
     * The pspReference for the failed recurring payment. Find this in AUTHORISATION webhook you received after the billing date.
     */
     'originalPspReference'?: string;
-    'recurringAmount'?: Amount | null;
+    'recurringAmount'?: Amount;
     /**
     * The text that that will be shown on the shopper\'s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.
     */
@@ -62,7 +62,7 @@ export class PixRecurring {
         {
             "name": "minAmount",
             "baseName": "minAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "originalPspReference",
@@ -72,7 +72,7 @@ export class PixRecurring {
         {
             "name": "recurringAmount",
             "baseName": "recurringAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "recurringStatement",
@@ -97,10 +97,10 @@ export class PixRecurring {
 
 export namespace PixRecurring {
     export enum FrequencyEnum {
-        Weekly = 'weekly',
-        Monthly = 'monthly',
-        Quarterly = 'quarterly',
-        HalfYearly = 'half-yearly',
-        Yearly = 'yearly'
+        Weekly = <any> 'weekly',
+        Monthly = <any> 'monthly',
+        Quarterly = <any> 'quarterly',
+        HalfYearly = <any> 'half-yearly',
+        Yearly = <any> 'yearly'
     }
 }

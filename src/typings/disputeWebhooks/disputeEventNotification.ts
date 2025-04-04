@@ -26,7 +26,7 @@ export class DisputeEventNotification {
     * Contains information about the dispute.
     */
     'description'?: string;
-    'disputedAmount'?: Amount | null;
+    'disputedAmount'?: Amount;
     /**
     * The ID of the resource.
     */
@@ -74,7 +74,7 @@ export class DisputeEventNotification {
         {
             "name": "disputedAmount",
             "baseName": "disputedAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "id",
@@ -109,7 +109,7 @@ export class DisputeEventNotification {
 
 export namespace DisputeEventNotification {
     export enum TypeEnum {
-        Fraud = 'fraud',
-        NotDelivered = 'notDelivered'
+        Fraud = <any> 'fraud',
+        NotDelivered = <any> 'notDelivered'
     }
 }

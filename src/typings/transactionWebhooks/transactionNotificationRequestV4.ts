@@ -55,6 +55,6 @@ export class TransactionNotificationRequestV4 {
 
 export namespace TransactionNotificationRequestV4 {
     export enum TypeEnum {
-        BalancePlatformTransactionCreated = 'balancePlatform.transaction.created'
+        BalancePlatformTransactionCreated = <any> 'balancePlatform.transaction.created'
     }
 }

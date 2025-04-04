@@ -30,9 +30,9 @@ export class SubjectErasureResponse {
 
 export namespace SubjectErasureResponse {
     export enum ResultEnum {
-        ActiveRecurringTokenExists = 'ACTIVE_RECURRING_TOKEN_EXISTS',
-        AlreadyProcessed = 'ALREADY_PROCESSED',
-        PaymentNotFound = 'PAYMENT_NOT_FOUND',
-        Success = 'SUCCESS'
+        ActiveRecurringTokenExists = <any> 'ACTIVE_RECURRING_TOKEN_EXISTS',
+        AlreadyProcessed = <any> 'ALREADY_PROCESSED',
+        PaymentNotFound = <any> 'PAYMENT_NOT_FOUND',
+        Success = <any> 'SUCCESS'
     }
 }

@@ -16,7 +16,7 @@ export class PLLocalAccountIdentification {
     /**
     * **plLocal**
     */
-    'type': PLLocalAccountIdentification.TypeEnum;
+    'type': PLLocalAccountIdentification.TypeEnum = PLLocalAccountIdentification.TypeEnum.PlLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class PLLocalAccountIdentification {
 
 export namespace PLLocalAccountIdentification {
     export enum TypeEnum {
-        PlLocal = 'plLocal'
+        PlLocal = <any> 'plLocal'
     }
 }

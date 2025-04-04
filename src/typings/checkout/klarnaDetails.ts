@@ -43,7 +43,7 @@ export class KlarnaDetails {
     /**
     * **klarna**
     */
-    'type': KlarnaDetails.TypeEnum;
+    'type': KlarnaDetails.TypeEnum = KlarnaDetails.TypeEnum.Klarna;
 
     static discriminator: string | undefined = undefined;
 
@@ -96,12 +96,12 @@ export class KlarnaDetails {
 
 export namespace KlarnaDetails {
     export enum TypeEnum {
-        Klarna = 'klarna',
-        Klarnapayments = 'klarnapayments',
-        KlarnapaymentsAccount = 'klarnapayments_account',
-        KlarnapaymentsB2b = 'klarnapayments_b2b',
-        KlarnaPaynow = 'klarna_paynow',
-        KlarnaAccount = 'klarna_account',
-        KlarnaB2b = 'klarna_b2b'
+        Klarna = <any> 'klarna',
+        Klarnapayments = <any> 'klarnapayments',
+        KlarnapaymentsAccount = <any> 'klarnapayments_account',
+        KlarnapaymentsB2b = <any> 'klarnapayments_b2b',
+        KlarnaPaynow = <any> 'klarna_paynow',
+        KlarnaAccount = <any> 'klarna_account',
+        KlarnaB2b = <any> 'klarna_b2b'
     }
 }

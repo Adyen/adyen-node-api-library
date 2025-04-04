@@ -46,7 +46,7 @@ export class TransferInstrumentInfo {
 
 export namespace TransferInstrumentInfo {
     export enum TypeEnum {
-        BankAccount = 'bankAccount',
-        RecurringDetail = 'recurringDetail'
+        BankAccount = <any> 'bankAccount',
+        RecurringDetail = <any> 'recurringDetail'
     }
 }

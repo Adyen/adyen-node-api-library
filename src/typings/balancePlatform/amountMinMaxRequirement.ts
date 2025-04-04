@@ -24,7 +24,7 @@ export class AmountMinMaxRequirement {
     /**
     * **amountMinMaxRequirement**
     */
-    'type': AmountMinMaxRequirement.TypeEnum;
+    'type': AmountMinMaxRequirement.TypeEnum = AmountMinMaxRequirement.TypeEnum.AmountMinMaxRequirement;
 
     static discriminator: string | undefined = undefined;
 
@@ -57,6 +57,6 @@ export class AmountMinMaxRequirement {
 
 export namespace AmountMinMaxRequirement {
     export enum TypeEnum {
-        AmountMinMaxRequirement = 'amountMinMaxRequirement'
+        AmountMinMaxRequirement = <any> 'amountMinMaxRequirement'
     }
 }

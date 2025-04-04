@@ -30,7 +30,7 @@ export class CheckoutVoucherAction {
     * The date time of the voucher expiry.
     */
     'expiresAt'?: string;
-    'initialAmount'?: Amount | null;
+    'initialAmount'?: Amount;
     /**
     * The URL to the detailed instructions to make payment using the voucher.
     */
@@ -75,8 +75,8 @@ export class CheckoutVoucherAction {
     * The shopper name.
     */
     'shopperName'?: string;
-    'surcharge'?: Amount | null;
-    'totalAmount'?: Amount | null;
+    'surcharge'?: Amount;
+    'totalAmount'?: Amount;
     /**
     * **voucher**
     */
@@ -117,7 +117,7 @@ export class CheckoutVoucherAction {
         {
             "name": "initialAmount",
             "baseName": "initialAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "instructionsUrl",
@@ -177,12 +177,12 @@ export class CheckoutVoucherAction {
         {
             "name": "surcharge",
             "baseName": "surcharge",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "totalAmount",
             "baseName": "totalAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "type",
@@ -202,6 +202,6 @@ export class CheckoutVoucherAction {
 
 export namespace CheckoutVoucherAction {
     export enum TypeEnum {
-        Voucher = 'voucher'
+        Voucher = <any> 'voucher'
     }
 }

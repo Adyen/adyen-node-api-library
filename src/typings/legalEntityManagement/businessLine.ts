@@ -44,12 +44,12 @@ export class BusinessLine {
     * The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  
     */
     'service': BusinessLine.ServiceEnum;
-    'sourceOfFunds'?: SourceOfFunds | null;
+    'sourceOfFunds'?: SourceOfFunds;
     /**
     * List of website URLs where your user\'s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the `webDataExemption` object.
     */
     'webData'?: Array<WebData>;
-    'webDataExemption'?: WebDataExemption | null;
+    'webDataExemption'?: WebDataExemption;
 
     static discriminator: string | undefined = undefined;
 
@@ -92,7 +92,7 @@ export class BusinessLine {
         {
             "name": "sourceOfFunds",
             "baseName": "sourceOfFunds",
-            "type": "SourceOfFunds | null"
+            "type": "SourceOfFunds"
         },
         {
             "name": "webData",
@@ -102,7 +102,7 @@ export class BusinessLine {
         {
             "name": "webDataExemption",
             "baseName": "webDataExemption",
-            "type": "WebDataExemption | null"
+            "type": "WebDataExemption"
         }    ];
 
     static getAttributeTypeMap() {
@@ -112,12 +112,12 @@ export class BusinessLine {
 
 export namespace BusinessLine {
     export enum CapabilityEnum {
-        ReceivePayments = 'receivePayments',
-        ReceiveFromPlatformPayments = 'receiveFromPlatformPayments',
-        IssueBankAccount = 'issueBankAccount'
+        ReceivePayments = <any> 'receivePayments',
+        ReceiveFromPlatformPayments = <any> 'receiveFromPlatformPayments',
+        IssueBankAccount = <any> 'issueBankAccount'
     }
     export enum ServiceEnum {
-        PaymentProcessing = 'paymentProcessing',
-        Banking = 'banking'
+        PaymentProcessing = <any> 'paymentProcessing',
+        Banking = <any> 'banking'
     }
 }

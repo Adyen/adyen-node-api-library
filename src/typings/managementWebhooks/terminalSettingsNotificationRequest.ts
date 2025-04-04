@@ -55,6 +55,6 @@ export class TerminalSettingsNotificationRequest {
 
 export namespace TerminalSettingsNotificationRequest {
     export enum TypeEnum {
-        TerminalSettingsModified = 'terminalSettings.modified'
+        TerminalSettingsModified = <any> 'terminalSettings.modified'
     }
 }

@@ -39,7 +39,7 @@ export class PaypalUpdateOrderResponse {
 
 export namespace PaypalUpdateOrderResponse {
     export enum StatusEnum {
-        Error = 'error',
-        Success = 'success'
+        Error = <any> 'error',
+        Success = <any> 'success'
     }
 }

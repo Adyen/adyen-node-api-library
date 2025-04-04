@@ -27,8 +27,8 @@ import { Split } from './split';
 import { ThreeDSecureData } from './threeDSecureData';
 
 export class CreateCheckoutSessionResponse {
-    'accountInfo'?: AccountInfo | null;
-    'additionalAmount'?: Amount | null;
+    'accountInfo'?: AccountInfo;
+    'additionalAmount'?: Amount;
     /**
     * This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
@@ -38,9 +38,9 @@ export class CreateCheckoutSessionResponse {
     */
     'allowedPaymentMethods'?: Array<string>;
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
-    'authenticationData'?: AuthenticationData | null;
-    'billingAddress'?: BillingAddress | null;
+    'applicationInfo'?: ApplicationInfo;
+    'authenticationData'?: AuthenticationData;
+    'billingAddress'?: BillingAddress;
     /**
     * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"giropay\"]`
     */
@@ -53,7 +53,7 @@ export class CreateCheckoutSessionResponse {
     * The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.  Possible values: * **iOS** * **Android** * **Web**
     */
     'channel'?: CreateCheckoutSessionResponse.ChannelEnum;
-    'company'?: Company | null;
+    'company'?: Company;
     /**
     * The shopper\'s two-letter country code.
     */
@@ -66,7 +66,7 @@ export class CreateCheckoutSessionResponse {
     * The date and time when the purchased goods should be delivered.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
     */
     'deliverAt'?: Date;
-    'deliveryAddress'?: DeliveryAddress | null;
+    'deliveryAddress'?: DeliveryAddress;
     /**
     * When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition).
     */
@@ -83,8 +83,8 @@ export class CreateCheckoutSessionResponse {
     * The date the session expires in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. When not specified, the expiry date is set to 1 hour after session creation. You cannot set the session expiry to more than 24 hours after session creation.
     */
     'expiresAt': Date;
-    'fundOrigin'?: FundOrigin | null;
-    'fundRecipient'?: FundRecipient | null;
+    'fundOrigin'?: FundOrigin;
+    'fundRecipient'?: FundRecipient;
     /**
     * A unique identifier of the session.
     */
@@ -97,7 +97,7 @@ export class CreateCheckoutSessionResponse {
     * Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Riverty, and Zip.
     */
     'lineItems'?: Array<LineItem>;
-    'mandate'?: Mandate | null;
+    'mandate'?: Mandate;
     /**
     * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
     */
@@ -117,9 +117,9 @@ export class CreateCheckoutSessionResponse {
     /**
     * Indicates the type of front end integration. Possible values: * **embedded** (default): Drop-in or Components integration * **hosted**: Hosted Checkout integration
     */
-    'mode'?: CreateCheckoutSessionResponse.ModeEnum;
-    'mpiData'?: ThreeDSecureData | null;
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
+    'mode'?: CreateCheckoutSessionResponse.ModeEnum = CreateCheckoutSessionResponse.ModeEnum.Embedded;
+    'mpiData'?: ThreeDSecureData;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
     */
@@ -148,7 +148,7 @@ export class CreateCheckoutSessionResponse {
     * The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value. > The URL must not include personally identifiable information (PII), for example name or email address.
     */
     'returnUrl': string;
-    'riskData'?: RiskData | null;
+    'riskData'?: RiskData;
     /**
     * The payment session data you need to pass to your front end.
     */
@@ -169,7 +169,7 @@ export class CreateCheckoutSessionResponse {
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
     'shopperLocale'?: string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
@@ -193,7 +193,7 @@ export class CreateCheckoutSessionResponse {
     /**
     * Boolean value indicating whether the card payment method should be split into separate debit and credit options.
     */
-    'splitCardFundingSources'?: boolean;
+    'splitCardFundingSources'?: boolean = false;
     /**
     * An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
     */
@@ -222,14 +222,14 @@ export class CreateCheckoutSessionResponse {
     * Sets a custom theme for [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/?platform=Web&integration=Hosted+Checkout). The value can be any of the **Theme ID** values from your Customer Area.
     */
     'themeId'?: string;
-    'threeDS2RequestData'?: CheckoutSessionThreeDS2RequestData | null;
+    'threeDS2RequestData'?: CheckoutSessionThreeDS2RequestData;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     *
 	* @deprecated since Adyen Checkout API v69
 	* Use `authenticationData.authenticationOnly` instead.
     */
-    'threeDSAuthenticationOnly'?: boolean;
+    'threeDSAuthenticationOnly'?: boolean = false;
     /**
     * Set to true if the payment should be routed to a trusted MID.
     */
@@ -245,12 +245,12 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "accountInfo",
             "baseName": "accountInfo",
-            "type": "AccountInfo | null"
+            "type": "AccountInfo"
         },
         {
             "name": "additionalAmount",
             "baseName": "additionalAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "additionalData",
@@ -270,17 +270,17 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo"
         },
         {
             "name": "authenticationData",
             "baseName": "authenticationData",
-            "type": "AuthenticationData | null"
+            "type": "AuthenticationData"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "BillingAddress | null"
+            "type": "BillingAddress"
         },
         {
             "name": "blockedPaymentMethods",
@@ -300,7 +300,7 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "company",
             "baseName": "company",
-            "type": "Company | null"
+            "type": "Company"
         },
         {
             "name": "countryCode",
@@ -320,7 +320,7 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "DeliveryAddress | null"
+            "type": "DeliveryAddress"
         },
         {
             "name": "enableOneClick",
@@ -345,12 +345,12 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "fundOrigin",
             "baseName": "fundOrigin",
-            "type": "FundOrigin | null"
+            "type": "FundOrigin"
         },
         {
             "name": "fundRecipient",
             "baseName": "fundRecipient",
-            "type": "FundRecipient | null"
+            "type": "FundRecipient"
         },
         {
             "name": "id",
@@ -370,7 +370,7 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "mandate",
             "baseName": "mandate",
-            "type": "Mandate | null"
+            "type": "Mandate"
         },
         {
             "name": "mcc",
@@ -400,12 +400,12 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "mpiData",
             "baseName": "mpiData",
-            "type": "ThreeDSecureData | null"
+            "type": "ThreeDSecureData"
         },
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "recurringExpiry",
@@ -445,7 +445,7 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "riskData",
             "baseName": "riskData",
-            "type": "RiskData | null"
+            "type": "RiskData"
         },
         {
             "name": "sessionData",
@@ -475,7 +475,7 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name"
         },
         {
             "name": "shopperReference",
@@ -545,7 +545,7 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "threeDS2RequestData",
             "baseName": "threeDS2RequestData",
-            "type": "CheckoutSessionThreeDS2RequestData | null"
+            "type": "CheckoutSessionThreeDS2RequestData"
         },
         {
             "name": "threeDSAuthenticationOnly",
@@ -570,33 +570,33 @@ export class CreateCheckoutSessionResponse {
 
 export namespace CreateCheckoutSessionResponse {
     export enum ChannelEnum {
-        IOs = 'iOS',
-        Android = 'Android',
-        Web = 'Web'
+        IOs = <any> 'iOS',
+        Android = <any> 'Android',
+        Web = <any> 'Web'
     }
     export enum ModeEnum {
-        Embedded = 'embedded',
-        Hosted = 'hosted'
+        Embedded = <any> 'embedded',
+        Hosted = <any> 'hosted'
     }
     export enum RecurringProcessingModelEnum {
-        CardOnFile = 'CardOnFile',
-        Subscription = 'Subscription',
-        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
+        CardOnFile = <any> 'CardOnFile',
+        Subscription = <any> 'Subscription',
+        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
     }
     export enum ShopperInteractionEnum {
-        Ecommerce = 'Ecommerce',
-        ContAuth = 'ContAuth',
-        Moto = 'Moto',
-        Pos = 'POS'
+        Ecommerce = <any> 'Ecommerce',
+        ContAuth = <any> 'ContAuth',
+        Moto = <any> 'Moto',
+        Pos = <any> 'POS'
     }
     export enum StoreFiltrationModeEnum {
-        Exclusive = 'exclusive',
-        Inclusive = 'inclusive',
-        SkipFilter = 'skipFilter'
+        Exclusive = <any> 'exclusive',
+        Inclusive = <any> 'inclusive',
+        SkipFilter = <any> 'skipFilter'
     }
     export enum StorePaymentMethodModeEnum {
-        AskForConsent = 'askForConsent',
-        Disabled = 'disabled',
-        Enabled = 'enabled'
+        AskForConsent = <any> 'askForConsent',
+        Disabled = <any> 'disabled',
+        Enabled = <any> 'enabled'
     }
 }

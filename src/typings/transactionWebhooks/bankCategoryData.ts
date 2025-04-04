@@ -16,7 +16,7 @@ export class BankCategoryData {
     /**
     * **bank**
     */
-    'type'?: BankCategoryData.TypeEnum;
+    'type'?: BankCategoryData.TypeEnum = BankCategoryData.TypeEnum.Bank;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,14 +39,14 @@ export class BankCategoryData {
 
 export namespace BankCategoryData {
     export enum PriorityEnum {
-        CrossBorder = 'crossBorder',
-        Fast = 'fast',
-        Instant = 'instant',
-        Internal = 'internal',
-        Regular = 'regular',
-        Wire = 'wire'
+        CrossBorder = <any> 'crossBorder',
+        Fast = <any> 'fast',
+        Instant = <any> 'instant',
+        Internal = <any> 'internal',
+        Regular = <any> 'regular',
+        Wire = <any> 'wire'
     }
     export enum TypeEnum {
-        Bank = 'bank'
+        Bank = <any> 'bank'
     }
 }

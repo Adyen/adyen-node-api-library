@@ -37,7 +37,7 @@ export class DisputeNotificationRequest {
 
 export namespace DisputeNotificationRequest {
     export enum TypeEnum {
-        Created = 'balancePlatform.dispute.created',
-        Updated = 'balancePlatform.dispute.updated'
+        BalancePlatformDisputeCreated = <any> 'balancePlatform.dispute.created',
+        BalancePlatformDisputeUpdated = <any> 'balancePlatform.dispute.updated'
     }
 }

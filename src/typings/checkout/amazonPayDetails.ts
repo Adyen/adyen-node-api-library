@@ -24,7 +24,7 @@ export class AmazonPayDetails {
     /**
     * **amazonpay**
     */
-    'type'?: AmazonPayDetails.TypeEnum;
+    'type'?: AmazonPayDetails.TypeEnum = AmazonPayDetails.TypeEnum.Amazonpay;
 
     static discriminator: string | undefined = undefined;
 
@@ -57,6 +57,6 @@ export class AmazonPayDetails {
 
 export namespace AmazonPayDetails {
     export enum TypeEnum {
-        Amazonpay = 'amazonpay'
+        Amazonpay = <any> 'amazonpay'
     }
 }

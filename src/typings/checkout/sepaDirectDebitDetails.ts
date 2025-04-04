@@ -39,7 +39,7 @@ export class SepaDirectDebitDetails {
     /**
     * **sepadirectdebit**
     */
-    'type'?: SepaDirectDebitDetails.TypeEnum;
+    'type'?: SepaDirectDebitDetails.TypeEnum = SepaDirectDebitDetails.TypeEnum.Sepadirectdebit;
 
     static discriminator: string | undefined = undefined;
 
@@ -87,7 +87,7 @@ export class SepaDirectDebitDetails {
 
 export namespace SepaDirectDebitDetails {
     export enum TypeEnum {
-        Sepadirectdebit = 'sepadirectdebit',
-        SepadirectdebitAmazonpay = 'sepadirectdebit_amazonpay'
+        Sepadirectdebit = <any> 'sepadirectdebit',
+        SepadirectdebitAmazonpay = <any> 'sepadirectdebit_amazonpay'
     }
 }

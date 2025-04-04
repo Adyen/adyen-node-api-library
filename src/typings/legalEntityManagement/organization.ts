@@ -44,19 +44,19 @@ export class Organization {
     * The organization\'s legal name.
     */
     'legalName': string;
-    'phone'?: PhoneNumber | null;
-    'principalPlaceOfBusiness'?: Address | null;
+    'phone'?: PhoneNumber;
+    'principalPlaceOfBusiness'?: Address;
     'registeredAddress': Address;
     /**
     * The organization\'s registration number.
     */
     'registrationNumber'?: string;
-    'stockData'?: StockData | null;
+    'stockData'?: StockData;
     /**
     * The tax information of the organization.
     */
     'taxInformation'?: Array<TaxInformation>;
-    'taxReportingClassification'?: TaxReportingClassification | null;
+    'taxReportingClassification'?: TaxReportingClassification;
     /**
     * Type of organization.  Possible values: **associationIncorporated**, **governmentalOrganization**, **listedPublicCompany**, **nonProfit**, **partnershipIncorporated**, **privateCompany**.
     */
@@ -69,7 +69,7 @@ export class Organization {
     * The organization\'s VAT number.
     */
     'vatNumber'?: string;
-    'webData'?: WebData | null;
+    'webData'?: WebData;
 
     static discriminator: string | undefined = undefined;
 
@@ -112,12 +112,12 @@ export class Organization {
         {
             "name": "phone",
             "baseName": "phone",
-            "type": "PhoneNumber | null"
+            "type": "PhoneNumber"
         },
         {
             "name": "principalPlaceOfBusiness",
             "baseName": "principalPlaceOfBusiness",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "registeredAddress",
@@ -132,7 +132,7 @@ export class Organization {
         {
             "name": "stockData",
             "baseName": "stockData",
-            "type": "StockData | null"
+            "type": "StockData"
         },
         {
             "name": "taxInformation",
@@ -142,7 +142,7 @@ export class Organization {
         {
             "name": "taxReportingClassification",
             "baseName": "taxReportingClassification",
-            "type": "TaxReportingClassification | null"
+            "type": "TaxReportingClassification"
         },
         {
             "name": "type",
@@ -162,7 +162,7 @@ export class Organization {
         {
             "name": "webData",
             "baseName": "webData",
-            "type": "WebData | null"
+            "type": "WebData"
         }    ];
 
     static getAttributeTypeMap() {
@@ -172,15 +172,15 @@ export class Organization {
 
 export namespace Organization {
     export enum TypeEnum {
-        AssociationIncorporated = 'associationIncorporated',
-        GovernmentalOrganization = 'governmentalOrganization',
-        ListedPublicCompany = 'listedPublicCompany',
-        NonProfit = 'nonProfit',
-        PartnershipIncorporated = 'partnershipIncorporated',
-        PrivateCompany = 'privateCompany'
+        AssociationIncorporated = <any> 'associationIncorporated',
+        GovernmentalOrganization = <any> 'governmentalOrganization',
+        ListedPublicCompany = <any> 'listedPublicCompany',
+        NonProfit = <any> 'nonProfit',
+        PartnershipIncorporated = <any> 'partnershipIncorporated',
+        PrivateCompany = <any> 'privateCompany'
     }
     export enum VatAbsenceReasonEnum {
-        IndustryExemption = 'industryExemption',
-        BelowTaxThreshold = 'belowTaxThreshold'
+        IndustryExemption = <any> 'industryExemption',
+        BelowTaxThreshold = <any> 'belowTaxThreshold'
     }
 }

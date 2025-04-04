@@ -71,8 +71,8 @@ export class AuthenticationNotificationData {
 
 export namespace AuthenticationNotificationData {
     export enum StatusEnum {
-        Authenticated = 'authenticated',
-        Rejected = 'rejected',
-        Error = 'error'
+        Authenticated = <any> 'authenticated',
+        Rejected = <any> 'rejected',
+        Error = <any> 'error'
     }
 }

@@ -11,7 +11,7 @@ import { AllowedOrigin } from './allowedOrigin';
 import { ApiCredentialLinks } from './apiCredentialLinks';
 
 export class CompanyApiCredential {
-    '_links'?: ApiCredentialLinks | null;
+    '_links'?: ApiCredentialLinks;
     /**
     * Indicates if the API credential is enabled. Must be set to **true** to use the credential in your integration.
     */
@@ -55,7 +55,7 @@ export class CompanyApiCredential {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "ApiCredentialLinks | null"
+            "type": "ApiCredentialLinks"
         },
         {
             "name": "active",

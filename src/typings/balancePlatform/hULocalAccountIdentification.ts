@@ -16,7 +16,7 @@ export class HULocalAccountIdentification {
     /**
     * **huLocal**
     */
-    'type': HULocalAccountIdentification.TypeEnum;
+    'type': HULocalAccountIdentification.TypeEnum = HULocalAccountIdentification.TypeEnum.HuLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class HULocalAccountIdentification {
 
 export namespace HULocalAccountIdentification {
     export enum TypeEnum {
-        HuLocal = 'huLocal'
+        HuLocal = <any> 'huLocal'
     }
 }

@@ -42,9 +42,9 @@ export class CapabilityProblemEntityRecursive {
 
 export namespace CapabilityProblemEntityRecursive {
     export enum TypeEnum {
-        BankAccount = 'BankAccount',
-        Document = 'Document',
-        LegalEntity = 'LegalEntity',
-        Product = 'product'
+        BankAccount = <any> 'BankAccount',
+        Document = <any> 'Document',
+        LegalEntity = <any> 'LegalEntity',
+        Product = <any> 'product'
     }
 }

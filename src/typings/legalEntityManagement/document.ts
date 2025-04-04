@@ -11,7 +11,7 @@ import { Attachment } from './attachment';
 import { OwnerEntity } from './ownerEntity';
 
 export class Document {
-    'attachment'?: Attachment | null;
+    'attachment'?: Attachment;
     /**
     * Array that contains the document. The array supports multiple attachments for uploading different sides or pages of a document.
     */
@@ -58,7 +58,7 @@ export class Document {
     * The number in the document.
     */
     'number'?: string;
-    'owner'?: OwnerEntity | null;
+    'owner'?: OwnerEntity;
     /**
     * Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, **proofOfSignatory**, or **proofOfFundingOrWealthSource**.  * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **liveSelfie**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, **proofOfFundingOrWealthSource** or **proofOfRelationship**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * For **trust**, the `type` value is **constitutionalDocument**.  * For **unincorporatedPartnership**, the `type` value is **constitutionalDocument**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
     */
@@ -70,7 +70,7 @@ export class Document {
         {
             "name": "attachment",
             "baseName": "attachment",
-            "type": "Attachment | null"
+            "type": "Attachment"
         },
         {
             "name": "attachments",
@@ -125,7 +125,7 @@ export class Document {
         {
             "name": "owner",
             "baseName": "owner",
-            "type": "OwnerEntity | null"
+            "type": "OwnerEntity"
         },
         {
             "name": "type",
@@ -140,24 +140,24 @@ export class Document {
 
 export namespace Document {
     export enum TypeEnum {
-        BankStatement = 'bankStatement',
-        DriversLicense = 'driversLicense',
-        IdentityCard = 'identityCard',
-        NationalIdNumber = 'nationalIdNumber',
-        Passport = 'passport',
-        ProofOfAddress = 'proofOfAddress',
-        ProofOfNationalIdNumber = 'proofOfNationalIdNumber',
-        ProofOfResidency = 'proofOfResidency',
-        RegistrationDocument = 'registrationDocument',
-        VatDocument = 'vatDocument',
-        ProofOfOrganizationTaxInfo = 'proofOfOrganizationTaxInfo',
-        ProofOfIndividualTaxId = 'proofOfIndividualTaxId',
-        ProofOfOwnership = 'proofOfOwnership',
-        ProofOfSignatory = 'proofOfSignatory',
-        LiveSelfie = 'liveSelfie',
-        ProofOfIndustry = 'proofOfIndustry',
-        ConstitutionalDocument = 'constitutionalDocument',
-        ProofOfFundingOrWealthSource = 'proofOfFundingOrWealthSource',
-        ProofOfRelationship = 'proofOfRelationship'
+        BankStatement = <any> 'bankStatement',
+        DriversLicense = <any> 'driversLicense',
+        IdentityCard = <any> 'identityCard',
+        NationalIdNumber = <any> 'nationalIdNumber',
+        Passport = <any> 'passport',
+        ProofOfAddress = <any> 'proofOfAddress',
+        ProofOfNationalIdNumber = <any> 'proofOfNationalIdNumber',
+        ProofOfResidency = <any> 'proofOfResidency',
+        RegistrationDocument = <any> 'registrationDocument',
+        VatDocument = <any> 'vatDocument',
+        ProofOfOrganizationTaxInfo = <any> 'proofOfOrganizationTaxInfo',
+        ProofOfIndividualTaxId = <any> 'proofOfIndividualTaxId',
+        ProofOfOwnership = <any> 'proofOfOwnership',
+        ProofOfSignatory = <any> 'proofOfSignatory',
+        LiveSelfie = <any> 'liveSelfie',
+        ProofOfIndustry = <any> 'proofOfIndustry',
+        ConstitutionalDocument = <any> 'constitutionalDocument',
+        ProofOfFundingOrWealthSource = <any> 'proofOfFundingOrWealthSource',
+        ProofOfRelationship = <any> 'proofOfRelationship'
     }
 }

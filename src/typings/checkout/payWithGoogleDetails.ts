@@ -39,7 +39,7 @@ export class PayWithGoogleDetails {
     /**
     * **paywithgoogle**
     */
-    'type'?: PayWithGoogleDetails.TypeEnum;
+    'type'?: PayWithGoogleDetails.TypeEnum = PayWithGoogleDetails.TypeEnum.Paywithgoogle;
 
     static discriminator: string | undefined = undefined;
 
@@ -87,10 +87,10 @@ export class PayWithGoogleDetails {
 
 export namespace PayWithGoogleDetails {
     export enum FundingSourceEnum {
-        Credit = 'credit',
-        Debit = 'debit'
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
     }
     export enum TypeEnum {
-        Paywithgoogle = 'paywithgoogle'
+        Paywithgoogle = <any> 'paywithgoogle'
     }
 }

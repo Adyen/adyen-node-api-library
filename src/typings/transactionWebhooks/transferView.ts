@@ -7,16 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { BankCategoryData } from './bankCategoryData';
-import { InternalCategoryData } from './internalCategoryData';
-import { IssuedCard } from './issuedCard';
-import { PlatformPayment } from './platformPayment';
+import { TransferViewCategoryData } from './transferViewCategoryData';
 
 export class TransferView {
-    /**
-    * The relevant data according to the transfer category.
-    */
-    'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null;
+    'categoryData'?: TransferViewCategoryData;
     /**
     * The ID of the resource.
     */
@@ -32,7 +26,7 @@ export class TransferView {
         {
             "name": "categoryData",
             "baseName": "categoryData",
-            "type": "BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null"
+            "type": "TransferViewCategoryData"
         },
         {
             "name": "id",

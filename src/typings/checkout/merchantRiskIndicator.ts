@@ -33,7 +33,7 @@ export class MerchantRiskIndicator {
     * The estimated delivery time for the shopper to receive the goods. Allowed values: * `electronicDelivery` * `sameDayShipping` * `overnightShipping` * `twoOrMoreDaysShipping`
     */
     'deliveryTimeframe'?: MerchantRiskIndicator.DeliveryTimeframeEnum;
-    'giftCardAmount'?: Amount | null;
+    'giftCardAmount'?: Amount;
     /**
     * For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.
     */
@@ -98,7 +98,7 @@ export class MerchantRiskIndicator {
         {
             "name": "giftCardAmount",
             "baseName": "giftCardAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "giftCardCount",
@@ -148,18 +148,18 @@ export class MerchantRiskIndicator {
 
 export namespace MerchantRiskIndicator {
     export enum DeliveryAddressIndicatorEnum {
-        ShipToBillingAddress = 'shipToBillingAddress',
-        ShipToVerifiedAddress = 'shipToVerifiedAddress',
-        ShipToNewAddress = 'shipToNewAddress',
-        ShipToStore = 'shipToStore',
-        DigitalGoods = 'digitalGoods',
-        GoodsNotShipped = 'goodsNotShipped',
-        Other = 'other'
+        ShipToBillingAddress = <any> 'shipToBillingAddress',
+        ShipToVerifiedAddress = <any> 'shipToVerifiedAddress',
+        ShipToNewAddress = <any> 'shipToNewAddress',
+        ShipToStore = <any> 'shipToStore',
+        DigitalGoods = <any> 'digitalGoods',
+        GoodsNotShipped = <any> 'goodsNotShipped',
+        Other = <any> 'other'
     }
     export enum DeliveryTimeframeEnum {
-        ElectronicDelivery = 'electronicDelivery',
-        SameDayShipping = 'sameDayShipping',
-        OvernightShipping = 'overnightShipping',
-        TwoOrMoreDaysShipping = 'twoOrMoreDaysShipping'
+        ElectronicDelivery = <any> 'electronicDelivery',
+        SameDayShipping = <any> 'sameDayShipping',
+        OvernightShipping = <any> 'overnightShipping',
+        TwoOrMoreDaysShipping = <any> 'twoOrMoreDaysShipping'
     }
 }

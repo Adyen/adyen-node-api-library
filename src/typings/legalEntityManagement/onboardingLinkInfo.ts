@@ -18,7 +18,7 @@ export class OnboardingLinkInfo {
     * The URL where the user is redirected after they complete hosted onboarding.
     */
     'redirectUrl'?: string;
-    'settings'?: OnboardingLinkSettings | null;
+    'settings'?: OnboardingLinkSettings;
     /**
     * The unique identifier of the hosted onboarding theme.
     */
@@ -40,7 +40,7 @@ export class OnboardingLinkInfo {
         {
             "name": "settings",
             "baseName": "settings",
-            "type": "OnboardingLinkSettings | null"
+            "type": "OnboardingLinkSettings"
         },
         {
             "name": "themeId",

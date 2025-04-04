@@ -16,7 +16,7 @@ export class WeChatPayDetails {
     /**
     * **wechatpay**
     */
-    'type'?: WeChatPayDetails.TypeEnum;
+    'type'?: WeChatPayDetails.TypeEnum = WeChatPayDetails.TypeEnum.Wechatpay;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,7 +39,7 @@ export class WeChatPayDetails {
 
 export namespace WeChatPayDetails {
     export enum TypeEnum {
-        Wechatpay = 'wechatpay',
-        WechatpayPos = 'wechatpay_pos'
+        Wechatpay = <any> 'wechatpay',
+        WechatpayPos = <any> 'wechatpay_pos'
     }
 }

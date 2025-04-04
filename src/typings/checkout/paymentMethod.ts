@@ -33,7 +33,7 @@ export class PaymentMethod {
     * The funding source of the payment method.
     */
     'fundingSource'?: PaymentMethod.FundingSourceEnum;
-    'group'?: PaymentMethodGroup | null;
+    'group'?: PaymentMethodGroup;
     /**
     * All input details to be provided to complete the payment with this payment method.
     *
@@ -84,7 +84,7 @@ export class PaymentMethod {
         {
             "name": "group",
             "baseName": "group",
-            "type": "PaymentMethodGroup | null"
+            "type": "PaymentMethodGroup"
         },
         {
             "name": "inputDetails",
@@ -114,7 +114,7 @@ export class PaymentMethod {
 
 export namespace PaymentMethod {
     export enum FundingSourceEnum {
-        Credit = 'credit',
-        Debit = 'debit'
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
     }
 }

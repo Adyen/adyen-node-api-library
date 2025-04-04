@@ -30,8 +30,8 @@ export class UpdateNetworkTokenRequest {
 
 export namespace UpdateNetworkTokenRequest {
     export enum StatusEnum {
-        Active = 'active',
-        Suspended = 'suspended',
-        Closed = 'closed'
+        Active = <any> 'active',
+        Suspended = <any> 'suspended',
+        Closed = <any> 'closed'
     }
 }

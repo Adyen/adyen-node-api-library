@@ -69,6 +69,6 @@ export class TwintDetails {
 
 export namespace TwintDetails {
     export enum TypeEnum {
-        Twint = 'twint'
+        Twint = <any> 'twint'
     }
 }

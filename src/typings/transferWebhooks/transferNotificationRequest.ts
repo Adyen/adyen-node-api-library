@@ -55,7 +55,7 @@ export class TransferNotificationRequest {
 
 export namespace TransferNotificationRequest {
     export enum TypeEnum {
-        Created = 'balancePlatform.transfer.created',
-        Updated = 'balancePlatform.transfer.updated'
+        BalancePlatformTransferCreated = <any> 'balancePlatform.transfer.created',
+        BalancePlatformTransferUpdated = <any> 'balancePlatform.transfer.updated'
     }
 }

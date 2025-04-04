@@ -51,7 +51,7 @@ export class CashAppDetails {
     /**
     * cashapp
     */
-    'type'?: CashAppDetails.TypeEnum;
+    'type'?: CashAppDetails.TypeEnum = CashAppDetails.TypeEnum.Cashapp;
 
     static discriminator: string | undefined = undefined;
 
@@ -114,6 +114,6 @@ export class CashAppDetails {
 
 export namespace CashAppDetails {
     export enum TypeEnum {
-        Cashapp = 'cashapp'
+        Cashapp = <any> 'cashapp'
     }
 }

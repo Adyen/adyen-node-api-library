@@ -66,6 +66,6 @@ export class CheckoutRedirectAction {
 
 export namespace CheckoutRedirectAction {
     export enum TypeEnum {
-        Redirect = 'redirect'
+        Redirect = <any> 'redirect'
     }
 }

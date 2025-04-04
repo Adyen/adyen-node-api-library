@@ -16,7 +16,7 @@ export class USInternationalAchAddressRequirement {
     /**
     * **usInternationalAchAddressRequirement**
     */
-    'type': USInternationalAchAddressRequirement.TypeEnum;
+    'type': USInternationalAchAddressRequirement.TypeEnum = USInternationalAchAddressRequirement.TypeEnum.UsInternationalAchAddressRequirement;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class USInternationalAchAddressRequirement {
 
 export namespace USInternationalAchAddressRequirement {
     export enum TypeEnum {
-        UsInternationalAchAddressRequirement = 'usInternationalAchAddressRequirement'
+        UsInternationalAchAddressRequirement = <any> 'usInternationalAchAddressRequirement'
     }
 }

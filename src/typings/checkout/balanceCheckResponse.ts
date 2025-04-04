@@ -16,7 +16,7 @@ export class BalanceCheckResponse {
     */
     'additionalData'?: { [key: string]: string; };
     'balance': Amount;
-    'fraudResult'?: FraudResult | null;
+    'fraudResult'?: FraudResult;
     /**
     * Adyen\'s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
@@ -29,7 +29,7 @@ export class BalanceCheckResponse {
     * The result of the cancellation request.  Possible values:  * **Success** – Indicates that the balance check was successful. * **NotEnoughBalance** – Commonly indicates that the card did not have enough balance to pay the amount in the request, or that the currency of the balance on the card did not match the currency of the requested amount. * **Failed** – Indicates that the balance check failed.
     */
     'resultCode': BalanceCheckResponse.ResultCodeEnum;
-    'transactionLimit'?: Amount | null;
+    'transactionLimit'?: Amount;
 
     static discriminator: string | undefined = undefined;
 
@@ -47,7 +47,7 @@ export class BalanceCheckResponse {
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult | null"
+            "type": "FraudResult"
         },
         {
             "name": "pspReference",
@@ -67,7 +67,7 @@ export class BalanceCheckResponse {
         {
             "name": "transactionLimit",
             "baseName": "transactionLimit",
-            "type": "Amount | null"
+            "type": "Amount"
         }    ];
 
     static getAttributeTypeMap() {
@@ -77,8 +77,8 @@ export class BalanceCheckResponse {
 
 export namespace BalanceCheckResponse {
     export enum ResultCodeEnum {
-        Success = 'Success',
-        NotEnoughBalance = 'NotEnoughBalance',
-        Failed = 'Failed'
+        Success = <any> 'Success',
+        NotEnoughBalance = <any> 'NotEnoughBalance',
+        Failed = <any> 'Failed'
     }
 }

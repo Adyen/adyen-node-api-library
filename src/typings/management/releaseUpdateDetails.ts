@@ -12,7 +12,7 @@ export class ReleaseUpdateDetails {
     /**
     * Type of terminal action: Update Release.
     */
-    'type'?: ReleaseUpdateDetails.TypeEnum;
+    'type'?: ReleaseUpdateDetails.TypeEnum = ReleaseUpdateDetails.TypeEnum.ReleaseUpdate;
     /**
     * Boolean flag that tells if the terminal should update at the first next maintenance call. If false, terminal will update on its configured reboot time.
     */
@@ -39,6 +39,6 @@ export class ReleaseUpdateDetails {
 
 export namespace ReleaseUpdateDetails {
     export enum TypeEnum {
-        ReleaseUpdate = 'ReleaseUpdate'
+        ReleaseUpdate = <any> 'ReleaseUpdate'
     }
 }

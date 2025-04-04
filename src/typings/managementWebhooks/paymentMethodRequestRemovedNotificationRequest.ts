@@ -55,6 +55,6 @@ export class PaymentMethodRequestRemovedNotificationRequest {
 
 export namespace PaymentMethodRequestRemovedNotificationRequest {
     export enum TypeEnum {
-        PaymentMethodRequestRemoved = 'paymentMethodRequest.removed'
+        PaymentMethodRequestRemoved = <any> 'paymentMethodRequest.removed'
     }
 }

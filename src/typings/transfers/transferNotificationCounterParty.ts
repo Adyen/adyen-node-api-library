@@ -16,9 +16,9 @@ export class TransferNotificationCounterParty {
     * The unique identifier of the counterparty [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).
     */
     'balanceAccountId'?: string;
-    'bankAccount'?: BankAccountV3 | null;
-    'card'?: Card | null;
-    'merchant'?: TransferNotificationMerchantData | null;
+    'bankAccount'?: BankAccountV3;
+    'card'?: Card;
+    'merchant'?: TransferNotificationMerchantData;
     /**
     * The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).
     */
@@ -35,17 +35,17 @@ export class TransferNotificationCounterParty {
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccountV3 | null"
+            "type": "BankAccountV3"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null"
+            "type": "Card"
         },
         {
             "name": "merchant",
             "baseName": "merchant",
-            "type": "TransferNotificationMerchantData | null"
+            "type": "TransferNotificationMerchantData"
         },
         {
             "name": "transferInstrumentId",

@@ -55,7 +55,7 @@ export class PaymentNotificationRequest {
 
 export namespace PaymentNotificationRequest {
     export enum TypeEnum {
-        Created = 'balancePlatform.paymentInstrument.created',
-        Updated = 'balancePlatform.paymentInstrument.updated'
+        BalancePlatformPaymentInstrumentCreated = <any> 'balancePlatform.paymentInstrument.created',
+        BalancePlatformPaymentInstrumentUpdated = <any> 'balancePlatform.paymentInstrument.updated'
     }
 }

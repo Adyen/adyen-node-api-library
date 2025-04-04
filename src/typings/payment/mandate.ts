@@ -102,22 +102,22 @@ export class Mandate {
 
 export namespace Mandate {
     export enum AmountRuleEnum {
-        Max = 'max',
-        Exact = 'exact'
+        Max = <any> 'max',
+        Exact = <any> 'exact'
     }
     export enum BillingAttemptsRuleEnum {
-        On = 'on',
-        Before = 'before',
-        After = 'after'
+        On = <any> 'on',
+        Before = <any> 'before',
+        After = <any> 'after'
     }
     export enum FrequencyEnum {
-        Adhoc = 'adhoc',
-        Daily = 'daily',
-        Weekly = 'weekly',
-        BiWeekly = 'biWeekly',
-        Monthly = 'monthly',
-        Quarterly = 'quarterly',
-        HalfYearly = 'halfYearly',
-        Yearly = 'yearly'
+        Adhoc = <any> 'adhoc',
+        Daily = <any> 'daily',
+        Weekly = <any> 'weekly',
+        BiWeekly = <any> 'biWeekly',
+        Monthly = <any> 'monthly',
+        Quarterly = <any> 'quarterly',
+        HalfYearly = <any> 'halfYearly',
+        Yearly = <any> 'yearly'
     }
 }
