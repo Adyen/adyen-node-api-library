@@ -62,3 +62,8 @@ export class DeliveryMethod {
     }
 }
 
+export namespace DeliveryMethod {
+    export enum TypeEnum {
+        Shipping = <any> 'Shipping'
+    }
+}

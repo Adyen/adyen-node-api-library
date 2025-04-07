@@ -37,3 +37,9 @@ export class WeChatPayDetails {
     }
 }
 
+export namespace WeChatPayDetails {
+    export enum TypeEnum {
+        Wechatpay = <any> 'wechatpay',
+        WechatpayPos = <any> 'wechatpay_pos'
+    }
+}

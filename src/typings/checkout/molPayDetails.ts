@@ -46,3 +46,9 @@ export class MolPayDetails {
     }
 }
 
+export namespace MolPayDetails {
+    export enum TypeEnum {
+        MolpayEbankingFpxMy = <any> 'molpay_ebanking_fpx_MY',
+        MolpayEbankingTh = <any> 'molpay_ebanking_TH'
+    }
+}

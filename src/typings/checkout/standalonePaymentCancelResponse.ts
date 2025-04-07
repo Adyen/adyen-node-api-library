@@ -64,3 +64,8 @@ export class StandalonePaymentCancelResponse {
     }
 }
 
+export namespace StandalonePaymentCancelResponse {
+    export enum StatusEnum {
+        Received = <any> 'received'
+    }
+}

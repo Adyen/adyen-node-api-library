@@ -58,3 +58,8 @@ export class PayPayDetails {
     }
 }
 
+export namespace PayPayDetails {
+    export enum TypeEnum {
+        Paypay = <any> 'paypay'
+    }
+}

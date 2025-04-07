@@ -338,3 +338,17 @@ export class PaymentResponseAction {
     }
 }
 
+export namespace PaymentResponseAction {
+    export enum TypeEnum {
+        Await = <any> 'await',
+        BankTransfer = <any> 'bankTransfer',
+        DelegatedAuthentication = <any> 'delegatedAuthentication',
+        NativeRedirect = <any> 'nativeRedirect',
+        QrCode = <any> 'qrCode',
+        Redirect = <any> 'redirect',
+        Sdk = <any> 'sdk',
+        WechatpaySdk = <any> 'wechatpaySDK',
+        ThreeDs2 = <any> 'threeDS2',
+        Voucher = <any> 'voucher'
+    }
+}

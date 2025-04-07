@@ -85,3 +85,12 @@ export class PayWithGoogleDetails {
     }
 }
 
+export namespace PayWithGoogleDetails {
+    export enum FundingSourceEnum {
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
+    }
+    export enum TypeEnum {
+        Paywithgoogle = <any> 'paywithgoogle'
+    }
+}

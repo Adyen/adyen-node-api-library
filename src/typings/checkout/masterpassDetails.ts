@@ -55,3 +55,12 @@ export class MasterpassDetails {
     }
 }
 
+export namespace MasterpassDetails {
+    export enum FundingSourceEnum {
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
+    }
+    export enum TypeEnum {
+        Masterpass = <any> 'masterpass'
+    }
+}

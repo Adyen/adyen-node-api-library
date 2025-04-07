@@ -140,3 +140,21 @@ export class PaymentResponse {
     }
 }
 
+export namespace PaymentResponse {
+    export enum ResultCodeEnum {
+        AuthenticationFinished = <any> 'AuthenticationFinished',
+        AuthenticationNotRequired = <any> 'AuthenticationNotRequired',
+        Authorised = <any> 'Authorised',
+        Cancelled = <any> 'Cancelled',
+        ChallengeShopper = <any> 'ChallengeShopper',
+        Error = <any> 'Error',
+        IdentifyShopper = <any> 'IdentifyShopper',
+        PartiallyAuthorised = <any> 'PartiallyAuthorised',
+        Pending = <any> 'Pending',
+        PresentToShopper = <any> 'PresentToShopper',
+        Received = <any> 'Received',
+        RedirectShopper = <any> 'RedirectShopper',
+        Refused = <any> 'Refused',
+        Success = <any> 'Success'
+    }
+}

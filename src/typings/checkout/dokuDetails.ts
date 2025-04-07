@@ -64,3 +64,18 @@ export class DokuDetails {
     }
 }
 
+export namespace DokuDetails {
+    export enum TypeEnum {
+        DokuMandiriVa = <any> 'doku_mandiri_va',
+        DokuCimbVa = <any> 'doku_cimb_va',
+        DokuDanamonVa = <any> 'doku_danamon_va',
+        DokuBniVa = <any> 'doku_bni_va',
+        DokuPermataLiteAtm = <any> 'doku_permata_lite_atm',
+        DokuBriVa = <any> 'doku_bri_va',
+        DokuBcaVa = <any> 'doku_bca_va',
+        DokuAlfamart = <any> 'doku_alfamart',
+        DokuIndomaret = <any> 'doku_indomaret',
+        DokuWallet = <any> 'doku_wallet',
+        DokuOvo = <any> 'doku_ovo'
+    }
+}

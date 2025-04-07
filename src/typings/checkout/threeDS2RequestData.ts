@@ -358,3 +358,42 @@ export class ThreeDS2RequestData {
     }
 }
 
+export namespace ThreeDS2RequestData {
+    export enum AcctTypeEnum {
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03'
+    }
+    export enum AddrMatchEnum {
+        Y = <any> 'Y',
+        N = <any> 'N'
+    }
+    export enum ChallengeIndicatorEnum {
+        NoPreference = <any> 'noPreference',
+        RequestNoChallenge = <any> 'requestNoChallenge',
+        RequestChallenge = <any> 'requestChallenge',
+        RequestChallengeAsMandate = <any> 'requestChallengeAsMandate'
+    }
+    export enum ThreeDSRequestorChallengeIndEnum {
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05',
+        _06 = <any> '06'
+    }
+    export enum TransTypeEnum {
+        _01 = <any> '01',
+        _03 = <any> '03',
+        _10 = <any> '10',
+        _11 = <any> '11',
+        _28 = <any> '28'
+    }
+    export enum TransactionTypeEnum {
+        GoodsOrServicePurchase = <any> 'goodsOrServicePurchase',
+        CheckAcceptance = <any> 'checkAcceptance',
+        AccountFunding = <any> 'accountFunding',
+        QuasiCashTransaction = <any> 'quasiCashTransaction',
+        PrepaidActivationAndLoad = <any> 'prepaidActivationAndLoad'
+    }
+}

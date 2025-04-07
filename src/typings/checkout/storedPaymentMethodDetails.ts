@@ -58,3 +58,24 @@ export class StoredPaymentMethodDetails {
     }
 }
 
+export namespace StoredPaymentMethodDetails {
+    export enum TypeEnum {
+        BcmcMobile = <any> 'bcmc_mobile',
+        BcmcMobileQr = <any> 'bcmc_mobile_QR',
+        BcmcMobileApp = <any> 'bcmc_mobile_app',
+        MomoWallet = <any> 'momo_wallet',
+        MomoWalletApp = <any> 'momo_wallet_app',
+        PaymayaWallet = <any> 'paymaya_wallet',
+        GrabpaySg = <any> 'grabpay_SG',
+        GrabpayMy = <any> 'grabpay_MY',
+        GrabpayTh = <any> 'grabpay_TH',
+        GrabpayId = <any> 'grabpay_ID',
+        GrabpayVn = <any> 'grabpay_VN',
+        GrabpayPh = <any> 'grabpay_PH',
+        Oxxo = <any> 'oxxo',
+        Gcash = <any> 'gcash',
+        Dana = <any> 'dana',
+        Kakaopay = <any> 'kakaopay',
+        Truemoney = <any> 'truemoney'
+    }
+}

@@ -46,3 +46,8 @@ export class PayByBankDetails {
     }
 }
 
+export namespace PayByBankDetails {
+    export enum TypeEnum {
+        Paybybank = <any> 'paybybank'
+    }
+}

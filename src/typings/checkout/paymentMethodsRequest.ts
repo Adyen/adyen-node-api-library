@@ -141,3 +141,15 @@ export class PaymentMethodsRequest {
     }
 }
 
+export namespace PaymentMethodsRequest {
+    export enum ChannelEnum {
+        IOs = <any> 'iOS',
+        Android = <any> 'Android',
+        Web = <any> 'Web'
+    }
+    export enum StoreFiltrationModeEnum {
+        Exclusive = <any> 'exclusive',
+        Inclusive = <any> 'inclusive',
+        SkipFilter = <any> 'skipFilter'
+    }
+}

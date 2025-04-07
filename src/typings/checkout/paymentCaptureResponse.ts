@@ -108,3 +108,8 @@ export class PaymentCaptureResponse {
     }
 }
 
+export namespace PaymentCaptureResponse {
+    export enum StatusEnum {
+        Received = <any> 'received'
+    }
+}

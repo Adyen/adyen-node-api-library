@@ -291,3 +291,21 @@ export class DonationPaymentRequestPaymentMethod {
     }
 }
 
+export namespace DonationPaymentRequestPaymentMethod {
+    export enum FundingSourceEnum {
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
+    }
+    export enum TypeEnum {
+        Applepay = <any> 'applepay',
+        Bcmc = <any> 'bcmc',
+        Scheme = <any> 'scheme',
+        NetworkToken = <any> 'networkToken',
+        Giftcard = <any> 'giftcard',
+        Card = <any> 'card',
+        Clicktopay = <any> 'clicktopay',
+        Googlepay = <any> 'googlepay',
+        Ideal = <any> 'ideal',
+        Paywithgoogle = <any> 'paywithgoogle'
+    }
+}

@@ -127,3 +127,30 @@ export class ThreeDSecureData {
     }
 }
 
+export namespace ThreeDSecureData {
+    export enum AuthenticationResponseEnum {
+        Y = <any> 'Y',
+        N = <any> 'N',
+        U = <any> 'U',
+        A = <any> 'A'
+    }
+    export enum ChallengeCancelEnum {
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05',
+        _06 = <any> '06',
+        _07 = <any> '07'
+    }
+    export enum DirectoryResponseEnum {
+        A = <any> 'A',
+        C = <any> 'C',
+        D = <any> 'D',
+        I = <any> 'I',
+        N = <any> 'N',
+        R = <any> 'R',
+        U = <any> 'U',
+        Y = <any> 'Y'
+    }
+}

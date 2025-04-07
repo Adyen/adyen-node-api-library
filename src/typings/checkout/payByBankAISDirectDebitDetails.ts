@@ -58,3 +58,8 @@ export class PayByBankAISDirectDebitDetails {
     }
 }
 
+export namespace PayByBankAISDirectDebitDetails {
+    export enum TypeEnum {
+        PaybybankAisDd = <any> 'paybybank_AIS_DD'
+    }
+}

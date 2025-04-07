@@ -64,3 +64,8 @@ export class PaymentReversalResponse {
     }
 }
 
+export namespace PaymentReversalResponse {
+    export enum StatusEnum {
+        Received = <any> 'received'
+    }
+}

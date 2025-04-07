@@ -28,3 +28,8 @@ export class UpdatePaymentLinkRequest {
     }
 }
 
+export namespace UpdatePaymentLinkRequest {
+    export enum StatusEnum {
+        Expired = <any> 'expired'
+    }
+}

@@ -37,3 +37,8 @@ export class AffirmDetails {
     }
 }
 
+export namespace AffirmDetails {
+    export enum TypeEnum {
+        Affirm = <any> 'affirm'
+    }
+}

@@ -76,3 +76,8 @@ export class PayUUpiDetails {
     }
 }
 
+export namespace PayUUpiDetails {
+    export enum TypeEnum {
+        PayuInUpi = <any> 'payu_IN_upi'
+    }
+}

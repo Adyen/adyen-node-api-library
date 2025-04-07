@@ -103,3 +103,10 @@ export class RivertyDetails {
     }
 }
 
+export namespace RivertyDetails {
+    export enum TypeEnum {
+        Riverty = <any> 'riverty',
+        RivertyAccount = <any> 'riverty_account',
+        SepadirectdebitRiverty = <any> 'sepadirectdebit_riverty'
+    }
+}

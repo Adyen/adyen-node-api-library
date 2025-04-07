@@ -146,3 +146,20 @@ export class MerchantRiskIndicator {
     }
 }
 
+export namespace MerchantRiskIndicator {
+    export enum DeliveryAddressIndicatorEnum {
+        ShipToBillingAddress = <any> 'shipToBillingAddress',
+        ShipToVerifiedAddress = <any> 'shipToVerifiedAddress',
+        ShipToNewAddress = <any> 'shipToNewAddress',
+        ShipToStore = <any> 'shipToStore',
+        DigitalGoods = <any> 'digitalGoods',
+        GoodsNotShipped = <any> 'goodsNotShipped',
+        Other = <any> 'other'
+    }
+    export enum DeliveryTimeframeEnum {
+        ElectronicDelivery = <any> 'electronicDelivery',
+        SameDayShipping = <any> 'sameDayShipping',
+        OvernightShipping = <any> 'overnightShipping',
+        TwoOrMoreDaysShipping = <any> 'twoOrMoreDaysShipping'
+    }
+}

@@ -80,3 +80,10 @@ export class PaymentAmountUpdateRequest {
     }
 }
 
+export namespace PaymentAmountUpdateRequest {
+    export enum IndustryUsageEnum {
+        DelayedCharge = <any> 'delayedCharge',
+        Installment = <any> 'installment',
+        NoShow = <any> 'noShow'
+    }
+}

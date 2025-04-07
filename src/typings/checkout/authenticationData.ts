@@ -44,3 +44,9 @@ export class AuthenticationData {
     }
 }
 
+export namespace AuthenticationData {
+    export enum AttemptAuthenticationEnum {
+        Always = <any> 'always',
+        Never = <any> 'never'
+    }
+}

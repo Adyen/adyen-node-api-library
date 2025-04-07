@@ -102,3 +102,8 @@ export class CreateOrderResponse {
     }
 }
 
+export namespace CreateOrderResponse {
+    export enum ResultCodeEnum {
+        Success = <any> 'Success'
+    }
+}

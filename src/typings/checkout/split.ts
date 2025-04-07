@@ -62,3 +62,23 @@ export class Split {
     }
 }
 
+export namespace Split {
+    export enum TypeEnum {
+        AcquiringFees = <any> 'AcquiringFees',
+        AdyenCommission = <any> 'AdyenCommission',
+        AdyenFees = <any> 'AdyenFees',
+        AdyenMarkup = <any> 'AdyenMarkup',
+        BalanceAccount = <any> 'BalanceAccount',
+        Commission = <any> 'Commission',
+        Default = <any> 'Default',
+        Interchange = <any> 'Interchange',
+        MarketPlace = <any> 'MarketPlace',
+        PaymentFee = <any> 'PaymentFee',
+        Remainder = <any> 'Remainder',
+        SchemeFee = <any> 'SchemeFee',
+        Surcharge = <any> 'Surcharge',
+        Tip = <any> 'Tip',
+        TopUp = <any> 'TopUp',
+        Vat = <any> 'VAT'
+    }
+}

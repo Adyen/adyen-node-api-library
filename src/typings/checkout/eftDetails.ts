@@ -94,3 +94,8 @@ export class EftDetails {
     }
 }
 
+export namespace EftDetails {
+    export enum TypeEnum {
+        EftDirectdebitCa = <any> 'eft_directdebit_CA'
+    }
+}

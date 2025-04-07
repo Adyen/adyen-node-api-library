@@ -46,3 +46,8 @@ export class DotpayDetails {
     }
 }
 
+export namespace DotpayDetails {
+    export enum TypeEnum {
+        Dotpay = <any> 'dotpay'
+    }
+}

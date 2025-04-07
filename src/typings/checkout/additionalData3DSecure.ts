@@ -79,3 +79,12 @@ export class AdditionalData3DSecure {
     }
 }
 
+export namespace AdditionalData3DSecure {
+    export enum ChallengeWindowSizeEnum {
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05'
+    }
+}

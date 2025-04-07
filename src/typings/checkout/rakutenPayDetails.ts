@@ -58,3 +58,8 @@ export class RakutenPayDetails {
     }
 }
 
+export namespace RakutenPayDetails {
+    export enum TypeEnum {
+        Rakutenpay = <any> 'rakutenpay'
+    }
+}

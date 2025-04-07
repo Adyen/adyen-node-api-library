@@ -55,3 +55,8 @@ export class AmazonPayDetails {
     }
 }
 
+export namespace AmazonPayDetails {
+    export enum TypeEnum {
+        Amazonpay = <any> 'amazonpay'
+    }
+}

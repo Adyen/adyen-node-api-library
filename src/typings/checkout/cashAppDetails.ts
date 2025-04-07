@@ -112,3 +112,8 @@ export class CashAppDetails {
     }
 }
 
+export namespace CashAppDetails {
+    export enum TypeEnum {
+        Cashapp = <any> 'cashapp'
+    }
+}

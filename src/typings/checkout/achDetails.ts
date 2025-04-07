@@ -130,3 +130,22 @@ export class AchDetails {
     }
 }
 
+export namespace AchDetails {
+    export enum AccountHolderTypeEnum {
+        Business = <any> 'business',
+        Personal = <any> 'personal'
+    }
+    export enum BankAccountTypeEnum {
+        Balance = <any> 'balance',
+        Checking = <any> 'checking',
+        Deposit = <any> 'deposit',
+        General = <any> 'general',
+        Other = <any> 'other',
+        Payment = <any> 'payment',
+        Savings = <any> 'savings'
+    }
+    export enum TypeEnum {
+        Ach = <any> 'ach',
+        AchPlaid = <any> 'ach_plaid'
+    }
+}

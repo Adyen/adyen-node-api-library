@@ -37,3 +37,17 @@ export class DeviceRenderOptions {
     }
 }
 
+export namespace DeviceRenderOptions {
+    export enum SdkInterfaceEnum {
+        Native = <any> 'native',
+        Html = <any> 'html',
+        Both = <any> 'both'
+    }
+    export enum SdkUiTypeEnum {
+        MultiSelect = <any> 'multiSelect',
+        OtherHtml = <any> 'otherHtml',
+        OutOfBand = <any> 'outOfBand',
+        SingleSelect = <any> 'singleSelect',
+        Text = <any> 'text'
+    }
+}

@@ -94,3 +94,14 @@ export class KlarnaDetails {
     }
 }
 
+export namespace KlarnaDetails {
+    export enum TypeEnum {
+        Klarna = <any> 'klarna',
+        Klarnapayments = <any> 'klarnapayments',
+        KlarnapaymentsAccount = <any> 'klarnapayments_account',
+        KlarnapaymentsB2b = <any> 'klarnapayments_b2b',
+        KlarnaPaynow = <any> 'klarna_paynow',
+        KlarnaAccount = <any> 'klarna_account',
+        KlarnaB2b = <any> 'klarna_b2b'
+    }
+}

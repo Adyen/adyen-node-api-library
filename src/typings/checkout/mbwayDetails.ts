@@ -55,3 +55,8 @@ export class MbwayDetails {
     }
 }
 
+export namespace MbwayDetails {
+    export enum TypeEnum {
+        Mbway = <any> 'mbway'
+    }
+}

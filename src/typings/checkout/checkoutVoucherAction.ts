@@ -200,3 +200,8 @@ export class CheckoutVoucherAction {
     }
 }
 
+export namespace CheckoutVoucherAction {
+    export enum TypeEnum {
+        Voucher = <any> 'voucher'
+    }
+}

@@ -67,3 +67,8 @@ export class FastlaneDetails {
     }
 }
 
+export namespace FastlaneDetails {
+    export enum TypeEnum {
+        Fastlane = <any> 'fastlane'
+    }
+}

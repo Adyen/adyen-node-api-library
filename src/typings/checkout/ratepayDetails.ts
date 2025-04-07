@@ -85,3 +85,9 @@ export class RatepayDetails {
     }
 }
 
+export namespace RatepayDetails {
+    export enum TypeEnum {
+        Ratepay = <any> 'ratepay',
+        RatepayDirectdebit = <any> 'ratepay_directdebit'
+    }
+}

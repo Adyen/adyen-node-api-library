@@ -415,3 +415,29 @@ export class PaymentLinkResponse {
     }
 }
 
+export namespace PaymentLinkResponse {
+    export enum RecurringProcessingModelEnum {
+        CardOnFile = <any> 'CardOnFile',
+        Subscription = <any> 'Subscription',
+        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
+    }
+    export enum RequiredShopperFieldsEnum {
+        BillingAddress = <any> 'billingAddress',
+        DeliveryAddress = <any> 'deliveryAddress',
+        ShopperEmail = <any> 'shopperEmail',
+        ShopperName = <any> 'shopperName',
+        TelephoneNumber = <any> 'telephoneNumber'
+    }
+    export enum StatusEnum {
+        Active = <any> 'active',
+        Completed = <any> 'completed',
+        Expired = <any> 'expired',
+        Paid = <any> 'paid',
+        PaymentPending = <any> 'paymentPending'
+    }
+    export enum StorePaymentMethodModeEnum {
+        AskForConsent = <any> 'askForConsent',
+        Disabled = <any> 'disabled',
+        Enabled = <any> 'enabled'
+    }
+}

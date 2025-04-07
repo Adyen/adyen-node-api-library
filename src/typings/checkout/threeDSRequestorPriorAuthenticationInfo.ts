@@ -55,3 +55,11 @@ export class ThreeDSRequestorPriorAuthenticationInfo {
     }
 }
 
+export namespace ThreeDSRequestorPriorAuthenticationInfo {
+    export enum ThreeDSReqPriorAuthMethodEnum {
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04'
+    }
+}
