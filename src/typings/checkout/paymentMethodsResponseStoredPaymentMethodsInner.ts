@@ -7,8 +7,10 @@
  * Do not edit this class manually.
  */
 
+import { PixStoredPaymentMethod } from './pixStoredPaymentMethod';
+import { StoredPaymentMethod } from './storedPaymentMethod';
 
-export class StoredPaymentMethod {
+export class PaymentMethodsResponseStoredPaymentMethodsInner {
     /**
     * The bank account number (without separators).
     */
@@ -168,7 +170,7 @@ export class StoredPaymentMethod {
         }    ];
 
     static getAttributeTypeMap() {
-        return StoredPaymentMethod.attributeTypeMap;
+        return PaymentMethodsResponseStoredPaymentMethodsInner.attributeTypeMap;
     }
 }
 

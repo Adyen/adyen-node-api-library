@@ -141,6 +141,7 @@ export * from './paymentMethodToStore';
 export * from './paymentMethodUPIApps';
 export * from './paymentMethodsRequest';
 export * from './paymentMethodsResponse';
+export * from './paymentMethodsResponseStoredPaymentMethodsInner';
 export * from './paymentRefundRequest';
 export * from './paymentRefundResponse';
 export * from './paymentRequest';
@@ -154,8 +155,10 @@ export * from './paypalUpdateOrderResponse';
 export * from './phone';
 export * from './pixDetails';
 export * from './pixRecurring';
+export * from './pixStoredPaymentMethod';
 export * from './platformChargebackLogic';
 export * from './pseDetails';
+export * from './rakutenPayDetails';
 export * from './ratepayDetails';
 export * from './recurring';
 export * from './responseAdditionalData3DSecure';
@@ -362,6 +365,7 @@ import { PaymentMethodToStore } from './paymentMethodToStore';
 import { PaymentMethodUPIApps } from './paymentMethodUPIApps';
 import { PaymentMethodsRequest } from './paymentMethodsRequest';
 import { PaymentMethodsResponse } from './paymentMethodsResponse';
+import { PaymentMethodsResponseStoredPaymentMethodsInner } from './paymentMethodsResponseStoredPaymentMethodsInner';
 import { PaymentRefundRequest } from './paymentRefundRequest';
 import { PaymentRefundResponse } from './paymentRefundResponse';
 import { PaymentRequest } from './paymentRequest';
@@ -375,8 +379,10 @@ import { PaypalUpdateOrderResponse } from './paypalUpdateOrderResponse';
 import { Phone } from './phone';
 import { PixDetails } from './pixDetails';
 import { PixRecurring } from './pixRecurring';
+import { PixStoredPaymentMethod } from './pixStoredPaymentMethod';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { PseDetails } from './pseDetails';
+import { RakutenPayDetails } from './rakutenPayDetails';
 import { RatepayDetails } from './ratepayDetails';
 import { Recurring } from './recurring';
 import { ResponseAdditionalData3DSecure } from './responseAdditionalData3DSecure';
@@ -593,8 +599,10 @@ let enumsMap: {[index: string]: any} = {
         "PaypalUpdateOrderResponse.StatusEnum": PaypalUpdateOrderResponse.StatusEnum,
         "PixDetails.TypeEnum": PixDetails.TypeEnum,
         "PixRecurring.FrequencyEnum": PixRecurring.FrequencyEnum,
+        "PixStoredPaymentMethod.TypeEnum": PixStoredPaymentMethod.TypeEnum,
         "PlatformChargebackLogic.BehaviorEnum": PlatformChargebackLogic.BehaviorEnum,
         "PseDetails.TypeEnum": PseDetails.TypeEnum,
+        "RakutenPayDetails.TypeEnum": RakutenPayDetails.TypeEnum,
         "RatepayDetails.TypeEnum": RatepayDetails.TypeEnum,
         "Recurring.ContractEnum": Recurring.ContractEnum,
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
@@ -789,6 +797,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentMethodUPIApps": PaymentMethodUPIApps,
     "PaymentMethodsRequest": PaymentMethodsRequest,
     "PaymentMethodsResponse": PaymentMethodsResponse,
+    "PaymentMethodsResponseStoredPaymentMethodsInner": PaymentMethodsResponseStoredPaymentMethodsInner,
     "PaymentRefundRequest": PaymentRefundRequest,
     "PaymentRefundResponse": PaymentRefundResponse,
     "PaymentRequest": PaymentRequest,
@@ -802,8 +811,10 @@ let typeMap: {[index: string]: any} = {
     "Phone": Phone,
     "PixDetails": PixDetails,
     "PixRecurring": PixRecurring,
+    "PixStoredPaymentMethod": PixStoredPaymentMethod,
     "PlatformChargebackLogic": PlatformChargebackLogic,
     "PseDetails": PseDetails,
+    "RakutenPayDetails": RakutenPayDetails,
     "RatepayDetails": RatepayDetails,
     "Recurring": Recurring,
     "ResponseAdditionalData3DSecure": ResponseAdditionalData3DSecure,

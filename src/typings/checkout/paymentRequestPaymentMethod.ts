@@ -48,6 +48,7 @@ import { PaymentDetails } from './paymentDetails';
 import { PixDetails } from './pixDetails';
 import { PixRecurring } from './pixRecurring';
 import { PseDetails } from './pseDetails';
+import { RakutenPayDetails } from './rakutenPayDetails';
 import { RatepayDetails } from './ratepayDetails';
 import { RivertyDetails } from './rivertyDetails';
 import { SamsungPayDetails } from './samsungPayDetails';
@@ -926,6 +927,7 @@ export namespace PaymentRequestPaymentMethod {
         Balanceplatform = <any> 'balanceplatform',
         Pix = <any> 'pix',
         PsePayulatam = <any> 'pse_payulatam',
+        Rakutenpay = <any> 'rakutenpay',
         Ratepay = <any> 'ratepay',
         RatepayDirectdebit = <any> 'ratepay_directdebit',
         Riverty = <any> 'riverty',

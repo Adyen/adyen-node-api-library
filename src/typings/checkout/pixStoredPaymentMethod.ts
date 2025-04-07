@@ -8,7 +8,7 @@
  */
 
 
-export class StoredPaymentMethod {
+export class PixStoredPaymentMethod {
     /**
     * The bank account number (without separators).
     */
@@ -76,7 +76,7 @@ export class StoredPaymentMethod {
     /**
     * The type of payment method.
     */
-    'type'?: string;
+    'type'?: PixStoredPaymentMethod.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -164,11 +164,16 @@ export class StoredPaymentMethod {
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "PixStoredPaymentMethod.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return StoredPaymentMethod.attributeTypeMap;
+        return PixStoredPaymentMethod.attributeTypeMap;
     }
 }
 
+export namespace PixStoredPaymentMethod {
+    export enum TypeEnum {
+        Pix = <any> 'pix'
+    }
+}
