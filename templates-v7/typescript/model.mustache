@@ -31,7 +31,7 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
     */
     {{/deprecated}}
 {{/description}}
-        {{#required}}'{{name}}': {{/required}}{{^required}}'{{name}}'?: {{/required}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}};
+    {{#required}}'{{name}}': {{/required}}{{^required}}'{{name}}'?: {{/required}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}};
 {{/vars}}
 
     {{#discriminator}}
