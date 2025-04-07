@@ -73,8 +73,3 @@ export class CheckoutNativeRedirectAction {
     }
 }
 
-export namespace CheckoutNativeRedirectAction {
-    export enum TypeEnum {
-        NativeRedirect = <any> 'nativeRedirect'
-    }
-}

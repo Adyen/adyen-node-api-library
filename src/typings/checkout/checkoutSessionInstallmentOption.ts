@@ -46,17 +46,3 @@ export class CheckoutSessionInstallmentOption {
     }
 }
 
-export namespace CheckoutSessionInstallmentOption {
-    export enum PlansEnum {
-        Bonus = <any> 'bonus',
-        BuynowPaylater = <any> 'buynow_paylater',
-        InteresRefundPrctg = <any> 'interes_refund_prctg',
-        InterestBonus = <any> 'interest_bonus',
-        NointeresRefundPrctg = <any> 'nointeres_refund_prctg',
-        NointerestBonus = <any> 'nointerest_bonus',
-        RefundPrctg = <any> 'refund_prctg',
-        Regular = <any> 'regular',
-        Revolving = <any> 'revolving',
-        WithInterest = <any> 'with_interest'
-    }
-}

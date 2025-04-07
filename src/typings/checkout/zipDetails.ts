@@ -67,9 +67,3 @@ export class ZipDetails {
     }
 }
 
-export namespace ZipDetails {
-    export enum TypeEnum {
-        Zip = <any> 'zip',
-        ZipPos = <any> 'zip_pos'
-    }
-}

@@ -583,19 +583,3 @@ export class ResponseAdditionalDataCommon {
     }
 }
 
-export namespace ResponseAdditionalDataCommon {
-    export enum FraudResultTypeEnum {
-        Green = <any> 'GREEN',
-        Fraud = <any> 'FRAUD'
-    }
-    export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
-    }
-    export enum TokenizationStoreOperationTypeEnum {
-        Created = <any> 'created',
-        Updated = <any> 'updated',
-        AlreadyExisting = <any> 'alreadyExisting'
-    }
-}

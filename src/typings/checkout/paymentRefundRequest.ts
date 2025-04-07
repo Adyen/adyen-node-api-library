@@ -89,12 +89,3 @@ export class PaymentRefundRequest {
     }
 }
 
-export namespace PaymentRefundRequest {
-    export enum MerchantRefundReasonEnum {
-        Fraud = <any> 'FRAUD',
-        CustomerRequest = <any> 'CUSTOMER REQUEST',
-        Return = <any> 'RETURN',
-        Duplicate = <any> 'DUPLICATE',
-        Other = <any> 'OTHER'
-    }
-}

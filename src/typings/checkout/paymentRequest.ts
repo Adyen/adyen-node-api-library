@@ -614,30 +614,3 @@ export class PaymentRequest {
     }
 }
 
-export namespace PaymentRequest {
-    export enum ChannelEnum {
-        IOs = <any> 'iOS',
-        Android = <any> 'Android',
-        Web = <any> 'Web'
-    }
-    export enum EntityTypeEnum {
-        NaturalPerson = <any> 'NaturalPerson',
-        CompanyName = <any> 'CompanyName'
-    }
-    export enum IndustryUsageEnum {
-        DelayedCharge = <any> 'delayedCharge',
-        Installment = <any> 'installment',
-        NoShow = <any> 'noShow'
-    }
-    export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
-    }
-    export enum ShopperInteractionEnum {
-        Ecommerce = <any> 'Ecommerce',
-        ContAuth = <any> 'ContAuth',
-        Moto = <any> 'Moto',
-        Pos = <any> 'POS'
-    }
-}

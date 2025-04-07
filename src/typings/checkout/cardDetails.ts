@@ -247,17 +247,3 @@ export class CardDetails {
     }
 }
 
-export namespace CardDetails {
-    export enum FundingSourceEnum {
-        Credit = <any> 'credit',
-        Debit = <any> 'debit'
-    }
-    export enum TypeEnum {
-        Bcmc = <any> 'bcmc',
-        Scheme = <any> 'scheme',
-        NetworkToken = <any> 'networkToken',
-        Giftcard = <any> 'giftcard',
-        Card = <any> 'card',
-        Clicktopay = <any> 'clicktopay'
-    }
-}

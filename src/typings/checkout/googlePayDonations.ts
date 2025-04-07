@@ -94,12 +94,3 @@ export class GooglePayDonations {
     }
 }
 
-export namespace GooglePayDonations {
-    export enum FundingSourceEnum {
-        Credit = <any> 'credit',
-        Debit = <any> 'debit'
-    }
-    export enum TypeEnum {
-        Googlepay = <any> 'googlepay'
-    }
-}

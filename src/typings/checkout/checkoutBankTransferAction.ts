@@ -134,8 +134,3 @@ export class CheckoutBankTransferAction {
     }
 }
 
-export namespace CheckoutBankTransferAction {
-    export enum TypeEnum {
-        BankTransfer = <any> 'bankTransfer'
-    }
-}

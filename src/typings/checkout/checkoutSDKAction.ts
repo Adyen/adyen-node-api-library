@@ -64,9 +64,3 @@ export class CheckoutSDKAction {
     }
 }
 
-export namespace CheckoutSDKAction {
-    export enum TypeEnum {
-        Sdk = <any> 'sdk',
-        WechatpaySdk = <any> 'wechatpaySDK'
-    }
-}

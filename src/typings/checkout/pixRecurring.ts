@@ -95,12 +95,3 @@ export class PixRecurring {
     }
 }
 
-export namespace PixRecurring {
-    export enum FrequencyEnum {
-        Weekly = <any> 'weekly',
-        Monthly = <any> 'monthly',
-        Quarterly = <any> 'quarterly',
-        HalfYearly = <any> 'half-yearly',
-        Yearly = <any> 'yearly'
-    }
-}

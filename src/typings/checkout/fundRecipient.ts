@@ -119,12 +119,3 @@ export class FundRecipient {
     }
 }
 
-export namespace FundRecipient {
-    export enum WalletPurposeEnum {
-        IdentifiedBoleto = <any> 'identifiedBoleto',
-        TransferDifferentWallet = <any> 'transferDifferentWallet',
-        TransferOwnWallet = <any> 'transferOwnWallet',
-        TransferSameWallet = <any> 'transferSameWallet',
-        UnidentifiedBoleto = <any> 'unidentifiedBoleto'
-    }
-}

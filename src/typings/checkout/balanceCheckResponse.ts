@@ -75,10 +75,3 @@ export class BalanceCheckResponse {
     }
 }
 
-export namespace BalanceCheckResponse {
-    export enum ResultCodeEnum {
-        Success = <any> 'Success',
-        NotEnoughBalance = <any> 'NotEnoughBalance',
-        Failed = <any> 'Failed'
-    }
-}

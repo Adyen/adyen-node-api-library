@@ -541,35 +541,3 @@ export class CreateCheckoutSessionRequest {
     }
 }
 
-export namespace CreateCheckoutSessionRequest {
-    export enum ChannelEnum {
-        IOs = <any> 'iOS',
-        Android = <any> 'Android',
-        Web = <any> 'Web'
-    }
-    export enum ModeEnum {
-        Embedded = <any> 'embedded',
-        Hosted = <any> 'hosted'
-    }
-    export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
-    }
-    export enum ShopperInteractionEnum {
-        Ecommerce = <any> 'Ecommerce',
-        ContAuth = <any> 'ContAuth',
-        Moto = <any> 'Moto',
-        Pos = <any> 'POS'
-    }
-    export enum StoreFiltrationModeEnum {
-        Exclusive = <any> 'exclusive',
-        Inclusive = <any> 'inclusive',
-        SkipFilter = <any> 'skipFilter'
-    }
-    export enum StorePaymentMethodModeEnum {
-        AskForConsent = <any> 'askForConsent',
-        Disabled = <any> 'disabled',
-        Enabled = <any> 'enabled'
-    }
-}

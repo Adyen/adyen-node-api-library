@@ -85,8 +85,3 @@ export class UpiCollectDetails {
     }
 }
 
-export namespace UpiCollectDetails {
-    export enum TypeEnum {
-        UpiCollect = <any> 'upi_collect'
-    }
-}

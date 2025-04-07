@@ -73,12 +73,3 @@ export class EcontextVoucherDetails {
     }
 }
 
-export namespace EcontextVoucherDetails {
-    export enum TypeEnum {
-        EcontextSevenEleven = <any> 'econtext_seven_eleven',
-        EcontextOnline = <any> 'econtext_online',
-        Econtext = <any> 'econtext',
-        EcontextStores = <any> 'econtext_stores',
-        EcontextAtm = <any> 'econtext_atm'
-    }
-}

@@ -47,13 +47,3 @@ export class CheckoutSessionThreeDS2RequestData {
     }
 }
 
-export namespace CheckoutSessionThreeDS2RequestData {
-    export enum ThreeDSRequestorChallengeIndEnum {
-        _01 = <any> '01',
-        _02 = <any> '02',
-        _03 = <any> '03',
-        _04 = <any> '04',
-        _05 = <any> '05',
-        _06 = <any> '06'
-    }
-}

@@ -85,10 +85,3 @@ export class OpenInvoiceDetails {
     }
 }
 
-export namespace OpenInvoiceDetails {
-    export enum TypeEnum {
-        Openinvoice = <any> 'openinvoice',
-        AfterpayDirectdebit = <any> 'afterpay_directdebit',
-        AtomePos = <any> 'atome_pos'
-    }
-}

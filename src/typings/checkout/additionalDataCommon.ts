@@ -208,9 +208,3 @@ export class AdditionalDataCommon {
     }
 }
 
-export namespace AdditionalDataCommon {
-    export enum IndustryUsageEnum {
-        NoShow = <any> 'NoShow',
-        DelayedCharge = <any> 'DelayedCharge'
-    }
-}

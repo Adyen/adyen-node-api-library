@@ -100,24 +100,3 @@ export class Mandate {
     }
 }
 
-export namespace Mandate {
-    export enum AmountRuleEnum {
-        Max = <any> 'max',
-        Exact = <any> 'exact'
-    }
-    export enum BillingAttemptsRuleEnum {
-        On = <any> 'on',
-        Before = <any> 'before',
-        After = <any> 'after'
-    }
-    export enum FrequencyEnum {
-        Adhoc = <any> 'adhoc',
-        Daily = <any> 'daily',
-        Weekly = <any> 'weekly',
-        BiWeekly = <any> 'biWeekly',
-        Monthly = <any> 'monthly',
-        Quarterly = <any> 'quarterly',
-        HalfYearly = <any> 'halfYearly',
-        Yearly = <any> 'yearly'
-    }
-}

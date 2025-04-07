@@ -49,8 +49,3 @@ export class WeChatPayMiniProgramDetails {
     }
 }
 
-export namespace WeChatPayMiniProgramDetails {
-    export enum TypeEnum {
-        WechatpayMiniProgram = <any> 'wechatpayMiniProgram'
-    }
-}

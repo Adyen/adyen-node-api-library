@@ -67,8 +67,3 @@ export class IdealDonations {
     }
 }
 
-export namespace IdealDonations {
-    export enum TypeEnum {
-        Ideal = <any> 'ideal'
-    }
-}

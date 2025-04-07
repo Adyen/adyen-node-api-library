@@ -76,12 +76,3 @@ export class ApplePayDonations {
     }
 }
 
-export namespace ApplePayDonations {
-    export enum FundingSourceEnum {
-        Credit = <any> 'credit',
-        Debit = <any> 'debit'
-    }
-    export enum TypeEnum {
-        Applepay = <any> 'applepay'
-    }
-}

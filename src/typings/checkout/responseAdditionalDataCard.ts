@@ -100,18 +100,3 @@ export class ResponseAdditionalDataCard {
     }
 }
 
-export namespace ResponseAdditionalDataCard {
-    export enum CardProductIdEnum {
-        A = <any> 'A',
-        B = <any> 'B',
-        C = <any> 'C',
-        D = <any> 'D',
-        F = <any> 'F',
-        Mcc = <any> 'MCC',
-        Mce = <any> 'MCE',
-        Mcf = <any> 'MCF',
-        Mcg = <any> 'MCG',
-        Mch = <any> 'MCH',
-        Mci = <any> 'MCI'
-    }
-}

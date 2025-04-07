@@ -67,8 +67,3 @@ export class PayToDetails {
     }
 }
 
-export namespace PayToDetails {
-    export enum TypeEnum {
-        Payto = <any> 'payto'
-    }
-}

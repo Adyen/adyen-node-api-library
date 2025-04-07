@@ -391,16 +391,3 @@ export class BalanceCheckRequest {
     }
 }
 
-export namespace BalanceCheckRequest {
-    export enum RecurringProcessingModelEnum {
-        CardOnFile = <any> 'CardOnFile',
-        Subscription = <any> 'Subscription',
-        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
-    }
-    export enum ShopperInteractionEnum {
-        Ecommerce = <any> 'Ecommerce',
-        ContAuth = <any> 'ContAuth',
-        Moto = <any> 'Moto',
-        Pos = <any> 'POS'
-    }
-}

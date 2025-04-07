@@ -46,8 +46,3 @@ export class EBankingFinlandDetails {
     }
 }
 
-export namespace EBankingFinlandDetails {
-    export enum TypeEnum {
-        EbankingFi = <any> 'ebanking_FI'
-    }
-}

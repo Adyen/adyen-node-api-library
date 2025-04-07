@@ -103,13 +103,3 @@ export class PayPalDetails {
     }
 }
 
-export namespace PayPalDetails {
-    export enum SubtypeEnum {
-        Express = <any> 'express',
-        Redirect = <any> 'redirect',
-        Sdk = <any> 'sdk'
-    }
-    export enum TypeEnum {
-        Paypal = <any> 'paypal'
-    }
-}

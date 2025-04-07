@@ -73,8 +73,3 @@ export class CheckoutQrCodeAction {
     }
 }
 
-export namespace CheckoutQrCodeAction {
-    export enum TypeEnum {
-        QrCode = <any> 'qrCode'
-    }
-}

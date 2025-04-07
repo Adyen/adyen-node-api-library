@@ -37,8 +37,3 @@ export class AndroidPayDetails {
     }
 }
 
-export namespace AndroidPayDetails {
-    export enum TypeEnum {
-        Androidpay = <any> 'androidpay'
-    }
-}

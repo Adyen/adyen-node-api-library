@@ -37,8 +37,3 @@ export class CancelOrderResponse {
     }
 }
 
-export namespace CancelOrderResponse {
-    export enum ResultCodeEnum {
-        Received = <any> 'Received'
-    }
-}

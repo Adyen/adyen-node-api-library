@@ -172,8 +172,3 @@ export class PixStoredPaymentMethod {
     }
 }
 
-export namespace PixStoredPaymentMethod {
-    export enum TypeEnum {
-        Pix = <any> 'pix'
-    }
-}

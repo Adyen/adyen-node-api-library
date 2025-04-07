@@ -65,8 +65,3 @@ export class PixDetails {
     }
 }
 
-export namespace PixDetails {
-    export enum TypeEnum {
-        Pix = <any> 'pix'
-    }
-}

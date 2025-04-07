@@ -85,11 +85,3 @@ export class AfterpayDetails {
     }
 }
 
-export namespace AfterpayDetails {
-    export enum TypeEnum {
-        AfterpayDefault = <any> 'afterpay_default',
-        Afterpaytouch = <any> 'afterpaytouch',
-        AfterpayB2b = <any> 'afterpay_b2b',
-        Clearpay = <any> 'clearpay'
-    }
-}
