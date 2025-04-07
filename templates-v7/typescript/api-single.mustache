@@ -1,0 +1,55 @@
+{{>licenseInfo}}
+import getJsonResponse from "../../helpers/getJsonResponse";
+import Service from "../../service";
+import Client from "../../client";
+import { 
+{{#imports}}
+    {{classname}},
+{{/imports}}
+    ObjectSerializer
+} from "../../typings/{{serviceName}}/models";
+import { IRequest } from "../../typings/requestOptions";
+import Resource from "../resource";
+
+{{#operations}}
+export class {{classname}} extends Service {
+
+    private readonly API_BASEPATH: string = "{{{basePath}}}";
+    private baseUrl: string;
+
+    public constructor(client: Client){
+        super(client);
+        this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+{{#operation}}
+
+{{>api_summary}}
+    public async {{#vendorExtensions.x-methodName}}{{.}}{{/vendorExtensions.x-methodName}}{{^vendorExtensions.x-methodName}}{{nickname}}{{/vendorExtensions.x-methodName}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}{{#queryParams}}{{paramName}}?: {{{dataType}}}, {{/queryParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+        const endpoint = `${this.baseUrl}{{{path}}}`{{#pathParams}}
+            .replace("{" + "{{baseName}}" + "}", encodeURIComponent(String({{paramName}}))){{/pathParams}};
+        const resource = new Resource(this, endpoint);
+{{#bodyParam}}
+        const request: {{{dataType}}} = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}");
+{{/bodyParam}}
+{{#hasQueryParams}}
+        const hasDefinedQueryParams = {{#queryParams}}{{paramName}}{{^-last}} ?? {{/-last}}{{/queryParams}};
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+{{#queryParams}}
+            if({{paramName}}) requestOptions.params["{{paramName}}"] = {{paramName}}{{#isDateTime}}.toISOString(){{/isDateTime}};
+{{/queryParams}}
+        }
+{{/hasQueryParams}}
+        {{#returnType}}const response = {{/returnType}}await getJsonResponse<{{#bodyParam}}{{{dataType}}}{{/bodyParam}}{{^bodyParam}}string{{/bodyParam}}, {{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}>(
+            resource,
+            {{#bodyParam}}request{{/bodyParam}}{{^bodyParam}}""{{/bodyParam}},
+            { ...requestOptions, method: "{{httpMethod}}" }
+        );
+        {{#returnType}}
+        return ObjectSerializer.deserialize(response, "{{{.}}}");
+        {{/returnType}}
+    }
+{{/operation}}
+}
+{{/operations}}

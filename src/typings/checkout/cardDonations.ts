@@ -111,7 +111,7 @@ export class CardDonations {
     /**
     * Default payment method details. Common for scheme payment methods, and for simple payment method details.
     */
-    'type'?: CardDonations.TypeEnum;
+    'type'?: CardDonations.TypeEnum = CardDonations.TypeEnum.Scheme;
 
     static discriminator: string | undefined = undefined;
 
@@ -249,15 +249,15 @@ export class CardDonations {
 
 export namespace CardDonations {
     export enum FundingSourceEnum {
-        Credit = 'credit',
-        Debit = 'debit'
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
     }
     export enum TypeEnum {
-        Bcmc = 'bcmc',
-        Scheme = 'scheme',
-        NetworkToken = 'networkToken',
-        Giftcard = 'giftcard',
-        Card = 'card',
-        Clicktopay = 'clicktopay'
+        Bcmc = <any> 'bcmc',
+        Scheme = <any> 'scheme',
+        NetworkToken = <any> 'networkToken',
+        Giftcard = <any> 'giftcard',
+        Card = <any> 'card',
+        Clicktopay = <any> 'clicktopay'
     }
 }

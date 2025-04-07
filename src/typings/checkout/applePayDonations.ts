@@ -35,7 +35,7 @@ export class ApplePayDonations {
     /**
     * **applepay**
     */
-    'type'?: ApplePayDonations.TypeEnum;
+    'type'?: ApplePayDonations.TypeEnum = ApplePayDonations.TypeEnum.Applepay;
 
     static discriminator: string | undefined = undefined;
 
@@ -78,10 +78,10 @@ export class ApplePayDonations {
 
 export namespace ApplePayDonations {
     export enum FundingSourceEnum {
-        Credit = 'credit',
-        Debit = 'debit'
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
     }
     export enum TypeEnum {
-        Applepay = 'applepay'
+        Applepay = <any> 'applepay'
     }
 }

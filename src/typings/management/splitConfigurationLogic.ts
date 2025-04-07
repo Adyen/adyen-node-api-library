@@ -15,7 +15,7 @@ export class SplitConfigurationLogic {
     * Deducts the acquiring fees (the aggregated amount of interchange and scheme fee) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
     'acquiringFees'?: SplitConfigurationLogic.AcquiringFeesEnum;
-    'additionalCommission'?: AdditionalCommission | null;
+    'additionalCommission'?: AdditionalCommission;
     /**
     * Deducts the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
@@ -85,7 +85,7 @@ export class SplitConfigurationLogic {
         {
             "name": "additionalCommission",
             "baseName": "additionalCommission",
-            "type": "AdditionalCommission | null"
+            "type": "AdditionalCommission"
         },
         {
             "name": "adyenCommission",
@@ -170,61 +170,61 @@ export class SplitConfigurationLogic {
 
 export namespace SplitConfigurationLogic {
     export enum AcquiringFeesEnum {
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount'
+        DeductFromLiableAccount = <any> 'deductFromLiableAccount',
+        DeductFromOneBalanceAccount = <any> 'deductFromOneBalanceAccount'
     }
     export enum AdyenCommissionEnum {
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount'
+        DeductFromLiableAccount = <any> 'deductFromLiableAccount',
+        DeductFromOneBalanceAccount = <any> 'deductFromOneBalanceAccount'
     }
     export enum AdyenFeesEnum {
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount'
+        DeductFromLiableAccount = <any> 'deductFromLiableAccount',
+        DeductFromOneBalanceAccount = <any> 'deductFromOneBalanceAccount'
     }
     export enum AdyenMarkupEnum {
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount'
+        DeductFromLiableAccount = <any> 'deductFromLiableAccount',
+        DeductFromOneBalanceAccount = <any> 'deductFromOneBalanceAccount'
     }
     export enum ChargebackEnum {
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount',
-        DeductAccordingToSplitRatio = 'deductAccordingToSplitRatio'
+        DeductFromLiableAccount = <any> 'deductFromLiableAccount',
+        DeductFromOneBalanceAccount = <any> 'deductFromOneBalanceAccount',
+        DeductAccordingToSplitRatio = <any> 'deductAccordingToSplitRatio'
     }
     export enum ChargebackCostAllocationEnum {
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount'
+        DeductFromLiableAccount = <any> 'deductFromLiableAccount',
+        DeductFromOneBalanceAccount = <any> 'deductFromOneBalanceAccount'
     }
     export enum InterchangeEnum {
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount'
+        DeductFromLiableAccount = <any> 'deductFromLiableAccount',
+        DeductFromOneBalanceAccount = <any> 'deductFromOneBalanceAccount'
     }
     export enum PaymentFeeEnum {
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount'
+        DeductFromLiableAccount = <any> 'deductFromLiableAccount',
+        DeductFromOneBalanceAccount = <any> 'deductFromOneBalanceAccount'
     }
     export enum RefundEnum {
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount',
-        DeductAccordingToSplitRatio = 'deductAccordingToSplitRatio'
+        DeductFromLiableAccount = <any> 'deductFromLiableAccount',
+        DeductFromOneBalanceAccount = <any> 'deductFromOneBalanceAccount',
+        DeductAccordingToSplitRatio = <any> 'deductAccordingToSplitRatio'
     }
     export enum RefundCostAllocationEnum {
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount'
+        DeductFromLiableAccount = <any> 'deductFromLiableAccount',
+        DeductFromOneBalanceAccount = <any> 'deductFromOneBalanceAccount'
     }
     export enum RemainderEnum {
-        AddToLiableAccount = 'addToLiableAccount',
-        AddToOneBalanceAccount = 'addToOneBalanceAccount'
+        AddToLiableAccount = <any> 'addToLiableAccount',
+        AddToOneBalanceAccount = <any> 'addToOneBalanceAccount'
     }
     export enum SchemeFeeEnum {
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount'
+        DeductFromLiableAccount = <any> 'deductFromLiableAccount',
+        DeductFromOneBalanceAccount = <any> 'deductFromOneBalanceAccount'
     }
     export enum SurchargeEnum {
-        AddToLiableAccount = 'addToLiableAccount',
-        AddToOneBalanceAccount = 'addToOneBalanceAccount'
+        AddToLiableAccount = <any> 'addToLiableAccount',
+        AddToOneBalanceAccount = <any> 'addToOneBalanceAccount'
     }
     export enum TipEnum {
-        AddToLiableAccount = 'addToLiableAccount',
-        AddToOneBalanceAccount = 'addToOneBalanceAccount'
+        AddToLiableAccount = <any> 'addToLiableAccount',
+        AddToOneBalanceAccount = <any> 'addToOneBalanceAccount'
     }
 }

@@ -32,7 +32,7 @@ export class PaymentInstrumentRequirement {
     /**
     * **paymentInstrumentRequirement**
     */
-    'type': PaymentInstrumentRequirement.TypeEnum;
+    'type': PaymentInstrumentRequirement.TypeEnum = PaymentInstrumentRequirement.TypeEnum.PaymentInstrumentRequirement;
 
     static discriminator: string | undefined = undefined;
 
@@ -75,10 +75,10 @@ export class PaymentInstrumentRequirement {
 
 export namespace PaymentInstrumentRequirement {
     export enum PaymentInstrumentTypeEnum {
-        BankAccount = 'BankAccount',
-        Card = 'Card'
+        BankAccount = <any> 'BankAccount',
+        Card = <any> 'Card'
     }
     export enum TypeEnum {
-        PaymentInstrumentRequirement = 'paymentInstrumentRequirement'
+        PaymentInstrumentRequirement = <any> 'paymentInstrumentRequirement'
     }
 }

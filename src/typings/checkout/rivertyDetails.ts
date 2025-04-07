@@ -47,7 +47,7 @@ export class RivertyDetails {
     /**
     * **riverty**
     */
-    'type': RivertyDetails.TypeEnum;
+    'type': RivertyDetails.TypeEnum = RivertyDetails.TypeEnum.Riverty;
 
     static discriminator: string | undefined = undefined;
 
@@ -105,8 +105,8 @@ export class RivertyDetails {
 
 export namespace RivertyDetails {
     export enum TypeEnum {
-        Riverty = 'riverty',
-        RivertyAccount = 'riverty_account',
-        SepadirectdebitRiverty = 'sepadirectdebit_riverty'
+        Riverty = <any> 'riverty',
+        RivertyAccount = <any> 'riverty_account',
+        SepadirectdebitRiverty = <any> 'sepadirectdebit_riverty'
     }
 }

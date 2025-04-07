@@ -10,7 +10,7 @@
 import { Referenced } from './referenced';
 
 export class Refunds {
-    'referenced'?: Referenced | null;
+    'referenced'?: Referenced;
 
     static discriminator: string | undefined = undefined;
 
@@ -18,7 +18,7 @@ export class Refunds {
         {
             "name": "referenced",
             "baseName": "referenced",
-            "type": "Referenced | null"
+            "type": "Referenced"
         }    ];
 
     static getAttributeTypeMap() {

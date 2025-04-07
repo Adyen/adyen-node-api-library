@@ -15,8 +15,8 @@ export class PaymentInstrumentInfo {
     * The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.
     */
     'balanceAccountId': string;
-    'bankAccount'?: BankAccountModel | null;
-    'card'?: CardInfo | null;
+    'bankAccount'?: BankAccountModel;
+    'card'?: CardInfo;
     /**
     * Your description for the payment instrument, maximum 300 characters.
     */
@@ -61,12 +61,12 @@ export class PaymentInstrumentInfo {
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccountModel | null"
+            "type": "BankAccountModel"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "CardInfo | null"
+            "type": "CardInfo"
         },
         {
             "name": "description",
@@ -116,24 +116,24 @@ export class PaymentInstrumentInfo {
 
 export namespace PaymentInstrumentInfo {
     export enum StatusEnum {
-        Active = 'active',
-        Closed = 'closed',
-        Inactive = 'inactive',
-        Suspended = 'suspended'
+        Active = <any> 'active',
+        Closed = <any> 'closed',
+        Inactive = <any> 'inactive',
+        Suspended = <any> 'suspended'
     }
     export enum StatusReasonEnum {
-        AccountClosure = 'accountClosure',
-        Damaged = 'damaged',
-        EndOfLife = 'endOfLife',
-        Expired = 'expired',
-        Lost = 'lost',
-        Other = 'other',
-        Stolen = 'stolen',
-        SuspectedFraud = 'suspectedFraud',
-        TransactionRule = 'transactionRule'
+        AccountClosure = <any> 'accountClosure',
+        Damaged = <any> 'damaged',
+        EndOfLife = <any> 'endOfLife',
+        Expired = <any> 'expired',
+        Lost = <any> 'lost',
+        Other = <any> 'other',
+        Stolen = <any> 'stolen',
+        SuspectedFraud = <any> 'suspectedFraud',
+        TransactionRule = <any> 'transactionRule'
     }
     export enum TypeEnum {
-        BankAccount = 'bankAccount',
-        Card = 'card'
+        BankAccount = <any> 'bankAccount',
+        Card = <any> 'card'
     }
 }

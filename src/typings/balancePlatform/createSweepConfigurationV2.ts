@@ -50,13 +50,13 @@ export class CreateSweepConfigurationV2 {
     * The status of the sweep. If not provided, by default, this is set to **active**.  Possible values:    * **active**:  the sweep is enabled and funds will be pulled in or pushed out based on the defined configuration.    * **inactive**: the sweep is disabled and cannot be triggered.   
     */
     'status'?: CreateSweepConfigurationV2.StatusEnum;
-    'sweepAmount'?: Amount | null;
-    'targetAmount'?: Amount | null;
-    'triggerAmount'?: Amount | null;
+    'sweepAmount'?: Amount;
+    'targetAmount'?: Amount;
+    'triggerAmount'?: Amount;
     /**
     * The direction of sweep, whether pushing out or pulling in funds to the balance account. If not provided, by default, this is set to **push**.  Possible values:   * **push**: _push out funds_ to a destination balance account or transfer instrument.   * **pull**: _pull in funds_ from a source merchant account, transfer instrument, or balance account.
     */
-    'type'?: CreateSweepConfigurationV2.TypeEnum;
+    'type'?: CreateSweepConfigurationV2.TypeEnum = CreateSweepConfigurationV2.TypeEnum.Push;
 
     static discriminator: string | undefined = undefined;
 
@@ -119,17 +119,17 @@ export class CreateSweepConfigurationV2 {
         {
             "name": "sweepAmount",
             "baseName": "sweepAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "targetAmount",
             "baseName": "targetAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "triggerAmount",
             "baseName": "triggerAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "type",
@@ -144,49 +144,49 @@ export class CreateSweepConfigurationV2 {
 
 export namespace CreateSweepConfigurationV2 {
     export enum CategoryEnum {
-        Bank = 'bank',
-        Internal = 'internal',
-        PlatformPayment = 'platformPayment'
+        Bank = <any> 'bank',
+        Internal = <any> 'internal',
+        PlatformPayment = <any> 'platformPayment'
     }
     export enum PrioritiesEnum {
-        CrossBorder = 'crossBorder',
-        Fast = 'fast',
-        Instant = 'instant',
-        Internal = 'internal',
-        Regular = 'regular',
-        Wire = 'wire'
+        CrossBorder = <any> 'crossBorder',
+        Fast = <any> 'fast',
+        Instant = <any> 'instant',
+        Internal = <any> 'internal',
+        Regular = <any> 'regular',
+        Wire = <any> 'wire'
     }
     export enum ReasonEnum {
-        AccountHierarchyNotActive = 'accountHierarchyNotActive',
-        AmountLimitExceeded = 'amountLimitExceeded',
-        Approved = 'approved',
-        BalanceAccountTemporarilyBlockedByTransactionRule = 'balanceAccountTemporarilyBlockedByTransactionRule',
-        CounterpartyAccountBlocked = 'counterpartyAccountBlocked',
-        CounterpartyAccountClosed = 'counterpartyAccountClosed',
-        CounterpartyAccountNotFound = 'counterpartyAccountNotFound',
-        CounterpartyAddressRequired = 'counterpartyAddressRequired',
-        CounterpartyBankTimedOut = 'counterpartyBankTimedOut',
-        CounterpartyBankUnavailable = 'counterpartyBankUnavailable',
-        Declined = 'declined',
-        DeclinedByTransactionRule = 'declinedByTransactionRule',
-        DirectDebitNotSupported = 'directDebitNotSupported',
-        Error = 'error',
-        NotEnoughBalance = 'notEnoughBalance',
-        PendingApproval = 'pendingApproval',
-        PendingExecution = 'pendingExecution',
-        RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
-        RefusedByCustomer = 'refusedByCustomer',
-        RouteNotFound = 'routeNotFound',
-        ScaFailed = 'scaFailed',
-        TransferInstrumentDoesNotExist = 'transferInstrumentDoesNotExist',
-        Unknown = 'unknown'
+        AccountHierarchyNotActive = <any> 'accountHierarchyNotActive',
+        AmountLimitExceeded = <any> 'amountLimitExceeded',
+        Approved = <any> 'approved',
+        BalanceAccountTemporarilyBlockedByTransactionRule = <any> 'balanceAccountTemporarilyBlockedByTransactionRule',
+        CounterpartyAccountBlocked = <any> 'counterpartyAccountBlocked',
+        CounterpartyAccountClosed = <any> 'counterpartyAccountClosed',
+        CounterpartyAccountNotFound = <any> 'counterpartyAccountNotFound',
+        CounterpartyAddressRequired = <any> 'counterpartyAddressRequired',
+        CounterpartyBankTimedOut = <any> 'counterpartyBankTimedOut',
+        CounterpartyBankUnavailable = <any> 'counterpartyBankUnavailable',
+        Declined = <any> 'declined',
+        DeclinedByTransactionRule = <any> 'declinedByTransactionRule',
+        DirectDebitNotSupported = <any> 'directDebitNotSupported',
+        Error = <any> 'error',
+        NotEnoughBalance = <any> 'notEnoughBalance',
+        PendingApproval = <any> 'pendingApproval',
+        PendingExecution = <any> 'pendingExecution',
+        RefusedByCounterpartyBank = <any> 'refusedByCounterpartyBank',
+        RefusedByCustomer = <any> 'refusedByCustomer',
+        RouteNotFound = <any> 'routeNotFound',
+        ScaFailed = <any> 'scaFailed',
+        TransferInstrumentDoesNotExist = <any> 'transferInstrumentDoesNotExist',
+        Unknown = <any> 'unknown'
     }
     export enum StatusEnum {
-        Active = 'active',
-        Inactive = 'inactive'
+        Active = <any> 'active',
+        Inactive = <any> 'inactive'
     }
     export enum TypeEnum {
-        Pull = 'pull',
-        Push = 'push'
+        Pull = <any> 'pull',
+        Push = <any> 'push'
     }
 }

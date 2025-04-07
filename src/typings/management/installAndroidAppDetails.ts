@@ -16,7 +16,7 @@ export class InstallAndroidAppDetails {
     /**
     * Type of terminal action: Install an Android app.
     */
-    'type'?: InstallAndroidAppDetails.TypeEnum;
+    'type'?: InstallAndroidAppDetails.TypeEnum = InstallAndroidAppDetails.TypeEnum.InstallAndroidApp;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +39,6 @@ export class InstallAndroidAppDetails {
 
 export namespace InstallAndroidAppDetails {
     export enum TypeEnum {
-        InstallAndroidApp = 'InstallAndroidApp'
+        InstallAndroidApp = <any> 'InstallAndroidApp'
     }
 }

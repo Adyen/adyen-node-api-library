@@ -19,7 +19,7 @@ export class LegalEntityCapability {
     * The capability level that is allowed for the legal entity.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
     'allowedLevel'?: LegalEntityCapability.AllowedLevelEnum;
-    'allowedSettings'?: CapabilitySettings | null;
+    'allowedSettings'?: CapabilitySettings;
     /**
     * Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the `allowed` field.
     */
@@ -28,7 +28,7 @@ export class LegalEntityCapability {
     * The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
     'requestedLevel'?: LegalEntityCapability.RequestedLevelEnum;
-    'requestedSettings'?: CapabilitySettings | null;
+    'requestedSettings'?: CapabilitySettings;
     /**
     * The capability status of transfer instruments associated with the legal entity.
     */
@@ -54,7 +54,7 @@ export class LegalEntityCapability {
         {
             "name": "allowedSettings",
             "baseName": "allowedSettings",
-            "type": "CapabilitySettings | null"
+            "type": "CapabilitySettings"
         },
         {
             "name": "requested",
@@ -69,7 +69,7 @@ export class LegalEntityCapability {
         {
             "name": "requestedSettings",
             "baseName": "requestedSettings",
-            "type": "CapabilitySettings | null"
+            "type": "CapabilitySettings"
         },
         {
             "name": "transferInstruments",
@@ -89,15 +89,15 @@ export class LegalEntityCapability {
 
 export namespace LegalEntityCapability {
     export enum AllowedLevelEnum {
-        High = 'high',
-        Low = 'low',
-        Medium = 'medium',
-        NotApplicable = 'notApplicable'
+        High = <any> 'high',
+        Low = <any> 'low',
+        Medium = <any> 'medium',
+        NotApplicable = <any> 'notApplicable'
     }
     export enum RequestedLevelEnum {
-        High = 'high',
-        Low = 'low',
-        Medium = 'medium',
-        NotApplicable = 'notApplicable'
+        High = <any> 'high',
+        Low = <any> 'low',
+        Medium = <any> 'medium',
+        NotApplicable = <any> 'notApplicable'
     }
 }

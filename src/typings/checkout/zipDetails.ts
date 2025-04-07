@@ -31,7 +31,7 @@ export class ZipDetails {
     /**
     * **zip**
     */
-    'type'?: ZipDetails.TypeEnum;
+    'type'?: ZipDetails.TypeEnum = ZipDetails.TypeEnum.Zip;
 
     static discriminator: string | undefined = undefined;
 
@@ -69,7 +69,7 @@ export class ZipDetails {
 
 export namespace ZipDetails {
     export enum TypeEnum {
-        Zip = 'zip',
-        ZipPos = 'zip_pos'
+        Zip = <any> 'zip',
+        ZipPos = <any> 'zip_pos'
     }
 }

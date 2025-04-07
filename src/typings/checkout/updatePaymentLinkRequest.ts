@@ -30,6 +30,6 @@ export class UpdatePaymentLinkRequest {
 
 export namespace UpdatePaymentLinkRequest {
     export enum StatusEnum {
-        Expired = 'expired'
+        Expired = <any> 'expired'
     }
 }

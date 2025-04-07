@@ -14,7 +14,7 @@ export class AuthenticationInfo {
     * Universally unique transaction identifier assigned by the Access Control Server (ACS) to identify a single transaction.
     */
     'acsTransId': string;
-    'challenge'?: ChallengeInfo | null;
+    'challenge'?: ChallengeInfo;
     /**
     * Specifies a preference for receiving a challenge. Possible values:  * **01**: No preference * **02**: No challenge requested * **03**: Challenge requested (preference) * **04**: Challenge requested (mandate) * **05**: No challenge requested (transactional risk analysis is already performed) * **07**: No challenge requested (SCA is already performed) * **08**: No challenge requested (trusted beneficiaries exemption of no challenge required) * **09**: Challenge requested (trusted beneficiaries prompt requested if challenge required) * **80**: No challenge requested (secure corporate payment with Mastercard) * **82**: No challenge requested (secure corporate payment with Visa) 
     */
@@ -79,7 +79,7 @@ export class AuthenticationInfo {
         {
             "name": "challenge",
             "baseName": "challenge",
-            "type": "ChallengeInfo | null"
+            "type": "ChallengeInfo"
         },
         {
             "name": "challengeIndicator",
@@ -154,81 +154,81 @@ export class AuthenticationInfo {
 
 export namespace AuthenticationInfo {
     export enum ChallengeIndicatorEnum {
-        _01 = '01',
-        _02 = '02',
-        _03 = '03',
-        _04 = '04',
-        _05 = '05',
-        _07 = '07',
-        _08 = '08',
-        _09 = '09',
-        _80 = '80',
-        _82 = '82'
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05',
+        _07 = <any> '07',
+        _08 = <any> '08',
+        _09 = <any> '09',
+        _80 = <any> '80',
+        _82 = <any> '82'
     }
     export enum DeviceChannelEnum {
-        App = 'app',
-        Browser = 'browser',
-        ThreeDsRequestorInitiated = 'ThreeDSRequestorInitiated'
+        App = <any> 'app',
+        Browser = <any> 'browser',
+        ThreeDsRequestorInitiated = <any> 'ThreeDSRequestorInitiated'
     }
     export enum ExemptionIndicatorEnum {
-        LowValue = 'lowValue',
-        SecureCorporate = 'secureCorporate',
-        TrustedBeneficiary = 'trustedBeneficiary',
-        TransactionRiskAnalysis = 'transactionRiskAnalysis',
-        AcquirerExemption = 'acquirerExemption',
-        NoExemptionApplied = 'noExemptionApplied',
-        VisaDafExemption = 'visaDAFExemption'
+        LowValue = <any> 'lowValue',
+        SecureCorporate = <any> 'secureCorporate',
+        TrustedBeneficiary = <any> 'trustedBeneficiary',
+        TransactionRiskAnalysis = <any> 'transactionRiskAnalysis',
+        AcquirerExemption = <any> 'acquirerExemption',
+        NoExemptionApplied = <any> 'noExemptionApplied',
+        VisaDafExemption = <any> 'visaDAFExemption'
     }
     export enum MessageCategoryEnum {
-        Payment = 'payment',
-        NonPayment = 'nonPayment'
+        Payment = <any> 'payment',
+        NonPayment = <any> 'nonPayment'
     }
     export enum TransStatusEnum {
-        Y = 'Y',
-        N = 'N',
-        R = 'R',
-        I = 'I',
-        U = 'U'
+        Y = <any> 'Y',
+        N = <any> 'N',
+        R = <any> 'R',
+        I = <any> 'I',
+        U = <any> 'U'
     }
     export enum TransStatusReasonEnum {
-        _01 = '01',
-        _02 = '02',
-        _03 = '03',
-        _04 = '04',
-        _05 = '05',
-        _06 = '06',
-        _07 = '07',
-        _08 = '08',
-        _09 = '09',
-        _10 = '10',
-        _11 = '11',
-        _12 = '12',
-        _13 = '13',
-        _14 = '14',
-        _15 = '15',
-        _16 = '16',
-        _17 = '17',
-        _18 = '18',
-        _19 = '19',
-        _20 = '20',
-        _21 = '21',
-        _22 = '22',
-        _23 = '23',
-        _24 = '24',
-        _25 = '25',
-        _26 = '26',
-        _80 = '80',
-        _81 = '81',
-        _82 = '82',
-        _83 = '83',
-        _84 = '84',
-        _85 = '85',
-        _86 = '86',
-        _87 = '87',
-        _88 = '88'
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05',
+        _06 = <any> '06',
+        _07 = <any> '07',
+        _08 = <any> '08',
+        _09 = <any> '09',
+        _10 = <any> '10',
+        _11 = <any> '11',
+        _12 = <any> '12',
+        _13 = <any> '13',
+        _14 = <any> '14',
+        _15 = <any> '15',
+        _16 = <any> '16',
+        _17 = <any> '17',
+        _18 = <any> '18',
+        _19 = <any> '19',
+        _20 = <any> '20',
+        _21 = <any> '21',
+        _22 = <any> '22',
+        _23 = <any> '23',
+        _24 = <any> '24',
+        _25 = <any> '25',
+        _26 = <any> '26',
+        _80 = <any> '80',
+        _81 = <any> '81',
+        _82 = <any> '82',
+        _83 = <any> '83',
+        _84 = <any> '84',
+        _85 = <any> '85',
+        _86 = <any> '86',
+        _87 = <any> '87',
+        _88 = <any> '88'
     }
     export enum TypeEnum {
-        Frictionless = 'frictionless',
-        Challenge = 'challenge'
+        Frictionless = <any> 'frictionless',
+        Challenge = <any> 'challenge'
     }
 }

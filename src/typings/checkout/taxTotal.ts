@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 
 export class TaxTotal {
-    'amount'?: Amount | null;
+    'amount'?: Amount;
 
     static discriminator: string | undefined = undefined;
 
@@ -18,7 +18,7 @@ export class TaxTotal {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         }    ];
 
     static getAttributeTypeMap() {

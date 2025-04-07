@@ -10,6 +10,10 @@
 
 export class AchDetails {
     /**
+    * The account holder type (personal or business).
+    */
+    'accountHolderType'?: AchDetails.AccountHolderTypeEnum;
+    /**
     * The bank account number (without separators).
     */
     'bankAccountNumber'?: string;
@@ -55,11 +59,16 @@ export class AchDetails {
     /**
     * **ach**
     */
-    'type'?: AchDetails.TypeEnum;
+    'type'?: AchDetails.TypeEnum = AchDetails.TypeEnum.Ach;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "accountHolderType",
+            "baseName": "accountHolderType",
+            "type": "AchDetails.AccountHolderTypeEnum"
+        },
         {
             "name": "bankAccountNumber",
             "baseName": "bankAccountNumber",
@@ -122,17 +131,21 @@ export class AchDetails {
 }
 
 export namespace AchDetails {
+    export enum AccountHolderTypeEnum {
+        Business = <any> 'business',
+        Personal = <any> 'personal'
+    }
     export enum BankAccountTypeEnum {
-        Balance = 'balance',
-        Checking = 'checking',
-        Deposit = 'deposit',
-        General = 'general',
-        Other = 'other',
-        Payment = 'payment',
-        Savings = 'savings'
+        Balance = <any> 'balance',
+        Checking = <any> 'checking',
+        Deposit = <any> 'deposit',
+        General = <any> 'general',
+        Other = <any> 'other',
+        Payment = <any> 'payment',
+        Savings = <any> 'savings'
     }
     export enum TypeEnum {
-        Ach = 'ach',
-        AchPlaid = 'ach_plaid'
+        Ach = <any> 'ach',
+        AchPlaid = <any> 'ach_plaid'
     }
 }

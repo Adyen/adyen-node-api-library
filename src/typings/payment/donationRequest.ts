@@ -24,7 +24,7 @@ export class DonationRequest {
     * The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
     */
     'originalReference'?: string;
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
     */
@@ -56,7 +56,7 @@ export class DonationRequest {
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "reference",

@@ -39,7 +39,7 @@ export class AdditionalBankIdentification {
 
 export namespace AdditionalBankIdentification {
     export enum TypeEnum {
-        GbSortCode = 'gbSortCode',
-        UsRoutingNumber = 'usRoutingNumber'
+        GbSortCode = <any> 'gbSortCode',
+        UsRoutingNumber = <any> 'usRoutingNumber'
     }
 }

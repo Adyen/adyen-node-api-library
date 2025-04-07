@@ -38,27 +38,27 @@ import { WeChatPayInfo } from './weChatPayInfo';
 import { WeChatPayPosInfo } from './weChatPayPosInfo';
 
 export class PaymentMethod {
-    'accel'?: AccelInfo | null;
-    'affirm'?: AffirmInfo | null;
-    'afterpayTouch'?: AfterpayTouchInfo | null;
+    'accel'?: AccelInfo;
+    'affirm'?: AffirmInfo;
+    'afterpayTouch'?: AfterpayTouchInfo;
     /**
     * Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
     */
     'allowed'?: boolean;
-    'amex'?: AmexInfo | null;
-    'applePay'?: ApplePayInfo | null;
-    'bcmc'?: BcmcInfo | null;
+    'amex'?: AmexInfo;
+    'applePay'?: ApplePayInfo;
+    'bcmc'?: BcmcInfo;
     /**
     * The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms).
     */
     'businessLineId'?: string;
-    'cartesBancaires'?: CartesBancairesInfo | null;
-    'clearpay'?: ClearpayInfo | null;
+    'cartesBancaires'?: CartesBancairesInfo;
+    'clearpay'?: ClearpayInfo;
     /**
     * The list of countries where a payment method is available. By default, all countries supported by the payment method.
     */
     'countries'?: Array<string>;
-    'cup'?: GenericPmWithTdiInfo | null;
+    'cup'?: GenericPmWithTdiInfo;
     /**
     * The list of currencies that a payment method supports. By default, all currencies supported by the payment method.
     */
@@ -67,33 +67,33 @@ export class PaymentMethod {
     * The list of custom routing flags to route payment to the intended acquirer.
     */
     'customRoutingFlags'?: Array<string>;
-    'diners'?: DinersInfo | null;
-    'discover'?: GenericPmWithTdiInfo | null;
-    'eft_directdebit_CA'?: GenericPmWithTdiInfo | null;
-    'eftpos_australia'?: GenericPmWithTdiInfo | null;
+    'diners'?: DinersInfo;
+    'discover'?: GenericPmWithTdiInfo;
+    'eft_directdebit_CA'?: GenericPmWithTdiInfo;
+    'eftpos_australia'?: GenericPmWithTdiInfo;
     /**
     * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
     */
     'enabled'?: boolean;
-    'giroPay'?: GiroPayInfo | null;
-    'girocard'?: GenericPmWithTdiInfo | null;
-    'googlePay'?: GooglePayInfo | null;
+    'giroPay'?: GiroPayInfo;
+    'girocard'?: GenericPmWithTdiInfo;
+    'googlePay'?: GooglePayInfo;
     /**
     * The identifier of the resource.
     */
     'id': string;
-    'ideal'?: GenericPmWithTdiInfo | null;
-    'interac_card'?: GenericPmWithTdiInfo | null;
-    'jcb'?: JCBInfo | null;
-    'klarna'?: KlarnaInfo | null;
-    'maestro'?: GenericPmWithTdiInfo | null;
-    'mc'?: GenericPmWithTdiInfo | null;
-    'mealVoucher_FR'?: MealVoucherFRInfo | null;
-    'nyce'?: NyceInfo | null;
-    'payme'?: PayMeInfo | null;
-    'paypal'?: PayPalInfo | null;
-    'payto'?: PayToInfo | null;
-    'pulse'?: PulseInfo | null;
+    'ideal'?: GenericPmWithTdiInfo;
+    'interac_card'?: GenericPmWithTdiInfo;
+    'jcb'?: JCBInfo;
+    'klarna'?: KlarnaInfo;
+    'maestro'?: GenericPmWithTdiInfo;
+    'mc'?: GenericPmWithTdiInfo;
+    'mealVoucher_FR'?: MealVoucherFRInfo;
+    'nyce'?: NyceInfo;
+    'payme'?: PayMeInfo;
+    'paypal'?: PayPalInfo;
+    'payto'?: PayToInfo;
+    'pulse'?: PulseInfo;
     /**
     * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
     */
@@ -102,16 +102,16 @@ export class PaymentMethod {
     * The sales channel.
     */
     'shopperInteraction'?: string;
-    'sodexo'?: SodexoInfo | null;
-    'sofort'?: SofortInfo | null;
-    'star'?: StarInfo | null;
+    'sodexo'?: SodexoInfo;
+    'sofort'?: SofortInfo;
+    'star'?: StarInfo;
     /**
     * The unique identifier of the store for which to configure the payment method, if any.
     */
     'storeIds'?: Array<string>;
-    'swish'?: SwishInfo | null;
-    'ticket'?: TicketInfo | null;
-    'twint'?: TwintInfo | null;
+    'swish'?: SwishInfo;
+    'ticket'?: TicketInfo;
+    'twint'?: TwintInfo;
     /**
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
     */
@@ -120,10 +120,10 @@ export class PaymentMethod {
     * Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
     */
     'verificationStatus'?: PaymentMethod.VerificationStatusEnum;
-    'vipps'?: VippsInfo | null;
-    'visa'?: GenericPmWithTdiInfo | null;
-    'wechatpay'?: WeChatPayInfo | null;
-    'wechatpay_pos'?: WeChatPayPosInfo | null;
+    'vipps'?: VippsInfo;
+    'visa'?: GenericPmWithTdiInfo;
+    'wechatpay'?: WeChatPayInfo;
+    'wechatpay_pos'?: WeChatPayPosInfo;
 
     static discriminator: string | undefined = undefined;
 
@@ -131,17 +131,17 @@ export class PaymentMethod {
         {
             "name": "accel",
             "baseName": "accel",
-            "type": "AccelInfo | null"
+            "type": "AccelInfo"
         },
         {
             "name": "affirm",
             "baseName": "affirm",
-            "type": "AffirmInfo | null"
+            "type": "AffirmInfo"
         },
         {
             "name": "afterpayTouch",
             "baseName": "afterpayTouch",
-            "type": "AfterpayTouchInfo | null"
+            "type": "AfterpayTouchInfo"
         },
         {
             "name": "allowed",
@@ -151,17 +151,17 @@ export class PaymentMethod {
         {
             "name": "amex",
             "baseName": "amex",
-            "type": "AmexInfo | null"
+            "type": "AmexInfo"
         },
         {
             "name": "applePay",
             "baseName": "applePay",
-            "type": "ApplePayInfo | null"
+            "type": "ApplePayInfo"
         },
         {
             "name": "bcmc",
             "baseName": "bcmc",
-            "type": "BcmcInfo | null"
+            "type": "BcmcInfo"
         },
         {
             "name": "businessLineId",
@@ -171,12 +171,12 @@ export class PaymentMethod {
         {
             "name": "cartesBancaires",
             "baseName": "cartesBancaires",
-            "type": "CartesBancairesInfo | null"
+            "type": "CartesBancairesInfo"
         },
         {
             "name": "clearpay",
             "baseName": "clearpay",
-            "type": "ClearpayInfo | null"
+            "type": "ClearpayInfo"
         },
         {
             "name": "countries",
@@ -186,7 +186,7 @@ export class PaymentMethod {
         {
             "name": "cup",
             "baseName": "cup",
-            "type": "GenericPmWithTdiInfo | null"
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "currencies",
@@ -201,22 +201,22 @@ export class PaymentMethod {
         {
             "name": "diners",
             "baseName": "diners",
-            "type": "DinersInfo | null"
+            "type": "DinersInfo"
         },
         {
             "name": "discover",
             "baseName": "discover",
-            "type": "GenericPmWithTdiInfo | null"
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "eft_directdebit_CA",
             "baseName": "eft_directdebit_CA",
-            "type": "GenericPmWithTdiInfo | null"
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "eftpos_australia",
             "baseName": "eftpos_australia",
-            "type": "GenericPmWithTdiInfo | null"
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "enabled",
@@ -226,17 +226,17 @@ export class PaymentMethod {
         {
             "name": "giroPay",
             "baseName": "giroPay",
-            "type": "GiroPayInfo | null"
+            "type": "GiroPayInfo"
         },
         {
             "name": "girocard",
             "baseName": "girocard",
-            "type": "GenericPmWithTdiInfo | null"
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "googlePay",
             "baseName": "googlePay",
-            "type": "GooglePayInfo | null"
+            "type": "GooglePayInfo"
         },
         {
             "name": "id",
@@ -246,62 +246,62 @@ export class PaymentMethod {
         {
             "name": "ideal",
             "baseName": "ideal",
-            "type": "GenericPmWithTdiInfo | null"
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "interac_card",
             "baseName": "interac_card",
-            "type": "GenericPmWithTdiInfo | null"
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "jcb",
             "baseName": "jcb",
-            "type": "JCBInfo | null"
+            "type": "JCBInfo"
         },
         {
             "name": "klarna",
             "baseName": "klarna",
-            "type": "KlarnaInfo | null"
+            "type": "KlarnaInfo"
         },
         {
             "name": "maestro",
             "baseName": "maestro",
-            "type": "GenericPmWithTdiInfo | null"
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "mc",
             "baseName": "mc",
-            "type": "GenericPmWithTdiInfo | null"
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "mealVoucher_FR",
             "baseName": "mealVoucher_FR",
-            "type": "MealVoucherFRInfo | null"
+            "type": "MealVoucherFRInfo"
         },
         {
             "name": "nyce",
             "baseName": "nyce",
-            "type": "NyceInfo | null"
+            "type": "NyceInfo"
         },
         {
             "name": "payme",
             "baseName": "payme",
-            "type": "PayMeInfo | null"
+            "type": "PayMeInfo"
         },
         {
             "name": "paypal",
             "baseName": "paypal",
-            "type": "PayPalInfo | null"
+            "type": "PayPalInfo"
         },
         {
             "name": "payto",
             "baseName": "payto",
-            "type": "PayToInfo | null"
+            "type": "PayToInfo"
         },
         {
             "name": "pulse",
             "baseName": "pulse",
-            "type": "PulseInfo | null"
+            "type": "PulseInfo"
         },
         {
             "name": "reference",
@@ -316,17 +316,17 @@ export class PaymentMethod {
         {
             "name": "sodexo",
             "baseName": "sodexo",
-            "type": "SodexoInfo | null"
+            "type": "SodexoInfo"
         },
         {
             "name": "sofort",
             "baseName": "sofort",
-            "type": "SofortInfo | null"
+            "type": "SofortInfo"
         },
         {
             "name": "star",
             "baseName": "star",
-            "type": "StarInfo | null"
+            "type": "StarInfo"
         },
         {
             "name": "storeIds",
@@ -336,17 +336,17 @@ export class PaymentMethod {
         {
             "name": "swish",
             "baseName": "swish",
-            "type": "SwishInfo | null"
+            "type": "SwishInfo"
         },
         {
             "name": "ticket",
             "baseName": "ticket",
-            "type": "TicketInfo | null"
+            "type": "TicketInfo"
         },
         {
             "name": "twint",
             "baseName": "twint",
-            "type": "TwintInfo | null"
+            "type": "TwintInfo"
         },
         {
             "name": "type",
@@ -361,22 +361,22 @@ export class PaymentMethod {
         {
             "name": "vipps",
             "baseName": "vipps",
-            "type": "VippsInfo | null"
+            "type": "VippsInfo"
         },
         {
             "name": "visa",
             "baseName": "visa",
-            "type": "GenericPmWithTdiInfo | null"
+            "type": "GenericPmWithTdiInfo"
         },
         {
             "name": "wechatpay",
             "baseName": "wechatpay",
-            "type": "WeChatPayInfo | null"
+            "type": "WeChatPayInfo"
         },
         {
             "name": "wechatpay_pos",
             "baseName": "wechatpay_pos",
-            "type": "WeChatPayPosInfo | null"
+            "type": "WeChatPayPosInfo"
         }    ];
 
     static getAttributeTypeMap() {
@@ -386,9 +386,9 @@ export class PaymentMethod {
 
 export namespace PaymentMethod {
     export enum VerificationStatusEnum {
-        Valid = 'valid',
-        Pending = 'pending',
-        Invalid = 'invalid',
-        Rejected = 'rejected'
+        Valid = <any> 'valid',
+        Pending = <any> 'pending',
+        Invalid = <any> 'invalid',
+        Rejected = <any> 'rejected'
     }
 }

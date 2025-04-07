@@ -11,8 +11,8 @@ import { Amount } from './amount';
 import { ResourceReference } from './resourceReference';
 
 export class NegativeBalanceCompensationWarningNotificationData {
-    'accountHolder'?: ResourceReference | null;
-    'amount'?: Amount | null;
+    'accountHolder'?: ResourceReference;
+    'amount'?: Amount;
     /**
     * The unique identifier of the balance platform.
     */
@@ -44,12 +44,12 @@ export class NegativeBalanceCompensationWarningNotificationData {
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "ResourceReference | null"
+            "type": "ResourceReference"
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "balancePlatform",

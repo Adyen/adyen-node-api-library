@@ -19,7 +19,7 @@ export class StoreAndForward {
     * The maximum number of store-and-forward transactions per terminal that you can process while offline.
     */
     'maxPayments'?: number;
-    'supportedCardTypes'?: SupportedCardTypes | null;
+    'supportedCardTypes'?: SupportedCardTypes;
 
     static discriminator: string | undefined = undefined;
 
@@ -37,7 +37,7 @@ export class StoreAndForward {
         {
             "name": "supportedCardTypes",
             "baseName": "supportedCardTypes",
-            "type": "SupportedCardTypes | null"
+            "type": "SupportedCardTypes"
         }    ];
 
     static getAttributeTypeMap() {

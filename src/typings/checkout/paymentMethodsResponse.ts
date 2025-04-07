@@ -8,7 +8,7 @@
  */
 
 import { PaymentMethod } from './paymentMethod';
-import { StoredPaymentMethod } from './storedPaymentMethod';
+import { PaymentMethodsResponseStoredPaymentMethodsInner } from './paymentMethodsResponseStoredPaymentMethodsInner';
 
 export class PaymentMethodsResponse {
     /**
@@ -18,7 +18,7 @@ export class PaymentMethodsResponse {
     /**
     * List of all stored payment methods.
     */
-    'storedPaymentMethods'?: Array<StoredPaymentMethod>;
+    'storedPaymentMethods'?: Array<PaymentMethodsResponseStoredPaymentMethodsInner>;
 
     static discriminator: string | undefined = undefined;
 
@@ -31,7 +31,7 @@ export class PaymentMethodsResponse {
         {
             "name": "storedPaymentMethods",
             "baseName": "storedPaymentMethods",
-            "type": "Array<StoredPaymentMethod>"
+            "type": "Array<PaymentMethodsResponseStoredPaymentMethodsInner>"
         }    ];
 
     static getAttributeTypeMap() {

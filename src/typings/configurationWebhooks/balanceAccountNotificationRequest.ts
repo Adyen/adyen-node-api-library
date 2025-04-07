@@ -55,7 +55,7 @@ export class BalanceAccountNotificationRequest {
 
 export namespace BalanceAccountNotificationRequest {
     export enum TypeEnum {
-        Updated = 'balancePlatform.balanceAccount.updated',
-        Created = 'balancePlatform.balanceAccount.created'
+        BalancePlatformBalanceAccountUpdated = <any> 'balancePlatform.balanceAccount.updated',
+        BalancePlatformBalanceAccountCreated = <any> 'balancePlatform.balanceAccount.created'
     }
 }

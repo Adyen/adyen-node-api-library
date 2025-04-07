@@ -19,12 +19,12 @@ export class MerchantData {
     */
     'mcc'?: string;
     /**
-    * The merchant identifier.
+    * The unique identifier of the merchant.
     */
     'merchantId'?: string;
-    'nameLocation'?: NameLocation | null;
+    'nameLocation'?: NameLocation;
     /**
-    * The merchant postal code.
+    * The postal code of the merchant.
     */
     'postalCode'?: string;
 
@@ -49,7 +49,7 @@ export class MerchantData {
         {
             "name": "nameLocation",
             "baseName": "nameLocation",
-            "type": "NameLocation | null"
+            "type": "NameLocation"
         },
         {
             "name": "postalCode",

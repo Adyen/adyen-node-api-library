@@ -28,7 +28,7 @@ export class PaymentRefundResponse {
     /**
     * Your reason for the refund request.
     */
-    'merchantRefundReason'?: PaymentRefundResponse.MerchantRefundReasonEnum | null;
+    'merchantRefundReason'?: PaymentRefundResponse.MerchantRefundReasonEnum;
     /**
     * The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to refund. 
     */
@@ -80,7 +80,7 @@ export class PaymentRefundResponse {
         {
             "name": "merchantRefundReason",
             "baseName": "merchantRefundReason",
-            "type": "PaymentRefundResponse.MerchantRefundReasonEnum | null"
+            "type": "PaymentRefundResponse.MerchantRefundReasonEnum"
         },
         {
             "name": "paymentPspReference",
@@ -120,13 +120,13 @@ export class PaymentRefundResponse {
 
 export namespace PaymentRefundResponse {
     export enum MerchantRefundReasonEnum {
-        Fraud = 'FRAUD',
-        CustomerRequest = 'CUSTOMER REQUEST',
-        Return = 'RETURN',
-        Duplicate = 'DUPLICATE',
-        Other = 'OTHER'
+        Fraud = <any> 'FRAUD',
+        CustomerRequest = <any> 'CUSTOMER REQUEST',
+        Return = <any> 'RETURN',
+        Duplicate = <any> 'DUPLICATE',
+        Other = <any> 'OTHER'
     }
     export enum StatusEnum {
-        Received = 'received'
+        Received = <any> 'received'
     }
 }

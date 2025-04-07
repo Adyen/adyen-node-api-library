@@ -20,7 +20,7 @@ export class SELocalAccountIdentification {
     /**
     * **seLocal**
     */
-    'type': SELocalAccountIdentification.TypeEnum;
+    'type': SELocalAccountIdentification.TypeEnum = SELocalAccountIdentification.TypeEnum.SeLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class SELocalAccountIdentification {
 
 export namespace SELocalAccountIdentification {
     export enum TypeEnum {
-        SeLocal = 'seLocal'
+        SeLocal = <any> 'seLocal'
     }
 }

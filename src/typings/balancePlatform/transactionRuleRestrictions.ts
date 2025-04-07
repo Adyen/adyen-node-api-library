@@ -31,28 +31,28 @@ import { TokenRequestorsRestriction } from './tokenRequestorsRestriction';
 import { TotalAmountRestriction } from './totalAmountRestriction';
 
 export class TransactionRuleRestrictions {
-    'activeNetworkTokens'?: ActiveNetworkTokensRestriction | null;
-    'brandVariants'?: BrandVariantsRestriction | null;
-    'counterpartyBank'?: CounterpartyBankRestriction | null;
-    'counterpartyTypes'?: CounterpartyTypesRestriction | null;
-    'countries'?: CountriesRestriction | null;
-    'dayOfWeek'?: DayOfWeekRestriction | null;
-    'differentCurrencies'?: DifferentCurrenciesRestriction | null;
-    'entryModes'?: EntryModesRestriction | null;
-    'internationalTransaction'?: InternationalTransactionRestriction | null;
-    'matchingTransactions'?: MatchingTransactionsRestriction | null;
-    'matchingValues'?: MatchingValuesRestriction | null;
-    'mccs'?: MccsRestriction | null;
-    'merchantNames'?: MerchantNamesRestriction | null;
-    'merchants'?: MerchantsRestriction | null;
-    'processingTypes'?: ProcessingTypesRestriction | null;
-    'riskScores'?: RiskScoresRestriction | null;
-    'sameAmountRestriction'?: SameAmountRestriction | null;
-    'sameCounterpartyRestriction'?: SameCounterpartyRestriction | null;
-    'sourceAccountTypes'?: SourceAccountTypesRestriction | null;
-    'timeOfDay'?: TimeOfDayRestriction | null;
-    'tokenRequestors'?: TokenRequestorsRestriction | null;
-    'totalAmount'?: TotalAmountRestriction | null;
+    'activeNetworkTokens'?: ActiveNetworkTokensRestriction;
+    'brandVariants'?: BrandVariantsRestriction;
+    'counterpartyBank'?: CounterpartyBankRestriction;
+    'counterpartyTypes'?: CounterpartyTypesRestriction;
+    'countries'?: CountriesRestriction;
+    'dayOfWeek'?: DayOfWeekRestriction;
+    'differentCurrencies'?: DifferentCurrenciesRestriction;
+    'entryModes'?: EntryModesRestriction;
+    'internationalTransaction'?: InternationalTransactionRestriction;
+    'matchingTransactions'?: MatchingTransactionsRestriction;
+    'matchingValues'?: MatchingValuesRestriction;
+    'mccs'?: MccsRestriction;
+    'merchantNames'?: MerchantNamesRestriction;
+    'merchants'?: MerchantsRestriction;
+    'processingTypes'?: ProcessingTypesRestriction;
+    'riskScores'?: RiskScoresRestriction;
+    'sameAmountRestriction'?: SameAmountRestriction;
+    'sameCounterpartyRestriction'?: SameCounterpartyRestriction;
+    'sourceAccountTypes'?: SourceAccountTypesRestriction;
+    'timeOfDay'?: TimeOfDayRestriction;
+    'tokenRequestors'?: TokenRequestorsRestriction;
+    'totalAmount'?: TotalAmountRestriction;
 
     static discriminator: string | undefined = undefined;
 
@@ -60,112 +60,112 @@ export class TransactionRuleRestrictions {
         {
             "name": "activeNetworkTokens",
             "baseName": "activeNetworkTokens",
-            "type": "ActiveNetworkTokensRestriction | null"
+            "type": "ActiveNetworkTokensRestriction"
         },
         {
             "name": "brandVariants",
             "baseName": "brandVariants",
-            "type": "BrandVariantsRestriction | null"
+            "type": "BrandVariantsRestriction"
         },
         {
             "name": "counterpartyBank",
             "baseName": "counterpartyBank",
-            "type": "CounterpartyBankRestriction | null"
+            "type": "CounterpartyBankRestriction"
         },
         {
             "name": "counterpartyTypes",
             "baseName": "counterpartyTypes",
-            "type": "CounterpartyTypesRestriction | null"
+            "type": "CounterpartyTypesRestriction"
         },
         {
             "name": "countries",
             "baseName": "countries",
-            "type": "CountriesRestriction | null"
+            "type": "CountriesRestriction"
         },
         {
             "name": "dayOfWeek",
             "baseName": "dayOfWeek",
-            "type": "DayOfWeekRestriction | null"
+            "type": "DayOfWeekRestriction"
         },
         {
             "name": "differentCurrencies",
             "baseName": "differentCurrencies",
-            "type": "DifferentCurrenciesRestriction | null"
+            "type": "DifferentCurrenciesRestriction"
         },
         {
             "name": "entryModes",
             "baseName": "entryModes",
-            "type": "EntryModesRestriction | null"
+            "type": "EntryModesRestriction"
         },
         {
             "name": "internationalTransaction",
             "baseName": "internationalTransaction",
-            "type": "InternationalTransactionRestriction | null"
+            "type": "InternationalTransactionRestriction"
         },
         {
             "name": "matchingTransactions",
             "baseName": "matchingTransactions",
-            "type": "MatchingTransactionsRestriction | null"
+            "type": "MatchingTransactionsRestriction"
         },
         {
             "name": "matchingValues",
             "baseName": "matchingValues",
-            "type": "MatchingValuesRestriction | null"
+            "type": "MatchingValuesRestriction"
         },
         {
             "name": "mccs",
             "baseName": "mccs",
-            "type": "MccsRestriction | null"
+            "type": "MccsRestriction"
         },
         {
             "name": "merchantNames",
             "baseName": "merchantNames",
-            "type": "MerchantNamesRestriction | null"
+            "type": "MerchantNamesRestriction"
         },
         {
             "name": "merchants",
             "baseName": "merchants",
-            "type": "MerchantsRestriction | null"
+            "type": "MerchantsRestriction"
         },
         {
             "name": "processingTypes",
             "baseName": "processingTypes",
-            "type": "ProcessingTypesRestriction | null"
+            "type": "ProcessingTypesRestriction"
         },
         {
             "name": "riskScores",
             "baseName": "riskScores",
-            "type": "RiskScoresRestriction | null"
+            "type": "RiskScoresRestriction"
         },
         {
             "name": "sameAmountRestriction",
             "baseName": "sameAmountRestriction",
-            "type": "SameAmountRestriction | null"
+            "type": "SameAmountRestriction"
         },
         {
             "name": "sameCounterpartyRestriction",
             "baseName": "sameCounterpartyRestriction",
-            "type": "SameCounterpartyRestriction | null"
+            "type": "SameCounterpartyRestriction"
         },
         {
             "name": "sourceAccountTypes",
             "baseName": "sourceAccountTypes",
-            "type": "SourceAccountTypesRestriction | null"
+            "type": "SourceAccountTypesRestriction"
         },
         {
             "name": "timeOfDay",
             "baseName": "timeOfDay",
-            "type": "TimeOfDayRestriction | null"
+            "type": "TimeOfDayRestriction"
         },
         {
             "name": "tokenRequestors",
             "baseName": "tokenRequestors",
-            "type": "TokenRequestorsRestriction | null"
+            "type": "TokenRequestorsRestriction"
         },
         {
             "name": "totalAmount",
             "baseName": "totalAmount",
-            "type": "TotalAmountRestriction | null"
+            "type": "TotalAmountRestriction"
         }    ];
 
     static getAttributeTypeMap() {

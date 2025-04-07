@@ -10,10 +10,10 @@
 import { LinksElement } from './linksElement';
 
 export class CompanyLinks {
-    'apiCredentials'?: LinksElement | null;
+    'apiCredentials'?: LinksElement;
     'self': LinksElement;
-    'users'?: LinksElement | null;
-    'webhooks'?: LinksElement | null;
+    'users'?: LinksElement;
+    'webhooks'?: LinksElement;
 
     static discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class CompanyLinks {
         {
             "name": "apiCredentials",
             "baseName": "apiCredentials",
-            "type": "LinksElement | null"
+            "type": "LinksElement"
         },
         {
             "name": "self",
@@ -31,12 +31,12 @@ export class CompanyLinks {
         {
             "name": "users",
             "baseName": "users",
-            "type": "LinksElement | null"
+            "type": "LinksElement"
         },
         {
             "name": "webhooks",
             "baseName": "webhooks",
-            "type": "LinksElement | null"
+            "type": "LinksElement"
         }    ];
 
     static getAttributeTypeMap() {

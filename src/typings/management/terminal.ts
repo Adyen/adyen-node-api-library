@@ -11,8 +11,8 @@ import { TerminalAssignment } from './terminalAssignment';
 import { TerminalConnectivity } from './terminalConnectivity';
 
 export class Terminal {
-    'assignment'?: TerminalAssignment | null;
-    'connectivity'?: TerminalConnectivity | null;
+    'assignment'?: TerminalAssignment;
+    'connectivity'?: TerminalConnectivity;
     /**
     * The software release currently in use on the terminal.
     */
@@ -48,12 +48,12 @@ export class Terminal {
         {
             "name": "assignment",
             "baseName": "assignment",
-            "type": "TerminalAssignment | null"
+            "type": "TerminalAssignment"
         },
         {
             "name": "connectivity",
             "baseName": "connectivity",
-            "type": "TerminalConnectivity | null"
+            "type": "TerminalConnectivity"
         },
         {
             "name": "firmwareVersion",

@@ -27,7 +27,7 @@ export class PayPayDetails {
     /**
     * **paypay**
     */
-    'type'?: PayPayDetails.TypeEnum;
+    'type'?: PayPayDetails.TypeEnum = PayPayDetails.TypeEnum.Paypay;
 
     static discriminator: string | undefined = undefined;
 
@@ -60,6 +60,6 @@ export class PayPayDetails {
 
 export namespace PayPayDetails {
     export enum TypeEnum {
-        Paypay = 'paypay'
+        Paypay = <any> 'paypay'
     }
 }

@@ -39,7 +39,7 @@ export class OpenInvoiceDetails {
     /**
     * **openinvoice**
     */
-    'type'?: OpenInvoiceDetails.TypeEnum;
+    'type'?: OpenInvoiceDetails.TypeEnum = OpenInvoiceDetails.TypeEnum.Openinvoice;
 
     static discriminator: string | undefined = undefined;
 
@@ -87,8 +87,8 @@ export class OpenInvoiceDetails {
 
 export namespace OpenInvoiceDetails {
     export enum TypeEnum {
-        Openinvoice = 'openinvoice',
-        AfterpayDirectdebit = 'afterpay_directdebit',
-        AtomePos = 'atome_pos'
+        Openinvoice = <any> 'openinvoice',
+        AfterpayDirectdebit = <any> 'afterpay_directdebit',
+        AtomePos = <any> 'atome_pos'
     }
 }

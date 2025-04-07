@@ -32,7 +32,7 @@ export class SoleProprietorship {
     * The legal name.
     */
     'name': string;
-    'principalPlaceOfBusiness'?: Address | null;
+    'principalPlaceOfBusiness'?: Address;
     'registeredAddress': Address;
     /**
     * The registration number.
@@ -86,7 +86,7 @@ export class SoleProprietorship {
         {
             "name": "principalPlaceOfBusiness",
             "baseName": "principalPlaceOfBusiness",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "registeredAddress",
@@ -101,7 +101,7 @@ export class SoleProprietorship {
         {
             "name": "taxAbsent",
             "baseName": "taxAbsent",
-            "type": "boolean | null"
+            "type": "boolean"
         },
         {
             "name": "taxInformation",
@@ -126,7 +126,7 @@ export class SoleProprietorship {
 
 export namespace SoleProprietorship {
     export enum VatAbsenceReasonEnum {
-        IndustryExemption = 'industryExemption',
-        BelowTaxThreshold = 'belowTaxThreshold'
+        IndustryExemption = <any> 'industryExemption',
+        BelowTaxThreshold = <any> 'belowTaxThreshold'
     }
 }

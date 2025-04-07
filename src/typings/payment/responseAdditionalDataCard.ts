@@ -102,16 +102,16 @@ export class ResponseAdditionalDataCard {
 
 export namespace ResponseAdditionalDataCard {
     export enum CardProductIdEnum {
-        A = 'A',
-        B = 'B',
-        C = 'C',
-        D = 'D',
-        F = 'F',
-        Mcc = 'MCC',
-        Mce = 'MCE',
-        Mcf = 'MCF',
-        Mcg = 'MCG',
-        Mch = 'MCH',
-        Mci = 'MCI'
+        A = <any> 'A',
+        B = <any> 'B',
+        C = <any> 'C',
+        D = <any> 'D',
+        F = <any> 'F',
+        Mcc = <any> 'MCC',
+        Mce = <any> 'MCE',
+        Mcf = <any> 'MCF',
+        Mcg = <any> 'MCG',
+        Mch = <any> 'MCH',
+        Mci = <any> 'MCI'
     }
 }

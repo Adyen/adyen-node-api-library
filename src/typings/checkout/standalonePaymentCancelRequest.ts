@@ -10,7 +10,7 @@
 import { ApplicationInfo } from './applicationInfo';
 
 export class StandalonePaymentCancelRequest {
-    'applicationInfo'?: ApplicationInfo | null;
+    'applicationInfo'?: ApplicationInfo;
     /**
     * The merchant account that is used to process the payment.
     */
@@ -30,7 +30,7 @@ export class StandalonePaymentCancelRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo"
         },
         {
             "name": "merchantAccount",

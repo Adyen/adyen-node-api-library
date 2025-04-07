@@ -57,22 +57,22 @@ export class ThreeDSRequestData {
 
 export namespace ThreeDSRequestData {
     export enum ChallengeWindowSizeEnum {
-        _01 = '01',
-        _02 = '02',
-        _03 = '03',
-        _04 = '04',
-        _05 = '05'
+        _01 = <any> '01',
+        _02 = <any> '02',
+        _03 = <any> '03',
+        _04 = <any> '04',
+        _05 = <any> '05'
     }
     export enum DataOnlyEnum {
-        False = 'false',
-        True = 'true'
+        False = <any> 'false',
+        True = <any> 'true'
     }
     export enum NativeThreeDSEnum {
-        Preferred = 'preferred',
-        Disabled = 'disabled'
+        Preferred = <any> 'preferred',
+        Disabled = <any> 'disabled'
     }
     export enum ThreeDSVersionEnum {
-        _10 = '2.1.0',
-        _20 = '2.2.0'
+        _210 = <any> '2.1.0',
+        _220 = <any> '2.2.0'
     }
 }

@@ -24,11 +24,14 @@ export class VippsDetails {
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'storedPaymentMethodId'?: string;
+    /**
+    * 
+    */
     'telephoneNumber': string;
     /**
     * **vipps**
     */
-    'type'?: VippsDetails.TypeEnum;
+    'type'?: VippsDetails.TypeEnum = VippsDetails.TypeEnum.Vipps;
 
     static discriminator: string | undefined = undefined;
 
@@ -66,6 +69,6 @@ export class VippsDetails {
 
 export namespace VippsDetails {
     export enum TypeEnum {
-        Vipps = 'vipps'
+        Vipps = <any> 'vipps'
     }
 }

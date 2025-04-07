@@ -39,12 +39,12 @@ export class DayOfWeekRestriction {
 
 export namespace DayOfWeekRestriction {
     export enum ValueEnum {
-        Friday = 'friday',
-        Monday = 'monday',
-        Saturday = 'saturday',
-        Sunday = 'sunday',
-        Thursday = 'thursday',
-        Tuesday = 'tuesday',
-        Wednesday = 'wednesday'
+        Friday = <any> 'friday',
+        Monday = <any> 'monday',
+        Saturday = <any> 'saturday',
+        Sunday = <any> 'sunday',
+        Thursday = <any> 'thursday',
+        Tuesday = <any> 'tuesday',
+        Wednesday = <any> 'wednesday'
     }
 }

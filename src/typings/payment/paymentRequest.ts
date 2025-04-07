@@ -29,28 +29,28 @@ import { ThreeDS2RequestData } from './threeDS2RequestData';
 import { ThreeDSecureData } from './threeDSecureData';
 
 export class PaymentRequest {
-    'accountInfo'?: AccountInfo | null;
-    'additionalAmount'?: Amount | null;
+    'accountInfo'?: AccountInfo;
+    'additionalAmount'?: Amount;
     /**
     * This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
     'additionalData'?: { [key: string]: string; };
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
-    'bankAccount'?: BankAccount | null;
-    'billingAddress'?: Address | null;
-    'browserInfo'?: BrowserInfo | null;
+    'applicationInfo'?: ApplicationInfo;
+    'bankAccount'?: BankAccount;
+    'billingAddress'?: Address;
+    'browserInfo'?: BrowserInfo;
     /**
     * The delay between the authorisation and scheduled auto-capture, specified in hours.
     */
     'captureDelayHours'?: number;
-    'card'?: Card | null;
+    'card'?: Card;
     /**
     * The shopper\'s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
     */
     'dateOfBirth'?: string;
-    'dccQuote'?: ForexQuote | null;
-    'deliveryAddress'?: Address | null;
+    'dccQuote'?: ForexQuote;
+    'deliveryAddress'?: Address;
     /**
     * The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
     */
@@ -67,18 +67,18 @@ export class PaymentRequest {
     * An integer value that is added to the normal fraud score. The value can be either positive or negative.
     */
     'fraudOffset'?: number;
-    'fundDestination'?: FundDestination | null;
-    'fundSource'?: FundSource | null;
+    'fundDestination'?: FundDestination;
+    'fundSource'?: FundSource;
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
     'fundingSource'?: PaymentRequest.FundingSourceEnum;
-    'installments'?: Installments | null;
+    'installments'?: Installments;
     /**
     * The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If not supplied, left empty, or for cross-border transactions, **shopperStatement** is used.  Adyen currently supports the ja-Kana character set for Visa and Mastercard payments in Japan using Japanese cards. This character set supports:  * UTF-8 based Katakana, capital letters, numbers and special characters.  * Half-width or full-width characters.
     */
     'localizedShopperStatement'?: { [key: string]: string; };
-    'mandate'?: Mandate | null;
+    'mandate'?: Mandate;
     /**
     * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
     */
@@ -91,12 +91,12 @@ export class PaymentRequest {
     * This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. > We strongly recommend you send the `merchantOrderReference` value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide `retry.orderAttemptNumber`, `retry.chainAttemptNumber`, and `retry.skipRetry` values in `PaymentRequest.additionalData`.
     */
     'merchantOrderReference'?: string;
-    'merchantRiskIndicator'?: MerchantRiskIndicator | null;
+    'merchantRiskIndicator'?: MerchantRiskIndicator;
     /**
     * Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\". * Maximum 20 characters per key. * Maximum 80 characters per value. 
     */
     'metadata'?: { [key: string]: string; };
-    'mpiData'?: ThreeDSecureData | null;
+    'mpiData'?: ThreeDSecureData;
     /**
     * The two-character country code of the shopper\'s nationality.
     */
@@ -105,8 +105,8 @@ export class PaymentRequest {
     * When you are doing multiple partial (gift card) payments, this is the `pspReference` of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the `merchantOrderReference`instead.
     */
     'orderReference'?: string;
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
-    'recurring'?: Recurring | null;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
+    'recurring'?: Recurring;
     /**
     * Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
@@ -115,7 +115,7 @@ export class PaymentRequest {
     * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.
     */
     'reference': string;
-    'secureRemoteCommerceCheckoutData'?: SecureRemoteCommerceCheckoutData | null;
+    'secureRemoteCommerceCheckoutData'?: SecureRemoteCommerceCheckoutData;
     /**
     * Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * `maestro` (default), to be processed like a Maestro card, or * `bcmc`, to be processed like a Bancontact card.
     */
@@ -144,7 +144,7 @@ export class PaymentRequest {
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
     'shopperLocale'?: string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
@@ -158,7 +158,7 @@ export class PaymentRequest {
     */
     'socialSecurityNumber'?: string;
     /**
-    * An array of objects specifying how the payment should be split when using either Adyen for Platforms for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms]((https://docs.adyen.com/platforms/split-payments), or standalone [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split).
+    * An array of objects specifying how the payment should be split when using either Adyen for Platforms for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/split-payments), or standalone [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split).
     */
     'splits'?: Array<Split>;
     /**
@@ -169,11 +169,11 @@ export class PaymentRequest {
     * The shopper\'s telephone number.
     */
     'telephoneNumber'?: string;
-    'threeDS2RequestData'?: ThreeDS2RequestData | null;
+    'threeDS2RequestData'?: ThreeDS2RequestData;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     */
-    'threeDSAuthenticationOnly'?: boolean;
+    'threeDSAuthenticationOnly'?: boolean = false;
     /**
     * The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available).
     */
@@ -189,12 +189,12 @@ export class PaymentRequest {
         {
             "name": "accountInfo",
             "baseName": "accountInfo",
-            "type": "AccountInfo | null"
+            "type": "AccountInfo"
         },
         {
             "name": "additionalAmount",
             "baseName": "additionalAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "additionalData",
@@ -209,22 +209,22 @@ export class PaymentRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo"
         },
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccount | null"
+            "type": "BankAccount"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "browserInfo",
             "baseName": "browserInfo",
-            "type": "BrowserInfo | null"
+            "type": "BrowserInfo"
         },
         {
             "name": "captureDelayHours",
@@ -234,7 +234,7 @@ export class PaymentRequest {
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null"
+            "type": "Card"
         },
         {
             "name": "dateOfBirth",
@@ -244,12 +244,12 @@ export class PaymentRequest {
         {
             "name": "dccQuote",
             "baseName": "dccQuote",
-            "type": "ForexQuote | null"
+            "type": "ForexQuote"
         },
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "deliveryDate",
@@ -274,12 +274,12 @@ export class PaymentRequest {
         {
             "name": "fundDestination",
             "baseName": "fundDestination",
-            "type": "FundDestination | null"
+            "type": "FundDestination"
         },
         {
             "name": "fundSource",
             "baseName": "fundSource",
-            "type": "FundSource | null"
+            "type": "FundSource"
         },
         {
             "name": "fundingSource",
@@ -289,7 +289,7 @@ export class PaymentRequest {
         {
             "name": "installments",
             "baseName": "installments",
-            "type": "Installments | null"
+            "type": "Installments"
         },
         {
             "name": "localizedShopperStatement",
@@ -299,7 +299,7 @@ export class PaymentRequest {
         {
             "name": "mandate",
             "baseName": "mandate",
-            "type": "Mandate | null"
+            "type": "Mandate"
         },
         {
             "name": "mcc",
@@ -319,7 +319,7 @@ export class PaymentRequest {
         {
             "name": "merchantRiskIndicator",
             "baseName": "merchantRiskIndicator",
-            "type": "MerchantRiskIndicator | null"
+            "type": "MerchantRiskIndicator"
         },
         {
             "name": "metadata",
@@ -329,7 +329,7 @@ export class PaymentRequest {
         {
             "name": "mpiData",
             "baseName": "mpiData",
-            "type": "ThreeDSecureData | null"
+            "type": "ThreeDSecureData"
         },
         {
             "name": "nationality",
@@ -344,12 +344,12 @@ export class PaymentRequest {
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring | null"
+            "type": "Recurring"
         },
         {
             "name": "recurringProcessingModel",
@@ -364,7 +364,7 @@ export class PaymentRequest {
         {
             "name": "secureRemoteCommerceCheckoutData",
             "baseName": "secureRemoteCommerceCheckoutData",
-            "type": "SecureRemoteCommerceCheckoutData | null"
+            "type": "SecureRemoteCommerceCheckoutData"
         },
         {
             "name": "selectedBrand",
@@ -404,7 +404,7 @@ export class PaymentRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name"
         },
         {
             "name": "shopperReference",
@@ -439,7 +439,7 @@ export class PaymentRequest {
         {
             "name": "threeDS2RequestData",
             "baseName": "threeDS2RequestData",
-            "type": "ThreeDS2RequestData | null"
+            "type": "ThreeDS2RequestData"
         },
         {
             "name": "threeDSAuthenticationOnly",
@@ -464,22 +464,22 @@ export class PaymentRequest {
 
 export namespace PaymentRequest {
     export enum EntityTypeEnum {
-        NaturalPerson = 'NaturalPerson',
-        CompanyName = 'CompanyName'
+        NaturalPerson = <any> 'NaturalPerson',
+        CompanyName = <any> 'CompanyName'
     }
     export enum FundingSourceEnum {
-        Credit = 'credit',
-        Debit = 'debit'
+        Credit = <any> 'credit',
+        Debit = <any> 'debit'
     }
     export enum RecurringProcessingModelEnum {
-        CardOnFile = 'CardOnFile',
-        Subscription = 'Subscription',
-        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
+        CardOnFile = <any> 'CardOnFile',
+        Subscription = <any> 'Subscription',
+        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
     }
     export enum ShopperInteractionEnum {
-        Ecommerce = 'Ecommerce',
-        ContAuth = 'ContAuth',
-        Moto = 'Moto',
-        Pos = 'POS'
+        Ecommerce = <any> 'Ecommerce',
+        ContAuth = <any> 'ContAuth',
+        Moto = <any> 'Moto',
+        Pos = <any> 'POS'
     }
 }

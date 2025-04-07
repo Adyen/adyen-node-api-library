@@ -11,7 +11,7 @@ import { PaginationLinks } from './paginationLinks';
 import { Terminal } from './terminal';
 
 export class ListTerminalsResponse {
-    '_links'?: PaginationLinks | null;
+    '_links'?: PaginationLinks;
     /**
     * The list of terminals and their details.
     */
@@ -31,7 +31,7 @@ export class ListTerminalsResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks | null"
+            "type": "PaginationLinks"
         },
         {
             "name": "data",

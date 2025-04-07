@@ -10,7 +10,7 @@
 import { Amount } from './amount';
 
 export class DeliveryMethod {
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * The name of the delivery method as shown to the shopper.
     */
@@ -34,7 +34,7 @@ export class DeliveryMethod {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "description",
@@ -64,6 +64,6 @@ export class DeliveryMethod {
 
 export namespace DeliveryMethod {
     export enum TypeEnum {
-        Shipping = 'Shipping'
+        Shipping = <any> 'Shipping'
     }
 }

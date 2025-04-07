@@ -18,9 +18,9 @@ export class StoreDetailRequest {
     * This field contains additional data, which may be required for a particular request.
     */
     'additionalData'?: { [key: string]: string; };
-    'bank'?: BankAccount | null;
-    'billingAddress'?: Address | null;
-    'card'?: Card | null;
+    'bank'?: BankAccount;
+    'billingAddress'?: Address;
+    'card'?: Card;
     /**
     * The date of birth. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD For Paysafecard it must be the same as used when registering the Paysafecard account. > This field is mandatory for natural persons.
     */
@@ -50,7 +50,7 @@ export class StoreDetailRequest {
     * The shopper\'s email address.
     */
     'shopperEmail': string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * The shopper\'s reference for the payment transaction.
     */
@@ -75,17 +75,17 @@ export class StoreDetailRequest {
         {
             "name": "bank",
             "baseName": "bank",
-            "type": "BankAccount | null"
+            "type": "BankAccount"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null"
+            "type": "Card"
         },
         {
             "name": "dateOfBirth",
@@ -130,7 +130,7 @@ export class StoreDetailRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name"
         },
         {
             "name": "shopperReference",
@@ -155,7 +155,7 @@ export class StoreDetailRequest {
 
 export namespace StoreDetailRequest {
     export enum EntityTypeEnum {
-        NaturalPerson = 'NaturalPerson',
-        Company = 'Company'
+        NaturalPerson = <any> 'NaturalPerson',
+        Company = <any> 'Company'
     }
 }

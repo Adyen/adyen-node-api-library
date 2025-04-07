@@ -20,7 +20,7 @@ export class UKLocalAccountIdentification {
     /**
     * **ukLocal**
     */
-    'type': UKLocalAccountIdentification.TypeEnum;
+    'type': UKLocalAccountIdentification.TypeEnum = UKLocalAccountIdentification.TypeEnum.UkLocal;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,6 +48,6 @@ export class UKLocalAccountIdentification {
 
 export namespace UKLocalAccountIdentification {
     export enum TypeEnum {
-        UkLocal = 'ukLocal'
+        UkLocal = <any> 'ukLocal'
     }
 }

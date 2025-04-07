@@ -20,7 +20,7 @@ export class AddressRequirement {
     /**
     * **addressRequirement**
     */
-    'type': AddressRequirement.TypeEnum;
+    'type': AddressRequirement.TypeEnum = AddressRequirement.TypeEnum.AddressRequirement;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,13 +48,13 @@ export class AddressRequirement {
 
 export namespace AddressRequirement {
     export enum RequiredAddressFieldsEnum {
-        City = 'city',
-        Country = 'country',
-        Line1 = 'line1',
-        PostalCode = 'postalCode',
-        StateOrProvince = 'stateOrProvince'
+        City = <any> 'city',
+        Country = <any> 'country',
+        Line1 = <any> 'line1',
+        PostalCode = <any> 'postalCode',
+        StateOrProvince = <any> 'stateOrProvince'
     }
     export enum TypeEnum {
-        AddressRequirement = 'addressRequirement'
+        AddressRequirement = <any> 'addressRequirement'
     }
 }

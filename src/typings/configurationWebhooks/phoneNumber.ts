@@ -48,9 +48,9 @@ export class PhoneNumber {
 
 export namespace PhoneNumber {
     export enum PhoneTypeEnum {
-        Fax = 'Fax',
-        Landline = 'Landline',
-        Mobile = 'Mobile',
-        Sip = 'SIP'
+        Fax = <any> 'Fax',
+        Landline = <any> 'Landline',
+        Mobile = <any> 'Mobile',
+        Sip = <any> 'SIP'
     }
 }

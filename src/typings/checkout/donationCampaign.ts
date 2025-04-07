@@ -11,7 +11,7 @@ import { Amounts } from './amounts';
 import { Donation } from './donation';
 
 export class DonationCampaign {
-    'amounts'?: Amounts | null;
+    'amounts'?: Amounts;
     /**
     * The URL for the banner of the nonprofit or campaign.
     */
@@ -24,7 +24,7 @@ export class DonationCampaign {
     * The cause of the nonprofit.
     */
     'causeName'?: string;
-    'donation'?: Donation | null;
+    'donation'?: Donation;
     /**
     * The unique campaign ID of the donation campaign.
     */
@@ -56,7 +56,7 @@ export class DonationCampaign {
         {
             "name": "amounts",
             "baseName": "amounts",
-            "type": "Amounts | null"
+            "type": "Amounts"
         },
         {
             "name": "bannerUrl",
@@ -76,7 +76,7 @@ export class DonationCampaign {
         {
             "name": "donation",
             "baseName": "donation",
-            "type": "Donation | null"
+            "type": "Donation"
         },
         {
             "name": "id",

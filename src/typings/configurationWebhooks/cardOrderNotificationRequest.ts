@@ -55,7 +55,7 @@ export class CardOrderNotificationRequest {
 
 export namespace CardOrderNotificationRequest {
     export enum TypeEnum {
-        Created = 'balancePlatform.cardorder.created',
-        Updated = 'balancePlatform.cardorder.updated'
+        BalancePlatformCardorderCreated = <any> 'balancePlatform.cardorder.created',
+        BalancePlatformCardorderUpdated = <any> 'balancePlatform.cardorder.updated'
     }
 }

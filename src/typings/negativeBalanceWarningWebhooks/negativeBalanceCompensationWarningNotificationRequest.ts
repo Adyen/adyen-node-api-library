@@ -55,6 +55,6 @@ export class NegativeBalanceCompensationWarningNotificationRequest {
 
 export namespace NegativeBalanceCompensationWarningNotificationRequest {
     export enum TypeEnum {
-        BalancePlatformNegativeBalanceCompensationWarningScheduled = 'balancePlatform.negativeBalanceCompensationWarning.scheduled'
+        BalancePlatformNegativeBalanceCompensationWarningScheduled = <any> 'balancePlatform.negativeBalanceCompensationWarning.scheduled'
     }
 }

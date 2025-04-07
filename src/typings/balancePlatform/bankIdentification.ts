@@ -48,8 +48,8 @@ export class BankIdentification {
 
 export namespace BankIdentification {
     export enum IdentificationTypeEnum {
-        Iban = 'iban',
-        RoutingNumber = 'routingNumber',
-        SortCode = 'sortCode'
+        Iban = <any> 'iban',
+        RoutingNumber = <any> 'routingNumber',
+        SortCode = <any> 'sortCode'
     }
 }

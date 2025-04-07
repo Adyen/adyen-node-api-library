@@ -22,7 +22,7 @@ export class TransferRouteRequest {
     *  The type of transfer. Possible values:    - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account. 
     */
     'category': TransferRouteRequest.CategoryEnum;
-    'counterparty'?: Counterparty | null;
+    'counterparty'?: Counterparty;
     /**
     * The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.  > Either `counterparty` or `country` field must be provided in a transfer route request.
     */
@@ -57,7 +57,7 @@ export class TransferRouteRequest {
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "Counterparty | null"
+            "type": "Counterparty"
         },
         {
             "name": "country",
@@ -82,14 +82,14 @@ export class TransferRouteRequest {
 
 export namespace TransferRouteRequest {
     export enum CategoryEnum {
-        Bank = 'bank'
+        Bank = <any> 'bank'
     }
     export enum PrioritiesEnum {
-        CrossBorder = 'crossBorder',
-        Fast = 'fast',
-        Instant = 'instant',
-        Internal = 'internal',
-        Regular = 'regular',
-        Wire = 'wire'
+        CrossBorder = <any> 'crossBorder',
+        Fast = <any> 'fast',
+        Instant = <any> 'instant',
+        Internal = <any> 'internal',
+        Regular = <any> 'regular',
+        Wire = <any> 'wire'
     }
 }

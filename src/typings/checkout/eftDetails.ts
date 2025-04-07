@@ -43,7 +43,7 @@ export class EftDetails {
     /**
     * **eft**
     */
-    'type'?: EftDetails.TypeEnum;
+    'type'?: EftDetails.TypeEnum = EftDetails.TypeEnum.EftDirectdebitCa;
 
     static discriminator: string | undefined = undefined;
 
@@ -96,6 +96,6 @@ export class EftDetails {
 
 export namespace EftDetails {
     export enum TypeEnum {
-        EftDirectdebitCa = 'eft_directdebit_CA'
+        EftDirectdebitCa = <any> 'eft_directdebit_CA'
     }
 }

@@ -21,8 +21,8 @@ export class VoidPendingRefundRequest {
     * The merchant account that is used to process the payment.
     */
     'merchantAccount': string;
-    'modificationAmount'?: Amount | null;
-    'mpiData'?: ThreeDSecureData | null;
+    'modificationAmount'?: Amount;
+    'mpiData'?: ThreeDSecureData;
     /**
     * The original merchant reference to cancel.
     */
@@ -31,7 +31,7 @@ export class VoidPendingRefundRequest {
     * The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
     */
     'originalReference'?: string;
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
     */
@@ -65,12 +65,12 @@ export class VoidPendingRefundRequest {
         {
             "name": "modificationAmount",
             "baseName": "modificationAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "mpiData",
             "baseName": "mpiData",
-            "type": "ThreeDSecureData | null"
+            "type": "ThreeDSecureData"
         },
         {
             "name": "originalMerchantReference",
@@ -85,7 +85,7 @@ export class VoidPendingRefundRequest {
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic"
         },
         {
             "name": "reference",

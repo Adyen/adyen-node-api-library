@@ -50,7 +50,7 @@ export class CheckoutBankTransferAction {
     * The sort code of the bank transfer.
     */
     'sortCode'?: string;
-    'totalAmount'?: Amount | null;
+    'totalAmount'?: Amount;
     /**
     * The type of the action.
     */
@@ -116,7 +116,7 @@ export class CheckoutBankTransferAction {
         {
             "name": "totalAmount",
             "baseName": "totalAmount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "type",
@@ -136,6 +136,6 @@ export class CheckoutBankTransferAction {
 
 export namespace CheckoutBankTransferAction {
     export enum TypeEnum {
-        BankTransfer = 'bankTransfer'
+        BankTransfer = <any> 'bankTransfer'
     }
 }

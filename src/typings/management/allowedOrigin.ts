@@ -10,7 +10,7 @@
 import { Links } from './links';
 
 export class AllowedOrigin {
-    '_links'?: Links | null;
+    '_links'?: Links;
     /**
     * Domain of the allowed origin.
     */
@@ -26,7 +26,7 @@ export class AllowedOrigin {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "Links | null"
+            "type": "Links"
         },
         {
             "name": "domain",

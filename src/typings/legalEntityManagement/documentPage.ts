@@ -39,8 +39,8 @@ export class DocumentPage {
 
 export namespace DocumentPage {
     export enum TypeEnum {
-        Back = 'BACK',
-        Front = 'FRONT',
-        Undefined = 'UNDEFINED'
+        Back = <any> 'BACK',
+        Front = <any> 'FRONT',
+        Undefined = <any> 'UNDEFINED'
     }
 }

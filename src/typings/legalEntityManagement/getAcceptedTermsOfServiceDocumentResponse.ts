@@ -57,8 +57,8 @@ export class GetAcceptedTermsOfServiceDocumentResponse {
 
 export namespace GetAcceptedTermsOfServiceDocumentResponse {
     export enum TermsOfServiceDocumentFormatEnum {
-        Json = 'JSON',
-        Pdf = 'PDF',
-        Txt = 'TXT'
+        Json = <any> 'JSON',
+        Pdf = <any> 'PDF',
+        Txt = <any> 'TXT'
     }
 }

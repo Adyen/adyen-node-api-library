@@ -68,8 +68,8 @@ export class VerificationError {
 
 export namespace VerificationError {
     export enum TypeEnum {
-        DataMissing = 'dataMissing',
-        InvalidInput = 'invalidInput',
-        PendingStatus = 'pendingStatus'
+        DataMissing = <any> 'dataMissing',
+        InvalidInput = <any> 'invalidInput',
+        PendingStatus = <any> 'pendingStatus'
     }
 }

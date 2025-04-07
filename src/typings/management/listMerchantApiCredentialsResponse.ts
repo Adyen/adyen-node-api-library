@@ -11,7 +11,7 @@ import { ApiCredential } from './apiCredential';
 import { PaginationLinks } from './paginationLinks';
 
 export class ListMerchantApiCredentialsResponse {
-    '_links'?: PaginationLinks | null;
+    '_links'?: PaginationLinks;
     /**
     * The list of API credentials.
     */
@@ -31,7 +31,7 @@ export class ListMerchantApiCredentialsResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks | null"
+            "type": "PaginationLinks"
         },
         {
             "name": "data",

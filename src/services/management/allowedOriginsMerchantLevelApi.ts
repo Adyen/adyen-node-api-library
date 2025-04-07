@@ -13,6 +13,7 @@ import Client from "../../client";
 import { 
     AllowedOrigin,
     AllowedOriginsResponse,
+    RestServiceError,
     ObjectSerializer
 } from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";

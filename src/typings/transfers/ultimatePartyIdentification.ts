@@ -10,7 +10,7 @@
 import { Address } from './address';
 
 export class UltimatePartyIdentification {
-    'address'?: Address | null;
+    'address'?: Address;
     /**
     * The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when `type` is **individual**.
     */
@@ -34,7 +34,7 @@ export class UltimatePartyIdentification {
     /**
     * The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when `category` is **card**. In this case, the value must be **individual**.
     */
-    'type'?: UltimatePartyIdentification.TypeEnum;
+    'type'?: UltimatePartyIdentification.TypeEnum = UltimatePartyIdentification.TypeEnum.Unknown;
 
     static discriminator: string | undefined = undefined;
 
@@ -42,7 +42,7 @@ export class UltimatePartyIdentification {
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "dateOfBirth",
@@ -82,8 +82,8 @@ export class UltimatePartyIdentification {
 
 export namespace UltimatePartyIdentification {
     export enum TypeEnum {
-        Individual = 'individual',
-        Organization = 'organization',
-        Unknown = 'unknown'
+        Individual = <any> 'individual',
+        Organization = <any> 'organization',
+        Unknown = <any> 'unknown'
     }
 }

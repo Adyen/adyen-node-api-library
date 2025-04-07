@@ -17,13 +17,13 @@ export class FundRecipient {
     * The IBAN of the bank account where the funds are being transferred to.
     */
     'IBAN'?: string;
-    'billingAddress'?: Address | null;
-    'paymentMethod'?: CardDetails | null;
+    'billingAddress'?: Address;
+    'paymentMethod'?: CardDetails;
     /**
     * The email address of the shopper.
     */
     'shopperEmail'?: string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
@@ -32,7 +32,7 @@ export class FundRecipient {
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     'storedPaymentMethodId'?: string;
-    'subMerchant'?: SubMerchant | null;
+    'subMerchant'?: SubMerchant;
     /**
     * The telephone number of the shopper.
     */
@@ -61,12 +61,12 @@ export class FundRecipient {
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "CardDetails | null"
+            "type": "CardDetails"
         },
         {
             "name": "shopperEmail",
@@ -76,7 +76,7 @@ export class FundRecipient {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name"
         },
         {
             "name": "shopperReference",
@@ -91,7 +91,7 @@ export class FundRecipient {
         {
             "name": "subMerchant",
             "baseName": "subMerchant",
-            "type": "SubMerchant | null"
+            "type": "SubMerchant"
         },
         {
             "name": "telephoneNumber",
@@ -121,10 +121,10 @@ export class FundRecipient {
 
 export namespace FundRecipient {
     export enum WalletPurposeEnum {
-        IdentifiedBoleto = 'identifiedBoleto',
-        TransferDifferentWallet = 'transferDifferentWallet',
-        TransferOwnWallet = 'transferOwnWallet',
-        TransferSameWallet = 'transferSameWallet',
-        UnidentifiedBoleto = 'unidentifiedBoleto'
+        IdentifiedBoleto = <any> 'identifiedBoleto',
+        TransferDifferentWallet = <any> 'transferDifferentWallet',
+        TransferOwnWallet = <any> 'transferOwnWallet',
+        TransferSameWallet = <any> 'transferSameWallet',
+        UnidentifiedBoleto = <any> 'unidentifiedBoleto'
     }
 }

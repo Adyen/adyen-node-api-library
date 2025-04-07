@@ -55,8 +55,8 @@ export class SweepConfigurationNotificationRequest {
 
 export namespace SweepConfigurationNotificationRequest {
     export enum TypeEnum {
-        Created = 'balancePlatform.balanceAccountSweep.created',
-        Updated = 'balancePlatform.balanceAccountSweep.updated',
-        Deleted = 'balancePlatform.balanceAccountSweep.deleted'
+        BalancePlatformBalanceAccountSweepCreated = <any> 'balancePlatform.balanceAccountSweep.created',
+        BalancePlatformBalanceAccountSweepUpdated = <any> 'balancePlatform.balanceAccountSweep.updated',
+        BalancePlatformBalanceAccountSweepDeleted = <any> 'balancePlatform.balanceAccountSweep.deleted'
     }
 }

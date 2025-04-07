@@ -11,8 +11,8 @@ import { Amount } from './amount';
 import { BillingAddress } from './billingAddress';
 
 export class SubMerchantInfo {
-    'address'?: BillingAddress | null;
-    'amount'?: Amount | null;
+    'address'?: BillingAddress;
+    'amount'?: Amount;
     /**
     * Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant\'s account.
     */
@@ -49,12 +49,12 @@ export class SubMerchantInfo {
         {
             "name": "address",
             "baseName": "address",
-            "type": "BillingAddress | null"
+            "type": "BillingAddress"
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount"
         },
         {
             "name": "email",

@@ -7,13 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { AddressRequirement } from './addressRequirement';
-import { AmountMinMaxRequirement } from './amountMinMaxRequirement';
-import { AmountNonZeroDecimalsRequirement } from './amountNonZeroDecimalsRequirement';
-import { BankAccountIdentificationTypeRequirement } from './bankAccountIdentificationTypeRequirement';
-import { IbanAccountIdentificationRequirement } from './ibanAccountIdentificationRequirement';
-import { PaymentInstrumentRequirement } from './paymentInstrumentRequirement';
-import { USInternationalAchAddressRequirement } from './uSInternationalAchAddressRequirement';
+import { TransferRouteRequirementsInner } from './transferRouteRequirementsInner';
 
 export class TransferRoute {
     /**
@@ -35,7 +29,7 @@ export class TransferRoute {
     /**
     * A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a `type` and `description`.
     */
-    'requirements'?: Array<AddressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInternationalAchAddressRequirement>;
+    'requirements'?: Array<TransferRouteRequirementsInner>;
 
     static discriminator: string | undefined = undefined;
 
@@ -63,7 +57,7 @@ export class TransferRoute {
         {
             "name": "requirements",
             "baseName": "requirements",
-            "type": "Array<AddressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInternationalAchAddressRequirement>"
+            "type": "Array<TransferRouteRequirementsInner>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -73,22 +67,22 @@ export class TransferRoute {
 
 export namespace TransferRoute {
     export enum CategoryEnum {
-        Bank = 'bank',
-        Card = 'card',
-        Grants = 'grants',
-        Internal = 'internal',
-        IssuedCard = 'issuedCard',
-        Migration = 'migration',
-        PlatformPayment = 'platformPayment',
-        TopUp = 'topUp',
-        Upgrade = 'upgrade'
+        Bank = <any> 'bank',
+        Card = <any> 'card',
+        Grants = <any> 'grants',
+        Internal = <any> 'internal',
+        IssuedCard = <any> 'issuedCard',
+        Migration = <any> 'migration',
+        PlatformPayment = <any> 'platformPayment',
+        TopUp = <any> 'topUp',
+        Upgrade = <any> 'upgrade'
     }
     export enum PriorityEnum {
-        CrossBorder = 'crossBorder',
-        Fast = 'fast',
-        Instant = 'instant',
-        Internal = 'internal',
-        Regular = 'regular',
-        Wire = 'wire'
+        CrossBorder = <any> 'crossBorder',
+        Fast = <any> 'fast',
+        Instant = <any> 'instant',
+        Internal = <any> 'internal',
+        Regular = <any> 'regular',
+        Wire = <any> 'wire'
     }
 }

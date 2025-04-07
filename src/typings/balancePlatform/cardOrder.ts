@@ -93,7 +93,7 @@ export class CardOrder {
 
 export namespace CardOrder {
     export enum StatusEnum {
-        Closed = 'closed',
-        Open = 'open'
+        Closed = <any> 'closed',
+        Open = <any> 'open'
     }
 }

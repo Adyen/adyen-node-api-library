@@ -27,7 +27,7 @@ export class GiropayDetails {
     /**
     * **giropay**
     */
-    'type'?: GiropayDetails.TypeEnum;
+    'type'?: GiropayDetails.TypeEnum = GiropayDetails.TypeEnum.Giropay;
 
     static discriminator: string | undefined = undefined;
 
@@ -60,6 +60,6 @@ export class GiropayDetails {
 
 export namespace GiropayDetails {
     export enum TypeEnum {
-        Giropay = 'giropay'
+        Giropay = <any> 'giropay'
     }
 }

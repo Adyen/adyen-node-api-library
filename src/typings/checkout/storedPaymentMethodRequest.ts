@@ -73,8 +73,8 @@ export class StoredPaymentMethodRequest {
 
 export namespace StoredPaymentMethodRequest {
     export enum RecurringProcessingModelEnum {
-        CardOnFile = 'CardOnFile',
-        Subscription = 'Subscription',
-        UnscheduledCardOnFile = 'UnscheduledCardOnFile'
+        CardOnFile = <any> 'CardOnFile',
+        Subscription = <any> 'Subscription',
+        UnscheduledCardOnFile = <any> 'UnscheduledCardOnFile'
     }
 }

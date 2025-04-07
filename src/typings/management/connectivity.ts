@@ -14,7 +14,7 @@ export class Connectivity {
     * Indicates the status of the SIM card in the payment terminal. Can be updated and received only at terminal level, and only for models that support cellular connectivity.  Possible values: * **ACTIVATED**: the SIM card is activated. Cellular connectivity may still need to be enabled on the terminal itself, in the **Network** settings. * **INVENTORY**: the SIM card is not activated. The terminal can\'t use cellular connectivity.
     */
     'simcardStatus'?: Connectivity.SimcardStatusEnum;
-    'terminalIPAddressURL'?: EventUrl | null;
+    'terminalIPAddressURL'?: EventUrl;
 
     static discriminator: string | undefined = undefined;
 
@@ -27,7 +27,7 @@ export class Connectivity {
         {
             "name": "terminalIPAddressURL",
             "baseName": "terminalIPAddressURL",
-            "type": "EventUrl | null"
+            "type": "EventUrl"
         }    ];
 
     static getAttributeTypeMap() {
@@ -37,7 +37,7 @@ export class Connectivity {
 
 export namespace Connectivity {
     export enum SimcardStatusEnum {
-        Activated = 'ACTIVATED',
-        Inventory = 'INVENTORY'
+        Activated = <any> 'ACTIVATED',
+        Inventory = <any> 'INVENTORY'
     }
 }

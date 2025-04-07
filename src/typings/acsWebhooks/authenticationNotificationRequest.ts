@@ -55,6 +55,6 @@ export class AuthenticationNotificationRequest {
 
 export namespace AuthenticationNotificationRequest {
     export enum TypeEnum {
-        BalancePlatformAuthenticationCreated = 'balancePlatform.authentication.created'
+        BalancePlatformAuthenticationCreated = <any> 'balancePlatform.authentication.created'
     }
 }

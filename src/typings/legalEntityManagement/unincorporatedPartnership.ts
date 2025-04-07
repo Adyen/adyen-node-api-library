@@ -31,7 +31,7 @@ export class UnincorporatedPartnership {
     * The legal name.
     */
     'name': string;
-    'principalPlaceOfBusiness'?: Address | null;
+    'principalPlaceOfBusiness'?: Address;
     'registeredAddress': Address;
     /**
     * The registration number.
@@ -85,7 +85,7 @@ export class UnincorporatedPartnership {
         {
             "name": "principalPlaceOfBusiness",
             "baseName": "principalPlaceOfBusiness",
-            "type": "Address | null"
+            "type": "Address"
         },
         {
             "name": "registeredAddress",
@@ -125,37 +125,37 @@ export class UnincorporatedPartnership {
 
 export namespace UnincorporatedPartnership {
     export enum TypeEnum {
-        LimitedPartnership = 'limitedPartnership',
-        GeneralPartnership = 'generalPartnership',
-        FamilyPartnership = 'familyPartnership',
-        CommercialPartnership = 'commercialPartnership',
-        PublicPartnership = 'publicPartnership',
-        OtherPartnership = 'otherPartnership',
-        Gbr = 'gbr',
-        Gmbh = 'gmbh',
-        Kgaa = 'kgaa',
-        Cv = 'cv',
-        Vof = 'vof',
-        Maatschap = 'maatschap',
-        PrivateFundLimitedPartnership = 'privateFundLimitedPartnership',
-        BusinessTrustEntity = 'businessTrustEntity',
-        BusinessPartnership = 'businessPartnership',
-        LimitedLiabilityPartnership = 'limitedLiabilityPartnership',
-        Eg = 'eg',
-        Cooperative = 'cooperative',
-        Vos = 'vos',
-        ComunidadDeBienes = 'comunidadDeBienes',
-        HerenciaYacente = 'herenciaYacente',
-        ComunidadDePropietarios = 'comunidadDePropietarios',
-        Sep = 'sep',
-        Sca = 'sca',
-        Bt = 'bt',
-        Kkt = 'kkt',
-        Scs = 'scs',
-        Snc = 'snc'
+        LimitedPartnership = <any> 'limitedPartnership',
+        GeneralPartnership = <any> 'generalPartnership',
+        FamilyPartnership = <any> 'familyPartnership',
+        CommercialPartnership = <any> 'commercialPartnership',
+        PublicPartnership = <any> 'publicPartnership',
+        OtherPartnership = <any> 'otherPartnership',
+        Gbr = <any> 'gbr',
+        Gmbh = <any> 'gmbh',
+        Kgaa = <any> 'kgaa',
+        Cv = <any> 'cv',
+        Vof = <any> 'vof',
+        Maatschap = <any> 'maatschap',
+        PrivateFundLimitedPartnership = <any> 'privateFundLimitedPartnership',
+        BusinessTrustEntity = <any> 'businessTrustEntity',
+        BusinessPartnership = <any> 'businessPartnership',
+        LimitedLiabilityPartnership = <any> 'limitedLiabilityPartnership',
+        Eg = <any> 'eg',
+        Cooperative = <any> 'cooperative',
+        Vos = <any> 'vos',
+        ComunidadDeBienes = <any> 'comunidadDeBienes',
+        HerenciaYacente = <any> 'herenciaYacente',
+        ComunidadDePropietarios = <any> 'comunidadDePropietarios',
+        Sep = <any> 'sep',
+        Sca = <any> 'sca',
+        Bt = <any> 'bt',
+        Kkt = <any> 'kkt',
+        Scs = <any> 'scs',
+        Snc = <any> 'snc'
     }
     export enum VatAbsenceReasonEnum {
-        IndustryExemption = 'industryExemption',
-        BelowTaxThreshold = 'belowTaxThreshold'
+        IndustryExemption = <any> 'industryExemption',
+        BelowTaxThreshold = <any> 'belowTaxThreshold'
     }
 }
