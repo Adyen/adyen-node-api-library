@@ -32,7 +32,7 @@ export class PaymentMethod {
     /**
     * The funding source of the payment method.
     */
-    'fundingSource'?: PaymentMethod.FundingSourceEnum;
+    'fundingSource'?: string;
     'group'?: PaymentMethodGroup;
     /**
     * All input details to be provided to complete the payment with this payment method.

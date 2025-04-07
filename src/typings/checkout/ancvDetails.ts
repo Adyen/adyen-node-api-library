@@ -31,7 +31,7 @@ export class AncvDetails {
     /**
     * **ancv**
     */
-    'type'?: AncvDetails.TypeEnum;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

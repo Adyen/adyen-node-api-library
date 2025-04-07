@@ -32,7 +32,7 @@ export class CheckoutThreeDS2Action {
     /**
     * **threeDS2**
     */
-    'type': CheckoutThreeDS2Action.TypeEnum;
+    'type': string;
     /**
     * Specifies the URL to redirect to.
     */

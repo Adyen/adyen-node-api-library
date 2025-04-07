@@ -12,7 +12,7 @@ export class AccountInfo {
     /**
     * Indicator for the length of time since this shopper account was created in the merchant\'s environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
     */
-    'accountAgeIndicator'?: AccountInfo.AccountAgeIndicatorEnum;
+    'accountAgeIndicator'?: string;
     /**
     * Date when the shopper\'s account was last changed.
     */
@@ -20,7 +20,7 @@ export class AccountInfo {
     /**
     * Indicator for the length of time since the shopper\'s account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
     */
-    'accountChangeIndicator'?: AccountInfo.AccountChangeIndicatorEnum;
+    'accountChangeIndicator'?: string;
     /**
     * Date when the shopper\'s account was created.
     */
@@ -28,7 +28,7 @@ export class AccountInfo {
     /**
     * Indicates the type of account. For example, for a multi-account card product. Allowed values: * notApplicable * credit * debit
     */
-    'accountType'?: AccountInfo.AccountTypeEnum;
+    'accountType'?: string;
     /**
     * Number of attempts the shopper tried to add a card to their account in the last day.
     */
@@ -40,7 +40,7 @@ export class AccountInfo {
     /**
     * Indicator for the length of time since this delivery address was first used. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
     */
-    'deliveryAddressUsageIndicator'?: AccountInfo.DeliveryAddressUsageIndicatorEnum;
+    'deliveryAddressUsageIndicator'?: string;
     /**
     * Shopper\'s home phone number (including the country code).
     *
@@ -62,7 +62,7 @@ export class AccountInfo {
     /**
     * Indicator when the shopper has changed their password. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
     */
-    'passwordChangeIndicator'?: AccountInfo.PasswordChangeIndicatorEnum;
+    'passwordChangeIndicator'?: string;
     /**
     * Number of all transactions (successful and abandoned) from this shopper in the past 24 hours.
     */
@@ -78,7 +78,7 @@ export class AccountInfo {
     /**
     * Indicator for the length of time since this payment method was added to this shopper\'s account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
     */
-    'paymentAccountIndicator'?: AccountInfo.PaymentAccountIndicatorEnum;
+    'paymentAccountIndicator'?: string;
     /**
     * Number of successful purchases in the last six months.
     */

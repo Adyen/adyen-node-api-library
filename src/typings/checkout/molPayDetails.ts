@@ -20,7 +20,7 @@ export class MolPayDetails {
     /**
     * **molpay**
     */
-    'type': MolPayDetails.TypeEnum;
+    'type': string;
 
     static discriminator: string | undefined = undefined;
 

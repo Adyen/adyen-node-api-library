@@ -28,7 +28,7 @@ export class CheckoutDelegatedAuthenticationAction {
     /**
     * **delegatedAuthentication**
     */
-    'type': CheckoutDelegatedAuthenticationAction.TypeEnum;
+    'type': string;
     /**
     * Specifies the URL to redirect to.
     */

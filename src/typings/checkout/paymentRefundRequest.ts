@@ -26,7 +26,7 @@ export class PaymentRefundRequest {
     /**
     * The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  
     */
-    'merchantRefundReason'?: PaymentRefundRequest.MerchantRefundReasonEnum;
+    'merchantRefundReason'?: string | null;
     /**
     * Your reference for the refund request. Maximum length: 80 characters.
     */

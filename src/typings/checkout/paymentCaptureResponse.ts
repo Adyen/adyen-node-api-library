@@ -43,7 +43,7 @@ export class PaymentCaptureResponse {
     /**
     * The status of your request. This will always have the value **received**.
     */
-    'status': PaymentCaptureResponse.StatusEnum;
+    'status': string;
     /**
     * List of sub-merchants.
     */

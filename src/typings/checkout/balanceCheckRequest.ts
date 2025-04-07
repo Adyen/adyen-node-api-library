@@ -87,7 +87,7 @@ export class BalanceCheckRequest {
     /**
     * Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
-    'recurringProcessingModel'?: BalanceCheckRequest.RecurringProcessingModelEnum;
+    'recurringProcessingModel'?: string;
     /**
     * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.
     */
@@ -115,7 +115,7 @@ export class BalanceCheckRequest {
     /**
     * Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
     */
-    'shopperInteraction'?: BalanceCheckRequest.ShopperInteractionEnum;
+    'shopperInteraction'?: string;
     /**
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
@@ -152,7 +152,7 @@ export class BalanceCheckRequest {
 	* @deprecated since Adyen Checkout API v69
 	* Use `authenticationData.authenticationOnly` instead.
     */
-    'threeDSAuthenticationOnly'?: boolean = false;
+    'threeDSAuthenticationOnly'?: boolean;
     /**
     * The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available).
     */

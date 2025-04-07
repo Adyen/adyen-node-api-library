@@ -20,7 +20,7 @@ export class ThreeDS2Result {
     /**
     * Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).
     */
-    'challengeCancel'?: ThreeDS2Result.ChallengeCancelEnum;
+    'challengeCancel'?: string;
     /**
     * The `dsTransID` value as defined in the 3D Secure 2 specification.
     */
@@ -32,7 +32,7 @@ export class ThreeDS2Result {
     /**
     * Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * `lowValue` * `secureCorporate` * `trustedBeneficiary` * `transactionRiskAnalysis` 
     */
-    'exemptionIndicator'?: ThreeDS2Result.ExemptionIndicatorEnum;
+    'exemptionIndicator'?: string;
     /**
     * The `messageVersion` value as defined in the 3D Secure 2 specification.
     */
@@ -44,7 +44,7 @@ export class ThreeDS2Result {
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
-    'threeDSRequestorChallengeInd'?: ThreeDS2Result.ThreeDSRequestorChallengeIndEnum;
+    'threeDSRequestorChallengeInd'?: string;
     /**
     * The `threeDSServerTransID` value as defined in the 3D Secure 2 specification.
     */

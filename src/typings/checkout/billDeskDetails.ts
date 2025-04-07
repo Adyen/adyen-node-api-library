@@ -20,7 +20,7 @@ export class BillDeskDetails {
     /**
     * **billdesk**
     */
-    'type': BillDeskDetails.TypeEnum;
+    'type': string;
 
     static discriminator: string | undefined = undefined;
 

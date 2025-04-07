@@ -26,7 +26,7 @@ export class DeliveryMethod {
     /**
     * The type of the delivery method.
     */
-    'type'?: DeliveryMethod.TypeEnum;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

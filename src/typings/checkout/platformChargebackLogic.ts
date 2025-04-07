@@ -12,7 +12,7 @@ export class PlatformChargebackLogic {
     /**
     * The method of handling the chargeback.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.
     */
-    'behavior'?: PlatformChargebackLogic.BehaviorEnum;
+    'behavior'?: string;
     /**
     * The unique identifier of the balance account to which the chargeback fees are booked. By default, the chargeback fees are booked to your liable balance account.
     */

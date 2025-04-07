@@ -31,7 +31,7 @@ export class VippsDetails {
     /**
     * **vipps**
     */
-    'type'?: VippsDetails.TypeEnum = VippsDetails.TypeEnum.Vipps;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

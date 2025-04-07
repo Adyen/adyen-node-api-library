@@ -28,7 +28,7 @@ export class PaymentRefundResponse {
     /**
     * Your reason for the refund request.
     */
-    'merchantRefundReason'?: PaymentRefundResponse.MerchantRefundReasonEnum;
+    'merchantRefundReason'?: string | null;
     /**
     * The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to refund. 
     */
@@ -48,7 +48,7 @@ export class PaymentRefundResponse {
     /**
     * The status of your request. This will always have the value **received**.
     */
-    'status': PaymentRefundResponse.StatusEnum;
+    'status': string;
     /**
     * The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails.
     */

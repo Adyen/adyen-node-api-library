@@ -39,7 +39,7 @@ export class OpenInvoiceDetails {
     /**
     * **openinvoice**
     */
-    'type'?: OpenInvoiceDetails.TypeEnum = OpenInvoiceDetails.TypeEnum.Openinvoice;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

@@ -60,7 +60,7 @@ export class CardDonations {
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'fundingSource'?: CardDonations.FundingSourceEnum;
+    'fundingSource'?: string;
     /**
     * The name of the card holder.
     */
@@ -111,7 +111,7 @@ export class CardDonations {
     /**
     * Default payment method details. Common for scheme payment methods, and for simple payment method details.
     */
-    'type'?: CardDonations.TypeEnum = CardDonations.TypeEnum.Scheme;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

@@ -32,7 +32,7 @@ export class PseDetails {
     /**
     * The payment method type.
     */
-    'type'?: PseDetails.TypeEnum;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

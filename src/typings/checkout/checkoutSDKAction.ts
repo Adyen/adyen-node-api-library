@@ -24,7 +24,7 @@ export class CheckoutSDKAction {
     /**
     * The type of the action.
     */
-    'type': CheckoutSDKAction.TypeEnum;
+    'type': string;
     /**
     * Specifies the URL to redirect to.
     */

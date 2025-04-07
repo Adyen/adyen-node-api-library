@@ -27,7 +27,7 @@ export class RakutenPayDetails {
     /**
     * **rakutenpay**
     */
-    'type'?: RakutenPayDetails.TypeEnum = RakutenPayDetails.TypeEnum.Rakutenpay;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

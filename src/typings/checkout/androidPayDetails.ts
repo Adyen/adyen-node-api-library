@@ -16,7 +16,7 @@ export class AndroidPayDetails {
     /**
     * **androidpay**
     */
-    'type'?: AndroidPayDetails.TypeEnum = AndroidPayDetails.TypeEnum.Androidpay;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

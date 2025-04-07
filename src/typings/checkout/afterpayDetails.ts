@@ -39,7 +39,7 @@ export class AfterpayDetails {
     /**
     * **afterpay_default**
     */
-    'type': AfterpayDetails.TypeEnum = AfterpayDetails.TypeEnum.AfterpayDefault;
+    'type': string;
 
     static discriminator: string | undefined = undefined;
 

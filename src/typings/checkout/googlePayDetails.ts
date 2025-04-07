@@ -16,7 +16,7 @@ export class GooglePayDetails {
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'fundingSource'?: GooglePayDetails.FundingSourceEnum;
+    'fundingSource'?: string;
     /**
     * The selected payment card network. 
     */
@@ -43,7 +43,7 @@ export class GooglePayDetails {
     /**
     * **googlepay**, **paywithgoogle**
     */
-    'type'?: GooglePayDetails.TypeEnum = GooglePayDetails.TypeEnum.Googlepay;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

@@ -24,7 +24,7 @@ export class CheckoutRedirectAction {
     /**
     * **redirect**
     */
-    'type': CheckoutRedirectAction.TypeEnum;
+    'type': string;
     /**
     * Specifies the URL to redirect to.
     */

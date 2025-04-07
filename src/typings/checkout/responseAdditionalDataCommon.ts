@@ -100,7 +100,7 @@ export class ResponseAdditionalDataCommon {
     /**
     * The fraud result properties of the payment.
     */
-    'fraudResultType'?: ResponseAdditionalDataCommon.FraudResultTypeEnum;
+    'fraudResultType'?: string;
     /**
     * Information regarding the funding type of the card. The possible return values are: * CHARGE * CREDIT * DEBIT * PREPAID * PREPAID_RELOADABLE  * PREPAID_NONRELOADABLE * DEFFERED_DEBIT  > This functionality requires additional configuration on Adyen\'s end. To enable it, contact the Support Team.  For receiving this field in the notification, enable **Include Funding Source** in **Notifications** > **Additional settings**.
     */
@@ -194,7 +194,7 @@ export class ResponseAdditionalDataCommon {
     /**
     * The processing model used for the recurring transaction.
     */
-    'recurringProcessingModel'?: ResponseAdditionalDataCommon.RecurringProcessingModelEnum;
+    'recurringProcessingModel'?: string;
     /**
     * If the payment is referred, this field is set to true.  This field is unavailable if the payment is referred and is usually not returned with ecommerce transactions.  Example: true
     */
@@ -250,7 +250,7 @@ export class ResponseAdditionalDataCommon {
     /**
     * The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. 
     */
-    'tokenization_store_operationType'?: ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum;
+    'tokenization_store_operationType'?: string;
     /**
     * The reference that uniquely identifies tokenized payment details.
     */

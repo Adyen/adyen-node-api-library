@@ -52,7 +52,7 @@ export class CreateCheckoutSessionResponse {
     /**
     * The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.  Possible values: * **iOS** * **Android** * **Web**
     */
-    'channel'?: CreateCheckoutSessionResponse.ChannelEnum;
+    'channel'?: string;
     'company'?: Company;
     /**
     * The shopper\'s two-letter country code.
@@ -117,7 +117,7 @@ export class CreateCheckoutSessionResponse {
     /**
     * Indicates the type of front end integration. Possible values: * **embedded** (default): Drop-in or Components integration * **hosted**: Hosted Checkout integration
     */
-    'mode'?: CreateCheckoutSessionResponse.ModeEnum = CreateCheckoutSessionResponse.ModeEnum.Embedded;
+    'mode'?: string;
     'mpiData'?: ThreeDSecureData;
     'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
@@ -131,7 +131,7 @@ export class CreateCheckoutSessionResponse {
     /**
     * Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
-    'recurringProcessingModel'?: CreateCheckoutSessionResponse.RecurringProcessingModelEnum;
+    'recurringProcessingModel'?: string;
     /**
     * Specifies the redirect method (GET or POST) when redirecting back from the issuer.
     */
@@ -164,7 +164,7 @@ export class CreateCheckoutSessionResponse {
     /**
     * Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
     */
-    'shopperInteraction'?: CreateCheckoutSessionResponse.ShopperInteractionEnum;
+    'shopperInteraction'?: string;
     /**
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
@@ -193,7 +193,7 @@ export class CreateCheckoutSessionResponse {
     /**
     * Boolean value indicating whether the card payment method should be split into separate debit and credit options.
     */
-    'splitCardFundingSources'?: boolean = false;
+    'splitCardFundingSources'?: boolean;
     /**
     * An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
     */
@@ -205,7 +205,7 @@ export class CreateCheckoutSessionResponse {
     /**
     * Specifies how payment methods should be filtered based on the \'store\' parameter:   - \'exclusive\': Only payment methods belonging to the specified \'store\' are returned.   - \'inclusive\': Payment methods from the \'store\' and those not associated with any other store are returned.
     */
-    'storeFiltrationMode'?: CreateCheckoutSessionResponse.StoreFiltrationModeEnum;
+    'storeFiltrationMode'?: string;
     /**
     * When true and `shopperReference` is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types).
     */
@@ -213,7 +213,7 @@ export class CreateCheckoutSessionResponse {
     /**
     * Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the `shopperReference` is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent.
     */
-    'storePaymentMethodMode'?: CreateCheckoutSessionResponse.StorePaymentMethodModeEnum;
+    'storePaymentMethodMode'?: string;
     /**
     * The shopper\'s telephone number.
     */
@@ -229,7 +229,7 @@ export class CreateCheckoutSessionResponse {
 	* @deprecated since Adyen Checkout API v69
 	* Use `authenticationData.authenticationOnly` instead.
     */
-    'threeDSAuthenticationOnly'?: boolean = false;
+    'threeDSAuthenticationOnly'?: boolean;
     /**
     * Set to true if the payment should be routed to a trusted MID.
     */

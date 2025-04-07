@@ -54,7 +54,7 @@ export class CheckoutBankTransferAction {
     /**
     * The type of the action.
     */
-    'type': CheckoutBankTransferAction.TypeEnum;
+    'type': string;
     /**
     * Specifies the URL to redirect to.
     */

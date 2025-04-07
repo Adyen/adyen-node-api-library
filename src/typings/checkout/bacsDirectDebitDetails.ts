@@ -43,7 +43,7 @@ export class BacsDirectDebitDetails {
     /**
     * **directdebit_GB**
     */
-    'type'?: BacsDirectDebitDetails.TypeEnum = BacsDirectDebitDetails.TypeEnum.DirectdebitGb;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

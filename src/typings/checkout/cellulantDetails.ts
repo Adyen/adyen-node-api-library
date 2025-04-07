@@ -20,7 +20,7 @@ export class CellulantDetails {
     /**
     * **Cellulant**
     */
-    'type'?: CellulantDetails.TypeEnum = CellulantDetails.TypeEnum.Cellulant;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

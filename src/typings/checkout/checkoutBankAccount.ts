@@ -12,7 +12,7 @@ export class CheckoutBankAccount {
     /**
     * The type of the bank account.
     */
-    'accountType'?: CheckoutBankAccount.AccountTypeEnum;
+    'accountType'?: string;
     /**
     * The bank account number (without separators).
     */

@@ -80,7 +80,7 @@ export class CheckoutVoucherAction {
     /**
     * **voucher**
     */
-    'type': CheckoutVoucherAction.TypeEnum;
+    'type': string;
     /**
     * Specifies the URL to redirect to.
     */

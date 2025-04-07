@@ -33,7 +33,7 @@ export class PaymentResponseAction {
     /**
     * **await**
     */
-    'type': PaymentResponseAction.TypeEnum;
+    'type': string;
     /**
     * Specifies the URL to redirect to.
     */

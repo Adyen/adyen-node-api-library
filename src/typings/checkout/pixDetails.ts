@@ -29,7 +29,7 @@ export class PixDetails {
     /**
     * The payment method type.
     */
-    'type'?: PixDetails.TypeEnum;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

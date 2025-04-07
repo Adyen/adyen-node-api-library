@@ -39,7 +39,7 @@ export class RatepayDetails {
     /**
     * **ratepay**
     */
-    'type': RatepayDetails.TypeEnum = RatepayDetails.TypeEnum.Ratepay;
+    'type': string;
 
     static discriminator: string | undefined = undefined;
 

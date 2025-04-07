@@ -39,7 +39,7 @@ export class SepaDirectDebitDetails {
     /**
     * **sepadirectdebit**
     */
-    'type'?: SepaDirectDebitDetails.TypeEnum = SepaDirectDebitDetails.TypeEnum.Sepadirectdebit;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

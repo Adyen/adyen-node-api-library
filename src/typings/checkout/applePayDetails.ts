@@ -20,7 +20,7 @@ export class ApplePayDetails {
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'fundingSource'?: ApplePayDetails.FundingSourceEnum;
+    'fundingSource'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
@@ -35,7 +35,7 @@ export class ApplePayDetails {
     /**
     * **applepay**
     */
-    'type'?: ApplePayDetails.TypeEnum = ApplePayDetails.TypeEnum.Applepay;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

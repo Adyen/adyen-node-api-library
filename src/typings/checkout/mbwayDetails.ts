@@ -24,7 +24,7 @@ export class MbwayDetails {
     /**
     * **mbway**
     */
-    'type'?: MbwayDetails.TypeEnum = MbwayDetails.TypeEnum.Mbway;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

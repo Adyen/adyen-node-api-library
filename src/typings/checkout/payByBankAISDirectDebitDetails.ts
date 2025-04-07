@@ -27,7 +27,7 @@ export class PayByBankAISDirectDebitDetails {
     /**
     * **paybybank_**
     */
-    'type': PayByBankAISDirectDebitDetails.TypeEnum = PayByBankAISDirectDebitDetails.TypeEnum.PaybybankAisDd;
+    'type': string;
 
     static discriminator: string | undefined = undefined;
 

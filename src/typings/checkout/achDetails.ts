@@ -12,7 +12,7 @@ export class AchDetails {
     /**
     * The account holder type (personal or business).
     */
-    'accountHolderType'?: AchDetails.AccountHolderTypeEnum;
+    'accountHolderType'?: string;
     /**
     * The bank account number (without separators).
     */
@@ -20,7 +20,7 @@ export class AchDetails {
     /**
     * The bank account type (checking, savings...).
     */
-    'bankAccountType'?: AchDetails.BankAccountTypeEnum;
+    'bankAccountType'?: string;
     /**
     * The bank routing number of the account. The field value is `nil` in most cases.
     */
@@ -59,7 +59,7 @@ export class AchDetails {
     /**
     * **ach**
     */
-    'type'?: AchDetails.TypeEnum = AchDetails.TypeEnum.Ach;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

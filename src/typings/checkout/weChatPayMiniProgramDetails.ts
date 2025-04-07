@@ -18,7 +18,7 @@ export class WeChatPayMiniProgramDetails {
     /**
     * **wechatpayMiniProgram**
     */
-    'type'?: WeChatPayMiniProgramDetails.TypeEnum = WeChatPayMiniProgramDetails.TypeEnum.WechatpayMiniProgram;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 

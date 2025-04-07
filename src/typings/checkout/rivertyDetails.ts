@@ -47,7 +47,7 @@ export class RivertyDetails {
     /**
     * **riverty**
     */
-    'type': RivertyDetails.TypeEnum = RivertyDetails.TypeEnum.Riverty;
+    'type': string;
 
     static discriminator: string | undefined = undefined;
 

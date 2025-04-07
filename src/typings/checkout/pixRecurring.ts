@@ -21,7 +21,7 @@ export class PixRecurring {
     /**
     * The frequency at which the shopper will be charged.
     */
-    'frequency'?: PixRecurring.FrequencyEnum;
+    'frequency'?: string;
     'minAmount'?: Amount;
     /**
     * The pspReference for the failed recurring payment. Find this in AUTHORISATION webhook you received after the billing date.

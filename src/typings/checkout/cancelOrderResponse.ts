@@ -16,7 +16,7 @@ export class CancelOrderResponse {
     /**
     * The result of the cancellation request.  Possible values:  * **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed.
     */
-    'resultCode': CancelOrderResponse.ResultCodeEnum;
+    'resultCode': string;
 
     static discriminator: string | undefined = undefined;
 
