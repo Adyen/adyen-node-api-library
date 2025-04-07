@@ -64,21 +64,6 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
     {{/isArray}}
 }
 
-{{#hasEnums}}
-export namespace {{classname}} {
-{{#vars}}
-{{#isEnum}}
-    export enum {{enumName}} {
-        {{#allowableValues}}
-        {{#enumVars}}
-        {{name}} = <any> {{{value}}}{{^-last}},{{/-last}}
-        {{/enumVars}}
-        {{/allowableValues}}
-    }
-{{/isEnum}}
-{{/vars}}
-}
-{{/hasEnums}}
 {{/isEnum}}
 {{#isEnum}}
 export type {{classname}} =
