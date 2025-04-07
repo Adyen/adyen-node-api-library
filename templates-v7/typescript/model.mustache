@@ -81,13 +81,12 @@ export namespace {{classname}} {
 {{/hasEnums}}
 {{/isEnum}}
 {{#isEnum}}
-export enum {{classname}} {
-    {{#allowableValues}}
-    {{#enumVars}}
-    {{name}} = <any> {{{value}}}{{^-last}},{{/-last}}
-    {{/enumVars}}
-    {{/allowableValues}}
-}
+export type {{classname}} =
+  {{#allowableValues}}
+  {{#enumVars}}
+  '{{value}}'{{^-last}} |{{/-last}}
+  {{/enumVars}}
+  {{/allowableValues}};
 {{/isEnum}}
 {{/model}}
 {{/models}}
