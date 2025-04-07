@@ -95,7 +95,7 @@ export class PaymentLinkResponse {
     /**
     * Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
-    'recurringProcessingModel'?: string;
+    'recurringProcessingModel'?: PaymentLinkResponse.RecurringProcessingModelEnum;
     /**
     * A reference that is used to uniquely identify the payment in future communications about the payment status.
     */
@@ -103,7 +103,7 @@ export class PaymentLinkResponse {
     /**
     * List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper\'s email address. * **shopperName** – The shopper\'s full name. * **telephoneNumber** – The shopper\'s phone number. 
     */
-    'requiredShopperFields'?: Array<string>;
+    'requiredShopperFields'?: Array<PaymentLinkResponse.RequiredShopperFieldsEnum>;
     /**
     * Website URL used for redirection after payment is completed. If provided, a **Continue** button will be shown on the payment page. If shoppers select the button, they are redirected to the specified URL.
     */
@@ -133,7 +133,7 @@ export class PaymentLinkResponse {
     /**
     * Set to **false** to hide the button that lets the shopper remove a stored payment method.
     */
-    'showRemovePaymentMethodButton'?: boolean;
+    'showRemovePaymentMethodButton'?: boolean = true;
     /**
     * The shopper\'s social security number.
     */
@@ -141,7 +141,7 @@ export class PaymentLinkResponse {
     /**
     * Boolean value indicating whether the card payment method should be split into separate debit and credit options.
     */
-    'splitCardFundingSources'?: boolean;
+    'splitCardFundingSources'?: boolean = false;
     /**
     * An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
     */
@@ -149,7 +149,7 @@ export class PaymentLinkResponse {
     /**
     * Status of the payment link. Possible values: * **active**: The link can be used to make payments. * **expired**: The expiry date for the payment link has passed. Shoppers can no longer use the link to make payments. * **completed**: The shopper completed the payment. * **paymentPending**: The shopper is in the process of making the payment. Applies to payment methods with an asynchronous flow.
     */
-    'status': string;
+    'status': PaymentLinkResponse.StatusEnum;
     /**
     * The physical store, for which this payment is processed.
     */
@@ -157,7 +157,7 @@ export class PaymentLinkResponse {
     /**
     * Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the `shopperReference` is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the `recurringProcessingModel` parameter.
     */
-    'storePaymentMethodMode'?: string;
+    'storePaymentMethodMode'?: PaymentLinkResponse.StorePaymentMethodModeEnum;
     /**
     * The shopper\'s telephone number.
     */

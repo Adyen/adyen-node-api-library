@@ -19,7 +19,7 @@ export class ThreeDS2RequestData {
     /**
     * Indicates the type of account. For example, for a multi-account card product. Length: 2 characters. Allowed values: * **01** — Not applicable * **02** — Credit * **03** — Debit
     */
-    'acctType'?: string;
+    'acctType'?: ThreeDS2RequestData.AcctTypeEnum;
     /**
     * Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The acquiring BIN enrolled for 3D Secure 2. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.
     */
@@ -31,21 +31,21 @@ export class ThreeDS2RequestData {
     /**
     * Indicates whether the Cardholder Shipping Address and Cardholder Billing Address are the same. Allowed values: * **Y** — Shipping Address matches Billing Address. * **N** — Shipping Address does not match Billing Address.
     */
-    'addrMatch'?: string;
+    'addrMatch'?: ThreeDS2RequestData.AddrMatchEnum;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     *
 	* @deprecated since Adyen Checkout API v50
 	* Use `threeDSAuthenticationOnly` instead.
     */
-    'authenticationOnly'?: boolean;
+    'authenticationOnly'?: boolean = false;
     /**
     * Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate` 
     *
 	* @deprecated since Adyen Checkout API v68
 	* Use `threeDSRequestorChallengeInd` instead.
     */
-    'challengeIndicator'?: string;
+    'challengeIndicator'?: ThreeDS2RequestData.ChallengeIndicatorEnum;
     /**
     * The environment of the shopper. Allowed values: * `app` * `browser`
     */
@@ -101,7 +101,7 @@ export class ThreeDS2RequestData {
     /**
     * The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for `deviceChannel` set to **app**. Defaults to **60** minutes.
     */
-    'sdkMaxTimeout'?: number;
+    'sdkMaxTimeout'?: number = 60;
     /**
     * The `sdkReferenceNumber` value as received from the 3D Secure 2 SDK. Only for `deviceChannel` set to **app**.
     */
@@ -126,7 +126,7 @@ export class ThreeDS2RequestData {
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
-    'threeDSRequestorChallengeInd'?: string;
+    'threeDSRequestorChallengeInd'?: ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
     /**
     * Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor identifier assigned by the Directory Server when you enrol for 3D Secure 2.
     */
@@ -143,11 +143,11 @@ export class ThreeDS2RequestData {
     /**
     * Identifies the type of transaction being authenticated. Length: 2 characters. Allowed values: * **01** — Goods/Service Purchase * **03** — Check Acceptance * **10** — Account Funding * **11** — Quasi-Cash Transaction * **28** — Prepaid Activation and Load
     */
-    'transType'?: string;
+    'transType'?: ThreeDS2RequestData.TransTypeEnum;
     /**
     * Identify the type of the transaction being authenticated.
     */
-    'transactionType'?: string;
+    'transactionType'?: ThreeDS2RequestData.TransactionTypeEnum;
     /**
     * The `whiteListStatus` value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.
     */

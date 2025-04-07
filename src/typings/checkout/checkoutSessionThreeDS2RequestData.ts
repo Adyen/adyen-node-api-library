@@ -15,7 +15,7 @@ export class CheckoutSessionThreeDS2RequestData {
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
-    'threeDSRequestorChallengeInd'?: string;
+    'threeDSRequestorChallengeInd'?: CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
     'workPhone'?: Phone;
 
     static discriminator: string | undefined = undefined;

@@ -16,7 +16,7 @@ export class PaymentDetails {
     /**
     * The payment method type.
     */
-    'type'?: string;
+    'type'?: PaymentDetails.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 

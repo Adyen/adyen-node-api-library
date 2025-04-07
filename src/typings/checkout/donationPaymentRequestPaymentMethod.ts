@@ -28,7 +28,7 @@ export class DonationPaymentRequestPaymentMethod {
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'fundingSource'?: string;
+    'fundingSource'?: DonationPaymentRequestPaymentMethod.FundingSourceEnum;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
@@ -43,7 +43,7 @@ export class DonationPaymentRequestPaymentMethod {
     /**
     * **applepay**
     */
-    'type'?: string;
+    'type'?: DonationPaymentRequestPaymentMethod.TypeEnum = DonationPaymentRequestPaymentMethod.TypeEnum.Applepay;
     /**
     * Secondary brand of the card. For example: **plastix**, **hmclub**.
     */

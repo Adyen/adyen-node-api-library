@@ -28,7 +28,7 @@ export class DokuDetails {
     /**
     * **doku**
     */
-    'type': string;
+    'type': DokuDetails.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 

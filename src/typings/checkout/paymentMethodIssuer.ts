@@ -12,7 +12,7 @@ export class PaymentMethodIssuer {
     /**
     * A boolean value indicating whether this issuer is unavailable. Can be `true` whenever the issuer is offline.
     */
-    'disabled'?: boolean;
+    'disabled'?: boolean = false;
     /**
     * The unique identifier of this issuer, to submit in requests to /payments.
     */

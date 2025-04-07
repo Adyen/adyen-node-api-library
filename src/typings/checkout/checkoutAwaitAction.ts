@@ -20,7 +20,7 @@ export class CheckoutAwaitAction {
     /**
     * **await**
     */
-    'type': string;
+    'type': CheckoutAwaitAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */

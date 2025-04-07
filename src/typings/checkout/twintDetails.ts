@@ -31,7 +31,7 @@ export class TwintDetails {
     /**
     * The payment method type.
     */
-    'type'?: string;
+    'type'?: TwintDetails.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 

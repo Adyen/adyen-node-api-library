@@ -16,7 +16,7 @@ export class PaypalUpdateOrderResponse {
     /**
     * The status of the request. This indicates whether the order was successfully updated with PayPal.
     */
-    'status': string;
+    'status': PaypalUpdateOrderResponse.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 

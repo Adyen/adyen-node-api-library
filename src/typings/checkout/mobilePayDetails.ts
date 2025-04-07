@@ -16,7 +16,7 @@ export class MobilePayDetails {
     /**
     * **mobilepay**
     */
-    'type'?: string;
+    'type'?: MobilePayDetails.TypeEnum = MobilePayDetails.TypeEnum.Mobilepay;
 
     static discriminator: string | undefined = undefined;
 

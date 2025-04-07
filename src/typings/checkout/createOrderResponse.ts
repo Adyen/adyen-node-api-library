@@ -41,7 +41,7 @@ export class CreateOrderResponse {
     /**
     * The result of the order creation request.  The value is always **Success**.
     */
-    'resultCode': string;
+    'resultCode': CreateOrderResponse.ResultCodeEnum;
 
     static discriminator: string | undefined = undefined;
 

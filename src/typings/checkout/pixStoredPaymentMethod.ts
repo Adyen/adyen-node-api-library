@@ -76,7 +76,7 @@ export class PixStoredPaymentMethod {
     /**
     * The type of payment method.
     */
-    'type'?: string;
+    'type'?: PixStoredPaymentMethod.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 

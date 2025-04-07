@@ -32,7 +32,7 @@ export class EcontextVoucherDetails {
     /**
     * **econtextvoucher**
     */
-    'type': string;
+    'type': EcontextVoucherDetails.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 

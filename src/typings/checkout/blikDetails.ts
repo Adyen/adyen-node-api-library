@@ -31,7 +31,7 @@ export class BlikDetails {
     /**
     * **blik**
     */
-    'type'?: string;
+    'type'?: BlikDetails.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 

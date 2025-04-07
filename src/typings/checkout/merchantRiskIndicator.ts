@@ -17,7 +17,7 @@ export class MerchantRiskIndicator {
     /**
     * Indicator regarding the delivery address. Allowed values: * `shipToBillingAddress` * `shipToVerifiedAddress` * `shipToNewAddress` * `shipToStore` * `digitalGoods` * `goodsNotShipped` * `other`
     */
-    'deliveryAddressIndicator'?: string;
+    'deliveryAddressIndicator'?: MerchantRiskIndicator.DeliveryAddressIndicatorEnum;
     /**
     * The delivery email address (for digital goods).
     *
@@ -32,7 +32,7 @@ export class MerchantRiskIndicator {
     /**
     * The estimated delivery time for the shopper to receive the goods. Allowed values: * `electronicDelivery` * `sameDayShipping` * `overnightShipping` * `twoOrMoreDaysShipping`
     */
-    'deliveryTimeframe'?: string;
+    'deliveryTimeframe'?: MerchantRiskIndicator.DeliveryTimeframeEnum;
     'giftCardAmount'?: Amount;
     /**
     * For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.

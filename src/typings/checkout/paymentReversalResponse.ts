@@ -28,7 +28,7 @@ export class PaymentReversalResponse {
     /**
     * The status of your request. This will always have the value **received**.
     */
-    'status': string;
+    'status': PaymentReversalResponse.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 

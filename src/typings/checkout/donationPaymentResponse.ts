@@ -32,7 +32,7 @@ export class DonationPaymentResponse {
     /**
     * The status of the donation transaction.  Possible values: * **completed** * **pending** * **refused**
     */
-    'status'?: string;
+    'status'?: DonationPaymentResponse.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 

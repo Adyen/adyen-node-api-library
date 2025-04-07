@@ -43,7 +43,7 @@ export class EftDetails {
     /**
     * **eft**
     */
-    'type'?: string;
+    'type'?: EftDetails.TypeEnum = EftDetails.TypeEnum.EftDirectdebitCa;
 
     static discriminator: string | undefined = undefined;
 

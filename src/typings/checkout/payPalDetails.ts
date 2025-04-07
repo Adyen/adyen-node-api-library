@@ -43,11 +43,11 @@ export class PayPalDetails {
     /**
     * The type of flow to initiate.
     */
-    'subtype'?: string;
+    'subtype'?: PayPalDetails.SubtypeEnum;
     /**
     * **paypal**
     */
-    'type': string;
+    'type': PayPalDetails.TypeEnum = PayPalDetails.TypeEnum.Paypal;
 
     static discriminator: string | undefined = undefined;
 

@@ -31,7 +31,7 @@ export class PayToDetails {
     /**
     * **payto**
     */
-    'type'?: string;
+    'type'?: PayToDetails.TypeEnum = PayToDetails.TypeEnum.Payto;
 
     static discriminator: string | undefined = undefined;
 

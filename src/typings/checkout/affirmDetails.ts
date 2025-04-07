@@ -16,7 +16,7 @@ export class AffirmDetails {
     /**
     * **affirm**
     */
-    'type'?: string;
+    'type'?: AffirmDetails.TypeEnum = AffirmDetails.TypeEnum.Affirm;
 
     static discriminator: string | undefined = undefined;
 

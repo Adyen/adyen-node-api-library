@@ -70,7 +70,7 @@ export class PaymentRequestPaymentMethod {
     /**
     * The account holder type (personal or business).
     */
-    'accountHolderType'?: string;
+    'accountHolderType'?: PaymentRequestPaymentMethod.AccountHolderTypeEnum;
     /**
     * The bank account number (without separators).
     */
@@ -78,7 +78,7 @@ export class PaymentRequestPaymentMethod {
     /**
     * The bank account type (checking, savings...).
     */
-    'bankAccountType'?: string;
+    'bankAccountType'?: PaymentRequestPaymentMethod.BankAccountTypeEnum;
     /**
     * The bank routing number of the account.
     */
@@ -117,7 +117,7 @@ export class PaymentRequestPaymentMethod {
     /**
     * **ach**
     */
-    'type': string;
+    'type': PaymentRequestPaymentMethod.TypeEnum = PaymentRequestPaymentMethod.TypeEnum.Ach;
     /**
     * The address where to send the invoice.
     */
@@ -149,7 +149,7 @@ export class PaymentRequestPaymentMethod {
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'fundingSource'?: string;
+    'fundingSource'?: PaymentRequestPaymentMethod.FundingSourceEnum;
     /**
     * The name of the card holder.
     */

@@ -48,7 +48,7 @@ export class FundRecipient {
     /**
     * The purpose of a digital wallet transaction.
     */
-    'walletPurpose'?: string;
+    'walletPurpose'?: FundRecipient.WalletPurposeEnum;
 
     static discriminator: string | undefined = undefined;
 

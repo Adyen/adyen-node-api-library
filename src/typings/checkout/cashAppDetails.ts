@@ -51,7 +51,7 @@ export class CashAppDetails {
     /**
     * cashapp
     */
-    'type'?: string;
+    'type'?: CashAppDetails.TypeEnum = CashAppDetails.TypeEnum.Cashapp;
 
     static discriminator: string | undefined = undefined;
 

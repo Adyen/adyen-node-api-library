@@ -24,7 +24,7 @@ export class DragonpayDetails {
     /**
     * **dragonpay**
     */
-    'type': string;
+    'type': DragonpayDetails.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 

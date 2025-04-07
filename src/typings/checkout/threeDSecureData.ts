@@ -12,7 +12,7 @@ export class ThreeDSecureData {
     /**
     * In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.  
     */
-    'authenticationResponse'?: string;
+    'authenticationResponse'?: ThreeDSecureData.AuthenticationResponseEnum;
     /**
     * The cardholder authentication value (base64 encoded, 20 bytes in a decoded form).
     */
@@ -24,11 +24,11 @@ export class ThreeDSecureData {
     /**
     * Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).
     */
-    'challengeCancel'?: string;
+    'challengeCancel'?: ThreeDSecureData.ChallengeCancelEnum;
     /**
     * In 3D Secure 2, this is the `transStatus` from the `ARes`.  
     */
-    'directoryResponse'?: string;
+    'directoryResponse'?: ThreeDSecureData.DirectoryResponseEnum;
     /**
     * Supported for 3D Secure 2. The unique transaction identifier assigned by the Directory Server (DS) to identify a single transaction.
     */

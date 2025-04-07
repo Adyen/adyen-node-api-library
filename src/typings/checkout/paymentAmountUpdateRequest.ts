@@ -18,7 +18,7 @@ export class PaymentAmountUpdateRequest {
     /**
     * The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**
     */
-    'industryUsage'?: string;
+    'industryUsage'?: PaymentAmountUpdateRequest.IndustryUsageEnum;
     /**
     * Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
     */

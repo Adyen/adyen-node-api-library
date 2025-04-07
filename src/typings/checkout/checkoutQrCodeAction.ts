@@ -28,7 +28,7 @@ export class CheckoutQrCodeAction {
     /**
     * **qrCode**
     */
-    'type': string;
+    'type': CheckoutQrCodeAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */

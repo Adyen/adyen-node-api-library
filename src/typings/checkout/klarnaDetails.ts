@@ -43,7 +43,7 @@ export class KlarnaDetails {
     /**
     * **klarna**
     */
-    'type': string;
+    'type': KlarnaDetails.TypeEnum = KlarnaDetails.TypeEnum.Klarna;
 
     static discriminator: string | undefined = undefined;
 

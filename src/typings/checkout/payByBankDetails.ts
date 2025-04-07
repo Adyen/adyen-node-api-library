@@ -20,7 +20,7 @@ export class PayByBankDetails {
     /**
     * **paybybank**
     */
-    'type': string;
+    'type': PayByBankDetails.TypeEnum = PayByBankDetails.TypeEnum.Paybybank;
 
     static discriminator: string | undefined = undefined;
 

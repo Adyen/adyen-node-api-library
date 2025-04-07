@@ -31,7 +31,7 @@ export class IdealDetails {
     /**
     * **ideal**
     */
-    'type'?: string;
+    'type'?: IdealDetails.TypeEnum = IdealDetails.TypeEnum.Ideal;
 
     static discriminator: string | undefined = undefined;
 

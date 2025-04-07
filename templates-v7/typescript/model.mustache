@@ -31,7 +31,7 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
     */
     {{/deprecated}}
 {{/description}}
-    {{#required}}'{{name}}': {{/required}}{{^required}}'{{name}}'?: {{/required}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}};
+    '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}}{{#defaultValue}} = {{#isEnum}}{{classname}}.{{/isEnum}}{{{.}}}{{/defaultValue}};
 {{/vars}}
 
     {{#discriminator}}

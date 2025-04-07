@@ -31,7 +31,7 @@ export class GenericIssuerPaymentMethodDetails {
     /**
     * **genericissuer**
     */
-    'type': string;
+    'type': GenericIssuerPaymentMethodDetails.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 

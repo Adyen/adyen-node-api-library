@@ -20,7 +20,7 @@ export class EBankingFinlandDetails {
     /**
     * **ebanking_FI**
     */
-    'type': string;
+    'type': EBankingFinlandDetails.TypeEnum = EBankingFinlandDetails.TypeEnum.EbankingFi;
 
     static discriminator: string | undefined = undefined;
 

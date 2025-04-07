@@ -35,7 +35,7 @@ export class UpiCollectDetails {
     /**
     * **upi_collect**
     */
-    'type': string;
+    'type': UpiCollectDetails.TypeEnum = UpiCollectDetails.TypeEnum.UpiCollect;
     /**
     * The virtual payment address for UPI.
     */
