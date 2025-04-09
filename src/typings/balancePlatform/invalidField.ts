@@ -10,10 +10,6 @@
 
 export class InvalidField {
     /**
-    * Description of the validation error.
-    */
-    'message': string;
-    /**
     * The field that has an invalid value.
     */
     'name': string;
@@ -21,15 +17,14 @@ export class InvalidField {
     * The invalid value.
     */
     'value': string;
+    /**
+    * Description of the validation error.
+    */
+    'message': string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "message",
-            "baseName": "message",
-            "type": "string"
-        },
         {
             "name": "name",
             "baseName": "name",
@@ -38,6 +33,11 @@ export class InvalidField {
         {
             "name": "value",
             "baseName": "value",
+            "type": "string"
+        },
+        {
+            "name": "message",
+            "baseName": "message",
             "type": "string"
         }    ];
 

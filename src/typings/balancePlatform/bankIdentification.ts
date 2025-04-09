@@ -18,7 +18,7 @@ export class BankIdentification {
     */
     'identification'?: string;
     /**
-    * The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**.
+    * The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**, **bic**.
     */
     'identificationType'?: BankIdentification.IdentificationTypeEnum;
 
@@ -48,6 +48,7 @@ export class BankIdentification {
 
 export namespace BankIdentification {
     export enum IdentificationTypeEnum {
+        Bic = 'bic',
         Iban = 'iban',
         RoutingNumber = 'routingNumber',
         SortCode = 'sortCode'
