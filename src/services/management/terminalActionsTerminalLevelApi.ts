@@ -10,7 +10,8 @@
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import {
+import { 
+    RestServiceError,
     ScheduleTerminalActionsRequest,
     ScheduleTerminalActionsResponse,
     ObjectSerializer

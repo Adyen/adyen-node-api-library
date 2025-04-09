@@ -13,6 +13,7 @@ import { BankCategoryData } from './bankCategoryData';
 import { ConfirmationTrackingData } from './confirmationTrackingData';
 import { DirectDebitInformation } from './directDebitInformation';
 import { EstimationTrackingData } from './estimationTrackingData';
+import { ExternalReason } from './externalReason';
 import { InternalCategoryData } from './internalCategoryData';
 import { InternalReviewTrackingData } from './internalReviewTrackingData';
 import { IssuedCard } from './issuedCard';
@@ -59,13 +60,14 @@ export class TransferData {
     */
     'direction'?: TransferData.DirectionEnum;
     /**
-    * The event id listed under events, that triggered the notification.
+    * The unique identifier of the latest transfer event. Included only when the `category` is **issuedCard**.
     */
     'eventId'?: string;
     /**
     * The list of events leading up to the current status of the transfer.
     */
     'events'?: Array<TransferEvent>;
+    'externalReason'?: ExternalReason | null;
     /**
     * The ID of the resource.
     */
@@ -176,6 +178,11 @@ export class TransferData {
             "type": "Array<TransferEvent>"
         },
         {
+            "name": "externalReason",
+            "baseName": "externalReason",
+            "type": "ExternalReason | null"
+        },
+        {
             "name": "id",
             "baseName": "id",
             "type": "string"
@@ -265,6 +272,7 @@ export namespace TransferData {
         DirectDebitNotSupported = 'directDebitNotSupported',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
+        Pending = 'pending',
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',
