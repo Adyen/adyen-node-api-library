@@ -159,6 +159,7 @@ export namespace NotificationRequestItem {
         Donation = <any> 'DONATION',
         Expire = <any> 'EXPIRE',
         HandledExternally = <any> 'HANDLED_EXTERNALLY',
+        IssuerComments = <any> 'ISSUER_COMMENTS',
         ManualReviewAccept = <any> 'MANUAL_REVIEW_ACCEPT',
         ManualReviewReject = <any> 'MANUAL_REVIEW_REJECT',
         NotificationOfChargeback = <any> 'NOTIFICATION_OF_CHARGEBACK',
