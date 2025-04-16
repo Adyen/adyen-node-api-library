@@ -12,7 +12,6 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     GetNetworkTokenResponse,
-    RestServiceError,
     UpdateNetworkTokenRequest,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
