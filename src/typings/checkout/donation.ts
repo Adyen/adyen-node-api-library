@@ -22,6 +22,10 @@ export class Donation {
     */
     'maxRoundupAmount'?: number;
     /**
+    * The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.
+    */
+    'type': string;
+    /**
     * The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when `donationType` is **fixedAmounts**.
     */
     'values'?: Array<number>;
@@ -43,6 +47,11 @@ export class Donation {
             "name": "maxRoundupAmount",
             "baseName": "maxRoundupAmount",
             "type": "number"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "string"
         },
         {
             "name": "values",
