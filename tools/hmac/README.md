@@ -1,9 +1,9 @@
 ## HMAC Tools
 
 This folder contains the scripts/tool to calculate the HMAC signature of the webhook payload.  
-They can be used to troubleshoot the HMAC signature calculation.
+They can be used to troubleshoot the HMAC signature calculation. See [Webhooks documentation](https://docs.adyen.com/development-resources/webhooks/) page.
 
-Check tools/hmac/package.json to confirm the Adyen Node API library version
+Check `tools/hmac/package.json` to confirm the Adyen Node API library version
 
 Note: make sure you are using the HMAC key used to generate the signature associated with the payload in the JSON file
 
