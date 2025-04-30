@@ -44,7 +44,9 @@ console.log('********');
 console.log(`Payload file: ${payloadFile}`);
 console.log(`Payload length: ${payload.length} characters`);
 /*
-// uncomment if needed
+// uncomment if needed to log number of new lines and number of spaces: this can be useful to confirm the payload sent by Adyen
+// is the same as the one you receive/parse
+
 const newlineCount = (payload.match(/\n/g) || []).length;
 const spaceCount = (payload.match(/ /g) || []).length;
 
