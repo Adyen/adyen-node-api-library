@@ -1,5 +1,6 @@
 // script to calculate the HMAC signature of Payments webhooks (where the signature is calculated considering
 // a subset of the fields in the payload - i.e. NotificationRequestItem object)
+// Note: HMAC signature is found in the AdditionalData object of the request payload
 //
 // Run with: `node calculateHmacPayments.js {hmacKey} {path to JSON file}
 //
