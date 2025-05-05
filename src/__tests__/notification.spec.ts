@@ -311,4 +311,49 @@ describe("Notification Test", function (): void {
         expect(negativeBalanceCompensationWarningNotificationRequest.data.id).toBe("BA00000000000000000001");
         expect(negativeBalanceCompensationWarningNotificationRequest.data.creationDate?.toISOString()).toBe(new Date("2024-07-02T02:01:08+02:00").toISOString());
     });
+
+    // test additionalData without metadata
+    it("should correctly store additionalData as a key-value strings", () => {
+        const notification = new NotificationRequestItem();
+        notification.amount = { currency: "EUR", value: 1000 };
+        notification.pspReference = "1234567890123456";
+        notification.eventCode = NotificationEnum.Authorisation;
+        notification.eventDate = "2024-03-05T12:00:00Z";
+        notification.merchantAccountCode = "TestMerchant";
+        notification.merchantReference = "Order-12345";
+        notification.success = SuccessEnum.True;
+        notification.additionalData = {
+            orderId: "12345",
+            customerId: "54321",
+        }    
+
+        expect(notification.additionalData).toBeDefined();
+        expect(notification.additionalData?.orderId).toBe("12345");
+        expect(notification.additionalData?.customerId).toBe("54321");
+        expect(notification.additionalData.metadata).toBeUndefined;
+    }); 
+
+    // test additionalData with metadata as set of key-value pairs prefixed with 'metadata.'. For example, 'metadata.myField: myValue'
+    it("should correctly store additionalData as a key-value object", () => {
+        const notification = new NotificationRequestItem();
+        notification.amount = { currency: "EUR", value: 1000 };
+        notification.pspReference = "1234567890123456";
+        notification.eventCode = NotificationEnum.Authorisation;
+        notification.eventDate = "2024-03-05T12:00:00Z";
+        notification.merchantAccountCode = "TestMerchant";
+        notification.merchantReference = "Order-12345";
+        notification.success = SuccessEnum.True;
+        notification.additionalData = {
+            orderId: "12345",
+            customerId: "54321",
+            "metadata.myField": "myValue",
+            "metadata.anotherField": "anotherValue"
+        }    
+
+        expect(notification.additionalData).toBeDefined();
+        expect(notification.additionalData?.orderId).toBe("12345");
+        expect(notification.additionalData?.customerId).toBe("54321");
+        expect(notification.additionalData["metadata.myField"]).toBe("myValue");
+    });
+    
 });
