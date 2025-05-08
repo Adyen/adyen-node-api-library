@@ -21,6 +21,7 @@ import { PaymentMethodRequestRemovedNotificationRequest } from "../typings/manag
 import { PaymentMethodScheduledForRemovalNotificationRequest } from "../typings/managementWebhooks/paymentMethodScheduledForRemovalNotificationRequest";
 import { TransactionNotificationRequestV4 } from "../typings/transactionWebhooks/transactionNotificationRequestV4";
 import { NegativeBalanceCompensationWarningNotificationRequest } from "../typings/negativeBalanceWarningWebhooks/negativeBalanceCompensationWarningNotificationRequest";
+import { BalanceAccountBalanceNotificationRequest } from "../typings/balanceWebhooks/balanceAccountBalanceNotificationRequest";
 
 describe("Notification Test", function (): void {
 
@@ -386,4 +387,35 @@ describe("Notification Test", function (): void {
         expect(relayedAuthenticationRequest.paymentInstrumentId).toBe("PI123ABCDEFGHIJKLMN45678");
         expect(relayedAuthenticationRequest.purchase).toBeDefined();
     });
+
+    it("should deserialize BalanceWebhooks BalanceAccountBalanceNotificationRequest", function (): void {
+        const json = {
+            "data": {
+              "settingIds": "BWHS00000000000000000000000001",
+              "creationDate": "2025-01-19T13:37:38+02:00",
+              "balancePlatform": "YOUR_BALANCE_PLATFORM",
+              "currency": "USD",
+              "balances": {
+                "available": 499900,
+                "pending": 350000,
+                "reserved": 120000,
+                "balance": 470000
+              }
+            },
+            "environment": "test",
+            "type": "balancePlatform.balanceAccount.balance.updated"
+          };
+        const jsonString = JSON.stringify(json);
+        const bankingWebhookHandler = new BankingWebhookHandler(jsonString);
+        const balanceAccountBalanceNotificationRequest = bankingWebhookHandler.getBalanceAccountBalanceNotificationRequest();
+        expect(balanceAccountBalanceNotificationRequest).toBeTruthy();
+        expect(balanceAccountBalanceNotificationRequest.type).toBe(BalanceAccountBalanceNotificationRequest
+            .TypeEnum.BalancePlatformBalanceAccountBalanceUpdated
+        );
+        expect(balanceAccountBalanceNotificationRequest.environment).toBe("test");
+        expect(balanceAccountBalanceNotificationRequest.data).toBeDefined();
+        expect(balanceAccountBalanceNotificationRequest.data.balancePlatform).toBe("YOUR_BALANCE_PLATFORM");
+        expect(balanceAccountBalanceNotificationRequest.data .currency).toBe("USD");
+    });
+
 });

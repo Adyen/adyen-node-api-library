@@ -5,7 +5,7 @@
  * See the LICENSE file for more info.
  */
 
-import {configurationWebhooks, acsWebhooks, reportWebhooks, transferWebhooks, transactionWebhooks, negativeBalanceWarningWebhooks} from "../typings";
+import {configurationWebhooks, acsWebhooks, reportWebhooks, transferWebhooks, transactionWebhooks, negativeBalanceWarningWebhooks, balanceWebhooks} from "../typings";
 
 class BankingWebhookHandler {
     private readonly payload: string;
@@ -17,6 +17,7 @@ class BankingWebhookHandler {
     // Return generic webhook type
     public getGenericWebhook(): acsWebhooks.AuthenticationNotificationRequest
         | acsWebhooks.RelayedAuthenticationRequest
+        | balanceWebhooks.BalanceAccountBalanceNotificationRequest
         | configurationWebhooks.AccountHolderNotificationRequest
         | configurationWebhooks.BalanceAccountNotificationRequest
         | configurationWebhooks.PaymentNotificationRequest
@@ -37,7 +38,7 @@ class BankingWebhookHandler {
         }
 
         if(Object.values(configurationWebhooks.BalanceAccountNotificationRequest.TypeEnum).includes(type)){
-            return this.getBalanceAccountNotificationRequest();
+            return this.getBalanceAccountBalanceNotificationRequest();
         }
 
         if(Object.values(configurationWebhooks.CardOrderNotificationRequest.TypeEnum).includes(type)){
@@ -68,6 +69,10 @@ class BankingWebhookHandler {
             return this.getTransactionNotificationRequest();
         }
 
+        if(Object.values(balanceWebhooks.BalanceAccountBalanceNotificationRequest.TypeEnum).includes(type)){
+            return this.BalanceAccountBalanceNotificationRequest();
+        }
+
         if(!type && this.payload["paymentInstrumentId"]){
             // ad-hoc fix for the relayed authentication request
             // if type is undefined but paymentInstrumentId is present then it is a relayedAuthenticationRequest
@@ -85,12 +90,12 @@ class BankingWebhookHandler {
         return acsWebhooks.ObjectSerializer.deserialize(this.payload, "RelayedAuthenticationRequest");
     }
 
-    public getAccountHolderNotificationRequest(): configurationWebhooks.AccountHolderNotificationRequest {
-        return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "AccountHolderNotificationRequest");
+    public getBalanceAccountBalanceNotificationRequest(): balanceWebhooks.BalanceAccountBalanceNotificationRequest {
+        return balanceWebhooks.ObjectSerializer.deserialize(this.payload, "BalanceAccountBalanceNotificationRequest");
     }
 
-    public getBalanceAccountNotificationRequest(): configurationWebhooks.BalanceAccountNotificationRequest {
-        return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "BalanceAccountNotificationRequest");
+    public getAccountHolderNotificationRequest(): configurationWebhooks.AccountHolderNotificationRequest {
+        return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "AccountHolderNotificationRequest");
     }
 
     public getCardOrderNotificationRequest(): configurationWebhooks.CardOrderNotificationRequest {
@@ -119,6 +124,10 @@ class BankingWebhookHandler {
 
     public getTransactionNotificationRequest(): transactionWebhooks.TransactionNotificationRequestV4 {
         return transactionWebhooks.ObjectSerializer.deserialize(this.payload, "TransactionNotificationRequestV4");
+    }
+
+    public BalanceAccountBalanceNotificationRequest(): balanceWebhooks.BalanceAccountBalanceNotificationRequest {
+        return balanceWebhooks.ObjectSerializer.deserialize(this.payload, "BalanceAccountBalanceNotificationRequest");
     }
 }
 
