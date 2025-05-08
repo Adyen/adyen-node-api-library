@@ -311,4 +311,79 @@ describe("Notification Test", function (): void {
         expect(negativeBalanceCompensationWarningNotificationRequest.data.id).toBe("BA00000000000000000001");
         expect(negativeBalanceCompensationWarningNotificationRequest.data.creationDate?.toISOString()).toBe(new Date("2024-07-02T02:01:08+02:00").toISOString());
     });
+
+    it("should deserialize AcsWebhook AuthenticationNotificationRequest", function (): void {
+        const json = {
+            "data": {
+              "authentication": {
+                "acsTransId": "6a4c1709-a42e-4c7f-96c7-1043adacfc97",
+                "challenge": {
+                  "flow": "OOB",
+                  "lastInteraction": "2022-12-22T15:49:03+01:00"
+                },
+                "challengeIndicator": "01",
+                "createdAt": "2022-12-22T15:45:03+01:00",
+                "deviceChannel": "app",
+                "dsTransID": "a3b86754-444d-46ca-95a2-ada351d3f42c",
+                "exemptionIndicator": "lowValue",
+                "inPSD2Scope": true,
+                "messageCategory": "payment",
+                "messageVersion": "2.2.0",
+                "riskScore": 0,
+                "threeDSServerTransID": "6edcc246-23ee-4e94-ac5d-8ae620bea7d9",
+                "transStatus": "Y",
+                "type": "challenge"
+              },
+              "balancePlatform": "YOUR_BALANCE_PLATFORM",
+              "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+              "paymentInstrumentId": "PI3227C223222B5BPCMFXD2XG",
+              "purchase": {
+                "date": "2022-12-22T15:49:03+01:00",
+                "merchantName": "TeaShop_NL",
+                "originalAmount": {
+                  "currency": "EUR",
+                  "value": 1000
+                }
+              },
+              "status": "authenticated"
+            },
+            "environment": "test",
+            "timestamp": "2022-12-22T15:42:03+01:00",
+            "type": "balancePlatform.authentication.created"
+          };
+        const jsonString = JSON.stringify(json);
+        const bankingWebhookHandler = new BankingWebhookHandler(jsonString);
+        const authenticationNotificationRequest = bankingWebhookHandler.getAuthenticationNotificationRequest();
+        expect(authenticationNotificationRequest).toBeTruthy();
+        expect(authenticationNotificationRequest.type).toBe(AuthenticationNotificationRequest
+            .TypeEnum.BalancePlatformAuthenticationCreated
+        );
+        expect(authenticationNotificationRequest.environment).toBe("test");
+        expect(authenticationNotificationRequest.timestamp?.toISOString()).toBe(new Date("2022-12-22T15:42:03+01:00").toISOString());
+        expect(authenticationNotificationRequest.data).toBeDefined();
+        expect(authenticationNotificationRequest.data.balancePlatform).toBe("YOUR_BALANCE_PLATFORM");
+        expect(authenticationNotificationRequest.data.id).toBe("497f6eca-6276-4993-bfeb-53cbbbba6f08");
+    });
+
+    it("should deserialize AcsWebhook RelayedAuthenticationRequest", function (): void {
+        const json = {
+            "id": "1ea64f8e-d1e1-4b9d-a3a2-3953e385b2c8",
+            "paymentInstrumentId": "PI123ABCDEFGHIJKLMN45678",
+            "purchase": {
+              "date": "2025-03-06T15:17:55Z",
+              "merchantName": "widgetsInc",
+              "originalAmount": {
+                "currency": "EUR",
+                "value": 14548
+              }
+            }
+          };
+        const jsonString = JSON.stringify(json);
+        const bankingWebhookHandler = new BankingWebhookHandler(jsonString);
+        const relayedAuthenticationRequest = bankingWebhookHandler.getRelayedAuthenticationRequest();
+        expect(relayedAuthenticationRequest).toBeTruthy();
+        expect(relayedAuthenticationRequest.id).toBe("1ea64f8e-d1e1-4b9d-a3a2-3953e385b2c8");
+        expect(relayedAuthenticationRequest.paymentInstrumentId).toBe("PI123ABCDEFGHIJKLMN45678");
+        expect(relayedAuthenticationRequest.purchase).toBeDefined();
+    });
 });

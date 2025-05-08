@@ -9,23 +9,33 @@
 
 
 export * from './amount';
+export * from './authenticationDecision';
 export * from './authenticationInfo';
 export * from './authenticationNotificationData';
 export * from './authenticationNotificationRequest';
 export * from './balancePlatformNotificationResponse';
 export * from './challengeInfo';
+export * from './purchase';
 export * from './purchaseInfo';
+export * from './relayedAuthenticationRequest';
+export * from './relayedAuthenticationResponse';
 export * from './resource';
+export * from './serviceError';
 
 
 import { Amount } from './amount';
+import { AuthenticationDecision } from './authenticationDecision';
 import { AuthenticationInfo } from './authenticationInfo';
 import { AuthenticationNotificationData } from './authenticationNotificationData';
 import { AuthenticationNotificationRequest } from './authenticationNotificationRequest';
 import { BalancePlatformNotificationResponse } from './balancePlatformNotificationResponse';
 import { ChallengeInfo } from './challengeInfo';
+import { Purchase } from './purchase';
 import { PurchaseInfo } from './purchaseInfo';
+import { RelayedAuthenticationRequest } from './relayedAuthenticationRequest';
+import { RelayedAuthenticationResponse } from './relayedAuthenticationResponse';
 import { Resource } from './resource';
+import { ServiceError } from './serviceError';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -40,6 +50,7 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
+        "AuthenticationDecision.StatusEnum": AuthenticationDecision.StatusEnum,
         "AuthenticationInfo.ChallengeIndicatorEnum": AuthenticationInfo.ChallengeIndicatorEnum,
         "AuthenticationInfo.DeviceChannelEnum": AuthenticationInfo.DeviceChannelEnum,
         "AuthenticationInfo.ExemptionIndicatorEnum": AuthenticationInfo.ExemptionIndicatorEnum,
@@ -55,13 +66,18 @@ let enumsMap: {[index: string]: any} = {
 
 let typeMap: {[index: string]: any} = {
     "Amount": Amount,
+    "AuthenticationDecision": AuthenticationDecision,
     "AuthenticationInfo": AuthenticationInfo,
     "AuthenticationNotificationData": AuthenticationNotificationData,
     "AuthenticationNotificationRequest": AuthenticationNotificationRequest,
     "BalancePlatformNotificationResponse": BalancePlatformNotificationResponse,
     "ChallengeInfo": ChallengeInfo,
+    "Purchase": Purchase,
     "PurchaseInfo": PurchaseInfo,
+    "RelayedAuthenticationRequest": RelayedAuthenticationRequest,
+    "RelayedAuthenticationResponse": RelayedAuthenticationResponse,
     "Resource": Resource,
+    "ServiceError": ServiceError,
 }
 
 export class ObjectSerializer {

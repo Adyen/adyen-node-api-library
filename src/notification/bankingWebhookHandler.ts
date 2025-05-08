@@ -16,6 +16,7 @@ class BankingWebhookHandler {
 
     // Return generic webhook type
     public getGenericWebhook(): acsWebhooks.AuthenticationNotificationRequest
+        | acsWebhooks.RelayedAuthenticationRequest
         | configurationWebhooks.AccountHolderNotificationRequest
         | configurationWebhooks.BalanceAccountNotificationRequest
         | configurationWebhooks.PaymentNotificationRequest
@@ -67,11 +68,21 @@ class BankingWebhookHandler {
             return this.getTransactionNotificationRequest();
         }
 
+        if(!type && this.payload["paymentInstrumentId"]){
+            // ad-hoc fix for the relayed authentication request
+            // if type is undefined but paymentInstrumentId is present then it is a relayedAuthenticationRequest
+            return this.getRelayedAuthenticationRequest();
+        }
+
         throw new Error("Could not parse the json payload: " + this.payload);
     }
 
     public getAuthenticationNotificationRequest(): acsWebhooks.AuthenticationNotificationRequest {
         return acsWebhooks.ObjectSerializer.deserialize(this.payload, "AuthenticationNotificationRequest");
+    }
+
+    public getRelayedAuthenticationRequest(): acsWebhooks.RelayedAuthenticationRequest {
+        return acsWebhooks.ObjectSerializer.deserialize(this.payload, "RelayedAuthenticationRequest");
     }
 
     public getAccountHolderNotificationRequest(): configurationWebhooks.AccountHolderNotificationRequest {
