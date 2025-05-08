@@ -29,6 +29,8 @@ export * from './additionalDataWallets';
 export * from './address';
 export * from './affirmDetails';
 export * from './afterpayDetails';
+export * from './agency';
+export * from './airline';
 export * from './amazonPayDetails';
 export * from './amount';
 export * from './amounts';
@@ -86,12 +88,12 @@ export * from './donationCampaignsRequest';
 export * from './donationCampaignsResponse';
 export * from './donationPaymentRequest';
 export * from './donationPaymentResponse';
-export * from './dotpayDetails';
 export * from './dragonpayDetails';
 export * from './eBankingFinlandDetails';
 export * from './econtextVoucherDetails';
 export * from './eftDetails';
 export * from './encryptedOrderData';
+export * from './enhancedSchemeData';
 export * from './externalPlatform';
 export * from './fastlaneDetails';
 export * from './forexQuote';
@@ -100,7 +102,6 @@ export * from './fraudResult';
 export * from './fundOrigin';
 export * from './fundRecipient';
 export * from './genericIssuerPaymentMethodDetails';
-export * from './giropayDetails';
 export * from './googlePayDetails';
 export * from './googlePayDonations';
 export * from './idealDetails';
@@ -110,6 +111,7 @@ export * from './installmentOption';
 export * from './installments';
 export * from './item';
 export * from './klarnaDetails';
+export * from './leg';
 export * from './lineItem';
 export * from './listStoredPaymentMethodsResponse';
 export * from './mandate';
@@ -121,6 +123,7 @@ export * from './mobilePayDetails';
 export * from './molPayDetails';
 export * from './name';
 export * from './openInvoiceDetails';
+export * from './passenger';
 export * from './payByBankAISDirectDebitDetails';
 export * from './payByBankDetails';
 export * from './payPalDetails';
@@ -161,6 +164,7 @@ export * from './pixDetails';
 export * from './pixRecurring';
 export * from './platformChargebackLogic';
 export * from './pseDetails';
+export * from './rakutenPayDetails';
 export * from './ratepayDetails';
 export * from './recurring';
 export * from './responseAdditionalData3DSecure';
@@ -201,6 +205,8 @@ export * from './threeDSRequestData';
 export * from './threeDSRequestorAuthenticationInfo';
 export * from './threeDSRequestorPriorAuthenticationInfo';
 export * from './threeDSecureData';
+export * from './ticket';
+export * from './travelAgency';
 export * from './twintDetails';
 export * from './updatePaymentLinkRequest';
 export * from './upiCollectDetails';
@@ -235,6 +241,8 @@ import { AdditionalDataWallets } from './additionalDataWallets';
 import { Address } from './address';
 import { AffirmDetails } from './affirmDetails';
 import { AfterpayDetails } from './afterpayDetails';
+import { Agency } from './agency';
+import { Airline } from './airline';
 import { AmazonPayDetails } from './amazonPayDetails';
 import { Amount } from './amount';
 import { Amounts } from './amounts';
@@ -292,12 +300,12 @@ import { DonationCampaignsRequest } from './donationCampaignsRequest';
 import { DonationCampaignsResponse } from './donationCampaignsResponse';
 import { DonationPaymentRequest } from './donationPaymentRequest';
 import { DonationPaymentResponse } from './donationPaymentResponse';
-import { DotpayDetails } from './dotpayDetails';
 import { DragonpayDetails } from './dragonpayDetails';
 import { EBankingFinlandDetails } from './eBankingFinlandDetails';
 import { EcontextVoucherDetails } from './econtextVoucherDetails';
 import { EftDetails } from './eftDetails';
 import { EncryptedOrderData } from './encryptedOrderData';
+import { EnhancedSchemeData } from './enhancedSchemeData';
 import { ExternalPlatform } from './externalPlatform';
 import { FastlaneDetails } from './fastlaneDetails';
 import { ForexQuote } from './forexQuote';
@@ -306,7 +314,6 @@ import { FraudResult } from './fraudResult';
 import { FundOrigin } from './fundOrigin';
 import { FundRecipient } from './fundRecipient';
 import { GenericIssuerPaymentMethodDetails } from './genericIssuerPaymentMethodDetails';
-import { GiropayDetails } from './giropayDetails';
 import { GooglePayDetails } from './googlePayDetails';
 import { GooglePayDonations } from './googlePayDonations';
 import { IdealDetails } from './idealDetails';
@@ -316,6 +323,7 @@ import { InstallmentOption } from './installmentOption';
 import { Installments } from './installments';
 import { Item } from './item';
 import { KlarnaDetails } from './klarnaDetails';
+import { Leg } from './leg';
 import { LineItem } from './lineItem';
 import { ListStoredPaymentMethodsResponse } from './listStoredPaymentMethodsResponse';
 import { Mandate } from './mandate';
@@ -327,6 +335,7 @@ import { MobilePayDetails } from './mobilePayDetails';
 import { MolPayDetails } from './molPayDetails';
 import { Name } from './name';
 import { OpenInvoiceDetails } from './openInvoiceDetails';
+import { Passenger } from './passenger';
 import { PayByBankAISDirectDebitDetails } from './payByBankAISDirectDebitDetails';
 import { PayByBankDetails } from './payByBankDetails';
 import { PayPalDetails } from './payPalDetails';
@@ -367,6 +376,7 @@ import { PixDetails } from './pixDetails';
 import { PixRecurring } from './pixRecurring';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { PseDetails } from './pseDetails';
+import { RakutenPayDetails } from './rakutenPayDetails';
 import { RatepayDetails } from './ratepayDetails';
 import { Recurring } from './recurring';
 import { ResponseAdditionalData3DSecure } from './responseAdditionalData3DSecure';
@@ -407,6 +417,8 @@ import { ThreeDSRequestData } from './threeDSRequestData';
 import { ThreeDSRequestorAuthenticationInfo } from './threeDSRequestorAuthenticationInfo';
 import { ThreeDSRequestorPriorAuthenticationInfo } from './threeDSRequestorPriorAuthenticationInfo';
 import { ThreeDSecureData } from './threeDSecureData';
+import { Ticket } from './ticket';
+import { TravelAgency } from './travelAgency';
 import { TwintDetails } from './twintDetails';
 import { UpdatePaymentLinkRequest } from './updatePaymentLinkRequest';
 import { UpiCollectDetails } from './upiCollectDetails';
@@ -445,6 +457,7 @@ let enumsMap: {[index: string]: any} = {
         "AcctInfo.ShipAddressUsageIndEnum": AcctInfo.ShipAddressUsageIndEnum,
         "AcctInfo.ShipNameIndicatorEnum": AcctInfo.ShipNameIndicatorEnum,
         "AcctInfo.SuspiciousAccActivityEnum": AcctInfo.SuspiciousAccActivityEnum,
+        "AchDetails.AccountHolderTypeEnum": AchDetails.AccountHolderTypeEnum,
         "AchDetails.BankAccountTypeEnum": AchDetails.BankAccountTypeEnum,
         "AchDetails.TypeEnum": AchDetails.TypeEnum,
         "AdditionalData3DSecure.ChallengeWindowSizeEnum": AdditionalData3DSecure.ChallengeWindowSizeEnum,
@@ -505,7 +518,6 @@ let enumsMap: {[index: string]: any} = {
         "DonationPaymentRequest.RecurringProcessingModelEnum": DonationPaymentRequest.RecurringProcessingModelEnum,
         "DonationPaymentRequest.ShopperInteractionEnum": DonationPaymentRequest.ShopperInteractionEnum,
         "DonationPaymentResponse.StatusEnum": DonationPaymentResponse.StatusEnum,
-        "DotpayDetails.TypeEnum": DotpayDetails.TypeEnum,
         "DragonpayDetails.TypeEnum": DragonpayDetails.TypeEnum,
         "EBankingFinlandDetails.TypeEnum": EBankingFinlandDetails.TypeEnum,
         "EcontextVoucherDetails.TypeEnum": EcontextVoucherDetails.TypeEnum,
@@ -513,7 +525,6 @@ let enumsMap: {[index: string]: any} = {
         "FastlaneDetails.TypeEnum": FastlaneDetails.TypeEnum,
         "FundRecipient.WalletPurposeEnum": FundRecipient.WalletPurposeEnum,
         "GenericIssuerPaymentMethodDetails.TypeEnum": GenericIssuerPaymentMethodDetails.TypeEnum,
-        "GiropayDetails.TypeEnum": GiropayDetails.TypeEnum,
         "GooglePayDetails.FundingSourceEnum": GooglePayDetails.FundingSourceEnum,
         "GooglePayDetails.TypeEnum": GooglePayDetails.TypeEnum,
         "GooglePayDonations.FundingSourceEnum": GooglePayDonations.FundingSourceEnum,
@@ -577,11 +588,13 @@ let enumsMap: {[index: string]: any} = {
         "PixRecurring.FrequencyEnum": PixRecurring.FrequencyEnum,
         "PlatformChargebackLogic.BehaviorEnum": PlatformChargebackLogic.BehaviorEnum,
         "PseDetails.TypeEnum": PseDetails.TypeEnum,
+        "RakutenPayDetails.TypeEnum": RakutenPayDetails.TypeEnum,
         "RatepayDetails.TypeEnum": RatepayDetails.TypeEnum,
         "Recurring.ContractEnum": Recurring.ContractEnum,
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
         "ResponseAdditionalDataCard.CardProductIdEnum": ResponseAdditionalDataCard.CardProductIdEnum,
         "ResponseAdditionalDataCommon.FraudResultTypeEnum": ResponseAdditionalDataCommon.FraudResultTypeEnum,
+        "ResponseAdditionalDataCommon.FraudRiskLevelEnum": ResponseAdditionalDataCommon.FraudRiskLevelEnum,
         "ResponseAdditionalDataCommon.RecurringProcessingModelEnum": ResponseAdditionalDataCommon.RecurringProcessingModelEnum,
         "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum": ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum,
         "RivertyDetails.TypeEnum": RivertyDetails.TypeEnum,
@@ -651,6 +664,8 @@ let typeMap: {[index: string]: any} = {
     "Address": Address,
     "AffirmDetails": AffirmDetails,
     "AfterpayDetails": AfterpayDetails,
+    "Agency": Agency,
+    "Airline": Airline,
     "AmazonPayDetails": AmazonPayDetails,
     "Amount": Amount,
     "Amounts": Amounts,
@@ -708,12 +723,12 @@ let typeMap: {[index: string]: any} = {
     "DonationCampaignsResponse": DonationCampaignsResponse,
     "DonationPaymentRequest": DonationPaymentRequest,
     "DonationPaymentResponse": DonationPaymentResponse,
-    "DotpayDetails": DotpayDetails,
     "DragonpayDetails": DragonpayDetails,
     "EBankingFinlandDetails": EBankingFinlandDetails,
     "EcontextVoucherDetails": EcontextVoucherDetails,
     "EftDetails": EftDetails,
     "EncryptedOrderData": EncryptedOrderData,
+    "EnhancedSchemeData": EnhancedSchemeData,
     "ExternalPlatform": ExternalPlatform,
     "FastlaneDetails": FastlaneDetails,
     "ForexQuote": ForexQuote,
@@ -722,7 +737,6 @@ let typeMap: {[index: string]: any} = {
     "FundOrigin": FundOrigin,
     "FundRecipient": FundRecipient,
     "GenericIssuerPaymentMethodDetails": GenericIssuerPaymentMethodDetails,
-    "GiropayDetails": GiropayDetails,
     "GooglePayDetails": GooglePayDetails,
     "GooglePayDonations": GooglePayDonations,
     "IdealDetails": IdealDetails,
@@ -732,6 +746,7 @@ let typeMap: {[index: string]: any} = {
     "Installments": Installments,
     "Item": Item,
     "KlarnaDetails": KlarnaDetails,
+    "Leg": Leg,
     "LineItem": LineItem,
     "ListStoredPaymentMethodsResponse": ListStoredPaymentMethodsResponse,
     "Mandate": Mandate,
@@ -743,6 +758,7 @@ let typeMap: {[index: string]: any} = {
     "MolPayDetails": MolPayDetails,
     "Name": Name,
     "OpenInvoiceDetails": OpenInvoiceDetails,
+    "Passenger": Passenger,
     "PayByBankAISDirectDebitDetails": PayByBankAISDirectDebitDetails,
     "PayByBankDetails": PayByBankDetails,
     "PayPalDetails": PayPalDetails,
@@ -783,6 +799,7 @@ let typeMap: {[index: string]: any} = {
     "PixRecurring": PixRecurring,
     "PlatformChargebackLogic": PlatformChargebackLogic,
     "PseDetails": PseDetails,
+    "RakutenPayDetails": RakutenPayDetails,
     "RatepayDetails": RatepayDetails,
     "Recurring": Recurring,
     "ResponseAdditionalData3DSecure": ResponseAdditionalData3DSecure,
@@ -823,6 +840,8 @@ let typeMap: {[index: string]: any} = {
     "ThreeDSRequestorAuthenticationInfo": ThreeDSRequestorAuthenticationInfo,
     "ThreeDSRequestorPriorAuthenticationInfo": ThreeDSRequestorPriorAuthenticationInfo,
     "ThreeDSecureData": ThreeDSecureData,
+    "Ticket": Ticket,
+    "TravelAgency": TravelAgency,
     "TwintDetails": TwintDetails,
     "UpdatePaymentLinkRequest": UpdatePaymentLinkRequest,
     "UpiCollectDetails": UpiCollectDetails,

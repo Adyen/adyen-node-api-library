@@ -76,6 +76,7 @@ export namespace StoredPaymentMethodDetails {
         Gcash = 'gcash',
         Dana = 'dana',
         Kakaopay = 'kakaopay',
-        Truemoney = 'truemoney'
+        Truemoney = 'truemoney',
+        Paysafecard = 'paysafecard'
     }
 }

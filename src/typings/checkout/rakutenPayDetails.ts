@@ -8,7 +8,7 @@
  */
 
 
-export class GiropayDetails {
+export class RakutenPayDetails {
     /**
     * The checkout attempt identifier.
     */
@@ -25,9 +25,9 @@ export class GiropayDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
-    * **giropay**
+    * **rakutenpay**
     */
-    'type'?: GiropayDetails.TypeEnum;
+    'type'?: RakutenPayDetails.TypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -50,16 +50,16 @@ export class GiropayDetails {
         {
             "name": "type",
             "baseName": "type",
-            "type": "GiropayDetails.TypeEnum"
+            "type": "RakutenPayDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return GiropayDetails.attributeTypeMap;
+        return RakutenPayDetails.attributeTypeMap;
     }
 }
 
-export namespace GiropayDetails {
+export namespace RakutenPayDetails {
     export enum TypeEnum {
-        Giropay = 'giropay'
+        Rakutenpay = 'rakutenpay'
     }
 }

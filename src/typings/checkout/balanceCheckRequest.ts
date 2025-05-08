@@ -55,7 +55,7 @@ export class BalanceCheckRequest {
     'fraudOffset'?: number;
     'installments'?: Installments | null;
     /**
-    * The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If not supplied, left empty, or for cross-border transactions, **shopperStatement** is used.  Adyen currently supports the ja-Kana character set for Visa and Mastercard payments in Japan using Japanese cards. This character set supports:  * UTF-8 based Katakana, capital letters, numbers and special characters.  * Half-width or full-width characters.
+    * The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If not supplied, left empty, or for cross-border transactions, **shopperStatement** is used.  Adyen currently supports the ja-Kana and ja-Hani character set for Visa, Mastercard and JCB payments in Japan using Japanese cards. This character set supports:  * UTF-8 based Katakana, Kanji, capital letters, numbers and special characters.  * Half-width or full-width characters.
     */
     'localizedShopperStatement'?: { [key: string]: string; };
     /**
@@ -134,7 +134,7 @@ export class BalanceCheckRequest {
     */
     'socialSecurityNumber'?: string;
     /**
-    * An array of objects specifying how the payment should be split when using either Adyen for Platforms for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms]((https://docs.adyen.com/platforms/split-payments), or standalone [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split).
+    * An array of objects specifying how the payment should be split when using either Adyen for Platforms for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/split-payments), or standalone [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split).
     */
     'splits'?: Array<Split>;
     /**

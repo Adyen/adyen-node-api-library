@@ -9,6 +9,7 @@
 
 import { Amount } from './amount';
 import { ApplicationInfo } from './applicationInfo';
+import { EnhancedSchemeData } from './enhancedSchemeData';
 import { LineItem } from './lineItem';
 import { PlatformChargebackLogic } from './platformChargebackLogic';
 import { Split } from './split';
@@ -17,6 +18,7 @@ import { SubMerchantInfo } from './subMerchantInfo';
 export class PaymentCaptureRequest {
     'amount': Amount;
     'applicationInfo'?: ApplicationInfo | null;
+    'enhancedSchemeData'?: EnhancedSchemeData | null;
     /**
     * Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
     */
@@ -51,6 +53,11 @@ export class PaymentCaptureRequest {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
             "type": "ApplicationInfo | null"
+        },
+        {
+            "name": "enhancedSchemeData",
+            "baseName": "enhancedSchemeData",
+            "type": "EnhancedSchemeData | null"
         },
         {
             "name": "lineItems",

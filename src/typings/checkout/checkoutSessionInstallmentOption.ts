@@ -10,7 +10,7 @@
 
 export class CheckoutSessionInstallmentOption {
     /**
-    * Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**
+    * Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving*** **bonus** * **with_interest** * **buynow_paylater** * **nointerest_bonus** * **interest_bonus** * **refund_prctg** * **nointeres_refund_prctg** * **interes_refund_prctg**
     */
     'plans'?: Array<CheckoutSessionInstallmentOption.PlansEnum>;
     /**
@@ -48,6 +48,7 @@ export class CheckoutSessionInstallmentOption {
 
 export namespace CheckoutSessionInstallmentOption {
     export enum PlansEnum {
+        Bonus = 'bonus',
         BuynowPaylater = 'buynow_paylater',
         InteresRefundPrctg = 'interes_refund_prctg',
         InterestBonus = 'interest_bonus',
