@@ -26,7 +26,7 @@ export class TransferNotificationMerchantData {
     */
     'mcc'?: string;
     /**
-    * The merchant identifier.
+    * The unique identifier of the merchant.
     */
     'merchantId'?: string;
     /**
@@ -34,7 +34,7 @@ export class TransferNotificationMerchantData {
     */
     'name'?: string;
     /**
-    * The merchant postal code.
+    * The postal code of the merchant.
     */
     'postalCode'?: string;
 

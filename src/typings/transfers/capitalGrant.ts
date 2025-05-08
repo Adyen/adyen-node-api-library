@@ -32,7 +32,7 @@ export class CapitalGrant {
     'id': string;
     'repayment'?: Repayment | null;
     /**
-    * The current status of the grant. Possible values: **Pending**, **Active**, **Repaid**.
+    * The current status of the grant. Possible values: **Pending**, **Active**, **Repaid**, **WrittenOff**, **Failed**, **Revoked**.
     */
     'status': CapitalGrant.StatusEnum;
 
@@ -94,6 +94,9 @@ export namespace CapitalGrant {
     export enum StatusEnum {
         Pending = 'Pending',
         Active = 'Active',
-        Repaid = 'Repaid'
+        Repaid = 'Repaid',
+        Failed = 'Failed',
+        WrittenOff = 'WrittenOff',
+        Revoked = 'Revoked'
     }
 }
