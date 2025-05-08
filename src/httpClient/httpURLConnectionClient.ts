@@ -111,7 +111,10 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
         requestOptions.headers[ApiConstants.ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
-        requestOptions.headers[ApiConstants.USER_AGENT] = `${applicationName} ${LibraryConstants.LIB_NAME}/${LibraryConstants.LIB_VERSION}`;
+        // user-agent header
+        const libInfo = `${LibraryConstants.LIB_NAME}/${LibraryConstants.LIB_VERSION}`;
+        requestOptions.headers[ApiConstants.USER_AGENT] = applicationName? `${applicationName} ${libInfo}`: libInfo;
+        // custom headers
         requestOptions.headers[ApiConstants.ADYEN_LIBRARY_NAME] = LibraryConstants.LIB_NAME;
         requestOptions.headers[ApiConstants.ADYEN_LIBRARY_VERSION] = LibraryConstants.LIB_VERSION;
 

@@ -1,11 +1,13 @@
 import nock, { Interceptor } from "nock";
 import Client from "../client";
 import { createClient } from "../__mocks__/base";
-import { BinLookupAPI } from "../services";
+import { BinLookupAPI, CheckoutAPI } from "../services";
 import ApiException from "../services/exception/apiException";
 import HttpClientException from "../httpClient/httpClientException";
 import { binlookup } from "../typings";
 import { ApiConstants } from "../constants/apiConstants";
+import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess";
+
 
 beforeEach((): void => {
     nock.cleanAll();
@@ -98,6 +100,81 @@ describe("HTTP Client", function (): void {
         const requestOptions = { headers: { foo : "bar" }};
         const response = await binLookupService.get3dsAvailability(threeDSAvailabilityRequest, requestOptions);
         expect(response).toEqual< binlookup.ThreeDSAvailabilityResponse>(threeDSAvailabilitySuccessResponse);
+
+        console.log("requestOptions", requestOptions);
     });
+
+     test("should add default applicationInfo to the headers", async (): Promise<void> => {
+        const client = createClient();
+        const checkout = new CheckoutAPI(client);
+
+        const expectedUserAgent = `adyen-node-api-library/26.1.0`;
+        const expectedLibraryName = `adyen-node-api-library`;
+        const expectedLibraryVersion = `26.1.0`;
+        
+        const scope = nock("https://checkout-test.adyen.com/v71", {
+            reqheaders: {
+                'adyen-library-name': (headerValue) => {
+                    expect(headerValue).toBeTruthy(); 
+                    expect(headerValue).toEqual(expectedLibraryName);
+                    return true;
+                },
+                'adyen-library-version': (headerValue) => {
+                    expect(headerValue).toBeTruthy(); 
+                    expect(headerValue).toEqual(expectedLibraryVersion);
+                    expect
+                    return true;
+                },
+                'user-agent': (headerValue) => {
+                    expect(headerValue).toBeTruthy(); 
+                    expect(headerValue).toEqual(expectedUserAgent);
+                    expect
+                    return true;
+                }
+            }
+        });
+
+        scope.post("/paymentMethods").reply(200, paymentMethodsSuccess);
+        const response = await checkout.PaymentsApi.paymentMethods({"merchantAccount": "testMerchantAccount"});
+
+        expect(response.paymentMethods).toBeTruthy();
+     });
+
+     test("should add custom applicationInfo to the headers", async (): Promise<void> => {
+        const client = createClient();
+        client.config.applicationName = "testApp";
+        const checkout = new CheckoutAPI(client);
+
+        const expectedUserAgent = `testApp adyen-node-api-library/26.1.0`; // include applicationName too
+        const expectedLibraryName = `adyen-node-api-library`;
+        const expectedLibraryVersion = `26.1.0`;
+        
+        const scope = nock("https://checkout-test.adyen.com/v71", {
+            reqheaders: {
+                'adyen-library-name': (headerValue) => {
+                    expect(headerValue).toBeTruthy(); 
+                    expect(headerValue).toEqual(expectedLibraryName);
+                    return true;
+                },
+                'adyen-library-version': (headerValue) => {
+                    expect(headerValue).toBeTruthy(); 
+                    expect(headerValue).toEqual(expectedLibraryVersion);
+                    expect
+                    return true;
+                },
+                'user-agent': (headerValue) => {
+                    expect(headerValue).toBeTruthy(); 
+                    expect(headerValue).toEqual(expectedUserAgent);
+                    expect
+                    return true;
+                }
+            }
+        });
+
+        scope.post("/paymentMethods").reply(200, paymentMethodsSuccess);
+        const response = await checkout.PaymentsApi.paymentMethods({"merchantAccount": "testMerchantAccount"});
+
+        expect(response.paymentMethods).toBeTruthy();
+     });
 
 });
