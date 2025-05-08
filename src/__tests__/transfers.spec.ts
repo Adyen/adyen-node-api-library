@@ -9,7 +9,6 @@ let client: Client;
 let transfersAPI: TransfersAPI;
 let scope: nock.Scope;
 
-
 beforeEach((): void => {
     if (!nock.isActive()) {
         nock.activate();
@@ -56,34 +55,14 @@ describe("Transfers", (): void => {
     });
 
     test("should list transactions", async (): Promise<void> => {
-        const createdSince = new Date(Date.UTC(2023, 11, 12, 0, 0, 0)); // 12-12-2023 December is month 11
-        const createdUntil = new Date(Date.UTC(2023, 11, 13, 0, 0, 0)); // 13-12-2023 December is month 11
-    
-        scope
-          .get("/transactions")
-          .query({
-            balancePlatform: "platform",
-            createdSince: createdSince.toISOString(),
-            createdUntil: createdUntil.toISOString(),
-          })
-          .reply(200, listTransactionsSuccess);
-    
-        const response: transfers.TransactionSearchResponse = await transfersAPI.TransactionsApi.getAllTransactions(
-            "platform",
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            createdSince,
-            createdUntil
-        );
-    
+        scope.get("/transactions?balancePlatform=platform&createdSince=2023-12-12T00%3A00%3A00.000Z&createdUntil=2023-12-13T00%3A00%3A00.000Z")
+        .reply(200, listTransactionsSuccess);
+        const response: transfers.TransactionSearchResponse = await transfersAPI.TransactionsApi.getAllTransactions("platform", undefined, undefined, undefined, undefined, new Date("12-12-2023"), new Date("12-13-2023"));
         expect(response.data?.length).toEqual(3);
-        if (response.data && response.data.length > 0) {
-            expect(response.data[0].id).toEqual("1VVF0D5U66PIUIVP");
+        if(response.data && response.data?.length > 0) {
+            expect(response?.data[0]?.id).toEqual("1VVF0D5U66PIUIVP");
         } else {
             fail();
         }
     });
-    
 });
