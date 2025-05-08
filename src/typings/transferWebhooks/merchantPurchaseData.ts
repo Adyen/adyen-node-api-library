@@ -8,9 +8,14 @@
  */
 
 import { Airline } from './airline';
+import { Lodging } from './lodging';
 
 export class MerchantPurchaseData {
     'airline'?: Airline | null;
+    /**
+    * Lodging information.
+    */
+    'lodging'?: Array<Lodging>;
     /**
     * The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data
     */
@@ -23,6 +28,11 @@ export class MerchantPurchaseData {
             "name": "airline",
             "baseName": "airline",
             "type": "Airline | null"
+        },
+        {
+            "name": "lodging",
+            "baseName": "lodging",
+            "type": "Array<Lodging>"
         },
         {
             "name": "type",
