@@ -18,6 +18,10 @@ export class OnboardingLinkSettings {
     */
     'allowBankAccountFormatSelection'?: boolean;
     /**
+    * Default value: **true**  Indicates whether the debug user interface (UI) is enabled. The debug UI provides information for your support staff to diagnose and resolve user issues during onboarding. It can be accessed using a keyboard shortcut.
+    */
+    'allowDebugUi'?: boolean;
+    /**
     * Default value: **false**  Indicates if the user can select a payout account in a different EU/EEA location (including Switzerland and the UK) than the location of their legal entity.
     */
     'allowIntraRegionCrossBorderPayout'?: boolean;
@@ -85,6 +89,11 @@ export class OnboardingLinkSettings {
         {
             "name": "allowBankAccountFormatSelection",
             "baseName": "allowBankAccountFormatSelection",
+            "type": "boolean"
+        },
+        {
+            "name": "allowDebugUi",
+            "baseName": "allowDebugUi",
             "type": "boolean"
         },
         {
