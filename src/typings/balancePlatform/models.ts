@@ -159,6 +159,7 @@ export * from './transferRoute';
 export * from './transferRouteRequest';
 export * from './transferRouteResponse';
 export * from './uKLocalAccountIdentification';
+export * from './uSInstantPayoutAddressRequirement';
 export * from './uSInternationalAchAddressRequirement';
 export * from './uSLocalAccountIdentification';
 export * from './updateNetworkTokenRequest';
@@ -167,6 +168,8 @@ export * from './updateSweepConfigurationV2';
 export * from './verificationDeadline';
 export * from './verificationError';
 export * from './verificationErrorRecursive';
+export * from './walletProviderAccountScoreRestriction';
+export * from './walletProviderDeviceScore';
 
 
 import { AULocalAccountIdentification } from './aULocalAccountIdentification';
@@ -320,6 +323,7 @@ import { TransferRoute } from './transferRoute';
 import { TransferRouteRequest } from './transferRouteRequest';
 import { TransferRouteResponse } from './transferRouteResponse';
 import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
+import { USInstantPayoutAddressRequirement } from './uSInstantPayoutAddressRequirement';
 import { USInternationalAchAddressRequirement } from './uSInternationalAchAddressRequirement';
 import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
 import { UpdateNetworkTokenRequest } from './updateNetworkTokenRequest';
@@ -328,6 +332,8 @@ import { UpdateSweepConfigurationV2 } from './updateSweepConfigurationV2';
 import { VerificationDeadline } from './verificationDeadline';
 import { VerificationError } from './verificationError';
 import { VerificationErrorRecursive } from './verificationErrorRecursive';
+import { WalletProviderAccountScoreRestriction } from './walletProviderAccountScoreRestriction';
+import { WalletProviderDeviceScore } from './walletProviderDeviceScore';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -440,6 +446,7 @@ let enumsMap: {[index: string]: any} = {
         "TransferRouteRequest.CategoryEnum": TransferRouteRequest.CategoryEnum,
         "TransferRouteRequest.PrioritiesEnum": TransferRouteRequest.PrioritiesEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
+        "USInstantPayoutAddressRequirement.TypeEnum": USInstantPayoutAddressRequirement.TypeEnum,
         "USInternationalAchAddressRequirement.TypeEnum": USInternationalAchAddressRequirement.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
@@ -611,6 +618,7 @@ let typeMap: {[index: string]: any} = {
     "TransferRouteRequest": TransferRouteRequest,
     "TransferRouteResponse": TransferRouteResponse,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
+    "USInstantPayoutAddressRequirement": USInstantPayoutAddressRequirement,
     "USInternationalAchAddressRequirement": USInternationalAchAddressRequirement,
     "USLocalAccountIdentification": USLocalAccountIdentification,
     "UpdateNetworkTokenRequest": UpdateNetworkTokenRequest,
@@ -619,6 +627,8 @@ let typeMap: {[index: string]: any} = {
     "VerificationDeadline": VerificationDeadline,
     "VerificationError": VerificationError,
     "VerificationErrorRecursive": VerificationErrorRecursive,
+    "WalletProviderAccountScoreRestriction": WalletProviderAccountScoreRestriction,
+    "WalletProviderDeviceScore": WalletProviderDeviceScore,
 }
 
 export class ObjectSerializer {

@@ -29,6 +29,8 @@ import { SourceAccountTypesRestriction } from './sourceAccountTypesRestriction';
 import { TimeOfDayRestriction } from './timeOfDayRestriction';
 import { TokenRequestorsRestriction } from './tokenRequestorsRestriction';
 import { TotalAmountRestriction } from './totalAmountRestriction';
+import { WalletProviderAccountScoreRestriction } from './walletProviderAccountScoreRestriction';
+import { WalletProviderDeviceScore } from './walletProviderDeviceScore';
 
 export class TransactionRuleRestrictions {
     'activeNetworkTokens'?: ActiveNetworkTokensRestriction | null;
@@ -53,6 +55,8 @@ export class TransactionRuleRestrictions {
     'timeOfDay'?: TimeOfDayRestriction | null;
     'tokenRequestors'?: TokenRequestorsRestriction | null;
     'totalAmount'?: TotalAmountRestriction | null;
+    'walletProviderAccountScore'?: WalletProviderAccountScoreRestriction | null;
+    'walletProviderDeviceScore'?: WalletProviderDeviceScore | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -166,6 +170,16 @@ export class TransactionRuleRestrictions {
             "name": "totalAmount",
             "baseName": "totalAmount",
             "type": "TotalAmountRestriction | null"
+        },
+        {
+            "name": "walletProviderAccountScore",
+            "baseName": "walletProviderAccountScore",
+            "type": "WalletProviderAccountScoreRestriction | null"
+        },
+        {
+            "name": "walletProviderDeviceScore",
+            "baseName": "walletProviderDeviceScore",
+            "type": "WalletProviderDeviceScore | null"
         }    ];
 
     static getAttributeTypeMap() {
