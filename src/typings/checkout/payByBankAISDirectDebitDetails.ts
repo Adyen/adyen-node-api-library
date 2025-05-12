@@ -25,7 +25,7 @@ export class PayByBankAISDirectDebitDetails {
     */
     'storedPaymentMethodId'?: string;
     /**
-    * **paybybank_**
+    * **paybybank_AIS_DD**
     */
     'type': PayByBankAISDirectDebitDetails.TypeEnum;
 
