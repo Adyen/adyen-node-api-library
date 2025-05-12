@@ -74,6 +74,7 @@ import { SepaDirectDebitDetails } from './sepaDirectDebitDetails';
 import { Split } from './split';
 import { StoredPaymentMethodDetails } from './storedPaymentMethodDetails';
 import { SubMerchantInfo } from './subMerchantInfo';
+import { Surcharge } from './surcharge';
 import { ThreeDS2RequestFields } from './threeDS2RequestFields';
 import { ThreeDSecureData } from './threeDSecureData';
 import { TwintDetails } from './twintDetails';
@@ -294,6 +295,7 @@ export class PaymentRequest {
     * This field contains additional information on the submerchant, who is onboarded to an acquirer through a payment facilitator or aggregator
     */
     'subMerchants'?: Array<SubMerchantInfo>;
+    'surcharge'?: Surcharge | null;
     /**
     * The shopper\'s telephone number.
     */
@@ -648,6 +650,11 @@ export class PaymentRequest {
             "name": "subMerchants",
             "baseName": "subMerchants",
             "type": "Array<SubMerchantInfo>"
+        },
+        {
+            "name": "surcharge",
+            "baseName": "surcharge",
+            "type": "Surcharge | null"
         },
         {
             "name": "telephoneNumber",

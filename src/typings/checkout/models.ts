@@ -196,6 +196,7 @@ export * from './storedPaymentMethodResource';
 export * from './subInputDetail';
 export * from './subMerchant';
 export * from './subMerchantInfo';
+export * from './surcharge';
 export * from './taxTotal';
 export * from './threeDS2RequestData';
 export * from './threeDS2RequestFields';
@@ -408,6 +409,7 @@ import { StoredPaymentMethodResource } from './storedPaymentMethodResource';
 import { SubInputDetail } from './subInputDetail';
 import { SubMerchant } from './subMerchant';
 import { SubMerchantInfo } from './subMerchantInfo';
+import { Surcharge } from './surcharge';
 import { TaxTotal } from './taxTotal';
 import { ThreeDS2RequestData } from './threeDS2RequestData';
 import { ThreeDS2RequestFields } from './threeDS2RequestFields';
@@ -831,6 +833,7 @@ let typeMap: {[index: string]: any} = {
     "SubInputDetail": SubInputDetail,
     "SubMerchant": SubMerchant,
     "SubMerchantInfo": SubMerchantInfo,
+    "Surcharge": Surcharge,
     "TaxTotal": TaxTotal,
     "ThreeDS2RequestData": ThreeDS2RequestData,
     "ThreeDS2RequestFields": ThreeDS2RequestFields,
