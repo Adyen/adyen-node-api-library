@@ -391,16 +391,17 @@ describe("Notification Test", function (): void {
     it("should deserialize BalanceWebhooks BalanceAccountBalanceNotificationRequest", function (): void {
         const json = {
             "data": {
-              "settingIds": "BWHS00000000000000000000000001",
-              "creationDate": "2025-01-19T13:37:38+02:00",
+              "balanceAccountId": "BWHS00000000000000000000000001",
               "balancePlatform": "YOUR_BALANCE_PLATFORM",
-              "currency": "USD",
               "balances": {
                 "available": 499900,
                 "pending": 350000,
                 "reserved": 120000,
                 "balance": 470000
-              }
+              },
+              "creationDate": "2025-01-19T13:37:38+02:00",
+              "currency": "USD",
+              "settingIds": ["WK1", "WK2"]
             },
             "environment": "test",
             "type": "balancePlatform.balanceAccount.balance.updated"
@@ -414,6 +415,8 @@ describe("Notification Test", function (): void {
         );
         expect(balanceAccountBalanceNotificationRequest.environment).toBe("test");
         expect(balanceAccountBalanceNotificationRequest.data).toBeDefined();
+        expect(balanceAccountBalanceNotificationRequest.data.settingIds).toBeTruthy();
+        expect(balanceAccountBalanceNotificationRequest.data.settingIds.length).toBe(2);
         expect(balanceAccountBalanceNotificationRequest.data.balancePlatform).toBe("YOUR_BALANCE_PLATFORM");
         expect(balanceAccountBalanceNotificationRequest.data .currency).toBe("USD");
     });
