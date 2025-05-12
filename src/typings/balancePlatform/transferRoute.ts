@@ -13,6 +13,7 @@ import { AmountNonZeroDecimalsRequirement } from './amountNonZeroDecimalsRequire
 import { BankAccountIdentificationTypeRequirement } from './bankAccountIdentificationTypeRequirement';
 import { IbanAccountIdentificationRequirement } from './ibanAccountIdentificationRequirement';
 import { PaymentInstrumentRequirement } from './paymentInstrumentRequirement';
+import { USInstantPayoutAddressRequirement } from './uSInstantPayoutAddressRequirement';
 import { USInternationalAchAddressRequirement } from './uSInternationalAchAddressRequirement';
 
 export class TransferRoute {
@@ -35,7 +36,7 @@ export class TransferRoute {
     /**
     * A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a `type` and `description`.
     */
-    'requirements'?: Array<AddressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInternationalAchAddressRequirement>;
+    'requirements'?: Array<AddressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInstantPayoutAddressRequirement | USInternationalAchAddressRequirement>;
 
     static discriminator: string | undefined = undefined;
 
@@ -63,7 +64,7 @@ export class TransferRoute {
         {
             "name": "requirements",
             "baseName": "requirements",
-            "type": "Array<AddressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInternationalAchAddressRequirement>"
+            "type": "Array<AddressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInstantPayoutAddressRequirement | USInternationalAchAddressRequirement>"
         }    ];
 
     static getAttributeTypeMap() {

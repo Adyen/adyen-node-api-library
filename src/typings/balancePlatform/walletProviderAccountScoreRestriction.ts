@@ -8,41 +8,29 @@
  */
 
 
-export class InvalidField {
+export class WalletProviderAccountScoreRestriction {
     /**
-    * The field that has an invalid value.
+    * Defines how the condition must be evaluated.
     */
-    'name': string;
-    /**
-    * The invalid value.
-    */
-    'value': string;
-    /**
-    * Description of the validation error.
-    */
-    'message': string;
+    'operation': string;
+    'value'?: number;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "operation",
+            "baseName": "operation",
             "type": "string"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "string"
-        },
-        {
-            "name": "message",
-            "baseName": "message",
-            "type": "string"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return InvalidField.attributeTypeMap;
+        return WalletProviderAccountScoreRestriction.attributeTypeMap;
     }
 }
 
