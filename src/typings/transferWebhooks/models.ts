@@ -259,6 +259,25 @@ export class ObjectSerializer {
                 return expectedType;
             }
 
+            // Handle union types
+            if (expectedType.includes(" | ")) {
+                const unionTypes = expectedType.split(" | ").map((t) => t.trim());
+
+                // For tracking field specifically, use the 'type' field to determine the actual type
+                if (data && data.type && unionTypes.some((t) => t.includes("TrackingData"))) {
+                    if (data.type === "estimation") return "EstimationTrackingData";
+                    if (data.type === "confirmation") return "ConfirmationTrackingData";
+                    if (data.type === "internalReview") return "InternalReviewTrackingData";
+                }
+
+                // For other union types, return the first non-null type that exists in typeMap
+                for (const type of unionTypes) {
+                    if (type !== "null" && typeMap[type]) {
+                        return type;
+                    }
+                }
+            }
+
             if (!typeMap[expectedType]) {
                 return expectedType; // w/e we don't know the type
             }
