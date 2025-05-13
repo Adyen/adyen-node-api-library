@@ -22,6 +22,10 @@ export class AdditionalDataSubMerchant {
     */
     'subMerchant_subSeller_subSellerNr_country'?: string;
     /**
+    * Required for transactions performed by registered payment facilitators. The email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters
+    */
+    'subMerchant_subSeller_subSellerNr_email'?: string;
+    /**
     * Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters
     */
     'subMerchant_subSeller_subSellerNr_id'?: string;
@@ -33,6 +37,10 @@ export class AdditionalDataSubMerchant {
     * Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
     */
     'subMerchant_subSeller_subSellerNr_name'?: string;
+    /**
+    * Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters
+    */
+    'subMerchant_subSeller_subSellerNr_phoneNumber'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant\'s address, without dashes. * Format: Numeric * Fixed length: 8 digits
     */
@@ -69,6 +77,11 @@ export class AdditionalDataSubMerchant {
             "type": "string"
         },
         {
+            "name": "subMerchant_subSeller_subSellerNr_email",
+            "baseName": "subMerchant.subSeller[subSellerNr].email",
+            "type": "string"
+        },
+        {
             "name": "subMerchant_subSeller_subSellerNr_id",
             "baseName": "subMerchant.subSeller[subSellerNr].id",
             "type": "string"
@@ -81,6 +94,11 @@ export class AdditionalDataSubMerchant {
         {
             "name": "subMerchant_subSeller_subSellerNr_name",
             "baseName": "subMerchant.subSeller[subSellerNr].name",
+            "type": "string"
+        },
+        {
+            "name": "subMerchant_subSeller_subSellerNr_phoneNumber",
+            "baseName": "subMerchant.subSeller[subSellerNr].phoneNumber",
             "type": "string"
         },
         {

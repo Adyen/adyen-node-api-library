@@ -84,7 +84,6 @@ export namespace PaymentDetails {
         DirectEbanking = 'directEbanking',
         Boletobancario = 'boletobancario',
         Neteller = 'neteller',
-        Paysafecard = 'paysafecard',
         Cashticket = 'cashticket',
         Ikano = 'ikano',
         Karenmillen = 'karenmillen',

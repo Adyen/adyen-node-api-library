@@ -18,6 +18,10 @@ export class PaymentMethodToStore {
     */
     'cvc'?: string;
     /**
+    * The encrypted card.
+    */
+    'encryptedCard'?: string;
+    /**
     * The encrypted card number.
     */
     'encryptedCardNumber'?: string;
@@ -65,6 +69,11 @@ export class PaymentMethodToStore {
         {
             "name": "cvc",
             "baseName": "cvc",
+            "type": "string"
+        },
+        {
+            "name": "encryptedCard",
+            "baseName": "encryptedCard",
             "type": "string"
         },
         {
