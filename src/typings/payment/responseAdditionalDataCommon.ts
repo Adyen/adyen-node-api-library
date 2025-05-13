@@ -102,6 +102,10 @@ export class ResponseAdditionalDataCommon {
     */
     'fraudResultType'?: ResponseAdditionalDataCommon.FraudResultTypeEnum;
     /**
+    * The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are:\\n* veryLow\\n* low\\n* medium\\n* high\\n* veryHigh\\n\\n>
+    */
+    'fraudRiskLevel'?: ResponseAdditionalDataCommon.FraudRiskLevelEnum;
+    /**
     * Information regarding the funding type of the card. The possible return values are: * CHARGE * CREDIT * DEBIT * PREPAID * PREPAID_RELOADABLE  * PREPAID_NONRELOADABLE * DEFFERED_DEBIT  > This functionality requires additional configuration on Adyen\'s end. To enable it, contact the Support Team.  For receiving this field in the notification, enable **Include Funding Source** in **Notifications** > **Additional settings**.
     */
     'fundingSource'?: string;
@@ -179,10 +183,16 @@ export class ResponseAdditionalDataCommon {
     'recurring_firstPspReference'?: string;
     /**
     * The reference that uniquely identifies the recurring transaction.
+    *
+	* @deprecated since Adyen Payment API v68
+	* Use tokenization.storedPaymentMethodId instead.
     */
     'recurring_recurringDetailReference'?: string;
     /**
     * The provided reference of the shopper for a recurring transaction.
+    *
+	* @deprecated since Adyen Payment API v68
+	* Use tokenization.shopperReference instead.
     */
     'recurring_shopperReference'?: string;
     /**
@@ -238,11 +248,11 @@ export class ResponseAdditionalDataCommon {
     */
     'threeDSVersion'?: string;
     /**
-    * The provided reference of the shopper.
+    * The reference for the shopper that you sent when tokenizing the payment details.
     */
     'tokenization_shopperReference'?: string;
     /**
-    * The store operation performed on the token.
+    * The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. 
     */
     'tokenization_store_operationType'?: ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum;
     /**
@@ -375,6 +385,11 @@ export class ResponseAdditionalDataCommon {
             "name": "fraudResultType",
             "baseName": "fraudResultType",
             "type": "ResponseAdditionalDataCommon.FraudResultTypeEnum"
+        },
+        {
+            "name": "fraudRiskLevel",
+            "baseName": "fraudRiskLevel",
+            "type": "ResponseAdditionalDataCommon.FraudRiskLevelEnum"
         },
         {
             "name": "fundingSource",
@@ -582,6 +597,13 @@ export namespace ResponseAdditionalDataCommon {
         Green = 'GREEN',
         Fraud = 'FRAUD'
     }
+    export enum FraudRiskLevelEnum {
+        VeryLow = 'veryLow',
+        Low = 'low',
+        Medium = 'medium',
+        High = 'high',
+        VeryHigh = 'veryHigh'
+    }
     export enum RecurringProcessingModelEnum {
         CardOnFile = 'CardOnFile',
         Subscription = 'Subscription',
@@ -590,6 +612,6 @@ export namespace ResponseAdditionalDataCommon {
     export enum TokenizationStoreOperationTypeEnum {
         Created = 'created',
         Updated = 'updated',
-        AlreadyStored = 'alreadyStored'
+        AlreadyExisting = 'alreadyExisting'
     }
 }

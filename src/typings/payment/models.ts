@@ -222,6 +222,7 @@ let enumsMap: {[index: string]: any} = {
         "Recurring.TokenServiceEnum": Recurring.TokenServiceEnum,
         "ResponseAdditionalDataCard.CardProductIdEnum": ResponseAdditionalDataCard.CardProductIdEnum,
         "ResponseAdditionalDataCommon.FraudResultTypeEnum": ResponseAdditionalDataCommon.FraudResultTypeEnum,
+        "ResponseAdditionalDataCommon.FraudRiskLevelEnum": ResponseAdditionalDataCommon.FraudRiskLevelEnum,
         "ResponseAdditionalDataCommon.RecurringProcessingModelEnum": ResponseAdditionalDataCommon.RecurringProcessingModelEnum,
         "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum": ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum,
         "SecureRemoteCommerceCheckoutData.SchemeEnum": SecureRemoteCommerceCheckoutData.SchemeEnum,
