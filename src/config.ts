@@ -11,6 +11,8 @@ interface ConfigConstructor {
     terminalApiLocalEndpoint?: string;
 }
 
+const DEFAULT_TIMEOUT = 30000; // Default timeout value (30 sec)
+
 class Config {
     public username?: string;
     public password?: string;
@@ -31,7 +33,8 @@ class Config {
         if (options.marketPayEndpoint) this.marketPayEndpoint = options.marketPayEndpoint;
         if (options.applicationName) this.applicationName = options.applicationName;
         if (options.apiKey) this.apiKey = options.apiKey;
-        if (options.connectionTimeoutMillis) this.connectionTimeoutMillis = options.connectionTimeoutMillis || 30000;
+        // Set the timeout to DEFAULT_TIMEOUT if not provided
+        this.connectionTimeoutMillis = options.connectionTimeoutMillis ?? DEFAULT_TIMEOUT;
         if (options.certificatePath) this.certificatePath = options.certificatePath;
         if (options.terminalApiCloudEndpoint) this.terminalApiCloudEndpoint = options.terminalApiCloudEndpoint;
         if (options.terminalApiLocalEndpoint) this.terminalApiLocalEndpoint = options.terminalApiLocalEndpoint;

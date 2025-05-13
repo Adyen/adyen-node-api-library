@@ -7,7 +7,7 @@ import HttpClientException from "../httpClient/httpClientException";
 import { binlookup } from "../typings";
 import { ApiConstants } from "../constants/apiConstants";
 import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess";
-
+import Config from "../config";
 
 beforeEach((): void => {
     nock.cleanAll();
@@ -178,3 +178,25 @@ describe("HTTP Client", function (): void {
      });
 
 });
+
+describe('Config class', () => {
+    const DEFAULT_TIMEOUT = 30000; // Define the default timeout value
+
+    test('should set default timeout when no timeout is provided', () => {
+        // Instantiate the Config class without passing a timeout
+        const config = new Config();
+
+        // Expect that the timeout is set to the default value (30000)
+        expect(config.connectionTimeoutMillis).toBe(DEFAULT_TIMEOUT);
+    });
+
+    test('should set custom timeout when provided', () => {
+        // Instantiate the Config class with a custom timeout
+        const customTimeout = 50000;
+        const config = new Config({ connectionTimeoutMillis: customTimeout });
+
+        // Expect that the timeout is set to the custom value (50000)
+        expect(config.connectionTimeoutMillis).toBe(customTimeout);
+    });
+});
+

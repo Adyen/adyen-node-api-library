@@ -118,7 +118,15 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.headers[ApiConstants.ADYEN_LIBRARY_NAME] = LibraryConstants.LIB_NAME;
         requestOptions.headers[ApiConstants.ADYEN_LIBRARY_VERSION] = LibraryConstants.LIB_VERSION;
 
-        return httpsRequest(requestOptions);
+        // create a new ClientRequest object
+        const req = httpsRequest(requestOptions);
+
+        // set the timeout on the ClientRequest instance
+        if (requestOptions.timeout) {
+            req.setTimeout(requestOptions.timeout);
+        }
+
+        return req;
     }
 
     private getQuery(params: [string, string][]): string {
