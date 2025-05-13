@@ -20,7 +20,7 @@ export class BalanceAccount {
     */
     'balances'?: Array<Balance>;
     /**
-    * The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. The default value is **EUR**. > After a balance account is created, you cannot change its default currency.
+    * The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. This is the currency displayed on the Balance Account overview page in your Customer Area. The default value is **EUR**. > After a balance account is created, you cannot change its default currency.
     */
     'defaultCurrencyCode'?: string;
     /**

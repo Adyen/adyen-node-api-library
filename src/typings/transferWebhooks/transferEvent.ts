@@ -14,13 +14,14 @@ import { ConfirmationTrackingData } from './confirmationTrackingData';
 import { EstimationTrackingData } from './estimationTrackingData';
 import { ExternalReason } from './externalReason';
 import { InternalReviewTrackingData } from './internalReviewTrackingData';
+import { IssuingTransactionData } from './issuingTransactionData';
 import { MerchantPurchaseData } from './merchantPurchaseData';
 import { Modification } from './modification';
 
 export class TransferEvent {
     'amount'?: Amount | null;
     /**
-    * The amount adjustments in this transfer.
+    * The amount adjustments in this transfer. Only applicable for [issuing](https://docs.adyen.com/issuing/) integrations.
     */
     'amountAdjustments'?: Array<AmountAdjustment>;
     /**
@@ -38,7 +39,7 @@ export class TransferEvent {
     /**
     * A list of event data.
     */
-    'eventsData'?: Array<MerchantPurchaseData>;
+    'eventsData'?: Array<IssuingTransactionData | MerchantPurchaseData>;
     'externalReason'?: ExternalReason | null;
     /**
     * The unique identifier of the transfer event.
@@ -110,7 +111,7 @@ export class TransferEvent {
         {
             "name": "eventsData",
             "baseName": "eventsData",
-            "type": "Array<MerchantPurchaseData>"
+            "type": "Array<IssuingTransactionData | MerchantPurchaseData>"
         },
         {
             "name": "externalReason",
@@ -195,6 +196,7 @@ export namespace TransferEvent {
         DirectDebitNotSupported = 'directDebitNotSupported',
         Error = 'error',
         NotEnoughBalance = 'notEnoughBalance',
+        Pending = 'pending',
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         RefusedByCounterpartyBank = 'refusedByCounterpartyBank',

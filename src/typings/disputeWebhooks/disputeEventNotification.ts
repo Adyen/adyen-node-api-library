@@ -110,6 +110,7 @@ export class DisputeEventNotification {
 export namespace DisputeEventNotification {
     export enum TypeEnum {
         Fraud = 'fraud',
-        NotDelivered = 'notDelivered'
+        NotDelivered = 'notDelivered',
+        Duplicate = 'duplicate'
     }
 }
