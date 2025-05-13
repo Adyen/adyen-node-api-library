@@ -102,7 +102,7 @@ export class ResponseAdditionalDataCommon {
     */
     'fraudResultType'?: ResponseAdditionalDataCommon.FraudResultTypeEnum;
     /**
-    * The risk level of the payment as determined by the FDM machine learning model.
+    * The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are:\\n* veryLow\\n* low\\n* medium\\n* high\\n* veryHigh\\n\\n>
     */
     'fraudRiskLevel'?: ResponseAdditionalDataCommon.FraudRiskLevelEnum;
     /**
@@ -598,11 +598,11 @@ export namespace ResponseAdditionalDataCommon {
         Fraud = 'FRAUD'
     }
     export enum FraudRiskLevelEnum {
-        VeryLow = 'Very low',
-        Low = 'Low',
-        Medium = 'Medium',
-        High = 'High',
-        VeryHigh = 'Very high'
+        VeryLow = 'veryLow',
+        Low = 'low',
+        Medium = 'medium',
+        High = 'high',
+        VeryHigh = 'veryHigh'
     }
     export enum RecurringProcessingModelEnum {
         CardOnFile = 'CardOnFile',
