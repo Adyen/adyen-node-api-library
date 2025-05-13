@@ -8,6 +8,8 @@ import { binlookup } from "../typings";
 import { ApiConstants } from "../constants/apiConstants";
 import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess";
 import Config from "../config";
+import LibraryConstants from "../constants/libraryConstants";
+
 
 beforeEach((): void => {
     nock.cleanAll();
@@ -108,9 +110,9 @@ describe("HTTP Client", function (): void {
         const client = createClient();
         const checkout = new CheckoutAPI(client);
 
-        const expectedUserAgent = `adyen-node-api-library/26.1.0`;
-        const expectedLibraryName = `adyen-node-api-library`;
-        const expectedLibraryVersion = `26.1.0`;
+        const expectedUserAgent = `${LibraryConstants.LIB_NAME}/${LibraryConstants.LIB_VERSION}`;
+        const expectedLibraryName = LibraryConstants.LIB_NAME;
+        const expectedLibraryVersion = LibraryConstants.LIB_VERSION;
         
         const scope = nock("https://checkout-test.adyen.com/v71", {
             reqheaders: {
@@ -145,9 +147,9 @@ describe("HTTP Client", function (): void {
         client.config.applicationName = "testApp";
         const checkout = new CheckoutAPI(client);
 
-        const expectedUserAgent = `testApp adyen-node-api-library/26.1.0`; // include applicationName too
-        const expectedLibraryName = `adyen-node-api-library`;
-        const expectedLibraryVersion = `26.1.0`;
+        const expectedUserAgent = `testApp ${LibraryConstants.LIB_NAME}/${LibraryConstants.LIB_VERSION}`; // include applicationName too
+        const expectedLibraryName = LibraryConstants.LIB_NAME;
+        const expectedLibraryVersion = LibraryConstants.LIB_VERSION;
         
         const scope = nock("https://checkout-test.adyen.com/v71", {
             reqheaders: {
