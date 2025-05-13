@@ -110,7 +110,7 @@ describe("HTTP Client", function (): void {
         const client = createClient();
         const checkout = new CheckoutAPI(client);
 
-        const expectedUserAgent = LibraryConstants.LIB_NAME + `/` + LibraryConstants.LIB_VERSION;
+        const expectedUserAgent = `${LibraryConstants.LIB_NAME}/${LibraryConstants.LIB_VERSION}`;
         const expectedLibraryName = LibraryConstants.LIB_NAME;
         const expectedLibraryVersion = LibraryConstants.LIB_VERSION;
         
@@ -147,7 +147,7 @@ describe("HTTP Client", function (): void {
         client.config.applicationName = "testApp";
         const checkout = new CheckoutAPI(client);
 
-        const expectedUserAgent = `testApp ` + LibraryConstants.LIB_NAME + `/` + LibraryConstants.LIB_VERSION; // include applicationName too
+        const expectedUserAgent = `testApp ${LibraryConstants.LIB_NAME}/${LibraryConstants.LIB_VERSION}`; // include applicationName too
         const expectedLibraryName = LibraryConstants.LIB_NAME;
         const expectedLibraryVersion = LibraryConstants.LIB_VERSION;
         
