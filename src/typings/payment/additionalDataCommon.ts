@@ -10,6 +10,10 @@
 
 export class AdditionalDataCommon {
     /**
+    * Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the `refusalReason` values you can trigger. 
+    */
+    'RequestedTestAcquirerResponseCode'?: string;
+    /**
     * Triggers test scenarios that allow to replicate certain communication errors.  Allowed values: * **NO_CONNECTION_AVAILABLE** – There wasn\'t a connection available to service the outgoing communication. This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request. * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response. This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response.
     */
     'RequestedTestErrorResponseCode'?: string;
@@ -58,6 +62,10 @@ export class AdditionalDataCommon {
     */
     'subMerchantCountry'?: string;
     /**
+    * This field is required for transactions performed by registered payment facilitators. This field contains the email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters
+    */
+    'subMerchantEmail'?: string;
+    /**
     * This field contains an identifier of the actual merchant when a transaction is submitted via a payment facilitator. The payment facilitator must send in this unique ID.  A unique identifier per submerchant that is required if the transaction is performed by a registered payment facilitator. * Format: alpha-numeric. * Fixed length: 15 characters.
     */
     'subMerchantID'?: string;
@@ -65,6 +73,10 @@ export class AdditionalDataCommon {
     * This field is required if the transaction is performed by a registered payment facilitator. This field must contain the name of the actual merchant. * Format: alpha-numeric. * Maximum length: 22 characters.
     */
     'subMerchantName'?: string;
+    /**
+    * This field is required for transactions performed by registered payment facilitators. This field contains the phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters
+    */
+    'subMerchantPhoneNumber'?: string;
     /**
     * This field is required if the transaction is performed by a registered payment facilitator. This field must contain the postal code of the actual merchant\'s address. * Format: alpha-numeric. * Maximum length: 10 characters.
     */
@@ -85,6 +97,11 @@ export class AdditionalDataCommon {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "RequestedTestAcquirerResponseCode",
+            "baseName": "RequestedTestAcquirerResponseCode",
+            "type": "string"
+        },
         {
             "name": "RequestedTestErrorResponseCode",
             "baseName": "RequestedTestErrorResponseCode",
@@ -146,6 +163,11 @@ export class AdditionalDataCommon {
             "type": "string"
         },
         {
+            "name": "subMerchantEmail",
+            "baseName": "subMerchantEmail",
+            "type": "string"
+        },
+        {
             "name": "subMerchantID",
             "baseName": "subMerchantID",
             "type": "string"
@@ -153,6 +175,11 @@ export class AdditionalDataCommon {
         {
             "name": "subMerchantName",
             "baseName": "subMerchantName",
+            "type": "string"
+        },
+        {
+            "name": "subMerchantPhoneNumber",
+            "baseName": "subMerchantPhoneNumber",
             "type": "string"
         },
         {

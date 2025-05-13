@@ -18,7 +18,7 @@ export class TermsOfServiceAcceptanceInfo {
     */
     'acceptedFor'?: string;
     /**
-    * The date when the Terms of Service were accepted.
+    * The date when the Terms of Service were accepted, in ISO 8601 extended format. For example, 2022-12-18T10:15:30+01:00.
     */
     'createdAt'?: Date;
     /**
@@ -29,6 +29,10 @@ export class TermsOfServiceAcceptanceInfo {
     * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**  
     */
     'type'?: TermsOfServiceAcceptanceInfo.TypeEnum;
+    /**
+    * The expiration date for the Terms of Service acceptance, in ISO 8601 extended format. For example, 2022-12-18T00:00:00+01:00.
+    */
+    'validTo'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -57,6 +61,11 @@ export class TermsOfServiceAcceptanceInfo {
             "name": "type",
             "baseName": "type",
             "type": "TermsOfServiceAcceptanceInfo.TypeEnum"
+        },
+        {
+            "name": "validTo",
+            "baseName": "validTo",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {

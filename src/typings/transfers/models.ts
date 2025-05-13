@@ -45,9 +45,11 @@ export * from './internalCategoryData';
 export * from './internalReviewTrackingData';
 export * from './invalidField';
 export * from './issuedCard';
+export * from './issuingTransactionData';
 export * from './leg';
 export * from './link';
 export * from './links';
+export * from './lodging';
 export * from './merchantData';
 export * from './merchantPurchaseData';
 export * from './modification';
@@ -130,9 +132,11 @@ import { InternalCategoryData } from './internalCategoryData';
 import { InternalReviewTrackingData } from './internalReviewTrackingData';
 import { InvalidField } from './invalidField';
 import { IssuedCard } from './issuedCard';
+import { IssuingTransactionData } from './issuingTransactionData';
 import { Leg } from './leg';
 import { Link } from './link';
 import { Links } from './links';
+import { Lodging } from './lodging';
 import { MerchantData } from './merchantData';
 import { MerchantPurchaseData } from './merchantPurchaseData';
 import { Modification } from './modification';
@@ -214,6 +218,7 @@ let enumsMap: {[index: string]: any} = {
         "IssuedCard.PanEntryModeEnum": IssuedCard.PanEntryModeEnum,
         "IssuedCard.ProcessingTypeEnum": IssuedCard.ProcessingTypeEnum,
         "IssuedCard.TypeEnum": IssuedCard.TypeEnum,
+        "IssuingTransactionData.TypeEnum": IssuingTransactionData.TypeEnum,
         "MerchantPurchaseData.TypeEnum": MerchantPurchaseData.TypeEnum,
         "Modification.StatusEnum": Modification.StatusEnum,
         "NOLocalAccountIdentification.TypeEnum": NOLocalAccountIdentification.TypeEnum,
@@ -245,6 +250,7 @@ let enumsMap: {[index: string]: any} = {
         "TransferInfo.PrioritiesEnum": TransferInfo.PrioritiesEnum,
         "TransferInfo.PriorityEnum": TransferInfo.PriorityEnum,
         "TransferInfo.TypeEnum": TransferInfo.TypeEnum,
+        "TransferReview.ScaOnApprovalEnum": TransferReview.ScaOnApprovalEnum,
         "UKLocalAccountIdentification.TypeEnum": UKLocalAccountIdentification.TypeEnum,
         "USLocalAccountIdentification.AccountTypeEnum": USLocalAccountIdentification.AccountTypeEnum,
         "USLocalAccountIdentification.TypeEnum": USLocalAccountIdentification.TypeEnum,
@@ -289,9 +295,11 @@ let typeMap: {[index: string]: any} = {
     "InternalReviewTrackingData": InternalReviewTrackingData,
     "InvalidField": InvalidField,
     "IssuedCard": IssuedCard,
+    "IssuingTransactionData": IssuingTransactionData,
     "Leg": Leg,
     "Link": Link,
     "Links": Links,
+    "Lodging": Lodging,
     "MerchantData": MerchantData,
     "MerchantPurchaseData": MerchantPurchaseData,
     "Modification": Modification,

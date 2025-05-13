@@ -102,6 +102,10 @@ export class ResponseAdditionalDataCommon {
     */
     'fraudResultType'?: ResponseAdditionalDataCommon.FraudResultTypeEnum;
     /**
+    * The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are:\\n* veryLow\\n* low\\n* medium\\n* high\\n* veryHigh\\n\\n>
+    */
+    'fraudRiskLevel'?: ResponseAdditionalDataCommon.FraudRiskLevelEnum;
+    /**
     * Information regarding the funding type of the card. The possible return values are: * CHARGE * CREDIT * DEBIT * PREPAID * PREPAID_RELOADABLE  * PREPAID_NONRELOADABLE * DEFFERED_DEBIT  > This functionality requires additional configuration on Adyen\'s end. To enable it, contact the Support Team.  For receiving this field in the notification, enable **Include Funding Source** in **Notifications** > **Additional settings**.
     */
     'fundingSource'?: string;
@@ -383,6 +387,11 @@ export class ResponseAdditionalDataCommon {
             "type": "ResponseAdditionalDataCommon.FraudResultTypeEnum"
         },
         {
+            "name": "fraudRiskLevel",
+            "baseName": "fraudRiskLevel",
+            "type": "ResponseAdditionalDataCommon.FraudRiskLevelEnum"
+        },
+        {
             "name": "fundingSource",
             "baseName": "fundingSource",
             "type": "string"
@@ -587,6 +596,13 @@ export namespace ResponseAdditionalDataCommon {
     export enum FraudResultTypeEnum {
         Green = 'GREEN',
         Fraud = 'FRAUD'
+    }
+    export enum FraudRiskLevelEnum {
+        VeryLow = 'veryLow',
+        Low = 'low',
+        Medium = 'medium',
+        High = 'high',
+        VeryHigh = 'veryHigh'
     }
     export enum RecurringProcessingModelEnum {
         CardOnFile = 'CardOnFile',
