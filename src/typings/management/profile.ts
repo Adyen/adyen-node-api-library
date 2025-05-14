@@ -30,6 +30,10 @@ export class Profile {
     */
     'defaultProfile'?: boolean;
     /**
+    * Specifies the server domain name for EAP-TLS and EAP-PEAP WiFi profiles on Android 11 and above.
+    */
+    'domainSuffix'?: string;
+    /**
     * For `authType` **wpa-eap** or **wpa2-eap**. Possible values: **tls**, **peap**, **leap**, **fast**
     */
     'eap'?: string;
@@ -97,6 +101,11 @@ export class Profile {
             "name": "defaultProfile",
             "baseName": "defaultProfile",
             "type": "boolean"
+        },
+        {
+            "name": "domainSuffix",
+            "baseName": "domainSuffix",
+            "type": "string"
         },
         {
             "name": "eap",

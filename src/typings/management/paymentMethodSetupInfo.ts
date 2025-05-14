@@ -17,12 +17,12 @@ import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { ClearpayInfo } from './clearpayInfo';
 import { DinersInfo } from './dinersInfo';
 import { GenericPmWithTdiInfo } from './genericPmWithTdiInfo';
-import { GiroPayInfo } from './giroPayInfo';
 import { GooglePayInfo } from './googlePayInfo';
 import { JCBInfo } from './jCBInfo';
 import { KlarnaInfo } from './klarnaInfo';
 import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { NyceInfo } from './nyceInfo';
+import { PayByBankPlaidInfo } from './payByBankPlaidInfo';
 import { PayMeInfo } from './payMeInfo';
 import { PayPalInfo } from './payPalInfo';
 import { PayToInfo } from './payToInfo';
@@ -67,7 +67,6 @@ export class PaymentMethodSetupInfo {
     'discover'?: GenericPmWithTdiInfo | null;
     'eft_directdebit_CA'?: GenericPmWithTdiInfo | null;
     'eftpos_australia'?: GenericPmWithTdiInfo | null;
-    'giroPay'?: GiroPayInfo | null;
     'girocard'?: GenericPmWithTdiInfo | null;
     'googlePay'?: GooglePayInfo | null;
     'ideal'?: GenericPmWithTdiInfo | null;
@@ -78,6 +77,7 @@ export class PaymentMethodSetupInfo {
     'mc'?: GenericPmWithTdiInfo | null;
     'mealVoucher_FR'?: MealVoucherFRInfo | null;
     'nyce'?: NyceInfo | null;
+    'paybybank_plaid'?: PayByBankPlaidInfo | null;
     'payme'?: PayMeInfo | null;
     'paypal'?: PayPalInfo | null;
     'payto'?: PayToInfo | null;
@@ -198,11 +198,6 @@ export class PaymentMethodSetupInfo {
             "type": "GenericPmWithTdiInfo | null"
         },
         {
-            "name": "giroPay",
-            "baseName": "giroPay",
-            "type": "GiroPayInfo | null"
-        },
-        {
             "name": "girocard",
             "baseName": "girocard",
             "type": "GenericPmWithTdiInfo | null"
@@ -251,6 +246,11 @@ export class PaymentMethodSetupInfo {
             "name": "nyce",
             "baseName": "nyce",
             "type": "NyceInfo | null"
+        },
+        {
+            "name": "paybybank_plaid",
+            "baseName": "paybybank_plaid",
+            "type": "PayByBankPlaidInfo | null"
         },
         {
             "name": "payme",
@@ -408,12 +408,12 @@ export namespace PaymentMethodSetupInfo {
         Nyce = 'nyce',
         OnlineBankingPl = 'onlineBanking_PL',
         Paybybank = 'paybybank',
+        PaybybankPlaid = 'paybybank_plaid',
         Payme = 'payme',
         PaymePos = 'payme_pos',
         Paynow = 'paynow',
         PaynowPos = 'paynow_pos',
         Paypal = 'paypal',
-        Payshop = 'payshop',
         Payto = 'payto',
         Pulse = 'pulse',
         Sodexo = 'sodexo',

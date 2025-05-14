@@ -64,7 +64,6 @@ export * from './generateApiKeyResponse';
 export * from './generateClientKeyResponse';
 export * from './generateHmacKeyResponse';
 export * from './genericPmWithTdiInfo';
-export * from './giroPayInfo';
 export * from './googlePayInfo';
 export * from './gratuity';
 export * from './hardware';
@@ -107,6 +106,7 @@ export * from './orderItem';
 export * from './paginationLinks';
 export * from './passcodes';
 export * from './payAtTable';
+export * from './payByBankPlaidInfo';
 export * from './payMeInfo';
 export * from './payPalInfo';
 export * from './payToInfo';
@@ -261,7 +261,6 @@ import { GenerateApiKeyResponse } from './generateApiKeyResponse';
 import { GenerateClientKeyResponse } from './generateClientKeyResponse';
 import { GenerateHmacKeyResponse } from './generateHmacKeyResponse';
 import { GenericPmWithTdiInfo } from './genericPmWithTdiInfo';
-import { GiroPayInfo } from './giroPayInfo';
 import { GooglePayInfo } from './googlePayInfo';
 import { Gratuity } from './gratuity';
 import { Hardware } from './hardware';
@@ -304,6 +303,7 @@ import { OrderItem } from './orderItem';
 import { PaginationLinks } from './paginationLinks';
 import { Passcodes } from './passcodes';
 import { PayAtTable } from './payAtTable';
+import { PayByBankPlaidInfo } from './payByBankPlaidInfo';
 import { PayMeInfo } from './payMeInfo';
 import { PayPalInfo } from './payPalInfo';
 import { PayToInfo } from './payToInfo';
@@ -550,7 +550,6 @@ let typeMap: {[index: string]: any} = {
     "GenerateClientKeyResponse": GenerateClientKeyResponse,
     "GenerateHmacKeyResponse": GenerateHmacKeyResponse,
     "GenericPmWithTdiInfo": GenericPmWithTdiInfo,
-    "GiroPayInfo": GiroPayInfo,
     "GooglePayInfo": GooglePayInfo,
     "Gratuity": Gratuity,
     "Hardware": Hardware,
@@ -593,6 +592,7 @@ let typeMap: {[index: string]: any} = {
     "PaginationLinks": PaginationLinks,
     "Passcodes": Passcodes,
     "PayAtTable": PayAtTable,
+    "PayByBankPlaidInfo": PayByBankPlaidInfo,
     "PayMeInfo": PayMeInfo,
     "PayPalInfo": PayPalInfo,
     "PayToInfo": PayToInfo,
