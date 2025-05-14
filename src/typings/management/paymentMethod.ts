@@ -17,12 +17,12 @@ import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { ClearpayInfo } from './clearpayInfo';
 import { DinersInfo } from './dinersInfo';
 import { GenericPmWithTdiInfo } from './genericPmWithTdiInfo';
-import { GiroPayInfo } from './giroPayInfo';
 import { GooglePayInfo } from './googlePayInfo';
 import { JCBInfo } from './jCBInfo';
 import { KlarnaInfo } from './klarnaInfo';
 import { MealVoucherFRInfo } from './mealVoucherFRInfo';
 import { NyceInfo } from './nyceInfo';
+import { PayByBankPlaidInfo } from './payByBankPlaidInfo';
 import { PayMeInfo } from './payMeInfo';
 import { PayPalInfo } from './payPalInfo';
 import { PayToInfo } from './payToInfo';
@@ -75,7 +75,6 @@ export class PaymentMethod {
     * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
     */
     'enabled'?: boolean;
-    'giroPay'?: GiroPayInfo | null;
     'girocard'?: GenericPmWithTdiInfo | null;
     'googlePay'?: GooglePayInfo | null;
     /**
@@ -90,6 +89,7 @@ export class PaymentMethod {
     'mc'?: GenericPmWithTdiInfo | null;
     'mealVoucher_FR'?: MealVoucherFRInfo | null;
     'nyce'?: NyceInfo | null;
+    'paybybank_plaid'?: PayByBankPlaidInfo | null;
     'payme'?: PayMeInfo | null;
     'paypal'?: PayPalInfo | null;
     'payto'?: PayToInfo | null;
@@ -224,11 +224,6 @@ export class PaymentMethod {
             "type": "boolean"
         },
         {
-            "name": "giroPay",
-            "baseName": "giroPay",
-            "type": "GiroPayInfo | null"
-        },
-        {
             "name": "girocard",
             "baseName": "girocard",
             "type": "GenericPmWithTdiInfo | null"
@@ -282,6 +277,11 @@ export class PaymentMethod {
             "name": "nyce",
             "baseName": "nyce",
             "type": "NyceInfo | null"
+        },
+        {
+            "name": "paybybank_plaid",
+            "baseName": "paybybank_plaid",
+            "type": "PayByBankPlaidInfo | null"
         },
         {
             "name": "payme",

@@ -14,6 +14,10 @@ export class Standalone {
     */
     'currencyCode'?: string;
     /**
+    * Indicates whether the tipping options specified in `gratuities` are enabled on the standalone terminal.
+    */
+    'enableGratuities'?: boolean;
+    /**
     * Enable standalone mode.
     */
     'enableStandalone'?: boolean;
@@ -25,6 +29,11 @@ export class Standalone {
             "name": "currencyCode",
             "baseName": "currencyCode",
             "type": "string"
+        },
+        {
+            "name": "enableGratuities",
+            "baseName": "enableGratuities",
+            "type": "boolean"
         },
         {
             "name": "enableStandalone",

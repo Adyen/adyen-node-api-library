@@ -73,8 +73,11 @@ export class SplitConfigurationRule {
 
 export namespace SplitConfigurationRule {
     export enum FundingSourceEnum {
+        Charged = 'charged',
         Credit = 'credit',
         Debit = 'debit',
+        DeferredDebit = 'deferred_debit',
+        Prepaid = 'prepaid',
         Any = 'ANY'
     }
     export enum ShopperInteractionEnum {

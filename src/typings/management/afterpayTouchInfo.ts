@@ -10,6 +10,10 @@
 
 export class AfterpayTouchInfo {
     /**
+    * Support Email
+    */
+    'supportEmail'?: string;
+    /**
     * Support Url
     */
     'supportUrl': string;
@@ -17,6 +21,11 @@ export class AfterpayTouchInfo {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "supportEmail",
+            "baseName": "supportEmail",
+            "type": "string"
+        },
         {
             "name": "supportUrl",
             "baseName": "supportUrl",

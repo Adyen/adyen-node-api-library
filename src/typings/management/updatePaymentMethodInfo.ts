@@ -12,6 +12,7 @@ import { BcmcInfo } from './bcmcInfo';
 import { CartesBancairesInfo } from './cartesBancairesInfo';
 import { GenericPmWithTdiInfo } from './genericPmWithTdiInfo';
 import { NyceInfo } from './nyceInfo';
+import { PayByBankPlaidInfo } from './payByBankPlaidInfo';
 import { PulseInfo } from './pulseInfo';
 import { StarInfo } from './starInfo';
 
@@ -47,6 +48,7 @@ export class UpdatePaymentMethodInfo {
     'maestro'?: GenericPmWithTdiInfo | null;
     'mc'?: GenericPmWithTdiInfo | null;
     'nyce'?: NyceInfo | null;
+    'paybybank_plaid'?: PayByBankPlaidInfo | null;
     'pulse'?: PulseInfo | null;
     'star'?: StarInfo | null;
     /**
@@ -159,6 +161,11 @@ export class UpdatePaymentMethodInfo {
             "name": "nyce",
             "baseName": "nyce",
             "type": "NyceInfo | null"
+        },
+        {
+            "name": "paybybank_plaid",
+            "baseName": "paybybank_plaid",
+            "type": "PayByBankPlaidInfo | null"
         },
         {
             "name": "pulse",
