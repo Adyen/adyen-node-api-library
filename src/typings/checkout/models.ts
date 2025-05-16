@@ -132,6 +132,7 @@ export * from './payToDetails';
 export * from './payUUpiDetails';
 export * from './payWithGoogleDetails';
 export * from './payWithGoogleDonations';
+export * from './payment';
 export * from './paymentAmountUpdateRequest';
 export * from './paymentAmountUpdateResponse';
 export * from './paymentCancelRequest';
@@ -345,6 +346,7 @@ import { PayToDetails } from './payToDetails';
 import { PayUUpiDetails } from './payUUpiDetails';
 import { PayWithGoogleDetails } from './payWithGoogleDetails';
 import { PayWithGoogleDonations } from './payWithGoogleDonations';
+import { Payment } from './payment';
 import { PaymentAmountUpdateRequest } from './paymentAmountUpdateRequest';
 import { PaymentAmountUpdateResponse } from './paymentAmountUpdateResponse';
 import { PaymentCancelRequest } from './paymentCancelRequest';
@@ -558,6 +560,7 @@ let enumsMap: {[index: string]: any} = {
         "PayWithGoogleDetails.TypeEnum": PayWithGoogleDetails.TypeEnum,
         "PayWithGoogleDonations.FundingSourceEnum": PayWithGoogleDonations.FundingSourceEnum,
         "PayWithGoogleDonations.TypeEnum": PayWithGoogleDonations.TypeEnum,
+        "Payment.ResultCodeEnum": Payment.ResultCodeEnum,
         "PaymentAmountUpdateRequest.IndustryUsageEnum": PaymentAmountUpdateRequest.IndustryUsageEnum,
         "PaymentAmountUpdateResponse.IndustryUsageEnum": PaymentAmountUpdateResponse.IndustryUsageEnum,
         "PaymentAmountUpdateResponse.StatusEnum": PaymentAmountUpdateResponse.StatusEnum,
@@ -769,6 +772,7 @@ let typeMap: {[index: string]: any} = {
     "PayUUpiDetails": PayUUpiDetails,
     "PayWithGoogleDetails": PayWithGoogleDetails,
     "PayWithGoogleDonations": PayWithGoogleDonations,
+    "Payment": Payment,
     "PaymentAmountUpdateRequest": PaymentAmountUpdateRequest,
     "PaymentAmountUpdateResponse": PaymentAmountUpdateResponse,
     "PaymentCancelRequest": PaymentCancelRequest,
