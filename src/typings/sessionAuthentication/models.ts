@@ -8,16 +8,44 @@
  */
 
 
-export * from './balanceAccountBalanceNotificationRequest';
-export * from './balanceNotificationData';
-export * from './balancePlatformNotificationResponse';
-export * from './balances';
+export * from './accountHolderResource';
+export * from './accountHolderResourceAllOf';
+export * from './authenticationSessionRequest';
+export * from './authenticationSessionResponse';
+export * from './balanceAccountResource';
+export * from './balanceAccountResourceAllOf';
+export * from './defaultErrorResponseEntity';
+export * from './invalidField';
+export * from './legalEntityResource';
+export * from './legalEntityResourceAllOf';
+export * from './merchantAccountResource';
+export * from './merchantAccountResourceAllOf';
+export * from './paymentInstrumentResource';
+export * from './paymentInstrumentResourceAllOf';
+export * from './policy';
+export * from './productType';
+export * from './resource';
+export * from './resourceType';
 
 
-import { BalanceAccountBalanceNotificationRequest } from './balanceAccountBalanceNotificationRequest';
-import { BalanceNotificationData } from './balanceNotificationData';
-import { BalancePlatformNotificationResponse } from './balancePlatformNotificationResponse';
-import { Balances } from './balances';
+import { AccountHolderResource } from './accountHolderResource';
+import { AccountHolderResourceAllOf } from './accountHolderResourceAllOf';
+import { AuthenticationSessionRequest } from './authenticationSessionRequest';
+import { AuthenticationSessionResponse } from './authenticationSessionResponse';
+import { BalanceAccountResource } from './balanceAccountResource';
+import { BalanceAccountResourceAllOf } from './balanceAccountResourceAllOf';
+import { DefaultErrorResponseEntity } from './defaultErrorResponseEntity';
+import { InvalidField } from './invalidField';
+import { LegalEntityResource } from './legalEntityResource';
+import { LegalEntityResourceAllOf } from './legalEntityResourceAllOf';
+import { MerchantAccountResource } from './merchantAccountResource';
+import { MerchantAccountResourceAllOf } from './merchantAccountResourceAllOf';
+import { PaymentInstrumentResource } from './paymentInstrumentResource';
+import { PaymentInstrumentResourceAllOf } from './paymentInstrumentResourceAllOf';
+import { Policy } from './policy';
+import { ProductType } from './productType';
+import { Resource } from './resource';
+import { ResourceType } from './resourceType';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -32,14 +60,27 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
-        "BalanceAccountBalanceNotificationRequest.TypeEnum": BalanceAccountBalanceNotificationRequest.TypeEnum,
+        "ProductType": ProductType,
+        "ResourceType": ResourceType,
 }
 
 let typeMap: {[index: string]: any} = {
-    "BalanceAccountBalanceNotificationRequest": BalanceAccountBalanceNotificationRequest,
-    "BalanceNotificationData": BalanceNotificationData,
-    "BalancePlatformNotificationResponse": BalancePlatformNotificationResponse,
-    "Balances": Balances,
+    "AccountHolderResource": AccountHolderResource,
+    "AccountHolderResourceAllOf": AccountHolderResourceAllOf,
+    "AuthenticationSessionRequest": AuthenticationSessionRequest,
+    "AuthenticationSessionResponse": AuthenticationSessionResponse,
+    "BalanceAccountResource": BalanceAccountResource,
+    "BalanceAccountResourceAllOf": BalanceAccountResourceAllOf,
+    "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
+    "InvalidField": InvalidField,
+    "LegalEntityResource": LegalEntityResource,
+    "LegalEntityResourceAllOf": LegalEntityResourceAllOf,
+    "MerchantAccountResource": MerchantAccountResource,
+    "MerchantAccountResourceAllOf": MerchantAccountResourceAllOf,
+    "PaymentInstrumentResource": PaymentInstrumentResource,
+    "PaymentInstrumentResourceAllOf": PaymentInstrumentResourceAllOf,
+    "Policy": Policy,
+    "Resource": Resource,
 }
 
 export class ObjectSerializer {
