@@ -116,21 +116,21 @@ describe("HTTP Client", function (): void {
         
         const scope = nock("https://checkout-test.adyen.com/v71", {
             reqheaders: {
-                'adyen-library-name': (headerValue) => {
+                "adyen-library-name": (headerValue) => {
                     expect(headerValue).toBeTruthy(); 
                     expect(headerValue).toEqual(expectedLibraryName);
                     return true;
                 },
-                'adyen-library-version': (headerValue) => {
+                "adyen-library-version": (headerValue) => {
                     expect(headerValue).toBeTruthy(); 
                     expect(headerValue).toEqual(expectedLibraryVersion);
-                    expect
+                    expect;
                     return true;
                 },
-                'user-agent': (headerValue) => {
+                "user-agent": (headerValue) => {
                     expect(headerValue).toBeTruthy(); 
                     expect(headerValue).toEqual(expectedUserAgent);
-                    expect
+                    expect;
                     return true;
                 }
             }
@@ -153,21 +153,21 @@ describe("HTTP Client", function (): void {
         
         const scope = nock("https://checkout-test.adyen.com/v71", {
             reqheaders: {
-                'adyen-library-name': (headerValue) => {
+                "adyen-library-name": (headerValue) => {
                     expect(headerValue).toBeTruthy(); 
                     expect(headerValue).toEqual(expectedLibraryName);
                     return true;
                 },
-                'adyen-library-version': (headerValue) => {
+                "adyen-library-version": (headerValue) => {
                     expect(headerValue).toBeTruthy(); 
                     expect(headerValue).toEqual(expectedLibraryVersion);
-                    expect
+                    expect;
                     return true;
                 },
-                'user-agent': (headerValue) => {
+                "user-agent": (headerValue) => {
                     expect(headerValue).toBeTruthy(); 
                     expect(headerValue).toEqual(expectedUserAgent);
-                    expect
+                    expect;
                     return true;
                 }
             }
@@ -181,10 +181,10 @@ describe("HTTP Client", function (): void {
 
 });
 
-describe('Config class', () => {
+describe("Config class", () => {
     const DEFAULT_TIMEOUT = 30000; // Define the default timeout value
 
-    test('should set default timeout when no timeout is provided', () => {
+    test("should set default timeout when no timeout is provided", () => {
         // Instantiate the Config class without passing a timeout
         const config = new Config();
 
@@ -192,7 +192,7 @@ describe('Config class', () => {
         expect(config.connectionTimeoutMillis).toBe(DEFAULT_TIMEOUT);
     });
 
-    test('should set custom timeout when provided', () => {
+    test("should set custom timeout when provided", () => {
         // Instantiate the Config class with a custom timeout
         const customTimeout = 50000;
         const config = new Config({ connectionTimeoutMillis: customTimeout });
