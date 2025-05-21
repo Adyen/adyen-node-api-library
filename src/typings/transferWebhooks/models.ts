@@ -28,6 +28,7 @@ export * from './counterpartyV3';
 export * from './dKLocalAccountIdentification';
 export * from './directDebitInformation';
 export * from './estimationTrackingData';
+export * from './executionDate';
 export * from './externalReason';
 export * from './hKLocalAccountIdentification';
 export * from './hULocalAccountIdentification';
@@ -89,6 +90,7 @@ import { CounterpartyV3 } from './counterpartyV3';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
 import { DirectDebitInformation } from './directDebitInformation';
 import { EstimationTrackingData } from './estimationTrackingData';
+import { ExecutionDate } from './executionDate';
 import { ExternalReason } from './externalReason';
 import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
 import { HULocalAccountIdentification } from './hULocalAccountIdentification';
@@ -213,6 +215,7 @@ let typeMap: {[index: string]: any} = {
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DirectDebitInformation": DirectDebitInformation,
     "EstimationTrackingData": EstimationTrackingData,
+    "ExecutionDate": ExecutionDate,
     "ExternalReason": ExternalReason,
     "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
@@ -265,25 +268,6 @@ export class ObjectSerializer {
         } else {
             if (enumsMap[expectedType]) {
                 return expectedType;
-            }
-
-            // Handle union types
-            if (expectedType.includes(" | ")) {
-                const unionTypes = expectedType.split(" | ").map((t) => t.trim());
-
-                // For tracking field specifically, use the 'type' field to determine the actual type
-                if (data && data.type && unionTypes.some((t) => t.includes("TrackingData"))) {
-                    if (data.type === "estimation") return "EstimationTrackingData";
-                    if (data.type === "confirmation") return "ConfirmationTrackingData";
-                    if (data.type === "internalReview") return "InternalReviewTrackingData";
-                }
-
-                // For other union types, return the first non-null type that exists in typeMap
-                for (const type of unionTypes) {
-                    if (type !== "null" && typeMap[type]) {
-                        return type;
-                    }
-                }
             }
 
             if (!typeMap[expectedType]) {

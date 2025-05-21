@@ -35,6 +35,10 @@ export * from './balanceAccountInfo';
 export * from './balanceAccountUpdateRequest';
 export * from './balancePlatform';
 export * from './balanceSweepConfigurationsResponse';
+export * from './balanceWebhookSetting';
+export * from './balanceWebhookSettingAllOf';
+export * from './balanceWebhookSettingInfo';
+export * from './balanceWebhookSettingInfoUpdate';
 export * from './bankAccount';
 export * from './bankAccountDetails';
 export * from './bankAccountIdentificationTypeRequirement';
@@ -57,6 +61,7 @@ export * from './cardInfo';
 export * from './cardOrder';
 export * from './cardOrderItem';
 export * from './cardOrderItemDeliveryStatus';
+export * from './condition';
 export * from './contactDetails';
 export * from './counterparty';
 export * from './counterpartyBankRestriction';
@@ -65,6 +70,7 @@ export * from './countriesRestriction';
 export * from './createSweepConfigurationV2';
 export * from './dKLocalAccountIdentification';
 export * from './dayOfWeekRestriction';
+export * from './defaultErrorResponseEntity';
 export * from './delegatedAuthenticationData';
 export * from './deliveryAddress';
 export * from './deliveryContact';
@@ -138,11 +144,14 @@ export * from './sGLocalAccountIdentification';
 export * from './sameAmountRestriction';
 export * from './sameCounterpartyRestriction';
 export * from './searchRegisteredDevicesResponse';
+export * from './settingType';
 export * from './sourceAccountTypesRestriction';
 export * from './stringMatch';
 export * from './sweepConfigurationV2';
 export * from './sweepCounterparty';
 export * from './sweepSchedule';
+export * from './target';
+export * from './targetUpdate';
 export * from './thresholdRepayment';
 export * from './timeOfDay';
 export * from './timeOfDayRestriction';
@@ -170,6 +179,9 @@ export * from './verificationError';
 export * from './verificationErrorRecursive';
 export * from './walletProviderAccountScoreRestriction';
 export * from './walletProviderDeviceScore';
+export * from './walletProviderDeviceType';
+export * from './webhookSetting';
+export * from './webhookSettings';
 
 
 import { AULocalAccountIdentification } from './aULocalAccountIdentification';
@@ -199,6 +211,10 @@ import { BalanceAccountInfo } from './balanceAccountInfo';
 import { BalanceAccountUpdateRequest } from './balanceAccountUpdateRequest';
 import { BalancePlatform } from './balancePlatform';
 import { BalanceSweepConfigurationsResponse } from './balanceSweepConfigurationsResponse';
+import { BalanceWebhookSetting } from './balanceWebhookSetting';
+import { BalanceWebhookSettingAllOf } from './balanceWebhookSettingAllOf';
+import { BalanceWebhookSettingInfo } from './balanceWebhookSettingInfo';
+import { BalanceWebhookSettingInfoUpdate } from './balanceWebhookSettingInfoUpdate';
 import { BankAccount } from './bankAccount';
 import { BankAccountDetails } from './bankAccountDetails';
 import { BankAccountIdentificationTypeRequirement } from './bankAccountIdentificationTypeRequirement';
@@ -221,6 +237,7 @@ import { CardInfo } from './cardInfo';
 import { CardOrder } from './cardOrder';
 import { CardOrderItem } from './cardOrderItem';
 import { CardOrderItemDeliveryStatus } from './cardOrderItemDeliveryStatus';
+import { Condition } from './condition';
 import { ContactDetails } from './contactDetails';
 import { Counterparty } from './counterparty';
 import { CounterpartyBankRestriction } from './counterpartyBankRestriction';
@@ -229,6 +246,7 @@ import { CountriesRestriction } from './countriesRestriction';
 import { CreateSweepConfigurationV2 } from './createSweepConfigurationV2';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
 import { DayOfWeekRestriction } from './dayOfWeekRestriction';
+import { DefaultErrorResponseEntity } from './defaultErrorResponseEntity';
 import { DelegatedAuthenticationData } from './delegatedAuthenticationData';
 import { DeliveryAddress } from './deliveryAddress';
 import { DeliveryContact } from './deliveryContact';
@@ -302,11 +320,14 @@ import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
 import { SameAmountRestriction } from './sameAmountRestriction';
 import { SameCounterpartyRestriction } from './sameCounterpartyRestriction';
 import { SearchRegisteredDevicesResponse } from './searchRegisteredDevicesResponse';
+import { SettingType } from './settingType';
 import { SourceAccountTypesRestriction } from './sourceAccountTypesRestriction';
 import { StringMatch } from './stringMatch';
 import { SweepConfigurationV2 } from './sweepConfigurationV2';
 import { SweepCounterparty } from './sweepCounterparty';
 import { SweepSchedule } from './sweepSchedule';
+import { Target } from './target';
+import { TargetUpdate } from './targetUpdate';
 import { ThresholdRepayment } from './thresholdRepayment';
 import { TimeOfDay } from './timeOfDay';
 import { TimeOfDayRestriction } from './timeOfDayRestriction';
@@ -334,6 +355,9 @@ import { VerificationError } from './verificationError';
 import { VerificationErrorRecursive } from './verificationErrorRecursive';
 import { WalletProviderAccountScoreRestriction } from './walletProviderAccountScoreRestriction';
 import { WalletProviderDeviceScore } from './walletProviderDeviceScore';
+import { WalletProviderDeviceType } from './walletProviderDeviceType';
+import { WebhookSetting } from './webhookSetting';
+import { WebhookSettings } from './webhookSettings';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -369,6 +393,10 @@ let enumsMap: {[index: string]: any} = {
         "BalanceAccount.StatusEnum": BalanceAccount.StatusEnum,
         "BalanceAccountBase.StatusEnum": BalanceAccountBase.StatusEnum,
         "BalanceAccountUpdateRequest.StatusEnum": BalanceAccountUpdateRequest.StatusEnum,
+        "BalanceWebhookSettingInfo.StatusEnum": BalanceWebhookSettingInfo.StatusEnum,
+        "BalanceWebhookSettingInfo.TypeEnum": BalanceWebhookSettingInfo.TypeEnum,
+        "BalanceWebhookSettingInfoUpdate.StatusEnum": BalanceWebhookSettingInfoUpdate.StatusEnum,
+        "BalanceWebhookSettingInfoUpdate.TypeEnum": BalanceWebhookSettingInfoUpdate.TypeEnum,
         "BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum": BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum,
         "BankAccountIdentificationTypeRequirement.TypeEnum": BankAccountIdentificationTypeRequirement.TypeEnum,
         "BankAccountModel.FormFactorEnum": BankAccountModel.FormFactorEnum,
@@ -384,6 +412,8 @@ let enumsMap: {[index: string]: any} = {
         "CardInfo.FormFactorEnum": CardInfo.FormFactorEnum,
         "CardOrder.StatusEnum": CardOrder.StatusEnum,
         "CardOrderItemDeliveryStatus.StatusEnum": CardOrderItemDeliveryStatus.StatusEnum,
+        "Condition.BalanceTypeEnum": Condition.BalanceTypeEnum,
+        "Condition.ConditionTypeEnum": Condition.ConditionTypeEnum,
         "CounterpartyTypesRestriction.ValueEnum": CounterpartyTypesRestriction.ValueEnum,
         "CreateSweepConfigurationV2.CategoryEnum": CreateSweepConfigurationV2.CategoryEnum,
         "CreateSweepConfigurationV2.PrioritiesEnum": CreateSweepConfigurationV2.PrioritiesEnum,
@@ -423,6 +453,7 @@ let enumsMap: {[index: string]: any} = {
         "ProcessingTypesRestriction.ValueEnum": ProcessingTypesRestriction.ValueEnum,
         "SELocalAccountIdentification.TypeEnum": SELocalAccountIdentification.TypeEnum,
         "SGLocalAccountIdentification.TypeEnum": SGLocalAccountIdentification.TypeEnum,
+        "SettingType": SettingType,
         "SourceAccountTypesRestriction.ValueEnum": SourceAccountTypesRestriction.ValueEnum,
         "StringMatch.OperationEnum": StringMatch.OperationEnum,
         "SweepConfigurationV2.CategoryEnum": SweepConfigurationV2.CategoryEnum,
@@ -431,6 +462,8 @@ let enumsMap: {[index: string]: any} = {
         "SweepConfigurationV2.StatusEnum": SweepConfigurationV2.StatusEnum,
         "SweepConfigurationV2.TypeEnum": SweepConfigurationV2.TypeEnum,
         "SweepSchedule.TypeEnum": SweepSchedule.TypeEnum,
+        "Target.TypeEnum": Target.TypeEnum,
+        "TargetUpdate.TypeEnum": TargetUpdate.TypeEnum,
         "TransactionRule.OutcomeTypeEnum": TransactionRule.OutcomeTypeEnum,
         "TransactionRule.RequestTypeEnum": TransactionRule.RequestTypeEnum,
         "TransactionRule.StatusEnum": TransactionRule.StatusEnum,
@@ -464,6 +497,7 @@ let enumsMap: {[index: string]: any} = {
         "VerificationError.TypeEnum": VerificationError.TypeEnum,
         "VerificationErrorRecursive.CapabilitiesEnum": VerificationErrorRecursive.CapabilitiesEnum,
         "VerificationErrorRecursive.TypeEnum": VerificationErrorRecursive.TypeEnum,
+        "WalletProviderDeviceType.ValueEnum": WalletProviderDeviceType.ValueEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -494,6 +528,10 @@ let typeMap: {[index: string]: any} = {
     "BalanceAccountUpdateRequest": BalanceAccountUpdateRequest,
     "BalancePlatform": BalancePlatform,
     "BalanceSweepConfigurationsResponse": BalanceSweepConfigurationsResponse,
+    "BalanceWebhookSetting": BalanceWebhookSetting,
+    "BalanceWebhookSettingAllOf": BalanceWebhookSettingAllOf,
+    "BalanceWebhookSettingInfo": BalanceWebhookSettingInfo,
+    "BalanceWebhookSettingInfoUpdate": BalanceWebhookSettingInfoUpdate,
     "BankAccount": BankAccount,
     "BankAccountDetails": BankAccountDetails,
     "BankAccountIdentificationTypeRequirement": BankAccountIdentificationTypeRequirement,
@@ -516,6 +554,7 @@ let typeMap: {[index: string]: any} = {
     "CardOrder": CardOrder,
     "CardOrderItem": CardOrderItem,
     "CardOrderItemDeliveryStatus": CardOrderItemDeliveryStatus,
+    "Condition": Condition,
     "ContactDetails": ContactDetails,
     "Counterparty": Counterparty,
     "CounterpartyBankRestriction": CounterpartyBankRestriction,
@@ -524,6 +563,7 @@ let typeMap: {[index: string]: any} = {
     "CreateSweepConfigurationV2": CreateSweepConfigurationV2,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DayOfWeekRestriction": DayOfWeekRestriction,
+    "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
     "DelegatedAuthenticationData": DelegatedAuthenticationData,
     "DeliveryAddress": DeliveryAddress,
     "DeliveryContact": DeliveryContact,
@@ -602,6 +642,8 @@ let typeMap: {[index: string]: any} = {
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,
     "SweepSchedule": SweepSchedule,
+    "Target": Target,
+    "TargetUpdate": TargetUpdate,
     "ThresholdRepayment": ThresholdRepayment,
     "TimeOfDay": TimeOfDay,
     "TimeOfDayRestriction": TimeOfDayRestriction,
@@ -629,6 +671,9 @@ let typeMap: {[index: string]: any} = {
     "VerificationErrorRecursive": VerificationErrorRecursive,
     "WalletProviderAccountScoreRestriction": WalletProviderAccountScoreRestriction,
     "WalletProviderDeviceScore": WalletProviderDeviceScore,
+    "WalletProviderDeviceType": WalletProviderDeviceType,
+    "WebhookSetting": WebhookSetting,
+    "WebhookSettings": WebhookSettings,
 }
 
 export class ObjectSerializer {

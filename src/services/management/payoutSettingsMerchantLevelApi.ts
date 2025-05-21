@@ -14,6 +14,7 @@ import {
     PayoutSettings,
     PayoutSettingsRequest,
     PayoutSettingsResponse,
+    RestServiceError,
     UpdatePayoutSettingsRequest,
     ObjectSerializer
 } from "../../typings/management/models";
