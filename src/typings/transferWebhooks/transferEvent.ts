@@ -15,6 +15,7 @@ import { EstimationTrackingData } from './estimationTrackingData';
 import { ExternalReason } from './externalReason';
 import { InternalReviewTrackingData } from './internalReviewTrackingData';
 import { IssuingTransactionData } from './issuingTransactionData';
+import { IssuingTransactionData | MerchantPurchaseData } from './issuingTransactionData | MerchantPurchaseData';
 import { MerchantPurchaseData } from './merchantPurchaseData';
 import { Modification } from './modification';
 
