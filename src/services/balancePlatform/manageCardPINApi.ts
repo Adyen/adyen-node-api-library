@@ -14,7 +14,6 @@ import {
     PinChangeRequest,
     PinChangeResponse,
     PublicKeyResponse,
-    RestServiceError,
     RevealPinRequest,
     RevealPinResponse,
     ObjectSerializer
