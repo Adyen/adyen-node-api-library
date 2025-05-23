@@ -59,9 +59,6 @@ class Client {
             if (options.username && options.password) {
                 this.config.username = options.username;
                 this.config.password = options.password;
-                if(options.applicationName) {
-                    this.config.applicationName = options.applicationName;
-                }
             }
 
             if (options.apiKey) {
@@ -69,6 +66,10 @@ class Client {
             }
         }
 
+        if(options.applicationName) {
+            this.config.applicationName = options.applicationName;
+        }
+        
         if (options.httpClient) {
             this._httpClient = options.httpClient;
         }
