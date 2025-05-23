@@ -36,7 +36,7 @@ export class RecurringApi extends Service {
     * @param shopperReference {@link string } Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
     * @param merchantAccount {@link string } Your merchant account.
     */
-    public async deleteTokenForStoredPaymentDetails(storedPaymentMethodId: string, shopperReference?: string, merchantAccount?: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async deleteTokenForStoredPaymentDetails(storedPaymentMethodId: string, shopperReference: string, merchantAccount: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/storedPaymentMethods/{storedPaymentMethodId}`
             .replace("{" + "storedPaymentMethodId" + "}", encodeURIComponent(String(storedPaymentMethodId)));
         const resource = new Resource(this, endpoint);

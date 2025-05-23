@@ -62,7 +62,7 @@ export class PaymentsApi extends Service {
     * @param sessionResult {@link string } The &#x60;sessionResult&#x60; value from the Drop-in or Component.
     * @return {@link SessionResultResponse }
     */
-    public async getResultOfPaymentSession(sessionId: string, sessionResult?: string, requestOptions?: IRequest.Options): Promise<SessionResultResponse> {
+    public async getResultOfPaymentSession(sessionId: string, sessionResult: string, requestOptions?: IRequest.Options): Promise<SessionResultResponse> {
         const endpoint = `${this.baseUrl}/sessions/{sessionId}`
             .replace("{" + "sessionId" + "}", encodeURIComponent(String(sessionId)));
         const resource = new Resource(this, endpoint);
