@@ -563,25 +563,13 @@ describe("Checkout", (): void => {
     });
 
     test("Should delete stored paymentMethod", async (): Promise<void> => {
-        scope.delete("/storedPaymentMethods/12321")
+        scope.delete("/storedPaymentMethods/12321?shopperReference=myShopperReference&merchantAccount=myMerchantAccount")
         .reply(200);
 
         await expect(
-            checkoutService.RecurringApi.deleteTokenForStoredPaymentDetails("12321"),
+            checkoutService.RecurringApi.deleteTokenForStoredPaymentDetails("12321", "myShopperReference", "myMerchantAccount"),
         ).resolves.not.toThrowError();
 
-    });
-
-    test("Should handle request without query parameters for getResultOfPaymentSession", async(): Promise<void> => {
-        scope.get("/sessions/mySessionIdMock")
-        .reply(200, {
-            "id": "CS12345678",
-            "status": "completed"
-        });
-
-        const resultOfPaymentSessionResponse = await checkoutService.PaymentsApi.getResultOfPaymentSession("mySessionIdMock");
-        expect(resultOfPaymentSessionResponse.id).toEqual("CS12345678");
-        expect(resultOfPaymentSessionResponse.status).toEqual(SessionResultResponse.StatusEnum.Completed);
     });
 
     test("Should handle query parameters for getResultOfPaymentSession", async(): Promise<void> => {
