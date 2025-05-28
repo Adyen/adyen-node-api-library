@@ -36,52 +36,65 @@ export class DeliveryAddress {
     */
     'street': string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "city",
             "baseName": "city",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "country",
             "baseName": "country",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "firstName",
             "baseName": "firstName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "houseNumberOrName",
             "baseName": "houseNumberOrName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lastName",
             "baseName": "lastName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "postalCode",
             "baseName": "postalCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "stateOrProvince",
             "baseName": "stateOrProvince",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "street",
             "baseName": "street",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DeliveryAddress.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

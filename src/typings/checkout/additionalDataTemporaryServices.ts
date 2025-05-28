@@ -46,57 +46,71 @@ export class AdditionalDataTemporaryServices {
     */
     'enhancedSchemeData_totalTaxAmount'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "enhancedSchemeData_customerReference",
             "baseName": "enhancedSchemeData.customerReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_employeeName",
             "baseName": "enhancedSchemeData.employeeName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_jobDescription",
             "baseName": "enhancedSchemeData.jobDescription",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_regularHoursRate",
             "baseName": "enhancedSchemeData.regularHoursRate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_regularHoursWorked",
             "baseName": "enhancedSchemeData.regularHoursWorked",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_requestName",
             "baseName": "enhancedSchemeData.requestName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_tempStartDate",
             "baseName": "enhancedSchemeData.tempStartDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_tempWeekEnding",
             "baseName": "enhancedSchemeData.tempWeekEnding",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_totalTaxAmount",
             "baseName": "enhancedSchemeData.totalTaxAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataTemporaryServices.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

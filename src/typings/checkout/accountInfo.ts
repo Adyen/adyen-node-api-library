@@ -95,107 +95,131 @@ export class AccountInfo {
     */
     'workPhone'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountAgeIndicator",
             "baseName": "accountAgeIndicator",
-            "type": "AccountInfo.AccountAgeIndicatorEnum"
+            "type": "AccountInfo.AccountAgeIndicatorEnum",
+            "format": ""
         },
         {
             "name": "accountChangeDate",
             "baseName": "accountChangeDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "accountChangeIndicator",
             "baseName": "accountChangeIndicator",
-            "type": "AccountInfo.AccountChangeIndicatorEnum"
+            "type": "AccountInfo.AccountChangeIndicatorEnum",
+            "format": ""
         },
         {
             "name": "accountCreationDate",
             "baseName": "accountCreationDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "accountType",
             "baseName": "accountType",
-            "type": "AccountInfo.AccountTypeEnum"
+            "type": "AccountInfo.AccountTypeEnum",
+            "format": ""
         },
         {
             "name": "addCardAttemptsDay",
             "baseName": "addCardAttemptsDay",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "deliveryAddressUsageDate",
             "baseName": "deliveryAddressUsageDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "deliveryAddressUsageIndicator",
             "baseName": "deliveryAddressUsageIndicator",
-            "type": "AccountInfo.DeliveryAddressUsageIndicatorEnum"
+            "type": "AccountInfo.DeliveryAddressUsageIndicatorEnum",
+            "format": ""
         },
         {
             "name": "homePhone",
             "baseName": "homePhone",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "mobilePhone",
             "baseName": "mobilePhone",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "passwordChangeDate",
             "baseName": "passwordChangeDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "passwordChangeIndicator",
             "baseName": "passwordChangeIndicator",
-            "type": "AccountInfo.PasswordChangeIndicatorEnum"
+            "type": "AccountInfo.PasswordChangeIndicatorEnum",
+            "format": ""
         },
         {
             "name": "pastTransactionsDay",
             "baseName": "pastTransactionsDay",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "pastTransactionsYear",
             "baseName": "pastTransactionsYear",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "paymentAccountAge",
             "baseName": "paymentAccountAge",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "paymentAccountIndicator",
             "baseName": "paymentAccountIndicator",
-            "type": "AccountInfo.PaymentAccountIndicatorEnum"
+            "type": "AccountInfo.PaymentAccountIndicatorEnum",
+            "format": ""
         },
         {
             "name": "purchasesLast6Months",
             "baseName": "purchasesLast6Months",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "suspiciousActivity",
             "baseName": "suspiciousActivity",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "workPhone",
             "baseName": "workPhone",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AccountInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

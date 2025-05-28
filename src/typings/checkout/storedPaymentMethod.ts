@@ -78,97 +78,119 @@ export class StoredPaymentMethod {
     */
     'type'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "bankAccountNumber",
             "baseName": "bankAccountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankLocationId",
             "baseName": "bankLocationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "expiryMonth",
             "baseName": "expiryMonth",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "expiryYear",
             "baseName": "expiryYear",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "holderName",
             "baseName": "holderName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "iban",
             "baseName": "iban",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "label",
             "baseName": "label",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lastFour",
             "baseName": "lastFour",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "networkTxReference",
             "baseName": "networkTxReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ownerName",
             "baseName": "ownerName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "supportedRecurringProcessingModels",
             "baseName": "supportedRecurringProcessingModels",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "supportedShopperInteractions",
             "baseName": "supportedShopperInteractions",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return StoredPaymentMethod.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

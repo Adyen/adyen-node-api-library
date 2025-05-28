@@ -30,37 +30,47 @@ export class PaymentReversalResponse {
     */
     'status': PaymentReversalResponse.StatusEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentPspReference",
             "baseName": "paymentPspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "PaymentReversalResponse.StatusEnum"
+            "type": "PaymentReversalResponse.StatusEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentReversalResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

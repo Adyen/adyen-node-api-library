@@ -46,57 +46,71 @@ export class Leg {
     */
     'stopOverCode'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "carrierCode",
             "baseName": "carrierCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "classOfTravel",
             "baseName": "classOfTravel",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "dateOfTravel",
             "baseName": "dateOfTravel",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "departureAirportCode",
             "baseName": "departureAirportCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "departureTax",
             "baseName": "departureTax",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "destinationAirportCode",
             "baseName": "destinationAirportCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fareBasisCode",
             "baseName": "fareBasisCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "flightNumber",
             "baseName": "flightNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "stopOverCode",
             "baseName": "stopOverCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Leg.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

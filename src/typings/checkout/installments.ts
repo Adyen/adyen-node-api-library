@@ -22,27 +22,35 @@ export class Installments {
     */
     'value': number;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "extra",
             "baseName": "extra",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "plan",
             "baseName": "plan",
-            "type": "Installments.PlanEnum"
+            "type": "Installments.PlanEnum",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         }    ];
 
     static getAttributeTypeMap() {
         return Installments.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

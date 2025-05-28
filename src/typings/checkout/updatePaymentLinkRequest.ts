@@ -14,17 +14,23 @@ export class UpdatePaymentLinkRequest {
     */
     'status': UpdatePaymentLinkRequest.StatusEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "status",
             "baseName": "status",
-            "type": "UpdatePaymentLinkRequest.StatusEnum"
+            "type": "UpdatePaymentLinkRequest.StatusEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return UpdatePaymentLinkRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

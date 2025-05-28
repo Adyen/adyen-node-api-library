@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from '../models/Amount';
 
 export class PixRecurring {
     /**
@@ -22,12 +22,12 @@ export class PixRecurring {
     * The frequency at which the shopper will be charged.
     */
     'frequency'?: PixRecurring.FrequencyEnum;
-    'minAmount'?: Amount | null;
+    'minAmount'?: Amount;
     /**
     * The pspReference for the failed recurring payment. Find this in AUTHORISATION webhook you received after the billing date.
     */
     'originalPspReference'?: string;
-    'recurringAmount'?: Amount | null;
+    'recurringAmount'?: Amount;
     /**
     * The text that that will be shown on the shopper\'s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.
     */
@@ -41,57 +41,71 @@ export class PixRecurring {
     */
     'startsAt'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "billingDate",
             "baseName": "billingDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "endsAt",
             "baseName": "endsAt",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "frequency",
             "baseName": "frequency",
-            "type": "PixRecurring.FrequencyEnum"
+            "type": "PixRecurring.FrequencyEnum",
+            "format": ""
         },
         {
             "name": "minAmount",
             "baseName": "minAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "originalPspReference",
             "baseName": "originalPspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringAmount",
             "baseName": "recurringAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "recurringStatement",
             "baseName": "recurringStatement",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "retryPolicy",
             "baseName": "retryPolicy",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "startsAt",
             "baseName": "startsAt",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PixRecurring.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

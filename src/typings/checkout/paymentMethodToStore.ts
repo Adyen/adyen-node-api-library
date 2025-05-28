@@ -58,72 +58,89 @@ export class PaymentMethodToStore {
     */
     'type'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "cvc",
             "baseName": "cvc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedCard",
             "baseName": "encryptedCard",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedCardNumber",
             "baseName": "encryptedCardNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedExpiryMonth",
             "baseName": "encryptedExpiryMonth",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedExpiryYear",
             "baseName": "encryptedExpiryYear",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedSecurityCode",
             "baseName": "encryptedSecurityCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "expiryMonth",
             "baseName": "expiryMonth",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "expiryYear",
             "baseName": "expiryYear",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "holderName",
             "baseName": "holderName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "number",
             "baseName": "number",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentMethodToStore.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

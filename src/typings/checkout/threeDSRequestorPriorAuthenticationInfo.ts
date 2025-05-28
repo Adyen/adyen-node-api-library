@@ -26,32 +26,41 @@ export class ThreeDSRequestorPriorAuthenticationInfo {
     */
     'threeDSReqPriorRef'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "threeDSReqPriorAuthData",
             "baseName": "threeDSReqPriorAuthData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDSReqPriorAuthMethod",
             "baseName": "threeDSReqPriorAuthMethod",
-            "type": "ThreeDSRequestorPriorAuthenticationInfo.ThreeDSReqPriorAuthMethodEnum"
+            "type": "ThreeDSRequestorPriorAuthenticationInfo.ThreeDSReqPriorAuthMethodEnum",
+            "format": ""
         },
         {
             "name": "threeDSReqPriorAuthTimestamp",
             "baseName": "threeDSReqPriorAuthTimestamp",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDSReqPriorRef",
             "baseName": "threeDSReqPriorRef",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDSRequestorPriorAuthenticationInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

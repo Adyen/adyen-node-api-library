@@ -45,52 +45,65 @@ export class EftDetails {
     */
     'type'?: EftDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "bankAccountNumber",
             "baseName": "bankAccountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankCode",
             "baseName": "bankCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankLocationId",
             "baseName": "bankLocationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ownerName",
             "baseName": "ownerName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "EftDetails.TypeEnum"
+            "type": "EftDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return EftDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -34,42 +34,53 @@ export class AdditionalDataWallets {
     */
     'visacheckout_callId'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "androidpay_token",
             "baseName": "androidpay.token",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "masterpass_transactionId",
             "baseName": "masterpass.transactionId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "payment_token",
             "baseName": "payment.token",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paywithgoogle_token",
             "baseName": "paywithgoogle.token",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "samsungpay_token",
             "baseName": "samsungpay.token",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "visacheckout_callId",
             "baseName": "visacheckout.callId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataWallets.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

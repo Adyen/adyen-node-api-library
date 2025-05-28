@@ -7,10 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { ApplicationInfo } from './applicationInfo';
+import { ApplicationInfo } from '../models/ApplicationInfo';
 
 export class PaymentCancelRequest {
-    'applicationInfo'?: ApplicationInfo | null;
+    'applicationInfo'?: ApplicationInfo;
     /**
     * The merchant account that is used to process the payment.
     */
@@ -20,27 +20,35 @@ export class PaymentCancelRequest {
     */
     'reference'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentCancelRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

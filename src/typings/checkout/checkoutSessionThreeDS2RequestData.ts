@@ -7,43 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { Phone } from './phone';
+import { Phone } from '../models/Phone';
 
 export class CheckoutSessionThreeDS2RequestData {
-    'homePhone'?: Phone | null;
-    'mobilePhone'?: Phone | null;
+    'homePhone'?: Phone;
+    'mobilePhone'?: Phone;
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
     'threeDSRequestorChallengeInd'?: CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
-    'workPhone'?: Phone | null;
+    'workPhone'?: Phone;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "homePhone",
             "baseName": "homePhone",
-            "type": "Phone | null"
+            "type": "Phone",
+            "format": ""
         },
         {
             "name": "mobilePhone",
             "baseName": "mobilePhone",
-            "type": "Phone | null"
+            "type": "Phone",
+            "format": ""
         },
         {
             "name": "threeDSRequestorChallengeInd",
             "baseName": "threeDSRequestorChallengeInd",
-            "type": "CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum"
+            "type": "CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum",
+            "format": ""
         },
         {
             "name": "workPhone",
             "baseName": "workPhone",
-            "type": "Phone | null"
+            "type": "Phone",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutSessionThreeDS2RequestData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from '../models/Amount';
 
 export class CreateOrderRequest {
     'amount': Amount;
@@ -24,32 +24,41 @@ export class CreateOrderRequest {
     */
     'reference': string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "expiresAt",
             "baseName": "expiresAt",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CreateOrderRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

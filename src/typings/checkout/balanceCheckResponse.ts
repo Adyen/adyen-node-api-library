@@ -7,8 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { FraudResult } from './fraudResult';
+import { Amount } from '../models/Amount';
+import { FraudResult } from '../models/FraudResult';
 
 export class BalanceCheckResponse {
     /**
@@ -16,7 +16,7 @@ export class BalanceCheckResponse {
     */
     'additionalData'?: { [key: string]: string; };
     'balance': Amount;
-    'fraudResult'?: FraudResult | null;
+    'fraudResult'?: FraudResult;
     /**
     * Adyen\'s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
@@ -29,49 +29,61 @@ export class BalanceCheckResponse {
     * The result of the cancellation request.  Possible values:  * **Success** – Indicates that the balance check was successful. * **NotEnoughBalance** – Commonly indicates that the card did not have enough balance to pay the amount in the request, or that the currency of the balance on the card did not match the currency of the requested amount. * **Failed** – Indicates that the balance check failed.
     */
     'resultCode': BalanceCheckResponse.ResultCodeEnum;
-    'transactionLimit'?: Amount | null;
+    'transactionLimit'?: Amount;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "balance",
             "baseName": "balance",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult | null"
+            "type": "FraudResult",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "refusalReason",
             "baseName": "refusalReason",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "BalanceCheckResponse.ResultCodeEnum"
+            "type": "BalanceCheckResponse.ResultCodeEnum",
+            "format": ""
         },
         {
             "name": "transactionLimit",
             "baseName": "transactionLimit",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BalanceCheckResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

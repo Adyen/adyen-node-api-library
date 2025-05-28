@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { Item } from './item';
+import { Item } from '../models/Item';
 
 export class SubInputDetail {
     /**
@@ -35,42 +35,53 @@ export class SubInputDetail {
     */
     'value'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "configuration",
             "baseName": "configuration",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<Item>"
+            "type": "Array<Item>",
+            "format": ""
         },
         {
             "name": "key",
             "baseName": "key",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "optional",
             "baseName": "optional",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SubInputDetail.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

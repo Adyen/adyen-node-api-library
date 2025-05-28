@@ -74,92 +74,113 @@ export class AcctInfo {
     */
     'txnActivityYear'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "chAccAgeInd",
             "baseName": "chAccAgeInd",
-            "type": "AcctInfo.ChAccAgeIndEnum"
+            "type": "AcctInfo.ChAccAgeIndEnum",
+            "format": ""
         },
         {
             "name": "chAccChange",
             "baseName": "chAccChange",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "chAccChangeInd",
             "baseName": "chAccChangeInd",
-            "type": "AcctInfo.ChAccChangeIndEnum"
+            "type": "AcctInfo.ChAccChangeIndEnum",
+            "format": ""
         },
         {
             "name": "chAccPwChange",
             "baseName": "chAccPwChange",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "chAccPwChangeInd",
             "baseName": "chAccPwChangeInd",
-            "type": "AcctInfo.ChAccPwChangeIndEnum"
+            "type": "AcctInfo.ChAccPwChangeIndEnum",
+            "format": ""
         },
         {
             "name": "chAccString",
             "baseName": "chAccString",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "nbPurchaseAccount",
             "baseName": "nbPurchaseAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentAccAge",
             "baseName": "paymentAccAge",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentAccInd",
             "baseName": "paymentAccInd",
-            "type": "AcctInfo.PaymentAccIndEnum"
+            "type": "AcctInfo.PaymentAccIndEnum",
+            "format": ""
         },
         {
             "name": "provisionAttemptsDay",
             "baseName": "provisionAttemptsDay",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shipAddressUsage",
             "baseName": "shipAddressUsage",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shipAddressUsageInd",
             "baseName": "shipAddressUsageInd",
-            "type": "AcctInfo.ShipAddressUsageIndEnum"
+            "type": "AcctInfo.ShipAddressUsageIndEnum",
+            "format": ""
         },
         {
             "name": "shipNameIndicator",
             "baseName": "shipNameIndicator",
-            "type": "AcctInfo.ShipNameIndicatorEnum"
+            "type": "AcctInfo.ShipNameIndicatorEnum",
+            "format": ""
         },
         {
             "name": "suspiciousAccActivity",
             "baseName": "suspiciousAccActivity",
-            "type": "AcctInfo.SuspiciousAccActivityEnum"
+            "type": "AcctInfo.SuspiciousAccActivityEnum",
+            "format": ""
         },
         {
             "name": "txnActivityDay",
             "baseName": "txnActivityDay",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "txnActivityYear",
             "baseName": "txnActivityYear",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AcctInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

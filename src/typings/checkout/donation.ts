@@ -30,37 +30,47 @@ export class Donation {
     */
     'values'?: Array<number>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "donationType",
             "baseName": "donationType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "maxRoundupAmount",
             "baseName": "maxRoundupAmount",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "values",
             "baseName": "values",
-            "type": "Array<number>"
+            "type": "Array<number>",
+            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
         return Donation.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

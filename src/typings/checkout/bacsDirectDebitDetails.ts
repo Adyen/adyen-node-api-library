@@ -45,52 +45,65 @@ export class BacsDirectDebitDetails {
     */
     'type'?: BacsDirectDebitDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "bankAccountNumber",
             "baseName": "bankAccountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankLocationId",
             "baseName": "bankLocationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "holderName",
             "baseName": "holderName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "transferInstrumentId",
             "baseName": "transferInstrumentId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BacsDirectDebitDetails.TypeEnum"
+            "type": "BacsDirectDebitDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BacsDirectDebitDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

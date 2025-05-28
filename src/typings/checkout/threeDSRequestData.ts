@@ -26,32 +26,41 @@ export class ThreeDSRequestData {
     */
     'threeDSVersion'?: ThreeDSRequestData.ThreeDSVersionEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "challengeWindowSize",
             "baseName": "challengeWindowSize",
-            "type": "ThreeDSRequestData.ChallengeWindowSizeEnum"
+            "type": "ThreeDSRequestData.ChallengeWindowSizeEnum",
+            "format": ""
         },
         {
             "name": "dataOnly",
             "baseName": "dataOnly",
-            "type": "ThreeDSRequestData.DataOnlyEnum"
+            "type": "ThreeDSRequestData.DataOnlyEnum",
+            "format": ""
         },
         {
             "name": "nativeThreeDS",
             "baseName": "nativeThreeDS",
-            "type": "ThreeDSRequestData.NativeThreeDSEnum"
+            "type": "ThreeDSRequestData.NativeThreeDSEnum",
+            "format": ""
         },
         {
             "name": "threeDSVersion",
             "baseName": "threeDSVersion",
-            "type": "ThreeDSRequestData.ThreeDSVersionEnum"
+            "type": "ThreeDSRequestData.ThreeDSVersionEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDSRequestData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
@@ -72,7 +81,7 @@ export namespace ThreeDSRequestData {
         Disabled = 'disabled'
     }
     export enum ThreeDSVersionEnum {
-        _10 = '2.1.0',
-        _20 = '2.2.0'
+        _210 = '2.1.0',
+        _220 = '2.2.0'
     }
 }

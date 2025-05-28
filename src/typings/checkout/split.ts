@@ -7,14 +7,14 @@
  * Do not edit this class manually.
  */
 
-import { SplitAmount } from './splitAmount';
+import { SplitAmount } from '../models/SplitAmount';
 
 export class Split {
     /**
     * The unique identifier of the account to which the split amount is booked. Required if `type` is **MarketPlace** or **BalanceAccount**.  * [Classic Platforms integration](https://docs.adyen.com/classic-platforms): The [`accountCode`](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccount#request-accountCode) of the account to which the split amount is booked. * [Balance Platform](https://docs.adyen.com/adyen-for-platforms-model): The [`balanceAccountId`](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/balanceAccounts/_id_#path-id) of the account to which the split amount is booked.
     */
     'account'?: string;
-    'amount'?: SplitAmount | null;
+    'amount'?: SplitAmount;
     /**
     * Your description for the split item.
     */
@@ -28,37 +28,47 @@ export class Split {
     */
     'type': Split.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "account",
             "baseName": "account",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "SplitAmount | null"
+            "type": "SplitAmount",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "Split.TypeEnum"
+            "type": "Split.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Split.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

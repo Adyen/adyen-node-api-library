@@ -7,12 +7,12 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { DeliveryMethod } from './deliveryMethod';
-import { TaxTotal } from './taxTotal';
+import { Amount } from '../models/Amount';
+import { DeliveryMethod } from '../models/DeliveryMethod';
+import { TaxTotal } from '../models/TaxTotal';
 
 export class PaypalUpdateOrderRequest {
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * The list of new delivery methods and the cost of each.
     */
@@ -29,44 +29,55 @@ export class PaypalUpdateOrderRequest {
     * The original `sessionId` from the `/sessions` response.
     */
     'sessionId'?: string;
-    'taxTotal'?: TaxTotal | null;
+    'taxTotal'?: TaxTotal;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "deliveryMethods",
             "baseName": "deliveryMethods",
-            "type": "Array<DeliveryMethod>"
+            "type": "Array<DeliveryMethod>",
+            "format": ""
         },
         {
             "name": "paymentData",
             "baseName": "paymentData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "sessionId",
             "baseName": "sessionId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "taxTotal",
             "baseName": "taxTotal",
-            "type": "TaxTotal | null"
+            "type": "TaxTotal",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaypalUpdateOrderRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -16,7 +16,7 @@ export class InstallmentOption {
     /**
     * Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**
     */
-    'plans'?: Array<InstallmentOption.PlansEnum>;
+    'plans'?: InstallmentOption.PlansEnum;
     /**
     * Preselected number of installments offered for this payment method.
     */
@@ -26,32 +26,41 @@ export class InstallmentOption {
     */
     'values'?: Array<number>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "maxValue",
             "baseName": "maxValue",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "plans",
             "baseName": "plans",
-            "type": "Array<InstallmentOption.PlansEnum>"
+            "type": "InstallmentOption.PlansEnum",
+            "format": ""
         },
         {
             "name": "preselectedValue",
             "baseName": "preselectedValue",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "values",
             "baseName": "values",
-            "type": "Array<number>"
+            "type": "Array<number>",
+            "format": "int32"
         }    ];
 
     static getAttributeTypeMap() {
         return InstallmentOption.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

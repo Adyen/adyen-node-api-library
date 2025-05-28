@@ -7,11 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { LineItem } from './lineItem';
-import { PlatformChargebackLogic } from './platformChargebackLogic';
-import { Split } from './split';
-import { SubMerchantInfo } from './subMerchantInfo';
+import { Amount } from '../models/Amount';
+import { LineItem } from '../models/LineItem';
+import { PlatformChargebackLogic } from '../models/PlatformChargebackLogic';
+import { Split } from '../models/Split';
+import { SubMerchantInfo } from '../models/SubMerchantInfo';
 
 export class PaymentCaptureResponse {
     'amount': Amount;
@@ -27,7 +27,7 @@ export class PaymentCaptureResponse {
     * The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to capture. 
     */
     'paymentPspReference': string;
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Adyen\'s 16-character reference associated with the capture request.
     */
@@ -49,62 +49,77 @@ export class PaymentCaptureResponse {
     */
     'subMerchants'?: Array<SubMerchantInfo>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "lineItems",
             "baseName": "lineItems",
-            "type": "Array<LineItem>"
+            "type": "Array<LineItem>",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentPspReference",
             "baseName": "paymentPspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "splits",
             "baseName": "splits",
-            "type": "Array<Split>"
+            "type": "Array<Split>",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "PaymentCaptureResponse.StatusEnum"
+            "type": "PaymentCaptureResponse.StatusEnum",
+            "format": ""
         },
         {
             "name": "subMerchants",
             "baseName": "subMerchants",
-            "type": "Array<SubMerchantInfo>"
+            "type": "Array<SubMerchantInfo>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentCaptureResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

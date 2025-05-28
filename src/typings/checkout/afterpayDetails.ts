@@ -41,47 +41,59 @@ export class AfterpayDetails {
     */
     'type': AfterpayDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "personalDetails",
             "baseName": "personalDetails",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AfterpayDetails.TypeEnum"
+            "type": "AfterpayDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AfterpayDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

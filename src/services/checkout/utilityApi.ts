@@ -7,21 +7,25 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    ApplePaySessionRequest,
-    ApplePaySessionResponse,
-    PaypalUpdateOrderRequest,
-    PaypalUpdateOrderResponse,
-    UtilityRequest,
-    UtilityResponse,
-    ObjectSerializer
-} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
+import { ApplePaySessionRequest } from "../../typings/checkout/models";
+import { ApplePaySessionResponse } from "../../typings/checkout/models";
+import { PaypalUpdateOrderRequest } from "../../typings/checkout/models";
+import { PaypalUpdateOrderResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
+import { UtilityRequest } from "../../typings/checkout/models";
+import { UtilityResponse } from "../../typings/checkout/models";
+
+/**
+ * API handler for UtilityApi
+ */
 export class UtilityApi extends Service {
 
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v71";
@@ -87,4 +91,5 @@ export class UtilityApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "PaypalUpdateOrderResponse");
     }
+
 }

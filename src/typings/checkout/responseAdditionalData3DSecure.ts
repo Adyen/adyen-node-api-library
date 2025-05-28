@@ -30,37 +30,47 @@ export class ResponseAdditionalData3DSecure {
     */
     'threeds2_cardEnrolled'?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "cardHolderInfo",
             "baseName": "cardHolderInfo",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "cavv",
             "baseName": "cavv",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "cavvAlgorithm",
             "baseName": "cavvAlgorithm",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "scaExemptionRequested",
             "baseName": "scaExemptionRequested",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeds2_cardEnrolled",
             "baseName": "threeds2.cardEnrolled",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalData3DSecure.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

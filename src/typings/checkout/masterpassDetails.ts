@@ -26,32 +26,41 @@ export class MasterpassDetails {
     */
     'type'?: MasterpassDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "MasterpassDetails.FundingSourceEnum"
+            "type": "MasterpassDetails.FundingSourceEnum",
+            "format": ""
         },
         {
             "name": "masterpassTransactionId",
             "baseName": "masterpassTransactionId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "MasterpassDetails.TypeEnum"
+            "type": "MasterpassDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return MasterpassDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

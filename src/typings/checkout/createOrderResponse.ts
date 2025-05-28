@@ -7,8 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { FraudResult } from './fraudResult';
+import { Amount } from '../models/Amount';
+import { FraudResult } from '../models/FraudResult';
 
 export class CreateOrderResponse {
     /**
@@ -20,7 +20,7 @@ export class CreateOrderResponse {
     * The date that the order will expire.
     */
     'expiresAt': string;
-    'fraudResult'?: FraudResult | null;
+    'fraudResult'?: FraudResult;
     /**
     * The encrypted data that will be used by merchant for adding payments to the order.
     */
@@ -43,62 +43,77 @@ export class CreateOrderResponse {
     */
     'resultCode': CreateOrderResponse.ResultCodeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "expiresAt",
             "baseName": "expiresAt",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult | null"
+            "type": "FraudResult",
+            "format": ""
         },
         {
             "name": "orderData",
             "baseName": "orderData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "refusalReason",
             "baseName": "refusalReason",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "remainingAmount",
             "baseName": "remainingAmount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "CreateOrderResponse.ResultCodeEnum"
+            "type": "CreateOrderResponse.ResultCodeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CreateOrderResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

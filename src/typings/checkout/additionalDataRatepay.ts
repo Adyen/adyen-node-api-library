@@ -42,52 +42,65 @@ export class AdditionalDataRatepay {
     */
     'ratepaydata_invoiceId'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "ratepay_installmentAmount",
             "baseName": "ratepay.installmentAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepay_interestRate",
             "baseName": "ratepay.interestRate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepay_lastInstallmentAmount",
             "baseName": "ratepay.lastInstallmentAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepay_paymentFirstday",
             "baseName": "ratepay.paymentFirstday",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepaydata_deliveryDate",
             "baseName": "ratepaydata.deliveryDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepaydata_dueDate",
             "baseName": "ratepaydata.dueDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepaydata_invoiceDate",
             "baseName": "ratepaydata.invoiceDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepaydata_invoiceId",
             "baseName": "ratepaydata.invoiceId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataRatepay.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -113,137 +113,167 @@ export class CardDonations {
     */
     'type'?: CardDonations.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "cupsecureplus_smscode",
             "baseName": "cupsecureplus.smscode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "cvc",
             "baseName": "cvc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedCard",
             "baseName": "encryptedCard",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedCardNumber",
             "baseName": "encryptedCardNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedExpiryMonth",
             "baseName": "encryptedExpiryMonth",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedExpiryYear",
             "baseName": "encryptedExpiryYear",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedSecurityCode",
             "baseName": "encryptedSecurityCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "expiryMonth",
             "baseName": "expiryMonth",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "expiryYear",
             "baseName": "expiryYear",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fastlaneData",
             "baseName": "fastlaneData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "CardDonations.FundingSourceEnum"
+            "type": "CardDonations.FundingSourceEnum",
+            "format": ""
         },
         {
             "name": "holderName",
             "baseName": "holderName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "networkPaymentReference",
             "baseName": "networkPaymentReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "number",
             "baseName": "number",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperNotificationReference",
             "baseName": "shopperNotificationReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "srcCorrelationId",
             "baseName": "srcCorrelationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "srcDigitalCardId",
             "baseName": "srcDigitalCardId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "srcScheme",
             "baseName": "srcScheme",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "srcTokenReference",
             "baseName": "srcTokenReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDS2SdkVersion",
             "baseName": "threeDS2SdkVersion",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CardDonations.TypeEnum"
+            "type": "CardDonations.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CardDonations.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

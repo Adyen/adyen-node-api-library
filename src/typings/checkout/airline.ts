@@ -7,14 +7,14 @@
  * Do not edit this class manually.
  */
 
-import { Agency } from './agency';
-import { Leg } from './leg';
-import { Passenger } from './passenger';
-import { Ticket } from './ticket';
-import { TravelAgency } from './travelAgency';
+import { Agency } from '../models/Agency';
+import { Leg } from '../models/Leg';
+import { Passenger } from '../models/Passenger';
+import { Ticket } from '../models/Ticket';
+import { TravelAgency } from '../models/TravelAgency';
 
 export class Airline {
-    'agency'?: Agency | null;
+    'agency'?: Agency;
     /**
     * The amount charged for boarding the plane, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 character * maxLength: 11 characters
     */
@@ -49,80 +49,98 @@ export class Airline {
     */
     'passengerName': string;
     'passengers'?: Array<Passenger>;
-    'ticket'?: Ticket | null;
-    'travelAgency'?: TravelAgency | null;
+    'ticket'?: Ticket;
+    'travelAgency'?: TravelAgency;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "agency",
             "baseName": "agency",
-            "type": "Agency | null"
+            "type": "Agency",
+            "format": ""
         },
         {
             "name": "boardingFee",
             "baseName": "boardingFee",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "code",
             "baseName": "code",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "computerizedReservationSystem",
             "baseName": "computerizedReservationSystem",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "customerReferenceNumber",
             "baseName": "customerReferenceNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "designatorCode",
             "baseName": "designatorCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "documentType",
             "baseName": "documentType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "flightDate",
             "baseName": "flightDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "legs",
             "baseName": "legs",
-            "type": "Array<Leg>"
+            "type": "Array<Leg>",
+            "format": ""
         },
         {
             "name": "passengerName",
             "baseName": "passengerName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "passengers",
             "baseName": "passengers",
-            "type": "Array<Passenger>"
+            "type": "Array<Passenger>",
+            "format": ""
         },
         {
             "name": "ticket",
             "baseName": "ticket",
-            "type": "Ticket | null"
+            "type": "Ticket",
+            "format": ""
         },
         {
             "name": "travelAgency",
             "baseName": "travelAgency",
-            "type": "TravelAgency | null"
+            "type": "TravelAgency",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Airline.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

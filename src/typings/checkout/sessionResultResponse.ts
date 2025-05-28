@@ -18,22 +18,29 @@ export class SessionResultResponse {
     */
     'status'?: SessionResultResponse.StatusEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "SessionResultResponse.StatusEnum"
+            "type": "SessionResultResponse.StatusEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SessionResultResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

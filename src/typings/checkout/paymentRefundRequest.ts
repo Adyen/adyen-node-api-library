@@ -7,14 +7,14 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { ApplicationInfo } from './applicationInfo';
-import { LineItem } from './lineItem';
-import { Split } from './split';
+import { Amount } from '../models/Amount';
+import { ApplicationInfo } from '../models/ApplicationInfo';
+import { LineItem } from '../models/LineItem';
+import { Split } from '../models/Split';
 
 export class PaymentRefundRequest {
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
+    'applicationInfo'?: ApplicationInfo;
     /**
     * Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
     */
@@ -40,52 +40,65 @@ export class PaymentRefundRequest {
     */
     'store'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo",
+            "format": ""
         },
         {
             "name": "lineItems",
             "baseName": "lineItems",
-            "type": "Array<LineItem>"
+            "type": "Array<LineItem>",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantRefundReason",
             "baseName": "merchantRefundReason",
-            "type": "PaymentRefundRequest.MerchantRefundReasonEnum | null"
+            "type": "PaymentRefundRequest.MerchantRefundReasonEnum",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "splits",
             "baseName": "splits",
-            "type": "Array<Split>"
+            "type": "Array<Split>",
+            "format": ""
         },
         {
             "name": "store",
             "baseName": "store",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentRefundRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

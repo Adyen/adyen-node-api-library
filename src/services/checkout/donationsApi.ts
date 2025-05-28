@@ -7,19 +7,23 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    DonationCampaignsRequest,
-    DonationCampaignsResponse,
-    DonationPaymentRequest,
-    DonationPaymentResponse,
-    ObjectSerializer
-} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
+import { DonationCampaignsRequest } from "../../typings/checkout/models";
+import { DonationCampaignsResponse } from "../../typings/checkout/models";
+import { DonationPaymentRequest } from "../../typings/checkout/models";
+import { DonationPaymentResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
+
+/**
+ * API handler for DonationsApi
+ */
 export class DonationsApi extends Service {
 
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v71";
@@ -65,4 +69,5 @@ export class DonationsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "DonationPaymentResponse");
     }
+
 }

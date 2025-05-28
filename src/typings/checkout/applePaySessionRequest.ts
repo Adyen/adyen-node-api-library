@@ -22,27 +22,35 @@ export class ApplePaySessionRequest {
     */
     'merchantIdentifier': string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "displayName",
             "baseName": "displayName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "domainName",
             "baseName": "domainName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantIdentifier",
             "baseName": "merchantIdentifier",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ApplePaySessionRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

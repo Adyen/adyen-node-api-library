@@ -30,37 +30,47 @@ export class SubMerchant {
     */
     'taxId'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "city",
             "baseName": "city",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "country",
             "baseName": "country",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "mcc",
             "baseName": "mcc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "taxId",
             "baseName": "taxId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SubMerchant.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

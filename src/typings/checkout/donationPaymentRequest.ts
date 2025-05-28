@@ -7,35 +7,31 @@
  * Do not edit this class manually.
  */
 
-import { AccountInfo } from './accountInfo';
-import { Amount } from './amount';
-import { ApplePayDonations } from './applePayDonations';
-import { ApplicationInfo } from './applicationInfo';
-import { AuthenticationData } from './authenticationData';
-import { BillingAddress } from './billingAddress';
-import { BrowserInfo } from './browserInfo';
-import { CardDonations } from './cardDonations';
-import { DeliveryAddress } from './deliveryAddress';
-import { GooglePayDonations } from './googlePayDonations';
-import { IdealDonations } from './idealDonations';
-import { LineItem } from './lineItem';
-import { MerchantRiskIndicator } from './merchantRiskIndicator';
-import { Name } from './name';
-import { PayWithGoogleDonations } from './payWithGoogleDonations';
-import { ThreeDS2RequestFields } from './threeDS2RequestFields';
-import { ThreeDSecureData } from './threeDSecureData';
+import { AccountInfo } from '../models/AccountInfo';
+import { Amount } from '../models/Amount';
+import { ApplicationInfo } from '../models/ApplicationInfo';
+import { AuthenticationData } from '../models/AuthenticationData';
+import { BillingAddress } from '../models/BillingAddress';
+import { BrowserInfo } from '../models/BrowserInfo';
+import { DeliveryAddress } from '../models/DeliveryAddress';
+import { DonationPaymentRequestPaymentMethod } from '../models/DonationPaymentRequestPaymentMethod';
+import { LineItem } from '../models/LineItem';
+import { MerchantRiskIndicator } from '../models/MerchantRiskIndicator';
+import { Name } from '../models/Name';
+import { ThreeDS2RequestFields } from '../models/ThreeDS2RequestFields';
+import { ThreeDSecureData } from '../models/ThreeDSecureData';
 
 export class DonationPaymentRequest {
-    'accountInfo'?: AccountInfo | null;
+    'accountInfo'?: AccountInfo;
     /**
     * This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
     'additionalData'?: { [key: string]: string; };
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
-    'authenticationData'?: AuthenticationData | null;
-    'billingAddress'?: BillingAddress | null;
-    'browserInfo'?: BrowserInfo | null;
+    'applicationInfo'?: ApplicationInfo;
+    'authenticationData'?: AuthenticationData;
+    'billingAddress'?: BillingAddress;
+    'browserInfo'?: BrowserInfo;
     /**
     * The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.  Possible values: * iOS * Android * Web
     */
@@ -63,7 +59,7 @@ export class DonationPaymentRequest {
     * The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00
     */
     'deliverAt'?: Date;
-    'deliveryAddress'?: DeliveryAddress | null;
+    'deliveryAddress'?: DeliveryAddress;
     /**
     * A string containing the shopper\'s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).
     */
@@ -92,20 +88,17 @@ export class DonationPaymentRequest {
     * The merchant account identifier, with which you want to process the transaction.
     */
     'merchantAccount': string;
-    'merchantRiskIndicator'?: MerchantRiskIndicator | null;
+    'merchantRiskIndicator'?: MerchantRiskIndicator;
     /**
     * Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\". * Maximum 20 characters per key. * Maximum 80 characters per value. 
     */
     'metadata'?: { [key: string]: string; };
-    'mpiData'?: ThreeDSecureData | null;
+    'mpiData'?: ThreeDSecureData;
     /**
     * Required for the 3D Secure 2 `channel` **Web** integration.  Set this parameter to the origin URL of the page that you are loading the 3D Secure Component from.
     */
     'origin'?: string;
-    /**
-    * The type and required details of a payment method to use.
-    */
-    'paymentMethod': ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations;
+    'paymentMethod': DonationPaymentRequestPaymentMethod;
     /**
     * Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
@@ -146,7 +139,7 @@ export class DonationPaymentRequest {
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
     'shopperLocale'?: string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
@@ -159,7 +152,7 @@ export class DonationPaymentRequest {
     * The shopper\'s telephone number.
     */
     'telephoneNumber'?: string;
-    'threeDS2RequestData'?: ThreeDS2RequestFields | null;
+    'threeDS2RequestData'?: ThreeDS2RequestFields;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     *
@@ -168,222 +161,269 @@ export class DonationPaymentRequest {
     */
     'threeDSAuthenticationOnly'?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountInfo",
             "baseName": "accountInfo",
-            "type": "AccountInfo | null"
+            "type": "AccountInfo",
+            "format": ""
         },
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo",
+            "format": ""
         },
         {
             "name": "authenticationData",
             "baseName": "authenticationData",
-            "type": "AuthenticationData | null"
+            "type": "AuthenticationData",
+            "format": ""
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "BillingAddress | null"
+            "type": "BillingAddress",
+            "format": ""
         },
         {
             "name": "browserInfo",
             "baseName": "browserInfo",
-            "type": "BrowserInfo | null"
+            "type": "BrowserInfo",
+            "format": ""
         },
         {
             "name": "channel",
             "baseName": "channel",
-            "type": "DonationPaymentRequest.ChannelEnum"
+            "type": "DonationPaymentRequest.ChannelEnum",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "conversionId",
             "baseName": "conversionId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "countryCode",
             "baseName": "countryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "deliverAt",
             "baseName": "deliverAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "DeliveryAddress | null"
+            "type": "DeliveryAddress",
+            "format": ""
         },
         {
             "name": "deviceFingerprint",
             "baseName": "deviceFingerprint",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "donationAccount",
             "baseName": "donationAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "donationCampaignId",
             "baseName": "donationCampaignId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "donationOriginalPspReference",
             "baseName": "donationOriginalPspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "donationToken",
             "baseName": "donationToken",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lineItems",
             "baseName": "lineItems",
-            "type": "Array<LineItem>"
+            "type": "Array<LineItem>",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantRiskIndicator",
             "baseName": "merchantRiskIndicator",
-            "type": "MerchantRiskIndicator | null"
+            "type": "MerchantRiskIndicator",
+            "format": ""
         },
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "mpiData",
             "baseName": "mpiData",
-            "type": "ThreeDSecureData | null"
+            "type": "ThreeDSecureData",
+            "format": ""
         },
         {
             "name": "origin",
             "baseName": "origin",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations"
+            "type": "DonationPaymentRequestPaymentMethod",
+            "format": ""
         },
         {
             "name": "recurringProcessingModel",
             "baseName": "recurringProcessingModel",
-            "type": "DonationPaymentRequest.RecurringProcessingModelEnum"
+            "type": "DonationPaymentRequest.RecurringProcessingModelEnum",
+            "format": ""
         },
         {
             "name": "redirectFromIssuerMethod",
             "baseName": "redirectFromIssuerMethod",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "redirectToIssuerMethod",
             "baseName": "redirectToIssuerMethod",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "returnUrl",
             "baseName": "returnUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "sessionValidity",
             "baseName": "sessionValidity",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperIP",
             "baseName": "shopperIP",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperInteraction",
             "baseName": "shopperInteraction",
-            "type": "DonationPaymentRequest.ShopperInteractionEnum"
+            "type": "DonationPaymentRequest.ShopperInteractionEnum",
+            "format": ""
         },
         {
             "name": "shopperLocale",
             "baseName": "shopperLocale",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "socialSecurityNumber",
             "baseName": "socialSecurityNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDS2RequestData",
             "baseName": "threeDS2RequestData",
-            "type": "ThreeDS2RequestFields | null"
+            "type": "ThreeDS2RequestFields",
+            "format": ""
         },
         {
             "name": "threeDSAuthenticationOnly",
             "baseName": "threeDSAuthenticationOnly",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DonationPaymentRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

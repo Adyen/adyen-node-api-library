@@ -7,8 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { PaymentMethod } from './paymentMethod';
-import { StoredPaymentMethod } from './storedPaymentMethod';
+import { PaymentMethod } from '../models/PaymentMethod';
+import { StoredPaymentMethod } from '../models/StoredPaymentMethod';
 
 export class PaymentMethodsResponse {
     /**
@@ -20,22 +20,29 @@ export class PaymentMethodsResponse {
     */
     'storedPaymentMethods'?: Array<StoredPaymentMethod>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "paymentMethods",
             "baseName": "paymentMethods",
-            "type": "Array<PaymentMethod>"
+            "type": "Array<PaymentMethod>",
+            "format": ""
         },
         {
             "name": "storedPaymentMethods",
             "baseName": "storedPaymentMethods",
-            "type": "Array<StoredPaymentMethod>"
+            "type": "Array<StoredPaymentMethod>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentMethodsResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

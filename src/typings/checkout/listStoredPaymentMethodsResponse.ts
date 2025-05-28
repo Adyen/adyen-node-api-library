@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { StoredPaymentMethodResource } from './storedPaymentMethodResource';
+import { StoredPaymentMethodResource } from '../models/StoredPaymentMethodResource';
 
 export class ListStoredPaymentMethodsResponse {
     /**
@@ -23,27 +23,35 @@ export class ListStoredPaymentMethodsResponse {
     */
     'storedPaymentMethods'?: Array<StoredPaymentMethodResource>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethods",
             "baseName": "storedPaymentMethods",
-            "type": "Array<StoredPaymentMethodResource>"
+            "type": "Array<StoredPaymentMethodResource>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ListStoredPaymentMethodsResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
