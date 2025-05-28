@@ -1,0 +1,5 @@
+{{#models}}
+{{#model}}
+export * from './{{#lambda.camelcase}}{{ name }}{{/lambda.camelcase}}{{importFileExtension}}'
+{{/model}}
+{{/models}}
