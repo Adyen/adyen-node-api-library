@@ -6,13 +6,13 @@ import { URLSearchParams } from 'url';
 {{/node}}
 {{/platforms}}
 
+import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
-import getJsonResponse from "../../helpers/getJsonResponse";
 
-import { ObjectSerializer } from "../../typings/{{serviceName}}/models";
+import { ObjectSerializer } from "../../typings/{{serviceName}}/objectSerializer";
 {{#imports}}
 import { {{classname}} } from "../../typings/{{serviceName}}/models";
 {{/imports}}
