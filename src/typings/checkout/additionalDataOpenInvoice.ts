@@ -82,102 +82,125 @@ export class AdditionalDataOpenInvoice {
     */
     'openinvoicedataLine_itemNr_trackingUri'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "openinvoicedata_merchantData",
             "baseName": "openinvoicedata.merchantData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedata_numberOfLines",
             "baseName": "openinvoicedata.numberOfLines",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedata_recipientFirstName",
             "baseName": "openinvoicedata.recipientFirstName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedata_recipientLastName",
             "baseName": "openinvoicedata.recipientLastName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_currencyCode",
             "baseName": "openinvoicedataLine[itemNr].currencyCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_description",
             "baseName": "openinvoicedataLine[itemNr].description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_itemAmount",
             "baseName": "openinvoicedataLine[itemNr].itemAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_itemId",
             "baseName": "openinvoicedataLine[itemNr].itemId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_itemVatAmount",
             "baseName": "openinvoicedataLine[itemNr].itemVatAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_itemVatPercentage",
             "baseName": "openinvoicedataLine[itemNr].itemVatPercentage",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_numberOfItems",
             "baseName": "openinvoicedataLine[itemNr].numberOfItems",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_returnShippingCompany",
             "baseName": "openinvoicedataLine[itemNr].returnShippingCompany",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_returnTrackingNumber",
             "baseName": "openinvoicedataLine[itemNr].returnTrackingNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_returnTrackingUri",
             "baseName": "openinvoicedataLine[itemNr].returnTrackingUri",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_shippingCompany",
             "baseName": "openinvoicedataLine[itemNr].shippingCompany",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_shippingMethod",
             "baseName": "openinvoicedataLine[itemNr].shippingMethod",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_trackingNumber",
             "baseName": "openinvoicedataLine[itemNr].trackingNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openinvoicedataLine_itemNr_trackingUri",
             "baseName": "openinvoicedataLine[itemNr].trackingUri",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataOpenInvoice.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

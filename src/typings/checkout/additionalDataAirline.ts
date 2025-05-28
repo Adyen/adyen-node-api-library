@@ -126,157 +126,191 @@ export class AdditionalDataAirline {
     */
     'airline_travel_agency_name'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "airline_agency_invoice_number",
             "baseName": "airline.agency_invoice_number",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_agency_plan_name",
             "baseName": "airline.agency_plan_name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_airline_code",
             "baseName": "airline.airline_code",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_airline_designator_code",
             "baseName": "airline.airline_designator_code",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_boarding_fee",
             "baseName": "airline.boarding_fee",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_computerized_reservation_system",
             "baseName": "airline.computerized_reservation_system",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_customer_reference_number",
             "baseName": "airline.customer_reference_number",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_document_type",
             "baseName": "airline.document_type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_flight_date",
             "baseName": "airline.flight_date",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_issue_date",
             "baseName": "airline.issue_date",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_leg_carrier_code",
             "baseName": "airline.leg.carrier_code",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_leg_class_of_travel",
             "baseName": "airline.leg.class_of_travel",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_leg_date_of_travel",
             "baseName": "airline.leg.date_of_travel",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_leg_depart_airport",
             "baseName": "airline.leg.depart_airport",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_leg_depart_tax",
             "baseName": "airline.leg.depart_tax",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_leg_destination_code",
             "baseName": "airline.leg.destination_code",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_leg_fare_base_code",
             "baseName": "airline.leg.fare_base_code",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_leg_flight_number",
             "baseName": "airline.leg.flight_number",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_leg_stop_over_code",
             "baseName": "airline.leg.stop_over_code",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_passenger_date_of_birth",
             "baseName": "airline.passenger.date_of_birth",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_passenger_first_name",
             "baseName": "airline.passenger.first_name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_passenger_last_name",
             "baseName": "airline.passenger.last_name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_passenger_phone_number",
             "baseName": "airline.passenger.phone_number",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_passenger_traveller_type",
             "baseName": "airline.passenger.traveller_type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_passenger_name",
             "baseName": "airline.passenger_name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_ticket_issue_address",
             "baseName": "airline.ticket_issue_address",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_ticket_number",
             "baseName": "airline.ticket_number",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_travel_agency_code",
             "baseName": "airline.travel_agency_code",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "airline_travel_agency_name",
             "baseName": "airline.travel_agency_name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataAirline.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

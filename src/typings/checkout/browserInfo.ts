@@ -46,57 +46,71 @@ export class BrowserInfo {
     */
     'userAgent': string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "acceptHeader",
             "baseName": "acceptHeader",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "colorDepth",
             "baseName": "colorDepth",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "javaEnabled",
             "baseName": "javaEnabled",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "javaScriptEnabled",
             "baseName": "javaScriptEnabled",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "language",
             "baseName": "language",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "screenHeight",
             "baseName": "screenHeight",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "screenWidth",
             "baseName": "screenWidth",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "timeZoneOffset",
             "baseName": "timeZoneOffset",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "userAgent",
             "baseName": "userAgent",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BrowserInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

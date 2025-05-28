@@ -7,10 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { InputDetail } from './inputDetail';
-import { PaymentMethodGroup } from './paymentMethodGroup';
-import { PaymentMethodIssuer } from './paymentMethodIssuer';
-import { PaymentMethodUPIApps } from './paymentMethodUPIApps';
+import { InputDetail } from '../models/InputDetail';
+import { PaymentMethodGroup } from '../models/PaymentMethodGroup';
+import { PaymentMethodIssuer } from '../models/PaymentMethodIssuer';
+import { PaymentMethodUPIApps } from '../models/PaymentMethodUPIApps';
 
 export class PaymentMethod {
     /**
@@ -33,7 +33,7 @@ export class PaymentMethod {
     * The funding source of the payment method.
     */
     'fundingSource'?: PaymentMethod.FundingSourceEnum;
-    'group'?: PaymentMethodGroup | null;
+    'group'?: PaymentMethodGroup;
     /**
     * All input details to be provided to complete the payment with this payment method.
     *
@@ -53,62 +53,77 @@ export class PaymentMethod {
     */
     'type'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "apps",
             "baseName": "apps",
-            "type": "Array<PaymentMethodUPIApps>"
+            "type": "Array<PaymentMethodUPIApps>",
+            "format": ""
         },
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "brands",
             "baseName": "brands",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "configuration",
             "baseName": "configuration",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "PaymentMethod.FundingSourceEnum"
+            "type": "PaymentMethod.FundingSourceEnum",
+            "format": ""
         },
         {
             "name": "group",
             "baseName": "group",
-            "type": "PaymentMethodGroup | null"
+            "type": "PaymentMethodGroup",
+            "format": ""
         },
         {
             "name": "inputDetails",
             "baseName": "inputDetails",
-            "type": "Array<InputDetail>"
+            "type": "Array<InputDetail>",
+            "format": ""
         },
         {
             "name": "issuers",
             "baseName": "issuers",
-            "type": "Array<PaymentMethodIssuer>"
+            "type": "Array<PaymentMethodIssuer>",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentMethod.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

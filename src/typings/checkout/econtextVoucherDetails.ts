@@ -34,42 +34,53 @@ export class EcontextVoucherDetails {
     */
     'type': EcontextVoucherDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "firstName",
             "baseName": "firstName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lastName",
             "baseName": "lastName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "EcontextVoucherDetails.TypeEnum"
+            "type": "EcontextVoucherDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return EcontextVoucherDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -22,27 +22,35 @@ export class FraudCheckResult {
     */
     'name': string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountScore",
             "baseName": "accountScore",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "checkId",
             "baseName": "checkId",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return FraudCheckResult.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

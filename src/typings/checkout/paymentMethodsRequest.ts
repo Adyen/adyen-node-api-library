@@ -7,8 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { EncryptedOrderData } from './encryptedOrderData';
+import { Amount } from '../models/Amount';
+import { EncryptedOrderData } from '../models/EncryptedOrderData';
 
 export class PaymentMethodsRequest {
     /**
@@ -19,7 +19,7 @@ export class PaymentMethodsRequest {
     * List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"applepay\"]`
     */
     'allowedPaymentMethods'?: Array<string>;
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`
     */
@@ -36,7 +36,7 @@ export class PaymentMethodsRequest {
     * The merchant account identifier, with which you want to process the transaction.
     */
     'merchantAccount': string;
-    'order'?: EncryptedOrderData | null;
+    'order'?: EncryptedOrderData;
     /**
     * A unique ID that can be used to associate `/paymentMethods` and `/payments` requests with the same shopper transaction, offering insights into conversion rates.
     */
@@ -62,82 +62,101 @@ export class PaymentMethodsRequest {
     */
     'storeFiltrationMode'?: PaymentMethodsRequest.StoreFiltrationModeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "allowedPaymentMethods",
             "baseName": "allowedPaymentMethods",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "blockedPaymentMethods",
             "baseName": "blockedPaymentMethods",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "channel",
             "baseName": "channel",
-            "type": "PaymentMethodsRequest.ChannelEnum"
+            "type": "PaymentMethodsRequest.ChannelEnum",
+            "format": ""
         },
         {
             "name": "countryCode",
             "baseName": "countryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "order",
             "baseName": "order",
-            "type": "EncryptedOrderData | null"
+            "type": "EncryptedOrderData",
+            "format": ""
         },
         {
             "name": "shopperConversionId",
             "baseName": "shopperConversionId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperLocale",
             "baseName": "shopperLocale",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "splitCardFundingSources",
             "baseName": "splitCardFundingSources",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "store",
             "baseName": "store",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storeFiltrationMode",
             "baseName": "storeFiltrationMode",
-            "type": "PaymentMethodsRequest.StoreFiltrationModeEnum"
+            "type": "PaymentMethodsRequest.StoreFiltrationModeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentMethodsRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

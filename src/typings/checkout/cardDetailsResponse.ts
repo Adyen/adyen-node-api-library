@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { CardBrandDetails } from './cardBrandDetails';
+import { CardBrandDetails } from '../models/CardBrandDetails';
 
 export class CardDetailsResponse {
     /**
@@ -27,32 +27,41 @@ export class CardDetailsResponse {
     */
     'issuingCountryCode'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "brands",
             "baseName": "brands",
-            "type": "Array<CardBrandDetails>"
+            "type": "Array<CardBrandDetails>",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "isCardCommercial",
             "baseName": "isCardCommercial",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "issuingCountryCode",
             "baseName": "issuingCountryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CardDetailsResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

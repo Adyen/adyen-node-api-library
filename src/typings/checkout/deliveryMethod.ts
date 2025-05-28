@@ -7,10 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from '../models/Amount';
 
 export class DeliveryMethod {
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * The name of the delivery method as shown to the shopper.
     */
@@ -28,37 +28,47 @@ export class DeliveryMethod {
     */
     'type'?: DeliveryMethod.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "selected",
             "baseName": "selected",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "DeliveryMethod.TypeEnum"
+            "type": "DeliveryMethod.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DeliveryMethod.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

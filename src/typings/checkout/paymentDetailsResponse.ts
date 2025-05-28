@@ -7,30 +7,30 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { CheckoutOrderResponse } from './checkoutOrderResponse';
-import { FraudResult } from './fraudResult';
-import { ResponsePaymentMethod } from './responsePaymentMethod';
-import { ThreeDS2ResponseData } from './threeDS2ResponseData';
-import { ThreeDS2Result } from './threeDS2Result';
+import { Amount } from '../models/Amount';
+import { CheckoutOrderResponse } from '../models/CheckoutOrderResponse';
+import { FraudResult } from '../models/FraudResult';
+import { ResponsePaymentMethod } from '../models/ResponsePaymentMethod';
+import { ThreeDS2ResponseData } from '../models/ThreeDS2ResponseData';
+import { ThreeDS2Result } from '../models/ThreeDS2Result';
 
 export class PaymentDetailsResponse {
     /**
     * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
     */
     'additionalData'?: { [key: string]: string; };
-    'amount'?: Amount | null;
+    'amount'?: Amount;
     /**
     * Donation Token containing payment details for Adyen Giving.
     */
     'donationToken'?: string;
-    'fraudResult'?: FraudResult | null;
+    'fraudResult'?: FraudResult;
     /**
     * The reference used during the /payments request.
     */
     'merchantReference'?: string;
-    'order'?: CheckoutOrderResponse | null;
-    'paymentMethod'?: ResponsePaymentMethod | null;
+    'order'?: CheckoutOrderResponse;
+    'paymentMethod'?: ResponsePaymentMethod;
     /**
     * Adyen\'s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
@@ -51,94 +51,114 @@ export class PaymentDetailsResponse {
     * The shopperLocale.
     */
     'shopperLocale'?: string;
-    'threeDS2ResponseData'?: ThreeDS2ResponseData | null;
-    'threeDS2Result'?: ThreeDS2Result | null;
+    'threeDS2ResponseData'?: ThreeDS2ResponseData;
+    'threeDS2Result'?: ThreeDS2Result;
     /**
     * When non-empty, contains a value that you must submit to the `/payments/details` endpoint as `paymentData`.
     */
     'threeDSPaymentData'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "donationToken",
             "baseName": "donationToken",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult | null"
+            "type": "FraudResult",
+            "format": ""
         },
         {
             "name": "merchantReference",
             "baseName": "merchantReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "order",
             "baseName": "order",
-            "type": "CheckoutOrderResponse | null"
+            "type": "CheckoutOrderResponse",
+            "format": ""
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "ResponsePaymentMethod | null"
+            "type": "ResponsePaymentMethod",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "refusalReason",
             "baseName": "refusalReason",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "refusalReasonCode",
             "baseName": "refusalReasonCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "PaymentDetailsResponse.ResultCodeEnum"
+            "type": "PaymentDetailsResponse.ResultCodeEnum",
+            "format": ""
         },
         {
             "name": "shopperLocale",
             "baseName": "shopperLocale",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDS2ResponseData",
             "baseName": "threeDS2ResponseData",
-            "type": "ThreeDS2ResponseData | null"
+            "type": "ThreeDS2ResponseData",
+            "format": ""
         },
         {
             "name": "threeDS2Result",
             "baseName": "threeDS2Result",
-            "type": "ThreeDS2Result | null"
+            "type": "ThreeDS2Result",
+            "format": ""
         },
         {
             "name": "threeDSPaymentData",
             "baseName": "threeDSPaymentData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentDetailsResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

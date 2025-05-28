@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from '../models/Amount';
 
 export class CheckoutBankTransferAction {
     /**
@@ -50,7 +50,7 @@ export class CheckoutBankTransferAction {
     * The sort code of the bank transfer.
     */
     'sortCode'?: string;
-    'totalAmount'?: Amount | null;
+    'totalAmount'?: Amount;
     /**
     * The type of the action.
     */
@@ -60,77 +60,95 @@ export class CheckoutBankTransferAction {
     */
     'url'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "beneficiary",
             "baseName": "beneficiary",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bic",
             "baseName": "bic",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "downloadUrl",
             "baseName": "downloadUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "iban",
             "baseName": "iban",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentMethodType",
             "baseName": "paymentMethodType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "routingNumber",
             "baseName": "routingNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "sortCode",
             "baseName": "sortCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "totalAmount",
             "baseName": "totalAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CheckoutBankTransferAction.TypeEnum"
+            "type": "CheckoutBankTransferAction.TypeEnum",
+            "format": ""
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutBankTransferAction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -102,127 +102,155 @@ export class AdditionalDataCarRental {
     */
     'travelEntertainmentAuthData_market'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "carRental_checkOutDate",
             "baseName": "carRental.checkOutDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_customerServiceTollFreeNumber",
             "baseName": "carRental.customerServiceTollFreeNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_daysRented",
             "baseName": "carRental.daysRented",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_fuelCharges",
             "baseName": "carRental.fuelCharges",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_insuranceCharges",
             "baseName": "carRental.insuranceCharges",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_locationCity",
             "baseName": "carRental.locationCity",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_locationCountry",
             "baseName": "carRental.locationCountry",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_locationStateProvince",
             "baseName": "carRental.locationStateProvince",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_noShowIndicator",
             "baseName": "carRental.noShowIndicator",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_oneWayDropOffCharges",
             "baseName": "carRental.oneWayDropOffCharges",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_rate",
             "baseName": "carRental.rate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_rateIndicator",
             "baseName": "carRental.rateIndicator",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_rentalAgreementNumber",
             "baseName": "carRental.rentalAgreementNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_rentalClassId",
             "baseName": "carRental.rentalClassId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_renterName",
             "baseName": "carRental.renterName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_returnCity",
             "baseName": "carRental.returnCity",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_returnCountry",
             "baseName": "carRental.returnCountry",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_returnDate",
             "baseName": "carRental.returnDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_returnLocationId",
             "baseName": "carRental.returnLocationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_returnStateProvince",
             "baseName": "carRental.returnStateProvince",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carRental_taxExemptIndicator",
             "baseName": "carRental.taxExemptIndicator",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "travelEntertainmentAuthData_duration",
             "baseName": "travelEntertainmentAuthData.duration",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "travelEntertainmentAuthData_market",
             "baseName": "travelEntertainmentAuthData.market",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataCarRental.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

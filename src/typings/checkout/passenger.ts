@@ -30,37 +30,47 @@ export class Passenger {
     */
     'travellerType'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "string"
+            "type": "string",
+            "format": "date"
         },
         {
             "name": "firstName",
             "baseName": "firstName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lastName",
             "baseName": "lastName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "phoneNumber",
             "baseName": "phoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "travellerType",
             "baseName": "travellerType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Passenger.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

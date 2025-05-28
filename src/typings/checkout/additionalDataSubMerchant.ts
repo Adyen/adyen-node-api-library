@@ -58,72 +58,89 @@ export class AdditionalDataSubMerchant {
     */
     'subMerchant_subSeller_subSellerNr_taxId'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "subMerchant_numberOfSubSellers",
             "baseName": "subMerchant.numberOfSubSellers",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_city",
             "baseName": "subMerchant.subSeller[subSellerNr].city",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_country",
             "baseName": "subMerchant.subSeller[subSellerNr].country",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_email",
             "baseName": "subMerchant.subSeller[subSellerNr].email",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_id",
             "baseName": "subMerchant.subSeller[subSellerNr].id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_mcc",
             "baseName": "subMerchant.subSeller[subSellerNr].mcc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_name",
             "baseName": "subMerchant.subSeller[subSellerNr].name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_phoneNumber",
             "baseName": "subMerchant.subSeller[subSellerNr].phoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_postalCode",
             "baseName": "subMerchant.subSeller[subSellerNr].postalCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_state",
             "baseName": "subMerchant.subSeller[subSellerNr].state",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_street",
             "baseName": "subMerchant.subSeller[subSellerNr].street",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_taxId",
             "baseName": "subMerchant.subSeller[subSellerNr].taxId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataSubMerchant.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

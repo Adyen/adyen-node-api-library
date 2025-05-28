@@ -7,14 +7,14 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { ApplicationInfo } from './applicationInfo';
-import { LineItem } from './lineItem';
-import { Split } from './split';
+import { Amount } from '../models/Amount';
+import { ApplicationInfo } from '../models/ApplicationInfo';
+import { LineItem } from '../models/LineItem';
+import { Split } from '../models/Split';
 
 export class PaymentAmountUpdateRequest {
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
+    'applicationInfo'?: ApplicationInfo;
     /**
     * The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**
     */
@@ -36,47 +36,59 @@ export class PaymentAmountUpdateRequest {
     */
     'splits'?: Array<Split>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo",
+            "format": ""
         },
         {
             "name": "industryUsage",
             "baseName": "industryUsage",
-            "type": "PaymentAmountUpdateRequest.IndustryUsageEnum"
+            "type": "PaymentAmountUpdateRequest.IndustryUsageEnum",
+            "format": ""
         },
         {
             "name": "lineItems",
             "baseName": "lineItems",
-            "type": "Array<LineItem>"
+            "type": "Array<LineItem>",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "splits",
             "baseName": "splits",
-            "type": "Array<Split>"
+            "type": "Array<Split>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentAmountUpdateRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

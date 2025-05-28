@@ -34,42 +34,53 @@ export class PseDetails {
     */
     'type'?: PseDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "bank",
             "baseName": "bank",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "clientType",
             "baseName": "clientType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "identification",
             "baseName": "identification",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "identificationType",
             "baseName": "identificationType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PseDetails.TypeEnum"
+            "type": "PseDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PseDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

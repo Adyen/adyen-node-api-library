@@ -22,27 +22,35 @@ export class AdditionalDataRetry {
     */
     'retry_skipRetry'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "retry_chainAttemptNumber",
             "baseName": "retry.chainAttemptNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "retry_orderAttemptNumber",
             "baseName": "retry.orderAttemptNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "retry_skipRetry",
             "baseName": "retry.skipRetry",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataRetry.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -49,57 +49,71 @@ export class PayPalDetails {
     */
     'type': PayPalDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "orderID",
             "baseName": "orderID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "payeePreferred",
             "baseName": "payeePreferred",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "payerID",
             "baseName": "payerID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "payerSelected",
             "baseName": "payerSelected",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subtype",
             "baseName": "subtype",
-            "type": "PayPalDetails.SubtypeEnum"
+            "type": "PayPalDetails.SubtypeEnum",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PayPalDetails.TypeEnum"
+            "type": "PayPalDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PayPalDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

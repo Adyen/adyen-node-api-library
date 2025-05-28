@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { PaymentMethodToStore } from './paymentMethodToStore';
+import { PaymentMethodToStore } from '../models/PaymentMethodToStore';
 
 export class StoredPaymentMethodRequest {
     /**
@@ -32,42 +32,53 @@ export class StoredPaymentMethodRequest {
     */
     'shopperReference': string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "PaymentMethodToStore"
+            "type": "PaymentMethodToStore",
+            "format": ""
         },
         {
             "name": "recurringProcessingModel",
             "baseName": "recurringProcessingModel",
-            "type": "StoredPaymentMethodRequest.RecurringProcessingModelEnum"
+            "type": "StoredPaymentMethodRequest.RecurringProcessingModelEnum",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperIP",
             "baseName": "shopperIP",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return StoredPaymentMethodRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

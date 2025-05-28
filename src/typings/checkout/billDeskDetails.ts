@@ -22,33 +22,41 @@ export class BillDeskDetails {
     */
     'type': BillDeskDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "issuer",
             "baseName": "issuer",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BillDeskDetails.TypeEnum"
+            "type": "BillDeskDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BillDeskDetails.attributeTypeMap;
     }
+
+    public constructor() {
+    }
 }
 
 export namespace BillDeskDetails {
     export enum TypeEnum {
-        Online = 'billdesk_online',
-        Wallet = 'billdesk_wallet'
+        BilldeskOnline = 'billdesk_online',
+        BilldeskWallet = 'billdesk_wallet'
     }
 }

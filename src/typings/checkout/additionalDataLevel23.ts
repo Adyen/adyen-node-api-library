@@ -78,97 +78,119 @@ export class AdditionalDataLevel23 {
     */
     'enhancedSchemeData_totalTaxAmount'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "enhancedSchemeData_customerReference",
             "baseName": "enhancedSchemeData.customerReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_destinationCountryCode",
             "baseName": "enhancedSchemeData.destinationCountryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_destinationPostalCode",
             "baseName": "enhancedSchemeData.destinationPostalCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_destinationStateProvinceCode",
             "baseName": "enhancedSchemeData.destinationStateProvinceCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_dutyAmount",
             "baseName": "enhancedSchemeData.dutyAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_freightAmount",
             "baseName": "enhancedSchemeData.freightAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_commodityCode",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].commodityCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_description",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_discountAmount",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].discountAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_productCode",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].productCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_quantity",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].quantity",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_totalAmount",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].totalAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_unitOfMeasure",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].unitOfMeasure",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_unitPrice",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].unitPrice",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_orderDate",
             "baseName": "enhancedSchemeData.orderDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_shipFromPostalCode",
             "baseName": "enhancedSchemeData.shipFromPostalCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_totalTaxAmount",
             "baseName": "enhancedSchemeData.totalTaxAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataLevel23.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -37,42 +37,53 @@ export class ApplePayDonations {
     */
     'type'?: ApplePayDonations.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "applePayToken",
             "baseName": "applePayToken",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "ApplePayDonations.FundingSourceEnum"
+            "type": "ApplePayDonations.FundingSourceEnum",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApplePayDonations.TypeEnum"
+            "type": "ApplePayDonations.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ApplePayDonations.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

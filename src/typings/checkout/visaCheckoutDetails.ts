@@ -26,32 +26,41 @@ export class VisaCheckoutDetails {
     */
     'visaCheckoutCallId': string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "VisaCheckoutDetails.FundingSourceEnum"
+            "type": "VisaCheckoutDetails.FundingSourceEnum",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "VisaCheckoutDetails.TypeEnum"
+            "type": "VisaCheckoutDetails.TypeEnum",
+            "format": ""
         },
         {
             "name": "visaCheckoutCallId",
             "baseName": "visaCheckoutCallId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return VisaCheckoutDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

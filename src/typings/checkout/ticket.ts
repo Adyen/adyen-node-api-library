@@ -22,27 +22,35 @@ export class Ticket {
     */
     'number'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "issueAddress",
             "baseName": "issueAddress",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "issueDate",
             "baseName": "issueDate",
-            "type": "string"
+            "type": "string",
+            "format": "date"
         },
         {
             "name": "number",
             "baseName": "number",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Ticket.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

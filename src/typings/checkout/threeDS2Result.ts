@@ -66,82 +66,101 @@ export class ThreeDS2Result {
     */
     'whiteListStatus'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "authenticationValue",
             "baseName": "authenticationValue",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "cavvAlgorithm",
             "baseName": "cavvAlgorithm",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "challengeCancel",
             "baseName": "challengeCancel",
-            "type": "ThreeDS2Result.ChallengeCancelEnum"
+            "type": "ThreeDS2Result.ChallengeCancelEnum",
+            "format": ""
         },
         {
             "name": "dsTransID",
             "baseName": "dsTransID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "eci",
             "baseName": "eci",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "exemptionIndicator",
             "baseName": "exemptionIndicator",
-            "type": "ThreeDS2Result.ExemptionIndicatorEnum"
+            "type": "ThreeDS2Result.ExemptionIndicatorEnum",
+            "format": ""
         },
         {
             "name": "messageVersion",
             "baseName": "messageVersion",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskScore",
             "baseName": "riskScore",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDSRequestorChallengeInd",
             "baseName": "threeDSRequestorChallengeInd",
-            "type": "ThreeDS2Result.ThreeDSRequestorChallengeIndEnum"
+            "type": "ThreeDS2Result.ThreeDSRequestorChallengeIndEnum",
+            "format": ""
         },
         {
             "name": "threeDSServerTransID",
             "baseName": "threeDSServerTransID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "transStatus",
             "baseName": "transStatus",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "transStatusReason",
             "baseName": "transStatusReason",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "whiteListStatus",
             "baseName": "whiteListStatus",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDS2Result.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

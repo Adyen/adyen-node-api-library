@@ -45,52 +45,65 @@ export class GooglePayDetails {
     */
     'type'?: GooglePayDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "GooglePayDetails.FundingSourceEnum"
+            "type": "GooglePayDetails.FundingSourceEnum",
+            "format": ""
         },
         {
             "name": "googlePayCardNetwork",
             "baseName": "googlePayCardNetwork",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "googlePayToken",
             "baseName": "googlePayToken",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDS2SdkVersion",
             "baseName": "threeDS2SdkVersion",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "GooglePayDetails.TypeEnum"
+            "type": "GooglePayDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return GooglePayDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

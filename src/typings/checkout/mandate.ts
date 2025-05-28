@@ -46,57 +46,71 @@ export class Mandate {
     */
     'startsAt'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "amountRule",
             "baseName": "amountRule",
-            "type": "Mandate.AmountRuleEnum"
+            "type": "Mandate.AmountRuleEnum",
+            "format": ""
         },
         {
             "name": "billingAttemptsRule",
             "baseName": "billingAttemptsRule",
-            "type": "Mandate.BillingAttemptsRuleEnum"
+            "type": "Mandate.BillingAttemptsRuleEnum",
+            "format": ""
         },
         {
             "name": "billingDay",
             "baseName": "billingDay",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "count",
             "baseName": "count",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "endsAt",
             "baseName": "endsAt",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "frequency",
             "baseName": "frequency",
-            "type": "Mandate.FrequencyEnum"
+            "type": "Mandate.FrequencyEnum",
+            "format": ""
         },
         {
             "name": "remarks",
             "baseName": "remarks",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "startsAt",
             "baseName": "startsAt",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Mandate.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

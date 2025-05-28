@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { DonationCampaign } from './donationCampaign';
+import { DonationCampaign } from '../models/DonationCampaign';
 
 export class DonationCampaignsResponse {
     /**
@@ -15,17 +15,23 @@ export class DonationCampaignsResponse {
     */
     'donationCampaigns'?: Array<DonationCampaign>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "donationCampaigns",
             "baseName": "donationCampaigns",
-            "type": "Array<DonationCampaign>"
+            "type": "Array<DonationCampaign>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DonationCampaignsResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

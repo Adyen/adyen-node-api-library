@@ -7,26 +7,30 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    CardDetailsRequest,
-    CardDetailsResponse,
-    CreateCheckoutSessionRequest,
-    CreateCheckoutSessionResponse,
-    PaymentDetailsRequest,
-    PaymentDetailsResponse,
-    PaymentMethodsRequest,
-    PaymentMethodsResponse,
-    PaymentRequest,
-    PaymentResponse,
-    SessionResultResponse,
-    ObjectSerializer
-} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
+import { CardDetailsRequest } from "../../typings/checkout/models";
+import { CardDetailsResponse } from "../../typings/checkout/models";
+import { CreateCheckoutSessionRequest } from "../../typings/checkout/models";
+import { CreateCheckoutSessionResponse } from "../../typings/checkout/models";
+import { PaymentDetailsRequest } from "../../typings/checkout/models";
+import { PaymentDetailsResponse } from "../../typings/checkout/models";
+import { PaymentMethodsRequest } from "../../typings/checkout/models";
+import { PaymentMethodsResponse } from "../../typings/checkout/models";
+import { PaymentRequest } from "../../typings/checkout/models";
+import { PaymentResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
+import { SessionResultResponse } from "../../typings/checkout/models";
+
+/**
+ * API handler for PaymentsApi
+ */
 export class PaymentsApi extends Service {
 
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v71";
@@ -151,4 +155,5 @@ export class PaymentsApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "CreateCheckoutSessionResponse");
     }
+
 }

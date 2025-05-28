@@ -14,17 +14,23 @@ export class UtilityRequest {
     */
     'originDomains': Array<string>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "originDomains",
             "baseName": "originDomains",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return UtilityRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

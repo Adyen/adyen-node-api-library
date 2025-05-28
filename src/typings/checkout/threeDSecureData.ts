@@ -58,72 +58,89 @@ export class ThreeDSecureData {
     */
     'xid'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "authenticationResponse",
             "baseName": "authenticationResponse",
-            "type": "ThreeDSecureData.AuthenticationResponseEnum"
+            "type": "ThreeDSecureData.AuthenticationResponseEnum",
+            "format": ""
         },
         {
             "name": "cavv",
             "baseName": "cavv",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         },
         {
             "name": "cavvAlgorithm",
             "baseName": "cavvAlgorithm",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "challengeCancel",
             "baseName": "challengeCancel",
-            "type": "ThreeDSecureData.ChallengeCancelEnum"
+            "type": "ThreeDSecureData.ChallengeCancelEnum",
+            "format": ""
         },
         {
             "name": "directoryResponse",
             "baseName": "directoryResponse",
-            "type": "ThreeDSecureData.DirectoryResponseEnum"
+            "type": "ThreeDSecureData.DirectoryResponseEnum",
+            "format": ""
         },
         {
             "name": "dsTransID",
             "baseName": "dsTransID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "eci",
             "baseName": "eci",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskScore",
             "baseName": "riskScore",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDSVersion",
             "baseName": "threeDSVersion",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "tokenAuthenticationVerificationValue",
             "baseName": "tokenAuthenticationVerificationValue",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         },
         {
             "name": "transStatusReason",
             "baseName": "transStatusReason",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "xid",
             "baseName": "xid",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDSecureData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

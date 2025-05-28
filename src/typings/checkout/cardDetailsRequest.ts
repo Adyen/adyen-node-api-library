@@ -30,37 +30,47 @@ export class CardDetailsRequest {
     */
     'supportedBrands'?: Array<string>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "cardNumber",
             "baseName": "cardNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "countryCode",
             "baseName": "countryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedCardNumber",
             "baseName": "encryptedCardNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "supportedBrands",
             "baseName": "supportedBrands",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CardDetailsRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

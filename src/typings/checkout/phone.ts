@@ -18,22 +18,29 @@ export class Phone {
     */
     'subscriber'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "cc",
             "baseName": "cc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subscriber",
             "baseName": "subscriber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Phone.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

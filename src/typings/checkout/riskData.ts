@@ -26,32 +26,41 @@ export class RiskData {
     */
     'profileReference'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "clientData",
             "baseName": "clientData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "customFields",
             "baseName": "customFields",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "fraudOffset",
             "baseName": "fraudOffset",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "profileReference",
             "baseName": "profileReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return RiskData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

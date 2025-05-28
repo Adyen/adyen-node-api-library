@@ -70,87 +70,107 @@ export class AdditionalDataRiskStandalone {
     */
     'tokenDataType'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "PayPal_CountryCode",
             "baseName": "PayPal.CountryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "PayPal_EmailId",
             "baseName": "PayPal.EmailId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "PayPal_FirstName",
             "baseName": "PayPal.FirstName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "PayPal_LastName",
             "baseName": "PayPal.LastName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "PayPal_PayerId",
             "baseName": "PayPal.PayerId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "PayPal_Phone",
             "baseName": "PayPal.Phone",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "PayPal_ProtectionEligibility",
             "baseName": "PayPal.ProtectionEligibility",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "PayPal_TransactionId",
             "baseName": "PayPal.TransactionId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "avsResultRaw",
             "baseName": "avsResultRaw",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bin",
             "baseName": "bin",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "cvcResultRaw",
             "baseName": "cvcResultRaw",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskToken",
             "baseName": "riskToken",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDAuthenticated",
             "baseName": "threeDAuthenticated",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDOffered",
             "baseName": "threeDOffered",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "tokenDataType",
             "baseName": "tokenDataType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataRiskStandalone.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

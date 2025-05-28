@@ -7,12 +7,12 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { BillingAddress } from './billingAddress';
+import { Amount } from '../models/Amount';
+import { BillingAddress } from '../models/BillingAddress';
 
 export class SubMerchantInfo {
-    'address'?: BillingAddress | null;
-    'amount'?: Amount | null;
+    'address'?: BillingAddress;
+    'amount'?: Amount;
     /**
     * Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant\'s account.
     */
@@ -43,62 +43,77 @@ export class SubMerchantInfo {
     */
     'url'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "address",
             "baseName": "address",
-            "type": "BillingAddress | null"
+            "type": "BillingAddress",
+            "format": ""
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "email",
             "baseName": "email",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "mcc",
             "baseName": "mcc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "phoneNumber",
             "baseName": "phoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "registeredSince",
             "baseName": "registeredSince",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "taxId",
             "baseName": "taxId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SubMerchantInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -53,62 +53,77 @@ export class CashAppDetails {
     */
     'type'?: CashAppDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "cashtag",
             "baseName": "cashtag",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "customerId",
             "baseName": "customerId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "grantId",
             "baseName": "grantId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "onFileGrantId",
             "baseName": "onFileGrantId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "requestId",
             "baseName": "requestId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subtype",
             "baseName": "subtype",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CashAppDetails.TypeEnum"
+            "type": "CashAppDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CashAppDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

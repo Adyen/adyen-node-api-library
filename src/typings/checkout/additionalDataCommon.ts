@@ -94,117 +94,143 @@ export class AdditionalDataCommon {
     */
     'subMerchantTaxId'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "RequestedTestAcquirerResponseCode",
             "baseName": "RequestedTestAcquirerResponseCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "RequestedTestErrorResponseCode",
             "baseName": "RequestedTestErrorResponseCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "allowPartialAuth",
             "baseName": "allowPartialAuth",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "authorisationType",
             "baseName": "authorisationType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "autoRescue",
             "baseName": "autoRescue",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "customRoutingFlag",
             "baseName": "customRoutingFlag",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "industryUsage",
             "baseName": "industryUsage",
-            "type": "AdditionalDataCommon.IndustryUsageEnum"
+            "type": "AdditionalDataCommon.IndustryUsageEnum",
+            "format": ""
         },
         {
             "name": "manualCapture",
             "baseName": "manualCapture",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "maxDaysToRescue",
             "baseName": "maxDaysToRescue",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "networkTxReference",
             "baseName": "networkTxReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "overwriteBrand",
             "baseName": "overwriteBrand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchantCity",
             "baseName": "subMerchantCity",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchantCountry",
             "baseName": "subMerchantCountry",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchantEmail",
             "baseName": "subMerchantEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchantID",
             "baseName": "subMerchantID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchantName",
             "baseName": "subMerchantName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchantPhoneNumber",
             "baseName": "subMerchantPhoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchantPostalCode",
             "baseName": "subMerchantPostalCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchantState",
             "baseName": "subMerchantState",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchantStreet",
             "baseName": "subMerchantStreet",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchantTaxId",
             "baseName": "subMerchantTaxId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataCommon.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

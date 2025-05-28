@@ -78,97 +78,119 @@ export class AdditionalDataLodging {
     */
     'travelEntertainmentAuthData_market'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "lodging_SpecialProgramCode",
             "baseName": "lodging.SpecialProgramCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_checkInDate",
             "baseName": "lodging.checkInDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_checkOutDate",
             "baseName": "lodging.checkOutDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_customerServiceTollFreeNumber",
             "baseName": "lodging.customerServiceTollFreeNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_fireSafetyActIndicator",
             "baseName": "lodging.fireSafetyActIndicator",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_folioCashAdvances",
             "baseName": "lodging.folioCashAdvances",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_folioNumber",
             "baseName": "lodging.folioNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_foodBeverageCharges",
             "baseName": "lodging.foodBeverageCharges",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_noShowIndicator",
             "baseName": "lodging.noShowIndicator",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_prepaidExpenses",
             "baseName": "lodging.prepaidExpenses",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_propertyPhoneNumber",
             "baseName": "lodging.propertyPhoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_room1_numberOfNights",
             "baseName": "lodging.room1.numberOfNights",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_room1_rate",
             "baseName": "lodging.room1.rate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_totalRoomTax",
             "baseName": "lodging.totalRoomTax",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_totalTax",
             "baseName": "lodging.totalTax",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "travelEntertainmentAuthData_duration",
             "baseName": "travelEntertainmentAuthData.duration",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "travelEntertainmentAuthData_market",
             "baseName": "travelEntertainmentAuthData.market",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataLodging.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

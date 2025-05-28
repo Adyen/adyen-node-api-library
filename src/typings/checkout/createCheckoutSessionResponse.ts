@@ -7,28 +7,28 @@
  * Do not edit this class manually.
  */
 
-import { AccountInfo } from './accountInfo';
-import { Amount } from './amount';
-import { ApplicationInfo } from './applicationInfo';
-import { AuthenticationData } from './authenticationData';
-import { BillingAddress } from './billingAddress';
-import { CheckoutSessionInstallmentOption } from './checkoutSessionInstallmentOption';
-import { CheckoutSessionThreeDS2RequestData } from './checkoutSessionThreeDS2RequestData';
-import { Company } from './company';
-import { DeliveryAddress } from './deliveryAddress';
-import { FundOrigin } from './fundOrigin';
-import { FundRecipient } from './fundRecipient';
-import { LineItem } from './lineItem';
-import { Mandate } from './mandate';
-import { Name } from './name';
-import { PlatformChargebackLogic } from './platformChargebackLogic';
-import { RiskData } from './riskData';
-import { Split } from './split';
-import { ThreeDSecureData } from './threeDSecureData';
+import { AccountInfo } from '../models/AccountInfo';
+import { Amount } from '../models/Amount';
+import { ApplicationInfo } from '../models/ApplicationInfo';
+import { AuthenticationData } from '../models/AuthenticationData';
+import { BillingAddress } from '../models/BillingAddress';
+import { CheckoutSessionInstallmentOption } from '../models/CheckoutSessionInstallmentOption';
+import { CheckoutSessionThreeDS2RequestData } from '../models/CheckoutSessionThreeDS2RequestData';
+import { Company } from '../models/Company';
+import { DeliveryAddress } from '../models/DeliveryAddress';
+import { FundOrigin } from '../models/FundOrigin';
+import { FundRecipient } from '../models/FundRecipient';
+import { LineItem } from '../models/LineItem';
+import { Mandate } from '../models/Mandate';
+import { Name } from '../models/Name';
+import { PlatformChargebackLogic } from '../models/PlatformChargebackLogic';
+import { RiskData } from '../models/RiskData';
+import { Split } from '../models/Split';
+import { ThreeDSecureData } from '../models/ThreeDSecureData';
 
 export class CreateCheckoutSessionResponse {
-    'accountInfo'?: AccountInfo | null;
-    'additionalAmount'?: Amount | null;
+    'accountInfo'?: AccountInfo;
+    'additionalAmount'?: Amount;
     /**
     * This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
@@ -38,9 +38,9 @@ export class CreateCheckoutSessionResponse {
     */
     'allowedPaymentMethods'?: Array<string>;
     'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
-    'authenticationData'?: AuthenticationData | null;
-    'billingAddress'?: BillingAddress | null;
+    'applicationInfo'?: ApplicationInfo;
+    'authenticationData'?: AuthenticationData;
+    'billingAddress'?: BillingAddress;
     /**
     * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`
     */
@@ -53,7 +53,7 @@ export class CreateCheckoutSessionResponse {
     * The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.  Possible values: * **iOS** * **Android** * **Web**
     */
     'channel'?: CreateCheckoutSessionResponse.ChannelEnum;
-    'company'?: Company | null;
+    'company'?: Company;
     /**
     * The shopper\'s two-letter country code.
     */
@@ -66,7 +66,7 @@ export class CreateCheckoutSessionResponse {
     * The date and time when the purchased goods should be delivered.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
     */
     'deliverAt'?: Date;
-    'deliveryAddress'?: DeliveryAddress | null;
+    'deliveryAddress'?: DeliveryAddress;
     /**
     * When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition).
     */
@@ -83,8 +83,8 @@ export class CreateCheckoutSessionResponse {
     * The date the session expires in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. When not specified, the expiry date is set to 1 hour after session creation. You cannot set the session expiry to more than 24 hours after session creation.
     */
     'expiresAt': Date;
-    'fundOrigin'?: FundOrigin | null;
-    'fundRecipient'?: FundRecipient | null;
+    'fundOrigin'?: FundOrigin;
+    'fundRecipient'?: FundRecipient;
     /**
     * A unique identifier of the session.
     */
@@ -97,7 +97,7 @@ export class CreateCheckoutSessionResponse {
     * Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Riverty, and Zip.
     */
     'lineItems'?: Array<LineItem>;
-    'mandate'?: Mandate | null;
+    'mandate'?: Mandate;
     /**
     * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
     */
@@ -118,8 +118,8 @@ export class CreateCheckoutSessionResponse {
     * Indicates the type of front end integration. Possible values: * **embedded** (default): Drop-in or Components integration * **hosted**: Hosted Checkout integration
     */
     'mode'?: CreateCheckoutSessionResponse.ModeEnum;
-    'mpiData'?: ThreeDSecureData | null;
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
+    'mpiData'?: ThreeDSecureData;
+    'platformChargebackLogic'?: PlatformChargebackLogic;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
     */
@@ -148,7 +148,7 @@ export class CreateCheckoutSessionResponse {
     * The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value. > The URL must not include personally identifiable information (PII), for example name or email address.
     */
     'returnUrl': string;
-    'riskData'?: RiskData | null;
+    'riskData'?: RiskData;
     /**
     * The payment session data you need to pass to your front end.
     */
@@ -169,7 +169,7 @@ export class CreateCheckoutSessionResponse {
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
     'shopperLocale'?: string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
@@ -222,7 +222,7 @@ export class CreateCheckoutSessionResponse {
     * Sets a custom theme for [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/?platform=Web&integration=Hosted+Checkout). The value can be any of the **Theme ID** values from your Customer Area.
     */
     'themeId'?: string;
-    'threeDS2RequestData'?: CheckoutSessionThreeDS2RequestData | null;
+    'threeDS2RequestData'?: CheckoutSessionThreeDS2RequestData;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     *
@@ -239,332 +239,401 @@ export class CreateCheckoutSessionResponse {
     */
     'url'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountInfo",
             "baseName": "accountInfo",
-            "type": "AccountInfo | null"
+            "type": "AccountInfo",
+            "format": ""
         },
         {
             "name": "additionalAmount",
             "baseName": "additionalAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "allowedPaymentMethods",
             "baseName": "allowedPaymentMethods",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo",
+            "format": ""
         },
         {
             "name": "authenticationData",
             "baseName": "authenticationData",
-            "type": "AuthenticationData | null"
+            "type": "AuthenticationData",
+            "format": ""
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "BillingAddress | null"
+            "type": "BillingAddress",
+            "format": ""
         },
         {
             "name": "blockedPaymentMethods",
             "baseName": "blockedPaymentMethods",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "captureDelayHours",
             "baseName": "captureDelayHours",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "channel",
             "baseName": "channel",
-            "type": "CreateCheckoutSessionResponse.ChannelEnum"
+            "type": "CreateCheckoutSessionResponse.ChannelEnum",
+            "format": ""
         },
         {
             "name": "company",
             "baseName": "company",
-            "type": "Company | null"
+            "type": "Company",
+            "format": ""
         },
         {
             "name": "countryCode",
             "baseName": "countryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "deliverAt",
             "baseName": "deliverAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "DeliveryAddress | null"
+            "type": "DeliveryAddress",
+            "format": ""
         },
         {
             "name": "enableOneClick",
             "baseName": "enableOneClick",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "enablePayOut",
             "baseName": "enablePayOut",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "enableRecurring",
             "baseName": "enableRecurring",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "expiresAt",
             "baseName": "expiresAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "fundOrigin",
             "baseName": "fundOrigin",
-            "type": "FundOrigin | null"
+            "type": "FundOrigin",
+            "format": ""
         },
         {
             "name": "fundRecipient",
             "baseName": "fundRecipient",
-            "type": "FundRecipient | null"
+            "type": "FundRecipient",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "installmentOptions",
             "baseName": "installmentOptions",
-            "type": "{ [key: string]: CheckoutSessionInstallmentOption; }"
+            "type": "{ [key: string]: CheckoutSessionInstallmentOption; }",
+            "format": ""
         },
         {
             "name": "lineItems",
             "baseName": "lineItems",
-            "type": "Array<LineItem>"
+            "type": "Array<LineItem>",
+            "format": ""
         },
         {
             "name": "mandate",
             "baseName": "mandate",
-            "type": "Mandate | null"
+            "type": "Mandate",
+            "format": ""
         },
         {
             "name": "mcc",
             "baseName": "mcc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantOrderReference",
             "baseName": "merchantOrderReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "CreateCheckoutSessionResponse.ModeEnum"
+            "type": "CreateCheckoutSessionResponse.ModeEnum",
+            "format": ""
         },
         {
             "name": "mpiData",
             "baseName": "mpiData",
-            "type": "ThreeDSecureData | null"
+            "type": "ThreeDSecureData",
+            "format": ""
         },
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic",
+            "format": ""
         },
         {
             "name": "recurringExpiry",
             "baseName": "recurringExpiry",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringFrequency",
             "baseName": "recurringFrequency",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringProcessingModel",
             "baseName": "recurringProcessingModel",
-            "type": "CreateCheckoutSessionResponse.RecurringProcessingModelEnum"
+            "type": "CreateCheckoutSessionResponse.RecurringProcessingModelEnum",
+            "format": ""
         },
         {
             "name": "redirectFromIssuerMethod",
             "baseName": "redirectFromIssuerMethod",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "redirectToIssuerMethod",
             "baseName": "redirectToIssuerMethod",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "returnUrl",
             "baseName": "returnUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskData",
             "baseName": "riskData",
-            "type": "RiskData | null"
+            "type": "RiskData",
+            "format": ""
         },
         {
             "name": "sessionData",
             "baseName": "sessionData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperIP",
             "baseName": "shopperIP",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperInteraction",
             "baseName": "shopperInteraction",
-            "type": "CreateCheckoutSessionResponse.ShopperInteractionEnum"
+            "type": "CreateCheckoutSessionResponse.ShopperInteractionEnum",
+            "format": ""
         },
         {
             "name": "shopperLocale",
             "baseName": "shopperLocale",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperStatement",
             "baseName": "shopperStatement",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "showInstallmentAmount",
             "baseName": "showInstallmentAmount",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "showRemovePaymentMethodButton",
             "baseName": "showRemovePaymentMethodButton",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "socialSecurityNumber",
             "baseName": "socialSecurityNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "splitCardFundingSources",
             "baseName": "splitCardFundingSources",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "splits",
             "baseName": "splits",
-            "type": "Array<Split>"
+            "type": "Array<Split>",
+            "format": ""
         },
         {
             "name": "store",
             "baseName": "store",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storeFiltrationMode",
             "baseName": "storeFiltrationMode",
-            "type": "CreateCheckoutSessionResponse.StoreFiltrationModeEnum"
+            "type": "CreateCheckoutSessionResponse.StoreFiltrationModeEnum",
+            "format": ""
         },
         {
             "name": "storePaymentMethod",
             "baseName": "storePaymentMethod",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "storePaymentMethodMode",
             "baseName": "storePaymentMethodMode",
-            "type": "CreateCheckoutSessionResponse.StorePaymentMethodModeEnum"
+            "type": "CreateCheckoutSessionResponse.StorePaymentMethodModeEnum",
+            "format": ""
         },
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "themeId",
             "baseName": "themeId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDS2RequestData",
             "baseName": "threeDS2RequestData",
-            "type": "CheckoutSessionThreeDS2RequestData | null"
+            "type": "CheckoutSessionThreeDS2RequestData",
+            "format": ""
         },
         {
             "name": "threeDSAuthenticationOnly",
             "baseName": "threeDSAuthenticationOnly",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "trustedShopper",
             "baseName": "trustedShopper",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CreateCheckoutSessionResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

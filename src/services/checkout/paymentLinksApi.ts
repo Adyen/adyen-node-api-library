@@ -7,18 +7,22 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    PaymentLinkRequest,
-    PaymentLinkResponse,
-    UpdatePaymentLinkRequest,
-    ObjectSerializer
-} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
+import { PaymentLinkRequest } from "../../typings/checkout/models";
+import { PaymentLinkResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
+import { UpdatePaymentLinkRequest } from "../../typings/checkout/models";
+
+/**
+ * API handler for PaymentLinksApi
+ */
 export class PaymentLinksApi extends Service {
 
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v71";
@@ -84,4 +88,5 @@ export class PaymentLinksApi extends Service {
         );
         return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
+
 }

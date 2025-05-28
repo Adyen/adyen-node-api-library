@@ -40,42 +40,53 @@ export class AdditionalData3DSecure {
     */
     'threeDSVersion'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "allow3DS2",
             "baseName": "allow3DS2",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "challengeWindowSize",
             "baseName": "challengeWindowSize",
-            "type": "AdditionalData3DSecure.ChallengeWindowSizeEnum"
+            "type": "AdditionalData3DSecure.ChallengeWindowSizeEnum",
+            "format": ""
         },
         {
             "name": "executeThreeD",
             "baseName": "executeThreeD",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "mpiImplementationType",
             "baseName": "mpiImplementationType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "scaExemption",
             "baseName": "scaExemption",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDSVersion",
             "baseName": "threeDSVersion",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalData3DSecure.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

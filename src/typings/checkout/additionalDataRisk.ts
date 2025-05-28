@@ -94,117 +94,143 @@ export class AdditionalDataRisk {
     */
     'riskdata_skipRisk'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "riskdata__customFieldName",
             "baseName": "riskdata.[customFieldName]",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_amountPerItem",
             "baseName": "riskdata.basket.item[itemNr].amountPerItem",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_brand",
             "baseName": "riskdata.basket.item[itemNr].brand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_category",
             "baseName": "riskdata.basket.item[itemNr].category",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_color",
             "baseName": "riskdata.basket.item[itemNr].color",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_currency",
             "baseName": "riskdata.basket.item[itemNr].currency",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_itemID",
             "baseName": "riskdata.basket.item[itemNr].itemID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_manufacturer",
             "baseName": "riskdata.basket.item[itemNr].manufacturer",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_productTitle",
             "baseName": "riskdata.basket.item[itemNr].productTitle",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_quantity",
             "baseName": "riskdata.basket.item[itemNr].quantity",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_receiverEmail",
             "baseName": "riskdata.basket.item[itemNr].receiverEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_size",
             "baseName": "riskdata.basket.item[itemNr].size",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_sku",
             "baseName": "riskdata.basket.item[itemNr].sku",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_basket_item_itemNr_upc",
             "baseName": "riskdata.basket.item[itemNr].upc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_promotions_promotion_itemNr_promotionCode",
             "baseName": "riskdata.promotions.promotion[itemNr].promotionCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_promotions_promotion_itemNr_promotionDiscountAmount",
             "baseName": "riskdata.promotions.promotion[itemNr].promotionDiscountAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_promotions_promotion_itemNr_promotionDiscountCurrency",
             "baseName": "riskdata.promotions.promotion[itemNr].promotionDiscountCurrency",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_promotions_promotion_itemNr_promotionDiscountPercentage",
             "baseName": "riskdata.promotions.promotion[itemNr].promotionDiscountPercentage",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_promotions_promotion_itemNr_promotionName",
             "baseName": "riskdata.promotions.promotion[itemNr].promotionName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_riskProfileReference",
             "baseName": "riskdata.riskProfileReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskdata_skipRisk",
             "baseName": "riskdata.skipRisk",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataRisk.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

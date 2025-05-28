@@ -61,72 +61,89 @@ export class AchDetails {
     */
     'type'?: AchDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountHolderType",
             "baseName": "accountHolderType",
-            "type": "AchDetails.AccountHolderTypeEnum"
+            "type": "AchDetails.AccountHolderTypeEnum",
+            "format": ""
         },
         {
             "name": "bankAccountNumber",
             "baseName": "bankAccountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankAccountType",
             "baseName": "bankAccountType",
-            "type": "AchDetails.BankAccountTypeEnum"
+            "type": "AchDetails.BankAccountTypeEnum",
+            "format": ""
         },
         {
             "name": "bankLocationId",
             "baseName": "bankLocationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedBankAccountNumber",
             "baseName": "encryptedBankAccountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedBankLocationId",
             "baseName": "encryptedBankLocationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ownerName",
             "baseName": "ownerName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "transferInstrumentId",
             "baseName": "transferInstrumentId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AchDetails.TypeEnum"
+            "type": "AchDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AchDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

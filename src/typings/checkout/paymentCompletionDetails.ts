@@ -87,112 +87,137 @@ export class PaymentCompletionDetails {
     */
     'vaultToken'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "MD",
             "baseName": "MD",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "PaReq",
             "baseName": "PaReq",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "PaRes",
             "baseName": "PaRes",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "authorization_token",
             "baseName": "authorization_token",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "billingToken",
             "baseName": "billingToken",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "cupsecureplus_smscode",
             "baseName": "cupsecureplus.smscode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "facilitatorAccessToken",
             "baseName": "facilitatorAccessToken",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "oneTimePasscode",
             "baseName": "oneTimePasscode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "orderID",
             "baseName": "orderID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "payerID",
             "baseName": "payerID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "payload",
             "baseName": "payload",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentID",
             "baseName": "paymentID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentStatus",
             "baseName": "paymentStatus",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "redirectResult",
             "baseName": "redirectResult",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "returnUrlQueryString",
             "baseName": "returnUrlQueryString",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDSResult",
             "baseName": "threeDSResult",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeds2_challengeResult",
             "baseName": "threeds2.challengeResult",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeds2_fingerprint",
             "baseName": "threeds2.fingerprint",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "vaultToken",
             "baseName": "vaultToken",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentCompletionDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
