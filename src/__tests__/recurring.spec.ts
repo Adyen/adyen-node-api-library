@@ -3,7 +3,7 @@ import { createClient } from "../__mocks__/base";
 import { disableSuccess } from "../__mocks__/recurring/disableSuccess";
 import { listRecurringDetailsSuccess } from "../__mocks__/recurring/listRecurringDetailsSuccess";
 import { notifyShopperSuccess } from "../__mocks__/recurring/notifyShopperSuccess";
-import RecurringService from "../services/recurringApi";
+import RecurringService from "../services/recurring";
 import Client from "../client";
 import { recurring } from "../typings";
 import {Permit} from "../typings/recurring/permit";
@@ -41,7 +41,7 @@ describe("Recurring", (): void => {
             .reply(200, listRecurringDetailsSuccess);
         const request = createRecurringDetailsRequest();
         
-        const result = await recurringService.listRecurringDetails(request);
+        const result = await recurringService.RecurringApi.listRecurringDetails(request);
         
         expect(result).toBeTruthy();
         if(result.details) {
@@ -62,7 +62,7 @@ describe("Recurring", (): void => {
         };
 
         try {
-            const result = await recurringService.disable(request);
+            const result = await recurringService.RecurringApi.disable(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e);
@@ -87,7 +87,7 @@ describe("Recurring", (): void => {
         };
 
         try {
-            const result = await recurringService.notifyShopper(notifyShopperRequest);
+            const result = await recurringService.RecurringApi.notifyShopper(notifyShopperRequest);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e);
@@ -116,7 +116,7 @@ describe("Recurring", (): void => {
         };
 
         try {
-            const result = await recurringService.scheduleAccountUpdater(request);
+            const result = await recurringService.RecurringApi.scheduleAccountUpdater(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e);
@@ -147,7 +147,7 @@ describe("Recurring", (): void => {
         expect(serializedRequest.permits[0].validTillDate?.toString()).toBe("2022-03-25T00:00:00.000Z");
 
         try {
-            const result = await recurringService.createPermit(request);
+            const result = await recurringService.RecurringApi.createPermit(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e);
@@ -169,7 +169,7 @@ describe("Recurring", (): void => {
         };
 
         try {
-            const result = await recurringService.disablePermit(request);
+            const result = await recurringService.RecurringApi.disablePermit(request);
             expect(result).toBeTruthy();
         } catch (e) {
             fail(e);
