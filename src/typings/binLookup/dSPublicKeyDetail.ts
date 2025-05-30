@@ -30,37 +30,47 @@ export class DSPublicKeyDetail {
     */
     'rootCertificates'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "directoryServerId",
             "baseName": "directoryServerId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fromSDKVersion",
             "baseName": "fromSDKVersion",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "publicKey",
             "baseName": "publicKey",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         },
         {
             "name": "rootCertificates",
             "baseName": "rootCertificates",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DSPublicKeyDetail.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

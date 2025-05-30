@@ -1,6 +1,6 @@
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import BinLookup from "../services/binLookupApi";
+import BinLookup from "../services/binLookup";
 import Client from "../client";
 import HttpClientException from "../httpClient/httpClientException";
 import { binlookup } from "../typings";
@@ -42,7 +42,7 @@ describe("Bin Lookup", function (): void {
         scope.post("/get3dsAvailability")
             .reply(200, threeDSAvailabilitySuccess);
 
-        const response = await binLookupService.get3dsAvailability(threeDSAvailabilityRequest);
+        const response = await binLookupService.BinLookupApi.get3dsAvailability(threeDSAvailabilityRequest);
 
         expect(response).toEqual< binlookup.ThreeDSAvailabilityResponse>(threeDSAvailabilitySuccess);
     });
@@ -58,7 +58,7 @@ describe("Bin Lookup", function (): void {
             .reply(403, JSON.stringify({status: 403, message: "Invalid Merchant Account", errorCode: "901", errorType: "security"}));
 
         try {
-            await binLookupService.get3dsAvailability(threeDSAvailabilityRequest as unknown as  binlookup.ThreeDSAvailabilityRequest);
+            await binLookupService.BinLookupApi.get3dsAvailability(threeDSAvailabilityRequest as unknown as  binlookup.ThreeDSAvailabilityRequest);
             fail("Expected request to fail");
         } catch (e) {
             expect(e instanceof HttpClientException).toBeTruthy();
@@ -101,7 +101,7 @@ describe("Bin Lookup", function (): void {
         scope.post("/getCostEstimate")
             .reply(200, expected);
 
-        const response = await binLookupService.getCostEstimate(costEstimateRequest);
+        const response = await binLookupService.BinLookupApi.getCostEstimate(costEstimateRequest);
 
         expect(response).toEqual(expected);
     });

@@ -54,67 +54,83 @@ export class CardBin {
     */
     'summary'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "bin",
             "baseName": "bin",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "commercial",
             "baseName": "commercial",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fundsAvailability",
             "baseName": "fundsAvailability",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "issuerBin",
             "baseName": "issuerBin",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "issuingBank",
             "baseName": "issuingBank",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "issuingCountry",
             "baseName": "issuingCountry",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "issuingCurrency",
             "baseName": "issuingCurrency",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "payoutEligible",
             "baseName": "payoutEligible",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "summary",
             "baseName": "summary",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CardBin.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,12 +7,13 @@
  * Do not edit this class manually.
  */
 
-import { BinDetail } from './binDetail';
-import { DSPublicKeyDetail } from './dSPublicKeyDetail';
-import { ThreeDS2CardRangeDetail } from './threeDS2CardRangeDetail';
+import { BinDetail } from './models';
+import { DSPublicKeyDetail } from './models';
+import { ThreeDS2CardRangeDetail } from './models';
+
 
 export class ThreeDSAvailabilityResponse {
-    'binDetails'?: BinDetail | null;
+    'binDetails'?: BinDetail;
     /**
     * List of Directory Server (DS) public keys.
     */
@@ -30,37 +31,47 @@ export class ThreeDSAvailabilityResponse {
     */
     'threeDS2supported'?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "binDetails",
             "baseName": "binDetails",
-            "type": "BinDetail | null"
+            "type": "BinDetail",
+            "format": ""
         },
         {
             "name": "dsPublicKeys",
             "baseName": "dsPublicKeys",
-            "type": "Array<DSPublicKeyDetail>"
+            "type": "Array<DSPublicKeyDetail>",
+            "format": ""
         },
         {
             "name": "threeDS1Supported",
             "baseName": "threeDS1Supported",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "threeDS2CardRangeDetails",
             "baseName": "threeDS2CardRangeDetails",
-            "type": "Array<ThreeDS2CardRangeDetail>"
+            "type": "Array<ThreeDS2CardRangeDetail>",
+            "format": ""
         },
         {
             "name": "threeDS2supported",
             "baseName": "threeDS2supported",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDSAvailabilityResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
