@@ -6,6 +6,7 @@ import {
 } from './';
 
 {{/hasImports}}
+
 /**
  * @type {{classname}}
  * Type
@@ -19,14 +20,14 @@ export type {{classname}} = {{#oneOf}}{{{.}}}{{^-last}} | {{/-last}}{{/oneOf}};
 * @export
 */
 export class {{classname}}Class {
+    
     {{#discriminator}}
     
     static readonly discriminator: string | undefined = "{{discriminatorName}}";
-    // static readonly discriminator: string = "type";
-
     {{/discriminator}}
     {{^discriminator}}
-    static readonly discriminator: string | undefined = undefined;
+    {{! Note: discriminator is not defined in OpenAPI spec, fallback to `type` }}
+    static readonly discriminator: string = "type";
     {{/discriminator}}
     {{#hasDiscriminatorWithNonEmptyMapping}}
 
@@ -35,19 +36,18 @@ export class {{classname}}Class {
         "{{mappingName}}": "{{modelName}}",
     {{/discriminator.mappedModels}}
     };
+    {{! Note: discriminator is not defined in OpenAPI spec, it should generate something like this:
+    static readonly mapping: { [key: string]: string } = {
+      "await": "CheckoutAwaitAction",
+      "bankTransfer": "CheckoutBankTransferAction",
+      "redirect": "CheckoutRedirectAction",
+      "threeDS2": "CheckoutThreeDS2Action",
+      "sdk": "CheckoutSDKAction",
+      "voucher": "CheckoutVoucherAction",
+    }; }}
     {{/hasDiscriminatorWithNonEmptyMapping}}
     {{^hasDiscriminatorWithNonEmptyMapping}}
 
     static readonly mapping: {[index: string]: string} | undefined = undefined;
     {{/hasDiscriminatorWithNonEmptyMapping}}
-
-    // static readonly mapping: { [key: string]: string } = {
-    // "await": "CheckoutAwaitAction",
-    // "bankTransfer": "CheckoutBankTransferAction",
-    // "redirect": "CheckoutRedirectAction",
-    // "threeDS2": "CheckoutThreeDS2Action",
-    // "sdk": "CheckoutSDKAction",
-    // "voucher": "CheckoutVoucherAction",
-    // Add all other action types...
-  };
 }
