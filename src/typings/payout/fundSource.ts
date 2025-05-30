@@ -7,63 +7,75 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './address';
-import { Card } from './card';
-import { Name } from './name';
+import { Address } from './models';
+import { Card } from './models';
+import { Name } from './models';
+
 
 export class FundSource {
     /**
     * A map of name-value pairs for passing additional or industry-specific data.
     */
     'additionalData'?: { [key: string]: string; };
-    'billingAddress'?: Address | null;
-    'card'?: Card | null;
+    'billingAddress'?: Address;
+    'card'?: Card;
     /**
     * Email address of the person.
     */
     'shopperEmail'?: string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * Phone number of the person
     */
     'telephoneNumber'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null"
+            "type": "Address",
+            "format": ""
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null"
+            "type": "Card",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name",
+            "format": ""
         },
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return FundSource.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

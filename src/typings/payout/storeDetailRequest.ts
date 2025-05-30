@@ -7,20 +7,21 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './address';
-import { BankAccount } from './bankAccount';
-import { Card } from './card';
-import { Name } from './name';
-import { Recurring } from './recurring';
+import { Address } from './models';
+import { BankAccount } from './models';
+import { Card } from './models';
+import { Name } from './models';
+import { Recurring } from './models';
+
 
 export class StoreDetailRequest {
     /**
     * This field contains additional data, which may be required for a particular request.
     */
     'additionalData'?: { [key: string]: string; };
-    'bank'?: BankAccount | null;
-    'billingAddress'?: Address | null;
-    'card'?: Card | null;
+    'bank'?: BankAccount;
+    'billingAddress'?: Address;
+    'card'?: Card;
     /**
     * The date of birth. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD For Paysafecard it must be the same as used when registering the Paysafecard account. > This field is mandatory for natural persons.
     */
@@ -50,7 +51,7 @@ export class StoreDetailRequest {
     * The shopper\'s email address.
     */
     'shopperEmail': string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * The shopper\'s reference for the payment transaction.
     */
@@ -64,92 +65,113 @@ export class StoreDetailRequest {
     */
     'telephoneNumber'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "bank",
             "baseName": "bank",
-            "type": "BankAccount | null"
+            "type": "BankAccount",
+            "format": ""
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null"
+            "type": "Address",
+            "format": ""
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null"
+            "type": "Card",
+            "format": ""
         },
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "string"
+            "type": "string",
+            "format": "date"
         },
         {
             "name": "entityType",
             "baseName": "entityType",
-            "type": "StoreDetailRequest.EntityTypeEnum"
+            "type": "StoreDetailRequest.EntityTypeEnum",
+            "format": ""
         },
         {
             "name": "fraudOffset",
             "baseName": "fraudOffset",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "nationality",
             "baseName": "nationality",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring"
+            "type": "Recurring",
+            "format": ""
         },
         {
             "name": "selectedBrand",
             "baseName": "selectedBrand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "socialSecurityNumber",
             "baseName": "socialSecurityNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return StoreDetailRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
