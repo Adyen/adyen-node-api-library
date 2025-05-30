@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from '../models/Amount';
+import { Amount } from './models';
+
 
 export class CreateOrderRequest {
     'amount': Amount;

@@ -7,15 +7,17 @@
  * Do not edit this class manually.
  */
 
-import { ApplePayDonations } from '../models/ApplePayDonations';
-import { CardDonations } from '../models/CardDonations';
-import { GooglePayDonations } from '../models/GooglePayDonations';
-import { IdealDonations } from '../models/IdealDonations';
-import { PayWithGoogleDonations } from '../models/PayWithGoogleDonations';
+import { ApplePayDonations } from './models';
+import { CardDonations } from './models';
+import { GooglePayDonations } from './models';
+import { IdealDonations } from './models';
+import { PayWithGoogleDonations } from './models';
 
 /**
 * The type and required details of a payment method to use.
 */
+
+
 /**
  * @type DonationPaymentRequestPaymentMethod
  * Type
@@ -29,11 +31,8 @@ export type DonationPaymentRequestPaymentMethod = ApplePayDonations | CardDonati
 * @export
 */
 export class DonationPaymentRequestPaymentMethodClass {
-    static readonly discriminator: string | undefined = undefined;
+    
+    static readonly discriminator: string = "type";
 
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 }
-
-
-
-

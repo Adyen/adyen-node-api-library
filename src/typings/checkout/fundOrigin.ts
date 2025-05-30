@@ -7,8 +7,9 @@
  * Do not edit this class manually.
  */
 
-import { Address } from '../models/Address';
-import { Name } from '../models/Name';
+import { Address } from './models';
+import { Name } from './models';
+
 
 export class FundOrigin {
     'billingAddress'?: Address;

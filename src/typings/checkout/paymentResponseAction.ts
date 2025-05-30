@@ -21,6 +21,7 @@ import { CheckoutVoucherAction } from './models';
 * Action to be taken for completing the payment.
 */
 
+
 /**
  * @type PaymentResponseAction
  * Type
@@ -34,25 +35,8 @@ export type PaymentResponseAction = CheckoutAwaitAction | CheckoutBankTransferAc
 * @export
 */
 export class PaymentResponseActionClass {
-//    static readonly discriminator: string | undefined = undefined;
+    
     static readonly discriminator: string = "type";
 
-    //static readonly mapping: {[index: string]: string} | undefined = undefined;
-    static readonly mapping: { [key: string]: string } = {
-    "await": "CheckoutAwaitAction",
-    "bankTransfer": "CheckoutBankTransferAction",
-    "redirect": "CheckoutRedirectAction",
-    "threeDS2": "CheckoutThreeDS2Action",
-    "sdk": "CheckoutSDKAction",
-    "voucher": "CheckoutVoucherAction",
-    // Add all other action types...
-  };
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
 }
-
-
-
-
-
-
-
-

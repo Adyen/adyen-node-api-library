@@ -7,13 +7,14 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from '../models/Amount';
-import { ApplicationInfo } from '../models/ApplicationInfo';
-import { EnhancedSchemeData } from '../models/EnhancedSchemeData';
-import { LineItem } from '../models/LineItem';
-import { PlatformChargebackLogic } from '../models/PlatformChargebackLogic';
-import { Split } from '../models/Split';
-import { SubMerchantInfo } from '../models/SubMerchantInfo';
+import { Amount } from './models';
+import { ApplicationInfo } from './models';
+import { EnhancedSchemeData } from './models';
+import { LineItem } from './models';
+import { PlatformChargebackLogic } from './models';
+import { Split } from './models';
+import { SubMerchantInfo } from './models';
+
 
 export class PaymentCaptureRequest {
     'amount': Amount;

@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { ApplicationInfo } from '../models/ApplicationInfo';
+import { ApplicationInfo } from './models';
+
 
 export class PaymentCancelRequest {
     'applicationInfo'?: ApplicationInfo;

@@ -19,7 +19,6 @@ import { ApplePaySessionRequest } from "../../typings/checkout/models";
 import { ApplePaySessionResponse } from "../../typings/checkout/models";
 import { PaypalUpdateOrderRequest } from "../../typings/checkout/models";
 import { PaypalUpdateOrderResponse } from "../../typings/checkout/models";
-import { ServiceError } from "../../typings/checkout/models";
 import { UtilityRequest } from "../../typings/checkout/models";
 import { UtilityResponse } from "../../typings/checkout/models";
 
@@ -45,13 +44,13 @@ export class UtilityApi extends Service {
     public async getApplePaySession(applePaySessionRequest: ApplePaySessionRequest, requestOptions?: IRequest.Options): Promise<ApplePaySessionResponse> {
         const endpoint = `${this.baseUrl}/applePay/sessions`;
         const resource = new Resource(this, endpoint);
-        const request: ApplePaySessionRequest = ObjectSerializer.serialize(applePaySessionRequest, "ApplePaySessionRequest");
+        const request: ApplePaySessionRequest = ObjectSerializer.serialize(applePaySessionRequest, "ApplePaySessionRequest", "");
         const response = await getJsonResponse<ApplePaySessionRequest, ApplePaySessionResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ApplePaySessionResponse");
+        return ObjectSerializer.deserialize(response, "ApplePaySessionResponse", "");
     }
 
     /**
@@ -65,13 +64,13 @@ export class UtilityApi extends Service {
     public async originKeys(utilityRequest: UtilityRequest, requestOptions?: IRequest.Options): Promise<UtilityResponse> {
         const endpoint = `${this.baseUrl}/originKeys`;
         const resource = new Resource(this, endpoint);
-        const request: UtilityRequest = ObjectSerializer.serialize(utilityRequest, "UtilityRequest");
+        const request: UtilityRequest = ObjectSerializer.serialize(utilityRequest, "UtilityRequest", "");
         const response = await getJsonResponse<UtilityRequest, UtilityResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "UtilityResponse");
+        return ObjectSerializer.deserialize(response, "UtilityResponse", "");
     }
 
     /**
@@ -83,13 +82,13 @@ export class UtilityApi extends Service {
     public async updatesOrderForPaypalExpressCheckout(paypalUpdateOrderRequest: PaypalUpdateOrderRequest, requestOptions?: IRequest.Options): Promise<PaypalUpdateOrderResponse> {
         const endpoint = `${this.baseUrl}/paypal/updateOrder`;
         const resource = new Resource(this, endpoint);
-        const request: PaypalUpdateOrderRequest = ObjectSerializer.serialize(paypalUpdateOrderRequest, "PaypalUpdateOrderRequest");
+        const request: PaypalUpdateOrderRequest = ObjectSerializer.serialize(paypalUpdateOrderRequest, "PaypalUpdateOrderRequest", "");
         const response = await getJsonResponse<PaypalUpdateOrderRequest, PaypalUpdateOrderResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "PaypalUpdateOrderResponse");
+        return ObjectSerializer.deserialize(response, "PaypalUpdateOrderResponse", "");
     }
 
 }

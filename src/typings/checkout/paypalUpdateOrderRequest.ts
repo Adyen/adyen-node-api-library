@@ -7,9 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from '../models/Amount';
-import { DeliveryMethod } from '../models/DeliveryMethod';
-import { TaxTotal } from '../models/TaxTotal';
+import { Amount } from './models';
+import { DeliveryMethod } from './models';
+import { TaxTotal } from './models';
+
 
 export class PaypalUpdateOrderRequest {
     'amount'?: Amount;

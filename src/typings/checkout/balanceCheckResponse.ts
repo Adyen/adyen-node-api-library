@@ -7,8 +7,9 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from '../models/Amount';
-import { FraudResult } from '../models/FraudResult';
+import { Amount } from './models';
+import { FraudResult } from './models';
+
 
 export class BalanceCheckResponse {
     /**

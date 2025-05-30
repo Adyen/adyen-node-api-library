@@ -212,3 +212,6 @@ export * from './visaCheckoutDetails'
 export * from './weChatPayDetails'
 export * from './weChatPayMiniProgramDetails'
 export * from './zipDetails'
+
+// serializing and deserializing typed objects 
+export * from './objectSerializer'

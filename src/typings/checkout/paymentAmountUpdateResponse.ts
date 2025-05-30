@@ -7,9 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from '../models/Amount';
-import { LineItem } from '../models/LineItem';
-import { Split } from '../models/Split';
+import { Amount } from './models';
+import { LineItem } from './models';
+import { Split } from './models';
+
 
 export class PaymentAmountUpdateResponse {
     'amount': Amount;

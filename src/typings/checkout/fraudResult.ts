@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { FraudCheckResult } from '../models/FraudCheckResult';
+import { FraudCheckResult } from './models';
+
 
 export class FraudResult {
     /**

@@ -7,10 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { InputDetail } from '../models/InputDetail';
-import { PaymentMethodGroup } from '../models/PaymentMethodGroup';
-import { PaymentMethodIssuer } from '../models/PaymentMethodIssuer';
-import { PaymentMethodUPIApps } from '../models/PaymentMethodUPIApps';
+import { InputDetail } from './models';
+import { PaymentMethodGroup } from './models';
+import { PaymentMethodIssuer } from './models';
+import { PaymentMethodUPIApps } from './models';
+
 
 export class PaymentMethod {
     /**

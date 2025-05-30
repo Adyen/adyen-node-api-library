@@ -7,33 +7,34 @@
  * Do not edit this class manually.
  */
 
-import { AccountInfo } from '../models/AccountInfo';
-import { Amount } from '../models/Amount';
-import { ApplicationInfo } from '../models/ApplicationInfo';
-import { AuthenticationData } from '../models/AuthenticationData';
-import { BillingAddress } from '../models/BillingAddress';
-import { BrowserInfo } from '../models/BrowserInfo';
-import { CheckoutBankAccount } from '../models/CheckoutBankAccount';
-import { Company } from '../models/Company';
-import { DeliveryAddress } from '../models/DeliveryAddress';
-import { EncryptedOrderData } from '../models/EncryptedOrderData';
-import { EnhancedSchemeData } from '../models/EnhancedSchemeData';
-import { ForexQuote } from '../models/ForexQuote';
-import { FundOrigin } from '../models/FundOrigin';
-import { FundRecipient } from '../models/FundRecipient';
-import { Installments } from '../models/Installments';
-import { LineItem } from '../models/LineItem';
-import { Mandate } from '../models/Mandate';
-import { MerchantRiskIndicator } from '../models/MerchantRiskIndicator';
-import { Name } from '../models/Name';
-import { PaymentRequestPaymentMethod } from '../models/PaymentRequestPaymentMethod';
-import { PlatformChargebackLogic } from '../models/PlatformChargebackLogic';
-import { RiskData } from '../models/RiskData';
-import { Split } from '../models/Split';
-import { SubMerchantInfo } from '../models/SubMerchantInfo';
-import { Surcharge } from '../models/Surcharge';
-import { ThreeDS2RequestFields } from '../models/ThreeDS2RequestFields';
-import { ThreeDSecureData } from '../models/ThreeDSecureData';
+import { AccountInfo } from './models';
+import { Amount } from './models';
+import { ApplicationInfo } from './models';
+import { AuthenticationData } from './models';
+import { BillingAddress } from './models';
+import { BrowserInfo } from './models';
+import { CheckoutBankAccount } from './models';
+import { Company } from './models';
+import { DeliveryAddress } from './models';
+import { EncryptedOrderData } from './models';
+import { EnhancedSchemeData } from './models';
+import { ForexQuote } from './models';
+import { FundOrigin } from './models';
+import { FundRecipient } from './models';
+import { Installments } from './models';
+import { LineItem } from './models';
+import { Mandate } from './models';
+import { MerchantRiskIndicator } from './models';
+import { Name } from './models';
+import { PaymentRequestPaymentMethod } from './models';
+import { PlatformChargebackLogic } from './models';
+import { RiskData } from './models';
+import { Split } from './models';
+import { SubMerchantInfo } from './models';
+import { Surcharge } from './models';
+import { ThreeDS2RequestFields } from './models';
+import { ThreeDSecureData } from './models';
+
 
 export class PaymentRequest {
     'accountInfo'?: AccountInfo;

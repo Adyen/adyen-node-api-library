@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { ThreeDSRequestData } from '../models/ThreeDSRequestData';
+import { ThreeDSRequestData } from './models';
+
 
 export class AuthenticationData {
     /**
