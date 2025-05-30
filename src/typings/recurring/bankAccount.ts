@@ -46,57 +46,71 @@ export class BankAccount {
     */
     'taxId'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "bankAccountNumber",
             "baseName": "bankAccountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankCity",
             "baseName": "bankCity",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankLocationId",
             "baseName": "bankLocationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankName",
             "baseName": "bankName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bic",
             "baseName": "bic",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "countryCode",
             "baseName": "countryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "iban",
             "baseName": "iban",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ownerName",
             "baseName": "ownerName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "taxId",
             "baseName": "taxId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BankAccount.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

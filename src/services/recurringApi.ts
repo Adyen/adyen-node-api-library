@@ -45,13 +45,13 @@ export class RecurringAPI extends Service {
     public async createPermit(createPermitRequest: CreatePermitRequest, requestOptions?: IRequest.Options): Promise<CreatePermitResult> {
         const endpoint = `${this.baseUrl}/createPermit`;
         const resource = new Resource(this, endpoint);
-        const request: CreatePermitRequest = ObjectSerializer.serialize(createPermitRequest, "CreatePermitRequest");
+        const request: CreatePermitRequest = ObjectSerializer.serialize(createPermitRequest, "CreatePermitRequest", "");
         const response = await getJsonResponse<CreatePermitRequest, CreatePermitResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "CreatePermitResult");
+        return ObjectSerializer.deserialize(response, "CreatePermitResult", "");
     }
 
     /**
@@ -63,13 +63,13 @@ export class RecurringAPI extends Service {
     public async disable(disableRequest: DisableRequest, requestOptions?: IRequest.Options): Promise<DisableResult> {
         const endpoint = `${this.baseUrl}/disable`;
         const resource = new Resource(this, endpoint);
-        const request: DisableRequest = ObjectSerializer.serialize(disableRequest, "DisableRequest");
+        const request: DisableRequest = ObjectSerializer.serialize(disableRequest, "DisableRequest", "");
         const response = await getJsonResponse<DisableRequest, DisableResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "DisableResult");
+        return ObjectSerializer.deserialize(response, "DisableResult", "");
     }
 
     /**
@@ -81,13 +81,13 @@ export class RecurringAPI extends Service {
     public async disablePermit(disablePermitRequest: DisablePermitRequest, requestOptions?: IRequest.Options): Promise<DisablePermitResult> {
         const endpoint = `${this.baseUrl}/disablePermit`;
         const resource = new Resource(this, endpoint);
-        const request: DisablePermitRequest = ObjectSerializer.serialize(disablePermitRequest, "DisablePermitRequest");
+        const request: DisablePermitRequest = ObjectSerializer.serialize(disablePermitRequest, "DisablePermitRequest", "");
         const response = await getJsonResponse<DisablePermitRequest, DisablePermitResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "DisablePermitResult");
+        return ObjectSerializer.deserialize(response, "DisablePermitResult", "");
     }
 
     /**
@@ -99,13 +99,13 @@ export class RecurringAPI extends Service {
     public async listRecurringDetails(recurringDetailsRequest: RecurringDetailsRequest, requestOptions?: IRequest.Options): Promise<RecurringDetailsResult> {
         const endpoint = `${this.baseUrl}/listRecurringDetails`;
         const resource = new Resource(this, endpoint);
-        const request: RecurringDetailsRequest = ObjectSerializer.serialize(recurringDetailsRequest, "RecurringDetailsRequest");
+        const request: RecurringDetailsRequest = ObjectSerializer.serialize(recurringDetailsRequest, "RecurringDetailsRequest", "");
         const response = await getJsonResponse<RecurringDetailsRequest, RecurringDetailsResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "RecurringDetailsResult");
+        return ObjectSerializer.deserialize(response, "RecurringDetailsResult", "");
     }
 
     /**
@@ -117,13 +117,13 @@ export class RecurringAPI extends Service {
     public async notifyShopper(notifyShopperRequest: NotifyShopperRequest, requestOptions?: IRequest.Options): Promise<NotifyShopperResult> {
         const endpoint = `${this.baseUrl}/notifyShopper`;
         const resource = new Resource(this, endpoint);
-        const request: NotifyShopperRequest = ObjectSerializer.serialize(notifyShopperRequest, "NotifyShopperRequest");
+        const request: NotifyShopperRequest = ObjectSerializer.serialize(notifyShopperRequest, "NotifyShopperRequest", "");
         const response = await getJsonResponse<NotifyShopperRequest, NotifyShopperResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "NotifyShopperResult");
+        return ObjectSerializer.deserialize(response, "NotifyShopperResult", "");
     }
 
     /**
@@ -135,13 +135,13 @@ export class RecurringAPI extends Service {
     public async scheduleAccountUpdater(scheduleAccountUpdaterRequest: ScheduleAccountUpdaterRequest, requestOptions?: IRequest.Options): Promise<ScheduleAccountUpdaterResult> {
         const endpoint = `${this.baseUrl}/scheduleAccountUpdater`;
         const resource = new Resource(this, endpoint);
-        const request: ScheduleAccountUpdaterRequest = ObjectSerializer.serialize(scheduleAccountUpdaterRequest, "ScheduleAccountUpdaterRequest");
+        const request: ScheduleAccountUpdaterRequest = ObjectSerializer.serialize(scheduleAccountUpdaterRequest, "ScheduleAccountUpdaterRequest", "");
         const response = await getJsonResponse<ScheduleAccountUpdaterRequest, ScheduleAccountUpdaterResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ScheduleAccountUpdaterResult");
+        return ObjectSerializer.deserialize(response, "ScheduleAccountUpdaterResult", "");
     }
 }
 

@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { PermitResult } from './permitResult';
+import { PermitResult } from './models';
+
 
 export class CreatePermitResult {
     /**
@@ -19,22 +20,29 @@ export class CreatePermitResult {
     */
     'pspReference'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "permitResultList",
             "baseName": "permitResultList",
-            "type": "Array<PermitResult>"
+            "type": "Array<PermitResult>",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CreatePermitResult.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

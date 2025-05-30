@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from './models';
+
 
 export class NotifyShopperRequest {
     'amount': Amount;
@@ -44,57 +45,71 @@ export class NotifyShopperRequest {
     */
     'storedPaymentMethodId'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "billingDate",
             "baseName": "billingDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "billingSequenceNumber",
             "baseName": "billingSequenceNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "displayedReference",
             "baseName": "displayedReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return NotifyShopperRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

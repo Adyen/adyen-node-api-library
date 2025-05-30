@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { RecurringDetailWrapper } from './recurringDetailWrapper';
+import { RecurringDetailWrapper } from './models';
+
 
 export class RecurringDetailsResult {
     /**
@@ -27,32 +28,41 @@ export class RecurringDetailsResult {
     */
     'shopperReference'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "creationDate",
             "baseName": "creationDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "details",
             "baseName": "details",
-            "type": "Array<RecurringDetailWrapper>"
+            "type": "Array<RecurringDetailWrapper>",
+            "format": ""
         },
         {
             "name": "lastKnownShopperEmail",
             "baseName": "lastKnownShopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return RecurringDetailsResult.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
