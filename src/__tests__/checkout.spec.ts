@@ -2,7 +2,9 @@ import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess";
 import {paymentsSuccess} from "../__mocks__/checkout/paymentsSuccess";
+import {paymentsRedirectAction} from "../__mocks__/checkout/paymentsRedirectAction";
 import {paymentDetailsSuccess} from "../__mocks__/checkout/paymentsDetailsSuccess";
+import {PaymentResponseActionClass} from "../typings/checkout/paymentResponseAction";
 // import {paymentSessionSuccess} from "../__mocks__/checkout/paymentSessionSucess";
 import {originKeysSuccess} from "../__mocks__/checkout/originkeysSuccess";
 import {paymentsResultMultibancoSuccess} from "../__mocks__/checkout/paymentsResultMultibancoSuccess";
@@ -14,6 +16,8 @@ import HttpClientException from "../httpClient/httpClientException";
 import { checkout } from "../typings";
 import { IRequest } from "../typings/requestOptions";
 import { SessionResultResponse } from "../typings/checkout/sessionResultResponse";
+import { payments3DS2NativeAction } from "../__mocks__/checkout/payments3DS2NativeAction";
+import { CheckoutThreeDS2Action } from "../typings/checkout/checkoutThreeDS2Action";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
 const reference = "Your order number";
@@ -154,7 +158,7 @@ describe("Checkout", (): void => {
             "returnUrl": "https://your-company.com/...",
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
         }`);
-        const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.deserialize(requestJson,"PaymentRequest");
+        const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.deserialize(requestJson, "PaymentRequest", "");
         expect(paymentRequest.returnUrl).toEqual("https://your-company.com/...");
         expect(paymentRequest.amount.value).toBe(1000);
         const paymentMethodDetails: checkout.ApplePayDetails = paymentRequest.paymentMethod as checkout.ApplePayDetails;
@@ -238,7 +242,6 @@ describe("Checkout", (): void => {
         await checkoutService.PaymentsApi.sessions(sessionsRequest, {idempotencyKey: "testKey"});
 
     });
-
 
     test("should make a payment.", async (): Promise<void> => {
         scope.post("/payments")
@@ -399,6 +402,46 @@ describe("Checkout", (): void => {
 
         expect(paymentsResponse.pspReference).toBeTruthy();
         expect(paymentsResponse.additionalData).toBeTruthy();
+    });
+
+    test("should return shopper redirect with a card payment.", async (): Promise<void> => {
+        scope.post("/payments")
+            .reply(200, paymentsRedirectAction);
+
+        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
+
+        expect(paymentsResponse.pspReference).toBeTruthy();
+        expect(paymentsResponse.resultCode).toBeTruthy();
+        expect(paymentsResponse.resultCode).toEqual("RedirectShopper");
+        // check action is polymorphic
+        expect(paymentsResponse.action).toBeTruthy();
+        expect(paymentsResponse.action).toBeInstanceOf(PaymentResponseActionClass); 
+        // check is redirect
+        expect(paymentsResponse.action?.type).toBeTruthy();
+        expect(paymentsResponse.action?.type).toEqual("redirect");
+        expect(paymentsResponse.action?.url).toBe("https://checkoutshopper-test.adyen.com/checkoutshopper/threeDS/redirect...");
+
+    });
+
+    test.only("should return Native 3DS2 with a card payment.", async (): Promise<void> => {
+        scope.post("/payments")
+            .reply(200, payments3DS2NativeAction);
+
+        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
+
+        expect(paymentsResponse.pspReference).toBeTruthy();
+        expect(paymentsResponse.resultCode).toBeTruthy();
+        expect(paymentsResponse.resultCode).toEqual("IdentifyShopper");
+        // check action is polymorphic
+        expect(paymentsResponse.action).toBeTruthy();
+        expect(paymentsResponse.action).toBeInstanceOf(CheckoutThreeDS2Action); 
+        // check is threeDS2
+        expect(paymentsResponse.action?.type).toBeTruthy();
+        expect(paymentsResponse.action?.type).toEqual("threeDS2");
+        expect(paymentsResponse.action?.subtype).toEqual("threeDS2");
+
     });
 
     test("should get origin keys", async (): Promise<void> => {
