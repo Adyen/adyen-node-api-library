@@ -19,13 +19,13 @@
 
 /* tslint:disable */
 export const payments3DS2NativeAction = JSON.stringify({
-    "action":{
-        "type":"threeDS2",
-        "subtype": "fingerprint",
-        "paymentData":"Ab02b4c0!BQABAgCuZFJrQOjSsl\/zt+...",
-        "paymentMethodType":"scheme",
-        "authorisationToken" : "Ab02b4c0!BQABAgAvrX03p...",
-        "token":"eyJ0aHJlZURTTWV0aG9kTm90aWZpY..."
+    action:{
+        type:"threeDS2",
+        subtype: "fingerprint",
+        paymentData:"Ab02b4c0!BQABAgCuZFJrQOjSslzt+...",
+        paymentMethodType:"scheme",
+        authorisationToken : "Ab02b4c0!BQABAgAvrX03p...",
+        token:"eyJ0aHJlZURTTWV0aG9kTm90aWZpY..."
     },
     pspReference: "JLCMPCQ8HXSKGK82",
     resultCode:"IdentifyShopper",  
