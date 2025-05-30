@@ -41,7 +41,7 @@ export class {{classname}} extends Service {
             .replace("{" + "{{baseName}}" + "}", encodeURIComponent(String({{paramName}}))){{/pathParams}};
         const resource = new Resource(this, endpoint);
 {{#bodyParam}}
-        const request: {{{dataType}}} = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}");
+        const request: {{{dataType}}} = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}", "");
 {{/bodyParam}}
 {{#hasQueryParams}}
         const hasDefinedQueryParams = {{#queryParams}}{{paramName}}{{^-last}} ?? {{/-last}}{{/queryParams}};
@@ -59,7 +59,7 @@ export class {{classname}} extends Service {
             { ...requestOptions, method: "{{httpMethod}}" }
         );
         {{#hasProduces}}
-        return ObjectSerializer.deserialize(response, "{{{returnType}}}");
+        return ObjectSerializer.deserialize(response, "{{{returnType}}}", "");
         {{/hasProduces}}
     }
 

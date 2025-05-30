@@ -2,13 +2,16 @@
 {{#models}}
 {{#model}}
 {{#tsImports}}
-import { {{classname}} } from '{{filename}}{{importFileExtension}}';
-{{/tsImports}}
+import { {{classname}} } from './models';
+{{#-last}}
 
+{{/-last}}
+{{/tsImports}}
 {{#description}}
 /**
 * {{{.}}}
 */
+
 {{/description}}
 {{^isEnum}}
 {{#oneOf}}
