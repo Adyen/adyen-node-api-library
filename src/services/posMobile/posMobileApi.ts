@@ -7,32 +7,31 @@
  * Do not edit this class manually.
  */
 
-import Client from "../client";
-import getJsonResponse from "../helpers/getJsonResponse";
-import Service from "../service";
-import { CreateSessionRequest } from "../typings/posMobile/models";
-import { CreateSessionResponse } from "../typings/posMobile/models";
-import { IRequest } from "../typings/requestOptions";
-import Resource from "./resource";
-import { ObjectSerializer } from "../typings/posMobile/models";
+
+import getJsonResponse from "../../helpers/getJsonResponse";
+import Service from "../../service";
+import Client from "../../client";
+import { IRequest } from "../../typings/requestOptions";
+import Resource from "../resource";
+
+import { ObjectSerializer } from "../../typings/posMobile/objectSerializer";
+import { CreateSessionRequest } from "../../typings/posMobile/models";
+import { CreateSessionResponse } from "../../typings/posMobile/models";
 
 /**
- * The service has been moved to a different package 'posMobile'
- * @deprecated Use services/posMobile/posMobileApi
+ * API handler for PosMobileApi
  */
-export class PosMobileAPI extends Service {
-    
+export class PosMobileApi extends Service {
+
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/checkout/possdk/v68";
     private baseUrl: string;
 
-    public constructor(client: Client) {
+    public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
     }
 
     /**
-    * @deprecated Use services/posMobile/PosMobileAPI
-    * 
     * @summary Create a communication session
     * @param createSessionRequest {@link CreateSessionRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -49,6 +48,5 @@ export class PosMobileAPI extends Service {
         );
         return ObjectSerializer.deserialize(response, "CreateSessionResponse", "");
     }
-}
 
-export default PosMobileAPI;
+}
