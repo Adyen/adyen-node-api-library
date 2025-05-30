@@ -22,27 +22,35 @@ export class CostEstimateAssumptions {
     */
     'installments'?: number;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "assume3DSecureAuthenticated",
             "baseName": "assume3DSecureAuthenticated",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "assumeLevel3Data",
             "baseName": "assumeLevel3Data",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "installments",
             "baseName": "installments",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         }    ];
 
     static getAttributeTypeMap() {
         return CostEstimateAssumptions.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

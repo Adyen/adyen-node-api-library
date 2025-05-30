@@ -22,27 +22,35 @@ export class MerchantDetails {
     */
     'mcc'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "countryCode",
             "baseName": "countryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enrolledIn3DSecure",
             "baseName": "enrolledIn3DSecure",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "mcc",
             "baseName": "mcc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return MerchantDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

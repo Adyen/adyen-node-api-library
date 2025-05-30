@@ -7,34 +7,33 @@
  * Do not edit this class manually.
  */
 
-import Client from "../client";
-import getJsonResponse from "../helpers/getJsonResponse";
-import Service from "../service";
-import { CostEstimateRequest } from "../typings/binLookup/models";
-import { CostEstimateResponse } from "../typings/binLookup/models";
-import { ThreeDSAvailabilityRequest } from "../typings/binLookup/models";
-import { ThreeDSAvailabilityResponse } from "../typings/binLookup/models";
-import { IRequest } from "../typings/requestOptions";
-import Resource from "./resource";
-import { ObjectSerializer } from "../typings/binLookup/models";
+
+import getJsonResponse from "../../helpers/getJsonResponse";
+import Service from "../../service";
+import Client from "../../client";
+import { IRequest } from "../../typings/requestOptions";
+import Resource from "../resource";
+
+import { ObjectSerializer } from "../../typings/binLookup/objectSerializer";
+import { CostEstimateRequest } from "../../typings/binLookup/models";
+import { CostEstimateResponse } from "../../typings/binLookup/models";
+import { ThreeDSAvailabilityRequest } from "../../typings/binLookup/models";
+import { ThreeDSAvailabilityResponse } from "../../typings/binLookup/models";
 
 /**
- * The service has been moved to a different package 'binLookup'
- * @deprecated Use services/binLookup/binLookup
+ * API handler for BinLookupApi
  */
-export class BinLookupAPI extends Service {
-    
+export class BinLookupApi extends Service {
+
     private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/BinLookup/v54";
     private baseUrl: string;
 
-    public constructor(client: Client) {
+    public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
     }
 
     /**
-    * @deprecated Use services/binLookup/binLookup
-    * 
     * @summary Check if 3D Secure is available
     * @param threeDSAvailabilityRequest {@link ThreeDSAvailabilityRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -53,8 +52,6 @@ export class BinLookupAPI extends Service {
     }
 
     /**
-    * @deprecated Use services/binLookup/binLookup
-    * 
     * @summary Get a fees cost estimate
     * @param costEstimateRequest {@link CostEstimateRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -71,6 +68,5 @@ export class BinLookupAPI extends Service {
         );
         return ObjectSerializer.deserialize(response, "CostEstimateResponse", "");
     }
-}
 
-export default BinLookupAPI;
+}

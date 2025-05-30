@@ -7,14 +7,15 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { CostEstimateAssumptions } from './costEstimateAssumptions';
-import { MerchantDetails } from './merchantDetails';
-import { Recurring } from './recurring';
+import { Amount } from './models';
+import { CostEstimateAssumptions } from './models';
+import { MerchantDetails } from './models';
+import { Recurring } from './models';
+
 
 export class CostEstimateRequest {
     'amount': Amount;
-    'assumptions'?: CostEstimateAssumptions | null;
+    'assumptions'?: CostEstimateAssumptions;
     /**
     * The card number (4-19 characters) for PCI compliant use cases. Do not use any separators.  > Either the `cardNumber` or `encryptedCardNumber` field must be provided in a payment request.
     */
@@ -27,8 +28,8 @@ export class CostEstimateRequest {
     * The merchant account identifier you want to process the (transaction) request with.
     */
     'merchantAccount': string;
-    'merchantDetails'?: MerchantDetails | null;
-    'recurring'?: Recurring | null;
+    'merchantDetails'?: MerchantDetails;
+    'recurring'?: Recurring;
     /**
     * The `recurringDetailReference` you want to use for this cost estimate. The value `LATEST` can be used to select the most recently stored recurring detail.
     */
@@ -42,62 +43,77 @@ export class CostEstimateRequest {
     */
     'shopperReference'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "assumptions",
             "baseName": "assumptions",
-            "type": "CostEstimateAssumptions | null"
+            "type": "CostEstimateAssumptions",
+            "format": ""
         },
         {
             "name": "cardNumber",
             "baseName": "cardNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedCardNumber",
             "baseName": "encryptedCardNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantDetails",
             "baseName": "merchantDetails",
-            "type": "MerchantDetails | null"
+            "type": "MerchantDetails",
+            "format": ""
         },
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring | null"
+            "type": "Recurring",
+            "format": ""
         },
         {
             "name": "selectedRecurringDetailReference",
             "baseName": "selectedRecurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperInteraction",
             "baseName": "shopperInteraction",
-            "type": "CostEstimateRequest.ShopperInteractionEnum"
+            "type": "CostEstimateRequest.ShopperInteractionEnum",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CostEstimateRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
