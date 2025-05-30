@@ -15,8 +15,7 @@ import { {{classname}} } from './models';
 {{/description}}
 {{^isEnum}}
 {{#oneOf}}
-{{#-first}}{{>model/modelOneOf}}{{/-first}}
-{{/oneOf}}
+{{#-first}}{{>model/modelOneOf}}{{/-first}}{{/oneOf}}
 {{^oneOf}}
 export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
 {{#vars}}
