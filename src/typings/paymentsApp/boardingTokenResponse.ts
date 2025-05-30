@@ -18,22 +18,29 @@ export class BoardingTokenResponse {
     */
     'installationId': string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "boardingToken",
             "baseName": "boardingToken",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "installationId",
             "baseName": "installationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BoardingTokenResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

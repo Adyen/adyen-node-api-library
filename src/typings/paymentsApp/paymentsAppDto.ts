@@ -26,32 +26,41 @@ export class PaymentsAppDto {
     */
     'status': string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "installationId",
             "baseName": "installationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAccountCode",
             "baseName": "merchantAccountCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantStoreCode",
             "baseName": "merchantStoreCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentsAppDto.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

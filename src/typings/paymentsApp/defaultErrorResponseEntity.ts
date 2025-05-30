@@ -7,11 +7,13 @@
  * Do not edit this class manually.
  */
 
-import { InvalidField } from './invalidField';
+import { InvalidField } from './models';
 
 /**
 * Standardized error response following RFC-7807 format
 */
+
+
 export class DefaultErrorResponseEntity {
     /**
     * A human-readable explanation specific to this occurrence of the problem.
@@ -46,52 +48,65 @@ export class DefaultErrorResponseEntity {
     */
     'type'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "detail",
             "baseName": "detail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "errorCode",
             "baseName": "errorCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "instance",
             "baseName": "instance",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "invalidFields",
             "baseName": "invalidFields",
-            "type": "Array<InvalidField>"
+            "type": "Array<InvalidField>",
+            "format": ""
         },
         {
             "name": "requestId",
             "baseName": "requestId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "title",
             "baseName": "title",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DefaultErrorResponseEntity.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

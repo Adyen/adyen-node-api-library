@@ -22,27 +22,35 @@ export class InvalidField {
     */
     'message': string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "message",
             "baseName": "message",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return InvalidField.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
