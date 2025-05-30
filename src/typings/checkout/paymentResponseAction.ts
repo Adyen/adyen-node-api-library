@@ -7,19 +7,20 @@
  * Do not edit this class manually.
  */
 
-import { CheckoutAwaitAction } from '../models/CheckoutAwaitAction';
-import { CheckoutBankTransferAction } from '../models/CheckoutBankTransferAction';
-import { CheckoutDelegatedAuthenticationAction } from '../models/CheckoutDelegatedAuthenticationAction';
-import { CheckoutNativeRedirectAction } from '../models/CheckoutNativeRedirectAction';
-import { CheckoutQrCodeAction } from '../models/CheckoutQrCodeAction';
-import { CheckoutRedirectAction } from '../models/CheckoutRedirectAction';
-import { CheckoutSDKAction } from '../models/CheckoutSDKAction';
-import { CheckoutThreeDS2Action } from '../models/CheckoutThreeDS2Action';
-import { CheckoutVoucherAction } from '../models/CheckoutVoucherAction';
+import { CheckoutAwaitAction } from './models';
+import { CheckoutBankTransferAction } from './models';
+import { CheckoutDelegatedAuthenticationAction } from './models';
+import { CheckoutNativeRedirectAction } from './models';
+import { CheckoutQrCodeAction } from './models';
+import { CheckoutRedirectAction } from './models';
+import { CheckoutSDKAction } from './models';
+import { CheckoutThreeDS2Action } from './models';
+import { CheckoutVoucherAction } from './models';
 
 /**
 * Action to be taken for completing the payment.
 */
+
 /**
  * @type PaymentResponseAction
  * Type
@@ -33,9 +34,19 @@ export type PaymentResponseAction = CheckoutAwaitAction | CheckoutBankTransferAc
 * @export
 */
 export class PaymentResponseActionClass {
-    static readonly discriminator: string | undefined = undefined;
+//    static readonly discriminator: string | undefined = undefined;
+    static readonly discriminator: string = "type";
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
+    //static readonly mapping: {[index: string]: string} | undefined = undefined;
+    static readonly mapping: { [key: string]: string } = {
+    "await": "CheckoutAwaitAction",
+    "bankTransfer": "CheckoutBankTransferAction",
+    "redirect": "CheckoutRedirectAction",
+    "threeDS2": "CheckoutThreeDS2Action",
+    "sdk": "CheckoutSDKAction",
+    "voucher": "CheckoutVoucherAction",
+    // Add all other action types...
+  };
 }
 
 
