@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { FraudCheckResultWrapper } from './fraudCheckResultWrapper';
+import { FraudCheckResultWrapper } from './models';
+
 
 export class FraudResult {
     /**
@@ -19,22 +20,29 @@ export class FraudResult {
     */
     'results'?: Array<FraudCheckResultWrapper>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountScore",
             "baseName": "accountScore",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "results",
             "baseName": "results",
-            "type": "Array<FraudCheckResultWrapper>"
+            "type": "Array<FraudCheckResultWrapper>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return FraudResult.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
