@@ -33,7 +33,7 @@ export class BinLookupAPI extends Service {
     }
 
     /**
-    * @deprecated Use services/binLookup/binLookup
+    * @deprecated Use services/binLookup/BinLookupAPI
     * 
     * @summary Check if 3D Secure is available
     * @param threeDSAvailabilityRequest {@link ThreeDSAvailabilityRequest } 
@@ -53,7 +53,7 @@ export class BinLookupAPI extends Service {
     }
 
     /**
-    * @deprecated Use services/binLookup/binLookup
+    * @deprecated Use services/binLookup/BinLookupAPI
     * 
     * @summary Get a fees cost estimate
     * @param costEstimateRequest {@link CostEstimateRequest } 
