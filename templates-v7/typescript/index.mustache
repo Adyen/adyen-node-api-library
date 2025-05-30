@@ -2,7 +2,7 @@
 {{#apiInfo}}
 {{#apis}}
 {{#operations}}
-import { {{ classname }} } from "./{{ classFilename }}";
+import { {{ classname }} } from "./{{#lambda.camelcase}}{{ classFilename }}{{/lambda.camelcase}}";
 {{/operations}}
 {{/apis}}
 {{/apiInfo}}
