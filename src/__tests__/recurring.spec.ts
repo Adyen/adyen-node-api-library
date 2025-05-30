@@ -143,7 +143,7 @@ describe("Recurring", (): void => {
             recurringDetailReference: "recurringRef",
         };
 
-        const serializedRequest: CreatePermitRequest = ObjectSerializer.serialize(request, "CreatePermitRequest");
+        const serializedRequest: CreatePermitRequest = ObjectSerializer.serialize(request, "CreatePermitRequest", "");
         expect(serializedRequest.permits[0].validTillDate?.toString()).toBe("2022-03-25T00:00:00.000Z");
 
         try {

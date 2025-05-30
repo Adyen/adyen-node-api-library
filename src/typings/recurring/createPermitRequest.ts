@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Permit } from './permit';
+import { Permit } from './models';
+
 
 export class CreatePermitRequest {
     /**
@@ -27,32 +28,41 @@ export class CreatePermitRequest {
     */
     'shopperReference': string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "permits",
             "baseName": "permits",
-            "type": "Array<Permit>"
+            "type": "Array<Permit>",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CreatePermitRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

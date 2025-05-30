@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { PermitRestriction } from './permitRestriction';
+import { PermitRestriction } from './models';
+
 
 export class Permit {
     /**
@@ -18,7 +19,7 @@ export class Permit {
     * The profile to apply to this permit (when using the shared permits model).
     */
     'profileReference'?: string;
-    'restriction'?: PermitRestriction | null;
+    'restriction'?: PermitRestriction;
     /**
     * The key to link permit requests to permit results.
     */
@@ -28,37 +29,47 @@ export class Permit {
     */
     'validTillDate'?: Date;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "partnerId",
             "baseName": "partnerId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "profileReference",
             "baseName": "profileReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "restriction",
             "baseName": "restriction",
-            "type": "PermitRestriction | null"
+            "type": "PermitRestriction",
+            "format": ""
         },
         {
             "name": "resultKey",
             "baseName": "resultKey",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "validTillDate",
             "baseName": "validTillDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
         return Permit.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
