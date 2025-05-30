@@ -1,432 +1,219 @@
-export * from '../models/AccountInfo';
-export * from '../models/AcctInfo';
-export * from '../models/AchDetails';
-export * from '../models/AdditionalData3DSecure';
-export * from '../models/AdditionalDataAirline';
-export * from '../models/AdditionalDataCarRental';
-export * from '../models/AdditionalDataCommon';
-export * from '../models/AdditionalDataLevel23';
-export * from '../models/AdditionalDataLodging';
-export * from '../models/AdditionalDataOpenInvoice';
-export * from '../models/AdditionalDataOpi';
-export * from '../models/AdditionalDataRatepay';
-export * from '../models/AdditionalDataRetry';
-export * from '../models/AdditionalDataRisk';
-export * from '../models/AdditionalDataRiskStandalone';
-export * from '../models/AdditionalDataSubMerchant';
-export * from '../models/AdditionalDataTemporaryServices';
-export * from '../models/AdditionalDataWallets';
-export * from '../models/Address';
-export * from '../models/AffirmDetails';
-export * from '../models/AfterpayDetails';
-export * from '../models/Agency';
-export * from '../models/Airline';
-export * from '../models/AmazonPayDetails';
-export * from '../models/Amount';
-export * from '../models/Amounts';
-export * from '../models/AncvDetails';
-export * from '../models/AndroidPayDetails';
-export * from '../models/ApplePayDetails';
-export * from '../models/ApplePayDonations';
-export * from '../models/ApplePaySessionRequest';
-export * from '../models/ApplePaySessionResponse';
-export * from '../models/ApplicationInfo';
-export * from '../models/AuthenticationData';
-export * from '../models/BacsDirectDebitDetails';
-export * from '../models/BalanceCheckRequest';
-export * from '../models/BalanceCheckResponse';
-export * from '../models/BillDeskDetails';
-export * from '../models/BillingAddress';
-export * from '../models/BlikDetails';
-export * from '../models/BrowserInfo';
-export * from '../models/CancelOrderRequest';
-export * from '../models/CancelOrderResponse';
-export * from '../models/CardBrandDetails';
-export * from '../models/CardDetails';
-export * from '../models/CardDetailsRequest';
-export * from '../models/CardDetailsResponse';
-export * from '../models/CardDonations';
-export * from '../models/CashAppDetails';
-export * from '../models/CellulantDetails';
-export * from '../models/CheckoutAwaitAction';
-export * from '../models/CheckoutBankAccount';
-export * from '../models/CheckoutBankTransferAction';
-export * from '../models/CheckoutDelegatedAuthenticationAction';
-export * from '../models/CheckoutNativeRedirectAction';
-export * from '../models/CheckoutOrderResponse';
-export * from '../models/CheckoutQrCodeAction';
-export * from '../models/CheckoutRedirectAction';
-export * from '../models/CheckoutSDKAction';
-export * from '../models/CheckoutSessionInstallmentOption';
-export * from '../models/CheckoutSessionThreeDS2RequestData';
-export * from '../models/CheckoutThreeDS2Action';
-export * from '../models/CheckoutVoucherAction';
-export * from '../models/CommonField';
-export * from '../models/Company';
-export * from '../models/CreateCheckoutSessionRequest';
-export * from '../models/CreateCheckoutSessionResponse';
-export * from '../models/CreateOrderRequest';
-export * from '../models/CreateOrderResponse';
-export * from '../models/DeliveryAddress';
-export * from '../models/DeliveryMethod';
-export * from '../models/DetailsRequestAuthenticationData';
-export * from '../models/DeviceRenderOptions';
-export * from '../models/DokuDetails';
-export * from '../models/Donation';
-export * from '../models/DonationCampaign';
-export * from '../models/DonationCampaignsRequest';
-export * from '../models/DonationCampaignsResponse';
-export * from '../models/DonationPaymentRequest';
-export * from '../models/DonationPaymentRequestPaymentMethod';
-export * from '../models/DonationPaymentResponse';
-export * from '../models/DragonpayDetails';
-export * from '../models/EBankingFinlandDetails';
-export * from '../models/EcontextVoucherDetails';
-export * from '../models/EftDetails';
-export * from '../models/EncryptedOrderData';
-export * from '../models/EnhancedSchemeData';
-export * from '../models/ExternalPlatform';
-export * from '../models/FastlaneDetails';
-export * from '../models/ForexQuote';
-export * from '../models/FraudCheckResult';
-export * from '../models/FraudResult';
-export * from '../models/FundOrigin';
-export * from '../models/FundRecipient';
-export * from '../models/GenericIssuerPaymentMethodDetails';
-export * from '../models/GooglePayDetails';
-export * from '../models/GooglePayDonations';
-export * from '../models/IdealDetails';
-export * from '../models/IdealDonations';
-export * from '../models/InputDetail';
-export * from '../models/InstallmentOption';
-export * from '../models/Installments';
-export * from '../models/Item';
-export * from '../models/KlarnaDetails';
-export * from '../models/Leg';
-export * from '../models/LineItem';
-export * from '../models/ListStoredPaymentMethodsResponse';
-export * from '../models/Mandate';
-export * from '../models/MasterpassDetails';
-export * from '../models/MbwayDetails';
-export * from '../models/MerchantDevice';
-export * from '../models/MerchantRiskIndicator';
-export * from '../models/MobilePayDetails';
-export * from '../models/MolPayDetails';
-export * from '../models/Name';
-export * from '../models/OpenInvoiceDetails';
-export * from '../models/Passenger';
-export * from '../models/PayByBankAISDirectDebitDetails';
-export * from '../models/PayByBankDetails';
-export * from '../models/PayPalDetails';
-export * from '../models/PayPayDetails';
-export * from '../models/PayToDetails';
-export * from '../models/PayUUpiDetails';
-export * from '../models/PayWithGoogleDetails';
-export * from '../models/PayWithGoogleDonations';
-export * from '../models/PaymentAmountUpdateRequest';
-export * from '../models/PaymentAmountUpdateResponse';
-export * from '../models/PaymentCancelRequest';
-export * from '../models/PaymentCancelResponse';
-export * from '../models/PaymentCaptureRequest';
-export * from '../models/PaymentCaptureResponse';
-export * from '../models/PaymentCompletionDetails';
-export * from '../models/PaymentDetails';
-export * from '../models/PaymentDetailsRequest';
-export * from '../models/PaymentDetailsResponse';
-export * from '../models/PaymentLinkRequest';
-export * from '../models/PaymentLinkResponse';
-export * from '../models/PaymentMethod';
-export * from '../models/PaymentMethodGroup';
-export * from '../models/PaymentMethodIssuer';
-export * from '../models/PaymentMethodToStore';
-export * from '../models/PaymentMethodUPIApps';
-export * from '../models/PaymentMethodsRequest';
-export * from '../models/PaymentMethodsResponse';
-export * from '../models/PaymentRefundRequest';
-export * from '../models/PaymentRefundResponse';
-export * from '../models/PaymentRequest';
-export * from '../models/PaymentRequestPaymentMethod';
-export * from '../models/PaymentResponse';
-export * from '../models/PaymentResponseAction';
-export * from '../models/PaymentReversalRequest';
-export * from '../models/PaymentReversalResponse';
-export * from '../models/PaypalUpdateOrderRequest';
-export * from '../models/PaypalUpdateOrderResponse';
-export * from '../models/Phone';
-export * from '../models/PixDetails';
-export * from '../models/PixRecurring';
-export * from '../models/PlatformChargebackLogic';
-export * from '../models/PseDetails';
-export * from '../models/RakutenPayDetails';
-export * from '../models/RatepayDetails';
-export * from '../models/Recurring';
-export * from '../models/ResponseAdditionalData3DSecure';
-export * from '../models/ResponseAdditionalDataBillingAddress';
-export * from '../models/ResponseAdditionalDataCard';
-export * from '../models/ResponseAdditionalDataCommon';
-export * from '../models/ResponseAdditionalDataDomesticError';
-export * from '../models/ResponseAdditionalDataInstallments';
-export * from '../models/ResponseAdditionalDataNetworkTokens';
-export * from '../models/ResponseAdditionalDataOpi';
-export * from '../models/ResponseAdditionalDataSepa';
-export * from '../models/ResponsePaymentMethod';
-export * from '../models/RiskData';
-export * from '../models/RivertyDetails';
-export * from '../models/SDKEphemPubKey';
-export * from '../models/SamsungPayDetails';
-export * from '../models/SepaDirectDebitDetails';
-export * from '../models/ServiceError';
-export * from '../models/SessionResultResponse';
-export * from '../models/ShopperInteractionDevice';
-export * from '../models/Split';
-export * from '../models/SplitAmount';
-export * from '../models/StandalonePaymentCancelRequest';
-export * from '../models/StandalonePaymentCancelResponse';
-export * from '../models/StoredPaymentMethod';
-export * from '../models/StoredPaymentMethodDetails';
-export * from '../models/StoredPaymentMethodRequest';
-export * from '../models/StoredPaymentMethodResource';
-export * from '../models/SubInputDetail';
-export * from '../models/SubMerchant';
-export * from '../models/SubMerchantInfo';
-export * from '../models/Surcharge';
-export * from '../models/TaxTotal';
-export * from '../models/ThreeDS2RequestData';
-export * from '../models/ThreeDS2RequestFields';
-export * from '../models/ThreeDS2ResponseData';
-export * from '../models/ThreeDS2Result';
-export * from '../models/ThreeDSRequestData';
-export * from '../models/ThreeDSRequestorAuthenticationInfo';
-export * from '../models/ThreeDSRequestorPriorAuthenticationInfo';
-export * from '../models/ThreeDSecureData';
-export * from '../models/Ticket';
-export * from '../models/TravelAgency';
-export * from '../models/TwintDetails';
-export * from '../models/UpdatePaymentLinkRequest';
-export * from '../models/UpiCollectDetails';
-export * from '../models/UpiIntentDetails';
-export * from '../models/UtilityRequest';
-export * from '../models/UtilityResponse';
-export * from '../models/VippsDetails';
-export * from '../models/VisaCheckoutDetails';
-export * from '../models/WeChatPayDetails';
-export * from '../models/WeChatPayMiniProgramDetails';
-export * from '../models/ZipDetails';
+export * from './models';
 
-import { AccountInfo, AccountInfoAccountAgeIndicatorEnum   , AccountInfoAccountChangeIndicatorEnum   , AccountInfoAccountTypeEnum    , AccountInfoDeliveryAddressUsageIndicatorEnum     , AccountInfoPasswordChangeIndicatorEnum     , AccountInfoPaymentAccountIndicatorEnum      } from '../models/AccountInfo';
-import { AcctInfo, AcctInfoChAccAgeIndEnum   , AcctInfoChAccChangeIndEnum   , AcctInfoChAccPwChangeIndEnum     , AcctInfoPaymentAccIndEnum    , AcctInfoShipAddressUsageIndEnum  , AcctInfoShipNameIndicatorEnum  , AcctInfoSuspiciousAccActivityEnum     } from '../models/AcctInfo';
-import { AchDetails, AchDetailsAccountHolderTypeEnum   , AchDetailsBankAccountTypeEnum          , AchDetailsTypeEnum   } from '../models/AchDetails';
-import { AdditionalData3DSecure , AdditionalData3DSecureChallengeWindowSizeEnum       } from '../models/AdditionalData3DSecure';
-import { AdditionalDataAirline } from '../models/AdditionalDataAirline';
-import { AdditionalDataCarRental } from '../models/AdditionalDataCarRental';
-import { AdditionalDataCommon      , AdditionalDataCommonIndustryUsageEnum                 } from '../models/AdditionalDataCommon';
-import { AdditionalDataLevel23 } from '../models/AdditionalDataLevel23';
-import { AdditionalDataLodging } from '../models/AdditionalDataLodging';
-import { AdditionalDataOpenInvoice } from '../models/AdditionalDataOpenInvoice';
-import { AdditionalDataOpi } from '../models/AdditionalDataOpi';
-import { AdditionalDataRatepay } from '../models/AdditionalDataRatepay';
-import { AdditionalDataRetry } from '../models/AdditionalDataRetry';
-import { AdditionalDataRisk } from '../models/AdditionalDataRisk';
-import { AdditionalDataRiskStandalone } from '../models/AdditionalDataRiskStandalone';
-import { AdditionalDataSubMerchant } from '../models/AdditionalDataSubMerchant';
-import { AdditionalDataTemporaryServices } from '../models/AdditionalDataTemporaryServices';
-import { AdditionalDataWallets } from '../models/AdditionalDataWallets';
-import { Address } from '../models/Address';
-import { AffirmDetails , AffirmDetailsTypeEnum   } from '../models/AffirmDetails';
-import { AfterpayDetails      , AfterpayDetailsTypeEnum   } from '../models/AfterpayDetails';
-import { Agency } from '../models/Agency';
-import { Airline } from '../models/Airline';
-import { AmazonPayDetails   , AmazonPayDetailsTypeEnum   } from '../models/AmazonPayDetails';
-import { Amount } from '../models/Amount';
-import { Amounts } from '../models/Amounts';
-import { AncvDetails    , AncvDetailsTypeEnum   } from '../models/AncvDetails';
-import { AndroidPayDetails , AndroidPayDetailsTypeEnum   } from '../models/AndroidPayDetails';
-import { ApplePayDetails  , ApplePayDetailsFundingSourceEnum    , ApplePayDetailsTypeEnum   } from '../models/ApplePayDetails';
-import { ApplePayDonations  , ApplePayDonationsFundingSourceEnum    , ApplePayDonationsTypeEnum   } from '../models/ApplePayDonations';
-import { ApplePaySessionRequest } from '../models/ApplePaySessionRequest';
-import { ApplePaySessionResponse } from '../models/ApplePaySessionResponse';
-import { ApplicationInfo } from '../models/ApplicationInfo';
-import { AuthenticationData, AuthenticationDataAttemptAuthenticationEnum     } from '../models/AuthenticationData';
-import { BacsDirectDebitDetails       , BacsDirectDebitDetailsTypeEnum   } from '../models/BacsDirectDebitDetails';
-import { BalanceCheckRequest                        , BalanceCheckRequestRecurringProcessingModelEnum        , BalanceCheckRequestShopperInteractionEnum               } from '../models/BalanceCheckRequest';
-import { BalanceCheckResponse     , BalanceCheckResponseResultCodeEnum    } from '../models/BalanceCheckResponse';
-import { BillDeskDetails  , BillDeskDetailsTypeEnum   } from '../models/BillDeskDetails';
-import { BillingAddress } from '../models/BillingAddress';
-import { BlikDetails    , BlikDetailsTypeEnum   } from '../models/BlikDetails';
-import { BrowserInfo } from '../models/BrowserInfo';
-import { CancelOrderRequest } from '../models/CancelOrderRequest';
-import { CancelOrderResponse , CancelOrderResponseResultCodeEnum   } from '../models/CancelOrderResponse';
-import { CardBrandDetails } from '../models/CardBrandDetails';
-import { CardDetails            , CardDetailsFundingSourceEnum             , CardDetailsTypeEnum   } from '../models/CardDetails';
-import { CardDetailsRequest } from '../models/CardDetailsRequest';
-import { CardDetailsResponse } from '../models/CardDetailsResponse';
-import { CardDonations            , CardDonationsFundingSourceEnum             , CardDonationsTypeEnum   } from '../models/CardDonations';
-import { CashAppDetails         , CashAppDetailsTypeEnum   } from '../models/CashAppDetails';
-import { CellulantDetails  , CellulantDetailsTypeEnum   } from '../models/CellulantDetails';
-import { CheckoutAwaitAction  , CheckoutAwaitActionTypeEnum    } from '../models/CheckoutAwaitAction';
-import { CheckoutBankAccount, CheckoutBankAccountAccountTypeEnum            } from '../models/CheckoutBankAccount';
-import { CheckoutBankTransferAction           , CheckoutBankTransferActionTypeEnum    } from '../models/CheckoutBankTransferAction';
-import { CheckoutDelegatedAuthenticationAction    , CheckoutDelegatedAuthenticationActionTypeEnum    } from '../models/CheckoutDelegatedAuthenticationAction';
-import { CheckoutNativeRedirectAction    , CheckoutNativeRedirectActionTypeEnum    } from '../models/CheckoutNativeRedirectAction';
-import { CheckoutOrderResponse } from '../models/CheckoutOrderResponse';
-import { CheckoutQrCodeAction    , CheckoutQrCodeActionTypeEnum    } from '../models/CheckoutQrCodeAction';
-import { CheckoutRedirectAction   , CheckoutRedirectActionTypeEnum    } from '../models/CheckoutRedirectAction';
-import { CheckoutSDKAction   , CheckoutSDKActionTypeEnum    } from '../models/CheckoutSDKAction';
-import { CheckoutSessionInstallmentOption, CheckoutSessionInstallmentOptionPlansEnum     } from '../models/CheckoutSessionInstallmentOption';
-import { CheckoutSessionThreeDS2RequestData  , CheckoutSessionThreeDS2RequestDataThreeDSRequestorChallengeIndEnum    } from '../models/CheckoutSessionThreeDS2RequestData';
-import { CheckoutThreeDS2Action     , CheckoutThreeDS2ActionTypeEnum    } from '../models/CheckoutThreeDS2Action';
-import { CheckoutVoucherAction                   , CheckoutVoucherActionTypeEnum    } from '../models/CheckoutVoucherAction';
-import { CommonField } from '../models/CommonField';
-import { Company } from '../models/Company';
-import { CreateCheckoutSessionRequest          , CreateCheckoutSessionRequestChannelEnum                    , CreateCheckoutSessionRequestModeEnum      , CreateCheckoutSessionRequestRecurringProcessingModelEnum         , CreateCheckoutSessionRequestShopperInteractionEnum            , CreateCheckoutSessionRequestStoreFiltrationModeEnum   , CreateCheckoutSessionRequestStorePaymentMethodModeEnum        } from '../models/CreateCheckoutSessionRequest';
-import { CreateCheckoutSessionResponse          , CreateCheckoutSessionResponseChannelEnum                     , CreateCheckoutSessionResponseModeEnum      , CreateCheckoutSessionResponseRecurringProcessingModelEnum          , CreateCheckoutSessionResponseShopperInteractionEnum            , CreateCheckoutSessionResponseStoreFiltrationModeEnum   , CreateCheckoutSessionResponseStorePaymentMethodModeEnum         } from '../models/CreateCheckoutSessionResponse';
-import { CreateOrderRequest } from '../models/CreateOrderRequest';
-import { CreateOrderResponse         , CreateOrderResponseResultCodeEnum   } from '../models/CreateOrderResponse';
-import { DeliveryAddress } from '../models/DeliveryAddress';
-import { DeliveryMethod    , DeliveryMethodTypeEnum   } from '../models/DeliveryMethod';
-import { DetailsRequestAuthenticationData } from '../models/DetailsRequestAuthenticationData';
-import { DeviceRenderOptions, DeviceRenderOptionsSdkInterfaceEnum  , DeviceRenderOptionsSdkUiTypeEnum   } from '../models/DeviceRenderOptions';
-import { DokuDetails    , DokuDetailsTypeEnum   } from '../models/DokuDetails';
-import { Donation } from '../models/Donation';
-import { DonationCampaign } from '../models/DonationCampaign';
-import { DonationCampaignsRequest } from '../models/DonationCampaignsRequest';
-import { DonationCampaignsResponse } from '../models/DonationCampaignsResponse';
-import { DonationPaymentRequest       , DonationPaymentRequestChannelEnum                    , DonationPaymentRequestRecurringProcessingModelEnum         , DonationPaymentRequestShopperInteractionEnum          } from '../models/DonationPaymentRequest';
-import { DonationPaymentRequestPaymentMethodClass } from '../models/DonationPaymentRequestPaymentMethod';
-import { DonationPaymentResponse      , DonationPaymentResponseStatusEnum   } from '../models/DonationPaymentResponse';
-import { DragonpayDetails   , DragonpayDetailsTypeEnum   } from '../models/DragonpayDetails';
-import { EBankingFinlandDetails  , EBankingFinlandDetailsTypeEnum   } from '../models/EBankingFinlandDetails';
-import { EcontextVoucherDetails     , EcontextVoucherDetailsTypeEnum   } from '../models/EcontextVoucherDetails';
-import { EftDetails       , EftDetailsTypeEnum   } from '../models/EftDetails';
-import { EncryptedOrderData } from '../models/EncryptedOrderData';
-import { EnhancedSchemeData } from '../models/EnhancedSchemeData';
-import { ExternalPlatform } from '../models/ExternalPlatform';
-import { FastlaneDetails    , FastlaneDetailsTypeEnum   } from '../models/FastlaneDetails';
-import { ForexQuote } from '../models/ForexQuote';
-import { FraudCheckResult } from '../models/FraudCheckResult';
-import { FraudResult } from '../models/FraudResult';
-import { FundOrigin } from '../models/FundOrigin';
-import { FundRecipient           , FundRecipientWalletPurposeEnum   } from '../models/FundRecipient';
-import { GenericIssuerPaymentMethodDetails    , GenericIssuerPaymentMethodDetailsTypeEnum   } from '../models/GenericIssuerPaymentMethodDetails';
-import { GooglePayDetails , GooglePayDetailsFundingSourceEnum       , GooglePayDetailsTypeEnum   } from '../models/GooglePayDetails';
-import { GooglePayDonations , GooglePayDonationsFundingSourceEnum       , GooglePayDonationsTypeEnum   } from '../models/GooglePayDonations';
-import { IdealDetails    , IdealDetailsTypeEnum   } from '../models/IdealDetails';
-import { IdealDonations    , IdealDonationsTypeEnum   } from '../models/IdealDonations';
-import { InputDetail } from '../models/InputDetail';
-import { InstallmentOption , InstallmentOptionPlansEnum     } from '../models/InstallmentOption';
-import { Installments , InstallmentsPlanEnum    } from '../models/Installments';
-import { Item } from '../models/Item';
-import { KlarnaDetails       , KlarnaDetailsTypeEnum   } from '../models/KlarnaDetails';
-import { Leg } from '../models/Leg';
-import { LineItem } from '../models/LineItem';
-import { ListStoredPaymentMethodsResponse } from '../models/ListStoredPaymentMethodsResponse';
-import { Mandate , MandateAmountRuleEnum  , MandateBillingAttemptsRuleEnum     , MandateFrequencyEnum     } from '../models/Mandate';
-import { MasterpassDetails , MasterpassDetailsFundingSourceEnum   , MasterpassDetailsTypeEnum   } from '../models/MasterpassDetails';
-import { MbwayDetails   , MbwayDetailsTypeEnum   } from '../models/MbwayDetails';
-import { MerchantDevice } from '../models/MerchantDevice';
-import { MerchantRiskIndicator , MerchantRiskIndicatorDeliveryAddressIndicatorEnum    , MerchantRiskIndicatorDeliveryTimeframeEnum            } from '../models/MerchantRiskIndicator';
-import { MobilePayDetails , MobilePayDetailsTypeEnum   } from '../models/MobilePayDetails';
-import { MolPayDetails  , MolPayDetailsTypeEnum   } from '../models/MolPayDetails';
-import { Name } from '../models/Name';
-import { OpenInvoiceDetails      , OpenInvoiceDetailsTypeEnum   } from '../models/OpenInvoiceDetails';
-import { Passenger } from '../models/Passenger';
-import { PayByBankAISDirectDebitDetails   , PayByBankAISDirectDebitDetailsTypeEnum   } from '../models/PayByBankAISDirectDebitDetails';
-import { PayByBankDetails  , PayByBankDetailsTypeEnum   } from '../models/PayByBankDetails';
-import { PayPalDetails       , PayPalDetailsSubtypeEnum  , PayPalDetailsTypeEnum   } from '../models/PayPalDetails';
-import { PayPayDetails   , PayPayDetailsTypeEnum   } from '../models/PayPayDetails';
-import { PayToDetails    , PayToDetailsTypeEnum   } from '../models/PayToDetails';
-import { PayUUpiDetails    , PayUUpiDetailsTypeEnum    } from '../models/PayUUpiDetails';
-import { PayWithGoogleDetails , PayWithGoogleDetailsFundingSourceEnum      , PayWithGoogleDetailsTypeEnum   } from '../models/PayWithGoogleDetails';
-import { PayWithGoogleDonations , PayWithGoogleDonationsFundingSourceEnum      , PayWithGoogleDonationsTypeEnum   } from '../models/PayWithGoogleDonations';
-import { PaymentAmountUpdateRequest  , PaymentAmountUpdateRequestIndustryUsageEnum       } from '../models/PaymentAmountUpdateRequest';
-import { PaymentAmountUpdateResponse , PaymentAmountUpdateResponseIndustryUsageEnum        , PaymentAmountUpdateResponseStatusEnum   } from '../models/PaymentAmountUpdateResponse';
-import { PaymentCancelRequest } from '../models/PaymentCancelRequest';
-import { PaymentCancelResponse    , PaymentCancelResponseStatusEnum   } from '../models/PaymentCancelResponse';
-import { PaymentCaptureRequest } from '../models/PaymentCaptureRequest';
-import { PaymentCaptureResponse        , PaymentCaptureResponseStatusEnum    } from '../models/PaymentCaptureResponse';
-import { PaymentCompletionDetails } from '../models/PaymentCompletionDetails';
-import { PaymentDetails , PaymentDetailsTypeEnum   } from '../models/PaymentDetails';
-import { PaymentDetailsRequest } from '../models/PaymentDetailsRequest';
-import { PaymentDetailsResponse          , PaymentDetailsResponseResultCodeEnum       } from '../models/PaymentDetailsResponse';
-import { PaymentLinkRequest                      , PaymentLinkRequestRecurringProcessingModelEnum   , PaymentLinkRequestRequiredShopperFieldsEnum               , PaymentLinkRequestStorePaymentMethodModeEnum      } from '../models/PaymentLinkRequest';
-import { PaymentLinkResponse                       , PaymentLinkResponseRecurringProcessingModelEnum   , PaymentLinkResponseRequiredShopperFieldsEnum              , PaymentLinkResponseStatusEnum   , PaymentLinkResponseStorePaymentMethodModeEnum        } from '../models/PaymentLinkResponse';
-import { PaymentMethod    , PaymentMethodFundingSourceEnum        } from '../models/PaymentMethod';
-import { PaymentMethodGroup } from '../models/PaymentMethodGroup';
-import { PaymentMethodIssuer } from '../models/PaymentMethodIssuer';
-import { PaymentMethodToStore } from '../models/PaymentMethodToStore';
-import { PaymentMethodUPIApps } from '../models/PaymentMethodUPIApps';
-import { PaymentMethodsRequest    , PaymentMethodsRequestChannelEnum          , PaymentMethodsRequestStoreFiltrationModeEnum   } from '../models/PaymentMethodsRequest';
-import { PaymentMethodsResponse } from '../models/PaymentMethodsResponse';
-import { PaymentRefundRequest    , PaymentRefundRequestMerchantRefundReasonEnum      } from '../models/PaymentRefundRequest';
-import { PaymentRefundResponse    , PaymentRefundResponseMerchantRefundReasonEnum      , PaymentRefundResponseStatusEnum    } from '../models/PaymentRefundResponse';
-import { PaymentRequest          , PaymentRequestChannelEnum                , PaymentRequestEntityTypeEnum     , PaymentRequestIndustryUsageEnum                   , PaymentRequestRecurringProcessingModelEnum           , PaymentRequestShopperInteractionEnum                 } from '../models/PaymentRequest';
-import { PaymentRequestPaymentMethodClass } from '../models/PaymentRequestPaymentMethod';
-import { PaymentResponse           , PaymentResponseResultCodeEnum      } from '../models/PaymentResponse';
-import { PaymentResponseActionClass } from '../models/PaymentResponseAction';
-import { PaymentReversalRequest } from '../models/PaymentReversalRequest';
-import { PaymentReversalResponse    , PaymentReversalResponseStatusEnum   } from '../models/PaymentReversalResponse';
-import { PaypalUpdateOrderRequest } from '../models/PaypalUpdateOrderRequest';
-import { PaypalUpdateOrderResponse , PaypalUpdateOrderResponseStatusEnum   } from '../models/PaypalUpdateOrderResponse';
-import { Phone } from '../models/Phone';
-import { PixDetails    , PixDetailsTypeEnum   } from '../models/PixDetails';
-import { PixRecurring  , PixRecurringFrequencyEnum         } from '../models/PixRecurring';
-import { PlatformChargebackLogic, PlatformChargebackLogicBehaviorEnum     } from '../models/PlatformChargebackLogic';
-import { PseDetails     , PseDetailsTypeEnum   } from '../models/PseDetails';
-import { RakutenPayDetails   , RakutenPayDetailsTypeEnum   } from '../models/RakutenPayDetails';
-import { RatepayDetails      , RatepayDetailsTypeEnum   } from '../models/RatepayDetails';
-import { Recurring, RecurringContractEnum     , RecurringTokenServiceEnum   } from '../models/Recurring';
-import { ResponseAdditionalData3DSecure } from '../models/ResponseAdditionalData3DSecure';
-import { ResponseAdditionalDataBillingAddress } from '../models/ResponseAdditionalDataBillingAddress';
-import { ResponseAdditionalDataCard      , ResponseAdditionalDataCardCardProductIdEnum     } from '../models/ResponseAdditionalDataCard';
-import { ResponseAdditionalDataCommon                      , ResponseAdditionalDataCommonFraudResultTypeEnum  , ResponseAdditionalDataCommonFraudRiskLevelEnum                       , ResponseAdditionalDataCommonRecurringProcessingModelEnum               , ResponseAdditionalDataCommonTokenizationStoreOperationTypeEnum      } from '../models/ResponseAdditionalDataCommon';
-import { ResponseAdditionalDataDomesticError } from '../models/ResponseAdditionalDataDomesticError';
-import { ResponseAdditionalDataInstallments } from '../models/ResponseAdditionalDataInstallments';
-import { ResponseAdditionalDataNetworkTokens } from '../models/ResponseAdditionalDataNetworkTokens';
-import { ResponseAdditionalDataOpi } from '../models/ResponseAdditionalDataOpi';
-import { ResponseAdditionalDataSepa } from '../models/ResponseAdditionalDataSepa';
-import { ResponsePaymentMethod } from '../models/ResponsePaymentMethod';
-import { RiskData } from '../models/RiskData';
-import { RivertyDetails        , RivertyDetailsTypeEnum   } from '../models/RivertyDetails';
-import { SDKEphemPubKey } from '../models/SDKEphemPubKey';
-import { SamsungPayDetails , SamsungPayDetailsFundingSourceEnum     , SamsungPayDetailsTypeEnum   } from '../models/SamsungPayDetails';
-import { SepaDirectDebitDetails      , SepaDirectDebitDetailsTypeEnum   } from '../models/SepaDirectDebitDetails';
-import { ServiceError } from '../models/ServiceError';
-import { SessionResultResponse , SessionResultResponseStatusEnum   } from '../models/SessionResultResponse';
-import { ShopperInteractionDevice } from '../models/ShopperInteractionDevice';
-import { Split    , SplitTypeEnum   } from '../models/Split';
-import { SplitAmount } from '../models/SplitAmount';
-import { StandalonePaymentCancelRequest } from '../models/StandalonePaymentCancelRequest';
-import { StandalonePaymentCancelResponse    , StandalonePaymentCancelResponseStatusEnum   } from '../models/StandalonePaymentCancelResponse';
-import { StoredPaymentMethod } from '../models/StoredPaymentMethod';
-import { StoredPaymentMethodDetails   , StoredPaymentMethodDetailsTypeEnum   } from '../models/StoredPaymentMethodDetails';
-import { StoredPaymentMethodRequest  , StoredPaymentMethodRequestRecurringProcessingModelEnum      } from '../models/StoredPaymentMethodRequest';
-import { StoredPaymentMethodResource } from '../models/StoredPaymentMethodResource';
-import { SubInputDetail } from '../models/SubInputDetail';
-import { SubMerchant } from '../models/SubMerchant';
-import { SubMerchantInfo } from '../models/SubMerchantInfo';
-import { Surcharge } from '../models/Surcharge';
-import { TaxTotal } from '../models/TaxTotal';
-import { ThreeDS2RequestData , ThreeDS2RequestDataAcctTypeEnum    , ThreeDS2RequestDataAddrMatchEnum   , ThreeDS2RequestDataChallengeIndicatorEnum                         , ThreeDS2RequestDataThreeDSRequestorChallengeIndEnum      , ThreeDS2RequestDataTransTypeEnum  , ThreeDS2RequestDataTransactionTypeEnum     } from '../models/ThreeDS2RequestData';
-import { ThreeDS2RequestFields , ThreeDS2RequestFieldsAcctTypeEnum    , ThreeDS2RequestFieldsAddrMatchEnum   , ThreeDS2RequestFieldsChallengeIndicatorEnum                      , ThreeDS2RequestFieldsThreeDSRequestorChallengeIndEnum      , ThreeDS2RequestFieldsTransTypeEnum  , ThreeDS2RequestFieldsTransactionTypeEnum     } from '../models/ThreeDS2RequestFields';
-import { ThreeDS2ResponseData } from '../models/ThreeDS2ResponseData';
-import { ThreeDS2Result  , ThreeDS2ResultChallengeCancelEnum    , ThreeDS2ResultExemptionIndicatorEnum    , ThreeDS2ResultThreeDSRequestorChallengeIndEnum        } from '../models/ThreeDS2Result';
-import { ThreeDSRequestData, ThreeDSRequestDataChallengeWindowSizeEnum  , ThreeDSRequestDataDataOnlyEnum  , ThreeDSRequestDataNativeThreeDSEnum  , ThreeDSRequestDataThreeDSVersionEnum   } from '../models/ThreeDSRequestData';
-import { ThreeDSRequestorAuthenticationInfo , ThreeDSRequestorAuthenticationInfoThreeDSReqAuthMethodEnum    } from '../models/ThreeDSRequestorAuthenticationInfo';
-import { ThreeDSRequestorPriorAuthenticationInfo , ThreeDSRequestorPriorAuthenticationInfoThreeDSReqPriorAuthMethodEnum     } from '../models/ThreeDSRequestorPriorAuthenticationInfo';
-import { ThreeDSecureData, ThreeDSecureDataAuthenticationResponseEnum    , ThreeDSecureDataChallengeCancelEnum  , ThreeDSecureDataDirectoryResponseEnum          } from '../models/ThreeDSecureData';
-import { Ticket } from '../models/Ticket';
-import { TravelAgency } from '../models/TravelAgency';
-import { TwintDetails    , TwintDetailsTypeEnum   } from '../models/TwintDetails';
-import { UpdatePaymentLinkRequest, UpdatePaymentLinkRequestStatusEnum   } from '../models/UpdatePaymentLinkRequest';
-import { UpiCollectDetails     , UpiCollectDetailsTypeEnum    } from '../models/UpiCollectDetails';
-import { UpiIntentDetails     , UpiIntentDetailsTypeEnum   } from '../models/UpiIntentDetails';
-import { UtilityRequest } from '../models/UtilityRequest';
-import { UtilityResponse } from '../models/UtilityResponse';
-import { VippsDetails    , VippsDetailsTypeEnum   } from '../models/VippsDetails';
-import { VisaCheckoutDetails , VisaCheckoutDetailsFundingSourceEnum  , VisaCheckoutDetailsTypeEnum    } from '../models/VisaCheckoutDetails';
-import { WeChatPayDetails , WeChatPayDetailsTypeEnum   } from '../models/WeChatPayDetails';
-import { WeChatPayMiniProgramDetails   , WeChatPayMiniProgramDetailsTypeEnum   } from '../models/WeChatPayMiniProgramDetails';
-import { ZipDetails    , ZipDetailsTypeEnum   } from '../models/ZipDetails';
+import { AccountInfo } from './accountInfo';
+import { AcctInfo } from './acctInfo';
+import { AchDetails } from './achDetails';
+import { AdditionalData3DSecure } from './additionalData3DSecure';
+import { AdditionalDataAirline } from './additionalDataAirline';
+import { AdditionalDataCarRental } from './additionalDataCarRental';
+import { AdditionalDataCommon } from './additionalDataCommon';
+import { AdditionalDataLevel23 } from './additionalDataLevel23';
+import { AdditionalDataLodging } from './additionalDataLodging';
+import { AdditionalDataOpenInvoice } from './additionalDataOpenInvoice';
+import { AdditionalDataOpi } from './additionalDataOpi';
+import { AdditionalDataRatepay } from './additionalDataRatepay';
+import { AdditionalDataRetry } from './additionalDataRetry';
+import { AdditionalDataRisk } from './additionalDataRisk';
+import { AdditionalDataRiskStandalone } from './additionalDataRiskStandalone';
+import { AdditionalDataSubMerchant } from './additionalDataSubMerchant';
+import { AdditionalDataTemporaryServices } from './additionalDataTemporaryServices';
+import { AdditionalDataWallets } from './additionalDataWallets';
+import { Address } from './address';
+import { AffirmDetails } from './affirmDetails';
+import { AfterpayDetails } from './afterpayDetails';
+import { Agency } from './agency';
+import { Airline } from './airline';
+import { AmazonPayDetails } from './amazonPayDetails';
+import { Amount } from './amount';
+import { Amounts } from './amounts';
+import { AncvDetails } from './ancvDetails';
+import { AndroidPayDetails } from './androidPayDetails';
+import { ApplePayDetails } from './applePayDetails';
+import { ApplePayDonations } from './applePayDonations';
+import { ApplePaySessionRequest } from './applePaySessionRequest';
+import { ApplePaySessionResponse } from './applePaySessionResponse';
+import { ApplicationInfo } from './applicationInfo';
+import { AuthenticationData } from './authenticationData';
+import { BacsDirectDebitDetails } from './bacsDirectDebitDetails';
+import { BalanceCheckRequest } from './balanceCheckRequest';
+import { BalanceCheckResponse } from './balanceCheckResponse';
+import { BillDeskDetails } from './billDeskDetails';
+import { BillingAddress } from './billingAddress';
+import { BlikDetails } from './blikDetails';
+import { BrowserInfo } from './browserInfo';
+import { CancelOrderRequest } from './cancelOrderRequest';
+import { CancelOrderResponse } from './cancelOrderResponse';
+import { CardBrandDetails } from './cardBrandDetails';
+import { CardDetails } from './cardDetails';
+import { CardDetailsRequest } from './cardDetailsRequest';
+import { CardDetailsResponse } from './cardDetailsResponse';
+import { CardDonations } from './cardDonations';
+import { CashAppDetails } from './cashAppDetails';
+import { CellulantDetails } from './cellulantDetails';
+import { CheckoutAwaitAction } from './checkoutAwaitAction';
+import { CheckoutBankAccount } from './checkoutBankAccount';
+import { CheckoutBankTransferAction } from './checkoutBankTransferAction';
+import { CheckoutDelegatedAuthenticationAction } from './checkoutDelegatedAuthenticationAction';
+import { CheckoutNativeRedirectAction } from './checkoutNativeRedirectAction';
+import { CheckoutOrderResponse } from './checkoutOrderResponse';
+import { CheckoutQrCodeAction } from './checkoutQrCodeAction';
+import { CheckoutRedirectAction } from './checkoutRedirectAction';
+import { CheckoutSDKAction } from './checkoutSDKAction';
+import { CheckoutSessionInstallmentOption } from './checkoutSessionInstallmentOption';
+import { CheckoutSessionThreeDS2RequestData } from './checkoutSessionThreeDS2RequestData';
+import { CheckoutThreeDS2Action } from './checkoutThreeDS2Action';
+import { CheckoutVoucherAction } from './checkoutVoucherAction';
+import { CommonField } from './commonField';
+import { Company } from './company';
+import { CreateCheckoutSessionRequest } from './createCheckoutSessionRequest';
+import { CreateCheckoutSessionResponse } from './createCheckoutSessionResponse';
+import { CreateOrderRequest } from './createOrderRequest';
+import { CreateOrderResponse } from './createOrderResponse';
+import { DeliveryAddress } from './deliveryAddress';
+import { DeliveryMethod } from './deliveryMethod';
+import { DetailsRequestAuthenticationData } from './detailsRequestAuthenticationData';
+import { DeviceRenderOptions } from './deviceRenderOptions';
+import { DokuDetails } from './dokuDetails';
+import { Donation } from './donation';
+import { DonationCampaign } from './donationCampaign';
+import { DonationCampaignsRequest } from './donationCampaignsRequest';
+import { DonationCampaignsResponse } from './donationCampaignsResponse';
+import { DonationPaymentRequest } from './donationPaymentRequest';
+import { DonationPaymentRequestPaymentMethodClass } from './donationPaymentRequestPaymentMethod';
+import { DonationPaymentResponse } from './donationPaymentResponse';
+import { DragonpayDetails } from './dragonpayDetails';
+import { EBankingFinlandDetails } from './eBankingFinlandDetails';
+import { EcontextVoucherDetails } from './econtextVoucherDetails';
+import { EftDetails } from './eftDetails';
+import { EncryptedOrderData } from './encryptedOrderData';
+import { EnhancedSchemeData } from './enhancedSchemeData';
+import { ExternalPlatform } from './externalPlatform';
+import { FastlaneDetails } from './fastlaneDetails';
+import { ForexQuote } from './forexQuote';
+import { FraudCheckResult } from './fraudCheckResult';
+import { FraudResult } from './fraudResult';
+import { FundOrigin } from './fundOrigin';
+import { FundRecipient } from './fundRecipient';
+import { GenericIssuerPaymentMethodDetails } from './genericIssuerPaymentMethodDetails';
+import { GooglePayDetails } from './googlePayDetails';
+import { GooglePayDonations } from './googlePayDonations';
+import { IdealDetails } from './idealDetails';
+import { IdealDonations } from './idealDonations';
+import { InputDetail } from './inputDetail';
+import { InstallmentOption } from './installmentOption';
+import { Installments } from './installments';
+import { Item } from './item';
+import { KlarnaDetails } from './klarnaDetails';
+import { Leg } from './leg';
+import { LineItem } from './lineItem';
+import { ListStoredPaymentMethodsResponse } from './listStoredPaymentMethodsResponse';
+import { Mandate } from './mandate';
+import { MasterpassDetails } from './masterpassDetails';
+import { MbwayDetails } from './mbwayDetails';
+import { MerchantDevice } from './merchantDevice';
+import { MerchantRiskIndicator } from './merchantRiskIndicator';
+import { MobilePayDetails } from './mobilePayDetails';
+import { MolPayDetails } from './molPayDetails';
+import { Name } from './name';
+import { OpenInvoiceDetails } from './openInvoiceDetails';
+import { Passenger } from './passenger';
+import { PayByBankAISDirectDebitDetails } from './payByBankAISDirectDebitDetails';
+import { PayByBankDetails } from './payByBankDetails';
+import { PayPalDetails } from './payPalDetails';
+import { PayPayDetails } from './payPayDetails';
+import { PayToDetails } from './payToDetails';
+import { PayUUpiDetails } from './payUUpiDetails';
+import { PayWithGoogleDetails } from './payWithGoogleDetails';
+import { PayWithGoogleDonations } from './payWithGoogleDonations';
+import { PaymentAmountUpdateRequest } from './paymentAmountUpdateRequest';
+import { PaymentAmountUpdateResponse } from './paymentAmountUpdateResponse';
+import { PaymentCancelRequest } from './paymentCancelRequest';
+import { PaymentCancelResponse } from './paymentCancelResponse';
+import { PaymentCaptureRequest } from './paymentCaptureRequest';
+import { PaymentCaptureResponse } from './paymentCaptureResponse';
+import { PaymentCompletionDetails } from './paymentCompletionDetails';
+import { PaymentDetails } from './paymentDetails';
+import { PaymentDetailsRequest } from './paymentDetailsRequest';
+import { PaymentDetailsResponse } from './paymentDetailsResponse';
+import { PaymentLinkRequest } from './paymentLinkRequest';
+import { PaymentLinkResponse } from './paymentLinkResponse';
+import { PaymentMethod } from './paymentMethod';
+import { PaymentMethodGroup } from './paymentMethodGroup';
+import { PaymentMethodIssuer } from './paymentMethodIssuer';
+import { PaymentMethodToStore } from './paymentMethodToStore';
+import { PaymentMethodUPIApps } from './paymentMethodUPIApps';
+import { PaymentMethodsRequest } from './paymentMethodsRequest';
+import { PaymentMethodsResponse } from './paymentMethodsResponse';
+import { PaymentRefundRequest } from './paymentRefundRequest';
+import { PaymentRefundResponse } from './paymentRefundResponse';
+import { PaymentRequest } from './paymentRequest';
+import { PaymentRequestPaymentMethodClass } from './paymentRequestPaymentMethod';
+import { PaymentResponse } from './paymentResponse';
+import { PaymentResponseActionClass } from './paymentResponseAction';
+import { PaymentReversalRequest } from './paymentReversalRequest';
+import { PaymentReversalResponse } from './paymentReversalResponse';
+import { PaypalUpdateOrderRequest } from './paypalUpdateOrderRequest';
+import { PaypalUpdateOrderResponse } from './paypalUpdateOrderResponse';
+import { Phone } from './phone';
+import { PixDetails } from './pixDetails';
+import { PixRecurring } from './pixRecurring';
+import { PlatformChargebackLogic } from './platformChargebackLogic';
+import { PseDetails } from './pseDetails';
+import { RakutenPayDetails } from './rakutenPayDetails';
+import { RatepayDetails } from './ratepayDetails';
+import { Recurring } from './recurring';
+import { ResponseAdditionalData3DSecure } from './responseAdditionalData3DSecure';
+import { ResponseAdditionalDataBillingAddress } from './responseAdditionalDataBillingAddress';
+import { ResponseAdditionalDataCard } from './responseAdditionalDataCard';
+import { ResponseAdditionalDataCommon } from './responseAdditionalDataCommon';
+import { ResponseAdditionalDataDomesticError } from './responseAdditionalDataDomesticError';
+import { ResponseAdditionalDataInstallments } from './responseAdditionalDataInstallments';
+import { ResponseAdditionalDataNetworkTokens } from './responseAdditionalDataNetworkTokens';
+import { ResponseAdditionalDataOpi } from './responseAdditionalDataOpi';
+import { ResponseAdditionalDataSepa } from './responseAdditionalDataSepa';
+import { ResponsePaymentMethod } from './responsePaymentMethod';
+import { RiskData } from './riskData';
+import { RivertyDetails } from './rivertyDetails';
+import { SDKEphemPubKey } from './sDKEphemPubKey';
+import { SamsungPayDetails } from './samsungPayDetails';
+import { SepaDirectDebitDetails } from './sepaDirectDebitDetails';
+import { ServiceError } from './serviceError';
+import { SessionResultResponse } from './sessionResultResponse';
+import { ShopperInteractionDevice } from './shopperInteractionDevice';
+import { Split } from './split';
+import { SplitAmount } from './splitAmount';
+import { StandalonePaymentCancelRequest } from './standalonePaymentCancelRequest';
+import { StandalonePaymentCancelResponse } from './standalonePaymentCancelResponse';
+import { StoredPaymentMethod } from './storedPaymentMethod';
+import { StoredPaymentMethodDetails } from './storedPaymentMethodDetails';
+import { StoredPaymentMethodRequest } from './storedPaymentMethodRequest';
+import { StoredPaymentMethodResource } from './storedPaymentMethodResource';
+import { SubInputDetail } from './subInputDetail';
+import { SubMerchant } from './subMerchant';
+import { SubMerchantInfo } from './subMerchantInfo';
+import { Surcharge } from './surcharge';
+import { TaxTotal } from './taxTotal';
+import { ThreeDS2RequestData } from './threeDS2RequestData';
+import { ThreeDS2RequestFields } from './threeDS2RequestFields';
+import { ThreeDS2ResponseData } from './threeDS2ResponseData';
+import { ThreeDS2Result } from './threeDS2Result';
+import { ThreeDSRequestData } from './threeDSRequestData';
+import { ThreeDSRequestorAuthenticationInfo } from './threeDSRequestorAuthenticationInfo';
+import { ThreeDSRequestorPriorAuthenticationInfo } from './threeDSRequestorPriorAuthenticationInfo';
+import { ThreeDSecureData } from './threeDSecureData';
+import { Ticket } from './ticket';
+import { TravelAgency } from './travelAgency';
+import { TwintDetails } from './twintDetails';
+import { UpdatePaymentLinkRequest } from './updatePaymentLinkRequest';
+import { UpiCollectDetails } from './upiCollectDetails';
+import { UpiIntentDetails } from './upiIntentDetails';
+import { UtilityRequest } from './utilityRequest';
+import { UtilityResponse } from './utilityResponse';
+import { VippsDetails } from './vippsDetails';
+import { VisaCheckoutDetails } from './visaCheckoutDetails';
+import { WeChatPayDetails } from './weChatPayDetails';
+import { WeChatPayMiniProgramDetails } from './weChatPayMiniProgramDetails';
+import { ZipDetails } from './zipDetails';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -441,209 +228,209 @@ let primitives = [
                  ];
 
 let enumsMap: Set<string> = new Set<string>([
-    "AccountInfoAccountAgeIndicatorEnum",
-    "AccountInfoAccountChangeIndicatorEnum",
-    "AccountInfoAccountTypeEnum",
-    "AccountInfoDeliveryAddressUsageIndicatorEnum",
-    "AccountInfoPasswordChangeIndicatorEnum",
-    "AccountInfoPaymentAccountIndicatorEnum",
-    "AcctInfoChAccAgeIndEnum",
-    "AcctInfoChAccChangeIndEnum",
-    "AcctInfoChAccPwChangeIndEnum",
-    "AcctInfoPaymentAccIndEnum",
-    "AcctInfoShipAddressUsageIndEnum",
-    "AcctInfoShipNameIndicatorEnum",
-    "AcctInfoSuspiciousAccActivityEnum",
-    "AchDetailsAccountHolderTypeEnum",
-    "AchDetailsBankAccountTypeEnum",
-    "AchDetailsTypeEnum",
-    "AdditionalData3DSecureChallengeWindowSizeEnum",
-    "AdditionalDataCommonIndustryUsageEnum",
-    "AffirmDetailsTypeEnum",
-    "AfterpayDetailsTypeEnum",
-    "AmazonPayDetailsTypeEnum",
-    "AncvDetailsTypeEnum",
-    "AndroidPayDetailsTypeEnum",
-    "ApplePayDetailsFundingSourceEnum",
-    "ApplePayDetailsTypeEnum",
-    "ApplePayDonationsFundingSourceEnum",
-    "ApplePayDonationsTypeEnum",
-    "AuthenticationDataAttemptAuthenticationEnum",
-    "BacsDirectDebitDetailsTypeEnum",
-    "BalanceCheckRequestRecurringProcessingModelEnum",
-    "BalanceCheckRequestShopperInteractionEnum",
-    "BalanceCheckResponseResultCodeEnum",
-    "BillDeskDetailsTypeEnum",
-    "BlikDetailsTypeEnum",
-    "CancelOrderResponseResultCodeEnum",
-    "CardDetailsFundingSourceEnum",
-    "CardDetailsTypeEnum",
-    "CardDonationsFundingSourceEnum",
-    "CardDonationsTypeEnum",
-    "CashAppDetailsTypeEnum",
-    "CellulantDetailsTypeEnum",
-    "CheckoutAwaitActionTypeEnum",
-    "CheckoutBankAccountAccountTypeEnum",
-    "CheckoutBankTransferActionTypeEnum",
-    "CheckoutDelegatedAuthenticationActionTypeEnum",
-    "CheckoutNativeRedirectActionTypeEnum",
-    "CheckoutQrCodeActionTypeEnum",
-    "CheckoutRedirectActionTypeEnum",
-    "CheckoutSDKActionTypeEnum",
-    "CheckoutSessionInstallmentOptionPlansEnum",
-    "CheckoutSessionThreeDS2RequestDataThreeDSRequestorChallengeIndEnum",
-    "CheckoutThreeDS2ActionTypeEnum",
-    "CheckoutVoucherActionTypeEnum",
-    "CreateCheckoutSessionRequestChannelEnum",
-    "CreateCheckoutSessionRequestModeEnum",
-    "CreateCheckoutSessionRequestRecurringProcessingModelEnum",
-    "CreateCheckoutSessionRequestShopperInteractionEnum",
-    "CreateCheckoutSessionRequestStoreFiltrationModeEnum",
-    "CreateCheckoutSessionRequestStorePaymentMethodModeEnum",
-    "CreateCheckoutSessionResponseChannelEnum",
-    "CreateCheckoutSessionResponseModeEnum",
-    "CreateCheckoutSessionResponseRecurringProcessingModelEnum",
-    "CreateCheckoutSessionResponseShopperInteractionEnum",
-    "CreateCheckoutSessionResponseStoreFiltrationModeEnum",
-    "CreateCheckoutSessionResponseStorePaymentMethodModeEnum",
-    "CreateOrderResponseResultCodeEnum",
-    "DeliveryMethodTypeEnum",
-    "DeviceRenderOptionsSdkInterfaceEnum",
-    "DeviceRenderOptionsSdkUiTypeEnum",
-    "DokuDetailsTypeEnum",
-    "DonationPaymentRequestChannelEnum",
-    "DonationPaymentRequestRecurringProcessingModelEnum",
-    "DonationPaymentRequestShopperInteractionEnum",
-    "DonationPaymentRequestPaymentMethodFundingSourceEnum",
-    "DonationPaymentRequestPaymentMethodTypeEnum",
-    "DonationPaymentResponseStatusEnum",
-    "DragonpayDetailsTypeEnum",
-    "EBankingFinlandDetailsTypeEnum",
-    "EcontextVoucherDetailsTypeEnum",
-    "EftDetailsTypeEnum",
-    "FastlaneDetailsTypeEnum",
-    "FundRecipientWalletPurposeEnum",
-    "GenericIssuerPaymentMethodDetailsTypeEnum",
-    "GooglePayDetailsFundingSourceEnum",
-    "GooglePayDetailsTypeEnum",
-    "GooglePayDonationsFundingSourceEnum",
-    "GooglePayDonationsTypeEnum",
-    "IdealDetailsTypeEnum",
-    "IdealDonationsTypeEnum",
-    "InstallmentOptionPlansEnum",
-    "InstallmentsPlanEnum",
-    "KlarnaDetailsTypeEnum",
-    "MandateAmountRuleEnum",
-    "MandateBillingAttemptsRuleEnum",
-    "MandateFrequencyEnum",
-    "MasterpassDetailsFundingSourceEnum",
-    "MasterpassDetailsTypeEnum",
-    "MbwayDetailsTypeEnum",
-    "MerchantRiskIndicatorDeliveryAddressIndicatorEnum",
-    "MerchantRiskIndicatorDeliveryTimeframeEnum",
-    "MobilePayDetailsTypeEnum",
-    "MolPayDetailsTypeEnum",
-    "OpenInvoiceDetailsTypeEnum",
-    "PayByBankAISDirectDebitDetailsTypeEnum",
-    "PayByBankDetailsTypeEnum",
-    "PayPalDetailsSubtypeEnum",
-    "PayPalDetailsTypeEnum",
-    "PayPayDetailsTypeEnum",
-    "PayToDetailsTypeEnum",
-    "PayUUpiDetailsTypeEnum",
-    "PayWithGoogleDetailsFundingSourceEnum",
-    "PayWithGoogleDetailsTypeEnum",
-    "PayWithGoogleDonationsFundingSourceEnum",
-    "PayWithGoogleDonationsTypeEnum",
-    "PaymentAmountUpdateRequestIndustryUsageEnum",
-    "PaymentAmountUpdateResponseIndustryUsageEnum",
-    "PaymentAmountUpdateResponseStatusEnum",
-    "PaymentCancelResponseStatusEnum",
-    "PaymentCaptureResponseStatusEnum",
-    "PaymentDetailsTypeEnum",
-    "PaymentDetailsResponseResultCodeEnum",
-    "PaymentLinkRequestRecurringProcessingModelEnum",
-    "PaymentLinkRequestRequiredShopperFieldsEnum",
-    "PaymentLinkRequestStorePaymentMethodModeEnum",
-    "PaymentLinkResponseRecurringProcessingModelEnum",
-    "PaymentLinkResponseRequiredShopperFieldsEnum",
-    "PaymentLinkResponseStatusEnum",
-    "PaymentLinkResponseStorePaymentMethodModeEnum",
-    "PaymentMethodFundingSourceEnum",
-    "PaymentMethodsRequestChannelEnum",
-    "PaymentMethodsRequestStoreFiltrationModeEnum",
-    "PaymentRefundRequestMerchantRefundReasonEnum",
-    "PaymentRefundResponseMerchantRefundReasonEnum",
-    "PaymentRefundResponseStatusEnum",
-    "PaymentRequestChannelEnum",
-    "PaymentRequestEntityTypeEnum",
-    "PaymentRequestIndustryUsageEnum",
-    "PaymentRequestRecurringProcessingModelEnum",
-    "PaymentRequestShopperInteractionEnum",
-    "PaymentRequestPaymentMethodAccountHolderTypeEnum",
-    "PaymentRequestPaymentMethodBankAccountTypeEnum",
-    "PaymentRequestPaymentMethodTypeEnum",
-    "PaymentRequestPaymentMethodFundingSourceEnum",
-    "PaymentResponseResultCodeEnum",
-    "PaymentResponseActionTypeEnum",
-    "PaymentReversalResponseStatusEnum",
-    "PaypalUpdateOrderResponseStatusEnum",
-    "PixDetailsTypeEnum",
-    "PixRecurringFrequencyEnum",
-    "PlatformChargebackLogicBehaviorEnum",
-    "PseDetailsTypeEnum",
-    "RakutenPayDetailsTypeEnum",
-    "RatepayDetailsTypeEnum",
-    "RecurringContractEnum",
-    "RecurringTokenServiceEnum",
-    "ResponseAdditionalDataCardCardProductIdEnum",
-    "ResponseAdditionalDataCommonFraudResultTypeEnum",
-    "ResponseAdditionalDataCommonFraudRiskLevelEnum",
-    "ResponseAdditionalDataCommonRecurringProcessingModelEnum",
-    "ResponseAdditionalDataCommonTokenizationStoreOperationTypeEnum",
-    "RivertyDetailsTypeEnum",
-    "SamsungPayDetailsFundingSourceEnum",
-    "SamsungPayDetailsTypeEnum",
-    "SepaDirectDebitDetailsTypeEnum",
-    "SessionResultResponseStatusEnum",
-    "SplitTypeEnum",
-    "StandalonePaymentCancelResponseStatusEnum",
-    "StoredPaymentMethodDetailsTypeEnum",
-    "StoredPaymentMethodRequestRecurringProcessingModelEnum",
-    "ThreeDS2RequestDataAcctTypeEnum",
-    "ThreeDS2RequestDataAddrMatchEnum",
-    "ThreeDS2RequestDataChallengeIndicatorEnum",
-    "ThreeDS2RequestDataThreeDSRequestorChallengeIndEnum",
-    "ThreeDS2RequestDataTransTypeEnum",
-    "ThreeDS2RequestDataTransactionTypeEnum",
-    "ThreeDS2RequestFieldsAcctTypeEnum",
-    "ThreeDS2RequestFieldsAddrMatchEnum",
-    "ThreeDS2RequestFieldsChallengeIndicatorEnum",
-    "ThreeDS2RequestFieldsThreeDSRequestorChallengeIndEnum",
-    "ThreeDS2RequestFieldsTransTypeEnum",
-    "ThreeDS2RequestFieldsTransactionTypeEnum",
-    "ThreeDS2ResultChallengeCancelEnum",
-    "ThreeDS2ResultExemptionIndicatorEnum",
-    "ThreeDS2ResultThreeDSRequestorChallengeIndEnum",
-    "ThreeDSRequestDataChallengeWindowSizeEnum",
-    "ThreeDSRequestDataDataOnlyEnum",
-    "ThreeDSRequestDataNativeThreeDSEnum",
-    "ThreeDSRequestDataThreeDSVersionEnum",
-    "ThreeDSRequestorAuthenticationInfoThreeDSReqAuthMethodEnum",
-    "ThreeDSRequestorPriorAuthenticationInfoThreeDSReqPriorAuthMethodEnum",
-    "ThreeDSecureDataAuthenticationResponseEnum",
-    "ThreeDSecureDataChallengeCancelEnum",
-    "ThreeDSecureDataDirectoryResponseEnum",
-    "TwintDetailsTypeEnum",
-    "UpdatePaymentLinkRequestStatusEnum",
-    "UpiCollectDetailsTypeEnum",
-    "UpiIntentDetailsTypeEnum",
-    "VippsDetailsTypeEnum",
-    "VisaCheckoutDetailsFundingSourceEnum",
-    "VisaCheckoutDetailsTypeEnum",
-    "WeChatPayDetailsTypeEnum",
-    "WeChatPayMiniProgramDetailsTypeEnum",
-    "ZipDetailsTypeEnum",
+    "AccountInfo.AccountAgeIndicatorEnum",
+    "AccountInfo.AccountChangeIndicatorEnum",
+    "AccountInfo.AccountTypeEnum",
+    "AccountInfo.DeliveryAddressUsageIndicatorEnum",
+    "AccountInfo.PasswordChangeIndicatorEnum",
+    "AccountInfo.PaymentAccountIndicatorEnum",
+    "AcctInfo.ChAccAgeIndEnum",
+    "AcctInfo.ChAccChangeIndEnum",
+    "AcctInfo.ChAccPwChangeIndEnum",
+    "AcctInfo.PaymentAccIndEnum",
+    "AcctInfo.ShipAddressUsageIndEnum",
+    "AcctInfo.ShipNameIndicatorEnum",
+    "AcctInfo.SuspiciousAccActivityEnum",
+    "AchDetails.AccountHolderTypeEnum",
+    "AchDetails.BankAccountTypeEnum",
+    "AchDetails.TypeEnum",
+    "AdditionalData3DSecure.ChallengeWindowSizeEnum",
+    "AdditionalDataCommon.IndustryUsageEnum",
+    "AffirmDetails.TypeEnum",
+    "AfterpayDetails.TypeEnum",
+    "AmazonPayDetails.TypeEnum",
+    "AncvDetails.TypeEnum",
+    "AndroidPayDetails.TypeEnum",
+    "ApplePayDetails.FundingSourceEnum",
+    "ApplePayDetails.TypeEnum",
+    "ApplePayDonations.FundingSourceEnum",
+    "ApplePayDonations.TypeEnum",
+    "AuthenticationData.AttemptAuthenticationEnum",
+    "BacsDirectDebitDetails.TypeEnum",
+    "BalanceCheckRequest.RecurringProcessingModelEnum",
+    "BalanceCheckRequest.ShopperInteractionEnum",
+    "BalanceCheckResponse.ResultCodeEnum",
+    "BillDeskDetails.TypeEnum",
+    "BlikDetails.TypeEnum",
+    "CancelOrderResponse.ResultCodeEnum",
+    "CardDetails.FundingSourceEnum",
+    "CardDetails.TypeEnum",
+    "CardDonations.FundingSourceEnum",
+    "CardDonations.TypeEnum",
+    "CashAppDetails.TypeEnum",
+    "CellulantDetails.TypeEnum",
+    "CheckoutAwaitAction.TypeEnum",
+    "CheckoutBankAccount.AccountTypeEnum",
+    "CheckoutBankTransferAction.TypeEnum",
+    "CheckoutDelegatedAuthenticationAction.TypeEnum",
+    "CheckoutNativeRedirectAction.TypeEnum",
+    "CheckoutQrCodeAction.TypeEnum",
+    "CheckoutRedirectAction.TypeEnum",
+    "CheckoutSDKAction.TypeEnum",
+    "CheckoutSessionInstallmentOption.PlansEnum",
+    "CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum",
+    "CheckoutThreeDS2Action.TypeEnum",
+    "CheckoutVoucherAction.TypeEnum",
+    "CreateCheckoutSessionRequest.ChannelEnum",
+    "CreateCheckoutSessionRequest.ModeEnum",
+    "CreateCheckoutSessionRequest.RecurringProcessingModelEnum",
+    "CreateCheckoutSessionRequest.ShopperInteractionEnum",
+    "CreateCheckoutSessionRequest.StoreFiltrationModeEnum",
+    "CreateCheckoutSessionRequest.StorePaymentMethodModeEnum",
+    "CreateCheckoutSessionResponse.ChannelEnum",
+    "CreateCheckoutSessionResponse.ModeEnum",
+    "CreateCheckoutSessionResponse.RecurringProcessingModelEnum",
+    "CreateCheckoutSessionResponse.ShopperInteractionEnum",
+    "CreateCheckoutSessionResponse.StoreFiltrationModeEnum",
+    "CreateCheckoutSessionResponse.StorePaymentMethodModeEnum",
+    "CreateOrderResponse.ResultCodeEnum",
+    "DeliveryMethod.TypeEnum",
+    "DeviceRenderOptions.SdkInterfaceEnum",
+    "DeviceRenderOptions.SdkUiTypeEnum",
+    "DokuDetails.TypeEnum",
+    "DonationPaymentRequest.ChannelEnum",
+    "DonationPaymentRequest.RecurringProcessingModelEnum",
+    "DonationPaymentRequest.ShopperInteractionEnum",
+    "DonationPaymentRequestPaymentMethod.FundingSourceEnum",
+    "DonationPaymentRequestPaymentMethod.TypeEnum",
+    "DonationPaymentResponse.StatusEnum",
+    "DragonpayDetails.TypeEnum",
+    "EBankingFinlandDetails.TypeEnum",
+    "EcontextVoucherDetails.TypeEnum",
+    "EftDetails.TypeEnum",
+    "FastlaneDetails.TypeEnum",
+    "FundRecipient.WalletPurposeEnum",
+    "GenericIssuerPaymentMethodDetails.TypeEnum",
+    "GooglePayDetails.FundingSourceEnum",
+    "GooglePayDetails.TypeEnum",
+    "GooglePayDonations.FundingSourceEnum",
+    "GooglePayDonations.TypeEnum",
+    "IdealDetails.TypeEnum",
+    "IdealDonations.TypeEnum",
+    "InstallmentOption.PlansEnum",
+    "Installments.PlanEnum",
+    "KlarnaDetails.TypeEnum",
+    "Mandate.AmountRuleEnum",
+    "Mandate.BillingAttemptsRuleEnum",
+    "Mandate.FrequencyEnum",
+    "MasterpassDetails.FundingSourceEnum",
+    "MasterpassDetails.TypeEnum",
+    "MbwayDetails.TypeEnum",
+    "MerchantRiskIndicator.DeliveryAddressIndicatorEnum",
+    "MerchantRiskIndicator.DeliveryTimeframeEnum",
+    "MobilePayDetails.TypeEnum",
+    "MolPayDetails.TypeEnum",
+    "OpenInvoiceDetails.TypeEnum",
+    "PayByBankAISDirectDebitDetails.TypeEnum",
+    "PayByBankDetails.TypeEnum",
+    "PayPalDetails.SubtypeEnum",
+    "PayPalDetails.TypeEnum",
+    "PayPayDetails.TypeEnum",
+    "PayToDetails.TypeEnum",
+    "PayUUpiDetails.TypeEnum",
+    "PayWithGoogleDetails.FundingSourceEnum",
+    "PayWithGoogleDetails.TypeEnum",
+    "PayWithGoogleDonations.FundingSourceEnum",
+    "PayWithGoogleDonations.TypeEnum",
+    "PaymentAmountUpdateRequest.IndustryUsageEnum",
+    "PaymentAmountUpdateResponse.IndustryUsageEnum",
+    "PaymentAmountUpdateResponse.StatusEnum",
+    "PaymentCancelResponse.StatusEnum",
+    "PaymentCaptureResponse.StatusEnum",
+    "PaymentDetails.TypeEnum",
+    "PaymentDetailsResponse.ResultCodeEnum",
+    "PaymentLinkRequest.RecurringProcessingModelEnum",
+    "PaymentLinkRequest.RequiredShopperFieldsEnum",
+    "PaymentLinkRequest.StorePaymentMethodModeEnum",
+    "PaymentLinkResponse.RecurringProcessingModelEnum",
+    "PaymentLinkResponse.RequiredShopperFieldsEnum",
+    "PaymentLinkResponse.StatusEnum",
+    "PaymentLinkResponse.StorePaymentMethodModeEnum",
+    "PaymentMethod.FundingSourceEnum",
+    "PaymentMethodsRequest.ChannelEnum",
+    "PaymentMethodsRequest.StoreFiltrationModeEnum",
+    "PaymentRefundRequest.MerchantRefundReasonEnum",
+    "PaymentRefundResponse.MerchantRefundReasonEnum",
+    "PaymentRefundResponse.StatusEnum",
+    "PaymentRequest.ChannelEnum",
+    "PaymentRequest.EntityTypeEnum",
+    "PaymentRequest.IndustryUsageEnum",
+    "PaymentRequest.RecurringProcessingModelEnum",
+    "PaymentRequest.ShopperInteractionEnum",
+    "PaymentRequestPaymentMethod.AccountHolderTypeEnum",
+    "PaymentRequestPaymentMethod.BankAccountTypeEnum",
+    "PaymentRequestPaymentMethod.TypeEnum",
+    "PaymentRequestPaymentMethod.FundingSourceEnum",
+    "PaymentResponse.ResultCodeEnum",
+    "PaymentResponseAction.TypeEnum",
+    "PaymentReversalResponse.StatusEnum",
+    "PaypalUpdateOrderResponse.StatusEnum",
+    "PixDetails.TypeEnum",
+    "PixRecurring.FrequencyEnum",
+    "PlatformChargebackLogic.BehaviorEnum",
+    "PseDetails.TypeEnum",
+    "RakutenPayDetails.TypeEnum",
+    "RatepayDetails.TypeEnum",
+    "Recurring.ContractEnum",
+    "Recurring.TokenServiceEnum",
+    "ResponseAdditionalDataCard.CardProductIdEnum",
+    "ResponseAdditionalDataCommon.FraudResultTypeEnum",
+    "ResponseAdditionalDataCommon.FraudRiskLevelEnum",
+    "ResponseAdditionalDataCommon.RecurringProcessingModelEnum",
+    "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum",
+    "RivertyDetails.TypeEnum",
+    "SamsungPayDetails.FundingSourceEnum",
+    "SamsungPayDetails.TypeEnum",
+    "SepaDirectDebitDetails.TypeEnum",
+    "SessionResultResponse.StatusEnum",
+    "Split.TypeEnum",
+    "StandalonePaymentCancelResponse.StatusEnum",
+    "StoredPaymentMethodDetails.TypeEnum",
+    "StoredPaymentMethodRequest.RecurringProcessingModelEnum",
+    "ThreeDS2RequestData.AcctTypeEnum",
+    "ThreeDS2RequestData.AddrMatchEnum",
+    "ThreeDS2RequestData.ChallengeIndicatorEnum",
+    "ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum",
+    "ThreeDS2RequestData.TransTypeEnum",
+    "ThreeDS2RequestData.TransactionTypeEnum",
+    "ThreeDS2RequestFields.AcctTypeEnum",
+    "ThreeDS2RequestFields.AddrMatchEnum",
+    "ThreeDS2RequestFields.ChallengeIndicatorEnum",
+    "ThreeDS2RequestFields.ThreeDSRequestorChallengeIndEnum",
+    "ThreeDS2RequestFields.TransTypeEnum",
+    "ThreeDS2RequestFields.TransactionTypeEnum",
+    "ThreeDS2Result.ChallengeCancelEnum",
+    "ThreeDS2Result.ExemptionIndicatorEnum",
+    "ThreeDS2Result.ThreeDSRequestorChallengeIndEnum",
+    "ThreeDSRequestData.ChallengeWindowSizeEnum",
+    "ThreeDSRequestData.DataOnlyEnum",
+    "ThreeDSRequestData.NativeThreeDSEnum",
+    "ThreeDSRequestData.ThreeDSVersionEnum",
+    "ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum",
+    "ThreeDSRequestorPriorAuthenticationInfo.ThreeDSReqPriorAuthMethodEnum",
+    "ThreeDSecureData.AuthenticationResponseEnum",
+    "ThreeDSecureData.ChallengeCancelEnum",
+    "ThreeDSecureData.DirectoryResponseEnum",
+    "TwintDetails.TypeEnum",
+    "UpdatePaymentLinkRequest.StatusEnum",
+    "UpiCollectDetails.TypeEnum",
+    "UpiIntentDetails.TypeEnum",
+    "VippsDetails.TypeEnum",
+    "VisaCheckoutDetails.FundingSourceEnum",
+    "VisaCheckoutDetails.TypeEnum",
+    "WeChatPayDetails.TypeEnum",
+    "WeChatPayMiniProgramDetails.TypeEnum",
+    "ZipDetails.TypeEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
@@ -943,7 +730,7 @@ export class ObjectSerializer {
             let discriminatorProperty = typeMap[expectedType].discriminator;
             if (discriminatorProperty == null) {
                 return expectedType; // the type does not have a discriminator. use it.
-            } else {
+            } else {   
                 if (data[discriminatorProperty]) {
                     var discriminatorType = data[discriminatorProperty];
                     let mapping = typeMap[expectedType].mapping;
@@ -961,6 +748,17 @@ export class ObjectSerializer {
         }
     }
 
+    /**
+     * Serializes a value into a plain JSON-compatible object based on its type.
+     *
+     * Supports primitives, arrays, maps, dates, enums, and classes defined in `typeMap`.
+     * Falls back to raw data if type is unknown or lacks `getAttributeTypeMap()`.
+     *
+     * @param data - The value to serialize.
+     * @param type - The expected type name as a string.
+     * @param format - Format hint (e.g. "date" or "date-time").
+     * @returns A JSON-compatible representation of `data`.
+     */
     public static serialize(data: any, type: string, format: string): any {
         if (data == undefined) {
             return data;
@@ -1012,6 +810,13 @@ export class ObjectSerializer {
             // Get the actual type of this object
             type = this.findCorrectType(data, type);
 
+            const clazz = typeMap[type];
+
+            // Safe check for getAttributeTypeMap
+            if (typeof clazz.getAttributeTypeMap !== "function") {
+                return { ...data }; // fallback: shallow copy
+            }
+
             // get the map for the correct type.
             let attributeTypes = typeMap[type].getAttributeTypeMap();
             let instance: {[index: string]: any} = {};
@@ -1022,6 +827,18 @@ export class ObjectSerializer {
         }
     }
 
+    /**
+     * Deserializes a plain JSON-compatible object into a typed instance.
+     *
+     * Handles primitives, arrays, maps, dates, enums, and known classes from `typeMap`.
+     * Uses discriminators when available to resolve polymorphic types.
+     * Falls back to raw data if the type is unknown or lacks `getAttributeTypeMap()`.
+     *
+     * @param data - The raw input to deserialize.
+     * @param type - The expected type name as a string.
+     * @param format - Format hint (e.g. "date" or "date-time").
+     * @returns A deserialized instance or value of `data`.
+     */
     public static deserialize(data: any, type: string, format: string): any {
         // polymorphism may change the actual type.
         type = ObjectSerializer.findCorrectType(data, type);
@@ -1064,6 +881,13 @@ export class ObjectSerializer {
                 return data;
             }
             let instance = new typeMap[type]();
+
+            // Safe check for getAttributeTypeMap
+            if (typeof typeMap[type].getAttributeTypeMap !== "function") {
+                Object.assign(instance, data); // fallback: shallow copy
+                return instance;
+            }
+
             let attributeTypes = typeMap[type].getAttributeTypeMap();
             for (let attributeType of attributeTypes) {
                 let value = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type, attributeType.format);
