@@ -19,7 +19,6 @@ import { DonationCampaignsRequest } from "../../typings/checkout/models";
 import { DonationCampaignsResponse } from "../../typings/checkout/models";
 import { DonationPaymentRequest } from "../../typings/checkout/models";
 import { DonationPaymentResponse } from "../../typings/checkout/models";
-import { ServiceError } from "../../typings/checkout/models";
 
 /**
  * API handler for DonationsApi
@@ -43,13 +42,13 @@ export class DonationsApi extends Service {
     public async donationCampaigns(donationCampaignsRequest: DonationCampaignsRequest, requestOptions?: IRequest.Options): Promise<DonationCampaignsResponse> {
         const endpoint = `${this.baseUrl}/donationCampaigns`;
         const resource = new Resource(this, endpoint);
-        const request: DonationCampaignsRequest = ObjectSerializer.serialize(donationCampaignsRequest, "DonationCampaignsRequest");
+        const request: DonationCampaignsRequest = ObjectSerializer.serialize(donationCampaignsRequest, "DonationCampaignsRequest", "");
         const response = await getJsonResponse<DonationCampaignsRequest, DonationCampaignsResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "DonationCampaignsResponse");
+        return ObjectSerializer.deserialize(response, "DonationCampaignsResponse", "");
     }
 
     /**
@@ -61,13 +60,13 @@ export class DonationsApi extends Service {
     public async donations(donationPaymentRequest: DonationPaymentRequest, requestOptions?: IRequest.Options): Promise<DonationPaymentResponse> {
         const endpoint = `${this.baseUrl}/donations`;
         const resource = new Resource(this, endpoint);
-        const request: DonationPaymentRequest = ObjectSerializer.serialize(donationPaymentRequest, "DonationPaymentRequest");
+        const request: DonationPaymentRequest = ObjectSerializer.serialize(donationPaymentRequest, "DonationPaymentRequest", "");
         const response = await getJsonResponse<DonationPaymentRequest, DonationPaymentResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "DonationPaymentResponse");
+        return ObjectSerializer.deserialize(response, "DonationPaymentResponse", "");
     }
 
 }

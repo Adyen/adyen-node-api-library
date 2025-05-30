@@ -7,18 +7,19 @@
  * Do not edit this class manually.
  */
 
-import { AccountInfo } from '../models/AccountInfo';
-import { Address } from '../models/Address';
-import { Amount } from '../models/Amount';
-import { ApplicationInfo } from '../models/ApplicationInfo';
-import { BrowserInfo } from '../models/BrowserInfo';
-import { ForexQuote } from '../models/ForexQuote';
-import { Installments } from '../models/Installments';
-import { MerchantRiskIndicator } from '../models/MerchantRiskIndicator';
-import { Name } from '../models/Name';
-import { Recurring } from '../models/Recurring';
-import { Split } from '../models/Split';
-import { ThreeDS2RequestData } from '../models/ThreeDS2RequestData';
+import { AccountInfo } from './models';
+import { Address } from './models';
+import { Amount } from './models';
+import { ApplicationInfo } from './models';
+import { BrowserInfo } from './models';
+import { ForexQuote } from './models';
+import { Installments } from './models';
+import { MerchantRiskIndicator } from './models';
+import { Name } from './models';
+import { Recurring } from './models';
+import { Split } from './models';
+import { ThreeDS2RequestData } from './models';
+
 
 export class BalanceCheckRequest {
     'accountInfo'?: AccountInfo;

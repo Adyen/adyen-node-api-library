@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { CardBrandDetails } from '../models/CardBrandDetails';
+import { CardBrandDetails } from './models';
+
 
 export class CardDetailsResponse {
     /**

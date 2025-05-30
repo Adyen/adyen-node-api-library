@@ -7,11 +7,12 @@
  * Do not edit this class manually.
  */
 
-import { Agency } from '../models/Agency';
-import { Leg } from '../models/Leg';
-import { Passenger } from '../models/Passenger';
-import { Ticket } from '../models/Ticket';
-import { TravelAgency } from '../models/TravelAgency';
+import { Agency } from './models';
+import { Leg } from './models';
+import { Passenger } from './models';
+import { Ticket } from './models';
+import { TravelAgency } from './models';
+
 
 export class Airline {
     'agency'?: Agency;

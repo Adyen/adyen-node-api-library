@@ -79,7 +79,7 @@ export class RecurringApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "ListStoredPaymentMethodsResponse");
+        return ObjectSerializer.deserialize(response, "ListStoredPaymentMethodsResponse", "");
     }
 
     /**
@@ -91,13 +91,13 @@ export class RecurringApi extends Service {
     public async storedPaymentMethods(storedPaymentMethodRequest: StoredPaymentMethodRequest, requestOptions?: IRequest.Options): Promise<StoredPaymentMethodResource> {
         const endpoint = `${this.baseUrl}/storedPaymentMethods`;
         const resource = new Resource(this, endpoint);
-        const request: StoredPaymentMethodRequest = ObjectSerializer.serialize(storedPaymentMethodRequest, "StoredPaymentMethodRequest");
+        const request: StoredPaymentMethodRequest = ObjectSerializer.serialize(storedPaymentMethodRequest, "StoredPaymentMethodRequest", "");
         const response = await getJsonResponse<StoredPaymentMethodRequest, StoredPaymentMethodResource>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "StoredPaymentMethodResource");
+        return ObjectSerializer.deserialize(response, "StoredPaymentMethodResource", "");
     }
 
 }

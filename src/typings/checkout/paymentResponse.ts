@@ -7,13 +7,14 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from '../models/Amount';
-import { CheckoutOrderResponse } from '../models/CheckoutOrderResponse';
-import { FraudResult } from '../models/FraudResult';
-import { PaymentResponseAction } from '../models/PaymentResponseAction';
-import { ResponsePaymentMethod } from '../models/ResponsePaymentMethod';
-import { ThreeDS2ResponseData } from '../models/ThreeDS2ResponseData';
-import { ThreeDS2Result } from '../models/ThreeDS2Result';
+import { Amount } from './models';
+import { CheckoutOrderResponse } from './models';
+import { FraudResult } from './models';
+import { PaymentResponseAction } from './models';
+import { ResponsePaymentMethod } from './models';
+import { ThreeDS2ResponseData } from './models';
+import { ThreeDS2Result } from './models';
+
 
 export class PaymentResponse {
     'action'?: PaymentResponseAction;

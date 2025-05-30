@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Phone } from '../models/Phone';
+import { Phone } from './models';
+
 
 export class CheckoutSessionThreeDS2RequestData {
     'homePhone'?: Phone;

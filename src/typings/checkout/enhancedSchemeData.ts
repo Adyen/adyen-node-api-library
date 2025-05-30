@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Airline } from '../models/Airline';
+import { Airline } from './models';
+
 
 export class EnhancedSchemeData {
     'airline'?: Airline;

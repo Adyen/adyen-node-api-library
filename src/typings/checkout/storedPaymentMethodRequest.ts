@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { PaymentMethodToStore } from '../models/PaymentMethodToStore';
+import { PaymentMethodToStore } from './models';
+
 
 export class StoredPaymentMethodRequest {
     /**

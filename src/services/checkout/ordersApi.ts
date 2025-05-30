@@ -21,7 +21,6 @@ import { CancelOrderRequest } from "../../typings/checkout/models";
 import { CancelOrderResponse } from "../../typings/checkout/models";
 import { CreateOrderRequest } from "../../typings/checkout/models";
 import { CreateOrderResponse } from "../../typings/checkout/models";
-import { ServiceError } from "../../typings/checkout/models";
 
 /**
  * API handler for OrdersApi
@@ -45,13 +44,13 @@ export class OrdersApi extends Service {
     public async cancelOrder(cancelOrderRequest: CancelOrderRequest, requestOptions?: IRequest.Options): Promise<CancelOrderResponse> {
         const endpoint = `${this.baseUrl}/orders/cancel`;
         const resource = new Resource(this, endpoint);
-        const request: CancelOrderRequest = ObjectSerializer.serialize(cancelOrderRequest, "CancelOrderRequest");
+        const request: CancelOrderRequest = ObjectSerializer.serialize(cancelOrderRequest, "CancelOrderRequest", "");
         const response = await getJsonResponse<CancelOrderRequest, CancelOrderResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "CancelOrderResponse");
+        return ObjectSerializer.deserialize(response, "CancelOrderResponse", "");
     }
 
     /**
@@ -63,13 +62,13 @@ export class OrdersApi extends Service {
     public async getBalanceOfGiftCard(balanceCheckRequest: BalanceCheckRequest, requestOptions?: IRequest.Options): Promise<BalanceCheckResponse> {
         const endpoint = `${this.baseUrl}/paymentMethods/balance`;
         const resource = new Resource(this, endpoint);
-        const request: BalanceCheckRequest = ObjectSerializer.serialize(balanceCheckRequest, "BalanceCheckRequest");
+        const request: BalanceCheckRequest = ObjectSerializer.serialize(balanceCheckRequest, "BalanceCheckRequest", "");
         const response = await getJsonResponse<BalanceCheckRequest, BalanceCheckResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "BalanceCheckResponse");
+        return ObjectSerializer.deserialize(response, "BalanceCheckResponse", "");
     }
 
     /**
@@ -81,13 +80,13 @@ export class OrdersApi extends Service {
     public async orders(createOrderRequest: CreateOrderRequest, requestOptions?: IRequest.Options): Promise<CreateOrderResponse> {
         const endpoint = `${this.baseUrl}/orders`;
         const resource = new Resource(this, endpoint);
-        const request: CreateOrderRequest = ObjectSerializer.serialize(createOrderRequest, "CreateOrderRequest");
+        const request: CreateOrderRequest = ObjectSerializer.serialize(createOrderRequest, "CreateOrderRequest", "");
         const response = await getJsonResponse<CreateOrderRequest, CreateOrderResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "CreateOrderResponse");
+        return ObjectSerializer.deserialize(response, "CreateOrderResponse", "");
     }
 
 }

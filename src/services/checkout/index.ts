@@ -7,13 +7,13 @@
  * Do not edit this class manually.
  */
 
-import { DonationsApi } from "./DonationsApi";
-import { ModificationsApi } from "./ModificationsApi";
-import { OrdersApi } from "./OrdersApi";
-import { PaymentLinksApi } from "./PaymentLinksApi";
-import { PaymentsApi } from "./PaymentsApi";
-import { RecurringApi } from "./RecurringApi";
-import { UtilityApi } from "./UtilityApi";
+import { DonationsApi } from "./donationsApi";
+import { ModificationsApi } from "./modificationsApi";
+import { OrdersApi } from "./ordersApi";
+import { PaymentLinksApi } from "./paymentLinksApi";
+import { PaymentsApi } from "./paymentsApi";
+import { RecurringApi } from "./recurringApi";
+import { UtilityApi } from "./utilityApi";
 
 import Service from "../../service";
 import Client from "../../client";

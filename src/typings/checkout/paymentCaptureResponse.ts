@@ -7,11 +7,12 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from '../models/Amount';
-import { LineItem } from '../models/LineItem';
-import { PlatformChargebackLogic } from '../models/PlatformChargebackLogic';
-import { Split } from '../models/Split';
-import { SubMerchantInfo } from '../models/SubMerchantInfo';
+import { Amount } from './models';
+import { LineItem } from './models';
+import { PlatformChargebackLogic } from './models';
+import { Split } from './models';
+import { SubMerchantInfo } from './models';
+
 
 export class PaymentCaptureResponse {
     'amount': Amount;

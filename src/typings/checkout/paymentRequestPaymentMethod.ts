@@ -7,62 +7,64 @@
  * Do not edit this class manually.
  */
 
-import { AchDetails } from '../models/AchDetails';
-import { AffirmDetails } from '../models/AffirmDetails';
-import { AfterpayDetails } from '../models/AfterpayDetails';
-import { AmazonPayDetails } from '../models/AmazonPayDetails';
-import { AncvDetails } from '../models/AncvDetails';
-import { AndroidPayDetails } from '../models/AndroidPayDetails';
-import { ApplePayDetails } from '../models/ApplePayDetails';
-import { BacsDirectDebitDetails } from '../models/BacsDirectDebitDetails';
-import { BillDeskDetails } from '../models/BillDeskDetails';
-import { BlikDetails } from '../models/BlikDetails';
-import { CardDetails } from '../models/CardDetails';
-import { CashAppDetails } from '../models/CashAppDetails';
-import { CellulantDetails } from '../models/CellulantDetails';
-import { DokuDetails } from '../models/DokuDetails';
-import { DragonpayDetails } from '../models/DragonpayDetails';
-import { EBankingFinlandDetails } from '../models/EBankingFinlandDetails';
-import { EcontextVoucherDetails } from '../models/EcontextVoucherDetails';
-import { EftDetails } from '../models/EftDetails';
-import { FastlaneDetails } from '../models/FastlaneDetails';
-import { GenericIssuerPaymentMethodDetails } from '../models/GenericIssuerPaymentMethodDetails';
-import { GooglePayDetails } from '../models/GooglePayDetails';
-import { IdealDetails } from '../models/IdealDetails';
-import { KlarnaDetails } from '../models/KlarnaDetails';
-import { MasterpassDetails } from '../models/MasterpassDetails';
-import { MbwayDetails } from '../models/MbwayDetails';
-import { MobilePayDetails } from '../models/MobilePayDetails';
-import { MolPayDetails } from '../models/MolPayDetails';
-import { OpenInvoiceDetails } from '../models/OpenInvoiceDetails';
-import { PayByBankAISDirectDebitDetails } from '../models/PayByBankAISDirectDebitDetails';
-import { PayByBankDetails } from '../models/PayByBankDetails';
-import { PayPalDetails } from '../models/PayPalDetails';
-import { PayPayDetails } from '../models/PayPayDetails';
-import { PayToDetails } from '../models/PayToDetails';
-import { PayUUpiDetails } from '../models/PayUUpiDetails';
-import { PayWithGoogleDetails } from '../models/PayWithGoogleDetails';
-import { PaymentDetails } from '../models/PaymentDetails';
-import { PixDetails } from '../models/PixDetails';
-import { PseDetails } from '../models/PseDetails';
-import { RakutenPayDetails } from '../models/RakutenPayDetails';
-import { RatepayDetails } from '../models/RatepayDetails';
-import { RivertyDetails } from '../models/RivertyDetails';
-import { SamsungPayDetails } from '../models/SamsungPayDetails';
-import { SepaDirectDebitDetails } from '../models/SepaDirectDebitDetails';
-import { StoredPaymentMethodDetails } from '../models/StoredPaymentMethodDetails';
-import { TwintDetails } from '../models/TwintDetails';
-import { UpiCollectDetails } from '../models/UpiCollectDetails';
-import { UpiIntentDetails } from '../models/UpiIntentDetails';
-import { VippsDetails } from '../models/VippsDetails';
-import { VisaCheckoutDetails } from '../models/VisaCheckoutDetails';
-import { WeChatPayDetails } from '../models/WeChatPayDetails';
-import { WeChatPayMiniProgramDetails } from '../models/WeChatPayMiniProgramDetails';
-import { ZipDetails } from '../models/ZipDetails';
+import { AchDetails } from './models';
+import { AffirmDetails } from './models';
+import { AfterpayDetails } from './models';
+import { AmazonPayDetails } from './models';
+import { AncvDetails } from './models';
+import { AndroidPayDetails } from './models';
+import { ApplePayDetails } from './models';
+import { BacsDirectDebitDetails } from './models';
+import { BillDeskDetails } from './models';
+import { BlikDetails } from './models';
+import { CardDetails } from './models';
+import { CashAppDetails } from './models';
+import { CellulantDetails } from './models';
+import { DokuDetails } from './models';
+import { DragonpayDetails } from './models';
+import { EBankingFinlandDetails } from './models';
+import { EcontextVoucherDetails } from './models';
+import { EftDetails } from './models';
+import { FastlaneDetails } from './models';
+import { GenericIssuerPaymentMethodDetails } from './models';
+import { GooglePayDetails } from './models';
+import { IdealDetails } from './models';
+import { KlarnaDetails } from './models';
+import { MasterpassDetails } from './models';
+import { MbwayDetails } from './models';
+import { MobilePayDetails } from './models';
+import { MolPayDetails } from './models';
+import { OpenInvoiceDetails } from './models';
+import { PayByBankAISDirectDebitDetails } from './models';
+import { PayByBankDetails } from './models';
+import { PayPalDetails } from './models';
+import { PayPayDetails } from './models';
+import { PayToDetails } from './models';
+import { PayUUpiDetails } from './models';
+import { PayWithGoogleDetails } from './models';
+import { PaymentDetails } from './models';
+import { PixDetails } from './models';
+import { PseDetails } from './models';
+import { RakutenPayDetails } from './models';
+import { RatepayDetails } from './models';
+import { RivertyDetails } from './models';
+import { SamsungPayDetails } from './models';
+import { SepaDirectDebitDetails } from './models';
+import { StoredPaymentMethodDetails } from './models';
+import { TwintDetails } from './models';
+import { UpiCollectDetails } from './models';
+import { UpiIntentDetails } from './models';
+import { VippsDetails } from './models';
+import { VisaCheckoutDetails } from './models';
+import { WeChatPayDetails } from './models';
+import { WeChatPayMiniProgramDetails } from './models';
+import { ZipDetails } from './models';
 
 /**
 * The type and required details of a payment method to use.
 */
+
+
 /**
  * @type PaymentRequestPaymentMethod
  * Type
@@ -76,58 +78,8 @@ export type PaymentRequestPaymentMethod = AchDetails | AffirmDetails | AfterpayD
 * @export
 */
 export class PaymentRequestPaymentMethodClass {
-    static readonly discriminator: string | undefined = undefined;
+    
+    static readonly discriminator: string = "type";
 
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

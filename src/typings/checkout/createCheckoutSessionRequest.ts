@@ -7,24 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { AccountInfo } from '../models/AccountInfo';
-import { Amount } from '../models/Amount';
-import { ApplicationInfo } from '../models/ApplicationInfo';
-import { AuthenticationData } from '../models/AuthenticationData';
-import { BillingAddress } from '../models/BillingAddress';
-import { CheckoutSessionInstallmentOption } from '../models/CheckoutSessionInstallmentOption';
-import { CheckoutSessionThreeDS2RequestData } from '../models/CheckoutSessionThreeDS2RequestData';
-import { Company } from '../models/Company';
-import { DeliveryAddress } from '../models/DeliveryAddress';
-import { FundOrigin } from '../models/FundOrigin';
-import { FundRecipient } from '../models/FundRecipient';
-import { LineItem } from '../models/LineItem';
-import { Mandate } from '../models/Mandate';
-import { Name } from '../models/Name';
-import { PlatformChargebackLogic } from '../models/PlatformChargebackLogic';
-import { RiskData } from '../models/RiskData';
-import { Split } from '../models/Split';
-import { ThreeDSecureData } from '../models/ThreeDSecureData';
+import { AccountInfo } from './models';
+import { Amount } from './models';
+import { ApplicationInfo } from './models';
+import { AuthenticationData } from './models';
+import { BillingAddress } from './models';
+import { CheckoutSessionInstallmentOption } from './models';
+import { CheckoutSessionThreeDS2RequestData } from './models';
+import { Company } from './models';
+import { DeliveryAddress } from './models';
+import { FundOrigin } from './models';
+import { FundRecipient } from './models';
+import { LineItem } from './models';
+import { Mandate } from './models';
+import { Name } from './models';
+import { PlatformChargebackLogic } from './models';
+import { RiskData } from './models';
+import { Split } from './models';
+import { ThreeDSecureData } from './models';
+
 
 export class CreateCheckoutSessionRequest {
     'accountInfo'?: AccountInfo;

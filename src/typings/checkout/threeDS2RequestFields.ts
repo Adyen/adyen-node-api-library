@@ -7,12 +7,13 @@
  * Do not edit this class manually.
  */
 
-import { AcctInfo } from '../models/AcctInfo';
-import { DeviceRenderOptions } from '../models/DeviceRenderOptions';
-import { Phone } from '../models/Phone';
-import { SDKEphemPubKey } from '../models/SDKEphemPubKey';
-import { ThreeDSRequestorAuthenticationInfo } from '../models/ThreeDSRequestorAuthenticationInfo';
-import { ThreeDSRequestorPriorAuthenticationInfo } from '../models/ThreeDSRequestorPriorAuthenticationInfo';
+import { AcctInfo } from './models';
+import { DeviceRenderOptions } from './models';
+import { Phone } from './models';
+import { SDKEphemPubKey } from './models';
+import { ThreeDSRequestorAuthenticationInfo } from './models';
+import { ThreeDSRequestorPriorAuthenticationInfo } from './models';
+
 
 export class ThreeDS2RequestFields {
     'acctInfo'?: AcctInfo;

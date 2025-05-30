@@ -7,10 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { CommonField } from '../models/CommonField';
-import { ExternalPlatform } from '../models/ExternalPlatform';
-import { MerchantDevice } from '../models/MerchantDevice';
-import { ShopperInteractionDevice } from '../models/ShopperInteractionDevice';
+import { CommonField } from './models';
+import { ExternalPlatform } from './models';
+import { MerchantDevice } from './models';
+import { ShopperInteractionDevice } from './models';
+
 
 export class ApplicationInfo {
     'adyenLibrary'?: CommonField;

@@ -7,18 +7,19 @@
  * Do not edit this class manually.
  */
 
-import { Address } from '../models/Address';
-import { Amount } from '../models/Amount';
-import { ApplicationInfo } from '../models/ApplicationInfo';
-import { CheckoutSessionThreeDS2RequestData } from '../models/CheckoutSessionThreeDS2RequestData';
-import { FundOrigin } from '../models/FundOrigin';
-import { FundRecipient } from '../models/FundRecipient';
-import { InstallmentOption } from '../models/InstallmentOption';
-import { LineItem } from '../models/LineItem';
-import { Name } from '../models/Name';
-import { PlatformChargebackLogic } from '../models/PlatformChargebackLogic';
-import { RiskData } from '../models/RiskData';
-import { Split } from '../models/Split';
+import { Address } from './models';
+import { Amount } from './models';
+import { ApplicationInfo } from './models';
+import { CheckoutSessionThreeDS2RequestData } from './models';
+import { FundOrigin } from './models';
+import { FundRecipient } from './models';
+import { InstallmentOption } from './models';
+import { LineItem } from './models';
+import { Name } from './models';
+import { PlatformChargebackLogic } from './models';
+import { RiskData } from './models';
+import { Split } from './models';
+
 
 export class PaymentLinkRequest {
     /**
