@@ -49,12 +49,14 @@ export class PaymentsApi extends Service {
     public async cardDetails(cardDetailsRequest: CardDetailsRequest, requestOptions?: IRequest.Options): Promise<CardDetailsResponse> {
         const endpoint = `${this.baseUrl}/cardDetails`;
         const resource = new Resource(this, endpoint);
+        
         const request: CardDetailsRequest = ObjectSerializer.serialize(cardDetailsRequest, "CardDetailsRequest", "");
         const response = await getJsonResponse<CardDetailsRequest, CardDetailsResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "CardDetailsResponse", "");
     }
 
@@ -69,6 +71,7 @@ export class PaymentsApi extends Service {
         const endpoint = `${this.baseUrl}/sessions/{sessionId}`
             .replace("{" + "sessionId" + "}", encodeURIComponent(String(sessionId)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = sessionResult;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -80,6 +83,7 @@ export class PaymentsApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "SessionResultResponse", "");
     }
 
@@ -92,12 +96,14 @@ export class PaymentsApi extends Service {
     public async paymentMethods(paymentMethodsRequest: PaymentMethodsRequest, requestOptions?: IRequest.Options): Promise<PaymentMethodsResponse> {
         const endpoint = `${this.baseUrl}/paymentMethods`;
         const resource = new Resource(this, endpoint);
+        
         const request: PaymentMethodsRequest = ObjectSerializer.serialize(paymentMethodsRequest, "PaymentMethodsRequest", "");
         const response = await getJsonResponse<PaymentMethodsRequest, PaymentMethodsResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "PaymentMethodsResponse", "");
     }
 
@@ -110,12 +116,14 @@ export class PaymentsApi extends Service {
     public async payments(paymentRequest: PaymentRequest, requestOptions?: IRequest.Options): Promise<PaymentResponse> {
         const endpoint = `${this.baseUrl}/payments`;
         const resource = new Resource(this, endpoint);
+        
         const request: PaymentRequest = ObjectSerializer.serialize(paymentRequest, "PaymentRequest", "");
         const response = await getJsonResponse<PaymentRequest, PaymentResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "PaymentResponse", "");
     }
 
@@ -128,12 +136,14 @@ export class PaymentsApi extends Service {
     public async paymentsDetails(paymentDetailsRequest: PaymentDetailsRequest, requestOptions?: IRequest.Options): Promise<PaymentDetailsResponse> {
         const endpoint = `${this.baseUrl}/payments/details`;
         const resource = new Resource(this, endpoint);
+        
         const request: PaymentDetailsRequest = ObjectSerializer.serialize(paymentDetailsRequest, "PaymentDetailsRequest", "");
         const response = await getJsonResponse<PaymentDetailsRequest, PaymentDetailsResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "PaymentDetailsResponse", "");
     }
 
@@ -146,12 +156,14 @@ export class PaymentsApi extends Service {
     public async sessions(createCheckoutSessionRequest: CreateCheckoutSessionRequest, requestOptions?: IRequest.Options): Promise<CreateCheckoutSessionResponse> {
         const endpoint = `${this.baseUrl}/sessions`;
         const resource = new Resource(this, endpoint);
+        
         const request: CreateCheckoutSessionRequest = ObjectSerializer.serialize(createCheckoutSessionRequest, "CreateCheckoutSessionRequest", "");
         const response = await getJsonResponse<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "CreateCheckoutSessionResponse", "");
     }
 
