@@ -32,7 +32,7 @@ export class CardInfo {
     */
     'formFactor': CardInfo.FormFactorEnum;
     /**
-    * Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+    * The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. > Reach out to your Adyen contact to get the values relevant for your integration.
     */
     'threeDSecure'?: string;
 

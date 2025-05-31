@@ -18,6 +18,7 @@ import {
     RegisterSCAFinalResponse,
     RegisterSCARequest,
     RegisterSCAResponse,
+    RestServiceError,
     SearchRegisteredDevicesResponse,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
@@ -80,7 +81,7 @@ export class ManageSCADevicesApi extends Service {
     * @param requestOptions {@link IRequest.Options }
     * @param paymentInstrumentId {@link string } The unique identifier of the payment instrument linked to the SCA device.
     */
-    public async deleteRegistrationOfScaDevice(id: string, paymentInstrumentId?: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async deleteRegistrationOfScaDevice(id: string, paymentInstrumentId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/registeredDevices/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
@@ -143,7 +144,7 @@ export class ManageSCADevicesApi extends Service {
     * @param pageSize {@link number } The number of items to have on a page.  Default: 20. Maximum: 100.
     * @return {@link SearchRegisteredDevicesResponse }
     */
-    public async listRegisteredScaDevices(paymentInstrumentId?: string, pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<SearchRegisteredDevicesResponse> {
+    public async listRegisteredScaDevices(paymentInstrumentId: string, pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<SearchRegisteredDevicesResponse> {
         const endpoint = `${this.baseUrl}/registeredDevices`;
         const resource = new Resource(this, endpoint);
         const hasDefinedQueryParams = paymentInstrumentId ?? pageNumber ?? pageSize;
