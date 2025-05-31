@@ -8,7 +8,9 @@
  */
 
 import { AccountHoldersApi } from "./accountHoldersApi";
+import { AuthorizedCardUsersApi } from "./authorizedCardUsersApi";
 import { BalanceAccountsApi } from "./balanceAccountsApi";
+import { BalancesApi } from "./balancesApi";
 import { BankAccountValidationApi } from "./bankAccountValidationApi";
 import { CardOrdersApi } from "./cardOrdersApi";
 import { GrantAccountsApi } from "./grantAccountsApi";
@@ -35,8 +37,16 @@ export default class BalancePlatformAPI extends Service {
         return new AccountHoldersApi(this.client);
     }
 
+    public get AuthorizedCardUsersApi() {
+        return new AuthorizedCardUsersApi(this.client);
+    }
+
     public get BalanceAccountsApi() {
         return new BalanceAccountsApi(this.client);
+    }
+
+    public get BalancesApi() {
+        return new BalancesApi(this.client);
     }
 
     public get BankAccountValidationApi() {

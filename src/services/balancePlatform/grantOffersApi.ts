@@ -37,7 +37,7 @@ export class GrantOffersApi extends Service {
 	* @deprecated since Configuration API v2
 	* Use the `/grantOffers` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers) instead.
     */
-    public async getAllAvailableGrantOffers(accountHolderId?: string, requestOptions?: IRequest.Options): Promise<GrantOffers> {
+    public async getAllAvailableGrantOffers(accountHolderId: string, requestOptions?: IRequest.Options): Promise<GrantOffers> {
         const endpoint = `${this.baseUrl}/grantOffers`;
         const resource = new Resource(this, endpoint);
         const hasDefinedQueryParams = accountHolderId;

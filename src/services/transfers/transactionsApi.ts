@@ -41,7 +41,7 @@ export class TransactionsApi extends Service {
     * @param limit {@link number } The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.
     * @return {@link TransactionSearchResponse }
     */
-    public async getAllTransactions(balancePlatform?: string, paymentInstrumentId?: string, accountHolderId?: string, balanceAccountId?: string, cursor?: string, createdSince?: Date, createdUntil?: Date, limit?: number, requestOptions?: IRequest.Options): Promise<TransactionSearchResponse> {
+    public async getAllTransactions(balancePlatform?: string, paymentInstrumentId?: string, accountHolderId?: string, balanceAccountId?: string, cursor?: string, createdSince: Date, createdUntil: Date, limit?: number, requestOptions?: IRequest.Options): Promise<TransactionSearchResponse> {
         const endpoint = `${this.baseUrl}/transactions`;
         const resource = new Resource(this, endpoint);
         const hasDefinedQueryParams = balancePlatform ?? paymentInstrumentId ?? accountHolderId ?? balanceAccountId ?? cursor ?? createdSince ?? createdUntil ?? limit;

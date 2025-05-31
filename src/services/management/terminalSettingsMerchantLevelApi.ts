@@ -35,7 +35,7 @@ export class TerminalSettingsMerchantLevelApi extends Service {
     * @param model {@link string } The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.
     * @return {@link Logo }
     */
-    public async getTerminalLogo(merchantId: string, model?: string, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async getTerminalLogo(merchantId: string, model: string, requestOptions?: IRequest.Options): Promise<Logo> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalLogos`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
@@ -79,7 +79,7 @@ export class TerminalSettingsMerchantLevelApi extends Service {
     * @param model {@link string } The terminal model. Allowed values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.
     * @return {@link Logo }
     */
-    public async updateTerminalLogo(merchantId: string, logo: Logo, model?: string, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async updateTerminalLogo(merchantId: string, logo: Logo, model: string, requestOptions?: IRequest.Options): Promise<Logo> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalLogos`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);

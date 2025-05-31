@@ -11,6 +11,7 @@ import { Amount } from './amount';
 import { BankCategoryData } from './bankCategoryData';
 import { CounterpartyV3 } from './counterpartyV3';
 import { DirectDebitInformation } from './directDebitInformation';
+import { ExecutionDate } from './executionDate';
 import { InternalCategoryData } from './internalCategoryData';
 import { IssuedCard } from './issuedCard';
 import { PaymentInstrument } from './paymentInstrument';
@@ -44,6 +45,7 @@ export class Transfer {
     * The direction of the transfer.  Possible values: **incoming**, **outgoing**.
     */
     'direction'?: Transfer.DirectionEnum;
+    'executionDate'?: ExecutionDate | null;
     /**
     * The ID of the resource.
     */
@@ -123,6 +125,11 @@ export class Transfer {
             "name": "direction",
             "baseName": "direction",
             "type": "Transfer.DirectionEnum"
+        },
+        {
+            "name": "executionDate",
+            "baseName": "executionDate",
+            "type": "ExecutionDate | null"
         },
         {
             "name": "id",

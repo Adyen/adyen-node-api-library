@@ -9,6 +9,7 @@
 
 import { Amount } from './amount';
 import { CounterpartyInfoV3 } from './counterpartyInfoV3';
+import { ExecutionDate } from './executionDate';
 import { TransferRequestReview } from './transferRequestReview';
 import { UltimatePartyIdentification } from './ultimatePartyIdentification';
 
@@ -27,6 +28,7 @@ export class TransferInfo {
     * Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , \' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ \' \" ! ?**
     */
     'description'?: string;
+    'executionDate'?: ExecutionDate | null;
     /**
     * The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount**, you must specify the payment instrument ID of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account.
     */
@@ -81,6 +83,11 @@ export class TransferInfo {
             "name": "description",
             "baseName": "description",
             "type": "string"
+        },
+        {
+            "name": "executionDate",
+            "baseName": "executionDate",
+            "type": "ExecutionDate | null"
         },
         {
             "name": "paymentInstrumentId",
