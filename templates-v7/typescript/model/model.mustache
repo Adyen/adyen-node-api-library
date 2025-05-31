@@ -2,7 +2,7 @@
 {{#models}}
 {{#model}}
 {{#tsImports}}
-import { {{classname}} } from './models';
+import { {{classname}} } from "./{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}";
 {{#-last}}
 
 {{/-last}}
@@ -37,7 +37,7 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
     */
     {{/deprecated}}
 {{/description}}
-    '{{name}}'{{^required}}?{{/required}}: {{#isEnum}}{{{classname}}}.{{{enumName}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}};
+    "{{name}}"{{^required}}?{{/required}}: {{#isEnum}}{{{classname}}}.{{{enumName}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}};
 {{/vars}}
 
     {{#discriminator}}
@@ -88,11 +88,10 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
         {{/parent}}
         {{#allVars}}
         {{#discriminatorValue}}
-        this.{{name}} = "{{discriminatorValue}}";
         {{/discriminatorValue}}
         {{/allVars}}
         {{#discriminatorName}}
-        this.{{discriminatorName}} = "{{classname}}";
+        //this.{{discriminatorName}} = "{{classname}}";
         {{/discriminatorName}}
     }
 }

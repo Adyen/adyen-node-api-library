@@ -2,11 +2,11 @@
 {{#model}}
 {{/model}}
 {{/models}}
-export * from './models';
+export * from "./models";
 
 {{#models}}
 {{#model}}
-import { {{classname}}{{#oneOf}}{{#-first}}Class{{/-first}}{{/oneOf}} } from './{{#lambda.camelcase}}{{ name }}{{/lambda.camelcase}}{{importFileExtension}}';
+import { {{classname}}{{#oneOf}}{{#-first}}Class{{/-first}}{{/oneOf}} } from "./{{#lambda.camelcase}}{{ name }}{{/lambda.camelcase}}{{importFileExtension}}";
 {{/model}}
 {{/models}}
 
@@ -26,7 +26,11 @@ let enumsMap: Set<string> = new Set<string>([
     {{#models}}
         {{#model}}
             {{#isEnum}}
-    "{{classname}}.{{enumName}}",
+                {{#allowableValues}}
+                    {{#enumVars}}
+    {{classname}}.{{name}},
+                    {{/enumVars}}
+                {{/allowableValues}}
             {{/isEnum}}
             {{#hasEnums}}
                 {{#vars}}
