@@ -7,8 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './models';
-import { BillingAddress } from './models';
+import { Amount } from "./amount";
+import { BillingAddress } from "./billingAddress";
 
 
 export class SubMerchantInfo {

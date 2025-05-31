@@ -7,11 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { RecurringDetail } from './models';
+import { RecurringDetail } from "./recurringDetail";
 
 
 export class RecurringDetailWrapper {
-    'RecurringDetail'?: RecurringDetail;
+    "RecurringDetail"?: RecurringDetail;
 
     static readonly discriminator: string | undefined = undefined;
 

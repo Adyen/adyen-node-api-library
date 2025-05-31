@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { StoredPaymentMethodResource } from './models';
+import { StoredPaymentMethodResource } from "./storedPaymentMethodResource";
 
 
 export class ListStoredPaymentMethodsResponse {

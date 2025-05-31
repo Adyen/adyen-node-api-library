@@ -7,18 +7,18 @@
  * Do not edit this class manually.
  */
 
-import { PermitResult } from './models';
+import { PermitResult } from "./permitResult";
 
 
 export class CreatePermitResult {
     /**
     * List of new permits.
     */
-    'permitResultList'?: Array<PermitResult>;
+    "permitResultList"?: Array<PermitResult>;
     /**
     * A unique reference associated with the request. This value is globally unique; quote it when communicating with us about this request.
     */
-    'pspReference'?: string;
+    "pspReference"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

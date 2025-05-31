@@ -7,10 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './models';
-import { CardDetails } from './models';
-import { Name } from './models';
-import { SubMerchant } from './models';
+import { Address } from "./address";
+import { CardDetails } from "./cardDetails";
+import { Name } from "./name";
+import { SubMerchant } from "./subMerchant";
 
 
 export class FundRecipient {

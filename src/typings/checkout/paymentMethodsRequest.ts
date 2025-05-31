@@ -7,8 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './models';
-import { EncryptedOrderData } from './models';
+import { Amount } from "./amount";
+import { EncryptedOrderData } from "./encryptedOrderData";
 
 
 export class PaymentMethodsRequest {

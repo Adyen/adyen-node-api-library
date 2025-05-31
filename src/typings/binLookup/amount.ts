@@ -12,11 +12,11 @@ export class Amount {
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
     */
-    'currency': string;
+    "currency": string;
     /**
     * The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
     */
-    'value': number;
+    "value": number;
 
     static readonly discriminator: string | undefined = undefined;
 

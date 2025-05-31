@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { SplitAmount } from './models';
+import { SplitAmount } from "./splitAmount";
 
 
 export class Split {

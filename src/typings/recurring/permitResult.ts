@@ -12,11 +12,11 @@ export class PermitResult {
     /**
     * The key to link permit requests to permit results.
     */
-    'resultKey'?: string;
+    "resultKey"?: string;
     /**
     * The permit token which is used to make payments by the partner company.
     */
-    'token'?: string;
+    "token"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

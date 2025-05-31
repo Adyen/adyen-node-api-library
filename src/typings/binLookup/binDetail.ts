@@ -12,7 +12,7 @@ export class BinDetail {
     /**
     * The country where the card was issued.
     */
-    'issuerCountry'?: string;
+    "issuerCountry"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

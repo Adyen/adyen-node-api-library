@@ -1,30 +1,30 @@
-export * from './models';
+export * from "./models";
 
-import { Address } from './address';
-import { Amount } from './amount';
-import { BankAccount } from './bankAccount';
-import { Card } from './card';
-import { CreatePermitRequest } from './createPermitRequest';
-import { CreatePermitResult } from './createPermitResult';
-import { DisablePermitRequest } from './disablePermitRequest';
-import { DisablePermitResult } from './disablePermitResult';
-import { DisableRequest } from './disableRequest';
-import { DisableResult } from './disableResult';
-import { Name } from './name';
-import { NotifyShopperRequest } from './notifyShopperRequest';
-import { NotifyShopperResult } from './notifyShopperResult';
-import { Permit } from './permit';
-import { PermitRestriction } from './permitRestriction';
-import { PermitResult } from './permitResult';
-import { Recurring } from './recurring';
-import { RecurringDetail } from './recurringDetail';
-import { RecurringDetailWrapper } from './recurringDetailWrapper';
-import { RecurringDetailsRequest } from './recurringDetailsRequest';
-import { RecurringDetailsResult } from './recurringDetailsResult';
-import { ScheduleAccountUpdaterRequest } from './scheduleAccountUpdaterRequest';
-import { ScheduleAccountUpdaterResult } from './scheduleAccountUpdaterResult';
-import { ServiceError } from './serviceError';
-import { TokenDetails } from './tokenDetails';
+import { Address } from "./address";
+import { Amount } from "./amount";
+import { BankAccount } from "./bankAccount";
+import { Card } from "./card";
+import { CreatePermitRequest } from "./createPermitRequest";
+import { CreatePermitResult } from "./createPermitResult";
+import { DisablePermitRequest } from "./disablePermitRequest";
+import { DisablePermitResult } from "./disablePermitResult";
+import { DisableRequest } from "./disableRequest";
+import { DisableResult } from "./disableResult";
+import { Name } from "./name";
+import { NotifyShopperRequest } from "./notifyShopperRequest";
+import { NotifyShopperResult } from "./notifyShopperResult";
+import { Permit } from "./permit";
+import { PermitRestriction } from "./permitRestriction";
+import { PermitResult } from "./permitResult";
+import { Recurring } from "./recurring";
+import { RecurringDetail } from "./recurringDetail";
+import { RecurringDetailWrapper } from "./recurringDetailWrapper";
+import { RecurringDetailsRequest } from "./recurringDetailsRequest";
+import { RecurringDetailsResult } from "./recurringDetailsResult";
+import { ScheduleAccountUpdaterRequest } from "./scheduleAccountUpdaterRequest";
+import { ScheduleAccountUpdaterResult } from "./scheduleAccountUpdaterResult";
+import { ServiceError } from "./serviceError";
+import { TokenDetails } from "./tokenDetails";
 
 /* tslint:disable:no-unused-variable */
 let primitives = [

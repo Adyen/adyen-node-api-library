@@ -1,7 +1,7 @@
-export * from './models';
+export * from "./models";
 
-import { CreateSessionRequest } from './createSessionRequest';
-import { CreateSessionResponse } from './createSessionResponse';
+import { CreateSessionRequest } from "./createSessionRequest";
+import { CreateSessionResponse } from "./createSessionResponse";
 
 /* tslint:disable:no-unused-variable */
 let primitives = [

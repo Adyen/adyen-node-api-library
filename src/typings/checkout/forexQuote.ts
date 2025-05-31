@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './models';
+import { Amount } from "./amount";
 
 
 export class ForexQuote {

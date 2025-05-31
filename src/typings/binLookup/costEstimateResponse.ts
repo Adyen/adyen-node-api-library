@@ -7,21 +7,21 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './models';
-import { CardBin } from './models';
+import { Amount } from "./amount";
+import { CardBin } from "./cardBin";
 
 
 export class CostEstimateResponse {
-    'cardBin'?: CardBin;
-    'costEstimateAmount'?: Amount;
+    "cardBin"?: CardBin;
+    "costEstimateAmount"?: Amount;
     /**
     * Adyen\'s 16-character reference associated with the request.
     */
-    'costEstimateReference'?: string;
+    "costEstimateReference"?: string;
     /**
     * The result of the cost estimation.
     */
-    'resultCode'?: string;
+    "resultCode"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

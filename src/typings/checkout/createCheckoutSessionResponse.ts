@@ -7,24 +7,24 @@
  * Do not edit this class manually.
  */
 
-import { AccountInfo } from './models';
-import { Amount } from './models';
-import { ApplicationInfo } from './models';
-import { AuthenticationData } from './models';
-import { BillingAddress } from './models';
-import { CheckoutSessionInstallmentOption } from './models';
-import { CheckoutSessionThreeDS2RequestData } from './models';
-import { Company } from './models';
-import { DeliveryAddress } from './models';
-import { FundOrigin } from './models';
-import { FundRecipient } from './models';
-import { LineItem } from './models';
-import { Mandate } from './models';
-import { Name } from './models';
-import { PlatformChargebackLogic } from './models';
-import { RiskData } from './models';
-import { Split } from './models';
-import { ThreeDSecureData } from './models';
+import { AccountInfo } from "./accountInfo";
+import { Amount } from "./amount";
+import { ApplicationInfo } from "./applicationInfo";
+import { AuthenticationData } from "./authenticationData";
+import { BillingAddress } from "./billingAddress";
+import { CheckoutSessionInstallmentOption } from "./checkoutSessionInstallmentOption";
+import { CheckoutSessionThreeDS2RequestData } from "./checkoutSessionThreeDS2RequestData";
+import { Company } from "./company";
+import { DeliveryAddress } from "./deliveryAddress";
+import { FundOrigin } from "./fundOrigin";
+import { FundRecipient } from "./fundRecipient";
+import { LineItem } from "./lineItem";
+import { Mandate } from "./mandate";
+import { Name } from "./name";
+import { PlatformChargebackLogic } from "./platformChargebackLogic";
+import { RiskData } from "./riskData";
+import { Split } from "./split";
+import { ThreeDSecureData } from "./threeDSecureData";
 
 
 export class CreateCheckoutSessionResponse {

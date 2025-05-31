@@ -12,7 +12,7 @@ export class BoardingTokenRequest {
     /**
     * The boardingToken request token.
     */
-    'boardingRequestToken': string;
+    "boardingRequestToken": string;
 
     static readonly discriminator: string | undefined = undefined;
 

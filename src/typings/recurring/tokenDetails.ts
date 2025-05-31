@@ -9,8 +9,8 @@
 
 
 export class TokenDetails {
-    'tokenData'?: { [key: string]: string; };
-    'tokenDataType'?: string;
+    "tokenData"?: { [key: string]: string; };
+    "tokenDataType"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

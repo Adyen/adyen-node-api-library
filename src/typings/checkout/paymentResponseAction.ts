@@ -7,15 +7,15 @@
  * Do not edit this class manually.
  */
 
-import { CheckoutAwaitAction } from './models';
-import { CheckoutBankTransferAction } from './models';
-import { CheckoutDelegatedAuthenticationAction } from './models';
-import { CheckoutNativeRedirectAction } from './models';
-import { CheckoutQrCodeAction } from './models';
-import { CheckoutRedirectAction } from './models';
-import { CheckoutSDKAction } from './models';
-import { CheckoutThreeDS2Action } from './models';
-import { CheckoutVoucherAction } from './models';
+import { CheckoutAwaitAction } from "./checkoutAwaitAction";
+import { CheckoutBankTransferAction } from "./checkoutBankTransferAction";
+import { CheckoutDelegatedAuthenticationAction } from "./checkoutDelegatedAuthenticationAction";
+import { CheckoutNativeRedirectAction } from "./checkoutNativeRedirectAction";
+import { CheckoutQrCodeAction } from "./checkoutQrCodeAction";
+import { CheckoutRedirectAction } from "./checkoutRedirectAction";
+import { CheckoutSDKAction } from "./checkoutSDKAction";
+import { CheckoutThreeDS2Action } from "./checkoutThreeDS2Action";
+import { CheckoutVoucherAction } from "./checkoutVoucherAction";
 
 /**
 * Action to be taken for completing the payment.

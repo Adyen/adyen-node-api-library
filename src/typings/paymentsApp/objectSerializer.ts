@@ -1,11 +1,11 @@
-export * from './models';
+export * from "./models";
 
-import { BoardingTokenRequest } from './boardingTokenRequest';
-import { BoardingTokenResponse } from './boardingTokenResponse';
-import { DefaultErrorResponseEntity } from './defaultErrorResponseEntity';
-import { InvalidField } from './invalidField';
-import { PaymentsAppDto } from './paymentsAppDto';
-import { PaymentsAppResponse } from './paymentsAppResponse';
+import { BoardingTokenRequest } from "./boardingTokenRequest";
+import { BoardingTokenResponse } from "./boardingTokenResponse";
+import { DefaultErrorResponseEntity } from "./defaultErrorResponseEntity";
+import { InvalidField } from "./invalidField";
+import { PaymentsAppDto } from "./paymentsAppDto";
+import { PaymentsAppResponse } from "./paymentsAppResponse";
 
 /* tslint:disable:no-unused-variable */
 let primitives = [

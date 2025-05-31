@@ -7,8 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Item } from './models';
-import { SubInputDetail } from './models';
+import { Item } from "./item";
+import { SubInputDetail } from "./subInputDetail";
 
 
 export class InputDetail {

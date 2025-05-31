@@ -7,12 +7,12 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './models';
-import { CheckoutOrderResponse } from './models';
-import { FraudResult } from './models';
-import { ResponsePaymentMethod } from './models';
-import { ThreeDS2ResponseData } from './models';
-import { ThreeDS2Result } from './models';
+import { Amount } from "./amount";
+import { CheckoutOrderResponse } from "./checkoutOrderResponse";
+import { FraudResult } from "./fraudResult";
+import { ResponsePaymentMethod } from "./responsePaymentMethod";
+import { ThreeDS2ResponseData } from "./threeDS2ResponseData";
+import { ThreeDS2Result } from "./threeDS2Result";
 
 
 export class PaymentDetailsResponse {

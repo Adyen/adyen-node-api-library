@@ -7,10 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './models';
-import { ApplicationInfo } from './models';
-import { LineItem } from './models';
-import { Split } from './models';
+import { Amount } from "./amount";
+import { ApplicationInfo } from "./applicationInfo";
+import { LineItem } from "./lineItem";
+import { Split } from "./split";
 
 
 export class PaymentRefundRequest {

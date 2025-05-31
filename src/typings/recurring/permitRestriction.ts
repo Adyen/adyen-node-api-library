@@ -7,16 +7,16 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './models';
+import { Amount } from "./amount";
 
 
 export class PermitRestriction {
-    'maxAmount'?: Amount;
-    'singleTransactionLimit'?: Amount;
+    "maxAmount"?: Amount;
+    "singleTransactionLimit"?: Amount;
     /**
     * Only a single payment can be made using this permit if set to true, otherwise multiple payments are allowed.
     */
-    'singleUse'?: boolean;
+    "singleUse"?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 

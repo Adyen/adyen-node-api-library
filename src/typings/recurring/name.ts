@@ -12,11 +12,11 @@ export class Name {
     /**
     * The first name.
     */
-    'firstName': string;
+    "firstName": string;
     /**
     * The last name.
     */
-    'lastName': string;
+    "lastName": string;
 
     static readonly discriminator: string | undefined = undefined;
 

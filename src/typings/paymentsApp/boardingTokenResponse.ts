@@ -12,11 +12,11 @@ export class BoardingTokenResponse {
     /**
     * The boarding token that allows the Payments App to board.
     */
-    'boardingToken': string;
+    "boardingToken": string;
     /**
     * The unique identifier of the Payments App instance.
     */
-    'installationId': string;
+    "installationId": string;
 
     static readonly discriminator: string | undefined = undefined;
 

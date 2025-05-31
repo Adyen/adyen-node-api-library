@@ -12,19 +12,19 @@ export class PaymentsAppDto {
     /**
     * The unique identifier of the Payments App instance.
     */
-    'installationId': string;
+    "installationId": string;
     /**
     * The account code associated with the Payments App instance.
     */
-    'merchantAccountCode': string;
+    "merchantAccountCode": string;
     /**
     * The store code associated with the Payments App instance.
     */
-    'merchantStoreCode'?: string;
+    "merchantStoreCode"?: string;
     /**
     * The status of the Payments App instance.
     */
-    'status': string;
+    "status": string;
 
     static readonly discriminator: string | undefined = undefined;
 

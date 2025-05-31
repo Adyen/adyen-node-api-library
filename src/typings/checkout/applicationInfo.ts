@@ -7,10 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { CommonField } from './models';
-import { ExternalPlatform } from './models';
-import { MerchantDevice } from './models';
-import { ShopperInteractionDevice } from './models';
+import { CommonField } from "./commonField";
+import { ExternalPlatform } from "./externalPlatform";
+import { MerchantDevice } from "./merchantDevice";
+import { ShopperInteractionDevice } from "./shopperInteractionDevice";
 
 
 export class ApplicationInfo {

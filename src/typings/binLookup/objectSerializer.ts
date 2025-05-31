@@ -1,18 +1,18 @@
-export * from './models';
+export * from "./models";
 
-import { Amount } from './amount';
-import { BinDetail } from './binDetail';
-import { CardBin } from './cardBin';
-import { CostEstimateAssumptions } from './costEstimateAssumptions';
-import { CostEstimateRequest } from './costEstimateRequest';
-import { CostEstimateResponse } from './costEstimateResponse';
-import { DSPublicKeyDetail } from './dSPublicKeyDetail';
-import { MerchantDetails } from './merchantDetails';
-import { Recurring } from './recurring';
-import { ServiceError } from './serviceError';
-import { ThreeDS2CardRangeDetail } from './threeDS2CardRangeDetail';
-import { ThreeDSAvailabilityRequest } from './threeDSAvailabilityRequest';
-import { ThreeDSAvailabilityResponse } from './threeDSAvailabilityResponse';
+import { Amount } from "./amount";
+import { BinDetail } from "./binDetail";
+import { CardBin } from "./cardBin";
+import { CostEstimateAssumptions } from "./costEstimateAssumptions";
+import { CostEstimateRequest } from "./costEstimateRequest";
+import { CostEstimateResponse } from "./costEstimateResponse";
+import { DSPublicKeyDetail } from "./dSPublicKeyDetail";
+import { MerchantDetails } from "./merchantDetails";
+import { Recurring } from "./recurring";
+import { ServiceError } from "./serviceError";
+import { ThreeDS2CardRangeDetail } from "./threeDS2CardRangeDetail";
+import { ThreeDSAvailabilityRequest } from "./threeDSAvailabilityRequest";
+import { ThreeDSAvailabilityResponse } from "./threeDSAvailabilityResponse";
 
 /* tslint:disable:no-unused-variable */
 let primitives = [

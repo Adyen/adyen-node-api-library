@@ -7,19 +7,19 @@
  * Do not edit this class manually.
  */
 
-import { AccountInfo } from './models';
-import { Amount } from './models';
-import { ApplicationInfo } from './models';
-import { AuthenticationData } from './models';
-import { BillingAddress } from './models';
-import { BrowserInfo } from './models';
-import { DeliveryAddress } from './models';
-import { DonationPaymentRequestPaymentMethod } from './models';
-import { LineItem } from './models';
-import { MerchantRiskIndicator } from './models';
-import { Name } from './models';
-import { ThreeDS2RequestFields } from './models';
-import { ThreeDSecureData } from './models';
+import { AccountInfo } from "./accountInfo";
+import { Amount } from "./amount";
+import { ApplicationInfo } from "./applicationInfo";
+import { AuthenticationData } from "./authenticationData";
+import { BillingAddress } from "./billingAddress";
+import { BrowserInfo } from "./browserInfo";
+import { DeliveryAddress } from "./deliveryAddress";
+import { DonationPaymentRequestPaymentMethod } from "./donationPaymentRequestPaymentMethod";
+import { LineItem } from "./lineItem";
+import { MerchantRiskIndicator } from "./merchantRiskIndicator";
+import { Name } from "./name";
+import { ThreeDS2RequestFields } from "./threeDS2RequestFields";
+import { ThreeDSecureData } from "./threeDSecureData";
 
 
 export class DonationPaymentRequest {

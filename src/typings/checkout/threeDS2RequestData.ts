@@ -7,12 +7,12 @@
  * Do not edit this class manually.
  */
 
-import { AcctInfo } from './models';
-import { DeviceRenderOptions } from './models';
-import { Phone } from './models';
-import { SDKEphemPubKey } from './models';
-import { ThreeDSRequestorAuthenticationInfo } from './models';
-import { ThreeDSRequestorPriorAuthenticationInfo } from './models';
+import { AcctInfo } from "./acctInfo";
+import { DeviceRenderOptions } from "./deviceRenderOptions";
+import { Phone } from "./phone";
+import { SDKEphemPubKey } from "./sDKEphemPubKey";
+import { ThreeDSRequestorAuthenticationInfo } from "./threeDSRequestorAuthenticationInfo";
+import { ThreeDSRequestorPriorAuthenticationInfo } from "./threeDSRequestorPriorAuthenticationInfo";
 
 
 export class ThreeDS2RequestData {

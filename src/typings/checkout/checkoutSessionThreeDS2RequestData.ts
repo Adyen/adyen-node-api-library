@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { Phone } from './models';
+import { Phone } from "./phone";
 
 
 export class CheckoutSessionThreeDS2RequestData {

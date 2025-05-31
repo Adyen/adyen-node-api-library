@@ -7,14 +7,14 @@
  * Do not edit this class manually.
  */
 
-import { PaymentsAppDto } from './models';
+import { PaymentsAppDto } from "./paymentsAppDto";
 
 
 export class PaymentsAppResponse {
     /**
     * List of Payments Apps.
     */
-    'paymentsApps': Array<PaymentsAppDto>;
+    "paymentsApps": Array<PaymentsAppDto>;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -7,8 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { DetailsRequestAuthenticationData } from './models';
-import { PaymentCompletionDetails } from './models';
+import { DetailsRequestAuthenticationData } from "./detailsRequestAuthenticationData";
+import { PaymentCompletionDetails } from "./paymentCompletionDetails";
 
 
 export class PaymentDetailsRequest {
