@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { FraudCheckResultWrapper } from './models';
+import { FraudCheckResultWrapper } from './fraudCheckResultWrapper';
 
 
 export class FraudResult {

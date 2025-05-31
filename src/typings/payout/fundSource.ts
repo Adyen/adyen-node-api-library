@@ -7,9 +7,9 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './models';
-import { Card } from './models';
-import { Name } from './models';
+import { Address } from './address';
+import { Card } from './card';
+import { Name } from './name';
 
 
 export class FundSource {

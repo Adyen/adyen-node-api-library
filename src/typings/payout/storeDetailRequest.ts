@@ -7,11 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './models';
-import { BankAccount } from './models';
-import { Card } from './models';
-import { Name } from './models';
-import { Recurring } from './models';
+import { Address } from './address';
+import { BankAccount } from './bankAccount';
+import { Card } from './card';
+import { Name } from './name';
+import { Recurring } from './recurring';
 
 
 export class StoreDetailRequest {

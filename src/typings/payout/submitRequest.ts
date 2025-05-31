@@ -7,9 +7,9 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './models';
-import { Name } from './models';
-import { Recurring } from './models';
+import { Amount } from './amount';
+import { Name } from './name';
+import { Recurring } from './recurring';
 
 
 export class SubmitRequest {
