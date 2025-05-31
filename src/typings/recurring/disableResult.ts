@@ -12,7 +12,7 @@ export class DisableResult {
     /**
     * Depending on whether a specific recurring detail was in the request, result is either [detail-successfully-disabled] or [all-details-successfully-disabled].
     */
-    'response'?: string;
+    "response"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

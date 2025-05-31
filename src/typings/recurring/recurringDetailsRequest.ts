@@ -7,19 +7,19 @@
  * Do not edit this class manually.
  */
 
-import { Recurring } from './models';
+import { Recurring } from "./recurring";
 
 
 export class RecurringDetailsRequest {
     /**
     * The merchant account identifier you want to process the (transaction) request with.
     */
-    'merchantAccount': string;
-    'recurring'?: Recurring;
+    "merchantAccount": string;
+    "recurring"?: Recurring;
     /**
     * The reference you use to uniquely identify the shopper (e.g. user ID or account ID).
     */
-    'shopperReference': string;
+    "shopperReference": string;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -7,11 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { ApplePayDonations } from './models';
-import { CardDonations } from './models';
-import { GooglePayDonations } from './models';
-import { IdealDonations } from './models';
-import { PayWithGoogleDonations } from './models';
+import { ApplePayDonations } from "./applePayDonations";
+import { CardDonations } from "./cardDonations";
+import { GooglePayDonations } from "./googlePayDonations";
+import { IdealDonations } from "./idealDonations";
+import { PayWithGoogleDonations } from "./payWithGoogleDonations";
 
 /**
 * The type and required details of a payment method to use.

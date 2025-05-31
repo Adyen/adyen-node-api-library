@@ -7,29 +7,29 @@
  * Do not edit this class manually.
  */
 
-import { BinDetail } from './models';
-import { DSPublicKeyDetail } from './models';
-import { ThreeDS2CardRangeDetail } from './models';
+import { BinDetail } from "./binDetail";
+import { DSPublicKeyDetail } from "./dSPublicKeyDetail";
+import { ThreeDS2CardRangeDetail } from "./threeDS2CardRangeDetail";
 
 
 export class ThreeDSAvailabilityResponse {
-    'binDetails'?: BinDetail;
+    "binDetails"?: BinDetail;
     /**
     * List of Directory Server (DS) public keys.
     */
-    'dsPublicKeys'?: Array<DSPublicKeyDetail>;
+    "dsPublicKeys"?: Array<DSPublicKeyDetail>;
     /**
     * Indicator if 3D Secure 1 is supported.
     */
-    'threeDS1Supported'?: boolean;
+    "threeDS1Supported"?: boolean;
     /**
     * List of brand and card range pairs.
     */
-    'threeDS2CardRangeDetails'?: Array<ThreeDS2CardRangeDetail>;
+    "threeDS2CardRangeDetails"?: Array<ThreeDS2CardRangeDetail>;
     /**
     * Indicator if 3D Secure 2 is supported.
     */
-    'threeDS2supported'?: boolean;
+    "threeDS2supported"?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 

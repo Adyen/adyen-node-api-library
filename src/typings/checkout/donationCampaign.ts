@@ -7,8 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Amounts } from './models';
-import { Donation } from './models';
+import { Amounts } from "./amounts";
+import { Donation } from "./donation";
 
 
 export class DonationCampaign {

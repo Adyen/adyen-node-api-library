@@ -12,11 +12,11 @@ export class DisablePermitRequest {
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * The permit token to disable.
     */
-    'token': string;
+    "token": string;
 
     static readonly discriminator: string | undefined = undefined;
 

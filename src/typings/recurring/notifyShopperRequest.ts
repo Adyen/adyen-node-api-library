@@ -7,43 +7,43 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './models';
+import { Amount } from "./amount";
 
 
 export class NotifyShopperRequest {
-    'amount': Amount;
+    "amount": Amount;
     /**
     * Date on which the subscription amount will be debited from the shopper. In YYYY-MM-DD format
     */
-    'billingDate'?: string;
+    "billingDate"?: string;
     /**
     * Sequence of the debit. Depends on Frequency and Billing Attempts Rule.
     */
-    'billingSequenceNumber'?: string;
+    "billingSequenceNumber"?: string;
     /**
     * Reference of Pre-debit notification that is displayed to the shopper. Optional field. Maps to reference if missing
     */
-    'displayedReference'?: string;
+    "displayedReference"?: string;
     /**
     * The merchant account identifier with which you want to process the transaction.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * Pre-debit notification reference sent by the merchant. This is a mandatory field
     */
-    'reference': string;
+    "reference": string;
     /**
     * The ID that uniquely identifies the shopper.  This `shopperReference` must be the same as the `shopperReference` used in the initial payment.
     */
-    'shopperReference': string;
+    "shopperReference": string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

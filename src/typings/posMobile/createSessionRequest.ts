@@ -12,15 +12,15 @@ export class CreateSessionRequest {
     /**
     * The unique identifier of your merchant account.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * The setup token provided by the POS Mobile SDK.  - When using the Android POS Mobile SDK, obtain the token through the `AuthenticationService.authenticate(setupToken)` callback of `AuthenticationService`.  - When using the iOS POS Mobile SDK, obtain the token through the `PaymentServiceDelegate.register(with:)` callback of `PaymentServiceDelegate`.
     */
-    'setupToken': string;
+    "setupToken": string;
     /**
     * The unique identifier of the store that you want to process transactions for.
     */
-    'store'?: string;
+    "store"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -7,26 +7,26 @@
  * Do not edit this class manually.
  */
 
-import { Permit } from './models';
+import { Permit } from "./permit";
 
 
 export class CreatePermitRequest {
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * The permits to create for this recurring contract.
     */
-    'permits': Array<Permit>;
+    "permits": Array<Permit>;
     /**
     * The recurring contract the new permits will use.
     */
-    'recurringDetailReference': string;
+    "recurringDetailReference": string;
     /**
     * The shopper\'s reference to uniquely identify this shopper (e.g. user ID or account ID).
     */
-    'shopperReference': string;
+    "shopperReference": string;
 
     static readonly discriminator: string | undefined = undefined;
 

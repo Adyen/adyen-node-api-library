@@ -12,11 +12,11 @@ export class ScheduleAccountUpdaterResult {
     /**
     * Adyen\'s 16-character unique reference associated with the transaction. This value is globally unique; quote it when communicating with us about this request.
     */
-    'pspReference': string;
+    "pspReference": string;
     /**
     * The result of scheduling an Account Updater. If scheduling was successful, this field returns **Success**; otherwise it contains the error message.
     */
-    'result': string;
+    "result": string;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -40,12 +40,14 @@ export class PosMobileApi extends Service {
     public async createCommunicationSession(createSessionRequest: CreateSessionRequest, requestOptions?: IRequest.Options): Promise<CreateSessionResponse> {
         const endpoint = `${this.baseUrl}/sessions`;
         const resource = new Resource(this, endpoint);
+        
         const request: CreateSessionRequest = ObjectSerializer.serialize(createSessionRequest, "CreateSessionRequest", "");
         const response = await getJsonResponse<CreateSessionRequest, CreateSessionResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "CreateSessionResponse", "");
     }
 

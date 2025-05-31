@@ -7,33 +7,33 @@
  * Do not edit this class manually.
  */
 
-import { AccountInfo } from './models';
-import { Amount } from './models';
-import { ApplicationInfo } from './models';
-import { AuthenticationData } from './models';
-import { BillingAddress } from './models';
-import { BrowserInfo } from './models';
-import { CheckoutBankAccount } from './models';
-import { Company } from './models';
-import { DeliveryAddress } from './models';
-import { EncryptedOrderData } from './models';
-import { EnhancedSchemeData } from './models';
-import { ForexQuote } from './models';
-import { FundOrigin } from './models';
-import { FundRecipient } from './models';
-import { Installments } from './models';
-import { LineItem } from './models';
-import { Mandate } from './models';
-import { MerchantRiskIndicator } from './models';
-import { Name } from './models';
-import { PaymentRequestPaymentMethod } from './models';
-import { PlatformChargebackLogic } from './models';
-import { RiskData } from './models';
-import { Split } from './models';
-import { SubMerchantInfo } from './models';
-import { Surcharge } from './models';
-import { ThreeDS2RequestFields } from './models';
-import { ThreeDSecureData } from './models';
+import { AccountInfo } from "./accountInfo";
+import { Amount } from "./amount";
+import { ApplicationInfo } from "./applicationInfo";
+import { AuthenticationData } from "./authenticationData";
+import { BillingAddress } from "./billingAddress";
+import { BrowserInfo } from "./browserInfo";
+import { CheckoutBankAccount } from "./checkoutBankAccount";
+import { Company } from "./company";
+import { DeliveryAddress } from "./deliveryAddress";
+import { EncryptedOrderData } from "./encryptedOrderData";
+import { EnhancedSchemeData } from "./enhancedSchemeData";
+import { ForexQuote } from "./forexQuote";
+import { FundOrigin } from "./fundOrigin";
+import { FundRecipient } from "./fundRecipient";
+import { Installments } from "./installments";
+import { LineItem } from "./lineItem";
+import { Mandate } from "./mandate";
+import { MerchantRiskIndicator } from "./merchantRiskIndicator";
+import { Name } from "./name";
+import { PaymentRequestPaymentMethod } from "./paymentRequestPaymentMethod";
+import { PlatformChargebackLogic } from "./platformChargebackLogic";
+import { RiskData } from "./riskData";
+import { Split } from "./split";
+import { SubMerchantInfo } from "./subMerchantInfo";
+import { Surcharge } from "./surcharge";
+import { ThreeDS2RequestFields } from "./threeDS2RequestFields";
+import { ThreeDSecureData } from "./threeDSecureData";
 
 
 export class PaymentRequest {

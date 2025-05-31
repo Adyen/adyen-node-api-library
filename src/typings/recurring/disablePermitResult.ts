@@ -12,11 +12,11 @@ export class DisablePermitResult {
     /**
     * A unique reference associated with the request. This value is globally unique; quote it when communicating with us about this request.
     */
-    'pspReference'?: string;
+    "pspReference"?: string;
     /**
     * Status of the disable request.
     */
-    'status'?: string;
+    "status"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

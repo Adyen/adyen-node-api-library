@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { EncryptedOrderData } from './models';
+import { EncryptedOrderData } from "./encryptedOrderData";
 
 
 export class CancelOrderRequest {

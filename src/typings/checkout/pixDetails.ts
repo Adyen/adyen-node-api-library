@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { PixRecurring } from './models';
+import { PixRecurring } from "./pixRecurring";
 
 
 export class PixDetails {

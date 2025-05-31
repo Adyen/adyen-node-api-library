@@ -7,27 +7,27 @@
  * Do not edit this class manually.
  */
 
-import { PermitRestriction } from './models';
+import { PermitRestriction } from "./permitRestriction";
 
 
 export class Permit {
     /**
     * Partner ID (when using the permit-per-partner token sharing model).
     */
-    'partnerId'?: string;
+    "partnerId"?: string;
     /**
     * The profile to apply to this permit (when using the shared permits model).
     */
-    'profileReference'?: string;
-    'restriction'?: PermitRestriction;
+    "profileReference"?: string;
+    "restriction"?: PermitRestriction;
     /**
     * The key to link permit requests to permit results.
     */
-    'resultKey'?: string;
+    "resultKey"?: string;
     /**
     * The expiry date for this permit.
     */
-    'validTillDate'?: Date;
+    "validTillDate"?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 

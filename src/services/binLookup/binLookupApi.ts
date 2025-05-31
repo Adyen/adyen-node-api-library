@@ -42,12 +42,14 @@ export class BinLookupApi extends Service {
     public async get3dsAvailability(threeDSAvailabilityRequest: ThreeDSAvailabilityRequest, requestOptions?: IRequest.Options): Promise<ThreeDSAvailabilityResponse> {
         const endpoint = `${this.baseUrl}/get3dsAvailability`;
         const resource = new Resource(this, endpoint);
+        
         const request: ThreeDSAvailabilityRequest = ObjectSerializer.serialize(threeDSAvailabilityRequest, "ThreeDSAvailabilityRequest", "");
         const response = await getJsonResponse<ThreeDSAvailabilityRequest, ThreeDSAvailabilityResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "ThreeDSAvailabilityResponse", "");
     }
 
@@ -60,12 +62,14 @@ export class BinLookupApi extends Service {
     public async getCostEstimate(costEstimateRequest: CostEstimateRequest, requestOptions?: IRequest.Options): Promise<CostEstimateResponse> {
         const endpoint = `${this.baseUrl}/getCostEstimate`;
         const resource = new Resource(this, endpoint);
+        
         const request: CostEstimateRequest = ObjectSerializer.serialize(costEstimateRequest, "CostEstimateRequest", "");
         const response = await getJsonResponse<CostEstimateRequest, CostEstimateResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "CostEstimateResponse", "");
     }
 

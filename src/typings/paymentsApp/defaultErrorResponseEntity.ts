@@ -7,7 +7,7 @@
  * Do not edit this class manually.
  */
 
-import { InvalidField } from './models';
+import { InvalidField } from "./invalidField";
 
 /**
 * Standardized error response following RFC-7807 format
@@ -18,35 +18,35 @@ export class DefaultErrorResponseEntity {
     /**
     * A human-readable explanation specific to this occurrence of the problem.
     */
-    'detail'?: string;
+    "detail"?: string;
     /**
     * Unique business error code.
     */
-    'errorCode'?: string;
+    "errorCode"?: string;
     /**
     * A URI that identifies the specific occurrence of the problem if applicable.
     */
-    'instance'?: string;
+    "instance"?: string;
     /**
     * Array of fields with validation errors when applicable.
     */
-    'invalidFields'?: Array<InvalidField>;
+    "invalidFields"?: Array<InvalidField>;
     /**
     * The unique reference for the request.
     */
-    'requestId'?: string;
+    "requestId"?: string;
     /**
     * The HTTP status code.
     */
-    'status'?: number;
+    "status"?: number;
     /**
     * A short, human-readable summary of the problem type.
     */
-    'title'?: string;
+    "title"?: string;
     /**
     * A URI that identifies the validation error type. It points to human-readable documentation for the problem type.
     */
-    'type'?: string;
+    "type"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
