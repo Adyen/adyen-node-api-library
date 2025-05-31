@@ -13,7 +13,6 @@ import Client from "../../client";
 import { 
     AuthenticationSessionRequest,
     AuthenticationSessionResponse,
-    DefaultErrorResponseEntity,
     ObjectSerializer
 } from "../../typings/sessionAuthentication/models";
 import { IRequest } from "../../typings/requestOptions";

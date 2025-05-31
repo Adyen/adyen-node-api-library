@@ -13,7 +13,6 @@ import Client from "../../client";
 import { 
     BalanceWebhookSettingInfo,
     BalanceWebhookSettingInfoUpdate,
-    DefaultErrorResponseEntity,
     WebhookSetting,
     WebhookSettings,
     ObjectSerializer
