@@ -40,12 +40,14 @@ export class ReviewingApi extends Service {
     public async confirmThirdParty(modifyRequest: ModifyRequest, requestOptions?: IRequest.Options): Promise<ModifyResponse> {
         const endpoint = `${this.baseUrl}/confirmThirdParty`;
         const resource = new Resource(this, endpoint);
+        
         const request: ModifyRequest = ObjectSerializer.serialize(modifyRequest, "ModifyRequest", "");
         const response = await getJsonResponse<ModifyRequest, ModifyResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "ModifyResponse", "");
     }
 
@@ -58,12 +60,14 @@ export class ReviewingApi extends Service {
     public async declineThirdParty(modifyRequest: ModifyRequest, requestOptions?: IRequest.Options): Promise<ModifyResponse> {
         const endpoint = `${this.baseUrl}/declineThirdParty`;
         const resource = new Resource(this, endpoint);
+        
         const request: ModifyRequest = ObjectSerializer.serialize(modifyRequest, "ModifyRequest", "");
         const response = await getJsonResponse<ModifyRequest, ModifyResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "ModifyResponse", "");
     }
 

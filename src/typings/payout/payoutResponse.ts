@@ -7,8 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './models';
-import { FraudResult } from './models';
+import { Amount } from './amount';
+import { FraudResult } from './fraudResult';
 
 
 export class PayoutResponse {

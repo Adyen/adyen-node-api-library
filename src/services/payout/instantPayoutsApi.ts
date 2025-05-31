@@ -40,12 +40,14 @@ export class InstantPayoutsApi extends Service {
     public async payout(payoutRequest: PayoutRequest, requestOptions?: IRequest.Options): Promise<PayoutResponse> {
         const endpoint = `${this.baseUrl}/payout`;
         const resource = new Resource(this, endpoint);
+        
         const request: PayoutRequest = ObjectSerializer.serialize(payoutRequest, "PayoutRequest", "");
         const response = await getJsonResponse<PayoutRequest, PayoutResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "PayoutResponse", "");
     }
 
