@@ -1,6 +1,6 @@
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import BinLookup from "../services/binLookup";
+import { BinLookupAPI } from "../services";
 import Client from "../client";
 import HttpClientException from "../httpClient/httpClientException";
 import { binlookup } from "../typings";
@@ -15,7 +15,7 @@ const threeDSAvailabilitySuccess = {
 };
 
 let client: Client;
-let binLookupService: BinLookup;
+let binLookupService: BinLookupAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -23,7 +23,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    binLookupService = new BinLookup(client);
+    binLookupService = new BinLookupAPI(client);
     scope = nock("https://pal-test.adyen.com/pal/servlet/BinLookup/v54");
 });
 

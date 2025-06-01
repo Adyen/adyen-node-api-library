@@ -1,11 +1,11 @@
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import PaymentsAppApi from "../services/paymentsApp";
+import { PaymentsAppAPI } from "../services";
 import Client from "../client";
 import { PaymentsAppResponse } from "../typings/paymentsApp/models";
 
 let client: Client;
-let paymentsAppApi: PaymentsAppApi;
+let paymentsAppService: PaymentsAppAPI ;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -13,7 +13,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    paymentsAppApi = new PaymentsAppApi(client);
+    paymentsAppService = new PaymentsAppAPI(client);
     scope = nock("https://management-test.adyen.com/v1");
 });
 
@@ -35,7 +35,7 @@ describe("PaymentsAppApi", (): void => {
             boardingRequestToken: "mockedRequestToken"
         };
 
-        const result = await paymentsAppApi.PaymentsAppApi.generatePaymentsAppBoardingTokenForMerchant("testMerchant", request);
+        const result = await paymentsAppService.PaymentsAppApi.generatePaymentsAppBoardingTokenForMerchant("testMerchant", request);
 
         expect(result).toBeTruthy();
         expect(result.boardingToken).toBe("mockedBoardingToken");
@@ -55,7 +55,7 @@ describe("PaymentsAppApi", (): void => {
             boardingRequestToken: "mockedRequestTokenStore"
         };
 
-        const result = await paymentsAppApi.PaymentsAppApi.generatePaymentsAppBoardingTokenForStore("testMerchant", "testStore", request);
+        const result = await paymentsAppService.PaymentsAppApi.generatePaymentsAppBoardingTokenForStore("testMerchant", "testStore", request);
 
         expect(result).toBeTruthy();
         expect(result.boardingToken).toBe("mockedBoardingTokenStore");
@@ -73,7 +73,7 @@ describe("PaymentsAppApi", (): void => {
         scope.get("/merchants/testMerchant/paymentsApps")
             .reply(200, mockResponse);
 
-        const result = await paymentsAppApi.PaymentsAppApi.listPaymentsAppForMerchant("testMerchant");
+        const result = await paymentsAppService.PaymentsAppApi.listPaymentsAppForMerchant("testMerchant");
 
         expect(result).toBeTruthy();
         expect(result.paymentsApps.length).toBe(2);
@@ -90,7 +90,7 @@ describe("PaymentsAppApi", (): void => {
         scope.get("/merchants/testMerchant/stores/testStore/paymentsApps")
             .reply(200, mockResponse);
 
-        const result = await paymentsAppApi.PaymentsAppApi.listPaymentsAppForStore("testMerchant", "testStore");
+        const result = await paymentsAppService.PaymentsAppApi.listPaymentsAppForStore("testMerchant", "testStore");
 
         expect(result).toBeTruthy();
         expect(result.paymentsApps.length).toBe(1);
@@ -102,7 +102,7 @@ describe("PaymentsAppApi", (): void => {
             .reply(200);
 
         await expect(
-            paymentsAppApi.PaymentsAppApi.revokePaymentsApp("testMerchant", "installation123")
+            paymentsAppService.PaymentsAppApi.revokePaymentsApp("testMerchant", "installation123")
         ).resolves.toBeUndefined();
     });
 });

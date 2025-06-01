@@ -38,7 +38,7 @@ const getResponse = async ({apiKey , environment }: { apiKey: string; environmen
     const ErrorException = errorType === "ApiException" ? ApiException : HttpClientException;
 
     try {
-        await binLookup.get3dsAvailability(threeDSAvailabilitySuccess);
+        await binLookup.BinLookupApi.get3dsAvailability(threeDSAvailabilitySuccess);
         fail("request should fail");
     } catch (e) {
         if(e instanceof ErrorException){
@@ -100,7 +100,7 @@ describe("HTTP Client", function (): void {
             .reply(200, threeDSAvailabilitySuccessResponse);
 
         const requestOptions = { headers: { foo : "bar" }};
-        const response = await binLookupService.get3dsAvailability(threeDSAvailabilityRequest, requestOptions);
+        const response = await binLookupService.BinLookupApi.get3dsAvailability(threeDSAvailabilityRequest, requestOptions);
         expect(response).toEqual< binlookup.ThreeDSAvailabilityResponse>(threeDSAvailabilitySuccessResponse);
 
         console.log("requestOptions", requestOptions);

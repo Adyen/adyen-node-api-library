@@ -1,12 +1,12 @@
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import PosMobileApi from "../services/posMobile";
+import { PosMobileAPI } from "../services";
 import Client from "../client";
 import { CreateSessionRequest, CreateSessionResponse } from "../typings/posMobile/models";
 
 describe("PosMobileApi", (): void => {
     let client: Client;
-    let posMobileApi: PosMobileApi;
+    let posMobileApi: PosMobileAPI;
     let scope: nock.Scope;
 
     beforeEach((): void => {
@@ -14,7 +14,7 @@ describe("PosMobileApi", (): void => {
             nock.activate();
         }
         client = createClient();
-        posMobileApi = new PosMobileApi(client);
+        posMobileApi = new PosMobileAPI(client);
         scope = nock("https://checkout-test.adyen.com/checkout/possdk/v68");
     });
 
