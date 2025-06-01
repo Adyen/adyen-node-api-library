@@ -20,7 +20,7 @@ import { ObjectSerializer } from "../typings/binLookup/models";
 
 /**
  * The service has been moved to a different package 'binLookup'
- * @deprecated Use services/binLookup/binLookup
+ * @deprecated Use services/binLookup/binLookupAPI
  */
 export class BinLookupAPI extends Service {
     
