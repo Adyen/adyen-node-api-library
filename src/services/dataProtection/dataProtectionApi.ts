@@ -7,33 +7,32 @@
  * Do not edit this class manually.
  */
 
-import Client from "../client";
-import getJsonResponse from "../helpers/getJsonResponse";
-import Service from "../service";
-import { SubjectErasureByPspReferenceRequest } from "../typings/dataProtection/models";
-import { SubjectErasureResponse } from "../typings/dataProtection/models";
-import { IRequest } from "../typings/requestOptions";
-import Resource from "./resource";
-import { ObjectSerializer } from "../typings/dataProtection/models";
+
+import getJsonResponse from "../../helpers/getJsonResponse";
+import Service from "../../service";
+import Client from "../../client";
+import { IRequest } from "../../typings/requestOptions";
+import Resource from "../resource";
+
+import { ObjectSerializer } from "../../typings/dataProtection/objectSerializer";
+import { ServiceError } from "../../typings/dataProtection/models";
+import { SubjectErasureByPspReferenceRequest } from "../../typings/dataProtection/models";
+import { SubjectErasureResponse } from "../../typings/dataProtection/models";
 
 /**
- * The service has been moved to a different package 'dataProtection'
- * @deprecated Use services/dataProtection/DataProtectionAPI
+ * API handler for DataProtectionApi
  */
-export class DataProtectionAPI extends Service {
-    
+export class DataProtectionApi extends Service {
+
     private readonly API_BASEPATH: string = "https://ca-test.adyen.com/ca/services/DataProtectionService/v1";
     private baseUrl: string;
 
-    public constructor(client: Client) {
+    public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
     }
 
     /**
-    /**
-    * @deprecated Use services/dataProtection/DataProtectionAPI
-    * 
     * @summary Submit a Subject Erasure Request.
     * @param subjectErasureByPspReferenceRequest {@link SubjectErasureByPspReferenceRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -42,14 +41,15 @@ export class DataProtectionAPI extends Service {
     public async requestSubjectErasure(subjectErasureByPspReferenceRequest: SubjectErasureByPspReferenceRequest, requestOptions?: IRequest.Options): Promise<SubjectErasureResponse> {
         const endpoint = `${this.baseUrl}/requestSubjectErasure`;
         const resource = new Resource(this, endpoint);
+        
         const request: SubjectErasureByPspReferenceRequest = ObjectSerializer.serialize(subjectErasureByPspReferenceRequest, "SubjectErasureByPspReferenceRequest", "");
         const response = await getJsonResponse<SubjectErasureByPspReferenceRequest, SubjectErasureResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "SubjectErasureResponse", "");
     }
-}
 
-export default DataProtectionAPI;
+}

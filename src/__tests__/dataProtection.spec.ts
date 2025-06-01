@@ -37,7 +37,7 @@ describe("DataProtection", (): void => {
         scope.post("/requestSubjectErasure")
         .reply(200, requestSubjectErasureSuccess);
 
-        const response: dataProtection.SubjectErasureResponse = await dataProtectionService.requestSubjectErasure(requestSubjectErasureRequest);
+        const response: dataProtection.SubjectErasureResponse = await dataProtectionService.DataProtectionApi.requestSubjectErasure(requestSubjectErasureRequest);
         expect(response.result).toEqual(dataProtection.SubjectErasureResponse.ResultEnum.Success);
     });
 
@@ -51,7 +51,7 @@ describe("DataProtection", (): void => {
                     "forceErasure": true,
                     "pspReference": "0123456789"
                 };
-            await dataProtectionService.requestSubjectErasure(requestSubjectErasureRequest);
+            await dataProtectionService.DataProtectionApi.requestSubjectErasure(requestSubjectErasureRequest);
         } catch (e) {
             expect(e instanceof HttpClientException).toBeTruthy();
         }
