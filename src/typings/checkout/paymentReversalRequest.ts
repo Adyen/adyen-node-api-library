@@ -11,15 +11,15 @@ import { ApplicationInfo } from "./applicationInfo";
 
 
 export class PaymentReversalRequest {
-    'applicationInfo'?: ApplicationInfo;
+    "applicationInfo"?: ApplicationInfo;
     /**
     * The merchant account that is used to process the payment.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * Your reference for the reversal request. Maximum length: 80 characters.
     */
-    'reference'?: string;
+    "reference"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

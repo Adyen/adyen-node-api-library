@@ -14,39 +14,39 @@ export class ForexQuote {
     /**
     * The account name.
     */
-    'account'?: string;
+    "account"?: string;
     /**
     * The account type.
     */
-    'accountType'?: string;
-    'baseAmount'?: Amount;
+    "accountType"?: string;
+    "baseAmount"?: Amount;
     /**
     * The base points.
     */
-    'basePoints': number;
-    'buy'?: Amount;
-    'interbank'?: Amount;
+    "basePoints": number;
+    "buy"?: Amount;
+    "interbank"?: Amount;
     /**
     * The reference assigned to the forex quote request.
     */
-    'reference'?: string;
-    'sell'?: Amount;
+    "reference"?: string;
+    "sell"?: Amount;
     /**
     * The signature to validate the integrity.
     */
-    'signature'?: string;
+    "signature"?: string;
     /**
     * The source of the forex quote.
     */
-    'source'?: string;
+    "source"?: string;
     /**
     * The type of forex.
     */
-    'type'?: string;
+    "type"?: string;
     /**
     * The date until which the forex quote is valid.
     */
-    'validTill': Date;
+    "validTill": Date;
 
     static readonly discriminator: string | undefined = undefined;
 

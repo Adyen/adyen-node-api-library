@@ -12,38 +12,38 @@ export class GooglePayDonations {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'fundingSource'?: GooglePayDonations.FundingSourceEnum;
+    "fundingSource"?: GooglePayDonations.FundingSourceEnum;
     /**
     * The selected payment card network. 
     */
-    'googlePayCardNetwork'?: string;
+    "googlePayCardNetwork"?: string;
     /**
     * The `token` that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) `PaymentData` response.
     */
-    'googlePayToken': string;
+    "googlePayToken": string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
     */
-    'threeDS2SdkVersion'?: string;
+    "threeDS2SdkVersion"?: string;
     /**
     * **googlepay**, **paywithgoogle**
     */
-    'type'?: GooglePayDonations.TypeEnum;
+    "type"?: GooglePayDonations.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

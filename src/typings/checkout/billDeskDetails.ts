@@ -12,15 +12,15 @@ export class BillDeskDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The issuer id of the shopper\'s selected bank.
     */
-    'issuer': string;
+    "issuer": string;
     /**
     * **billdesk**
     */
-    'type': BillDeskDetails.TypeEnum;
+    "type": BillDeskDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

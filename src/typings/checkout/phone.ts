@@ -12,11 +12,11 @@ export class Phone {
     /**
     * Country code. Length: 1–3 characters.
     */
-    'cc'?: string;
+    "cc"?: string;
     /**
     * Subscriber number. Maximum length: 15 characters.
     */
-    'subscriber'?: string;
+    "subscriber"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

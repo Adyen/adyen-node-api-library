@@ -12,31 +12,31 @@ export class CheckoutThreeDS2Action {
     /**
     * A token needed to authorise a payment.
     */
-    'authorisationToken'?: string;
+    "authorisationToken"?: string;
     /**
     * Encoded payment data.
     */
-    'paymentData'?: string;
+    "paymentData"?: string;
     /**
     * Specifies the payment method.
     */
-    'paymentMethodType'?: string;
+    "paymentMethodType"?: string;
     /**
     * A subtype of the token.
     */
-    'subtype'?: string;
+    "subtype"?: string;
     /**
     * A token to pass to the 3DS2 Component to get the fingerprint.
     */
-    'token'?: string;
+    "token"?: string;
     /**
     * **threeDS2**
     */
-    'type': CheckoutThreeDS2Action.TypeEnum;
+    "type": CheckoutThreeDS2Action.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    'url'?: string;
+    "url"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

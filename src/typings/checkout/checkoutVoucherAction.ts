@@ -14,78 +14,78 @@ export class CheckoutVoucherAction {
     /**
     * The voucher alternative reference code.
     */
-    'alternativeReference'?: string;
+    "alternativeReference"?: string;
     /**
     * A collection institution number (store number) for Econtext Pay-Easy ATM.
     */
-    'collectionInstitutionNumber'?: string;
+    "collectionInstitutionNumber"?: string;
     /**
     * The URL to download the voucher.
     */
-    'downloadUrl'?: string;
+    "downloadUrl"?: string;
     /**
     * An entity number of Multibanco.
     */
-    'entity'?: string;
+    "entity"?: string;
     /**
     * The date time of the voucher expiry.
     */
-    'expiresAt'?: string;
-    'initialAmount'?: Amount;
+    "expiresAt"?: string;
+    "initialAmount"?: Amount;
     /**
     * The URL to the detailed instructions to make payment using the voucher.
     */
-    'instructionsUrl'?: string;
+    "instructionsUrl"?: string;
     /**
     * The issuer of the voucher.
     */
-    'issuer'?: string;
+    "issuer"?: string;
     /**
     * The shopper telephone number (partially masked).
     */
-    'maskedTelephoneNumber'?: string;
+    "maskedTelephoneNumber"?: string;
     /**
     * The merchant name.
     */
-    'merchantName'?: string;
+    "merchantName"?: string;
     /**
     * The merchant reference.
     */
-    'merchantReference'?: string;
+    "merchantReference"?: string;
     /**
     * A Base64-encoded token containing all properties of the voucher. For iOS, you can use this to pass a voucher to Apple Wallet.
     */
-    'passCreationToken'?: string;
+    "passCreationToken"?: string;
     /**
     * Encoded payment data.
     */
-    'paymentData'?: string;
+    "paymentData"?: string;
     /**
     * Specifies the payment method.
     */
-    'paymentMethodType'?: string;
+    "paymentMethodType"?: string;
     /**
     * The voucher reference code.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The shopper email.
     */
-    'shopperEmail'?: string;
+    "shopperEmail"?: string;
     /**
     * The shopper name.
     */
-    'shopperName'?: string;
-    'surcharge'?: Amount;
-    'totalAmount'?: Amount;
+    "shopperName"?: string;
+    "surcharge"?: Amount;
+    "totalAmount"?: Amount;
     /**
     * **voucher**
     */
-    'type': CheckoutVoucherAction.TypeEnum;
+    "type": CheckoutVoucherAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    'url'?: string;
+    "url"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

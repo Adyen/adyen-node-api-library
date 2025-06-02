@@ -11,19 +11,19 @@ import { ApplicationInfo } from "./applicationInfo";
 
 
 export class StandalonePaymentCancelRequest {
-    'applicationInfo'?: ApplicationInfo;
+    "applicationInfo"?: ApplicationInfo;
     /**
     * The merchant account that is used to process the payment.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * The [`reference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment that you want to cancel.
     */
-    'paymentReference': string;
+    "paymentReference": string;
     /**
     * Your reference for the cancel request. Maximum length: 80 characters.
     */
-    'reference'?: string;
+    "reference"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

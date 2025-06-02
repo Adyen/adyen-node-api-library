@@ -11,24 +11,24 @@ import { Amount } from "./amount";
 
 
 export class CheckoutOrderResponse {
-    'amount'?: Amount;
+    "amount"?: Amount;
     /**
     * The expiry date for the order.
     */
-    'expiresAt'?: string;
+    "expiresAt"?: string;
     /**
     * The encrypted order data.
     */
-    'orderData'?: string;
+    "orderData"?: string;
     /**
     * The `pspReference` that belongs to the order.
     */
-    'pspReference': string;
+    "pspReference": string;
     /**
     * The merchant reference for the order.
     */
-    'reference'?: string;
-    'remainingAmount'?: Amount;
+    "reference"?: string;
+    "remainingAmount"?: Amount;
 
     static readonly discriminator: string | undefined = undefined;
 

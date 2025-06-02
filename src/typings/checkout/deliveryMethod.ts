@@ -11,23 +11,23 @@ import { Amount } from "./amount";
 
 
 export class DeliveryMethod {
-    'amount'?: Amount;
+    "amount"?: Amount;
     /**
     * The name of the delivery method as shown to the shopper.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The reference of the delivery method.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * If you display the PayPal lightbox with delivery methods, set to **true** for the delivery method that is selected. Only one delivery method can be selected at a time.
     */
-    'selected'?: boolean;
+    "selected"?: boolean;
     /**
     * The type of the delivery method.
     */
-    'type'?: DeliveryMethod.TypeEnum;
+    "type"?: DeliveryMethod.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

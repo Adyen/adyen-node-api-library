@@ -12,11 +12,11 @@ export class AndroidPayDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * **androidpay**
     */
-    'type'?: AndroidPayDetails.TypeEnum;
+    "type"?: AndroidPayDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

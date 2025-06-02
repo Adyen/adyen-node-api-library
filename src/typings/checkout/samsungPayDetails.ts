@@ -12,30 +12,30 @@ export class SamsungPayDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'fundingSource'?: SamsungPayDetails.FundingSourceEnum;
+    "fundingSource"?: SamsungPayDetails.FundingSourceEnum;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * The payload you received from the Samsung Pay SDK response.
     */
-    'samsungPayToken': string;
+    "samsungPayToken": string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * **samsungpay**
     */
-    'type'?: SamsungPayDetails.TypeEnum;
+    "type"?: SamsungPayDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

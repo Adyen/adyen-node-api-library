@@ -12,15 +12,15 @@ export class ExternalPlatform {
     /**
     * External platform integrator.
     */
-    'integrator'?: string;
+    "integrator"?: string;
     /**
     * Name of the field. For example, Name of External Platform.
     */
-    'name'?: string;
+    "name"?: string;
     /**
     * Version of the field. For example, Version of External Platform.
     */
-    'version'?: string;
+    "version"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

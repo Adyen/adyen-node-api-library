@@ -12,15 +12,15 @@ export class MolPayDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The shopper\'s bank. Specify this with the issuer value that corresponds to this bank.
     */
-    'issuer': string;
+    "issuer": string;
     /**
     * **molpay**
     */
-    'type': MolPayDetails.TypeEnum;
+    "type": MolPayDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

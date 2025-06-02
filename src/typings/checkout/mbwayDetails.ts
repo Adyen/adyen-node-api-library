@@ -12,19 +12,19 @@ export class MbwayDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * 
     */
-    'shopperEmail': string;
+    "shopperEmail": string;
     /**
     * 
     */
-    'telephoneNumber': string;
+    "telephoneNumber": string;
     /**
     * **mbway**
     */
-    'type'?: MbwayDetails.TypeEnum;
+    "type"?: MbwayDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

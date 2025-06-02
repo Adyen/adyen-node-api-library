@@ -14,52 +14,52 @@ export class CheckoutBankTransferAction {
     /**
     * The account number of the bank transfer.
     */
-    'accountNumber'?: string;
+    "accountNumber"?: string;
     /**
     * The name of the account holder.
     */
-    'beneficiary'?: string;
+    "beneficiary"?: string;
     /**
     * The BIC of the IBAN.
     */
-    'bic'?: string;
+    "bic"?: string;
     /**
     * The url to download payment details with.
     */
-    'downloadUrl'?: string;
+    "downloadUrl"?: string;
     /**
     * The IBAN of the bank transfer.
     */
-    'iban'?: string;
+    "iban"?: string;
     /**
     * Specifies the payment method.
     */
-    'paymentMethodType'?: string;
+    "paymentMethodType"?: string;
     /**
     * The transfer reference.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The routing number of the bank transfer.
     */
-    'routingNumber'?: string;
+    "routingNumber"?: string;
     /**
     * The e-mail of the shopper, included if an e-mail was sent to the shopper.
     */
-    'shopperEmail'?: string;
+    "shopperEmail"?: string;
     /**
     * The sort code of the bank transfer.
     */
-    'sortCode'?: string;
-    'totalAmount'?: Amount;
+    "sortCode"?: string;
+    "totalAmount"?: Amount;
     /**
     * The type of the action.
     */
-    'type': CheckoutBankTransferAction.TypeEnum;
+    "type": CheckoutBankTransferAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    'url'?: string;
+    "url"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

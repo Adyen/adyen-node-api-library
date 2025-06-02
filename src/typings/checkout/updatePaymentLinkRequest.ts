@@ -12,7 +12,7 @@ export class UpdatePaymentLinkRequest {
     /**
     * Status of the payment link. Possible values: * **expired**
     */
-    'status': UpdatePaymentLinkRequest.StatusEnum;
+    "status": UpdatePaymentLinkRequest.StatusEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -12,23 +12,23 @@ export class ResponseAdditionalData3DSecure {
     /**
     * Information provided by the issuer to the cardholder. If this field is present, you need to display this information to the cardholder. 
     */
-    'cardHolderInfo'?: string;
+    "cardHolderInfo"?: string;
     /**
     * The Cardholder Authentication Verification Value (CAVV) for the 3D Secure authentication session, as a Base64-encoded 20-byte array.
     */
-    'cavv'?: string;
+    "cavv"?: string;
     /**
     * The CAVV algorithm used.
     */
-    'cavvAlgorithm'?: string;
+    "cavvAlgorithm"?: string;
     /**
     * Shows the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that Adyen requested for the payment.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** 
     */
-    'scaExemptionRequested'?: string;
+    "scaExemptionRequested"?: string;
     /**
     * Indicates whether a card is enrolled for 3D Secure 2.
     */
-    'threeds2_cardEnrolled'?: boolean;
+    "threeds2_cardEnrolled"?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 

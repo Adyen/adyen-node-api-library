@@ -14,27 +14,27 @@ export class SubInputDetail {
     /**
     * Configuration parameters for the required input.
     */
-    'configuration'?: { [key: string]: string; };
+    "configuration"?: { [key: string]: string; };
     /**
     * In case of a select, the items to choose from.
     */
-    'items'?: Array<Item>;
+    "items"?: Array<Item>;
     /**
     * The value to provide in the result.
     */
-    'key'?: string;
+    "key"?: string;
     /**
     * True if this input is optional to provide.
     */
-    'optional'?: boolean;
+    "optional"?: boolean;
     /**
     * The type of the required input.
     */
-    'type'?: string;
+    "type"?: string;
     /**
     * The value can be pre-filled, if available.
     */
-    'value'?: string;
+    "value"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

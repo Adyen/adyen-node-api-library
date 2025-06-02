@@ -12,11 +12,11 @@ export class PaymentDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The payment method type.
     */
-    'type'?: PaymentDetails.TypeEnum;
+    "type"?: PaymentDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

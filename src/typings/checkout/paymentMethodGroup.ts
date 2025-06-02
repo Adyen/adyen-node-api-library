@@ -12,15 +12,15 @@ export class PaymentMethodGroup {
     /**
     * The name of the group.
     */
-    'name'?: string;
+    "name"?: string;
     /**
     * Echo data to be used if the payment method is displayed as part of this group.
     */
-    'paymentMethodData'?: string;
+    "paymentMethodData"?: string;
     /**
     * The unique code of the group.
     */
-    'type'?: string;
+    "type"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

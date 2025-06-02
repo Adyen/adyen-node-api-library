@@ -12,19 +12,19 @@ export class CheckoutAwaitAction {
     /**
     * Encoded payment data.
     */
-    'paymentData'?: string;
+    "paymentData"?: string;
     /**
     * Specifies the payment method.
     */
-    'paymentMethodType'?: string;
+    "paymentMethodType"?: string;
     /**
     * **await**
     */
-    'type': CheckoutAwaitAction.TypeEnum;
+    "type": CheckoutAwaitAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    'url'?: string;
+    "url"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

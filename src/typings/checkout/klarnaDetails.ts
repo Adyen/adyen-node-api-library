@@ -12,38 +12,38 @@ export class KlarnaDetails {
     /**
     * The address where to send the invoice.
     */
-    'billingAddress'?: string;
+    "billingAddress"?: string;
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The address where the goods should be delivered.
     */
-    'deliveryAddress'?: string;
+    "deliveryAddress"?: string;
     /**
     * Shopper name, date of birth, phone number, and email address.
     */
-    'personalDetails'?: string;
+    "personalDetails"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * The type of flow to initiate.
     */
-    'subtype'?: string;
+    "subtype"?: string;
     /**
     * **klarna**
     */
-    'type': KlarnaDetails.TypeEnum;
+    "type": KlarnaDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

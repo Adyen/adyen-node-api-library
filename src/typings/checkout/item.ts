@@ -12,11 +12,11 @@ export class Item {
     /**
     * The value to provide in the result.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The display name.
     */
-    'name'?: string;
+    "name"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

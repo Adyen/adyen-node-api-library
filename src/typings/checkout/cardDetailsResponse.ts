@@ -14,19 +14,19 @@ export class CardDetailsResponse {
     /**
     * The list of brands identified for the card.
     */
-    'brands'?: Array<CardBrandDetails>;
+    "brands"?: Array<CardBrandDetails>;
     /**
     * The funding source of the card, for example **DEBIT**, **CREDIT**, or **PREPAID**.
     */
-    'fundingSource'?: string;
+    "fundingSource"?: string;
     /**
     * Indicates if this is a commercial card or a consumer card. If **true**, it is a commercial card. If **false**, it is a consumer card.
     */
-    'isCardCommercial'?: boolean;
+    "isCardCommercial"?: boolean;
     /**
     * The two-letter country code  of the country where the card was issued.
     */
-    'issuingCountryCode'?: string;
+    "issuingCountryCode"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

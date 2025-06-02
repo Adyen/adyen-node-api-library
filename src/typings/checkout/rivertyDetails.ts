@@ -12,42 +12,42 @@ export class RivertyDetails {
     /**
     * The address where to send the invoice.
     */
-    'billingAddress'?: string;
+    "billingAddress"?: string;
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The address where the goods should be delivered.
     */
-    'deliveryAddress'?: string;
+    "deliveryAddress"?: string;
     /**
     * A string containing the shopper\'s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).
     */
-    'deviceFingerprint'?: string;
+    "deviceFingerprint"?: string;
     /**
     * The iban number of the customer 
     */
-    'iban'?: string;
+    "iban"?: string;
     /**
     * Shopper name, date of birth, phone number, and email address.
     */
-    'personalDetails'?: string;
+    "personalDetails"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * **riverty**
     */
-    'type': RivertyDetails.TypeEnum;
+    "type": RivertyDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -12,23 +12,23 @@ export class CheckoutRedirectAction {
     /**
     * When the redirect URL must be accessed via POST, use this data to post to the redirect URL.
     */
-    'data'?: { [key: string]: string; };
+    "data"?: { [key: string]: string; };
     /**
     * Specifies the HTTP method, for example GET or POST.
     */
-    'method'?: string;
+    "method"?: string;
     /**
     * Specifies the payment method.
     */
-    'paymentMethodType'?: string;
+    "paymentMethodType"?: string;
     /**
     * **redirect**
     */
-    'type': CheckoutRedirectAction.TypeEnum;
+    "type": CheckoutRedirectAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    'url'?: string;
+    "url"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

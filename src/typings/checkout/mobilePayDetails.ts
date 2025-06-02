@@ -12,11 +12,11 @@ export class MobilePayDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * **mobilepay**
     */
-    'type'?: MobilePayDetails.TypeEnum;
+    "type"?: MobilePayDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

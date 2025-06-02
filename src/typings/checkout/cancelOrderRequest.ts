@@ -14,8 +14,8 @@ export class CancelOrderRequest {
     /**
     * The merchant account identifier that orderData belongs to.
     */
-    'merchantAccount': string;
-    'order': EncryptedOrderData;
+    "merchantAccount": string;
+    "order": EncryptedOrderData;
 
     static readonly discriminator: string | undefined = undefined;
 

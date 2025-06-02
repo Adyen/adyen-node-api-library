@@ -12,19 +12,19 @@ export class SDKEphemPubKey {
     /**
     * The `crv` value as received from the 3D Secure 2 SDK.
     */
-    'crv'?: string;
+    "crv"?: string;
     /**
     * The `kty` value as received from the 3D Secure 2 SDK.
     */
-    'kty'?: string;
+    "kty"?: string;
     /**
     * The `x` value as received from the 3D Secure 2 SDK.
     */
-    'x'?: string;
+    "x"?: string;
     /**
     * The `y` value as received from the 3D Secure 2 SDK.
     */
-    'y'?: string;
+    "y"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -12,27 +12,27 @@ export class CheckoutQrCodeAction {
     /**
     * Expiry time of the QR code.
     */
-    'expiresAt'?: string;
+    "expiresAt"?: string;
     /**
     * Encoded payment data.
     */
-    'paymentData'?: string;
+    "paymentData"?: string;
     /**
     * Specifies the payment method.
     */
-    'paymentMethodType'?: string;
+    "paymentMethodType"?: string;
     /**
     * The contents of the QR code as a UTF8 string.
     */
-    'qrCodeData'?: string;
+    "qrCodeData"?: string;
     /**
     * **qrCode**
     */
-    'type': CheckoutQrCodeAction.TypeEnum;
+    "type": CheckoutQrCodeAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    'url'?: string;
+    "url"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

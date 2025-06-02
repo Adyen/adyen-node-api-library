@@ -12,30 +12,30 @@ export class ApplePayDetails {
     /**
     * The stringified and base64 encoded `paymentData` you retrieved from the Apple framework.
     */
-    'applePayToken': string;
+    "applePayToken": string;
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'fundingSource'?: ApplePayDetails.FundingSourceEnum;
+    "fundingSource"?: ApplePayDetails.FundingSourceEnum;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * **applepay**
     */
-    'type'?: ApplePayDetails.TypeEnum;
+    "type"?: ApplePayDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -12,15 +12,15 @@ export class MerchantDevice {
     /**
     * Operating system running on the merchant device.
     */
-    'os'?: string;
+    "os"?: string;
     /**
     * Version of the operating system on the merchant device.
     */
-    'osVersion'?: string;
+    "osVersion"?: string;
     /**
     * Merchant device reference.
     */
-    'reference'?: string;
+    "reference"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

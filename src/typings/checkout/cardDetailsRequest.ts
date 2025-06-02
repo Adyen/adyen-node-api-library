@@ -12,23 +12,23 @@ export class CardDetailsRequest {
     /**
     * A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the `encryptedCardNumber` field.
     */
-    'cardNumber': string;
+    "cardNumber": string;
     /**
     * The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
     */
-    'countryCode'?: string;
+    "countryCode"?: string;
     /**
     * The encrypted card number.
     */
-    'encryptedCardNumber'?: string;
+    "encryptedCardNumber"?: string;
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * The card brands you support. This is the [`brands`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods__resParam_paymentMethods-brands) array from your [`/paymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code.
     */
-    'supportedBrands'?: Array<string>;
+    "supportedBrands"?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 

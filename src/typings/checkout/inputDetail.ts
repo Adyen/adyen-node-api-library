@@ -15,41 +15,41 @@ export class InputDetail {
     /**
     * Configuration parameters for the required input.
     */
-    'configuration'?: { [key: string]: string; };
+    "configuration"?: { [key: string]: string; };
     /**
     * Input details can also be provided recursively.
     */
-    'details'?: Array<SubInputDetail>;
+    "details"?: Array<SubInputDetail>;
     /**
     * Input details can also be provided recursively (deprecated).
     *
 	* @deprecated 
     */
-    'inputDetails'?: Array<SubInputDetail>;
+    "inputDetails"?: Array<SubInputDetail>;
     /**
     * In case of a select, the URL from which to query the items.
     */
-    'itemSearchUrl'?: string;
+    "itemSearchUrl"?: string;
     /**
     * In case of a select, the items to choose from.
     */
-    'items'?: Array<Item>;
+    "items"?: Array<Item>;
     /**
     * The value to provide in the result.
     */
-    'key'?: string;
+    "key"?: string;
     /**
     * True if this input value is optional.
     */
-    'optional'?: boolean;
+    "optional"?: boolean;
     /**
     * The type of the required input.
     */
-    'type'?: string;
+    "type"?: string;
     /**
     * The value can be pre-filled, if available.
     */
-    'value'?: string;
+    "value"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

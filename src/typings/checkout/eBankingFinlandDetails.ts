@@ -12,15 +12,15 @@ export class EBankingFinlandDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The Ebanking Finland issuer value of the shopper\'s selected bank.
     */
-    'issuer'?: string;
+    "issuer"?: string;
     /**
     * **ebanking_FI**
     */
-    'type': EBankingFinlandDetails.TypeEnum;
+    "type": EBankingFinlandDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

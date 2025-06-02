@@ -14,12 +14,12 @@ import { ShopperInteractionDevice } from "./shopperInteractionDevice";
 
 
 export class ApplicationInfo {
-    'adyenLibrary'?: CommonField;
-    'adyenPaymentSource'?: CommonField;
-    'externalPlatform'?: ExternalPlatform;
-    'merchantApplication'?: CommonField;
-    'merchantDevice'?: MerchantDevice;
-    'shopperInteractionDevice'?: ShopperInteractionDevice;
+    "adyenLibrary"?: CommonField;
+    "adyenPaymentSource"?: CommonField;
+    "externalPlatform"?: ExternalPlatform;
+    "merchantApplication"?: CommonField;
+    "merchantDevice"?: MerchantDevice;
+    "shopperInteractionDevice"?: ShopperInteractionDevice;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -28,217 +28,217 @@ import { ThreeDSecureData } from "./threeDSecureData";
 
 
 export class CreateCheckoutSessionResponse {
-    'accountInfo'?: AccountInfo;
-    'additionalAmount'?: Amount;
+    "accountInfo"?: AccountInfo;
+    "additionalAmount"?: Amount;
     /**
     * This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
-    'additionalData'?: { [key: string]: string; };
+    "additionalData"?: { [key: string]: string; };
     /**
     * List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"applepay\"]`
     */
-    'allowedPaymentMethods'?: Array<string>;
-    'amount': Amount;
-    'applicationInfo'?: ApplicationInfo;
-    'authenticationData'?: AuthenticationData;
-    'billingAddress'?: BillingAddress;
+    "allowedPaymentMethods"?: Array<string>;
+    "amount": Amount;
+    "applicationInfo"?: ApplicationInfo;
+    "authenticationData"?: AuthenticationData;
+    "billingAddress"?: BillingAddress;
     /**
     * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`
     */
-    'blockedPaymentMethods'?: Array<string>;
+    "blockedPaymentMethods"?: Array<string>;
     /**
     * The delay between the authorisation and scheduled auto-capture, specified in hours.
     */
-    'captureDelayHours'?: number;
+    "captureDelayHours"?: number;
     /**
     * The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.  Possible values: * **iOS** * **Android** * **Web**
     */
-    'channel'?: CreateCheckoutSessionResponse.ChannelEnum;
-    'company'?: Company;
+    "channel"?: CreateCheckoutSessionResponse.ChannelEnum;
+    "company"?: Company;
     /**
     * The shopper\'s two-letter country code.
     */
-    'countryCode'?: string;
+    "countryCode"?: string;
     /**
     * The shopper\'s date of birth in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
     */
-    'dateOfBirth'?: Date;
+    "dateOfBirth"?: Date;
     /**
     * The date and time when the purchased goods should be delivered.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
     */
-    'deliverAt'?: Date;
-    'deliveryAddress'?: DeliveryAddress;
+    "deliverAt"?: Date;
+    "deliveryAddress"?: DeliveryAddress;
     /**
     * When true and `shopperReference` is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition).
     */
-    'enableOneClick'?: boolean;
+    "enableOneClick"?: boolean;
     /**
     * When true and `shopperReference` is provided, the payment details will be tokenized for payouts.
     */
-    'enablePayOut'?: boolean;
+    "enablePayOut"?: boolean;
     /**
     * When true and `shopperReference` is provided, the payment details will be stored for [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types) where the shopper is not present, such as subscription or automatic top-up payments.
     */
-    'enableRecurring'?: boolean;
+    "enableRecurring"?: boolean;
     /**
     * The date the session expires in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. When not specified, the expiry date is set to 1 hour after session creation. You cannot set the session expiry to more than 24 hours after session creation.
     */
-    'expiresAt': Date;
-    'fundOrigin'?: FundOrigin;
-    'fundRecipient'?: FundRecipient;
+    "expiresAt": Date;
+    "fundOrigin"?: FundOrigin;
+    "fundRecipient"?: FundRecipient;
     /**
     * A unique identifier of the session.
     */
-    'id': string;
+    "id": string;
     /**
     * A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options.
     */
-    'installmentOptions'?: { [key: string]: CheckoutSessionInstallmentOption; };
+    "installmentOptions"?: { [key: string]: CheckoutSessionInstallmentOption; };
     /**
     * Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, Riverty, and Zip.
     */
-    'lineItems'?: Array<LineItem>;
-    'mandate'?: Mandate;
+    "lineItems"?: Array<LineItem>;
+    "mandate"?: Mandate;
     /**
     * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
     */
-    'mcc'?: string;
+    "mcc"?: string;
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. > We strongly recommend you send the `merchantOrderReference` value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide `retry.orderAttemptNumber`, `retry.chainAttemptNumber`, and `retry.skipRetry` values in `PaymentRequest.additionalData`.
     */
-    'merchantOrderReference'?: string;
+    "merchantOrderReference"?: string;
     /**
     * Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. * Maximum 20 characters per key. * Maximum 80 characters per value. 
     */
-    'metadata'?: { [key: string]: string; };
+    "metadata"?: { [key: string]: string; };
     /**
     * Indicates the type of front end integration. Possible values: * **embedded** (default): Drop-in or Components integration * **hosted**: Hosted Checkout integration
     */
-    'mode'?: CreateCheckoutSessionResponse.ModeEnum;
-    'mpiData'?: ThreeDSecureData;
-    'platformChargebackLogic'?: PlatformChargebackLogic;
+    "mode"?: CreateCheckoutSessionResponse.ModeEnum;
+    "mpiData"?: ThreeDSecureData;
+    "platformChargebackLogic"?: PlatformChargebackLogic;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
     */
-    'recurringExpiry'?: string;
+    "recurringExpiry"?: string;
     /**
     * Minimum number of days between authorisations. Only for 3D Secure 2.
     */
-    'recurringFrequency'?: string;
+    "recurringFrequency"?: string;
     /**
     * Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
-    'recurringProcessingModel'?: CreateCheckoutSessionResponse.RecurringProcessingModelEnum;
+    "recurringProcessingModel"?: CreateCheckoutSessionResponse.RecurringProcessingModelEnum;
     /**
     * Specifies the redirect method (GET or POST) when redirecting back from the issuer.
     */
-    'redirectFromIssuerMethod'?: string;
+    "redirectFromIssuerMethod"?: string;
     /**
     * Specifies the redirect method (GET or POST) when redirecting to the issuer.
     */
-    'redirectToIssuerMethod'?: string;
+    "redirectToIssuerMethod"?: string;
     /**
     * The reference to uniquely identify a payment.
     */
-    'reference': string;
+    "reference": string;
     /**
     * The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value. > The URL must not include personally identifiable information (PII), for example name or email address.
     */
-    'returnUrl': string;
-    'riskData'?: RiskData;
+    "returnUrl": string;
+    "riskData"?: RiskData;
     /**
     * The payment session data you need to pass to your front end.
     */
-    'sessionData'?: string;
+    "sessionData"?: string;
     /**
     * The shopper\'s email address.
     */
-    'shopperEmail'?: string;
+    "shopperEmail"?: string;
     /**
     * The shopper\'s IP address. In general, we recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). > For 3D Secure 2 transactions, schemes require `shopperIP` for all browser-based implementations. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).
     */
-    'shopperIP'?: string;
+    "shopperIP"?: string;
     /**
     * Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
     */
-    'shopperInteraction'?: CreateCheckoutSessionResponse.ShopperInteractionEnum;
+    "shopperInteraction"?: CreateCheckoutSessionResponse.ShopperInteractionEnum;
     /**
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
-    'shopperLocale'?: string;
-    'shopperName'?: Name;
+    "shopperLocale"?: string;
+    "shopperName"?: Name;
     /**
     * Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
-    'shopperReference'?: string;
+    "shopperReference"?: string;
     /**
     * The text to be shown on the shopper\'s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , \' _ - ? + * /_**.
     */
-    'shopperStatement'?: string;
+    "shopperStatement"?: string;
     /**
     * Set to true to show the payment amount per installment.
     */
-    'showInstallmentAmount'?: boolean;
+    "showInstallmentAmount"?: boolean;
     /**
     * Set to **true** to show a button that lets the shopper remove a stored payment method.
     */
-    'showRemovePaymentMethodButton'?: boolean;
+    "showRemovePaymentMethodButton"?: boolean;
     /**
     * The shopper\'s social security number.
     */
-    'socialSecurityNumber'?: string;
+    "socialSecurityNumber"?: string;
     /**
     * Boolean value indicating whether the card payment method should be split into separate debit and credit options.
     */
-    'splitCardFundingSources'?: boolean;
+    "splitCardFundingSources"?: boolean;
     /**
     * An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
     */
-    'splits'?: Array<Split>;
+    "splits"?: Array<Split>;
     /**
     * Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.
     */
-    'store'?: string;
+    "store"?: string;
     /**
     * Specifies how payment methods should be filtered based on the \'store\' parameter:   - \'exclusive\': Only payment methods belonging to the specified \'store\' are returned.   - \'inclusive\': Payment methods from the \'store\' and those not associated with any other store are returned.
     */
-    'storeFiltrationMode'?: CreateCheckoutSessionResponse.StoreFiltrationModeEnum;
+    "storeFiltrationMode"?: CreateCheckoutSessionResponse.StoreFiltrationModeEnum;
     /**
     * When true and `shopperReference` is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types).
     */
-    'storePaymentMethod'?: boolean;
+    "storePaymentMethod"?: boolean;
     /**
     * Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the `shopperReference` is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent.
     */
-    'storePaymentMethodMode'?: CreateCheckoutSessionResponse.StorePaymentMethodModeEnum;
+    "storePaymentMethodMode"?: CreateCheckoutSessionResponse.StorePaymentMethodModeEnum;
     /**
     * The shopper\'s telephone number.
     */
-    'telephoneNumber'?: string;
+    "telephoneNumber"?: string;
     /**
     * Sets a custom theme for [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/?platform=Web&integration=Hosted+Checkout). The value can be any of the **Theme ID** values from your Customer Area.
     */
-    'themeId'?: string;
-    'threeDS2RequestData'?: CheckoutSessionThreeDS2RequestData;
+    "themeId"?: string;
+    "threeDS2RequestData"?: CheckoutSessionThreeDS2RequestData;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     *
 	* @deprecated since Adyen Checkout API v69
 	* Use `authenticationData.authenticationOnly` instead.
     */
-    'threeDSAuthenticationOnly'?: boolean;
+    "threeDSAuthenticationOnly"?: boolean;
     /**
     * Set to true if the payment should be routed to a trusted MID.
     */
-    'trustedShopper'?: boolean;
+    "trustedShopper"?: boolean;
     /**
     * The URL for the Hosted Checkout page. Redirect the shopper to this URL so they can make the payment.
     */
-    'url'?: string;
+    "url"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -11,19 +11,19 @@ import { Amount } from "./amount";
 
 
 export class CreateOrderRequest {
-    'amount': Amount;
+    "amount": Amount;
     /**
     * The date when the order should expire. If not provided, the default expiry duration is 1 day.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
     */
-    'expiresAt'?: string;
+    "expiresAt"?: string;
     /**
     * The merchant account identifier, with which you want to process the order.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * A custom reference identifying the order.
     */
-    'reference': string;
+    "reference": string;
 
     static readonly discriminator: string | undefined = undefined;
 

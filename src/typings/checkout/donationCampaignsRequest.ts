@@ -12,15 +12,15 @@ export class DonationCampaignsRequest {
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).
     */
-    'currency': string;
+    "currency": string;
     /**
     * Locale on the shopper interaction device.
     */
-    'locale'?: string;
+    "locale"?: string;
     /**
     * Your merchant account identifier.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
 
     static readonly discriminator: string | undefined = undefined;
 

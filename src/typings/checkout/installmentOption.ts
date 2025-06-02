@@ -12,19 +12,19 @@ export class InstallmentOption {
     /**
     * The maximum number of installments offered for this payment method.
     */
-    'maxValue'?: number;
+    "maxValue"?: number;
     /**
     * Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**
     */
-    'plans'?: InstallmentOption.PlansEnum;
+    "plans"?: InstallmentOption.PlansEnum;
     /**
     * Preselected number of installments offered for this payment method.
     */
-    'preselectedValue'?: number;
+    "preselectedValue"?: number;
     /**
     * An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with `maxValue`.
     */
-    'values'?: Array<number>;
+    "values"?: Array<number>;
 
     static readonly discriminator: string | undefined = undefined;
 

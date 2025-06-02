@@ -12,27 +12,27 @@ export class PseDetails {
     /**
     * The shopper\'s bank.
     */
-    'bank': string;
+    "bank": string;
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The client type.
     */
-    'clientType': string;
+    "clientType": string;
     /**
     * The identification code.
     */
-    'identification': string;
+    "identification": string;
     /**
     * The identification type.
     */
-    'identificationType': string;
+    "identificationType": string;
     /**
     * The payment method type.
     */
-    'type'?: PseDetails.TypeEnum;
+    "type"?: PseDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

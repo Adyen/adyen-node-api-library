@@ -14,59 +14,59 @@ export class MerchantRiskIndicator {
     /**
     * Whether the chosen delivery address is identical to the billing address.
     */
-    'addressMatch'?: boolean;
+    "addressMatch"?: boolean;
     /**
     * Indicator regarding the delivery address. Allowed values: * `shipToBillingAddress` * `shipToVerifiedAddress` * `shipToNewAddress` * `shipToStore` * `digitalGoods` * `goodsNotShipped` * `other`
     */
-    'deliveryAddressIndicator'?: MerchantRiskIndicator.DeliveryAddressIndicatorEnum;
+    "deliveryAddressIndicator"?: MerchantRiskIndicator.DeliveryAddressIndicatorEnum;
     /**
     * The delivery email address (for digital goods).
     *
 	* @deprecated since Adyen Checkout API v68
 	* Use `deliveryEmailAddress` instead.
     */
-    'deliveryEmail'?: string;
+    "deliveryEmail"?: string;
     /**
     * For Electronic delivery, the email address to which the merchandise was delivered. Maximum length: 254 characters.
     */
-    'deliveryEmailAddress'?: string;
+    "deliveryEmailAddress"?: string;
     /**
     * The estimated delivery time for the shopper to receive the goods. Allowed values: * `electronicDelivery` * `sameDayShipping` * `overnightShipping` * `twoOrMoreDaysShipping`
     */
-    'deliveryTimeframe'?: MerchantRiskIndicator.DeliveryTimeframeEnum;
-    'giftCardAmount'?: Amount;
+    "deliveryTimeframe"?: MerchantRiskIndicator.DeliveryTimeframeEnum;
+    "giftCardAmount"?: Amount;
     /**
     * For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.
     */
-    'giftCardCount'?: number;
+    "giftCardCount"?: number;
     /**
     * For prepaid or gift card purchase, [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) three-digit currency code of the gift card, other than those listed in Table A.5 of the EMVCo 3D Secure Protocol and Core Functions Specification.
     */
-    'giftCardCurr'?: string;
+    "giftCardCurr"?: string;
     /**
     * For pre-order purchases, the expected date this product will be available to the shopper.
     */
-    'preOrderDate'?: Date;
+    "preOrderDate"?: Date;
     /**
     * Indicator for whether this transaction is for pre-ordering a product.
     */
-    'preOrderPurchase'?: boolean;
+    "preOrderPurchase"?: boolean;
     /**
     * Indicates whether Cardholder is placing an order for merchandise with a future availability or release date.
     */
-    'preOrderPurchaseInd'?: string;
+    "preOrderPurchaseInd"?: string;
     /**
     * Indicator for whether the shopper has already purchased the same items in the past.
     */
-    'reorderItems'?: boolean;
+    "reorderItems"?: boolean;
     /**
     * Indicates whether the cardholder is reordering previously purchased merchandise.
     */
-    'reorderItemsInd'?: string;
+    "reorderItemsInd"?: string;
     /**
     * Indicates shipping method chosen for the transaction.
     */
-    'shipIndicator'?: string;
+    "shipIndicator"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

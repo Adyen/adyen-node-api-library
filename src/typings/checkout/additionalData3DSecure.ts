@@ -15,30 +15,30 @@ export class AdditionalData3DSecure {
 	* @deprecated since Adyen Checkout API v69
 	* Use `authenticationData.threeDSRequestData.nativeThreeDS` instead.
     */
-    'allow3DS2'?: string;
+    "allow3DS2"?: string;
     /**
     * Dimensions of the 3DS2 challenge window to be displayed to the cardholder.  Possible values:  * **01** - size of 250x400  * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen
     */
-    'challengeWindowSize'?: AdditionalData3DSecure.ChallengeWindowSizeEnum;
+    "challengeWindowSize"?: AdditionalData3DSecure.ChallengeWindowSizeEnum;
     /**
     * Indicates if you want to perform 3D Secure authentication on a transaction.   > Alternatively, you can use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) to configure rules for applying 3D Secure.  Possible values: * **true** – Perform 3D Secure authentication. * **false** – Don\'t perform 3D Secure authentication. Note that this setting results in refusals if the issuer mandates 3D Secure because of the PSD2 directive  or other, national regulations.  
     *
 	* @deprecated since Adyen Checkout API v69
 	* Use [`authenticationData.attemptAuthentication`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments?target=_blank#request-authenticationData-attemptAuthentication) instead
     */
-    'executeThreeD'?: string;
+    "executeThreeD"?: string;
     /**
     * In case of Secure+, this field must be set to **CUPSecurePlus**.
     */
-    'mpiImplementationType'?: string;
+    "mpiImplementationType"?: string;
     /**
     * Indicates the [exemption type](https://docs.adyen.com/payments-fundamentals/psd2-sca-compliance-and-implementation-guide#specifypreferenceinyourapirequest) that you want to request for the transaction.   Possible values: * **lowValue**  * **secureCorporate**  * **trustedBeneficiary**  * **transactionRiskAnalysis** 
     */
-    'scaExemption'?: string;
+    "scaExemption"?: string;
     /**
     * Indicates your preference for the 3D Secure version.  > If you use this parameter, you override the checks from Adyen\'s Authentication Engine. We recommend to use this field only if you have an extensive knowledge of 3D Secure.  Possible values: * **2.1.0**: Apply 3D Secure version 2.1.0.  * **2.2.0**: Apply 3D Secure version 2.2.0. If the issuer does not support version 2.2.0, we will fall back to 2.1.0.  The following rules apply: * If you prefer 2.1.0 or 2.2.0 but we receive a negative `transStatus` in the `ARes`, we will apply the fallback policy configured in your account. * If you the BIN is not enrolled, you will receive an error.  
     */
-    'threeDSVersion'?: string;
+    "threeDSVersion"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

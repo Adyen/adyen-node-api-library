@@ -12,11 +12,11 @@ export class WeChatPayDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * **wechatpay**
     */
-    'type'?: WeChatPayDetails.TypeEnum;
+    "type"?: WeChatPayDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

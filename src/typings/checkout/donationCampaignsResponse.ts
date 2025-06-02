@@ -14,7 +14,7 @@ export class DonationCampaignsResponse {
     /**
     * List of active donation campaigns for your merchant account.
     */
-    'donationCampaigns'?: Array<DonationCampaign>;
+    "donationCampaigns"?: Array<DonationCampaign>;
 
     static readonly discriminator: string | undefined = undefined;
 

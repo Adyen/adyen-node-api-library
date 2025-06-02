@@ -9,16 +9,16 @@
 
 
 export class WeChatPayMiniProgramDetails {
-    'appId'?: string;
+    "appId"?: string;
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
-    'openid'?: string;
+    "checkoutAttemptId"?: string;
+    "openid"?: string;
     /**
     * **wechatpayMiniProgram**
     */
-    'type'?: WeChatPayMiniProgramDetails.TypeEnum;
+    "type"?: WeChatPayMiniProgramDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -12,26 +12,26 @@ export class GenericIssuerPaymentMethodDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The issuer id of the shopper\'s selected bank.
     */
-    'issuer': string;
+    "issuer": string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * **genericissuer**
     */
-    'type': GenericIssuerPaymentMethodDetails.TypeEnum;
+    "type": GenericIssuerPaymentMethodDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -12,23 +12,23 @@ export class CheckoutSDKAction {
     /**
     * Encoded payment data.
     */
-    'paymentData'?: string;
+    "paymentData"?: string;
     /**
     * Specifies the payment method.
     */
-    'paymentMethodType'?: string;
+    "paymentMethodType"?: string;
     /**
     * The data to pass to the SDK.
     */
-    'sdkData'?: { [key: string]: string; };
+    "sdkData"?: { [key: string]: string; };
     /**
     * The type of the action.
     */
-    'type': CheckoutSDKAction.TypeEnum;
+    "type": CheckoutSDKAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    'url'?: string;
+    "url"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

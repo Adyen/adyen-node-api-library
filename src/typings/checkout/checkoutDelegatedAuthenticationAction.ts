@@ -12,27 +12,27 @@ export class CheckoutDelegatedAuthenticationAction {
     /**
     * A token needed to authorise a payment.
     */
-    'authorisationToken'?: string;
+    "authorisationToken"?: string;
     /**
     * Encoded payment data.
     */
-    'paymentData'?: string;
+    "paymentData"?: string;
     /**
     * Specifies the payment method.
     */
-    'paymentMethodType'?: string;
+    "paymentMethodType"?: string;
     /**
     * A token to pass to the delegatedAuthentication component.
     */
-    'token'?: string;
+    "token"?: string;
     /**
     * **delegatedAuthentication**
     */
-    'type': CheckoutDelegatedAuthenticationAction.TypeEnum;
+    "type": CheckoutDelegatedAuthenticationAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    'url'?: string;
+    "url"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -12,27 +12,27 @@ export class Company {
     /**
     * The company website\'s home page.
     */
-    'homepage'?: string;
+    "homepage"?: string;
     /**
     * The company name.
     */
-    'name'?: string;
+    "name"?: string;
     /**
     * Registration number of the company.
     */
-    'registrationNumber'?: string;
+    "registrationNumber"?: string;
     /**
     * Registry location of the company.
     */
-    'registryLocation'?: string;
+    "registryLocation"?: string;
     /**
     * Tax ID of the company.
     */
-    'taxId'?: string;
+    "taxId"?: string;
     /**
     * The company type.
     */
-    'type'?: string;
+    "type"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

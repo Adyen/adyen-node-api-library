@@ -15,11 +15,11 @@ export class PaymentMethodsResponse {
     /**
     * Detailed list of payment methods required to generate payment forms.
     */
-    'paymentMethods'?: Array<PaymentMethod>;
+    "paymentMethods"?: Array<PaymentMethod>;
     /**
     * List of all stored payment methods.
     */
-    'storedPaymentMethods'?: Array<StoredPaymentMethod>;
+    "storedPaymentMethods"?: Array<StoredPaymentMethod>;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -14,15 +14,15 @@ export class ListStoredPaymentMethodsResponse {
     /**
     * Your merchant account.
     */
-    'merchantAccount'?: string;
+    "merchantAccount"?: string;
     /**
     * Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
-    'shopperReference'?: string;
+    "shopperReference"?: string;
     /**
     * List of all stored payment methods.
     */
-    'storedPaymentMethods'?: Array<StoredPaymentMethodResource>;
+    "storedPaymentMethods"?: Array<StoredPaymentMethodResource>;
 
     static readonly discriminator: string | undefined = undefined;
 

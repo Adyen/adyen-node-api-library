@@ -11,13 +11,13 @@ import { Phone } from "./phone";
 
 
 export class CheckoutSessionThreeDS2RequestData {
-    'homePhone'?: Phone;
-    'mobilePhone'?: Phone;
+    "homePhone"?: Phone;
+    "mobilePhone"?: Phone;
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
-    'threeDSRequestorChallengeInd'?: CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
-    'workPhone'?: Phone;
+    "threeDSRequestorChallengeInd"?: CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
+    "workPhone"?: Phone;
 
     static readonly discriminator: string | undefined = undefined;
 

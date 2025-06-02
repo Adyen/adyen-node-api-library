@@ -12,23 +12,23 @@ export class DokuDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The shopper\'s first name.
     */
-    'firstName': string;
+    "firstName": string;
     /**
     * The shopper\'s last name.
     */
-    'lastName': string;
+    "lastName": string;
     /**
     * The shopper\'s email.
     */
-    'shopperEmail': string;
+    "shopperEmail": string;
     /**
     * **doku**
     */
-    'type': DokuDetails.TypeEnum;
+    "type": DokuDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

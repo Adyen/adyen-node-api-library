@@ -12,26 +12,26 @@ export class PayToDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * The shopper\'s banking details or payId reference, used to complete payment.
     */
-    'shopperAccountIdentifier'?: string;
+    "shopperAccountIdentifier"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * **payto**
     */
-    'type'?: PayToDetails.TypeEnum;
+    "type"?: PayToDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

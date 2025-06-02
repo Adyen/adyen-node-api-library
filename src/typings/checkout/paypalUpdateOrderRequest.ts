@@ -13,24 +13,24 @@ import { TaxTotal } from "./taxTotal";
 
 
 export class PaypalUpdateOrderRequest {
-    'amount'?: Amount;
+    "amount"?: Amount;
     /**
     * The list of new delivery methods and the cost of each.
     */
-    'deliveryMethods'?: Array<DeliveryMethod>;
+    "deliveryMethods"?: Array<DeliveryMethod>;
     /**
     * The `paymentData` from the client side. This value changes every time you make a `/paypal/updateOrder` request.
     */
-    'paymentData'?: string;
+    "paymentData"?: string;
     /**
     * The original `pspReference` from the `/payments` response.
     */
-    'pspReference'?: string;
+    "pspReference"?: string;
     /**
     * The original `sessionId` from the `/sessions` response.
     */
-    'sessionId'?: string;
-    'taxTotal'?: TaxTotal;
+    "sessionId"?: string;
+    "taxTotal"?: TaxTotal;
 
     static readonly discriminator: string | undefined = undefined;
 

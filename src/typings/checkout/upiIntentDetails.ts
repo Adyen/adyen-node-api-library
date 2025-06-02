@@ -12,30 +12,30 @@ export class UpiIntentDetails {
     /**
     * TPAP (Third Party Application) Id that is being used to make the UPI payment
     */
-    'appId'?: string;
+    "appId"?: string;
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * The `shopperNotificationReference` returned in the response when you requested to notify the shopper. Used for recurring payment only.
     */
-    'shopperNotificationReference'?: string;
+    "shopperNotificationReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * **upi_intent**
     */
-    'type': UpiIntentDetails.TypeEnum;
+    "type": UpiIntentDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

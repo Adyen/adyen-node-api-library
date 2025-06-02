@@ -12,7 +12,7 @@ export class UtilityRequest {
     /**
     * The list of origin domains, for which origin keys are requested.
     */
-    'originDomains': Array<string>;
+    "originDomains": Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 

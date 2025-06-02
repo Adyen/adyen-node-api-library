@@ -14,23 +14,23 @@ export class PixDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
-    'pixRecurring'?: PixRecurring;
+    "checkoutAttemptId"?: string;
+    "pixRecurring"?: PixRecurring;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * The payment method type.
     */
-    'type'?: PixDetails.TypeEnum;
+    "type"?: PixDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -12,80 +12,80 @@ export class PaymentCompletionDetails {
     /**
     * A payment session identifier returned by the card issuer.
     */
-    'MD'?: string;
+    "MD"?: string;
     /**
     * (3D) Payment Authentication Request data for the card issuer.
     */
-    'PaReq'?: string;
+    "PaReq"?: string;
     /**
     * (3D) Payment Authentication Response data by the card issuer.
     */
-    'PaRes'?: string;
-    'authorization_token'?: string;
+    "PaRes"?: string;
+    "authorization_token"?: string;
     /**
     * PayPal-generated token for recurring payments.
     */
-    'billingToken'?: string;
+    "billingToken"?: string;
     /**
     * The SMS verification code collected from the shopper.
     */
-    'cupsecureplus_smscode'?: string;
+    "cupsecureplus_smscode"?: string;
     /**
     * PayPal-generated third party access token.
     */
-    'facilitatorAccessToken'?: string;
+    "facilitatorAccessToken"?: string;
     /**
     * A random number sent to the mobile phone number of the shopper to verify the payment.
     */
-    'oneTimePasscode'?: string;
+    "oneTimePasscode"?: string;
     /**
     * PayPal-assigned ID for the order.
     */
-    'orderID'?: string;
+    "orderID"?: string;
     /**
     * PayPal-assigned ID for the payer (shopper).
     */
-    'payerID'?: string;
+    "payerID"?: string;
     /**
     * Payload appended to the `returnURL` as a result of the redirect.
     */
-    'payload'?: string;
+    "payload"?: string;
     /**
     * PayPal-generated ID for the payment.
     */
-    'paymentID'?: string;
+    "paymentID"?: string;
     /**
     * Value passed from the WeChat MiniProgram `wx.requestPayment` **complete** callback. Possible values: any value starting with `requestPayment:`.
     */
-    'paymentStatus'?: string;
+    "paymentStatus"?: string;
     /**
     * The result of the redirect as appended to the `returnURL`.
     */
-    'redirectResult'?: string;
+    "redirectResult"?: string;
     /**
     * Value you received from the WeChat Pay SDK.
     */
-    'resultCode'?: string;
+    "resultCode"?: string;
     /**
     * The query string as appended to the `returnURL` when using direct issuer links .
     */
-    'returnUrlQueryString'?: string;
+    "returnUrlQueryString"?: string;
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: `transStatus`, `authorisationToken`.
     */
-    'threeDSResult'?: string;
+    "threeDSResult"?: string;
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `transStatus`.
     */
-    'threeds2_challengeResult'?: string;
+    "threeds2_challengeResult"?: string;
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `threeDSCompInd`.
     */
-    'threeds2_fingerprint'?: string;
+    "threeds2_fingerprint"?: string;
     /**
     * PayPalv2-generated token for recurring payments.
     */
-    'vaultToken'?: string;
+    "vaultToken"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

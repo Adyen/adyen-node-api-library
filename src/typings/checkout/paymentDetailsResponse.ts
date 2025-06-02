@@ -19,45 +19,45 @@ export class PaymentDetailsResponse {
     /**
     * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
     */
-    'additionalData'?: { [key: string]: string; };
-    'amount'?: Amount;
+    "additionalData"?: { [key: string]: string; };
+    "amount"?: Amount;
     /**
     * Donation Token containing payment details for Adyen Giving.
     */
-    'donationToken'?: string;
-    'fraudResult'?: FraudResult;
+    "donationToken"?: string;
+    "fraudResult"?: FraudResult;
     /**
     * The reference used during the /payments request.
     */
-    'merchantReference'?: string;
-    'order'?: CheckoutOrderResponse;
-    'paymentMethod'?: ResponsePaymentMethod;
+    "merchantReference"?: string;
+    "order"?: CheckoutOrderResponse;
+    "paymentMethod"?: ResponsePaymentMethod;
     /**
     * Adyen\'s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
-    'pspReference'?: string;
+    "pspReference"?: string;
     /**
     * If the payment\'s authorisation is refused or an error occurs during authorisation, this field holds Adyen\'s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
     */
-    'refusalReason'?: string;
+    "refusalReason"?: string;
     /**
     * Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
     */
-    'refusalReasonCode'?: string;
+    "refusalReasonCode"?: string;
     /**
     * The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions. * **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state. * **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **Error** – There was an error when the payment was being processed. The reason is given in the `refusalReason` field. This is a final state. * **IdentifyShopper** – The issuer requires the shopper\'s device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions. * **PartiallyAuthorised** – The payment has been authorised for a partial amount. This happens for card payments when the merchant supports Partial Authorisations and the cardholder has insufficient funds. * **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment. * **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment. * **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments. * **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation. * **Refused** – Indicates the payment was refused. The reason is given in the `refusalReason` field. This is a final state.
     */
-    'resultCode'?: PaymentDetailsResponse.ResultCodeEnum;
+    "resultCode"?: PaymentDetailsResponse.ResultCodeEnum;
     /**
     * The shopperLocale.
     */
-    'shopperLocale'?: string;
-    'threeDS2ResponseData'?: ThreeDS2ResponseData;
-    'threeDS2Result'?: ThreeDS2Result;
+    "shopperLocale"?: string;
+    "threeDS2ResponseData"?: ThreeDS2ResponseData;
+    "threeDS2Result"?: ThreeDS2Result;
     /**
     * When non-empty, contains a value that you must submit to the `/payments/details` endpoint as `paymentData`.
     */
-    'threeDSPaymentData'?: string;
+    "threeDSPaymentData"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

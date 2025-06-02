@@ -12,34 +12,34 @@ export class SepaDirectDebitDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The International Bank Account Number (IBAN).
     */
-    'iban': string;
+    "iban": string;
     /**
     * The name of the bank account holder.
     */
-    'ownerName': string;
+    "ownerName": string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * The unique identifier of your user\'s verified transfer instrument, which you can use to top up their balance accounts.
     */
-    'transferInstrumentId'?: string;
+    "transferInstrumentId"?: string;
     /**
     * **sepadirectdebit**
     */
-    'type'?: SepaDirectDebitDetails.TypeEnum;
+    "type"?: SepaDirectDebitDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -17,42 +17,42 @@ export class PaymentMethod {
     /**
     * A list of apps for this payment method.
     */
-    'apps'?: Array<PaymentMethodUPIApps>;
+    "apps"?: Array<PaymentMethodUPIApps>;
     /**
     * Brand for the selected gift card. For example: plastix, hmclub.
     */
-    'brand'?: string;
+    "brand"?: string;
     /**
     * List of possible brands. For example: visa, mc.
     */
-    'brands'?: Array<string>;
+    "brands"?: Array<string>;
     /**
     * The configuration of the payment method.
     */
-    'configuration'?: { [key: string]: string; };
+    "configuration"?: { [key: string]: string; };
     /**
     * The funding source of the payment method.
     */
-    'fundingSource'?: PaymentMethod.FundingSourceEnum;
-    'group'?: PaymentMethodGroup;
+    "fundingSource"?: PaymentMethod.FundingSourceEnum;
+    "group"?: PaymentMethodGroup;
     /**
     * All input details to be provided to complete the payment with this payment method.
     *
 	* @deprecated 
     */
-    'inputDetails'?: Array<InputDetail>;
+    "inputDetails"?: Array<InputDetail>;
     /**
     * A list of issuers for this payment method.
     */
-    'issuers'?: Array<PaymentMethodIssuer>;
+    "issuers"?: Array<PaymentMethodIssuer>;
     /**
     * The displayable name of this payment method.
     */
-    'name'?: string;
+    "name"?: string;
     /**
     * The unique payment method code.
     */
-    'type'?: string;
+    "type"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

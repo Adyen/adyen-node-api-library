@@ -12,26 +12,26 @@ export class IdealDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The iDEAL issuer value of the shopper\'s selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
     */
-    'issuer'?: string;
+    "issuer"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * **ideal**
     */
-    'type'?: IdealDetails.TypeEnum;
+    "type"?: IdealDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

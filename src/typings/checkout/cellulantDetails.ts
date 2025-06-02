@@ -12,15 +12,15 @@ export class CellulantDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The Cellulant issuer.
     */
-    'issuer'?: string;
+    "issuer"?: string;
     /**
     * **Cellulant**
     */
-    'type'?: CellulantDetails.TypeEnum;
+    "type"?: CellulantDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

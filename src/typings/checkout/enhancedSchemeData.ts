@@ -11,7 +11,7 @@ import { Airline } from "./airline";
 
 
 export class EnhancedSchemeData {
-    'airline'?: Airline;
+    "airline"?: Airline;
 
     static readonly discriminator: string | undefined = undefined;
 

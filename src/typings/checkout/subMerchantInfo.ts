@@ -12,37 +12,37 @@ import { BillingAddress } from "./billingAddress";
 
 
 export class SubMerchantInfo {
-    'address'?: BillingAddress;
-    'amount'?: Amount;
+    "address"?: BillingAddress;
+    "amount"?: Amount;
     /**
     * Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant\'s account.
     */
-    'email'?: string;
+    "email"?: string;
     /**
     * Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The sub-merchant\'s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits
     */
-    'mcc'?: string;
+    "mcc"?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
     */
-    'name'?: string;
+    "name"?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The phone number associated with the sub-merchant\'s account.
     */
-    'phoneNumber'?: string;
-    'registeredSince'?: string;
+    "phoneNumber"?: string;
+    "registeredSince"?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ
     */
-    'taxId'?: string;
+    "taxId"?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The sub-merchant\'s URL on the platform, i.e. the sub-merchant\'s shop.
     */
-    'url'?: string;
+    "url"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

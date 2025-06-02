@@ -11,7 +11,7 @@ import { Amount } from "./amount";
 
 
 export class TaxTotal {
-    'amount'?: Amount;
+    "amount"?: Amount;
 
     static readonly discriminator: string | undefined = undefined;
 

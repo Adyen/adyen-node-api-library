@@ -12,11 +12,11 @@ export class EncryptedOrderData {
     /**
     * The encrypted order data.
     */
-    'orderData': string;
+    "orderData": string;
     /**
     * The `pspReference` that belongs to the order.
     */
-    'pspReference': string;
+    "pspReference": string;
 
     static readonly discriminator: string | undefined = undefined;
 

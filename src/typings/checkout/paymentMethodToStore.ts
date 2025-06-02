@@ -12,51 +12,51 @@ export class PaymentMethodToStore {
     /**
     * Secondary brand of the card. For example: **plastix**, **hmclub**.
     */
-    'brand'?: string;
+    "brand"?: string;
     /**
     * The card verification code. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
-    'cvc'?: string;
+    "cvc"?: string;
     /**
     * The encrypted card.
     */
-    'encryptedCard'?: string;
+    "encryptedCard"?: string;
     /**
     * The encrypted card number.
     */
-    'encryptedCardNumber'?: string;
+    "encryptedCardNumber"?: string;
     /**
     * The encrypted card expiry month.
     */
-    'encryptedExpiryMonth'?: string;
+    "encryptedExpiryMonth"?: string;
     /**
     * The encrypted card expiry year.
     */
-    'encryptedExpiryYear'?: string;
+    "encryptedExpiryYear"?: string;
     /**
     * The encrypted card verification code.
     */
-    'encryptedSecurityCode'?: string;
+    "encryptedSecurityCode"?: string;
     /**
     * The card expiry month. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
-    'expiryMonth'?: string;
+    "expiryMonth"?: string;
     /**
     * The card expiry year. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
-    'expiryYear'?: string;
+    "expiryYear"?: string;
     /**
     * The name of the card holder.
     */
-    'holderName'?: string;
+    "holderName"?: string;
     /**
     * The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
-    'number'?: string;
+    "number"?: string;
     /**
     * Set to **scheme**.
     */
-    'type'?: string;
+    "type"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

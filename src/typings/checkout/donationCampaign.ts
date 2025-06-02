@@ -12,44 +12,44 @@ import { Donation } from "./donation";
 
 
 export class DonationCampaign {
-    'amounts'?: Amounts;
+    "amounts"?: Amounts;
     /**
     * The URL for the banner of the nonprofit or campaign.
     */
-    'bannerUrl'?: string;
+    "bannerUrl"?: string;
     /**
     * The name of the donation campaign..
     */
-    'campaignName'?: string;
+    "campaignName"?: string;
     /**
     * The cause of the nonprofit.
     */
-    'causeName'?: string;
-    'donation'?: Donation;
+    "causeName"?: string;
+    "donation"?: Donation;
     /**
     * The unique campaign ID of the donation campaign.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The URL for the logo of the nonprofit.
     */
-    'logoUrl'?: string;
+    "logoUrl"?: string;
     /**
     * The description of the nonprofit.
     */
-    'nonprofitDescription'?: string;
+    "nonprofitDescription"?: string;
     /**
     * The name of the nonprofit organization that receives the donation.
     */
-    'nonprofitName'?: string;
+    "nonprofitName"?: string;
     /**
     * The website URL of the nonprofit.
     */
-    'nonprofitUrl'?: string;
+    "nonprofitUrl"?: string;
     /**
     * The URL of the terms and conditions page of the nonprofit and the campaign.
     */
-    'termsAndConditionsUrl'?: string;
+    "termsAndConditionsUrl"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

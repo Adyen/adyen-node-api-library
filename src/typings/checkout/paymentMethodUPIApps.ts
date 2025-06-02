@@ -12,11 +12,11 @@ export class PaymentMethodUPIApps {
     /**
     * The unique identifier of this app, to submit in requests to /payments.
     */
-    'id': string;
+    "id": string;
     /**
     * A localized name of the app.
     */
-    'name': string;
+    "name": string;
 
     static readonly discriminator: string | undefined = undefined;
 

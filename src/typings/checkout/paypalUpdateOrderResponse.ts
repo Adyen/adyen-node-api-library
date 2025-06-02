@@ -12,11 +12,11 @@ export class PaypalUpdateOrderResponse {
     /**
     * The updated paymentData.
     */
-    'paymentData': string;
+    "paymentData": string;
     /**
     * The status of the request. This indicates whether the order was successfully updated with PayPal.
     */
-    'status': PaypalUpdateOrderResponse.StatusEnum;
+    "status": PaypalUpdateOrderResponse.StatusEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

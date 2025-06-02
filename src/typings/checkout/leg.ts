@@ -12,39 +12,39 @@ export class Leg {
     /**
     * The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM = KL * minLength: 2 characters * maxLength: 2 characters * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'carrierCode'?: string;
+    "carrierCode"?: string;
     /**
     * A one-letter travel class identifier.  The following are common:  * F: first class * J: business class * Y: economy class * W: premium economy  * Encoding: ASCII * minLength: 1 character * maxLength: 1 character * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'classOfTravel'?: string;
+    "classOfTravel"?: string;
     /**
     * Date and time of travel in format `yyyy-MM-ddTHH:mm`. * Use local time of departure airport. * minLength: 16 characters * maxLength: 16 characters
     */
-    'dateOfTravel'?: Date;
+    "dateOfTravel"?: Date;
     /**
     * The [IATA](https://www.iata.org/services/pages/codes.aspx) three-letter airport code of the departure airport. This field is required if the airline data includes leg details.  * Encoding: ASCII * Example: Amsterdam = AMS * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'departureAirportCode'?: string;
+    "departureAirportCode"?: string;
     /**
     * The amount of [departure tax](https://en.wikipedia.org/wiki/Departure_tax) charged, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 * maxLength: 11 * Must not be all zeros.
     */
-    'departureTax'?: number;
+    "departureTax"?: number;
     /**
     * The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code of the destination airport. This field is required if the airline data includes leg details. * Example: Amsterdam = AMS * Encoding: ASCII * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'destinationAirportCode'?: string;
+    "destinationAirportCode"?: string;
     /**
     * The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 6 characters * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'fareBasisCode'?: string;
+    "fareBasisCode"?: string;
     /**
     * The flight identifier. * minLength: 1 character * maxLength: 5 characters * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'flightNumber'?: string;
+    "flightNumber"?: string;
     /**
     * A one-letter code that indicates whether the passenger is entitled to make a stopover. Can be a space, O if the passenger is entitled to make a stopover, or X if they are not. * Encoding: ASCII * minLength: 1 character * maxLength: 1 character
     */
-    'stopOverCode'?: string;
+    "stopOverCode"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

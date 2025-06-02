@@ -12,19 +12,19 @@ export class DragonpayDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The Dragonpay issuer value of the shopper\'s selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.
     */
-    'issuer': string;
+    "issuer": string;
     /**
     * The shopper’s email address.
     */
-    'shopperEmail'?: string;
+    "shopperEmail"?: string;
     /**
     * **dragonpay**
     */
-    'type': DragonpayDetails.TypeEnum;
+    "type": DragonpayDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -12,11 +12,11 @@ export class AffirmDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * **affirm**
     */
-    'type'?: AffirmDetails.TypeEnum;
+    "type"?: AffirmDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
