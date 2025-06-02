@@ -124,7 +124,6 @@ describe("HTTP Client", function (): void {
                 "adyen-library-version": (headerValue) => {
                     expect(headerValue).toBeTruthy(); 
                     expect(headerValue).toEqual(expectedLibraryVersion);
-                    expect;
                     return true;
                 },
                 "user-agent": (headerValue) => {
@@ -160,13 +159,11 @@ describe("HTTP Client", function (): void {
                 "adyen-library-version": (headerValue) => {
                     expect(headerValue).toBeTruthy(); 
                     expect(headerValue).toEqual(expectedLibraryVersion);
-                    expect;
                     return true;
                 },
                 "user-agent": (headerValue) => {
                     expect(headerValue).toBeTruthy(); 
                     expect(headerValue).toEqual(expectedUserAgent);
-                    expect;
                     return true;
                 }
             }
