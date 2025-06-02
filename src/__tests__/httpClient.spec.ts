@@ -130,7 +130,6 @@ describe("HTTP Client", function (): void {
                 "user-agent": (headerValue) => {
                     expect(headerValue).toBeTruthy(); 
                     expect(headerValue).toEqual(expectedUserAgent);
-                    expect;
                     return true;
                 }
             }
