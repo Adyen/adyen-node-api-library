@@ -16,7 +16,7 @@ export class InstallmentOption {
     /**
     * Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**
     */
-    "plans"?: InstallmentOption.PlansEnum;
+    "plans"?: Array<InstallmentOption.PlansEnum>;
     /**
     * Preselected number of installments offered for this payment method.
     */

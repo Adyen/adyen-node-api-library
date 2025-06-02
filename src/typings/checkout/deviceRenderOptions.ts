@@ -16,7 +16,7 @@ export class DeviceRenderOptions {
     /**
     * UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect
     */
-    "sdkUiType"?: DeviceRenderOptions.SdkUiTypeEnum;
+    "sdkUiType"?: Array<DeviceRenderOptions.SdkUiTypeEnum>;
 
     static readonly discriminator: string | undefined = undefined;
 

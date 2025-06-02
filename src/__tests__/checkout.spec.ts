@@ -81,8 +81,11 @@ function getPaymentLinkSuccess(expiresAt: Date): checkout.PaymentLinkResponse {
         url: "PaymentLinkResponse.url",
         id: "mocked_id",
         merchantAccount,
-        status: checkout.PaymentLinkResponse.StatusEnum.Active
-    };
+        status: checkout.PaymentLinkResponse.StatusEnum.Active,
+        requiredShopperFields: [
+            checkout.PaymentLinkResponse.RequiredShopperFieldsEnum.BillingAddress,
+            checkout.PaymentLinkResponse.RequiredShopperFieldsEnum.ShopperEmail]
+        };
 }
 
 function createPaymentLinkRequest(): checkout.PaymentLinkRequest {
@@ -110,7 +113,10 @@ function createPaymentLinkRequest(): checkout.PaymentLinkRequest {
             country: "BR",
             stateOrProvince: "SP"
         },
-        reference
+        reference,
+        requiredShopperFields: [
+            checkout.PaymentLinkRequest.RequiredShopperFieldsEnum.BillingAddress,
+            checkout.PaymentLinkRequest.RequiredShopperFieldsEnum.ShopperEmail]
     };
 }
 
@@ -312,7 +318,7 @@ describe("Checkout", (): void => {
         }
     });
 
-    test("should have valid payment link", async (): Promise<void> => {
+    test("should create valid payment link", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
         const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
 
@@ -320,6 +326,28 @@ describe("Checkout", (): void => {
 
         const paymentSuccessLinkResponse = await checkoutService.PaymentLinksApi.paymentLinks(createPaymentLinkRequest());
         expect(paymentSuccessLinkResponse).toBeTruthy();
+    });
+
+    test("should create valid payment link with installmentOptions", async (): Promise<void> => {
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
+
+        scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
+
+        const request : checkout.PaymentLinkRequest = createPaymentLinkRequest();
+        request.installmentOptions = {
+            card: {
+                plans: [
+                    checkout.CheckoutSessionInstallmentOption.PlansEnum.Bonus,
+                    checkout.CheckoutSessionInstallmentOption.PlansEnum.BuynowPaylater
+                ]
+            }
+        };
+        const paymentSuccessLinkResponse = await checkoutService.PaymentLinksApi.paymentLinks(request);
+        expect(paymentSuccessLinkResponse).toBeTruthy();
+        expect(paymentSuccessLinkResponse.id).toBeTruthy();
+        expect(paymentSuccessLinkResponse.id).toBe("mocked_id");
+        expect(paymentSuccessLinkResponse.requiredShopperFields?.length).toBe(2);
     });
 
     test("should get payment link", async (): Promise<void> => {
@@ -543,6 +571,25 @@ describe("Checkout", (): void => {
             .reply(200, sessionsSuccess);
 
         const sessionsRequest: checkout.CreateCheckoutSessionRequest = createSessionRequest();
+        const sessionsResponse: checkout.CreateCheckoutSessionResponse = await checkoutService.PaymentsApi.sessions(sessionsRequest);
+        expect(sessionsResponse.sessionData).toBeTruthy();
+        expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);
+        expect(sessionsResponse.expiresAt.getFullYear()).toBeGreaterThan(0);
+    });
+
+    test("should create a session with installmentOptions.", async (): Promise<void> => {
+        scope.post("/sessions")
+            .reply(200, sessionsSuccess);
+
+        const sessionsRequest: checkout.CreateCheckoutSessionRequest = createSessionRequest();
+        sessionsRequest.installmentOptions = {
+            card: {
+                plans: [
+                    checkout.CheckoutSessionInstallmentOption.PlansEnum.Bonus,
+                    checkout.CheckoutSessionInstallmentOption.PlansEnum.BuynowPaylater
+                ]
+            }
+        };
         const sessionsResponse: checkout.CreateCheckoutSessionResponse = await checkoutService.PaymentsApi.sessions(sessionsRequest);
         expect(sessionsResponse.sessionData).toBeTruthy();
         expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);

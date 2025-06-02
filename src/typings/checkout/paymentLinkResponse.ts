@@ -104,7 +104,7 @@ export class PaymentLinkResponse {
     /**
     * List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper\'s email address. * **shopperName** – The shopper\'s full name. * **telephoneNumber** – The shopper\'s phone number. 
     */
-    "requiredShopperFields"?: PaymentLinkResponse.RequiredShopperFieldsEnum;
+    "requiredShopperFields"?: Array<PaymentLinkResponse.RequiredShopperFieldsEnum>;
     /**
     * Website URL used for redirection after payment is completed. If provided, a **Continue** button will be shown on the payment page. If shoppers select the button, they are redirected to the specified URL.
     */
