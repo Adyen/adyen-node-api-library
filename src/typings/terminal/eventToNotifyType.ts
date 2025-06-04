@@ -41,6 +41,8 @@ export enum EventToNotifyType {
     EndMaintenance = <any> 'EndMaintenance',
     Initialised = <any> 'Initialised',
     KeyPressed = <any> 'KeyPressed',
+    NetworkConnected = <any> 'NetworkConnected',
+    NetworkDisconnected = <any> 'NetworkDisconnected',
     OutOfOrder = <any> 'OutOfOrder',
     Reject = <any> 'Reject',
     SaleAdmin = <any> 'SaleAdmin',
