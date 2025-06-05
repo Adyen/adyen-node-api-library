@@ -18,6 +18,7 @@
  */
 
 import { IncomingHttpHeaders } from "http";
+import { ApiError } from "../typings/apiError";
 
 interface ExceptionInterface {
     message: string;
@@ -25,6 +26,7 @@ interface ExceptionInterface {
     errorCode?: string;
     responseHeaders?: IncomingHttpHeaders;
     responseBody?: string;
+    apiError?: ApiError; // model of the error returned by the API
 }
 
 class HttpClientException extends Error {
@@ -33,6 +35,7 @@ class HttpClientException extends Error {
     public responseHeaders?: IncomingHttpHeaders;
     public readonly name: string;
     public responseBody?: string;
+    public apiError?: ApiError;
 
     public constructor(props: ExceptionInterface) {
         super(props.message);
@@ -44,6 +47,7 @@ class HttpClientException extends Error {
         if (props.responseBody) this.responseBody = props.responseBody;
         if (props.errorCode) this.errorCode = props.errorCode;
         if (props.statusCode) this.statusCode = props.statusCode;
+        if (props.apiError) this.apiError = props.apiError;
     }
 }
 
