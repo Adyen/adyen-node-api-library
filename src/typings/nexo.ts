@@ -1286,7 +1286,7 @@ export type EntryModeType = "RFID" | "Keyed" | "Manual" | "File" | "Scanned" | "
 
 export type ErrorConditionType = "Aborted" | "Busy" | "Cancel" | "DeviceOut" | "InsertedCard" | "InProgress" | "LoggedOut" | "MessageFormat" | "NotAllowed" | "NotFound" | "PaymentRestriction" | "Refusal" | "UnavailableDevice" | "UnavailableService" | "InvalidCard" | "UnreachableHost" | "WrongPIN";
 
-export type EventToNotifyType = "BeginMaintenance" | "EndMaintenance" | "Shutdown" | "Initialised" | "OutOfOrder" | "Completed" | "Abort" | "SaleWakeUp" | "SaleAdmin" | "CustomerLanguage" | "KeyPressed" | "SecurityAlarm" | "StopAssistance" | "CardInserted" | "CardRemoved" | "Reject";
+export type EventToNotifyType = "Abort" | "BeginMaintenance" | "CardInserted" | "CardRemoved" | "Completed" | "CustomerLanguage" | "EndMaintenance" | "Initialised" | "KeyPressed" | "NetworkConnected" | "NetworkDisconnected" | "OutOfOrder" | "Reject" | "SaleAdmin" | "SaleWakeUp" | "SecurityAlarm" | "Shutdown" | "StopAssistance";
 
 export type ForceEntryModeType = "RFID" | "Keyed" | "Manual" | "File" | "Scanned" | "MagStripe" | "ICC" | "SynchronousICC" | "Tapped" | "Contactless" | "CheckReader";
 
