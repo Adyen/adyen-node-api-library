@@ -19,8 +19,6 @@
 
 import Config from "../config";
 import Service from "../service";
-import HttpClientException from "../httpClient/httpClientException";
-import ApiException from "./exception/apiException";
 import ClientInterface from "../httpClient/clientInterface";
 import { IRequest } from "../typings/requestOptions";
 
@@ -33,7 +31,7 @@ class Resource {
         this.endpoint = endpoint;
     }
 
-    public request(json: string, requestOptions?: IRequest.Options): Promise<string | HttpClientException | ApiException> {
+    public request(json: string, requestOptions?: IRequest.Options): Promise<string> {
         const clientInterface: ClientInterface = this.service.client.httpClient;
         const config: Config = this.service.client.config;
 
