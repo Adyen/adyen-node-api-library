@@ -32,3 +32,13 @@ npm list @adyen/api-library // check version of library and update if needed
 
 node calculateHmacPlatform.js 11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB payload2.json
 ```
+
+### Calculate KCV of the HMAC key
+
+Run `calculateKcv` passing the HMAC key:
+`node calculateKcv.js {hmacKey}`
+```
+cd tools/hmac
+
+node calculateKcv.js 00727DB817A85C8503AD29EAD1523DB869AF0E536893BB3046C92DE7CB045CB1
+```
