@@ -8,7 +8,7 @@ const crypto = require('crypto');
 
 // Ensure correct arguments
 if (process.argv.length !== 3) {
-    console.error("Usage: node calculateKcv.js <base64HmacKey>");
+    console.error("Usage: node calculateKcv.js <hexHmacKey>");
     process.exit(1);
 }
 
