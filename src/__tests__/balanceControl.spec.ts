@@ -65,8 +65,15 @@ describe("Balance Control", (): void => {
             fail("No exception was thrown");
         } catch (error) {
             expect(error instanceof HttpClientException).toBeTruthy();
-            if (error instanceof HttpClientException && error.responseBody && error.stack) {
-                expect(JSON.parse(error.responseBody).errorType).toBe("validation");
+            if (error instanceof HttpClientException) {
+                expect(error.statusCode).toBe(422);
+                expect(error.responseBody).toBeTruthy();
+                expect(error.errorCode).toBe("30_004");
+                // check apiError
+                expect(error.apiError).toBeTruthy();
+                expect(error.apiError?.errorCode).toBe("30_004");
+                expect(error.apiError?.message).toBe("Merchant account code is invalid or missing");
+                expect(error.apiError?.errorType).toBe("validation")
             } else {
                 fail("Error did not contain the expected data");
             }
