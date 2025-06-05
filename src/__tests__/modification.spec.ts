@@ -175,7 +175,7 @@ describe("Modification", (): void => {
     });
 
     test("should fail to perform an amount update request", async (): Promise<void> => {
-        expect.assertions(2);
+        expect.assertions(4);
         const request = createAmountUpdateRequest();
         scope.post(`/payments/${invalidPaymentPspReference}/amountUpdates`)
             .reply(422, invalidModificationResult);
@@ -184,8 +184,11 @@ describe("Modification", (): void => {
             await checkoutAPI.ModificationsApi.updateAuthorisedAmount(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
-                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.statusCode).toBe(422);
                 expect(e.message).toContain("Original pspReference required for this operation");
+                // check API apiError
+                expect(e.apiError).toBeTruthy();
+                expect(e.apiError?.status).toBe(422);
             } else {
                 fail();
             }
@@ -209,7 +212,7 @@ describe("Modification", (): void => {
     });
 
     test("should fail to perform a cancels request", async (): Promise<void> => {
-        expect.assertions(2);
+        expect.assertions(4);
         const request = createCancelsRequest();
         scope.post(`/payments/${invalidPaymentPspReference}/cancels`)
             .reply(422, invalidModificationResult);
@@ -217,8 +220,12 @@ describe("Modification", (): void => {
             await checkoutAPI.ModificationsApi.cancelAuthorisedPaymentByPspReference(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
-                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.statusCode).toBe(422);
                 expect(e.message).toContain("Original pspReference required for this operation");
+                // check apiError
+                expect(e.apiError).toBeTruthy();
+                expect(e.apiError?.errorCode).toBe("167");
+
             } else {
                 fail();
             }
@@ -258,7 +265,7 @@ describe("Modification", (): void => {
     });
 
     test("should fail to perform a captures request", async (): Promise<void> => {
-        expect.assertions(2);
+        expect.assertions(4);
         const request = createCapturesRequest();
         scope.post(`/payments/${invalidPaymentPspReference}/captures`)
             .reply(422, invalidModificationResult);
@@ -266,8 +273,11 @@ describe("Modification", (): void => {
             await checkoutAPI.ModificationsApi.captureAuthorisedPayment(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
-                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.statusCode).toBe(422);
                 expect(e.message).toContain("Original pspReference required for this operation");
+                // check apiError
+                expect(e.apiError).toBeTruthy();
+                expect(e.apiError?.errorCode).toBe("167");
             } else {
                 fail();
             }
@@ -324,7 +334,7 @@ describe("Modification", (): void => {
     });
 
     test("should fail to perform a reversals request", async (): Promise<void> => {
-        expect.assertions(2);
+        expect.assertions(4);
         const request = createReversalsRequest();
         scope.post(`/payments/${invalidPaymentPspReference}/reversals`)
             .reply(422, invalidModificationResult);
@@ -332,8 +342,11 @@ describe("Modification", (): void => {
             await checkoutAPI.ModificationsApi.refundOrCancelPayment(invalidPaymentPspReference, request);
         } catch (e) {
             if(e instanceof HttpClientException) {
-                if(e.statusCode) expect(e.statusCode).toBe(422);
+                expect(e.statusCode).toBe(422);
                 expect(e.message).toContain("Original pspReference required for this operation");
+                // check apiError
+                expect(e.apiError).toBeTruthy();
+                expect(e.apiError?.errorCode).toBe("167");
             } else {
                 fail();
             }

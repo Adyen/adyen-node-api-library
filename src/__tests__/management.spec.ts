@@ -576,9 +576,17 @@ describe("Management", (): void => {
                 await managementService.UsersMerchantLevelApi.createNewUser(merchantId, requests.createMerchantUserRequestInvalidEmail);
             } catch (error) {
                 expect(error instanceof HttpClientException).toBeTruthy();
-                if(error instanceof HttpClientException && error.responseBody && error.stack) {
-                    expect(JSON.parse(error.responseBody).status).toBe(422);
-                    expect(JSON.parse(error.responseBody).invalidFields).toBeTruthy();
+                if(error instanceof HttpClientException) {
+                    expect(error.statusCode).toBe(422);
+                    expect(error.responseBody).toBeTruthy();
+                    expect(error.errorCode).toBe("31_007");
+                    // check apiError
+                    expect(error.apiError).toBeTruthy();
+                    expect(error.apiError?.errorCode).toBe("31_007");
+                    expect(error.apiError?.title).toBe("Invalid user information provided.");
+                    expect(error.apiError?.type).toBe("https://docs.adyen.com/errors/validation")
+                    expect(error.apiError?.invalidFields).toBeTruthy();
+                    expect(error.apiError?.invalidFields?.length).toBe(1);                    
                 } else {
                     fail("Error did not contain the expected data");
                 }
