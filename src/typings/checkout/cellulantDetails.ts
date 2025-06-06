@@ -12,37 +12,45 @@ export class CellulantDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The Cellulant issuer.
     */
-    'issuer'?: string;
+    "issuer"?: string;
     /**
     * **Cellulant**
     */
-    'type'?: CellulantDetails.TypeEnum;
+    "type"?: CellulantDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "issuer",
             "baseName": "issuer",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CellulantDetails.TypeEnum"
+            "type": "CellulantDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CellulantDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

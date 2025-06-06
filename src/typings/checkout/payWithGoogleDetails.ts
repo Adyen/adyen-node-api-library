@@ -12,76 +12,88 @@ export class PayWithGoogleDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'fundingSource'?: PayWithGoogleDetails.FundingSourceEnum;
+    "fundingSource"?: PayWithGoogleDetails.FundingSourceEnum;
     /**
     * The `token` that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) `PaymentData` response.
     */
-    'googlePayToken': string;
+    "googlePayToken": string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
     */
-    'threeDS2SdkVersion'?: string;
+    "threeDS2SdkVersion"?: string;
     /**
     * **paywithgoogle**
     */
-    'type'?: PayWithGoogleDetails.TypeEnum;
+    "type"?: PayWithGoogleDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "PayWithGoogleDetails.FundingSourceEnum"
+            "type": "PayWithGoogleDetails.FundingSourceEnum",
+            "format": ""
         },
         {
             "name": "googlePayToken",
             "baseName": "googlePayToken",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDS2SdkVersion",
             "baseName": "threeDS2SdkVersion",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PayWithGoogleDetails.TypeEnum"
+            "type": "PayWithGoogleDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PayWithGoogleDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

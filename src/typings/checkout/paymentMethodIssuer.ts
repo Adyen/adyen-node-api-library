@@ -12,37 +12,45 @@ export class PaymentMethodIssuer {
     /**
     * A boolean value indicating whether this issuer is unavailable. Can be `true` whenever the issuer is offline.
     */
-    'disabled'?: boolean;
+    "disabled"?: boolean;
     /**
     * The unique identifier of this issuer, to submit in requests to /payments.
     */
-    'id': string;
+    "id": string;
     /**
     * A localized name of the issuer.
     */
-    'name': string;
+    "name": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "disabled",
             "baseName": "disabled",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentMethodIssuer.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

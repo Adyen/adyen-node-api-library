@@ -12,46 +12,55 @@ export class MasterpassDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'fundingSource'?: MasterpassDetails.FundingSourceEnum;
+    "fundingSource"?: MasterpassDetails.FundingSourceEnum;
     /**
     * The Masterpass transaction ID.
     */
-    'masterpassTransactionId': string;
+    "masterpassTransactionId": string;
     /**
     * **masterpass**
     */
-    'type'?: MasterpassDetails.TypeEnum;
+    "type"?: MasterpassDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "MasterpassDetails.FundingSourceEnum"
+            "type": "MasterpassDetails.FundingSourceEnum",
+            "format": ""
         },
         {
             "name": "masterpassTransactionId",
             "baseName": "masterpassTransactionId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "MasterpassDetails.TypeEnum"
+            "type": "MasterpassDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return MasterpassDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

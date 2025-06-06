@@ -12,163 +12,185 @@ export class StoredPaymentMethod {
     /**
     * The bank account number (without separators).
     */
-    'bankAccountNumber'?: string;
+    "bankAccountNumber"?: string;
     /**
     * The location id of the bank. The field value is `nil` in most cases.
     */
-    'bankLocationId'?: string;
+    "bankLocationId"?: string;
     /**
     * The brand of the card.
     */
-    'brand'?: string;
+    "brand"?: string;
     /**
     * The two-digit month when the card expires
     */
-    'expiryMonth'?: string;
+    "expiryMonth"?: string;
     /**
     * The last two digits of the year the card expires. For example, **22** for the year 2022.
     */
-    'expiryYear'?: string;
+    "expiryYear"?: string;
     /**
     * The unique payment method code.
     */
-    'holderName'?: string;
+    "holderName"?: string;
     /**
     * The IBAN of the bank account.
     */
-    'iban'?: string;
+    "iban"?: string;
     /**
     * A unique identifier of this stored payment method.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The shopper’s issuer account label
     */
-    'label'?: string;
+    "label"?: string;
     /**
     * The last four digits of the PAN.
     */
-    'lastFour'?: string;
+    "lastFour"?: string;
     /**
     * The display name of the stored payment method.
     */
-    'name'?: string;
+    "name"?: string;
     /**
     * Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.
     */
-    'networkTxReference'?: string;
+    "networkTxReference"?: string;
     /**
     * The name of the bank account holder.
     */
-    'ownerName'?: string;
+    "ownerName"?: string;
     /**
     * The shopper’s email address.
     */
-    'shopperEmail'?: string;
+    "shopperEmail"?: string;
     /**
     * The supported recurring processing models for this stored payment method.
     */
-    'supportedRecurringProcessingModels'?: Array<string>;
+    "supportedRecurringProcessingModels"?: Array<string>;
     /**
     * The supported shopper interactions for this stored payment method.
     */
-    'supportedShopperInteractions'?: Array<string>;
+    "supportedShopperInteractions"?: Array<string>;
     /**
     * The type of payment method.
     */
-    'type'?: string;
+    "type"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "bankAccountNumber",
             "baseName": "bankAccountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankLocationId",
             "baseName": "bankLocationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "expiryMonth",
             "baseName": "expiryMonth",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "expiryYear",
             "baseName": "expiryYear",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "holderName",
             "baseName": "holderName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "iban",
             "baseName": "iban",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "label",
             "baseName": "label",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lastFour",
             "baseName": "lastFour",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "networkTxReference",
             "baseName": "networkTxReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ownerName",
             "baseName": "ownerName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "supportedRecurringProcessingModels",
             "baseName": "supportedRecurringProcessingModels",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "supportedShopperInteractions",
             "baseName": "supportedShopperInteractions",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return StoredPaymentMethod.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

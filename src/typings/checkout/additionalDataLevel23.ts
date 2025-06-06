@@ -12,163 +12,185 @@ export class AdditionalDataLevel23 {
     /**
     * The reference number to identify the customer and their order.  * Encoding: ASCII * Max length: 25 characters * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'enhancedSchemeData_customerReference'?: string;
+    "enhancedSchemeData_customerReference"?: string;
     /**
     * The three-letter [ISO 3166-1 alpha-3 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) for the destination address. * Encoding: ASCII * Fixed length: 3 characters
     */
-    'enhancedSchemeData_destinationCountryCode'?: string;
+    "enhancedSchemeData_destinationCountryCode"?: string;
     /**
     * The postal code of the destination address. * Encoding: ASCII * Max length: 10 characters * Must not start with a space. * For the US, it must be in five or nine digits format. For example, 10001 or 10001-0000. * For Canada, it must be in 6 digits format. For example, M4B 1G5.
     */
-    'enhancedSchemeData_destinationPostalCode'?: string;
+    "enhancedSchemeData_destinationPostalCode"?: string;
     /**
     * The state or province code of the destination address. * Encoding: ASCII * Max length: 3 characters * Must not start with a space.
     */
-    'enhancedSchemeData_destinationStateProvinceCode'?: string;
+    "enhancedSchemeData_destinationStateProvinceCode"?: string;
     /**
     * The duty tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max length: 12 characters
     */
-    'enhancedSchemeData_dutyAmount'?: string;
+    "enhancedSchemeData_dutyAmount"?: string;
     /**
     * The shipping amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max length: 12 characters
     */
-    'enhancedSchemeData_freightAmount'?: string;
+    "enhancedSchemeData_freightAmount"?: string;
     /**
     * The code that identifies the item in a standardized commodity coding scheme. There are different commodity coding schemes: * [UNSPSC commodity codes](https://www.unspsc.org/) * [HS commodity codes](https://www.wcoomd.org/en/topics/nomenclature/overview.aspx) * [NAICS commodity codes](https://www.census.gov/naics/) * [NAPCS commodity codes](https://www.census.gov/naics/napcs/)   * Encoding: ASCII * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'enhancedSchemeData_itemDetailLine_itemNr_commodityCode'?: string;
+    "enhancedSchemeData_itemDetailLine_itemNr_commodityCode"?: string;
     /**
     * A description of the item. * Encoding: ASCII * Max length: 26 characters * Must not be a single character. * Must not be blank. * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'enhancedSchemeData_itemDetailLine_itemNr_description'?: string;
+    "enhancedSchemeData_itemDetailLine_itemNr_description"?: string;
     /**
     * The discount amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max length: 12 characters
     */
-    'enhancedSchemeData_itemDetailLine_itemNr_discountAmount'?: string;
+    "enhancedSchemeData_itemDetailLine_itemNr_discountAmount"?: string;
     /**
     * The product code. Must be a unique product code associated with the item or service. This can be your unique code for the item, or the manufacturer\'s product code.  * Encoding: ASCII. * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'enhancedSchemeData_itemDetailLine_itemNr_productCode'?: string;
+    "enhancedSchemeData_itemDetailLine_itemNr_productCode"?: string;
     /**
     * The number of items. Must be an integer greater than zero. * Encoding: Numeric * Max length: 12 characters * Must not start with a space or be all spaces.
     */
-    'enhancedSchemeData_itemDetailLine_itemNr_quantity'?: string;
+    "enhancedSchemeData_itemDetailLine_itemNr_quantity"?: string;
     /**
     * The total amount for the line item, in [minor units](https://docs.adyen.com/development-resources/currency-codes). See [Amount requirements for level 2/3 ESD](https://docs.adyen.com//payment-methods/cards/enhanced-scheme-data/l2-l3#amount-requirements) to learn more about how to calculate the line item total. * For example, 2000 means USD 20.00. * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'enhancedSchemeData_itemDetailLine_itemNr_totalAmount'?: string;
+    "enhancedSchemeData_itemDetailLine_itemNr_totalAmount"?: string;
     /**
     * The unit of measurement for an item. * Encoding: ASCII * Max length: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.
     */
-    'enhancedSchemeData_itemDetailLine_itemNr_unitOfMeasure'?: string;
+    "enhancedSchemeData_itemDetailLine_itemNr_unitOfMeasure"?: string;
     /**
     * The unit price in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max length: 12 characters * Must not be all zeros.
     */
-    'enhancedSchemeData_itemDetailLine_itemNr_unitPrice'?: string;
+    "enhancedSchemeData_itemDetailLine_itemNr_unitPrice"?: string;
     /**
     * The order date. * Format: `ddMMyy` * Encoding: ASCII * Max length: 6 characters
     */
-    'enhancedSchemeData_orderDate'?: string;
+    "enhancedSchemeData_orderDate"?: string;
     /**
     * The postal code of the address where the item is shipped from. * Encoding: ASCII * Max length: 10 characters * Must not start with a space or be all spaces. * Must not be all zeros.For the US, it must be in five or nine digits format. For example, 10001 or 10001-0000. * For Canada, it must be in 6 digits format. For example, M4B 1G5.
     */
-    'enhancedSchemeData_shipFromPostalCode'?: string;
+    "enhancedSchemeData_shipFromPostalCode"?: string;
     /**
     * The amount of state or provincial [tax included in the total transaction amount](https://docs.adyen.com/payment-methods/cards/enhanced-scheme-data/l2-l3#requirements-to-send-level-2-3-esd), in [minor units](https://docs.adyen.com/development-resources/currency-codes).  * For example, 2000 means USD 20.00. * Encoding: Numeric  * Max length: 12 characters * Must not be all zeros.
     */
-    'enhancedSchemeData_totalTaxAmount'?: string;
+    "enhancedSchemeData_totalTaxAmount"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "enhancedSchemeData_customerReference",
             "baseName": "enhancedSchemeData.customerReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_destinationCountryCode",
             "baseName": "enhancedSchemeData.destinationCountryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_destinationPostalCode",
             "baseName": "enhancedSchemeData.destinationPostalCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_destinationStateProvinceCode",
             "baseName": "enhancedSchemeData.destinationStateProvinceCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_dutyAmount",
             "baseName": "enhancedSchemeData.dutyAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_freightAmount",
             "baseName": "enhancedSchemeData.freightAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_commodityCode",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].commodityCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_description",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_discountAmount",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].discountAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_productCode",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].productCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_quantity",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].quantity",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_totalAmount",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].totalAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_unitOfMeasure",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].unitOfMeasure",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_itemDetailLine_itemNr_unitPrice",
             "baseName": "enhancedSchemeData.itemDetailLine[itemNr].unitPrice",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_orderDate",
             "baseName": "enhancedSchemeData.orderDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_shipFromPostalCode",
             "baseName": "enhancedSchemeData.shipFromPostalCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enhancedSchemeData_totalTaxAmount",
             "baseName": "enhancedSchemeData.totalTaxAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataLevel23.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

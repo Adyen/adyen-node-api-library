@@ -12,37 +12,45 @@ export class MerchantDetails {
     /**
     * 2-letter ISO 3166 country code of the card acceptor location. > This parameter is required for the merchants who don\'t use Adyen as the payment authorisation gateway.
     */
-    'countryCode'?: string;
+    "countryCode"?: string;
     /**
     * If true, indicates that the merchant is enrolled in 3D Secure for the card network.
     */
-    'enrolledIn3DSecure'?: boolean;
+    "enrolledIn3DSecure"?: boolean;
     /**
     * The merchant category code (MCC) is a four-digit number which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.  The list of MCCs can be found [here](https://en.wikipedia.org/wiki/Merchant_category_code).
     */
-    'mcc'?: string;
+    "mcc"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "countryCode",
             "baseName": "countryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "enrolledIn3DSecure",
             "baseName": "enrolledIn3DSecure",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "mcc",
             "baseName": "mcc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return MerchantDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

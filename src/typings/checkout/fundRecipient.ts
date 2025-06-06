@@ -7,115 +7,133 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './address';
-import { CardDetails } from './cardDetails';
-import { Name } from './name';
-import { SubMerchant } from './subMerchant';
+import { Address } from "./address";
+import { CardDetails } from "./cardDetails";
+import { Name } from "./name";
+import { SubMerchant } from "./subMerchant";
+
 
 export class FundRecipient {
     /**
     * The IBAN of the bank account where the funds are being transferred to.
     */
-    'IBAN'?: string;
-    'billingAddress'?: Address | null;
-    'paymentMethod'?: CardDetails | null;
+    "IBAN"?: string;
+    "billingAddress"?: Address;
+    "paymentMethod"?: CardDetails;
     /**
     * The email address of the shopper.
     */
-    'shopperEmail'?: string;
-    'shopperName'?: Name | null;
+    "shopperEmail"?: string;
+    "shopperName"?: Name;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
-    'shopperReference'?: string;
+    "shopperReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
-    'subMerchant'?: SubMerchant | null;
+    "storedPaymentMethodId"?: string;
+    "subMerchant"?: SubMerchant;
     /**
     * The telephone number of the shopper.
     */
-    'telephoneNumber'?: string;
+    "telephoneNumber"?: string;
     /**
     * The unique identifier for the wallet the funds are being transferred to. You can use the shopper reference or any other identifier.
     */
-    'walletIdentifier'?: string;
+    "walletIdentifier"?: string;
     /**
     * The tax identifier of the person receiving the funds.
     */
-    'walletOwnerTaxId'?: string;
+    "walletOwnerTaxId"?: string;
     /**
     * The purpose of a digital wallet transaction.
     */
-    'walletPurpose'?: FundRecipient.WalletPurposeEnum;
+    "walletPurpose"?: FundRecipient.WalletPurposeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "IBAN",
             "baseName": "IBAN",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null"
+            "type": "Address",
+            "format": ""
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "CardDetails | null"
+            "type": "CardDetails",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subMerchant",
             "baseName": "subMerchant",
-            "type": "SubMerchant | null"
+            "type": "SubMerchant",
+            "format": ""
         },
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "walletIdentifier",
             "baseName": "walletIdentifier",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "walletOwnerTaxId",
             "baseName": "walletOwnerTaxId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "walletPurpose",
             "baseName": "walletPurpose",
-            "type": "FundRecipient.WalletPurposeEnum"
+            "type": "FundRecipient.WalletPurposeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return FundRecipient.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

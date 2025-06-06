@@ -12,82 +12,95 @@ export class AdditionalDataRatepay {
     /**
     * Amount the customer has to pay each month.
     */
-    'ratepay_installmentAmount'?: string;
+    "ratepay_installmentAmount"?: string;
     /**
     * Interest rate of this installment.
     */
-    'ratepay_interestRate'?: string;
+    "ratepay_interestRate"?: string;
     /**
     * Amount of the last installment.
     */
-    'ratepay_lastInstallmentAmount'?: string;
+    "ratepay_lastInstallmentAmount"?: string;
     /**
     * Calendar day of the first payment.
     */
-    'ratepay_paymentFirstday'?: string;
+    "ratepay_paymentFirstday"?: string;
     /**
     * Date the merchant delivered the goods to the customer.
     */
-    'ratepaydata_deliveryDate'?: string;
+    "ratepaydata_deliveryDate"?: string;
     /**
     * Date by which the customer must settle the payment.
     */
-    'ratepaydata_dueDate'?: string;
+    "ratepaydata_dueDate"?: string;
     /**
     * Invoice date, defined by the merchant. If not included, the invoice date is set to the delivery date.
     */
-    'ratepaydata_invoiceDate'?: string;
+    "ratepaydata_invoiceDate"?: string;
     /**
     * Identification name or number for the invoice, defined by the merchant.
     */
-    'ratepaydata_invoiceId'?: string;
+    "ratepaydata_invoiceId"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "ratepay_installmentAmount",
             "baseName": "ratepay.installmentAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepay_interestRate",
             "baseName": "ratepay.interestRate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepay_lastInstallmentAmount",
             "baseName": "ratepay.lastInstallmentAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepay_paymentFirstday",
             "baseName": "ratepay.paymentFirstday",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepaydata_deliveryDate",
             "baseName": "ratepaydata.deliveryDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepaydata_dueDate",
             "baseName": "ratepaydata.dueDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepaydata_invoiceDate",
             "baseName": "ratepaydata.invoiceDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ratepaydata_invoiceId",
             "baseName": "ratepaydata.invoiceId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataRatepay.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

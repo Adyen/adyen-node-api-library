@@ -12,118 +12,135 @@ export class ThreeDSecureData {
     /**
     * In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.  
     */
-    'authenticationResponse'?: ThreeDSecureData.AuthenticationResponseEnum;
+    "authenticationResponse"?: ThreeDSecureData.AuthenticationResponseEnum;
     /**
     * The cardholder authentication value (base64 encoded, 20 bytes in a decoded form).
     */
-    'cavv'?: string;
+    "cavv"?: string;
     /**
     * The CAVV algorithm used. Include this only for 3D Secure 1.
     */
-    'cavvAlgorithm'?: string;
+    "cavvAlgorithm"?: string;
     /**
     * Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).
     */
-    'challengeCancel'?: ThreeDSecureData.ChallengeCancelEnum;
+    "challengeCancel"?: ThreeDSecureData.ChallengeCancelEnum;
     /**
     * In 3D Secure 2, this is the `transStatus` from the `ARes`.  
     */
-    'directoryResponse'?: ThreeDSecureData.DirectoryResponseEnum;
+    "directoryResponse"?: ThreeDSecureData.DirectoryResponseEnum;
     /**
     * Supported for 3D Secure 2. The unique transaction identifier assigned by the Directory Server (DS) to identify a single transaction.
     */
-    'dsTransID'?: string;
+    "dsTransID"?: string;
     /**
     * The electronic commerce indicator.
     */
-    'eci'?: string;
+    "eci"?: string;
     /**
     * Risk score calculated by Directory Server (DS). Required for Cartes Bancaires integrations.
     */
-    'riskScore'?: string;
+    "riskScore"?: string;
     /**
     * The version of the 3D Secure protocol.
     */
-    'threeDSVersion'?: string;
+    "threeDSVersion"?: string;
     /**
     * Network token authentication verification value (TAVV). The network token cryptogram.
     */
-    'tokenAuthenticationVerificationValue'?: string;
+    "tokenAuthenticationVerificationValue"?: string;
     /**
     * Provides information on why the `transStatus` field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
     */
-    'transStatusReason'?: string;
+    "transStatusReason"?: string;
     /**
     * Supported for 3D Secure 1. The transaction identifier (Base64-encoded, 20 bytes in a decoded form).
     */
-    'xid'?: string;
+    "xid"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "authenticationResponse",
             "baseName": "authenticationResponse",
-            "type": "ThreeDSecureData.AuthenticationResponseEnum"
+            "type": "ThreeDSecureData.AuthenticationResponseEnum",
+            "format": ""
         },
         {
             "name": "cavv",
             "baseName": "cavv",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         },
         {
             "name": "cavvAlgorithm",
             "baseName": "cavvAlgorithm",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "challengeCancel",
             "baseName": "challengeCancel",
-            "type": "ThreeDSecureData.ChallengeCancelEnum"
+            "type": "ThreeDSecureData.ChallengeCancelEnum",
+            "format": ""
         },
         {
             "name": "directoryResponse",
             "baseName": "directoryResponse",
-            "type": "ThreeDSecureData.DirectoryResponseEnum"
+            "type": "ThreeDSecureData.DirectoryResponseEnum",
+            "format": ""
         },
         {
             "name": "dsTransID",
             "baseName": "dsTransID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "eci",
             "baseName": "eci",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "riskScore",
             "baseName": "riskScore",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDSVersion",
             "baseName": "threeDSVersion",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "tokenAuthenticationVerificationValue",
             "baseName": "tokenAuthenticationVerificationValue",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         },
         {
             "name": "transStatusReason",
             "baseName": "transStatusReason",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "xid",
             "baseName": "xid",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDSecureData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,37 +12,45 @@ export class ThreeDSRequestorAuthenticationInfo {
     /**
     * Data that documents and supports a specific authentication process. Maximum length: 2048 bytes.
     */
-    'threeDSReqAuthData'?: string;
+    "threeDSReqAuthData"?: string;
     /**
     * Mechanism used by the Cardholder to authenticate to the 3DS Requestor. Allowed values: * **01** — No 3DS Requestor authentication occurred (for example, cardholder “logged in” as guest). * **02** — Login to the cardholder account at the 3DS Requestor system using 3DS Requestor’s own credentials. * **03** — Login to the cardholder account at the 3DS Requestor system using federated ID. * **04** — Login to the cardholder account at the 3DS Requestor system using issuer credentials. * **05** — Login to the cardholder account at the 3DS Requestor system using third-party authentication. * **06** — Login to the cardholder account at the 3DS Requestor system using FIDO Authenticator.
     */
-    'threeDSReqAuthMethod'?: ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum;
+    "threeDSReqAuthMethod"?: ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum;
     /**
     * Date and time in UTC of the cardholder authentication. Format: YYYYMMDDHHMM
     */
-    'threeDSReqAuthTimestamp'?: string;
+    "threeDSReqAuthTimestamp"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "threeDSReqAuthData",
             "baseName": "threeDSReqAuthData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDSReqAuthMethod",
             "baseName": "threeDSReqAuthMethod",
-            "type": "ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum"
+            "type": "ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum",
+            "format": ""
         },
         {
             "name": "threeDSReqAuthTimestamp",
             "baseName": "threeDSReqAuthTimestamp",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDSRequestorAuthenticationInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,58 +7,69 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from "./amount";
+
 
 export class DeliveryMethod {
-    'amount'?: Amount | null;
+    "amount"?: Amount;
     /**
     * The name of the delivery method as shown to the shopper.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The reference of the delivery method.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * If you display the PayPal lightbox with delivery methods, set to **true** for the delivery method that is selected. Only one delivery method can be selected at a time.
     */
-    'selected'?: boolean;
+    "selected"?: boolean;
     /**
     * The type of the delivery method.
     */
-    'type'?: DeliveryMethod.TypeEnum;
+    "type"?: DeliveryMethod.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "selected",
             "baseName": "selected",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "DeliveryMethod.TypeEnum"
+            "type": "DeliveryMethod.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DeliveryMethod.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

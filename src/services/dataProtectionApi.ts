@@ -16,6 +16,10 @@ import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/dataProtection/models";
 
+/**
+ * The service has been moved to a different package 'dataProtection'
+ * @deprecated Use services/dataProtection/DataProtectionAPI
+ */
 export class DataProtectionAPI extends Service {
     
     private readonly API_BASEPATH: string = "https://ca-test.adyen.com/ca/services/DataProtectionService/v1";
@@ -27,6 +31,9 @@ export class DataProtectionAPI extends Service {
     }
 
     /**
+    /**
+    * @deprecated Use services/dataProtection/DataProtectionAPI
+    * 
     * @summary Submit a Subject Erasure Request.
     * @param subjectErasureByPspReferenceRequest {@link SubjectErasureByPspReferenceRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -35,13 +42,13 @@ export class DataProtectionAPI extends Service {
     public async requestSubjectErasure(subjectErasureByPspReferenceRequest: SubjectErasureByPspReferenceRequest, requestOptions?: IRequest.Options): Promise<SubjectErasureResponse> {
         const endpoint = `${this.baseUrl}/requestSubjectErasure`;
         const resource = new Resource(this, endpoint);
-        const request: SubjectErasureByPspReferenceRequest = ObjectSerializer.serialize(subjectErasureByPspReferenceRequest, "SubjectErasureByPspReferenceRequest");
+        const request: SubjectErasureByPspReferenceRequest = ObjectSerializer.serialize(subjectErasureByPspReferenceRequest, "SubjectErasureByPspReferenceRequest", "");
         const response = await getJsonResponse<SubjectErasureByPspReferenceRequest, SubjectErasureResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "SubjectErasureResponse");
+        return ObjectSerializer.deserialize(response, "SubjectErasureResponse", "");
     }
 }
 

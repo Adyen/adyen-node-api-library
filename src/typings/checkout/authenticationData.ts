@@ -7,40 +7,49 @@
  * Do not edit this class manually.
  */
 
-import { ThreeDSRequestData } from './threeDSRequestData';
+import { ThreeDSRequestData } from "./threeDSRequestData";
+
 
 export class AuthenticationData {
     /**
     * Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don\'t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.
     */
-    'attemptAuthentication'?: AuthenticationData.AttemptAuthenticationEnum;
+    "attemptAuthentication"?: AuthenticationData.AttemptAuthenticationEnum;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. Default: **false**.
     */
-    'authenticationOnly'?: boolean;
-    'threeDSRequestData'?: ThreeDSRequestData | null;
+    "authenticationOnly"?: boolean;
+    "threeDSRequestData"?: ThreeDSRequestData;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "attemptAuthentication",
             "baseName": "attemptAuthentication",
-            "type": "AuthenticationData.AttemptAuthenticationEnum"
+            "type": "AuthenticationData.AttemptAuthenticationEnum",
+            "format": ""
         },
         {
             "name": "authenticationOnly",
             "baseName": "authenticationOnly",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "threeDSRequestData",
             "baseName": "threeDSRequestData",
-            "type": "ThreeDSRequestData | null"
+            "type": "ThreeDSRequestData",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AuthenticationData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

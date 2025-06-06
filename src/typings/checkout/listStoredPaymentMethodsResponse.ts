@@ -7,43 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { StoredPaymentMethodResource } from './storedPaymentMethodResource';
+import { StoredPaymentMethodResource } from "./storedPaymentMethodResource";
+
 
 export class ListStoredPaymentMethodsResponse {
     /**
     * Your merchant account.
     */
-    'merchantAccount'?: string;
+    "merchantAccount"?: string;
     /**
     * Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
-    'shopperReference'?: string;
+    "shopperReference"?: string;
     /**
     * List of all stored payment methods.
     */
-    'storedPaymentMethods'?: Array<StoredPaymentMethodResource>;
+    "storedPaymentMethods"?: Array<StoredPaymentMethodResource>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethods",
             "baseName": "storedPaymentMethods",
-            "type": "Array<StoredPaymentMethodResource>"
+            "type": "Array<StoredPaymentMethodResource>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ListStoredPaymentMethodsResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

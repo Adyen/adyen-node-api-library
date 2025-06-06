@@ -12,91 +12,105 @@ export class BrowserInfo {
     /**
     * The accept header value of the shopper\'s browser.
     */
-    'acceptHeader': string;
+    "acceptHeader": string;
     /**
     * The color depth of the shopper\'s browser in bits per pixel. This should be obtained by using the browser\'s `screen.colorDepth` property. Accepted values: 1, 4, 8, 15, 16, 24, 30, 32 or 48 bit color depth.
     */
-    'colorDepth': number;
+    "colorDepth": number;
     /**
     * Boolean value indicating if the shopper\'s browser is able to execute Java.
     */
-    'javaEnabled': boolean;
+    "javaEnabled": boolean;
     /**
     * Boolean value indicating if the shopper\'s browser is able to execute JavaScript. A default \'true\' value is assumed if the field is not present.
     */
-    'javaScriptEnabled'?: boolean;
+    "javaScriptEnabled"?: boolean;
     /**
     * The `navigator.language` value of the shopper\'s browser (as defined in IETF BCP 47).
     */
-    'language': string;
+    "language": string;
     /**
     * The total height of the shopper\'s device screen in pixels.
     */
-    'screenHeight': number;
+    "screenHeight": number;
     /**
     * The total width of the shopper\'s device screen in pixels.
     */
-    'screenWidth': number;
+    "screenWidth": number;
     /**
     * Time difference between UTC time and the shopper\'s browser local time, in minutes.
     */
-    'timeZoneOffset': number;
+    "timeZoneOffset": number;
     /**
     * The user agent value of the shopper\'s browser.
     */
-    'userAgent': string;
+    "userAgent": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "acceptHeader",
             "baseName": "acceptHeader",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "colorDepth",
             "baseName": "colorDepth",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "javaEnabled",
             "baseName": "javaEnabled",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "javaScriptEnabled",
             "baseName": "javaScriptEnabled",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "language",
             "baseName": "language",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "screenHeight",
             "baseName": "screenHeight",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "screenWidth",
             "baseName": "screenWidth",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "timeZoneOffset",
             "baseName": "timeZoneOffset",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "userAgent",
             "baseName": "userAgent",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BrowserInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

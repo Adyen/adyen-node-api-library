@@ -7,18 +7,21 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    BoardingTokenRequest,
-    BoardingTokenResponse,
-    PaymentsAppResponse,
-    ObjectSerializer
-} from "../../typings/paymentsApp/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/paymentsApp/objectSerializer";
+import { BoardingTokenRequest } from "../../typings/paymentsApp/models";
+import { BoardingTokenResponse } from "../../typings/paymentsApp/models";
+import { PaymentsAppResponse } from "../../typings/paymentsApp/models";
+
+/**
+ * API handler for PaymentsAppApi
+ */
 export class PaymentsAppApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-live.adyen.com/v1";
@@ -40,13 +43,15 @@ export class PaymentsAppApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/generatePaymentsAppBoardingToken`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest");
+        
+        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest", "");
         const response = await getJsonResponse<BoardingTokenRequest, BoardingTokenResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "BoardingTokenResponse");
+
+        return ObjectSerializer.deserialize(response, "BoardingTokenResponse", "");
     }
 
     /**
@@ -62,20 +67,22 @@ export class PaymentsAppApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);
-        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest");
+        
+        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest", "");
         const response = await getJsonResponse<BoardingTokenRequest, BoardingTokenResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "BoardingTokenResponse");
+
+        return ObjectSerializer.deserialize(response, "BoardingTokenResponse", "");
     }
 
     /**
     * @summary Get a list of Payments Apps - merchant level
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param requestOptions {@link IRequest.Options }
-    * @param statuses {@link string } The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDED**   * **REVOKED**
+    * @param statuses {@link string } The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDING**   * **BOARDED**   * **REVOKED**
     * @param limit {@link number } The number of items to return.
     * @param offset {@link number } The number of items to skip.
     * @return {@link PaymentsAppResponse }
@@ -84,6 +91,7 @@ export class PaymentsAppApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/paymentsApps`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = statuses ?? limit ?? offset;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -97,7 +105,8 @@ export class PaymentsAppApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "PaymentsAppResponse");
+
+        return ObjectSerializer.deserialize(response, "PaymentsAppResponse", "");
     }
 
     /**
@@ -105,7 +114,7 @@ export class PaymentsAppApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param storeId {@link string } The unique identifier of the store.
     * @param requestOptions {@link IRequest.Options }
-    * @param statuses {@link string } The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDED**   * **REVOKED**
+    * @param statuses {@link string } The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDING**   * **BOARDED**   * **REVOKED**
     * @param limit {@link number } The number of items to return.
     * @param offset {@link number } The number of items to skip.
     * @return {@link PaymentsAppResponse }
@@ -115,6 +124,7 @@ export class PaymentsAppApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = statuses ?? limit ?? offset;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -128,7 +138,8 @@ export class PaymentsAppApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "PaymentsAppResponse");
+
+        return ObjectSerializer.deserialize(response, "PaymentsAppResponse", "");
     }
 
     /**
@@ -136,16 +147,19 @@ export class PaymentsAppApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param installationId {@link string } The unique identifier of the Payments App instance on a device.
     * @param requestOptions {@link IRequest.Options }
+    * @return {@link void }
     */
     public async revokePaymentsApp(merchantId: string, installationId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/paymentsApps/{installationId}/revoke`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "installationId" + "}", encodeURIComponent(String(installationId)));
         const resource = new Resource(this, endpoint);
+        
         await getJsonResponse<string, void>(
             resource,
             "",
             { ...requestOptions, method: "POST" }
         );
     }
+
 }

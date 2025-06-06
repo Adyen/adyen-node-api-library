@@ -7,67 +7,79 @@
  * Do not edit this class manually.
  */
 
-import { PaymentMethodToStore } from './paymentMethodToStore';
+import { PaymentMethodToStore } from "./paymentMethodToStore";
+
 
 export class StoredPaymentMethodRequest {
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
-    'merchantAccount': string;
-    'paymentMethod': PaymentMethodToStore;
+    "merchantAccount": string;
+    "paymentMethod": PaymentMethodToStore;
     /**
     * Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
-    'recurringProcessingModel': StoredPaymentMethodRequest.RecurringProcessingModelEnum;
+    "recurringProcessingModel": StoredPaymentMethodRequest.RecurringProcessingModelEnum;
     /**
     * The shopper\'s email address. We recommend that you provide this data, as it is used in velocity fraud checks.
     */
-    'shopperEmail'?: string;
+    "shopperEmail"?: string;
     /**
     * The IP address of a shopper.
     */
-    'shopperIP'?: string;
+    "shopperIP"?: string;
     /**
     * A unique identifier for the shopper (for example, user ID or account ID).
     */
-    'shopperReference': string;
+    "shopperReference": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "PaymentMethodToStore"
+            "type": "PaymentMethodToStore",
+            "format": ""
         },
         {
             "name": "recurringProcessingModel",
             "baseName": "recurringProcessingModel",
-            "type": "StoredPaymentMethodRequest.RecurringProcessingModelEnum"
+            "type": "StoredPaymentMethodRequest.RecurringProcessingModelEnum",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperIP",
             "baseName": "shopperIP",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return StoredPaymentMethodRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

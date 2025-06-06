@@ -12,73 +12,85 @@ export class NotifyShopperResult {
     /**
     * Reference of Pre-debit notification that is displayed to the shopper
     */
-    'displayedReference'?: string;
+    "displayedReference"?: string;
     /**
     * A simple description of the `resultCode`.
     */
-    'message'?: string;
+    "message"?: string;
     /**
     * The unique reference that is associated with the request.
     */
-    'pspReference'?: string;
+    "pspReference"?: string;
     /**
     * Reference of Pre-debit notification sent in my the merchant
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The code indicating the status of notification.
     */
-    'resultCode'?: string;
+    "resultCode"?: string;
     /**
     * The unique reference for the request sent downstream.
     */
-    'shopperNotificationReference'?: string;
+    "shopperNotificationReference"?: string;
     /**
     * This is the recurringDetailReference returned in the response when token was created
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "displayedReference",
             "baseName": "displayedReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "message",
             "baseName": "message",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperNotificationReference",
             "baseName": "shopperNotificationReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return NotifyShopperResult.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

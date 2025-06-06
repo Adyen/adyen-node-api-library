@@ -12,583 +12,651 @@ export class ResponseAdditionalDataCommon {
     /**
     * The name of the Adyen acquirer account.  Example: PayPalSandbox_TestAcquirer  > Only relevant for PayPal transactions.
     */
-    'acquirerAccountCode'?: string;
+    "acquirerAccountCode"?: string;
     /**
     * The name of the acquirer processing the payment request.  Example: TestPmmAcquirer
     */
-    'acquirerCode'?: string;
+    "acquirerCode"?: string;
     /**
     * The reference number that can be used for reconciliation in case a non-Adyen acquirer is used for settlement.  Example: 7C9N3FNBKT9
     */
-    'acquirerReference'?: string;
+    "acquirerReference"?: string;
     /**
     * The Adyen alias of the card.  Example: H167852639363479
     */
-    'alias'?: string;
+    "alias"?: string;
     /**
     * The type of the card alias.  Example: Default
     */
-    'aliasType'?: string;
+    "aliasType"?: string;
     /**
     * Authorisation code: * When the payment is authorised successfully, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.  Example: 58747
     */
-    'authCode'?: string;
+    "authCode"?: string;
     /**
     * Merchant ID known by the acquirer.
     */
-    'authorisationMid'?: string;
+    "authorisationMid"?: string;
     /**
     * The currency of the authorised amount, as a three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
-    'authorisedAmountCurrency'?: string;
+    "authorisedAmountCurrency"?: string;
     /**
     * Value of the amount authorised.  This amount is represented in minor units according to the [following table](https://docs.adyen.com/development-resources/currency-codes).
     */
-    'authorisedAmountValue'?: string;
+    "authorisedAmountValue"?: string;
     /**
     * The AVS result code of the payment, which provides information about the outcome of the AVS check.  For possible values, see [AVS](https://docs.adyen.com/risk-management/configure-standard-risk-rules/consistency-rules#billing-address-does-not-match-cardholder-address-avs).
     */
-    'avsResult'?: string;
+    "avsResult"?: string;
     /**
     * Raw AVS result received from the acquirer, where available.  Example: D
     */
-    'avsResultRaw'?: string;
+    "avsResultRaw"?: string;
     /**
     * BIC of a bank account.  Example: TESTNL01  > Only relevant for SEPA Direct Debit transactions.
     */
-    'bic'?: string;
+    "bic"?: string;
     /**
     * Includes the co-branded card information.
     */
-    'coBrandedWith'?: string;
+    "coBrandedWith"?: string;
     /**
     * The result of CVC verification.
     */
-    'cvcResult'?: string;
+    "cvcResult"?: string;
     /**
     * The raw result of CVC verification.
     */
-    'cvcResultRaw'?: string;
+    "cvcResultRaw"?: string;
     /**
     * Supported for 3D Secure 2. The unique transaction identifier assigned by the DS to identify a single transaction.
     */
-    'dsTransID'?: string;
+    "dsTransID"?: string;
     /**
     * The Electronic Commerce Indicator returned from the schemes for the 3DS payment session.  Example: 02
     */
-    'eci'?: string;
+    "eci"?: string;
     /**
     * The expiry date on the card.  Example: 6/2016  > Returned only in case of a card payment.
     */
-    'expiryDate'?: string;
+    "expiryDate"?: string;
     /**
     * The currency of the extra amount charged due to additional amounts set in the skin used in the HPP payment request.  Example: EUR
     */
-    'extraCostsCurrency'?: string;
+    "extraCostsCurrency"?: string;
     /**
     * The value of the extra amount charged due to additional amounts set in the skin used in the HPP payment request. The amount is in minor units.
     */
-    'extraCostsValue'?: string;
+    "extraCostsValue"?: string;
     /**
     * The fraud score due to a particular fraud check. The fraud check name is found in the key of the key-value pair.
     */
-    'fraudCheck__itemNr__FraudCheckname'?: string;
+    "fraudCheck__itemNr__FraudCheckname"?: string;
     /**
     * Indicates if the payment is sent to manual review.
     */
-    'fraudManualReview'?: string;
+    "fraudManualReview"?: string;
     /**
     * The fraud result properties of the payment.
     */
-    'fraudResultType'?: ResponseAdditionalDataCommon.FraudResultTypeEnum;
+    "fraudResultType"?: ResponseAdditionalDataCommon.FraudResultTypeEnum;
     /**
     * The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are:\\n* veryLow\\n* low\\n* medium\\n* high\\n* veryHigh\\n\\n>
     */
-    'fraudRiskLevel'?: ResponseAdditionalDataCommon.FraudRiskLevelEnum;
+    "fraudRiskLevel"?: ResponseAdditionalDataCommon.FraudRiskLevelEnum;
     /**
     * Information regarding the funding type of the card. The possible return values are: * CHARGE * CREDIT * DEBIT * PREPAID * PREPAID_RELOADABLE  * PREPAID_NONRELOADABLE * DEFFERED_DEBIT  > This functionality requires additional configuration on Adyen\'s end. To enable it, contact the Support Team.  For receiving this field in the notification, enable **Include Funding Source** in **Notifications** > **Additional settings**.
     */
-    'fundingSource'?: string;
+    "fundingSource"?: string;
     /**
     * Indicates availability of funds.  Visa: * \"I\" (fast funds are supported) * \"N\" (otherwise)  Mastercard: * \"I\" (product type is Prepaid or Debit, or issuing country is in CEE/HGEM list) * \"N\" (otherwise)  > Returned when you verify a card BIN or estimate costs, and only if payoutEligible is \"Y\" or \"D\".
     */
-    'fundsAvailability'?: string;
+    "fundsAvailability"?: string;
     /**
     * Provides the more granular indication of why a transaction was refused. When a transaction fails with either \"Refused\", \"Restricted Card\", \"Transaction Not Permitted\", \"Not supported\" or \"DeclinedNon Generic\" refusalReason from the issuer, Adyen cross references its PSP-wide data for extra insight into the refusal reason. If an inferred refusal reason is available, the `inferredRefusalReason`, field is populated and the `refusalReason`, is set to \"Not Supported\".  Possible values:  * 3D Secure Mandated * Closed Account * ContAuth Not Supported * CVC Mandated * Ecommerce Not Allowed * Crossborder Not Supported * Card Updated  * Low Authrate Bin * Non-reloadable prepaid card
     */
-    'inferredRefusalReason'?: string;
+    "inferredRefusalReason"?: string;
     /**
     * Indicates if the card is used for business purposes only.
     */
-    'isCardCommercial'?: string;
+    "isCardCommercial"?: string;
     /**
     * The issuing country of the card based on the BIN list that Adyen maintains.  Example: JP
     */
-    'issuerCountry'?: string;
+    "issuerCountry"?: string;
     /**
     * A Boolean value indicating whether a liability shift was offered for this payment.
     */
-    'liabilityShift'?: string;
+    "liabilityShift"?: string;
     /**
     * The `mcBankNetReferenceNumber`, is a minimum of six characters and a maximum of nine characters long.  > Contact Support Team to enable this field.
     */
-    'mcBankNetReferenceNumber'?: string;
+    "mcBankNetReferenceNumber"?: string;
     /**
     * The Merchant Advice Code (MAC) can be returned by Mastercard issuers for refused payments. If present, the MAC contains information about why the payment failed, and whether it can be retried.  For more information see [Mastercard Merchant Advice Codes](https://docs.adyen.com/development-resources/raw-acquirer-responses#mastercard-merchant-advice-codes).
     */
-    'merchantAdviceCode'?: string;
+    "merchantAdviceCode"?: string;
     /**
     * The reference provided for the transaction.
     */
-    'merchantReference'?: string;
+    "merchantReference"?: string;
     /**
     * Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.
     */
-    'networkTxReference'?: string;
+    "networkTxReference"?: string;
     /**
     * The owner name of a bank account.  Only relevant for SEPA Direct Debit transactions.
     */
-    'ownerName'?: string;
+    "ownerName"?: string;
     /**
     * The Payment Account Reference (PAR) value links a network token with the underlying primary account number (PAN). The PAR value consists of 29 uppercase alphanumeric characters.
     */
-    'paymentAccountReference'?: string;
+    "paymentAccountReference"?: string;
     /**
     * The payment method used in the transaction.
     */
-    'paymentMethod'?: string;
+    "paymentMethod"?: string;
     /**
     * The Adyen sub-variant of the payment method used for the payment request.  For more information, refer to [PaymentMethodVariant](https://docs.adyen.com/development-resources/paymentmethodvariant).  Example: mcpro
     */
-    'paymentMethodVariant'?: string;
+    "paymentMethodVariant"?: string;
     /**
     * Indicates whether a payout is eligible or not for this card.  Visa: * \"Y\" * \"N\"  Mastercard: * \"Y\" (domestic and cross-border)  * \"D\" (only domestic) * \"N\" (no MoneySend) * \"U\" (unknown)
     */
-    'payoutEligible'?: string;
+    "payoutEligible"?: string;
     /**
     * The response code from the Real Time Account Updater service.  Possible return values are: * CardChanged * CardExpiryChanged * CloseAccount  * ContactCardAccountHolder
     */
-    'realtimeAccountUpdaterStatus'?: string;
+    "realtimeAccountUpdaterStatus"?: string;
     /**
     * Message to be displayed on the terminal.
     */
-    'receiptFreeText'?: string;
+    "receiptFreeText"?: string;
     /**
     * The recurring contract types applicable to the transaction.
     */
-    'recurring_contractTypes'?: string;
+    "recurring_contractTypes"?: string;
     /**
     * The `pspReference`, of the first recurring payment that created the recurring detail.  This functionality requires additional configuration on Adyen\'s end. To enable it, contact the Support Team.
     */
-    'recurring_firstPspReference'?: string;
+    "recurring_firstPspReference"?: string;
     /**
     * The reference that uniquely identifies the recurring transaction.
     *
 	* @deprecated since Adyen Checkout API v68
 	* Use tokenization.storedPaymentMethodId instead.
     */
-    'recurring_recurringDetailReference'?: string;
+    "recurring_recurringDetailReference"?: string;
     /**
     * The provided reference of the shopper for a recurring transaction.
     *
 	* @deprecated since Adyen Checkout API v68
 	* Use tokenization.shopperReference instead.
     */
-    'recurring_shopperReference'?: string;
+    "recurring_shopperReference"?: string;
     /**
     * The processing model used for the recurring transaction.
     */
-    'recurringProcessingModel'?: ResponseAdditionalDataCommon.RecurringProcessingModelEnum;
+    "recurringProcessingModel"?: ResponseAdditionalDataCommon.RecurringProcessingModelEnum;
     /**
     * If the payment is referred, this field is set to true.  This field is unavailable if the payment is referred and is usually not returned with ecommerce transactions.  Example: true
     */
-    'referred'?: string;
+    "referred"?: string;
     /**
     * Raw refusal reason received from the acquirer, where available.  Example: AUTHORISED
     */
-    'refusalReasonRaw'?: string;
+    "refusalReasonRaw"?: string;
     /**
     * The amount of the payment request.
     */
-    'requestAmount'?: string;
+    "requestAmount"?: string;
     /**
     * The currency of the payment request.
     */
-    'requestCurrencyCode'?: string;
+    "requestCurrencyCode"?: string;
     /**
     * The shopper interaction type of the payment request.  Example: Ecommerce
     */
-    'shopperInteraction'?: string;
+    "shopperInteraction"?: string;
     /**
     * The shopperReference passed in the payment request.  Example: AdyenTestShopperXX
     */
-    'shopperReference'?: string;
+    "shopperReference"?: string;
     /**
     * The terminal ID used in a point-of-sale payment.  Example: 06022622
     */
-    'terminalId'?: string;
+    "terminalId"?: string;
     /**
     * A Boolean value indicating whether 3DS authentication was completed on this payment.  Example: true
     */
-    'threeDAuthenticated'?: string;
+    "threeDAuthenticated"?: string;
     /**
     * The raw 3DS authentication result from the card issuer.  Example: N
     */
-    'threeDAuthenticatedResponse'?: string;
+    "threeDAuthenticatedResponse"?: string;
     /**
     * A Boolean value indicating whether 3DS was offered for this payment.  Example: true
     */
-    'threeDOffered'?: string;
+    "threeDOffered"?: string;
     /**
     * The raw enrollment result from the 3DS directory services of the card schemes.  Example: Y
     */
-    'threeDOfferedResponse'?: string;
+    "threeDOfferedResponse"?: string;
     /**
     * The 3D Secure 2 version.
     */
-    'threeDSVersion'?: string;
+    "threeDSVersion"?: string;
     /**
     * The reference for the shopper that you sent when tokenizing the payment details.
     */
-    'tokenization_shopperReference'?: string;
+    "tokenization_shopperReference"?: string;
     /**
     * The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. 
     */
-    'tokenization_store_operationType'?: ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum;
+    "tokenization_store_operationType"?: ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum;
     /**
     * The reference that uniquely identifies tokenized payment details.
     */
-    'tokenization_storedPaymentMethodId'?: string;
+    "tokenization_storedPaymentMethodId"?: string;
     /**
     * The `visaTransactionId`, has a fixed length of 15 numeric characters.  > Contact Support Team to enable this field.
     */
-    'visaTransactionId'?: string;
+    "visaTransactionId"?: string;
     /**
     * The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse \'N\' or \'Y\'.   Example: ODgxNDc2MDg2MDExODk5MAAAAAA=
     */
-    'xid'?: string;
+    "xid"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "acquirerAccountCode",
             "baseName": "acquirerAccountCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "acquirerCode",
             "baseName": "acquirerCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "acquirerReference",
             "baseName": "acquirerReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "alias",
             "baseName": "alias",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "aliasType",
             "baseName": "aliasType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "authCode",
             "baseName": "authCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "authorisationMid",
             "baseName": "authorisationMid",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "authorisedAmountCurrency",
             "baseName": "authorisedAmountCurrency",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "authorisedAmountValue",
             "baseName": "authorisedAmountValue",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "avsResult",
             "baseName": "avsResult",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "avsResultRaw",
             "baseName": "avsResultRaw",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bic",
             "baseName": "bic",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "coBrandedWith",
             "baseName": "coBrandedWith",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "cvcResult",
             "baseName": "cvcResult",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "cvcResultRaw",
             "baseName": "cvcResultRaw",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "dsTransID",
             "baseName": "dsTransID",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "eci",
             "baseName": "eci",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "expiryDate",
             "baseName": "expiryDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "extraCostsCurrency",
             "baseName": "extraCostsCurrency",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "extraCostsValue",
             "baseName": "extraCostsValue",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fraudCheck__itemNr__FraudCheckname",
             "baseName": "fraudCheck-[itemNr]-[FraudCheckname]",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fraudManualReview",
             "baseName": "fraudManualReview",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fraudResultType",
             "baseName": "fraudResultType",
-            "type": "ResponseAdditionalDataCommon.FraudResultTypeEnum"
+            "type": "ResponseAdditionalDataCommon.FraudResultTypeEnum",
+            "format": ""
         },
         {
             "name": "fraudRiskLevel",
             "baseName": "fraudRiskLevel",
-            "type": "ResponseAdditionalDataCommon.FraudRiskLevelEnum"
+            "type": "ResponseAdditionalDataCommon.FraudRiskLevelEnum",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fundsAvailability",
             "baseName": "fundsAvailability",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "inferredRefusalReason",
             "baseName": "inferredRefusalReason",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "isCardCommercial",
             "baseName": "isCardCommercial",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "issuerCountry",
             "baseName": "issuerCountry",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "liabilityShift",
             "baseName": "liabilityShift",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "mcBankNetReferenceNumber",
             "baseName": "mcBankNetReferenceNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAdviceCode",
             "baseName": "merchantAdviceCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantReference",
             "baseName": "merchantReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "networkTxReference",
             "baseName": "networkTxReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ownerName",
             "baseName": "ownerName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentAccountReference",
             "baseName": "paymentAccountReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentMethodVariant",
             "baseName": "paymentMethodVariant",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "payoutEligible",
             "baseName": "payoutEligible",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "realtimeAccountUpdaterStatus",
             "baseName": "realtimeAccountUpdaterStatus",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "receiptFreeText",
             "baseName": "receiptFreeText",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurring_contractTypes",
             "baseName": "recurring.contractTypes",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurring_firstPspReference",
             "baseName": "recurring.firstPspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurring_recurringDetailReference",
             "baseName": "recurring.recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurring_shopperReference",
             "baseName": "recurring.shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringProcessingModel",
             "baseName": "recurringProcessingModel",
-            "type": "ResponseAdditionalDataCommon.RecurringProcessingModelEnum"
+            "type": "ResponseAdditionalDataCommon.RecurringProcessingModelEnum",
+            "format": ""
         },
         {
             "name": "referred",
             "baseName": "referred",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "refusalReasonRaw",
             "baseName": "refusalReasonRaw",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "requestAmount",
             "baseName": "requestAmount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "requestCurrencyCode",
             "baseName": "requestCurrencyCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperInteraction",
             "baseName": "shopperInteraction",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "terminalId",
             "baseName": "terminalId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDAuthenticated",
             "baseName": "threeDAuthenticated",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDAuthenticatedResponse",
             "baseName": "threeDAuthenticatedResponse",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDOffered",
             "baseName": "threeDOffered",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDOfferedResponse",
             "baseName": "threeDOfferedResponse",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDSVersion",
             "baseName": "threeDSVersion",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "tokenization_shopperReference",
             "baseName": "tokenization.shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "tokenization_store_operationType",
             "baseName": "tokenization.store.operationType",
-            "type": "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum"
+            "type": "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum",
+            "format": ""
         },
         {
             "name": "tokenization_storedPaymentMethodId",
             "baseName": "tokenization.storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "visaTransactionId",
             "baseName": "visaTransactionId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "xid",
             "baseName": "xid",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalDataCommon.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

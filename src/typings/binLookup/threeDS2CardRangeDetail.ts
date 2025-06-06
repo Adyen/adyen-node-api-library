@@ -12,64 +12,75 @@ export class ThreeDS2CardRangeDetail {
     /**
     * Provides additional information to the 3DS Server. Possible values: - 01 (Authentication is available at ACS) - 02 (Attempts supported by ACS or DS) - 03 (Decoupled authentication supported) - 04 (Whitelisting supported)
     */
-    'acsInfoInd'?: Array<string>;
+    "acsInfoInd"?: Array<string>;
     /**
     * Card brand.
     */
-    'brandCode'?: string;
+    "brandCode"?: string;
     /**
     * BIN end range.
     */
-    'endRange'?: string;
+    "endRange"?: string;
     /**
     * BIN start range.
     */
-    'startRange'?: string;
+    "startRange"?: string;
     /**
     * Supported 3D Secure protocol versions
     */
-    'threeDS2Versions'?: Array<string>;
+    "threeDS2Versions"?: Array<string>;
     /**
     * In a 3D Secure 2 browser-based flow, this is the URL where you should send the device fingerprint to.
     */
-    'threeDSMethodURL'?: string;
+    "threeDSMethodURL"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "acsInfoInd",
             "baseName": "acsInfoInd",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "brandCode",
             "baseName": "brandCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "endRange",
             "baseName": "endRange",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "startRange",
             "baseName": "startRange",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "threeDS2Versions",
             "baseName": "threeDS2Versions",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "threeDSMethodURL",
             "baseName": "threeDSMethodURL",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDS2CardRangeDetail.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

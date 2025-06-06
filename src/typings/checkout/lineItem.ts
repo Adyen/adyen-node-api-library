@@ -12,172 +12,195 @@ export class LineItem {
     /**
     * Item amount excluding the tax, in minor units.
     */
-    'amountExcludingTax'?: number;
+    "amountExcludingTax"?: number;
     /**
     * Item amount including the tax, in minor units.
     */
-    'amountIncludingTax'?: number;
+    "amountIncludingTax"?: number;
     /**
     * Brand of the item.
     */
-    'brand'?: string;
+    "brand"?: string;
     /**
     * Color of the item.
     */
-    'color'?: string;
+    "color"?: string;
     /**
     * Description of the line item.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * ID of the line item.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * Link to the picture of the purchased item.
     */
-    'imageUrl'?: string;
+    "imageUrl"?: string;
     /**
     * Item category, used by the payment methods PayPal and Ratepay.
     */
-    'itemCategory'?: string;
+    "itemCategory"?: string;
     /**
     * Manufacturer of the item.
     */
-    'manufacturer'?: string;
+    "manufacturer"?: string;
     /**
     * Marketplace seller id.
     */
-    'marketplaceSellerId'?: string;
+    "marketplaceSellerId"?: string;
     /**
     * Link to the purchased item.
     */
-    'productUrl'?: string;
+    "productUrl"?: string;
     /**
     * Number of items.
     */
-    'quantity'?: number;
+    "quantity"?: number;
     /**
     * Email associated with the given product in the basket (usually in electronic gift cards).
     */
-    'receiverEmail'?: string;
+    "receiverEmail"?: string;
     /**
     * Size of the item.
     */
-    'size'?: string;
+    "size"?: string;
     /**
     * Stock keeping unit.
     */
-    'sku'?: string;
+    "sku"?: string;
     /**
     * Tax amount, in minor units.
     */
-    'taxAmount'?: number;
+    "taxAmount"?: number;
     /**
     * Tax percentage, in minor units.
     */
-    'taxPercentage'?: number;
+    "taxPercentage"?: number;
     /**
     * Universal Product Code.
     */
-    'upc'?: string;
+    "upc"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amountExcludingTax",
             "baseName": "amountExcludingTax",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "amountIncludingTax",
             "baseName": "amountIncludingTax",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "color",
             "baseName": "color",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "imageUrl",
             "baseName": "imageUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "itemCategory",
             "baseName": "itemCategory",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "manufacturer",
             "baseName": "manufacturer",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "marketplaceSellerId",
             "baseName": "marketplaceSellerId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "productUrl",
             "baseName": "productUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "quantity",
             "baseName": "quantity",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "receiverEmail",
             "baseName": "receiverEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "size",
             "baseName": "size",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "sku",
             "baseName": "sku",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "taxAmount",
             "baseName": "taxAmount",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "taxPercentage",
             "baseName": "taxPercentage",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "upc",
             "baseName": "upc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return LineItem.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,55 +12,65 @@ export class Donation {
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).
     */
-    'currency': string;
+    "currency": string;
     /**
     * The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from.
     */
-    'donationType': string;
+    "donationType": string;
     /**
     * The maximum amount a transaction can be rounded up to make a donation. This field is only present when `donationType` is **roundup**.
     */
-    'maxRoundupAmount'?: number;
+    "maxRoundupAmount"?: number;
     /**
     * The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.
     */
-    'type': string;
+    "type": string;
     /**
     * The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when `donationType` is **fixedAmounts**.
     */
-    'values'?: Array<number>;
+    "values"?: Array<number>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "donationType",
             "baseName": "donationType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "maxRoundupAmount",
             "baseName": "maxRoundupAmount",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "values",
             "baseName": "values",
-            "type": "Array<number>"
+            "type": "Array<number>",
+            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
         return Donation.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

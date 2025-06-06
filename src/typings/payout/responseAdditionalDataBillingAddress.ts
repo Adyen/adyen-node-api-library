@@ -34,42 +34,53 @@ export class ResponseAdditionalDataBillingAddress {
     */
     'billingAddress_street'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "billingAddress_city",
             "baseName": "billingAddress.city",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "billingAddress_country",
             "baseName": "billingAddress.country",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "billingAddress_houseNumberOrName",
             "baseName": "billingAddress.houseNumberOrName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "billingAddress_postalCode",
             "baseName": "billingAddress.postalCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "billingAddress_stateOrProvince",
             "baseName": "billingAddress.stateOrProvince",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "billingAddress_street",
             "baseName": "billingAddress.street",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalDataBillingAddress.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,37 +7,46 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from "./amount";
+
 
 export class PermitRestriction {
-    'maxAmount'?: Amount | null;
-    'singleTransactionLimit'?: Amount | null;
+    "maxAmount"?: Amount;
+    "singleTransactionLimit"?: Amount;
     /**
     * Only a single payment can be made using this permit if set to true, otherwise multiple payments are allowed.
     */
-    'singleUse'?: boolean;
+    "singleUse"?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "maxAmount",
             "baseName": "maxAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "singleTransactionLimit",
             "baseName": "singleTransactionLimit",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "singleUse",
             "baseName": "singleUse",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PermitRestriction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

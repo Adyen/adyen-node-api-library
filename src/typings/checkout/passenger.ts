@@ -12,55 +12,65 @@ export class Passenger {
     /**
     * The passenger\'s date of birth. * Format `yyyy-MM-dd` * minLength: 10 * maxLength: 10
     */
-    'dateOfBirth'?: string;
+    "dateOfBirth"?: string;
     /**
     * The passenger\'s first name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII
     */
-    'firstName'?: string;
+    "firstName"?: string;
     /**
     * The passenger\'s last name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII
     */
-    'lastName'?: string;
+    "lastName"?: string;
     /**
     * The passenger\'s phone number, including country code. This is an alphanumeric field that can include the \'+\' and \'-\' signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters
     */
-    'phoneNumber'?: string;
+    "phoneNumber"?: string;
     /**
     * The IATA passenger type code (PTC). * Encoding: ASCII * minLength: 3 characters * maxLength: 6 characters
     */
-    'travellerType'?: string;
+    "travellerType"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "string"
+            "type": "string",
+            "format": "date"
         },
         {
             "name": "firstName",
             "baseName": "firstName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lastName",
             "baseName": "lastName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "phoneNumber",
             "baseName": "phoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "travellerType",
             "baseName": "travellerType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Passenger.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

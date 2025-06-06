@@ -12,19 +12,25 @@ export class DetailsRequestAuthenticationData {
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. Default: *false**.
     */
-    'authenticationOnly'?: boolean;
+    "authenticationOnly"?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "authenticationOnly",
             "baseName": "authenticationOnly",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DetailsRequestAuthenticationData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

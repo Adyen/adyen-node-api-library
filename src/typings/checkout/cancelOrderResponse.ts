@@ -12,28 +12,35 @@ export class CancelOrderResponse {
     /**
     * A unique reference of the cancellation request.
     */
-    'pspReference': string;
+    "pspReference": string;
     /**
     * The result of the cancellation request.  Possible values:  * **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed.
     */
-    'resultCode': CancelOrderResponse.ResultCodeEnum;
+    "resultCode": CancelOrderResponse.ResultCodeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "CancelOrderResponse.ResultCodeEnum"
+            "type": "CancelOrderResponse.ResultCodeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CancelOrderResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,46 +12,55 @@ export class VisaCheckoutDetails {
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    'fundingSource'?: VisaCheckoutDetails.FundingSourceEnum;
+    "fundingSource"?: VisaCheckoutDetails.FundingSourceEnum;
     /**
     * **visacheckout**
     */
-    'type'?: VisaCheckoutDetails.TypeEnum;
+    "type"?: VisaCheckoutDetails.TypeEnum;
     /**
     * The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID.
     */
-    'visaCheckoutCallId': string;
+    "visaCheckoutCallId": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "VisaCheckoutDetails.FundingSourceEnum"
+            "type": "VisaCheckoutDetails.FundingSourceEnum",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "VisaCheckoutDetails.TypeEnum"
+            "type": "VisaCheckoutDetails.TypeEnum",
+            "format": ""
         },
         {
             "name": "visaCheckoutCallId",
             "baseName": "visaCheckoutCallId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return VisaCheckoutDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

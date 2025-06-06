@@ -7,76 +7,89 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { ApplicationInfo } from './applicationInfo';
-import { LineItem } from './lineItem';
-import { Split } from './split';
+import { Amount } from "./amount";
+import { ApplicationInfo } from "./applicationInfo";
+import { LineItem } from "./lineItem";
+import { Split } from "./split";
+
 
 export class PaymentAmountUpdateRequest {
-    'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
+    "amount": Amount;
+    "applicationInfo"?: ApplicationInfo;
     /**
     * The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**
     */
-    'industryUsage'?: PaymentAmountUpdateRequest.IndustryUsageEnum;
+    "industryUsage"?: PaymentAmountUpdateRequest.IndustryUsageEnum;
     /**
     * Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
     */
-    'lineItems'?: Array<LineItem>;
+    "lineItems"?: Array<LineItem>;
     /**
     * The merchant account that is used to process the payment.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * Your reference for the amount update request. Maximum length: 80 characters.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/process-payments) or [platforms](https://docs.adyen.com/platforms/process-payments).
     */
-    'splits'?: Array<Split>;
+    "splits"?: Array<Split>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo",
+            "format": ""
         },
         {
             "name": "industryUsage",
             "baseName": "industryUsage",
-            "type": "PaymentAmountUpdateRequest.IndustryUsageEnum"
+            "type": "PaymentAmountUpdateRequest.IndustryUsageEnum",
+            "format": ""
         },
         {
             "name": "lineItems",
             "baseName": "lineItems",
-            "type": "Array<LineItem>"
+            "type": "Array<LineItem>",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "splits",
             "baseName": "splits",
-            "type": "Array<Split>"
+            "type": "Array<Split>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentAmountUpdateRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

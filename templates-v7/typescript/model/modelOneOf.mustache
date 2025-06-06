@@ -1,0 +1,53 @@
+{{#hasImports}}
+import {
+    {{#imports}}
+    {{{.}}}{{importFileExtension}},
+    {{/imports}}
+} from "./";
+
+{{/hasImports}}
+
+/**
+ * @type {{classname}}
+ * Type
+ * @export
+ */
+export type {{classname}} = {{#oneOf}}{{{.}}}{{^-last}} | {{/-last}}{{/oneOf}};
+
+/**
+* @type {{classname}}Class{{#description}}
+    * {{{.}}}{{/description}}
+* @export
+*/
+export class {{classname}}Class {
+    
+    {{#discriminator}}
+    
+    static readonly discriminator: string | undefined = "{{discriminatorName}}";
+    {{/discriminator}}
+    {{^discriminator}}
+    {{! Note: discriminator is not defined in OpenAPI spec, fallback to `type` }}
+    static readonly discriminator: string = "type";
+    {{/discriminator}}
+    {{#hasDiscriminatorWithNonEmptyMapping}}
+
+    static readonly mapping: {[index: string]: string} | undefined = {
+    {{#discriminator.mappedModels}}
+        "{{mappingName}}": "{{modelName}}",
+    {{/discriminator.mappedModels}}
+    };
+    {{! Note: discriminator is not defined in OpenAPI spec, it should generate something like this:
+    static readonly mapping: { [key: string]: string } = {
+      "await": "CheckoutAwaitAction",
+      "bankTransfer": "CheckoutBankTransferAction",
+      "redirect": "CheckoutRedirectAction",
+      "threeDS2": "CheckoutThreeDS2Action",
+      "sdk": "CheckoutSDKAction",
+      "voucher": "CheckoutVoucherAction",
+    }; }}
+    {{/hasDiscriminatorWithNonEmptyMapping}}
+    {{^hasDiscriminatorWithNonEmptyMapping}}
+
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+    {{/hasDiscriminatorWithNonEmptyMapping}}
+}

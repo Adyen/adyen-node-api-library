@@ -12,76 +12,88 @@ export class UpiCollectDetails {
     /**
     * The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
     */
-    'billingSequenceNumber': string;
+    "billingSequenceNumber": string;
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * The `shopperNotificationReference` returned in the response when you requested to notify the shopper. Used for recurring payment only.
     */
-    'shopperNotificationReference'?: string;
+    "shopperNotificationReference"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * **upi_collect**
     */
-    'type': UpiCollectDetails.TypeEnum;
+    "type": UpiCollectDetails.TypeEnum;
     /**
     * The virtual payment address for UPI.
     */
-    'virtualPaymentAddress'?: string;
+    "virtualPaymentAddress"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "billingSequenceNumber",
             "baseName": "billingSequenceNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperNotificationReference",
             "baseName": "shopperNotificationReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "UpiCollectDetails.TypeEnum"
+            "type": "UpiCollectDetails.TypeEnum",
+            "format": ""
         },
         {
             "name": "virtualPaymentAddress",
             "baseName": "virtualPaymentAddress",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return UpiCollectDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
