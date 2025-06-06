@@ -12,7 +12,6 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     AuthorisedCardUsers,
-    DefaultErrorResponseEntity,
     ObjectSerializer
 } from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";

@@ -12,7 +12,6 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     BillingEntitiesResponse,
-    RestServiceError,
     ShippingLocation,
     ShippingLocationsResponse,
     TerminalModelsResponse,
