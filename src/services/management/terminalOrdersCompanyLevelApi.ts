@@ -227,7 +227,7 @@ export class TerminalOrdersCompanyLevelApi extends Service {
     * @param limit {@link number } The number of products to return.
     * @return {@link TerminalProductsResponse }
     */
-    public async listTerminalProducts(companyId: string, country?: string, terminalModelId?: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<TerminalProductsResponse> {
+    public async listTerminalProducts(companyId: string, country: string, terminalModelId?: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<TerminalProductsResponse> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/terminalProducts`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);

@@ -30,7 +30,7 @@ export class AcceptTermsOfServiceResponse {
     */
     'termsOfServiceDocumentId'?: string;
     /**
-    * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**  
+    * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  
     */
     'type'?: AcceptTermsOfServiceResponse.TypeEnum;
 
@@ -83,6 +83,7 @@ export namespace AcceptTermsOfServiceResponse {
         AdyenForPlatformsManage = 'adyenForPlatformsManage',
         AdyenFranchisee = 'adyenFranchisee',
         AdyenIssuing = 'adyenIssuing',
-        AdyenPccr = 'adyenPccr'
+        AdyenPccr = 'adyenPccr',
+        KycOnInvite = 'kycOnInvite'
     }
 }

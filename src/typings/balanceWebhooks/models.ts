@@ -13,6 +13,7 @@ export * from './balanceNotificationData';
 export * from './balancePlatformNotificationResponse';
 export * from './balances';
 
+
 import { BalanceAccountBalanceNotificationRequest } from './balanceAccountBalanceNotificationRequest';
 import { BalanceNotificationData } from './balanceNotificationData';
 import { BalancePlatformNotificationResponse } from './balancePlatformNotificationResponse';
