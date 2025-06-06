@@ -42,7 +42,7 @@ class HttpURLConnectionClient implements ClientInterface {
     public request(
         endpoint: string, json: string, config: Config, isApiRequired: boolean,
         requestOptions: IRequest.Options,
-    ): Promise<string | HttpClientException | ApiException> {
+    ): Promise<string> {
         requestOptions.headers ??= {};
         requestOptions.timeout = config.connectionTimeoutMillis;
 
@@ -71,7 +71,7 @@ class HttpURLConnectionClient implements ClientInterface {
         return this.doPostRequest(httpConnection, json);
     }
 
-    public post(endpoint: string, postParameters: [string, string][], config: Config): Promise<HttpClientException | string> {
+    public post(endpoint: string, postParameters: [string, string][], config: Config): Promise<string> {
         const postQuery: string = this.getQuery(postParameters);
         const connectionRequest: ClientRequest = this.createRequest(endpoint, {}, config.applicationName);
         return this.doPostRequest(connectionRequest, postQuery);
@@ -133,7 +133,7 @@ class HttpURLConnectionClient implements ClientInterface {
         return params.map(([key, value]): string => `${key}=${value}`).join("&");
     }
 
-    private doPostRequest(connectionRequest: ClientRequest, json: string): Promise<HttpClientException | string> {
+    private doPostRequest(connectionRequest: ClientRequest, json: string): Promise<string> {
         return new Promise((resolve, reject): void => {
             connectionRequest.flushHeaders();
 
@@ -176,6 +176,7 @@ class HttpURLConnectionClient implements ClientInterface {
                                     errorCode: formattedData.errorCode,
                                     responseHeaders: res.headers,
                                     responseBody: response.body,
+                                    apiError: formattedData,
                                 });
                             } else if (isRequestError) {
                                 exception = new Error(response.body);
