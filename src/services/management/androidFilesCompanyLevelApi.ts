@@ -15,6 +15,7 @@ import {
     AndroidAppsResponse,
     AndroidCertificatesResponse,
     ReprocessAndroidAppResponse,
+    RestServiceError,
     UploadAndroidAppResponse,
     UploadAndroidCertificateResponse,
     ObjectSerializer
