@@ -12,37 +12,45 @@ export class PhoneNumber {
     /**
     * The two-character ISO-3166-1 alpha-2 country code of the phone number. For example, **US** or **NL**.
     */
-    'phoneCountryCode'?: string;
+    "phoneCountryCode"?: string;
     /**
     * The phone number. The inclusion of the phone number country code is not necessary.
     */
-    'phoneNumber'?: string;
+    "phoneNumber"?: string;
     /**
     * The type of the phone number. Possible values: **Landline**, **Mobile**, **SIP**, **Fax**.
     */
-    'phoneType'?: PhoneNumber.PhoneTypeEnum;
+    "phoneType"?: PhoneNumber.PhoneTypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "phoneCountryCode",
             "baseName": "phoneCountryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "phoneNumber",
             "baseName": "phoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "phoneType",
             "baseName": "phoneType",
-            "type": "PhoneNumber.PhoneTypeEnum"
+            "type": "PhoneNumber.PhoneTypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PhoneNumber.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

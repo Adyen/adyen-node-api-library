@@ -12,28 +12,35 @@ export class Duration {
     /**
     * The unit of time. You can only use **minutes** and **hours** if the `interval.type` is **sliding**.  Possible values: **minutes**, **hours**, **days**, **weeks**, or **months**
     */
-    'unit'?: Duration.UnitEnum;
+    "unit"?: Duration.UnitEnum;
     /**
     * The length of time by the unit. For example, 5 days.  The maximum duration is 90 days or an equivalent in other units. For example, 3 months.
     */
-    'value'?: number;
+    "value"?: number;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "unit",
             "baseName": "unit",
-            "type": "Duration.UnitEnum"
+            "type": "Duration.UnitEnum",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         }    ];
 
     static getAttributeTypeMap() {
         return Duration.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

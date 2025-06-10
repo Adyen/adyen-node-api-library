@@ -7,40 +7,29 @@
  * Do not edit this class manually.
  */
 
-import { AULocalAccountIdentification } from './aULocalAccountIdentification';
-import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
-import { CALocalAccountIdentification } from './cALocalAccountIdentification';
-import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
-import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
-import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
-import { HULocalAccountIdentification } from './hULocalAccountIdentification';
-import { IbanAccountIdentification } from './ibanAccountIdentification';
-import { NOLocalAccountIdentification } from './nOLocalAccountIdentification';
-import { NZLocalAccountIdentification } from './nZLocalAccountIdentification';
-import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentification';
-import { PLLocalAccountIdentification } from './pLLocalAccountIdentification';
-import { SELocalAccountIdentification } from './sELocalAccountIdentification';
-import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
-import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
-import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
+import { BankAccountIdentificationValidationRequestAccountIdentification } from "./bankAccountIdentificationValidationRequestAccountIdentification";
+
 
 export class BankAccountIdentificationValidationRequest {
-    /**
-    * Bank account identification.
-    */
-    'accountIdentification': AULocalAccountIdentification | BRLocalAccountIdentification | CALocalAccountIdentification | CZLocalAccountIdentification | DKLocalAccountIdentification | HKLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NZLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | SGLocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification;
+    "accountIdentification": BankAccountIdentificationValidationRequestAccountIdentification;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountIdentification",
             "baseName": "accountIdentification",
-            "type": "AULocalAccountIdentification | BRLocalAccountIdentification | CALocalAccountIdentification | CZLocalAccountIdentification | DKLocalAccountIdentification | HKLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NZLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | SGLocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification"
+            "type": "BankAccountIdentificationValidationRequestAccountIdentification",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BankAccountIdentificationValidationRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

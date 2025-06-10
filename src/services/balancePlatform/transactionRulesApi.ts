@@ -7,18 +7,21 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import {
-    TransactionRule,
-    TransactionRuleInfo,
-    TransactionRuleResponse,
-    ObjectSerializer
-} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
+import { TransactionRule } from "../../typings/balancePlatform/models";
+import { TransactionRuleInfo } from "../../typings/balancePlatform/models";
+import { TransactionRuleResponse } from "../../typings/balancePlatform/models";
+
+/**
+ * API handler for TransactionRulesApi
+ */
 export class TransactionRulesApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -38,13 +41,15 @@ export class TransactionRulesApi extends Service {
     public async createTransactionRule(transactionRuleInfo: TransactionRuleInfo, requestOptions?: IRequest.Options): Promise<TransactionRule> {
         const endpoint = `${this.baseUrl}/transactionRules`;
         const resource = new Resource(this, endpoint);
-        const request: TransactionRuleInfo = ObjectSerializer.serialize(transactionRuleInfo, "TransactionRuleInfo");
+        
+        const request: TransactionRuleInfo = ObjectSerializer.serialize(transactionRuleInfo, "TransactionRuleInfo", "");
         const response = await getJsonResponse<TransactionRuleInfo, TransactionRule>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "TransactionRule");
+
+        return ObjectSerializer.deserialize(response, "TransactionRule", "");
     }
 
     /**
@@ -57,12 +62,14 @@ export class TransactionRulesApi extends Service {
         const endpoint = `${this.baseUrl}/transactionRules/{transactionRuleId}`
             .replace("{" + "transactionRuleId" + "}", encodeURIComponent(String(transactionRuleId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, TransactionRule>(
             resource,
             "",
             { ...requestOptions, method: "DELETE" }
         );
-        return ObjectSerializer.deserialize(response, "TransactionRule");
+
+        return ObjectSerializer.deserialize(response, "TransactionRule", "");
     }
 
     /**
@@ -75,12 +82,14 @@ export class TransactionRulesApi extends Service {
         const endpoint = `${this.baseUrl}/transactionRules/{transactionRuleId}`
             .replace("{" + "transactionRuleId" + "}", encodeURIComponent(String(transactionRuleId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, TransactionRuleResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "TransactionRuleResponse");
+
+        return ObjectSerializer.deserialize(response, "TransactionRuleResponse", "");
     }
 
     /**
@@ -94,12 +103,15 @@ export class TransactionRulesApi extends Service {
         const endpoint = `${this.baseUrl}/transactionRules/{transactionRuleId}`
             .replace("{" + "transactionRuleId" + "}", encodeURIComponent(String(transactionRuleId)));
         const resource = new Resource(this, endpoint);
-        const request: TransactionRuleInfo = ObjectSerializer.serialize(transactionRuleInfo, "TransactionRuleInfo");
+        
+        const request: TransactionRuleInfo = ObjectSerializer.serialize(transactionRuleInfo, "TransactionRuleInfo", "");
         const response = await getJsonResponse<TransactionRuleInfo, TransactionRule>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-        return ObjectSerializer.deserialize(response, "TransactionRule");
+
+        return ObjectSerializer.deserialize(response, "TransactionRule", "");
     }
+
 }

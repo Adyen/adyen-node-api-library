@@ -7,25 +7,32 @@
  * Do not edit this class manually.
  */
 
-import { GrantOffer } from './grantOffer';
+import { GrantOffer } from "./grantOffer";
+
 
 export class GrantOffers {
     /**
     * A list of available grant offers.
     */
-    'grantOffers': Array<GrantOffer>;
+    "grantOffers": Array<GrantOffer>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "grantOffers",
             "baseName": "grantOffers",
-            "type": "Array<GrantOffer>"
+            "type": "Array<GrantOffer>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return GrantOffers.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

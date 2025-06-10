@@ -12,46 +12,55 @@ export class PinChangeRequest {
     /**
     * The symmetric session key that you encrypted with the [public key](https://docs.adyen.com/api-explorer/balanceplatform/2/get/publicKey) that you received from Adyen.
     */
-    'encryptedKey': string;
+    "encryptedKey": string;
     /**
     * The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).
     */
-    'encryptedPinBlock': string;
+    "encryptedPinBlock": string;
     /**
     * The unique identifier of the payment instrument, which is the card for which you are managing the PIN.
     */
-    'paymentInstrumentId': string;
+    "paymentInstrumentId": string;
     /**
     * The 16-digit token that you used to generate the `encryptedPinBlock`.
     */
-    'token': string;
+    "token": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "encryptedKey",
             "baseName": "encryptedKey",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedPinBlock",
             "baseName": "encryptedPinBlock",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "token",
             "baseName": "token",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PinChangeRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

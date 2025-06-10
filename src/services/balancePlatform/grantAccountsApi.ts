@@ -7,16 +7,19 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    CapitalGrantAccount,
-    ObjectSerializer
-} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
+import { CapitalGrantAccount } from "../../typings/balancePlatform/models";
+
+/**
+ * API handler for GrantAccountsApi
+ */
 export class GrantAccountsApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -40,11 +43,14 @@ export class GrantAccountsApi extends Service {
         const endpoint = `${this.baseUrl}/grantAccounts/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, CapitalGrantAccount>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "CapitalGrantAccount");
+
+        return ObjectSerializer.deserialize(response, "CapitalGrantAccount", "");
     }
+
 }

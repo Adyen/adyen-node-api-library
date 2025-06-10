@@ -12,37 +12,45 @@ export class BankIdentification {
     /**
     * Two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
     */
-    'country'?: string;
+    "country"?: string;
     /**
     * The bank identification code.
     */
-    'identification'?: string;
+    "identification"?: string;
     /**
     * The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**, **bic**.
     */
-    'identificationType'?: BankIdentification.IdentificationTypeEnum;
+    "identificationType"?: BankIdentification.IdentificationTypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "country",
             "baseName": "country",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "identification",
             "baseName": "identification",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "identificationType",
             "baseName": "identificationType",
-            "type": "BankIdentification.IdentificationTypeEnum"
+            "type": "BankIdentification.IdentificationTypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BankIdentification.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

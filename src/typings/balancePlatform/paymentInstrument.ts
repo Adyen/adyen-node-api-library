@@ -7,9 +7,10 @@
  * Do not edit this class manually.
  */
 
-import { BankAccountDetails } from './bankAccountDetails';
-import { Card } from './card';
-import { IbanAccountIdentification } from './ibanAccountIdentification';
+import { BankAccountDetails } from "./bankAccountDetails";
+import { Card } from "./card";
+import { PaymentInstrumentAdditionalBankAccountIdentificationsInner } from "./paymentInstrumentAdditionalBankAccountIdentificationsInner";
+
 
 export class PaymentInstrument {
     /**
@@ -18,139 +19,159 @@ export class PaymentInstrument {
 	* @deprecated since Configuration API v2
 	* Please use `bankAccount` object instead
     */
-    'additionalBankAccountIdentifications'?: Array<IbanAccountIdentification>;
+    "additionalBankAccountIdentifications"?: Array<PaymentInstrumentAdditionalBankAccountIdentificationsInner>;
     /**
     * The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.
     */
-    'balanceAccountId': string;
-    'bankAccount'?: BankAccountDetails | null;
-    'card'?: Card | null;
+    "balanceAccountId": string;
+    "bankAccount"?: BankAccountDetails;
+    "card"?: Card;
     /**
     * Your description for the payment instrument, maximum 300 characters.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The unique identifier of the payment instrument.
     */
-    'id': string;
+    "id": string;
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.
     */
-    'issuingCountryCode': string;
+    "issuingCountryCode": string;
     /**
     * The unique identifier of the [payment instrument group](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/paymentInstrumentGroups__resParam_id) to which the payment instrument belongs.
     */
-    'paymentInstrumentGroupId'?: string;
+    "paymentInstrumentGroupId"?: string;
     /**
     * Your reference for the payment instrument, maximum 150 characters.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The unique identifier of the payment instrument that replaced this payment instrument.
     */
-    'replacedById'?: string;
+    "replacedById"?: string;
     /**
     * The unique identifier of the payment instrument that is replaced by this payment instrument.
     */
-    'replacementOfId'?: string;
+    "replacementOfId"?: string;
     /**
     * The status of the payment instrument. If a status is not specified when creating a payment instrument, it is set to **active** by default. However, there can be exceptions for cards based on the `card.formFactor` and the `issuingCountryCode`. For example, when issuing physical cards in the US, the default status is **inactive**.  Possible values:    * **active**:  The payment instrument is active and can be used to make payments.    * **inactive**: The payment instrument is inactive and cannot be used to make payments.    * **suspended**: The payment instrument is suspended, either because it was stolen or lost.    * **closed**: The payment instrument is permanently closed. This action cannot be undone.   
     */
-    'status'?: PaymentInstrument.StatusEnum;
+    "status"?: PaymentInstrument.StatusEnum;
     /**
     * The status comment provides additional information for the statusReason of the payment instrument.
     */
-    'statusComment'?: string;
+    "statusComment"?: string;
     /**
     * The reason for the status of the payment instrument.  Possible values: **accountClosure**, **damaged**, **endOfLife**, **expired**, **lost**, **stolen**, **suspectedFraud**, **transactionRule**, **other**. If the reason is **other**, you must also send the `statusComment` parameter describing the status change.
     */
-    'statusReason'?: PaymentInstrument.StatusReasonEnum;
+    "statusReason"?: PaymentInstrument.StatusReasonEnum;
     /**
     * The type of payment instrument.  Possible values: **card**, **bankAccount**.
     */
-    'type': PaymentInstrument.TypeEnum;
+    "type": PaymentInstrument.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "additionalBankAccountIdentifications",
             "baseName": "additionalBankAccountIdentifications",
-            "type": "Array<IbanAccountIdentification>"
+            "type": "Array<PaymentInstrumentAdditionalBankAccountIdentificationsInner>",
+            "format": ""
         },
         {
             "name": "balanceAccountId",
             "baseName": "balanceAccountId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccountDetails | null"
+            "type": "BankAccountDetails",
+            "format": ""
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null"
+            "type": "Card",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "issuingCountryCode",
             "baseName": "issuingCountryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentInstrumentGroupId",
             "baseName": "paymentInstrumentGroupId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "replacedById",
             "baseName": "replacedById",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "replacementOfId",
             "baseName": "replacementOfId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "PaymentInstrument.StatusEnum"
+            "type": "PaymentInstrument.StatusEnum",
+            "format": ""
         },
         {
             "name": "statusComment",
             "baseName": "statusComment",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "statusReason",
             "baseName": "statusReason",
-            "type": "PaymentInstrument.StatusReasonEnum"
+            "type": "PaymentInstrument.StatusReasonEnum",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PaymentInstrument.TypeEnum"
+            "type": "PaymentInstrument.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentInstrument.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

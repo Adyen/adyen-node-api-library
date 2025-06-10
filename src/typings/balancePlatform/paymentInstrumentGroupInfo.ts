@@ -12,55 +12,65 @@ export class PaymentInstrumentGroupInfo {
     /**
     * The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id) to which the payment instrument group belongs.
     */
-    'balancePlatform': string;
+    "balancePlatform": string;
     /**
     * Your description for the payment instrument group.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * Properties of the payment instrument group.
     */
-    'properties'?: { [key: string]: string; };
+    "properties"?: { [key: string]: string; };
     /**
     * Your reference for the payment instrument group.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The tx variant of the payment instrument group.
     */
-    'txVariant': string;
+    "txVariant": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "properties",
             "baseName": "properties",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "txVariant",
             "baseName": "txVariant",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentInstrumentGroupInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

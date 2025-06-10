@@ -7,81 +7,95 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { Fee } from './fee';
-import { Repayment } from './repayment';
+import { Amount } from "./amount";
+import { Fee } from "./fee";
+import { Repayment } from "./repayment";
+
 
 export class GrantOffer {
     /**
     * The identifier of the account holder to which the grant is offered.
     */
-    'accountHolderId': string;
-    'amount'?: Amount | null;
+    "accountHolderId": string;
+    "amount"?: Amount;
     /**
     * The contract type of the grant offer. Possible value: **cashAdvance**, **loan**.
     */
-    'contractType'?: GrantOffer.ContractTypeEnum;
+    "contractType"?: GrantOffer.ContractTypeEnum;
     /**
     * The end date of the grant offer validity period.
     */
-    'expiresAt'?: Date;
-    'fee'?: Fee | null;
+    "expiresAt"?: Date;
+    "fee"?: Fee;
     /**
     * The unique identifier of the grant offer.
     */
-    'id'?: string;
-    'repayment'?: Repayment | null;
+    "id"?: string;
+    "repayment"?: Repayment;
     /**
     * The starting date of the grant offer validity period.
     */
-    'startsAt'?: Date;
+    "startsAt"?: Date;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountHolderId",
             "baseName": "accountHolderId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "contractType",
             "baseName": "contractType",
-            "type": "GrantOffer.ContractTypeEnum"
+            "type": "GrantOffer.ContractTypeEnum",
+            "format": ""
         },
         {
             "name": "expiresAt",
             "baseName": "expiresAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "fee",
             "baseName": "fee",
-            "type": "Fee | null"
+            "type": "Fee",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "repayment",
             "baseName": "repayment",
-            "type": "Repayment | null"
+            "type": "Repayment",
+            "format": ""
         },
         {
             "name": "startsAt",
             "baseName": "startsAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
         return GrantOffer.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

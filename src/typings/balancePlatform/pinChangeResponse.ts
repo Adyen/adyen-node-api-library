@@ -12,19 +12,25 @@ export class PinChangeResponse {
     /**
     * The status of the request for PIN change.  Possible values: **completed**, **pending**, **unavailable**.
     */
-    'status': PinChangeResponse.StatusEnum;
+    "status": PinChangeResponse.StatusEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "status",
             "baseName": "status",
-            "type": "PinChangeResponse.StatusEnum"
+            "type": "PinChangeResponse.StatusEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PinChangeResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

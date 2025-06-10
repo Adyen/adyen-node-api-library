@@ -12,28 +12,35 @@ export class PaymentInstrumentRevealRequest {
     /**
     * The symmetric session key that you encrypted with the [public key](https://docs.adyen.com/api-explorer/balanceplatform/2/get/publicKey) that you received from Adyen.
     */
-    'encryptedKey': string;
+    "encryptedKey": string;
     /**
     * The unique identifier of the payment instrument, which is the card for which you are managing the PIN.
     */
-    'paymentInstrumentId': string;
+    "paymentInstrumentId": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "encryptedKey",
             "baseName": "encryptedKey",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentInstrumentRevealRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

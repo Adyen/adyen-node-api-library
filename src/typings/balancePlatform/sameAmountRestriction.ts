@@ -12,25 +12,32 @@ export class SameAmountRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    'operation': string;
-    'value'?: boolean;
+    "operation": string;
+    "value"?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SameAmountRestriction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

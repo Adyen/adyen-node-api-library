@@ -12,28 +12,35 @@ export class EntryModesRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    'operation': string;
+    "operation": string;
     /**
     * List of point-of-sale entry modes.  Possible values: **barcode**, **chip**, **cof**, **contactless**, **magstripe**, **manual**, **ocr**, **server**.  
     */
-    'value'?: Array<EntryModesRestriction.ValueEnum>;
+    "value"?: Array<EntryModesRestriction.ValueEnum>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "Array<EntryModesRestriction.ValueEnum>"
+            "type": "EntryModesRestriction.ValueEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return EntryModesRestriction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

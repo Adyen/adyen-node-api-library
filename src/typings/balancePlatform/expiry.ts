@@ -12,28 +12,35 @@ export class Expiry {
     /**
     * The month in which the card will expire.
     */
-    'month'?: string;
+    "month"?: string;
     /**
     * The year in which the card will expire.
     */
-    'year'?: string;
+    "year"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "month",
             "baseName": "month",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "year",
             "baseName": "year",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Expiry.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

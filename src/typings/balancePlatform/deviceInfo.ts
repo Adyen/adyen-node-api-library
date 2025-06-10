@@ -12,109 +12,125 @@ export class DeviceInfo {
     /**
     * The technology used to capture the card details.
     */
-    'cardCaptureTechnology'?: string;
+    "cardCaptureTechnology"?: string;
     /**
     * The name of the device.
     */
-    'deviceName'?: string;
+    "deviceName"?: string;
     /**
     * The form factor of the device to be provisioned.
     */
-    'formFactor'?: string;
+    "formFactor"?: string;
     /**
     * The IMEI number of the device being provisioned.
     */
-    'imei'?: string;
+    "imei"?: string;
     /**
     * The 2-digit device type provided on the ISO messages that the token is being provisioned to.
     */
-    'isoDeviceType'?: string;
+    "isoDeviceType"?: string;
     /**
     * The MSISDN of the device being provisioned.
     */
-    'msisdn'?: string;
+    "msisdn"?: string;
     /**
     * The name of the device operating system.
     */
-    'osName'?: string;
+    "osName"?: string;
     /**
     * The version of the device operating system.
     */
-    'osVersion'?: string;
+    "osVersion"?: string;
     /**
     * Different types of payments supported for the network token.
     */
-    'paymentTypes'?: Array<string>;
+    "paymentTypes"?: Array<string>;
     /**
     * The serial number of the device.
     */
-    'serialNumber'?: string;
+    "serialNumber"?: string;
     /**
     * The architecture or technology used for network token storage.
     */
-    'storageTechnology'?: string;
+    "storageTechnology"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "cardCaptureTechnology",
             "baseName": "cardCaptureTechnology",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "deviceName",
             "baseName": "deviceName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "formFactor",
             "baseName": "formFactor",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "imei",
             "baseName": "imei",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "isoDeviceType",
             "baseName": "isoDeviceType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "msisdn",
             "baseName": "msisdn",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "osName",
             "baseName": "osName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "osVersion",
             "baseName": "osVersion",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentTypes",
             "baseName": "paymentTypes",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "serialNumber",
             "baseName": "serialNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storageTechnology",
             "baseName": "storageTechnology",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DeviceInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

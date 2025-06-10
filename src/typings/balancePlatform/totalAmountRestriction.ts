@@ -7,31 +7,39 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from "./amount";
+
 
 export class TotalAmountRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    'operation': string;
-    'value'?: Amount | null;
+    "operation": string;
+    "value"?: Amount;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TotalAmountRestriction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

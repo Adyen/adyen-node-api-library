@@ -7,17 +7,20 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    PaginatedGetCardOrderItemResponse,
-    PaginatedGetCardOrderResponse,
-    ObjectSerializer
-} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
+import { PaginatedGetCardOrderItemResponse } from "../../typings/balancePlatform/models";
+import { PaginatedGetCardOrderResponse } from "../../typings/balancePlatform/models";
+
+/**
+ * API handler for CardOrdersApi
+ */
 export class CardOrdersApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -40,6 +43,7 @@ export class CardOrdersApi extends Service {
         const endpoint = `${this.baseUrl}/cardorders/{id}/items`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = offset ?? limit;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -52,7 +56,8 @@ export class CardOrdersApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "PaginatedGetCardOrderItemResponse");
+
+        return ObjectSerializer.deserialize(response, "PaginatedGetCardOrderItemResponse", "");
     }
 
     /**
@@ -74,6 +79,7 @@ export class CardOrdersApi extends Service {
     public async listCardOrders(id?: string, cardManufacturingProfileId?: string, status?: string, txVariantCode?: string, createdSince?: Date, createdUntil?: Date, lockedSince?: Date, lockedUntil?: Date, serviceCenter?: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<PaginatedGetCardOrderResponse> {
         const endpoint = `${this.baseUrl}/cardorders`;
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = id ?? cardManufacturingProfileId ?? status ?? txVariantCode ?? createdSince ?? createdUntil ?? lockedSince ?? lockedUntil ?? serviceCenter ?? offset ?? limit;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -95,6 +101,8 @@ export class CardOrdersApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "PaginatedGetCardOrderResponse");
+
+        return ObjectSerializer.deserialize(response, "PaginatedGetCardOrderResponse", "");
     }
+
 }

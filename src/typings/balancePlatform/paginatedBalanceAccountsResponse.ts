@@ -7,43 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { BalanceAccountBase } from './balanceAccountBase';
+import { BalanceAccountBase } from "./balanceAccountBase";
+
 
 export class PaginatedBalanceAccountsResponse {
     /**
     * List of balance accounts.
     */
-    'balanceAccounts': Array<BalanceAccountBase>;
+    "balanceAccounts": Array<BalanceAccountBase>;
     /**
     * Indicates whether there are more items on the next page.
     */
-    'hasNext': boolean;
+    "hasNext": boolean;
     /**
     * Indicates whether there are more items on the previous page.
     */
-    'hasPrevious': boolean;
+    "hasPrevious": boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "balanceAccounts",
             "baseName": "balanceAccounts",
-            "type": "Array<BalanceAccountBase>"
+            "type": "Array<BalanceAccountBase>",
+            "format": ""
         },
         {
             "name": "hasNext",
             "baseName": "hasNext",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "hasPrevious",
             "baseName": "hasPrevious",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaginatedBalanceAccountsResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

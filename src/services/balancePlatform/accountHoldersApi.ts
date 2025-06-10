@@ -7,21 +7,24 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    AccountHolder,
-    AccountHolderInfo,
-    AccountHolderUpdateRequest,
-    GetTaxFormResponse,
-    PaginatedBalanceAccountsResponse,
-    TransactionRulesResponse,
-    ObjectSerializer
-} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
+import { AccountHolder } from "../../typings/balancePlatform/models";
+import { AccountHolderInfo } from "../../typings/balancePlatform/models";
+import { AccountHolderUpdateRequest } from "../../typings/balancePlatform/models";
+import { GetTaxFormResponse } from "../../typings/balancePlatform/models";
+import { PaginatedBalanceAccountsResponse } from "../../typings/balancePlatform/models";
+import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
+
+/**
+ * API handler for AccountHoldersApi
+ */
 export class AccountHoldersApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -41,13 +44,15 @@ export class AccountHoldersApi extends Service {
     public async createAccountHolder(accountHolderInfo: AccountHolderInfo, requestOptions?: IRequest.Options): Promise<AccountHolder> {
         const endpoint = `${this.baseUrl}/accountHolders`;
         const resource = new Resource(this, endpoint);
-        const request: AccountHolderInfo = ObjectSerializer.serialize(accountHolderInfo, "AccountHolderInfo");
+        
+        const request: AccountHolderInfo = ObjectSerializer.serialize(accountHolderInfo, "AccountHolderInfo", "");
         const response = await getJsonResponse<AccountHolderInfo, AccountHolder>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "AccountHolder");
+
+        return ObjectSerializer.deserialize(response, "AccountHolder", "");
     }
 
     /**
@@ -60,12 +65,14 @@ export class AccountHoldersApi extends Service {
         const endpoint = `${this.baseUrl}/accountHolders/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, AccountHolder>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "AccountHolder");
+
+        return ObjectSerializer.deserialize(response, "AccountHolder", "");
     }
 
     /**
@@ -80,6 +87,7 @@ export class AccountHoldersApi extends Service {
         const endpoint = `${this.baseUrl}/accountHolders/{id}/balanceAccounts`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = offset ?? limit;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -92,7 +100,8 @@ export class AccountHoldersApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "PaginatedBalanceAccountsResponse");
+
+        return ObjectSerializer.deserialize(response, "PaginatedBalanceAccountsResponse", "");
     }
 
     /**
@@ -105,12 +114,14 @@ export class AccountHoldersApi extends Service {
         const endpoint = `${this.baseUrl}/accountHolders/{id}/transactionRules`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, TransactionRulesResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
+
+        return ObjectSerializer.deserialize(response, "TransactionRulesResponse", "");
     }
 
     /**
@@ -125,6 +136,7 @@ export class AccountHoldersApi extends Service {
         const endpoint = `${this.baseUrl}/accountHolders/{id}/taxForms`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = formType ?? year;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -137,7 +149,8 @@ export class AccountHoldersApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "GetTaxFormResponse");
+
+        return ObjectSerializer.deserialize(response, "GetTaxFormResponse", "");
     }
 
     /**
@@ -151,12 +164,15 @@ export class AccountHoldersApi extends Service {
         const endpoint = `${this.baseUrl}/accountHolders/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: AccountHolderUpdateRequest = ObjectSerializer.serialize(accountHolderUpdateRequest, "AccountHolderUpdateRequest");
+        
+        const request: AccountHolderUpdateRequest = ObjectSerializer.serialize(accountHolderUpdateRequest, "AccountHolderUpdateRequest", "");
         const response = await getJsonResponse<AccountHolderUpdateRequest, AccountHolder>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-        return ObjectSerializer.deserialize(response, "AccountHolder");
+
+        return ObjectSerializer.deserialize(response, "AccountHolder", "");
     }
+
 }

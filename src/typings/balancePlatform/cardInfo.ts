@@ -7,81 +7,95 @@
  * Do not edit this class manually.
  */
 
-import { Authentication } from './authentication';
-import { CardConfiguration } from './cardConfiguration';
-import { DeliveryContact } from './deliveryContact';
+import { Authentication } from "./authentication";
+import { CardConfiguration } from "./cardConfiguration";
+import { DeliveryContact } from "./deliveryContact";
+
 
 export class CardInfo {
-    'authentication'?: Authentication | null;
+    "authentication"?: Authentication;
     /**
     * The brand of the physical or the virtual card. Possible values: **visa**, **mc**.
     */
-    'brand': string;
+    "brand": string;
     /**
     * The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. >Reach out to your Adyen contact to get the values relevant for your integration.
     */
-    'brandVariant': string;
+    "brandVariant": string;
     /**
     * The name of the cardholder.  Maximum length: 26 characters.
     */
-    'cardholderName': string;
-    'configuration'?: CardConfiguration | null;
-    'deliveryContact'?: DeliveryContact | null;
+    "cardholderName": string;
+    "configuration"?: CardConfiguration;
+    "deliveryContact"?: DeliveryContact;
     /**
     * The form factor of the card. Possible values: **virtual**, **physical**.
     */
-    'formFactor': CardInfo.FormFactorEnum;
+    "formFactor": CardInfo.FormFactorEnum;
     /**
     * Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
     */
-    'threeDSecure'?: string;
+    "threeDSecure"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "authentication",
             "baseName": "authentication",
-            "type": "Authentication | null"
+            "type": "Authentication",
+            "format": ""
         },
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "brandVariant",
             "baseName": "brandVariant",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "cardholderName",
             "baseName": "cardholderName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "configuration",
             "baseName": "configuration",
-            "type": "CardConfiguration | null"
+            "type": "CardConfiguration",
+            "format": ""
         },
         {
             "name": "deliveryContact",
             "baseName": "deliveryContact",
-            "type": "DeliveryContact | null"
+            "type": "DeliveryContact",
+            "format": ""
         },
         {
             "name": "formFactor",
             "baseName": "formFactor",
-            "type": "CardInfo.FormFactorEnum"
+            "type": "CardInfo.FormFactorEnum",
+            "format": ""
         },
         {
             "name": "threeDSecure",
             "baseName": "threeDSecure",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CardInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,50 +7,60 @@
  * Do not edit this class manually.
  */
 
-import { Device } from './device';
-import { Link } from './link';
+import { Device } from "./device";
+import { Link } from "./link";
+
 
 export class SearchRegisteredDevicesResponse {
     /**
     * Contains a list of registered SCA devices and their corresponding details.
     */
-    'data'?: Array<Device>;
+    "data"?: Array<Device>;
     /**
     * The total amount of registered SCA devices that match the query parameters.
     */
-    'itemsTotal'?: number;
-    'link'?: Link | null;
+    "itemsTotal"?: number;
+    "link"?: Link;
     /**
     * The total amount of list pages.
     */
-    'pagesTotal'?: number;
+    "pagesTotal"?: number;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<Device>"
+            "type": "Array<Device>",
+            "format": ""
         },
         {
             "name": "itemsTotal",
             "baseName": "itemsTotal",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "link",
             "baseName": "link",
-            "type": "Link | null"
+            "type": "Link",
+            "format": ""
         },
         {
             "name": "pagesTotal",
             "baseName": "pagesTotal",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         }    ];
 
     static getAttributeTypeMap() {
         return SearchRegisteredDevicesResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
