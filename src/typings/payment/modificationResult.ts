@@ -12,37 +12,45 @@ export class ModificationResult {
     /**
     * This field contains additional data, which may be returned in a particular modification response.
     */
-    'additionalData'?: { [key: string]: string; };
+    "additionalData"?: { [key: string]: string; };
     /**
     * Adyen\'s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
-    'pspReference': string;
+    "pspReference": string;
     /**
     * Indicates if the modification request has been received for processing.
     */
-    'response': ModificationResult.ResponseEnum;
+    "response": ModificationResult.ResponseEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "response",
             "baseName": "response",
-            "type": "ModificationResult.ResponseEnum"
+            "type": "ModificationResult.ResponseEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ModificationResult.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

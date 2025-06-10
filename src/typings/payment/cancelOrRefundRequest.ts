@@ -7,92 +7,107 @@
  * Do not edit this class manually.
  */
 
-import { PlatformChargebackLogic } from './platformChargebackLogic';
-import { ThreeDSecureData } from './threeDSecureData';
+import { PlatformChargebackLogic } from "./platformChargebackLogic";
+import { ThreeDSecureData } from "./threeDSecureData";
+
 
 export class CancelOrRefundRequest {
     /**
     * This field contains additional data, which may be required for a particular modification request.  The additionalData object consists of entries, each of which includes the key and value.
     */
-    'additionalData'?: { [key: string]: string; };
+    "additionalData"?: { [key: string]: string; };
     /**
     * The merchant account that is used to process the payment.
     */
-    'merchantAccount': string;
-    'mpiData'?: ThreeDSecureData | null;
+    "merchantAccount": string;
+    "mpiData"?: ThreeDSecureData;
     /**
     * The original merchant reference to cancel.
     */
-    'originalMerchantReference'?: string;
+    "originalMerchantReference"?: string;
     /**
     * The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
     */
-    'originalReference': string;
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
+    "originalReference": string;
+    "platformChargebackLogic"?: PlatformChargebackLogic;
     /**
     * Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The transaction reference provided by the PED. For point-of-sale integrations only.
     */
-    'tenderReference'?: string;
+    "tenderReference"?: string;
     /**
     * Unique terminal ID for the PED that originally processed the request. For point-of-sale integrations only.
     */
-    'uniqueTerminalId'?: string;
+    "uniqueTerminalId"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "mpiData",
             "baseName": "mpiData",
-            "type": "ThreeDSecureData | null"
+            "type": "ThreeDSecureData",
+            "format": ""
         },
         {
             "name": "originalMerchantReference",
             "baseName": "originalMerchantReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "originalReference",
             "baseName": "originalReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "tenderReference",
             "baseName": "tenderReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "uniqueTerminalId",
             "baseName": "uniqueTerminalId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CancelOrRefundRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

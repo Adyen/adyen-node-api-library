@@ -12,163 +12,185 @@ export class AdditionalDataLodging {
     /**
     * A code that corresponds to the category of lodging charges for the payment. Possible values: * 1: Lodging * 2: No show reservation * 3: Advanced deposit
     */
-    'lodging_SpecialProgramCode'?: string;
+    "lodging_SpecialProgramCode"?: string;
     /**
     * The arrival date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**.
     */
-    'lodging_checkInDate'?: string;
+    "lodging_checkInDate"?: string;
     /**
     * The departure date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**.
     */
-    'lodging_checkOutDate'?: string;
+    "lodging_checkOutDate"?: string;
     /**
     * The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.
     */
-    'lodging_customerServiceTollFreeNumber'?: string;
+    "lodging_customerServiceTollFreeNumber"?: string;
     /**
     * Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Must be \'Y\' or \'N\'. * Format: alphabetic * Max length: 1 character
     */
-    'lodging_fireSafetyActIndicator'?: string;
+    "lodging_fireSafetyActIndicator"?: string;
     /**
     * The folio cash advances, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters
     */
-    'lodging_folioCashAdvances'?: string;
+    "lodging_folioCashAdvances"?: string;
     /**
     * The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters * Must not start with a space * Must not contain any special characters * Must not be all zeros.
     */
-    'lodging_folioNumber'?: string;
+    "lodging_folioNumber"?: string;
     /**
     * Any charges for food and beverages associated with the booking, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters
     */
-    'lodging_foodBeverageCharges'?: string;
+    "lodging_foodBeverageCharges"?: string;
     /**
     * Indicates if the customer didn\'t check in for their booking.  Possible values:  * **Y**: the customer didn\'t check in  * **N**: the customer checked in
     */
-    'lodging_noShowIndicator'?: string;
+    "lodging_noShowIndicator"?: string;
     /**
     * The prepaid expenses for the booking. * Format: numeric * Max length: 12 characters
     */
-    'lodging_prepaidExpenses'?: string;
+    "lodging_prepaidExpenses"?: string;
     /**
     * The lodging property location\'s phone number. * Format: numeric * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.
     */
-    'lodging_propertyPhoneNumber'?: string;
+    "lodging_propertyPhoneNumber"?: string;
     /**
     * The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 4 characters
     */
-    'lodging_room1_numberOfNights'?: string;
+    "lodging_room1_numberOfNights"?: string;
     /**
     * The rate for the room, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
     */
-    'lodging_room1_rate'?: string;
+    "lodging_room1_rate"?: string;
     /**
     * The total room tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
     */
-    'lodging_totalRoomTax'?: string;
+    "lodging_totalRoomTax"?: string;
     /**
     * The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number
     */
-    'lodging_totalTax'?: string;
+    "lodging_totalTax"?: string;
     /**
     * The number of nights. This should be included in the auth message. * Format: numeric * Max length: 4 characters
     */
-    'travelEntertainmentAuthData_duration'?: string;
+    "travelEntertainmentAuthData_duration"?: string;
     /**
     * Indicates what market-specific dataset will be submitted. Must be \'H\' for Hotel. This should be included in the auth message.  * Format: alphanumeric * Max length: 1 character
     */
-    'travelEntertainmentAuthData_market'?: string;
+    "travelEntertainmentAuthData_market"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "lodging_SpecialProgramCode",
             "baseName": "lodging.SpecialProgramCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_checkInDate",
             "baseName": "lodging.checkInDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_checkOutDate",
             "baseName": "lodging.checkOutDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_customerServiceTollFreeNumber",
             "baseName": "lodging.customerServiceTollFreeNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_fireSafetyActIndicator",
             "baseName": "lodging.fireSafetyActIndicator",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_folioCashAdvances",
             "baseName": "lodging.folioCashAdvances",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_folioNumber",
             "baseName": "lodging.folioNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_foodBeverageCharges",
             "baseName": "lodging.foodBeverageCharges",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_noShowIndicator",
             "baseName": "lodging.noShowIndicator",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_prepaidExpenses",
             "baseName": "lodging.prepaidExpenses",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_propertyPhoneNumber",
             "baseName": "lodging.propertyPhoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_room1_numberOfNights",
             "baseName": "lodging.room1.numberOfNights",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_room1_rate",
             "baseName": "lodging.room1.rate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_totalRoomTax",
             "baseName": "lodging.totalRoomTax",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lodging_totalTax",
             "baseName": "lodging.totalTax",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "travelEntertainmentAuthData_duration",
             "baseName": "travelEntertainmentAuthData.duration",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "travelEntertainmentAuthData_market",
             "baseName": "travelEntertainmentAuthData.market",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataLodging.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
