@@ -17,6 +17,12 @@ import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/paymentsApp/models";
 
+/**
+ * This class is deprecated
+ * 
+ * The service has been moved to a different package 'paymentsApp'
+ * @deprecated Use services/paymentsApp/PaymentsAppAPI
+ */
 export class PaymentsAppAPI extends Service {
     
     private readonly API_BASEPATH: string = "https://management-live.adyen.com/v1";
@@ -28,6 +34,8 @@ export class PaymentsAppAPI extends Service {
     }
 
     /**
+    * @deprecated Use services/paymentsApp/PaymentsAppAPI
+    * 
     * @summary Create a boarding token - merchant level
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param boardingTokenRequest {@link BoardingTokenRequest } 
@@ -38,16 +46,18 @@ export class PaymentsAppAPI extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/generatePaymentsAppBoardingToken`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest");
+        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest", "");
         const response = await getJsonResponse<BoardingTokenRequest, BoardingTokenResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "BoardingTokenResponse");
+        return ObjectSerializer.deserialize(response, "BoardingTokenResponse", "");
     }
 
     /**
+    * @deprecated Use services/paymentsApp/PaymentsAppAPI
+    * 
     * @summary Create a boarding token - store level
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param storeId {@link string } The unique identifier of the store.
@@ -60,16 +70,18 @@ export class PaymentsAppAPI extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);
-        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest");
+        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest", "");
         const response = await getJsonResponse<BoardingTokenRequest, BoardingTokenResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "BoardingTokenResponse");
+        return ObjectSerializer.deserialize(response, "BoardingTokenResponse", "");
     }
 
     /**
+    * @deprecated Use services/paymentsApp/PaymentsAppAPI
+    * 
     * @summary Get a list of Payments Apps - merchant level
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param requestOptions {@link IRequest.Options }
@@ -87,10 +99,12 @@ export class PaymentsAppAPI extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "PaymentsAppResponse");
+        return ObjectSerializer.deserialize(response, "PaymentsAppResponse", "");
     }
 
     /**
+    * @deprecated Use services/paymentsApp/PaymentsAppAPI
+    * 
     * @summary Get a list of Payments Apps - store level
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param storeId {@link string } The unique identifier of the store.
@@ -110,10 +124,12 @@ export class PaymentsAppAPI extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "PaymentsAppResponse");
+        return ObjectSerializer.deserialize(response, "PaymentsAppResponse", "");
     }
 
     /**
+    * @deprecated Use services/paymentsApp/PaymentsAppAPI
+    * 
     * @summary Revoke Payments App instance authentication
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param installationId {@link string } The unique identifier of the Payments App instance on a device.
