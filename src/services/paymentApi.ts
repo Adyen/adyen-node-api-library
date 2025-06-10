@@ -31,6 +31,12 @@ import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/payment/models";
 
+/**
+ * This class is deprecated and will be NO LONGER updated
+ * 
+ * The service has been moved to a different package 'payment'
+ * @deprecated Use services/payment/PaymentAPI
+ */
 export class PaymentAPI extends Service {
     
     private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/Payment/v68";
@@ -42,6 +48,8 @@ export class PaymentAPI extends Service {
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Change the authorised amount
     * @param adjustAuthorisationRequest {@link AdjustAuthorisationRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -50,16 +58,18 @@ export class PaymentAPI extends Service {
     public async adjustAuthorisation(adjustAuthorisationRequest: AdjustAuthorisationRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
         const endpoint = `${this.baseUrl}/adjustAuthorisation`;
         const resource = new Resource(this, endpoint);
-        const request: AdjustAuthorisationRequest = ObjectSerializer.serialize(adjustAuthorisationRequest, "AdjustAuthorisationRequest");
+        const request: AdjustAuthorisationRequest = ObjectSerializer.serialize(adjustAuthorisationRequest, "AdjustAuthorisationRequest", "");
         const response = await getJsonResponse<AdjustAuthorisationRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ModificationResult");
+        return ObjectSerializer.deserialize(response, "ModificationResult", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Create an authorisation
     * @param paymentRequest {@link PaymentRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -68,16 +78,18 @@ export class PaymentAPI extends Service {
     public async authorise(paymentRequest: PaymentRequest, requestOptions?: IRequest.Options): Promise<PaymentResult> {
         const endpoint = `${this.baseUrl}/authorise`;
         const resource = new Resource(this, endpoint);
-        const request: PaymentRequest = ObjectSerializer.serialize(paymentRequest, "PaymentRequest");
+        const request: PaymentRequest = ObjectSerializer.serialize(paymentRequest, "PaymentRequest", "");
         const response = await getJsonResponse<PaymentRequest, PaymentResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "PaymentResult");
+        return ObjectSerializer.deserialize(response, "PaymentResult", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Complete a 3DS authorisation
     * @param paymentRequest3d {@link PaymentRequest3d } 
     * @param requestOptions {@link IRequest.Options }
@@ -86,16 +98,18 @@ export class PaymentAPI extends Service {
     public async authorise3d(paymentRequest3d: PaymentRequest3d, requestOptions?: IRequest.Options): Promise<PaymentResult> {
         const endpoint = `${this.baseUrl}/authorise3d`;
         const resource = new Resource(this, endpoint);
-        const request: PaymentRequest3d = ObjectSerializer.serialize(paymentRequest3d, "PaymentRequest3d");
+        const request: PaymentRequest3d = ObjectSerializer.serialize(paymentRequest3d, "PaymentRequest3d", "");
         const response = await getJsonResponse<PaymentRequest3d, PaymentResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "PaymentResult");
+        return ObjectSerializer.deserialize(response, "PaymentResult", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Complete a 3DS2 authorisation
     * @param paymentRequest3ds2 {@link PaymentRequest3ds2 } 
     * @param requestOptions {@link IRequest.Options }
@@ -104,16 +118,18 @@ export class PaymentAPI extends Service {
     public async authorise3ds2(paymentRequest3ds2: PaymentRequest3ds2, requestOptions?: IRequest.Options): Promise<PaymentResult> {
         const endpoint = `${this.baseUrl}/authorise3ds2`;
         const resource = new Resource(this, endpoint);
-        const request: PaymentRequest3ds2 = ObjectSerializer.serialize(paymentRequest3ds2, "PaymentRequest3ds2");
+        const request: PaymentRequest3ds2 = ObjectSerializer.serialize(paymentRequest3ds2, "PaymentRequest3ds2", "");
         const response = await getJsonResponse<PaymentRequest3ds2, PaymentResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "PaymentResult");
+        return ObjectSerializer.deserialize(response, "PaymentResult", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Cancel an authorisation
     * @param cancelRequest {@link CancelRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -122,16 +138,18 @@ export class PaymentAPI extends Service {
     public async cancel(cancelRequest: CancelRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
         const endpoint = `${this.baseUrl}/cancel`;
         const resource = new Resource(this, endpoint);
-        const request: CancelRequest = ObjectSerializer.serialize(cancelRequest, "CancelRequest");
+        const request: CancelRequest = ObjectSerializer.serialize(cancelRequest, "CancelRequest", "");
         const response = await getJsonResponse<CancelRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ModificationResult");
+        return ObjectSerializer.deserialize(response, "ModificationResult", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Cancel or refund a payment
     * @param cancelOrRefundRequest {@link CancelOrRefundRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -140,16 +158,18 @@ export class PaymentAPI extends Service {
     public async cancelOrRefund(cancelOrRefundRequest: CancelOrRefundRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
         const endpoint = `${this.baseUrl}/cancelOrRefund`;
         const resource = new Resource(this, endpoint);
-        const request: CancelOrRefundRequest = ObjectSerializer.serialize(cancelOrRefundRequest, "CancelOrRefundRequest");
+        const request: CancelOrRefundRequest = ObjectSerializer.serialize(cancelOrRefundRequest, "CancelOrRefundRequest", "");
         const response = await getJsonResponse<CancelOrRefundRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ModificationResult");
+        return ObjectSerializer.deserialize(response, "ModificationResult", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Capture an authorisation
     * @param captureRequest {@link CaptureRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -158,16 +178,18 @@ export class PaymentAPI extends Service {
     public async capture(captureRequest: CaptureRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
         const endpoint = `${this.baseUrl}/capture`;
         const resource = new Resource(this, endpoint);
-        const request: CaptureRequest = ObjectSerializer.serialize(captureRequest, "CaptureRequest");
+        const request: CaptureRequest = ObjectSerializer.serialize(captureRequest, "CaptureRequest", "");
         const response = await getJsonResponse<CaptureRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ModificationResult");
+        return ObjectSerializer.deserialize(response, "ModificationResult", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Create a donation
     * @param donationRequest {@link DonationRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -178,16 +200,18 @@ export class PaymentAPI extends Service {
     public async donate(donationRequest: DonationRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
         const endpoint = `${this.baseUrl}/donate`;
         const resource = new Resource(this, endpoint);
-        const request: DonationRequest = ObjectSerializer.serialize(donationRequest, "DonationRequest");
+        const request: DonationRequest = ObjectSerializer.serialize(donationRequest, "DonationRequest", "");
         const response = await getJsonResponse<DonationRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ModificationResult");
+        return ObjectSerializer.deserialize(response, "ModificationResult", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Get the 3DS authentication result
     * @param authenticationResultRequest {@link AuthenticationResultRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -196,16 +220,18 @@ export class PaymentAPI extends Service {
     public async getAuthenticationResult(authenticationResultRequest: AuthenticationResultRequest, requestOptions?: IRequest.Options): Promise<AuthenticationResultResponse> {
         const endpoint = `${this.baseUrl}/getAuthenticationResult`;
         const resource = new Resource(this, endpoint);
-        const request: AuthenticationResultRequest = ObjectSerializer.serialize(authenticationResultRequest, "AuthenticationResultRequest");
+        const request: AuthenticationResultRequest = ObjectSerializer.serialize(authenticationResultRequest, "AuthenticationResultRequest", "");
         const response = await getJsonResponse<AuthenticationResultRequest, AuthenticationResultResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "AuthenticationResultResponse");
+        return ObjectSerializer.deserialize(response, "AuthenticationResultResponse", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Refund a captured payment
     * @param refundRequest {@link RefundRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -214,16 +240,18 @@ export class PaymentAPI extends Service {
     public async refund(refundRequest: RefundRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
         const endpoint = `${this.baseUrl}/refund`;
         const resource = new Resource(this, endpoint);
-        const request: RefundRequest = ObjectSerializer.serialize(refundRequest, "RefundRequest");
+        const request: RefundRequest = ObjectSerializer.serialize(refundRequest, "RefundRequest", "");
         const response = await getJsonResponse<RefundRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ModificationResult");
+        return ObjectSerializer.deserialize(response, "ModificationResult", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Get the 3DS2 authentication result
     * @param threeDS2ResultRequest {@link ThreeDS2ResultRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -232,16 +260,18 @@ export class PaymentAPI extends Service {
     public async retrieve3ds2Result(threeDS2ResultRequest: ThreeDS2ResultRequest, requestOptions?: IRequest.Options): Promise<ThreeDS2ResultResponse> {
         const endpoint = `${this.baseUrl}/retrieve3ds2Result`;
         const resource = new Resource(this, endpoint);
-        const request: ThreeDS2ResultRequest = ObjectSerializer.serialize(threeDS2ResultRequest, "ThreeDS2ResultRequest");
+        const request: ThreeDS2ResultRequest = ObjectSerializer.serialize(threeDS2ResultRequest, "ThreeDS2ResultRequest", "");
         const response = await getJsonResponse<ThreeDS2ResultRequest, ThreeDS2ResultResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ThreeDS2ResultResponse");
+        return ObjectSerializer.deserialize(response, "ThreeDS2ResultResponse", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Cancel an authorisation using your reference
     * @param technicalCancelRequest {@link TechnicalCancelRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -250,16 +280,18 @@ export class PaymentAPI extends Service {
     public async technicalCancel(technicalCancelRequest: TechnicalCancelRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
         const endpoint = `${this.baseUrl}/technicalCancel`;
         const resource = new Resource(this, endpoint);
-        const request: TechnicalCancelRequest = ObjectSerializer.serialize(technicalCancelRequest, "TechnicalCancelRequest");
+        const request: TechnicalCancelRequest = ObjectSerializer.serialize(technicalCancelRequest, "TechnicalCancelRequest", "");
         const response = await getJsonResponse<TechnicalCancelRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ModificationResult");
+        return ObjectSerializer.deserialize(response, "ModificationResult", "");
     }
 
     /**
+    * @deprecated Use services/payment/PaymentAPI
+    * 
     * @summary Cancel an in-person refund
     * @param voidPendingRefundRequest {@link VoidPendingRefundRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -268,13 +300,13 @@ export class PaymentAPI extends Service {
     public async voidPendingRefund(voidPendingRefundRequest: VoidPendingRefundRequest, requestOptions?: IRequest.Options): Promise<ModificationResult> {
         const endpoint = `${this.baseUrl}/voidPendingRefund`;
         const resource = new Resource(this, endpoint);
-        const request: VoidPendingRefundRequest = ObjectSerializer.serialize(voidPendingRefundRequest, "VoidPendingRefundRequest");
+        const request: VoidPendingRefundRequest = ObjectSerializer.serialize(voidPendingRefundRequest, "VoidPendingRefundRequest", "");
         const response = await getJsonResponse<VoidPendingRefundRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ModificationResult");
+        return ObjectSerializer.deserialize(response, "ModificationResult", "");
     }
 }
 
