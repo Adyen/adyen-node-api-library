@@ -7,196 +7,223 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from "./amount";
+
 
 export class CheckoutVoucherAction {
     /**
     * The voucher alternative reference code.
     */
-    'alternativeReference'?: string;
+    "alternativeReference"?: string;
     /**
     * A collection institution number (store number) for Econtext Pay-Easy ATM.
     */
-    'collectionInstitutionNumber'?: string;
+    "collectionInstitutionNumber"?: string;
     /**
     * The URL to download the voucher.
     */
-    'downloadUrl'?: string;
+    "downloadUrl"?: string;
     /**
     * An entity number of Multibanco.
     */
-    'entity'?: string;
+    "entity"?: string;
     /**
     * The date time of the voucher expiry.
     */
-    'expiresAt'?: string;
-    'initialAmount'?: Amount | null;
+    "expiresAt"?: string;
+    "initialAmount"?: Amount;
     /**
     * The URL to the detailed instructions to make payment using the voucher.
     */
-    'instructionsUrl'?: string;
+    "instructionsUrl"?: string;
     /**
     * The issuer of the voucher.
     */
-    'issuer'?: string;
+    "issuer"?: string;
     /**
     * The shopper telephone number (partially masked).
     */
-    'maskedTelephoneNumber'?: string;
+    "maskedTelephoneNumber"?: string;
     /**
     * The merchant name.
     */
-    'merchantName'?: string;
+    "merchantName"?: string;
     /**
     * The merchant reference.
     */
-    'merchantReference'?: string;
+    "merchantReference"?: string;
     /**
     * A Base64-encoded token containing all properties of the voucher. For iOS, you can use this to pass a voucher to Apple Wallet.
     */
-    'passCreationToken'?: string;
+    "passCreationToken"?: string;
     /**
     * Encoded payment data.
     */
-    'paymentData'?: string;
+    "paymentData"?: string;
     /**
     * Specifies the payment method.
     */
-    'paymentMethodType'?: string;
+    "paymentMethodType"?: string;
     /**
     * The voucher reference code.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The shopper email.
     */
-    'shopperEmail'?: string;
+    "shopperEmail"?: string;
     /**
     * The shopper name.
     */
-    'shopperName'?: string;
-    'surcharge'?: Amount | null;
-    'totalAmount'?: Amount | null;
+    "shopperName"?: string;
+    "surcharge"?: Amount;
+    "totalAmount"?: Amount;
     /**
     * **voucher**
     */
-    'type': CheckoutVoucherAction.TypeEnum;
+    "type": CheckoutVoucherAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    'url'?: string;
+    "url"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "alternativeReference",
             "baseName": "alternativeReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "collectionInstitutionNumber",
             "baseName": "collectionInstitutionNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "downloadUrl",
             "baseName": "downloadUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "entity",
             "baseName": "entity",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "expiresAt",
             "baseName": "expiresAt",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "initialAmount",
             "baseName": "initialAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "instructionsUrl",
             "baseName": "instructionsUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "issuer",
             "baseName": "issuer",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "maskedTelephoneNumber",
             "baseName": "maskedTelephoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantName",
             "baseName": "merchantName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantReference",
             "baseName": "merchantReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "passCreationToken",
             "baseName": "passCreationToken",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentData",
             "baseName": "paymentData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentMethodType",
             "baseName": "paymentMethodType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "surcharge",
             "baseName": "surcharge",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "totalAmount",
             "baseName": "totalAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CheckoutVoucherAction.TypeEnum"
+            "type": "CheckoutVoucherAction.TypeEnum",
+            "format": ""
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutVoucherAction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,37 +12,45 @@ export class ApplePaySessionRequest {
     /**
     * This is the name that your shoppers will see in the Apple Pay interface.  The value returned as `configuration.merchantName` field from the [`/paymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.
     */
-    'displayName': string;
+    "displayName": string;
     /**
     * The domain name you provided when you added Apple Pay in your Customer Area.  This must match the `window.location.hostname` of the web shop.
     */
-    'domainName': string;
+    "domainName": string;
     /**
     * Your merchant identifier registered with Apple Pay.  Use the value of the `configuration.merchantId` field from the [`/paymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.
     */
-    'merchantIdentifier': string;
+    "merchantIdentifier": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "displayName",
             "baseName": "displayName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "domainName",
             "baseName": "domainName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantIdentifier",
             "baseName": "merchantIdentifier",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ApplePaySessionRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

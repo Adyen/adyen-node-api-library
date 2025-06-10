@@ -7,85 +7,99 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { ApplicationInfo } from './applicationInfo';
-import { LineItem } from './lineItem';
-import { Split } from './split';
+import { Amount } from "./amount";
+import { ApplicationInfo } from "./applicationInfo";
+import { LineItem } from "./lineItem";
+import { Split } from "./split";
+
 
 export class PaymentRefundRequest {
-    'amount': Amount;
-    'applicationInfo'?: ApplicationInfo | null;
+    "amount": Amount;
+    "applicationInfo"?: ApplicationInfo;
     /**
     * Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
     */
-    'lineItems'?: Array<LineItem>;
+    "lineItems"?: Array<LineItem>;
     /**
     * The merchant account that is used to process the payment.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  
     */
-    'merchantRefundReason'?: PaymentRefundRequest.MerchantRefundReasonEnum | null;
+    "merchantRefundReason"?: PaymentRefundRequest.MerchantRefundReasonEnum | null;
     /**
     * Your reference for the refund request. Maximum length: 80 characters.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/).
     */
-    'splits'?: Array<Split>;
+    "splits"?: Array<Split>;
     /**
     * The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails.
     */
-    'store'?: string;
+    "store"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo",
+            "format": ""
         },
         {
             "name": "lineItems",
             "baseName": "lineItems",
-            "type": "Array<LineItem>"
+            "type": "Array<LineItem>",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantRefundReason",
             "baseName": "merchantRefundReason",
-            "type": "PaymentRefundRequest.MerchantRefundReasonEnum | null"
+            "type": "PaymentRefundRequest.MerchantRefundReasonEnum",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "splits",
             "baseName": "splits",
-            "type": "Array<Split>"
+            "type": "Array<Split>",
+            "format": ""
         },
         {
             "name": "store",
             "baseName": "store",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentRefundRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

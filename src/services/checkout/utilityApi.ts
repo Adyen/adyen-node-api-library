@@ -7,21 +7,24 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    ApplePaySessionRequest,
-    ApplePaySessionResponse,
-    PaypalUpdateOrderRequest,
-    PaypalUpdateOrderResponse,
-    UtilityRequest,
-    UtilityResponse,
-    ObjectSerializer
-} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
+import { ApplePaySessionRequest } from "../../typings/checkout/models";
+import { ApplePaySessionResponse } from "../../typings/checkout/models";
+import { PaypalUpdateOrderRequest } from "../../typings/checkout/models";
+import { PaypalUpdateOrderResponse } from "../../typings/checkout/models";
+import { UtilityRequest } from "../../typings/checkout/models";
+import { UtilityResponse } from "../../typings/checkout/models";
+
+/**
+ * API handler for UtilityApi
+ */
 export class UtilityApi extends Service {
 
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v71";
@@ -41,13 +44,15 @@ export class UtilityApi extends Service {
     public async getApplePaySession(applePaySessionRequest: ApplePaySessionRequest, requestOptions?: IRequest.Options): Promise<ApplePaySessionResponse> {
         const endpoint = `${this.baseUrl}/applePay/sessions`;
         const resource = new Resource(this, endpoint);
-        const request: ApplePaySessionRequest = ObjectSerializer.serialize(applePaySessionRequest, "ApplePaySessionRequest");
+        
+        const request: ApplePaySessionRequest = ObjectSerializer.serialize(applePaySessionRequest, "ApplePaySessionRequest", "");
         const response = await getJsonResponse<ApplePaySessionRequest, ApplePaySessionResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ApplePaySessionResponse");
+
+        return ObjectSerializer.deserialize(response, "ApplePaySessionResponse", "");
     }
 
     /**
@@ -61,13 +66,15 @@ export class UtilityApi extends Service {
     public async originKeys(utilityRequest: UtilityRequest, requestOptions?: IRequest.Options): Promise<UtilityResponse> {
         const endpoint = `${this.baseUrl}/originKeys`;
         const resource = new Resource(this, endpoint);
-        const request: UtilityRequest = ObjectSerializer.serialize(utilityRequest, "UtilityRequest");
+        
+        const request: UtilityRequest = ObjectSerializer.serialize(utilityRequest, "UtilityRequest", "");
         const response = await getJsonResponse<UtilityRequest, UtilityResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "UtilityResponse");
+
+        return ObjectSerializer.deserialize(response, "UtilityResponse", "");
     }
 
     /**
@@ -79,12 +86,15 @@ export class UtilityApi extends Service {
     public async updatesOrderForPaypalExpressCheckout(paypalUpdateOrderRequest: PaypalUpdateOrderRequest, requestOptions?: IRequest.Options): Promise<PaypalUpdateOrderResponse> {
         const endpoint = `${this.baseUrl}/paypal/updateOrder`;
         const resource = new Resource(this, endpoint);
-        const request: PaypalUpdateOrderRequest = ObjectSerializer.serialize(paypalUpdateOrderRequest, "PaypalUpdateOrderRequest");
+        
+        const request: PaypalUpdateOrderRequest = ObjectSerializer.serialize(paypalUpdateOrderRequest, "PaypalUpdateOrderRequest", "");
         const response = await getJsonResponse<PaypalUpdateOrderRequest, PaypalUpdateOrderResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "PaypalUpdateOrderResponse");
+
+        return ObjectSerializer.deserialize(response, "PaypalUpdateOrderResponse", "");
     }
+
 }

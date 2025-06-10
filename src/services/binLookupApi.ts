@@ -18,6 +18,10 @@ import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/binLookup/models";
 
+/**
+ * The service has been moved to a different package 'binLookup'
+ * @deprecated Use services/binLookup/binLookupAPI
+ */
 export class BinLookupAPI extends Service {
     
     private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/BinLookup/v54";
@@ -29,6 +33,8 @@ export class BinLookupAPI extends Service {
     }
 
     /**
+    * @deprecated Use services/binLookup/BinLookupAPI
+    * 
     * @summary Check if 3D Secure is available
     * @param threeDSAvailabilityRequest {@link ThreeDSAvailabilityRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -37,16 +43,18 @@ export class BinLookupAPI extends Service {
     public async get3dsAvailability(threeDSAvailabilityRequest: ThreeDSAvailabilityRequest, requestOptions?: IRequest.Options): Promise<ThreeDSAvailabilityResponse> {
         const endpoint = `${this.baseUrl}/get3dsAvailability`;
         const resource = new Resource(this, endpoint);
-        const request: ThreeDSAvailabilityRequest = ObjectSerializer.serialize(threeDSAvailabilityRequest, "ThreeDSAvailabilityRequest");
+        const request: ThreeDSAvailabilityRequest = ObjectSerializer.serialize(threeDSAvailabilityRequest, "ThreeDSAvailabilityRequest", "");
         const response = await getJsonResponse<ThreeDSAvailabilityRequest, ThreeDSAvailabilityResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ThreeDSAvailabilityResponse");
+        return ObjectSerializer.deserialize(response, "ThreeDSAvailabilityResponse", "");
     }
 
     /**
+    * @deprecated Use services/binLookup/BinLookupAPI
+    * 
     * @summary Get a fees cost estimate
     * @param costEstimateRequest {@link CostEstimateRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -55,13 +63,13 @@ export class BinLookupAPI extends Service {
     public async getCostEstimate(costEstimateRequest: CostEstimateRequest, requestOptions?: IRequest.Options): Promise<CostEstimateResponse> {
         const endpoint = `${this.baseUrl}/getCostEstimate`;
         const resource = new Resource(this, endpoint);
-        const request: CostEstimateRequest = ObjectSerializer.serialize(costEstimateRequest, "CostEstimateRequest");
+        const request: CostEstimateRequest = ObjectSerializer.serialize(costEstimateRequest, "CostEstimateRequest", "");
         const response = await getJsonResponse<CostEstimateRequest, CostEstimateResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "CostEstimateResponse");
+        return ObjectSerializer.deserialize(response, "CostEstimateResponse", "");
     }
 }
 

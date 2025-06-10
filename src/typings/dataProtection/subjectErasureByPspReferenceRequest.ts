@@ -12,37 +12,45 @@ export class SubjectErasureByPspReferenceRequest {
     /**
     * Set this to **true** if you want to delete shopper-related data, even if the shopper has an existing recurring transaction. This only deletes the shopper-related data for the specific payment, but does not cancel the existing recurring transaction.
     */
-    'forceErasure'?: boolean;
+    "forceErasure"?: boolean;
     /**
     * Your merchant account
     */
-    'merchantAccount'?: string;
+    "merchantAccount"?: string;
     /**
     * The PSP reference of the payment. We will delete all shopper-related data for this payment.
     */
-    'pspReference'?: string;
+    "pspReference"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "forceErasure",
             "baseName": "forceErasure",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SubjectErasureByPspReferenceRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

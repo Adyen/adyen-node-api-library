@@ -1246,8 +1246,7 @@ export interface UTMCoordinates {
     UTMNorthward: string;
 }
 
-export interface XMLGregorianCalendar extends Cloneable {
-}
+export type XMLGregorianCalendar = Cloneable
 
 export interface Cloneable {
 }

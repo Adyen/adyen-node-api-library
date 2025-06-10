@@ -12,55 +12,65 @@ export class CheckoutSDKAction {
     /**
     * Encoded payment data.
     */
-    'paymentData'?: string;
+    "paymentData"?: string;
     /**
     * Specifies the payment method.
     */
-    'paymentMethodType'?: string;
+    "paymentMethodType"?: string;
     /**
     * The data to pass to the SDK.
     */
-    'sdkData'?: { [key: string]: string; };
+    "sdkData"?: { [key: string]: string; };
     /**
     * The type of the action.
     */
-    'type': CheckoutSDKAction.TypeEnum;
+    "type": CheckoutSDKAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    'url'?: string;
+    "url"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "paymentData",
             "baseName": "paymentData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentMethodType",
             "baseName": "paymentMethodType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "sdkData",
             "baseName": "sdkData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CheckoutSDKAction.TypeEnum"
+            "type": "CheckoutSDKAction.TypeEnum",
+            "format": ""
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutSDKAction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

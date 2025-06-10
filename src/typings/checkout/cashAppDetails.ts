@@ -12,103 +12,118 @@ export class CashAppDetails {
     /**
     * Cash App issued cashtag for recurring payment
     */
-    'cashtag'?: string;
+    "cashtag"?: string;
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
+    "checkoutAttemptId"?: string;
     /**
     * Cash App issued customerId for recurring payment
     */
-    'customerId'?: string;
+    "customerId"?: string;
     /**
     * Cash App issued grantId for one time payment
     */
-    'grantId'?: string;
+    "grantId"?: string;
     /**
     * Cash App issued onFileGrantId for recurring payment
     */
-    'onFileGrantId'?: string;
+    "onFileGrantId"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    'recurringDetailReference'?: string;
+    "recurringDetailReference"?: string;
     /**
     * Cash App request id
     */
-    'requestId'?: string;
+    "requestId"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    'storedPaymentMethodId'?: string;
+    "storedPaymentMethodId"?: string;
     /**
     * The payment method subtype.
     */
-    'subtype'?: string;
+    "subtype"?: string;
     /**
     * cashapp
     */
-    'type'?: CashAppDetails.TypeEnum;
+    "type"?: CashAppDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "cashtag",
             "baseName": "cashtag",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "customerId",
             "baseName": "customerId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "grantId",
             "baseName": "grantId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "onFileGrantId",
             "baseName": "onFileGrantId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "requestId",
             "baseName": "requestId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subtype",
             "baseName": "subtype",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CashAppDetails.TypeEnum"
+            "type": "CashAppDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CashAppDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

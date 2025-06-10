@@ -7,56 +7,67 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './address';
-import { Name } from './name';
+import { Address } from "./address";
+import { Name } from "./name";
+
 
 export class FundOrigin {
-    'billingAddress'?: Address | null;
+    "billingAddress"?: Address;
     /**
     * The email address of the person funding the money.
     */
-    'shopperEmail'?: string;
-    'shopperName'?: Name | null;
+    "shopperEmail"?: string;
+    "shopperName"?: Name;
     /**
     * The phone number of the person funding the money.
     */
-    'telephoneNumber'?: string;
+    "telephoneNumber"?: string;
     /**
     * The unique identifier of the wallet where the funds are coming from.
     */
-    'walletIdentifier'?: string;
+    "walletIdentifier"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null"
+            "type": "Address",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name",
+            "format": ""
         },
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "walletIdentifier",
             "baseName": "walletIdentifier",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return FundOrigin.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,19 +12,25 @@ export class UtilityResponse {
     /**
     * The list of origin keys for all requested domains. For each list item, the key is the domain and the value is the origin key.
     */
-    'originKeys'?: { [key: string]: string; };
+    "originKeys"?: { [key: string]: string; };
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "originKeys",
             "baseName": "originKeys",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return UtilityResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

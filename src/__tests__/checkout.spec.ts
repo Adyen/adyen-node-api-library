@@ -2,6 +2,7 @@ import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess";
 import {paymentsSuccess} from "../__mocks__/checkout/paymentsSuccess";
+import {paymentsRedirectAction} from "../__mocks__/checkout/paymentsRedirectAction";
 import {paymentDetailsSuccess} from "../__mocks__/checkout/paymentsDetailsSuccess";
 // import {paymentSessionSuccess} from "../__mocks__/checkout/paymentSessionSucess";
 import {originKeysSuccess} from "../__mocks__/checkout/originkeysSuccess";
@@ -14,6 +15,7 @@ import HttpClientException from "../httpClient/httpClientException";
 import { checkout } from "../typings";
 import { IRequest } from "../typings/requestOptions";
 import { SessionResultResponse } from "../typings/checkout/sessionResultResponse";
+import { payments3DS2NativeAction } from "../__mocks__/checkout/payments3DS2NativeAction";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
 const reference = "Your order number";
@@ -79,8 +81,11 @@ function getPaymentLinkSuccess(expiresAt: Date): checkout.PaymentLinkResponse {
         url: "PaymentLinkResponse.url",
         id: "mocked_id",
         merchantAccount,
-        status: checkout.PaymentLinkResponse.StatusEnum.Active
-    };
+        status: checkout.PaymentLinkResponse.StatusEnum.Active,
+        requiredShopperFields: [
+            checkout.PaymentLinkResponse.RequiredShopperFieldsEnum.BillingAddress,
+            checkout.PaymentLinkResponse.RequiredShopperFieldsEnum.ShopperEmail]
+        };
 }
 
 function createPaymentLinkRequest(): checkout.PaymentLinkRequest {
@@ -108,7 +113,10 @@ function createPaymentLinkRequest(): checkout.PaymentLinkRequest {
             country: "BR",
             stateOrProvince: "SP"
         },
-        reference
+        reference,
+        requiredShopperFields: [
+            checkout.PaymentLinkRequest.RequiredShopperFieldsEnum.BillingAddress,
+            checkout.PaymentLinkRequest.RequiredShopperFieldsEnum.ShopperEmail]
     };
 }
 
@@ -154,7 +162,7 @@ describe("Checkout", (): void => {
             "returnUrl": "https://your-company.com/...",
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
         }`);
-        const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.deserialize(requestJson,"PaymentRequest");
+        const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.deserialize(requestJson, "PaymentRequest", "");
         expect(paymentRequest.returnUrl).toEqual("https://your-company.com/...");
         expect(paymentRequest.amount.value).toBe(1000);
         const paymentMethodDetails: checkout.ApplePayDetails = paymentRequest.paymentMethod as checkout.ApplePayDetails;
@@ -239,7 +247,6 @@ describe("Checkout", (): void => {
 
     });
 
-
     test("should make a payment.", async (): Promise<void> => {
         scope.post("/payments")
             .reply(200, paymentsSuccess);
@@ -311,7 +318,7 @@ describe("Checkout", (): void => {
         }
     });
 
-    test("should have valid payment link", async (): Promise<void> => {
+    test("should create valid payment link", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
         const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
 
@@ -319,6 +326,28 @@ describe("Checkout", (): void => {
 
         const paymentSuccessLinkResponse = await checkoutService.PaymentLinksApi.paymentLinks(createPaymentLinkRequest());
         expect(paymentSuccessLinkResponse).toBeTruthy();
+    });
+
+    test("should create valid payment link with installmentOptions", async (): Promise<void> => {
+        const expiresAt = "2019-12-17T10:05:29Z";
+        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
+
+        scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
+
+        const request : checkout.PaymentLinkRequest = createPaymentLinkRequest();
+        request.installmentOptions = {
+            card: {
+                plans: [
+                    checkout.CheckoutSessionInstallmentOption.PlansEnum.Bonus,
+                    checkout.CheckoutSessionInstallmentOption.PlansEnum.BuynowPaylater
+                ]
+            }
+        };
+        const paymentSuccessLinkResponse = await checkoutService.PaymentLinksApi.paymentLinks(request);
+        expect(paymentSuccessLinkResponse).toBeTruthy();
+        expect(paymentSuccessLinkResponse.id).toBeTruthy();
+        expect(paymentSuccessLinkResponse.id).toBe("mocked_id");
+        expect(paymentSuccessLinkResponse.requiredShopperFields?.length).toBe(2);
     });
 
     test("should get payment link", async (): Promise<void> => {
@@ -399,6 +428,46 @@ describe("Checkout", (): void => {
 
         expect(paymentsResponse.pspReference).toBeTruthy();
         expect(paymentsResponse.additionalData).toBeTruthy();
+    });
+
+    test("should return shopper redirect with a card payment.", async (): Promise<void> => {
+        scope.post("/payments")
+            .reply(200, paymentsRedirectAction);
+
+        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
+
+        expect(paymentsResponse.pspReference).toBeTruthy();
+        expect(paymentsResponse.resultCode).toBeTruthy();
+        expect(paymentsResponse.resultCode).toEqual("RedirectShopper");
+        expect(paymentsResponse.action).toBeTruthy();
+        // check type redirect
+        expect(paymentsResponse.action?.type).toBeTruthy();
+        expect(paymentsResponse.action?.type).toEqual("redirect");
+        // TODO check action is polymorphic
+        //expect(paymentsResponse.action).toBeInstanceOf(CheckoutRedirectAction); 
+        //expect(paymentsResponse.action?.url).toBe("https://checkoutshopper-test.adyen.com/checkoutshopper/threeDS/redirect...");
+
+    });
+
+    test("should return Native 3DS2 with a card payment.", async (): Promise<void> => {
+        scope.post("/payments")
+            .reply(200, payments3DS2NativeAction);
+
+        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
+
+        expect(paymentsResponse.pspReference).toBeTruthy();
+        expect(paymentsResponse.resultCode).toBeTruthy();
+        expect(paymentsResponse.resultCode).toEqual("IdentifyShopper");
+        expect(paymentsResponse.action).toBeTruthy();
+        // check type threeDS2
+        expect(paymentsResponse.action?.type).toBeTruthy();
+        expect(paymentsResponse.action?.type).toEqual("threeDS2");
+        // TODO check action is polymorphic
+        //expect(paymentsResponse.action).toBeInstanceOf(CheckoutThreeDS2Action); 
+        //expect(paymentsResponse.action?.subtype).toEqual("threeDS2");
+
     });
 
     test("should get origin keys", async (): Promise<void> => {
@@ -502,6 +571,25 @@ describe("Checkout", (): void => {
             .reply(200, sessionsSuccess);
 
         const sessionsRequest: checkout.CreateCheckoutSessionRequest = createSessionRequest();
+        const sessionsResponse: checkout.CreateCheckoutSessionResponse = await checkoutService.PaymentsApi.sessions(sessionsRequest);
+        expect(sessionsResponse.sessionData).toBeTruthy();
+        expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);
+        expect(sessionsResponse.expiresAt.getFullYear()).toBeGreaterThan(0);
+    });
+
+    test("should create a session with installmentOptions.", async (): Promise<void> => {
+        scope.post("/sessions")
+            .reply(200, sessionsSuccess);
+
+        const sessionsRequest: checkout.CreateCheckoutSessionRequest = createSessionRequest();
+        sessionsRequest.installmentOptions = {
+            card: {
+                plans: [
+                    checkout.CheckoutSessionInstallmentOption.PlansEnum.Bonus,
+                    checkout.CheckoutSessionInstallmentOption.PlansEnum.BuynowPaylater
+                ]
+            }
+        };
         const sessionsResponse: checkout.CreateCheckoutSessionResponse = await checkoutService.PaymentsApi.sessions(sessionsRequest);
         expect(sessionsResponse.sessionData).toBeTruthy();
         expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);

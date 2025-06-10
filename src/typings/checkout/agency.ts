@@ -12,28 +12,35 @@ export class Agency {
     /**
     * The reference number for the invoice, issued by the agency. * Encoding: ASCII * minLength: 1 character * maxLength: 6 characters
     */
-    'invoiceNumber'?: string;
+    "invoiceNumber"?: string;
     /**
     * The two-letter agency plan identifier. * Encoding: ASCII * minLength: 2 characters * maxLength: 2 characters
     */
-    'planName'?: string;
+    "planName"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "invoiceNumber",
             "baseName": "invoiceNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "planName",
             "baseName": "planName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Agency.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

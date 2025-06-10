@@ -7,100 +7,115 @@
  * Do not edit this class manually.
  */
 
-import { Item } from './item';
-import { SubInputDetail } from './subInputDetail';
+import { Item } from "./item";
+import { SubInputDetail } from "./subInputDetail";
+
 
 export class InputDetail {
     /**
     * Configuration parameters for the required input.
     */
-    'configuration'?: { [key: string]: string; };
+    "configuration"?: { [key: string]: string; };
     /**
     * Input details can also be provided recursively.
     */
-    'details'?: Array<SubInputDetail>;
+    "details"?: Array<SubInputDetail>;
     /**
     * Input details can also be provided recursively (deprecated).
     *
 	* @deprecated 
     */
-    'inputDetails'?: Array<SubInputDetail>;
+    "inputDetails"?: Array<SubInputDetail>;
     /**
     * In case of a select, the URL from which to query the items.
     */
-    'itemSearchUrl'?: string;
+    "itemSearchUrl"?: string;
     /**
     * In case of a select, the items to choose from.
     */
-    'items'?: Array<Item>;
+    "items"?: Array<Item>;
     /**
     * The value to provide in the result.
     */
-    'key'?: string;
+    "key"?: string;
     /**
     * True if this input value is optional.
     */
-    'optional'?: boolean;
+    "optional"?: boolean;
     /**
     * The type of the required input.
     */
-    'type'?: string;
+    "type"?: string;
     /**
     * The value can be pre-filled, if available.
     */
-    'value'?: string;
+    "value"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "configuration",
             "baseName": "configuration",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "details",
             "baseName": "details",
-            "type": "Array<SubInputDetail>"
+            "type": "Array<SubInputDetail>",
+            "format": ""
         },
         {
             "name": "inputDetails",
             "baseName": "inputDetails",
-            "type": "Array<SubInputDetail>"
+            "type": "Array<SubInputDetail>",
+            "format": ""
         },
         {
             "name": "itemSearchUrl",
             "baseName": "itemSearchUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<Item>"
+            "type": "Array<Item>",
+            "format": ""
         },
         {
             "name": "key",
             "baseName": "key",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "optional",
             "baseName": "optional",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return InputDetail.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,142 +7,162 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from "./amount";
+
 
 export class MerchantRiskIndicator {
     /**
     * Whether the chosen delivery address is identical to the billing address.
     */
-    'addressMatch'?: boolean;
+    "addressMatch"?: boolean;
     /**
     * Indicator regarding the delivery address. Allowed values: * `shipToBillingAddress` * `shipToVerifiedAddress` * `shipToNewAddress` * `shipToStore` * `digitalGoods` * `goodsNotShipped` * `other`
     */
-    'deliveryAddressIndicator'?: MerchantRiskIndicator.DeliveryAddressIndicatorEnum;
+    "deliveryAddressIndicator"?: MerchantRiskIndicator.DeliveryAddressIndicatorEnum;
     /**
     * The delivery email address (for digital goods).
     *
 	* @deprecated since Adyen Checkout API v68
 	* Use `deliveryEmailAddress` instead.
     */
-    'deliveryEmail'?: string;
+    "deliveryEmail"?: string;
     /**
     * For Electronic delivery, the email address to which the merchandise was delivered. Maximum length: 254 characters.
     */
-    'deliveryEmailAddress'?: string;
+    "deliveryEmailAddress"?: string;
     /**
     * The estimated delivery time for the shopper to receive the goods. Allowed values: * `electronicDelivery` * `sameDayShipping` * `overnightShipping` * `twoOrMoreDaysShipping`
     */
-    'deliveryTimeframe'?: MerchantRiskIndicator.DeliveryTimeframeEnum;
-    'giftCardAmount'?: Amount | null;
+    "deliveryTimeframe"?: MerchantRiskIndicator.DeliveryTimeframeEnum;
+    "giftCardAmount"?: Amount;
     /**
     * For prepaid or gift card purchase, total count of individual prepaid or gift cards/codes purchased.
     */
-    'giftCardCount'?: number;
+    "giftCardCount"?: number;
     /**
     * For prepaid or gift card purchase, [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) three-digit currency code of the gift card, other than those listed in Table A.5 of the EMVCo 3D Secure Protocol and Core Functions Specification.
     */
-    'giftCardCurr'?: string;
+    "giftCardCurr"?: string;
     /**
     * For pre-order purchases, the expected date this product will be available to the shopper.
     */
-    'preOrderDate'?: Date;
+    "preOrderDate"?: Date;
     /**
     * Indicator for whether this transaction is for pre-ordering a product.
     */
-    'preOrderPurchase'?: boolean;
+    "preOrderPurchase"?: boolean;
     /**
     * Indicates whether Cardholder is placing an order for merchandise with a future availability or release date.
     */
-    'preOrderPurchaseInd'?: string;
+    "preOrderPurchaseInd"?: string;
     /**
     * Indicator for whether the shopper has already purchased the same items in the past.
     */
-    'reorderItems'?: boolean;
+    "reorderItems"?: boolean;
     /**
     * Indicates whether the cardholder is reordering previously purchased merchandise.
     */
-    'reorderItemsInd'?: string;
+    "reorderItemsInd"?: string;
     /**
     * Indicates shipping method chosen for the transaction.
     */
-    'shipIndicator'?: string;
+    "shipIndicator"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "addressMatch",
             "baseName": "addressMatch",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "deliveryAddressIndicator",
             "baseName": "deliveryAddressIndicator",
-            "type": "MerchantRiskIndicator.DeliveryAddressIndicatorEnum"
+            "type": "MerchantRiskIndicator.DeliveryAddressIndicatorEnum",
+            "format": ""
         },
         {
             "name": "deliveryEmail",
             "baseName": "deliveryEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "deliveryEmailAddress",
             "baseName": "deliveryEmailAddress",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "deliveryTimeframe",
             "baseName": "deliveryTimeframe",
-            "type": "MerchantRiskIndicator.DeliveryTimeframeEnum"
+            "type": "MerchantRiskIndicator.DeliveryTimeframeEnum",
+            "format": ""
         },
         {
             "name": "giftCardAmount",
             "baseName": "giftCardAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "giftCardCount",
             "baseName": "giftCardCount",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "giftCardCurr",
             "baseName": "giftCardCurr",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "preOrderDate",
             "baseName": "preOrderDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "preOrderPurchase",
             "baseName": "preOrderPurchase",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "preOrderPurchaseInd",
             "baseName": "preOrderPurchaseInd",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reorderItems",
             "baseName": "reorderItems",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "reorderItemsInd",
             "baseName": "reorderItemsInd",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shipIndicator",
             "baseName": "shipIndicator",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return MerchantRiskIndicator.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

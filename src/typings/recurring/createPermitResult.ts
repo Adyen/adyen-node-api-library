@@ -7,34 +7,42 @@
  * Do not edit this class manually.
  */
 
-import { PermitResult } from './permitResult';
+import { PermitResult } from "./permitResult";
+
 
 export class CreatePermitResult {
     /**
     * List of new permits.
     */
-    'permitResultList'?: Array<PermitResult>;
+    "permitResultList"?: Array<PermitResult>;
     /**
     * A unique reference associated with the request. This value is globally unique; quote it when communicating with us about this request.
     */
-    'pspReference'?: string;
+    "pspReference"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "permitResultList",
             "baseName": "permitResultList",
-            "type": "Array<PermitResult>"
+            "type": "Array<PermitResult>",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CreatePermitResult.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

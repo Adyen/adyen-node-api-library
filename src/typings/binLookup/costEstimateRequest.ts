@@ -7,97 +7,113 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { CostEstimateAssumptions } from './costEstimateAssumptions';
-import { MerchantDetails } from './merchantDetails';
-import { Recurring } from './recurring';
+import { Amount } from "./amount";
+import { CostEstimateAssumptions } from "./costEstimateAssumptions";
+import { MerchantDetails } from "./merchantDetails";
+import { Recurring } from "./recurring";
+
 
 export class CostEstimateRequest {
-    'amount': Amount;
-    'assumptions'?: CostEstimateAssumptions | null;
+    "amount": Amount;
+    "assumptions"?: CostEstimateAssumptions;
     /**
     * The card number (4-19 characters) for PCI compliant use cases. Do not use any separators.  > Either the `cardNumber` or `encryptedCardNumber` field must be provided in a payment request.
     */
-    'cardNumber'?: string;
+    "cardNumber"?: string;
     /**
     * Encrypted data that stores card information for non PCI-compliant use cases. The encrypted data must be created with the Checkout Card Component or Secured Fields Component, and must contain the `encryptedCardNumber` field.  > Either the `cardNumber` or `encryptedCardNumber` field must be provided in a payment request.
     */
-    'encryptedCardNumber'?: string;
+    "encryptedCardNumber"?: string;
     /**
     * The merchant account identifier you want to process the (transaction) request with.
     */
-    'merchantAccount': string;
-    'merchantDetails'?: MerchantDetails | null;
-    'recurring'?: Recurring | null;
+    "merchantAccount": string;
+    "merchantDetails"?: MerchantDetails;
+    "recurring"?: Recurring;
     /**
     * The `recurringDetailReference` you want to use for this cost estimate. The value `LATEST` can be used to select the most recently stored recurring detail.
     */
-    'selectedRecurringDetailReference'?: string;
+    "selectedRecurringDetailReference"?: string;
     /**
     * Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the card holder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
     */
-    'shopperInteraction'?: CostEstimateRequest.ShopperInteractionEnum;
+    "shopperInteraction"?: CostEstimateRequest.ShopperInteractionEnum;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
-    'shopperReference'?: string;
+    "shopperReference"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "assumptions",
             "baseName": "assumptions",
-            "type": "CostEstimateAssumptions | null"
+            "type": "CostEstimateAssumptions",
+            "format": ""
         },
         {
             "name": "cardNumber",
             "baseName": "cardNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "encryptedCardNumber",
             "baseName": "encryptedCardNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantDetails",
             "baseName": "merchantDetails",
-            "type": "MerchantDetails | null"
+            "type": "MerchantDetails",
+            "format": ""
         },
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring | null"
+            "type": "Recurring",
+            "format": ""
         },
         {
             "name": "selectedRecurringDetailReference",
             "baseName": "selectedRecurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperInteraction",
             "baseName": "shopperInteraction",
-            "type": "CostEstimateRequest.ShopperInteractionEnum"
+            "type": "CostEstimateRequest.ShopperInteractionEnum",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CostEstimateRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

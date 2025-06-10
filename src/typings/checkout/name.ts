@@ -12,28 +12,35 @@ export class Name {
     /**
     * The first name.
     */
-    'firstName': string;
+    "firstName": string;
     /**
     * The last name.
     */
-    'lastName': string;
+    "lastName": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "firstName",
             "baseName": "firstName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lastName",
             "baseName": "lastName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Name.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

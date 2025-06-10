@@ -12,28 +12,35 @@ export class SessionResultResponse {
     /**
     * A unique identifier of the session.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The status of the session. The status included in the response doesn\'t get updated. Don\'t make the request again to check for payment status updates.  Possible values: * **completed**: the shopper completed the payment, and the payment was authorized. * **paymentPending**: the shopper is in the process of making the payment. This applies to payment methods with an asynchronous flow, like voucher payments where the shopper completes the payment in a physical shop. * **refused**: the session has been refused, because of too many refused payment attempts. The shopper can no longer complete the payment with this session. * **canceled**: the shopper canceled the payment. * **expired**: the session expired. The shopper can no longer complete the payment with this session. By default, the session expires one hour after it is created.
     */
-    'status'?: SessionResultResponse.StatusEnum;
+    "status"?: SessionResultResponse.StatusEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "SessionResultResponse.StatusEnum"
+            "type": "SessionResultResponse.StatusEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SessionResultResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,112 +7,130 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from "./amount";
+
 
 export class ForexQuote {
     /**
     * The account name.
     */
-    'account'?: string;
+    "account"?: string;
     /**
     * The account type.
     */
-    'accountType'?: string;
-    'baseAmount'?: Amount | null;
+    "accountType"?: string;
+    "baseAmount"?: Amount;
     /**
     * The base points.
     */
-    'basePoints': number;
-    'buy'?: Amount | null;
-    'interbank'?: Amount | null;
+    "basePoints": number;
+    "buy"?: Amount;
+    "interbank"?: Amount;
     /**
     * The reference assigned to the forex quote request.
     */
-    'reference'?: string;
-    'sell'?: Amount | null;
+    "reference"?: string;
+    "sell"?: Amount;
     /**
     * The signature to validate the integrity.
     */
-    'signature'?: string;
+    "signature"?: string;
     /**
     * The source of the forex quote.
     */
-    'source'?: string;
+    "source"?: string;
     /**
     * The type of forex.
     */
-    'type'?: string;
+    "type"?: string;
     /**
     * The date until which the forex quote is valid.
     */
-    'validTill': Date;
+    "validTill": Date;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "account",
             "baseName": "account",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "accountType",
             "baseName": "accountType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "baseAmount",
             "baseName": "baseAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "basePoints",
             "baseName": "basePoints",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "buy",
             "baseName": "buy",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "interbank",
             "baseName": "interbank",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "sell",
             "baseName": "sell",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "signature",
             "baseName": "signature",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "source",
             "baseName": "source",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "validTill",
             "baseName": "validTill",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
         return ForexQuote.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -9,43 +9,52 @@
 
 
 export class WeChatPayMiniProgramDetails {
-    'appId'?: string;
+    "appId"?: string;
     /**
     * The checkout attempt identifier.
     */
-    'checkoutAttemptId'?: string;
-    'openid'?: string;
+    "checkoutAttemptId"?: string;
+    "openid"?: string;
     /**
     * **wechatpayMiniProgram**
     */
-    'type'?: WeChatPayMiniProgramDetails.TypeEnum;
+    "type"?: WeChatPayMiniProgramDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "appId",
             "baseName": "appId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "openid",
             "baseName": "openid",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "WeChatPayMiniProgramDetails.TypeEnum"
+            "type": "WeChatPayMiniProgramDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return WeChatPayMiniProgramDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

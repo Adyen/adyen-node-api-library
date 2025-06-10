@@ -7,110 +7,127 @@
  * Do not edit this class manually.
  */
 
-import { Amounts } from './amounts';
-import { Donation } from './donation';
+import { Amounts } from "./amounts";
+import { Donation } from "./donation";
+
 
 export class DonationCampaign {
-    'amounts'?: Amounts | null;
+    "amounts"?: Amounts;
     /**
     * The URL for the banner of the nonprofit or campaign.
     */
-    'bannerUrl'?: string;
+    "bannerUrl"?: string;
     /**
     * The name of the donation campaign..
     */
-    'campaignName'?: string;
+    "campaignName"?: string;
     /**
     * The cause of the nonprofit.
     */
-    'causeName'?: string;
-    'donation'?: Donation | null;
+    "causeName"?: string;
+    "donation"?: Donation;
     /**
     * The unique campaign ID of the donation campaign.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The URL for the logo of the nonprofit.
     */
-    'logoUrl'?: string;
+    "logoUrl"?: string;
     /**
     * The description of the nonprofit.
     */
-    'nonprofitDescription'?: string;
+    "nonprofitDescription"?: string;
     /**
     * The name of the nonprofit organization that receives the donation.
     */
-    'nonprofitName'?: string;
+    "nonprofitName"?: string;
     /**
     * The website URL of the nonprofit.
     */
-    'nonprofitUrl'?: string;
+    "nonprofitUrl"?: string;
     /**
     * The URL of the terms and conditions page of the nonprofit and the campaign.
     */
-    'termsAndConditionsUrl'?: string;
+    "termsAndConditionsUrl"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amounts",
             "baseName": "amounts",
-            "type": "Amounts | null"
+            "type": "Amounts",
+            "format": ""
         },
         {
             "name": "bannerUrl",
             "baseName": "bannerUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "campaignName",
             "baseName": "campaignName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "causeName",
             "baseName": "causeName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "donation",
             "baseName": "donation",
-            "type": "Donation | null"
+            "type": "Donation",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "logoUrl",
             "baseName": "logoUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "nonprofitDescription",
             "baseName": "nonprofitDescription",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "nonprofitName",
             "baseName": "nonprofitName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "nonprofitUrl",
             "baseName": "nonprofitUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "termsAndConditionsUrl",
             "baseName": "termsAndConditionsUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DonationCampaign.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

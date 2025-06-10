@@ -12,28 +12,35 @@ export class EncryptedOrderData {
     /**
     * The encrypted order data.
     */
-    'orderData': string;
+    "orderData": string;
     /**
     * The `pspReference` that belongs to the order.
     */
-    'pspReference': string;
+    "pspReference": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "orderData",
             "baseName": "orderData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return EncryptedOrderData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

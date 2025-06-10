@@ -11,6 +11,7 @@ import { Amount } from './amount';
 import { Name } from './name';
 import { Recurring } from './recurring';
 
+
 export class SubmitRequest {
     /**
     * This field contains additional data, which may be required for a particular request.
@@ -50,7 +51,7 @@ export class SubmitRequest {
     * The shopper\'s email address.
     */
     'shopperEmail': string;
-    'shopperName'?: Name | null;
+    'shopperName'?: Name;
     /**
     * The shopper\'s reference for the payout transaction.
     */
@@ -64,87 +65,107 @@ export class SubmitRequest {
     */
     'socialSecurityNumber'?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "string"
+            "type": "string",
+            "format": "date"
         },
         {
             "name": "entityType",
             "baseName": "entityType",
-            "type": "SubmitRequest.EntityTypeEnum"
+            "type": "SubmitRequest.EntityTypeEnum",
+            "format": ""
         },
         {
             "name": "fraudOffset",
             "baseName": "fraudOffset",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "nationality",
             "baseName": "nationality",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring"
+            "type": "Recurring",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "selectedRecurringDetailReference",
             "baseName": "selectedRecurringDetailReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null"
+            "type": "Name",
+            "format": ""
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperStatement",
             "baseName": "shopperStatement",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "socialSecurityNumber",
             "baseName": "socialSecurityNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SubmitRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

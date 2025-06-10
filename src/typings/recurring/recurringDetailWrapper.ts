@@ -7,22 +7,29 @@
  * Do not edit this class manually.
  */
 
-import { RecurringDetail } from './recurringDetail';
+import { RecurringDetail } from "./recurringDetail";
+
 
 export class RecurringDetailWrapper {
-    'RecurringDetail'?: RecurringDetail | null;
+    "RecurringDetail"?: RecurringDetail;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "RecurringDetail",
             "baseName": "RecurringDetail",
-            "type": "RecurringDetail | null"
+            "type": "RecurringDetail",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return RecurringDetailWrapper.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

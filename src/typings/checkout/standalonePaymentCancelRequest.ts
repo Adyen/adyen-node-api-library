@@ -7,49 +7,59 @@
  * Do not edit this class manually.
  */
 
-import { ApplicationInfo } from './applicationInfo';
+import { ApplicationInfo } from "./applicationInfo";
+
 
 export class StandalonePaymentCancelRequest {
-    'applicationInfo'?: ApplicationInfo | null;
+    "applicationInfo"?: ApplicationInfo;
     /**
     * The merchant account that is used to process the payment.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * The [`reference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment that you want to cancel.
     */
-    'paymentReference': string;
+    "paymentReference": string;
     /**
     * Your reference for the cancel request. Maximum length: 80 characters.
     */
-    'reference'?: string;
+    "reference"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null"
+            "type": "ApplicationInfo",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentReference",
             "baseName": "paymentReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return StandalonePaymentCancelRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,46 +12,55 @@ export class ThreeDSRequestData {
     /**
     * Dimensions of the 3DS2 challenge window to be displayed to the cardholder.  Possible values:  * **01** - size of 250x400  * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen
     */
-    'challengeWindowSize'?: ThreeDSRequestData.ChallengeWindowSizeEnum;
+    "challengeWindowSize"?: ThreeDSRequestData.ChallengeWindowSizeEnum;
     /**
     * Flag for data only flow.
     */
-    'dataOnly'?: ThreeDSRequestData.DataOnlyEnum;
+    "dataOnly"?: ThreeDSRequestData.DataOnlyEnum;
     /**
     * Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Only use the redirect 3D Secure authentication flow.
     */
-    'nativeThreeDS'?: ThreeDSRequestData.NativeThreeDSEnum;
+    "nativeThreeDS"?: ThreeDSRequestData.NativeThreeDSEnum;
     /**
     * The version of 3D Secure to use.  Possible values:  * **2.1.0** * **2.2.0**
     */
-    'threeDSVersion'?: ThreeDSRequestData.ThreeDSVersionEnum;
+    "threeDSVersion"?: ThreeDSRequestData.ThreeDSVersionEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "challengeWindowSize",
             "baseName": "challengeWindowSize",
-            "type": "ThreeDSRequestData.ChallengeWindowSizeEnum"
+            "type": "ThreeDSRequestData.ChallengeWindowSizeEnum",
+            "format": ""
         },
         {
             "name": "dataOnly",
             "baseName": "dataOnly",
-            "type": "ThreeDSRequestData.DataOnlyEnum"
+            "type": "ThreeDSRequestData.DataOnlyEnum",
+            "format": ""
         },
         {
             "name": "nativeThreeDS",
             "baseName": "nativeThreeDS",
-            "type": "ThreeDSRequestData.NativeThreeDSEnum"
+            "type": "ThreeDSRequestData.NativeThreeDSEnum",
+            "format": ""
         },
         {
             "name": "threeDSVersion",
             "baseName": "threeDSVersion",
-            "type": "ThreeDSRequestData.ThreeDSVersionEnum"
+            "type": "ThreeDSRequestData.ThreeDSVersionEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDSRequestData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
@@ -72,7 +81,7 @@ export namespace ThreeDSRequestData {
         Disabled = 'disabled'
     }
     export enum ThreeDSVersionEnum {
-        _10 = '2.1.0',
-        _20 = '2.2.0'
+        _210 = '2.1.0',
+        _220 = '2.2.0'
     }
 }

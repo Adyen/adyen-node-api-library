@@ -16,6 +16,10 @@ import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/posMobile/models";
 
+/**
+ * The service has been moved to a different package 'posMobile'
+ * @deprecated Use services/posMobile/posMobileApi
+ */
 export class PosMobileAPI extends Service {
     
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/checkout/possdk/v68";
@@ -27,6 +31,8 @@ export class PosMobileAPI extends Service {
     }
 
     /**
+    * @deprecated Use services/posMobile/PosMobileAPI
+    * 
     * @summary Create a communication session
     * @param createSessionRequest {@link CreateSessionRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -35,13 +41,13 @@ export class PosMobileAPI extends Service {
     public async createCommunicationSession(createSessionRequest: CreateSessionRequest, requestOptions?: IRequest.Options): Promise<CreateSessionResponse> {
         const endpoint = `${this.baseUrl}/sessions`;
         const resource = new Resource(this, endpoint);
-        const request: CreateSessionRequest = ObjectSerializer.serialize(createSessionRequest, "CreateSessionRequest");
+        const request: CreateSessionRequest = ObjectSerializer.serialize(createSessionRequest, "CreateSessionRequest", "");
         const response = await getJsonResponse<CreateSessionRequest, CreateSessionResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "CreateSessionResponse");
+        return ObjectSerializer.deserialize(response, "CreateSessionResponse", "");
     }
 }
 
