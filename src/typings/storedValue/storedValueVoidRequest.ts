@@ -12,64 +12,75 @@ export class StoredValueVoidRequest {
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * The original pspReference of the payment to modify.
     */
-    'originalReference': string;
+    "originalReference": string;
     /**
     * Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The physical store, for which this payment is processed.
     */
-    'store'?: string;
+    "store"?: string;
     /**
     * The reference of the tender.
     */
-    'tenderReference'?: string;
+    "tenderReference"?: string;
     /**
     * The unique ID of a POS terminal.
     */
-    'uniqueTerminalId'?: string;
+    "uniqueTerminalId"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "originalReference",
             "baseName": "originalReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "store",
             "baseName": "store",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "tenderReference",
             "baseName": "tenderReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "uniqueTerminalId",
             "baseName": "uniqueTerminalId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return StoredValueVoidRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
