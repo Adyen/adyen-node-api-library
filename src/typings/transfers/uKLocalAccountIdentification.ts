@@ -12,37 +12,45 @@ export class UKLocalAccountIdentification {
     /**
     * The 8-digit bank account number, without separators or whitespace.
     */
-    'accountNumber': string;
+    "accountNumber": string;
     /**
     * The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
     */
-    'sortCode': string;
+    "sortCode": string;
     /**
     * **ukLocal**
     */
-    'type': UKLocalAccountIdentification.TypeEnum;
+    "type": UKLocalAccountIdentification.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "sortCode",
             "baseName": "sortCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "UKLocalAccountIdentification.TypeEnum"
+            "type": "UKLocalAccountIdentification.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return UKLocalAccountIdentification.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

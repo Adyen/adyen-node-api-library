@@ -7,34 +7,42 @@
  * Do not edit this class manually.
  */
 
-import { Leg } from './leg';
+import { Leg } from "./leg";
+
 
 export class Airline {
     /**
     * Details about the flight legs for this ticket.
     */
-    'legs'?: Array<Leg>;
+    "legs"?: Array<Leg>;
     /**
     * The ticket\'s unique identifier
     */
-    'ticketNumber'?: string;
+    "ticketNumber"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "legs",
             "baseName": "legs",
-            "type": "Array<Leg>"
+            "type": "Array<Leg>",
+            "format": ""
         },
         {
             "name": "ticketNumber",
             "baseName": "ticketNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Airline.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

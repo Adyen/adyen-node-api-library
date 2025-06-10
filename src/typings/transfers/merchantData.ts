@@ -7,58 +7,69 @@
  * Do not edit this class manually.
  */
 
-import { NameLocation } from './nameLocation';
+import { NameLocation } from "./nameLocation";
+
 
 export class MerchantData {
     /**
     * The unique identifier of the merchant\'s acquirer.
     */
-    'acquirerId'?: string;
+    "acquirerId"?: string;
     /**
     * The merchant category code.
     */
-    'mcc'?: string;
+    "mcc"?: string;
     /**
     * The unique identifier of the merchant.
     */
-    'merchantId'?: string;
-    'nameLocation'?: NameLocation | null;
+    "merchantId"?: string;
+    "nameLocation"?: NameLocation;
     /**
     * The postal code of the merchant.
     */
-    'postalCode'?: string;
+    "postalCode"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "acquirerId",
             "baseName": "acquirerId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "mcc",
             "baseName": "mcc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantId",
             "baseName": "merchantId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "nameLocation",
             "baseName": "nameLocation",
-            "type": "NameLocation | null"
+            "type": "NameLocation",
+            "format": ""
         },
         {
             "name": "postalCode",
             "baseName": "postalCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return MerchantData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

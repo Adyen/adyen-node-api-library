@@ -7,47 +7,37 @@
  * Do not edit this class manually.
  */
 
-import { AULocalAccountIdentification } from './aULocalAccountIdentification';
-import { BRLocalAccountIdentification } from './bRLocalAccountIdentification';
-import { CALocalAccountIdentification } from './cALocalAccountIdentification';
-import { CZLocalAccountIdentification } from './cZLocalAccountIdentification';
-import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
-import { HKLocalAccountIdentification } from './hKLocalAccountIdentification';
-import { HULocalAccountIdentification } from './hULocalAccountIdentification';
-import { IbanAccountIdentification } from './ibanAccountIdentification';
-import { NOLocalAccountIdentification } from './nOLocalAccountIdentification';
-import { NZLocalAccountIdentification } from './nZLocalAccountIdentification';
-import { NumberAndBicAccountIdentification } from './numberAndBicAccountIdentification';
-import { PLLocalAccountIdentification } from './pLLocalAccountIdentification';
-import { PartyIdentification } from './partyIdentification';
-import { SELocalAccountIdentification } from './sELocalAccountIdentification';
-import { SGLocalAccountIdentification } from './sGLocalAccountIdentification';
-import { UKLocalAccountIdentification } from './uKLocalAccountIdentification';
-import { USLocalAccountIdentification } from './uSLocalAccountIdentification';
+import { BankAccountV3AccountIdentification } from "./bankAccountV3AccountIdentification";
+import { PartyIdentification } from "./partyIdentification";
+
 
 export class BankAccountV3 {
-    'accountHolder': PartyIdentification;
-    /**
-    * Contains the bank account details. The fields required in this object depend on the country of the bank account and the currency of the transfer.
-    */
-    'accountIdentification': AULocalAccountIdentification | BRLocalAccountIdentification | CALocalAccountIdentification | CZLocalAccountIdentification | DKLocalAccountIdentification | HKLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NZLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | SGLocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification;
+    "accountHolder": PartyIdentification;
+    "accountIdentification": BankAccountV3AccountIdentification;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "PartyIdentification"
+            "type": "PartyIdentification",
+            "format": ""
         },
         {
             "name": "accountIdentification",
             "baseName": "accountIdentification",
-            "type": "AULocalAccountIdentification | BRLocalAccountIdentification | CALocalAccountIdentification | CZLocalAccountIdentification | DKLocalAccountIdentification | HKLocalAccountIdentification | HULocalAccountIdentification | IbanAccountIdentification | NOLocalAccountIdentification | NZLocalAccountIdentification | NumberAndBicAccountIdentification | PLLocalAccountIdentification | SELocalAccountIdentification | SGLocalAccountIdentification | UKLocalAccountIdentification | USLocalAccountIdentification"
+            "type": "BankAccountV3AccountIdentification",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BankAccountV3.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,17 +7,20 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import {
-    Transaction,
-    TransactionSearchResponse,
-    ObjectSerializer
-} from "../../typings/transfers/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/transfers/objectSerializer";
+import { Transaction } from "../../typings/transfers/models";
+import { TransactionSearchResponse } from "../../typings/transfers/models";
+
+/**
+ * API handler for TransactionsApi
+ */
 export class TransactionsApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/btl/v4";
@@ -44,6 +47,7 @@ export class TransactionsApi extends Service {
     public async getAllTransactions(balancePlatform?: string, paymentInstrumentId?: string, accountHolderId?: string, balanceAccountId?: string, cursor?: string, createdSince?: Date, createdUntil?: Date, limit?: number, requestOptions?: IRequest.Options): Promise<TransactionSearchResponse> {
         const endpoint = `${this.baseUrl}/transactions`;
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = balancePlatform ?? paymentInstrumentId ?? accountHolderId ?? balanceAccountId ?? cursor ?? createdSince ?? createdUntil ?? limit;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -62,7 +66,8 @@ export class TransactionsApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "TransactionSearchResponse");
+
+        return ObjectSerializer.deserialize(response, "TransactionSearchResponse", "");
     }
 
     /**
@@ -75,11 +80,14 @@ export class TransactionsApi extends Service {
         const endpoint = `${this.baseUrl}/transactions/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, Transaction>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "Transaction");
+
+        return ObjectSerializer.deserialize(response, "Transaction", "");
     }
+
 }

@@ -7,46 +7,49 @@
  * Do not edit this class manually.
  */
 
-import { BankCategoryData } from './bankCategoryData';
-import { InternalCategoryData } from './internalCategoryData';
-import { IssuedCard } from './issuedCard';
-import { PlatformPayment } from './platformPayment';
+import { TransferCategoryData } from "./transferCategoryData";
+
 
 export class TransferView {
-    /**
-    * The relevant data according to the transfer category.
-    */
-    'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null;
+    "categoryData"?: TransferCategoryData;
     /**
     * The ID of the resource.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The [`reference`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the `/transfers` request. If you haven\'t provided any, Adyen generates a unique reference.
     */
-    'reference': string;
+    "reference": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "categoryData",
             "baseName": "categoryData",
-            "type": "BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null"
+            "type": "TransferCategoryData",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TransferView.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
