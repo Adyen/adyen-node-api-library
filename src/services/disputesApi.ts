@@ -28,7 +28,6 @@ import { ObjectSerializer } from "../typings/disputes/models";
  * The service has been moved to a different package 'disputes'
  * @deprecated Use services/disputes/DisputesAPI
  */
-
 export class DisputesAPI extends Service {
     
     private readonly API_BASEPATH: string = "https://ca-test.adyen.com/ca/services/DisputeService/v30";
