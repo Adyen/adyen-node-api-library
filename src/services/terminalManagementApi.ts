@@ -24,6 +24,12 @@ import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/terminalManagement/models";
 
+/**
+ * Support for the "classic" POS Terminal Management API has stopped. 
+ * To automate assigning terminals, you must use Management API.
+ * 
+ * @deprecated Use Management API instead
+ */
 export class TerminalManagementAPI extends Service {
     
     private readonly API_BASEPATH: string = "https://postfmapi-test.adyen.com/postfmapi/terminal/v1";
