@@ -9,7 +9,7 @@ export { default as DataProtectionAPI } from "./dataProtection";
 export { default as DisputesAPI } from "./disputes";
 export { default as LegalEntityManagementAPI } from "./legalEntityManagement";
 export { default as ManagementAPI } from "./management";
-export { default as PaymentAPI } from "./paymentApi";
+export { default as PaymentAPI } from "./payment";
 export { default as PaymentsAppAPI } from "./paymentsApp";
 export { default as PayoutAPI } from "./payout";
 export { default as Platforms } from "./platforms";

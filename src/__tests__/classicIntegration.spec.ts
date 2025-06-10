@@ -1,13 +1,13 @@
 import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import Client from "../client";
-import ClassicIntegration from "../services/payment";
+import { PaymentAPI } from "../services";
 import { payment } from "../typings";
 import HttpClientException from "../httpClient/httpClientException";
 import {PaymentResult} from "../typings/payment/paymentResult";
 
 let client: Client;
-let classicIntegration: ClassicIntegration;
+let classicIntegration: PaymentAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -16,7 +16,7 @@ beforeEach((): void => {
     }
     client = createClient();
     scope = nock("https://pal-test.adyen.com/pal/servlet/Payment/v68");
-    classicIntegration = new ClassicIntegration(client);
+    classicIntegration = new PaymentAPI(client);
 });
 
 afterEach(() => {
