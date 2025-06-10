@@ -12,28 +12,35 @@ export class DisputeServiceResult {
     /**
     * The general error message.
     */
-    'errorMessage'?: string;
+    "errorMessage"?: string;
     /**
     * Indicates whether the request succeeded.
     */
-    'success': boolean;
+    "success": boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "errorMessage",
             "baseName": "errorMessage",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "success",
             "baseName": "success",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DisputeServiceResult.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

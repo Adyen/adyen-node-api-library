@@ -7,43 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { DefenseDocumentType } from './defenseDocumentType';
+import { DefenseDocumentType } from "./defenseDocumentType";
+
 
 export class DefenseReason {
     /**
     * Array of defense document types for a specific defense reason. Indicates the document types that you can submit to the schemes to defend this dispute, and whether they are required.
     */
-    'defenseDocumentTypes'?: Array<DefenseDocumentType>;
+    "defenseDocumentTypes"?: Array<DefenseDocumentType>;
     /**
     * The defense reason code that was selected to defend this dispute.
     */
-    'defenseReasonCode': string;
+    "defenseReasonCode": string;
     /**
     * Indicates if sufficient defense material has been supplied.
     */
-    'satisfied': boolean;
+    "satisfied": boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "defenseDocumentTypes",
             "baseName": "defenseDocumentTypes",
-            "type": "Array<DefenseDocumentType>"
+            "type": "Array<DefenseDocumentType>",
+            "format": ""
         },
         {
             "name": "defenseReasonCode",
             "baseName": "defenseReasonCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "satisfied",
             "baseName": "satisfied",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DefenseReason.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

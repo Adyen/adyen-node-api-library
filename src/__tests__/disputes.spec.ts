@@ -42,7 +42,7 @@ describe("Disputes", (): void => {
         scope.post("/acceptDispute")
             .reply(200, expected);
 
-        const response: AcceptDisputeResponse = await disputesService.acceptDispute(request);
+        const response: AcceptDisputeResponse = await disputesService.DisputesApi.acceptDispute(request);
         expect(response.disputeServiceResult.success).toEqual(true);
     });
 
@@ -57,7 +57,7 @@ describe("Disputes", (): void => {
         scope.post("/defendDispute")
             .reply(200, expected);
 
-        const response: DefendDisputeResponse = await disputesService.defendDispute(request);
+        const response: DefendDisputeResponse = await disputesService.DisputesApi.defendDispute(request);
         expect(response.disputeServiceResult.success).toEqual(true);
     });
 
@@ -72,7 +72,7 @@ describe("Disputes", (): void => {
         scope.post("/deleteDisputeDefenseDocument")
             .reply(200, expected);
 
-        const response: DeleteDefenseDocumentResponse = await disputesService.deleteDisputeDefenseDocument(request);
+        const response: DeleteDefenseDocumentResponse = await disputesService.DisputesApi.deleteDisputeDefenseDocument(request);
         expect(response.disputeServiceResult.success).toEqual(true);
     });
 
@@ -87,7 +87,7 @@ describe("Disputes", (): void => {
         scope.post("/deleteDisputeDefenseDocument")
             .reply(200, expected);
 
-        const response: DeleteDefenseDocumentResponse = await disputesService.deleteDisputeDefenseDocument(request);
+        const response: DeleteDefenseDocumentResponse = await disputesService.DisputesApi.deleteDisputeDefenseDocument(request);
         expect(response.disputeServiceResult.success).toEqual(true);
     });
 
@@ -168,7 +168,7 @@ describe("Disputes", (): void => {
         scope.post("/retrieveApplicableDefenseReasons")
             .reply(200, expected);
 
-        const response: DefenseReasonsResponse = await disputesService.retrieveApplicableDefenseReasons(request);
+        const response: DefenseReasonsResponse = await disputesService.DisputesApi.retrieveApplicableDefenseReasons(request);
         expect(response.disputeServiceResult.success).toEqual(true);
         expect(response.defenseReasons?.length).toEqual(4);
     });
@@ -184,7 +184,7 @@ describe("Disputes", (): void => {
         scope.post("/supplyDefenseDocument")
             .reply(200, expected);
 
-        const response: SupplyDefenseDocumentResponse = await disputesService.supplyDefenseDocument(request);
+        const response: SupplyDefenseDocumentResponse = await disputesService.DisputesApi.supplyDefenseDocument(request);
         expect(response.disputeServiceResult.success).toEqual(true);
     });
 });

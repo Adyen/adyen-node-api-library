@@ -6,7 +6,7 @@ export { default as BalancePlatformAPI } from "./balancePlatform";
 export { default as BinLookupAPI } from "./binLookup";
 export { default as CheckoutAPI } from "./checkout";
 export { default as DataProtectionAPI } from "./dataProtection";
-export { default as DisputesAPI } from "./disputesApi";
+export { default as DisputesAPI } from "./disputes";
 export { default as LegalEntityManagementAPI } from "./legalEntityManagement";
 export { default as ManagementAPI } from "./management";
 export { default as PaymentAPI } from "./paymentApi";
