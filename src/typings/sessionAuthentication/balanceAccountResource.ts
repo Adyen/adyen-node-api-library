@@ -7,32 +7,24 @@
  * Do not edit this class manually.
  */
 
-import { Resource } from "./resource";
-
+import { BalanceAccountResourceAllOf } from './balanceAccountResourceAllOf';
+import { Resource } from './resource';
+import { ResourceType } from './resourceType';
 
 export class BalanceAccountResource extends Resource {
-    "balanceAccountId": string;
+    'balanceAccountId': string;
 
-    static override readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static override readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static override readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "balanceAccountId",
             "baseName": "balanceAccountId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
-    static override getAttributeTypeMap() {
+    static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(BalanceAccountResource.attributeTypeMap);
     }
-
-    public constructor() {
-        super();
-    }
 }
 
-export namespace BalanceAccountResource {
-}

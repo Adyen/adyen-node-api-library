@@ -22,35 +22,27 @@ export class ModifyRequest {
     */
     'originalReference': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "originalReference",
             "baseName": "originalReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ModifyRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

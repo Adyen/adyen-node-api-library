@@ -9,6 +9,7 @@
 
 import { StoreLocation } from './storeLocation';
 import { StoreSplitConfiguration } from './storeSplitConfiguration';
+import { SubMerchantData } from './subMerchantData';
 
 export class StoreCreationRequest {
     'address': StoreLocation;
@@ -37,6 +38,7 @@ export class StoreCreationRequest {
     */
     'shopperStatement': string;
     'splitConfiguration'?: StoreSplitConfiguration | null;
+    'subMerchantData'?: SubMerchantData | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -80,6 +82,11 @@ export class StoreCreationRequest {
             "name": "splitConfiguration",
             "baseName": "splitConfiguration",
             "type": "StoreSplitConfiguration | null"
+        },
+        {
+            "name": "subMerchantData",
+            "baseName": "subMerchantData",
+            "type": "SubMerchantData | null"
         }    ];
 
     static getAttributeTypeMap() {

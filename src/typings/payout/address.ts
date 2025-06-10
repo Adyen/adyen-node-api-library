@@ -34,53 +34,42 @@ export class Address {
     */
     'street': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "city",
             "baseName": "city",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "country",
             "baseName": "country",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "houseNumberOrName",
             "baseName": "houseNumberOrName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "postalCode",
             "baseName": "postalCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "stateOrProvince",
             "baseName": "stateOrProvince",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "street",
             "baseName": "street",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Address.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

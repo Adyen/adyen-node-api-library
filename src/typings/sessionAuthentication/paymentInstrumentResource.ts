@@ -7,32 +7,24 @@
  * Do not edit this class manually.
  */
 
-import { Resource } from "./resource";
-
+import { PaymentInstrumentResourceAllOf } from './paymentInstrumentResourceAllOf';
+import { Resource } from './resource';
+import { ResourceType } from './resourceType';
 
 export class PaymentInstrumentResource extends Resource {
-    "paymentInstrumentId": string;
+    'paymentInstrumentId': string;
 
-    static override readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static override readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static override readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
-    static override getAttributeTypeMap() {
+    static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(PaymentInstrumentResource.attributeTypeMap);
     }
-
-    public constructor() {
-        super();
-    }
 }
 
-export namespace PaymentInstrumentResource {
-}

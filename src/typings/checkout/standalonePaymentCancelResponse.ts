@@ -12,65 +12,55 @@ export class StandalonePaymentCancelResponse {
     /**
     * The merchant account that is used to process the payment.
     */
-    "merchantAccount": string;
+    'merchantAccount': string;
     /**
     * The [`reference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment to cancel.
     */
-    "paymentReference": string;
+    'paymentReference': string;
     /**
     * Adyen\'s 16-character reference associated with the cancel request.
     */
-    "pspReference": string;
+    'pspReference': string;
     /**
     * Your reference for the cancel request.
     */
-    "reference"?: string;
+    'reference'?: string;
     /**
     * The status of your request. This will always have the value **received**.
     */
-    "status": StandalonePaymentCancelResponse.StatusEnum;
+    'status': StandalonePaymentCancelResponse.StatusEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentReference",
             "baseName": "paymentReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "StandalonePaymentCancelResponse.StatusEnum",
-            "format": ""
+            "type": "StandalonePaymentCancelResponse.StatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return StandalonePaymentCancelResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

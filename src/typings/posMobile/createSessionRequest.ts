@@ -12,45 +12,37 @@ export class CreateSessionRequest {
     /**
     * The unique identifier of your merchant account.
     */
-    "merchantAccount": string;
+    'merchantAccount': string;
     /**
     * The setup token provided by the POS Mobile SDK.  - When using the Android POS Mobile SDK, obtain the token through the `AuthenticationService.authenticate(setupToken)` callback of `AuthenticationService`.  - When using the iOS POS Mobile SDK, obtain the token through the `PaymentServiceDelegate.register(with:)` callback of `PaymentServiceDelegate`.
     */
-    "setupToken": string;
+    'setupToken': string;
     /**
     * The unique identifier of the store that you want to process transactions for.
     */
-    "store"?: string;
+    'store'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "setupToken",
             "baseName": "setupToken",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "store",
             "baseName": "store",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CreateSessionRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

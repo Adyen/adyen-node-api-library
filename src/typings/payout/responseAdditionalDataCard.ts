@@ -46,71 +46,57 @@ export class ResponseAdditionalDataCard {
     */
     'issuerBin'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "cardBin",
             "baseName": "cardBin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardHolderName",
             "baseName": "cardHolderName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardIssuingBank",
             "baseName": "cardIssuingBank",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardIssuingCountry",
             "baseName": "cardIssuingCountry",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardIssuingCurrency",
             "baseName": "cardIssuingCurrency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardPaymentMethod",
             "baseName": "cardPaymentMethod",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardProductId",
             "baseName": "cardProductId",
-            "type": "ResponseAdditionalDataCard.CardProductIdEnum",
-            "format": ""
+            "type": "ResponseAdditionalDataCard.CardProductIdEnum"
         },
         {
             "name": "cardSummary",
             "baseName": "cardSummary",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuerBin",
             "baseName": "issuerBin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalDataCard.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

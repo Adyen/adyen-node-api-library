@@ -30,47 +30,37 @@ export class Recurring {
     */
     'tokenService'?: Recurring.TokenServiceEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "contract",
             "baseName": "contract",
-            "type": "Recurring.ContractEnum",
-            "format": ""
+            "type": "Recurring.ContractEnum"
         },
         {
             "name": "recurringDetailName",
             "baseName": "recurringDetailName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringExpiry",
             "baseName": "recurringExpiry",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "recurringFrequency",
             "baseName": "recurringFrequency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "tokenService",
             "baseName": "tokenService",
-            "type": "Recurring.TokenServiceEnum",
-            "format": ""
+            "type": "Recurring.TokenServiceEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return Recurring.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

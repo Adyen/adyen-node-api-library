@@ -13,6 +13,7 @@ import { BankCategoryData } from './bankCategoryData';
 import { ConfirmationTrackingData } from './confirmationTrackingData';
 import { DirectDebitInformation } from './directDebitInformation';
 import { EstimationTrackingData } from './estimationTrackingData';
+import { ExecutionDate } from './executionDate';
 import { ExternalReason } from './externalReason';
 import { InternalCategoryData } from './internalCategoryData';
 import { InternalReviewTrackingData } from './internalReviewTrackingData';
@@ -67,6 +68,7 @@ export class TransferData {
     * The list of events leading up to the current status of the transfer.
     */
     'events'?: Array<TransferEvent>;
+    'executionDate'?: ExecutionDate | null;
     'externalReason'?: ExternalReason | null;
     /**
     * The ID of the resource.
@@ -176,6 +178,11 @@ export class TransferData {
             "name": "events",
             "baseName": "events",
             "type": "Array<TransferEvent>"
+        },
+        {
+            "name": "executionDate",
+            "baseName": "executionDate",
+            "type": "ExecutionDate | null"
         },
         {
             "name": "externalReason",

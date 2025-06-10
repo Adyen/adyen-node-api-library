@@ -12,6 +12,7 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     BillingEntitiesResponse,
+    RestServiceError,
     ShippingLocation,
     ShippingLocationsResponse,
     TerminalModelsResponse,
@@ -227,7 +228,7 @@ export class TerminalOrdersMerchantLevelApi extends Service {
     * @param limit {@link number } The number of products to return.
     * @return {@link TerminalProductsResponse }
     */
-    public async listTerminalProducts(merchantId: string, country?: string, terminalModelId?: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<TerminalProductsResponse> {
+    public async listTerminalProducts(merchantId: string, country: string, terminalModelId?: string, offset?: number, limit?: number, requestOptions?: IRequest.Options): Promise<TerminalProductsResponse> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/terminalProducts`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);

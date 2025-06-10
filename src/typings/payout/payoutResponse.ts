@@ -10,7 +10,6 @@
 import { Amount } from './amount';
 import { FraudResult } from './fraudResult';
 
-
 export class PayoutResponse {
     /**
     * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
@@ -20,12 +19,12 @@ export class PayoutResponse {
     * Authorisation code: * When the payment is authorised successfully, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.
     */
     'authCode'?: string;
-    'dccAmount'?: Amount;
+    'dccAmount'?: Amount | null;
     /**
     * Cryptographic signature used to verify `dccQuote`. > This value only applies if you have implemented Dynamic Currency Conversion. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).
     */
     'dccSignature'?: string;
-    'fraudResult'?: FraudResult;
+    'fraudResult'?: FraudResult | null;
     /**
     * The URL to direct the shopper to. > In case of SecurePlus, do not redirect a shopper to this URL.
     */
@@ -51,83 +50,67 @@ export class PayoutResponse {
     */
     'resultCode'?: PayoutResponse.ResultCodeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "authCode",
             "baseName": "authCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "dccAmount",
             "baseName": "dccAmount",
-            "type": "Amount",
-            "format": ""
+            "type": "Amount | null"
         },
         {
             "name": "dccSignature",
             "baseName": "dccSignature",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult",
-            "format": ""
+            "type": "FraudResult | null"
         },
         {
             "name": "issuerUrl",
             "baseName": "issuerUrl",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "md",
             "baseName": "md",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paRequest",
             "baseName": "paRequest",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "refusalReason",
             "baseName": "refusalReason",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "PayoutResponse.ResultCodeEnum",
-            "format": ""
+            "type": "PayoutResponse.ResultCodeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return PayoutResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

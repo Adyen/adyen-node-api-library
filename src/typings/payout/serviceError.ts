@@ -34,53 +34,42 @@ export class ServiceError {
     */
     'status'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "errorCode",
             "baseName": "errorCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "errorType",
             "baseName": "errorType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "message",
             "baseName": "message",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return ServiceError.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

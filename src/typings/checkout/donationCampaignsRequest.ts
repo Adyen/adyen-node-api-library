@@ -12,45 +12,37 @@ export class DonationCampaignsRequest {
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).
     */
-    "currency": string;
+    'currency': string;
     /**
     * Locale on the shopper interaction device.
     */
-    "locale"?: string;
+    'locale'?: string;
     /**
     * Your merchant account identifier.
     */
-    "merchantAccount": string;
+    'merchantAccount': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "locale",
             "baseName": "locale",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return DonationCampaignsRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

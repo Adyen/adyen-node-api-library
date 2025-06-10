@@ -12,155 +12,136 @@ export class ThreeDS2Result {
     /**
     * The `authenticationValue` value as defined in the 3D Secure 2 specification.
     */
-    "authenticationValue"?: string;
+    'authenticationValue'?: string;
     /**
     * The algorithm used by the ACS to calculate the authentication value, only for Cartes Bancaires integrations.
     */
-    "cavvAlgorithm"?: string;
+    'cavvAlgorithm'?: string;
     /**
     * Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).
     */
-    "challengeCancel"?: ThreeDS2Result.ChallengeCancelEnum;
+    'challengeCancel'?: ThreeDS2Result.ChallengeCancelEnum;
     /**
     * The `dsTransID` value as defined in the 3D Secure 2 specification.
     */
-    "dsTransID"?: string;
+    'dsTransID'?: string;
     /**
     * The `eci` value as defined in the 3D Secure 2 specification.
     */
-    "eci"?: string;
+    'eci'?: string;
     /**
     * Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * `lowValue` * `secureCorporate` * `trustedBeneficiary` * `transactionRiskAnalysis` 
     */
-    "exemptionIndicator"?: ThreeDS2Result.ExemptionIndicatorEnum;
+    'exemptionIndicator'?: ThreeDS2Result.ExemptionIndicatorEnum;
     /**
     * The `messageVersion` value as defined in the 3D Secure 2 specification.
     */
-    "messageVersion"?: string;
+    'messageVersion'?: string;
     /**
     * Risk score calculated by Cartes Bancaires Directory Server (DS).
     */
-    "riskScore"?: string;
+    'riskScore'?: string;
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
-    "threeDSRequestorChallengeInd"?: ThreeDS2Result.ThreeDSRequestorChallengeIndEnum;
+    'threeDSRequestorChallengeInd'?: ThreeDS2Result.ThreeDSRequestorChallengeIndEnum;
     /**
     * The `threeDSServerTransID` value as defined in the 3D Secure 2 specification.
     */
-    "threeDSServerTransID"?: string;
+    'threeDSServerTransID'?: string;
     /**
     * The `timestamp` value of the 3D Secure 2 authentication.
     */
-    "timestamp"?: string;
+    'timestamp'?: string;
     /**
     * The `transStatus` value as defined in the 3D Secure 2 specification.
     */
-    "transStatus"?: string;
+    'transStatus'?: string;
     /**
     * Provides information on why the `transStatus` field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
     */
-    "transStatusReason"?: string;
+    'transStatusReason'?: string;
     /**
     * The `whiteListStatus` value as defined in the 3D Secure 2 specification.
     */
-    "whiteListStatus"?: string;
+    'whiteListStatus'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "authenticationValue",
             "baseName": "authenticationValue",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cavvAlgorithm",
             "baseName": "cavvAlgorithm",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "challengeCancel",
             "baseName": "challengeCancel",
-            "type": "ThreeDS2Result.ChallengeCancelEnum",
-            "format": ""
+            "type": "ThreeDS2Result.ChallengeCancelEnum"
         },
         {
             "name": "dsTransID",
             "baseName": "dsTransID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "eci",
             "baseName": "eci",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "exemptionIndicator",
             "baseName": "exemptionIndicator",
-            "type": "ThreeDS2Result.ExemptionIndicatorEnum",
-            "format": ""
+            "type": "ThreeDS2Result.ExemptionIndicatorEnum"
         },
         {
             "name": "messageVersion",
             "baseName": "messageVersion",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "riskScore",
             "baseName": "riskScore",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDSRequestorChallengeInd",
             "baseName": "threeDSRequestorChallengeInd",
-            "type": "ThreeDS2Result.ThreeDSRequestorChallengeIndEnum",
-            "format": ""
+            "type": "ThreeDS2Result.ThreeDSRequestorChallengeIndEnum"
         },
         {
             "name": "threeDSServerTransID",
             "baseName": "threeDSServerTransID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transStatus",
             "baseName": "transStatus",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transStatusReason",
             "baseName": "transStatusReason",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "whiteListStatus",
             "baseName": "whiteListStatus",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDS2Result.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

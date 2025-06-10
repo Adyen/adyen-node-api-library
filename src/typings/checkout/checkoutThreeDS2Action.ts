@@ -12,85 +12,73 @@ export class CheckoutThreeDS2Action {
     /**
     * A token needed to authorise a payment.
     */
-    "authorisationToken"?: string;
+    'authorisationToken'?: string;
     /**
     * Encoded payment data.
     */
-    "paymentData"?: string;
+    'paymentData'?: string;
     /**
     * Specifies the payment method.
     */
-    "paymentMethodType"?: string;
+    'paymentMethodType'?: string;
     /**
     * A subtype of the token.
     */
-    "subtype"?: string;
+    'subtype'?: string;
     /**
     * A token to pass to the 3DS2 Component to get the fingerprint.
     */
-    "token"?: string;
+    'token'?: string;
     /**
     * **threeDS2**
     */
-    "type": CheckoutThreeDS2Action.TypeEnum;
+    'type': CheckoutThreeDS2Action.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    "url"?: string;
+    'url'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "authorisationToken",
             "baseName": "authorisationToken",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentData",
             "baseName": "paymentData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentMethodType",
             "baseName": "paymentMethodType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subtype",
             "baseName": "subtype",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "token",
             "baseName": "token",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CheckoutThreeDS2Action.TypeEnum",
-            "format": ""
+            "type": "CheckoutThreeDS2Action.TypeEnum"
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutThreeDS2Action.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

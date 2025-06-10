@@ -35,6 +35,7 @@ export * from './counterpartyV3';
 export * from './dKLocalAccountIdentification';
 export * from './directDebitInformation';
 export * from './estimationTrackingData';
+export * from './executionDate';
 export * from './externalReason';
 export * from './fee';
 export * from './findTransfersResponse';
@@ -122,6 +123,7 @@ import { CounterpartyV3 } from './counterpartyV3';
 import { DKLocalAccountIdentification } from './dKLocalAccountIdentification';
 import { DirectDebitInformation } from './directDebitInformation';
 import { EstimationTrackingData } from './estimationTrackingData';
+import { ExecutionDate } from './executionDate';
 import { ExternalReason } from './externalReason';
 import { Fee } from './fee';
 import { FindTransfersResponse } from './findTransfersResponse';
@@ -285,6 +287,7 @@ let typeMap: {[index: string]: any} = {
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DirectDebitInformation": DirectDebitInformation,
     "EstimationTrackingData": EstimationTrackingData,
+    "ExecutionDate": ExecutionDate,
     "ExternalReason": ExternalReason,
     "Fee": Fee,
     "FindTransfersResponse": FindTransfersResponse,

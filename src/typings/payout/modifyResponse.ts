@@ -22,35 +22,27 @@ export class ModifyResponse {
     */
     'response': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "response",
             "baseName": "response",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ModifyResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

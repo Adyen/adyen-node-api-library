@@ -22,35 +22,27 @@ export class ResponseAdditionalDataNetworkTokens {
     */
     'networkToken_tokenSummary'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "networkToken_available",
             "baseName": "networkToken.available",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "networkToken_bin",
             "baseName": "networkToken.bin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "networkToken_tokenSummary",
             "baseName": "networkToken.tokenSummary",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalDataNetworkTokens.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

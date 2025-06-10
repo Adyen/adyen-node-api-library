@@ -35,9 +35,12 @@ export * from './cardOrderNotificationRequest';
 export * from './contactDetails';
 export * from './deliveryAddress';
 export * from './deliveryContact';
+export * from './device';
 export * from './expiry';
 export * from './ibanAccountIdentification';
 export * from './name';
+export * from './networkTokenNotificationDataV2';
+export * from './networkTokenNotificationRequest';
 export * from './paymentInstrument';
 export * from './paymentInstrumentNotificationData';
 export * from './paymentNotificationRequest';
@@ -51,9 +54,12 @@ export * from './sweepConfigurationNotificationRequest';
 export * from './sweepConfigurationV2';
 export * from './sweepCounterparty';
 export * from './sweepSchedule';
+export * from './tokenAuthentication';
+export * from './validationFacts';
 export * from './verificationDeadline';
 export * from './verificationError';
 export * from './verificationErrorRecursive';
+export * from './wallet';
 
 
 import { AccountHolder } from './accountHolder';
@@ -83,9 +89,12 @@ import { CardOrderNotificationRequest } from './cardOrderNotificationRequest';
 import { ContactDetails } from './contactDetails';
 import { DeliveryAddress } from './deliveryAddress';
 import { DeliveryContact } from './deliveryContact';
+import { Device } from './device';
 import { Expiry } from './expiry';
 import { IbanAccountIdentification } from './ibanAccountIdentification';
 import { Name } from './name';
+import { NetworkTokenNotificationDataV2 } from './networkTokenNotificationDataV2';
+import { NetworkTokenNotificationRequest } from './networkTokenNotificationRequest';
 import { PaymentInstrument } from './paymentInstrument';
 import { PaymentInstrumentNotificationData } from './paymentInstrumentNotificationData';
 import { PaymentNotificationRequest } from './paymentNotificationRequest';
@@ -99,9 +108,12 @@ import { SweepConfigurationNotificationRequest } from './sweepConfigurationNotif
 import { SweepConfigurationV2 } from './sweepConfigurationV2';
 import { SweepCounterparty } from './sweepCounterparty';
 import { SweepSchedule } from './sweepSchedule';
+import { TokenAuthentication } from './tokenAuthentication';
+import { ValidationFacts } from './validationFacts';
 import { VerificationDeadline } from './verificationDeadline';
 import { VerificationError } from './verificationError';
 import { VerificationErrorRecursive } from './verificationErrorRecursive';
+import { Wallet } from './wallet';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -134,6 +146,7 @@ let enumsMap: {[index: string]: any} = {
         "CardOrderItemDeliveryStatus.StatusEnum": CardOrderItemDeliveryStatus.StatusEnum,
         "CardOrderNotificationRequest.TypeEnum": CardOrderNotificationRequest.TypeEnum,
         "IbanAccountIdentification.TypeEnum": IbanAccountIdentification.TypeEnum,
+        "NetworkTokenNotificationRequest.TypeEnum": NetworkTokenNotificationRequest.TypeEnum,
         "PaymentInstrument.StatusEnum": PaymentInstrument.StatusEnum,
         "PaymentInstrument.StatusReasonEnum": PaymentInstrument.StatusReasonEnum,
         "PaymentInstrument.TypeEnum": PaymentInstrument.TypeEnum,
@@ -147,11 +160,13 @@ let enumsMap: {[index: string]: any} = {
         "SweepConfigurationV2.StatusEnum": SweepConfigurationV2.StatusEnum,
         "SweepConfigurationV2.TypeEnum": SweepConfigurationV2.TypeEnum,
         "SweepSchedule.TypeEnum": SweepSchedule.TypeEnum,
+        "ValidationFacts.ResultEnum": ValidationFacts.ResultEnum,
         "VerificationDeadline.CapabilitiesEnum": VerificationDeadline.CapabilitiesEnum,
         "VerificationError.CapabilitiesEnum": VerificationError.CapabilitiesEnum,
         "VerificationError.TypeEnum": VerificationError.TypeEnum,
         "VerificationErrorRecursive.CapabilitiesEnum": VerificationErrorRecursive.CapabilitiesEnum,
         "VerificationErrorRecursive.TypeEnum": VerificationErrorRecursive.TypeEnum,
+        "Wallet.RecommendationReasonsEnum": Wallet.RecommendationReasonsEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -182,9 +197,12 @@ let typeMap: {[index: string]: any} = {
     "ContactDetails": ContactDetails,
     "DeliveryAddress": DeliveryAddress,
     "DeliveryContact": DeliveryContact,
+    "Device": Device,
     "Expiry": Expiry,
     "IbanAccountIdentification": IbanAccountIdentification,
     "Name": Name,
+    "NetworkTokenNotificationDataV2": NetworkTokenNotificationDataV2,
+    "NetworkTokenNotificationRequest": NetworkTokenNotificationRequest,
     "PaymentInstrument": PaymentInstrument,
     "PaymentInstrumentNotificationData": PaymentInstrumentNotificationData,
     "PaymentNotificationRequest": PaymentNotificationRequest,
@@ -198,9 +216,12 @@ let typeMap: {[index: string]: any} = {
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,
     "SweepSchedule": SweepSchedule,
+    "TokenAuthentication": TokenAuthentication,
+    "ValidationFacts": ValidationFacts,
     "VerificationDeadline": VerificationDeadline,
     "VerificationError": VerificationError,
     "VerificationErrorRecursive": VerificationErrorRecursive,
+    "Wallet": Wallet,
 }
 
 export class ObjectSerializer {
