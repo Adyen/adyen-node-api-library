@@ -7,67 +7,79 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from "./amount";
+
 
 export class BalanceTransferRequest {
-    'amount': Amount;
+    "amount": Amount;
     /**
     * A human-readable description for the transfer. You can use alphanumeric characters and hyphens. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The unique identifier of the source merchant account from which funds are deducted.
     */
-    'fromMerchant': string;
+    "fromMerchant": string;
     /**
     * A reference for the balance transfer. If you don\'t provide this in the request, Adyen generates a unique reference. Maximum length: 80 characters.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The unique identifier of the destination merchant account from which funds are transferred.
     */
-    'toMerchant': string;
+    "toMerchant": string;
     /**
     * The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**.
     */
-    'type': BalanceTransferRequest.TypeEnum;
+    "type": BalanceTransferRequest.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fromMerchant",
             "baseName": "fromMerchant",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "toMerchant",
             "baseName": "toMerchant",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BalanceTransferRequest.TypeEnum"
+            "type": "BalanceTransferRequest.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BalanceTransferRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
