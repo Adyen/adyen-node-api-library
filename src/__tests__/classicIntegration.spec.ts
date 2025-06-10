@@ -1,7 +1,7 @@
 import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import Client from "../client";
-import ClassicIntegration from "../services/paymentApi";
+import ClassicIntegration from "../services/payment";
 import { payment } from "../typings";
 import HttpClientException from "../httpClient/httpClientException";
 import {PaymentResult} from "../typings/payment/paymentResult";
@@ -52,7 +52,7 @@ describe("Classic Integration", (): void => {
               "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
         };
 
-        const paymentResult: PaymentResult = await classicIntegration.authorise(paymentRequest);
+        const paymentResult: PaymentResult = await classicIntegration.PaymentsApi.authorise(paymentRequest);
         expect(paymentResult.pspReference).toEqual("JVBXGSDM53RZNN82");
     });
 
@@ -82,7 +82,7 @@ describe("Classic Integration", (): void => {
                 "merchantAccount": "INVALID_MERCHANT_ACCOUNT"
             };
 
-           await classicIntegration.authorise(paymentRequest);
+           await classicIntegration.PaymentsApi.authorise(paymentRequest);
         } catch (error) {
             expect(error instanceof HttpClientException).toBeTruthy();
             if(error instanceof HttpClientException && error.responseBody && error.stack) {
@@ -112,7 +112,7 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-        const paymentResult: payment.PaymentResult = await classicIntegration.authorise3d(paymentRequest);
+        const paymentResult: payment.PaymentResult = await classicIntegration.PaymentsApi.authorise3d(paymentRequest);
         expect(paymentResult.pspReference).toEqual("JVBXGSDM53RZNN82");
     });
 
@@ -142,7 +142,7 @@ describe("Classic Integration", (): void => {
             "threeDS2Token": "— - BINARY DATA - -"
           };
 
-        const paymentResult: payment.PaymentResult = await classicIntegration.authorise3ds2(paymentRequest);
+        const paymentResult: payment.PaymentResult = await classicIntegration.PaymentsApi.authorise3ds2(paymentRequest);
         expect(paymentResult.pspReference).toEqual("JVBXGSDM53RZNN82");
     });
 
@@ -156,7 +156,7 @@ describe("Classic Integration", (): void => {
             "pspReference": "9935272408535455"
         };
 
-        const getAuthenticationResultResponse: payment.AuthenticationResultResponse = await classicIntegration.getAuthenticationResult(getAuthenticationResultrequest);
+        const getAuthenticationResultResponse: payment.AuthenticationResultResponse = await classicIntegration.PaymentsApi.getAuthenticationResult(getAuthenticationResultrequest);
         expect(getAuthenticationResultResponse?.threeDS2Result?.authenticationValue).toEqual("THREEDS2RESULT");
     });
 
@@ -169,7 +169,7 @@ describe("Classic Integration", (): void => {
             "pspReference": "9935272408535455"
           };
 
-        const retrieve3ds2ResultResponse: payment.ThreeDS2ResultResponse = await classicIntegration.retrieve3ds2Result(retrieve3ds2ResultRequest);
+        const retrieve3ds2ResultResponse: payment.ThreeDS2ResultResponse = await classicIntegration.PaymentsApi.retrieve3ds2Result(retrieve3ds2ResultRequest);
         expect(retrieve3ds2ResultResponse?.threeDS2Result?.authenticationValue).toEqual("THREEDS2RESULT");
     });
 
@@ -190,7 +190,7 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payment.ModificationResult = await classicIntegration.capture(modificationRequest);
+          const modificationResult: payment.ModificationResult = await classicIntegration.ModificationsApi.capture(modificationRequest);
           expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.CaptureReceived);
     });
 
@@ -207,7 +207,7 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payment.ModificationResult = await classicIntegration.cancel(modificationRequest);
+          const modificationResult: payment.ModificationResult = await classicIntegration.ModificationsApi.cancel(modificationRequest);
           expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.CancelReceived);
     });
 
@@ -228,7 +228,7 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payment.ModificationResult = await classicIntegration.refund(modificationRequest);
+          const modificationResult: payment.ModificationResult = await classicIntegration.ModificationsApi.refund(modificationRequest);
           expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.RefundReceived);
     });
 
@@ -245,7 +245,7 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payment.ModificationResult = await classicIntegration.cancelOrRefund(modificationRequest);
+          const modificationResult: payment.ModificationResult = await classicIntegration.ModificationsApi.cancelOrRefund(modificationRequest);
           expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.CancelOrRefundReceived);
     });
     
@@ -266,7 +266,7 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payment.ModificationResult = await classicIntegration.technicalCancel(modificationRequest);
+          const modificationResult: payment.ModificationResult = await classicIntegration.ModificationsApi.technicalCancel(modificationRequest);
           expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.TechnicalCancelReceived);
     });
 
@@ -287,7 +287,7 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payment.ModificationResult = await classicIntegration.adjustAuthorisation(modificationRequest);
+          const modificationResult: payment.ModificationResult = await classicIntegration.ModificationsApi.adjustAuthorisation(modificationRequest);
           expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.AdjustAuthorisationReceived);
     });
 
@@ -309,7 +309,7 @@ describe("Classic Integration", (): void => {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
           };
 
-          const modificationResult: payment.ModificationResult = await classicIntegration.donate(modificationRequest);
+          const modificationResult: payment.ModificationResult = await classicIntegration.ModificationsApi.donate(modificationRequest);
           expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.DonationReceived);
     });
 
@@ -326,7 +326,7 @@ describe("Classic Integration", (): void => {
             "uniqueTerminalId": "VX820-123456789"
           };
 
-          const modificationResult: payment.ModificationResult = await classicIntegration.voidPendingRefund(modificationRequest);
+          const modificationResult: payment.ModificationResult = await classicIntegration.ModificationsApi.voidPendingRefund(modificationRequest);
           expect(modificationResult.response).toEqual(payment.ModificationResult.ResponseEnum.VoidPendingRefundReceived);
     });
 });
