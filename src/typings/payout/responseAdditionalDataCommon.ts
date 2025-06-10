@@ -102,7 +102,7 @@ export class ResponseAdditionalDataCommon {
     */
     'fraudResultType'?: ResponseAdditionalDataCommon.FraudResultTypeEnum;
     /**
-    * The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are:\\n* veryLow\\n* low\\n* medium\\n* high\\n* veryHigh\\n\\n>
+    * The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are: * veryLow * low * medium * high * veryHigh 
     */
     'fraudRiskLevel'?: ResponseAdditionalDataCommon.FraudRiskLevelEnum;
     /**
@@ -268,395 +268,327 @@ export class ResponseAdditionalDataCommon {
     */
     'xid'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "acquirerAccountCode",
             "baseName": "acquirerAccountCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "acquirerCode",
             "baseName": "acquirerCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "acquirerReference",
             "baseName": "acquirerReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "alias",
             "baseName": "alias",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "aliasType",
             "baseName": "aliasType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "authCode",
             "baseName": "authCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "authorisationMid",
             "baseName": "authorisationMid",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "authorisedAmountCurrency",
             "baseName": "authorisedAmountCurrency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "authorisedAmountValue",
             "baseName": "authorisedAmountValue",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "avsResult",
             "baseName": "avsResult",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "avsResultRaw",
             "baseName": "avsResultRaw",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "bic",
             "baseName": "bic",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "coBrandedWith",
             "baseName": "coBrandedWith",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cvcResult",
             "baseName": "cvcResult",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cvcResultRaw",
             "baseName": "cvcResultRaw",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "dsTransID",
             "baseName": "dsTransID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "eci",
             "baseName": "eci",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "expiryDate",
             "baseName": "expiryDate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "extraCostsCurrency",
             "baseName": "extraCostsCurrency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "extraCostsValue",
             "baseName": "extraCostsValue",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fraudCheck__itemNr__FraudCheckname",
             "baseName": "fraudCheck-[itemNr]-[FraudCheckname]",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fraudManualReview",
             "baseName": "fraudManualReview",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fraudResultType",
             "baseName": "fraudResultType",
-            "type": "ResponseAdditionalDataCommon.FraudResultTypeEnum",
-            "format": ""
+            "type": "ResponseAdditionalDataCommon.FraudResultTypeEnum"
         },
         {
             "name": "fraudRiskLevel",
             "baseName": "fraudRiskLevel",
-            "type": "ResponseAdditionalDataCommon.FraudRiskLevelEnum",
-            "format": ""
+            "type": "ResponseAdditionalDataCommon.FraudRiskLevelEnum"
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fundsAvailability",
             "baseName": "fundsAvailability",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "inferredRefusalReason",
             "baseName": "inferredRefusalReason",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "isCardCommercial",
             "baseName": "isCardCommercial",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuerCountry",
             "baseName": "issuerCountry",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "liabilityShift",
             "baseName": "liabilityShift",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "mcBankNetReferenceNumber",
             "baseName": "mcBankNetReferenceNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantAdviceCode",
             "baseName": "merchantAdviceCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantReference",
             "baseName": "merchantReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "networkTxReference",
             "baseName": "networkTxReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "ownerName",
             "baseName": "ownerName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentAccountReference",
             "baseName": "paymentAccountReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentMethodVariant",
             "baseName": "paymentMethodVariant",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "payoutEligible",
             "baseName": "payoutEligible",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "realtimeAccountUpdaterStatus",
             "baseName": "realtimeAccountUpdaterStatus",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "receiptFreeText",
             "baseName": "receiptFreeText",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurring_contractTypes",
             "baseName": "recurring.contractTypes",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurring_firstPspReference",
             "baseName": "recurring.firstPspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurring_recurringDetailReference",
             "baseName": "recurring.recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurring_shopperReference",
             "baseName": "recurring.shopperReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringProcessingModel",
             "baseName": "recurringProcessingModel",
-            "type": "ResponseAdditionalDataCommon.RecurringProcessingModelEnum",
-            "format": ""
+            "type": "ResponseAdditionalDataCommon.RecurringProcessingModelEnum"
         },
         {
             "name": "referred",
             "baseName": "referred",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "refusalReasonRaw",
             "baseName": "refusalReasonRaw",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "requestAmount",
             "baseName": "requestAmount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "requestCurrencyCode",
             "baseName": "requestCurrencyCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperInteraction",
             "baseName": "shopperInteraction",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "terminalId",
             "baseName": "terminalId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDAuthenticated",
             "baseName": "threeDAuthenticated",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDAuthenticatedResponse",
             "baseName": "threeDAuthenticatedResponse",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDOffered",
             "baseName": "threeDOffered",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDOfferedResponse",
             "baseName": "threeDOfferedResponse",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDSVersion",
             "baseName": "threeDSVersion",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "tokenization_shopperReference",
             "baseName": "tokenization.shopperReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "tokenization_store_operationType",
             "baseName": "tokenization.store.operationType",
-            "type": "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum",
-            "format": ""
+            "type": "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum"
         },
         {
             "name": "tokenization_storedPaymentMethodId",
             "baseName": "tokenization.storedPaymentMethodId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "visaTransactionId",
             "baseName": "visaTransactionId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "xid",
             "baseName": "xid",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalDataCommon.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

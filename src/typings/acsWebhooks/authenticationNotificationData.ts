@@ -17,11 +17,11 @@ export class AuthenticationNotificationData {
     */
     'balancePlatform'?: string;
     /**
-    * Unique identifier of the authentication.
+    * The unique identifier of the authentication.
     */
     'id': string;
     /**
-    * Unique identifier of the payment instrument that was used for the authentication.
+    * The unique identifier of the payment instrument that was used for the authentication.
     */
     'paymentInstrumentId': string;
     'purchase': PurchaseInfo;

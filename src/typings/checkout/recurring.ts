@@ -12,65 +12,55 @@ export class Recurring {
     /**
     * The type of recurring contract to be used. Possible values: * `ONECLICK` – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * `RECURRING` – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * `ONECLICK,RECURRING` – Payment details can be used regardless of whether the shopper is on your site or not. * `PAYOUT` – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts).
     */
-    "contract"?: Recurring.ContractEnum;
+    'contract'?: Recurring.ContractEnum;
     /**
     * A descriptive name for this detail.
     */
-    "recurringDetailName"?: string;
+    'recurringDetailName'?: string;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
     */
-    "recurringExpiry"?: Date;
+    'recurringExpiry'?: Date;
     /**
     * Minimum number of days between authorisations. Only for 3D Secure 2.
     */
-    "recurringFrequency"?: string;
+    'recurringFrequency'?: string;
     /**
     * The name of the token service.
     */
-    "tokenService"?: Recurring.TokenServiceEnum;
+    'tokenService'?: Recurring.TokenServiceEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "contract",
             "baseName": "contract",
-            "type": "Recurring.ContractEnum",
-            "format": ""
+            "type": "Recurring.ContractEnum"
         },
         {
             "name": "recurringDetailName",
             "baseName": "recurringDetailName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringExpiry",
             "baseName": "recurringExpiry",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "recurringFrequency",
             "baseName": "recurringFrequency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "tokenService",
             "baseName": "tokenService",
-            "type": "Recurring.TokenServiceEnum",
-            "format": ""
+            "type": "Recurring.TokenServiceEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return Recurring.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

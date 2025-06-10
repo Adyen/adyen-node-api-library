@@ -12,75 +12,64 @@ export class ThreeDSAvailabilityRequest {
     /**
     * This field contains additional data, which may be required for a particular request.  The `additionalData` object consists of entries, each of which includes the key and value.
     */
-    "additionalData"?: { [key: string]: string; };
+    'additionalData'?: { [key: string]: string; };
     /**
     * List of brands.
     */
-    "brands"?: Array<string>;
+    'brands'?: Array<string>;
     /**
     * Card number or BIN.
     */
-    "cardNumber"?: string;
+    'cardNumber'?: string;
     /**
     * The merchant account identifier.
     */
-    "merchantAccount": string;
+    'merchantAccount': string;
     /**
     * A recurring detail reference corresponding to a card.
     */
-    "recurringDetailReference"?: string;
+    'recurringDetailReference'?: string;
     /**
     * The shopper\'s reference to uniquely identify this shopper (e.g. user ID or account ID).
     */
-    "shopperReference"?: string;
+    'shopperReference'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "brands",
             "baseName": "brands",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "cardNumber",
             "baseName": "cardNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDSAvailabilityRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

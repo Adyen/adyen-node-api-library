@@ -31,6 +31,7 @@ import { TokenRequestorsRestriction } from './tokenRequestorsRestriction';
 import { TotalAmountRestriction } from './totalAmountRestriction';
 import { WalletProviderAccountScoreRestriction } from './walletProviderAccountScoreRestriction';
 import { WalletProviderDeviceScore } from './walletProviderDeviceScore';
+import { WalletProviderDeviceType } from './walletProviderDeviceType';
 
 export class TransactionRuleRestrictions {
     'activeNetworkTokens'?: ActiveNetworkTokensRestriction | null;
@@ -57,6 +58,7 @@ export class TransactionRuleRestrictions {
     'totalAmount'?: TotalAmountRestriction | null;
     'walletProviderAccountScore'?: WalletProviderAccountScoreRestriction | null;
     'walletProviderDeviceScore'?: WalletProviderDeviceScore | null;
+    'walletProviderDeviceType'?: WalletProviderDeviceType | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -180,6 +182,11 @@ export class TransactionRuleRestrictions {
             "name": "walletProviderDeviceScore",
             "baseName": "walletProviderDeviceScore",
             "type": "WalletProviderDeviceScore | null"
+        },
+        {
+            "name": "walletProviderDeviceType",
+            "baseName": "walletProviderDeviceType",
+            "type": "WalletProviderDeviceType | null"
         }    ];
 
     static getAttributeTypeMap() {

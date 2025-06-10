@@ -42,65 +42,52 @@ export class Card {
     */
     'startYear'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "cvc",
             "baseName": "cvc",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "expiryMonth",
             "baseName": "expiryMonth",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "expiryYear",
             "baseName": "expiryYear",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "holderName",
             "baseName": "holderName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issueNumber",
             "baseName": "issueNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "number",
             "baseName": "number",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "startMonth",
             "baseName": "startMonth",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "startYear",
             "baseName": "startYear",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Card.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

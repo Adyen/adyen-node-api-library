@@ -11,11 +11,11 @@ import { Amount } from './amount';
 
 export class PurchaseInfo {
     /**
-    * Date of the purchase.
+    * The date of the purchase.
     */
     'date': string;
     /**
-    * Name of the merchant.
+    * The name of the business that the cardholder purchased from.
     */
     'merchantName': string;
     'originalAmount': Amount;

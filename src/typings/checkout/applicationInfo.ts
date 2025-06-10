@@ -7,67 +7,55 @@
  * Do not edit this class manually.
  */
 
-import { CommonField } from "./commonField";
-import { ExternalPlatform } from "./externalPlatform";
-import { MerchantDevice } from "./merchantDevice";
-import { ShopperInteractionDevice } from "./shopperInteractionDevice";
-
+import { CommonField } from './commonField';
+import { ExternalPlatform } from './externalPlatform';
+import { MerchantDevice } from './merchantDevice';
+import { ShopperInteractionDevice } from './shopperInteractionDevice';
 
 export class ApplicationInfo {
-    "adyenLibrary"?: CommonField;
-    "adyenPaymentSource"?: CommonField;
-    "externalPlatform"?: ExternalPlatform;
-    "merchantApplication"?: CommonField;
-    "merchantDevice"?: MerchantDevice;
-    "shopperInteractionDevice"?: ShopperInteractionDevice;
+    'adyenLibrary'?: CommonField | null;
+    'adyenPaymentSource'?: CommonField | null;
+    'externalPlatform'?: ExternalPlatform | null;
+    'merchantApplication'?: CommonField | null;
+    'merchantDevice'?: MerchantDevice | null;
+    'shopperInteractionDevice'?: ShopperInteractionDevice | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "adyenLibrary",
             "baseName": "adyenLibrary",
-            "type": "CommonField",
-            "format": ""
+            "type": "CommonField | null"
         },
         {
             "name": "adyenPaymentSource",
             "baseName": "adyenPaymentSource",
-            "type": "CommonField",
-            "format": ""
+            "type": "CommonField | null"
         },
         {
             "name": "externalPlatform",
             "baseName": "externalPlatform",
-            "type": "ExternalPlatform",
-            "format": ""
+            "type": "ExternalPlatform | null"
         },
         {
             "name": "merchantApplication",
             "baseName": "merchantApplication",
-            "type": "CommonField",
-            "format": ""
+            "type": "CommonField | null"
         },
         {
             "name": "merchantDevice",
             "baseName": "merchantDevice",
-            "type": "MerchantDevice",
-            "format": ""
+            "type": "MerchantDevice | null"
         },
         {
             "name": "shopperInteractionDevice",
             "baseName": "shopperInteractionDevice",
-            "type": "ShopperInteractionDevice",
-            "format": ""
+            "type": "ShopperInteractionDevice | null"
         }    ];
 
     static getAttributeTypeMap() {
         return ApplicationInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

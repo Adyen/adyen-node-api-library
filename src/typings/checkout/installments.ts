@@ -12,45 +12,37 @@ export class Installments {
     /**
     * Defines the bonus percentage, refund percentage or if the transaction is Buy now Pay later. Used for [card installments in Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico) 
     */
-    "extra"?: number;
+    'extra'?: number;
     /**
     * The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. 
     */
-    "plan"?: Installments.PlanEnum;
+    'plan'?: Installments.PlanEnum;
     /**
     * Defines the number of installments. Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary. This value can be zero for Installments processed in Mexico.
     */
-    "value": number;
+    'value': number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "extra",
             "baseName": "extra",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "plan",
             "baseName": "plan",
-            "type": "Installments.PlanEnum",
-            "format": ""
+            "type": "Installments.PlanEnum"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return Installments.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

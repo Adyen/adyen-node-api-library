@@ -58,89 +58,72 @@ export class ResponseAdditionalDataInstallments {
     */
     'installments_value'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "installmentPaymentData_installmentType",
             "baseName": "installmentPaymentData.installmentType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installmentPaymentData_option_itemNr_annualPercentageRate",
             "baseName": "installmentPaymentData.option[itemNr].annualPercentageRate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installmentPaymentData_option_itemNr_firstInstallmentAmount",
             "baseName": "installmentPaymentData.option[itemNr].firstInstallmentAmount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installmentPaymentData_option_itemNr_installmentFee",
             "baseName": "installmentPaymentData.option[itemNr].installmentFee",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installmentPaymentData_option_itemNr_interestRate",
             "baseName": "installmentPaymentData.option[itemNr].interestRate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installmentPaymentData_option_itemNr_maximumNumberOfInstallments",
             "baseName": "installmentPaymentData.option[itemNr].maximumNumberOfInstallments",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installmentPaymentData_option_itemNr_minimumNumberOfInstallments",
             "baseName": "installmentPaymentData.option[itemNr].minimumNumberOfInstallments",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installmentPaymentData_option_itemNr_numberOfInstallments",
             "baseName": "installmentPaymentData.option[itemNr].numberOfInstallments",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installmentPaymentData_option_itemNr_subsequentInstallmentAmount",
             "baseName": "installmentPaymentData.option[itemNr].subsequentInstallmentAmount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installmentPaymentData_option_itemNr_totalAmountDue",
             "baseName": "installmentPaymentData.option[itemNr].totalAmountDue",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installmentPaymentData_paymentOptions",
             "baseName": "installmentPaymentData.paymentOptions",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installments_value",
             "baseName": "installments.value",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalDataInstallments.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

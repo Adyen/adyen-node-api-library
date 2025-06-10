@@ -12,55 +12,46 @@ export class PaymentsAppDto {
     /**
     * The unique identifier of the Payments App instance.
     */
-    "installationId": string;
+    'installationId': string;
     /**
     * The account code associated with the Payments App instance.
     */
-    "merchantAccountCode": string;
+    'merchantAccountCode': string;
     /**
     * The store code associated with the Payments App instance.
     */
-    "merchantStoreCode"?: string;
+    'merchantStoreCode'?: string;
     /**
     * The status of the Payments App instance.
     */
-    "status": string;
+    'status': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "installationId",
             "baseName": "installationId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantAccountCode",
             "baseName": "merchantAccountCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantStoreCode",
             "baseName": "merchantStoreCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentsAppDto.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

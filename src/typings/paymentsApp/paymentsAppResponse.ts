@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { PaymentsAppDto } from "./paymentsAppDto";
-
+import { PaymentsAppDto } from './paymentsAppDto';
 
 export class PaymentsAppResponse {
     /**
     * List of Payments Apps.
     */
-    "paymentsApps": Array<PaymentsAppDto>;
+    'paymentsApps': Array<PaymentsAppDto>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "paymentsApps",
             "baseName": "paymentsApps",
-            "type": "Array<PaymentsAppDto>",
-            "format": ""
+            "type": "Array<PaymentsAppDto>"
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentsAppResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -22,35 +22,27 @@ export class ResponseAdditionalDataSepa {
     */
     'sepadirectdebit_sequenceType'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "sepadirectdebit_dateOfSignature",
             "baseName": "sepadirectdebit.dateOfSignature",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sepadirectdebit_mandateId",
             "baseName": "sepadirectdebit.mandateId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sepadirectdebit_sequenceType",
             "baseName": "sepadirectdebit.sequenceType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalDataSepa.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

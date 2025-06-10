@@ -12,35 +12,28 @@ export class Phone {
     /**
     * Country code. Length: 1–3 characters.
     */
-    "cc"?: string;
+    'cc'?: string;
     /**
     * Subscriber number. Maximum length: 15 characters.
     */
-    "subscriber"?: string;
+    'subscriber'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "cc",
             "baseName": "cc",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subscriber",
             "baseName": "subscriber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Phone.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 
