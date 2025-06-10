@@ -7,85 +7,100 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './address';
-import { BirthData } from './birthData';
-import { IdentificationData } from './identificationData';
-import { Name } from './name';
-import { PhoneNumber } from './phoneNumber';
-import { TaxInformation } from './taxInformation';
-import { WebData } from './webData';
+import { Address } from "./address";
+import { BirthData } from "./birthData";
+import { IdentificationData } from "./identificationData";
+import { Name } from "./name";
+import { PhoneNumber } from "./phoneNumber";
+import { TaxInformation } from "./taxInformation";
+import { WebData } from "./webData";
+
 
 export class Individual {
-    'birthData'?: BirthData | null;
+    "birthData"?: BirthData;
     /**
     * The email address of the legal entity.
     */
-    'email'?: string;
-    'identificationData'?: IdentificationData | null;
-    'name': Name;
+    "email"?: string;
+    "identificationData"?: IdentificationData;
+    "name": Name;
     /**
     * The individual\'s nationality.
     */
-    'nationality'?: string;
-    'phone'?: PhoneNumber | null;
-    'residentialAddress': Address;
+    "nationality"?: string;
+    "phone"?: PhoneNumber;
+    "residentialAddress": Address;
     /**
     * The tax information of the individual.
     */
-    'taxInformation'?: Array<TaxInformation>;
-    'webData'?: WebData | null;
+    "taxInformation"?: Array<TaxInformation>;
+    "webData"?: WebData;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "birthData",
             "baseName": "birthData",
-            "type": "BirthData | null"
+            "type": "BirthData",
+            "format": ""
         },
         {
             "name": "email",
             "baseName": "email",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "identificationData",
             "baseName": "identificationData",
-            "type": "IdentificationData | null"
+            "type": "IdentificationData",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "Name"
+            "type": "Name",
+            "format": ""
         },
         {
             "name": "nationality",
             "baseName": "nationality",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "phone",
             "baseName": "phone",
-            "type": "PhoneNumber | null"
+            "type": "PhoneNumber",
+            "format": ""
         },
         {
             "name": "residentialAddress",
             "baseName": "residentialAddress",
-            "type": "Address"
+            "type": "Address",
+            "format": ""
         },
         {
             "name": "taxInformation",
             "baseName": "taxInformation",
-            "type": "Array<TaxInformation>"
+            "type": "Array<TaxInformation>",
+            "format": ""
         },
         {
             "name": "webData",
             "baseName": "webData",
-            "type": "WebData | null"
+            "type": "WebData",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Individual.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

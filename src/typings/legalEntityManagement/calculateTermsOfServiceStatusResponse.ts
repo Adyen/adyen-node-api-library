@@ -12,19 +12,25 @@ export class CalculateTermsOfServiceStatusResponse {
     /**
     * The type of Terms of Service that the legal entity needs to accept. If empty, no Terms of Service needs to be accepted.
     */
-    'termsOfServiceTypes'?: Array<CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum>;
+    "termsOfServiceTypes"?: Array<CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "termsOfServiceTypes",
             "baseName": "termsOfServiceTypes",
-            "type": "Array<CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum>"
+            "type": "CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CalculateTermsOfServiceStatusResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

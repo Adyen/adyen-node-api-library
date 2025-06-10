@@ -7,22 +7,25 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    AcceptTermsOfServiceRequest,
-    AcceptTermsOfServiceResponse,
-    CalculateTermsOfServiceStatusResponse,
-    GetAcceptedTermsOfServiceDocumentResponse,
-    GetTermsOfServiceAcceptanceInfosResponse,
-    GetTermsOfServiceDocumentRequest,
-    GetTermsOfServiceDocumentResponse,
-    ObjectSerializer
-} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSerializer";
+import { AcceptTermsOfServiceRequest } from "../../typings/legalEntityManagement/models";
+import { AcceptTermsOfServiceResponse } from "../../typings/legalEntityManagement/models";
+import { CalculateTermsOfServiceStatusResponse } from "../../typings/legalEntityManagement/models";
+import { GetAcceptedTermsOfServiceDocumentResponse } from "../../typings/legalEntityManagement/models";
+import { GetTermsOfServiceAcceptanceInfosResponse } from "../../typings/legalEntityManagement/models";
+import { GetTermsOfServiceDocumentRequest } from "../../typings/legalEntityManagement/models";
+import { GetTermsOfServiceDocumentResponse } from "../../typings/legalEntityManagement/models";
+
+/**
+ * API handler for TermsOfServiceApi
+ */
 export class TermsOfServiceApi extends Service {
 
     private readonly API_BASEPATH: string = "https://kyc-test.adyen.com/lem/v3";
@@ -46,13 +49,15 @@ export class TermsOfServiceApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)))
             .replace("{" + "termsofservicedocumentid" + "}", encodeURIComponent(String(termsofservicedocumentid)));
         const resource = new Resource(this, endpoint);
-        const request: AcceptTermsOfServiceRequest = ObjectSerializer.serialize(acceptTermsOfServiceRequest, "AcceptTermsOfServiceRequest");
+        
+        const request: AcceptTermsOfServiceRequest = ObjectSerializer.serialize(acceptTermsOfServiceRequest, "AcceptTermsOfServiceRequest", "");
         const response = await getJsonResponse<AcceptTermsOfServiceRequest, AcceptTermsOfServiceResponse>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-        return ObjectSerializer.deserialize(response, "AcceptTermsOfServiceResponse");
+
+        return ObjectSerializer.deserialize(response, "AcceptTermsOfServiceResponse", "");
     }
 
     /**
@@ -68,6 +73,7 @@ export class TermsOfServiceApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)))
             .replace("{" + "termsofserviceacceptancereference" + "}", encodeURIComponent(String(termsofserviceacceptancereference)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = termsOfServiceDocumentFormat;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -79,7 +85,8 @@ export class TermsOfServiceApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "GetAcceptedTermsOfServiceDocumentResponse");
+
+        return ObjectSerializer.deserialize(response, "GetAcceptedTermsOfServiceDocumentResponse", "");
     }
 
     /**
@@ -93,13 +100,15 @@ export class TermsOfServiceApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/termsOfService`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: GetTermsOfServiceDocumentRequest = ObjectSerializer.serialize(getTermsOfServiceDocumentRequest, "GetTermsOfServiceDocumentRequest");
+        
+        const request: GetTermsOfServiceDocumentRequest = ObjectSerializer.serialize(getTermsOfServiceDocumentRequest, "GetTermsOfServiceDocumentRequest", "");
         const response = await getJsonResponse<GetTermsOfServiceDocumentRequest, GetTermsOfServiceDocumentResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "GetTermsOfServiceDocumentResponse");
+
+        return ObjectSerializer.deserialize(response, "GetTermsOfServiceDocumentResponse", "");
     }
 
     /**
@@ -112,12 +121,14 @@ export class TermsOfServiceApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/termsOfServiceAcceptanceInfos`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, GetTermsOfServiceAcceptanceInfosResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "GetTermsOfServiceAcceptanceInfosResponse");
+
+        return ObjectSerializer.deserialize(response, "GetTermsOfServiceAcceptanceInfosResponse", "");
     }
 
     /**
@@ -130,11 +141,14 @@ export class TermsOfServiceApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/termsOfServiceStatus`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, CalculateTermsOfServiceStatusResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "CalculateTermsOfServiceStatusResponse");
+
+        return ObjectSerializer.deserialize(response, "CalculateTermsOfServiceStatusResponse", "");
     }
+
 }

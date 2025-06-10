@@ -12,64 +12,75 @@ export class FinancialReport {
     /**
     * The annual turnover of the business.
     */
-    'annualTurnover'?: string;
+    "annualTurnover"?: string;
     /**
     * The balance sheet total of the business.
     */
-    'balanceSheetTotal'?: string;
+    "balanceSheetTotal"?: string;
     /**
     * The currency used for the net assets and balance sheet total.
     */
-    'currencyOfFinancialData'?: string;
+    "currencyOfFinancialData"?: string;
     /**
     * The date the financial data were provided, in YYYY-MM-DD format.
     */
-    'dateOfFinancialData'?: string;
+    "dateOfFinancialData"?: string;
     /**
     * The number of employees of the business.
     */
-    'employeeCount'?: string;
+    "employeeCount"?: string;
     /**
     * The net assets of the business.
     */
-    'netAssets'?: string;
+    "netAssets"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "annualTurnover",
             "baseName": "annualTurnover",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "balanceSheetTotal",
             "baseName": "balanceSheetTotal",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "currencyOfFinancialData",
             "baseName": "currencyOfFinancialData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "dateOfFinancialData",
             "baseName": "dateOfFinancialData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "employeeCount",
             "baseName": "employeeCount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "netAssets",
             "baseName": "netAssets",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return FinancialReport.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

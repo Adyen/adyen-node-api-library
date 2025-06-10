@@ -12,37 +12,45 @@ export class Name {
     /**
     * The individual\'s first name. Must not be blank.
     */
-    'firstName': string;
+    "firstName": string;
     /**
     * The infix in the individual\'s name, if any.
     */
-    'infix'?: string;
+    "infix"?: string;
     /**
     * The individual\'s last name. Must not be blank.
     */
-    'lastName': string;
+    "lastName": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "firstName",
             "baseName": "firstName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "infix",
             "baseName": "infix",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lastName",
             "baseName": "lastName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Name.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

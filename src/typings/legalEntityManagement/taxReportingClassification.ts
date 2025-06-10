@@ -12,46 +12,55 @@ export class TaxReportingClassification {
     /**
     * The organization\'s business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.
     */
-    'businessType'?: TaxReportingClassification.BusinessTypeEnum;
+    "businessType"?: TaxReportingClassification.BusinessTypeEnum;
     /**
     * The Global Intermediary Identification Number (GIIN) required for FATCA. Only required if the organization is a US financial institution and the `businessType` is **financialInstitution**.
     */
-    'financialInstitutionNumber'?: string;
+    "financialInstitutionNumber"?: string;
     /**
     * The organization\'s main source of income. Only required if `businessType` is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
     */
-    'mainSourceOfIncome'?: TaxReportingClassification.MainSourceOfIncomeEnum;
+    "mainSourceOfIncome"?: TaxReportingClassification.MainSourceOfIncomeEnum;
     /**
     * The tax reporting classification type.  Possible values: **nonFinancialNonReportable**, **financialNonReportable**, **nonFinancialActive**, **nonFinancialPassive**.
     */
-    'type'?: TaxReportingClassification.TypeEnum;
+    "type"?: TaxReportingClassification.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "businessType",
             "baseName": "businessType",
-            "type": "TaxReportingClassification.BusinessTypeEnum"
+            "type": "TaxReportingClassification.BusinessTypeEnum",
+            "format": ""
         },
         {
             "name": "financialInstitutionNumber",
             "baseName": "financialInstitutionNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "mainSourceOfIncome",
             "baseName": "mainSourceOfIncome",
-            "type": "TaxReportingClassification.MainSourceOfIncomeEnum"
+            "type": "TaxReportingClassification.MainSourceOfIncomeEnum",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TaxReportingClassification.TypeEnum"
+            "type": "TaxReportingClassification.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TaxReportingClassification.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,37 +12,45 @@ export class PciDocumentInfo {
     /**
     * The date the questionnaire was created, in ISO 8601 extended format. For example, 2022-12-18T10:15:30+01:00
     */
-    'createdAt'?: Date;
+    "createdAt"?: Date;
     /**
     * The unique identifier of the signed questionnaire.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The expiration date of the questionnaire, in ISO 8601 extended format. For example, 2022-12-18T10:15:30+01:00
     */
-    'validUntil'?: Date;
+    "validUntil"?: Date;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "createdAt",
             "baseName": "createdAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "validUntil",
             "baseName": "validUntil",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
         return PciDocumentInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

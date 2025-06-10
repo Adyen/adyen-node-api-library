@@ -12,59 +12,69 @@ export class Attachment {
     /**
     * The document in Base64-encoded string format.
     */
-    'content': string;
+    "content": string;
     /**
     * The file format.   Possible values: **application/pdf**, **image/jpg**, **image/jpeg**, **image/png**. 
     *
 	* @deprecated since Legal Entity Management API v1
     */
-    'contentType'?: string;
+    "contentType"?: string;
     /**
     * The name of the file including the file extension.
     *
 	* @deprecated since Legal Entity Management API v1
     */
-    'filename'?: string;
+    "filename"?: string;
     /**
     * The name of the file including the file extension.
     */
-    'pageName'?: string;
+    "pageName"?: string;
     /**
     * Specifies which side of the ID card is uploaded.  * When `type` is **driversLicense** or **identityCard**, set this to **front** or **back**.  * When omitted, we infer the page number based on the order of attachments.
     */
-    'pageType'?: string;
+    "pageType"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "content",
             "baseName": "content",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         },
         {
             "name": "contentType",
             "baseName": "contentType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "filename",
             "baseName": "filename",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "pageName",
             "baseName": "pageName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "pageType",
             "baseName": "pageType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Attachment.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

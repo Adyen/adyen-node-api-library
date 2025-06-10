@@ -12,55 +12,65 @@ export class OnboardingTheme {
     /**
     * The creation date of the theme.
     */
-    'createdAt': Date;
+    "createdAt": Date;
     /**
     * The description of the theme.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The unique identifier of the theme.
     */
-    'id': string;
+    "id": string;
     /**
     * The properties of the theme.
     */
-    'properties': { [key: string]: string; };
+    "properties": { [key: string]: string; };
     /**
     * The date when the theme was last updated.
     */
-    'updatedAt'?: Date;
+    "updatedAt"?: Date;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "createdAt",
             "baseName": "createdAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "properties",
             "baseName": "properties",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "updatedAt",
             "baseName": "updatedAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
         return OnboardingTheme.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

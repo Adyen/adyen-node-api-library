@@ -12,28 +12,35 @@ export class GeneratePciDescriptionRequest {
     /**
     * An array of additional sales channels to generate PCI questionnaires. Include the relevant sales channels if you need your user to sign PCI questionnaires. Not required if you [create stores](https://docs.adyen.com/platforms) and [add payment methods](https://docs.adyen.com/adyen-for-platforms-model) before you generate the questionnaires.  Possible values: *  **eCommerce** *  **pos** *  **ecomMoto** *  **posMoto**  
     */
-    'additionalSalesChannels'?: Array<GeneratePciDescriptionRequest.AdditionalSalesChannelsEnum>;
+    "additionalSalesChannels"?: Array<GeneratePciDescriptionRequest.AdditionalSalesChannelsEnum>;
     /**
     * Sets the language of the PCI questionnaire. Its value is a two-character [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code, for example, **en**.
     */
-    'language'?: string;
+    "language"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "additionalSalesChannels",
             "baseName": "additionalSalesChannels",
-            "type": "Array<GeneratePciDescriptionRequest.AdditionalSalesChannelsEnum>"
+            "type": "GeneratePciDescriptionRequest.AdditionalSalesChannelsEnum",
+            "format": ""
         },
         {
             "name": "language",
             "baseName": "language",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return GeneratePciDescriptionRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

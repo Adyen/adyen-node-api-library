@@ -12,19 +12,25 @@ export class CalculatePciStatusResponse {
     /**
     * Indicates if the user is required to sign PCI questionnaires. If **false**, they do not need to sign any questionnaires.
     */
-    'signingRequired'?: boolean;
+    "signingRequired"?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "signingRequired",
             "baseName": "signingRequired",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CalculatePciStatusResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

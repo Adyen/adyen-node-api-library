@@ -12,37 +12,45 @@ export class StockData {
     /**
     * The four-digit [Market Identifier Code](https://en.wikipedia.org/wiki/Market_Identifier_Code) of the stock market where the organization\'s stocks are traded.
     */
-    'marketIdentifier'?: string;
+    "marketIdentifier"?: string;
     /**
     * The 12-digit International Securities Identification Number (ISIN) of the company, without dashes (-).
     */
-    'stockNumber'?: string;
+    "stockNumber"?: string;
     /**
     * The stock ticker symbol.
     */
-    'tickerSymbol'?: string;
+    "tickerSymbol"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "marketIdentifier",
             "baseName": "marketIdentifier",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "stockNumber",
             "baseName": "stockNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "tickerSymbol",
             "baseName": "tickerSymbol",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return StockData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
