@@ -584,7 +584,7 @@ describe("Management", (): void => {
                     expect(error.apiError).toBeTruthy();
                     expect(error.apiError?.errorCode).toBe("31_007");
                     expect(error.apiError?.title).toBe("Invalid user information provided.");
-                    expect(error.apiError?.type).toBe("https://docs.adyen.com/errors/validation")
+                    expect(error.apiError?.type).toBe("https://docs.adyen.com/errors/validation");
                     expect(error.apiError?.invalidFields).toBeTruthy();
                     expect(error.apiError?.invalidFields?.length).toBe(1);                    
                 } else {
