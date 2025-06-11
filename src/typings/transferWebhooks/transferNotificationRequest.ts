@@ -7,55 +7,65 @@
  * Do not edit this class manually.
  */
 
-import { TransferData } from './transferData';
+import { TransferData } from "./transferData";
+
 
 export class TransferNotificationRequest {
-    'data': TransferData;
+    "data": TransferData;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    'environment': string;
+    "environment": string;
     /**
     * When the event was queued.
     */
-    'timestamp'?: Date;
+    "timestamp"?: Date;
     /**
     * The type of webhook.
     */
-    'type'?: TransferNotificationRequest.TypeEnum;
+    "type"?: TransferNotificationRequest.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "TransferData"
+            "type": "TransferData",
+            "format": ""
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TransferNotificationRequest.TypeEnum"
+            "type": "TransferNotificationRequest.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TransferNotificationRequest.attributeTypeMap;
     }
+
+    public constructor() {
+    }
 }
 
 export namespace TransferNotificationRequest {
     export enum TypeEnum {
-        Created = 'balancePlatform.transfer.created',
-        Updated = 'balancePlatform.transfer.updated'
+        BalancePlatformTransferCreated = 'balancePlatform.transfer.created',
+        BalancePlatformTransferUpdated = 'balancePlatform.transfer.updated'
     }
 }

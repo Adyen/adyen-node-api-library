@@ -12,37 +12,45 @@ export class DKLocalAccountIdentification {
     /**
     * The 4-10 digits bank account number (Kontonummer) (without separators or whitespace).
     */
-    'accountNumber': string;
+    "accountNumber": string;
     /**
     * The 4-digit bank code (Registreringsnummer) (without separators or whitespace).
     */
-    'bankCode': string;
+    "bankCode": string;
     /**
     * **dkLocal**
     */
-    'type': DKLocalAccountIdentification.TypeEnum;
+    "type": DKLocalAccountIdentification.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankCode",
             "baseName": "bankCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "DKLocalAccountIdentification.TypeEnum"
+            "type": "DKLocalAccountIdentification.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DKLocalAccountIdentification.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

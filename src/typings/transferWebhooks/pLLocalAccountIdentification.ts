@@ -12,28 +12,35 @@ export class PLLocalAccountIdentification {
     /**
     * The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace.
     */
-    'accountNumber': string;
+    "accountNumber": string;
     /**
     * **plLocal**
     */
-    'type': PLLocalAccountIdentification.TypeEnum;
+    "type": PLLocalAccountIdentification.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PLLocalAccountIdentification.TypeEnum"
+            "type": "PLLocalAccountIdentification.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PLLocalAccountIdentification.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

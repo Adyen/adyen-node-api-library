@@ -12,37 +12,45 @@ export class ExternalReason {
     /**
     * The reason code.
     */
-    'code'?: string;
+    "code"?: string;
     /**
     * The description of the reason code.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The namespace for the reason code.
     */
-    'namespace'?: string;
+    "namespace"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "code",
             "baseName": "code",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "namespace",
             "baseName": "namespace",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ExternalReason.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

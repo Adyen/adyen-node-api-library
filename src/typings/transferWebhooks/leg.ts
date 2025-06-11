@@ -12,64 +12,75 @@ export class Leg {
     /**
     * The IATA 3-letter airport code of the destination airport. This field is required if the airline data includes leg details.
     */
-    'arrivalAirportCode'?: string;
+    "arrivalAirportCode"?: string;
     /**
     * The basic fare code for this leg.
     */
-    'basicFareCode'?: string;
+    "basicFareCode"?: string;
     /**
     * IATA code of the carrier operating the flight.
     */
-    'carrierCode'?: string;
+    "carrierCode"?: string;
     /**
     * The IATA three-letter airport code of the departure airport. This field is required if the airline data includes leg details
     */
-    'departureAirportCode'?: string;
+    "departureAirportCode"?: string;
     /**
     * The flight departure date.
     */
-    'departureDate'?: string;
+    "departureDate"?: string;
     /**
     * The flight identifier.
     */
-    'flightNumber'?: string;
+    "flightNumber"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "arrivalAirportCode",
             "baseName": "arrivalAirportCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "basicFareCode",
             "baseName": "basicFareCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "carrierCode",
             "baseName": "carrierCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "departureAirportCode",
             "baseName": "departureAirportCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "departureDate",
             "baseName": "departureDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "flightNumber",
             "baseName": "flightNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Leg.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

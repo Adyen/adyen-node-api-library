@@ -12,28 +12,35 @@ export class IssuingTransactionData {
     /**
     * captureCycleId associated with transfer event.
     */
-    'captureCycleId'?: string;
+    "captureCycleId"?: string;
     /**
     * The type of events data.   Possible values:    - **issuingTransactionData**: issuing transaction data
     */
-    'type': IssuingTransactionData.TypeEnum;
+    "type": IssuingTransactionData.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "captureCycleId",
             "baseName": "captureCycleId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "IssuingTransactionData.TypeEnum"
+            "type": "IssuingTransactionData.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return IssuingTransactionData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

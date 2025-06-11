@@ -12,55 +12,65 @@ export class Modification {
     /**
     * The direction of the money movement.
     */
-    'direction'?: string;
+    "direction"?: string;
     /**
     * Our reference for the modification.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * Your reference for the modification, used internally within your platform.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The status of the transfer event.
     */
-    'status'?: Modification.StatusEnum;
+    "status"?: Modification.StatusEnum;
     /**
     * The type of transfer modification.
     */
-    'type'?: string;
+    "type"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "direction",
             "baseName": "direction",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "Modification.StatusEnum"
+            "type": "Modification.StatusEnum",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Modification.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

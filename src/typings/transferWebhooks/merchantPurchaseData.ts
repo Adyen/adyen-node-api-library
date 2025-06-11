@@ -7,41 +7,50 @@
  * Do not edit this class manually.
  */
 
-import { Airline } from './airline';
-import { Lodging } from './lodging';
+import { Airline } from "./airline";
+import { Lodging } from "./lodging";
+
 
 export class MerchantPurchaseData {
-    'airline'?: Airline | null;
+    "airline"?: Airline;
     /**
     * Lodging information.
     */
-    'lodging'?: Array<Lodging>;
+    "lodging"?: Array<Lodging>;
     /**
     * The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data
     */
-    'type': MerchantPurchaseData.TypeEnum;
+    "type": MerchantPurchaseData.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "airline",
             "baseName": "airline",
-            "type": "Airline | null"
+            "type": "Airline",
+            "format": ""
         },
         {
             "name": "lodging",
             "baseName": "lodging",
-            "type": "Array<Lodging>"
+            "type": "Array<Lodging>",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "MerchantPurchaseData.TypeEnum"
+            "type": "MerchantPurchaseData.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return MerchantPurchaseData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
