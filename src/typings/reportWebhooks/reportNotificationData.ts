@@ -7,82 +7,96 @@
  * Do not edit this class manually.
  */
 
-import { ResourceReference } from './resourceReference';
+import { ResourceReference } from "./resourceReference";
+
 
 export class ReportNotificationData {
-    'accountHolder'?: ResourceReference | null;
-    'balanceAccount'?: ResourceReference | null;
+    "accountHolder"?: ResourceReference;
+    "balanceAccount"?: ResourceReference;
     /**
     * The unique identifier of the balance platform.
     */
-    'balancePlatform'?: string;
+    "balancePlatform"?: string;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
     */
-    'creationDate'?: Date;
+    "creationDate"?: Date;
     /**
     * The URL at which you can download the report. To download, you must authenticate your GET request with your [API credentials](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/overview).
     */
-    'downloadUrl': string;
+    "downloadUrl": string;
     /**
     * The filename of the report.
     */
-    'fileName': string;
+    "fileName": string;
     /**
     * The ID of the resource.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The type of report. Possible values:  - `balanceplatform_accounting_interactive_report` - `balanceplatform_accounting_report` - `balanceplatform_balance_report` - `balanceplatform_fee_report` - `balanceplatform_payment_instrument_report` - `balanceplatform_payout_report` - `balanceplatform_statement_report`  
     */
-    'reportType': string;
+    "reportType": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "ResourceReference | null"
+            "type": "ResourceReference",
+            "format": ""
         },
         {
             "name": "balanceAccount",
             "baseName": "balanceAccount",
-            "type": "ResourceReference | null"
+            "type": "ResourceReference",
+            "format": ""
         },
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "creationDate",
             "baseName": "creationDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "downloadUrl",
             "baseName": "downloadUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fileName",
             "baseName": "fileName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reportType",
             "baseName": "reportType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ReportNotificationData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
