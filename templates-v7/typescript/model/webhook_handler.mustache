@@ -1,0 +1,51 @@
+{{>licenseInfo}}
+import { {{serviceName}} } from "..";
+
+/**
+ * Union type for all supported webhook requests.
+ * Allows generic handling of configuration-related webhook events.
+ */
+export type GenericWebhook = {{#models}}{{#model.vendorExtensions.x-webhook-root}}
+    | {{serviceName}}.{{model.name}}{{/model.vendorExtensions.x-webhook-root}}{{#-last}};{{/-last}}{{/models}}
+
+/**
+ * Handler for processing {{originalServiceName}}.
+ * 
+ * This class provides functionality to deserialize the payload of {{originalServiceName}} events.
+ */
+export class {{originalServiceName}}Handler {
+
+    private readonly payload: Record<string, any>;
+
+    public constructor(jsonPayload: string) {
+        this.payload = JSON.parse(jsonPayload);
+    }
+
+    /**
+     * This method checks the type of the webhook payload and returns the appropriate deserialized object.
+     * 
+     * @returns A deserialized object of type GenericWebhook.
+     * @throws Error if the type is not recognized.
+     */
+    public getGenericWebhook(): GenericWebhook {
+    
+        const type = this.payload["type"];
+        {{#models}}{{#model.vendorExtensions.x-webhook-root}}
+        if(Object.values({{serviceName}}.{{model.name}}.TypeEnum).includes(type)) {
+            return this.get{{model.name}}();
+        }
+        {{/model.vendorExtensions.x-webhook-root}}{{/models}}
+        throw new Error("Could not parse the json payload: " + this.payload);
+
+    }
+{{#models}}{{#model.vendorExtensions.x-webhook-root}}
+    /**
+     * Deserialize the webhook payload into a {{model.name}}
+     *
+     * @returns Deserialized {{model.name}} object.
+     */
+    public get{{model.name}}(): {{serviceName}}.{{model.name}} {
+        return {{serviceName}}.ObjectSerializer.deserialize(this.payload, "{{model.name}}");
+    }
+{{/model.vendorExtensions.x-webhook-root}}{{/models}}
+}
