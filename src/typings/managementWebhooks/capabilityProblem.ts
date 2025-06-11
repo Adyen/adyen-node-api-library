@@ -7,32 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { CapabilityProblemEntity } from './capabilityProblemEntity';
-import { VerificationError } from './verificationError';
+import { CapabilityProblemEntity } from "./capabilityProblemEntity";
+import { VerificationError } from "./verificationError";
+
 
 export class CapabilityProblem {
-    'entity'?: CapabilityProblemEntity | null;
+    "entity"?: CapabilityProblemEntity;
     /**
     * List of verification errors.
     */
-    'verificationErrors'?: Array<VerificationError>;
+    "verificationErrors"?: Array<VerificationError>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "entity",
             "baseName": "entity",
-            "type": "CapabilityProblemEntity | null"
+            "type": "CapabilityProblemEntity",
+            "format": ""
         },
         {
             "name": "verificationErrors",
             "baseName": "verificationErrors",
-            "type": "Array<VerificationError>"
+            "type": "Array<VerificationError>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CapabilityProblem.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

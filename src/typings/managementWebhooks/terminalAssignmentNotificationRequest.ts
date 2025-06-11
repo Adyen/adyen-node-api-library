@@ -12,55 +12,65 @@ export class TerminalAssignmentNotificationRequest {
     /**
     * The unique identifier of the merchant/company account to which the terminal is assigned.
     */
-    'assignedToAccount': string;
+    "assignedToAccount": string;
     /**
     * The unique identifier of the store to which the terminal is assigned.
     */
-    'assignedToStore'?: string;
+    "assignedToStore"?: string;
     /**
     * The date and time when an event has been completed.
     */
-    'eventDate': string;
+    "eventDate": string;
     /**
     * The PSP reference of the request from which the notification originates.
     */
-    'pspReference': string;
+    "pspReference": string;
     /**
     * The unique identifier of the terminal.
     */
-    'uniqueTerminalId': string;
+    "uniqueTerminalId": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "assignedToAccount",
             "baseName": "assignedToAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "assignedToStore",
             "baseName": "assignedToStore",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "eventDate",
             "baseName": "eventDate",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "uniqueTerminalId",
             "baseName": "uniqueTerminalId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalAssignmentNotificationRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

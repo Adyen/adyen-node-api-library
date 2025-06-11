@@ -12,46 +12,55 @@ export class TerminalBoardingData {
     /**
     * The unique identifier of the company account.
     */
-    'companyId': string;
+    "companyId": string;
     /**
     * The unique identifier of the merchant account.
     */
-    'merchantId'?: string;
+    "merchantId"?: string;
     /**
     * The unique identifier of the store.
     */
-    'storeId'?: string;
+    "storeId"?: string;
     /**
     * The unique identifier of the terminal.
     */
-    'uniqueTerminalId': string;
+    "uniqueTerminalId": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "companyId",
             "baseName": "companyId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantId",
             "baseName": "merchantId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "storeId",
             "baseName": "storeId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "uniqueTerminalId",
             "baseName": "uniqueTerminalId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalBoardingData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
