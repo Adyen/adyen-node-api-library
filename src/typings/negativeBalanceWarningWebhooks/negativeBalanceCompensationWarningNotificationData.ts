@@ -7,83 +7,97 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { ResourceReference } from './resourceReference';
+import { Amount } from "./amount";
+import { ResourceReference } from "./resourceReference";
+
 
 export class NegativeBalanceCompensationWarningNotificationData {
-    'accountHolder'?: ResourceReference | null;
-    'amount'?: Amount | null;
+    "accountHolder"?: ResourceReference;
+    "amount"?: Amount;
     /**
     * The unique identifier of the balance platform.
     */
-    'balancePlatform'?: string;
+    "balancePlatform"?: string;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
     */
-    'creationDate'?: Date;
+    "creationDate"?: Date;
     /**
     * The ID of the resource.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The balance account ID of the account that will be used to compensate the balance account whose balance is negative.
     */
-    'liableBalanceAccountId'?: string;
+    "liableBalanceAccountId"?: string;
     /**
     * The date the balance for the account became negative.
     */
-    'negativeBalanceSince'?: Date;
+    "negativeBalanceSince"?: Date;
     /**
     * The date when a compensation transfer to the account is scheduled to happen.
     */
-    'scheduledCompensationAt'?: Date;
+    "scheduledCompensationAt"?: Date;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "ResourceReference | null"
+            "type": "ResourceReference",
+            "format": ""
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "creationDate",
             "baseName": "creationDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "liableBalanceAccountId",
             "baseName": "liableBalanceAccountId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "negativeBalanceSince",
             "baseName": "negativeBalanceSince",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "scheduledCompensationAt",
             "baseName": "scheduledCompensationAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
         return NegativeBalanceCompensationWarningNotificationData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
