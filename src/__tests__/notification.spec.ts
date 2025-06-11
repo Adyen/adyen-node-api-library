@@ -3,26 +3,26 @@ import captureTrue from "../__mocks__/notification/captureTrue.json";
 import captureFalse from "../__mocks__/notification/captureFalse.json";
 import refundTrue from "../__mocks__/notification/refundTrue.json";
 import refundFalse from "../__mocks__/notification/refundFalse.json";
-import NotificationRequest from "../notification/notificationRequest";
-import { Notification, NotificationRequestItem } from "../typings/notification/models";
+
 import NotificationEnum = NotificationRequestItem.EventCodeEnum;
 import SuccessEnum = NotificationRequestItem.SuccessEnum;
-import BankingWebhookHandler from "../notification/bankingWebhookHandler";
-import {AccountHolderNotificationRequest} from "../typings/configurationWebhooks/accountHolderNotificationRequest";
-import {BalanceAccountNotificationRequest} from "../typings/configurationWebhooks/balanceAccountNotificationRequest";
-import HmacValidator from "../utils/hmacValidator";
-import ManagementWebhookHandler from "../notification/managementWebhookHandler";
-import {
-    PaymentMethodCreatedNotificationRequest
-} from "../typings/managementWebhooks/paymentMethodCreatedNotificationRequest";
-import {MerchantUpdatedNotificationRequest} from "../typings/managementWebhooks/merchantUpdatedNotificationRequest";
-import {AuthenticationNotificationRequest} from "../typings/acsWebhooks/authenticationNotificationRequest";
-import {TransferNotificationRequest} from "../typings/transferWebhooks/transferNotificationRequest";
+
+// requests
+import NotificationRequest from "../notification/notificationRequest";
+import { Notification, NotificationRequestItem } from "../typings/notification/models";
+import { AccountHolderNotificationRequest } from "../typings/configurationWebhooks/accountHolderNotificationRequest";
+import { BalanceAccountNotificationRequest } from "../typings/configurationWebhooks/balanceAccountNotificationRequest";
+import { PaymentMethodCreatedNotificationRequest } from "../typings/managementWebhooks/paymentMethodCreatedNotificationRequest";
+import { MerchantUpdatedNotificationRequest } from "../typings/managementWebhooks/merchantUpdatedNotificationRequest";
+import { AuthenticationNotificationRequest } from "../typings/acsWebhooks/authenticationNotificationRequest";
+import { TransferNotificationRequest } from "../typings/transferWebhooks/transferNotificationRequest";
 import { PaymentMethodRequestRemovedNotificationRequest } from "../typings/managementWebhooks/paymentMethodRequestRemovedNotificationRequest";
 import { PaymentMethodScheduledForRemovalNotificationRequest } from "../typings/managementWebhooks/paymentMethodScheduledForRemovalNotificationRequest";
 import { TransactionNotificationRequestV4 } from "../typings/transactionWebhooks/transactionNotificationRequestV4";
 import { NegativeBalanceCompensationWarningNotificationRequest } from "../typings/negativeBalanceWarningWebhooks/negativeBalanceCompensationWarningNotificationRequest";
 import { BalanceAccountBalanceNotificationRequest } from "../typings/balanceWebhooks/balanceAccountBalanceNotificationRequest";
+
+// handlers
 import { AcsWebhooksHandler } from "../typings/acsWebhooks/acsWebhooksHandler";
 import { ReportWebhooksHandler } from "../typings/reportWebhooks/reportWebhooksHandler";
 import { ConfigurationWebhooksHandler } from "../typings/configurationWebhooks/configurationWebhooksHandler";
@@ -31,6 +31,9 @@ import { NegativeBalanceWarningWebhooksHandler } from "../typings/negativeBalanc
 import { TransactionWebhooksHandler } from "../typings/transactionWebhooks/transactionWebhooksHandler";
 import { BalanceWebhooksHandler } from "../typings/balanceWebhooks/balanceWebhooksHandler";
 import { ReportNotificationRequest } from "../typings/reportWebhooks/reportNotificationRequest";
+import { ManagementWebhooksHandler } from "../typings/managementWebhooks/managementWebhooksHandler";
+
+import HmacValidator from "../utils/hmacValidator";
 
 describe("Notification Test", function (): void {
 
@@ -230,63 +233,12 @@ describe("Notification Test", function (): void {
             "type": "paymentMethod.created"
         };
         const jsonString = JSON.stringify(json);
-        const managementWebhookHandler = new ManagementWebhookHandler(jsonString);
-        const paymentMethodCreatedNotificationRequest: PaymentMethodCreatedNotificationRequest = managementWebhookHandler.getPaymentMethodCreatedNotificationRequest();
-        const genericWebhook = managementWebhookHandler.getGenericWebhook();
+        const managementWebhooksHandler = new ManagementWebhooksHandler(jsonString);
+        const paymentMethodCreatedNotificationRequest: PaymentMethodCreatedNotificationRequest = managementWebhooksHandler.getPaymentMethodCreatedNotificationRequest();
+        const genericWebhook = managementWebhooksHandler.getGenericWebhook();
         expect(genericWebhook instanceof PaymentMethodCreatedNotificationRequest).toBe(true);
         expect(genericWebhook instanceof MerchantUpdatedNotificationRequest).toBe(false);
         expect(paymentMethodCreatedNotificationRequest.type).toEqual(PaymentMethodCreatedNotificationRequest.TypeEnum.PaymentMethodCreated);
-    });
-
-    it("should deserialize Banking Authentication Webhook", function (): void {
-        const json = {
-            "data": {
-                "balancePlatform": "YOUR_BALANCE_PLATFORM",
-                "creationDate": "2023-01-19T17:07:59+01:00",
-                "id": "a8fc7a40-6e48-498a-bdc2-494daf0f490a",
-                "authentication": {
-                    "acsTransId": "a8fc7a40-6e48-498a-bdc2-494daf0f490a",
-                    "challenge": {
-                        "flow": "OTP_SMS",
-                        "lastInteraction": "2023-01-19T17:37:13+01:00",
-                        "phoneNumber": "******6789",
-                        "resends": 0,
-                        "retries": 2
-                    },
-                    "challengeIndicator": "01",
-                    "createdAt": "2023-01-19T17:07:17+01:00",
-                    "deviceChannel": "app",
-                    "dsTransID": "59de4e30-7f84-4a77-aaf8-1ca493092ef9",
-                    "exemptionIndicator": "noExemptionApplied",
-                    "inPSD2Scope": false,
-                    "messageCategory": "payment",
-                    "messageVersion": "2.2.0",
-                    "threeDSServerTransID": "8bc0fdbd-5c8a-4bed-a171-9d10347e7798",
-                    "transStatus": "N",
-                    "transStatusReason": "19",
-                    "type": "challenge"
-                },
-                "paymentInstrumentId": "PI3227C223222B5BPCMFXD2XG",
-                "purchase": {
-                    "date": "2022-12-22T15:49:03+01:00",
-                    "merchantName": "TeaShop_NL",
-                    "originalAmount": {
-                        "currency": "EUR",
-                        "value": 1000
-                    }
-                },
-                "status": "rejected"
-            },
-            "environment": "test",
-            "type": "balancePlatform.authentication.created"
-        };
-        const jsonString = JSON.stringify(json);
-        const bankingWebhookHandler = new BankingWebhookHandler(jsonString);
-        const accountHolderNotificationRequest: TransferNotificationRequest = bankingWebhookHandler.getTransferNotificationRequest();
-        const genericWebhook = bankingWebhookHandler.getGenericWebhook();
-        expect(accountHolderNotificationRequest.type).toEqual(AuthenticationNotificationRequest.TypeEnum.BalancePlatformAuthenticationCreated);
-        expect(genericWebhook instanceof AccountHolderNotificationRequest).toBe(false);
-        expect(genericWebhook instanceof AuthenticationNotificationRequest).toBe(true);
     });
 
     it("should deserialize Management v3 Webhooks", function (): void {
@@ -304,9 +256,9 @@ describe("Notification Test", function (): void {
             }
           };
         const jsonString = JSON.stringify(json);
-        const managementWebhookHandler = new ManagementWebhookHandler(jsonString);
-        const paymentMethodRequestRemoved: PaymentMethodRequestRemovedNotificationRequest = managementWebhookHandler.getPaymentMethodRequestRemovedNotificationRequest();
-        const genericWebhook = managementWebhookHandler.getGenericWebhook();
+        const managementWebhooksHandler = new ManagementWebhooksHandler(jsonString);
+        const paymentMethodRequestRemoved: PaymentMethodRequestRemovedNotificationRequest = managementWebhooksHandler.getPaymentMethodRequestRemovedNotificationRequest();
+        const genericWebhook = managementWebhooksHandler.getGenericWebhook();
         expect(genericWebhook instanceof PaymentMethodRequestRemovedNotificationRequest).toBe(true);
         expect(genericWebhook instanceof PaymentMethodScheduledForRemovalNotificationRequest).toBe(false);
         expect(paymentMethodRequestRemoved.type).toEqual(PaymentMethodRequestRemovedNotificationRequest.TypeEnum.PaymentMethodRequestRemoved);
@@ -352,44 +304,6 @@ describe("Notification Test", function (): void {
         const genericWebhook = transactionWebhooksHandler.getGenericWebhook();
         expect(genericWebhook instanceof TransactionNotificationRequestV4).toBe(true);
         expect(genericWebhook instanceof PaymentMethodScheduledForRemovalNotificationRequest).toBe(false);
-    });
-
-    it("should deserialize NegativeBalanceCompensationWarning Webhook", function (): void {
-        const json = {
-            "data": {
-              "balancePlatform": "YOUR_BALANCE_PLATFORM",
-              "creationDate": "2024-07-02T02:01:08+02:00",
-              "id": "BA00000000000000000001",
-              "accountHolder": {
-                "description": "Description for the account holder.",
-                "reference": "YOUR_REFERENCE",
-                "id": "AH00000000000000000001"
-              },
-              "amount": {
-                "currency": "EUR",
-                "value": -145050
-              },
-              "liableBalanceAccountId": "BA11111111111111111111",
-              "negativeBalanceSince": "2024-10-19T00:33:13+02:00",
-              "scheduledCompensationAt": "2024-12-01T01:00:00+01:00"
-            },
-            "environment": "test",
-            "timestamp": "2024-10-22T00:00:00+02:00",
-            "type": "balancePlatform.negativeBalanceCompensationWarning.scheduled"
-          };
-        const jsonString = JSON.stringify(json);
-        const bankingWebhookHandler = new BankingWebhookHandler(jsonString);
-        const negativeBalanceCompensationWarningNotificationRequest = bankingWebhookHandler.getNegativeBalanceCompensationWarningNotificationRequest();
-        expect(negativeBalanceCompensationWarningNotificationRequest).toBeTruthy();
-        expect(negativeBalanceCompensationWarningNotificationRequest.type).toBe(NegativeBalanceCompensationWarningNotificationRequest
-            .TypeEnum.BalancePlatformNegativeBalanceCompensationWarningScheduled
-        );
-        expect(negativeBalanceCompensationWarningNotificationRequest.environment).toBe("test");
-        expect(negativeBalanceCompensationWarningNotificationRequest.timestamp?.toISOString()).toBe(new Date("2024-10-22T00:00:00+02:00").toISOString());
-        expect(negativeBalanceCompensationWarningNotificationRequest.data).toBeDefined();
-        expect(negativeBalanceCompensationWarningNotificationRequest.data.balancePlatform).toBe("YOUR_BALANCE_PLATFORM");
-        expect(negativeBalanceCompensationWarningNotificationRequest.data.id).toBe("BA00000000000000000001");
-        expect(negativeBalanceCompensationWarningNotificationRequest.data.creationDate?.toISOString()).toBe(new Date("2024-07-02T02:01:08+02:00").toISOString());
     });
 
     it("should deserialize AcsWebhook AuthenticationNotificationRequest", function (): void {
@@ -768,13 +682,20 @@ describe("Notification Test", function (): void {
         // test getNegativeBalanceCompensationWarningNotificationRequest        
         const negativeBalanceCompensationWarningNotificationRequest: NegativeBalanceCompensationWarningNotificationRequest = negativeBalanceWarningWebhooksHandler.getNegativeBalanceCompensationWarningNotificationRequest();
         expect(negativeBalanceCompensationWarningNotificationRequest.type).toEqual(NegativeBalanceCompensationWarningNotificationRequest.TypeEnum.BalancePlatformNegativeBalanceCompensationWarningScheduled);
+        expect(negativeBalanceCompensationWarningNotificationRequest.environment).toBe("test");
+        expect(negativeBalanceCompensationWarningNotificationRequest.timestamp?.toISOString()).toBe(new Date("2024-10-22T00:00:00+02:00").toISOString());
+        expect(negativeBalanceCompensationWarningNotificationRequest.data).toBeDefined();
+        expect(negativeBalanceCompensationWarningNotificationRequest.data.balancePlatform).toBe("YOUR_BALANCE_PLATFORM");
+        expect(negativeBalanceCompensationWarningNotificationRequest.data.id).toBe("BA00000000000000000001");
+        expect(negativeBalanceCompensationWarningNotificationRequest.data.creationDate?.toISOString()).toBe(new Date("2024-10-22T00:00:00+02:00").toISOString());
         // test getGenericWebhook
         const genericWebhook = negativeBalanceWarningWebhooksHandler.getGenericWebhook();
         expect(genericWebhook instanceof NegativeBalanceCompensationWarningNotificationRequest).toBe(true);
         expect(genericWebhook.type).toEqual("balancePlatform.negativeBalanceCompensationWarning.scheduled");
         expect(genericWebhook.data.accountHolder?.reference).toEqual("YOUR_REFERENCE");
         expect(genericWebhook.data.accountHolder?.id).toEqual("AH00000000000000000001");
-        expect(genericWebhook.data.negativeBalanceSince?.toISOString()).toEqual(new Date("2024-10-19T00:33:13+02:00").toISOString());
+        expect(genericWebhook.data.negativeBalanceSince?.toISOString()).toEqual(new Date("2024-10-19T00:33:13+02:00").toISOString());    
+
     });
 
 });
