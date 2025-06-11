@@ -7,37 +7,45 @@
  * Do not edit this class manually.
  */
 
-import { DisputeEventNotification } from './disputeEventNotification';
+import { DisputeEventNotification } from "./disputeEventNotification";
+
 
 export class DisputeNotificationRequest {
-    'data': DisputeEventNotification;
+    "data": DisputeEventNotification;
     /**
     * Type of webhook.
     */
-    'type': DisputeNotificationRequest.TypeEnum;
+    "type": DisputeNotificationRequest.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "DisputeEventNotification"
+            "type": "DisputeEventNotification",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "DisputeNotificationRequest.TypeEnum"
+            "type": "DisputeNotificationRequest.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DisputeNotificationRequest.attributeTypeMap;
     }
+
+    public constructor() {
+    }
 }
 
 export namespace DisputeNotificationRequest {
     export enum TypeEnum {
-        Created = 'balancePlatform.dispute.created',
-        Updated = 'balancePlatform.dispute.updated'
+        BalancePlatformDisputeCreated = 'balancePlatform.dispute.created',
+        BalancePlatformDisputeUpdated = 'balancePlatform.dispute.updated'
     }
 }
