@@ -12,37 +12,45 @@ export class Resource {
     /**
     * The unique identifier of the balance platform.
     */
-    'balancePlatform'?: string;
+    "balancePlatform"?: string;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
     */
-    'creationDate'?: Date;
+    "creationDate"?: Date;
     /**
     * The ID of the resource.
     */
-    'id'?: string;
+    "id"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "creationDate",
             "baseName": "creationDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Resource.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

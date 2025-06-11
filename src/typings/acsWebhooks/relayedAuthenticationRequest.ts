@@ -7,40 +7,49 @@
  * Do not edit this class manually.
  */
 
-import { Purchase } from './purchase';
+import { Purchase } from "./purchase";
+
 
 export class RelayedAuthenticationRequest {
     /**
     * The unique identifier of the challenge.
     */
-    'id': string;
+    "id": string;
     /**
     * The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_) used for the purchase.
     */
-    'paymentInstrumentId': string;
-    'purchase': Purchase;
+    "paymentInstrumentId": string;
+    "purchase": Purchase;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "purchase",
             "baseName": "purchase",
-            "type": "Purchase"
+            "type": "Purchase",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return RelayedAuthenticationRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

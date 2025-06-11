@@ -7,65 +7,77 @@
  * Do not edit this class manually.
  */
 
-import { AuthenticationInfo } from './authenticationInfo';
-import { PurchaseInfo } from './purchaseInfo';
+import { AuthenticationInfo } from "./authenticationInfo";
+import { PurchaseInfo } from "./purchaseInfo";
+
 
 export class AuthenticationNotificationData {
-    'authentication': AuthenticationInfo;
+    "authentication": AuthenticationInfo;
     /**
     * The unique identifier of the balance platform.
     */
-    'balancePlatform'?: string;
+    "balancePlatform"?: string;
     /**
-    * Unique identifier of the authentication.
+    * The unique identifier of the authentication.
     */
-    'id': string;
+    "id": string;
     /**
-    * Unique identifier of the payment instrument that was used for the authentication.
+    * The unique identifier of the payment instrument that was used for the authentication.
     */
-    'paymentInstrumentId': string;
-    'purchase': PurchaseInfo;
+    "paymentInstrumentId": string;
+    "purchase": PurchaseInfo;
     /**
     * Outcome of the authentication. Allowed values: * authenticated * rejected * error
     */
-    'status': AuthenticationNotificationData.StatusEnum;
+    "status": AuthenticationNotificationData.StatusEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "authentication",
             "baseName": "authentication",
-            "type": "AuthenticationInfo"
+            "type": "AuthenticationInfo",
+            "format": ""
         },
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "purchase",
             "baseName": "purchase",
-            "type": "PurchaseInfo"
+            "type": "PurchaseInfo",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "AuthenticationNotificationData.StatusEnum"
+            "type": "AuthenticationNotificationData.StatusEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AuthenticationNotificationData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
