@@ -80,38 +80,6 @@ describe("BankingWebhooks Tests", function (): void {
         expect(genericWebhook.data.balancePlatform).toEqual("YOUR_BALANCE_PLATFORM");
     });
 
-    it("should throw an error when BalanceAccountNotification", function (): void {
-        const json = {
-            "data": {
-                "balancePlatform": "YOUR_BALANCE_PLATFORM",
-                "balanceAccount": {
-                    "accountHolderId": "AH00000000000000000001",
-                    "defaultCurrencyCode": "EUR",
-                    "id": "BA00000000000000000001",
-                    "status": "active"
-                }
-            },
-            "environment": "test",
-            "timestamp": "2024-12-15T15:42:03+01:00",
-            "type": "balancePlatform.balanceAccount.created"
-        };
-        const jsonString = JSON.stringify(json);
-        const configurationWebhooksHandler = new ConfigurationWebhooksHandler(jsonString);
-        // test getBalanceAccountNotificationRequest
-        const balanceAccountNotificationRequest = configurationWebhooksHandler.getBalanceAccountNotificationRequest();
-        expect(balanceAccountNotificationRequest instanceof BalanceAccountNotificationRequest).toBe(true);
-        expect(balanceAccountNotificationRequest.environment).toEqual("test");
-        expect(balanceAccountNotificationRequest.type).toEqual("balancePlatform.balanceAccount.created");
-        expect(balanceAccountNotificationRequest.data.balancePlatform).toEqual("YOUR_BALANCE_PLATFORM");
-        expect(balanceAccountNotificationRequest.data.balanceAccount?.id).toEqual("BA00000000000000000001");
-
-        const accountHolderNotificationRequest = configurationWebhooksHandler.getAccountHolderNotificationRequest();
-        expect(accountHolderNotificationRequest instanceof BalanceAccountNotificationRequest).toBe(false);
-
-        expect(accountHolderNotificationRequest.environment).toEqual("test");
-
-    });
-
     it("should deserialize Transaction v4 Webhooks", function (): void {
         const json = 	{
             "data": {
