@@ -1,8 +1,8 @@
-import { PaymentMethodCreatedNotificationRequest } from "../typings/managementWebhooks/paymentMethodCreatedNotificationRequest";
-import { MerchantUpdatedNotificationRequest } from "../typings/managementWebhooks/merchantUpdatedNotificationRequest";
-import { PaymentMethodRequestRemovedNotificationRequest } from "../typings/managementWebhooks/paymentMethodRequestRemovedNotificationRequest";
-import { PaymentMethodScheduledForRemovalNotificationRequest } from "../typings/managementWebhooks/paymentMethodScheduledForRemovalNotificationRequest";
-import { ManagementWebhooksHandler } from "../typings/managementWebhooks/managementWebhooksHandler";
+import { PaymentMethodCreatedNotificationRequest } from "../../typings/managementWebhooks/paymentMethodCreatedNotificationRequest";
+import { MerchantUpdatedNotificationRequest } from "../../typings/managementWebhooks/merchantUpdatedNotificationRequest";
+import { PaymentMethodRequestRemovedNotificationRequest } from "../../typings/managementWebhooks/paymentMethodRequestRemovedNotificationRequest";
+import { PaymentMethodScheduledForRemovalNotificationRequest } from "../../typings/managementWebhooks/paymentMethodScheduledForRemovalNotificationRequest";
+import { ManagementWebhooksHandler } from "../../typings/managementWebhooks/managementWebhooksHandler";
 
 describe("ManagementWebhooksHandler", function (): void {
 

@@ -1,5 +1,5 @@
-import { EstimationTrackingData } from "../typings/transferWebhooks/estimationTrackingData";
-import { TransferWebhooksHandler } from "../typings/transferWebhooks/transferWebhooksHandler";
+import { EstimationTrackingData } from "../../typings/transferWebhooks/estimationTrackingData";
+import { TransferWebhooksHandler } from "../../typings/transferWebhooks/transferWebhooksHandler";
 
 describe("Transfer Webhook Serialization", (): void => {
   // disabling temporarily (must address oneOf deserialization issue)

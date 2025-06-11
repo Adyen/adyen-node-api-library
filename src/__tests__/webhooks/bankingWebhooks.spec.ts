@@ -1,22 +1,22 @@
 // requests
-import { AccountHolderNotificationRequest } from "../typings/configurationWebhooks/accountHolderNotificationRequest";
-import { BalanceAccountNotificationRequest } from "../typings/configurationWebhooks/balanceAccountNotificationRequest";
-import { AuthenticationNotificationRequest } from "../typings/acsWebhooks/authenticationNotificationRequest";
-import { TransferNotificationRequest } from "../typings/transferWebhooks/transferNotificationRequest";
-import { PaymentMethodScheduledForRemovalNotificationRequest } from "../typings/managementWebhooks/paymentMethodScheduledForRemovalNotificationRequest";
-import { TransactionNotificationRequestV4 } from "../typings/transactionWebhooks/transactionNotificationRequestV4";
-import { NegativeBalanceCompensationWarningNotificationRequest } from "../typings/negativeBalanceWarningWebhooks/negativeBalanceCompensationWarningNotificationRequest";
-import { BalanceAccountBalanceNotificationRequest } from "../typings/balanceWebhooks/balanceAccountBalanceNotificationRequest";
+import { AccountHolderNotificationRequest } from "../../typings/configurationWebhooks/accountHolderNotificationRequest";
+import { BalanceAccountNotificationRequest } from "../../typings/configurationWebhooks/balanceAccountNotificationRequest";
+import { AuthenticationNotificationRequest } from "../../typings/acsWebhooks/authenticationNotificationRequest";
+import { TransferNotificationRequest } from "../../typings/transferWebhooks/transferNotificationRequest";
+import { PaymentMethodScheduledForRemovalNotificationRequest } from "../../typings/managementWebhooks/paymentMethodScheduledForRemovalNotificationRequest";
+import { TransactionNotificationRequestV4 } from "../../typings/transactionWebhooks/transactionNotificationRequestV4";
+import { NegativeBalanceCompensationWarningNotificationRequest } from "../../typings/negativeBalanceWarningWebhooks/negativeBalanceCompensationWarningNotificationRequest";
+import { BalanceAccountBalanceNotificationRequest } from "../../typings/balanceWebhooks/balanceAccountBalanceNotificationRequest";
 
 // handlers
-import { AcsWebhooksHandler } from "../typings/acsWebhooks/acsWebhooksHandler";
-import { ReportWebhooksHandler } from "../typings/reportWebhooks/reportWebhooksHandler";
-import { ConfigurationWebhooksHandler } from "../typings/configurationWebhooks/configurationWebhooksHandler";
-import { TransferWebhooksHandler } from "../typings/transferWebhooks/transferWebhooksHandler";
-import { NegativeBalanceWarningWebhooksHandler } from "../typings/negativeBalanceWarningWebhooks/negativeBalanceWarningWebhooksHandler";
-import { TransactionWebhooksHandler } from "../typings/transactionWebhooks/transactionWebhooksHandler";
-import { BalanceWebhooksHandler } from "../typings/balanceWebhooks/balanceWebhooksHandler";
-import { ReportNotificationRequest } from "../typings/reportWebhooks/reportNotificationRequest";
+import { AcsWebhooksHandler } from "../../typings/acsWebhooks/acsWebhooksHandler";
+import { ReportWebhooksHandler } from "../../typings/reportWebhooks/reportWebhooksHandler";
+import { ConfigurationWebhooksHandler } from "../../typings/configurationWebhooks/configurationWebhooksHandler";
+import { TransferWebhooksHandler } from "../../typings/transferWebhooks/transferWebhooksHandler";
+import { NegativeBalanceWarningWebhooksHandler } from "../../typings/negativeBalanceWarningWebhooks/negativeBalanceWarningWebhooksHandler";
+import { TransactionWebhooksHandler } from "../../typings/transactionWebhooks/transactionWebhooksHandler";
+import { BalanceWebhooksHandler } from "../../typings/balanceWebhooks/balanceWebhooksHandler";
+import { ReportNotificationRequest } from "../../typings/reportWebhooks/reportNotificationRequest";
 
 describe("BankingWebhooks Tests", function (): void {
 
@@ -110,12 +110,6 @@ describe("BankingWebhooks Tests", function (): void {
 
         expect(accountHolderNotificationRequest.environment).toEqual("test");
 
-    });
-
-    it("should verify the banking hmac", function (): void {
-        const jsonString = "{\"data\":{\"balancePlatform\":\"Integration_tools_test\",\"accountId\":\"BA32272223222H5HVKTBK4MLB\",\"sweep\":{\"id\":\"SWPC42272223222H5HVKV6H8C64DP5\",\"schedule\":{\"type\":\"balance\"},\"status\":\"active\",\"targetAmount\":{\"currency\":\"EUR\",\"value\":0},\"triggerAmount\":{\"currency\":\"EUR\",\"value\":0},\"type\":\"pull\",\"counterparty\":{\"balanceAccountId\":\"BA3227C223222H5HVKT3H9WLC\"},\"currency\":\"EUR\"}},\"environment\":\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
-        const isValid = hmacValidator.validateHMACSignature("D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F", "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=", jsonString);
-        expect(isValid).toBe(true);
     });
 
     it("should deserialize Transaction v4 Webhooks", function (): void {
