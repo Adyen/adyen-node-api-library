@@ -7,49 +7,59 @@
  * Do not edit this class manually.
  */
 
-import { BalanceNotificationData } from './balanceNotificationData';
+import { BalanceNotificationData } from "./balanceNotificationData";
+
 
 export class BalanceAccountBalanceNotificationRequest {
-    'data': BalanceNotificationData;
+    "data": BalanceNotificationData;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    'environment': string;
+    "environment": string;
     /**
     * When the event was queued.
     */
-    'timestamp'?: Date;
+    "timestamp"?: Date;
     /**
     * Type of webhook.
     */
-    'type': BalanceAccountBalanceNotificationRequest.TypeEnum;
+    "type": BalanceAccountBalanceNotificationRequest.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "BalanceNotificationData"
+            "type": "BalanceNotificationData",
+            "format": ""
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BalanceAccountBalanceNotificationRequest.TypeEnum"
+            "type": "BalanceAccountBalanceNotificationRequest.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BalanceAccountBalanceNotificationRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
