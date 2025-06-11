@@ -7,15 +7,16 @@
  * Do not edit this class manually.
  */
 
-import { AccountHolder } from "./accountHolder";
 
-
-export class AccountHolderNotificationData {
-    "accountHolder"?: AccountHolder;
+export class Device {
     /**
-    * The unique identifier of the balance platform.
+    * The type of the device used for provisioning the network token.  For example, **phone**, **mobile_phone**, **watch**, **mobilephone_or_tablet**, etc
     */
-    "balancePlatform"?: string;
+    "formFactor"?: string;
+    /**
+    * The operating system of the device used for provisioning the network token.
+    */
+    "osName"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -23,20 +24,20 @@ export class AccountHolderNotificationData {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "accountHolder",
-            "baseName": "accountHolder",
-            "type": "AccountHolder",
+            "name": "formFactor",
+            "baseName": "formFactor",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "balancePlatform",
-            "baseName": "balancePlatform",
+            "name": "osName",
+            "baseName": "osName",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return AccountHolderNotificationData.attributeTypeMap;
+        return Device.attributeTypeMap;
     }
 
     public constructor() {

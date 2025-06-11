@@ -12,82 +12,95 @@ export class BankAccountDetails {
     /**
     * The bank account number, without separators or whitespace.
     */
-    'accountNumber'?: string;
+    "accountNumber"?: string;
     /**
     * The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
     */
-    'accountType'?: string;
+    "accountType"?: string;
     /**
     * The bank account branch number, without separators or whitespace
     */
-    'branchNumber'?: string;
+    "branchNumber"?: string;
     /**
     * Business accounts with a `formFactor` value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the `formFactor` value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
     */
-    'formFactor'?: string;
+    "formFactor"?: string;
     /**
     * The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
     */
-    'iban'?: string;
+    "iban"?: string;
     /**
     * The [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.
     */
-    'routingNumber'?: string;
+    "routingNumber"?: string;
     /**
     * The [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
     */
-    'sortCode'?: string;
+    "sortCode"?: string;
     /**
     * **iban** or **usLocal** or **ukLocal**
     */
-    'type': string;
+    "type": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "accountType",
             "baseName": "accountType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "branchNumber",
             "baseName": "branchNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "formFactor",
             "baseName": "formFactor",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "iban",
             "baseName": "iban",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "routingNumber",
             "baseName": "routingNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "sortCode",
             "baseName": "sortCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BankAccountDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,11 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { SweepConfigurationNotificationData } from "./sweepConfigurationNotificationData";
+import { NetworkTokenNotificationDataV2 } from "./networkTokenNotificationDataV2";
 
 
-export class SweepConfigurationNotificationRequest {
-    "data": SweepConfigurationNotificationData;
+export class NetworkTokenNotificationRequest {
+    "data": NetworkTokenNotificationDataV2;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
@@ -21,9 +21,9 @@ export class SweepConfigurationNotificationRequest {
     */
     "timestamp"?: Date;
     /**
-    * Type of webhook.
+    * The type of webhook.
     */
-    "type": SweepConfigurationNotificationRequest.TypeEnum;
+    "type": NetworkTokenNotificationRequest.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -33,7 +33,7 @@ export class SweepConfigurationNotificationRequest {
         {
             "name": "data",
             "baseName": "data",
-            "type": "SweepConfigurationNotificationData",
+            "type": "NetworkTokenNotificationDataV2",
             "format": ""
         },
         {
@@ -51,22 +51,21 @@ export class SweepConfigurationNotificationRequest {
         {
             "name": "type",
             "baseName": "type",
-            "type": "SweepConfigurationNotificationRequest.TypeEnum",
+            "type": "NetworkTokenNotificationRequest.TypeEnum",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return SweepConfigurationNotificationRequest.attributeTypeMap;
+        return NetworkTokenNotificationRequest.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace SweepConfigurationNotificationRequest {
+export namespace NetworkTokenNotificationRequest {
     export enum TypeEnum {
-        BalancePlatformBalanceAccountSweepCreated = 'balancePlatform.balanceAccountSweep.created',
-        BalancePlatformBalanceAccountSweepUpdated = 'balancePlatform.balanceAccountSweep.updated',
-        BalancePlatformBalanceAccountSweepDeleted = 'balancePlatform.balanceAccountSweep.deleted'
+        BalancePlatformNetworkTokenCreated = 'balancePlatform.networkToken.created',
+        BalancePlatformNetworkTokenUpdated = 'balancePlatform.networkToken.updated'
     }
 }

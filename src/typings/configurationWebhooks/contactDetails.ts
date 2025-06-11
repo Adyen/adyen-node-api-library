@@ -7,47 +7,57 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './address';
-import { Phone } from './phone';
+import { Address } from "./address";
+import { Phone } from "./phone";
+
 
 export class ContactDetails {
-    'address': Address;
+    "address": Address;
     /**
     * The email address of the account holder.
     */
-    'email': string;
-    'phone': Phone;
+    "email": string;
+    "phone": Phone;
     /**
     * The URL of the account holder\'s website.
     */
-    'webAddress'?: string;
+    "webAddress"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address"
+            "type": "Address",
+            "format": ""
         },
         {
             "name": "email",
             "baseName": "email",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "phone",
             "baseName": "phone",
-            "type": "Phone"
+            "type": "Phone",
+            "format": ""
         },
         {
             "name": "webAddress",
             "baseName": "webAddress",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ContactDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

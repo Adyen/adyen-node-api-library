@@ -7,15 +7,16 @@
  * Do not edit this class manually.
  */
 
-import { AccountHolder } from "./accountHolder";
 
-
-export class AccountHolderNotificationData {
-    "accountHolder"?: AccountHolder;
+export class TokenAuthentication {
     /**
-    * The unique identifier of the balance platform.
+    * The method used to complete the authentication process.  Possible values: **sms_OTP**, **email_OTP**.
     */
-    "balancePlatform"?: string;
+    "method"?: string;
+    /**
+    * The result of the authentication process.
+    */
+    "result"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -23,20 +24,20 @@ export class AccountHolderNotificationData {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "accountHolder",
-            "baseName": "accountHolder",
-            "type": "AccountHolder",
+            "name": "method",
+            "baseName": "method",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "balancePlatform",
-            "baseName": "balancePlatform",
+            "name": "result",
+            "baseName": "result",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return AccountHolderNotificationData.attributeTypeMap;
+        return TokenAuthentication.attributeTypeMap;
     }
 
     public constructor() {
