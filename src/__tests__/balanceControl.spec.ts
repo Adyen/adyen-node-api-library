@@ -44,7 +44,7 @@ describe("Balance Control", (): void => {
         scope.post("/balanceTransfer")
             .reply(200, expected);
 
-        const response: BalanceTransferResponse = await balanceService.balanceTransfer(request);
+        const response: BalanceTransferResponse = await balanceService.BalanceControlApi.balanceTransfer(request);
         expect(response.status).toEqual(BalanceTransferResponse.StatusEnum.Transferred);
     });
 
@@ -61,7 +61,7 @@ describe("Balance Control", (): void => {
             scope.post("/balanceTransfer")
                 .reply(422, expected);
 
-            await balanceService.balanceTransfer(request);
+            await balanceService.BalanceControlApi.balanceTransfer(request);
             fail("No exception was thrown");
         } catch (error) {
             expect(error instanceof HttpClientException).toBeTruthy();
@@ -73,7 +73,7 @@ describe("Balance Control", (): void => {
                 expect(error.apiError).toBeTruthy();
                 expect(error.apiError?.errorCode).toBe("30_004");
                 expect(error.apiError?.message).toBe("Merchant account code is invalid or missing");
-                expect(error.apiError?.errorType).toBe("validation")
+                expect(error.apiError?.errorType).toBe("validation");
             } else {
                 fail("Error did not contain the expected data");
             }

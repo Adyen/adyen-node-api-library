@@ -7,65 +7,77 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { PlatformChargebackLogic } from './platformChargebackLogic';
+import { Amount } from "./amount";
+import { PlatformChargebackLogic } from "./platformChargebackLogic";
+
 
 export class DonationRequest {
     /**
     * The Adyen account name of the charity.
     */
-    'donationAccount': string;
+    "donationAccount": string;
     /**
     * The merchant account that is used to process the payment.
     */
-    'merchantAccount': string;
-    'modificationAmount': Amount;
+    "merchantAccount": string;
+    "modificationAmount": Amount;
     /**
     * The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
     */
-    'originalReference'?: string;
-    'platformChargebackLogic'?: PlatformChargebackLogic | null;
+    "originalReference"?: string;
+    "platformChargebackLogic"?: PlatformChargebackLogic;
     /**
     * Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
     */
-    'reference'?: string;
+    "reference"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "donationAccount",
             "baseName": "donationAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "modificationAmount",
             "baseName": "modificationAmount",
-            "type": "Amount"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "originalReference",
             "baseName": "originalReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null"
+            "type": "PlatformChargebackLogic",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DonationRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

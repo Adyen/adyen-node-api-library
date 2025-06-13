@@ -51,7 +51,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const issueResponse: storedValue.StoredValueIssueResponse = await storedValueService.issue(issueRequest);
+        const issueResponse: storedValue.StoredValueIssueResponse = await storedValueService.StoredValueApi.issue(issueRequest);
         expect(issueResponse.pspReference).toEqual("851564651069192J");
 
     });
@@ -81,7 +81,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const issueResponse: storedValue.StoredValueIssueResponse = await storedValueService.issue(issueRequest);
+        const issueResponse: storedValue.StoredValueIssueResponse = await storedValueService.StoredValueApi.issue(issueRequest);
         expect(issueResponse.pspReference).toEqual("851564651069192J");
 
     });
@@ -113,7 +113,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const changeStatusResponse: storedValue.StoredValueStatusChangeResponse = await storedValueService.changeStatus(statusRequest);
+        const changeStatusResponse: storedValue.StoredValueStatusChangeResponse = await storedValueService.StoredValueApi.changeStatus(statusRequest);
         expect(changeStatusResponse.pspReference).toEqual("851564652149588K");
     });
 
@@ -141,7 +141,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const changeStatusResponse: storedValue.StoredValueStatusChangeResponse = await storedValueService.changeStatus(statusRequest);
+        const changeStatusResponse: storedValue.StoredValueStatusChangeResponse = await storedValueService.StoredValueApi.changeStatus(statusRequest);
         expect(changeStatusResponse.pspReference).toEqual("851564652149588K");
     });
 
@@ -172,7 +172,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const loadResponse: storedValue.StoredValueLoadResponse = await storedValueService.load(loadRequest);
+        const loadResponse: storedValue.StoredValueLoadResponse = await storedValueService.StoredValueApi.load(loadRequest);
         expect(loadResponse.pspReference).toEqual("851564654294247B");
     });
 
@@ -198,7 +198,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const checkBalanceResponse: storedValue.StoredValueBalanceCheckResponse = await storedValueService.checkBalance(checkBalanceRequest);
+        const checkBalanceResponse: storedValue.StoredValueBalanceCheckResponse = await storedValueService.StoredValueApi.checkBalance(checkBalanceRequest);
         expect(checkBalanceResponse.pspReference).toEqual("881564657480267D");
     });
 
@@ -228,7 +228,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const mergeBalanceResponse: storedValue.StoredValueBalanceMergeResponse = await storedValueService.mergeBalance(mergeBalanceRequest);
+        const mergeBalanceResponse: storedValue.StoredValueBalanceMergeResponse = await storedValueService.StoredValueApi.mergeBalance(mergeBalanceRequest);
         expect(mergeBalanceResponse.pspReference).toEqual("881564657480267D");
     });
 
@@ -249,7 +249,7 @@ describe("StoredValue", (): void => {
             "reference": "YOUR_REFERENCE"
         };
 
-        const voidTransactionResponse: storedValue.StoredValueVoidResponse = await storedValueService.voidTransaction(voidTransactionRequest);
+        const voidTransactionResponse: storedValue.StoredValueVoidResponse = await storedValueService.StoredValueApi.voidTransaction(voidTransactionRequest);
         expect(voidTransactionResponse.pspReference).toEqual("851564673300692A");
     });
 });

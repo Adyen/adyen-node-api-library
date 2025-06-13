@@ -31,7 +31,6 @@ export class DataProtectionAPI extends Service {
     }
 
     /**
-    /**
     * @deprecated Use services/dataProtection/DataProtectionAPI
     * 
     * @summary Submit a Subject Erasure Request.

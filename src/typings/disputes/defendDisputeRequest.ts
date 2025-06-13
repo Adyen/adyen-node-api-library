@@ -12,37 +12,45 @@ export class DefendDisputeRequest {
     /**
     * The defense reason code that was selected to defend this dispute.
     */
-    'defenseReasonCode': string;
+    "defenseReasonCode": string;
     /**
     * The PSP reference assigned to the dispute.
     */
-    'disputePspReference': string;
+    "disputePspReference": string;
     /**
     * The merchant account identifier, for which you want to process the dispute transaction.
     */
-    'merchantAccountCode': string;
+    "merchantAccountCode": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "defenseReasonCode",
             "baseName": "defenseReasonCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "disputePspReference",
             "baseName": "disputePspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAccountCode",
             "baseName": "merchantAccountCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DefendDisputeRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

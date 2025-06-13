@@ -7,43 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { DefenseDocument } from './defenseDocument';
+import { DefenseDocument } from "./defenseDocument";
+
 
 export class SupplyDefenseDocumentRequest {
     /**
     * An array containing a list of the defense documents.
     */
-    'defenseDocuments': Array<DefenseDocument>;
+    "defenseDocuments": Array<DefenseDocument>;
     /**
     * The PSP reference assigned to the dispute.
     */
-    'disputePspReference': string;
+    "disputePspReference": string;
     /**
     * The merchant account identifier, for which you want to process the dispute transaction.
     */
-    'merchantAccountCode': string;
+    "merchantAccountCode": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "defenseDocuments",
             "baseName": "defenseDocuments",
-            "type": "Array<DefenseDocument>"
+            "type": "Array<DefenseDocument>",
+            "format": ""
         },
         {
             "name": "disputePspReference",
             "baseName": "disputePspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantAccountCode",
             "baseName": "merchantAccountCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SupplyDefenseDocumentRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

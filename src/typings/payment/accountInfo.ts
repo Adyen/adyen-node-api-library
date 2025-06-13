@@ -12,190 +12,214 @@ export class AccountInfo {
     /**
     * Indicator for the length of time since this shopper account was created in the merchant\'s environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
     */
-    'accountAgeIndicator'?: AccountInfo.AccountAgeIndicatorEnum;
+    "accountAgeIndicator"?: AccountInfo.AccountAgeIndicatorEnum;
     /**
     * Date when the shopper\'s account was last changed.
     */
-    'accountChangeDate'?: Date;
+    "accountChangeDate"?: Date;
     /**
     * Indicator for the length of time since the shopper\'s account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
     */
-    'accountChangeIndicator'?: AccountInfo.AccountChangeIndicatorEnum;
+    "accountChangeIndicator"?: AccountInfo.AccountChangeIndicatorEnum;
     /**
     * Date when the shopper\'s account was created.
     */
-    'accountCreationDate'?: Date;
+    "accountCreationDate"?: Date;
     /**
     * Indicates the type of account. For example, for a multi-account card product. Allowed values: * notApplicable * credit * debit
     */
-    'accountType'?: AccountInfo.AccountTypeEnum;
+    "accountType"?: AccountInfo.AccountTypeEnum;
     /**
     * Number of attempts the shopper tried to add a card to their account in the last day.
     */
-    'addCardAttemptsDay'?: number;
+    "addCardAttemptsDay"?: number;
     /**
     * Date the selected delivery address was first used.
     */
-    'deliveryAddressUsageDate'?: Date;
+    "deliveryAddressUsageDate"?: Date;
     /**
     * Indicator for the length of time since this delivery address was first used. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
     */
-    'deliveryAddressUsageIndicator'?: AccountInfo.DeliveryAddressUsageIndicatorEnum;
+    "deliveryAddressUsageIndicator"?: AccountInfo.DeliveryAddressUsageIndicatorEnum;
     /**
     * Shopper\'s home phone number (including the country code).
     *
 	* @deprecated since Adyen Payment API v68
 	* Use `ThreeDS2RequestData.homePhone` instead.
     */
-    'homePhone'?: string;
+    "homePhone"?: string;
     /**
     * Shopper\'s mobile phone number (including the country code).
     *
 	* @deprecated since Adyen Payment API v68
 	* Use `ThreeDS2RequestData.mobilePhone` instead.
     */
-    'mobilePhone'?: string;
+    "mobilePhone"?: string;
     /**
     * Date when the shopper last changed their password.
     */
-    'passwordChangeDate'?: Date;
+    "passwordChangeDate"?: Date;
     /**
     * Indicator when the shopper has changed their password. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
     */
-    'passwordChangeIndicator'?: AccountInfo.PasswordChangeIndicatorEnum;
+    "passwordChangeIndicator"?: AccountInfo.PasswordChangeIndicatorEnum;
     /**
     * Number of all transactions (successful and abandoned) from this shopper in the past 24 hours.
     */
-    'pastTransactionsDay'?: number;
+    "pastTransactionsDay"?: number;
     /**
     * Number of all transactions (successful and abandoned) from this shopper in the past year.
     */
-    'pastTransactionsYear'?: number;
+    "pastTransactionsYear"?: number;
     /**
     * Date this payment method was added to the shopper\'s account.
     */
-    'paymentAccountAge'?: Date;
+    "paymentAccountAge"?: Date;
     /**
     * Indicator for the length of time since this payment method was added to this shopper\'s account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
     */
-    'paymentAccountIndicator'?: AccountInfo.PaymentAccountIndicatorEnum;
+    "paymentAccountIndicator"?: AccountInfo.PaymentAccountIndicatorEnum;
     /**
     * Number of successful purchases in the last six months.
     */
-    'purchasesLast6Months'?: number;
+    "purchasesLast6Months"?: number;
     /**
     * Whether suspicious activity was recorded on this account.
     */
-    'suspiciousActivity'?: boolean;
+    "suspiciousActivity"?: boolean;
     /**
     * Shopper\'s work phone number (including the country code).
     *
 	* @deprecated since Adyen Payment API v68
 	* Use `ThreeDS2RequestData.workPhone` instead.
     */
-    'workPhone'?: string;
+    "workPhone"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountAgeIndicator",
             "baseName": "accountAgeIndicator",
-            "type": "AccountInfo.AccountAgeIndicatorEnum"
+            "type": "AccountInfo.AccountAgeIndicatorEnum",
+            "format": ""
         },
         {
             "name": "accountChangeDate",
             "baseName": "accountChangeDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "accountChangeIndicator",
             "baseName": "accountChangeIndicator",
-            "type": "AccountInfo.AccountChangeIndicatorEnum"
+            "type": "AccountInfo.AccountChangeIndicatorEnum",
+            "format": ""
         },
         {
             "name": "accountCreationDate",
             "baseName": "accountCreationDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "accountType",
             "baseName": "accountType",
-            "type": "AccountInfo.AccountTypeEnum"
+            "type": "AccountInfo.AccountTypeEnum",
+            "format": ""
         },
         {
             "name": "addCardAttemptsDay",
             "baseName": "addCardAttemptsDay",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "deliveryAddressUsageDate",
             "baseName": "deliveryAddressUsageDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "deliveryAddressUsageIndicator",
             "baseName": "deliveryAddressUsageIndicator",
-            "type": "AccountInfo.DeliveryAddressUsageIndicatorEnum"
+            "type": "AccountInfo.DeliveryAddressUsageIndicatorEnum",
+            "format": ""
         },
         {
             "name": "homePhone",
             "baseName": "homePhone",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "mobilePhone",
             "baseName": "mobilePhone",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "passwordChangeDate",
             "baseName": "passwordChangeDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "passwordChangeIndicator",
             "baseName": "passwordChangeIndicator",
-            "type": "AccountInfo.PasswordChangeIndicatorEnum"
+            "type": "AccountInfo.PasswordChangeIndicatorEnum",
+            "format": ""
         },
         {
             "name": "pastTransactionsDay",
             "baseName": "pastTransactionsDay",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "pastTransactionsYear",
             "baseName": "pastTransactionsYear",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "paymentAccountAge",
             "baseName": "paymentAccountAge",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "paymentAccountIndicator",
             "baseName": "paymentAccountIndicator",
-            "type": "AccountInfo.PaymentAccountIndicatorEnum"
+            "type": "AccountInfo.PaymentAccountIndicatorEnum",
+            "format": ""
         },
         {
             "name": "purchasesLast6Months",
             "baseName": "purchasesLast6Months",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "suspiciousActivity",
             "baseName": "suspiciousActivity",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "workPhone",
             "baseName": "workPhone",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AccountInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

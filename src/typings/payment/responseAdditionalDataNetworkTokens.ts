@@ -12,37 +12,45 @@ export class ResponseAdditionalDataNetworkTokens {
     /**
     * Indicates whether a network token is available for the specified card.
     */
-    'networkToken_available'?: string;
+    "networkToken_available"?: string;
     /**
     * The Bank Identification Number of a tokenized card, which is the first six digits of a card number.
     */
-    'networkToken_bin'?: string;
+    "networkToken_bin"?: string;
     /**
     * The last four digits of a network token.
     */
-    'networkToken_tokenSummary'?: string;
+    "networkToken_tokenSummary"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "networkToken_available",
             "baseName": "networkToken.available",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "networkToken_bin",
             "baseName": "networkToken.bin",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "networkToken_tokenSummary",
             "baseName": "networkToken.tokenSummary",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalDataNetworkTokens.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

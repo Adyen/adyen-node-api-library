@@ -7,32 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { DefenseReason } from './defenseReason';
-import { DisputeServiceResult } from './disputeServiceResult';
+import { DefenseReason } from "./defenseReason";
+import { DisputeServiceResult } from "./disputeServiceResult";
+
 
 export class DefenseReasonsResponse {
     /**
     * The defense reasons that can be used to defend the dispute.
     */
-    'defenseReasons'?: Array<DefenseReason>;
-    'disputeServiceResult': DisputeServiceResult;
+    "defenseReasons"?: Array<DefenseReason>;
+    "disputeServiceResult": DisputeServiceResult;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "defenseReasons",
             "baseName": "defenseReasons",
-            "type": "Array<DefenseReason>"
+            "type": "Array<DefenseReason>",
+            "format": ""
         },
         {
             "name": "disputeServiceResult",
             "baseName": "disputeServiceResult",
-            "type": "DisputeServiceResult"
+            "type": "DisputeServiceResult",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DefenseReasonsResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

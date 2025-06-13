@@ -16,6 +16,10 @@ import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/balanceControl/models";
 
+/**
+ * The service has been moved to a different package 'balanceControl'
+ * @deprecated Use services/balanceControl/balanceControlAPI
+ */
 export class BalanceControlAPI extends Service {
     
     private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/BalanceControl/v1";
@@ -27,6 +31,8 @@ export class BalanceControlAPI extends Service {
     }
 
     /**
+    * @deprecated Use services/balanceControl/BalanceControlAPI
+    * 
     * @summary Start a balance transfer
     * @param balanceTransferRequest {@link BalanceTransferRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -35,13 +41,13 @@ export class BalanceControlAPI extends Service {
     public async balanceTransfer(balanceTransferRequest: BalanceTransferRequest, requestOptions?: IRequest.Options): Promise<BalanceTransferResponse> {
         const endpoint = `${this.baseUrl}/balanceTransfer`;
         const resource = new Resource(this, endpoint);
-        const request: BalanceTransferRequest = ObjectSerializer.serialize(balanceTransferRequest, "BalanceTransferRequest");
+        const request: BalanceTransferRequest = ObjectSerializer.serialize(balanceTransferRequest, "BalanceTransferRequest", "");
         const response = await getJsonResponse<BalanceTransferRequest, BalanceTransferResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "BalanceTransferResponse");
+        return ObjectSerializer.deserialize(response, "BalanceTransferResponse", "");
     }
 }
 

@@ -12,37 +12,45 @@ export class PlatformChargebackLogic {
     /**
     * The method of handling the chargeback.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.
     */
-    'behavior'?: PlatformChargebackLogic.BehaviorEnum;
+    "behavior"?: PlatformChargebackLogic.BehaviorEnum;
     /**
     * The unique identifier of the balance account to which the chargeback fees are booked. By default, the chargeback fees are booked to your liable balance account.
     */
-    'costAllocationAccount'?: string;
+    "costAllocationAccount"?: string;
     /**
     * The unique identifier of the balance account against which the disputed amount is booked.  Required if `behavior` is **deductFromOneBalanceAccount**.
     */
-    'targetAccount'?: string;
+    "targetAccount"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "behavior",
             "baseName": "behavior",
-            "type": "PlatformChargebackLogic.BehaviorEnum"
+            "type": "PlatformChargebackLogic.BehaviorEnum",
+            "format": ""
         },
         {
             "name": "costAllocationAccount",
             "baseName": "costAllocationAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "targetAccount",
             "baseName": "targetAccount",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PlatformChargebackLogic.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

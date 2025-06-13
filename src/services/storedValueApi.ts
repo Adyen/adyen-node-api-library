@@ -26,6 +26,10 @@ import { IRequest } from "../typings/requestOptions";
 import Resource from "./resource";
 import { ObjectSerializer } from "../typings/storedValue/models";
 
+/**
+ * The service has been moved to a different package 'storedValue'
+ * @deprecated Use services/storedValue/StoredValueAPI
+ */
 export class StoredValueAPI extends Service {
     
     private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/StoredValue/v46";
@@ -37,6 +41,8 @@ export class StoredValueAPI extends Service {
     }
 
     /**
+    * @deprecated Use services/storedValue/StoredValueAPI
+    * 
     * @summary Changes the status of the payment method.
     * @param storedValueStatusChangeRequest {@link StoredValueStatusChangeRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -45,16 +51,18 @@ export class StoredValueAPI extends Service {
     public async changeStatus(storedValueStatusChangeRequest: StoredValueStatusChangeRequest, requestOptions?: IRequest.Options): Promise<StoredValueStatusChangeResponse> {
         const endpoint = `${this.baseUrl}/changeStatus`;
         const resource = new Resource(this, endpoint);
-        const request: StoredValueStatusChangeRequest = ObjectSerializer.serialize(storedValueStatusChangeRequest, "StoredValueStatusChangeRequest");
+        const request: StoredValueStatusChangeRequest = ObjectSerializer.serialize(storedValueStatusChangeRequest, "StoredValueStatusChangeRequest", "");
         const response = await getJsonResponse<StoredValueStatusChangeRequest, StoredValueStatusChangeResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "StoredValueStatusChangeResponse");
+        return ObjectSerializer.deserialize(response, "StoredValueStatusChangeResponse", "");
     }
 
     /**
+    * @deprecated Use services/storedValue/StoredValueAPI
+    * 
     * @summary Checks the balance.
     * @param storedValueBalanceCheckRequest {@link StoredValueBalanceCheckRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -63,16 +71,18 @@ export class StoredValueAPI extends Service {
     public async checkBalance(storedValueBalanceCheckRequest: StoredValueBalanceCheckRequest, requestOptions?: IRequest.Options): Promise<StoredValueBalanceCheckResponse> {
         const endpoint = `${this.baseUrl}/checkBalance`;
         const resource = new Resource(this, endpoint);
-        const request: StoredValueBalanceCheckRequest = ObjectSerializer.serialize(storedValueBalanceCheckRequest, "StoredValueBalanceCheckRequest");
+        const request: StoredValueBalanceCheckRequest = ObjectSerializer.serialize(storedValueBalanceCheckRequest, "StoredValueBalanceCheckRequest", "");
         const response = await getJsonResponse<StoredValueBalanceCheckRequest, StoredValueBalanceCheckResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "StoredValueBalanceCheckResponse");
+        return ObjectSerializer.deserialize(response, "StoredValueBalanceCheckResponse", "");
     }
 
     /**
+    * @deprecated Use services/storedValue/StoredValueAPI
+    * 
     * @summary Issues a new card.
     * @param storedValueIssueRequest {@link StoredValueIssueRequest } 
     * @param requestOptions {@link IRequest.Options }
@@ -81,13 +91,13 @@ export class StoredValueAPI extends Service {
     public async issue(storedValueIssueRequest: StoredValueIssueRequest, requestOptions?: IRequest.Options): Promise<StoredValueIssueResponse> {
         const endpoint = `${this.baseUrl}/issue`;
         const resource = new Resource(this, endpoint);
-        const request: StoredValueIssueRequest = ObjectSerializer.serialize(storedValueIssueRequest, "StoredValueIssueRequest");
+        const request: StoredValueIssueRequest = ObjectSerializer.serialize(storedValueIssueRequest, "StoredValueIssueRequest", "");
         const response = await getJsonResponse<StoredValueIssueRequest, StoredValueIssueResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "StoredValueIssueResponse");
+        return ObjectSerializer.deserialize(response, "StoredValueIssueResponse", "");
     }
 
     /**
@@ -99,13 +109,13 @@ export class StoredValueAPI extends Service {
     public async load(storedValueLoadRequest: StoredValueLoadRequest, requestOptions?: IRequest.Options): Promise<StoredValueLoadResponse> {
         const endpoint = `${this.baseUrl}/load`;
         const resource = new Resource(this, endpoint);
-        const request: StoredValueLoadRequest = ObjectSerializer.serialize(storedValueLoadRequest, "StoredValueLoadRequest");
+        const request: StoredValueLoadRequest = ObjectSerializer.serialize(storedValueLoadRequest, "StoredValueLoadRequest", "");
         const response = await getJsonResponse<StoredValueLoadRequest, StoredValueLoadResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "StoredValueLoadResponse");
+        return ObjectSerializer.deserialize(response, "StoredValueLoadResponse", "");
     }
 
     /**
@@ -117,13 +127,13 @@ export class StoredValueAPI extends Service {
     public async mergeBalance(storedValueBalanceMergeRequest: StoredValueBalanceMergeRequest, requestOptions?: IRequest.Options): Promise<StoredValueBalanceMergeResponse> {
         const endpoint = `${this.baseUrl}/mergeBalance`;
         const resource = new Resource(this, endpoint);
-        const request: StoredValueBalanceMergeRequest = ObjectSerializer.serialize(storedValueBalanceMergeRequest, "StoredValueBalanceMergeRequest");
+        const request: StoredValueBalanceMergeRequest = ObjectSerializer.serialize(storedValueBalanceMergeRequest , "StoredValueBalanceMergeRequest", "");
         const response = await getJsonResponse<StoredValueBalanceMergeRequest, StoredValueBalanceMergeResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "StoredValueBalanceMergeResponse");
+        return ObjectSerializer.deserialize(response, "StoredValueBalanceMergeResponse", "");
     }
 
     /**
@@ -135,13 +145,13 @@ export class StoredValueAPI extends Service {
     public async voidTransaction(storedValueVoidRequest: StoredValueVoidRequest, requestOptions?: IRequest.Options): Promise<StoredValueVoidResponse> {
         const endpoint = `${this.baseUrl}/voidTransaction`;
         const resource = new Resource(this, endpoint);
-        const request: StoredValueVoidRequest = ObjectSerializer.serialize(storedValueVoidRequest, "StoredValueVoidRequest");
+        const request: StoredValueVoidRequest = ObjectSerializer.serialize(storedValueVoidRequest, "StoredValueVoidRequest", "");
         const response = await getJsonResponse<StoredValueVoidRequest, StoredValueVoidResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "StoredValueVoidResponse");
+        return ObjectSerializer.deserialize(response, "StoredValueVoidResponse", "");
     }
 }
 

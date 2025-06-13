@@ -7,67 +7,79 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from "./amount";
+
 
 export class StoredValueLoadResponse {
     /**
     * Authorisation code: * When the payment is authorised, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.
     */
-    'authCode'?: string;
-    'currentBalance'?: Amount | null;
+    "authCode"?: string;
+    "currentBalance"?: Amount;
     /**
     * Adyen\'s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
-    'pspReference'?: string;
+    "pspReference"?: string;
     /**
     * If the transaction is refused or an error occurs, this field holds Adyen\'s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.
     */
-    'refusalReason'?: string;
+    "refusalReason"?: string;
     /**
     * The result of the payment. Possible values:  * **Success** – The operation has been completed successfully.  * **Refused** – The operation was refused. The reason is given in the `refusalReason` field.  * **Error** – There was an error when the operation was processed. The reason is given in the `refusalReason` field.  * **NotEnoughBalance** – The amount on the payment method is lower than the amount given in the request. Only applicable to balance checks.  
     */
-    'resultCode'?: StoredValueLoadResponse.ResultCodeEnum;
+    "resultCode"?: StoredValueLoadResponse.ResultCodeEnum;
     /**
     * Raw refusal reason received from the third party, where available
     */
-    'thirdPartyRefusalReason'?: string;
+    "thirdPartyRefusalReason"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "authCode",
             "baseName": "authCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "currentBalance",
             "baseName": "currentBalance",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "refusalReason",
             "baseName": "refusalReason",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "StoredValueLoadResponse.ResultCodeEnum"
+            "type": "StoredValueLoadResponse.ResultCodeEnum",
+            "format": ""
         },
         {
             "name": "thirdPartyRefusalReason",
             "baseName": "thirdPartyRefusalReason",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return StoredValueLoadResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
