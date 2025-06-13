@@ -12,55 +12,65 @@ export class Balance {
     /**
     * The balance available for use.
     */
-    'available': number;
+    "available": number;
     /**
     * The sum of the transactions that have already been settled.
     */
-    'balance': number;
+    "balance": number;
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.
     */
-    'currency': string;
+    "currency": string;
     /**
     * The sum of the transactions that will be settled in the future.
     */
-    'pending'?: number;
+    "pending"?: number;
     /**
     * The balance currently held in reserve.
     */
-    'reserved': number;
+    "reserved": number;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "available",
             "baseName": "available",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "balance",
             "baseName": "balance",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "pending",
             "baseName": "pending",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "reserved",
             "baseName": "reserved",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
         return Balance.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

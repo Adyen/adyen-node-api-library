@@ -7,49 +7,59 @@
  * Do not edit this class manually.
  */
 
-import { AuthenticationNotificationData } from './authenticationNotificationData';
+import { AuthenticationNotificationData } from "./authenticationNotificationData";
+
 
 export class AuthenticationNotificationRequest {
-    'data': AuthenticationNotificationData;
+    "data": AuthenticationNotificationData;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    'environment': string;
+    "environment": string;
     /**
     * When the event was queued.
     */
-    'timestamp'?: Date;
+    "timestamp"?: Date;
     /**
     * Type of notification.
     */
-    'type': AuthenticationNotificationRequest.TypeEnum;
+    "type": AuthenticationNotificationRequest.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "AuthenticationNotificationData"
+            "type": "AuthenticationNotificationData",
+            "format": ""
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AuthenticationNotificationRequest.TypeEnum"
+            "type": "AuthenticationNotificationRequest.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AuthenticationNotificationRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,46 +12,55 @@ export class PaymentInstrument {
     /**
     * The description of the resource.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The unique identifier of the resource.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The reference for the resource.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The type of wallet that the network token is associated with.
     */
-    'tokenType'?: string;
+    "tokenType"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "tokenType",
             "baseName": "tokenType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentInstrument.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

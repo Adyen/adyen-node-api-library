@@ -12,46 +12,55 @@ export class DirectDebitInformation {
     /**
     * The date when the direct debit mandate was accepted by your user, in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format.
     */
-    'dateOfSignature'?: Date;
+    "dateOfSignature"?: Date;
     /**
     * The date when the funds are deducted from your user\'s balance account.
     */
-    'dueDate'?: Date;
+    "dueDate"?: Date;
     /**
     * Your unique identifier for the direct debit mandate.
     */
-    'mandateId'?: string;
+    "mandateId"?: string;
     /**
     * Identifies the direct debit transfer\'s type. Possible values: **OneOff**, **First**, **Recurring**, **Final**.
     */
-    'sequenceType'?: string;
+    "sequenceType"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "dateOfSignature",
             "baseName": "dateOfSignature",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "dueDate",
             "baseName": "dueDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "mandateId",
             "baseName": "mandateId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "sequenceType",
             "baseName": "sequenceType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DirectDebitInformation.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

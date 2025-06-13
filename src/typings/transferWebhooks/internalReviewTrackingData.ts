@@ -12,37 +12,45 @@ export class InternalReviewTrackingData {
     /**
     * The reason why the transfer failed Adyen\'s internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen\'s risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). 
     */
-    'reason'?: InternalReviewTrackingData.ReasonEnum;
+    "reason"?: InternalReviewTrackingData.ReasonEnum;
     /**
     * The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review.  - **failed**: the transfer failed Adyen\'s internal review. For details, see `reason`.  
     */
-    'status': InternalReviewTrackingData.StatusEnum;
+    "status": InternalReviewTrackingData.StatusEnum;
     /**
     * The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen\'s risk policy.
     */
-    'type': InternalReviewTrackingData.TypeEnum;
+    "type": InternalReviewTrackingData.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "reason",
             "baseName": "reason",
-            "type": "InternalReviewTrackingData.ReasonEnum"
+            "type": "InternalReviewTrackingData.ReasonEnum",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "InternalReviewTrackingData.StatusEnum"
+            "type": "InternalReviewTrackingData.StatusEnum",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "InternalReviewTrackingData.TypeEnum"
+            "type": "InternalReviewTrackingData.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return InternalReviewTrackingData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

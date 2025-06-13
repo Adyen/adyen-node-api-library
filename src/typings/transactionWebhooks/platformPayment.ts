@@ -12,64 +12,75 @@ export class PlatformPayment {
     /**
     * The capture\'s merchant reference included in the transfer.
     */
-    'modificationMerchantReference'?: string;
+    "modificationMerchantReference"?: string;
     /**
     * The capture reference included in the transfer.
     */
-    'modificationPspReference'?: string;
+    "modificationPspReference"?: string;
     /**
     * The payment\'s merchant reference included in the transfer.
     */
-    'paymentMerchantReference'?: string;
+    "paymentMerchantReference"?: string;
     /**
     * Specifies the nature of the transfer. This parameter helps categorize transfers so you can reconcile transactions at a later time, using the Balance Platform Accounting Report for [marketplaces](https://docs.adyen.com/marketplaces/reports-and-fees/balance-platform-accounting-report/) or [platforms](https://docs.adyen.com/platforms/reports-and-fees/balance-platform-accounting-report/).  Possible values:  * **AcquiringFees**: for the acquiring fee incurred on a transaction.  * **AdyenCommission**: for the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing).  * **AdyenFees**: for all the transaction fees due to Adyen. This is the sum of Adyen\'s commission and Adyen\'s markup.  * **AdyenMarkup**: for the transaction fee due to Adyen under [Interchange++ pricing](https://www.adyen.com/pricing).  * **BalanceAccount**: or the sale amount of a transaction.  * **Commission**: for your platform\'s commission on a transaction.  * **DCCPlatformCommission**: for the DCC Commission for the platform on a transaction.  * **Interchange**: for the interchange fee (fee paid to the issuer) incurred on a transaction.  * **PaymentFee**: for all of the transaction fees.  * **Remainder**: for the left over amount after currency conversion.  * **SchemeFee**: for the scheme fee incurred on a transaction. This is the sum of the interchange fees and the acquiring fees.  * **Surcharge**: for the surcharge paid by the customer on a transaction.  * **Tip**: for the tip paid by the customer.  * **TopUp**: for an incoming transfer to top up your user\'s balance account.  * **VAT**: for the Value Added Tax.
     */
-    'platformPaymentType'?: PlatformPayment.PlatformPaymentTypeEnum;
+    "platformPaymentType"?: PlatformPayment.PlatformPaymentTypeEnum;
     /**
     * The payment reference included in the transfer.
     */
-    'pspPaymentReference'?: string;
+    "pspPaymentReference"?: string;
     /**
     * **platformPayment**
     */
-    'type'?: PlatformPayment.TypeEnum;
+    "type"?: PlatformPayment.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "modificationMerchantReference",
             "baseName": "modificationMerchantReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "modificationPspReference",
             "baseName": "modificationPspReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentMerchantReference",
             "baseName": "paymentMerchantReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "platformPaymentType",
             "baseName": "platformPaymentType",
-            "type": "PlatformPayment.PlatformPaymentTypeEnum"
+            "type": "PlatformPayment.PlatformPaymentTypeEnum",
+            "format": ""
         },
         {
             "name": "pspPaymentReference",
             "baseName": "pspPaymentReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PlatformPayment.TypeEnum"
+            "type": "PlatformPayment.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PlatformPayment.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

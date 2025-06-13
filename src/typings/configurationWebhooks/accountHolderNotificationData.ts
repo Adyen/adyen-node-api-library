@@ -7,31 +7,39 @@
  * Do not edit this class manually.
  */
 
-import { AccountHolder } from './accountHolder';
+import { AccountHolder } from "./accountHolder";
+
 
 export class AccountHolderNotificationData {
-    'accountHolder'?: AccountHolder | null;
+    "accountHolder"?: AccountHolder;
     /**
     * The unique identifier of the balance platform.
     */
-    'balancePlatform'?: string;
+    "balancePlatform"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "AccountHolder | null"
+            "type": "AccountHolder",
+            "format": ""
         },
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AccountHolderNotificationData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,55 +7,65 @@
  * Do not edit this class manually.
  */
 
-import { AccountHolderNotificationData } from './accountHolderNotificationData';
+import { AccountHolderNotificationData } from "./accountHolderNotificationData";
+
 
 export class AccountHolderNotificationRequest {
-    'data': AccountHolderNotificationData;
+    "data": AccountHolderNotificationData;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    'environment': string;
+    "environment": string;
     /**
     * When the event was queued.
     */
-    'timestamp'?: Date;
+    "timestamp"?: Date;
     /**
     * Type of webhook.
     */
-    'type': AccountHolderNotificationRequest.TypeEnum;
+    "type": AccountHolderNotificationRequest.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "AccountHolderNotificationData"
+            "type": "AccountHolderNotificationData",
+            "format": ""
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AccountHolderNotificationRequest.TypeEnum"
+            "type": "AccountHolderNotificationRequest.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AccountHolderNotificationRequest.attributeTypeMap;
     }
+
+    public constructor() {
+    }
 }
 
 export namespace AccountHolderNotificationRequest {
     export enum TypeEnum {
-        Updated = 'balancePlatform.accountHolder.updated',
-        Created = 'balancePlatform.accountHolder.created'
+        BalancePlatformAccountHolderUpdated = 'balancePlatform.accountHolder.updated',
+        BalancePlatformAccountHolderCreated = 'balancePlatform.accountHolder.created'
     }
 }

@@ -7,61 +7,72 @@
  * Do not edit this class manually.
  */
 
-import { AccountCapabilityData } from './accountCapabilityData';
+import { AccountCapabilityData } from "./accountCapabilityData";
+
 
 export class AccountCreateNotificationData {
     /**
     * Key-value pairs that specify the actions that the merchant account can do and its settings. The key is a capability. For example, the **sendToTransferInstrument** is the capability required before you can pay out funds to the bank account. The value is an object containing the settings for the capability.
     */
-    'capabilities': { [key: string]: AccountCapabilityData; };
+    "capabilities": { [key: string]: AccountCapabilityData; };
     /**
     * The unique identifier of the company account.
     */
-    'companyId': string;
+    "companyId": string;
     /**
     * The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id).
     */
-    'legalEntityId'?: string;
+    "legalEntityId"?: string;
     /**
     * The unique identifier of the merchant account.
     */
-    'merchantId': string;
+    "merchantId": string;
     /**
     * The status of the merchant account.  Possible values:  * **PreActive**: The merchant account has been created. Users cannot access the merchant account in the Customer Area. The account cannot process payments. * **Active**: Users can access the merchant account in the Customer Area. If the company account is also **Active**, then payment processing and payouts are enabled. * **InactiveWithModifications**: Users can access the merchant account in the Customer Area. The account cannot process new payments but can still modify payments, for example issue refunds. The account can still receive payouts. * **Inactive**: Users can access the merchant account in the Customer Area. Payment processing and payouts are disabled. * **Closed**: The account is closed and this cannot be reversed. Users cannot log in. Payment processing and payouts are disabled.
     */
-    'status': string;
+    "status": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "capabilities",
             "baseName": "capabilities",
-            "type": "{ [key: string]: AccountCapabilityData; }"
+            "type": "{ [key: string]: AccountCapabilityData; }",
+            "format": ""
         },
         {
             "name": "companyId",
             "baseName": "companyId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "legalEntityId",
             "baseName": "legalEntityId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantId",
             "baseName": "merchantId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AccountCreateNotificationData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

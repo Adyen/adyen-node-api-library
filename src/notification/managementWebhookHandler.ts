@@ -6,14 +6,32 @@
  */
 import {managementWebhooks} from "../typings";
 
+/**
+ * DEPRECATED
+ *
+ * Centralised handler for de-serialising all (Management) webhook payloads.
+ *
+ * @deprecated Use instead ManagementWebhooksHandler
+ */
 class ManagementWebhookHandler {
     private readonly payload: string;
 
+    /**
+     * Constructor
+     * @deprecated Use specific webhook handlers instead.
+     * 
+     * @param jsonPayload 
+     */
     public constructor(jsonPayload: string) {
         this.payload = JSON.parse(jsonPayload);
     }
 
-    // Return generic webhook type
+    /**
+     * Return generic webhook type
+     * @deprecated Use specific webhook handlers instead.
+     * 
+     * @param jsonPayload 
+     */
     public getGenericWebhook(): managementWebhooks.MerchantUpdatedNotificationRequest
         | managementWebhooks.MerchantCreatedNotificationRequest
         | managementWebhooks.PaymentMethodCreatedNotificationRequest
@@ -43,22 +61,37 @@ class ManagementWebhookHandler {
         throw new Error("Could not parse the json payload: " + this.payload);
     }
 
+    /**
+     * @deprecated Use ManagementWebhooksHandler instead.
+     */
     public getMerchantCreatedNotificationRequest(): managementWebhooks.MerchantCreatedNotificationRequest {
         return managementWebhooks.ObjectSerializer.deserialize(this.payload, "MerchantCreatedNotificationRequest");
     }
 
+    /**
+     * @deprecated Use ManagementWebhooksHandler instead.
+     */
     public getMerchantUpdatedNotificationRequest(): managementWebhooks.MerchantUpdatedNotificationRequest {
         return managementWebhooks.ObjectSerializer.deserialize(this.payload, "MerchantUpdatedNotificationRequest");
     }
 
+    /**
+     * @deprecated Use ManagementWebhooksHandler instead.
+     */
     public getPaymentMethodCreatedNotificationRequest(): managementWebhooks.PaymentMethodCreatedNotificationRequest {
         return managementWebhooks.ObjectSerializer.deserialize(this.payload, "PaymentMethodCreatedNotificationRequest");
     }
 
+    /**
+     * @deprecated Use ManagementWebhooksHandler instead.
+     */
     public getPaymentMethodRequestRemovedNotificationRequest(): managementWebhooks.PaymentMethodRequestRemovedNotificationRequest {
         return managementWebhooks.ObjectSerializer.deserialize(this.payload, "PaymentMethodRequestRemovedNotificationRequest");
     }
 
+    /**
+     * @deprecated Use ManagementWebhooksHandler instead.
+     */
     public getPaymentMethodScheduledForRemovalNotificationRequest(): managementWebhooks.PaymentMethodScheduledForRemovalNotificationRequest {
         return managementWebhooks.ObjectSerializer.deserialize(this.payload, "PaymentMethodScheduledForRemovalNotificationRequest");
     }

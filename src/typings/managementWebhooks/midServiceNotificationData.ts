@@ -12,91 +12,105 @@ export class MidServiceNotificationData {
     /**
     * Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
     */
-    'allowed'?: boolean;
+    "allowed"?: boolean;
     /**
     * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
     */
-    'enabled'?: boolean;
+    "enabled"?: boolean;
     /**
     * The unique identifier of the resource.
     */
-    'id': string;
+    "id": string;
     /**
     * The unique identifier of the merchant account.
     */
-    'merchantId': string;
+    "merchantId": string;
     /**
     * Your reference for the payment method.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. 
     */
-    'status': MidServiceNotificationData.StatusEnum;
+    "status": MidServiceNotificationData.StatusEnum;
     /**
     * The unique identifier of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/post/merchants/{id}/paymentMethodSettings__reqParam_storeId), if any.
     */
-    'storeId'?: string;
+    "storeId"?: string;
     /**
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
     */
-    'type': string;
+    "type": string;
     /**
     * Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
     */
-    'verificationStatus'?: MidServiceNotificationData.VerificationStatusEnum;
+    "verificationStatus"?: MidServiceNotificationData.VerificationStatusEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "allowed",
             "baseName": "allowed",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "enabled",
             "baseName": "enabled",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantId",
             "baseName": "merchantId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "MidServiceNotificationData.StatusEnum"
+            "type": "MidServiceNotificationData.StatusEnum",
+            "format": ""
         },
         {
             "name": "storeId",
             "baseName": "storeId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "verificationStatus",
             "baseName": "verificationStatus",
-            "type": "MidServiceNotificationData.VerificationStatusEnum"
+            "type": "MidServiceNotificationData.VerificationStatusEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return MidServiceNotificationData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,14 +7,34 @@
 
 import {configurationWebhooks, acsWebhooks, reportWebhooks, transferWebhooks, transactionWebhooks, negativeBalanceWarningWebhooks, balanceWebhooks} from "../typings";
 
+/**
+ * DEPRECATED
+ *
+ * Centralised handler for de-serialising all (Banking) webhook payloads.
+ *
+ * @deprecated Each webhook provides its own handler, for example use AcsWebhooksHandler to process AcsWebhooks events
+ * Use the specific WebhookHandler implementation: AcsWebhooksHandler, ReportWebhooksHandler, ConfigurationWebhooksHandler,
+ * TransferWebhooksHandler, TransactionWebhooksHandler, etc..
+ */
 class BankingWebhookHandler {
     private readonly payload: string;
 
+    /**
+     * Constructor
+     * @deprecated Use specific webhook handlers instead.
+     * 
+     * @param jsonPayload 
+     */
     public constructor(jsonPayload: string) {
         this.payload = JSON.parse(jsonPayload);
     }
 
-    // Return generic webhook type
+    /**
+     * Return generic webhook type
+     * @deprecated Use specific webhook handlers instead.
+     * 
+     * @param jsonPayload 
+     */
     public getGenericWebhook(): acsWebhooks.AuthenticationNotificationRequest
         | acsWebhooks.RelayedAuthenticationRequest
         | balanceWebhooks.BalanceAccountBalanceNotificationRequest
@@ -82,50 +102,86 @@ class BankingWebhookHandler {
         throw new Error("Could not parse the json payload: " + this.payload);
     }
 
+    /**
+     * @deprecated Use AcsWebhooksHandler instead.
+     */
     public getAuthenticationNotificationRequest(): acsWebhooks.AuthenticationNotificationRequest {
         return acsWebhooks.ObjectSerializer.deserialize(this.payload, "AuthenticationNotificationRequest");
     }
 
+    /**
+     * @deprecated Use AcsWebhooksHandler instead.
+     */
     public getRelayedAuthenticationRequest(): acsWebhooks.RelayedAuthenticationRequest {
         return acsWebhooks.ObjectSerializer.deserialize(this.payload, "RelayedAuthenticationRequest");
     }
 
+    /**
+     * @deprecated Use BalanceWebhooksHandler instead.
+     */
     public getBalanceAccountBalanceNotificationRequest(): balanceWebhooks.BalanceAccountBalanceNotificationRequest {
         return balanceWebhooks.ObjectSerializer.deserialize(this.payload, "BalanceAccountBalanceNotificationRequest");
     }
 
+    /**
+     * @deprecated Use ConfigurationWebhooksHandler instead.
+     */
     public getAccountHolderNotificationRequest(): configurationWebhooks.AccountHolderNotificationRequest {
         return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "AccountHolderNotificationRequest");
     }
 
+    /**
+     * @deprecated Use ConfigurationWebhooksHandler instead.
+     */
     public getCardOrderNotificationRequest(): configurationWebhooks.CardOrderNotificationRequest {
         return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "CardOrderNotificationRequest");
     }
 
+    /**
+     * @deprecated Use ConfigurationWebhooksHandler instead.
+     */
     public getPaymentNotificationRequest(): configurationWebhooks.PaymentNotificationRequest {
         return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "PaymentNotificationRequest");
     }
 
+    /**
+     * @deprecated Use ConfigurationWebhooksHandler instead.
+     */
     public getSweepConfigurationNotificationRequest(): configurationWebhooks.SweepConfigurationNotificationRequest {
         return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "SweepConfigurationNotificationRequest");
     }
     
+    /**
+     * @deprecated Use NegativeBalanceWarningWebhooksHandler instead.
+     */
     public getNegativeBalanceCompensationWarningNotificationRequest(): negativeBalanceWarningWebhooks.NegativeBalanceCompensationWarningNotificationRequest {
         return negativeBalanceWarningWebhooks.ObjectSerializer.deserialize(this.payload, "NegativeBalanceCompensationWarningNotificationRequest");
     }
 
+    /**
+     * @deprecated Use ReportWebhooksHandler instead.
+     */
     public getReportNotificationRequest(): reportWebhooks.ReportNotificationRequest {
         return reportWebhooks.ObjectSerializer.deserialize(this.payload, "ReportNotificationRequest");
     }
 
+    /**
+     * @deprecated Use TransferWebhooksHandler instead.
+     */
     public getTransferNotificationRequest(): transferWebhooks.TransferNotificationRequest {
         return transferWebhooks.ObjectSerializer.deserialize(this.payload, "TransferNotificationRequest");
     }
 
+    /**
+     * @deprecated Use TransactionWebhooksHandler instead.
+     */
     public getTransactionNotificationRequest(): transactionWebhooks.TransactionNotificationRequestV4 {
         return transactionWebhooks.ObjectSerializer.deserialize(this.payload, "TransactionNotificationRequestV4");
     }
 
+    /**
+     * @deprecated Use BalanceWebhooksHandler instead.
+     */
     public BalanceAccountBalanceNotificationRequest(): balanceWebhooks.BalanceAccountBalanceNotificationRequest {
         return balanceWebhooks.ObjectSerializer.deserialize(this.payload, "BalanceAccountBalanceNotificationRequest");
     }

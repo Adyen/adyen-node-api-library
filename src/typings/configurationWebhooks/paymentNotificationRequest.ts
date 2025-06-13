@@ -7,55 +7,65 @@
  * Do not edit this class manually.
  */
 
-import { PaymentInstrumentNotificationData } from './paymentInstrumentNotificationData';
+import { PaymentInstrumentNotificationData } from "./paymentInstrumentNotificationData";
+
 
 export class PaymentNotificationRequest {
-    'data': PaymentInstrumentNotificationData;
+    "data": PaymentInstrumentNotificationData;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    'environment': string;
+    "environment": string;
     /**
     * When the event was queued.
     */
-    'timestamp'?: Date;
+    "timestamp"?: Date;
     /**
     * Type of webhook.
     */
-    'type': PaymentNotificationRequest.TypeEnum;
+    "type": PaymentNotificationRequest.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "PaymentInstrumentNotificationData"
+            "type": "PaymentInstrumentNotificationData",
+            "format": ""
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PaymentNotificationRequest.TypeEnum"
+            "type": "PaymentNotificationRequest.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentNotificationRequest.attributeTypeMap;
     }
+
+    public constructor() {
+    }
 }
 
 export namespace PaymentNotificationRequest {
     export enum TypeEnum {
-        Created = 'balancePlatform.paymentInstrument.created',
-        Updated = 'balancePlatform.paymentInstrument.updated'
+        BalancePlatformPaymentInstrumentCreated = 'balancePlatform.paymentInstrument.created',
+        BalancePlatformPaymentInstrumentUpdated = 'balancePlatform.paymentInstrument.updated'
     }
 }

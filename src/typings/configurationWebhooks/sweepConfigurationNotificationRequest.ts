@@ -7,56 +7,66 @@
  * Do not edit this class manually.
  */
 
-import { SweepConfigurationNotificationData } from './sweepConfigurationNotificationData';
+import { SweepConfigurationNotificationData } from "./sweepConfigurationNotificationData";
+
 
 export class SweepConfigurationNotificationRequest {
-    'data': SweepConfigurationNotificationData;
+    "data": SweepConfigurationNotificationData;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    'environment': string;
+    "environment": string;
     /**
     * When the event was queued.
     */
-    'timestamp'?: Date;
+    "timestamp"?: Date;
     /**
     * Type of webhook.
     */
-    'type': SweepConfigurationNotificationRequest.TypeEnum;
+    "type": SweepConfigurationNotificationRequest.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "SweepConfigurationNotificationData"
+            "type": "SweepConfigurationNotificationData",
+            "format": ""
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "SweepConfigurationNotificationRequest.TypeEnum"
+            "type": "SweepConfigurationNotificationRequest.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SweepConfigurationNotificationRequest.attributeTypeMap;
     }
+
+    public constructor() {
+    }
 }
 
 export namespace SweepConfigurationNotificationRequest {
     export enum TypeEnum {
-        Created = 'balancePlatform.balanceAccountSweep.created',
-        Updated = 'balancePlatform.balanceAccountSweep.updated',
-        Deleted = 'balancePlatform.balanceAccountSweep.deleted'
+        BalancePlatformBalanceAccountSweepCreated = 'balancePlatform.balanceAccountSweep.created',
+        BalancePlatformBalanceAccountSweepUpdated = 'balancePlatform.balanceAccountSweep.updated',
+        BalancePlatformBalanceAccountSweepDeleted = 'balancePlatform.balanceAccountSweep.deleted'
     }
 }

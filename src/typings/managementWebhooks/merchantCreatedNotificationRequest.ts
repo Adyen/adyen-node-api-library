@@ -7,49 +7,59 @@
  * Do not edit this class manually.
  */
 
-import { AccountCreateNotificationData } from './accountCreateNotificationData';
+import { AccountCreateNotificationData } from "./accountCreateNotificationData";
+
 
 export class MerchantCreatedNotificationRequest {
     /**
     * Timestamp for when the webhook was created.
     */
-    'createdAt': Date;
-    'data': AccountCreateNotificationData;
+    "createdAt": Date;
+    "data": AccountCreateNotificationData;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    'environment': string;
+    "environment": string;
     /**
     * Type of notification.
     */
-    'type': MerchantCreatedNotificationRequest.TypeEnum;
+    "type": MerchantCreatedNotificationRequest.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "createdAt",
             "baseName": "createdAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "data",
             "baseName": "data",
-            "type": "AccountCreateNotificationData"
+            "type": "AccountCreateNotificationData",
+            "format": ""
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "MerchantCreatedNotificationRequest.TypeEnum"
+            "type": "MerchantCreatedNotificationRequest.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return MerchantCreatedNotificationRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

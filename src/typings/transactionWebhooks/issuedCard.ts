@@ -7,86 +7,100 @@
  * Do not edit this class manually.
  */
 
-import { RelayedAuthorisationData } from './relayedAuthorisationData';
-import { TransferNotificationValidationFact } from './transferNotificationValidationFact';
+import { RelayedAuthorisationData } from "./relayedAuthorisationData";
+import { TransferNotificationValidationFact } from "./transferNotificationValidationFact";
+
 
 export class IssuedCard {
     /**
     * The authorisation type. For example, **defaultAuthorisation**, **preAuthorisation**, **finalAuthorisation**
     */
-    'authorisationType'?: string;
+    "authorisationType"?: string;
     /**
     * Indicates the method used for entering the PAN to initiate a transaction.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **ecommerce**, **token**.
     */
-    'panEntryMode'?: IssuedCard.PanEntryModeEnum;
+    "panEntryMode"?: IssuedCard.PanEntryModeEnum;
     /**
     * Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.
     */
-    'processingType'?: IssuedCard.ProcessingTypeEnum;
-    'relayedAuthorisationData'?: RelayedAuthorisationData | null;
+    "processingType"?: IssuedCard.ProcessingTypeEnum;
+    "relayedAuthorisationData"?: RelayedAuthorisationData;
     /**
     * The identifier of the original payment. This ID is provided by the scheme and can be alphanumeric or numeric, depending on the scheme. The `schemeTraceID` should refer to an original `schemeUniqueTransactionID` provided in an earlier payment (not necessarily processed by Adyen). A `schemeTraceId` is typically available for authorization adjustments or recurring payments.
     */
-    'schemeTraceId'?: string;
+    "schemeTraceId"?: string;
     /**
     * The unique identifier created by the scheme. This ID can be alphanumeric or numeric depending on the scheme.
     */
-    'schemeUniqueTransactionId'?: string;
+    "schemeUniqueTransactionId"?: string;
     /**
     * **issuedCard**
     */
-    'type'?: IssuedCard.TypeEnum;
+    "type"?: IssuedCard.TypeEnum;
     /**
     * The evaluation of the validation facts. See [validation checks](https://docs.adyen.com/issuing/validation-checks) for more information.
     */
-    'validationFacts'?: Array<TransferNotificationValidationFact>;
+    "validationFacts"?: Array<TransferNotificationValidationFact>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "authorisationType",
             "baseName": "authorisationType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "panEntryMode",
             "baseName": "panEntryMode",
-            "type": "IssuedCard.PanEntryModeEnum"
+            "type": "IssuedCard.PanEntryModeEnum",
+            "format": ""
         },
         {
             "name": "processingType",
             "baseName": "processingType",
-            "type": "IssuedCard.ProcessingTypeEnum"
+            "type": "IssuedCard.ProcessingTypeEnum",
+            "format": ""
         },
         {
             "name": "relayedAuthorisationData",
             "baseName": "relayedAuthorisationData",
-            "type": "RelayedAuthorisationData | null"
+            "type": "RelayedAuthorisationData",
+            "format": ""
         },
         {
             "name": "schemeTraceId",
             "baseName": "schemeTraceId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "schemeUniqueTransactionId",
             "baseName": "schemeUniqueTransactionId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "IssuedCard.TypeEnum"
+            "type": "IssuedCard.TypeEnum",
+            "format": ""
         },
         {
             "name": "validationFacts",
             "baseName": "validationFacts",
-            "type": "Array<TransferNotificationValidationFact>"
+            "type": "Array<TransferNotificationValidationFact>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return IssuedCard.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
