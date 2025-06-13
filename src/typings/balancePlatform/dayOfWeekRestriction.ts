@@ -12,28 +12,35 @@ export class DayOfWeekRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    'operation': string;
+    "operation": string;
     /**
     * List of days of the week.  Possible values: **monday**, **tuesday**, **wednesday**, **thursday**, **friday**, **saturday**, **sunday**.  
     */
-    'value'?: Array<DayOfWeekRestriction.ValueEnum>;
+    "value"?: Array<DayOfWeekRestriction.ValueEnum>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "Array<DayOfWeekRestriction.ValueEnum>"
+            "type": "DayOfWeekRestriction.ValueEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return DayOfWeekRestriction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

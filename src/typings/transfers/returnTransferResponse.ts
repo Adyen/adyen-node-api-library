@@ -12,46 +12,55 @@ export class ReturnTransferResponse {
     /**
     * The unique identifier of the return.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * Your internal reference for the return.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The resulting status of the return.  Possible values: **Authorised**, **Declined**.
     */
-    'status'?: ReturnTransferResponse.StatusEnum;
+    "status"?: ReturnTransferResponse.StatusEnum;
     /**
     * The unique identifier of the original transfer.
     */
-    'transferId'?: string;
+    "transferId"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "ReturnTransferResponse.StatusEnum"
+            "type": "ReturnTransferResponse.StatusEnum",
+            "format": ""
         },
         {
             "name": "transferId",
             "baseName": "transferId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ReturnTransferResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,28 +12,35 @@ export class Phone {
     /**
     * The full phone number provided as a single string.  For example, **\"0031 6 11 22 33 44\"**, **\"+316/1122-3344\"**,    or **\"(0031) 611223344\"**.
     */
-    'number': string;
+    "number": string;
     /**
     * Type of phone number. Possible values:  **Landline**, **Mobile**. 
     */
-    'type': Phone.TypeEnum;
+    "type": Phone.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "number",
             "baseName": "number",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "Phone.TypeEnum"
+            "type": "Phone.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Phone.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,28 +12,35 @@ export class GetTaxFormResponse {
     /**
     * The content of the tax form in Base64 format.
     */
-    'content': string;
+    "content": string;
     /**
     * The content type of the tax form.  Possible values: *  **application/pdf**  
     */
-    'contentType'?: GetTaxFormResponse.ContentTypeEnum;
+    "contentType"?: GetTaxFormResponse.ContentTypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "content",
             "baseName": "content",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         },
         {
             "name": "contentType",
             "baseName": "contentType",
-            "type": "GetTaxFormResponse.ContentTypeEnum"
+            "type": "GetTaxFormResponse.ContentTypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return GetTaxFormResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,17 +7,20 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import {
-    TransferInstrument,
-    TransferInstrumentInfo,
-    ObjectSerializer
-} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSerializer";
+import { TransferInstrument } from "../../typings/legalEntityManagement/models";
+import { TransferInstrumentInfo } from "../../typings/legalEntityManagement/models";
+
+/**
+ * API handler for TransferInstrumentsApi
+ */
 export class TransferInstrumentsApi extends Service {
 
     private readonly API_BASEPATH: string = "https://kyc-test.adyen.com/lem/v3";
@@ -37,24 +40,28 @@ export class TransferInstrumentsApi extends Service {
     public async createTransferInstrument(transferInstrumentInfo: TransferInstrumentInfo, requestOptions?: IRequest.Options): Promise<TransferInstrument> {
         const endpoint = `${this.baseUrl}/transferInstruments`;
         const resource = new Resource(this, endpoint);
-        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo");
+        
+        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo", "");
         const response = await getJsonResponse<TransferInstrumentInfo, TransferInstrument>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "TransferInstrument");
+
+        return ObjectSerializer.deserialize(response, "TransferInstrument", "");
     }
 
     /**
     * @summary Delete a transfer instrument
     * @param id {@link string } The unique identifier of the transfer instrument to be deleted.
     * @param requestOptions {@link IRequest.Options }
+    * @return {@link void }
     */
     public async deleteTransferInstrument(id: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/transferInstruments/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         await getJsonResponse<string, void>(
             resource,
             "",
@@ -72,12 +79,14 @@ export class TransferInstrumentsApi extends Service {
         const endpoint = `${this.baseUrl}/transferInstruments/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, TransferInstrument>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "TransferInstrument");
+
+        return ObjectSerializer.deserialize(response, "TransferInstrument", "");
     }
 
     /**
@@ -91,12 +100,15 @@ export class TransferInstrumentsApi extends Service {
         const endpoint = `${this.baseUrl}/transferInstruments/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo");
+        
+        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo", "");
         const response = await getJsonResponse<TransferInstrumentInfo, TransferInstrument>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-        return ObjectSerializer.deserialize(response, "TransferInstrument");
+
+        return ObjectSerializer.deserialize(response, "TransferInstrument", "");
     }
+
 }

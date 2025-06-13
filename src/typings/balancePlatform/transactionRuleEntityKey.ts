@@ -12,28 +12,35 @@ export class TransactionRuleEntityKey {
     /**
     * The unique identifier of the resource.
     */
-    'entityReference'?: string;
+    "entityReference"?: string;
     /**
     * The type of resource.  Possible values: **balancePlatform**, **paymentInstrumentGroup**, **accountHolder**, **balanceAccount**, or **paymentInstrument**.
     */
-    'entityType'?: string;
+    "entityType"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "entityReference",
             "baseName": "entityReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "entityType",
             "baseName": "entityType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TransactionRuleEntityKey.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,64 +12,75 @@ export class GetTermsOfServiceDocumentResponse {
     /**
     * The Terms of Service document in Base64-encoded format.
     */
-    'document'?: string;
+    "document"?: string;
     /**
     * The unique identifier of the legal entity.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English.
     */
-    'language'?: string;
+    "language"?: string;
     /**
     * The format of the Terms of Service document.
     */
-    'termsOfServiceDocumentFormat'?: string;
+    "termsOfServiceDocumentFormat"?: string;
     /**
     * The unique identifier of the Terms of Service document.
     */
-    'termsOfServiceDocumentId'?: string;
+    "termsOfServiceDocumentId"?: string;
     /**
     * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**  
     */
-    'type'?: GetTermsOfServiceDocumentResponse.TypeEnum;
+    "type"?: GetTermsOfServiceDocumentResponse.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "document",
             "baseName": "document",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "language",
             "baseName": "language",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "termsOfServiceDocumentFormat",
             "baseName": "termsOfServiceDocumentFormat",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "termsOfServiceDocumentId",
             "baseName": "termsOfServiceDocumentId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "GetTermsOfServiceDocumentResponse.TypeEnum"
+            "type": "GetTermsOfServiceDocumentResponse.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return GetTermsOfServiceDocumentResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

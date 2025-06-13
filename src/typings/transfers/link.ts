@@ -12,19 +12,25 @@ export class Link {
     /**
     * The link to the resource.
     */
-    'href'?: string;
+    "href"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "href",
             "baseName": "href",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Link.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

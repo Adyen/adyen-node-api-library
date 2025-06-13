@@ -7,54 +7,65 @@
  * Do not edit this class manually.
  */
 
-import { BankAccountV3 } from './bankAccountV3';
-import { Card } from './card';
-import { MerchantData } from './merchantData';
+import { BankAccountV3 } from "./bankAccountV3";
+import { Card } from "./card";
+import { MerchantData } from "./merchantData";
+
 
 export class CounterpartyV3 {
     /**
     * The unique identifier of the counterparty [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).
     */
-    'balanceAccountId'?: string;
-    'bankAccount'?: BankAccountV3 | null;
-    'card'?: Card | null;
-    'merchant'?: MerchantData | null;
+    "balanceAccountId"?: string;
+    "bankAccount"?: BankAccountV3;
+    "card"?: Card;
+    "merchant"?: MerchantData;
     /**
     * The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).
     */
-    'transferInstrumentId'?: string;
+    "transferInstrumentId"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "balanceAccountId",
             "baseName": "balanceAccountId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccountV3 | null"
+            "type": "BankAccountV3",
+            "format": ""
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null"
+            "type": "Card",
+            "format": ""
         },
         {
             "name": "merchant",
             "baseName": "merchant",
-            "type": "MerchantData | null"
+            "type": "MerchantData",
+            "format": ""
         },
         {
             "name": "transferInstrumentId",
             "baseName": "transferInstrumentId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CounterpartyV3.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

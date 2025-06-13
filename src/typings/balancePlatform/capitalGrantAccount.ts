@@ -7,53 +7,63 @@
  * Do not edit this class manually.
  */
 
-import { CapitalBalance } from './capitalBalance';
-import { GrantLimit } from './grantLimit';
+import { CapitalBalance } from "./capitalBalance";
+import { GrantLimit } from "./grantLimit";
+
 
 export class CapitalGrantAccount {
     /**
     * The balances of the grant account.
     */
-    'balances'?: Array<CapitalBalance>;
+    "balances"?: Array<CapitalBalance>;
     /**
     * The unique identifier of the balance account used to fund the grant.
     */
-    'fundingBalanceAccountId'?: string;
+    "fundingBalanceAccountId"?: string;
     /**
     * The identifier of the grant account.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The limits of the grant account.
     */
-    'limits'?: Array<GrantLimit>;
+    "limits"?: Array<GrantLimit>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "balances",
             "baseName": "balances",
-            "type": "Array<CapitalBalance>"
+            "type": "Array<CapitalBalance>",
+            "format": ""
         },
         {
             "name": "fundingBalanceAccountId",
             "baseName": "fundingBalanceAccountId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "limits",
             "baseName": "limits",
-            "type": "Array<GrantLimit>"
+            "type": "Array<GrantLimit>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CapitalGrantAccount.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

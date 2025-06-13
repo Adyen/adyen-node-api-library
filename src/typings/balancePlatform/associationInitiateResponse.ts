@@ -12,19 +12,25 @@ export class AssociationInitiateResponse {
     /**
     * A string that you must pass to the authentication SDK to continue with the association process.
     */
-    'sdkInput'?: string;
+    "sdkInput"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "sdkInput",
             "baseName": "sdkInput",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AssociationInitiateResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

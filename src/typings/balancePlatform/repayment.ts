@@ -7,38 +7,47 @@
  * Do not edit this class manually.
  */
 
-import { RepaymentTerm } from './repaymentTerm';
-import { ThresholdRepayment } from './thresholdRepayment';
+import { RepaymentTerm } from "./repaymentTerm";
+import { ThresholdRepayment } from "./thresholdRepayment";
+
 
 export class Repayment {
     /**
     * The repayment that is deducted daily from incoming net volume, in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).
     */
-    'basisPoints': number;
-    'term'?: RepaymentTerm | null;
-    'threshold'?: ThresholdRepayment | null;
+    "basisPoints": number;
+    "term"?: RepaymentTerm;
+    "threshold"?: ThresholdRepayment;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "basisPoints",
             "baseName": "basisPoints",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "term",
             "baseName": "term",
-            "type": "RepaymentTerm | null"
+            "type": "RepaymentTerm",
+            "format": ""
         },
         {
             "name": "threshold",
             "baseName": "threshold",
-            "type": "ThresholdRepayment | null"
+            "type": "ThresholdRepayment",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Repayment.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

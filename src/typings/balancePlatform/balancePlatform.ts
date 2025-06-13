@@ -12,37 +12,45 @@ export class BalancePlatform {
     /**
     * Your description of the balance platform.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The unique identifier of the balance platform.
     */
-    'id': string;
+    "id": string;
     /**
     * The status of the balance platform.  Possible values: **Active**, **Inactive**, **Closed**, **Suspended**.
     */
-    'status'?: string;
+    "status"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BalancePlatform.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,28 +12,35 @@ export class RevealPinResponse {
     /**
     * The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).
     */
-    'encryptedPinBlock': string;
+    "encryptedPinBlock": string;
     /**
     * The 16-digit token that you need to extract the `encryptedPinBlock`.
     */
-    'token': string;
+    "token": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "encryptedPinBlock",
             "baseName": "encryptedPinBlock",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "token",
             "baseName": "token",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return RevealPinResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

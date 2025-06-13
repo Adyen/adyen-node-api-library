@@ -7,183 +7,213 @@
  * Do not edit this class manually.
  */
 
-import { ActiveNetworkTokensRestriction } from './activeNetworkTokensRestriction';
-import { BrandVariantsRestriction } from './brandVariantsRestriction';
-import { CounterpartyBankRestriction } from './counterpartyBankRestriction';
-import { CounterpartyTypesRestriction } from './counterpartyTypesRestriction';
-import { CountriesRestriction } from './countriesRestriction';
-import { DayOfWeekRestriction } from './dayOfWeekRestriction';
-import { DifferentCurrenciesRestriction } from './differentCurrenciesRestriction';
-import { EntryModesRestriction } from './entryModesRestriction';
-import { InternationalTransactionRestriction } from './internationalTransactionRestriction';
-import { MatchingTransactionsRestriction } from './matchingTransactionsRestriction';
-import { MatchingValuesRestriction } from './matchingValuesRestriction';
-import { MccsRestriction } from './mccsRestriction';
-import { MerchantNamesRestriction } from './merchantNamesRestriction';
-import { MerchantsRestriction } from './merchantsRestriction';
-import { ProcessingTypesRestriction } from './processingTypesRestriction';
-import { RiskScoresRestriction } from './riskScoresRestriction';
-import { SameAmountRestriction } from './sameAmountRestriction';
-import { SameCounterpartyRestriction } from './sameCounterpartyRestriction';
-import { SourceAccountTypesRestriction } from './sourceAccountTypesRestriction';
-import { TimeOfDayRestriction } from './timeOfDayRestriction';
-import { TokenRequestorsRestriction } from './tokenRequestorsRestriction';
-import { TotalAmountRestriction } from './totalAmountRestriction';
-import { WalletProviderAccountScoreRestriction } from './walletProviderAccountScoreRestriction';
-import { WalletProviderDeviceScore } from './walletProviderDeviceScore';
+import { ActiveNetworkTokensRestriction } from "./activeNetworkTokensRestriction";
+import { BrandVariantsRestriction } from "./brandVariantsRestriction";
+import { CounterpartyBankRestriction } from "./counterpartyBankRestriction";
+import { CounterpartyTypesRestriction } from "./counterpartyTypesRestriction";
+import { CountriesRestriction } from "./countriesRestriction";
+import { DayOfWeekRestriction } from "./dayOfWeekRestriction";
+import { DifferentCurrenciesRestriction } from "./differentCurrenciesRestriction";
+import { EntryModesRestriction } from "./entryModesRestriction";
+import { InternationalTransactionRestriction } from "./internationalTransactionRestriction";
+import { MatchingTransactionsRestriction } from "./matchingTransactionsRestriction";
+import { MatchingValuesRestriction } from "./matchingValuesRestriction";
+import { MccsRestriction } from "./mccsRestriction";
+import { MerchantNamesRestriction } from "./merchantNamesRestriction";
+import { MerchantsRestriction } from "./merchantsRestriction";
+import { ProcessingTypesRestriction } from "./processingTypesRestriction";
+import { RiskScoresRestriction } from "./riskScoresRestriction";
+import { SameAmountRestriction } from "./sameAmountRestriction";
+import { SameCounterpartyRestriction } from "./sameCounterpartyRestriction";
+import { SourceAccountTypesRestriction } from "./sourceAccountTypesRestriction";
+import { TimeOfDayRestriction } from "./timeOfDayRestriction";
+import { TokenRequestorsRestriction } from "./tokenRequestorsRestriction";
+import { TotalAmountRestriction } from "./totalAmountRestriction";
+import { WalletProviderAccountScoreRestriction } from "./walletProviderAccountScoreRestriction";
+import { WalletProviderDeviceScore } from "./walletProviderDeviceScore";
+
 
 export class TransactionRuleRestrictions {
-    'activeNetworkTokens'?: ActiveNetworkTokensRestriction | null;
-    'brandVariants'?: BrandVariantsRestriction | null;
-    'counterpartyBank'?: CounterpartyBankRestriction | null;
-    'counterpartyTypes'?: CounterpartyTypesRestriction | null;
-    'countries'?: CountriesRestriction | null;
-    'dayOfWeek'?: DayOfWeekRestriction | null;
-    'differentCurrencies'?: DifferentCurrenciesRestriction | null;
-    'entryModes'?: EntryModesRestriction | null;
-    'internationalTransaction'?: InternationalTransactionRestriction | null;
-    'matchingTransactions'?: MatchingTransactionsRestriction | null;
-    'matchingValues'?: MatchingValuesRestriction | null;
-    'mccs'?: MccsRestriction | null;
-    'merchantNames'?: MerchantNamesRestriction | null;
-    'merchants'?: MerchantsRestriction | null;
-    'processingTypes'?: ProcessingTypesRestriction | null;
-    'riskScores'?: RiskScoresRestriction | null;
-    'sameAmountRestriction'?: SameAmountRestriction | null;
-    'sameCounterpartyRestriction'?: SameCounterpartyRestriction | null;
-    'sourceAccountTypes'?: SourceAccountTypesRestriction | null;
-    'timeOfDay'?: TimeOfDayRestriction | null;
-    'tokenRequestors'?: TokenRequestorsRestriction | null;
-    'totalAmount'?: TotalAmountRestriction | null;
-    'walletProviderAccountScore'?: WalletProviderAccountScoreRestriction | null;
-    'walletProviderDeviceScore'?: WalletProviderDeviceScore | null;
+    "activeNetworkTokens"?: ActiveNetworkTokensRestriction;
+    "brandVariants"?: BrandVariantsRestriction;
+    "counterpartyBank"?: CounterpartyBankRestriction;
+    "counterpartyTypes"?: CounterpartyTypesRestriction;
+    "countries"?: CountriesRestriction;
+    "dayOfWeek"?: DayOfWeekRestriction;
+    "differentCurrencies"?: DifferentCurrenciesRestriction;
+    "entryModes"?: EntryModesRestriction;
+    "internationalTransaction"?: InternationalTransactionRestriction;
+    "matchingTransactions"?: MatchingTransactionsRestriction;
+    "matchingValues"?: MatchingValuesRestriction;
+    "mccs"?: MccsRestriction;
+    "merchantNames"?: MerchantNamesRestriction;
+    "merchants"?: MerchantsRestriction;
+    "processingTypes"?: ProcessingTypesRestriction;
+    "riskScores"?: RiskScoresRestriction;
+    "sameAmountRestriction"?: SameAmountRestriction;
+    "sameCounterpartyRestriction"?: SameCounterpartyRestriction;
+    "sourceAccountTypes"?: SourceAccountTypesRestriction;
+    "timeOfDay"?: TimeOfDayRestriction;
+    "tokenRequestors"?: TokenRequestorsRestriction;
+    "totalAmount"?: TotalAmountRestriction;
+    "walletProviderAccountScore"?: WalletProviderAccountScoreRestriction;
+    "walletProviderDeviceScore"?: WalletProviderDeviceScore;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "activeNetworkTokens",
             "baseName": "activeNetworkTokens",
-            "type": "ActiveNetworkTokensRestriction | null"
+            "type": "ActiveNetworkTokensRestriction",
+            "format": ""
         },
         {
             "name": "brandVariants",
             "baseName": "brandVariants",
-            "type": "BrandVariantsRestriction | null"
+            "type": "BrandVariantsRestriction",
+            "format": ""
         },
         {
             "name": "counterpartyBank",
             "baseName": "counterpartyBank",
-            "type": "CounterpartyBankRestriction | null"
+            "type": "CounterpartyBankRestriction",
+            "format": ""
         },
         {
             "name": "counterpartyTypes",
             "baseName": "counterpartyTypes",
-            "type": "CounterpartyTypesRestriction | null"
+            "type": "CounterpartyTypesRestriction",
+            "format": ""
         },
         {
             "name": "countries",
             "baseName": "countries",
-            "type": "CountriesRestriction | null"
+            "type": "CountriesRestriction",
+            "format": ""
         },
         {
             "name": "dayOfWeek",
             "baseName": "dayOfWeek",
-            "type": "DayOfWeekRestriction | null"
+            "type": "DayOfWeekRestriction",
+            "format": ""
         },
         {
             "name": "differentCurrencies",
             "baseName": "differentCurrencies",
-            "type": "DifferentCurrenciesRestriction | null"
+            "type": "DifferentCurrenciesRestriction",
+            "format": ""
         },
         {
             "name": "entryModes",
             "baseName": "entryModes",
-            "type": "EntryModesRestriction | null"
+            "type": "EntryModesRestriction",
+            "format": ""
         },
         {
             "name": "internationalTransaction",
             "baseName": "internationalTransaction",
-            "type": "InternationalTransactionRestriction | null"
+            "type": "InternationalTransactionRestriction",
+            "format": ""
         },
         {
             "name": "matchingTransactions",
             "baseName": "matchingTransactions",
-            "type": "MatchingTransactionsRestriction | null"
+            "type": "MatchingTransactionsRestriction",
+            "format": ""
         },
         {
             "name": "matchingValues",
             "baseName": "matchingValues",
-            "type": "MatchingValuesRestriction | null"
+            "type": "MatchingValuesRestriction",
+            "format": ""
         },
         {
             "name": "mccs",
             "baseName": "mccs",
-            "type": "MccsRestriction | null"
+            "type": "MccsRestriction",
+            "format": ""
         },
         {
             "name": "merchantNames",
             "baseName": "merchantNames",
-            "type": "MerchantNamesRestriction | null"
+            "type": "MerchantNamesRestriction",
+            "format": ""
         },
         {
             "name": "merchants",
             "baseName": "merchants",
-            "type": "MerchantsRestriction | null"
+            "type": "MerchantsRestriction",
+            "format": ""
         },
         {
             "name": "processingTypes",
             "baseName": "processingTypes",
-            "type": "ProcessingTypesRestriction | null"
+            "type": "ProcessingTypesRestriction",
+            "format": ""
         },
         {
             "name": "riskScores",
             "baseName": "riskScores",
-            "type": "RiskScoresRestriction | null"
+            "type": "RiskScoresRestriction",
+            "format": ""
         },
         {
             "name": "sameAmountRestriction",
             "baseName": "sameAmountRestriction",
-            "type": "SameAmountRestriction | null"
+            "type": "SameAmountRestriction",
+            "format": ""
         },
         {
             "name": "sameCounterpartyRestriction",
             "baseName": "sameCounterpartyRestriction",
-            "type": "SameCounterpartyRestriction | null"
+            "type": "SameCounterpartyRestriction",
+            "format": ""
         },
         {
             "name": "sourceAccountTypes",
             "baseName": "sourceAccountTypes",
-            "type": "SourceAccountTypesRestriction | null"
+            "type": "SourceAccountTypesRestriction",
+            "format": ""
         },
         {
             "name": "timeOfDay",
             "baseName": "timeOfDay",
-            "type": "TimeOfDayRestriction | null"
+            "type": "TimeOfDayRestriction",
+            "format": ""
         },
         {
             "name": "tokenRequestors",
             "baseName": "tokenRequestors",
-            "type": "TokenRequestorsRestriction | null"
+            "type": "TokenRequestorsRestriction",
+            "format": ""
         },
         {
             "name": "totalAmount",
             "baseName": "totalAmount",
-            "type": "TotalAmountRestriction | null"
+            "type": "TotalAmountRestriction",
+            "format": ""
         },
         {
             "name": "walletProviderAccountScore",
             "baseName": "walletProviderAccountScore",
-            "type": "WalletProviderAccountScoreRestriction | null"
+            "type": "WalletProviderAccountScoreRestriction",
+            "format": ""
         },
         {
             "name": "walletProviderDeviceScore",
             "baseName": "walletProviderDeviceScore",
-            "type": "WalletProviderDeviceScore | null"
+            "type": "WalletProviderDeviceScore",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TransactionRuleRestrictions.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

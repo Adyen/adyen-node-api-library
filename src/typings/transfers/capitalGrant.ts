@@ -7,86 +7,101 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { CapitalBalance } from './capitalBalance';
-import { Counterparty } from './counterparty';
-import { Fee } from './fee';
-import { Repayment } from './repayment';
+import { Amount } from "./amount";
+import { CapitalBalance } from "./capitalBalance";
+import { Counterparty } from "./counterparty";
+import { Fee } from "./fee";
+import { Repayment } from "./repayment";
+
 
 export class CapitalGrant {
-    'amount'?: Amount | null;
-    'balances': CapitalBalance;
-    'counterparty'?: Counterparty | null;
-    'fee'?: Fee | null;
+    "amount"?: Amount;
+    "balances": CapitalBalance;
+    "counterparty"?: Counterparty;
+    "fee"?: Fee;
     /**
     * The identifier of the grant account used for the grant.
     */
-    'grantAccountId': string;
+    "grantAccountId": string;
     /**
     * The identifier of the grant offer that has been selected and from which the grant details will be used.
     */
-    'grantOfferId': string;
+    "grantOfferId": string;
     /**
     * The identifier of the grant reference.
     */
-    'id': string;
-    'repayment'?: Repayment | null;
+    "id": string;
+    "repayment"?: Repayment;
     /**
     * The current status of the grant. Possible values: **Pending**, **Active**, **Repaid**, **WrittenOff**, **Failed**, **Revoked**.
     */
-    'status': CapitalGrant.StatusEnum;
+    "status": CapitalGrant.StatusEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "balances",
             "baseName": "balances",
-            "type": "CapitalBalance"
+            "type": "CapitalBalance",
+            "format": ""
         },
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "Counterparty | null"
+            "type": "Counterparty",
+            "format": ""
         },
         {
             "name": "fee",
             "baseName": "fee",
-            "type": "Fee | null"
+            "type": "Fee",
+            "format": ""
         },
         {
             "name": "grantAccountId",
             "baseName": "grantAccountId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "grantOfferId",
             "baseName": "grantOfferId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "repayment",
             "baseName": "repayment",
-            "type": "Repayment | null"
+            "type": "Repayment",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "CapitalGrant.StatusEnum"
+            "type": "CapitalGrant.StatusEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CapitalGrant.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,43 +7,53 @@
  * Do not edit this class manually.
  */
 
-import { CapabilityProblemEntityRecursive } from './capabilityProblemEntityRecursive';
+import { CapabilityProblemEntityRecursive } from "./capabilityProblemEntityRecursive";
+
 
 export class CapabilityProblemEntity {
     /**
     * List of document IDs corresponding to the verification errors from capabilities.
     */
-    'documents'?: Array<string>;
-    'id'?: string;
-    'owner'?: CapabilityProblemEntityRecursive | null;
-    'type'?: CapabilityProblemEntity.TypeEnum;
+    "documents"?: Array<string>;
+    "id"?: string;
+    "owner"?: CapabilityProblemEntityRecursive;
+    "type"?: CapabilityProblemEntity.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "documents",
             "baseName": "documents",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "owner",
             "baseName": "owner",
-            "type": "CapabilityProblemEntityRecursive | null"
+            "type": "CapabilityProblemEntityRecursive",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CapabilityProblemEntity.TypeEnum"
+            "type": "CapabilityProblemEntity.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CapabilityProblemEntity.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

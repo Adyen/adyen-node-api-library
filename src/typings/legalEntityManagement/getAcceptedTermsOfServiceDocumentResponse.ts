@@ -12,46 +12,55 @@ export class GetAcceptedTermsOfServiceDocumentResponse {
     /**
     * The accepted Terms of Service document in the requested format represented as a Base64-encoded bytes array.
     */
-    'document'?: string;
+    "document"?: string;
     /**
     * The unique identifier of the legal entity.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * An Adyen-generated reference for the accepted Terms of Service.
     */
-    'termsOfServiceAcceptanceReference'?: string;
+    "termsOfServiceAcceptanceReference"?: string;
     /**
     * The format of the Terms of Service document.
     */
-    'termsOfServiceDocumentFormat'?: GetAcceptedTermsOfServiceDocumentResponse.TermsOfServiceDocumentFormatEnum;
+    "termsOfServiceDocumentFormat"?: GetAcceptedTermsOfServiceDocumentResponse.TermsOfServiceDocumentFormatEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "document",
             "baseName": "document",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "termsOfServiceAcceptanceReference",
             "baseName": "termsOfServiceAcceptanceReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "termsOfServiceDocumentFormat",
             "baseName": "termsOfServiceDocumentFormat",
-            "type": "GetAcceptedTermsOfServiceDocumentResponse.TermsOfServiceDocumentFormatEnum"
+            "type": "GetAcceptedTermsOfServiceDocumentResponse.TermsOfServiceDocumentFormatEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return GetAcceptedTermsOfServiceDocumentResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

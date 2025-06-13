@@ -7,138 +7,159 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { SweepCounterparty } from './sweepCounterparty';
-import { SweepSchedule } from './sweepSchedule';
+import { Amount } from "./amount";
+import { SweepCounterparty } from "./sweepCounterparty";
+import { SweepSchedule } from "./sweepSchedule";
+
 
 export class CreateSweepConfigurationV2 {
     /**
     * The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting `priorities`.
     */
-    'category'?: CreateSweepConfigurationV2.CategoryEnum;
-    'counterparty': SweepCounterparty;
+    "category"?: CreateSweepConfigurationV2.CategoryEnum;
+    "counterparty": SweepCounterparty;
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances).
     */
-    'currency': string;
+    "currency": string;
     /**
     * The message that will be used in the sweep transfer\'s description body with a maximum length of 140 characters.  If the message is longer after replacing placeholders, the message will be cut off at 140 characters.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities, ordered by your preference. Adyen will try to pay out using the priorities in the given order. If the first priority is not currently supported or enabled for your platform, the system will try the next one, and so on.  The request will be accepted as long as **at least one** of the provided priorities is valid (i.e., supported by Adyen and activated for your platform). For example, if you provide `[\"wire\",\"regular\"]`, and `wire` is not supported but `regular` is, the request will still be accepted and processed.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set `category` to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
     */
-    'priorities'?: Array<CreateSweepConfigurationV2.PrioritiesEnum>;
+    "priorities"?: Array<CreateSweepConfigurationV2.PrioritiesEnum>;
     /**
     * The reason for disabling the sweep.
     */
-    'reason'?: CreateSweepConfigurationV2.ReasonEnum;
+    "reason"?: CreateSweepConfigurationV2.ReasonEnum;
     /**
     * The human readable reason for disabling the sweep.
     */
-    'reasonDetail'?: string;
+    "reasonDetail"?: string;
     /**
     * Your reference for the sweep configuration.
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The reference sent to or received from the counterparty. Only alphanumeric characters are allowed.
     */
-    'referenceForBeneficiary'?: string;
-    'schedule': SweepSchedule;
+    "referenceForBeneficiary"?: string;
+    "schedule": SweepSchedule;
     /**
     * The status of the sweep. If not provided, by default, this is set to **active**.  Possible values:    * **active**:  the sweep is enabled and funds will be pulled in or pushed out based on the defined configuration.    * **inactive**: the sweep is disabled and cannot be triggered.   
     */
-    'status'?: CreateSweepConfigurationV2.StatusEnum;
-    'sweepAmount'?: Amount | null;
-    'targetAmount'?: Amount | null;
-    'triggerAmount'?: Amount | null;
+    "status"?: CreateSweepConfigurationV2.StatusEnum;
+    "sweepAmount"?: Amount;
+    "targetAmount"?: Amount;
+    "triggerAmount"?: Amount;
     /**
     * The direction of sweep, whether pushing out or pulling in funds to the balance account. If not provided, by default, this is set to **push**.  Possible values:   * **push**: _push out funds_ to a destination balance account or transfer instrument.   * **pull**: _pull in funds_ from a source merchant account, transfer instrument, or balance account.
     */
-    'type'?: CreateSweepConfigurationV2.TypeEnum;
+    "type"?: CreateSweepConfigurationV2.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "category",
             "baseName": "category",
-            "type": "CreateSweepConfigurationV2.CategoryEnum"
+            "type": "CreateSweepConfigurationV2.CategoryEnum",
+            "format": ""
         },
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "SweepCounterparty"
+            "type": "SweepCounterparty",
+            "format": ""
         },
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "priorities",
             "baseName": "priorities",
-            "type": "Array<CreateSweepConfigurationV2.PrioritiesEnum>"
+            "type": "CreateSweepConfigurationV2.PrioritiesEnum",
+            "format": ""
         },
         {
             "name": "reason",
             "baseName": "reason",
-            "type": "CreateSweepConfigurationV2.ReasonEnum"
+            "type": "CreateSweepConfigurationV2.ReasonEnum",
+            "format": ""
         },
         {
             "name": "reasonDetail",
             "baseName": "reasonDetail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "referenceForBeneficiary",
             "baseName": "referenceForBeneficiary",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "schedule",
             "baseName": "schedule",
-            "type": "SweepSchedule"
+            "type": "SweepSchedule",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "CreateSweepConfigurationV2.StatusEnum"
+            "type": "CreateSweepConfigurationV2.StatusEnum",
+            "format": ""
         },
         {
             "name": "sweepAmount",
             "baseName": "sweepAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "targetAmount",
             "baseName": "targetAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "triggerAmount",
             "baseName": "triggerAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CreateSweepConfigurationV2.TypeEnum"
+            "type": "CreateSweepConfigurationV2.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CreateSweepConfigurationV2.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,25 +7,32 @@
  * Do not edit this class manually.
  */
 
-import { TransferRoute } from './transferRoute';
+import { TransferRoute } from "./transferRoute";
+
 
 export class TransferRouteResponse {
     /**
     * List of available priorities for a transfer, along with requirements. Use this information to initiate a transfer.
     */
-    'transferRoutes'?: Array<TransferRoute>;
+    "transferRoutes"?: Array<TransferRoute>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "transferRoutes",
             "baseName": "transferRoutes",
-            "type": "Array<TransferRoute>"
+            "type": "Array<TransferRoute>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TransferRouteResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

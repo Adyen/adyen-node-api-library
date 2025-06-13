@@ -7,40 +7,49 @@
  * Do not edit this class manually.
  */
 
-import { Expiry } from './expiry';
+import { Expiry } from "./expiry";
+
 
 export class PaymentInstrumentRevealInfo {
     /**
     * The CVC2 value of the card.
     */
-    'cvc': string;
-    'expiration': Expiry;
+    "cvc": string;
+    "expiration": Expiry;
     /**
     * The primary account number (PAN) of the card.
     */
-    'pan': string;
+    "pan": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "cvc",
             "baseName": "cvc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "expiration",
             "baseName": "expiration",
-            "type": "Expiry"
+            "type": "Expiry",
+            "format": ""
         },
         {
             "name": "pan",
             "baseName": "pan",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentInstrumentRevealInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

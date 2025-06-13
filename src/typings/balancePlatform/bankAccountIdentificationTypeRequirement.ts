@@ -12,37 +12,45 @@ export class BankAccountIdentificationTypeRequirement {
     /**
     * List of bank account identification types: eg.; [iban , numberAndBic]
     */
-    'bankAccountIdentificationTypes'?: Array<BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum>;
+    "bankAccountIdentificationTypes"?: Array<BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum>;
     /**
     * Specifies the bank account details for a particular route per required field in this object depending on the country of the bank account and the currency of the transfer.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * **bankAccountIdentificationTypeRequirement**
     */
-    'type': BankAccountIdentificationTypeRequirement.TypeEnum;
+    "type": BankAccountIdentificationTypeRequirement.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "bankAccountIdentificationTypes",
             "baseName": "bankAccountIdentificationTypes",
-            "type": "Array<BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum>"
+            "type": "BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BankAccountIdentificationTypeRequirement.TypeEnum"
+            "type": "BankAccountIdentificationTypeRequirement.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BankAccountIdentificationTypeRequirement.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,23 +7,26 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    ApproveTransfersRequest,
-    CancelTransfersRequest,
-    FindTransfersResponse,
-    ReturnTransferRequest,
-    ReturnTransferResponse,
-    Transfer,
-    TransferData,
-    TransferInfo,
-    ObjectSerializer
-} from "../../typings/transfers/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/transfers/objectSerializer";
+import { ApproveTransfersRequest } from "../../typings/transfers/models";
+import { CancelTransfersRequest } from "../../typings/transfers/models";
+import { FindTransfersResponse } from "../../typings/transfers/models";
+import { ReturnTransferRequest } from "../../typings/transfers/models";
+import { ReturnTransferResponse } from "../../typings/transfers/models";
+import { Transfer } from "../../typings/transfers/models";
+import { TransferData } from "../../typings/transfers/models";
+import { TransferInfo } from "../../typings/transfers/models";
+
+/**
+ * API handler for TransfersApi
+ */
 export class TransfersApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/btl/v4";
@@ -38,11 +41,13 @@ export class TransfersApi extends Service {
     * @summary Approve initiated transfers
     * @param approveTransfersRequest {@link ApproveTransfersRequest } 
     * @param requestOptions {@link IRequest.Options }
+    * @return {@link void }
     */
     public async approveInitiatedTransfers(approveTransfersRequest: ApproveTransfersRequest, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/transfers/approve`;
         const resource = new Resource(this, endpoint);
-        const request: ApproveTransfersRequest = ObjectSerializer.serialize(approveTransfersRequest, "ApproveTransfersRequest");
+        
+        const request: ApproveTransfersRequest = ObjectSerializer.serialize(approveTransfersRequest, "ApproveTransfersRequest", "");
         await getJsonResponse<ApproveTransfersRequest, void>(
             resource,
             request,
@@ -54,11 +59,13 @@ export class TransfersApi extends Service {
     * @summary Cancel initiated transfers
     * @param cancelTransfersRequest {@link CancelTransfersRequest } 
     * @param requestOptions {@link IRequest.Options }
+    * @return {@link void }
     */
     public async cancelInitiatedTransfers(cancelTransfersRequest: CancelTransfersRequest, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/transfers/cancel`;
         const resource = new Resource(this, endpoint);
-        const request: CancelTransfersRequest = ObjectSerializer.serialize(cancelTransfersRequest, "CancelTransfersRequest");
+        
+        const request: CancelTransfersRequest = ObjectSerializer.serialize(cancelTransfersRequest, "CancelTransfersRequest", "");
         await getJsonResponse<CancelTransfersRequest, void>(
             resource,
             request,
@@ -84,6 +91,7 @@ export class TransfersApi extends Service {
     public async getAllTransfers(balancePlatform?: string, accountHolderId?: string, balanceAccountId?: string, paymentInstrumentId?: string, reference?: string, category?: "bank" | "card" | "grants" | "internal" | "issuedCard" | "migration" | "platformPayment" | "topUp" | "upgrade", createdSince?: Date, createdUntil?: Date, cursor?: string, limit?: number, requestOptions?: IRequest.Options): Promise<FindTransfersResponse> {
         const endpoint = `${this.baseUrl}/transfers`;
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = balancePlatform ?? accountHolderId ?? balanceAccountId ?? paymentInstrumentId ?? reference ?? category ?? createdSince ?? createdUntil ?? cursor ?? limit;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -104,7 +112,8 @@ export class TransfersApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "FindTransfersResponse");
+
+        return ObjectSerializer.deserialize(response, "FindTransfersResponse", "");
     }
 
     /**
@@ -117,12 +126,14 @@ export class TransfersApi extends Service {
         const endpoint = `${this.baseUrl}/transfers/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, TransferData>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "TransferData");
+
+        return ObjectSerializer.deserialize(response, "TransferData", "");
     }
 
     /**
@@ -136,13 +147,15 @@ export class TransfersApi extends Service {
         const endpoint = `${this.baseUrl}/transfers/{transferId}/returns`
             .replace("{" + "transferId" + "}", encodeURIComponent(String(transferId)));
         const resource = new Resource(this, endpoint);
-        const request: ReturnTransferRequest = ObjectSerializer.serialize(returnTransferRequest, "ReturnTransferRequest");
+        
+        const request: ReturnTransferRequest = ObjectSerializer.serialize(returnTransferRequest, "ReturnTransferRequest", "");
         const response = await getJsonResponse<ReturnTransferRequest, ReturnTransferResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "ReturnTransferResponse");
+
+        return ObjectSerializer.deserialize(response, "ReturnTransferResponse", "");
     }
 
     /**
@@ -154,12 +167,15 @@ export class TransfersApi extends Service {
     public async transferFunds(transferInfo: TransferInfo, requestOptions?: IRequest.Options): Promise<Transfer> {
         const endpoint = `${this.baseUrl}/transfers`;
         const resource = new Resource(this, endpoint);
-        const request: TransferInfo = ObjectSerializer.serialize(transferInfo, "TransferInfo");
+        
+        const request: TransferInfo = ObjectSerializer.serialize(transferInfo, "TransferInfo", "");
         const response = await getJsonResponse<TransferInfo, Transfer>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "Transfer");
+
+        return ObjectSerializer.deserialize(response, "Transfer", "");
     }
+
 }

@@ -7,49 +7,59 @@
  * Do not edit this class manually.
  */
 
-import { AdditionalBankIdentification } from './additionalBankIdentification';
+import { AdditionalBankIdentification } from "./additionalBankIdentification";
+
 
 export class NumberAndBicAccountIdentification {
     /**
     * The bank account number, without separators or whitespace. The length and format depends on the bank or country.
     */
-    'accountNumber': string;
-    'additionalBankIdentification'?: AdditionalBankIdentification | null;
+    "accountNumber": string;
+    "additionalBankIdentification"?: AdditionalBankIdentification;
     /**
     * The bank\'s 8- or 11-character BIC or SWIFT code.
     */
-    'bic': string;
+    "bic": string;
     /**
     * **numberAndBic**
     */
-    'type': NumberAndBicAccountIdentification.TypeEnum;
+    "type": NumberAndBicAccountIdentification.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "additionalBankIdentification",
             "baseName": "additionalBankIdentification",
-            "type": "AdditionalBankIdentification | null"
+            "type": "AdditionalBankIdentification",
+            "format": ""
         },
         {
             "name": "bic",
             "baseName": "bic",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "NumberAndBicAccountIdentification.TypeEnum"
+            "type": "NumberAndBicAccountIdentification.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return NumberAndBicAccountIdentification.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

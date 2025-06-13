@@ -7,67 +7,79 @@
  * Do not edit this class manually.
  */
 
-import { Duration } from './duration';
+import { Duration } from "./duration";
+
 
 export class TransactionRuleInterval {
     /**
     * The day of month, used when the `duration.unit` is **months**. If not provided, by default, this is set to **1**, the first day of the month.
     */
-    'dayOfMonth'?: number;
+    "dayOfMonth"?: number;
     /**
     * The day of week, used when the `duration.unit` is **weeks**. If not provided, by default, this is set to **monday**.  Possible values: **sunday**, **monday**, **tuesday**, **wednesday**, **thursday**, **friday**.
     */
-    'dayOfWeek'?: TransactionRuleInterval.DayOfWeekEnum;
-    'duration'?: Duration | null;
+    "dayOfWeek"?: TransactionRuleInterval.DayOfWeekEnum;
+    "duration"?: Duration;
     /**
     * The time of day, in **hh:mm:ss** format, used when the `duration.unit` is **hours**. If not provided, by default, this is set to **00:00:00**.
     */
-    'timeOfDay'?: string;
+    "timeOfDay"?: string;
     /**
     * The [time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For example, **Europe/Amsterdam**. By default, this is set to **UTC**.
     */
-    'timeZone'?: string;
+    "timeZone"?: string;
     /**
     * The [type of interval](https://docs.adyen.com/issuing/transaction-rules#time-intervals) during which the rule conditions and limits apply, and how often counters are reset.  Possible values:   * **perTransaction**: conditions are evaluated and the counters are reset for every transaction.  * **daily**: the counters are reset daily at 00:00:00 CET.  * **weekly**: the counters are reset every Monday at 00:00:00 CET.   * **monthly**: the counters reset every first day of the month at 00:00:00 CET.   * **lifetime**: conditions are applied to the lifetime of the payment instrument.  * **rolling**: conditions are applied and the counters are reset based on a `duration`. If the reset date and time are not provided, Adyen applies the default reset time similar to fixed intervals. For example, if the duration is every two weeks, the counter resets every third Monday at 00:00:00 CET.  * **sliding**: conditions are applied and the counters are reset based on the current time and a `duration` that you specify.
     */
-    'type': TransactionRuleInterval.TypeEnum;
+    "type": TransactionRuleInterval.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "dayOfMonth",
             "baseName": "dayOfMonth",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "dayOfWeek",
             "baseName": "dayOfWeek",
-            "type": "TransactionRuleInterval.DayOfWeekEnum"
+            "type": "TransactionRuleInterval.DayOfWeekEnum",
+            "format": ""
         },
         {
             "name": "duration",
             "baseName": "duration",
-            "type": "Duration | null"
+            "type": "Duration",
+            "format": ""
         },
         {
             "name": "timeOfDay",
             "baseName": "timeOfDay",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "timeZone",
             "baseName": "timeZone",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TransactionRuleInterval.TypeEnum"
+            "type": "TransactionRuleInterval.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TransactionRuleInterval.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

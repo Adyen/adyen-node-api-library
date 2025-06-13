@@ -7,31 +7,39 @@
  * Do not edit this class manually.
  */
 
-import { TimeOfDay } from './timeOfDay';
+import { TimeOfDay } from "./timeOfDay";
+
 
 export class TimeOfDayRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    'operation': string;
-    'value'?: TimeOfDay | null;
+    "operation": string;
+    "value"?: TimeOfDay;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "TimeOfDay | null"
+            "type": "TimeOfDay",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TimeOfDayRestriction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

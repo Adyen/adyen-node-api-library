@@ -12,28 +12,35 @@ export class RelayedAuthorisationData {
     /**
     * Contains key-value pairs of your references and descriptions, for example, `customId`:`your-own-custom-field-12345`.
     */
-    'metadata'?: { [key: string]: string; };
+    "metadata"?: { [key: string]: string; };
     /**
     * Your reference for the relayed authorisation data.
     */
-    'reference'?: string;
+    "reference"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "{ [key: string]: string; }"
+            "type": "{ [key: string]: string; }",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return RelayedAuthorisationData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

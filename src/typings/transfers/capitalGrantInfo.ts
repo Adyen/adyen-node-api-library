@@ -7,40 +7,49 @@
  * Do not edit this class manually.
  */
 
-import { Counterparty } from './counterparty';
+import { Counterparty } from "./counterparty";
+
 
 export class CapitalGrantInfo {
-    'counterparty'?: Counterparty | null;
+    "counterparty"?: Counterparty;
     /**
     * The identifier of the grant account used for the grant.
     */
-    'grantAccountId': string;
+    "grantAccountId": string;
     /**
     * The identifier of the grant offer that has been selected and from which the grant details will be used.
     */
-    'grantOfferId': string;
+    "grantOfferId": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "Counterparty | null"
+            "type": "Counterparty",
+            "format": ""
         },
         {
             "name": "grantAccountId",
             "baseName": "grantAccountId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "grantOfferId",
             "baseName": "grantOfferId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CapitalGrantInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,64 +12,75 @@ export class Address {
     /**
     * The name of the city. Required if `stateOrProvince` is provided.  If you specify the city, you must also send `postalCode` and `street`.
     */
-    'city'?: string;
+    "city"?: string;
     /**
     * The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
     */
-    'country': string;
+    "country": string;
     /**
     * Postal code. Required if `stateOrProvince` and/or `city` is provided.
     */
-    'postalCode'?: string;
+    "postalCode"?: string;
     /**
     * The two-letter ISO 3166-2 state or province code. For example, **CA** in the US.  If you specify the state or province, you must also send `city`, `postalCode`, and `street`.
     */
-    'stateOrProvince'?: string;
+    "stateOrProvince"?: string;
     /**
     * The name of the street, and the house or building number. Required if `stateOrProvince` and/or `city` is provided.
     */
-    'street'?: string;
+    "street"?: string;
     /**
     * The apartment, unit, or suite number.
     */
-    'street2'?: string;
+    "street2"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "city",
             "baseName": "city",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "country",
             "baseName": "country",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "postalCode",
             "baseName": "postalCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "stateOrProvince",
             "baseName": "stateOrProvince",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "street",
             "baseName": "street",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "street2",
             "baseName": "street2",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Address.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

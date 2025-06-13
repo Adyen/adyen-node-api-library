@@ -12,46 +12,55 @@ export class SupportingEntityCapability {
     /**
     * Indicates whether the capability is allowed for the supporting entity.  If a capability is allowed for a supporting entity but not for the parent legal entity, this means the legal entity has other supporting entities that failed verification.  **You can use the allowed supporting entity** regardless of the verification status of other supporting entities.
     */
-    'allowed'?: boolean;
+    "allowed"?: boolean;
     /**
     * Supporting entity reference 
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * Indicates whether the supporting entity capability is requested. 
     */
-    'requested'?: boolean;
+    "requested"?: boolean;
     /**
     * The status of the verification checks for the capability of the supporting entity.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the `errors` array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
     */
-    'verificationStatus'?: string;
+    "verificationStatus"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "allowed",
             "baseName": "allowed",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "requested",
             "baseName": "requested",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "verificationStatus",
             "baseName": "verificationStatus",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SupportingEntityCapability.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

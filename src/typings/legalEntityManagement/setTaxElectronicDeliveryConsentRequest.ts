@@ -12,19 +12,25 @@ export class SetTaxElectronicDeliveryConsentRequest {
     /**
     * Consent to electronically deliver tax form US1099-K.
     */
-    'US1099k'?: boolean;
+    "US1099k"?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "US1099k",
             "baseName": "US1099k",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SetTaxElectronicDeliveryConsentRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

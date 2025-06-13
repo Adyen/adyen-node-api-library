@@ -7,129 +7,148 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './address';
-import { TaxInformation } from './taxInformation';
-import { UndefinedBeneficiary } from './undefinedBeneficiary';
+import { Address } from "./address";
+import { TaxInformation } from "./taxInformation";
+import { UndefinedBeneficiary } from "./undefinedBeneficiary";
+
 
 export class Trust {
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.
     */
-    'countryOfGoverningLaw': string;
+    "countryOfGoverningLaw": string;
     /**
     * The date when the legal arrangement was incorporated in YYYY-MM-DD format.
     */
-    'dateOfIncorporation'?: string;
+    "dateOfIncorporation"?: string;
     /**
     * A short description about the trust. Only applicable for charitable trusts in New Zealand.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The registered name, if different from the `name`.
     */
-    'doingBusinessAs'?: string;
+    "doingBusinessAs"?: string;
     /**
     * The legal name.
     */
-    'name': string;
-    'principalPlaceOfBusiness'?: Address | null;
-    'registeredAddress': Address;
+    "name": string;
+    "principalPlaceOfBusiness"?: Address;
+    "registeredAddress": Address;
     /**
     * The registration number.
     */
-    'registrationNumber'?: string;
+    "registrationNumber"?: string;
     /**
     * The tax information of the entity.
     */
-    'taxInformation'?: Array<TaxInformation>;
+    "taxInformation"?: Array<TaxInformation>;
     /**
     * Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab=trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab=trust_3_4#trust-types-in-new-zealand).
     */
-    'type': Trust.TypeEnum;
+    "type": Trust.TypeEnum;
     /**
     * The undefined beneficiary information of the entity.
     */
-    'undefinedBeneficiaryInfo'?: Array<UndefinedBeneficiary>;
+    "undefinedBeneficiaryInfo"?: Array<UndefinedBeneficiary>;
     /**
     * The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
     */
-    'vatAbsenceReason'?: Trust.VatAbsenceReasonEnum;
+    "vatAbsenceReason"?: Trust.VatAbsenceReasonEnum;
     /**
     * The VAT number.
     */
-    'vatNumber'?: string;
+    "vatNumber"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "countryOfGoverningLaw",
             "baseName": "countryOfGoverningLaw",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "dateOfIncorporation",
             "baseName": "dateOfIncorporation",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "doingBusinessAs",
             "baseName": "doingBusinessAs",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "principalPlaceOfBusiness",
             "baseName": "principalPlaceOfBusiness",
-            "type": "Address | null"
+            "type": "Address",
+            "format": ""
         },
         {
             "name": "registeredAddress",
             "baseName": "registeredAddress",
-            "type": "Address"
+            "type": "Address",
+            "format": ""
         },
         {
             "name": "registrationNumber",
             "baseName": "registrationNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "taxInformation",
             "baseName": "taxInformation",
-            "type": "Array<TaxInformation>"
+            "type": "Array<TaxInformation>",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "Trust.TypeEnum"
+            "type": "Trust.TypeEnum",
+            "format": ""
         },
         {
             "name": "undefinedBeneficiaryInfo",
             "baseName": "undefinedBeneficiaryInfo",
-            "type": "Array<UndefinedBeneficiary>"
+            "type": "Array<UndefinedBeneficiary>",
+            "format": ""
         },
         {
             "name": "vatAbsenceReason",
             "baseName": "vatAbsenceReason",
-            "type": "Trust.VatAbsenceReasonEnum"
+            "type": "Trust.VatAbsenceReasonEnum",
+            "format": ""
         },
         {
             "name": "vatNumber",
             "baseName": "vatNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Trust.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

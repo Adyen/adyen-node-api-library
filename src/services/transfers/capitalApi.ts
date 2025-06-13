@@ -7,18 +7,21 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    CapitalGrant,
-    CapitalGrantInfo,
-    CapitalGrants,
-    ObjectSerializer
-} from "../../typings/transfers/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/transfers/objectSerializer";
+import { CapitalGrant } from "../../typings/transfers/models";
+import { CapitalGrantInfo } from "../../typings/transfers/models";
+import { CapitalGrants } from "../../typings/transfers/models";
+
+/**
+ * API handler for CapitalApi
+ */
 export class CapitalApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/btl/v4";
@@ -41,6 +44,7 @@ export class CapitalApi extends Service {
     public async getCapitalAccount(counterpartyAccountHolderId?: string, requestOptions?: IRequest.Options): Promise<CapitalGrants> {
         const endpoint = `${this.baseUrl}/grants`;
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = counterpartyAccountHolderId;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -52,7 +56,8 @@ export class CapitalApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "CapitalGrants");
+
+        return ObjectSerializer.deserialize(response, "CapitalGrants", "");
     }
 
     /**
@@ -68,12 +73,14 @@ export class CapitalApi extends Service {
         const endpoint = `${this.baseUrl}/grants/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, CapitalGrant>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "CapitalGrant");
+
+        return ObjectSerializer.deserialize(response, "CapitalGrant", "");
     }
 
     /**
@@ -88,12 +95,15 @@ export class CapitalApi extends Service {
     public async requestGrantPayout(capitalGrantInfo: CapitalGrantInfo, requestOptions?: IRequest.Options): Promise<CapitalGrant> {
         const endpoint = `${this.baseUrl}/grants`;
         const resource = new Resource(this, endpoint);
-        const request: CapitalGrantInfo = ObjectSerializer.serialize(capitalGrantInfo, "CapitalGrantInfo");
+        
+        const request: CapitalGrantInfo = ObjectSerializer.serialize(capitalGrantInfo, "CapitalGrantInfo", "");
         const response = await getJsonResponse<CapitalGrantInfo, CapitalGrant>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "CapitalGrant");
+
+        return ObjectSerializer.deserialize(response, "CapitalGrant", "");
     }
+
 }

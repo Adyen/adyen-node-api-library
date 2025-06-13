@@ -12,28 +12,35 @@ export class ProcessingTypesRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    'operation': string;
+    "operation": string;
     /**
     * List of processing types.  Possible values: **atmWithdraw**, **balanceInquiry**, **ecommerce**, **moto**, **pos**, **recurring**, **token**.  
     */
-    'value'?: Array<ProcessingTypesRestriction.ValueEnum>;
+    "value"?: Array<ProcessingTypesRestriction.ValueEnum>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "Array<ProcessingTypesRestriction.ValueEnum>"
+            "type": "ProcessingTypesRestriction.ValueEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ProcessingTypesRestriction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

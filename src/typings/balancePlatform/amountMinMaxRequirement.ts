@@ -12,46 +12,55 @@ export class AmountMinMaxRequirement {
     /**
     * Specifies the eligible amounts for a particular route.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * Maximum amount.
     */
-    'max'?: number;
+    "max"?: number;
     /**
     * Minimum amount.
     */
-    'min'?: number;
+    "min"?: number;
     /**
     * **amountMinMaxRequirement**
     */
-    'type': AmountMinMaxRequirement.TypeEnum;
+    "type": AmountMinMaxRequirement.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "max",
             "baseName": "max",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "min",
             "baseName": "min",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AmountMinMaxRequirement.TypeEnum"
+            "type": "AmountMinMaxRequirement.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AmountMinMaxRequirement.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

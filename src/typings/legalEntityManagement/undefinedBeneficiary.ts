@@ -12,28 +12,35 @@ export class UndefinedBeneficiary {
     /**
     * The details of the undefined beneficiary.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The reference of the undefined beneficiary.
     */
-    'reference'?: string;
+    "reference"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return UndefinedBeneficiary.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

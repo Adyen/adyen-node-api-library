@@ -7,175 +7,193 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
-import { AmountAdjustment } from './amountAdjustment';
-import { BalanceMutation } from './balanceMutation';
-import { ConfirmationTrackingData } from './confirmationTrackingData';
-import { EstimationTrackingData } from './estimationTrackingData';
-import { ExternalReason } from './externalReason';
-import { InternalReviewTrackingData } from './internalReviewTrackingData';
-import { IssuingTransactionData } from './issuingTransactionData';
-import { MerchantPurchaseData } from './merchantPurchaseData';
-import { Modification } from './modification';
+import { Amount } from "./amount";
+import { AmountAdjustment } from "./amountAdjustment";
+import { BalanceMutation } from "./balanceMutation";
+import { ExternalReason } from "./externalReason";
+import { Modification } from "./modification";
+import { TransferEventEventsDataInner } from "./transferEventEventsDataInner";
+import { TransferEventTrackingData } from "./transferEventTrackingData";
+
 
 export class TransferEvent {
-    'amount'?: Amount | null;
+    "amount"?: Amount;
     /**
     * The amount adjustments in this transfer. Only applicable for [issuing](https://docs.adyen.com/issuing/) integrations.
     */
-    'amountAdjustments'?: Array<AmountAdjustment>;
+    "amountAdjustments"?: Array<AmountAdjustment>;
     /**
     * Scheme unique arn identifier useful for tracing captures, chargebacks, refunds, etc.
     */
-    'arn'?: string;
+    "arn"?: string;
     /**
     * The date when the transfer request was sent.
     */
-    'bookingDate'?: Date;
+    "bookingDate"?: Date;
     /**
     * The estimated time when the beneficiary should have access to the funds.
     */
-    'estimatedArrivalTime'?: Date;
+    "estimatedArrivalTime"?: Date;
     /**
     * A list of event data.
     */
-    'eventsData'?: Array<IssuingTransactionData | MerchantPurchaseData>;
-    'externalReason'?: ExternalReason | null;
+    "eventsData"?: Array<TransferEventEventsDataInner>;
+    "externalReason"?: ExternalReason;
     /**
     * The unique identifier of the transfer event.
     */
-    'id'?: string;
-    'modification'?: Modification | null;
+    "id"?: string;
+    "modification"?: Modification;
     /**
     * The list of balance mutations per event.
     */
-    'mutations'?: Array<BalanceMutation>;
-    'originalAmount'?: Amount | null;
+    "mutations"?: Array<BalanceMutation>;
+    "originalAmount"?: Amount;
     /**
     * The reason for the transfer status.
     */
-    'reason'?: TransferEvent.ReasonEnum;
+    "reason"?: TransferEvent.ReasonEnum;
     /**
     * The status of the transfer event.
     */
-    'status'?: TransferEvent.StatusEnum;
-    /**
-    * Additional information for the tracking event.
-    */
-    'trackingData'?: ConfirmationTrackingData | EstimationTrackingData | InternalReviewTrackingData | null;
+    "status"?: TransferEvent.StatusEnum;
+    "trackingData"?: TransferEventTrackingData;
     /**
     * The id of the transaction that is related to this accounting event. Only sent for events of type **accounting** where the balance changes.
     */
-    'transactionId'?: string;
+    "transactionId"?: string;
     /**
     * The type of the transfer event. Possible values: **accounting**, **tracking**.
     */
-    'type'?: TransferEvent.TypeEnum;
+    "type"?: TransferEvent.TypeEnum;
     /**
     * The date when the tracking status was updated.
     */
-    'updateDate'?: Date;
+    "updateDate"?: Date;
     /**
     * The date when the funds are expected to be deducted from or credited to the balance account. This date can be in either the past or future.
     */
-    'valueDate'?: Date;
+    "valueDate"?: Date;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "amountAdjustments",
             "baseName": "amountAdjustments",
-            "type": "Array<AmountAdjustment>"
+            "type": "Array<AmountAdjustment>",
+            "format": ""
         },
         {
             "name": "arn",
             "baseName": "arn",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bookingDate",
             "baseName": "bookingDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "estimatedArrivalTime",
             "baseName": "estimatedArrivalTime",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "eventsData",
             "baseName": "eventsData",
-            "type": "Array<IssuingTransactionData | MerchantPurchaseData>"
+            "type": "Array<TransferEventEventsDataInner>",
+            "format": ""
         },
         {
             "name": "externalReason",
             "baseName": "externalReason",
-            "type": "ExternalReason | null"
+            "type": "ExternalReason",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "modification",
             "baseName": "modification",
-            "type": "Modification | null"
+            "type": "Modification",
+            "format": ""
         },
         {
             "name": "mutations",
             "baseName": "mutations",
-            "type": "Array<BalanceMutation>"
+            "type": "Array<BalanceMutation>",
+            "format": ""
         },
         {
             "name": "originalAmount",
             "baseName": "originalAmount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "reason",
             "baseName": "reason",
-            "type": "TransferEvent.ReasonEnum"
+            "type": "TransferEvent.ReasonEnum",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "TransferEvent.StatusEnum"
+            "type": "TransferEvent.StatusEnum",
+            "format": ""
         },
         {
             "name": "trackingData",
             "baseName": "trackingData",
-            "type": "ConfirmationTrackingData | EstimationTrackingData | InternalReviewTrackingData | null"
+            "type": "TransferEventTrackingData",
+            "format": ""
         },
         {
             "name": "transactionId",
             "baseName": "transactionId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TransferEvent.TypeEnum"
+            "type": "TransferEvent.TypeEnum",
+            "format": ""
         },
         {
             "name": "updateDate",
             "baseName": "updateDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "valueDate",
             "baseName": "valueDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
         return TransferEvent.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,25 +7,32 @@
  * Do not edit this class manually.
  */
 
-import { TermsOfServiceAcceptanceInfo } from './termsOfServiceAcceptanceInfo';
+import { TermsOfServiceAcceptanceInfo } from "./termsOfServiceAcceptanceInfo";
+
 
 export class GetTermsOfServiceAcceptanceInfosResponse {
     /**
     * The Terms of Service acceptance information.
     */
-    'data'?: Array<TermsOfServiceAcceptanceInfo>;
+    "data"?: Array<TermsOfServiceAcceptanceInfo>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<TermsOfServiceAcceptanceInfo>"
+            "type": "Array<TermsOfServiceAcceptanceInfo>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return GetTermsOfServiceAcceptanceInfosResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

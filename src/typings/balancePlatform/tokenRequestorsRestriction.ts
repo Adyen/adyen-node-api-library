@@ -12,25 +12,32 @@ export class TokenRequestorsRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    'operation': string;
-    'value'?: Array<string>;
+    "operation": string;
+    "value"?: Array<string>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TokenRequestorsRestriction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

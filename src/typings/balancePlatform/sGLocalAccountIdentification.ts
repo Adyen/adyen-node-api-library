@@ -12,37 +12,45 @@ export class SGLocalAccountIdentification {
     /**
     * The 4- to 19-digit bank account number, without separators or whitespace.
     */
-    'accountNumber': string;
+    "accountNumber": string;
     /**
     * The bank\'s 8- or 11-character BIC or SWIFT code.
     */
-    'bic': string;
+    "bic": string;
     /**
     * **sgLocal**
     */
-    'type'?: SGLocalAccountIdentification.TypeEnum;
+    "type"?: SGLocalAccountIdentification.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "bic",
             "baseName": "bic",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "SGLocalAccountIdentification.TypeEnum"
+            "type": "SGLocalAccountIdentification.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SGLocalAccountIdentification.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -15,46 +15,55 @@ export class SourceOfFunds {
 	* @deprecated since Legal Entity Management API v3
 	* This field will be removed in v4.
     */
-    'acquiringBusinessLineId'?: string;
+    "acquiringBusinessLineId"?: string;
     /**
     * Indicates whether the funds are coming from transactions processed by Adyen. If **false**, a `description` is required.
     */
-    'adyenProcessedFunds'?: boolean;
+    "adyenProcessedFunds"?: boolean;
     /**
     * Text describing the source of funds. For example, for `type` **business**, provide a description of where the business transactions come from, such as payments through bank transfer. Required when `adyenProcessedFunds` is **false**.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The type of the source of funds. Possible value: **business**.
     */
-    'type'?: SourceOfFunds.TypeEnum;
+    "type"?: SourceOfFunds.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "acquiringBusinessLineId",
             "baseName": "acquiringBusinessLineId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "adyenProcessedFunds",
             "baseName": "adyenProcessedFunds",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "SourceOfFunds.TypeEnum"
+            "type": "SourceOfFunds.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SourceOfFunds.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

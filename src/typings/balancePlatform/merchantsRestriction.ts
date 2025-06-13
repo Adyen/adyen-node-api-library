@@ -7,34 +7,42 @@
  * Do not edit this class manually.
  */
 
-import { MerchantAcquirerPair } from './merchantAcquirerPair';
+import { MerchantAcquirerPair } from "./merchantAcquirerPair";
+
 
 export class MerchantsRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    'operation': string;
+    "operation": string;
     /**
     * List of merchant ID and acquirer ID pairs.
     */
-    'value'?: Array<MerchantAcquirerPair>;
+    "value"?: Array<MerchantAcquirerPair>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "Array<MerchantAcquirerPair>"
+            "type": "Array<MerchantAcquirerPair>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return MerchantsRestriction.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

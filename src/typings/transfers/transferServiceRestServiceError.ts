@@ -7,104 +7,120 @@
  * Do not edit this class manually.
  */
 
-import { InvalidField } from './invalidField';
-import { RoutingDetails } from './routingDetails';
+import { InvalidField } from "./invalidField";
+import { RoutingDetails } from "./routingDetails";
+
 
 export class TransferServiceRestServiceError {
     /**
     * A human-readable explanation specific to this occurrence of the problem.
     */
-    'detail': string;
+    "detail": string;
     /**
     * A code that identifies the problem type.
     */
-    'errorCode': string;
+    "errorCode": string;
     /**
     * A unique URI that identifies the specific occurrence of the problem.
     */
-    'instance'?: string;
+    "instance"?: string;
     /**
     * Detailed explanation of each validation error, when applicable.
     */
-    'invalidFields'?: Array<InvalidField>;
+    "invalidFields"?: Array<InvalidField>;
     /**
     * A unique reference for the request, essentially the same as `pspReference`.
     */
-    'requestId'?: string;
-    'response'?: object;
+    "requestId"?: string;
+    "response"?: any;
     /**
     * Detailed explanation of each attempt to route the transfer with the priorities from the request.
     */
-    'routingDetails'?: Array<RoutingDetails>;
+    "routingDetails"?: Array<RoutingDetails>;
     /**
     * The HTTP status code.
     */
-    'status': number;
+    "status": number;
     /**
     * A short, human-readable summary of the problem type.
     */
-    'title': string;
+    "title": string;
     /**
     * A URI that identifies the problem type, pointing to human-readable documentation on this problem type.
     */
-    'type': string;
+    "type": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "detail",
             "baseName": "detail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "errorCode",
             "baseName": "errorCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "instance",
             "baseName": "instance",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "invalidFields",
             "baseName": "invalidFields",
-            "type": "Array<InvalidField>"
+            "type": "Array<InvalidField>",
+            "format": ""
         },
         {
             "name": "requestId",
             "baseName": "requestId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "response",
             "baseName": "response",
-            "type": "object"
+            "type": "any",
+            "format": ""
         },
         {
             "name": "routingDetails",
             "baseName": "routingDetails",
-            "type": "Array<RoutingDetails>"
+            "type": "Array<RoutingDetails>",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "title",
             "baseName": "title",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TransferServiceRestServiceError.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

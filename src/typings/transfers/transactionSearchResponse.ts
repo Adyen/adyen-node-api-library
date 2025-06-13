@@ -7,32 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { Links } from './links';
-import { Transaction } from './transaction';
+import { Links } from "./links";
+import { Transaction } from "./transaction";
+
 
 export class TransactionSearchResponse {
-    '_links'?: Links | null;
+    "_links"?: Links;
     /**
     * Contains the transactions that match the query parameters.
     */
-    'data'?: Array<Transaction>;
+    "data"?: Array<Transaction>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "Links | null"
+            "type": "Links",
+            "format": ""
         },
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<Transaction>"
+            "type": "Array<Transaction>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TransactionSearchResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

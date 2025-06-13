@@ -7,18 +7,21 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    BusinessLine,
-    BusinessLineInfo,
-    BusinessLineInfoUpdate,
-    ObjectSerializer
-} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSerializer";
+import { BusinessLine } from "../../typings/legalEntityManagement/models";
+import { BusinessLineInfo } from "../../typings/legalEntityManagement/models";
+import { BusinessLineInfoUpdate } from "../../typings/legalEntityManagement/models";
+
+/**
+ * API handler for BusinessLinesApi
+ */
 export class BusinessLinesApi extends Service {
 
     private readonly API_BASEPATH: string = "https://kyc-test.adyen.com/lem/v3";
@@ -38,24 +41,28 @@ export class BusinessLinesApi extends Service {
     public async createBusinessLine(businessLineInfo: BusinessLineInfo, requestOptions?: IRequest.Options): Promise<BusinessLine> {
         const endpoint = `${this.baseUrl}/businessLines`;
         const resource = new Resource(this, endpoint);
-        const request: BusinessLineInfo = ObjectSerializer.serialize(businessLineInfo, "BusinessLineInfo");
+        
+        const request: BusinessLineInfo = ObjectSerializer.serialize(businessLineInfo, "BusinessLineInfo", "");
         const response = await getJsonResponse<BusinessLineInfo, BusinessLine>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "BusinessLine");
+
+        return ObjectSerializer.deserialize(response, "BusinessLine", "");
     }
 
     /**
     * @summary Delete a business line
     * @param id {@link string } The unique identifier of the business line to be deleted.
     * @param requestOptions {@link IRequest.Options }
+    * @return {@link void }
     */
     public async deleteBusinessLine(id: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/businessLines/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         await getJsonResponse<string, void>(
             resource,
             "",
@@ -73,12 +80,14 @@ export class BusinessLinesApi extends Service {
         const endpoint = `${this.baseUrl}/businessLines/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, BusinessLine>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "BusinessLine");
+
+        return ObjectSerializer.deserialize(response, "BusinessLine", "");
     }
 
     /**
@@ -92,12 +101,15 @@ export class BusinessLinesApi extends Service {
         const endpoint = `${this.baseUrl}/businessLines/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: BusinessLineInfoUpdate = ObjectSerializer.serialize(businessLineInfoUpdate, "BusinessLineInfoUpdate");
+        
+        const request: BusinessLineInfoUpdate = ObjectSerializer.serialize(businessLineInfoUpdate, "BusinessLineInfoUpdate", "");
         const response = await getJsonResponse<BusinessLineInfoUpdate, BusinessLine>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-        return ObjectSerializer.deserialize(response, "BusinessLine");
+
+        return ObjectSerializer.deserialize(response, "BusinessLine", "");
     }
+
 }

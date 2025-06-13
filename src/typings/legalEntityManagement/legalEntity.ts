@@ -7,159 +7,181 @@
  * Do not edit this class manually.
  */
 
-import { CapabilityProblem } from './capabilityProblem';
-import { DocumentReference } from './documentReference';
-import { EntityReference } from './entityReference';
-import { Individual } from './individual';
-import { LegalEntityAssociation } from './legalEntityAssociation';
-import { LegalEntityCapability } from './legalEntityCapability';
-import { Organization } from './organization';
-import { SoleProprietorship } from './soleProprietorship';
-import { TransferInstrumentReference } from './transferInstrumentReference';
-import { Trust } from './trust';
-import { UnincorporatedPartnership } from './unincorporatedPartnership';
-import { VerificationDeadline } from './verificationDeadline';
+import { CapabilityProblem } from "./capabilityProblem";
+import { DocumentReference } from "./documentReference";
+import { EntityReference } from "./entityReference";
+import { Individual } from "./individual";
+import { LegalEntityAssociation } from "./legalEntityAssociation";
+import { LegalEntityCapability } from "./legalEntityCapability";
+import { Organization } from "./organization";
+import { SoleProprietorship } from "./soleProprietorship";
+import { TransferInstrumentReference } from "./transferInstrumentReference";
+import { Trust } from "./trust";
+import { UnincorporatedPartnership } from "./unincorporatedPartnership";
+import { VerificationDeadline } from "./verificationDeadline";
+
 
 export class LegalEntity {
     /**
     * Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
     */
-    'capabilities'?: { [key: string]: LegalEntityCapability; };
+    "capabilities"?: { [key: string]: LegalEntityCapability; };
     /**
     * List of documents uploaded for the legal entity.
     */
-    'documentDetails'?: Array<DocumentReference>;
+    "documentDetails"?: Array<DocumentReference>;
     /**
     * List of documents uploaded for the legal entity.
     *
 	* @deprecated since Legal Entity Management API v1
 	* Use the `documentDetails` array instead.
     */
-    'documents'?: Array<EntityReference>;
+    "documents"?: Array<EntityReference>;
     /**
     * List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories.
     */
-    'entityAssociations'?: Array<LegalEntityAssociation>;
+    "entityAssociations"?: Array<LegalEntityAssociation>;
     /**
     * The unique identifier of the legal entity.
     */
-    'id': string;
-    'individual'?: Individual | null;
-    'organization'?: Organization | null;
+    "id": string;
+    "individual"?: Individual;
+    "organization"?: Organization;
     /**
     * List of verification errors related to capabilities for the legal entity.
     */
-    'problems'?: Array<CapabilityProblem>;
+    "problems"?: Array<CapabilityProblem>;
     /**
     * Your reference for the legal entity, maximum 150 characters.
     */
-    'reference'?: string;
-    'soleProprietorship'?: SoleProprietorship | null;
+    "reference"?: string;
+    "soleProprietorship"?: SoleProprietorship;
     /**
     * List of transfer instruments that the legal entity owns.
     */
-    'transferInstruments'?: Array<TransferInstrumentReference>;
-    'trust'?: Trust | null;
+    "transferInstruments"?: Array<TransferInstrumentReference>;
+    "trust"?: Trust;
     /**
     * The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**.
     */
-    'type'?: LegalEntity.TypeEnum;
-    'unincorporatedPartnership'?: UnincorporatedPartnership | null;
+    "type"?: LegalEntity.TypeEnum;
+    "unincorporatedPartnership"?: UnincorporatedPartnership;
     /**
     * List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
     */
-    'verificationDeadlines'?: Array<VerificationDeadline>;
+    "verificationDeadlines"?: Array<VerificationDeadline>;
     /**
     * A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification).
     */
-    'verificationPlan'?: string;
+    "verificationPlan"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "capabilities",
             "baseName": "capabilities",
-            "type": "{ [key: string]: LegalEntityCapability; }"
+            "type": "{ [key: string]: LegalEntityCapability; }",
+            "format": ""
         },
         {
             "name": "documentDetails",
             "baseName": "documentDetails",
-            "type": "Array<DocumentReference>"
+            "type": "Array<DocumentReference>",
+            "format": ""
         },
         {
             "name": "documents",
             "baseName": "documents",
-            "type": "Array<EntityReference>"
+            "type": "Array<EntityReference>",
+            "format": ""
         },
         {
             "name": "entityAssociations",
             "baseName": "entityAssociations",
-            "type": "Array<LegalEntityAssociation>"
+            "type": "Array<LegalEntityAssociation>",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "individual",
             "baseName": "individual",
-            "type": "Individual | null"
+            "type": "Individual",
+            "format": ""
         },
         {
             "name": "organization",
             "baseName": "organization",
-            "type": "Organization | null"
+            "type": "Organization",
+            "format": ""
         },
         {
             "name": "problems",
             "baseName": "problems",
-            "type": "Array<CapabilityProblem>"
+            "type": "Array<CapabilityProblem>",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "soleProprietorship",
             "baseName": "soleProprietorship",
-            "type": "SoleProprietorship | null"
+            "type": "SoleProprietorship",
+            "format": ""
         },
         {
             "name": "transferInstruments",
             "baseName": "transferInstruments",
-            "type": "Array<TransferInstrumentReference>"
+            "type": "Array<TransferInstrumentReference>",
+            "format": ""
         },
         {
             "name": "trust",
             "baseName": "trust",
-            "type": "Trust | null"
+            "type": "Trust",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "LegalEntity.TypeEnum"
+            "type": "LegalEntity.TypeEnum",
+            "format": ""
         },
         {
             "name": "unincorporatedPartnership",
             "baseName": "unincorporatedPartnership",
-            "type": "UnincorporatedPartnership | null"
+            "type": "UnincorporatedPartnership",
+            "format": ""
         },
         {
             "name": "verificationDeadlines",
             "baseName": "verificationDeadlines",
-            "type": "Array<VerificationDeadline>"
+            "type": "Array<VerificationDeadline>",
+            "format": ""
         },
         {
             "name": "verificationPlan",
             "baseName": "verificationPlan",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return LegalEntity.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

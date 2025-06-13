@@ -12,73 +12,85 @@ export class TransferNotificationMerchantData {
     /**
     * The unique identifier of the merchant\'s acquirer.
     */
-    'acquirerId'?: string;
+    "acquirerId"?: string;
     /**
     * The city where the merchant is located.
     */
-    'city'?: string;
+    "city"?: string;
     /**
     * The country where the merchant is located.
     */
-    'country'?: string;
+    "country"?: string;
     /**
     * The merchant category code.
     */
-    'mcc'?: string;
+    "mcc"?: string;
     /**
     * The unique identifier of the merchant.
     */
-    'merchantId'?: string;
+    "merchantId"?: string;
     /**
     * The name of the merchant\'s shop or service.
     */
-    'name'?: string;
+    "name"?: string;
     /**
     * The postal code of the merchant.
     */
-    'postalCode'?: string;
+    "postalCode"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "acquirerId",
             "baseName": "acquirerId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "city",
             "baseName": "city",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "country",
             "baseName": "country",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "mcc",
             "baseName": "mcc",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantId",
             "baseName": "merchantId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "postalCode",
             "baseName": "postalCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TransferNotificationMerchantData.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

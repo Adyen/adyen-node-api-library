@@ -12,28 +12,35 @@ export class StringMatch {
     /**
     * The type of string matching operation. Possible values:  **startsWith**, **endsWith**, **isEqualTo**, **contains**,
     */
-    'operation'?: StringMatch.OperationEnum;
+    "operation"?: StringMatch.OperationEnum;
     /**
     * The string to be matched.
     */
-    'value'?: string;
+    "value"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "StringMatch.OperationEnum"
+            "type": "StringMatch.OperationEnum",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return StringMatch.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,10 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { CapabilityProblem } from './capabilityProblem';
-import { SourceOfFunds } from './sourceOfFunds';
-import { WebData } from './webData';
-import { WebDataExemption } from './webDataExemption';
+import { CapabilityProblem } from "./capabilityProblem";
+import { SourceOfFunds } from "./sourceOfFunds";
+import { WebData } from "./webData";
+import { WebDataExemption } from "./webDataExemption";
+
 
 export class BusinessLine {
     /**
@@ -19,94 +20,109 @@ export class BusinessLine {
 	* @deprecated since Legal Entity Management API v3
 	* Use `service` instead.
     */
-    'capability'?: BusinessLine.CapabilityEnum;
+    "capability"?: BusinessLine.CapabilityEnum;
     /**
     * The unique identifier of the business line.
     */
-    'id': string;
+    "id": string;
     /**
     * A code that represents the industry of the legal entity for [marketplaces](https://docs.adyen.com/marketplaces/verification-requirements/reference-additional-products/#list-industry-codes) or [platforms](https://docs.adyen.com/platforms/verification-requirements/reference-additional-products/#list-industry-codes). For example, **4431A** for computer software stores.
     */
-    'industryCode': string;
+    "industryCode": string;
     /**
     * Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.
     */
-    'legalEntityId': string;
+    "legalEntityId": string;
     /**
     * The verification errors related to capabilities for this supporting entity.
     */
-    'problems'?: Array<CapabilityProblem>;
+    "problems"?: Array<CapabilityProblem>;
     /**
     * A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the `service` **paymentProcessing**.
     */
-    'salesChannels'?: Array<string>;
+    "salesChannels"?: Array<string>;
     /**
     * The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  
     */
-    'service': BusinessLine.ServiceEnum;
-    'sourceOfFunds'?: SourceOfFunds | null;
+    "service": BusinessLine.ServiceEnum;
+    "sourceOfFunds"?: SourceOfFunds;
     /**
     * List of website URLs where your user\'s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the `webDataExemption` object.
     */
-    'webData'?: Array<WebData>;
-    'webDataExemption'?: WebDataExemption | null;
+    "webData"?: Array<WebData>;
+    "webDataExemption"?: WebDataExemption;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "capability",
             "baseName": "capability",
-            "type": "BusinessLine.CapabilityEnum"
+            "type": "BusinessLine.CapabilityEnum",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "industryCode",
             "baseName": "industryCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "legalEntityId",
             "baseName": "legalEntityId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "problems",
             "baseName": "problems",
-            "type": "Array<CapabilityProblem>"
+            "type": "Array<CapabilityProblem>",
+            "format": ""
         },
         {
             "name": "salesChannels",
             "baseName": "salesChannels",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "service",
             "baseName": "service",
-            "type": "BusinessLine.ServiceEnum"
+            "type": "BusinessLine.ServiceEnum",
+            "format": ""
         },
         {
             "name": "sourceOfFunds",
             "baseName": "sourceOfFunds",
-            "type": "SourceOfFunds | null"
+            "type": "SourceOfFunds",
+            "format": ""
         },
         {
             "name": "webData",
             "baseName": "webData",
-            "type": "Array<WebData>"
+            "type": "Array<WebData>",
+            "format": ""
         },
         {
             "name": "webDataExemption",
             "baseName": "webDataExemption",
-            "type": "WebDataExemption | null"
+            "type": "WebDataExemption",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BusinessLine.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

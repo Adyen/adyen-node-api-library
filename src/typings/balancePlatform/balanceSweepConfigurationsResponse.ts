@@ -7,43 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { SweepConfigurationV2 } from './sweepConfigurationV2';
+import { SweepConfigurationV2 } from "./sweepConfigurationV2";
+
 
 export class BalanceSweepConfigurationsResponse {
     /**
     * Indicates whether there are more items on the next page.
     */
-    'hasNext': boolean;
+    "hasNext": boolean;
     /**
     * Indicates whether there are more items on the previous page.
     */
-    'hasPrevious': boolean;
+    "hasPrevious": boolean;
     /**
     * List of sweeps associated with the balance account.
     */
-    'sweeps': Array<SweepConfigurationV2>;
+    "sweeps": Array<SweepConfigurationV2>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "hasNext",
             "baseName": "hasNext",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "hasPrevious",
             "baseName": "hasPrevious",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "sweeps",
             "baseName": "sweeps",
-            "type": "Array<SweepConfigurationV2>"
+            "type": "Array<SweepConfigurationV2>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BalanceSweepConfigurationsResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

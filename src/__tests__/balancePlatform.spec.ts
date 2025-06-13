@@ -4,6 +4,11 @@ import { createClient } from "../__mocks__/base";
 import BalancePlatform from "../services/balancePlatform";
 import { balancePlatform }  from "../typings";
 import {IRequest} from "../typings/requestOptions";
+import { BalanceWebhookSettingInfo } from "../typings/balancePlatform/balanceWebhookSettingInfo";
+import { Target } from "../typings/balancePlatform/target";
+import { TransferRouteRequest } from "../typings/balancePlatform/transferRouteRequest";
+import { IbanAccountIdentification } from "../typings/balancePlatform/ibanAccountIdentification";
+import { Condition } from "../typings/balancePlatform/condition";
 
 let client: Client;
 let balancePlatformService: BalancePlatform;
@@ -912,4 +917,277 @@ describe("Balance Platform", (): void => {
             expect(response.id).toBe(transactionRuleId);
         });
     });
+
+    it("should support POST /validateBankAccountIdentification", async (): Promise<void> => {
+
+        scope.post("/validateBankAccountIdentification")
+            .reply(200);
+
+        const request = {
+            "accountIdentification":
+            {
+                "type": IbanAccountIdentification.TypeEnum.Iban,
+                "iban": "NL91ABNA0417164300"
+            }
+        };
+
+        await balancePlatformService.BankAccountValidationApi.validateBankAccountIdentification(request);
+    });
+
+    it("should support POST /transferRoutes/calculate with IBAN account identification", async (): Promise<void> => {
+        const mockResponse = {
+            "transferRoutes": [
+                {
+                    "country": "NL",
+                    "currency": "USD",
+                    "priority": "crossBorder",
+                    "requirements": [
+                        {
+                            "description": "Amount of transfer must be at least 100, and no greater than 99999999999",
+                            "max": 99999999999,
+                            "min": 100,
+                            "type": "amountMinMaxRequirement"
+                        },
+                        {
+                            "description": "Country, street and city is required.",
+                            "requiredAddressFields": [
+                                "line1",
+                                "city",
+                                "country"
+                            ],
+                            "type": "addressRequirement"
+                        },
+                        {
+                            "description": "Bank account identification type must be iban or numberAndBic",
+                            "bankAccountIdentificationTypes": [
+                                "iban",
+                                "numberAndBic"
+                            ],
+                            "type": "bankAccountIdentificationTypeRequirement"
+                        },
+                        {
+                            "issuingCountryCode": "NL",
+                            "paymentInstrumentType": "BankAccount",
+                            "type": "paymentInstrumentRequirement"
+                        }
+                    ]
+                },
+                {
+                    "country": "NL",
+                    "currency": "USD",
+                    "priority": "wire",
+                    "requirements": [
+                        {
+                            "description": "Amount of transfer must be at least 100, and no greater than 99999999999",
+                            "max": 99999999999,
+                            "min": 100,
+                            "type": "amountMinMaxRequirement"
+                        },
+                        {
+                            "description": "Country, street and city is required.",
+                            "requiredAddressFields": [
+                                "line1",
+                                "city",
+                                "country"
+                            ],
+                            "type": "addressRequirement"
+                        },
+                        {
+                            "description": "Bank account identification type must be iban or numberAndBic",
+                            "bankAccountIdentificationTypes": [
+                                "iban",
+                                "numberAndBic"
+                            ],
+                            "type": "bankAccountIdentificationTypeRequirement"
+                        },
+                        {
+                            "issuingCountryCode": "NL",
+                            "paymentInstrumentType": "BankAccount",
+                            "type": "paymentInstrumentRequirement"
+                        }
+                    ]
+                }
+            ]
+        };
+
+        scope.post("/transferRoutes/calculate")
+            .reply(200, mockResponse);
+
+        const transferRouteRequest = {
+            balancePlatform: "123456789",
+            currency: "USD",
+            category: TransferRouteRequest.CategoryEnum.Bank,
+            counterparty: {
+                bankAccount: {
+                    accountIdentification: {
+                        type: IbanAccountIdentification.TypeEnum.Iban,
+                        iban: "NL91ABNA0417164300"
+                    }
+                }
+            }
+        };
+
+        const response = await balancePlatformService.TransferRoutesApi.calculateTransferRoutes(transferRouteRequest);
+
+        expect(response).toBeTruthy();
+        expect(response.transferRoutes).toBeTruthy();
+        expect(response.transferRoutes?.length).toBe(2);
+    });    
+
+    it("should support GET /balancePlatforms/{balancePlatformId}/webhooks/{webhookId}/settings", async (): Promise<void> => {
+        const balancePlatformId = "123456789";
+        const webhookId = "WH00000001";
+
+        const mockResponse = {
+            "webhookSettings": [
+            {
+                "id": "BWHS00000000000000000000000001",
+                "type": "balance",
+                "target": {
+                "type": "balancePlatform",
+                "id": "YOUR_BALANCE_PLATFORM"
+                },
+                "currency": "USD",
+                "status": "active"
+            },
+            {
+                "id": "BWHS00000000000000000000000002",
+                "type": "balance",
+                "target": {
+                "type": "balanceAccount",
+                "id": "BA00000000000000000LIABLE"
+                },
+                "currency": "USD",
+                "status": "active"
+            }
+            ]
+        };
+
+        scope.get(`/balancePlatforms/${balancePlatformId}/webhooks/${webhookId}/settings`)
+            .reply(200, mockResponse);
+
+        const response = await balancePlatformService.BalancesApi.getAllWebhookSettings(balancePlatformId, webhookId);
+
+        expect(response).toBeTruthy();
+        expect(response.webhookSettings).toBeTruthy();
+        expect(response.webhookSettings?.length).toBe(2);
+        // first element
+        expect(response.webhookSettings![0].id).toBe("BWHS00000000000000000000000001");
+        expect(response.webhookSettings![0].type).toBe("balance");
+        // second element
+        expect(response.webhookSettings![1].id).toBe("BWHS00000000000000000000000002");
+        expect(response.webhookSettings![0].type).toBe("balance");
+    });
+
+    it("should support GET /balancePlatforms/{balancePlatformId}/webhooks/{webhookId}/settings/{settingId}", async (): Promise<void> => {
+        const balancePlatformId = "123456789";
+        const webhookId = "WH00000001";
+        const settingId = "BWHS00000000000000000000000001";
+
+        const mockResponse = {
+            id: "BWHS00000000000000000000000001",
+            type: BalanceWebhookSettingInfo.TypeEnum.Balance,
+            target: {
+                type: Target.TypeEnum.BalanceAccount,
+                id: "YOUR_BALANCE_PLATFORM"
+            },
+            currency: "USD",
+            status: BalanceWebhookSettingInfo.StatusEnum.Active
+        };
+
+        scope.get(`/balancePlatforms/${balancePlatformId}/webhooks/${webhookId}/settings/${settingId}`)
+            .reply(200, mockResponse);
+
+        const response = await balancePlatformService.BalancesApi.getWebhookSetting(balancePlatformId, webhookId, settingId);
+
+        expect(response).toBeTruthy();
+        expect(response.id).toBe("BWHS00000000000000000000000001");
+        expect(response.currency).toBe("USD");
+    });
+
+    it("should support POST /balancePlatforms/{balancePlatformId}/webhooks/{webhookId}/settings", async (): Promise<void> => {
+        const balancePlatformId = "123456789";
+        const webhookId = "WH00000001";
+
+        const mockResponse = {
+            id: "BWHS00000000000000000000000001",
+            type: BalanceWebhookSettingInfo.TypeEnum.Balance,
+            target: {
+                type: Target.TypeEnum.BalanceAccount,
+                id: "BA00000000000000000LIABLE"
+            },
+            currency: "USD",
+            status: BalanceWebhookSettingInfo.StatusEnum.Active,
+            conditions: [
+                {
+                    balanceType: "available",
+                    conditionType: "lessThan",
+                    value: 50000
+                }
+            ]
+        };
+
+        scope.post(`/balancePlatforms/${balancePlatformId}/webhooks/${webhookId}/settings`)
+            .reply(200, mockResponse);
+
+        const request = {
+            type: BalanceWebhookSettingInfo.TypeEnum.Balance,
+            target: {
+                type: Target.TypeEnum.BalanceAccount,
+                id: "BA00000000000000000LIABLE"
+            },
+            currency: "USD",
+            status: BalanceWebhookSettingInfo.StatusEnum.Active,
+            conditions: [
+                {
+                    balanceType: Condition.BalanceTypeEnum.Available,
+                    conditionType: Condition.ConditionTypeEnum.LessThan,
+                    value: 50000
+                }
+            ]
+        };
+
+        const response = await balancePlatformService.BalancesApi.createWebhookSetting(balancePlatformId, webhookId, request);
+
+        expect(response).toBeTruthy();
+        expect(response.id).toBe("BWHS00000000000000000000000001");
+        expect(response.currency).toBe("USD");
+    });
+
+    it("should support PATCH /balancePlatforms/{balancePlatformId}/webhooks/{webhookId}/settings/{settingId}", async (): Promise<void> => {
+        const balancePlatformId = "123456789";
+        const webhookId = "WH00000001";
+        const settingId = "BWHS00000000000000000000000001";
+
+        const mockResponse = {
+            id: "BWHS00000000000000000000000001",
+            type: BalanceWebhookSettingInfo.TypeEnum.Balance,
+            target: {
+                type: Target.TypeEnum.BalanceAccount,
+                id: "BA00000000000000000LIABLE"
+            },
+            currency: "USD",
+            status: BalanceWebhookSettingInfo.StatusEnum.Active
+        };
+
+        scope.patch(`/balancePlatforms/${balancePlatformId}/webhooks/${webhookId}/settings/${settingId}`)
+            .reply(200, mockResponse);
+
+        const request = {
+            type: BalanceWebhookSettingInfo.TypeEnum.Balance,
+            target: {
+                type: Target.TypeEnum.BalanceAccount,
+                id: "BA00000000000000000LIABLE"
+            },
+            currency: "USD",
+            status: BalanceWebhookSettingInfo.StatusEnum.Active
+        };
+
+        const response = await balancePlatformService.BalancesApi.updateWebhookSetting(balancePlatformId, webhookId, settingId, request);
+
+        expect(response).toBeTruthy();
+        expect(response.id).toBe("BWHS00000000000000000000000001");
+        expect(response.currency).toBe("USD");
+    });
+
 });

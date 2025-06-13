@@ -7,19 +7,22 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    OnboardingLink,
-    OnboardingLinkInfo,
-    OnboardingTheme,
-    OnboardingThemes,
-    ObjectSerializer
-} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSerializer";
+import { OnboardingLink } from "../../typings/legalEntityManagement/models";
+import { OnboardingLinkInfo } from "../../typings/legalEntityManagement/models";
+import { OnboardingTheme } from "../../typings/legalEntityManagement/models";
+import { OnboardingThemes } from "../../typings/legalEntityManagement/models";
+
+/**
+ * API handler for HostedOnboardingApi
+ */
 export class HostedOnboardingApi extends Service {
 
     private readonly API_BASEPATH: string = "https://kyc-test.adyen.com/lem/v3";
@@ -41,13 +44,15 @@ export class HostedOnboardingApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/onboardingLinks`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: OnboardingLinkInfo = ObjectSerializer.serialize(onboardingLinkInfo, "OnboardingLinkInfo");
+        
+        const request: OnboardingLinkInfo = ObjectSerializer.serialize(onboardingLinkInfo, "OnboardingLinkInfo", "");
         const response = await getJsonResponse<OnboardingLinkInfo, OnboardingLink>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "OnboardingLink");
+
+        return ObjectSerializer.deserialize(response, "OnboardingLink", "");
     }
 
     /**
@@ -60,12 +65,14 @@ export class HostedOnboardingApi extends Service {
         const endpoint = `${this.baseUrl}/themes/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, OnboardingTheme>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "OnboardingTheme");
+
+        return ObjectSerializer.deserialize(response, "OnboardingTheme", "");
     }
 
     /**
@@ -76,11 +83,14 @@ export class HostedOnboardingApi extends Service {
     public async listHostedOnboardingPageThemes(requestOptions?: IRequest.Options): Promise<OnboardingThemes> {
         const endpoint = `${this.baseUrl}/themes`;
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, OnboardingThemes>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "OnboardingThemes");
+
+        return ObjectSerializer.deserialize(response, "OnboardingThemes", "");
     }
+
 }

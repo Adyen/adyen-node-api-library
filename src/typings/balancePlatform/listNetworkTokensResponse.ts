@@ -7,25 +7,32 @@
  * Do not edit this class manually.
  */
 
-import { NetworkToken } from './networkToken';
+import { NetworkToken } from "./networkToken";
+
 
 export class ListNetworkTokensResponse {
     /**
     * List of network tokens.
     */
-    'networkTokens'?: Array<NetworkToken>;
+    "networkTokens"?: Array<NetworkToken>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "networkTokens",
             "baseName": "networkTokens",
-            "type": "Array<NetworkToken>"
+            "type": "Array<NetworkToken>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ListNetworkTokensResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

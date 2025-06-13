@@ -7,17 +7,20 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    CheckTaxElectronicDeliveryConsentResponse,
-    SetTaxElectronicDeliveryConsentRequest,
-    ObjectSerializer
-} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSerializer";
+import { CheckTaxElectronicDeliveryConsentResponse } from "../../typings/legalEntityManagement/models";
+import { SetTaxElectronicDeliveryConsentRequest } from "../../typings/legalEntityManagement/models";
+
+/**
+ * API handler for TaxEDeliveryConsentApi
+ */
 export class TaxEDeliveryConsentApi extends Service {
 
     private readonly API_BASEPATH: string = "https://kyc-test.adyen.com/lem/v3";
@@ -38,12 +41,14 @@ export class TaxEDeliveryConsentApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/checkTaxElectronicDeliveryConsent`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, CheckTaxElectronicDeliveryConsentResponse>(
             resource,
             "",
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "CheckTaxElectronicDeliveryConsentResponse");
+
+        return ObjectSerializer.deserialize(response, "CheckTaxElectronicDeliveryConsentResponse", "");
     }
 
     /**
@@ -51,16 +56,19 @@ export class TaxEDeliveryConsentApi extends Service {
     * @param id {@link string } The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.
     * @param setTaxElectronicDeliveryConsentRequest {@link SetTaxElectronicDeliveryConsentRequest } 
     * @param requestOptions {@link IRequest.Options }
+    * @return {@link void }
     */
     public async setConsentStatusForElectronicDeliveryOfTaxForms(id: string, setTaxElectronicDeliveryConsentRequest: SetTaxElectronicDeliveryConsentRequest, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/setTaxElectronicDeliveryConsent`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: SetTaxElectronicDeliveryConsentRequest = ObjectSerializer.serialize(setTaxElectronicDeliveryConsentRequest, "SetTaxElectronicDeliveryConsentRequest");
+        
+        const request: SetTaxElectronicDeliveryConsentRequest = ObjectSerializer.serialize(setTaxElectronicDeliveryConsentRequest, "SetTaxElectronicDeliveryConsentRequest", "");
         await getJsonResponse<SetTaxElectronicDeliveryConsentRequest, void>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
     }
+
 }

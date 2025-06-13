@@ -12,37 +12,45 @@ export class GeneratePciDescriptionResponse {
     /**
     * The generated questionnaires in a base64 encoded format.
     */
-    'content'?: string;
+    "content"?: string;
     /**
     * The two-letter [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code for the questionnaire. For example, **en**.
     */
-    'language'?: string;
+    "language"?: string;
     /**
     * The array of Adyen-generated unique identifiers for the questionnaires. If empty, the user is not required to sign questionnaires.
     */
-    'pciTemplateReferences'?: Array<string>;
+    "pciTemplateReferences"?: Array<string>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "content",
             "baseName": "content",
-            "type": "string"
+            "type": "string",
+            "format": "byte"
         },
         {
             "name": "language",
             "baseName": "language",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "pciTemplateReferences",
             "baseName": "pciTemplateReferences",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return GeneratePciDescriptionResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

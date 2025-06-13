@@ -7,23 +7,26 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    CalculatePciStatusRequest,
-    CalculatePciStatusResponse,
-    GeneratePciDescriptionRequest,
-    GeneratePciDescriptionResponse,
-    GetPciQuestionnaireInfosResponse,
-    GetPciQuestionnaireResponse,
-    PciSigningRequest,
-    PciSigningResponse,
-    ObjectSerializer
-} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSerializer";
+import { CalculatePciStatusRequest } from "../../typings/legalEntityManagement/models";
+import { CalculatePciStatusResponse } from "../../typings/legalEntityManagement/models";
+import { GeneratePciDescriptionRequest } from "../../typings/legalEntityManagement/models";
+import { GeneratePciDescriptionResponse } from "../../typings/legalEntityManagement/models";
+import { GetPciQuestionnaireInfosResponse } from "../../typings/legalEntityManagement/models";
+import { GetPciQuestionnaireResponse } from "../../typings/legalEntityManagement/models";
+import { PciSigningRequest } from "../../typings/legalEntityManagement/models";
+import { PciSigningResponse } from "../../typings/legalEntityManagement/models";
+
+/**
+ * API handler for PCIQuestionnairesApi
+ */
 export class PCIQuestionnairesApi extends Service {
 
     private readonly API_BASEPATH: string = "https://kyc-test.adyen.com/lem/v3";
@@ -45,13 +48,15 @@ export class PCIQuestionnairesApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/pciQuestionnaires/signingRequired`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: CalculatePciStatusRequest = ObjectSerializer.serialize(calculatePciStatusRequest, "CalculatePciStatusRequest");
+        
+        const request: CalculatePciStatusRequest = ObjectSerializer.serialize(calculatePciStatusRequest, "CalculatePciStatusRequest", "");
         const response = await getJsonResponse<CalculatePciStatusRequest, CalculatePciStatusResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "CalculatePciStatusResponse");
+
+        return ObjectSerializer.deserialize(response, "CalculatePciStatusResponse", "");
     }
 
     /**
@@ -65,13 +70,15 @@ export class PCIQuestionnairesApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/pciQuestionnaires/generatePciTemplates`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: GeneratePciDescriptionRequest = ObjectSerializer.serialize(generatePciDescriptionRequest, "GeneratePciDescriptionRequest");
+        
+        const request: GeneratePciDescriptionRequest = ObjectSerializer.serialize(generatePciDescriptionRequest, "GeneratePciDescriptionRequest", "");
         const response = await getJsonResponse<GeneratePciDescriptionRequest, GeneratePciDescriptionResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "GeneratePciDescriptionResponse");
+
+        return ObjectSerializer.deserialize(response, "GeneratePciDescriptionResponse", "");
     }
 
     /**
@@ -86,12 +93,14 @@ export class PCIQuestionnairesApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)))
             .replace("{" + "pciid" + "}", encodeURIComponent(String(pciid)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, GetPciQuestionnaireResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "GetPciQuestionnaireResponse");
+
+        return ObjectSerializer.deserialize(response, "GetPciQuestionnaireResponse", "");
     }
 
     /**
@@ -104,12 +113,14 @@ export class PCIQuestionnairesApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/pciQuestionnaires`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, GetPciQuestionnaireInfosResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-        return ObjectSerializer.deserialize(response, "GetPciQuestionnaireInfosResponse");
+
+        return ObjectSerializer.deserialize(response, "GetPciQuestionnaireInfosResponse", "");
     }
 
     /**
@@ -123,12 +134,15 @@ export class PCIQuestionnairesApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/pciQuestionnaires/signPciTemplates`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        const request: PciSigningRequest = ObjectSerializer.serialize(pciSigningRequest, "PciSigningRequest");
+        
+        const request: PciSigningRequest = ObjectSerializer.serialize(pciSigningRequest, "PciSigningRequest", "");
         const response = await getJsonResponse<PciSigningRequest, PciSigningResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-        return ObjectSerializer.deserialize(response, "PciSigningResponse");
+
+        return ObjectSerializer.deserialize(response, "PciSigningResponse", "");
     }
+
 }

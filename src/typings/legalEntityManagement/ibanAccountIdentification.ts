@@ -12,28 +12,35 @@ export class IbanAccountIdentification {
     /**
     * The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
     */
-    'iban': string;
+    "iban": string;
     /**
     * **iban**
     */
-    'type': IbanAccountIdentification.TypeEnum;
+    "type": IbanAccountIdentification.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "iban",
             "baseName": "iban",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "IbanAccountIdentification.TypeEnum"
+            "type": "IbanAccountIdentification.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return IbanAccountIdentification.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
