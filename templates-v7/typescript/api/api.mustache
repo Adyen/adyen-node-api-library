@@ -36,7 +36,7 @@ export class {{classname}} extends Service {
 
     {{#operation}}
 {{>api_summary}}
-    public async {{#vendorExtensions.x-methodName}}{{.}}{{/vendorExtensions.x-methodName}}{{^vendorExtensions.x-methodName}}{{nickname}}{{/vendorExtensions.x-methodName}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}{{#queryParams}}{{paramName}}?: {{{dataType}}}, {{/queryParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+    public async {{#vendorExtensions.x-methodName}}{{.}}{{/vendorExtensions.x-methodName}}{{^vendorExtensions.x-methodName}}{{nickname}}{{/vendorExtensions.x-methodName}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}{{#queryParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/queryParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
         const endpoint = `${this.baseUrl}{{{path}}}`{{#pathParams}}
             .replace("{" + "{{baseName}}" + "}", encodeURIComponent(String({{paramName}}))){{/pathParams}};
         const resource = new Resource(this, endpoint);
