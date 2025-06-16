@@ -41,14 +41,14 @@ export class DataProtectionApi extends Service {
         const endpoint = `${this.baseUrl}/requestSubjectErasure`;
         const resource = new Resource(this, endpoint);
         
-        const request: SubjectErasureByPspReferenceRequest = ObjectSerializer.serialize(subjectErasureByPspReferenceRequest, "SubjectErasureByPspReferenceRequest", "");
+        const request: SubjectErasureByPspReferenceRequest = ObjectSerializer.serialize(subjectErasureByPspReferenceRequest, "SubjectErasureByPspReferenceRequest");
         const response = await getJsonResponse<SubjectErasureByPspReferenceRequest, SubjectErasureResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "SubjectErasureResponse", "");
+        return ObjectSerializer.deserialize(response, "SubjectErasureResponse");
     }
 
 }
