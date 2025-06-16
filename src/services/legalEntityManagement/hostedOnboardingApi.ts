@@ -45,14 +45,14 @@ export class HostedOnboardingApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: OnboardingLinkInfo = ObjectSerializer.serialize(onboardingLinkInfo, "OnboardingLinkInfo", "");
+        const request: OnboardingLinkInfo = ObjectSerializer.serialize(onboardingLinkInfo, "OnboardingLinkInfo");
         const response = await getJsonResponse<OnboardingLinkInfo, OnboardingLink>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "OnboardingLink", "");
+        return ObjectSerializer.deserialize(response, "OnboardingLink");
     }
 
     /**
@@ -72,7 +72,7 @@ export class HostedOnboardingApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "OnboardingTheme", "");
+        return ObjectSerializer.deserialize(response, "OnboardingTheme");
     }
 
     /**
@@ -90,7 +90,7 @@ export class HostedOnboardingApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "OnboardingThemes", "");
+        return ObjectSerializer.deserialize(response, "OnboardingThemes");
     }
 
 }

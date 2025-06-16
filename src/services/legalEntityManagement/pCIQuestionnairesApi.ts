@@ -49,14 +49,14 @@ export class PCIQuestionnairesApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: CalculatePciStatusRequest = ObjectSerializer.serialize(calculatePciStatusRequest, "CalculatePciStatusRequest", "");
+        const request: CalculatePciStatusRequest = ObjectSerializer.serialize(calculatePciStatusRequest, "CalculatePciStatusRequest");
         const response = await getJsonResponse<CalculatePciStatusRequest, CalculatePciStatusResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "CalculatePciStatusResponse", "");
+        return ObjectSerializer.deserialize(response, "CalculatePciStatusResponse");
     }
 
     /**
@@ -71,14 +71,14 @@ export class PCIQuestionnairesApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: GeneratePciDescriptionRequest = ObjectSerializer.serialize(generatePciDescriptionRequest, "GeneratePciDescriptionRequest", "");
+        const request: GeneratePciDescriptionRequest = ObjectSerializer.serialize(generatePciDescriptionRequest, "GeneratePciDescriptionRequest");
         const response = await getJsonResponse<GeneratePciDescriptionRequest, GeneratePciDescriptionResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "GeneratePciDescriptionResponse", "");
+        return ObjectSerializer.deserialize(response, "GeneratePciDescriptionResponse");
     }
 
     /**
@@ -100,7 +100,7 @@ export class PCIQuestionnairesApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "GetPciQuestionnaireResponse", "");
+        return ObjectSerializer.deserialize(response, "GetPciQuestionnaireResponse");
     }
 
     /**
@@ -120,7 +120,7 @@ export class PCIQuestionnairesApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "GetPciQuestionnaireInfosResponse", "");
+        return ObjectSerializer.deserialize(response, "GetPciQuestionnaireInfosResponse");
     }
 
     /**
@@ -135,14 +135,14 @@ export class PCIQuestionnairesApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: PciSigningRequest = ObjectSerializer.serialize(pciSigningRequest, "PciSigningRequest", "");
+        const request: PciSigningRequest = ObjectSerializer.serialize(pciSigningRequest, "PciSigningRequest");
         const response = await getJsonResponse<PciSigningRequest, PciSigningResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PciSigningResponse", "");
+        return ObjectSerializer.deserialize(response, "PciSigningResponse");
     }
 
 }

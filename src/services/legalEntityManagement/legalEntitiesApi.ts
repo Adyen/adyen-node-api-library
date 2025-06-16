@@ -52,7 +52,7 @@ export class LegalEntitiesApi extends Service {
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "VerificationErrors", "");
+        return ObjectSerializer.deserialize(response, "VerificationErrors");
     }
 
     /**
@@ -72,7 +72,7 @@ export class LegalEntitiesApi extends Service {
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "DataReviewConfirmationResponse", "");
+        return ObjectSerializer.deserialize(response, "DataReviewConfirmationResponse");
     }
 
     /**
@@ -85,14 +85,14 @@ export class LegalEntitiesApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities`;
         const resource = new Resource(this, endpoint);
         
-        const request: LegalEntityInfoRequiredType = ObjectSerializer.serialize(legalEntityInfoRequiredType, "LegalEntityInfoRequiredType", "");
+        const request: LegalEntityInfoRequiredType = ObjectSerializer.serialize(legalEntityInfoRequiredType, "LegalEntityInfoRequiredType");
         const response = await getJsonResponse<LegalEntityInfoRequiredType, LegalEntity>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "LegalEntity", "");
+        return ObjectSerializer.deserialize(response, "LegalEntity");
     }
 
     /**
@@ -112,7 +112,7 @@ export class LegalEntitiesApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "BusinessLines", "");
+        return ObjectSerializer.deserialize(response, "BusinessLines");
     }
 
     /**
@@ -132,7 +132,7 @@ export class LegalEntitiesApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "LegalEntity", "");
+        return ObjectSerializer.deserialize(response, "LegalEntity");
     }
 
     /**
@@ -147,14 +147,14 @@ export class LegalEntitiesApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: LegalEntityInfo = ObjectSerializer.serialize(legalEntityInfo, "LegalEntityInfo", "");
+        const request: LegalEntityInfo = ObjectSerializer.serialize(legalEntityInfo, "LegalEntityInfo");
         const response = await getJsonResponse<LegalEntityInfo, LegalEntity>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "LegalEntity", "");
+        return ObjectSerializer.deserialize(response, "LegalEntity");
     }
 
 }

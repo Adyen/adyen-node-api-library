@@ -42,14 +42,14 @@ export class BusinessLinesApi extends Service {
         const endpoint = `${this.baseUrl}/businessLines`;
         const resource = new Resource(this, endpoint);
         
-        const request: BusinessLineInfo = ObjectSerializer.serialize(businessLineInfo, "BusinessLineInfo", "");
+        const request: BusinessLineInfo = ObjectSerializer.serialize(businessLineInfo, "BusinessLineInfo");
         const response = await getJsonResponse<BusinessLineInfo, BusinessLine>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "BusinessLine", "");
+        return ObjectSerializer.deserialize(response, "BusinessLine");
     }
 
     /**
@@ -87,7 +87,7 @@ export class BusinessLinesApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "BusinessLine", "");
+        return ObjectSerializer.deserialize(response, "BusinessLine");
     }
 
     /**
@@ -102,14 +102,14 @@ export class BusinessLinesApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: BusinessLineInfoUpdate = ObjectSerializer.serialize(businessLineInfoUpdate, "BusinessLineInfoUpdate", "");
+        const request: BusinessLineInfoUpdate = ObjectSerializer.serialize(businessLineInfoUpdate, "BusinessLineInfoUpdate");
         const response = await getJsonResponse<BusinessLineInfoUpdate, BusinessLine>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "BusinessLine", "");
+        return ObjectSerializer.deserialize(response, "BusinessLine");
     }
 
 }
