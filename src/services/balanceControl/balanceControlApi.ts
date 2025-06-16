@@ -43,14 +43,14 @@ export class BalanceControlApi extends Service {
         const endpoint = `${this.baseUrl}/balanceTransfer`;
         const resource = new Resource(this, endpoint);
         
-        const request: BalanceTransferRequest = ObjectSerializer.serialize(balanceTransferRequest, "BalanceTransferRequest", "");
+        const request: BalanceTransferRequest = ObjectSerializer.serialize(balanceTransferRequest, "BalanceTransferRequest");
         const response = await getJsonResponse<BalanceTransferRequest, BalanceTransferResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "BalanceTransferResponse", "");
+        return ObjectSerializer.deserialize(response, "BalanceTransferResponse");
     }
 
 }
