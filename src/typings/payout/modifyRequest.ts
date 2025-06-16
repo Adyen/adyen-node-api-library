@@ -12,15 +12,15 @@ export class ModifyRequest {
     /**
     * This field contains additional data, which may be required for a particular payout request.
     */
-    'additionalData'?: { [key: string]: string; };
+    "additionalData"?: { [key: string]: string; };
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
-    'merchantAccount': string;
+    "merchantAccount": string;
     /**
     * The PSP reference received in the `/submitThirdParty` response.
     */
-    'originalReference': string;
+    "originalReference": string;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -1,35 +1,35 @@
-export * from './models';
+export * from "./models";
 
-import { Address } from './address';
-import { Amount } from './amount';
-import { BankAccount } from './bankAccount';
-import { Card } from './card';
-import { FraudCheckResult } from './fraudCheckResult';
-import { FraudCheckResultWrapper } from './fraudCheckResultWrapper';
-import { FraudResult } from './fraudResult';
-import { FundSource } from './fundSource';
-import { ModifyRequest } from './modifyRequest';
-import { ModifyResponse } from './modifyResponse';
-import { Name } from './name';
-import { PayoutRequest } from './payoutRequest';
-import { PayoutResponse } from './payoutResponse';
-import { Recurring } from './recurring';
-import { ResponseAdditionalData3DSecure } from './responseAdditionalData3DSecure';
-import { ResponseAdditionalDataBillingAddress } from './responseAdditionalDataBillingAddress';
-import { ResponseAdditionalDataCard } from './responseAdditionalDataCard';
-import { ResponseAdditionalDataCommon } from './responseAdditionalDataCommon';
-import { ResponseAdditionalDataDomesticError } from './responseAdditionalDataDomesticError';
-import { ResponseAdditionalDataInstallments } from './responseAdditionalDataInstallments';
-import { ResponseAdditionalDataNetworkTokens } from './responseAdditionalDataNetworkTokens';
-import { ResponseAdditionalDataOpi } from './responseAdditionalDataOpi';
-import { ResponseAdditionalDataSepa } from './responseAdditionalDataSepa';
-import { ServiceError } from './serviceError';
-import { StoreDetailAndSubmitRequest } from './storeDetailAndSubmitRequest';
-import { StoreDetailAndSubmitResponse } from './storeDetailAndSubmitResponse';
-import { StoreDetailRequest } from './storeDetailRequest';
-import { StoreDetailResponse } from './storeDetailResponse';
-import { SubmitRequest } from './submitRequest';
-import { SubmitResponse } from './submitResponse';
+import { Address } from "./address";
+import { Amount } from "./amount";
+import { BankAccount } from "./bankAccount";
+import { Card } from "./card";
+import { FraudCheckResult } from "./fraudCheckResult";
+import { FraudCheckResultWrapper } from "./fraudCheckResultWrapper";
+import { FraudResult } from "./fraudResult";
+import { FundSource } from "./fundSource";
+import { ModifyRequest } from "./modifyRequest";
+import { ModifyResponse } from "./modifyResponse";
+import { Name } from "./name";
+import { PayoutRequest } from "./payoutRequest";
+import { PayoutResponse } from "./payoutResponse";
+import { Recurring } from "./recurring";
+import { ResponseAdditionalData3DSecure } from "./responseAdditionalData3DSecure";
+import { ResponseAdditionalDataBillingAddress } from "./responseAdditionalDataBillingAddress";
+import { ResponseAdditionalDataCard } from "./responseAdditionalDataCard";
+import { ResponseAdditionalDataCommon } from "./responseAdditionalDataCommon";
+import { ResponseAdditionalDataDomesticError } from "./responseAdditionalDataDomesticError";
+import { ResponseAdditionalDataInstallments } from "./responseAdditionalDataInstallments";
+import { ResponseAdditionalDataNetworkTokens } from "./responseAdditionalDataNetworkTokens";
+import { ResponseAdditionalDataOpi } from "./responseAdditionalDataOpi";
+import { ResponseAdditionalDataSepa } from "./responseAdditionalDataSepa";
+import { ServiceError } from "./serviceError";
+import { StoreDetailAndSubmitRequest } from "./storeDetailAndSubmitRequest";
+import { StoreDetailAndSubmitResponse } from "./storeDetailAndSubmitResponse";
+import { StoreDetailRequest } from "./storeDetailRequest";
+import { StoreDetailResponse } from "./storeDetailResponse";
+import { SubmitRequest } from "./submitRequest";
+import { SubmitResponse } from "./submitResponse";
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -197,10 +197,10 @@ export class ObjectSerializer {
      *
      * @param data - The value to serialize.
      * @param type - The expected type name as a string.
-     * @param format - Format hint (e.g. "date" or "date-time").
+     * @param format - Format hint (e.g. "date" or "date-time"). Default is an empty string.
      * @returns A JSON-compatible representation of `data`.
      */
-    public static serialize(data: any, type: string, format: string): any {
+    public static serialize(data: any, type: string, format: string = ""): any {
         if (data == undefined) {
             return data;
         } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
@@ -277,10 +277,10 @@ export class ObjectSerializer {
      *
      * @param data - The raw input to deserialize.
      * @param type - The expected type name as a string.
-     * @param format - Format hint (e.g. "date" or "date-time").
+     * @param format - Format hint (e.g. "date" or "date-time"). Default is an empty string.
      * @returns A deserialized instance or value of `data`.
      */
-    public static deserialize(data: any, type: string, format: string): any {
+    public static deserialize(data: any, type: string, format: string = ""): any {
         // polymorphism may change the actual type.
         type = ObjectSerializer.findCorrectType(data, type);
         if (data == undefined) {
