@@ -48,14 +48,14 @@ export class ModificationsApi extends Service {
         const endpoint = `${this.baseUrl}/adjustAuthorisation`;
         const resource = new Resource(this, endpoint);
         
-        const request: AdjustAuthorisationRequest = ObjectSerializer.serialize(adjustAuthorisationRequest, "AdjustAuthorisationRequest", "");
+        const request: AdjustAuthorisationRequest = ObjectSerializer.serialize(adjustAuthorisationRequest, "AdjustAuthorisationRequest");
         const response = await getJsonResponse<AdjustAuthorisationRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "ModificationResult", "");
+        return ObjectSerializer.deserialize(response, "ModificationResult");
     }
 
     /**
@@ -68,14 +68,14 @@ export class ModificationsApi extends Service {
         const endpoint = `${this.baseUrl}/cancel`;
         const resource = new Resource(this, endpoint);
         
-        const request: CancelRequest = ObjectSerializer.serialize(cancelRequest, "CancelRequest", "");
+        const request: CancelRequest = ObjectSerializer.serialize(cancelRequest, "CancelRequest");
         const response = await getJsonResponse<CancelRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "ModificationResult", "");
+        return ObjectSerializer.deserialize(response, "ModificationResult");
     }
 
     /**
@@ -88,14 +88,14 @@ export class ModificationsApi extends Service {
         const endpoint = `${this.baseUrl}/cancelOrRefund`;
         const resource = new Resource(this, endpoint);
         
-        const request: CancelOrRefundRequest = ObjectSerializer.serialize(cancelOrRefundRequest, "CancelOrRefundRequest", "");
+        const request: CancelOrRefundRequest = ObjectSerializer.serialize(cancelOrRefundRequest, "CancelOrRefundRequest");
         const response = await getJsonResponse<CancelOrRefundRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "ModificationResult", "");
+        return ObjectSerializer.deserialize(response, "ModificationResult");
     }
 
     /**
@@ -108,14 +108,14 @@ export class ModificationsApi extends Service {
         const endpoint = `${this.baseUrl}/capture`;
         const resource = new Resource(this, endpoint);
         
-        const request: CaptureRequest = ObjectSerializer.serialize(captureRequest, "CaptureRequest", "");
+        const request: CaptureRequest = ObjectSerializer.serialize(captureRequest, "CaptureRequest");
         const response = await getJsonResponse<CaptureRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "ModificationResult", "");
+        return ObjectSerializer.deserialize(response, "ModificationResult");
     }
 
     /**
@@ -130,14 +130,14 @@ export class ModificationsApi extends Service {
         const endpoint = `${this.baseUrl}/donate`;
         const resource = new Resource(this, endpoint);
         
-        const request: DonationRequest = ObjectSerializer.serialize(donationRequest, "DonationRequest", "");
+        const request: DonationRequest = ObjectSerializer.serialize(donationRequest, "DonationRequest");
         const response = await getJsonResponse<DonationRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "ModificationResult", "");
+        return ObjectSerializer.deserialize(response, "ModificationResult");
     }
 
     /**
@@ -150,14 +150,14 @@ export class ModificationsApi extends Service {
         const endpoint = `${this.baseUrl}/refund`;
         const resource = new Resource(this, endpoint);
         
-        const request: RefundRequest = ObjectSerializer.serialize(refundRequest, "RefundRequest", "");
+        const request: RefundRequest = ObjectSerializer.serialize(refundRequest, "RefundRequest");
         const response = await getJsonResponse<RefundRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "ModificationResult", "");
+        return ObjectSerializer.deserialize(response, "ModificationResult");
     }
 
     /**
@@ -170,14 +170,14 @@ export class ModificationsApi extends Service {
         const endpoint = `${this.baseUrl}/technicalCancel`;
         const resource = new Resource(this, endpoint);
         
-        const request: TechnicalCancelRequest = ObjectSerializer.serialize(technicalCancelRequest, "TechnicalCancelRequest", "");
+        const request: TechnicalCancelRequest = ObjectSerializer.serialize(technicalCancelRequest, "TechnicalCancelRequest");
         const response = await getJsonResponse<TechnicalCancelRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "ModificationResult", "");
+        return ObjectSerializer.deserialize(response, "ModificationResult");
     }
 
     /**
@@ -190,14 +190,14 @@ export class ModificationsApi extends Service {
         const endpoint = `${this.baseUrl}/voidPendingRefund`;
         const resource = new Resource(this, endpoint);
         
-        const request: VoidPendingRefundRequest = ObjectSerializer.serialize(voidPendingRefundRequest, "VoidPendingRefundRequest", "");
+        const request: VoidPendingRefundRequest = ObjectSerializer.serialize(voidPendingRefundRequest, "VoidPendingRefundRequest");
         const response = await getJsonResponse<VoidPendingRefundRequest, ModificationResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "ModificationResult", "");
+        return ObjectSerializer.deserialize(response, "ModificationResult");
     }
 
 }
