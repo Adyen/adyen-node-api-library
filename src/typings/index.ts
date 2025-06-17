@@ -35,3 +35,4 @@ export * as acsWebhooks from "./acsWebhooks/models";
 export * as transactionWebhooks from "./transactionWebhooks/models";
 export * as negativeBalanceWarningWebhooks from "./negativeBalanceWarningWebhooks/models";
 export * as balanceWebhooks from "./balanceWebhooks/models";
+export * as disputeWebhooks from "./disputeWebhooks/models";
