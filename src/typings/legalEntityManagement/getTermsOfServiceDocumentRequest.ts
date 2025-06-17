@@ -18,7 +18,7 @@ export class GetTermsOfServiceDocumentRequest {
     */
     "termsOfServiceDocumentFormat"?: string;
     /**
-    * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**  
+    * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  
     */
     "type": GetTermsOfServiceDocumentRequest.TypeEnum;
 
@@ -64,6 +64,7 @@ export namespace GetTermsOfServiceDocumentRequest {
         AdyenForPlatformsManage = 'adyenForPlatformsManage',
         AdyenFranchisee = 'adyenFranchisee',
         AdyenIssuing = 'adyenIssuing',
-        AdyenPccr = 'adyenPccr'
+        AdyenPccr = 'adyenPccr',
+        KycOnInvite = 'kycOnInvite'
     }
 }

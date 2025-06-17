@@ -41,14 +41,14 @@ export class TransferInstrumentsApi extends Service {
         const endpoint = `${this.baseUrl}/transferInstruments`;
         const resource = new Resource(this, endpoint);
         
-        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo", "");
+        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo");
         const response = await getJsonResponse<TransferInstrumentInfo, TransferInstrument>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransferInstrument", "");
+        return ObjectSerializer.deserialize(response, "TransferInstrument");
     }
 
     /**
@@ -86,7 +86,7 @@ export class TransferInstrumentsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransferInstrument", "");
+        return ObjectSerializer.deserialize(response, "TransferInstrument");
     }
 
     /**
@@ -101,14 +101,14 @@ export class TransferInstrumentsApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo", "");
+        const request: TransferInstrumentInfo = ObjectSerializer.serialize(transferInstrumentInfo, "TransferInstrumentInfo");
         const response = await getJsonResponse<TransferInstrumentInfo, TransferInstrument>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransferInstrument", "");
+        return ObjectSerializer.deserialize(response, "TransferInstrument");
     }
 
 }

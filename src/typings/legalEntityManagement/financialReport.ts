@@ -18,13 +18,13 @@ export class FinancialReport {
     */
     "balanceSheetTotal"?: string;
     /**
-    * The currency used for the net assets and balance sheet total.
+    * The currency used for the annual turnover, balance sheet total, and net assets.
     */
     "currencyOfFinancialData"?: string;
     /**
     * The date the financial data were provided, in YYYY-MM-DD format.
     */
-    "dateOfFinancialData"?: string;
+    "dateOfFinancialData": string;
     /**
     * The number of employees of the business.
     */

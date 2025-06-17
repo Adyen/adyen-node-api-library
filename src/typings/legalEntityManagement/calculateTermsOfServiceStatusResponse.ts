@@ -44,6 +44,7 @@ export namespace CalculateTermsOfServiceStatusResponse {
         AdyenForPlatformsManage = 'adyenForPlatformsManage',
         AdyenFranchisee = 'adyenFranchisee',
         AdyenIssuing = 'adyenIssuing',
-        AdyenPccr = 'adyenPccr'
+        AdyenPccr = 'adyenPccr',
+        KycOnInvite = 'kycOnInvite'
     }
 }

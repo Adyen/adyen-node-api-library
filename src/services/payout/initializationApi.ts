@@ -45,14 +45,14 @@ export class InitializationApi extends Service {
         const endpoint = `${this.baseUrl}/storeDetail`;
         const resource = new Resource(this, endpoint);
         
-        const request: StoreDetailRequest = ObjectSerializer.serialize(storeDetailRequest, "StoreDetailRequest", "");
+        const request: StoreDetailRequest = ObjectSerializer.serialize(storeDetailRequest, "StoreDetailRequest");
         const response = await getJsonResponse<StoreDetailRequest, StoreDetailResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "StoreDetailResponse", "");
+        return ObjectSerializer.deserialize(response, "StoreDetailResponse");
     }
 
     /**
@@ -65,14 +65,14 @@ export class InitializationApi extends Service {
         const endpoint = `${this.baseUrl}/storeDetailAndSubmitThirdParty`;
         const resource = new Resource(this, endpoint);
         
-        const request: StoreDetailAndSubmitRequest = ObjectSerializer.serialize(storeDetailAndSubmitRequest, "StoreDetailAndSubmitRequest", "");
+        const request: StoreDetailAndSubmitRequest = ObjectSerializer.serialize(storeDetailAndSubmitRequest, "StoreDetailAndSubmitRequest");
         const response = await getJsonResponse<StoreDetailAndSubmitRequest, StoreDetailAndSubmitResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "StoreDetailAndSubmitResponse", "");
+        return ObjectSerializer.deserialize(response, "StoreDetailAndSubmitResponse");
     }
 
     /**
@@ -85,14 +85,14 @@ export class InitializationApi extends Service {
         const endpoint = `${this.baseUrl}/submitThirdParty`;
         const resource = new Resource(this, endpoint);
         
-        const request: SubmitRequest = ObjectSerializer.serialize(submitRequest, "SubmitRequest", "");
+        const request: SubmitRequest = ObjectSerializer.serialize(submitRequest, "SubmitRequest");
         const response = await getJsonResponse<SubmitRequest, SubmitResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "SubmitResponse", "");
+        return ObjectSerializer.deserialize(response, "SubmitResponse");
     }
 
 }

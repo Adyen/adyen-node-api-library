@@ -18,7 +18,7 @@ export class Address {
     */
     "country": string;
     /**
-    * Postal code. Required if `stateOrProvince` and/or `city` is provided.
+    * The postal code. Required if `stateOrProvince` and/or `city` is provided.  When using alphanumeric postal codes, all letters must be uppercase. For example, 1234 AB or SW1A 1AA.
     */
     "postalCode"?: string;
     /**

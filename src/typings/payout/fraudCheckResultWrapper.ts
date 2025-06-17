@@ -7,11 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { FraudCheckResult } from './fraudCheckResult';
+import { FraudCheckResult } from "./fraudCheckResult";
 
 
 export class FraudCheckResultWrapper {
-    'FraudCheckResult'?: FraudCheckResult;
+    "FraudCheckResult"?: FraudCheckResult;
 
     static readonly discriminator: string | undefined = undefined;
 

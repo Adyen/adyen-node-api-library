@@ -48,7 +48,7 @@ export class TaxEDeliveryConsentApi extends Service {
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "CheckTaxElectronicDeliveryConsentResponse", "");
+        return ObjectSerializer.deserialize(response, "CheckTaxElectronicDeliveryConsentResponse");
     }
 
     /**
@@ -63,7 +63,7 @@ export class TaxEDeliveryConsentApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: SetTaxElectronicDeliveryConsentRequest = ObjectSerializer.serialize(setTaxElectronicDeliveryConsentRequest, "SetTaxElectronicDeliveryConsentRequest", "");
+        const request: SetTaxElectronicDeliveryConsentRequest = ObjectSerializer.serialize(setTaxElectronicDeliveryConsentRequest, "SetTaxElectronicDeliveryConsentRequest");
         await getJsonResponse<SetTaxElectronicDeliveryConsentRequest, void>(
             resource,
             request,

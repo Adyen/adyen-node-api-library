@@ -50,14 +50,14 @@ export class TermsOfServiceApi extends Service {
             .replace("{" + "termsofservicedocumentid" + "}", encodeURIComponent(String(termsofservicedocumentid)));
         const resource = new Resource(this, endpoint);
         
-        const request: AcceptTermsOfServiceRequest = ObjectSerializer.serialize(acceptTermsOfServiceRequest, "AcceptTermsOfServiceRequest", "");
+        const request: AcceptTermsOfServiceRequest = ObjectSerializer.serialize(acceptTermsOfServiceRequest, "AcceptTermsOfServiceRequest");
         const response = await getJsonResponse<AcceptTermsOfServiceRequest, AcceptTermsOfServiceResponse>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "AcceptTermsOfServiceResponse", "");
+        return ObjectSerializer.deserialize(response, "AcceptTermsOfServiceResponse");
     }
 
     /**
@@ -86,7 +86,7 @@ export class TermsOfServiceApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "GetAcceptedTermsOfServiceDocumentResponse", "");
+        return ObjectSerializer.deserialize(response, "GetAcceptedTermsOfServiceDocumentResponse");
     }
 
     /**
@@ -101,14 +101,14 @@ export class TermsOfServiceApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: GetTermsOfServiceDocumentRequest = ObjectSerializer.serialize(getTermsOfServiceDocumentRequest, "GetTermsOfServiceDocumentRequest", "");
+        const request: GetTermsOfServiceDocumentRequest = ObjectSerializer.serialize(getTermsOfServiceDocumentRequest, "GetTermsOfServiceDocumentRequest");
         const response = await getJsonResponse<GetTermsOfServiceDocumentRequest, GetTermsOfServiceDocumentResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "GetTermsOfServiceDocumentResponse", "");
+        return ObjectSerializer.deserialize(response, "GetTermsOfServiceDocumentResponse");
     }
 
     /**
@@ -128,7 +128,7 @@ export class TermsOfServiceApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "GetTermsOfServiceAcceptanceInfosResponse", "");
+        return ObjectSerializer.deserialize(response, "GetTermsOfServiceAcceptanceInfosResponse");
     }
 
     /**
@@ -148,7 +148,7 @@ export class TermsOfServiceApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "CalculateTermsOfServiceStatusResponse", "");
+        return ObjectSerializer.deserialize(response, "CalculateTermsOfServiceStatusResponse");
     }
 
 }

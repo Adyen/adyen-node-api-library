@@ -72,7 +72,7 @@ export class DocumentsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "Document", "");
+        return ObjectSerializer.deserialize(response, "Document");
     }
 
     /**
@@ -87,14 +87,14 @@ export class DocumentsApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: Document = ObjectSerializer.serialize(document, "Document", "");
+        const request: Document = ObjectSerializer.serialize(document, "Document");
         const response = await getJsonResponse<Document, Document>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "Document", "");
+        return ObjectSerializer.deserialize(response, "Document");
     }
 
     /**
@@ -107,14 +107,14 @@ export class DocumentsApi extends Service {
         const endpoint = `${this.baseUrl}/documents`;
         const resource = new Resource(this, endpoint);
         
-        const request: Document = ObjectSerializer.serialize(document, "Document", "");
+        const request: Document = ObjectSerializer.serialize(document, "Document");
         const response = await getJsonResponse<Document, Document>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "Document", "");
+        return ObjectSerializer.deserialize(response, "Document");
     }
 
 }

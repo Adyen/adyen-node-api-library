@@ -12,11 +12,11 @@ export class ResponseAdditionalDataDomesticError {
     /**
     * The reason the transaction was declined, given by the local issuer.  Currently available for merchants in Japan.
     */
-    'domesticRefusalReasonRaw'?: string;
+    "domesticRefusalReasonRaw"?: string;
     /**
     * The action the shopper should take, in a local language.  Currently available in Japanese, for merchants in Japan.
     */
-    'domesticShopperAdvice'?: string;
+    "domesticShopperAdvice"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

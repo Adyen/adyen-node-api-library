@@ -41,14 +41,14 @@ export class SessionAuthenticationApi extends Service {
         const endpoint = `${this.baseUrl}/sessions`;
         const resource = new Resource(this, endpoint);
         
-        const request: AuthenticationSessionRequest = ObjectSerializer.serialize(authenticationSessionRequest, "AuthenticationSessionRequest", "");
+        const request: AuthenticationSessionRequest = ObjectSerializer.serialize(authenticationSessionRequest, "AuthenticationSessionRequest");
         const response = await getJsonResponse<AuthenticationSessionRequest, AuthenticationSessionResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "AuthenticationSessionResponse", "");
+        return ObjectSerializer.deserialize(response, "AuthenticationSessionResponse");
     }
 
 }

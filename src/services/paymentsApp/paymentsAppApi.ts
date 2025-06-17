@@ -44,14 +44,14 @@ export class PaymentsAppApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
         
-        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest", "");
+        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest");
         const response = await getJsonResponse<BoardingTokenRequest, BoardingTokenResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "BoardingTokenResponse", "");
+        return ObjectSerializer.deserialize(response, "BoardingTokenResponse");
     }
 
     /**
@@ -68,14 +68,14 @@ export class PaymentsAppApi extends Service {
             .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);
         
-        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest", "");
+        const request: BoardingTokenRequest = ObjectSerializer.serialize(boardingTokenRequest, "BoardingTokenRequest");
         const response = await getJsonResponse<BoardingTokenRequest, BoardingTokenResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "BoardingTokenResponse", "");
+        return ObjectSerializer.deserialize(response, "BoardingTokenResponse");
     }
 
     /**
@@ -106,7 +106,7 @@ export class PaymentsAppApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentsAppResponse", "");
+        return ObjectSerializer.deserialize(response, "PaymentsAppResponse");
     }
 
     /**
@@ -139,7 +139,7 @@ export class PaymentsAppApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentsAppResponse", "");
+        return ObjectSerializer.deserialize(response, "PaymentsAppResponse");
     }
 
     /**

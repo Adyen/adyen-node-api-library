@@ -7,27 +7,27 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './address';
-import { Card } from './card';
-import { Name } from './name';
+import { Address } from "./address";
+import { Card } from "./card";
+import { Name } from "./name";
 
 
 export class FundSource {
     /**
     * A map of name-value pairs for passing additional or industry-specific data.
     */
-    'additionalData'?: { [key: string]: string; };
-    'billingAddress'?: Address;
-    'card'?: Card;
+    "additionalData"?: { [key: string]: string; };
+    "billingAddress"?: Address;
+    "card"?: Card;
     /**
     * Email address of the person.
     */
-    'shopperEmail'?: string;
-    'shopperName'?: Name;
+    "shopperEmail"?: string;
+    "shopperName"?: Name;
     /**
     * Phone number of the person
     */
-    'telephoneNumber'?: string;
+    "telephoneNumber"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

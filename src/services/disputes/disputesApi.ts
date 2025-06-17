@@ -49,14 +49,14 @@ export class DisputesApi extends Service {
         const endpoint = `${this.baseUrl}/acceptDispute`;
         const resource = new Resource(this, endpoint);
         
-        const request: AcceptDisputeRequest = ObjectSerializer.serialize(acceptDisputeRequest, "AcceptDisputeRequest", "");
+        const request: AcceptDisputeRequest = ObjectSerializer.serialize(acceptDisputeRequest, "AcceptDisputeRequest");
         const response = await getJsonResponse<AcceptDisputeRequest, AcceptDisputeResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "AcceptDisputeResponse", "");
+        return ObjectSerializer.deserialize(response, "AcceptDisputeResponse");
     }
 
     /**
@@ -69,14 +69,14 @@ export class DisputesApi extends Service {
         const endpoint = `${this.baseUrl}/defendDispute`;
         const resource = new Resource(this, endpoint);
         
-        const request: DefendDisputeRequest = ObjectSerializer.serialize(defendDisputeRequest, "DefendDisputeRequest", "");
+        const request: DefendDisputeRequest = ObjectSerializer.serialize(defendDisputeRequest, "DefendDisputeRequest");
         const response = await getJsonResponse<DefendDisputeRequest, DefendDisputeResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "DefendDisputeResponse", "");
+        return ObjectSerializer.deserialize(response, "DefendDisputeResponse");
     }
 
     /**
@@ -89,14 +89,14 @@ export class DisputesApi extends Service {
         const endpoint = `${this.baseUrl}/deleteDisputeDefenseDocument`;
         const resource = new Resource(this, endpoint);
         
-        const request: DeleteDefenseDocumentRequest = ObjectSerializer.serialize(deleteDefenseDocumentRequest, "DeleteDefenseDocumentRequest", "");
+        const request: DeleteDefenseDocumentRequest = ObjectSerializer.serialize(deleteDefenseDocumentRequest, "DeleteDefenseDocumentRequest");
         const response = await getJsonResponse<DeleteDefenseDocumentRequest, DeleteDefenseDocumentResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "DeleteDefenseDocumentResponse", "");
+        return ObjectSerializer.deserialize(response, "DeleteDefenseDocumentResponse");
     }
 
     /**
@@ -109,14 +109,14 @@ export class DisputesApi extends Service {
         const endpoint = `${this.baseUrl}/retrieveApplicableDefenseReasons`;
         const resource = new Resource(this, endpoint);
         
-        const request: DefenseReasonsRequest = ObjectSerializer.serialize(defenseReasonsRequest, "DefenseReasonsRequest", "");
+        const request: DefenseReasonsRequest = ObjectSerializer.serialize(defenseReasonsRequest, "DefenseReasonsRequest");
         const response = await getJsonResponse<DefenseReasonsRequest, DefenseReasonsResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "DefenseReasonsResponse", "");
+        return ObjectSerializer.deserialize(response, "DefenseReasonsResponse");
     }
 
     /**
@@ -129,14 +129,14 @@ export class DisputesApi extends Service {
         const endpoint = `${this.baseUrl}/supplyDefenseDocument`;
         const resource = new Resource(this, endpoint);
         
-        const request: SupplyDefenseDocumentRequest = ObjectSerializer.serialize(supplyDefenseDocumentRequest, "SupplyDefenseDocumentRequest", "");
+        const request: SupplyDefenseDocumentRequest = ObjectSerializer.serialize(supplyDefenseDocumentRequest, "SupplyDefenseDocumentRequest");
         const response = await getJsonResponse<SupplyDefenseDocumentRequest, SupplyDefenseDocumentResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "SupplyDefenseDocumentResponse", "");
+        return ObjectSerializer.deserialize(response, "SupplyDefenseDocumentResponse");
     }
 
 }
