@@ -28,6 +28,7 @@ import { CounterpartyV3 } from "./counterpartyV3";
 import { DKLocalAccountIdentification } from "./dKLocalAccountIdentification";
 import { DirectDebitInformation } from "./directDebitInformation";
 import { EstimationTrackingData } from "./estimationTrackingData";
+import { ExecutionDate } from "./executionDate";
 import { ExternalReason } from "./externalReason";
 import { Fee } from "./fee";
 import { FindTransfersResponse } from "./findTransfersResponse";
@@ -210,6 +211,7 @@ let typeMap: {[index: string]: any} = {
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DirectDebitInformation": DirectDebitInformation,
     "EstimationTrackingData": EstimationTrackingData,
+    "ExecutionDate": ExecutionDate,
     "ExternalReason": ExternalReason,
     "Fee": Fee,
     "FindTransfersResponse": FindTransfersResponse,
@@ -380,10 +382,10 @@ export class ObjectSerializer {
      *
      * @param data - The value to serialize.
      * @param type - The expected type name as a string.
-     * @param format - Format hint (e.g. "date" or "date-time").
+     * @param format - Format hint (e.g. "date" or "date-time"). Default is an empty string.
      * @returns A JSON-compatible representation of `data`.
      */
-    public static serialize(data: any, type: string, format: string): any {
+    public static serialize(data: any, type: string, format: string = ""): any {
         if (data == undefined) {
             return data;
         } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
@@ -460,10 +462,10 @@ export class ObjectSerializer {
      *
      * @param data - The raw input to deserialize.
      * @param type - The expected type name as a string.
-     * @param format - Format hint (e.g. "date" or "date-time").
+     * @param format - Format hint (e.g. "date" or "date-time"). Default is an empty string.
      * @returns A deserialized instance or value of `data`.
      */
-    public static deserialize(data: any, type: string, format: string): any {
+    public static deserialize(data: any, type: string, format: string = ""): any {
         // polymorphism may change the actual type.
         type = ObjectSerializer.findCorrectType(data, type);
         if (data == undefined) {

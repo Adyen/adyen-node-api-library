@@ -8,10 +8,9 @@
 {{#bodyParams}}
     * @param {{paramName}} {@link {{dataType}} } {{description}}
 {{/bodyParams}}
-    * @param requestOptions {@link IRequest.Options }
-{{#queryParams}}
-    * @param {{paramName}} {@link {{dataType}} } {{description}}
-{{/queryParams}}
+    * @param requestOptions {@link IRequest.Options }{{#queryParams}}{{#required}}
+    * @param {{paramName}} {@link {{dataType}} } (Required) {{description}}{{/required}}{{/queryParams}}{{#queryParams}}{{^required}}
+    * @param {{paramName}} {@link {{dataType}} } {{description}}{{/required}}{{/queryParams}}
 {{#hasProduces}}
     * @return {@link {{returnType}} }
 {{/hasProduces}}
