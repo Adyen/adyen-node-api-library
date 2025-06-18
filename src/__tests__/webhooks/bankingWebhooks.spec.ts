@@ -543,10 +543,17 @@ describe("BankingWebhooks Tests", function (): void {
         expect(disputeNotificationRequest.data.balancePlatform).toBe("YOUR_BALANCE_PLATFORM");
         expect(disputeNotificationRequest.data.status).toBe("open");
         expect(disputeNotificationRequest.data.type).toBe(DisputeEventNotification.TypeEnum.NotDelivered);
-                // test getGenericWebhook
+        // test getGenericWebhook
         const genericWebhook = disputeWebhooksHandler.getGenericWebhook();
         expect(genericWebhook instanceof DisputeNotificationRequest).toBe(true);
         expect(genericWebhook.type).toEqual("balancePlatform.dispute.created");
+    });
+
+    it("should throw SyntaxError when JSON is invalid", function (): void {
+        const invalidJsonString = "{ invalid json }";
+        expect(() => {
+            new DisputeWebhooksHandler(invalidJsonString);
+        }).toThrowError(SyntaxError);
     });
 
 });
