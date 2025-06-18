@@ -12,25 +12,19 @@ export class UpdateNetworkTokenRequest {
     /**
     * The new status of the network token. Possible values: **active**, **suspended**, **closed**. The **closed** status is final and cannot be changed.
     */
-    "status"?: UpdateNetworkTokenRequest.StatusEnum;
+    'status'?: UpdateNetworkTokenRequest.StatusEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "status",
             "baseName": "status",
-            "type": "UpdateNetworkTokenRequest.StatusEnum",
-            "format": ""
+            "type": "UpdateNetworkTokenRequest.StatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return UpdateNetworkTokenRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

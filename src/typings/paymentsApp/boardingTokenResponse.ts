@@ -12,35 +12,28 @@ export class BoardingTokenResponse {
     /**
     * The boarding token that allows the Payments App to board.
     */
-    "boardingToken": string;
+    'boardingToken': string;
     /**
     * The unique identifier of the Payments App instance.
     */
-    "installationId": string;
+    'installationId': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "boardingToken",
             "baseName": "boardingToken",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installationId",
             "baseName": "installationId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return BoardingTokenResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

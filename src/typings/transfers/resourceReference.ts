@@ -12,45 +12,37 @@ export class ResourceReference {
     /**
     * The description of the resource.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * The unique identifier of the resource.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The reference for the resource.
     */
-    "reference"?: string;
+    'reference'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ResourceReference.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

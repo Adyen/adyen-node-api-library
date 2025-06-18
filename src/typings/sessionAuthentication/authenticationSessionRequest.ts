@@ -7,49 +7,38 @@
  * Do not edit this class manually.
  */
 
-import { Policy } from "./policy";
-import { ProductType } from "./productType";
-
+import { Policy } from './policy';
+import { ProductType } from './productType';
 
 export class AuthenticationSessionRequest {
     /**
     * The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with `https://`.
     */
-    "allowOrigin": string;
-    "policy": Policy;
-    "product": ProductType;
+    'allowOrigin': string;
+    'policy': Policy;
+    'product': ProductType;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "allowOrigin",
             "baseName": "allowOrigin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "policy",
             "baseName": "policy",
-            "type": "Policy",
-            "format": ""
+            "type": "Policy"
         },
         {
             "name": "product",
             "baseName": "product",
-            "type": "ProductType",
-            "format": ""
+            "type": "ProductType"
         }    ];
 
     static getAttributeTypeMap() {
         return AuthenticationSessionRequest.attributeTypeMap;
     }
-
-    public constructor() {
-    }
 }
 
-export namespace AuthenticationSessionRequest {
-}

@@ -12,6 +12,7 @@ import Service from "../../service";
 import Client from "../../client";
 import { 
     Logo,
+    RestServiceError,
     TerminalSettings,
     ObjectSerializer
 } from "../../typings/management/models";
@@ -36,7 +37,7 @@ export class TerminalSettingsStoreLevelApi extends Service {
     * @param model {@link string } The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.
     * @return {@link Logo }
     */
-    public async getTerminalLogo(merchantId: string, reference: string, model?: string, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async getTerminalLogo(merchantId: string, reference: string, model: string, requestOptions?: IRequest.Options): Promise<Logo> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores/{reference}/terminalLogos`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "reference" + "}", encodeURIComponent(String(reference)));
@@ -62,7 +63,7 @@ export class TerminalSettingsStoreLevelApi extends Service {
     * @param model {@link string } The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.
     * @return {@link Logo }
     */
-    public async getTerminalLogoByStoreId(storeId: string, model?: string, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async getTerminalLogoByStoreId(storeId: string, model: string, requestOptions?: IRequest.Options): Promise<Logo> {
         const endpoint = `${this.baseUrl}/stores/{storeId}/terminalLogos`
             .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);
@@ -127,7 +128,7 @@ export class TerminalSettingsStoreLevelApi extends Service {
     * @param model {@link string } The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T
     * @return {@link Logo }
     */
-    public async updateTerminalLogo(merchantId: string, reference: string, logo: Logo, model?: string, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async updateTerminalLogo(merchantId: string, reference: string, logo: Logo, model: string, requestOptions?: IRequest.Options): Promise<Logo> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores/{reference}/terminalLogos`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "reference" + "}", encodeURIComponent(String(reference)));
@@ -155,7 +156,7 @@ export class TerminalSettingsStoreLevelApi extends Service {
     * @param model {@link string } The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.
     * @return {@link Logo }
     */
-    public async updateTerminalLogoByStoreId(storeId: string, logo: Logo, model?: string, requestOptions?: IRequest.Options): Promise<Logo> {
+    public async updateTerminalLogoByStoreId(storeId: string, logo: Logo, model: string, requestOptions?: IRequest.Options): Promise<Logo> {
         const endpoint = `${this.baseUrl}/stores/{storeId}/terminalLogos`
             .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);

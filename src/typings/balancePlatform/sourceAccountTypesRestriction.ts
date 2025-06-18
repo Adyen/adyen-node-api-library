@@ -12,35 +12,28 @@ export class SourceAccountTypesRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    "operation": string;
+    'operation': string;
     /**
     * The list of source account types to be evaluated.
     */
-    "value"?: Array<SourceAccountTypesRestriction.ValueEnum>;
+    'value'?: Array<SourceAccountTypesRestriction.ValueEnum>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "SourceAccountTypesRestriction.ValueEnum",
-            "format": ""
+            "type": "Array<SourceAccountTypesRestriction.ValueEnum>"
         }    ];
 
     static getAttributeTypeMap() {
         return SourceAccountTypesRestriction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

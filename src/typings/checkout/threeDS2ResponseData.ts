@@ -9,151 +9,127 @@
 
 
 export class ThreeDS2ResponseData {
-    "acsChallengeMandated"?: string;
-    "acsOperatorID"?: string;
-    "acsReferenceNumber"?: string;
-    "acsSignedContent"?: string;
-    "acsTransID"?: string;
-    "acsURL"?: string;
-    "authenticationType"?: string;
-    "cardHolderInfo"?: string;
-    "cavvAlgorithm"?: string;
-    "challengeIndicator"?: string;
-    "dsReferenceNumber"?: string;
-    "dsTransID"?: string;
-    "exemptionIndicator"?: string;
-    "messageVersion"?: string;
-    "riskScore"?: string;
-    "sdkEphemPubKey"?: string;
-    "threeDSServerTransID"?: string;
-    "transStatus"?: string;
-    "transStatusReason"?: string;
+    'acsChallengeMandated'?: string;
+    'acsOperatorID'?: string;
+    'acsReferenceNumber'?: string;
+    'acsSignedContent'?: string;
+    'acsTransID'?: string;
+    'acsURL'?: string;
+    'authenticationType'?: string;
+    'cardHolderInfo'?: string;
+    'cavvAlgorithm'?: string;
+    'challengeIndicator'?: string;
+    'dsReferenceNumber'?: string;
+    'dsTransID'?: string;
+    'exemptionIndicator'?: string;
+    'messageVersion'?: string;
+    'riskScore'?: string;
+    'sdkEphemPubKey'?: string;
+    'threeDSServerTransID'?: string;
+    'transStatus'?: string;
+    'transStatusReason'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "acsChallengeMandated",
             "baseName": "acsChallengeMandated",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "acsOperatorID",
             "baseName": "acsOperatorID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "acsReferenceNumber",
             "baseName": "acsReferenceNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "acsSignedContent",
             "baseName": "acsSignedContent",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "acsTransID",
             "baseName": "acsTransID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "acsURL",
             "baseName": "acsURL",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "authenticationType",
             "baseName": "authenticationType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardHolderInfo",
             "baseName": "cardHolderInfo",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cavvAlgorithm",
             "baseName": "cavvAlgorithm",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "challengeIndicator",
             "baseName": "challengeIndicator",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "dsReferenceNumber",
             "baseName": "dsReferenceNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "dsTransID",
             "baseName": "dsTransID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "exemptionIndicator",
             "baseName": "exemptionIndicator",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "messageVersion",
             "baseName": "messageVersion",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "riskScore",
             "baseName": "riskScore",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sdkEphemPubKey",
             "baseName": "sdkEphemPubKey",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDSServerTransID",
             "baseName": "threeDSServerTransID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transStatus",
             "baseName": "transStatus",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transStatusReason",
             "baseName": "transStatusReason",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDS2ResponseData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

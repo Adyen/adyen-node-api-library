@@ -7,20 +7,18 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    GrantOffer,
+    GrantOffers,
+    RestServiceError,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
-import { GrantOffer } from "../../typings/balancePlatform/models";
-import { GrantOffers } from "../../typings/balancePlatform/models";
-
-/**
- * API handler for GrantOffersApi
- */
 export class GrantOffersApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -40,10 +38,9 @@ export class GrantOffersApi extends Service {
 	* @deprecated since Configuration API v2
 	* Use the `/grantOffers` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers) instead.
     */
-    public async getAllAvailableGrantOffers(accountHolderId?: string, requestOptions?: IRequest.Options): Promise<GrantOffers> {
+    public async getAllAvailableGrantOffers(accountHolderId: string, requestOptions?: IRequest.Options): Promise<GrantOffers> {
         const endpoint = `${this.baseUrl}/grantOffers`;
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = accountHolderId;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -55,8 +52,7 @@ export class GrantOffersApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
-        return ObjectSerializer.deserialize(response, "GrantOffers", "");
+        return ObjectSerializer.deserialize(response, "GrantOffers");
     }
 
     /**
@@ -72,14 +68,11 @@ export class GrantOffersApi extends Service {
         const endpoint = `${this.baseUrl}/grantOffers/{grantOfferId}`
             .replace("{" + "grantOfferId" + "}", encodeURIComponent(String(grantOfferId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, GrantOffer>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
-        return ObjectSerializer.deserialize(response, "GrantOffer", "");
+        return ObjectSerializer.deserialize(response, "GrantOffer");
     }
-
 }

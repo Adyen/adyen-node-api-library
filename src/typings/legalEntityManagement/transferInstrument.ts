@@ -7,92 +7,79 @@
  * Do not edit this class manually.
  */
 
-import { BankAccountInfo } from "./bankAccountInfo";
-import { CapabilityProblem } from "./capabilityProblem";
-import { DocumentReference } from "./documentReference";
-import { SupportingEntityCapability } from "./supportingEntityCapability";
-
+import { BankAccountInfo } from './bankAccountInfo';
+import { CapabilityProblem } from './capabilityProblem';
+import { DocumentReference } from './documentReference';
+import { SupportingEntityCapability } from './supportingEntityCapability';
 
 export class TransferInstrument {
-    "bankAccount": BankAccountInfo;
+    'bankAccount': BankAccountInfo;
     /**
     * List of capabilities for this transfer instrument.
     */
-    "capabilities"?: { [key: string]: SupportingEntityCapability; };
+    'capabilities'?: { [key: string]: SupportingEntityCapability; };
     /**
     * List of documents uploaded for the transfer instrument.
     */
-    "documentDetails"?: Array<DocumentReference>;
+    'documentDetails'?: Array<DocumentReference>;
     /**
     * The unique identifier of the transfer instrument.
     */
-    "id": string;
+    'id': string;
     /**
     * The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.
     */
-    "legalEntityId": string;
+    'legalEntityId': string;
     /**
     * The verification errors related to capabilities for this transfer instrument.
     */
-    "problems"?: Array<CapabilityProblem>;
+    'problems'?: Array<CapabilityProblem>;
     /**
     * The type of transfer instrument.  Possible value: **bankAccount**.
     */
-    "type": TransferInstrument.TypeEnum;
+    'type': TransferInstrument.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccountInfo",
-            "format": ""
+            "type": "BankAccountInfo"
         },
         {
             "name": "capabilities",
             "baseName": "capabilities",
-            "type": "{ [key: string]: SupportingEntityCapability; }",
-            "format": ""
+            "type": "{ [key: string]: SupportingEntityCapability; }"
         },
         {
             "name": "documentDetails",
             "baseName": "documentDetails",
-            "type": "Array<DocumentReference>",
-            "format": ""
+            "type": "Array<DocumentReference>"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "legalEntityId",
             "baseName": "legalEntityId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "problems",
             "baseName": "problems",
-            "type": "Array<CapabilityProblem>",
-            "format": ""
+            "type": "Array<CapabilityProblem>"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TransferInstrument.TypeEnum",
-            "format": ""
+            "type": "TransferInstrument.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return TransferInstrument.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

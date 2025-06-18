@@ -12,35 +12,28 @@ export class RiskScores {
     /**
     * Transaction risk score provided by Mastercard. Values provided by Mastercard range between 0 (lowest risk) to 998 (highest risk).
     */
-    "mastercard"?: number;
+    'mastercard'?: number;
     /**
     * Transaction risk score provided by Visa. Values provided by Visa range between 01 (lowest risk) to 99 (highest risk).
     */
-    "visa"?: number;
+    'visa'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "mastercard",
             "baseName": "mastercard",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "visa",
             "baseName": "visa",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return RiskScores.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

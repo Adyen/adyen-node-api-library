@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { CapabilityProblem } from "./capabilityProblem";
-
+import { CapabilityProblem } from './capabilityProblem';
 
 export class VerificationErrors {
     /**
     * List of the verification errors.
     */
-    "problems"?: Array<CapabilityProblem>;
+    'problems'?: Array<CapabilityProblem>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "problems",
             "baseName": "problems",
-            "type": "Array<CapabilityProblem>",
-            "format": ""
+            "type": "Array<CapabilityProblem>"
         }    ];
 
     static getAttributeTypeMap() {
         return VerificationErrors.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

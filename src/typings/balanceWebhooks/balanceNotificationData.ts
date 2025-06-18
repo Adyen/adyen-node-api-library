@@ -7,89 +7,76 @@
  * Do not edit this class manually.
  */
 
-import { Balances } from "./balances";
-
+import { Balances } from './balances';
 
 export class BalanceNotificationData {
     /**
     * The unique identifier of the balance account.
     */
-    "balanceAccountId": string;
+    'balanceAccountId': string;
     /**
     * The unique identifier of the balance platform.
     */
-    "balancePlatform"?: string;
-    "balances": Balances;
+    'balancePlatform'?: string;
+    'balances': Balances;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
     */
-    "creationDate"?: Date;
+    'creationDate'?: Date;
     /**
     * TThe three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
-    "currency": string;
+    'currency': string;
     /**
     * The ID of the resource.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The unique identifier of the balance webhook setting.
     */
-    "settingIds": Array<string>;
+    'settingIds': Array<string>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "balanceAccountId",
             "baseName": "balanceAccountId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "balances",
             "baseName": "balances",
-            "type": "Balances",
-            "format": ""
+            "type": "Balances"
         },
         {
             "name": "creationDate",
             "baseName": "creationDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "settingIds",
             "baseName": "settingIds",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
         return BalanceNotificationData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,29 +7,22 @@
  * Do not edit this class manually.
  */
 
-import { ThreeDS2Result } from "./threeDS2Result";
-
+import { ThreeDS2Result } from './threeDS2Result';
 
 export class ThreeDS2ResultResponse {
-    "threeDS2Result"?: ThreeDS2Result;
+    'threeDS2Result'?: ThreeDS2Result | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "threeDS2Result",
             "baseName": "threeDS2Result",
-            "type": "ThreeDS2Result",
-            "format": ""
+            "type": "ThreeDS2Result | null"
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDS2ResultResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

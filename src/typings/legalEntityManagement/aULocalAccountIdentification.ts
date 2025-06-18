@@ -12,45 +12,37 @@ export class AULocalAccountIdentification {
     /**
     * The bank account number, without separators or whitespace.
     */
-    "accountNumber": string;
+    'accountNumber': string;
     /**
     * The 6-digit [Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or whitespace.
     */
-    "bsbCode": string;
+    'bsbCode': string;
     /**
     * **auLocal**
     */
-    "type": AULocalAccountIdentification.TypeEnum;
+    'type': AULocalAccountIdentification.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "bsbCode",
             "baseName": "bsbCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AULocalAccountIdentification.TypeEnum",
-            "format": ""
+            "type": "AULocalAccountIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return AULocalAccountIdentification.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 
