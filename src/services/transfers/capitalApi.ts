@@ -35,7 +35,7 @@ export class CapitalApi extends Service {
     /**
     * @summary Get a capital account
     * @param requestOptions {@link IRequest.Options }
-    * @param counterpartyAccountHolderId {@link string } The counterparty account holder id.
+    * @param counterpartyAccountHolderId {@link string } The counterparty account holder id. 
     * @return {@link CapitalGrants }
     *
 	* @deprecated since Transfers API v4
@@ -57,7 +57,7 @@ export class CapitalApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "CapitalGrants", "");
+        return ObjectSerializer.deserialize(response, "CapitalGrants");
     }
 
     /**
@@ -80,7 +80,7 @@ export class CapitalApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "CapitalGrant", "");
+        return ObjectSerializer.deserialize(response, "CapitalGrant");
     }
 
     /**
@@ -96,14 +96,14 @@ export class CapitalApi extends Service {
         const endpoint = `${this.baseUrl}/grants`;
         const resource = new Resource(this, endpoint);
         
-        const request: CapitalGrantInfo = ObjectSerializer.serialize(capitalGrantInfo, "CapitalGrantInfo", "");
+        const request: CapitalGrantInfo = ObjectSerializer.serialize(capitalGrantInfo, "CapitalGrantInfo");
         const response = await getJsonResponse<CapitalGrantInfo, CapitalGrant>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "CapitalGrant", "");
+        return ObjectSerializer.deserialize(response, "CapitalGrant");
     }
 
 }
