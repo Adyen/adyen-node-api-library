@@ -17,6 +17,9 @@ import { NegativeBalanceWarningWebhooksHandler } from "../../typings/negativeBal
 import { TransactionWebhooksHandler } from "../../typings/transactionWebhooks/transactionWebhooksHandler";
 import { BalanceWebhooksHandler } from "../../typings/balanceWebhooks/balanceWebhooksHandler";
 import { ReportNotificationRequest } from "../../typings/reportWebhooks/reportNotificationRequest";
+import { DisputeWebhooksHandler } from "../../typings/disputeWebhooks/disputeWebhooksHandler";
+import { DisputeNotificationRequest } from "../../typings/disputeWebhooks/disputeNotificationRequest";
+import { DisputeEventNotification } from "../../typings/disputeWebhooks/disputeEventNotification";
 
 describe("BankingWebhooks Tests", function (): void {
 
@@ -512,6 +515,45 @@ describe("BankingWebhooks Tests", function (): void {
         expect(genericWebhook.data.accountHolder?.id).toEqual("AH00000000000000000001");
         expect(genericWebhook.data.negativeBalanceSince?.toISOString()).toEqual(new Date("2024-10-19T00:33:13+02:00").toISOString());    
 
+    });
+
+    it("should deserialize DisputeWebhooks DisputeNotificationRequest", function (): void {
+        const json = {
+            "type": "balancePlatform.dispute.created",
+            "data": {
+                "id": "DS00000000000000000001",
+                "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                "disputedAmount": {
+                    "currency": "EUR",
+                    "value": 10000
+                },
+                "status": "open",
+                "type": DisputeEventNotification.TypeEnum.NotDelivered,
+                
+            }
+        };
+        const jsonString = JSON.stringify(json);
+        const disputeWebhooksHandler = new DisputeWebhooksHandler(jsonString);
+        const disputeNotificationRequest: DisputeNotificationRequest = disputeWebhooksHandler.getDisputeNotificationRequest();
+
+        expect(disputeNotificationRequest).toBeTruthy();
+        expect(disputeNotificationRequest.type).toBe("balancePlatform.dispute.created");
+        expect(disputeNotificationRequest.data).toBeDefined();
+        expect(disputeNotificationRequest.data.id).toBe("DS00000000000000000001");
+        expect(disputeNotificationRequest.data.balancePlatform).toBe("YOUR_BALANCE_PLATFORM");
+        expect(disputeNotificationRequest.data.status).toBe("open");
+        expect(disputeNotificationRequest.data.type).toBe(DisputeEventNotification.TypeEnum.NotDelivered);
+        // test getGenericWebhook
+        const genericWebhook = disputeWebhooksHandler.getGenericWebhook();
+        expect(genericWebhook instanceof DisputeNotificationRequest).toBe(true);
+        expect(genericWebhook.type).toEqual("balancePlatform.dispute.created");
+    });
+
+    it("should throw SyntaxError when JSON is invalid", function (): void {
+        const invalidJsonString = "{ invalid json }";
+        expect(() => {
+            new DisputeWebhooksHandler(invalidJsonString);
+        }).toThrowError(SyntaxError);
     });
 
 });

@@ -47,14 +47,14 @@ export class PaymentsApi extends Service {
         const endpoint = `${this.baseUrl}/authorise`;
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentRequest = ObjectSerializer.serialize(paymentRequest, "PaymentRequest", "");
+        const request: PaymentRequest = ObjectSerializer.serialize(paymentRequest, "PaymentRequest");
         const response = await getJsonResponse<PaymentRequest, PaymentResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentResult", "");
+        return ObjectSerializer.deserialize(response, "PaymentResult");
     }
 
     /**
@@ -67,14 +67,14 @@ export class PaymentsApi extends Service {
         const endpoint = `${this.baseUrl}/authorise3d`;
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentRequest3d = ObjectSerializer.serialize(paymentRequest3d, "PaymentRequest3d", "");
+        const request: PaymentRequest3d = ObjectSerializer.serialize(paymentRequest3d, "PaymentRequest3d");
         const response = await getJsonResponse<PaymentRequest3d, PaymentResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentResult", "");
+        return ObjectSerializer.deserialize(response, "PaymentResult");
     }
 
     /**
@@ -87,14 +87,14 @@ export class PaymentsApi extends Service {
         const endpoint = `${this.baseUrl}/authorise3ds2`;
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentRequest3ds2 = ObjectSerializer.serialize(paymentRequest3ds2, "PaymentRequest3ds2", "");
+        const request: PaymentRequest3ds2 = ObjectSerializer.serialize(paymentRequest3ds2, "PaymentRequest3ds2");
         const response = await getJsonResponse<PaymentRequest3ds2, PaymentResult>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentResult", "");
+        return ObjectSerializer.deserialize(response, "PaymentResult");
     }
 
     /**
@@ -107,14 +107,14 @@ export class PaymentsApi extends Service {
         const endpoint = `${this.baseUrl}/getAuthenticationResult`;
         const resource = new Resource(this, endpoint);
         
-        const request: AuthenticationResultRequest = ObjectSerializer.serialize(authenticationResultRequest, "AuthenticationResultRequest", "");
+        const request: AuthenticationResultRequest = ObjectSerializer.serialize(authenticationResultRequest, "AuthenticationResultRequest");
         const response = await getJsonResponse<AuthenticationResultRequest, AuthenticationResultResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "AuthenticationResultResponse", "");
+        return ObjectSerializer.deserialize(response, "AuthenticationResultResponse");
     }
 
     /**
@@ -127,14 +127,14 @@ export class PaymentsApi extends Service {
         const endpoint = `${this.baseUrl}/retrieve3ds2Result`;
         const resource = new Resource(this, endpoint);
         
-        const request: ThreeDS2ResultRequest = ObjectSerializer.serialize(threeDS2ResultRequest, "ThreeDS2ResultRequest", "");
+        const request: ThreeDS2ResultRequest = ObjectSerializer.serialize(threeDS2ResultRequest, "ThreeDS2ResultRequest");
         const response = await getJsonResponse<ThreeDS2ResultRequest, ThreeDS2ResultResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "ThreeDS2ResultResponse", "");
+        return ObjectSerializer.deserialize(response, "ThreeDS2ResultResponse");
     }
 
 }

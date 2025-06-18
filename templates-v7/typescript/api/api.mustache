@@ -42,7 +42,7 @@ export class {{classname}} extends Service {
         const resource = new Resource(this, endpoint);
         
 {{#bodyParam}}
-        const request: {{{dataType}}} = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}", "");
+        const request: {{{dataType}}} = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}");
 {{/bodyParam}}
 {{#hasQueryParams}}
         const hasDefinedQueryParams = {{#queryParams}}{{paramName}}{{^-last}} ?? {{/-last}}{{/queryParams}};
@@ -61,7 +61,7 @@ export class {{classname}} extends Service {
         );
         {{#returnProperty}}
 
-        return ObjectSerializer.deserialize(response, "{{{returnType}}}", "");
+        return ObjectSerializer.deserialize(response, "{{{returnType}}}");
         {{/returnProperty}}
     }
 
