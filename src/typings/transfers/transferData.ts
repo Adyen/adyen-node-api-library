@@ -10,6 +10,7 @@
 import { Amount } from "./amount";
 import { BalanceMutation } from "./balanceMutation";
 import { DirectDebitInformation } from "./directDebitInformation";
+import { ExecutionDate } from "./executionDate";
 import { ExternalReason } from "./externalReason";
 import { PaymentInstrument } from "./paymentInstrument";
 import { ResourceReference } from "./resourceReference";
@@ -60,6 +61,7 @@ export class TransferData {
     * The list of events leading up to the current status of the transfer.
     */
     "events"?: Array<TransferEvent>;
+    "executionDate"?: ExecutionDate;
     "externalReason"?: ExternalReason;
     /**
     * The ID of the resource.
@@ -181,6 +183,12 @@ export class TransferData {
             "name": "events",
             "baseName": "events",
             "type": "Array<TransferEvent>",
+            "format": ""
+        },
+        {
+            "name": "executionDate",
+            "baseName": "executionDate",
+            "type": "ExecutionDate",
             "format": ""
         },
         {
