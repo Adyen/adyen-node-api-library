@@ -7,59 +7,49 @@
  * Do not edit this class manually.
  */
 
-import { TerminalBoardingData } from "./terminalBoardingData";
-
+import { TerminalBoardingData } from './terminalBoardingData';
 
 export class TerminalBoardingNotificationRequest {
     /**
     * Timestamp for when the webhook was created.
     */
-    "createdAt": Date;
-    "data": TerminalBoardingData;
+    'createdAt': Date;
+    'data': TerminalBoardingData;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    "environment": string;
+    'environment': string;
     /**
     * Type of notification.
     */
-    "type": TerminalBoardingNotificationRequest.TypeEnum;
+    'type': TerminalBoardingNotificationRequest.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "createdAt",
             "baseName": "createdAt",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "data",
             "baseName": "data",
-            "type": "TerminalBoardingData",
-            "format": ""
+            "type": "TerminalBoardingData"
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TerminalBoardingNotificationRequest.TypeEnum",
-            "format": ""
+            "type": "TerminalBoardingNotificationRequest.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalBoardingNotificationRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,65 +7,55 @@
  * Do not edit this class manually.
  */
 
-import { CardOrderItem } from "./cardOrderItem";
-
+import { CardOrderItem } from './cardOrderItem';
 
 export class CardOrderNotificationRequest {
-    "data": CardOrderItem;
+    'data': CardOrderItem;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    "environment": string;
+    'environment': string;
     /**
     * When the event was queued.
     */
-    "timestamp"?: Date;
+    'timestamp'?: Date;
     /**
     * Type of webhook.
     */
-    "type": CardOrderNotificationRequest.TypeEnum;
+    'type': CardOrderNotificationRequest.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "CardOrderItem",
-            "format": ""
+            "type": "CardOrderItem"
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CardOrderNotificationRequest.TypeEnum",
-            "format": ""
+            "type": "CardOrderNotificationRequest.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return CardOrderNotificationRequest.attributeTypeMap;
     }
-
-    public constructor() {
-    }
 }
 
 export namespace CardOrderNotificationRequest {
     export enum TypeEnum {
-        BalancePlatformCardorderCreated = 'balancePlatform.cardorder.created',
-        BalancePlatformCardorderUpdated = 'balancePlatform.cardorder.updated'
+        Created = 'balancePlatform.cardorder.created',
+        Updated = 'balancePlatform.cardorder.updated'
     }
 }

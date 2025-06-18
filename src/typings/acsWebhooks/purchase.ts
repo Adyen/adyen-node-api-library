@@ -7,49 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-
+import { Amount } from './amount';
 
 export class Purchase {
     /**
     * The time of the purchase.
     */
-    "date": Date;
+    'date': Date;
     /**
     * The name of the merchant.
     */
-    "merchantName": string;
-    "originalAmount": Amount;
+    'merchantName': string;
+    'originalAmount': Amount;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "date",
             "baseName": "date",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "merchantName",
             "baseName": "merchantName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "originalAmount",
             "baseName": "originalAmount",
-            "type": "Amount",
-            "format": ""
+            "type": "Amount"
         }    ];
 
     static getAttributeTypeMap() {
         return Purchase.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

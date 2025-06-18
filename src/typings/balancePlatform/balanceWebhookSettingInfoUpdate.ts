@@ -7,70 +7,59 @@
  * Do not edit this class manually.
  */
 
-import { Condition } from "./condition";
-import { TargetUpdate } from "./targetUpdate";
-
+import { Condition } from './condition';
+import { TargetUpdate } from './targetUpdate';
 
 export class BalanceWebhookSettingInfoUpdate {
     /**
     * The array of conditions a balance change must meet for Adyen to send the webhook.
     */
-    "conditions"?: Array<Condition>;
+    'conditions'?: Array<Condition>;
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.
     */
-    "currency"?: string;
+    'currency'?: string;
     /**
     * The status of the webhook setting. Possible values:  * **active**: You receive a balance webhook if any of the conditions in this setting are met. * **inactive**: You do not receive a balance webhook even if the conditions in this settings are met.
     */
-    "status"?: BalanceWebhookSettingInfoUpdate.StatusEnum;
-    "target"?: TargetUpdate;
+    'status'?: BalanceWebhookSettingInfoUpdate.StatusEnum;
+    'target'?: TargetUpdate | null;
     /**
     * The type of the webhook you are configuring. Set to **balance**.
     */
-    "type"?: BalanceWebhookSettingInfoUpdate.TypeEnum;
+    'type'?: BalanceWebhookSettingInfoUpdate.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "conditions",
             "baseName": "conditions",
-            "type": "Array<Condition>",
-            "format": ""
+            "type": "Array<Condition>"
         },
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "BalanceWebhookSettingInfoUpdate.StatusEnum",
-            "format": ""
+            "type": "BalanceWebhookSettingInfoUpdate.StatusEnum"
         },
         {
             "name": "target",
             "baseName": "target",
-            "type": "TargetUpdate",
-            "format": ""
+            "type": "TargetUpdate | null"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BalanceWebhookSettingInfoUpdate.TypeEnum",
-            "format": ""
+            "type": "BalanceWebhookSettingInfoUpdate.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return BalanceWebhookSettingInfoUpdate.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

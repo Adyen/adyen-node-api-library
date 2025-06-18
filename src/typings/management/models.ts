@@ -147,6 +147,7 @@ export * from './storeCreationRequest';
 export * from './storeCreationWithMerchantCodeRequest';
 export * from './storeLocation';
 export * from './storeSplitConfiguration';
+export * from './subMerchantData';
 export * from './supportedCardTypes';
 export * from './surcharge';
 export * from './swishInfo';
@@ -344,6 +345,7 @@ import { StoreCreationRequest } from './storeCreationRequest';
 import { StoreCreationWithMerchantCodeRequest } from './storeCreationWithMerchantCodeRequest';
 import { StoreLocation } from './storeLocation';
 import { StoreSplitConfiguration } from './storeSplitConfiguration';
+import { SubMerchantData } from './subMerchantData';
 import { SupportedCardTypes } from './supportedCardTypes';
 import { Surcharge } from './surcharge';
 import { SwishInfo } from './swishInfo';
@@ -457,6 +459,7 @@ let enumsMap: {[index: string]: any} = {
         "SplitConfigurationLogic.SurchargeEnum": SplitConfigurationLogic.SurchargeEnum,
         "SplitConfigurationLogic.TipEnum": SplitConfigurationLogic.TipEnum,
         "SplitConfigurationRule.FundingSourceEnum": SplitConfigurationRule.FundingSourceEnum,
+        "SplitConfigurationRule.RegionalityEnum": SplitConfigurationRule.RegionalityEnum,
         "SplitConfigurationRule.ShopperInteractionEnum": SplitConfigurationRule.ShopperInteractionEnum,
         "StarInfo.ProcessingTypeEnum": StarInfo.ProcessingTypeEnum,
         "Store.StatusEnum": Store.StatusEnum,
@@ -633,6 +636,7 @@ let typeMap: {[index: string]: any} = {
     "StoreCreationWithMerchantCodeRequest": StoreCreationWithMerchantCodeRequest,
     "StoreLocation": StoreLocation,
     "StoreSplitConfiguration": StoreSplitConfiguration,
+    "SubMerchantData": SubMerchantData,
     "SupportedCardTypes": SupportedCardTypes,
     "Surcharge": Surcharge,
     "SwishInfo": SwishInfo,

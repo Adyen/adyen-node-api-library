@@ -12,45 +12,37 @@ export class HKLocalAccountIdentification {
     /**
     * The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.
     */
-    "accountNumber": string;
+    'accountNumber': string;
     /**
     * The 3-digit clearing code, without separators or whitespace.
     */
-    "clearingCode": string;
+    'clearingCode': string;
     /**
     * **hkLocal**
     */
-    "type": HKLocalAccountIdentification.TypeEnum;
+    'type': HKLocalAccountIdentification.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "clearingCode",
             "baseName": "clearingCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "HKLocalAccountIdentification.TypeEnum",
-            "format": ""
+            "type": "HKLocalAccountIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return HKLocalAccountIdentification.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -16,6 +16,7 @@ import {
     CreateAllowedOriginRequest,
     GenerateClientKeyResponse,
     MeApiCredential,
+    RestServiceError,
     ObjectSerializer
 } from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";

@@ -12,55 +12,46 @@ export class Device {
     /**
     * The unique identifier of the SCA device.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The name of the SCA device. You can show this name to your user to help them identify the device.
     */
-    "name"?: string;
+    'name'?: string;
     /**
     * The unique identifier of the payment instrument that is associated with the SCA device.
     */
-    "paymentInstrumentId"?: string;
+    'paymentInstrumentId'?: string;
     /**
     * The type of device.  Possible values: **ios**, **android**, **browser**.
     */
-    "type"?: Device.TypeEnum;
+    'type'?: Device.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "Device.TypeEnum",
-            "format": ""
+            "type": "Device.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return Device.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

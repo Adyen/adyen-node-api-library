@@ -12,212 +12,187 @@ export class PaymentCompletionDetails {
     /**
     * A payment session identifier returned by the card issuer.
     */
-    "MD"?: string;
+    'MD'?: string;
     /**
     * (3D) Payment Authentication Request data for the card issuer.
     */
-    "PaReq"?: string;
+    'PaReq'?: string;
     /**
     * (3D) Payment Authentication Response data by the card issuer.
     */
-    "PaRes"?: string;
-    "authorization_token"?: string;
+    'PaRes'?: string;
+    'authorization_token'?: string;
     /**
     * PayPal-generated token for recurring payments.
     */
-    "billingToken"?: string;
+    'billingToken'?: string;
     /**
     * The SMS verification code collected from the shopper.
     */
-    "cupsecureplus_smscode"?: string;
+    'cupsecureplus_smscode'?: string;
     /**
     * PayPal-generated third party access token.
     */
-    "facilitatorAccessToken"?: string;
+    'facilitatorAccessToken'?: string;
     /**
     * A random number sent to the mobile phone number of the shopper to verify the payment.
     */
-    "oneTimePasscode"?: string;
+    'oneTimePasscode'?: string;
     /**
     * PayPal-assigned ID for the order.
     */
-    "orderID"?: string;
+    'orderID'?: string;
     /**
     * PayPal-assigned ID for the payer (shopper).
     */
-    "payerID"?: string;
+    'payerID'?: string;
     /**
     * Payload appended to the `returnURL` as a result of the redirect.
     */
-    "payload"?: string;
+    'payload'?: string;
     /**
     * PayPal-generated ID for the payment.
     */
-    "paymentID"?: string;
+    'paymentID'?: string;
     /**
     * Value passed from the WeChat MiniProgram `wx.requestPayment` **complete** callback. Possible values: any value starting with `requestPayment:`.
     */
-    "paymentStatus"?: string;
+    'paymentStatus'?: string;
     /**
     * The result of the redirect as appended to the `returnURL`.
     */
-    "redirectResult"?: string;
+    'redirectResult'?: string;
     /**
     * Value you received from the WeChat Pay SDK.
     */
-    "resultCode"?: string;
+    'resultCode'?: string;
     /**
     * The query string as appended to the `returnURL` when using direct issuer links .
     */
-    "returnUrlQueryString"?: string;
+    'returnUrlQueryString'?: string;
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: `transStatus`, `authorisationToken`.
     */
-    "threeDSResult"?: string;
+    'threeDSResult'?: string;
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `transStatus`.
     */
-    "threeds2_challengeResult"?: string;
+    'threeds2_challengeResult'?: string;
     /**
     * Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `threeDSCompInd`.
     */
-    "threeds2_fingerprint"?: string;
+    'threeds2_fingerprint'?: string;
     /**
     * PayPalv2-generated token for recurring payments.
     */
-    "vaultToken"?: string;
+    'vaultToken'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "MD",
             "baseName": "MD",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "PaReq",
             "baseName": "PaReq",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "PaRes",
             "baseName": "PaRes",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "authorization_token",
             "baseName": "authorization_token",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "billingToken",
             "baseName": "billingToken",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cupsecureplus_smscode",
             "baseName": "cupsecureplus.smscode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "facilitatorAccessToken",
             "baseName": "facilitatorAccessToken",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "oneTimePasscode",
             "baseName": "oneTimePasscode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "orderID",
             "baseName": "orderID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "payerID",
             "baseName": "payerID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "payload",
             "baseName": "payload",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentID",
             "baseName": "paymentID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentStatus",
             "baseName": "paymentStatus",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "redirectResult",
             "baseName": "redirectResult",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "returnUrlQueryString",
             "baseName": "returnUrlQueryString",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDSResult",
             "baseName": "threeDSResult",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeds2_challengeResult",
             "baseName": "threeds2.challengeResult",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeds2_fingerprint",
             "baseName": "threeds2.fingerprint",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "vaultToken",
             "baseName": "vaultToken",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentCompletionDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

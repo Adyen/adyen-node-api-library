@@ -12,87 +12,75 @@ export class IdentificationData {
     /**
     * The card number of the document that was issued (AU only).
     */
-    "cardNumber"?: string;
+    'cardNumber'?: string;
     /**
     * The expiry date of the document, in YYYY-MM-DD format.
     */
-    "expiryDate"?: string;
+    'expiryDate'?: string;
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the document was issued. For example, **US**.
     *
 	* @deprecated since Legal Entity Management API v1
     */
-    "issuerCountry"?: string;
+    'issuerCountry'?: string;
     /**
     * The state or province where the document was issued (AU only).
     */
-    "issuerState"?: string;
+    'issuerState'?: string;
     /**
     * Applies only to individuals in the US. Set to **true** if the individual does not have an SSN. To verify their identity, Adyen will require them to upload an ID document.
     */
-    "nationalIdExempt"?: boolean;
+    'nationalIdExempt'?: boolean;
     /**
     * The number in the document.
     */
-    "number"?: string;
+    'number'?: string;
     /**
     * Type of identity data. For individuals, the following types are supported. See our [onboarding guide](https://docs.adyen.com/platforms/onboard-users/onboarding-steps/?onboarding_type=custom) for other supported countries.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber**
     */
-    "type": IdentificationData.TypeEnum;
+    'type': IdentificationData.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "cardNumber",
             "baseName": "cardNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "expiryDate",
             "baseName": "expiryDate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuerCountry",
             "baseName": "issuerCountry",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuerState",
             "baseName": "issuerState",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "nationalIdExempt",
             "baseName": "nationalIdExempt",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "number",
             "baseName": "number",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "IdentificationData.TypeEnum",
-            "format": ""
+            "type": "IdentificationData.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return IdentificationData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

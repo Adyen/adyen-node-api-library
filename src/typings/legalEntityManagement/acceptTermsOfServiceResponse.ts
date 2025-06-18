@@ -12,75 +12,64 @@ export class AcceptTermsOfServiceResponse {
     /**
     * The unique identifier of the user that accepted the Terms of Service.
     */
-    "acceptedBy"?: string;
+    'acceptedBy'?: string;
     /**
     * The unique identifier of the Terms of Service acceptance.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The IP address of the user that accepted the Terms of Service.
     */
-    "ipAddress"?: string;
+    'ipAddress'?: string;
     /**
     * The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English.
     */
-    "language"?: string;
+    'language'?: string;
     /**
     * The unique identifier of the Terms of Service document.
     */
-    "termsOfServiceDocumentId"?: string;
+    'termsOfServiceDocumentId'?: string;
     /**
     * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  
     */
-    "type"?: AcceptTermsOfServiceResponse.TypeEnum;
+    'type'?: AcceptTermsOfServiceResponse.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "acceptedBy",
             "baseName": "acceptedBy",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "ipAddress",
             "baseName": "ipAddress",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "language",
             "baseName": "language",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "termsOfServiceDocumentId",
             "baseName": "termsOfServiceDocumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AcceptTermsOfServiceResponse.TypeEnum",
-            "format": ""
+            "type": "AcceptTermsOfServiceResponse.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return AcceptTermsOfServiceResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

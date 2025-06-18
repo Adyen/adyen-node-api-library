@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { WebhookSetting } from "./webhookSetting";
-
+import { WebhookSetting } from './webhookSetting';
 
 export class WebhookSettings {
     /**
     * The list of webhook settings.
     */
-    "webhookSettings"?: Array<WebhookSetting>;
+    'webhookSettings'?: Array<WebhookSetting>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "webhookSettings",
             "baseName": "webhookSettings",
-            "type": "Array<WebhookSetting>",
-            "format": ""
+            "type": "Array<WebhookSetting>"
         }    ];
 
     static getAttributeTypeMap() {
         return WebhookSettings.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

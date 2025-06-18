@@ -12,65 +12,55 @@ export class DSPublicKeyDetail {
     /**
     * Card brand.
     */
-    "brand"?: string;
+    'brand'?: string;
     /**
     * Directory Server (DS) identifier.
     */
-    "directoryServerId"?: string;
+    'directoryServerId'?: string;
     /**
     * The version of the mobile 3D Secure 2 SDK. For the possible values, refer to the versions in [Adyen 3DS2 Android](https://github.com/Adyen/adyen-3ds2-android/releases) and [Adyen 3DS2 iOS](https://github.com/Adyen/adyen-3ds2-ios/releases).
     */
-    "fromSDKVersion"?: string;
+    'fromSDKVersion'?: string;
     /**
     * Public key. The 3D Secure 2 SDK encrypts the device information by using the DS public key.
     */
-    "publicKey"?: string;
+    'publicKey'?: string;
     /**
     * Directory Server root certificates. The 3D Secure 2 SDK verifies the ACS signed content using the rootCertificates.
     */
-    "rootCertificates"?: string;
+    'rootCertificates'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "directoryServerId",
             "baseName": "directoryServerId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fromSDKVersion",
             "baseName": "fromSDKVersion",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "publicKey",
             "baseName": "publicKey",
-            "type": "string",
-            "format": "byte"
+            "type": "string"
         },
         {
             "name": "rootCertificates",
             "baseName": "rootCertificates",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return DSPublicKeyDetail.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,55 +12,46 @@ export class StoreDetailResponse {
     /**
     * This field contains additional data, which may be returned in a particular response.
     */
-    "additionalData"?: { [key: string]: string; };
+    'additionalData'?: { [key: string]: string; };
     /**
     * A new reference to uniquely identify this request.
     */
-    "pspReference": string;
+    'pspReference': string;
     /**
     * The token which you can use later on for submitting the payout.
     */
-    "recurringDetailReference": string;
+    'recurringDetailReference': string;
     /**
     * The result code of the transaction. `Success` indicates that the details were stored successfully.
     */
-    "resultCode": string;
+    'resultCode': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return StoreDetailResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,35 +12,28 @@ export class PublicKeyResponse {
     /**
     * The public key you need for encrypting a symmetric session key.
     */
-    "publicKey": string;
+    'publicKey': string;
     /**
     * The expiry date of the public key.
     */
-    "publicKeyExpiryDate": string;
+    'publicKeyExpiryDate': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "publicKey",
             "baseName": "publicKey",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "publicKeyExpiryDate",
             "baseName": "publicKeyExpiryDate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PublicKeyResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 
