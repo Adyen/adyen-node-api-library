@@ -51,14 +51,14 @@ export class StoredValueApi extends Service {
         const endpoint = `${this.baseUrl}/changeStatus`;
         const resource = new Resource(this, endpoint);
         
-        const request: StoredValueStatusChangeRequest = ObjectSerializer.serialize(storedValueStatusChangeRequest, "StoredValueStatusChangeRequest", "");
+        const request: StoredValueStatusChangeRequest = ObjectSerializer.serialize(storedValueStatusChangeRequest, "StoredValueStatusChangeRequest");
         const response = await getJsonResponse<StoredValueStatusChangeRequest, StoredValueStatusChangeResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "StoredValueStatusChangeResponse", "");
+        return ObjectSerializer.deserialize(response, "StoredValueStatusChangeResponse");
     }
 
     /**
@@ -71,14 +71,14 @@ export class StoredValueApi extends Service {
         const endpoint = `${this.baseUrl}/checkBalance`;
         const resource = new Resource(this, endpoint);
         
-        const request: StoredValueBalanceCheckRequest = ObjectSerializer.serialize(storedValueBalanceCheckRequest, "StoredValueBalanceCheckRequest", "");
+        const request: StoredValueBalanceCheckRequest = ObjectSerializer.serialize(storedValueBalanceCheckRequest, "StoredValueBalanceCheckRequest");
         const response = await getJsonResponse<StoredValueBalanceCheckRequest, StoredValueBalanceCheckResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "StoredValueBalanceCheckResponse", "");
+        return ObjectSerializer.deserialize(response, "StoredValueBalanceCheckResponse");
     }
 
     /**
@@ -91,14 +91,14 @@ export class StoredValueApi extends Service {
         const endpoint = `${this.baseUrl}/issue`;
         const resource = new Resource(this, endpoint);
         
-        const request: StoredValueIssueRequest = ObjectSerializer.serialize(storedValueIssueRequest, "StoredValueIssueRequest", "");
+        const request: StoredValueIssueRequest = ObjectSerializer.serialize(storedValueIssueRequest, "StoredValueIssueRequest");
         const response = await getJsonResponse<StoredValueIssueRequest, StoredValueIssueResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "StoredValueIssueResponse", "");
+        return ObjectSerializer.deserialize(response, "StoredValueIssueResponse");
     }
 
     /**
@@ -111,14 +111,14 @@ export class StoredValueApi extends Service {
         const endpoint = `${this.baseUrl}/load`;
         const resource = new Resource(this, endpoint);
         
-        const request: StoredValueLoadRequest = ObjectSerializer.serialize(storedValueLoadRequest, "StoredValueLoadRequest", "");
+        const request: StoredValueLoadRequest = ObjectSerializer.serialize(storedValueLoadRequest, "StoredValueLoadRequest");
         const response = await getJsonResponse<StoredValueLoadRequest, StoredValueLoadResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "StoredValueLoadResponse", "");
+        return ObjectSerializer.deserialize(response, "StoredValueLoadResponse");
     }
 
     /**
@@ -131,14 +131,14 @@ export class StoredValueApi extends Service {
         const endpoint = `${this.baseUrl}/mergeBalance`;
         const resource = new Resource(this, endpoint);
         
-        const request: StoredValueBalanceMergeRequest = ObjectSerializer.serialize(storedValueBalanceMergeRequest, "StoredValueBalanceMergeRequest", "");
+        const request: StoredValueBalanceMergeRequest = ObjectSerializer.serialize(storedValueBalanceMergeRequest, "StoredValueBalanceMergeRequest");
         const response = await getJsonResponse<StoredValueBalanceMergeRequest, StoredValueBalanceMergeResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "StoredValueBalanceMergeResponse", "");
+        return ObjectSerializer.deserialize(response, "StoredValueBalanceMergeResponse");
     }
 
     /**
@@ -151,14 +151,14 @@ export class StoredValueApi extends Service {
         const endpoint = `${this.baseUrl}/voidTransaction`;
         const resource = new Resource(this, endpoint);
         
-        const request: StoredValueVoidRequest = ObjectSerializer.serialize(storedValueVoidRequest, "StoredValueVoidRequest", "");
+        const request: StoredValueVoidRequest = ObjectSerializer.serialize(storedValueVoidRequest, "StoredValueVoidRequest");
         const response = await getJsonResponse<StoredValueVoidRequest, StoredValueVoidResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "StoredValueVoidResponse", "");
+        return ObjectSerializer.deserialize(response, "StoredValueVoidResponse");
     }
 
 }

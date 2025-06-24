@@ -40,7 +40,7 @@ export class BankAccountValidationApi extends Service {
         const endpoint = `${this.baseUrl}/validateBankAccountIdentification`;
         const resource = new Resource(this, endpoint);
         
-        const request: BankAccountIdentificationValidationRequest = ObjectSerializer.serialize(bankAccountIdentificationValidationRequest, "BankAccountIdentificationValidationRequest", "");
+        const request: BankAccountIdentificationValidationRequest = ObjectSerializer.serialize(bankAccountIdentificationValidationRequest, "BankAccountIdentificationValidationRequest");
         await getJsonResponse<BankAccountIdentificationValidationRequest, void>(
             resource,
             request,

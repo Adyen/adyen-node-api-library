@@ -43,14 +43,14 @@ export class DonationsApi extends Service {
         const endpoint = `${this.baseUrl}/donationCampaigns`;
         const resource = new Resource(this, endpoint);
         
-        const request: DonationCampaignsRequest = ObjectSerializer.serialize(donationCampaignsRequest, "DonationCampaignsRequest", "");
+        const request: DonationCampaignsRequest = ObjectSerializer.serialize(donationCampaignsRequest, "DonationCampaignsRequest");
         const response = await getJsonResponse<DonationCampaignsRequest, DonationCampaignsResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "DonationCampaignsResponse", "");
+        return ObjectSerializer.deserialize(response, "DonationCampaignsResponse");
     }
 
     /**
@@ -63,14 +63,14 @@ export class DonationsApi extends Service {
         const endpoint = `${this.baseUrl}/donations`;
         const resource = new Resource(this, endpoint);
         
-        const request: DonationPaymentRequest = ObjectSerializer.serialize(donationPaymentRequest, "DonationPaymentRequest", "");
+        const request: DonationPaymentRequest = ObjectSerializer.serialize(donationPaymentRequest, "DonationPaymentRequest");
         const response = await getJsonResponse<DonationPaymentRequest, DonationPaymentResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "DonationPaymentResponse", "");
+        return ObjectSerializer.deserialize(response, "DonationPaymentResponse");
     }
 
 }

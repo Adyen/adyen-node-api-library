@@ -48,7 +48,7 @@ export class NetworkTokensApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "GetNetworkTokenResponse", "");
+        return ObjectSerializer.deserialize(response, "GetNetworkTokenResponse");
     }
 
     /**
@@ -63,7 +63,7 @@ export class NetworkTokensApi extends Service {
             .replace("{" + "networkTokenId" + "}", encodeURIComponent(String(networkTokenId)));
         const resource = new Resource(this, endpoint);
         
-        const request: UpdateNetworkTokenRequest = ObjectSerializer.serialize(updateNetworkTokenRequest, "UpdateNetworkTokenRequest", "");
+        const request: UpdateNetworkTokenRequest = ObjectSerializer.serialize(updateNetworkTokenRequest, "UpdateNetworkTokenRequest");
         await getJsonResponse<UpdateNetworkTokenRequest, void>(
             resource,
             request,

@@ -58,7 +58,7 @@ export class PlatformApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaginatedAccountHoldersResponse", "");
+        return ObjectSerializer.deserialize(response, "PaginatedAccountHoldersResponse");
     }
 
     /**
@@ -78,7 +78,7 @@ export class PlatformApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransactionRulesResponse", "");
+        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
     }
 
     /**
@@ -98,7 +98,7 @@ export class PlatformApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "BalancePlatform", "");
+        return ObjectSerializer.deserialize(response, "BalancePlatform");
     }
 
 }

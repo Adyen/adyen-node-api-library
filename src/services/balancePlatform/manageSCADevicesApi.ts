@@ -49,14 +49,14 @@ export class ManageSCADevicesApi extends Service {
             .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
         const resource = new Resource(this, endpoint);
         
-        const request: AssociationFinaliseRequest = ObjectSerializer.serialize(associationFinaliseRequest, "AssociationFinaliseRequest", "");
+        const request: AssociationFinaliseRequest = ObjectSerializer.serialize(associationFinaliseRequest, "AssociationFinaliseRequest");
         const response = await getJsonResponse<AssociationFinaliseRequest, AssociationFinaliseResponse>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "AssociationFinaliseResponse", "");
+        return ObjectSerializer.deserialize(response, "AssociationFinaliseResponse");
     }
 
     /**
@@ -71,24 +71,24 @@ export class ManageSCADevicesApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: RegisterSCARequest = ObjectSerializer.serialize(registerSCARequest, "RegisterSCARequest", "");
+        const request: RegisterSCARequest = ObjectSerializer.serialize(registerSCARequest, "RegisterSCARequest");
         const response = await getJsonResponse<RegisterSCARequest, RegisterSCAFinalResponse>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "RegisterSCAFinalResponse", "");
+        return ObjectSerializer.deserialize(response, "RegisterSCAFinalResponse");
     }
 
     /**
     * @summary Delete a registration of an SCA device
     * @param id {@link string } The unique identifier of the SCA device.
     * @param requestOptions {@link IRequest.Options }
-    * @param paymentInstrumentId {@link string } The unique identifier of the payment instrument linked to the SCA device.
+    * @param paymentInstrumentId {@link string } (Required) The unique identifier of the payment instrument linked to the SCA device.
     * @return {@link void }
     */
-    public async deleteRegistrationOfScaDevice(id: string, paymentInstrumentId?: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async deleteRegistrationOfScaDevice(id: string, paymentInstrumentId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/registeredDevices/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
@@ -118,14 +118,14 @@ export class ManageSCADevicesApi extends Service {
             .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
         const resource = new Resource(this, endpoint);
         
-        const request: AssociationInitiateRequest = ObjectSerializer.serialize(associationInitiateRequest, "AssociationInitiateRequest", "");
+        const request: AssociationInitiateRequest = ObjectSerializer.serialize(associationInitiateRequest, "AssociationInitiateRequest");
         const response = await getJsonResponse<AssociationInitiateRequest, AssociationInitiateResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "AssociationInitiateResponse", "");
+        return ObjectSerializer.deserialize(response, "AssociationInitiateResponse");
     }
 
     /**
@@ -138,25 +138,25 @@ export class ManageSCADevicesApi extends Service {
         const endpoint = `${this.baseUrl}/registeredDevices`;
         const resource = new Resource(this, endpoint);
         
-        const request: RegisterSCARequest = ObjectSerializer.serialize(registerSCARequest, "RegisterSCARequest", "");
+        const request: RegisterSCARequest = ObjectSerializer.serialize(registerSCARequest, "RegisterSCARequest");
         const response = await getJsonResponse<RegisterSCARequest, RegisterSCAResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "RegisterSCAResponse", "");
+        return ObjectSerializer.deserialize(response, "RegisterSCAResponse");
     }
 
     /**
     * @summary Get a list of registered SCA devices
     * @param requestOptions {@link IRequest.Options }
-    * @param paymentInstrumentId {@link string } The unique identifier of a payment instrument. It limits the returned list to SCA devices associated to this payment instrument.
+    * @param paymentInstrumentId {@link string } (Required) The unique identifier of a payment instrument. It limits the returned list to SCA devices associated to this payment instrument.
     * @param pageNumber {@link number } The index of the page to retrieve. The index of the first page is 0 (zero).  Default: 0.
     * @param pageSize {@link number } The number of items to have on a page.  Default: 20. Maximum: 100.
     * @return {@link SearchRegisteredDevicesResponse }
     */
-    public async listRegisteredScaDevices(paymentInstrumentId?: string, pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<SearchRegisteredDevicesResponse> {
+    public async listRegisteredScaDevices(paymentInstrumentId: string, pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<SearchRegisteredDevicesResponse> {
         const endpoint = `${this.baseUrl}/registeredDevices`;
         const resource = new Resource(this, endpoint);
         
@@ -174,7 +174,7 @@ export class ManageSCADevicesApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "SearchRegisteredDevicesResponse", "");
+        return ObjectSerializer.deserialize(response, "SearchRegisteredDevicesResponse");
     }
 
 }

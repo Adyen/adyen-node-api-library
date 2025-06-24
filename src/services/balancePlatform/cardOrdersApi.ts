@@ -57,7 +57,7 @@ export class CardOrdersApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaginatedGetCardOrderItemResponse", "");
+        return ObjectSerializer.deserialize(response, "PaginatedGetCardOrderItemResponse");
     }
 
     /**
@@ -102,7 +102,7 @@ export class CardOrdersApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaginatedGetCardOrderResponse", "");
+        return ObjectSerializer.deserialize(response, "PaginatedGetCardOrderResponse");
     }
 
 }
