@@ -12,19 +12,25 @@ export class SwishInfo {
     /**
     * Swish number. Format: 10 digits without spaces. For example, **1231111111**.
     */
-    'swishNumber': string;
+    "swishNumber": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "swishNumber",
             "baseName": "swishNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SwishInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -12,46 +12,55 @@ export class KlarnaInfo {
     /**
     * Indicates the status of [Automatic capture](https://docs.adyen.com/online-payments/capture#automatic-capture). Default value: **false**.
     */
-    'autoCapture'?: boolean;
+    "autoCapture"?: boolean;
     /**
     * The email address for disputes.
     */
-    'disputeEmail': string;
+    "disputeEmail": string;
     /**
     * The region of operation. For example, **NA**, **EU**, **CH**, **AU**.
     */
-    'region': KlarnaInfo.RegionEnum;
+    "region": KlarnaInfo.RegionEnum;
     /**
     * The email address of merchant support.
     */
-    'supportEmail': string;
+    "supportEmail": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "autoCapture",
             "baseName": "autoCapture",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "disputeEmail",
             "baseName": "disputeEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "region",
             "baseName": "region",
-            "type": "KlarnaInfo.RegionEnum"
+            "type": "KlarnaInfo.RegionEnum",
+            "format": ""
         },
         {
             "name": "supportEmail",
             "baseName": "supportEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return KlarnaInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

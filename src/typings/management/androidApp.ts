@@ -7,100 +7,115 @@
  * Do not edit this class manually.
  */
 
-import { AndroidAppError } from './androidAppError';
+import { AndroidAppError } from "./androidAppError";
+
 
 export class AndroidApp {
     /**
     * The description that was provided when uploading the app. The description is not shown on the terminal.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The error code of the Android app with the `status` of either **error** or **invalid**.
     *
 	* @deprecated since Management API v3
 	* Use `errors` instead.
     */
-    'errorCode'?: string;
+    "errorCode"?: string;
     /**
     * The list of errors of the Android app.
     */
-    'errors'?: Array<AndroidAppError>;
+    "errors"?: Array<AndroidAppError>;
     /**
     * The unique identifier of the app.
     */
-    'id': string;
+    "id": string;
     /**
     * The app name that is shown on the terminal.
     */
-    'label'?: string;
+    "label"?: string;
     /**
     * The package name that uniquely identifies the Android app.
     */
-    'packageName'?: string;
+    "packageName"?: string;
     /**
     * The status of the app. Possible values:  * `processing`: the app is being signed and converted to a format that the terminal can handle. * `error`: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * `invalid`: there is something wrong with the APK file of the app. * `ready`: the app has been signed and converted. * `archived`: the app is no longer available.
     */
-    'status': AndroidApp.StatusEnum;
+    "status": AndroidApp.StatusEnum;
     /**
     * The version number of the app.
     */
-    'versionCode'?: number;
+    "versionCode"?: number;
     /**
     * The app version number that is shown on the terminal.
     */
-    'versionName'?: string;
+    "versionName"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "errorCode",
             "baseName": "errorCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "errors",
             "baseName": "errors",
-            "type": "Array<AndroidAppError>"
+            "type": "Array<AndroidAppError>",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "label",
             "baseName": "label",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "packageName",
             "baseName": "packageName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "AndroidApp.StatusEnum"
+            "type": "AndroidApp.StatusEnum",
+            "format": ""
         },
         {
             "name": "versionCode",
             "baseName": "versionCode",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "versionName",
             "baseName": "versionName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AndroidApp.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

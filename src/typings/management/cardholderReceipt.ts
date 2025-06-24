@@ -12,19 +12,25 @@ export class CardholderReceipt {
     /**
     * A custom header to show on the shopper receipt for an authorised transaction. Allows one or two comma-separated header lines, and blank lines. For example, `header,header,filler`
     */
-    'headerForAuthorizedReceipt'?: string;
+    "headerForAuthorizedReceipt"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "headerForAuthorizedReceipt",
             "baseName": "headerForAuthorizedReceipt",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CardholderReceipt.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

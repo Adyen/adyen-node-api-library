@@ -12,28 +12,35 @@ export class PayToInfo {
     /**
     * Merchant name displayed to the shopper in the Agreements
     */
-    'merchantName': string;
+    "merchantName": string;
     /**
     * Represents the purpose of the Agreements created, it relates to the business type **Allowed values**: mortgage, utility, loan, gambling, retail, salary, personal, government, pension, tax, other
     */
-    'payToPurpose': string;
+    "payToPurpose": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "merchantName",
             "baseName": "merchantName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "payToPurpose",
             "baseName": "payToPurpose",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PayToInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

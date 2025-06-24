@@ -12,154 +12,175 @@ export class ReceiptPrinting {
     /**
     * Print a merchant receipt when the payment is approved.
     */
-    'merchantApproved'?: boolean;
+    "merchantApproved"?: boolean;
     /**
     * Print a merchant receipt when the transaction is cancelled.
     */
-    'merchantCancelled'?: boolean;
+    "merchantCancelled"?: boolean;
     /**
     * Print a merchant receipt when capturing the payment is approved.
     */
-    'merchantCaptureApproved'?: boolean;
+    "merchantCaptureApproved"?: boolean;
     /**
     * Print a merchant receipt when capturing the payment is refused.
     */
-    'merchantCaptureRefused'?: boolean;
+    "merchantCaptureRefused"?: boolean;
     /**
     * Print a merchant receipt when the refund is approved.
     */
-    'merchantRefundApproved'?: boolean;
+    "merchantRefundApproved"?: boolean;
     /**
     * Print a merchant receipt when the refund is refused.
     */
-    'merchantRefundRefused'?: boolean;
+    "merchantRefundRefused"?: boolean;
     /**
     * Print a merchant receipt when the payment is refused.
     */
-    'merchantRefused'?: boolean;
+    "merchantRefused"?: boolean;
     /**
     * Print a merchant receipt when a previous transaction is voided.
     */
-    'merchantVoid'?: boolean;
+    "merchantVoid"?: boolean;
     /**
     * Print a shopper receipt when the payment is approved.
     */
-    'shopperApproved'?: boolean;
+    "shopperApproved"?: boolean;
     /**
     * Print a shopper receipt when the transaction is cancelled.
     */
-    'shopperCancelled'?: boolean;
+    "shopperCancelled"?: boolean;
     /**
     * Print a shopper receipt when capturing the payment is approved.
     */
-    'shopperCaptureApproved'?: boolean;
+    "shopperCaptureApproved"?: boolean;
     /**
     * Print a shopper receipt when capturing the payment is refused.
     */
-    'shopperCaptureRefused'?: boolean;
+    "shopperCaptureRefused"?: boolean;
     /**
     * Print a shopper receipt when the refund is approved.
     */
-    'shopperRefundApproved'?: boolean;
+    "shopperRefundApproved"?: boolean;
     /**
     * Print a shopper receipt when the refund is refused.
     */
-    'shopperRefundRefused'?: boolean;
+    "shopperRefundRefused"?: boolean;
     /**
     * Print a shopper receipt when the payment is refused.
     */
-    'shopperRefused'?: boolean;
+    "shopperRefused"?: boolean;
     /**
     * Print a shopper receipt when a previous transaction is voided.
     */
-    'shopperVoid'?: boolean;
+    "shopperVoid"?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "merchantApproved",
             "baseName": "merchantApproved",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "merchantCancelled",
             "baseName": "merchantCancelled",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "merchantCaptureApproved",
             "baseName": "merchantCaptureApproved",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "merchantCaptureRefused",
             "baseName": "merchantCaptureRefused",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "merchantRefundApproved",
             "baseName": "merchantRefundApproved",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "merchantRefundRefused",
             "baseName": "merchantRefundRefused",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "merchantRefused",
             "baseName": "merchantRefused",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "merchantVoid",
             "baseName": "merchantVoid",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "shopperApproved",
             "baseName": "shopperApproved",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "shopperCancelled",
             "baseName": "shopperCancelled",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "shopperCaptureApproved",
             "baseName": "shopperCaptureApproved",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "shopperCaptureRefused",
             "baseName": "shopperCaptureRefused",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "shopperRefundApproved",
             "baseName": "shopperRefundApproved",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "shopperRefundRefused",
             "baseName": "shopperRefundRefused",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "shopperRefused",
             "baseName": "shopperRefused",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "shopperVoid",
             "baseName": "shopperVoid",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ReceiptPrinting.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

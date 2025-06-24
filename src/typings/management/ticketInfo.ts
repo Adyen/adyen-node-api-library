@@ -12,19 +12,25 @@ export class TicketInfo {
     /**
     * Ticket requestorId
     */
-    'requestorId'?: string;
+    "requestorId"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "requestorId",
             "baseName": "requestorId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TicketInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

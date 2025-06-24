@@ -12,37 +12,45 @@ export class TerminalConnectivityCellular {
     /**
     * The integrated circuit card identifier (ICCID) of the primary SIM card in the terminal.
     */
-    'iccid'?: string;
+    "iccid"?: string;
     /**
     * The integrated circuit card identifier (ICCID) of the secondary SIM card in the terminal, typically used for a [third-party SIM card](https://docs.adyen.com/point-of-sale/design-your-integration/network-and-connectivity/cellular-failover/#using-a-third-party-sim-card).
     */
-    'iccid2'?: string;
+    "iccid2"?: string;
     /**
     * On a terminal that supports 3G or 4G connectivity, indicates the status of the primary SIM card in the terminal.
     */
-    'status'?: TerminalConnectivityCellular.StatusEnum;
+    "status"?: TerminalConnectivityCellular.StatusEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "iccid",
             "baseName": "iccid",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "iccid2",
             "baseName": "iccid2",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "TerminalConnectivityCellular.StatusEnum"
+            "type": "TerminalConnectivityCellular.StatusEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalConnectivityCellular.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

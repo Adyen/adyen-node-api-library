@@ -12,37 +12,45 @@ export class InvalidField {
     /**
     * Description of the validation error.
     */
-    'message': string;
+    "message": string;
     /**
     * The field that has an invalid value.
     */
-    'name': string;
+    "name": string;
     /**
     * The invalid value.
     */
-    'value': string;
+    "value": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "message",
             "baseName": "message",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return InvalidField.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

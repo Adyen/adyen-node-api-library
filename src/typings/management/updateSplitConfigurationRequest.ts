@@ -12,19 +12,25 @@ export class UpdateSplitConfigurationRequest {
     /**
     * Your description for the split configuration.
     */
-    'description': string;
+    "description": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return UpdateSplitConfigurationRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,31 +7,39 @@
  * Do not edit this class manually.
  */
 
-import { TransactionDescriptionInfo } from './transactionDescriptionInfo';
+import { TransactionDescriptionInfo } from "./transactionDescriptionInfo";
+
 
 export class CartesBancairesInfo {
     /**
     * Cartes Bancaires SIRET. Format: 14 digits.
     */
-    'siret': string;
-    'transactionDescription'?: TransactionDescriptionInfo | null;
+    "siret": string;
+    "transactionDescription"?: TransactionDescriptionInfo;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "siret",
             "baseName": "siret",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "transactionDescription",
             "baseName": "transactionDescription",
-            "type": "TransactionDescriptionInfo | null"
+            "type": "TransactionDescriptionInfo",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CartesBancairesInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

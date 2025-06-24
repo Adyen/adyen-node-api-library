@@ -12,37 +12,45 @@ export class Opi {
     /**
     * Indicates if Pay at table is enabled.
     */
-    'enablePayAtTable'?: boolean;
+    "enablePayAtTable"?: boolean;
     /**
     * The store number to use for Pay at Table.
     */
-    'payAtTableStoreNumber'?: string;
+    "payAtTableStoreNumber"?: string;
     /**
     * The URL and port number used for Pay at Table communication.
     */
-    'payAtTableURL'?: string;
+    "payAtTableURL"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "enablePayAtTable",
             "baseName": "enablePayAtTable",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "payAtTableStoreNumber",
             "baseName": "payAtTableStoreNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "payAtTableURL",
             "baseName": "payAtTableURL",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Opi.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

@@ -7,104 +7,120 @@
  * Do not edit this class manually.
  */
 
-import { AllowedOrigin } from './allowedOrigin';
-import { ApiCredentialLinks } from './apiCredentialLinks';
+import { AllowedOrigin } from "./allowedOrigin";
+import { ApiCredentialLinks } from "./apiCredentialLinks";
+
 
 export class CompanyApiCredential {
-    '_links'?: ApiCredentialLinks | null;
+    "_links"?: ApiCredentialLinks;
     /**
     * Indicates if the API credential is enabled. Must be set to **true** to use the credential in your integration.
     */
-    'active': boolean;
+    "active": boolean;
     /**
     * List of IP addresses from which your client can make requests.  If the list is empty, we allow requests from any IP. If the list is not empty and we get a request from an IP which is not on the list, you get a security error.
     */
-    'allowedIpAddresses': Array<string>;
+    "allowedIpAddresses": Array<string>;
     /**
     * List containing the [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) linked to the API credential.
     */
-    'allowedOrigins'?: Array<AllowedOrigin>;
+    "allowedOrigins"?: Array<AllowedOrigin>;
     /**
     * List of merchant accounts that the API credential has explicit access to.   If the credential has access to a company, this implies access to all merchant accounts and no merchants for that company will be included.
     */
-    'associatedMerchantAccounts'?: Array<string>;
+    "associatedMerchantAccounts"?: Array<string>;
     /**
     * Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations.
     */
-    'clientKey': string;
+    "clientKey": string;
     /**
     * Description of the API credential.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * Unique identifier of the API credential.
     */
-    'id': string;
+    "id": string;
     /**
     * List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential.
     */
-    'roles': Array<string>;
+    "roles": Array<string>;
     /**
     * The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**.
     */
-    'username': string;
+    "username": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "ApiCredentialLinks | null"
+            "type": "ApiCredentialLinks",
+            "format": ""
         },
         {
             "name": "active",
             "baseName": "active",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "allowedIpAddresses",
             "baseName": "allowedIpAddresses",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "allowedOrigins",
             "baseName": "allowedOrigins",
-            "type": "Array<AllowedOrigin>"
+            "type": "Array<AllowedOrigin>",
+            "format": ""
         },
         {
             "name": "associatedMerchantAccounts",
             "baseName": "associatedMerchantAccounts",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "clientKey",
             "baseName": "clientKey",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "username",
             "baseName": "username",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CompanyApiCredential.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

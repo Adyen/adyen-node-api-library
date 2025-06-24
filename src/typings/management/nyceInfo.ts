@@ -7,31 +7,39 @@
  * Do not edit this class manually.
  */
 
-import { TransactionDescriptionInfo } from './transactionDescriptionInfo';
+import { TransactionDescriptionInfo } from "./transactionDescriptionInfo";
+
 
 export class NyceInfo {
     /**
     * The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have `recurringProcessingModel` **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with `recurringProcessingModel` **CardOnFile** or **UnscheduledCardOnFile**. 
     */
-    'processingType': NyceInfo.ProcessingTypeEnum;
-    'transactionDescription'?: TransactionDescriptionInfo | null;
+    "processingType": NyceInfo.ProcessingTypeEnum;
+    "transactionDescription"?: TransactionDescriptionInfo;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "processingType",
             "baseName": "processingType",
-            "type": "NyceInfo.ProcessingTypeEnum"
+            "type": "NyceInfo.ProcessingTypeEnum",
+            "format": ""
         },
         {
             "name": "transactionDescription",
             "baseName": "transactionDescription",
-            "type": "TransactionDescriptionInfo | null"
+            "type": "TransactionDescriptionInfo",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return NyceInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

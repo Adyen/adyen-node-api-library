@@ -12,28 +12,35 @@ export class UninstallAndroidCertificateDetails {
     /**
     * The unique identifier of the certificate to be uninstalled.
     */
-    'certificateId'?: string;
+    "certificateId"?: string;
     /**
     * Type of terminal action: Uninstall an Android certificate.
     */
-    'type'?: UninstallAndroidCertificateDetails.TypeEnum;
+    "type"?: UninstallAndroidCertificateDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "certificateId",
             "baseName": "certificateId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "UninstallAndroidCertificateDetails.TypeEnum"
+            "type": "UninstallAndroidCertificateDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return UninstallAndroidCertificateDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

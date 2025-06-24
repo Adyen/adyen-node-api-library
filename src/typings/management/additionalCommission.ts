@@ -12,37 +12,45 @@ export class AdditionalCommission {
     /**
     * Unique identifier of the balance account to which the additional commission is booked.
     */
-    'balanceAccountId'?: string;
+    "balanceAccountId"?: string;
     /**
     * A fixed commission fee, in minor units.
     */
-    'fixedAmount'?: number;
+    "fixedAmount"?: number;
     /**
     * A variable commission fee, in basis points.
     */
-    'variablePercentage'?: number;
+    "variablePercentage"?: number;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "balanceAccountId",
             "baseName": "balanceAccountId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "fixedAmount",
             "baseName": "fixedAmount",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "variablePercentage",
             "baseName": "variablePercentage",
-            "type": "number"
+            "type": "number",
+            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalCommission.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

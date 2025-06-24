@@ -12,46 +12,55 @@ export class Signature {
     /**
     * If `skipSignature` is false, indicates whether the shopper should provide a signature on the display (**true**) or on the merchant receipt (**false**).
     */
-    'askSignatureOnScreen'?: boolean;
+    "askSignatureOnScreen"?: boolean;
     /**
     * Name that identifies the terminal.
     */
-    'deviceName'?: string;
+    "deviceName"?: string;
     /**
     * Slogan shown on the start screen of the device.
     */
-    'deviceSlogan'?: string;
+    "deviceSlogan"?: string;
     /**
     * Skip asking for a signature. This is possible because all global card schemes (American Express, Diners, Discover, JCB, MasterCard, VISA, and UnionPay) regard a signature as optional.
     */
-    'skipSignature'?: boolean;
+    "skipSignature"?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "askSignatureOnScreen",
             "baseName": "askSignatureOnScreen",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "deviceName",
             "baseName": "deviceName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "deviceSlogan",
             "baseName": "deviceSlogan",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "skipSignature",
             "baseName": "skipSignature",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Signature.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

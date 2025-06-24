@@ -7,43 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { Configuration } from './configuration';
+import { Configuration } from "./configuration";
+
 
 export class Surcharge {
     /**
     * Show the surcharge details on the terminal, so the shopper can confirm.
     */
-    'askConfirmation'?: boolean;
+    "askConfirmation"?: boolean;
     /**
     * Surcharge fees or percentages for specific cards, funding sources (credit or debit), and currencies.
     */
-    'configurations'?: Array<Configuration>;
+    "configurations"?: Array<Configuration>;
     /**
     * Exclude the tip amount from the surcharge calculation.
     */
-    'excludeGratuityFromSurcharge'?: boolean;
+    "excludeGratuityFromSurcharge"?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "askConfirmation",
             "baseName": "askConfirmation",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "configurations",
             "baseName": "configurations",
-            "type": "Array<Configuration>"
+            "type": "Array<Configuration>",
+            "format": ""
         },
         {
             "name": "excludeGratuityFromSurcharge",
             "baseName": "excludeGratuityFromSurcharge",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Surcharge.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

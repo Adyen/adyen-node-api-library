@@ -7,46 +7,57 @@
  * Do not edit this class manually.
  */
 
-import { LinksElement } from './linksElement';
+import { LinksElement } from "./linksElement";
+
 
 export class WebhookLinks {
-    'company'?: LinksElement | null;
-    'generateHmac': LinksElement;
-    'merchant'?: LinksElement | null;
-    'self': LinksElement;
-    'testWebhook': LinksElement;
+    "company"?: LinksElement;
+    "generateHmac": LinksElement;
+    "merchant"?: LinksElement;
+    "self": LinksElement;
+    "testWebhook": LinksElement;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "company",
             "baseName": "company",
-            "type": "LinksElement | null"
+            "type": "LinksElement",
+            "format": ""
         },
         {
             "name": "generateHmac",
             "baseName": "generateHmac",
-            "type": "LinksElement"
+            "type": "LinksElement",
+            "format": ""
         },
         {
             "name": "merchant",
             "baseName": "merchant",
-            "type": "LinksElement | null"
+            "type": "LinksElement",
+            "format": ""
         },
         {
             "name": "self",
             "baseName": "self",
-            "type": "LinksElement"
+            "type": "LinksElement",
+            "format": ""
         },
         {
             "name": "testWebhook",
             "baseName": "testWebhook",
-            "type": "LinksElement"
+            "type": "LinksElement",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return WebhookLinks.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

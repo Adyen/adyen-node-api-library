@@ -7,43 +7,53 @@
  * Do not edit this class manually.
  */
 
-import { TerminalConnectivityBluetooth } from './terminalConnectivityBluetooth';
-import { TerminalConnectivityCellular } from './terminalConnectivityCellular';
-import { TerminalConnectivityEthernet } from './terminalConnectivityEthernet';
-import { TerminalConnectivityWifi } from './terminalConnectivityWifi';
+import { TerminalConnectivityBluetooth } from "./terminalConnectivityBluetooth";
+import { TerminalConnectivityCellular } from "./terminalConnectivityCellular";
+import { TerminalConnectivityEthernet } from "./terminalConnectivityEthernet";
+import { TerminalConnectivityWifi } from "./terminalConnectivityWifi";
+
 
 export class TerminalConnectivity {
-    'bluetooth'?: TerminalConnectivityBluetooth | null;
-    'cellular'?: TerminalConnectivityCellular | null;
-    'ethernet'?: TerminalConnectivityEthernet | null;
-    'wifi'?: TerminalConnectivityWifi | null;
+    "bluetooth"?: TerminalConnectivityBluetooth;
+    "cellular"?: TerminalConnectivityCellular;
+    "ethernet"?: TerminalConnectivityEthernet;
+    "wifi"?: TerminalConnectivityWifi;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "bluetooth",
             "baseName": "bluetooth",
-            "type": "TerminalConnectivityBluetooth | null"
+            "type": "TerminalConnectivityBluetooth",
+            "format": ""
         },
         {
             "name": "cellular",
             "baseName": "cellular",
-            "type": "TerminalConnectivityCellular | null"
+            "type": "TerminalConnectivityCellular",
+            "format": ""
         },
         {
             "name": "ethernet",
             "baseName": "ethernet",
-            "type": "TerminalConnectivityEthernet | null"
+            "type": "TerminalConnectivityEthernet",
+            "format": ""
         },
         {
             "name": "wifi",
             "baseName": "wifi",
-            "type": "TerminalConnectivityWifi | null"
+            "type": "TerminalConnectivityWifi",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalConnectivity.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

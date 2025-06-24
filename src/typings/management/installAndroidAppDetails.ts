@@ -12,28 +12,35 @@ export class InstallAndroidAppDetails {
     /**
     * The unique identifier of the app to be installed.
     */
-    'appId'?: string;
+    "appId"?: string;
     /**
     * Type of terminal action: Install an Android app.
     */
-    'type'?: InstallAndroidAppDetails.TypeEnum;
+    "type"?: InstallAndroidAppDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "appId",
             "baseName": "appId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "InstallAndroidAppDetails.TypeEnum"
+            "type": "InstallAndroidAppDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return InstallAndroidAppDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

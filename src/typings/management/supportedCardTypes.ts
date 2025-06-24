@@ -12,55 +12,65 @@ export class SupportedCardTypes {
     /**
     * Set to **true** to accept credit cards.
     */
-    'credit'?: boolean;
+    "credit"?: boolean;
     /**
     * Set to **true** to accept debit cards.
     */
-    'debit'?: boolean;
+    "debit"?: boolean;
     /**
     * Set to **true** to accept cards that allow deferred debit.
     */
-    'deferredDebit'?: boolean;
+    "deferredDebit"?: boolean;
     /**
     * Set to **true** to accept prepaid cards.
     */
-    'prepaid'?: boolean;
+    "prepaid"?: boolean;
     /**
     * Set to **true** to accept card types for which the terminal can\'t determine the funding source while offline.
     */
-    'unknown'?: boolean;
+    "unknown"?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "credit",
             "baseName": "credit",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "debit",
             "baseName": "debit",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "deferredDebit",
             "baseName": "deferredDebit",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "prepaid",
             "baseName": "prepaid",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "unknown",
             "baseName": "unknown",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SupportedCardTypes.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

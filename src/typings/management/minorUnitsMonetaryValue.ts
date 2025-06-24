@@ -12,28 +12,35 @@ export class MinorUnitsMonetaryValue {
     /**
     * The transaction amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
     */
-    'amount'?: number;
+    "amount"?: number;
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
-    'currencyCode'?: string;
+    "currencyCode"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "currencyCode",
             "baseName": "currencyCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return MinorUnitsMonetaryValue.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

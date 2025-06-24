@@ -12,28 +12,35 @@ export class UninstallAndroidAppDetails {
     /**
     * The unique identifier of the app to be uninstalled.
     */
-    'appId'?: string;
+    "appId"?: string;
     /**
     * Type of terminal action: Uninstall an Android app.
     */
-    'type'?: UninstallAndroidAppDetails.TypeEnum;
+    "type"?: UninstallAndroidAppDetails.TypeEnum;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "appId",
             "baseName": "appId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "UninstallAndroidAppDetails.TypeEnum"
+            "type": "UninstallAndroidAppDetails.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return UninstallAndroidAppDetails.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

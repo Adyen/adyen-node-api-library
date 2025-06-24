@@ -7,83 +7,105 @@
  * Do not edit this class manually.
  */
 
-import { StoreLocation } from './storeLocation';
-import { StoreSplitConfiguration } from './storeSplitConfiguration';
+import { StoreLocation } from "./storeLocation";
+import { StoreSplitConfiguration } from "./storeSplitConfiguration";
+import { SubMerchantData } from "./subMerchantData";
+
 
 export class StoreCreationRequest {
-    'address': StoreLocation;
+    "address": StoreLocation;
     /**
     * The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/legalentity/latest/post/businessLines#responses-200-id) that the store is associated with. If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.
     */
-    'businessLineIds'?: Array<string>;
+    "businessLineIds"?: Array<string>;
     /**
     * Your description of the store.
     */
-    'description': string;
+    "description": string;
     /**
     * The unique identifier of the store, used by certain payment methods and tax authorities.  Required for CNPJ in Brazil, in the format 00.000.000/0000-00 separated by dots, slashes, hyphens, or without separators.  Optional for SIRET in France, up to 14 digits.  Optional for Zip in Australia, up to 50 digits.  
     */
-    'externalReferenceId'?: string;
+    "externalReferenceId"?: string;
     /**
     * The phone number of the store, including \'+\' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
     */
-    'phoneNumber': string;
+    "phoneNumber": string;
     /**
     * Your reference to recognize the store by. Also known as the store code.  Allowed characters: lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_).  If you do not provide a reference in your POST request, it is populated with the Adyen-generated [id](https://docs.adyen.com/api-explorer/Management/latest/post/stores#responses-200-id).
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The store name to be shown on the shopper\'s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can\'t be all numbers.
     */
-    'shopperStatement': string;
-    'splitConfiguration'?: StoreSplitConfiguration | null;
+    "shopperStatement": string;
+    "splitConfiguration"?: StoreSplitConfiguration;
+    "subMerchantData"?: SubMerchantData;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "address",
             "baseName": "address",
-            "type": "StoreLocation"
+            "type": "StoreLocation",
+            "format": ""
         },
         {
             "name": "businessLineIds",
             "baseName": "businessLineIds",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "externalReferenceId",
             "baseName": "externalReferenceId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "phoneNumber",
             "baseName": "phoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shopperStatement",
             "baseName": "shopperStatement",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "splitConfiguration",
             "baseName": "splitConfiguration",
-            "type": "StoreSplitConfiguration | null"
+            "type": "StoreSplitConfiguration",
+            "format": ""
+        },
+        {
+            "name": "subMerchantData",
+            "baseName": "subMerchantData",
+            "type": "SubMerchantData",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return StoreCreationRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

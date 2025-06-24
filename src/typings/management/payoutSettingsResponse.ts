@@ -7,25 +7,32 @@
  * Do not edit this class manually.
  */
 
-import { PayoutSettings } from './payoutSettings';
+import { PayoutSettings } from "./payoutSettings";
+
 
 export class PayoutSettingsResponse {
     /**
     * The list of payout accounts.
     */
-    'data'?: Array<PayoutSettings>;
+    "data"?: Array<PayoutSettings>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<PayoutSettings>"
+            "type": "Array<PayoutSettings>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PayoutSettingsResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

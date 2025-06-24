@@ -12,28 +12,35 @@ export class TerminalActionScheduleDetail {
     /**
     * The ID of the action on the specified terminal.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The unique ID of the terminal that the action applies to.
     */
-    'terminalId'?: string;
+    "terminalId"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "terminalId",
             "baseName": "terminalId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalActionScheduleDetail.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

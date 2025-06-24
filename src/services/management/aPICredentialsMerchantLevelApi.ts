@@ -7,20 +7,23 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    ApiCredential,
-    CreateApiCredentialResponse,
-    CreateMerchantApiCredentialRequest,
-    ListMerchantApiCredentialsResponse,
-    UpdateMerchantApiCredentialRequest,
-    ObjectSerializer
-} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/management/objectSerializer";
+import { ApiCredential } from "../../typings/management/models";
+import { CreateApiCredentialResponse } from "../../typings/management/models";
+import { CreateMerchantApiCredentialRequest } from "../../typings/management/models";
+import { ListMerchantApiCredentialsResponse } from "../../typings/management/models";
+import { UpdateMerchantApiCredentialRequest } from "../../typings/management/models";
+
+/**
+ * API handler for APICredentialsMerchantLevelApi
+ */
 export class APICredentialsMerchantLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -42,12 +45,14 @@ export class APICredentialsMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
+        
         const request: CreateMerchantApiCredentialRequest = ObjectSerializer.serialize(createMerchantApiCredentialRequest, "CreateMerchantApiCredentialRequest");
         const response = await getJsonResponse<CreateMerchantApiCredentialRequest, CreateApiCredentialResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "CreateApiCredentialResponse");
     }
 
@@ -63,11 +68,13 @@ export class APICredentialsMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, ApiCredential>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "ApiCredential");
     }
 
@@ -83,6 +90,7 @@ export class APICredentialsMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = pageNumber ?? pageSize;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -95,6 +103,7 @@ export class APICredentialsMerchantLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "ListMerchantApiCredentialsResponse");
     }
 
@@ -111,12 +120,15 @@ export class APICredentialsMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
+        
         const request: UpdateMerchantApiCredentialRequest = ObjectSerializer.serialize(updateMerchantApiCredentialRequest, "UpdateMerchantApiCredentialRequest");
         const response = await getJsonResponse<UpdateMerchantApiCredentialRequest, ApiCredential>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
+
         return ObjectSerializer.deserialize(response, "ApiCredential");
     }
+
 }

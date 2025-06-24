@@ -12,46 +12,55 @@ export class Url {
     /**
     * Indicates if the message sent to this URL should be encrypted.
     */
-    'encrypted'?: boolean;
+    "encrypted"?: boolean;
     /**
     * The password for authentication of the notifications.
     */
-    'password'?: string;
+    "password"?: string;
     /**
     * The URL in the format: http(s)://domain.com.
     */
-    'url'?: string;
+    "url"?: string;
     /**
     * The username for authentication of the notifications.
     */
-    'username'?: string;
+    "username"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "encrypted",
             "baseName": "encrypted",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "password",
             "baseName": "password",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "username",
             "baseName": "username",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Url.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

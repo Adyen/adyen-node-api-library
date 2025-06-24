@@ -7,70 +7,82 @@
  * Do not edit this class manually.
  */
 
-import { OrderItem } from './orderItem';
+import { OrderItem } from "./orderItem";
+
 
 export class TerminalOrderRequest {
     /**
     * The identification of the billing entity to use for the order.    > When ordering products in Brazil, you do not need to include the `billingEntityId` in the request.
     */
-    'billingEntityId'?: string;
+    "billingEntityId"?: string;
     /**
     * The merchant-defined purchase order reference.
     */
-    'customerOrderReference'?: string;
+    "customerOrderReference"?: string;
     /**
     * The products included in the order.
     */
-    'items'?: Array<OrderItem>;
+    "items"?: Array<OrderItem>;
     /**
     * Type of order
     */
-    'orderType'?: string;
+    "orderType"?: string;
     /**
     * The identification of the shipping location to use for the order.
     */
-    'shippingLocationId'?: string;
+    "shippingLocationId"?: string;
     /**
     * The tax number of the billing entity.
     */
-    'taxId'?: string;
+    "taxId"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "billingEntityId",
             "baseName": "billingEntityId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "customerOrderReference",
             "baseName": "customerOrderReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<OrderItem>"
+            "type": "Array<OrderItem>",
+            "format": ""
         },
         {
             "name": "orderType",
             "baseName": "orderType",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "shippingLocationId",
             "baseName": "shippingLocationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "taxId",
             "baseName": "taxId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalOrderRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

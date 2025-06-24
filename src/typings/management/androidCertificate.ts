@@ -12,73 +12,85 @@ export class AndroidCertificate {
     /**
     * The description that was provided when uploading the certificate.
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The file format of the certificate, as indicated by the file extension. For example, **.cert** or **.pem**.
     */
-    'extension'?: string;
+    "extension"?: string;
     /**
     * The unique identifier of the certificate.
     */
-    'id': string;
+    "id": string;
     /**
     * The file name of the certificate. For example, **mycert**.
     */
-    'name'?: string;
+    "name"?: string;
     /**
     * The date when the certificate stops to be valid.
     */
-    'notAfter'?: Date;
+    "notAfter"?: Date;
     /**
     * The date when the certificate starts to be valid.
     */
-    'notBefore'?: Date;
+    "notBefore"?: Date;
     /**
     * The status of the certificate.
     */
-    'status'?: string;
+    "status"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "extension",
             "baseName": "extension",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "notAfter",
             "baseName": "notAfter",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "notBefore",
             "baseName": "notBefore",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return AndroidCertificate.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

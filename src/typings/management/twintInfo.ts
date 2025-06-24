@@ -12,19 +12,25 @@ export class TwintInfo {
     /**
     * Twint logo. Format: Base64-encoded string.
     */
-    'logo': string;
+    "logo": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "logo",
             "baseName": "logo",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TwintInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

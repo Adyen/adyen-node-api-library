@@ -7,61 +7,72 @@
  * Do not edit this class manually.
  */
 
-import { Currency } from './currency';
+import { Currency } from "./currency";
+
 
 export class Configuration {
     /**
     * Payment method, like **eftpos_australia** or **mc**. See the [possible values](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api). 
     */
-    'brand': string;
+    "brand": string;
     /**
     * Set to **true** to apply surcharges only to commercial/business cards.
     */
-    'commercial'?: boolean;
+    "commercial"?: boolean;
     /**
     * The country/region of the card issuer. If used, the surcharge settings only apply to the card issued in that country/region.
     */
-    'country'?: Array<string>;
+    "country"?: Array<string>;
     /**
     * Currency and percentage or amount of the surcharge.
     */
-    'currencies': Array<Currency>;
+    "currencies": Array<Currency>;
     /**
     * Funding source. Possible values: * **Credit** * **Debit**
     */
-    'sources'?: Array<string>;
+    "sources"?: Array<string>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "commercial",
             "baseName": "commercial",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "country",
             "baseName": "country",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "currencies",
             "baseName": "currencies",
-            "type": "Array<Currency>"
+            "type": "Array<Currency>",
+            "format": ""
         },
         {
             "name": "sources",
             "baseName": "sources",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Configuration.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

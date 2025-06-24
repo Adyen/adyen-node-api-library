@@ -7,31 +7,39 @@
  * Do not edit this class manually.
  */
 
-import { EventUrl } from './eventUrl';
+import { EventUrl } from "./eventUrl";
+
 
 export class Connectivity {
     /**
     * Indicates the status of the SIM card in the payment terminal. Can be updated and received only at terminal level, and only for models that support cellular connectivity.  Possible values: * **ACTIVATED**: the SIM card is activated. Cellular connectivity may still need to be enabled on the terminal itself, in the **Network** settings. * **INVENTORY**: the SIM card is not activated. The terminal can\'t use cellular connectivity.
     */
-    'simcardStatus'?: Connectivity.SimcardStatusEnum;
-    'terminalIPAddressURL'?: EventUrl | null;
+    "simcardStatus"?: Connectivity.SimcardStatusEnum;
+    "terminalIPAddressURL"?: EventUrl;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "simcardStatus",
             "baseName": "simcardStatus",
-            "type": "Connectivity.SimcardStatusEnum"
+            "type": "Connectivity.SimcardStatusEnum",
+            "format": ""
         },
         {
             "name": "terminalIPAddressURL",
             "baseName": "terminalIPAddressURL",
-            "type": "EventUrl | null"
+            "type": "EventUrl",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Connectivity.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

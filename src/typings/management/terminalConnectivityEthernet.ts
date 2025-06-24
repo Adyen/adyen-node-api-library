@@ -12,37 +12,45 @@ export class TerminalConnectivityEthernet {
     /**
     * The terminal\'s ethernet IP address.
     */
-    'ipAddress'?: string;
+    "ipAddress"?: string;
     /**
     * The ethernet link negotiation that the terminal uses.
     */
-    'linkNegotiation'?: string;
+    "linkNegotiation"?: string;
     /**
     * The terminal\'s ethernet MAC address.
     */
-    'macAddress'?: string;
+    "macAddress"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "ipAddress",
             "baseName": "ipAddress",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "linkNegotiation",
             "baseName": "linkNegotiation",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "macAddress",
             "baseName": "macAddress",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalConnectivityEthernet.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

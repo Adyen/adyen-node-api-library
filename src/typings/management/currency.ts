@@ -12,46 +12,55 @@ export class Currency {
     /**
     * Surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
     */
-    'amount'?: number;
+    "amount"?: number;
     /**
     * Three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **AUD**.
     */
-    'currencyCode': string;
+    "currencyCode": string;
     /**
     * The maximum surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
     */
-    'maxAmount'?: number;
+    "maxAmount"?: number;
     /**
     * Surcharge percentage per transaction. The maximum number of decimal places is two. For example, **1%** or **2.27%**.
     */
-    'percentage'?: number;
+    "percentage"?: number;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "currencyCode",
             "baseName": "currencyCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "maxAmount",
             "baseName": "maxAmount",
-            "type": "number"
+            "type": "number",
+            "format": "int32"
         },
         {
             "name": "percentage",
             "baseName": "percentage",
-            "type": "number"
+            "type": "number",
+            "format": "double"
         }    ];
 
     static getAttributeTypeMap() {
         return Currency.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

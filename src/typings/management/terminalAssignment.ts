@@ -7,58 +7,69 @@
  * Do not edit this class manually.
  */
 
-import { TerminalReassignmentTarget } from './terminalReassignmentTarget';
+import { TerminalReassignmentTarget } from "./terminalReassignmentTarget";
+
 
 export class TerminalAssignment {
     /**
     * The unique identifier of the company account to which terminal is assigned.
     */
-    'companyId': string;
+    "companyId": string;
     /**
     * The unique identifier of the merchant account to which terminal is assigned.
     */
-    'merchantId'?: string;
-    'reassignmentTarget'?: TerminalReassignmentTarget | null;
+    "merchantId"?: string;
+    "reassignmentTarget"?: TerminalReassignmentTarget;
     /**
     * The status of the reassignment. Possible values:   * `reassignmentInProgress`: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * `deployed`: the terminal is deployed and reassigned.   * `inventory`: the terminal is in inventory and cannot process transactions.   * `boarded`: the terminal is boarded to a store, or a merchant account representing a store, and can process transactions.  
     */
-    'status': TerminalAssignment.StatusEnum;
+    "status": TerminalAssignment.StatusEnum;
     /**
     * The unique identifier of the store to which terminal is assigned.
     */
-    'storeId'?: string;
+    "storeId"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "companyId",
             "baseName": "companyId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "merchantId",
             "baseName": "merchantId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reassignmentTarget",
             "baseName": "reassignmentTarget",
-            "type": "TerminalReassignmentTarget | null"
+            "type": "TerminalReassignmentTarget",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "TerminalAssignment.StatusEnum"
+            "type": "TerminalAssignment.StatusEnum",
+            "format": ""
         },
         {
             "name": "storeId",
             "baseName": "storeId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalAssignment.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

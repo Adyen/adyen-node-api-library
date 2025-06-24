@@ -7,25 +7,32 @@
  * Do not edit this class manually.
  */
 
-import { TestOutput } from './testOutput';
+import { TestOutput } from "./testOutput";
+
 
 export class TestWebhookResponse {
     /**
     * List with test results. Each test webhook we send has a list element with the result.
     */
-    'data'?: Array<TestOutput>;
+    "data"?: Array<TestOutput>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<TestOutput>"
+            "type": "Array<TestOutput>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TestWebhookResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
