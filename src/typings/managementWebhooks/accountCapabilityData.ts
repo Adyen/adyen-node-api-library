@@ -7,102 +7,88 @@
  * Do not edit this class manually.
  */
 
-import { CapabilityProblem } from "./capabilityProblem";
-
+import { CapabilityProblem } from './capabilityProblem';
 
 export class AccountCapabilityData {
     /**
     * Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful.
     */
-    "allowed"?: boolean;
+    'allowed'?: boolean;
     /**
     * The allowed level of the capability. Some capabilities have different levels which correspond to thresholds. Higher levels may require additional checks and increased monitoring.Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
-    "allowedLevel"?: string;
+    'allowedLevel'?: string;
     /**
     * The name of the capability. For example, **sendToTransferInstrument**.
     */
-    "capability"?: string;
+    'capability'?: string;
     /**
     * List of entities that has problems with verification. The information includes the details of the errors and the actions that you can take to resolve them.
     */
-    "problems"?: Array<CapabilityProblem>;
+    'problems'?: Array<CapabilityProblem>;
     /**
     * Indicates whether you requested the capability.
     */
-    "requested": boolean;
+    'requested': boolean;
     /**
     * The level that you requested for the capability. Some capabilities have different levels which correspond to thresholds. Higher levels may require additional checks and increased monitoring.Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
-    "requestedLevel": string;
+    'requestedLevel': string;
     /**
     * The verification deadline for the capability that will be disallowed if verification errors are not resolved.
     */
-    "verificationDeadline"?: Date;
+    'verificationDeadline'?: Date;
     /**
     * The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the `errors` array contains more information.  * **valid**: The verification was successful.  * **rejected**: Adyen checked the information and found reasons to not allow the capability. 
     */
-    "verificationStatus"?: string;
+    'verificationStatus'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "allowed",
             "baseName": "allowed",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "allowedLevel",
             "baseName": "allowedLevel",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "capability",
             "baseName": "capability",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "problems",
             "baseName": "problems",
-            "type": "Array<CapabilityProblem>",
-            "format": ""
+            "type": "Array<CapabilityProblem>"
         },
         {
             "name": "requested",
             "baseName": "requested",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "requestedLevel",
             "baseName": "requestedLevel",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "verificationDeadline",
             "baseName": "verificationDeadline",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "verificationStatus",
             "baseName": "verificationStatus",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return AccountCapabilityData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

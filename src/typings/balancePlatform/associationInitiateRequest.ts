@@ -12,35 +12,28 @@ export class AssociationInitiateRequest {
     /**
     * The list of unique identifiers of the resources that you are associating with the SCA device.  Maximum: 5 strings.
     */
-    "ids": Array<string>;
+    'ids': Array<string>;
     /**
     * The type of resource that you are associating with the SCA device.  Possible value: **PaymentInstrument**
     */
-    "type": AssociationInitiateRequest.TypeEnum;
+    'type': AssociationInitiateRequest.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "ids",
             "baseName": "ids",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AssociationInitiateRequest.TypeEnum",
-            "format": ""
+            "type": "AssociationInitiateRequest.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return AssociationInitiateRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

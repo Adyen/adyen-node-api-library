@@ -7,20 +7,18 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    ModifyRequest,
+    ModifyResponse,
+    ServiceError,
+    ObjectSerializer
+} from "../../typings/payout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/payout/objectSerializer";
-import { ModifyRequest } from "../../typings/payout/models";
-import { ModifyResponse } from "../../typings/payout/models";
-
-/**
- * API handler for ReviewingApi
- */
 export class ReviewingApi extends Service {
 
     private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/Payout/v68";
@@ -40,14 +38,12 @@ export class ReviewingApi extends Service {
     public async confirmThirdParty(modifyRequest: ModifyRequest, requestOptions?: IRequest.Options): Promise<ModifyResponse> {
         const endpoint = `${this.baseUrl}/confirmThirdParty`;
         const resource = new Resource(this, endpoint);
-        
         const request: ModifyRequest = ObjectSerializer.serialize(modifyRequest, "ModifyRequest");
         const response = await getJsonResponse<ModifyRequest, ModifyResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "ModifyResponse");
     }
 
@@ -60,15 +56,12 @@ export class ReviewingApi extends Service {
     public async declineThirdParty(modifyRequest: ModifyRequest, requestOptions?: IRequest.Options): Promise<ModifyResponse> {
         const endpoint = `${this.baseUrl}/declineThirdParty`;
         const resource = new Resource(this, endpoint);
-        
         const request: ModifyRequest = ObjectSerializer.serialize(modifyRequest, "ModifyRequest");
         const response = await getJsonResponse<ModifyRequest, ModifyResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "ModifyResponse");
     }
-
 }

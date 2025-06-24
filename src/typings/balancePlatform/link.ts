@@ -7,57 +7,46 @@
  * Do not edit this class manually.
  */
 
-import { Href } from "./href";
-
+import { Href } from './href';
 
 export class Link {
-    "first"?: Href;
-    "last"?: Href;
-    "next"?: Href;
-    "previous"?: Href;
-    "self"?: Href;
+    'first'?: Href | null;
+    'last'?: Href | null;
+    'next'?: Href | null;
+    'previous'?: Href | null;
+    'self'?: Href | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "first",
             "baseName": "first",
-            "type": "Href",
-            "format": ""
+            "type": "Href | null"
         },
         {
             "name": "last",
             "baseName": "last",
-            "type": "Href",
-            "format": ""
+            "type": "Href | null"
         },
         {
             "name": "next",
             "baseName": "next",
-            "type": "Href",
-            "format": ""
+            "type": "Href | null"
         },
         {
             "name": "previous",
             "baseName": "previous",
-            "type": "Href",
-            "format": ""
+            "type": "Href | null"
         },
         {
             "name": "self",
             "baseName": "self",
-            "type": "Href",
-            "format": ""
+            "type": "Href | null"
         }    ];
 
     static getAttributeTypeMap() {
         return Link.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

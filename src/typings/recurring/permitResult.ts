@@ -12,35 +12,28 @@ export class PermitResult {
     /**
     * The key to link permit requests to permit results.
     */
-    "resultKey"?: string;
+    'resultKey'?: string;
     /**
     * The permit token which is used to make payments by the partner company.
     */
-    "token"?: string;
+    'token'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "resultKey",
             "baseName": "resultKey",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "token",
             "baseName": "token",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PermitResult.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

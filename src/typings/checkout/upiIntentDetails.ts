@@ -12,78 +12,67 @@ export class UpiIntentDetails {
     /**
     * TPAP (Third Party Application) Id that is being used to make the UPI payment
     */
-    "appId"?: string;
+    'appId'?: string;
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    "recurringDetailReference"?: string;
+    'recurringDetailReference'?: string;
     /**
     * The `shopperNotificationReference` returned in the response when you requested to notify the shopper. Used for recurring payment only.
     */
-    "shopperNotificationReference"?: string;
+    'shopperNotificationReference'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    "storedPaymentMethodId"?: string;
+    'storedPaymentMethodId'?: string;
     /**
     * **upi_intent**
     */
-    "type": UpiIntentDetails.TypeEnum;
+    'type': UpiIntentDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "appId",
             "baseName": "appId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperNotificationReference",
             "baseName": "shopperNotificationReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "UpiIntentDetails.TypeEnum",
-            "format": ""
+            "type": "UpiIntentDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return UpiIntentDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

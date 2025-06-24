@@ -12,45 +12,37 @@ export class ResponseAdditionalDataSepa {
     /**
     * The transaction signature date.  Format: yyyy-MM-dd
     */
-    "sepadirectdebit_dateOfSignature"?: string;
+    'sepadirectdebit_dateOfSignature'?: string;
     /**
     * Its value corresponds to the pspReference value of the transaction.
     */
-    "sepadirectdebit_mandateId"?: string;
+    'sepadirectdebit_mandateId'?: string;
     /**
     * This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF
     */
-    "sepadirectdebit_sequenceType"?: string;
+    'sepadirectdebit_sequenceType'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "sepadirectdebit_dateOfSignature",
             "baseName": "sepadirectdebit.dateOfSignature",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sepadirectdebit_mandateId",
             "baseName": "sepadirectdebit.mandateId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sepadirectdebit_sequenceType",
             "baseName": "sepadirectdebit.sequenceType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalDataSepa.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

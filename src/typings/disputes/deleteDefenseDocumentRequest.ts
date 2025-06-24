@@ -12,45 +12,37 @@ export class DeleteDefenseDocumentRequest {
     /**
     * The document type code of the defense document.
     */
-    "defenseDocumentType": string;
+    'defenseDocumentType': string;
     /**
     * The PSP reference assigned to the dispute.
     */
-    "disputePspReference": string;
+    'disputePspReference': string;
     /**
     * The merchant account identifier, for which you want to process the dispute transaction.
     */
-    "merchantAccountCode": string;
+    'merchantAccountCode': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "defenseDocumentType",
             "baseName": "defenseDocumentType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "disputePspReference",
             "baseName": "disputePspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantAccountCode",
             "baseName": "merchantAccountCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return DeleteDefenseDocumentRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

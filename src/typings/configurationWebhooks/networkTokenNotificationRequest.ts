@@ -7,65 +7,55 @@
  * Do not edit this class manually.
  */
 
-import { NetworkTokenNotificationDataV2 } from "./networkTokenNotificationDataV2";
-
+import { NetworkTokenNotificationDataV2 } from './networkTokenNotificationDataV2';
 
 export class NetworkTokenNotificationRequest {
-    "data": NetworkTokenNotificationDataV2;
+    'data': NetworkTokenNotificationDataV2;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    "environment": string;
+    'environment': string;
     /**
     * When the event was queued.
     */
-    "timestamp"?: Date;
+    'timestamp'?: Date;
     /**
     * The type of webhook.
     */
-    "type": NetworkTokenNotificationRequest.TypeEnum;
+    'type': NetworkTokenNotificationRequest.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "NetworkTokenNotificationDataV2",
-            "format": ""
+            "type": "NetworkTokenNotificationDataV2"
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "NetworkTokenNotificationRequest.TypeEnum",
-            "format": ""
+            "type": "NetworkTokenNotificationRequest.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return NetworkTokenNotificationRequest.attributeTypeMap;
     }
-
-    public constructor() {
-    }
 }
 
 export namespace NetworkTokenNotificationRequest {
     export enum TypeEnum {
-        BalancePlatformNetworkTokenCreated = 'balancePlatform.networkToken.created',
-        BalancePlatformNetworkTokenUpdated = 'balancePlatform.networkToken.updated'
+        Created = 'balancePlatform.networkToken.created',
+        Updated = 'balancePlatform.networkToken.updated'
     }
 }

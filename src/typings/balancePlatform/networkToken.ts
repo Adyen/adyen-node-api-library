@@ -7,99 +7,92 @@
  * Do not edit this class manually.
  */
 
-import { DeviceInfo } from "./deviceInfo";
-
+import { DeviceInfo } from './deviceInfo';
+import { NetworkTokenRequestor } from './networkTokenRequestor';
 
 export class NetworkToken {
     /**
     * The card brand variant of the payment instrument associated with the network token. For example, **mc_prepaid_mrw**.
     */
-    "brandVariant"?: string;
+    'brandVariant'?: string;
     /**
     * Date and time when the network token was created, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) extended format. For example, **2020-12-18T10:15:30+01:00**..
     */
-    "creationDate"?: Date;
-    "device"?: DeviceInfo;
+    'creationDate'?: Date;
+    'device'?: DeviceInfo | null;
     /**
     * The unique identifier of the network token.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The unique identifier of the payment instrument to which this network token belongs to.
     */
-    "paymentInstrumentId"?: string;
+    'paymentInstrumentId'?: string;
     /**
     * The status of the network token. Possible values: **active**, **inactive**, **suspended**, **closed**.
     */
-    "status"?: NetworkToken.StatusEnum;
+    'status'?: NetworkToken.StatusEnum;
     /**
     * The last four digits of the network token `id`.
     */
-    "tokenLastFour"?: string;
+    'tokenLastFour'?: string;
+    'tokenRequestor'?: NetworkTokenRequestor | null;
     /**
     * The type of network token. For example, **wallet**, **cof**.
     */
-    "type"?: string;
+    'type'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "brandVariant",
             "baseName": "brandVariant",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "creationDate",
             "baseName": "creationDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "device",
             "baseName": "device",
-            "type": "DeviceInfo",
-            "format": ""
+            "type": "DeviceInfo | null"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "NetworkToken.StatusEnum",
-            "format": ""
+            "type": "NetworkToken.StatusEnum"
         },
         {
             "name": "tokenLastFour",
             "baseName": "tokenLastFour",
-            "type": "string",
-            "format": ""
+            "type": "string"
+        },
+        {
+            "name": "tokenRequestor",
+            "baseName": "tokenRequestor",
+            "type": "NetworkTokenRequestor | null"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return NetworkToken.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

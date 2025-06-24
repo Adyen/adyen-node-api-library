@@ -12,35 +12,28 @@ export class ResponseAdditionalDataDomesticError {
     /**
     * The reason the transaction was declined, given by the local issuer.  Currently available for merchants in Japan.
     */
-    "domesticRefusalReasonRaw"?: string;
+    'domesticRefusalReasonRaw'?: string;
     /**
     * The action the shopper should take, in a local language.  Currently available in Japanese, for merchants in Japan.
     */
-    "domesticShopperAdvice"?: string;
+    'domesticShopperAdvice'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "domesticRefusalReasonRaw",
             "baseName": "domesticRefusalReasonRaw",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "domesticShopperAdvice",
             "baseName": "domesticShopperAdvice",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalDataDomesticError.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

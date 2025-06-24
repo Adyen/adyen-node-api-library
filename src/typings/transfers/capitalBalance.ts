@@ -12,55 +12,46 @@ export class CapitalBalance {
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
-    "currency": string;
+    'currency': string;
     /**
     * Fee amount.
     */
-    "fee": number;
+    'fee': number;
     /**
     * Principal amount.
     */
-    "principal": number;
+    'principal': number;
     /**
     * Total amount. A sum of principal amount and fee amount.
     */
-    "total": number;
+    'total': number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fee",
             "baseName": "fee",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         },
         {
             "name": "principal",
             "baseName": "principal",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         },
         {
             "name": "total",
             "baseName": "total",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return CapitalBalance.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

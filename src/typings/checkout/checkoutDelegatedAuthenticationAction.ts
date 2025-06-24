@@ -12,75 +12,64 @@ export class CheckoutDelegatedAuthenticationAction {
     /**
     * A token needed to authorise a payment.
     */
-    "authorisationToken"?: string;
+    'authorisationToken'?: string;
     /**
     * Encoded payment data.
     */
-    "paymentData"?: string;
+    'paymentData'?: string;
     /**
     * Specifies the payment method.
     */
-    "paymentMethodType"?: string;
+    'paymentMethodType'?: string;
     /**
     * A token to pass to the delegatedAuthentication component.
     */
-    "token"?: string;
+    'token'?: string;
     /**
     * **delegatedAuthentication**
     */
-    "type": CheckoutDelegatedAuthenticationAction.TypeEnum;
+    'type': CheckoutDelegatedAuthenticationAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    "url"?: string;
+    'url'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "authorisationToken",
             "baseName": "authorisationToken",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentData",
             "baseName": "paymentData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentMethodType",
             "baseName": "paymentMethodType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "token",
             "baseName": "token",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CheckoutDelegatedAuthenticationAction.TypeEnum",
-            "format": ""
+            "type": "CheckoutDelegatedAuthenticationAction.TypeEnum"
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutDelegatedAuthenticationAction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

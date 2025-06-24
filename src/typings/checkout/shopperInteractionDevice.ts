@@ -12,45 +12,37 @@ export class ShopperInteractionDevice {
     /**
     * Locale on the shopper interaction device.
     */
-    "locale"?: string;
+    'locale'?: string;
     /**
     * Operating system running on the shopper interaction device.
     */
-    "os"?: string;
+    'os'?: string;
     /**
     * Version of the operating system on the shopper interaction device.
     */
-    "osVersion"?: string;
+    'osVersion'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "locale",
             "baseName": "locale",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "os",
             "baseName": "os",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "osVersion",
             "baseName": "osVersion",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ShopperInteractionDevice.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

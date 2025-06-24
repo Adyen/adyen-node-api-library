@@ -7,29 +7,22 @@
  * Do not edit this class manually.
  */
 
-import { TransactionRule } from "./transactionRule";
-
+import { TransactionRule } from './transactionRule';
 
 export class TransactionRuleResponse {
-    "transactionRule"?: TransactionRule;
+    'transactionRule'?: TransactionRule | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "transactionRule",
             "baseName": "transactionRule",
-            "type": "TransactionRule",
-            "format": ""
+            "type": "TransactionRule | null"
         }    ];
 
     static getAttributeTypeMap() {
         return TransactionRuleResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

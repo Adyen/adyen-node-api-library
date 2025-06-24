@@ -7,69 +7,53 @@
  * Do not edit this class manually.
  */
 
-import { SettingType } from "./settingType";
-import { Target } from "./target";
-
+import { SettingType } from './settingType';
+import { Target } from './target';
 
 export class WebhookSetting {
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance.
     */
-    "currency": string;
+    'currency': string;
     /**
     * The unique identifier of the webhook setting.
     */
-    "id": string;
-    "status": string;
-    "target": Target;
-    "type": SettingType;
+    'id': string;
+    'status': string;
+    'target': Target;
+    'type': SettingType;
 
-    static readonly discriminator: string | undefined = "type";
+    static discriminator: string | undefined = "type";
 
-    static readonly mapping: {[index: string]: string} | undefined = {
-        "balance": "BalanceWebhookSetting",
-    };
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "target",
             "baseName": "target",
-            "type": "Target",
-            "format": ""
+            "type": "Target"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "SettingType",
-            "format": ""
+            "type": "SettingType"
         }    ];
 
     static getAttributeTypeMap() {
         return WebhookSetting.attributeTypeMap;
     }
-
-    public constructor() {
-        //this.type = "WebhookSetting";
-    }
 }
 
-export namespace WebhookSetting {
-}

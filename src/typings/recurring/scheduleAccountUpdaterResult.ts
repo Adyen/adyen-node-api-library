@@ -12,35 +12,28 @@ export class ScheduleAccountUpdaterResult {
     /**
     * Adyen\'s 16-character unique reference associated with the transaction. This value is globally unique; quote it when communicating with us about this request.
     */
-    "pspReference": string;
+    'pspReference': string;
     /**
     * The result of scheduling an Account Updater. If scheduling was successful, this field returns **Success**; otherwise it contains the error message.
     */
-    "result": string;
+    'result': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "result",
             "baseName": "result",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ScheduleAccountUpdaterResult.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

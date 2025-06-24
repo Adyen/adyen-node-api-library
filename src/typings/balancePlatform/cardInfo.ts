@@ -7,95 +7,81 @@
  * Do not edit this class manually.
  */
 
-import { Authentication } from "./authentication";
-import { CardConfiguration } from "./cardConfiguration";
-import { DeliveryContact } from "./deliveryContact";
-
+import { Authentication } from './authentication';
+import { CardConfiguration } from './cardConfiguration';
+import { DeliveryContact } from './deliveryContact';
 
 export class CardInfo {
-    "authentication"?: Authentication;
+    'authentication'?: Authentication | null;
     /**
     * The brand of the physical or the virtual card. Possible values: **visa**, **mc**.
     */
-    "brand": string;
+    'brand': string;
     /**
     * The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. >Reach out to your Adyen contact to get the values relevant for your integration.
     */
-    "brandVariant": string;
+    'brandVariant': string;
     /**
     * The name of the cardholder.  Maximum length: 26 characters.
     */
-    "cardholderName": string;
-    "configuration"?: CardConfiguration;
-    "deliveryContact"?: DeliveryContact;
+    'cardholderName': string;
+    'configuration'?: CardConfiguration | null;
+    'deliveryContact'?: DeliveryContact | null;
     /**
     * The form factor of the card. Possible values: **virtual**, **physical**.
     */
-    "formFactor": CardInfo.FormFactorEnum;
+    'formFactor': CardInfo.FormFactorEnum;
     /**
-    * Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+    * The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. > Reach out to your Adyen contact to get the values relevant for your integration.
     */
-    "threeDSecure"?: string;
+    'threeDSecure'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "authentication",
             "baseName": "authentication",
-            "type": "Authentication",
-            "format": ""
+            "type": "Authentication | null"
         },
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "brandVariant",
             "baseName": "brandVariant",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardholderName",
             "baseName": "cardholderName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "configuration",
             "baseName": "configuration",
-            "type": "CardConfiguration",
-            "format": ""
+            "type": "CardConfiguration | null"
         },
         {
             "name": "deliveryContact",
             "baseName": "deliveryContact",
-            "type": "DeliveryContact",
-            "format": ""
+            "type": "DeliveryContact | null"
         },
         {
             "name": "formFactor",
             "baseName": "formFactor",
-            "type": "CardInfo.FormFactorEnum",
-            "format": ""
+            "type": "CardInfo.FormFactorEnum"
         },
         {
             "name": "threeDSecure",
             "baseName": "threeDSecure",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CardInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

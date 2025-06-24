@@ -12,35 +12,28 @@ export class Amount {
     /**
     * The type of currency. Must be EUR (or EUR equivalent)
     */
-    "currency"?: string;
+    'currency'?: string;
     /**
     * Total value of amount. Must be >= 0
     */
-    "value"?: number;
+    'value'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return Amount.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,35 +12,28 @@ export class CounterpartyTypesRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    "operation": string;
+    'operation': string;
     /**
     * The list of counterparty types to be evaluated.
     */
-    "value"?: Array<CounterpartyTypesRestriction.ValueEnum>;
+    'value'?: Array<CounterpartyTypesRestriction.ValueEnum>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "CounterpartyTypesRestriction.ValueEnum",
-            "format": ""
+            "type": "Array<CounterpartyTypesRestriction.ValueEnum>"
         }    ];
 
     static getAttributeTypeMap() {
         return CounterpartyTypesRestriction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

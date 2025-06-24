@@ -12,45 +12,37 @@ export class DefenseDocument {
     /**
     * The content of the defense document.
     */
-    "content": string;
+    'content': string;
     /**
     * The content type of the defense document.
     */
-    "contentType": string;
+    'contentType': string;
     /**
     * The document type code of the defense document.
     */
-    "defenseDocumentTypeCode": string;
+    'defenseDocumentTypeCode': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "content",
             "baseName": "content",
-            "type": "string",
-            "format": "byte"
+            "type": "string"
         },
         {
             "name": "contentType",
             "baseName": "contentType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "defenseDocumentTypeCode",
             "baseName": "defenseDocumentTypeCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return DefenseDocument.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,75 +12,64 @@ export class ChallengeInfo {
     /**
     * Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. Possible values: * **00**: Data element is absent or value has been sent back with the key `challengeCancel`. * **01**: Cardholder selected **Cancel**. * **02**: 3DS Requestor cancelled Authentication. * **03**: Transaction abandoned. * **04**: Transaction timed out at ACS — other timeouts. * **05**: Transaction timed out at ACS — first CReq not received by ACS. * **06**: Transaction error. * **07**: Unknown. * **08**: Transaction time out at SDK.
     */
-    "challengeCancel"?: ChallengeInfo.ChallengeCancelEnum;
+    'challengeCancel'?: ChallengeInfo.ChallengeCancelEnum;
     /**
     * The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow
     */
-    "flow": ChallengeInfo.FlowEnum;
+    'flow': ChallengeInfo.FlowEnum;
     /**
     * The last time of interaction with the challenge.
     */
-    "lastInteraction": Date;
+    'lastInteraction': Date;
     /**
     * The last four digits of the phone number used in the challenge.
     */
-    "phoneNumber"?: string;
+    'phoneNumber'?: string;
     /**
     * The number of times the one-time password (OTP) was resent during the challenge.
     */
-    "resends"?: number;
+    'resends'?: number;
     /**
     * The number of retries used in the challenge.
     */
-    "retries"?: number;
+    'retries'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "challengeCancel",
             "baseName": "challengeCancel",
-            "type": "ChallengeInfo.ChallengeCancelEnum",
-            "format": ""
+            "type": "ChallengeInfo.ChallengeCancelEnum"
         },
         {
             "name": "flow",
             "baseName": "flow",
-            "type": "ChallengeInfo.FlowEnum",
-            "format": ""
+            "type": "ChallengeInfo.FlowEnum"
         },
         {
             "name": "lastInteraction",
             "baseName": "lastInteraction",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "phoneNumber",
             "baseName": "phoneNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "resends",
             "baseName": "resends",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "retries",
             "baseName": "retries",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return ChallengeInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

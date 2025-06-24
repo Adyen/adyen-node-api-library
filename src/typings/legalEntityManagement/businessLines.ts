@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { BusinessLine } from "./businessLine";
-
+import { BusinessLine } from './businessLine';
 
 export class BusinessLines {
     /**
     * List of business lines.
     */
-    "businessLines": Array<BusinessLine>;
+    'businessLines': Array<BusinessLine>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "businessLines",
             "baseName": "businessLines",
-            "type": "Array<BusinessLine>",
-            "format": ""
+            "type": "Array<BusinessLine>"
         }    ];
 
     static getAttributeTypeMap() {
         return BusinessLines.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 
