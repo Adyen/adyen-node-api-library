@@ -12,7 +12,7 @@
     * @param {{paramName}} {@link {{dataType}} } (Required) {{description}}{{/required}}{{/queryParams}}{{#queryParams}}{{^required}}
     * @param {{paramName}} {@link {{dataType}} } {{description}}{{/required}}{{/queryParams}}
 {{#hasProduces}}
-    * @return {@link {{returnType}} }
+    * @return {@link {{#returnProperty}}{{openApiType}}{{/returnProperty}}{{^returnProperty}}void{{/returnProperty}} }
 {{/hasProduces}}
 {{#isDeprecated}}
     *
