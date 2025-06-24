@@ -12,55 +12,46 @@ export class BalanceMutation {
     /**
     * The amount in the payment\'s currency that is debited or credited on the balance accounting register.
     */
-    "balance"?: number;
+    'balance'?: number;
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
-    "currency"?: string;
+    'currency'?: string;
     /**
     * The amount in the payment\'s currency that is debited or credited on the received accounting register.
     */
-    "received"?: number;
+    'received'?: number;
     /**
     * The amount in the payment\'s currency that is debited or credited on the reserved accounting register.
     */
-    "reserved"?: number;
+    'reserved'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "balance",
             "baseName": "balance",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         },
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "received",
             "baseName": "received",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         },
         {
             "name": "reserved",
             "baseName": "reserved",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return BalanceMutation.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,59 +7,49 @@
  * Do not edit this class manually.
  */
 
-import { Transaction } from "./transaction";
-
+import { Transaction } from './transaction';
 
 export class TransactionNotificationRequestV4 {
-    "data": Transaction;
+    'data': Transaction;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    "environment": string;
+    'environment': string;
     /**
     * When the event was queued.
     */
-    "timestamp"?: Date;
+    'timestamp'?: Date;
     /**
     * Type of the webhook.
     */
-    "type"?: TransactionNotificationRequestV4.TypeEnum;
+    'type'?: TransactionNotificationRequestV4.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Transaction",
-            "format": ""
+            "type": "Transaction"
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TransactionNotificationRequestV4.TypeEnum",
-            "format": ""
+            "type": "TransactionNotificationRequestV4.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return TransactionNotificationRequestV4.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

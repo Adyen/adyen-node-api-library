@@ -12,65 +12,55 @@ export class TransactionRuleReference {
     /**
     * The description of the resource.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * The unique identifier of the resource.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The outcome type of the rule.
     */
-    "outcomeType"?: string;
+    'outcomeType'?: string;
     /**
     * The reference for the resource.
     */
-    "reference"?: string;
+    'reference'?: string;
     /**
     * The score of the rule in case it\'s a scoreBased rule.
     */
-    "score"?: number;
+    'score'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "outcomeType",
             "baseName": "outcomeType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "score",
             "baseName": "score",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return TransactionRuleReference.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

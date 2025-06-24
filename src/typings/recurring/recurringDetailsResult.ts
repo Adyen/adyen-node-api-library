@@ -7,62 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { RecurringDetailWrapper } from "./recurringDetailWrapper";
-
+import { RecurringDetailWrapper } from './recurringDetailWrapper';
 
 export class RecurringDetailsResult {
     /**
     * The date when the recurring details were created.
     */
-    "creationDate"?: Date;
+    'creationDate'?: Date;
     /**
     * Payment details stored for recurring payments.
     */
-    "details"?: Array<RecurringDetailWrapper>;
+    'details'?: Array<RecurringDetailWrapper>;
     /**
     * The most recent email for this shopper (if available).
     */
-    "lastKnownShopperEmail"?: string;
+    'lastKnownShopperEmail'?: string;
     /**
     * The reference you use to uniquely identify the shopper (e.g. user ID or account ID).
     */
-    "shopperReference"?: string;
+    'shopperReference'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "creationDate",
             "baseName": "creationDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "details",
             "baseName": "details",
-            "type": "Array<RecurringDetailWrapper>",
-            "format": ""
+            "type": "Array<RecurringDetailWrapper>"
         },
         {
             "name": "lastKnownShopperEmail",
             "baseName": "lastKnownShopperEmail",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return RecurringDetailsResult.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

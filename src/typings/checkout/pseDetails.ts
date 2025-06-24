@@ -12,75 +12,64 @@ export class PseDetails {
     /**
     * The shopper\'s bank.
     */
-    "bank": string;
+    'bank': string;
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * The client type.
     */
-    "clientType": string;
+    'clientType': string;
     /**
     * The identification code.
     */
-    "identification": string;
+    'identification': string;
     /**
     * The identification type.
     */
-    "identificationType": string;
+    'identificationType': string;
     /**
     * The payment method type.
     */
-    "type"?: PseDetails.TypeEnum;
+    'type'?: PseDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "bank",
             "baseName": "bank",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "clientType",
             "baseName": "clientType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "identification",
             "baseName": "identification",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "identificationType",
             "baseName": "identificationType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PseDetails.TypeEnum",
-            "format": ""
+            "type": "PseDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return PseDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

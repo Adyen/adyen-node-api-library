@@ -10,6 +10,7 @@
 import { Links } from './links';
 import { StoreLocation } from './storeLocation';
 import { StoreSplitConfiguration } from './storeSplitConfiguration';
+import { SubMerchantData } from './subMerchantData';
 
 export class Store {
     '_links'?: Links | null;
@@ -51,6 +52,7 @@ export class Store {
     * The status of the store. Possible values are:  - **active**. This value is assigned automatically when a store is created.  - **inactive**. The terminals under the store are blocked from accepting new transactions, but capturing outstanding transactions is still possible. - **closed**. This status is irreversible. The terminals under the store are reassigned to the merchant inventory.
     */
     'status'?: Store.StatusEnum;
+    'subMerchantData'?: SubMerchantData | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -114,6 +116,11 @@ export class Store {
             "name": "status",
             "baseName": "status",
             "type": "Store.StatusEnum"
+        },
+        {
+            "name": "subMerchantData",
+            "baseName": "subMerchantData",
+            "type": "SubMerchantData | null"
         }    ];
 
     static getAttributeTypeMap() {

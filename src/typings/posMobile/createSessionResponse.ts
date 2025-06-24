@@ -12,65 +12,55 @@ export class CreateSessionResponse {
     /**
     * The unique identifier of the session.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The unique identifier of the SDK installation. If you create the [Terminal API](https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/) transaction request on your backend, use this as the `POIID` in the `MessageHeader` of the request.
     */
-    "installationId"?: string;
+    'installationId'?: string;
     /**
     * The unique identifier of your merchant account.
     */
-    "merchantAccount"?: string;
+    'merchantAccount'?: string;
     /**
     * The data that the SDK uses to authenticate responses from the Adyen payments platform. Pass this value to your POS app.
     */
-    "sdkData"?: string;
+    'sdkData'?: string;
     /**
     * The unique identifier of the store that you want to process transactions for.
     */
-    "store"?: string;
+    'store'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installationId",
             "baseName": "installationId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sdkData",
             "baseName": "sdkData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "store",
             "baseName": "store",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CreateSessionResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

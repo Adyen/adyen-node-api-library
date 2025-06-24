@@ -12,55 +12,40 @@ export class MbwayDetails {
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
-    /**
-    * 
-    */
-    "shopperEmail": string;
-    /**
-    * 
-    */
-    "telephoneNumber": string;
+    'checkoutAttemptId'?: string;
+    'shopperEmail': string;
+    'telephoneNumber': string;
     /**
     * **mbway**
     */
-    "type"?: MbwayDetails.TypeEnum;
+    'type'?: MbwayDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "MbwayDetails.TypeEnum",
-            "format": ""
+            "type": "MbwayDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return MbwayDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

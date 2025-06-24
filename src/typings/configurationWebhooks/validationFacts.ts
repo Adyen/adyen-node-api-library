@@ -12,45 +12,37 @@ export class ValidationFacts {
     /**
     * The reason for the `result` of the validations.  This field is only sent for `validationFacts.type` **walletValidation**, when `validationFacts.result` is **invalid**.
     */
-    "reasons"?: Array<string>;
+    'reasons'?: Array<string>;
     /**
     * The evaluation result of the validation facts.  Possible values: **valid**, **invalid**, **notValidated**, **notApplicable**.
     */
-    "result"?: ValidationFacts.ResultEnum;
+    'result'?: ValidationFacts.ResultEnum;
     /**
     * The type of the validation fact.
     */
-    "type"?: string;
+    'type'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "reasons",
             "baseName": "reasons",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "result",
             "baseName": "result",
-            "type": "ValidationFacts.ResultEnum",
-            "format": ""
+            "type": "ValidationFacts.ResultEnum"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ValidationFacts.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,75 +12,64 @@ export class NameLocation {
     /**
     * The city where the merchant is located.
     */
-    "city"?: string;
+    'city'?: string;
     /**
     * The country where the merchant is located in [three-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
     */
-    "country"?: string;
+    'country'?: string;
     /**
     * The home country in [three-digit country code](https://en.wikipedia.org/wiki/ISO_3166-1_numeric) format, used for government-controlled merchants such as embassies.
     */
-    "countryOfOrigin"?: string;
+    'countryOfOrigin'?: string;
     /**
     * The name of the merchant\'s shop or service.
     */
-    "name"?: string;
+    'name'?: string;
     /**
     * The raw data.
     */
-    "rawData"?: string;
+    'rawData'?: string;
     /**
     * The state where the merchant is located.
     */
-    "state"?: string;
+    'state'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "city",
             "baseName": "city",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "country",
             "baseName": "country",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "countryOfOrigin",
             "baseName": "countryOfOrigin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "rawData",
             "baseName": "rawData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "state",
             "baseName": "state",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return NameLocation.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

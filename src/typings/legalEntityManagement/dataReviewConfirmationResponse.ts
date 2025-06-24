@@ -12,25 +12,19 @@ export class DataReviewConfirmationResponse {
     /**
     * Date when data review was confirmed.
     */
-    "dataReviewedAt"?: string;
+    'dataReviewedAt'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "dataReviewedAt",
             "baseName": "dataReviewedAt",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return DataReviewConfirmationResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

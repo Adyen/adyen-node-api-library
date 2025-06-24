@@ -9,39 +9,31 @@
 
 
 export class DocumentPage {
-    "pageName"?: string;
-    "pageNumber"?: number;
-    "type"?: DocumentPage.TypeEnum;
+    'pageName'?: string;
+    'pageNumber'?: number;
+    'type'?: DocumentPage.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "pageName",
             "baseName": "pageName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "pageNumber",
             "baseName": "pageNumber",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "DocumentPage.TypeEnum",
-            "format": ""
+            "type": "DocumentPage.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return DocumentPage.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -10,37 +10,30 @@
 
 export class ConfirmationTrackingData {
     /**
-    * The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user\'s transfer instrument or bank account.
+    * The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user\'s transfer instrument or bank account.
     */
-    "status": ConfirmationTrackingData.StatusEnum;
+    'status': ConfirmationTrackingData.StatusEnum;
     /**
     * The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen\'s internal review.
     */
-    "type": ConfirmationTrackingData.TypeEnum;
+    'type': ConfirmationTrackingData.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "status",
             "baseName": "status",
-            "type": "ConfirmationTrackingData.StatusEnum",
-            "format": ""
+            "type": "ConfirmationTrackingData.StatusEnum"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "ConfirmationTrackingData.TypeEnum",
-            "format": ""
+            "type": "ConfirmationTrackingData.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return ConfirmationTrackingData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

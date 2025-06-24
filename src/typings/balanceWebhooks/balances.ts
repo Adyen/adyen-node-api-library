@@ -12,55 +12,46 @@ export class Balances {
     /**
     * The balance that is available for use.
     */
-    "available"?: number;
+    'available'?: number;
     /**
     * The sum of transactions that have already been settled.
     */
-    "balance"?: number;
+    'balance'?: number;
     /**
     * The sum of transactions that will be settled in the future.
     */
-    "pending"?: number;
+    'pending'?: number;
     /**
     * The balance currently held in reserve.
     */
-    "reserved"?: number;
+    'reserved'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "available",
             "baseName": "available",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         },
         {
             "name": "balance",
             "baseName": "balance",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         },
         {
             "name": "pending",
             "baseName": "pending",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         },
         {
             "name": "reserved",
             "baseName": "reserved",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return Balances.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

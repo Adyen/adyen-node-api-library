@@ -12,35 +12,28 @@ export class ThreeDS2ResultRequest {
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
-    "merchantAccount": string;
+    'merchantAccount': string;
     /**
     * The pspReference returned in the /authorise call.
     */
-    "pspReference": string;
+    'pspReference': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDS2ResultRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

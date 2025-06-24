@@ -7,106 +7,91 @@
  * Do not edit this class manually.
  */
 
-import { InvalidField } from "./invalidField";
+import { InvalidField } from './invalidField';
 
 /**
 * Standardized error response following RFC-7807 format
 */
-
-
 export class DefaultErrorResponseEntity {
     /**
     * A human-readable explanation specific to this occurrence of the problem.
     */
-    "detail"?: string;
+    'detail'?: string;
     /**
     * Unique business error code.
     */
-    "errorCode"?: string;
+    'errorCode'?: string;
     /**
     * A URI that identifies the specific occurrence of the problem if applicable.
     */
-    "instance"?: string;
+    'instance'?: string;
     /**
     * Array of fields with validation errors when applicable.
     */
-    "invalidFields"?: Array<InvalidField>;
+    'invalidFields'?: Array<InvalidField>;
     /**
     * The unique reference for the request.
     */
-    "requestId"?: string;
+    'requestId'?: string;
     /**
     * The HTTP status code.
     */
-    "status"?: number;
+    'status'?: number;
     /**
     * A short, human-readable summary of the problem type.
     */
-    "title"?: string;
+    'title'?: string;
     /**
     * A URI that identifies the validation error type. It points to human-readable documentation for the problem type.
     */
-    "type"?: string;
+    'type'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "detail",
             "baseName": "detail",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "errorCode",
             "baseName": "errorCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "instance",
             "baseName": "instance",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "invalidFields",
             "baseName": "invalidFields",
-            "type": "Array<InvalidField>",
-            "format": ""
+            "type": "Array<InvalidField>"
         },
         {
             "name": "requestId",
             "baseName": "requestId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "title",
             "baseName": "title",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return DefaultErrorResponseEntity.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

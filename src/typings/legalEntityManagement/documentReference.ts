@@ -7,92 +7,79 @@
  * Do not edit this class manually.
  */
 
-import { DocumentPage } from "./documentPage";
-
+import { DocumentPage } from './documentPage';
 
 export class DocumentReference {
     /**
     * Identifies whether the document is active and used for checks.
     */
-    "active"?: boolean;
+    'active'?: boolean;
     /**
     * Your description for the document.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * Document name.
     */
-    "fileName"?: string;
+    'fileName'?: string;
     /**
     * The unique identifier of the resource.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The modification date of the document.
     */
-    "modificationDate"?: Date;
+    'modificationDate'?: Date;
     /**
     * List of document pages
     */
-    "pages"?: Array<DocumentPage>;
+    'pages'?: Array<DocumentPage>;
     /**
     * Type of document, used when providing an ID number or uploading a document.
     */
-    "type"?: string;
+    'type'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "active",
             "baseName": "active",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fileName",
             "baseName": "fileName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "modificationDate",
             "baseName": "modificationDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "pages",
             "baseName": "pages",
-            "type": "Array<DocumentPage>",
-            "format": ""
+            "type": "Array<DocumentPage>"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return DocumentReference.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

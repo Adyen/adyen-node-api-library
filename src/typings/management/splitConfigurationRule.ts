@@ -22,6 +22,7 @@ export class SplitConfigurationRule {
     * The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods.
     */
     'paymentMethod': string;
+    'regionality'?: SplitConfigurationRule.RegionalityEnum;
     /**
     * The unique identifier of the split configuration rule.
     */
@@ -51,6 +52,11 @@ export class SplitConfigurationRule {
             "type": "string"
         },
         {
+            "name": "regionality",
+            "baseName": "regionality",
+            "type": "SplitConfigurationRule.RegionalityEnum"
+        },
+        {
             "name": "ruleId",
             "baseName": "ruleId",
             "type": "string"
@@ -78,6 +84,12 @@ export namespace SplitConfigurationRule {
         Debit = 'debit',
         DeferredDebit = 'deferred_debit',
         Prepaid = 'prepaid',
+        Any = 'ANY'
+    }
+    export enum RegionalityEnum {
+        International = 'international',
+        IntraRegional = 'intraRegional',
+        InterRegional = 'interRegional',
         Any = 'ANY'
     }
     export enum ShopperInteractionEnum {

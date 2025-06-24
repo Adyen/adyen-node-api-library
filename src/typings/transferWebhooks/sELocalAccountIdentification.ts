@@ -12,45 +12,37 @@ export class SELocalAccountIdentification {
     /**
     * The 7- to 10-digit bank account number ([Bankkontonummer](https://sv.wikipedia.org/wiki/Bankkonto)), without the clearing number, separators, or whitespace.
     */
-    "accountNumber": string;
+    'accountNumber': string;
     /**
     * The 4- to 5-digit clearing number ([Clearingnummer](https://sv.wikipedia.org/wiki/Clearingnummer)), without separators or whitespace.
     */
-    "clearingNumber": string;
+    'clearingNumber': string;
     /**
     * **seLocal**
     */
-    "type": SELocalAccountIdentification.TypeEnum;
+    'type': SELocalAccountIdentification.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "clearingNumber",
             "baseName": "clearingNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "SELocalAccountIdentification.TypeEnum",
-            "format": ""
+            "type": "SELocalAccountIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return SELocalAccountIdentification.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

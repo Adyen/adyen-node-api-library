@@ -7,52 +7,43 @@
  * Do not edit this class manually.
  */
 
-import { PaymentInstrument } from "./paymentInstrument";
-
+import { PaymentInstrument } from './paymentInstrument';
 
 export class PaginatedPaymentInstrumentsResponse {
     /**
     * Indicates whether there are more items on the next page.
     */
-    "hasNext": boolean;
+    'hasNext': boolean;
     /**
     * Indicates whether there are more items on the previous page.
     */
-    "hasPrevious": boolean;
+    'hasPrevious': boolean;
     /**
     * List of payment instruments associated with the balance account.
     */
-    "paymentInstruments": Array<PaymentInstrument>;
+    'paymentInstruments': Array<PaymentInstrument>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "hasNext",
             "baseName": "hasNext",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "hasPrevious",
             "baseName": "hasPrevious",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "paymentInstruments",
             "baseName": "paymentInstruments",
-            "type": "Array<PaymentInstrument>",
-            "format": ""
+            "type": "Array<PaymentInstrument>"
         }    ];
 
     static getAttributeTypeMap() {
         return PaginatedPaymentInstrumentsResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 
