@@ -36,7 +36,7 @@ export class {{classname}} extends Service {
 
     {{#operation}}
 {{>api_summary}}
-    public async {{#vendorExtensions.x-methodName}}{{.}}{{/vendorExtensions.x-methodName}}{{^vendorExtensions.x-methodName}}{{nickname}}{{/vendorExtensions.x-methodName}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}{{#queryParams}}{{#required}}{{paramName}}: {{{dataType}}}, {{/required}}{{/queryParams}}{{#queryParams}}{{^required}}{{paramName}}?: {{{dataType}}}, {{/required}}{{/queryParams}}requestOptions?: IRequest.Options): Promise<{{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
+    public async {{#vendorExtensions.x-methodName}}{{.}}{{/vendorExtensions.x-methodName}}{{^vendorExtensions.x-methodName}}{{nickname}}{{/vendorExtensions.x-methodName}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}{{#queryParams}}{{#required}}{{paramName}}: {{{dataType}}}, {{/required}}{{/queryParams}}{{#queryParams}}{{^required}}{{paramName}}?: {{{dataType}}}, {{/required}}{{/queryParams}}requestOptions?: IRequest.Options): Promise<{{#returnProperty}}{{openApiType}}{{/returnProperty}}{{^returnProperty}}void{{/returnProperty}}> {
         const endpoint = `${this.baseUrl}{{{path}}}`{{#pathParams}}
             .replace("{" + "{{baseName}}" + "}", encodeURIComponent(String({{paramName}}))){{/pathParams}};
         const resource = new Resource(this, endpoint);
@@ -54,14 +54,14 @@ export class {{classname}} extends Service {
 {{/queryParams}}
         }
 {{/hasQueryParams}}
-        {{#returnProperty}}const response = {{/returnProperty}}await getJsonResponse<{{#bodyParam}}{{{dataType}}}{{/bodyParam}}{{^bodyParam}}string{{/bodyParam}}, {{#returnType}}{{{.}}}{{/returnType}}{{^returnType}}void{{/returnType}}>(
+        {{#returnProperty}}const response = {{/returnProperty}}await getJsonResponse<{{#bodyParam}}{{{dataType}}}{{/bodyParam}}{{^bodyParam}}string{{/bodyParam}}, {{#returnProperty}}{{openApiType}}{{/returnProperty}}{{^returnProperty}}void{{/returnProperty}}>(
             resource,
             {{#bodyParam}}request{{/bodyParam}}{{^bodyParam}}""{{/bodyParam}},
             { ...requestOptions, method: "{{httpMethod}}" }
         );
         {{#returnProperty}}
 
-        return ObjectSerializer.deserialize(response, "{{{returnType}}}");
+        return ObjectSerializer.deserialize(response, "{{{openApiType}}}");
         {{/returnProperty}}
     }
 
