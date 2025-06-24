@@ -12,37 +12,45 @@ export class ReceiptOptions {
     /**
     * The receipt logo converted to a Base64-encoded string. The image must be a .bmp file of < 256 KB, dimensions 240 (H) x 384 (W) px.
     */
-    'logo'?: string;
+    "logo"?: string;
     /**
     * Indicates whether a screen appears asking if you want to print the shopper receipt.
     */
-    'promptBeforePrinting'?: boolean;
+    "promptBeforePrinting"?: boolean;
     /**
     * Data to print on the receipt as a QR code. This can include static text and the following variables:  - `${merchantreference}`: the merchant reference of the transaction. - `${pspreference}`: the PSP reference of the transaction.   For example, **http://www.example.com/order/${pspreference}/${merchantreference}**.
     */
-    'qrCodeData'?: string;
+    "qrCodeData"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "logo",
             "baseName": "logo",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "promptBeforePrinting",
             "baseName": "promptBeforePrinting",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "qrCodeData",
             "baseName": "qrCodeData",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ReceiptOptions.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

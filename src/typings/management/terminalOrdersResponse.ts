@@ -7,25 +7,32 @@
  * Do not edit this class manually.
  */
 
-import { TerminalOrder } from './terminalOrder';
+import { TerminalOrder } from "./terminalOrder";
+
 
 export class TerminalOrdersResponse {
     /**
     * List of orders for payment terminal packages and parts.
     */
-    'data'?: Array<TerminalOrder>;
+    "data"?: Array<TerminalOrder>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<TerminalOrder>"
+            "type": "Array<TerminalOrder>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalOrdersResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

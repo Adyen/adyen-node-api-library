@@ -12,37 +12,45 @@ export class PayMeInfo {
     /**
     * Merchant display name
     */
-    'displayName': string;
+    "displayName": string;
     /**
     * Merchant logo. Format: Base64-encoded string.
     */
-    'logo': string;
+    "logo": string;
     /**
     * The email address of merchant support.
     */
-    'supportEmail': string;
+    "supportEmail": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "displayName",
             "baseName": "displayName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "logo",
             "baseName": "logo",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "supportEmail",
             "baseName": "supportEmail",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PayMeInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

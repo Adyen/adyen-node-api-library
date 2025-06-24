@@ -12,55 +12,65 @@ export class Contact {
     /**
     * The individual\'s email address.
     */
-    'email'?: string;
+    "email"?: string;
     /**
     * The individual\'s first name.
     */
-    'firstName'?: string;
+    "firstName"?: string;
     /**
     * The infix in the individual\'s name, if any.
     */
-    'infix'?: string;
+    "infix"?: string;
     /**
     * The individual\'s last name.
     */
-    'lastName'?: string;
+    "lastName"?: string;
     /**
     * The individual\'s phone number, specified as 10-14 digits with an optional `+` prefix.
     */
-    'phoneNumber'?: string;
+    "phoneNumber"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "email",
             "baseName": "email",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "firstName",
             "baseName": "firstName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "infix",
             "baseName": "infix",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lastName",
             "baseName": "lastName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "phoneNumber",
             "baseName": "phoneNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Contact.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

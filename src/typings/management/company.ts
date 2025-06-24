@@ -7,77 +7,90 @@
  * Do not edit this class manually.
  */
 
-import { CompanyLinks } from './companyLinks';
-import { DataCenter } from './dataCenter';
+import { CompanyLinks } from "./companyLinks";
+import { DataCenter } from "./dataCenter";
+
 
 export class Company {
-    '_links'?: CompanyLinks | null;
+    "_links"?: CompanyLinks;
     /**
     * List of available data centers.  Adyen has several data centers around the world.In the URL that you use for making API requests, we recommend you use the live URL prefix from the data center closest to your shoppers.
     */
-    'dataCenters'?: Array<DataCenter>;
+    "dataCenters"?: Array<DataCenter>;
     /**
     * Your description for the company account, maximum 300 characters
     */
-    'description'?: string;
+    "description"?: string;
     /**
     * The unique identifier of the company account.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The legal or trading name of the company.
     */
-    'name'?: string;
+    "name"?: string;
     /**
     * Your reference to the account
     */
-    'reference'?: string;
+    "reference"?: string;
     /**
     * The status of the company account.  Possible values:  * **Active**: Users can log in. Processing and payout capabilities depend on the status of the merchant account. * **Inactive**: Users can log in. Payment processing and payouts are disabled. * **Closed**: The company account is closed and this cannot be reversed. Users cannot log in. Payment processing and payouts are disabled.
     */
-    'status'?: string;
+    "status"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "CompanyLinks | null"
+            "type": "CompanyLinks",
+            "format": ""
         },
         {
             "name": "dataCenters",
             "baseName": "dataCenters",
-            "type": "Array<DataCenter>"
+            "type": "Array<DataCenter>",
+            "format": ""
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Company.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

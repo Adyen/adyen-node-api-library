@@ -6,7 +6,7 @@ export * from "./models";
 
 {{#models}}
 {{#model}}
-import { {{classname}}{{#oneOf}}{{#-first}}Class{{/-first}}{{/oneOf}} } from "./{{#lambda.camelcase}}{{ name }}{{/lambda.camelcase}}{{importFileExtension}}";
+import { {{classname}}{{#oneOf}}{{#-first}}Class{{/-first}}{{/oneOf}} } from "./{{#lambda.camelcase}}{{ classname }}{{/lambda.camelcase}}{{importFileExtension}}";
 {{/model}}
 {{/models}}
 

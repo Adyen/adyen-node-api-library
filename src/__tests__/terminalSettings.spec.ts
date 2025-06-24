@@ -7,17 +7,20 @@ describe("TerminalSettings properties", () => {
     terminalSettings = new TerminalSettings();
   });
 
-  test("should allow properties to be null", () => {
-    terminalSettings.cardholderReceipt = null;
-    terminalSettings.connectivity = null;
-    terminalSettings.gratuities = null;
-    terminalSettings.hardware = null;
+  // TMP: commented out to decide if attributes should be nullable (even when OpenAPI spec does not allow it)
+  // https://github.com/Adyen/adyen-node-api-library/issues/1351
+  //
+  // test("should allow properties to be null", () => {
+  //   terminalSettings.cardholderReceipt = null;
+  //   terminalSettings.connectivity = null;
+  //   terminalSettings.gratuities = null;
+  //   terminalSettings.hardware = null;
 
-    expect(terminalSettings.cardholderReceipt).toBeNull();
-    expect(terminalSettings.connectivity).toBeNull();
-    expect(terminalSettings.gratuities).toBeNull();
-    expect(terminalSettings.hardware).toBeNull();
-  });
+  //   expect(terminalSettings.cardholderReceipt).toBeNull();
+  //   expect(terminalSettings.connectivity).toBeNull();
+  //   expect(terminalSettings.gratuities).toBeNull();
+  //   expect(terminalSettings.hardware).toBeNull();
+  // });
 
   test("should allow properties to be undefined", () => {
     terminalSettings.cardholderReceipt = undefined;

@@ -7,25 +7,32 @@
  * Do not edit this class manually.
  */
 
-import { BillingEntity } from './billingEntity';
+import { BillingEntity } from "./billingEntity";
+
 
 export class BillingEntitiesResponse {
     /**
     * List of legal entities that can be used for the billing of orders.
     */
-    'data'?: Array<BillingEntity>;
+    "data"?: Array<BillingEntity>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<BillingEntity>"
+            "type": "Array<BillingEntity>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return BillingEntitiesResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

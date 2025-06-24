@@ -12,37 +12,45 @@ export class TerminalConnectivityWifi {
     /**
     * The terminal\'s IP address in the Wi-Fi network.
     */
-    'ipAddress'?: string;
+    "ipAddress"?: string;
     /**
     * The terminal\'s MAC address in the Wi-Fi network.
     */
-    'macAddress'?: string;
+    "macAddress"?: string;
     /**
     * The SSID of the Wi-Fi network that the terminal is connected to.
     */
-    'ssid'?: string;
+    "ssid"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "ipAddress",
             "baseName": "ipAddress",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "macAddress",
             "baseName": "macAddress",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "ssid",
             "baseName": "ssid",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalConnectivityWifi.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

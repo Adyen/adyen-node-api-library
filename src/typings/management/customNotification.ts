@@ -7,76 +7,89 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from './amount';
+import { Amount } from "./amount";
+
 
 export class CustomNotification {
-    'amount'?: Amount | null;
+    "amount"?: Amount;
     /**
     * The event that caused the notification to be sent.Currently supported values: * **AUTHORISATION** * **CANCELLATION** * **REFUND** * **CAPTURE** * **REPORT_AVAILABLE** * **CHARGEBACK** * **REQUEST_FOR_INFORMATION** * **NOTIFICATION_OF_CHARGEBACK** * **NOTIFICATIONTEST** * **ORDER_OPENED** * **ORDER_CLOSED** * **CHARGEBACK_REVERSED** * **REFUNDED_REVERSED** * **REFUND_WITH_DATA**
     */
-    'eventCode'?: string;
+    "eventCode"?: string;
     /**
     * The time of the event. Format: [ISO 8601](http://www.w3.org/TR/NOTE-datetime), YYYY-MM-DDThh:mm:ssTZD.
     */
-    'eventDate'?: Date;
+    "eventDate"?: Date;
     /**
     * Your reference for the custom test notification.
     */
-    'merchantReference'?: string;
+    "merchantReference"?: string;
     /**
     * The payment method for the payment that the notification is about. Possible values: * **amex** * **visa** * **mc** * **maestro** * **bcmc** * **paypal**  * **sms**  * **bankTransfer_NL** * **bankTransfer_DE** * **bankTransfer_BE** * **ideal** * **elv** * **sepadirectdebit** 
     */
-    'paymentMethod'?: string;
+    "paymentMethod"?: string;
     /**
     * A description of what caused the notification.
     */
-    'reason'?: string;
+    "reason"?: string;
     /**
     * The outcome of the event which the notification is about. Set to either **true** or **false**. 
     */
-    'success'?: boolean;
+    "success"?: boolean;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null"
+            "type": "Amount",
+            "format": ""
         },
         {
             "name": "eventCode",
             "baseName": "eventCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "eventDate",
             "baseName": "eventDate",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "merchantReference",
             "baseName": "merchantReference",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "reason",
             "baseName": "reason",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "success",
             "baseName": "success",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CustomNotification.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

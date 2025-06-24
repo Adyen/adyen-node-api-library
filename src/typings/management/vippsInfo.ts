@@ -12,28 +12,35 @@ export class VippsInfo {
     /**
     * Vipps logo. Format: Base64-encoded string.
     */
-    'logo': string;
+    "logo": string;
     /**
     * Vipps subscription cancel url (required in case of [recurring payments](https://docs.adyen.com/online-payments/tokenization))
     */
-    'subscriptionCancelUrl'?: string;
+    "subscriptionCancelUrl"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "logo",
             "baseName": "logo",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "subscriptionCancelUrl",
             "baseName": "subscriptionCancelUrl",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return VippsInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

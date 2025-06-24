@@ -7,17 +7,20 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    Logo,
-    TerminalSettings,
-    ObjectSerializer
-} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/management/objectSerializer";
+import { Logo } from "../../typings/management/models";
+import { TerminalSettings } from "../../typings/management/models";
+
+/**
+ * API handler for TerminalSettingsTerminalLevelApi
+ */
 export class TerminalSettingsTerminalLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -38,11 +41,13 @@ export class TerminalSettingsTerminalLevelApi extends Service {
         const endpoint = `${this.baseUrl}/terminals/{terminalId}/terminalLogos`
             .replace("{" + "terminalId" + "}", encodeURIComponent(String(terminalId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, Logo>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "Logo");
     }
 
@@ -56,11 +61,13 @@ export class TerminalSettingsTerminalLevelApi extends Service {
         const endpoint = `${this.baseUrl}/terminals/{terminalId}/terminalSettings`
             .replace("{" + "terminalId" + "}", encodeURIComponent(String(terminalId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, TerminalSettings>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "TerminalSettings");
     }
 
@@ -75,12 +82,14 @@ export class TerminalSettingsTerminalLevelApi extends Service {
         const endpoint = `${this.baseUrl}/terminals/{terminalId}/terminalLogos`
             .replace("{" + "terminalId" + "}", encodeURIComponent(String(terminalId)));
         const resource = new Resource(this, endpoint);
+        
         const request: Logo = ObjectSerializer.serialize(logo, "Logo");
         const response = await getJsonResponse<Logo, Logo>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
+
         return ObjectSerializer.deserialize(response, "Logo");
     }
 
@@ -95,12 +104,15 @@ export class TerminalSettingsTerminalLevelApi extends Service {
         const endpoint = `${this.baseUrl}/terminals/{terminalId}/terminalSettings`
             .replace("{" + "terminalId" + "}", encodeURIComponent(String(terminalId)));
         const resource = new Resource(this, endpoint);
+        
         const request: TerminalSettings = ObjectSerializer.serialize(terminalSettings, "TerminalSettings");
         const response = await getJsonResponse<TerminalSettings, TerminalSettings>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
+
         return ObjectSerializer.deserialize(response, "TerminalSettings");
     }
+
 }

@@ -7,47 +7,57 @@
  * Do not edit this class manually.
  */
 
-import { Address } from './address';
-import { Contact } from './contact';
+import { Address } from "./address";
+import { Contact } from "./contact";
+
 
 export class ShippingLocation {
-    'address'?: Address | null;
-    'contact'?: Contact | null;
+    "address"?: Address;
+    "contact"?: Contact;
     /**
     * The unique identifier of the shipping location, for use as `shippingLocationId` when creating an order.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * The unique name of the shipping location.
     */
-    'name'?: string;
+    "name"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address | null"
+            "type": "Address",
+            "format": ""
         },
         {
             "name": "contact",
             "baseName": "contact",
-            "type": "Contact | null"
+            "type": "Contact",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ShippingLocation.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

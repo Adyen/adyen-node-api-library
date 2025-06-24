@@ -7,17 +7,20 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    AllowedOrigin,
-    AllowedOriginsResponse,
-    ObjectSerializer
-} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/management/objectSerializer";
+import { AllowedOrigin } from "../../typings/management/models";
+import { AllowedOriginsResponse } from "../../typings/management/models";
+
+/**
+ * API handler for AllowedOriginsMerchantLevelApi
+ */
 export class AllowedOriginsMerchantLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -41,12 +44,14 @@ export class AllowedOriginsMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
+        
         const request: AllowedOrigin = ObjectSerializer.serialize(allowedOrigin, "AllowedOrigin");
         const response = await getJsonResponse<AllowedOrigin, AllowedOrigin>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "AllowedOrigin");
     }
 
@@ -56,6 +61,7 @@ export class AllowedOriginsMerchantLevelApi extends Service {
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
     * @param originId {@link string } Unique identifier of the allowed origin.
     * @param requestOptions {@link IRequest.Options }
+    * @return {@link void }
     */
     public async deleteAllowedOrigin(merchantId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}`
@@ -63,6 +69,7 @@ export class AllowedOriginsMerchantLevelApi extends Service {
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)))
             .replace("{" + "originId" + "}", encodeURIComponent(String(originId)));
         const resource = new Resource(this, endpoint);
+        
         await getJsonResponse<string, void>(
             resource,
             "",
@@ -84,11 +91,13 @@ export class AllowedOriginsMerchantLevelApi extends Service {
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)))
             .replace("{" + "originId" + "}", encodeURIComponent(String(originId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, AllowedOrigin>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "AllowedOrigin");
     }
 
@@ -104,11 +113,14 @@ export class AllowedOriginsMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, AllowedOriginsResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
     }
+
 }

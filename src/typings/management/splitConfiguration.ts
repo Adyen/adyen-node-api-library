@@ -7,43 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { SplitConfigurationRule } from './splitConfigurationRule';
+import { SplitConfigurationRule } from "./splitConfigurationRule";
+
 
 export class SplitConfiguration {
     /**
     * Your description for the split configuration.
     */
-    'description': string;
+    "description": string;
     /**
     * Array of rules that define the split configuration behavior.
     */
-    'rules': Array<SplitConfigurationRule>;
+    "rules": Array<SplitConfigurationRule>;
     /**
     * Unique identifier of the split configuration.
     */
-    'splitConfigurationId'?: string;
+    "splitConfigurationId"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "rules",
             "baseName": "rules",
-            "type": "Array<SplitConfigurationRule>"
+            "type": "Array<SplitConfigurationRule>",
+            "format": ""
         },
         {
             "name": "splitConfigurationId",
             "baseName": "splitConfigurationId",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return SplitConfiguration.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

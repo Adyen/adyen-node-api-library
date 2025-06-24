@@ -7,16 +7,19 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    GenerateClientKeyResponse,
-    ObjectSerializer
-} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/management/objectSerializer";
+import { GenerateClientKeyResponse } from "../../typings/management/models";
+
+/**
+ * API handler for ClientKeyMerchantLevelApi
+ */
 export class ClientKeyMerchantLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -39,11 +42,14 @@ export class ClientKeyMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, GenerateClientKeyResponse>(
             resource,
             "",
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "GenerateClientKeyResponse");
     }
+
 }

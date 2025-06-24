@@ -12,28 +12,35 @@ export class WeChatPayInfo {
     /**
     * The name of the contact person from merchant support.
     */
-    'contactPersonName': string;
+    "contactPersonName": string;
     /**
     * The email address of merchant support.
     */
-    'email': string;
+    "email": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "contactPersonName",
             "baseName": "contactPersonName",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "email",
             "baseName": "email",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return WeChatPayInfo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

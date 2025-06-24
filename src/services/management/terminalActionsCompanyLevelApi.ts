@@ -7,17 +7,20 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    ExternalTerminalAction,
-    ListExternalTerminalActionsResponse,
-    ObjectSerializer
-} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/management/objectSerializer";
+import { ExternalTerminalAction } from "../../typings/management/models";
+import { ListExternalTerminalActionsResponse } from "../../typings/management/models";
+
+/**
+ * API handler for TerminalActionsCompanyLevelApi
+ */
 export class TerminalActionsCompanyLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -40,11 +43,13 @@ export class TerminalActionsCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "actionId" + "}", encodeURIComponent(String(actionId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, ExternalTerminalAction>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "ExternalTerminalAction");
     }
 
@@ -62,6 +67,7 @@ export class TerminalActionsCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/terminalActions`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = pageNumber ?? pageSize ?? status ?? type;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -76,6 +82,8 @@ export class TerminalActionsCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "ListExternalTerminalActionsResponse");
     }
+
 }

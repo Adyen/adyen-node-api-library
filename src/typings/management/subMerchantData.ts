@@ -7,39 +7,30 @@
  * Do not edit this class manually.
  */
 
-import { Address } from "./address";
 
-
-export class BillingEntity {
-    "address"?: Address;
+export class SubMerchantData {
     /**
-    * The email address of the billing entity.
+    * The email associated with the sub-merchant\'s account.
     */
-    "email"?: string;
+    "email": string;
     /**
-    * The unique identifier of the billing entity, for use as `billingEntityId` when creating an order.
+    * A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant. * Format: Alphanumeric * Maximum length: 15 characters
     */
-    "id"?: string;
+    "id": string;
     /**
-    * The unique name of the billing entity.
+    * The sub-merchant\'s 4-digit Merchant Category Code (MCC). * Format: Numeric * Fixed length: 4 digits
     */
-    "name"?: string;
+    "mcc": string;
     /**
-    * The tax number of the billing entity.
+    * The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
     */
-    "taxId"?: string;
+    "name": string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "address",
-            "baseName": "address",
-            "type": "Address",
-            "format": ""
-        },
         {
             "name": "email",
             "baseName": "email",
@@ -53,20 +44,20 @@ export class BillingEntity {
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "mcc",
+            "baseName": "mcc",
             "type": "string",
             "format": ""
         },
         {
-            "name": "taxId",
-            "baseName": "taxId",
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return BillingEntity.attributeTypeMap;
+        return SubMerchantData.attributeTypeMap;
     }
 
     public constructor() {

@@ -12,37 +12,45 @@ export class Localization {
     /**
     * Language of the terminal.
     */
-    'language'?: string;
+    "language"?: string;
     /**
     * Secondary language of the terminal.
     */
-    'secondaryLanguage'?: string;
+    "secondaryLanguage"?: string;
     /**
     * The time zone of the terminal.
     */
-    'timezone'?: string;
+    "timezone"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "language",
             "baseName": "language",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "secondaryLanguage",
             "baseName": "secondaryLanguage",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "timezone",
             "baseName": "timezone",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Localization.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

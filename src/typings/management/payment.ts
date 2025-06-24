@@ -12,28 +12,35 @@ export class Payment {
     /**
     * The default currency for contactless payments on the payment terminal, as the three-letter [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
     */
-    'contactlessCurrency'?: string;
+    "contactlessCurrency"?: string;
     /**
     * Hides the minor units for the listed [ISO currency codes](https://en.wikipedia.org/wiki/ISO_4217).
     */
-    'hideMinorUnitsInCurrencies'?: Array<string>;
+    "hideMinorUnitsInCurrencies"?: Array<string>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "contactlessCurrency",
             "baseName": "contactlessCurrency",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "hideMinorUnitsInCurrencies",
             "baseName": "hideMinorUnitsInCurrencies",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Payment.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

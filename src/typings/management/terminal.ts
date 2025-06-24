@@ -7,92 +7,107 @@
  * Do not edit this class manually.
  */
 
-import { TerminalAssignment } from './terminalAssignment';
-import { TerminalConnectivity } from './terminalConnectivity';
+import { TerminalAssignment } from "./terminalAssignment";
+import { TerminalConnectivity } from "./terminalConnectivity";
+
 
 export class Terminal {
-    'assignment'?: TerminalAssignment | null;
-    'connectivity'?: TerminalConnectivity | null;
+    "assignment"?: TerminalAssignment;
+    "connectivity"?: TerminalConnectivity;
     /**
     * The software release currently in use on the terminal.
     */
-    'firmwareVersion'?: string;
+    "firmwareVersion"?: string;
     /**
     * The unique identifier of the terminal.
     */
-    'id'?: string;
+    "id"?: string;
     /**
     * Date and time of the last activity on the terminal. Not included when the last activity was more than 14 days ago.
     */
-    'lastActivityAt'?: Date;
+    "lastActivityAt"?: Date;
     /**
     * Date and time of the last transaction on the terminal. Not included when the last transaction was more than 14 days ago.
     */
-    'lastTransactionAt'?: Date;
+    "lastTransactionAt"?: Date;
     /**
     * The model name of the terminal.
     */
-    'model'?: string;
+    "model"?: string;
     /**
     * The exact time of the terminal reboot, in the timezone of the terminal in **HH:mm** format.
     */
-    'restartLocalTime'?: string;
+    "restartLocalTime"?: string;
     /**
     * The serial number of the terminal.
     */
-    'serialNumber'?: string;
+    "serialNumber"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "assignment",
             "baseName": "assignment",
-            "type": "TerminalAssignment | null"
+            "type": "TerminalAssignment",
+            "format": ""
         },
         {
             "name": "connectivity",
             "baseName": "connectivity",
-            "type": "TerminalConnectivity | null"
+            "type": "TerminalConnectivity",
+            "format": ""
         },
         {
             "name": "firmwareVersion",
             "baseName": "firmwareVersion",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "lastActivityAt",
             "baseName": "lastActivityAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "lastTransactionAt",
             "baseName": "lastTransactionAt",
-            "type": "Date"
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "model",
             "baseName": "model",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "restartLocalTime",
             "baseName": "restartLocalTime",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "serialNumber",
             "baseName": "serialNumber",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Terminal.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

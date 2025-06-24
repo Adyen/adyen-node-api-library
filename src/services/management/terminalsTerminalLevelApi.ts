@@ -7,17 +7,20 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    ListTerminalsResponse,
-    TerminalReassignmentRequest,
-    ObjectSerializer
-} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/management/objectSerializer";
+import { ListTerminalsResponse } from "../../typings/management/models";
+import { TerminalReassignmentRequest } from "../../typings/management/models";
+
+/**
+ * API handler for TerminalsTerminalLevelApi
+ */
 export class TerminalsTerminalLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -44,6 +47,7 @@ export class TerminalsTerminalLevelApi extends Service {
     public async listTerminals(searchQuery?: string, otpQuery?: string, countries?: string, merchantIds?: string, storeIds?: string, brandModels?: string, pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<ListTerminalsResponse> {
         const endpoint = `${this.baseUrl}/terminals`;
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = searchQuery ?? otpQuery ?? countries ?? merchantIds ?? storeIds ?? brandModels ?? pageNumber ?? pageSize;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -62,6 +66,7 @@ export class TerminalsTerminalLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "ListTerminalsResponse");
     }
 
@@ -70,11 +75,13 @@ export class TerminalsTerminalLevelApi extends Service {
     * @param terminalId {@link string } The unique identifier of the payment terminal.
     * @param terminalReassignmentRequest {@link TerminalReassignmentRequest } 
     * @param requestOptions {@link IRequest.Options }
+    * @return {@link void }
     */
     public async reassignTerminal(terminalId: string, terminalReassignmentRequest: TerminalReassignmentRequest, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/terminals/{terminalId}/reassign`
             .replace("{" + "terminalId" + "}", encodeURIComponent(String(terminalId)));
         const resource = new Resource(this, endpoint);
+        
         const request: TerminalReassignmentRequest = ObjectSerializer.serialize(terminalReassignmentRequest, "TerminalReassignmentRequest");
         await getJsonResponse<TerminalReassignmentRequest, void>(
             resource,
@@ -82,4 +89,5 @@ export class TerminalsTerminalLevelApi extends Service {
             { ...requestOptions, method: "POST" }
         );
     }
+
 }

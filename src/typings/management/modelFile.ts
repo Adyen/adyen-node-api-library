@@ -12,28 +12,35 @@ export class ModelFile {
     /**
     * The certificate content converted to a Base64-encoded string.
     */
-    'data': string;
+    "data": string;
     /**
     * The name of the certificate. Must be unique across Wi-Fi profiles.
     */
-    'name': string;
+    "name": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return ModelFile.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

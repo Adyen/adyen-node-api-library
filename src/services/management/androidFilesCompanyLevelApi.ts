@@ -7,21 +7,24 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    AndroidApp,
-    AndroidAppsResponse,
-    AndroidCertificatesResponse,
-    ReprocessAndroidAppResponse,
-    UploadAndroidAppResponse,
-    UploadAndroidCertificateResponse,
-    ObjectSerializer
-} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/management/objectSerializer";
+import { AndroidApp } from "../../typings/management/models";
+import { AndroidAppsResponse } from "../../typings/management/models";
+import { AndroidCertificatesResponse } from "../../typings/management/models";
+import { ReprocessAndroidAppResponse } from "../../typings/management/models";
+import { UploadAndroidAppResponse } from "../../typings/management/models";
+import { UploadAndroidCertificateResponse } from "../../typings/management/models";
+
+/**
+ * API handler for AndroidFilesCompanyLevelApi
+ */
 export class AndroidFilesCompanyLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -44,11 +47,13 @@ export class AndroidFilesCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, AndroidApp>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "AndroidApp");
     }
 
@@ -66,6 +71,7 @@ export class AndroidFilesCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/androidApps`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = pageNumber ?? pageSize ?? packageName ?? versionCode;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -80,6 +86,7 @@ export class AndroidFilesCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "AndroidAppsResponse");
     }
 
@@ -96,6 +103,7 @@ export class AndroidFilesCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/androidCertificates`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = pageNumber ?? pageSize ?? certificateName;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -109,6 +117,7 @@ export class AndroidFilesCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "AndroidCertificatesResponse");
     }
 
@@ -124,11 +133,13 @@ export class AndroidFilesCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, ReprocessAndroidAppResponse>(
             resource,
             "",
             { ...requestOptions, method: "PATCH" }
         );
+
         return ObjectSerializer.deserialize(response, "ReprocessAndroidAppResponse");
     }
 
@@ -142,11 +153,13 @@ export class AndroidFilesCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/androidApps`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, UploadAndroidAppResponse>(
             resource,
             "",
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "UploadAndroidAppResponse");
     }
 
@@ -160,11 +173,14 @@ export class AndroidFilesCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/androidCertificates`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, UploadAndroidCertificateResponse>(
             resource,
             "",
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "UploadAndroidCertificateResponse");
     }
+
 }

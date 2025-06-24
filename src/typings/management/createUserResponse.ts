@@ -7,101 +7,117 @@
  * Do not edit this class manually.
  */
 
-import { Links } from './links';
-import { Name } from './name';
+import { Links } from "./links";
+import { Name } from "./name";
+
 
 export class CreateUserResponse {
-    '_links'?: Links | null;
+    "_links"?: Links;
     /**
     * The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user.
     */
-    'accountGroups'?: Array<string>;
+    "accountGroups"?: Array<string>;
     /**
     * Indicates whether this user is active.
     */
-    'active'?: boolean;
+    "active"?: boolean;
     /**
     * Set of apps available to this user
     */
-    'apps'?: Array<string>;
+    "apps"?: Array<string>;
     /**
     * The email address of the user.
     */
-    'email': string;
+    "email": string;
     /**
     * The unique identifier of the user.
     */
-    'id': string;
-    'name'?: Name | null;
+    "id": string;
+    "name"?: Name;
     /**
     * The list of [roles](https://docs.adyen.com/account/user-roles) for this user.
     */
-    'roles': Array<string>;
+    "roles": Array<string>;
     /**
     * The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**.
     */
-    'timeZoneCode': string;
+    "timeZoneCode": string;
     /**
     * The username for this user.
     */
-    'username': string;
+    "username": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "Links | null"
+            "type": "Links",
+            "format": ""
         },
         {
             "name": "accountGroups",
             "baseName": "accountGroups",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "active",
             "baseName": "active",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "apps",
             "baseName": "apps",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "email",
             "baseName": "email",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "Name | null"
+            "type": "Name",
+            "format": ""
         },
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "timeZoneCode",
             "baseName": "timeZoneCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "username",
             "baseName": "username",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CreateUserResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

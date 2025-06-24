@@ -12,19 +12,25 @@ export class Logo {
     /**
     * The image file, converted to a Base64-encoded string, of the logo to be shown on the terminal.
     */
-    'data'?: string;
+    "data"?: string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Logo.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

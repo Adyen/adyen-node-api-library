@@ -7,32 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { Profile } from './profile';
-import { Settings } from './settings';
+import { Profile } from "./profile";
+import { Settings } from "./settings";
+
 
 export class WifiProfiles {
     /**
     * List of remote Wi-Fi profiles.
     */
-    'profiles'?: Array<Profile>;
-    'settings'?: Settings | null;
+    "profiles"?: Array<Profile>;
+    "settings"?: Settings;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "profiles",
             "baseName": "profiles",
-            "type": "Array<Profile>"
+            "type": "Array<Profile>",
+            "format": ""
         },
         {
             "name": "settings",
             "baseName": "settings",
-            "type": "Settings | null"
+            "type": "Settings",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return WifiProfiles.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

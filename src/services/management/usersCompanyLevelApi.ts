@@ -7,20 +7,23 @@
  * Do not edit this class manually.
  */
 
+
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
-import { 
-    CompanyUser,
-    CreateCompanyUserRequest,
-    CreateCompanyUserResponse,
-    ListCompanyUsersResponse,
-    UpdateCompanyUserRequest,
-    ObjectSerializer
-} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
+import { ObjectSerializer } from "../../typings/management/objectSerializer";
+import { CompanyUser } from "../../typings/management/models";
+import { CreateCompanyUserRequest } from "../../typings/management/models";
+import { CreateCompanyUserResponse } from "../../typings/management/models";
+import { ListCompanyUsersResponse } from "../../typings/management/models";
+import { UpdateCompanyUserRequest } from "../../typings/management/models";
+
+/**
+ * API handler for UsersCompanyLevelApi
+ */
 export class UsersCompanyLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -42,12 +45,14 @@ export class UsersCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/users`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
+        
         const request: CreateCompanyUserRequest = ObjectSerializer.serialize(createCompanyUserRequest, "CreateCompanyUserRequest");
         const response = await getJsonResponse<CreateCompanyUserRequest, CreateCompanyUserResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
+
         return ObjectSerializer.deserialize(response, "CreateCompanyUserResponse");
     }
 
@@ -63,11 +68,13 @@ export class UsersCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "userId" + "}", encodeURIComponent(String(userId)));
         const resource = new Resource(this, endpoint);
+        
         const response = await getJsonResponse<string, CompanyUser>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "CompanyUser");
     }
 
@@ -84,6 +91,7 @@ export class UsersCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/users`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
+        
         const hasDefinedQueryParams = pageNumber ?? pageSize ?? username;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -97,6 +105,7 @@ export class UsersCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
+
         return ObjectSerializer.deserialize(response, "ListCompanyUsersResponse");
     }
 
@@ -113,12 +122,15 @@ export class UsersCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "userId" + "}", encodeURIComponent(String(userId)));
         const resource = new Resource(this, endpoint);
+        
         const request: UpdateCompanyUserRequest = ObjectSerializer.serialize(updateCompanyUserRequest, "UpdateCompanyUserRequest");
         const response = await getJsonResponse<UpdateCompanyUserRequest, CompanyUser>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
+
         return ObjectSerializer.deserialize(response, "CompanyUser");
     }
+
 }

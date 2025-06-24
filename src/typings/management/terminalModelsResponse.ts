@@ -7,25 +7,32 @@
  * Do not edit this class manually.
  */
 
-import { IdName } from './idName';
+import { IdName } from "./idName";
+
 
 export class TerminalModelsResponse {
     /**
     * The terminal models that the API credential has access to.
     */
-    'data'?: Array<IdName>;
+    "data"?: Array<IdName>;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<IdName>"
+            "type": "Array<IdName>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalModelsResponse.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

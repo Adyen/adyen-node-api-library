@@ -7,172 +7,200 @@
  * Do not edit this class manually.
  */
 
-import { CardholderReceipt } from './cardholderReceipt';
-import { Connectivity } from './connectivity';
-import { Gratuity } from './gratuity';
-import { Hardware } from './hardware';
-import { Localization } from './localization';
-import { Nexo } from './nexo';
-import { OfflineProcessing } from './offlineProcessing';
-import { Opi } from './opi';
-import { Passcodes } from './passcodes';
-import { PayAtTable } from './payAtTable';
-import { Payment } from './payment';
-import { ReceiptOptions } from './receiptOptions';
-import { ReceiptPrinting } from './receiptPrinting';
-import { Refunds } from './refunds';
-import { Signature } from './signature';
-import { Standalone } from './standalone';
-import { StoreAndForward } from './storeAndForward';
-import { Surcharge } from './surcharge';
-import { TapToPay } from './tapToPay';
-import { TerminalInstructions } from './terminalInstructions';
-import { Timeouts } from './timeouts';
-import { WifiProfiles } from './wifiProfiles';
+import { CardholderReceipt } from "./cardholderReceipt";
+import { Connectivity } from "./connectivity";
+import { Gratuity } from "./gratuity";
+import { Hardware } from "./hardware";
+import { Localization } from "./localization";
+import { Nexo } from "./nexo";
+import { OfflineProcessing } from "./offlineProcessing";
+import { Opi } from "./opi";
+import { Passcodes } from "./passcodes";
+import { PayAtTable } from "./payAtTable";
+import { Payment } from "./payment";
+import { ReceiptOptions } from "./receiptOptions";
+import { ReceiptPrinting } from "./receiptPrinting";
+import { Refunds } from "./refunds";
+import { Signature } from "./signature";
+import { Standalone } from "./standalone";
+import { StoreAndForward } from "./storeAndForward";
+import { Surcharge } from "./surcharge";
+import { TapToPay } from "./tapToPay";
+import { TerminalInstructions } from "./terminalInstructions";
+import { Timeouts } from "./timeouts";
+import { WifiProfiles } from "./wifiProfiles";
+
 
 export class TerminalSettings {
-    'cardholderReceipt'?: CardholderReceipt | null;
-    'connectivity'?: Connectivity | null;
+    "cardholderReceipt"?: CardholderReceipt;
+    "connectivity"?: Connectivity;
     /**
     * Settings for tipping with or without predefined options to choose from. The maximum number of predefined options is four, or three plus the option to enter a custom tip.
     */
-    'gratuities'?: Array<Gratuity> | null;
-    'hardware'?: Hardware | null;
-    'localization'?: Localization | null;
-    'nexo'?: Nexo | null;
-    'offlineProcessing'?: OfflineProcessing | null;
-    'opi'?: Opi | null;
-    'passcodes'?: Passcodes | null;
-    'payAtTable'?: PayAtTable | null;
-    'payment'?: Payment | null;
-    'receiptOptions'?: ReceiptOptions | null;
-    'receiptPrinting'?: ReceiptPrinting | null;
-    'refunds'?: Refunds | null;
-    'signature'?: Signature | null;
-    'standalone'?: Standalone | null;
-    'storeAndForward'?: StoreAndForward | null;
-    'surcharge'?: Surcharge | null;
-    'tapToPay'?: TapToPay | null;
-    'terminalInstructions'?: TerminalInstructions | null;
-    'timeouts'?: Timeouts | null;
-    'wifiProfiles'?: WifiProfiles | null;
+    "gratuities"?: Array<Gratuity> | null;
+    "hardware"?: Hardware;
+    "localization"?: Localization;
+    "nexo"?: Nexo;
+    "offlineProcessing"?: OfflineProcessing;
+    "opi"?: Opi;
+    "passcodes"?: Passcodes;
+    "payAtTable"?: PayAtTable;
+    "payment"?: Payment;
+    "receiptOptions"?: ReceiptOptions;
+    "receiptPrinting"?: ReceiptPrinting;
+    "refunds"?: Refunds;
+    "signature"?: Signature;
+    "standalone"?: Standalone;
+    "storeAndForward"?: StoreAndForward;
+    "surcharge"?: Surcharge;
+    "tapToPay"?: TapToPay;
+    "terminalInstructions"?: TerminalInstructions;
+    "timeouts"?: Timeouts;
+    "wifiProfiles"?: WifiProfiles;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "cardholderReceipt",
             "baseName": "cardholderReceipt",
-            "type": "CardholderReceipt | null"
+            "type": "CardholderReceipt",
+            "format": ""
         },
         {
             "name": "connectivity",
             "baseName": "connectivity",
-            "type": "Connectivity | null"
+            "type": "Connectivity",
+            "format": ""
         },
         {
             "name": "gratuities",
             "baseName": "gratuities",
-            "type": "Array<Gratuity> | null"
+            "type": "Array<Gratuity>",
+            "format": ""
         },
         {
             "name": "hardware",
             "baseName": "hardware",
-            "type": "Hardware | null"
+            "type": "Hardware",
+            "format": ""
         },
         {
             "name": "localization",
             "baseName": "localization",
-            "type": "Localization | null"
+            "type": "Localization",
+            "format": ""
         },
         {
             "name": "nexo",
             "baseName": "nexo",
-            "type": "Nexo | null"
+            "type": "Nexo",
+            "format": ""
         },
         {
             "name": "offlineProcessing",
             "baseName": "offlineProcessing",
-            "type": "OfflineProcessing | null"
+            "type": "OfflineProcessing",
+            "format": ""
         },
         {
             "name": "opi",
             "baseName": "opi",
-            "type": "Opi | null"
+            "type": "Opi",
+            "format": ""
         },
         {
             "name": "passcodes",
             "baseName": "passcodes",
-            "type": "Passcodes | null"
+            "type": "Passcodes",
+            "format": ""
         },
         {
             "name": "payAtTable",
             "baseName": "payAtTable",
-            "type": "PayAtTable | null"
+            "type": "PayAtTable",
+            "format": ""
         },
         {
             "name": "payment",
             "baseName": "payment",
-            "type": "Payment | null"
+            "type": "Payment",
+            "format": ""
         },
         {
             "name": "receiptOptions",
             "baseName": "receiptOptions",
-            "type": "ReceiptOptions | null"
+            "type": "ReceiptOptions",
+            "format": ""
         },
         {
             "name": "receiptPrinting",
             "baseName": "receiptPrinting",
-            "type": "ReceiptPrinting | null"
+            "type": "ReceiptPrinting",
+            "format": ""
         },
         {
             "name": "refunds",
             "baseName": "refunds",
-            "type": "Refunds | null"
+            "type": "Refunds",
+            "format": ""
         },
         {
             "name": "signature",
             "baseName": "signature",
-            "type": "Signature | null"
+            "type": "Signature",
+            "format": ""
         },
         {
             "name": "standalone",
             "baseName": "standalone",
-            "type": "Standalone | null"
+            "type": "Standalone",
+            "format": ""
         },
         {
             "name": "storeAndForward",
             "baseName": "storeAndForward",
-            "type": "StoreAndForward | null"
+            "type": "StoreAndForward",
+            "format": ""
         },
         {
             "name": "surcharge",
             "baseName": "surcharge",
-            "type": "Surcharge | null"
+            "type": "Surcharge",
+            "format": ""
         },
         {
             "name": "tapToPay",
             "baseName": "tapToPay",
-            "type": "TapToPay | null"
+            "type": "TapToPay",
+            "format": ""
         },
         {
             "name": "terminalInstructions",
             "baseName": "terminalInstructions",
-            "type": "TerminalInstructions | null"
+            "type": "TerminalInstructions",
+            "format": ""
         },
         {
             "name": "timeouts",
             "baseName": "timeouts",
-            "type": "Timeouts | null"
+            "type": "Timeouts",
+            "format": ""
         },
         {
             "name": "wifiProfiles",
             "baseName": "wifiProfiles",
-            "type": "WifiProfiles | null"
+            "type": "WifiProfiles",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalSettings.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

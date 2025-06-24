@@ -7,76 +7,89 @@
  * Do not edit this class manually.
  */
 
-import { Name } from './name';
+import { Name } from "./name";
+
 
 export class CreateMerchantUserRequest {
     /**
     * The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user.
     */
-    'accountGroups'?: Array<string>;
+    "accountGroups"?: Array<string>;
     /**
     * The email address of the user.
     */
-    'email': string;
+    "email": string;
     /**
     * The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username & account**, **Email**, or **SSO** 
     */
-    'loginMethod'?: string;
-    'name': Name;
+    "loginMethod"?: string;
+    "name": Name;
     /**
     * The list of [roles](https://docs.adyen.com/account/user-roles) for this user.
     */
-    'roles'?: Array<string>;
+    "roles"?: Array<string>;
     /**
     * The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**.
     */
-    'timeZoneCode'?: string;
+    "timeZoneCode"?: string;
     /**
     * The user\'s email address that will be their username. Must be the same as the one in the `email` field.
     */
-    'username': string;
+    "username": string;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "accountGroups",
             "baseName": "accountGroups",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "email",
             "baseName": "email",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "loginMethod",
             "baseName": "loginMethod",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "Name"
+            "type": "Name",
+            "format": ""
         },
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Array<string>"
+            "type": "Array<string>",
+            "format": ""
         },
         {
             "name": "timeZoneCode",
             "baseName": "timeZoneCode",
-            "type": "string"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "username",
             "baseName": "username",
-            "type": "string"
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CreateMerchantUserRequest.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

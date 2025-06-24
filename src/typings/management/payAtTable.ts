@@ -12,37 +12,45 @@ export class PayAtTable {
     /**
     * Allowed authentication methods: Magswipe, Manual Entry.
     */
-    'authenticationMethod'?: PayAtTable.AuthenticationMethodEnum;
+    "authenticationMethod"?: PayAtTable.AuthenticationMethodEnum;
     /**
     * Enable Pay at table.
     */
-    'enablePayAtTable'?: boolean;
+    "enablePayAtTable"?: boolean;
     /**
     * Sets the allowed payment instrument for Pay at table transactions.  Can be: **cash** or **card**. If not set, the terminal presents both options.
     */
-    'paymentInstrument'?: PayAtTable.PaymentInstrumentEnum | null;
+    "paymentInstrument"?: PayAtTable.PaymentInstrumentEnum | null;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "authenticationMethod",
             "baseName": "authenticationMethod",
-            "type": "PayAtTable.AuthenticationMethodEnum"
+            "type": "PayAtTable.AuthenticationMethodEnum",
+            "format": ""
         },
         {
             "name": "enablePayAtTable",
             "baseName": "enablePayAtTable",
-            "type": "boolean"
+            "type": "boolean",
+            "format": ""
         },
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PayAtTable.PaymentInstrumentEnum | null"
+            "type": "PayAtTable.PaymentInstrumentEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return PayAtTable.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

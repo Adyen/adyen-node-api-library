@@ -7,40 +7,50 @@
  * Do not edit this class manually.
  */
 
-import { LinksElement } from './linksElement';
+import { LinksElement } from "./linksElement";
+
 
 export class CompanyLinks {
-    'apiCredentials'?: LinksElement | null;
-    'self': LinksElement;
-    'users'?: LinksElement | null;
-    'webhooks'?: LinksElement | null;
+    "apiCredentials"?: LinksElement;
+    "self": LinksElement;
+    "users"?: LinksElement;
+    "webhooks"?: LinksElement;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "apiCredentials",
             "baseName": "apiCredentials",
-            "type": "LinksElement | null"
+            "type": "LinksElement",
+            "format": ""
         },
         {
             "name": "self",
             "baseName": "self",
-            "type": "LinksElement"
+            "type": "LinksElement",
+            "format": ""
         },
         {
             "name": "users",
             "baseName": "users",
-            "type": "LinksElement | null"
+            "type": "LinksElement",
+            "format": ""
         },
         {
             "name": "webhooks",
             "baseName": "webhooks",
-            "type": "LinksElement | null"
+            "type": "LinksElement",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return CompanyLinks.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 

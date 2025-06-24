@@ -7,22 +7,29 @@
  * Do not edit this class manually.
  */
 
-import { Referenced } from './referenced';
+import { Referenced } from "./referenced";
+
 
 export class Refunds {
-    'referenced'?: Referenced | null;
+    "referenced"?: Referenced;
 
-    static discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "referenced",
             "baseName": "referenced",
-            "type": "Referenced | null"
+            "type": "Referenced",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
         return Refunds.attributeTypeMap;
+    }
+
+    public constructor() {
     }
 }
 
