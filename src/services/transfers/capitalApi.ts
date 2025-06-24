@@ -35,7 +35,7 @@ export class CapitalApi extends Service {
     /**
     * @summary Get a capital account
     * @param requestOptions {@link IRequest.Options }
-    * @param counterpartyAccountHolderId {@link string } The counterparty account holder id. 
+    * @param counterpartyAccountHolderId {@link string } The counterparty account holder id.
     * @return {@link CapitalGrants }
     *
 	* @deprecated since Transfers API v4

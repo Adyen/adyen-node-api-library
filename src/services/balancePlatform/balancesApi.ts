@@ -47,14 +47,14 @@ export class BalancesApi extends Service {
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
         
-        const request: BalanceWebhookSettingInfo = ObjectSerializer.serialize(balanceWebhookSettingInfo, "BalanceWebhookSettingInfo", "");
+        const request: BalanceWebhookSettingInfo = ObjectSerializer.serialize(balanceWebhookSettingInfo, "BalanceWebhookSettingInfo");
         const response = await getJsonResponse<BalanceWebhookSettingInfo, WebhookSetting>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "WebhookSetting", "");
+        return ObjectSerializer.deserialize(response, "WebhookSetting");
     }
 
     /**
@@ -98,7 +98,7 @@ export class BalancesApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "WebhookSettings", "");
+        return ObjectSerializer.deserialize(response, "WebhookSettings");
     }
 
     /**
@@ -122,7 +122,7 @@ export class BalancesApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "WebhookSetting", "");
+        return ObjectSerializer.deserialize(response, "WebhookSetting");
     }
 
     /**
@@ -141,14 +141,14 @@ export class BalancesApi extends Service {
             .replace("{" + "settingId" + "}", encodeURIComponent(String(settingId)));
         const resource = new Resource(this, endpoint);
         
-        const request: BalanceWebhookSettingInfoUpdate = ObjectSerializer.serialize(balanceWebhookSettingInfoUpdate, "BalanceWebhookSettingInfoUpdate", "");
+        const request: BalanceWebhookSettingInfoUpdate = ObjectSerializer.serialize(balanceWebhookSettingInfoUpdate, "BalanceWebhookSettingInfoUpdate");
         const response = await getJsonResponse<BalanceWebhookSettingInfoUpdate, WebhookSetting>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "WebhookSetting", "");
+        return ObjectSerializer.deserialize(response, "WebhookSetting");
     }
 
 }

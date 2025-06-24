@@ -51,14 +51,14 @@ export class ModificationsApi extends Service {
         const endpoint = `${this.baseUrl}/cancels`;
         const resource = new Resource(this, endpoint);
         
-        const request: StandalonePaymentCancelRequest = ObjectSerializer.serialize(standalonePaymentCancelRequest, "StandalonePaymentCancelRequest", "");
+        const request: StandalonePaymentCancelRequest = ObjectSerializer.serialize(standalonePaymentCancelRequest, "StandalonePaymentCancelRequest");
         const response = await getJsonResponse<StandalonePaymentCancelRequest, StandalonePaymentCancelResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "StandalonePaymentCancelResponse", "");
+        return ObjectSerializer.deserialize(response, "StandalonePaymentCancelResponse");
     }
 
     /**
@@ -73,14 +73,14 @@ export class ModificationsApi extends Service {
             .replace("{" + "paymentPspReference" + "}", encodeURIComponent(String(paymentPspReference)));
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentCancelRequest = ObjectSerializer.serialize(paymentCancelRequest, "PaymentCancelRequest", "");
+        const request: PaymentCancelRequest = ObjectSerializer.serialize(paymentCancelRequest, "PaymentCancelRequest");
         const response = await getJsonResponse<PaymentCancelRequest, PaymentCancelResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentCancelResponse", "");
+        return ObjectSerializer.deserialize(response, "PaymentCancelResponse");
     }
 
     /**
@@ -95,14 +95,14 @@ export class ModificationsApi extends Service {
             .replace("{" + "paymentPspReference" + "}", encodeURIComponent(String(paymentPspReference)));
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentCaptureRequest = ObjectSerializer.serialize(paymentCaptureRequest, "PaymentCaptureRequest", "");
+        const request: PaymentCaptureRequest = ObjectSerializer.serialize(paymentCaptureRequest, "PaymentCaptureRequest");
         const response = await getJsonResponse<PaymentCaptureRequest, PaymentCaptureResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentCaptureResponse", "");
+        return ObjectSerializer.deserialize(response, "PaymentCaptureResponse");
     }
 
     /**
@@ -117,14 +117,14 @@ export class ModificationsApi extends Service {
             .replace("{" + "paymentPspReference" + "}", encodeURIComponent(String(paymentPspReference)));
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentRefundRequest = ObjectSerializer.serialize(paymentRefundRequest, "PaymentRefundRequest", "");
+        const request: PaymentRefundRequest = ObjectSerializer.serialize(paymentRefundRequest, "PaymentRefundRequest");
         const response = await getJsonResponse<PaymentRefundRequest, PaymentRefundResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentRefundResponse", "");
+        return ObjectSerializer.deserialize(response, "PaymentRefundResponse");
     }
 
     /**
@@ -139,14 +139,14 @@ export class ModificationsApi extends Service {
             .replace("{" + "paymentPspReference" + "}", encodeURIComponent(String(paymentPspReference)));
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentReversalRequest = ObjectSerializer.serialize(paymentReversalRequest, "PaymentReversalRequest", "");
+        const request: PaymentReversalRequest = ObjectSerializer.serialize(paymentReversalRequest, "PaymentReversalRequest");
         const response = await getJsonResponse<PaymentReversalRequest, PaymentReversalResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentReversalResponse", "");
+        return ObjectSerializer.deserialize(response, "PaymentReversalResponse");
     }
 
     /**
@@ -161,14 +161,14 @@ export class ModificationsApi extends Service {
             .replace("{" + "paymentPspReference" + "}", encodeURIComponent(String(paymentPspReference)));
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentAmountUpdateRequest = ObjectSerializer.serialize(paymentAmountUpdateRequest, "PaymentAmountUpdateRequest", "");
+        const request: PaymentAmountUpdateRequest = ObjectSerializer.serialize(paymentAmountUpdateRequest, "PaymentAmountUpdateRequest");
         const response = await getJsonResponse<PaymentAmountUpdateRequest, PaymentAmountUpdateResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentAmountUpdateResponse", "");
+        return ObjectSerializer.deserialize(response, "PaymentAmountUpdateResponse");
     }
 
 }

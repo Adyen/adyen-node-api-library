@@ -44,14 +44,14 @@ export class ManageCardPINApi extends Service {
         const endpoint = `${this.baseUrl}/pins/change`;
         const resource = new Resource(this, endpoint);
         
-        const request: PinChangeRequest = ObjectSerializer.serialize(pinChangeRequest, "PinChangeRequest", "");
+        const request: PinChangeRequest = ObjectSerializer.serialize(pinChangeRequest, "PinChangeRequest");
         const response = await getJsonResponse<PinChangeRequest, PinChangeResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PinChangeResponse", "");
+        return ObjectSerializer.deserialize(response, "PinChangeResponse");
     }
 
     /**
@@ -78,7 +78,7 @@ export class ManageCardPINApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PublicKeyResponse", "");
+        return ObjectSerializer.deserialize(response, "PublicKeyResponse");
     }
 
     /**
@@ -91,14 +91,14 @@ export class ManageCardPINApi extends Service {
         const endpoint = `${this.baseUrl}/pins/reveal`;
         const resource = new Resource(this, endpoint);
         
-        const request: RevealPinRequest = ObjectSerializer.serialize(revealPinRequest, "RevealPinRequest", "");
+        const request: RevealPinRequest = ObjectSerializer.serialize(revealPinRequest, "RevealPinRequest");
         const response = await getJsonResponse<RevealPinRequest, RevealPinResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "RevealPinResponse", "");
+        return ObjectSerializer.deserialize(response, "RevealPinResponse");
     }
 
 }

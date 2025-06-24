@@ -36,8 +36,8 @@ export class RecurringApi extends Service {
     * @summary Delete a token for stored payment details
     * @param storedPaymentMethodId {@link string } The unique identifier of the token.
     * @param requestOptions {@link IRequest.Options }
-    * @param shopperReference {@link string } Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
-    * @param merchantAccount {@link string } Your merchant account.
+    * @param shopperReference {@link string } (Required) Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
+    * @param merchantAccount {@link string } (Required) Your merchant account.
     */
     public async deleteTokenForStoredPaymentDetails(storedPaymentMethodId: string, shopperReference: string, merchantAccount: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/storedPaymentMethods/{storedPaymentMethodId}`
@@ -82,7 +82,7 @@ export class RecurringApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "ListStoredPaymentMethodsResponse", "");
+        return ObjectSerializer.deserialize(response, "ListStoredPaymentMethodsResponse");
     }
 
     /**
@@ -95,14 +95,14 @@ export class RecurringApi extends Service {
         const endpoint = `${this.baseUrl}/storedPaymentMethods`;
         const resource = new Resource(this, endpoint);
         
-        const request: StoredPaymentMethodRequest = ObjectSerializer.serialize(storedPaymentMethodRequest, "StoredPaymentMethodRequest", "");
+        const request: StoredPaymentMethodRequest = ObjectSerializer.serialize(storedPaymentMethodRequest, "StoredPaymentMethodRequest");
         const response = await getJsonResponse<StoredPaymentMethodRequest, StoredPaymentMethodResource>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "StoredPaymentMethodResource", "");
+        return ObjectSerializer.deserialize(response, "StoredPaymentMethodResource");
     }
 
 }

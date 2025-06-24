@@ -34,13 +34,13 @@ export class GrantOffersApi extends Service {
     /**
     * @summary Get all available grant offers
     * @param requestOptions {@link IRequest.Options }
-    * @param accountHolderId {@link string } The unique identifier of the grant account.
+    * @param accountHolderId {@link string } (Required) The unique identifier of the grant account.
     * @return {@link GrantOffers }
     *
 	* @deprecated since Configuration API v2
 	* Use the `/grantOffers` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers) instead.
     */
-    public async getAllAvailableGrantOffers(accountHolderId?: string, requestOptions?: IRequest.Options): Promise<GrantOffers> {
+    public async getAllAvailableGrantOffers(accountHolderId: string, requestOptions?: IRequest.Options): Promise<GrantOffers> {
         const endpoint = `${this.baseUrl}/grantOffers`;
         const resource = new Resource(this, endpoint);
         
@@ -56,7 +56,7 @@ export class GrantOffersApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "GrantOffers", "");
+        return ObjectSerializer.deserialize(response, "GrantOffers");
     }
 
     /**
@@ -79,7 +79,7 @@ export class GrantOffersApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "GrantOffer", "");
+        return ObjectSerializer.deserialize(response, "GrantOffer");
     }
 
 }

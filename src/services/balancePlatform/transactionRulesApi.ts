@@ -42,14 +42,14 @@ export class TransactionRulesApi extends Service {
         const endpoint = `${this.baseUrl}/transactionRules`;
         const resource = new Resource(this, endpoint);
         
-        const request: TransactionRuleInfo = ObjectSerializer.serialize(transactionRuleInfo, "TransactionRuleInfo", "");
+        const request: TransactionRuleInfo = ObjectSerializer.serialize(transactionRuleInfo, "TransactionRuleInfo");
         const response = await getJsonResponse<TransactionRuleInfo, TransactionRule>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransactionRule", "");
+        return ObjectSerializer.deserialize(response, "TransactionRule");
     }
 
     /**
@@ -69,7 +69,7 @@ export class TransactionRulesApi extends Service {
             { ...requestOptions, method: "DELETE" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransactionRule", "");
+        return ObjectSerializer.deserialize(response, "TransactionRule");
     }
 
     /**
@@ -89,7 +89,7 @@ export class TransactionRulesApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransactionRuleResponse", "");
+        return ObjectSerializer.deserialize(response, "TransactionRuleResponse");
     }
 
     /**
@@ -104,14 +104,14 @@ export class TransactionRulesApi extends Service {
             .replace("{" + "transactionRuleId" + "}", encodeURIComponent(String(transactionRuleId)));
         const resource = new Resource(this, endpoint);
         
-        const request: TransactionRuleInfo = ObjectSerializer.serialize(transactionRuleInfo, "TransactionRuleInfo", "");
+        const request: TransactionRuleInfo = ObjectSerializer.serialize(transactionRuleInfo, "TransactionRuleInfo");
         const response = await getJsonResponse<TransactionRuleInfo, TransactionRule>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransactionRule", "");
+        return ObjectSerializer.deserialize(response, "TransactionRule");
     }
 
 }

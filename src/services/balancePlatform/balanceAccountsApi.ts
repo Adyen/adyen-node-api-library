@@ -48,14 +48,14 @@ export class BalanceAccountsApi extends Service {
         const endpoint = `${this.baseUrl}/balanceAccounts`;
         const resource = new Resource(this, endpoint);
         
-        const request: BalanceAccountInfo = ObjectSerializer.serialize(balanceAccountInfo, "BalanceAccountInfo", "");
+        const request: BalanceAccountInfo = ObjectSerializer.serialize(balanceAccountInfo, "BalanceAccountInfo");
         const response = await getJsonResponse<BalanceAccountInfo, BalanceAccount>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "BalanceAccount", "");
+        return ObjectSerializer.deserialize(response, "BalanceAccount");
     }
 
     /**
@@ -70,14 +70,14 @@ export class BalanceAccountsApi extends Service {
             .replace("{" + "balanceAccountId" + "}", encodeURIComponent(String(balanceAccountId)));
         const resource = new Resource(this, endpoint);
         
-        const request: CreateSweepConfigurationV2 = ObjectSerializer.serialize(createSweepConfigurationV2, "CreateSweepConfigurationV2", "");
+        const request: CreateSweepConfigurationV2 = ObjectSerializer.serialize(createSweepConfigurationV2, "CreateSweepConfigurationV2");
         const response = await getJsonResponse<CreateSweepConfigurationV2, SweepConfigurationV2>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "SweepConfigurationV2", "");
+        return ObjectSerializer.deserialize(response, "SweepConfigurationV2");
     }
 
     /**
@@ -126,7 +126,7 @@ export class BalanceAccountsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "BalanceSweepConfigurationsResponse", "");
+        return ObjectSerializer.deserialize(response, "BalanceSweepConfigurationsResponse");
     }
 
     /**
@@ -146,7 +146,7 @@ export class BalanceAccountsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransactionRulesResponse", "");
+        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
     }
 
     /**
@@ -166,7 +166,7 @@ export class BalanceAccountsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "BalanceAccount", "");
+        return ObjectSerializer.deserialize(response, "BalanceAccount");
     }
 
     /**
@@ -197,7 +197,7 @@ export class BalanceAccountsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaginatedPaymentInstrumentsResponse", "");
+        return ObjectSerializer.deserialize(response, "PaginatedPaymentInstrumentsResponse");
     }
 
     /**
@@ -219,7 +219,7 @@ export class BalanceAccountsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "SweepConfigurationV2", "");
+        return ObjectSerializer.deserialize(response, "SweepConfigurationV2");
     }
 
     /**
@@ -234,14 +234,14 @@ export class BalanceAccountsApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: BalanceAccountUpdateRequest = ObjectSerializer.serialize(balanceAccountUpdateRequest, "BalanceAccountUpdateRequest", "");
+        const request: BalanceAccountUpdateRequest = ObjectSerializer.serialize(balanceAccountUpdateRequest, "BalanceAccountUpdateRequest");
         const response = await getJsonResponse<BalanceAccountUpdateRequest, BalanceAccount>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "BalanceAccount", "");
+        return ObjectSerializer.deserialize(response, "BalanceAccount");
     }
 
     /**
@@ -258,14 +258,14 @@ export class BalanceAccountsApi extends Service {
             .replace("{" + "sweepId" + "}", encodeURIComponent(String(sweepId)));
         const resource = new Resource(this, endpoint);
         
-        const request: UpdateSweepConfigurationV2 = ObjectSerializer.serialize(updateSweepConfigurationV2, "UpdateSweepConfigurationV2", "");
+        const request: UpdateSweepConfigurationV2 = ObjectSerializer.serialize(updateSweepConfigurationV2, "UpdateSweepConfigurationV2");
         const response = await getJsonResponse<UpdateSweepConfigurationV2, SweepConfigurationV2>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "SweepConfigurationV2", "");
+        return ObjectSerializer.deserialize(response, "SweepConfigurationV2");
     }
 
 }

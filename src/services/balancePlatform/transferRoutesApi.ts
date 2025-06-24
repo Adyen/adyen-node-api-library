@@ -41,14 +41,14 @@ export class TransferRoutesApi extends Service {
         const endpoint = `${this.baseUrl}/transferRoutes/calculate`;
         const resource = new Resource(this, endpoint);
         
-        const request: TransferRouteRequest = ObjectSerializer.serialize(transferRouteRequest, "TransferRouteRequest", "");
+        const request: TransferRouteRequest = ObjectSerializer.serialize(transferRouteRequest, "TransferRouteRequest");
         const response = await getJsonResponse<TransferRouteRequest, TransferRouteResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransferRouteResponse", "");
+        return ObjectSerializer.deserialize(response, "TransferRouteResponse");
     }
 
 }

@@ -48,14 +48,14 @@ export class PaymentInstrumentsApi extends Service {
         const endpoint = `${this.baseUrl}/paymentInstruments`;
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentInstrumentInfo = ObjectSerializer.serialize(paymentInstrumentInfo, "PaymentInstrumentInfo", "");
+        const request: PaymentInstrumentInfo = ObjectSerializer.serialize(paymentInstrumentInfo, "PaymentInstrumentInfo");
         const response = await getJsonResponse<PaymentInstrumentInfo, PaymentInstrument>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentInstrument", "");
+        return ObjectSerializer.deserialize(response, "PaymentInstrument");
     }
 
     /**
@@ -75,7 +75,7 @@ export class PaymentInstrumentsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransactionRulesResponse", "");
+        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
     }
 
     /**
@@ -95,7 +95,7 @@ export class PaymentInstrumentsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentInstrumentRevealInfo", "");
+        return ObjectSerializer.deserialize(response, "PaymentInstrumentRevealInfo");
     }
 
     /**
@@ -115,7 +115,7 @@ export class PaymentInstrumentsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentInstrument", "");
+        return ObjectSerializer.deserialize(response, "PaymentInstrument");
     }
 
     /**
@@ -135,7 +135,7 @@ export class PaymentInstrumentsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "ListNetworkTokensResponse", "");
+        return ObjectSerializer.deserialize(response, "ListNetworkTokensResponse");
     }
 
     /**
@@ -148,14 +148,14 @@ export class PaymentInstrumentsApi extends Service {
         const endpoint = `${this.baseUrl}/paymentInstruments/reveal`;
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentInstrumentRevealRequest = ObjectSerializer.serialize(paymentInstrumentRevealRequest, "PaymentInstrumentRevealRequest", "");
+        const request: PaymentInstrumentRevealRequest = ObjectSerializer.serialize(paymentInstrumentRevealRequest, "PaymentInstrumentRevealRequest");
         const response = await getJsonResponse<PaymentInstrumentRevealRequest, PaymentInstrumentRevealResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentInstrumentRevealResponse", "");
+        return ObjectSerializer.deserialize(response, "PaymentInstrumentRevealResponse");
     }
 
     /**
@@ -170,14 +170,14 @@ export class PaymentInstrumentsApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentInstrumentUpdateRequest = ObjectSerializer.serialize(paymentInstrumentUpdateRequest, "PaymentInstrumentUpdateRequest", "");
+        const request: PaymentInstrumentUpdateRequest = ObjectSerializer.serialize(paymentInstrumentUpdateRequest, "PaymentInstrumentUpdateRequest");
         const response = await getJsonResponse<PaymentInstrumentUpdateRequest, UpdatePaymentInstrument>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "UpdatePaymentInstrument", "");
+        return ObjectSerializer.deserialize(response, "UpdatePaymentInstrument");
     }
 
 }

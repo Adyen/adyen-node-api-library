@@ -42,14 +42,14 @@ export class PaymentInstrumentGroupsApi extends Service {
         const endpoint = `${this.baseUrl}/paymentInstrumentGroups`;
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentInstrumentGroupInfo = ObjectSerializer.serialize(paymentInstrumentGroupInfo, "PaymentInstrumentGroupInfo", "");
+        const request: PaymentInstrumentGroupInfo = ObjectSerializer.serialize(paymentInstrumentGroupInfo, "PaymentInstrumentGroupInfo");
         const response = await getJsonResponse<PaymentInstrumentGroupInfo, PaymentInstrumentGroup>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentInstrumentGroup", "");
+        return ObjectSerializer.deserialize(response, "PaymentInstrumentGroup");
     }
 
     /**
@@ -69,7 +69,7 @@ export class PaymentInstrumentGroupsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransactionRulesResponse", "");
+        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
     }
 
     /**
@@ -89,7 +89,7 @@ export class PaymentInstrumentGroupsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentInstrumentGroup", "");
+        return ObjectSerializer.deserialize(response, "PaymentInstrumentGroup");
     }
 
 }

@@ -45,14 +45,14 @@ export class AccountHoldersApi extends Service {
         const endpoint = `${this.baseUrl}/accountHolders`;
         const resource = new Resource(this, endpoint);
         
-        const request: AccountHolderInfo = ObjectSerializer.serialize(accountHolderInfo, "AccountHolderInfo", "");
+        const request: AccountHolderInfo = ObjectSerializer.serialize(accountHolderInfo, "AccountHolderInfo");
         const response = await getJsonResponse<AccountHolderInfo, AccountHolder>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "AccountHolder", "");
+        return ObjectSerializer.deserialize(response, "AccountHolder");
     }
 
     /**
@@ -72,7 +72,7 @@ export class AccountHoldersApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "AccountHolder", "");
+        return ObjectSerializer.deserialize(response, "AccountHolder");
     }
 
     /**
@@ -101,7 +101,7 @@ export class AccountHoldersApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaginatedBalanceAccountsResponse", "");
+        return ObjectSerializer.deserialize(response, "PaginatedBalanceAccountsResponse");
     }
 
     /**
@@ -121,18 +121,18 @@ export class AccountHoldersApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "TransactionRulesResponse", "");
+        return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
     }
 
     /**
     * @summary Get a tax form
     * @param id {@link string } The unique identifier of the account holder.
     * @param requestOptions {@link IRequest.Options }
-    * @param formType {@link &#39;US1099k&#39; | &#39;US1099nec&#39; } The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**
-    * @param year {@link number } The tax year in YYYY format for the tax form you want to retrieve
+    * @param formType {@link &#39;US1099k&#39; | &#39;US1099nec&#39; } (Required) The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**
+    * @param year {@link number } (Required) The tax year in YYYY format for the tax form you want to retrieve
     * @return {@link GetTaxFormResponse }
     */
-    public async getTaxForm(id: string, formType?: "US1099k" | "US1099nec", year?: number, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
+    public async getTaxForm(id: string, formType: "US1099k" | "US1099nec", year: number, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
         const endpoint = `${this.baseUrl}/accountHolders/{id}/taxForms`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
@@ -150,7 +150,7 @@ export class AccountHoldersApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "GetTaxFormResponse", "");
+        return ObjectSerializer.deserialize(response, "GetTaxFormResponse");
     }
 
     /**
@@ -165,14 +165,14 @@ export class AccountHoldersApi extends Service {
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const request: AccountHolderUpdateRequest = ObjectSerializer.serialize(accountHolderUpdateRequest, "AccountHolderUpdateRequest", "");
+        const request: AccountHolderUpdateRequest = ObjectSerializer.serialize(accountHolderUpdateRequest, "AccountHolderUpdateRequest");
         const response = await getJsonResponse<AccountHolderUpdateRequest, AccountHolder>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "AccountHolder", "");
+        return ObjectSerializer.deserialize(response, "AccountHolder");
     }
 
 }

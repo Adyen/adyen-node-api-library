@@ -49,7 +49,7 @@ export class PaymentLinksApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentLinkResponse", "");
+        return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
 
     /**
@@ -62,14 +62,14 @@ export class PaymentLinksApi extends Service {
         const endpoint = `${this.baseUrl}/paymentLinks`;
         const resource = new Resource(this, endpoint);
         
-        const request: PaymentLinkRequest = ObjectSerializer.serialize(paymentLinkRequest, "PaymentLinkRequest", "");
+        const request: PaymentLinkRequest = ObjectSerializer.serialize(paymentLinkRequest, "PaymentLinkRequest");
         const response = await getJsonResponse<PaymentLinkRequest, PaymentLinkResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentLinkResponse", "");
+        return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
 
     /**
@@ -84,14 +84,14 @@ export class PaymentLinksApi extends Service {
             .replace("{" + "linkId" + "}", encodeURIComponent(String(linkId)));
         const resource = new Resource(this, endpoint);
         
-        const request: UpdatePaymentLinkRequest = ObjectSerializer.serialize(updatePaymentLinkRequest, "UpdatePaymentLinkRequest", "");
+        const request: UpdatePaymentLinkRequest = ObjectSerializer.serialize(updatePaymentLinkRequest, "UpdatePaymentLinkRequest");
         const response = await getJsonResponse<UpdatePaymentLinkRequest, PaymentLinkResponse>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
 
-        return ObjectSerializer.deserialize(response, "PaymentLinkResponse", "");
+        return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
 
 }

@@ -50,7 +50,7 @@ export class GrantAccountsApi extends Service {
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "CapitalGrantAccount", "");
+        return ObjectSerializer.deserialize(response, "CapitalGrantAccount");
     }
 
 }
