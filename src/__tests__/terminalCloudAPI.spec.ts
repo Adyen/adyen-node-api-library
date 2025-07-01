@@ -91,7 +91,7 @@ describe("Terminal Cloud API", (): void => {
         await expect(async () => {
             const terminalAPIResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
             expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
-            expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBeUndefined;
+            expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBeUndefined();
         }).not.toThrow();
     });
 
