@@ -70,7 +70,7 @@ describe("Terminal Cloud API", (): void => {
 
     });
 
-    test("should return event notification Reject with additional attributes", async (): Promise<void> => {
+    test("should return event notification Shutdown with additional attributes", async (): Promise<void> => {
 
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
         scope.post("/sync").reply(200, syncResEventNotificationWithAdditionalAttributes);
