@@ -90,7 +90,7 @@ describe("Legal Entity Management", (): void => {
                         const response = await legalEntityManagement.LegalEntitiesApi.getLegalEntity("123456789");
                         expect(response.id).toBe(id);
                         // type is unknown, so it should not be defined
-                        expect(response.type).toBeUndefined;
+                        expect(response.type).toBeUndefined();
                     }).not.toThrow();            
         });
 
