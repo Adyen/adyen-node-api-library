@@ -193,6 +193,47 @@ export const legalEntity = {
     "type": "individual"
 };
 
+export const legalEntityAdditionalAttributes = {
+    "id": "123456789",
+    "additionalAttribute": "something",
+    "individual": {
+        "email": "string",
+        "name": {
+            "firstName": "string",
+            "infix": "string",
+            "lastName": "string"
+        },
+        "nationality": "string",
+        "phone": {
+            "number": "string",
+            "type": "string"
+        },
+    },
+    "reference": "string",
+    "transferInstruments": [{ "id": "string" }],
+    "type": "individual"
+};
+
+export const legalEntityUnknownEnum = {
+    "id": "123456789",
+    "individual": {
+        "email": "string",
+        "name": {
+            "firstName": "string",
+            "infix": "string",
+            "lastName": "string"
+        },
+        "nationality": "string",
+        "phone": {
+            "number": "string",
+            "type": "string"
+        },
+    },
+    "reference": "string",
+    "transferInstruments": [{ "id": "string" }],
+    "type": "this is unknown"
+};
+
 export const businessLines = {
     "businessLines": [{
         "capability": "receivePayments",

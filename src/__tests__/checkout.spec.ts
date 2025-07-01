@@ -56,18 +56,6 @@ export function createPaymentsCheckoutRequest(): checkout.PaymentRequest {
     };
 }
 
-// function createPaymentSessionRequest(): checkout.PaymentSetupRequest {
-//     return {
-//         amount: createAmountObject("USD", 1000),
-//         countryCode: "NL",
-//         merchantAccount,
-//         reference,
-//         returnUrl: "https://your-company.com/...",
-//         channel: checkout.PaymentSetupRequest.ChannelEnum.Web,
-//         sdkVersion: "3.7.0"
-//     };
-// }
-
 function createUpdatePaymentLinkRequest(): checkout.UpdatePaymentLinkRequest {
     return {
         "status": checkout.UpdatePaymentLinkRequest.StatusEnum.Expired
@@ -202,20 +190,6 @@ describe("Checkout", (): void => {
             .reply(200, paymentDetailsSuccess)
             .matchHeader("Idempotency-Key", "testKey");
         await checkoutService.PaymentsApi.paymentsDetails(createPaymentsDetailsRequest(), {idempotencyKey: "testKey"});
-
-        // scope.post("/paymentSession")
-        //     .reply(200, paymentSessionSuccess)
-        //     .matchHeader("Idempotency-Key", "testKey");
-        // const paymentSessionRequest: checkout.PaymentSetupRequest = createPaymentSessionRequest();
-        // await checkoutService.ClassicCheckoutSDKApi.paymentSession(paymentSessionRequest, {idempotencyKey: "testKey"});
-
-        // scope.post("/payments/result")
-        //     .reply(200, paymentsResultSuccess)
-        //     .matchHeader("Idempotency-Key", "testKey");
-        // const paymentResultRequest: checkout.PaymentVerificationRequest = {
-        //     payload: "This is a test payload",
-        // };
-        // await checkoutService.ClassicCheckoutSDKApi.verifyPaymentResult(paymentResultRequest, {idempotencyKey: "testKey"});
 
         const orderRequest: checkout.CreateOrderRequest = {
             amount: createAmountObject("USD", 1000),

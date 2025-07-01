@@ -13,6 +13,8 @@ import {
     businessLines,
     document,
     legalEntity,
+    legalEntityAdditionalAttributes,
+    legalEntityUnknownEnum,
     onboardingLink,
     onboardingTheme,
     onboardingThemes,
@@ -67,6 +69,29 @@ describe("Legal Entity Management", (): void => {
 
             expect(response.id).toBe(id);
             expect(response.type).toBe("individual");
+        });
+
+        it("should support GET /legalEntities/{id} with additional attributes", async (): Promise<void> => {
+            scope.get(`/legalEntities/${id}`)
+                .reply(200, legalEntityAdditionalAttributes);
+
+                await expect(async () => {
+                        const response = await legalEntityManagement.LegalEntitiesApi.getLegalEntity("123456789");
+                        expect(response.id).toBe(id);
+                        expect(response.type).toBe("individual");
+                    }).not.toThrow();
+        });
+
+        it("should support GET /legalEntities/{id} with unknown enum", async (): Promise<void> => {
+            scope.get(`/legalEntities/${id}`)
+                .reply(200, legalEntityUnknownEnum);
+
+                await expect(async () => {
+                        const response = await legalEntityManagement.LegalEntitiesApi.getLegalEntity("123456789");
+                        expect(response.id).toBe(id);
+                        // type is unknown, so it should not be defined
+                        expect(response.type).toBeUndefined;
+                    }).not.toThrow();            
         });
 
         it("should support PATCH /legalEntities/{id}", async (): Promise<void> => {

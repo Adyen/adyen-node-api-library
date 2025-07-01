@@ -386,3 +386,43 @@ export const syncResEventNotification = {
         }
     }
 };
+
+export const syncResEventNotificationWithAdditionalAttributes = {
+   "SaleToPOIRequest":{
+      "EventNotification":{
+         "EventDetails":"newstate=IDLE&oldstate=START",
+         "EventToNotify":"Shutdown",
+         "TimeStamp":"2019-08-07T10:16:10.000Z",
+         "AdditionalAttribute": "Something"
+      },
+      "MessageHeader":{
+         "SaleID":"POSSystemID12345",
+         "ProtocolVersion":"3.0",
+         "MessageType":"Notification",
+         "POIID":"V400m-324688179",
+         "MessageClass":"Event",
+         "MessageCategory":"Event",
+         "DeviceID":"1517998561",
+         "AdditionalAttribute": "SomethingElse"
+      }
+   }
+};
+
+export const syncResEventNotificationWithUnknownEnum = {
+   "SaleToPOIRequest":{
+      "EventNotification":{
+         "EventDetails":"newstate=IDLE&oldstate=START",
+         "EventToNotify":"This is unknown",
+         "TimeStamp":"2019-08-07T10:16:10.000Z"
+      },
+      "MessageHeader":{
+         "SaleID":"POSSystemID12345",
+         "ProtocolVersion":"3.0",
+         "MessageType":"Notification",
+         "POIID":"V400m-324688179",
+         "MessageClass":"Event",
+         "MessageCategory":"Event",
+         "DeviceID":"1517998561"
+      }
+   }
+};

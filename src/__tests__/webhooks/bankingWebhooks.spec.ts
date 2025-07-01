@@ -53,6 +53,56 @@ describe("BankingWebhooks Tests", function (): void {
         expect(genericWebhook instanceof AccountHolderNotificationRequest).toBe(true);
     });
 
+    it("should not throw when deserializing AccountHolderNotification webhook with additional attributes", function (): void {
+        const json = {
+            "data": {
+                "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                "additionalAttribute": "something",
+                "accountHolder": {
+                    "contactDetails": {
+                        "address": {
+                            "country": "NL",
+                            "houseNumberOrName": "274",
+                            "postalCode": "1020CD",
+                            "street": "Brannan Street"
+                        }, "email": "s.hopper@example.com", "phone": {"number": "+315551231234", "type": "Mobile"}
+                    }, "description": "S.Hopper - Staff 123", "id": "AH00000000000000000000001", "status": "Active"
+                }
+            }, "environment": "test", "type": "balancePlatform.accountHolder.created",
+            "additionalAttribute": "something else"
+        };
+        const jsonString = JSON.stringify(json);
+        expect(() => {
+            const configurationWebhooksHandler = new ConfigurationWebhooksHandler(jsonString);
+            const accountHolderNotificationRequest = configurationWebhooksHandler.getAccountHolderNotificationRequest();
+            expect(accountHolderNotificationRequest.environment).toEqual("test");
+        }).not.toThrow();
+    });
+
+    it("should not throw when deserializing AccountHolderNotification webhook with unknown enum", function (): void {
+        const json = {
+            "data": {
+                "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                "accountHolder": {
+                    "contactDetails": {
+                        "address": {
+                            "country": "NL",
+                            "houseNumberOrName": "274",
+                            "postalCode": "1020CD",
+                            "street": "Brannan Street"
+                        }, "email": "s.hopper@example.com", "phone": {"number": "+315551231234", "type": "Mobile"}
+                    }, "description": "S.Hopper - Staff 123", "id": "AH00000000000000000000001", "status": "This is unknown"
+                }
+            }, "environment": "test", "type": "balancePlatform.accountHolder.created"
+        };
+        const jsonString = JSON.stringify(json);
+        expect(() => {
+            const configurationWebhooksHandler = new ConfigurationWebhooksHandler(jsonString);
+            const accountHolderNotificationRequest = configurationWebhooksHandler.getAccountHolderNotificationRequest();
+            expect(accountHolderNotificationRequest.environment).toEqual("test");
+        }).not.toThrow();
+    });
+
     it("should deserialize BalanceAccountNotification Webhook", function (): void {
         const json = {
             "data": {
