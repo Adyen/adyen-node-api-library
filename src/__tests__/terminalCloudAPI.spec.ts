@@ -91,7 +91,9 @@ describe("Terminal Cloud API", (): void => {
         await expect(async () => {
             const terminalAPIResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
             expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
-            expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBeUndefined();
+            // EventToNotify is unknown, so it holds whatever value is found in the payload
+            expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("this is unknown");
+
         }).not.toThrow();
     });
 

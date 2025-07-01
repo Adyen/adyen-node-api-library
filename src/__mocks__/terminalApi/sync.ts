@@ -412,7 +412,7 @@ export const syncResEventNotificationWithUnknownEnum = {
    "SaleToPOIRequest":{
       "EventNotification":{
          "EventDetails":"newstate=IDLE&oldstate=START",
-         "EventToNotify":"This is unknown",
+         "EventToNotify":"this is unknown",
          "TimeStamp":"2019-08-07T10:16:10.000Z"
       },
       "MessageHeader":{

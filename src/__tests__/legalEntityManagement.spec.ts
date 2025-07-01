@@ -89,8 +89,8 @@ describe("Legal Entity Management", (): void => {
                 await expect(async () => {
                         const response = await legalEntityManagement.LegalEntitiesApi.getLegalEntity("123456789");
                         expect(response.id).toBe(id);
-                        // type is unknown, so it should not be defined
-                        expect(response.type).toBeUndefined();
+                        // type is unknown, so it holds whatever value is found in the payload
+                        expect(response.type).toBe("this is unknown");
                     }).not.toThrow();            
         });
 
