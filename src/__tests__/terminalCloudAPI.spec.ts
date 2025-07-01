@@ -83,7 +83,7 @@ describe("Terminal Cloud API", (): void => {
         }).not.toThrow();
     });
 
-    test("should return event notification Reject with unknown enum", async (): Promise<void> => {
+    test("should return event notification with unknown enum", async (): Promise<void> => {
 
         const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
         scope.post("/sync").reply(200, syncResEventNotificationWithUnknownEnum);
