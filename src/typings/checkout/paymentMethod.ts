@@ -34,7 +34,7 @@ export class PaymentMethod {
     * The funding source of the payment method.
     */
     "fundingSource"?: PaymentMethod.FundingSourceEnum;
-    "group"?: PaymentMethodGroup;
+    "group"?: PaymentMethodGroup | null;
     /**
     * All input details to be provided to complete the payment with this payment method.
     *
@@ -92,7 +92,7 @@ export class PaymentMethod {
         {
             "name": "group",
             "baseName": "group",
-            "type": "PaymentMethodGroup",
+            "type": "PaymentMethodGroup | null",
             "format": ""
         },
         {

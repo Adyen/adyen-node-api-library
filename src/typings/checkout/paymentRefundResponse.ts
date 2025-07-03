@@ -87,7 +87,7 @@ export class PaymentRefundResponse {
         {
             "name": "merchantRefundReason",
             "baseName": "merchantRefundReason",
-            "type": "PaymentRefundResponse.MerchantRefundReasonEnum",
+            "type": "PaymentRefundResponse.MerchantRefundReasonEnum | null",
             "format": ""
         },
         {

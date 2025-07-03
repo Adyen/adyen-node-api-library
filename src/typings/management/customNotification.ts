@@ -11,7 +11,7 @@ import { Amount } from "./amount";
 
 
 export class CustomNotification {
-    "amount"?: Amount;
+    "amount"?: Amount | null;
     /**
     * The event that caused the notification to be sent.Currently supported values: * **AUTHORISATION** * **CANCELLATION** * **REFUND** * **CAPTURE** * **REPORT_AVAILABLE** * **CHARGEBACK** * **REQUEST_FOR_INFORMATION** * **NOTIFICATION_OF_CHARGEBACK** * **NOTIFICATIONTEST** * **ORDER_OPENED** * **ORDER_CLOSED** * **CHARGEBACK_REVERSED** * **REFUNDED_REVERSED** * **REFUND_WITH_DATA**
     */
@@ -45,7 +45,7 @@ export class CustomNotification {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {

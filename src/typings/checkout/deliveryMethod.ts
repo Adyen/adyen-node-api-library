@@ -11,7 +11,7 @@ import { Amount } from "./amount";
 
 
 export class DeliveryMethod {
-    "amount"?: Amount;
+    "amount"?: Amount | null;
     /**
     * The name of the delivery method as shown to the shopper.
     */
@@ -37,7 +37,7 @@ export class DeliveryMethod {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {

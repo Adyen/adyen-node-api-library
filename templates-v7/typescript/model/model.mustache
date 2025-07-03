@@ -37,7 +37,12 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
     */
     {{/deprecated}}
 {{/description}}
+{{#isModel}}
+    "{{name}}"{{^required}}?{{/required}}: {{#isEnum}}{{#containerTypeMapped}}{{{.}}}<{{/containerTypeMapped}}{{{classname}}}.{{{enumName}}}{{#containerTypeMapped}}>{{/containerTypeMapped}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}} | null{{/required}};
+{{/isModel}}
+{{^isModel}}
     "{{name}}"{{^required}}?{{/required}}: {{#isEnum}}{{#containerTypeMapped}}{{{.}}}<{{/containerTypeMapped}}{{{classname}}}.{{{enumName}}}{{#containerTypeMapped}}>{{/containerTypeMapped}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}};
+{{/isModel}}
 {{/vars}}
 
     {{#discriminator}}
@@ -65,7 +70,12 @@ export class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{
         {
             "name": "{{name}}",
             "baseName": "{{baseName}}",
-            "type": "{{#isEnum}}{{{classname}}}.{{{enumName}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}",
+            {{#isModel}}
+            "type": "{{#isEnum}}{{{classname}}}.{{{enumName}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}} | null{{/required}}",
+            {{/isModel}}
+            {{^isModel}}
+            "type": "{{#isEnum}}{{{classname}}}.{{{enumName}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{#isNullable}} | null{{/isNullable}}",
+            {{/isModel}}
             "format": "{{dataFormat}}"
         }{{^-last}},
         {{/-last}}

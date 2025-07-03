@@ -11,7 +11,7 @@ import { RecurringDetail } from "./recurringDetail";
 
 
 export class RecurringDetailWrapper {
-    "RecurringDetail"?: RecurringDetail;
+    "RecurringDetail"?: RecurringDetail | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class RecurringDetailWrapper {
         {
             "name": "RecurringDetail",
             "baseName": "RecurringDetail",
-            "type": "RecurringDetail",
+            "type": "RecurringDetail | null",
             "format": ""
         }    ];
 

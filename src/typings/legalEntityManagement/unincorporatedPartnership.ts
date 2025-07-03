@@ -32,7 +32,7 @@ export class UnincorporatedPartnership {
     * The legal name.
     */
     "name": string;
-    "principalPlaceOfBusiness"?: Address;
+    "principalPlaceOfBusiness"?: Address | null;
     "registeredAddress": Address;
     /**
     * The registration number.
@@ -93,7 +93,7 @@ export class UnincorporatedPartnership {
         {
             "name": "principalPlaceOfBusiness",
             "baseName": "principalPlaceOfBusiness",
-            "type": "Address",
+            "type": "Address | null",
             "format": ""
         },
         {

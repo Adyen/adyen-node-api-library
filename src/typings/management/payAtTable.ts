@@ -42,7 +42,7 @@ export class PayAtTable {
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PayAtTable.PaymentInstrumentEnum",
+            "type": "PayAtTable.PaymentInstrumentEnum | null",
             "format": ""
         }    ];
 

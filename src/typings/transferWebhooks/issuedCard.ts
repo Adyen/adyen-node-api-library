@@ -24,7 +24,7 @@ export class IssuedCard {
     * Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.
     */
     "processingType"?: IssuedCard.ProcessingTypeEnum;
-    "relayedAuthorisationData"?: RelayedAuthorisationData;
+    "relayedAuthorisationData"?: RelayedAuthorisationData | null;
     /**
     * The identifier of the original payment. This ID is provided by the scheme and can be alphanumeric or numeric, depending on the scheme. The `schemeTraceID` should refer to an original `schemeUniqueTransactionID` provided in an earlier payment (not necessarily processed by Adyen). A `schemeTraceId` is typically available for authorization adjustments or recurring payments.
     */
@@ -68,7 +68,7 @@ export class IssuedCard {
         {
             "name": "relayedAuthorisationData",
             "baseName": "relayedAuthorisationData",
-            "type": "RelayedAuthorisationData",
+            "type": "RelayedAuthorisationData | null",
             "format": ""
         },
         {

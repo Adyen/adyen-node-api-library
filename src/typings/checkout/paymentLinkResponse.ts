@@ -27,8 +27,8 @@ export class PaymentLinkResponse {
     */
     "allowedPaymentMethods"?: Array<string>;
     "amount": Amount;
-    "applicationInfo"?: ApplicationInfo;
-    "billingAddress"?: Address;
+    "applicationInfo"?: ApplicationInfo | null;
+    "billingAddress"?: Address | null;
     /**
     * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`
     */
@@ -49,7 +49,7 @@ export class PaymentLinkResponse {
     * The date and time when the purchased goods should be delivered.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
     */
     "deliverAt"?: Date;
-    "deliveryAddress"?: Address;
+    "deliveryAddress"?: Address | null;
     /**
     * A short description visible on the payment page. Maximum length: 280 characters.
     */
@@ -58,8 +58,8 @@ export class PaymentLinkResponse {
     * The date when the payment link expires.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format with time zone offset: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.  The maximum expiry date is 70 days after the payment link is created.  If not provided, the payment link expires 24 hours after it was created.
     */
     "expiresAt"?: Date;
-    "fundOrigin"?: FundOrigin;
-    "fundRecipient"?: FundRecipient;
+    "fundOrigin"?: FundOrigin | null;
+    "fundRecipient"?: FundRecipient | null;
     /**
     * A unique identifier of the payment link.
     */
@@ -92,7 +92,7 @@ export class PaymentLinkResponse {
     * Metadata consists of entries, each of which includes a key and a value. Limitations: * Maximum 20 key-value pairs per request. Otherwise, error \"177\" occurs: \"Metadata size exceeds limit\" * Maximum 20 characters per key. Otherwise, error \"178\" occurs: \"Metadata key size exceeds limit\" * A key cannot have the name `checkout.linkId`. Any value that you provide with this key is going to be replaced by the real payment link ID.
     */
     "metadata"?: { [key: string]: string; };
-    "platformChargebackLogic"?: PlatformChargebackLogic;
+    "platformChargebackLogic"?: PlatformChargebackLogic | null;
     /**
     * Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder\'s balance drops below a certain amount. 
     */
@@ -113,7 +113,7 @@ export class PaymentLinkResponse {
     * Indicates whether the payment link can be reused for multiple payments. If not provided, this defaults to **false** which means the link can be used for one successful payment only.
     */
     "reusable"?: boolean;
-    "riskData"?: RiskData;
+    "riskData"?: RiskData | null;
     /**
     * The shopper\'s email address.
     */
@@ -122,7 +122,7 @@ export class PaymentLinkResponse {
     * The language to be used in the payment page, specified by a combination of a language and country code. For example, `en-US`.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#language).
     */
     "shopperLocale"?: string;
-    "shopperName"?: Name;
+    "shopperName"?: Name | null;
     /**
     * Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
@@ -167,7 +167,7 @@ export class PaymentLinkResponse {
     * A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area.
     */
     "themeId"?: string;
-    "threeDS2RequestData"?: CheckoutSessionThreeDS2RequestData;
+    "threeDS2RequestData"?: CheckoutSessionThreeDS2RequestData | null;
     /**
     * The date when the payment link status was updated.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
     */
@@ -197,13 +197,13 @@ export class PaymentLinkResponse {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo",
+            "type": "ApplicationInfo | null",
             "format": ""
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address",
+            "type": "Address | null",
             "format": ""
         },
         {
@@ -239,7 +239,7 @@ export class PaymentLinkResponse {
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
-            "type": "Address",
+            "type": "Address | null",
             "format": ""
         },
         {
@@ -257,13 +257,13 @@ export class PaymentLinkResponse {
         {
             "name": "fundOrigin",
             "baseName": "fundOrigin",
-            "type": "FundOrigin",
+            "type": "FundOrigin | null",
             "format": ""
         },
         {
             "name": "fundRecipient",
             "baseName": "fundRecipient",
-            "type": "FundRecipient",
+            "type": "FundRecipient | null",
             "format": ""
         },
         {
@@ -317,7 +317,7 @@ export class PaymentLinkResponse {
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic",
+            "type": "PlatformChargebackLogic | null",
             "format": ""
         },
         {
@@ -353,7 +353,7 @@ export class PaymentLinkResponse {
         {
             "name": "riskData",
             "baseName": "riskData",
-            "type": "RiskData",
+            "type": "RiskData | null",
             "format": ""
         },
         {
@@ -371,7 +371,7 @@ export class PaymentLinkResponse {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name",
+            "type": "Name | null",
             "format": ""
         },
         {
@@ -443,7 +443,7 @@ export class PaymentLinkResponse {
         {
             "name": "threeDS2RequestData",
             "baseName": "threeDS2RequestData",
-            "type": "CheckoutSessionThreeDS2RequestData",
+            "type": "CheckoutSessionThreeDS2RequestData | null",
             "format": ""
         },
         {

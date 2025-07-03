@@ -18,8 +18,8 @@ import { SubMerchantInfo } from "./subMerchantInfo";
 
 export class PaymentCaptureRequest {
     "amount": Amount;
-    "applicationInfo"?: ApplicationInfo;
-    "enhancedSchemeData"?: EnhancedSchemeData;
+    "applicationInfo"?: ApplicationInfo | null;
+    "enhancedSchemeData"?: EnhancedSchemeData | null;
     /**
     * Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
     */
@@ -28,7 +28,7 @@ export class PaymentCaptureRequest {
     * The merchant account that is used to process the payment.
     */
     "merchantAccount": string;
-    "platformChargebackLogic"?: PlatformChargebackLogic;
+    "platformChargebackLogic"?: PlatformChargebackLogic | null;
     /**
     * Your reference for the capture request. Maximum length: 80 characters.
     */
@@ -56,13 +56,13 @@ export class PaymentCaptureRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo",
+            "type": "ApplicationInfo | null",
             "format": ""
         },
         {
             "name": "enhancedSchemeData",
             "baseName": "enhancedSchemeData",
-            "type": "EnhancedSchemeData",
+            "type": "EnhancedSchemeData | null",
             "format": ""
         },
         {
@@ -80,7 +80,7 @@ export class PaymentCaptureRequest {
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic",
+            "type": "PlatformChargebackLogic | null",
             "format": ""
         },
         {

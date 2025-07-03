@@ -11,7 +11,7 @@ import { Amount } from "./amount";
 
 
 export class AmountAdjustment {
-    "amount"?: Amount;
+    "amount"?: Amount | null;
     /**
     * The type of markup that is applied to an authorised payment.  Possible values: **exchange**, **forexMarkup**, **authHoldReserve**, **atmMarkup**.
     */
@@ -29,7 +29,7 @@ export class AmountAdjustment {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {

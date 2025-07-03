@@ -452,5 +452,5 @@ export const syncTerminalPaymentResponse = {
       "additionalAttribute": "somethingElse",
     }
   }
-}
+};
 

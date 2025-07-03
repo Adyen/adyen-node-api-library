@@ -11,7 +11,7 @@ import { Counterparty } from "./counterparty";
 
 
 export class CapitalGrantInfo {
-    "counterparty"?: Counterparty;
+    "counterparty"?: Counterparty | null;
     /**
     * The identifier of the grant account used for the grant.
     */
@@ -29,7 +29,7 @@ export class CapitalGrantInfo {
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "Counterparty",
+            "type": "Counterparty | null",
             "format": ""
         },
         {

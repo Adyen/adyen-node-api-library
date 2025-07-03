@@ -8,6 +8,7 @@
  */
 
 import { Amount } from "./amount";
+import { BrowserInfo } from "./browserInfo";
 import { EncryptedOrderData } from "./encryptedOrderData";
 
 
@@ -20,11 +21,12 @@ export class PaymentMethodsRequest {
     * List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"applepay\"]`
     */
     "allowedPaymentMethods"?: Array<string>;
-    "amount"?: Amount;
+    "amount"?: Amount | null;
     /**
     * List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`
     */
     "blockedPaymentMethods"?: Array<string>;
+    "browserInfo"?: BrowserInfo | null;
     /**
     * The platform where a payment transaction takes place. This field can be used for filtering out payment methods that are only available on specific platforms. Possible values: * iOS * Android * Web
     */
@@ -37,11 +39,19 @@ export class PaymentMethodsRequest {
     * The merchant account identifier, with which you want to process the transaction.
     */
     "merchantAccount": string;
-    "order"?: EncryptedOrderData;
+    "order"?: EncryptedOrderData | null;
     /**
     * A unique ID that can be used to associate `/paymentMethods` and `/payments` requests with the same shopper transaction, offering insights into conversion rates.
     */
     "shopperConversionId"?: string;
+    /**
+    * The shopper\'s email address. We recommend that you provide this data, as it is used in velocity fraud checks. > For 3D Secure 2 transactions, schemes require `shopperEmail` for all browser-based and mobile implementations.
+    */
+    "shopperEmail"?: string;
+    /**
+    * The shopper\'s IP address. In general, we recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). > For 3D Secure 2 transactions, schemes require `shopperIP` for all browser-based implementations. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).
+    */
+    "shopperIP"?: string;
     /**
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
@@ -62,6 +72,10 @@ export class PaymentMethodsRequest {
     * Specifies how payment methods should be filtered based on the \'store\' parameter:   - \'exclusive\': Only payment methods belonging to the specified \'store\' are returned.   - \'inclusive\': Payment methods from the \'store\' and those not associated with any other store are returned.
     */
     "storeFiltrationMode"?: PaymentMethodsRequest.StoreFiltrationModeEnum;
+    /**
+    * The shopper\'s telephone number.
+    */
+    "telephoneNumber"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -83,13 +97,19 @@ export class PaymentMethodsRequest {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {
             "name": "blockedPaymentMethods",
             "baseName": "blockedPaymentMethods",
             "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "browserInfo",
+            "baseName": "browserInfo",
+            "type": "BrowserInfo | null",
             "format": ""
         },
         {
@@ -113,12 +133,24 @@ export class PaymentMethodsRequest {
         {
             "name": "order",
             "baseName": "order",
-            "type": "EncryptedOrderData",
+            "type": "EncryptedOrderData | null",
             "format": ""
         },
         {
             "name": "shopperConversionId",
             "baseName": "shopperConversionId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "shopperEmail",
+            "baseName": "shopperEmail",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "shopperIP",
+            "baseName": "shopperIP",
             "type": "string",
             "format": ""
         },
@@ -150,6 +182,12 @@ export class PaymentMethodsRequest {
             "name": "storeFiltrationMode",
             "baseName": "storeFiltrationMode",
             "type": "PaymentMethodsRequest.StoreFiltrationModeEnum",
+            "format": ""
+        },
+        {
+            "name": "telephoneNumber",
+            "baseName": "telephoneNumber",
+            "type": "string",
             "format": ""
         }    ];
 

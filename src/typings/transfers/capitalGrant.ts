@@ -15,10 +15,10 @@ import { Repayment } from "./repayment";
 
 
 export class CapitalGrant {
-    "amount"?: Amount;
+    "amount"?: Amount | null;
     "balances": CapitalBalance;
-    "counterparty"?: Counterparty;
-    "fee"?: Fee;
+    "counterparty"?: Counterparty | null;
+    "fee"?: Fee | null;
     /**
     * The identifier of the grant account used for the grant.
     */
@@ -31,7 +31,7 @@ export class CapitalGrant {
     * The identifier of the grant reference.
     */
     "id": string;
-    "repayment"?: Repayment;
+    "repayment"?: Repayment | null;
     /**
     * The current status of the grant. Possible values: **Pending**, **Active**, **Repaid**, **WrittenOff**, **Failed**, **Revoked**.
     */
@@ -45,7 +45,7 @@ export class CapitalGrant {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {
@@ -57,13 +57,13 @@ export class CapitalGrant {
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "Counterparty",
+            "type": "Counterparty | null",
             "format": ""
         },
         {
             "name": "fee",
             "baseName": "fee",
-            "type": "Fee",
+            "type": "Fee | null",
             "format": ""
         },
         {
@@ -87,7 +87,7 @@ export class CapitalGrant {
         {
             "name": "repayment",
             "baseName": "repayment",
-            "type": "Repayment",
+            "type": "Repayment | null",
             "format": ""
         },
         {

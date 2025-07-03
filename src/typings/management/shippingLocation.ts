@@ -12,8 +12,8 @@ import { Contact } from "./contact";
 
 
 export class ShippingLocation {
-    "address"?: Address;
-    "contact"?: Contact;
+    "address"?: Address | null;
+    "contact"?: Contact | null;
     /**
     * The unique identifier of the shipping location, for use as `shippingLocationId` when creating an order.
     */
@@ -31,13 +31,13 @@ export class ShippingLocation {
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address",
+            "type": "Address | null",
             "format": ""
         },
         {
             "name": "contact",
             "baseName": "contact",
-            "type": "Contact",
+            "type": "Contact | null",
             "format": ""
         },
         {

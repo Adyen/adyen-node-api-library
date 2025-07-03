@@ -17,7 +17,7 @@ import { TransferEventTrackingData } from "./transferEventTrackingData";
 
 
 export class TransferEvent {
-    "amount"?: Amount;
+    "amount"?: Amount | null;
     /**
     * The amount adjustments in this transfer. Only applicable for [issuing](https://docs.adyen.com/issuing/) integrations.
     */
@@ -38,17 +38,17 @@ export class TransferEvent {
     * A list of event data.
     */
     "eventsData"?: Array<TransferEventEventsDataInner>;
-    "externalReason"?: ExternalReason;
+    "externalReason"?: ExternalReason | null;
     /**
     * The unique identifier of the transfer event.
     */
     "id"?: string;
-    "modification"?: Modification;
+    "modification"?: Modification | null;
     /**
     * The list of balance mutations per event.
     */
     "mutations"?: Array<BalanceMutation>;
-    "originalAmount"?: Amount;
+    "originalAmount"?: Amount | null;
     /**
     * The reason for the transfer status.
     */
@@ -57,7 +57,7 @@ export class TransferEvent {
     * The status of the transfer event.
     */
     "status"?: TransferEvent.StatusEnum;
-    "trackingData"?: TransferEventTrackingData;
+    "trackingData"?: TransferEventTrackingData | null;
     /**
     * The id of the transaction that is related to this accounting event. Only sent for events of type **accounting** where the balance changes.
     */
@@ -83,7 +83,7 @@ export class TransferEvent {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {
@@ -119,7 +119,7 @@ export class TransferEvent {
         {
             "name": "externalReason",
             "baseName": "externalReason",
-            "type": "ExternalReason",
+            "type": "ExternalReason | null",
             "format": ""
         },
         {
@@ -131,7 +131,7 @@ export class TransferEvent {
         {
             "name": "modification",
             "baseName": "modification",
-            "type": "Modification",
+            "type": "Modification | null",
             "format": ""
         },
         {
@@ -143,7 +143,7 @@ export class TransferEvent {
         {
             "name": "originalAmount",
             "baseName": "originalAmount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {
@@ -161,7 +161,7 @@ export class TransferEvent {
         {
             "name": "trackingData",
             "baseName": "trackingData",
-            "type": "TransferEventTrackingData",
+            "type": "TransferEventTrackingData | null",
             "format": ""
         },
         {

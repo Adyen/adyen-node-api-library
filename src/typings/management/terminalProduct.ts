@@ -27,7 +27,7 @@ export class TerminalProduct {
     * The descriptive name of the product.
     */
     "name"?: string;
-    "price"?: TerminalProductPrice;
+    "price"?: TerminalProductPrice | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -61,7 +61,7 @@ export class TerminalProduct {
         {
             "name": "price",
             "baseName": "price",
-            "type": "TerminalProductPrice",
+            "type": "TerminalProductPrice | null",
             "format": ""
         }    ];
 

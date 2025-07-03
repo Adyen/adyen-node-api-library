@@ -15,7 +15,11 @@ import { Split } from "./split";
 
 export class PaymentRefundRequest {
     "amount": Amount;
-    "applicationInfo"?: ApplicationInfo;
+    "applicationInfo"?: ApplicationInfo | null;
+    /**
+    * This is only available for PayPal refunds. The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund.
+    */
+    "capturePspReference"?: string;
     /**
     * Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
     */
@@ -55,7 +59,13 @@ export class PaymentRefundRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo",
+            "type": "ApplicationInfo | null",
+            "format": ""
+        },
+        {
+            "name": "capturePspReference",
+            "baseName": "capturePspReference",
+            "type": "string",
             "format": ""
         },
         {
@@ -73,7 +83,7 @@ export class PaymentRefundRequest {
         {
             "name": "merchantRefundReason",
             "baseName": "merchantRefundReason",
-            "type": "PaymentRefundRequest.MerchantRefundReasonEnum",
+            "type": "PaymentRefundRequest.MerchantRefundReasonEnum | null",
             "format": ""
         },
         {

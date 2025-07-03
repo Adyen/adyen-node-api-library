@@ -17,24 +17,24 @@ import { WebData } from "./webData";
 
 
 export class Individual {
-    "birthData"?: BirthData;
+    "birthData"?: BirthData | null;
     /**
     * The email address of the legal entity.
     */
     "email"?: string;
-    "identificationData"?: IdentificationData;
+    "identificationData"?: IdentificationData | null;
     "name": Name;
     /**
     * The individual\'s nationality.
     */
     "nationality"?: string;
-    "phone"?: PhoneNumber;
+    "phone"?: PhoneNumber | null;
     "residentialAddress": Address;
     /**
     * The tax information of the individual.
     */
     "taxInformation"?: Array<TaxInformation>;
-    "webData"?: WebData;
+    "webData"?: WebData | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -44,7 +44,7 @@ export class Individual {
         {
             "name": "birthData",
             "baseName": "birthData",
-            "type": "BirthData",
+            "type": "BirthData | null",
             "format": ""
         },
         {
@@ -56,7 +56,7 @@ export class Individual {
         {
             "name": "identificationData",
             "baseName": "identificationData",
-            "type": "IdentificationData",
+            "type": "IdentificationData | null",
             "format": ""
         },
         {
@@ -74,7 +74,7 @@ export class Individual {
         {
             "name": "phone",
             "baseName": "phone",
-            "type": "PhoneNumber",
+            "type": "PhoneNumber | null",
             "format": ""
         },
         {
@@ -92,7 +92,7 @@ export class Individual {
         {
             "name": "webData",
             "baseName": "webData",
-            "type": "WebData",
+            "type": "WebData | null",
             "format": ""
         }    ];
 

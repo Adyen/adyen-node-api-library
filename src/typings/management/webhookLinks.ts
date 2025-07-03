@@ -11,9 +11,9 @@ import { LinksElement } from "./linksElement";
 
 
 export class WebhookLinks {
-    "company"?: LinksElement;
+    "company"?: LinksElement | null;
     "generateHmac": LinksElement;
-    "merchant"?: LinksElement;
+    "merchant"?: LinksElement | null;
     "self": LinksElement;
     "testWebhook": LinksElement;
 
@@ -25,7 +25,7 @@ export class WebhookLinks {
         {
             "name": "company",
             "baseName": "company",
-            "type": "LinksElement",
+            "type": "LinksElement | null",
             "format": ""
         },
         {
@@ -37,7 +37,7 @@ export class WebhookLinks {
         {
             "name": "merchant",
             "baseName": "merchant",
-            "type": "LinksElement",
+            "type": "LinksElement | null",
             "format": ""
         },
         {

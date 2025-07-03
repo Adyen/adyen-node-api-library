@@ -14,9 +14,9 @@ import { NotificationUrl } from "./notificationUrl";
 
 
 export class Nexo {
-    "displayUrls"?: NotificationUrl;
-    "encryptionKey"?: Key;
-    "eventUrls"?: EventUrl;
+    "displayUrls"?: NotificationUrl | null;
+    "encryptionKey"?: Key | null;
+    "eventUrls"?: EventUrl | null;
     /**
     * One or more URLs to send event messages to when using Terminal API.
     *
@@ -24,7 +24,7 @@ export class Nexo {
 	* Use `eventUrls` instead.
     */
     "nexoEventUrls"?: Array<string>;
-    "notification"?: Notification;
+    "notification"?: Notification | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -34,19 +34,19 @@ export class Nexo {
         {
             "name": "displayUrls",
             "baseName": "displayUrls",
-            "type": "NotificationUrl",
+            "type": "NotificationUrl | null",
             "format": ""
         },
         {
             "name": "encryptionKey",
             "baseName": "encryptionKey",
-            "type": "Key",
+            "type": "Key | null",
             "format": ""
         },
         {
             "name": "eventUrls",
             "baseName": "eventUrls",
-            "type": "EventUrl",
+            "type": "EventUrl | null",
             "format": ""
         },
         {
@@ -58,7 +58,7 @@ export class Nexo {
         {
             "name": "notification",
             "baseName": "notification",
-            "type": "Notification",
+            "type": "Notification | null",
             "format": ""
         }    ];
 

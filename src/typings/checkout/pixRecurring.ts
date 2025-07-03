@@ -16,6 +16,10 @@ export class PixRecurring {
     */
     "billingDate"?: string;
     /**
+    * Flag used to define whether liquidation can happen only on business days
+    */
+    "businessDayOnly"?: boolean;
+    /**
     * End date of the billing plan, in YYYY-MM-DD format. The end date must align with the frequency and the start date of the billing plan. If left blank, the subscription will continue indefinitely unless it is cancelled by the shopper.
     */
     "endsAt"?: string;
@@ -23,12 +27,12 @@ export class PixRecurring {
     * The frequency at which the shopper will be charged.
     */
     "frequency"?: PixRecurring.FrequencyEnum;
-    "minAmount"?: Amount;
+    "minAmount"?: Amount | null;
     /**
     * The pspReference for the failed recurring payment. Find this in AUTHORISATION webhook you received after the billing date.
     */
     "originalPspReference"?: string;
-    "recurringAmount"?: Amount;
+    "recurringAmount"?: Amount | null;
     /**
     * The text that that will be shown on the shopper\'s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.
     */
@@ -54,6 +58,12 @@ export class PixRecurring {
             "format": ""
         },
         {
+            "name": "businessDayOnly",
+            "baseName": "businessDayOnly",
+            "type": "boolean",
+            "format": ""
+        },
+        {
             "name": "endsAt",
             "baseName": "endsAt",
             "type": "string",
@@ -68,7 +78,7 @@ export class PixRecurring {
         {
             "name": "minAmount",
             "baseName": "minAmount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {
@@ -80,7 +90,7 @@ export class PixRecurring {
         {
             "name": "recurringAmount",
             "baseName": "recurringAmount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {

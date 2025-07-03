@@ -15,7 +15,7 @@ import { TravelAgency } from "./travelAgency";
 
 
 export class Airline {
-    "agency"?: Agency;
+    "agency"?: Agency | null;
     /**
     * The amount charged for boarding the plane, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 character * maxLength: 11 characters
     */
@@ -50,8 +50,8 @@ export class Airline {
     */
     "passengerName": string;
     "passengers"?: Array<Passenger>;
-    "ticket"?: Ticket;
-    "travelAgency"?: TravelAgency;
+    "ticket"?: Ticket | null;
+    "travelAgency"?: TravelAgency | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -61,7 +61,7 @@ export class Airline {
         {
             "name": "agency",
             "baseName": "agency",
-            "type": "Agency",
+            "type": "Agency | null",
             "format": ""
         },
         {
@@ -127,13 +127,13 @@ export class Airline {
         {
             "name": "ticket",
             "baseName": "ticket",
-            "type": "Ticket",
+            "type": "Ticket | null",
             "format": ""
         },
         {
             "name": "travelAgency",
             "baseName": "travelAgency",
-            "type": "TravelAgency",
+            "type": "TravelAgency | null",
             "format": ""
         }    ];
 

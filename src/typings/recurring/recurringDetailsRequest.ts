@@ -15,7 +15,7 @@ export class RecurringDetailsRequest {
     * The merchant account identifier you want to process the (transaction) request with.
     */
     "merchantAccount": string;
-    "recurring"?: Recurring;
+    "recurring"?: Recurring | null;
     /**
     * The reference you use to uniquely identify the shopper (e.g. user ID or account ID).
     */
@@ -35,7 +35,7 @@ export class RecurringDetailsRequest {
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring",
+            "type": "Recurring | null",
             "format": ""
         },
         {

@@ -17,7 +17,7 @@ export class BalanceCheckResponse {
     */
     "additionalData"?: { [key: string]: string; };
     "balance": Amount;
-    "fraudResult"?: FraudResult;
+    "fraudResult"?: FraudResult | null;
     /**
     * Adyen\'s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
@@ -30,7 +30,7 @@ export class BalanceCheckResponse {
     * The result of the cancellation request.  Possible values:  * **Success** – Indicates that the balance check was successful. * **NotEnoughBalance** – Commonly indicates that the card did not have enough balance to pay the amount in the request, or that the currency of the balance on the card did not match the currency of the requested amount. * **Failed** – Indicates that the balance check failed.
     */
     "resultCode": BalanceCheckResponse.ResultCodeEnum;
-    "transactionLimit"?: Amount;
+    "transactionLimit"?: Amount | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -52,7 +52,7 @@ export class BalanceCheckResponse {
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult",
+            "type": "FraudResult | null",
             "format": ""
         },
         {
@@ -76,7 +76,7 @@ export class BalanceCheckResponse {
         {
             "name": "transactionLimit",
             "baseName": "transactionLimit",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         }    ];
 

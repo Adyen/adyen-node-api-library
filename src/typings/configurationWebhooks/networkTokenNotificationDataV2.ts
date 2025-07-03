@@ -13,7 +13,7 @@ import { Wallet } from "./wallet";
 
 
 export class NetworkTokenNotificationDataV2 {
-    "authentication"?: TokenAuthentication;
+    "authentication"?: TokenAuthentication | null;
     /**
     * Specifies whether the authentication process was triggered during token provisioning.
     */
@@ -50,7 +50,7 @@ export class NetworkTokenNotificationDataV2 {
     * The rules used to validate the request for provisioning the network token.
     */
     "validationFacts"?: Array<ValidationFacts>;
-    "wallet"?: Wallet;
+    "wallet"?: Wallet | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -60,7 +60,7 @@ export class NetworkTokenNotificationDataV2 {
         {
             "name": "authentication",
             "baseName": "authentication",
-            "type": "TokenAuthentication",
+            "type": "TokenAuthentication | null",
             "format": ""
         },
         {
@@ -120,7 +120,7 @@ export class NetworkTokenNotificationDataV2 {
         {
             "name": "wallet",
             "baseName": "wallet",
-            "type": "Wallet",
+            "type": "Wallet | null",
             "format": ""
         }    ];
 

@@ -12,12 +12,12 @@ import { Name } from "./name";
 
 
 export class FundOrigin {
-    "billingAddress"?: Address;
+    "billingAddress"?: Address | null;
     /**
     * The email address of the person funding the money.
     */
     "shopperEmail"?: string;
-    "shopperName"?: Name;
+    "shopperName"?: Name | null;
     /**
     * The phone number of the person funding the money.
     */
@@ -35,7 +35,7 @@ export class FundOrigin {
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address",
+            "type": "Address | null",
             "format": ""
         },
         {
@@ -47,7 +47,7 @@ export class FundOrigin {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name",
+            "type": "Name | null",
             "format": ""
         },
         {

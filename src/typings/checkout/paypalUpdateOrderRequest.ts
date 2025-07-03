@@ -13,7 +13,7 @@ import { TaxTotal } from "./taxTotal";
 
 
 export class PaypalUpdateOrderRequest {
-    "amount"?: Amount;
+    "amount"?: Amount | null;
     /**
     * The list of new delivery methods and the cost of each.
     */
@@ -30,7 +30,7 @@ export class PaypalUpdateOrderRequest {
     * The original `sessionId` from the `/sessions` response.
     */
     "sessionId"?: string;
-    "taxTotal"?: TaxTotal;
+    "taxTotal"?: TaxTotal | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -40,7 +40,7 @@ export class PaypalUpdateOrderRequest {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {
@@ -70,7 +70,7 @@ export class PaypalUpdateOrderRequest {
         {
             "name": "taxTotal",
             "baseName": "taxTotal",
-            "type": "TaxTotal",
+            "type": "TaxTotal | null",
             "format": ""
         }    ];
 

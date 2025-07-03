@@ -12,7 +12,7 @@ import { TerminalActionScheduleDetail } from "./terminalActionScheduleDetail";
 
 
 export class ScheduleTerminalActionsResponse {
-    "actionDetails"?: ScheduleTerminalActionsRequestActionDetails;
+    "actionDetails"?: ScheduleTerminalActionsRequestActionDetails | null;
     /**
     * A list containing a terminal ID and an action ID for each terminal that the action was scheduled for.
     */
@@ -46,7 +46,7 @@ export class ScheduleTerminalActionsResponse {
         {
             "name": "actionDetails",
             "baseName": "actionDetails",
-            "type": "ScheduleTerminalActionsRequestActionDetails",
+            "type": "ScheduleTerminalActionsRequestActionDetails | null",
             "format": ""
         },
         {

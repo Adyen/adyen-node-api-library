@@ -38,8 +38,8 @@ export class StoreCreationRequest {
     * The store name to be shown on the shopper\'s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can\'t be all numbers.
     */
     "shopperStatement": string;
-    "splitConfiguration"?: StoreSplitConfiguration;
-    "subMerchantData"?: SubMerchantData;
+    "splitConfiguration"?: StoreSplitConfiguration | null;
+    "subMerchantData"?: SubMerchantData | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -91,13 +91,13 @@ export class StoreCreationRequest {
         {
             "name": "splitConfiguration",
             "baseName": "splitConfiguration",
-            "type": "StoreSplitConfiguration",
+            "type": "StoreSplitConfiguration | null",
             "format": ""
         },
         {
             "name": "subMerchantData",
             "baseName": "subMerchantData",
-            "type": "SubMerchantData",
+            "type": "SubMerchantData | null",
             "format": ""
         }    ];
 
