@@ -2,7 +2,6 @@ import { EstimationTrackingData } from "../../typings/transferWebhooks/estimatio
 import { TransferWebhooksHandler } from "../../typings/transferWebhooks/transferWebhooksHandler";
 
 describe("Transfer Webhook Serialization", (): void => {
-  // disabling temporarily (must address oneOf deserialization issue)
   test("should correctly deserialize union types in transfer webhooks", () => {
     // Simplest possible webhook with just the fields we need to test
     const webhookData = {
