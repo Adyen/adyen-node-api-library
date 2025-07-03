@@ -27,7 +27,7 @@ export class CapabilitySettings {
     * 
     */
     "interval"?: CapabilitySettings.IntervalEnum;
-    "maxAmount"?: Amount;
+    "maxAmount"?: Amount | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -61,7 +61,7 @@ export class CapabilitySettings {
         {
             "name": "maxAmount",
             "baseName": "maxAmount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         }    ];
 

@@ -11,7 +11,7 @@ import { BalanceAccount } from "./balanceAccount";
 
 
 export class BalanceAccountNotificationData {
-    "balanceAccount"?: BalanceAccount;
+    "balanceAccount"?: BalanceAccount | null;
     /**
     * The unique identifier of the balance platform.
     */
@@ -25,7 +25,7 @@ export class BalanceAccountNotificationData {
         {
             "name": "balanceAccount",
             "baseName": "balanceAccount",
-            "type": "BalanceAccount",
+            "type": "BalanceAccount | null",
             "format": ""
         },
         {

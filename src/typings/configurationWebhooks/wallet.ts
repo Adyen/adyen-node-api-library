@@ -15,7 +15,7 @@ export class Wallet {
     * The confidence score of the wallet account, calculated by the wallet provider.  A high score means that account is considered trustworthy. A low score means that the account is considered suspicious.  Possible values: **1** to **5**.
     */
     "accountScore"?: string;
-    "device"?: Device;
+    "device"?: Device | null;
     /**
     * The confidence score of the device, calculated by the wallet provider.  A high score means that device is considered trustworthy. A low score means that the device is considered suspicious.  Possible values: **1** to **5**.
     */
@@ -47,7 +47,7 @@ export class Wallet {
         {
             "name": "device",
             "baseName": "device",
-            "type": "Device",
+            "type": "Device | null",
             "format": ""
         },
         {

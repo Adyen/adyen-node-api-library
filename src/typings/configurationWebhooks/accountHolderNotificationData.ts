@@ -11,7 +11,7 @@ import { AccountHolder } from "./accountHolder";
 
 
 export class AccountHolderNotificationData {
-    "accountHolder"?: AccountHolder;
+    "accountHolder"?: AccountHolder | null;
     /**
     * The unique identifier of the balance platform.
     */
@@ -25,7 +25,7 @@ export class AccountHolderNotificationData {
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "AccountHolder",
+            "type": "AccountHolder | null",
             "format": ""
         },
         {
