@@ -27,9 +27,9 @@ export class RecurringDetail {
     * The alias type of the credit card number.  Applies only to recurring contracts storing credit card details.
     */
     "aliasType"?: string;
-    "bank"?: BankAccount;
-    "billingAddress"?: Address;
-    "card"?: Card;
+    "bank"?: BankAccount | null;
+    "billingAddress"?: Address | null;
+    "card"?: Card | null;
     /**
     * Types of recurring contracts.
     */
@@ -58,12 +58,12 @@ export class RecurringDetail {
     * The reference that uniquely identifies the recurring detail.
     */
     "recurringDetailReference": string;
-    "shopperName"?: Name;
+    "shopperName"?: Name | null;
     /**
     * A shopper\'s social security number (only in countries where it is legal to collect).
     */
     "socialSecurityNumber"?: string;
-    "tokenDetails"?: TokenDetails;
+    "tokenDetails"?: TokenDetails | null;
     /**
     * The payment method, such as “mc\", \"visa\", \"ideal\", \"paypal\".
     */
@@ -95,19 +95,19 @@ export class RecurringDetail {
         {
             "name": "bank",
             "baseName": "bank",
-            "type": "BankAccount",
+            "type": "BankAccount | null",
             "format": ""
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address",
+            "type": "Address | null",
             "format": ""
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card",
+            "type": "Card | null",
             "format": ""
         },
         {
@@ -155,7 +155,7 @@ export class RecurringDetail {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name",
+            "type": "Name | null",
             "format": ""
         },
         {
@@ -167,7 +167,7 @@ export class RecurringDetail {
         {
             "name": "tokenDetails",
             "baseName": "tokenDetails",
-            "type": "TokenDetails",
+            "type": "TokenDetails | null",
             "format": ""
         },
         {
