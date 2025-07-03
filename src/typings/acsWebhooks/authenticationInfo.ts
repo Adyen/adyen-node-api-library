@@ -15,7 +15,7 @@ export class AuthenticationInfo {
     * Universally unique transaction identifier assigned by the Access Control Server (ACS) to identify a single transaction.
     */
     "acsTransId": string;
-    "challenge"?: ChallengeInfo;
+    "challenge"?: ChallengeInfo | null;
     /**
     * Specifies a preference for receiving a challenge. Possible values:  * **01**: No preference * **02**: No challenge requested * **03**: Challenge requested (preference) * **04**: Challenge requested (mandate) * **05**: No challenge requested (transactional risk analysis is already performed) * **07**: No challenge requested (SCA is already performed) * **08**: No challenge requested (trusted beneficiaries exemption of no challenge required) * **09**: Challenge requested (trusted beneficiaries prompt requested if challenge required) * **80**: No challenge requested (secure corporate payment with Mastercard) * **82**: No challenge requested (secure corporate payment with Visa) 
     */
@@ -83,7 +83,7 @@ export class AuthenticationInfo {
         {
             "name": "challenge",
             "baseName": "challenge",
-            "type": "ChallengeInfo",
+            "type": "ChallengeInfo | null",
             "format": ""
         },
         {
