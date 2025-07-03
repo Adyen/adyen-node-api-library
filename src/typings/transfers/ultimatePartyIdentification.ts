@@ -11,7 +11,7 @@ import { Address } from "./address";
 
 
 export class UltimatePartyIdentification {
-    "address"?: Address;
+    "address"?: Address | null;
     /**
     * The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when `type` is **individual**.
     */
@@ -45,7 +45,7 @@ export class UltimatePartyIdentification {
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address",
+            "type": "Address | null",
             "format": ""
         },
         {

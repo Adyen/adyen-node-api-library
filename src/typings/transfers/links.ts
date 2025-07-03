@@ -11,8 +11,8 @@ import { Link } from "./link";
 
 
 export class Links {
-    "next"?: Link;
-    "prev"?: Link;
+    "next"?: Link | null;
+    "prev"?: Link | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,13 +22,13 @@ export class Links {
         {
             "name": "next",
             "baseName": "next",
-            "type": "Link",
+            "type": "Link | null",
             "format": ""
         },
         {
             "name": "prev",
             "baseName": "prev",
-            "type": "Link",
+            "type": "Link | null",
             "format": ""
         }    ];
 

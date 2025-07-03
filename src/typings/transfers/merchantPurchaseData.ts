@@ -12,7 +12,7 @@ import { Lodging } from "./lodging";
 
 
 export class MerchantPurchaseData {
-    "airline"?: Airline;
+    "airline"?: Airline | null;
     /**
     * Lodging information.
     */
@@ -30,7 +30,7 @@ export class MerchantPurchaseData {
         {
             "name": "airline",
             "baseName": "airline",
-            "type": "Airline",
+            "type": "Airline | null",
             "format": ""
         },
         {
