@@ -16,8 +16,8 @@ export class TransactionEventViolation {
     * An explanation about why the transaction rule failed.
     */
     "reason"?: string;
-    "transactionRule"?: TransactionRuleReference;
-    "transactionRuleSource"?: TransactionRuleSource;
+    "transactionRule"?: TransactionRuleReference | null;
+    "transactionRuleSource"?: TransactionRuleSource | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -33,13 +33,13 @@ export class TransactionEventViolation {
         {
             "name": "transactionRule",
             "baseName": "transactionRule",
-            "type": "TransactionRuleReference",
+            "type": "TransactionRuleReference | null",
             "format": ""
         },
         {
             "name": "transactionRuleSource",
             "baseName": "transactionRuleSource",
-            "type": "TransactionRuleSource",
+            "type": "TransactionRuleSource | null",
             "format": ""
         }    ];
 
