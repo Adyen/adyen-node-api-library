@@ -13,7 +13,7 @@ import { ShippingLocation } from "./shippingLocation";
 
 
 export class TerminalOrder {
-    "billingEntity"?: BillingEntity;
+    "billingEntity"?: BillingEntity | null;
     /**
     * The merchant-defined purchase order number. This will be printed on the packing list.
     */
@@ -30,7 +30,7 @@ export class TerminalOrder {
     * The date and time that the order was placed, in UTC ISO 8601 format. For example, \"2011-12-03T10:15:30Z\".
     */
     "orderDate"?: string;
-    "shippingLocation"?: ShippingLocation;
+    "shippingLocation"?: ShippingLocation | null;
     /**
     * The processing status of the order.
     */
@@ -48,7 +48,7 @@ export class TerminalOrder {
         {
             "name": "billingEntity",
             "baseName": "billingEntity",
-            "type": "BillingEntity",
+            "type": "BillingEntity | null",
             "format": ""
         },
         {
@@ -78,7 +78,7 @@ export class TerminalOrder {
         {
             "name": "shippingLocation",
             "baseName": "shippingLocation",
-            "type": "ShippingLocation",
+            "type": "ShippingLocation | null",
             "format": ""
         },
         {

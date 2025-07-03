@@ -12,7 +12,7 @@ import { WebhookLinks } from "./webhookLinks";
 
 
 export class Webhook {
-    "_links"?: WebhookLinks;
+    "_links"?: WebhookLinks | null;
     /**
     * Indicates if expired SSL certificates are accepted. Default value: **false**.
     */
@@ -33,7 +33,7 @@ export class Webhook {
     * Indicates if the webhook configuration is active. The field must be **true** for you to receive webhooks about events related an account.
     */
     "active": boolean;
-    "additionalSettings"?: AdditionalSettingsResponse;
+    "additionalSettings"?: AdditionalSettingsResponse | null;
     /**
     * The alias of our SSL certificate. When you receive a notification from us, the alias from the HMAC signature will match this alias.
     */
@@ -103,7 +103,7 @@ export class Webhook {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "WebhookLinks",
+            "type": "WebhookLinks | null",
             "format": ""
         },
         {
@@ -139,7 +139,7 @@ export class Webhook {
         {
             "name": "additionalSettings",
             "baseName": "additionalSettings",
-            "type": "AdditionalSettingsResponse",
+            "type": "AdditionalSettingsResponse | null",
             "format": ""
         },
         {

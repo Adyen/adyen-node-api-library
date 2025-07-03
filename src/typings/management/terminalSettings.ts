@@ -32,31 +32,31 @@ import { WifiProfiles } from "./wifiProfiles";
 
 
 export class TerminalSettings {
-    "cardholderReceipt"?: CardholderReceipt;
-    "connectivity"?: Connectivity;
+    "cardholderReceipt"?: CardholderReceipt | null;
+    "connectivity"?: Connectivity | null;
     /**
     * Settings for tipping with or without predefined options to choose from. The maximum number of predefined options is four, or three plus the option to enter a custom tip.
     */
     "gratuities"?: Array<Gratuity> | null;
-    "hardware"?: Hardware;
-    "localization"?: Localization;
-    "nexo"?: Nexo;
-    "offlineProcessing"?: OfflineProcessing;
-    "opi"?: Opi;
-    "passcodes"?: Passcodes;
-    "payAtTable"?: PayAtTable;
-    "payment"?: Payment;
-    "receiptOptions"?: ReceiptOptions;
-    "receiptPrinting"?: ReceiptPrinting;
-    "refunds"?: Refunds;
-    "signature"?: Signature;
-    "standalone"?: Standalone;
-    "storeAndForward"?: StoreAndForward;
-    "surcharge"?: Surcharge;
-    "tapToPay"?: TapToPay;
-    "terminalInstructions"?: TerminalInstructions;
-    "timeouts"?: Timeouts;
-    "wifiProfiles"?: WifiProfiles;
+    "hardware"?: Hardware | null;
+    "localization"?: Localization | null;
+    "nexo"?: Nexo | null;
+    "offlineProcessing"?: OfflineProcessing | null;
+    "opi"?: Opi | null;
+    "passcodes"?: Passcodes | null;
+    "payAtTable"?: PayAtTable | null;
+    "payment"?: Payment | null;
+    "receiptOptions"?: ReceiptOptions | null;
+    "receiptPrinting"?: ReceiptPrinting | null;
+    "refunds"?: Refunds | null;
+    "signature"?: Signature | null;
+    "standalone"?: Standalone | null;
+    "storeAndForward"?: StoreAndForward | null;
+    "surcharge"?: Surcharge | null;
+    "tapToPay"?: TapToPay | null;
+    "terminalInstructions"?: TerminalInstructions | null;
+    "timeouts"?: Timeouts | null;
+    "wifiProfiles"?: WifiProfiles | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -66,133 +66,133 @@ export class TerminalSettings {
         {
             "name": "cardholderReceipt",
             "baseName": "cardholderReceipt",
-            "type": "CardholderReceipt",
+            "type": "CardholderReceipt | null",
             "format": ""
         },
         {
             "name": "connectivity",
             "baseName": "connectivity",
-            "type": "Connectivity",
+            "type": "Connectivity | null",
             "format": ""
         },
         {
             "name": "gratuities",
             "baseName": "gratuities",
-            "type": "Array<Gratuity>",
+            "type": "Array<Gratuity> | null",
             "format": ""
         },
         {
             "name": "hardware",
             "baseName": "hardware",
-            "type": "Hardware",
+            "type": "Hardware | null",
             "format": ""
         },
         {
             "name": "localization",
             "baseName": "localization",
-            "type": "Localization",
+            "type": "Localization | null",
             "format": ""
         },
         {
             "name": "nexo",
             "baseName": "nexo",
-            "type": "Nexo",
+            "type": "Nexo | null",
             "format": ""
         },
         {
             "name": "offlineProcessing",
             "baseName": "offlineProcessing",
-            "type": "OfflineProcessing",
+            "type": "OfflineProcessing | null",
             "format": ""
         },
         {
             "name": "opi",
             "baseName": "opi",
-            "type": "Opi",
+            "type": "Opi | null",
             "format": ""
         },
         {
             "name": "passcodes",
             "baseName": "passcodes",
-            "type": "Passcodes",
+            "type": "Passcodes | null",
             "format": ""
         },
         {
             "name": "payAtTable",
             "baseName": "payAtTable",
-            "type": "PayAtTable",
+            "type": "PayAtTable | null",
             "format": ""
         },
         {
             "name": "payment",
             "baseName": "payment",
-            "type": "Payment",
+            "type": "Payment | null",
             "format": ""
         },
         {
             "name": "receiptOptions",
             "baseName": "receiptOptions",
-            "type": "ReceiptOptions",
+            "type": "ReceiptOptions | null",
             "format": ""
         },
         {
             "name": "receiptPrinting",
             "baseName": "receiptPrinting",
-            "type": "ReceiptPrinting",
+            "type": "ReceiptPrinting | null",
             "format": ""
         },
         {
             "name": "refunds",
             "baseName": "refunds",
-            "type": "Refunds",
+            "type": "Refunds | null",
             "format": ""
         },
         {
             "name": "signature",
             "baseName": "signature",
-            "type": "Signature",
+            "type": "Signature | null",
             "format": ""
         },
         {
             "name": "standalone",
             "baseName": "standalone",
-            "type": "Standalone",
+            "type": "Standalone | null",
             "format": ""
         },
         {
             "name": "storeAndForward",
             "baseName": "storeAndForward",
-            "type": "StoreAndForward",
+            "type": "StoreAndForward | null",
             "format": ""
         },
         {
             "name": "surcharge",
             "baseName": "surcharge",
-            "type": "Surcharge",
+            "type": "Surcharge | null",
             "format": ""
         },
         {
             "name": "tapToPay",
             "baseName": "tapToPay",
-            "type": "TapToPay",
+            "type": "TapToPay | null",
             "format": ""
         },
         {
             "name": "terminalInstructions",
             "baseName": "terminalInstructions",
-            "type": "TerminalInstructions",
+            "type": "TerminalInstructions | null",
             "format": ""
         },
         {
             "name": "timeouts",
             "baseName": "timeouts",
-            "type": "Timeouts",
+            "type": "Timeouts | null",
             "format": ""
         },
         {
             "name": "wifiProfiles",
             "baseName": "wifiProfiles",
-            "type": "WifiProfiles",
+            "type": "WifiProfiles | null",
             "format": ""
         }    ];
 

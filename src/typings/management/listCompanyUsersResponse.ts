@@ -12,7 +12,7 @@ import { PaginationLinks } from "./paginationLinks";
 
 
 export class ListCompanyUsersResponse {
-    "_links"?: PaginationLinks;
+    "_links"?: PaginationLinks | null;
     /**
     * The list of users.
     */
@@ -34,7 +34,7 @@ export class ListCompanyUsersResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks",
+            "type": "PaginationLinks | null",
             "format": ""
         },
         {

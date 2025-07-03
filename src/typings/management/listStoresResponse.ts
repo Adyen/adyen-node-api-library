@@ -12,7 +12,7 @@ import { Store } from "./store";
 
 
 export class ListStoresResponse {
-    "_links"?: PaginationLinks;
+    "_links"?: PaginationLinks | null;
     /**
     * List of stores
     */
@@ -34,7 +34,7 @@ export class ListStoresResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks",
+            "type": "PaginationLinks | null",
             "format": ""
         },
         {

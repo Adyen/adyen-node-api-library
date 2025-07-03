@@ -13,7 +13,7 @@ import { UpdatableAddress } from "./updatableAddress";
 
 
 export class UpdateStoreRequest {
-    "address"?: UpdatableAddress;
+    "address"?: UpdatableAddress | null;
     /**
     * The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businessLines__resParam_id) that the store is associated with.
     */
@@ -30,12 +30,12 @@ export class UpdateStoreRequest {
     * The phone number of the store, including \'+\' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
     */
     "phoneNumber"?: string;
-    "splitConfiguration"?: StoreSplitConfiguration;
+    "splitConfiguration"?: StoreSplitConfiguration | null;
     /**
     * The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can\'t process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can\'t be reopened.
     */
     "status"?: UpdateStoreRequest.StatusEnum;
-    "subMerchantData"?: SubMerchantData;
+    "subMerchantData"?: SubMerchantData | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -45,7 +45,7 @@ export class UpdateStoreRequest {
         {
             "name": "address",
             "baseName": "address",
-            "type": "UpdatableAddress",
+            "type": "UpdatableAddress | null",
             "format": ""
         },
         {
@@ -75,7 +75,7 @@ export class UpdateStoreRequest {
         {
             "name": "splitConfiguration",
             "baseName": "splitConfiguration",
-            "type": "StoreSplitConfiguration",
+            "type": "StoreSplitConfiguration | null",
             "format": ""
         },
         {
@@ -87,7 +87,7 @@ export class UpdateStoreRequest {
         {
             "name": "subMerchantData",
             "baseName": "subMerchantData",
-            "type": "SubMerchantData",
+            "type": "SubMerchantData | null",
             "format": ""
         }    ];
 

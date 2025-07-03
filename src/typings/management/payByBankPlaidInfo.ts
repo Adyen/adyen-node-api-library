@@ -39,7 +39,7 @@ export class PayByBankPlaidInfo {
     * The street address of the merchant.
     */
     "merchantStreetAddress"?: string;
-    "transactionDescription"?: TransactionDescriptionInfo;
+    "transactionDescription"?: TransactionDescriptionInfo | null;
     /**
     * The zip code of the account.
     */
@@ -95,7 +95,7 @@ export class PayByBankPlaidInfo {
         {
             "name": "transactionDescription",
             "baseName": "transactionDescription",
-            "type": "TransactionDescriptionInfo",
+            "type": "TransactionDescriptionInfo | null",
             "format": ""
         },
         {

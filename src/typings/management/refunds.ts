@@ -11,7 +11,7 @@ import { Referenced } from "./referenced";
 
 
 export class Refunds {
-    "referenced"?: Referenced;
+    "referenced"?: Referenced | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class Refunds {
         {
             "name": "referenced",
             "baseName": "referenced",
-            "type": "Referenced",
+            "type": "Referenced | null",
             "format": ""
         }    ];
 

@@ -12,7 +12,7 @@ import { ApiCredentialLinks } from "./apiCredentialLinks";
 
 
 export class ApiCredential {
-    "_links"?: ApiCredentialLinks;
+    "_links"?: ApiCredentialLinks | null;
     /**
     * Indicates if the API credential is enabled. Must be set to **true** to use the credential in your integration.
     */
@@ -54,7 +54,7 @@ export class ApiCredential {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "ApiCredentialLinks",
+            "type": "ApiCredentialLinks | null",
             "format": ""
         },
         {

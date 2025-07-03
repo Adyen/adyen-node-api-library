@@ -31,7 +31,7 @@ export class UpdateCompanyUserRequest {
     * The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username & account**, **Email**, or **SSO** 
     */
     "loginMethod"?: string;
-    "name"?: Name2;
+    "name"?: Name2 | null;
     /**
     * The list of [roles](https://docs.adyen.com/account/user-roles) for this user.
     */
@@ -79,7 +79,7 @@ export class UpdateCompanyUserRequest {
         {
             "name": "name",
             "baseName": "name",
-            "type": "Name2",
+            "type": "Name2 | null",
             "format": ""
         },
         {

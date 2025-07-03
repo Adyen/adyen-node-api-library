@@ -12,7 +12,7 @@ import { Terminal } from "./terminal";
 
 
 export class ListTerminalsResponse {
-    "_links"?: PaginationLinks;
+    "_links"?: PaginationLinks | null;
     /**
     * The list of terminals and their details.
     */
@@ -34,7 +34,7 @@ export class ListTerminalsResponse {
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks",
+            "type": "PaginationLinks | null",
             "format": ""
         },
         {

@@ -14,10 +14,10 @@ import { TerminalConnectivityWifi } from "./terminalConnectivityWifi";
 
 
 export class TerminalConnectivity {
-    "bluetooth"?: TerminalConnectivityBluetooth;
-    "cellular"?: TerminalConnectivityCellular;
-    "ethernet"?: TerminalConnectivityEthernet;
-    "wifi"?: TerminalConnectivityWifi;
+    "bluetooth"?: TerminalConnectivityBluetooth | null;
+    "cellular"?: TerminalConnectivityCellular | null;
+    "ethernet"?: TerminalConnectivityEthernet | null;
+    "wifi"?: TerminalConnectivityWifi | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,25 +27,25 @@ export class TerminalConnectivity {
         {
             "name": "bluetooth",
             "baseName": "bluetooth",
-            "type": "TerminalConnectivityBluetooth",
+            "type": "TerminalConnectivityBluetooth | null",
             "format": ""
         },
         {
             "name": "cellular",
             "baseName": "cellular",
-            "type": "TerminalConnectivityCellular",
+            "type": "TerminalConnectivityCellular | null",
             "format": ""
         },
         {
             "name": "ethernet",
             "baseName": "ethernet",
-            "type": "TerminalConnectivityEthernet",
+            "type": "TerminalConnectivityEthernet | null",
             "format": ""
         },
         {
             "name": "wifi",
             "baseName": "wifi",
-            "type": "TerminalConnectivityWifi",
+            "type": "TerminalConnectivityWifi | null",
             "format": ""
         }    ];
 

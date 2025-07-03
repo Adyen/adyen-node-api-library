@@ -16,7 +16,7 @@ export class WifiProfiles {
     * List of remote Wi-Fi profiles.
     */
     "profiles"?: Array<Profile>;
-    "settings"?: Settings;
+    "settings"?: Settings | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -32,7 +32,7 @@ export class WifiProfiles {
         {
             "name": "settings",
             "baseName": "settings",
-            "type": "Settings",
+            "type": "Settings | null",
             "format": ""
         }    ];
 

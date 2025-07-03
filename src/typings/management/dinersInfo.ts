@@ -23,7 +23,7 @@ export class DinersInfo {
     * Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values:  * **noContract**: Adyen holds the contract with JCB.  * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.
     */
     "serviceLevel"?: DinersInfo.ServiceLevelEnum;
-    "transactionDescription"?: TransactionDescriptionInfo;
+    "transactionDescription"?: TransactionDescriptionInfo | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -51,7 +51,7 @@ export class DinersInfo {
         {
             "name": "transactionDescription",
             "baseName": "transactionDescription",
-            "type": "TransactionDescriptionInfo",
+            "type": "TransactionDescriptionInfo | null",
             "format": ""
         }    ];
 

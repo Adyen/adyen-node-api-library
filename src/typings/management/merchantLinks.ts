@@ -11,10 +11,10 @@ import { LinksElement } from "./linksElement";
 
 
 export class MerchantLinks {
-    "apiCredentials"?: LinksElement;
+    "apiCredentials"?: LinksElement | null;
     "self": LinksElement;
-    "users"?: LinksElement;
-    "webhooks"?: LinksElement;
+    "users"?: LinksElement | null;
+    "webhooks"?: LinksElement | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,7 +24,7 @@ export class MerchantLinks {
         {
             "name": "apiCredentials",
             "baseName": "apiCredentials",
-            "type": "LinksElement",
+            "type": "LinksElement | null",
             "format": ""
         },
         {
@@ -36,13 +36,13 @@ export class MerchantLinks {
         {
             "name": "users",
             "baseName": "users",
-            "type": "LinksElement",
+            "type": "LinksElement | null",
             "format": ""
         },
         {
             "name": "webhooks",
             "baseName": "webhooks",
-            "type": "LinksElement",
+            "type": "LinksElement | null",
             "format": ""
         }    ];
 
