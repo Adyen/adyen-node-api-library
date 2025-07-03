@@ -13,7 +13,7 @@ import { ThreeDS2CardRangeDetail } from "./threeDS2CardRangeDetail";
 
 
 export class ThreeDSAvailabilityResponse {
-    "binDetails"?: BinDetail;
+    "binDetails"?: BinDetail | null;
     /**
     * List of Directory Server (DS) public keys.
     */
@@ -39,7 +39,7 @@ export class ThreeDSAvailabilityResponse {
         {
             "name": "binDetails",
             "baseName": "binDetails",
-            "type": "BinDetail",
+            "type": "BinDetail | null",
             "format": ""
         },
         {
