@@ -11,7 +11,7 @@ import { TransferViewCategoryData } from "./transferViewCategoryData";
 
 
 export class TransferView {
-    "categoryData"?: TransferViewCategoryData;
+    "categoryData"?: TransferViewCategoryData | null;
     /**
     * The ID of the resource.
     */
@@ -29,7 +29,7 @@ export class TransferView {
         {
             "name": "categoryData",
             "baseName": "categoryData",
-            "type": "TransferViewCategoryData",
+            "type": "TransferViewCategoryData | null",
             "format": ""
         },
         {
