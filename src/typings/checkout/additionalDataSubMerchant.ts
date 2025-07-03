@@ -34,7 +34,7 @@ export class AdditionalDataSubMerchant {
     */
     "subMerchant_subSeller_subSellerNr_mcc"?: string;
     /**
-    * Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
+    * Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. Exception: for acquirers in Brazil, this value does not overwrite the shopper statement. * Format: Alphanumeric * Maximum length: 22 characters
     */
     "subMerchant_subSeller_subSellerNr_name"?: string;
     /**

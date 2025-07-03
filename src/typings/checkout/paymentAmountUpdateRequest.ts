@@ -15,7 +15,7 @@ import { Split } from "./split";
 
 export class PaymentAmountUpdateRequest {
     "amount": Amount;
-    "applicationInfo"?: ApplicationInfo;
+    "applicationInfo"?: ApplicationInfo | null;
     /**
     * The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**
     */
@@ -51,7 +51,7 @@ export class PaymentAmountUpdateRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo",
+            "type": "ApplicationInfo | null",
             "format": ""
         },
         {

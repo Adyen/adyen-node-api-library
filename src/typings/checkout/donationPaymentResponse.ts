@@ -12,7 +12,7 @@ import { PaymentResponse } from "./paymentResponse";
 
 
 export class DonationPaymentResponse {
-    "amount"?: Amount;
+    "amount"?: Amount | null;
     /**
     * The Adyen account name of your charity. We will provide you with this account name once your chosen charity has been [onboarded](https://docs.adyen.com/online-payments/donations#onboarding).
     */
@@ -25,7 +25,7 @@ export class DonationPaymentResponse {
     * The merchant account identifier, with which you want to process the transaction.
     */
     "merchantAccount"?: string;
-    "payment"?: PaymentResponse;
+    "payment"?: PaymentResponse | null;
     /**
     * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.
     */
@@ -43,7 +43,7 @@ export class DonationPaymentResponse {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {
@@ -67,7 +67,7 @@ export class DonationPaymentResponse {
         {
             "name": "payment",
             "baseName": "payment",
-            "type": "PaymentResponse",
+            "type": "PaymentResponse | null",
             "format": ""
         },
         {

@@ -11,7 +11,7 @@ import { ApplicationInfo } from "./applicationInfo";
 
 
 export class PaymentReversalRequest {
-    "applicationInfo"?: ApplicationInfo;
+    "applicationInfo"?: ApplicationInfo | null;
     /**
     * The merchant account that is used to process the payment.
     */
@@ -29,7 +29,7 @@ export class PaymentReversalRequest {
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo",
+            "type": "ApplicationInfo | null",
             "format": ""
         },
         {

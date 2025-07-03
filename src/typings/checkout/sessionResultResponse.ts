@@ -7,12 +7,26 @@
  * Do not edit this class manually.
  */
 
+import { Payment } from "./payment";
+
 
 export class SessionResultResponse {
+    /**
+    * Contains additional information about the payment. Some fields are included only if you enable them. To enable these fields in your Customer Area, go to **Developers** > **Additional data**.
+    */
+    "additionalData"?: { [key: string]: string; };
     /**
     * A unique identifier of the session.
     */
     "id"?: string;
+    /**
+    * A list of all authorised payments done for this session.
+    */
+    "payments"?: Array<Payment>;
+    /**
+    * The unique reference that you provided in the original `/sessions` request. This identifies the payment and is used in all communication with you about the payment status.
+    */
+    "reference"?: string;
     /**
     * The status of the session. The status included in the response doesn\'t get updated. Don\'t make the request again to check for payment status updates.  Possible values: * **completed**: the shopper completed the payment, and the payment was authorized. * **paymentPending**: the shopper is in the process of making the payment. This applies to payment methods with an asynchronous flow, like voucher payments where the shopper completes the payment in a physical shop. * **refused**: the session has been refused, because of too many refused payment attempts. The shopper can no longer complete the payment with this session. * **canceled**: the shopper canceled the payment. * **expired**: the session expired. The shopper can no longer complete the payment with this session. By default, the session expires one hour after it is created.
     */
@@ -24,8 +38,26 @@ export class SessionResultResponse {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "additionalData",
+            "baseName": "additionalData",
+            "type": "{ [key: string]: string; }",
+            "format": ""
+        },
+        {
             "name": "id",
             "baseName": "id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "payments",
+            "baseName": "payments",
+            "type": "Array<Payment>",
+            "format": ""
+        },
+        {
+            "name": "reference",
+            "baseName": "reference",
             "type": "string",
             "format": ""
         },

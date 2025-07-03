@@ -125,6 +125,7 @@ import { PayToDetails } from "./payToDetails";
 import { PayUUpiDetails } from "./payUUpiDetails";
 import { PayWithGoogleDetails } from "./payWithGoogleDetails";
 import { PayWithGoogleDonations } from "./payWithGoogleDonations";
+import { Payment } from "./payment";
 import { PaymentAmountUpdateRequest } from "./paymentAmountUpdateRequest";
 import { PaymentAmountUpdateResponse } from "./paymentAmountUpdateResponse";
 import { PaymentCancelRequest } from "./paymentCancelRequest";
@@ -342,6 +343,7 @@ let enumsMap: Set<string> = new Set<string>([
     "PayWithGoogleDetails.TypeEnum",
     "PayWithGoogleDonations.FundingSourceEnum",
     "PayWithGoogleDonations.TypeEnum",
+    "Payment.ResultCodeEnum",
     "PaymentAmountUpdateRequest.IndustryUsageEnum",
     "PaymentAmountUpdateResponse.IndustryUsageEnum",
     "PaymentAmountUpdateResponse.StatusEnum",
@@ -559,6 +561,7 @@ let typeMap: {[index: string]: any} = {
     "PayUUpiDetails": PayUUpiDetails,
     "PayWithGoogleDetails": PayWithGoogleDetails,
     "PayWithGoogleDonations": PayWithGoogleDonations,
+    "Payment": Payment,
     "PaymentAmountUpdateRequest": PaymentAmountUpdateRequest,
     "PaymentAmountUpdateResponse": PaymentAmountUpdateResponse,
     "PaymentCancelRequest": PaymentCancelRequest,
