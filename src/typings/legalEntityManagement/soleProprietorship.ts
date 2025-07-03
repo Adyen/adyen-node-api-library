@@ -33,7 +33,7 @@ export class SoleProprietorship {
     * The legal name.
     */
     "name": string;
-    "principalPlaceOfBusiness"?: Address;
+    "principalPlaceOfBusiness"?: Address | null;
     "registeredAddress": Address;
     /**
     * The registration number.
@@ -94,7 +94,7 @@ export class SoleProprietorship {
         {
             "name": "principalPlaceOfBusiness",
             "baseName": "principalPlaceOfBusiness",
-            "type": "Address",
+            "type": "Address | null",
             "format": ""
         },
         {
@@ -112,7 +112,7 @@ export class SoleProprietorship {
         {
             "name": "taxAbsent",
             "baseName": "taxAbsent",
-            "type": "boolean",
+            "type": "boolean | null",
             "format": ""
         },
         {

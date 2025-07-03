@@ -11,7 +11,7 @@ import { BankAccountInfoAccountIdentification } from "./bankAccountInfoAccountId
 
 
 export class BankAccountInfo {
-    "accountIdentification"?: BankAccountInfoAccountIdentification;
+    "accountIdentification"?: BankAccountInfoAccountIdentification | null;
     /**
     * The type of bank account.
     *
@@ -39,7 +39,7 @@ export class BankAccountInfo {
         {
             "name": "accountIdentification",
             "baseName": "accountIdentification",
-            "type": "BankAccountInfoAccountIdentification",
+            "type": "BankAccountInfoAccountIdentification | null",
             "format": ""
         },
         {

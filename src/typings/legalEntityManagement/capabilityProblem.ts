@@ -12,7 +12,7 @@ import { VerificationError } from "./verificationError";
 
 
 export class CapabilityProblem {
-    "entity"?: CapabilityProblemEntity;
+    "entity"?: CapabilityProblemEntity | null;
     "verificationErrors"?: Array<VerificationError>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -23,7 +23,7 @@ export class CapabilityProblem {
         {
             "name": "entity",
             "baseName": "entity",
-            "type": "CapabilityProblemEntity",
+            "type": "CapabilityProblemEntity | null",
             "format": ""
         },
         {

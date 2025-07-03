@@ -45,12 +45,12 @@ export class BusinessLine {
     * The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  
     */
     "service": BusinessLine.ServiceEnum;
-    "sourceOfFunds"?: SourceOfFunds;
+    "sourceOfFunds"?: SourceOfFunds | null;
     /**
     * List of website URLs where your user\'s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the `webDataExemption` object.
     */
     "webData"?: Array<WebData>;
-    "webDataExemption"?: WebDataExemption;
+    "webDataExemption"?: WebDataExemption | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -102,7 +102,7 @@ export class BusinessLine {
         {
             "name": "sourceOfFunds",
             "baseName": "sourceOfFunds",
-            "type": "SourceOfFunds",
+            "type": "SourceOfFunds | null",
             "format": ""
         },
         {
@@ -114,7 +114,7 @@ export class BusinessLine {
         {
             "name": "webDataExemption",
             "baseName": "webDataExemption",
-            "type": "WebDataExemption",
+            "type": "WebDataExemption | null",
             "format": ""
         }    ];
 
