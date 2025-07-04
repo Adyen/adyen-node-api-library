@@ -7,21 +7,19 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    BalancePlatform,
+    PaginatedAccountHoldersResponse,
+    RestServiceError,
+    TransactionRulesResponse,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
-import { BalancePlatform } from "../../typings/balancePlatform/models";
-import { PaginatedAccountHoldersResponse } from "../../typings/balancePlatform/models";
-import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
-
-/**
- * API handler for PlatformApi
- */
 export class PlatformApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -44,7 +42,6 @@ export class PlatformApi extends Service {
         const endpoint = `${this.baseUrl}/balancePlatforms/{id}/accountHolders`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = offset ?? limit;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -57,7 +54,6 @@ export class PlatformApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "PaginatedAccountHoldersResponse");
     }
 
@@ -71,13 +67,11 @@ export class PlatformApi extends Service {
         const endpoint = `${this.baseUrl}/balancePlatforms/{id}/transactionRules`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, TransactionRulesResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
     }
 
@@ -91,14 +85,11 @@ export class PlatformApi extends Service {
         const endpoint = `${this.baseUrl}/balancePlatforms/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, BalancePlatform>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "BalancePlatform");
     }
-
 }

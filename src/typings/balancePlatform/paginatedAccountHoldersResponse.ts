@@ -7,52 +7,43 @@
  * Do not edit this class manually.
  */
 
-import { AccountHolder } from "./accountHolder";
-
+import { AccountHolder } from './accountHolder';
 
 export class PaginatedAccountHoldersResponse {
     /**
     * List of account holders.
     */
-    "accountHolders": Array<AccountHolder>;
+    'accountHolders': Array<AccountHolder>;
     /**
     * Indicates whether there are more items on the next page.
     */
-    "hasNext": boolean;
+    'hasNext': boolean;
     /**
     * Indicates whether there are more items on the previous page.
     */
-    "hasPrevious": boolean;
+    'hasPrevious': boolean;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountHolders",
             "baseName": "accountHolders",
-            "type": "Array<AccountHolder>",
-            "format": ""
+            "type": "Array<AccountHolder>"
         },
         {
             "name": "hasNext",
             "baseName": "hasNext",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "hasPrevious",
             "baseName": "hasPrevious",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return PaginatedAccountHoldersResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

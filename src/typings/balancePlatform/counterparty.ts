@@ -7,39 +7,31 @@
  * Do not edit this class manually.
  */
 
-import { BankAccount } from "./bankAccount";
-
+import { BankAccount } from './bankAccount';
 
 export class Counterparty {
-    "bankAccount"?: BankAccount;
+    'bankAccount'?: BankAccount | null;
     /**
     * The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
     */
-    "transferInstrumentId"?: string;
+    'transferInstrumentId'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccount",
-            "format": ""
+            "type": "BankAccount | null"
         },
         {
             "name": "transferInstrumentId",
             "baseName": "transferInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Counterparty.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

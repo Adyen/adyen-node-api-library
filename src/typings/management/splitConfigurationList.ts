@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { SplitConfiguration } from "./splitConfiguration";
-
+import { SplitConfiguration } from './splitConfiguration';
 
 export class SplitConfigurationList {
     /**
     * List of split configurations applied to the stores under the merchant account.
     */
-    "data"?: Array<SplitConfiguration>;
+    'data'?: Array<SplitConfiguration>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<SplitConfiguration>",
-            "format": ""
+            "type": "Array<SplitConfiguration>"
         }    ];
 
     static getAttributeTypeMap() {
         return SplitConfigurationList.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,72 +7,61 @@
  * Do not edit this class manually.
  */
 
-import { Payment } from "./payment";
-
+import { Payment } from './payment';
 
 export class SessionResultResponse {
     /**
     * Contains additional information about the payment. Some fields are included only if you enable them. To enable these fields in your Customer Area, go to **Developers** > **Additional data**.
     */
-    "additionalData"?: { [key: string]: string; };
+    'additionalData'?: { [key: string]: string; };
     /**
     * A unique identifier of the session.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * A list of all authorised payments done for this session.
     */
-    "payments"?: Array<Payment>;
+    'payments'?: Array<Payment>;
     /**
     * The unique reference that you provided in the original `/sessions` request. This identifies the payment and is used in all communication with you about the payment status.
     */
-    "reference"?: string;
+    'reference'?: string;
     /**
     * The status of the session. The status included in the response doesn\'t get updated. Don\'t make the request again to check for payment status updates.  Possible values: * **completed**: the shopper completed the payment, and the payment was authorized. * **paymentPending**: the shopper is in the process of making the payment. This applies to payment methods with an asynchronous flow, like voucher payments where the shopper completes the payment in a physical shop. * **refused**: the session has been refused, because of too many refused payment attempts. The shopper can no longer complete the payment with this session. * **canceled**: the shopper canceled the payment. * **expired**: the session expired. The shopper can no longer complete the payment with this session. By default, the session expires one hour after it is created.
     */
-    "status"?: SessionResultResponse.StatusEnum;
+    'status'?: SessionResultResponse.StatusEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "payments",
             "baseName": "payments",
-            "type": "Array<Payment>",
-            "format": ""
+            "type": "Array<Payment>"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "SessionResultResponse.StatusEnum",
-            "format": ""
+            "type": "SessionResultResponse.StatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return SessionResultResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

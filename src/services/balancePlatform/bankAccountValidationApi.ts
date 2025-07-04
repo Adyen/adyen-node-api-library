@@ -7,19 +7,17 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    BankAccountIdentificationValidationRequest,
+    RestServiceError,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
-import { BankAccountIdentificationValidationRequest } from "../../typings/balancePlatform/models";
-
-/**
- * API handler for BankAccountValidationApi
- */
 export class BankAccountValidationApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -34,12 +32,10 @@ export class BankAccountValidationApi extends Service {
     * @summary Validate a bank account
     * @param bankAccountIdentificationValidationRequest {@link BankAccountIdentificationValidationRequest } 
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link void }
     */
     public async validateBankAccountIdentification(bankAccountIdentificationValidationRequest: BankAccountIdentificationValidationRequest, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/validateBankAccountIdentification`;
         const resource = new Resource(this, endpoint);
-        
         const request: BankAccountIdentificationValidationRequest = ObjectSerializer.serialize(bankAccountIdentificationValidationRequest, "BankAccountIdentificationValidationRequest");
         await getJsonResponse<BankAccountIdentificationValidationRequest, void>(
             resource,
@@ -47,5 +43,4 @@ export class BankAccountValidationApi extends Service {
             { ...requestOptions, method: "POST" }
         );
     }
-
 }

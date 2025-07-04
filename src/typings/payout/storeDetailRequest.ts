@@ -7,171 +7,149 @@
  * Do not edit this class manually.
  */
 
-import { Address } from "./address";
-import { BankAccount } from "./bankAccount";
-import { Card } from "./card";
-import { Name } from "./name";
-import { Recurring } from "./recurring";
-
+import { Address } from './address';
+import { BankAccount } from './bankAccount';
+import { Card } from './card';
+import { Name } from './name';
+import { Recurring } from './recurring';
 
 export class StoreDetailRequest {
     /**
     * This field contains additional data, which may be required for a particular request.
     */
-    "additionalData"?: { [key: string]: string; };
-    "bank"?: BankAccount | null;
-    "billingAddress"?: Address | null;
-    "card"?: Card | null;
+    'additionalData'?: { [key: string]: string; };
+    'bank'?: BankAccount | null;
+    'billingAddress'?: Address | null;
+    'card'?: Card | null;
     /**
     * The date of birth. Format: [ISO-8601](https://www.w3.org/TR/NOTE-datetime); example: YYYY-MM-DD For Paysafecard it must be the same as used when registering the Paysafecard account. > This field is mandatory for natural persons.
     */
-    "dateOfBirth": string;
+    'dateOfBirth': string;
     /**
     * The type of the entity the payout is processed for.
     */
-    "entityType": StoreDetailRequest.EntityTypeEnum;
+    'entityType': StoreDetailRequest.EntityTypeEnum;
     /**
     * An integer value that is added to the normal fraud score. The value can be either positive or negative.
     */
-    "fraudOffset"?: number;
+    'fraudOffset'?: number;
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
-    "merchantAccount": string;
+    'merchantAccount': string;
     /**
     * The shopper\'s nationality.  A valid value is an ISO 2-character country code (e.g. \'NL\').
     */
-    "nationality": string;
-    "recurring": Recurring;
+    'nationality': string;
+    'recurring': Recurring;
     /**
     * The name of the brand to make a payout to.  For Paysafecard it must be set to `paysafecard`.
     */
-    "selectedBrand"?: string;
+    'selectedBrand'?: string;
     /**
     * The shopper\'s email address.
     */
-    "shopperEmail": string;
-    "shopperName"?: Name | null;
+    'shopperEmail': string;
+    'shopperName'?: Name | null;
     /**
     * The shopper\'s reference for the payment transaction.
     */
-    "shopperReference": string;
+    'shopperReference': string;
     /**
     * The shopper\'s social security number.
     */
-    "socialSecurityNumber"?: string;
+    'socialSecurityNumber'?: string;
     /**
     * The shopper\'s phone number.
     */
-    "telephoneNumber"?: string;
+    'telephoneNumber'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "bank",
             "baseName": "bank",
-            "type": "BankAccount | null",
-            "format": ""
+            "type": "BankAccount | null"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null",
-            "format": ""
+            "type": "Address | null"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null",
-            "format": ""
+            "type": "Card | null"
         },
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "string",
-            "format": "date"
+            "type": "string"
         },
         {
             "name": "entityType",
             "baseName": "entityType",
-            "type": "StoreDetailRequest.EntityTypeEnum",
-            "format": ""
+            "type": "StoreDetailRequest.EntityTypeEnum"
         },
         {
             "name": "fraudOffset",
             "baseName": "fraudOffset",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "nationality",
             "baseName": "nationality",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring",
-            "format": ""
+            "type": "Recurring"
         },
         {
             "name": "selectedBrand",
             "baseName": "selectedBrand",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null",
-            "format": ""
+            "type": "Name | null"
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "socialSecurityNumber",
             "baseName": "socialSecurityNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return StoreDetailRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

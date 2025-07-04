@@ -7,47 +7,38 @@
  * Do not edit this class manually.
  */
 
-import { TransactionRuleReference } from "./transactionRuleReference";
-import { TransactionRuleSource } from "./transactionRuleSource";
-
+import { TransactionRuleReference } from './transactionRuleReference';
+import { TransactionRuleSource } from './transactionRuleSource';
 
 export class TransactionEventViolation {
     /**
     * An explanation about why the transaction rule failed.
     */
-    "reason"?: string;
-    "transactionRule"?: TransactionRuleReference | null;
-    "transactionRuleSource"?: TransactionRuleSource | null;
+    'reason'?: string;
+    'transactionRule'?: TransactionRuleReference | null;
+    'transactionRuleSource'?: TransactionRuleSource | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "reason",
             "baseName": "reason",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transactionRule",
             "baseName": "transactionRule",
-            "type": "TransactionRuleReference | null",
-            "format": ""
+            "type": "TransactionRuleReference | null"
         },
         {
             "name": "transactionRuleSource",
             "baseName": "transactionRuleSource",
-            "type": "TransactionRuleSource | null",
-            "format": ""
+            "type": "TransactionRuleSource | null"
         }    ];
 
     static getAttributeTypeMap() {
         return TransactionEventViolation.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

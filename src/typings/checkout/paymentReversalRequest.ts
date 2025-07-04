@@ -7,49 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { ApplicationInfo } from "./applicationInfo";
-
+import { ApplicationInfo } from './applicationInfo';
 
 export class PaymentReversalRequest {
-    "applicationInfo"?: ApplicationInfo | null;
+    'applicationInfo'?: ApplicationInfo | null;
     /**
     * The merchant account that is used to process the payment.
     */
-    "merchantAccount": string;
+    'merchantAccount': string;
     /**
     * Your reference for the reversal request. Maximum length: 80 characters.
     */
-    "reference"?: string;
+    'reference'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null",
-            "format": ""
+            "type": "ApplicationInfo | null"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentReversalRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

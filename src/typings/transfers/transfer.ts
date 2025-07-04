@@ -7,192 +7,185 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-import { CounterpartyV3 } from "./counterpartyV3";
-import { DirectDebitInformation } from "./directDebitInformation";
-import { ExecutionDate } from "./executionDate";
-import { PaymentInstrument } from "./paymentInstrument";
-import { ResourceReference } from "./resourceReference";
-import { TransferCategoryData } from "./transferCategoryData";
-import { TransferReview } from "./transferReview";
-
+import { Amount } from './amount';
+import { BankCategoryData } from './bankCategoryData';
+import { CounterpartyV3 } from './counterpartyV3';
+import { DirectDebitInformation } from './directDebitInformation';
+import { ExecutionDate } from './executionDate';
+import { InternalCategoryData } from './internalCategoryData';
+import { IssuedCard } from './issuedCard';
+import { PaymentInstrument } from './paymentInstrument';
+import { PlatformPayment } from './platformPayment';
+import { ResourceReference } from './resourceReference';
+import { TransferReview } from './transferReview';
 
 export class Transfer {
-    "accountHolder"?: ResourceReference | null;
-    "amount": Amount;
-    "balanceAccount"?: ResourceReference | null;
+    'accountHolder'?: ResourceReference | null;
+    'amount': Amount;
+    'balanceAccount'?: ResourceReference | null;
     /**
     * The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.
     */
-    "category": Transfer.CategoryEnum;
-    "categoryData"?: TransferCategoryData | null;
-    "counterparty": CounterpartyV3;
+    'category': Transfer.CategoryEnum;
+    /**
+    * The relevant data according to the transfer category.
+    */
+    'categoryData'?: BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null;
+    'counterparty': CounterpartyV3;
+    /**
+    * The date and time when the transfer was created, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+    */
+    'createdAt'?: Date;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+    *
+	* @deprecated since Transfers API v3
+	* Use createdAt or updatedAt
     */
-    "creationDate"?: Date;
+    'creationDate'?: Date;
     /**
     * Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , \' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ \' \" ! ?**
     */
-    "description"?: string;
-    "directDebitInformation"?: DirectDebitInformation | null;
+    'description'?: string;
+    'directDebitInformation'?: DirectDebitInformation | null;
     /**
     * The direction of the transfer.  Possible values: **incoming**, **outgoing**.
     */
-    "direction"?: Transfer.DirectionEnum;
-    "executionDate"?: ExecutionDate | null;
+    'direction'?: Transfer.DirectionEnum;
+    'executionDate'?: ExecutionDate | null;
     /**
     * The ID of the resource.
     */
-    "id"?: string;
-    "paymentInstrument"?: PaymentInstrument | null;
+    'id'?: string;
+    'paymentInstrument'?: PaymentInstrument | null;
     /**
     * Additional information about the status of the transfer.
     */
-    "reason"?: Transfer.ReasonEnum;
+    'reason'?: Transfer.ReasonEnum;
     /**
     * Your reference for the transfer, used internally within your platform. If you don\'t provide this in the request, Adyen generates a unique reference.
     */
-    "reference"?: string;
+    'reference'?: string;
     /**
     *  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the `category`.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
     */
-    "referenceForBeneficiary"?: string;
-    "review"?: TransferReview | null;
+    'referenceForBeneficiary'?: string;
+    'review'?: TransferReview | null;
     /**
-    * The result of the transfer.   For example, **authorised**, **refused**, or **error**.
+    * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
     */
-    "status": Transfer.StatusEnum;
+    'status': Transfer.StatusEnum;
     /**
     * The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
     */
-    "type"?: Transfer.TypeEnum;
+    'type'?: Transfer.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "ResourceReference | null",
-            "format": ""
+            "type": "ResourceReference | null"
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
-            "format": ""
+            "type": "Amount"
         },
         {
             "name": "balanceAccount",
             "baseName": "balanceAccount",
-            "type": "ResourceReference | null",
-            "format": ""
+            "type": "ResourceReference | null"
         },
         {
             "name": "category",
             "baseName": "category",
-            "type": "Transfer.CategoryEnum",
-            "format": ""
+            "type": "Transfer.CategoryEnum"
         },
         {
             "name": "categoryData",
             "baseName": "categoryData",
-            "type": "TransferCategoryData | null",
-            "format": ""
+            "type": "BankCategoryData | InternalCategoryData | IssuedCard | PlatformPayment | null"
         },
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "CounterpartyV3",
-            "format": ""
+            "type": "CounterpartyV3"
+        },
+        {
+            "name": "createdAt",
+            "baseName": "createdAt",
+            "type": "Date"
         },
         {
             "name": "creationDate",
             "baseName": "creationDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "directDebitInformation",
             "baseName": "directDebitInformation",
-            "type": "DirectDebitInformation | null",
-            "format": ""
+            "type": "DirectDebitInformation | null"
         },
         {
             "name": "direction",
             "baseName": "direction",
-            "type": "Transfer.DirectionEnum",
-            "format": ""
+            "type": "Transfer.DirectionEnum"
         },
         {
             "name": "executionDate",
             "baseName": "executionDate",
-            "type": "ExecutionDate | null",
-            "format": ""
+            "type": "ExecutionDate | null"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PaymentInstrument | null",
-            "format": ""
+            "type": "PaymentInstrument | null"
         },
         {
             "name": "reason",
             "baseName": "reason",
-            "type": "Transfer.ReasonEnum",
-            "format": ""
+            "type": "Transfer.ReasonEnum"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "referenceForBeneficiary",
             "baseName": "referenceForBeneficiary",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "review",
             "baseName": "review",
-            "type": "TransferReview | null",
-            "format": ""
+            "type": "TransferReview | null"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "Transfer.StatusEnum",
-            "format": ""
+            "type": "Transfer.StatusEnum"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "Transfer.TypeEnum",
-            "format": ""
+            "type": "Transfer.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return Transfer.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

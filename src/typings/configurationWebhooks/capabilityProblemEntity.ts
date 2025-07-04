@@ -7,59 +7,49 @@
  * Do not edit this class manually.
  */
 
-import { CapabilityProblemEntityRecursive } from "./capabilityProblemEntityRecursive";
-
+import { CapabilityProblemEntityRecursive } from './capabilityProblemEntityRecursive';
 
 export class CapabilityProblemEntity {
     /**
     * List of document IDs to which the verification errors related to the capabilities correspond to.
     */
-    "documents"?: Array<string>;
+    'documents'?: Array<string>;
     /**
     * The ID of the entity.
     */
-    "id"?: string;
-    "owner"?: CapabilityProblemEntityRecursive | null;
+    'id'?: string;
+    'owner'?: CapabilityProblemEntityRecursive | null;
     /**
     * Type of entity.   Possible values: **LegalEntity**, **BankAccount**, **Document**.
     */
-    "type"?: CapabilityProblemEntity.TypeEnum;
+    'type'?: CapabilityProblemEntity.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "documents",
             "baseName": "documents",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "owner",
             "baseName": "owner",
-            "type": "CapabilityProblemEntityRecursive | null",
-            "format": ""
+            "type": "CapabilityProblemEntityRecursive | null"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CapabilityProblemEntity.TypeEnum",
-            "format": ""
+            "type": "CapabilityProblemEntity.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return CapabilityProblemEntity.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

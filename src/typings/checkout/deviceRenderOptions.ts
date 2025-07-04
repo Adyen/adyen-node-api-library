@@ -12,35 +12,28 @@ export class DeviceRenderOptions {
     /**
     * Supported SDK interface types. Allowed values: * native * html * both
     */
-    "sdkInterface"?: DeviceRenderOptions.SdkInterfaceEnum;
+    'sdkInterface'?: DeviceRenderOptions.SdkInterfaceEnum;
     /**
     * UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect
     */
-    "sdkUiType"?: Array<DeviceRenderOptions.SdkUiTypeEnum>;
+    'sdkUiType'?: Array<DeviceRenderOptions.SdkUiTypeEnum>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "sdkInterface",
             "baseName": "sdkInterface",
-            "type": "DeviceRenderOptions.SdkInterfaceEnum",
-            "format": ""
+            "type": "DeviceRenderOptions.SdkInterfaceEnum"
         },
         {
             "name": "sdkUiType",
             "baseName": "sdkUiType",
-            "type": "DeviceRenderOptions.SdkUiTypeEnum",
-            "format": ""
+            "type": "Array<DeviceRenderOptions.SdkUiTypeEnum>"
         }    ];
 
     static getAttributeTypeMap() {
         return DeviceRenderOptions.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

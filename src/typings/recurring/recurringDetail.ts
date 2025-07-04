@@ -7,181 +7,158 @@
  * Do not edit this class manually.
  */
 
-import { Address } from "./address";
-import { BankAccount } from "./bankAccount";
-import { Card } from "./card";
-import { Name } from "./name";
-import { TokenDetails } from "./tokenDetails";
-
+import { Address } from './address';
+import { BankAccount } from './bankAccount';
+import { Card } from './card';
+import { Name } from './name';
+import { TokenDetails } from './tokenDetails';
 
 export class RecurringDetail {
     /**
     * This field contains additional data, which may be returned in a particular response.  The additionalData object consists of entries, each of which includes the key and value.
     */
-    "additionalData"?: { [key: string]: string; };
+    'additionalData'?: { [key: string]: string; };
     /**
     * The alias of the credit card number.  Applies only to recurring contracts storing credit card details
     */
-    "alias"?: string;
+    'alias'?: string;
     /**
     * The alias type of the credit card number.  Applies only to recurring contracts storing credit card details.
     */
-    "aliasType"?: string;
-    "bank"?: BankAccount | null;
-    "billingAddress"?: Address | null;
-    "card"?: Card | null;
+    'aliasType'?: string;
+    'bank'?: BankAccount | null;
+    'billingAddress'?: Address | null;
+    'card'?: Card | null;
     /**
     * Types of recurring contracts.
     */
-    "contractTypes"?: Array<string>;
+    'contractTypes'?: Array<string>;
     /**
     * The date when the recurring details were created.
     */
-    "creationDate"?: Date;
+    'creationDate'?: Date;
     /**
     * The `pspReference` of the first recurring payment that created the recurring detail.
     */
-    "firstPspReference"?: string;
+    'firstPspReference'?: string;
     /**
     * An optional descriptive name for this recurring detail.
     */
-    "name"?: string;
+    'name'?: string;
     /**
     * Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.
     */
-    "networkTxReference"?: string;
+    'networkTxReference'?: string;
     /**
     * The  type or sub-brand of a payment method used, e.g. Visa Debit, Visa Corporate, etc. For more information, refer to [PaymentMethodVariant](https://docs.adyen.com/development-resources/paymentmethodvariant).
     */
-    "paymentMethodVariant"?: string;
+    'paymentMethodVariant'?: string;
     /**
     * The reference that uniquely identifies the recurring detail.
     */
-    "recurringDetailReference": string;
-    "shopperName"?: Name | null;
+    'recurringDetailReference': string;
+    'shopperName'?: Name | null;
     /**
     * A shopper\'s social security number (only in countries where it is legal to collect).
     */
-    "socialSecurityNumber"?: string;
-    "tokenDetails"?: TokenDetails | null;
+    'socialSecurityNumber'?: string;
+    'tokenDetails'?: TokenDetails | null;
     /**
     * The payment method, such as “mc\", \"visa\", \"ideal\", \"paypal\".
     */
-    "variant": string;
+    'variant': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "alias",
             "baseName": "alias",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "aliasType",
             "baseName": "aliasType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "bank",
             "baseName": "bank",
-            "type": "BankAccount | null",
-            "format": ""
+            "type": "BankAccount | null"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null",
-            "format": ""
+            "type": "Address | null"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null",
-            "format": ""
+            "type": "Card | null"
         },
         {
             "name": "contractTypes",
             "baseName": "contractTypes",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "creationDate",
             "baseName": "creationDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "firstPspReference",
             "baseName": "firstPspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "networkTxReference",
             "baseName": "networkTxReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentMethodVariant",
             "baseName": "paymentMethodVariant",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null",
-            "format": ""
+            "type": "Name | null"
         },
         {
             "name": "socialSecurityNumber",
             "baseName": "socialSecurityNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "tokenDetails",
             "baseName": "tokenDetails",
-            "type": "TokenDetails | null",
-            "format": ""
+            "type": "TokenDetails | null"
         },
         {
             "name": "variant",
             "baseName": "variant",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return RecurringDetail.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

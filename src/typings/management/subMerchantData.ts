@@ -12,55 +12,46 @@ export class SubMerchantData {
     /**
     * The email associated with the sub-merchant\'s account.
     */
-    "email": string;
+    'email': string;
     /**
     * A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant. * Format: Alphanumeric * Maximum length: 15 characters
     */
-    "id": string;
+    'id': string;
     /**
     * The sub-merchant\'s 4-digit Merchant Category Code (MCC). * Format: Numeric * Fixed length: 4 digits
     */
-    "mcc": string;
+    'mcc': string;
     /**
     * The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
     */
-    "name": string;
+    'name': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "email",
             "baseName": "email",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "mcc",
             "baseName": "mcc",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return SubMerchantData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

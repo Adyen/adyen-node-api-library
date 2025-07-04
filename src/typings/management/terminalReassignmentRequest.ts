@@ -12,55 +12,46 @@ export class TerminalReassignmentRequest {
     /**
     * The unique identifier of the company account to which the terminal is reassigned.
     */
-    "companyId"?: string;
+    'companyId'?: string;
     /**
     * Must be specified when reassigning terminals to a merchant account:  - If set to **true**, reassigns terminals to the inventory of the merchant account and the terminals cannot process transactions.  - If set to **false**, reassigns terminals directly to the merchant account and the terminals can process transactions.
     */
-    "inventory"?: boolean;
+    'inventory'?: boolean;
     /**
     * The unique identifier of the merchant account to which the terminal is reassigned. When reassigning terminals to a merchant account, you must specify the `inventory` field.
     */
-    "merchantId"?: string;
+    'merchantId'?: string;
     /**
     * The unique identifier of the store to which the terminal is reassigned.
     */
-    "storeId"?: string;
+    'storeId'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "companyId",
             "baseName": "companyId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "inventory",
             "baseName": "inventory",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "merchantId",
             "baseName": "merchantId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storeId",
             "baseName": "storeId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalReassignmentRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

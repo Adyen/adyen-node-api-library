@@ -7,25 +7,23 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    CreateCompanyWebhookRequest,
+    GenerateHmacKeyResponse,
+    ListWebhooksResponse,
+    RestServiceError,
+    TestCompanyWebhookRequest,
+    TestWebhookResponse,
+    UpdateCompanyWebhookRequest,
+    Webhook,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { CreateCompanyWebhookRequest } from "../../typings/management/models";
-import { GenerateHmacKeyResponse } from "../../typings/management/models";
-import { ListWebhooksResponse } from "../../typings/management/models";
-import { TestCompanyWebhookRequest } from "../../typings/management/models";
-import { TestWebhookResponse } from "../../typings/management/models";
-import { UpdateCompanyWebhookRequest } from "../../typings/management/models";
-import { Webhook } from "../../typings/management/models";
-
-/**
- * API handler for WebhooksCompanyLevelApi
- */
 export class WebhooksCompanyLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -48,13 +46,11 @@ export class WebhooksCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, GenerateHmacKeyResponse>(
             resource,
             "",
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "GenerateHmacKeyResponse");
     }
 
@@ -70,13 +66,11 @@ export class WebhooksCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, Webhook>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "Webhook");
     }
 
@@ -92,7 +86,6 @@ export class WebhooksCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/webhooks`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = pageNumber ?? pageSize;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -105,7 +98,6 @@ export class WebhooksCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ListWebhooksResponse");
     }
 
@@ -114,14 +106,12 @@ export class WebhooksCompanyLevelApi extends Service {
     * @param companyId {@link string } The unique identifier of the company account.
     * @param webhookId {@link string } Unique identifier of the webhook configuration.
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link void }
     */
     public async removeWebhook(companyId: string, webhookId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/webhooks/{webhookId}`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
-        
         await getJsonResponse<string, void>(
             resource,
             "",
@@ -140,14 +130,12 @@ export class WebhooksCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/webhooks`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const request: CreateCompanyWebhookRequest = ObjectSerializer.serialize(createCompanyWebhookRequest, "CreateCompanyWebhookRequest");
         const response = await getJsonResponse<CreateCompanyWebhookRequest, Webhook>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "Webhook");
     }
 
@@ -164,14 +152,12 @@ export class WebhooksCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
-        
         const request: TestCompanyWebhookRequest = ObjectSerializer.serialize(testCompanyWebhookRequest, "TestCompanyWebhookRequest");
         const response = await getJsonResponse<TestCompanyWebhookRequest, TestWebhookResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "TestWebhookResponse");
     }
 
@@ -188,15 +174,12 @@ export class WebhooksCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
-        
         const request: UpdateCompanyWebhookRequest = ObjectSerializer.serialize(updateCompanyWebhookRequest, "UpdateCompanyWebhookRequest");
         const response = await getJsonResponse<UpdateCompanyWebhookRequest, Webhook>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "Webhook");
     }
-
 }

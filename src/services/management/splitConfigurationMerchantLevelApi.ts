@@ -7,24 +7,22 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    RestServiceError,
+    SplitConfiguration,
+    SplitConfigurationList,
+    SplitConfigurationRule,
+    UpdateSplitConfigurationLogicRequest,
+    UpdateSplitConfigurationRequest,
+    UpdateSplitConfigurationRuleRequest,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { SplitConfiguration } from "../../typings/management/models";
-import { SplitConfigurationList } from "../../typings/management/models";
-import { SplitConfigurationRule } from "../../typings/management/models";
-import { UpdateSplitConfigurationLogicRequest } from "../../typings/management/models";
-import { UpdateSplitConfigurationRequest } from "../../typings/management/models";
-import { UpdateSplitConfigurationRuleRequest } from "../../typings/management/models";
-
-/**
- * API handler for SplitConfigurationMerchantLevelApi
- */
 export class SplitConfigurationMerchantLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -48,14 +46,12 @@ export class SplitConfigurationMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "splitConfigurationId" + "}", encodeURIComponent(String(splitConfigurationId)));
         const resource = new Resource(this, endpoint);
-        
         const request: SplitConfigurationRule = ObjectSerializer.serialize(splitConfigurationRule, "SplitConfigurationRule");
         const response = await getJsonResponse<SplitConfigurationRule, SplitConfiguration>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "SplitConfiguration");
     }
 
@@ -70,14 +66,12 @@ export class SplitConfigurationMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/splitConfigurations`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const request: SplitConfiguration = ObjectSerializer.serialize(splitConfiguration, "SplitConfiguration");
         const response = await getJsonResponse<SplitConfiguration, SplitConfiguration>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "SplitConfiguration");
     }
 
@@ -93,13 +87,11 @@ export class SplitConfigurationMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "splitConfigurationId" + "}", encodeURIComponent(String(splitConfigurationId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, SplitConfiguration>(
             resource,
             "",
             { ...requestOptions, method: "DELETE" }
         );
-
         return ObjectSerializer.deserialize(response, "SplitConfiguration");
     }
 
@@ -117,13 +109,11 @@ export class SplitConfigurationMerchantLevelApi extends Service {
             .replace("{" + "splitConfigurationId" + "}", encodeURIComponent(String(splitConfigurationId)))
             .replace("{" + "ruleId" + "}", encodeURIComponent(String(ruleId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, SplitConfiguration>(
             resource,
             "",
             { ...requestOptions, method: "DELETE" }
         );
-
         return ObjectSerializer.deserialize(response, "SplitConfiguration");
     }
 
@@ -139,13 +129,11 @@ export class SplitConfigurationMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "splitConfigurationId" + "}", encodeURIComponent(String(splitConfigurationId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, SplitConfiguration>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "SplitConfiguration");
     }
 
@@ -159,13 +147,11 @@ export class SplitConfigurationMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/splitConfigurations`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, SplitConfigurationList>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "SplitConfigurationList");
     }
 
@@ -184,14 +170,12 @@ export class SplitConfigurationMerchantLevelApi extends Service {
             .replace("{" + "splitConfigurationId" + "}", encodeURIComponent(String(splitConfigurationId)))
             .replace("{" + "ruleId" + "}", encodeURIComponent(String(ruleId)));
         const resource = new Resource(this, endpoint);
-        
         const request: UpdateSplitConfigurationRuleRequest = ObjectSerializer.serialize(updateSplitConfigurationRuleRequest, "UpdateSplitConfigurationRuleRequest");
         const response = await getJsonResponse<UpdateSplitConfigurationRuleRequest, SplitConfiguration>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "SplitConfiguration");
     }
 
@@ -208,14 +192,12 @@ export class SplitConfigurationMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "splitConfigurationId" + "}", encodeURIComponent(String(splitConfigurationId)));
         const resource = new Resource(this, endpoint);
-        
         const request: UpdateSplitConfigurationRequest = ObjectSerializer.serialize(updateSplitConfigurationRequest, "UpdateSplitConfigurationRequest");
         const response = await getJsonResponse<UpdateSplitConfigurationRequest, SplitConfiguration>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "SplitConfiguration");
     }
 
@@ -236,15 +218,12 @@ export class SplitConfigurationMerchantLevelApi extends Service {
             .replace("{" + "ruleId" + "}", encodeURIComponent(String(ruleId)))
             .replace("{" + "splitLogicId" + "}", encodeURIComponent(String(splitLogicId)));
         const resource = new Resource(this, endpoint);
-        
         const request: UpdateSplitConfigurationLogicRequest = ObjectSerializer.serialize(updateSplitConfigurationLogicRequest, "UpdateSplitConfigurationLogicRequest");
         const response = await getJsonResponse<UpdateSplitConfigurationLogicRequest, SplitConfiguration>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "SplitConfiguration");
     }
-
 }

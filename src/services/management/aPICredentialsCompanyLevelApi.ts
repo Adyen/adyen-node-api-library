@@ -7,23 +7,21 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    CompanyApiCredential,
+    CreateCompanyApiCredentialRequest,
+    CreateCompanyApiCredentialResponse,
+    ListCompanyApiCredentialsResponse,
+    RestServiceError,
+    UpdateCompanyApiCredentialRequest,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { CompanyApiCredential } from "../../typings/management/models";
-import { CreateCompanyApiCredentialRequest } from "../../typings/management/models";
-import { CreateCompanyApiCredentialResponse } from "../../typings/management/models";
-import { ListCompanyApiCredentialsResponse } from "../../typings/management/models";
-import { UpdateCompanyApiCredentialRequest } from "../../typings/management/models";
-
-/**
- * API handler for APICredentialsCompanyLevelApi
- */
 export class APICredentialsCompanyLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -45,14 +43,12 @@ export class APICredentialsCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const request: CreateCompanyApiCredentialRequest = ObjectSerializer.serialize(createCompanyApiCredentialRequest, "CreateCompanyApiCredentialRequest");
         const response = await getJsonResponse<CreateCompanyApiCredentialRequest, CreateCompanyApiCredentialResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "CreateCompanyApiCredentialResponse");
     }
 
@@ -68,13 +64,11 @@ export class APICredentialsCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, CompanyApiCredential>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "CompanyApiCredential");
     }
 
@@ -90,7 +84,6 @@ export class APICredentialsCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = pageNumber ?? pageSize;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -103,7 +96,6 @@ export class APICredentialsCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ListCompanyApiCredentialsResponse");
     }
 
@@ -120,15 +112,12 @@ export class APICredentialsCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
-        
         const request: UpdateCompanyApiCredentialRequest = ObjectSerializer.serialize(updateCompanyApiCredentialRequest, "UpdateCompanyApiCredentialRequest");
         const response = await getJsonResponse<UpdateCompanyApiCredentialRequest, CompanyApiCredential>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "CompanyApiCredential");
     }
-
 }

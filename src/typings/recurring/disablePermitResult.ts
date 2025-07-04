@@ -12,35 +12,28 @@ export class DisablePermitResult {
     /**
     * A unique reference associated with the request. This value is globally unique; quote it when communicating with us about this request.
     */
-    "pspReference"?: string;
+    'pspReference'?: string;
     /**
     * Status of the disable request.
     */
-    "status"?: string;
+    'status'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return DisablePermitResult.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

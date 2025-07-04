@@ -7,225 +7,200 @@
  * Do not edit this class manually.
  */
 
-import { AccelInfo } from "./accelInfo";
-import { BcmcInfo } from "./bcmcInfo";
-import { CartesBancairesInfo } from "./cartesBancairesInfo";
-import { GenericPmWithTdiInfo } from "./genericPmWithTdiInfo";
-import { NyceInfo } from "./nyceInfo";
-import { PayByBankPlaidInfo } from "./payByBankPlaidInfo";
-import { PulseInfo } from "./pulseInfo";
-import { StarInfo } from "./starInfo";
-
+import { AccelInfo } from './accelInfo';
+import { BcmcInfo } from './bcmcInfo';
+import { CartesBancairesInfo } from './cartesBancairesInfo';
+import { GenericPmWithTdiInfo } from './genericPmWithTdiInfo';
+import { NyceInfo } from './nyceInfo';
+import { PayByBankPlaidInfo } from './payByBankPlaidInfo';
+import { PulseInfo } from './pulseInfo';
+import { StarInfo } from './starInfo';
 
 export class UpdatePaymentMethodInfo {
-    "accel"?: AccelInfo | null;
-    "bcmc"?: BcmcInfo | null;
-    "cartesBancaires"?: CartesBancairesInfo | null;
+    'accel'?: AccelInfo | null;
+    'bcmc'?: BcmcInfo | null;
+    'cartesBancaires'?: CartesBancairesInfo | null;
     /**
     * The list of countries where a payment method is available. By default, all countries supported by the payment method.
     */
-    "countries"?: Array<string>;
-    "cup"?: GenericPmWithTdiInfo | null;
+    'countries'?: Array<string>;
+    'cup'?: GenericPmWithTdiInfo | null;
     /**
     * The list of currencies that a payment method supports. By default, all currencies supported by the payment method.
     */
-    "currencies"?: Array<string>;
+    'currencies'?: Array<string>;
     /**
     * Custom routing flags for acquirer routing.
     */
-    "customRoutingFlags"?: Array<string>;
-    "diners"?: GenericPmWithTdiInfo | null;
-    "discover"?: GenericPmWithTdiInfo | null;
-    "eft_directdebit_CA"?: GenericPmWithTdiInfo | null;
-    "eftpos_australia"?: GenericPmWithTdiInfo | null;
+    'customRoutingFlags'?: Array<string>;
+    'diners'?: GenericPmWithTdiInfo | null;
+    'discover'?: GenericPmWithTdiInfo | null;
+    'eft_directdebit_CA'?: GenericPmWithTdiInfo | null;
+    'eftpos_australia'?: GenericPmWithTdiInfo | null;
     /**
     * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
     */
-    "enabled"?: boolean;
-    "girocard"?: GenericPmWithTdiInfo | null;
-    "ideal"?: GenericPmWithTdiInfo | null;
-    "interac_card"?: GenericPmWithTdiInfo | null;
-    "jcb"?: GenericPmWithTdiInfo | null;
-    "maestro"?: GenericPmWithTdiInfo | null;
-    "mc"?: GenericPmWithTdiInfo | null;
-    "nyce"?: NyceInfo | null;
-    "paybybank_plaid"?: PayByBankPlaidInfo | null;
-    "pulse"?: PulseInfo | null;
-    "star"?: StarInfo | null;
+    'enabled'?: boolean;
+    'girocard'?: GenericPmWithTdiInfo | null;
+    'ideal'?: GenericPmWithTdiInfo | null;
+    'interac_card'?: GenericPmWithTdiInfo | null;
+    'jcb'?: GenericPmWithTdiInfo | null;
+    'maestro'?: GenericPmWithTdiInfo | null;
+    'maestro_usa'?: GenericPmWithTdiInfo | null;
+    'mc'?: GenericPmWithTdiInfo | null;
+    'nyce'?: NyceInfo | null;
+    'paybybank_plaid'?: PayByBankPlaidInfo | null;
+    'pulse'?: PulseInfo | null;
+    'star'?: StarInfo | null;
     /**
     * The store for this payment method
     */
-    "storeId"?: string;
+    'storeId'?: string;
     /**
     * The list of stores for this payment method
     *
 	* @deprecated since Management API v3
 	* Use `storeId` instead. Only one store per payment method is allowed.
     */
-    "storeIds"?: Array<string>;
-    "visa"?: GenericPmWithTdiInfo | null;
+    'storeIds'?: Array<string>;
+    'visa'?: GenericPmWithTdiInfo | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accel",
             "baseName": "accel",
-            "type": "AccelInfo | null",
-            "format": ""
+            "type": "AccelInfo | null"
         },
         {
             "name": "bcmc",
             "baseName": "bcmc",
-            "type": "BcmcInfo | null",
-            "format": ""
+            "type": "BcmcInfo | null"
         },
         {
             "name": "cartesBancaires",
             "baseName": "cartesBancaires",
-            "type": "CartesBancairesInfo | null",
-            "format": ""
+            "type": "CartesBancairesInfo | null"
         },
         {
             "name": "countries",
             "baseName": "countries",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "cup",
             "baseName": "cup",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "currencies",
             "baseName": "currencies",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "customRoutingFlags",
             "baseName": "customRoutingFlags",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "diners",
             "baseName": "diners",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "discover",
             "baseName": "discover",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "eft_directdebit_CA",
             "baseName": "eft_directdebit_CA",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "eftpos_australia",
             "baseName": "eftpos_australia",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "enabled",
             "baseName": "enabled",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "girocard",
             "baseName": "girocard",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "ideal",
             "baseName": "ideal",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "interac_card",
             "baseName": "interac_card",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "jcb",
             "baseName": "jcb",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "maestro",
             "baseName": "maestro",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
+        },
+        {
+            "name": "maestro_usa",
+            "baseName": "maestro_usa",
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "mc",
             "baseName": "mc",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
         },
         {
             "name": "nyce",
             "baseName": "nyce",
-            "type": "NyceInfo | null",
-            "format": ""
+            "type": "NyceInfo | null"
         },
         {
             "name": "paybybank_plaid",
             "baseName": "paybybank_plaid",
-            "type": "PayByBankPlaidInfo | null",
-            "format": ""
+            "type": "PayByBankPlaidInfo | null"
         },
         {
             "name": "pulse",
             "baseName": "pulse",
-            "type": "PulseInfo | null",
-            "format": ""
+            "type": "PulseInfo | null"
         },
         {
             "name": "star",
             "baseName": "star",
-            "type": "StarInfo | null",
-            "format": ""
+            "type": "StarInfo | null"
         },
         {
             "name": "storeId",
             "baseName": "storeId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storeIds",
             "baseName": "storeIds",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "visa",
             "baseName": "visa",
-            "type": "GenericPmWithTdiInfo | null",
-            "format": ""
+            "type": "GenericPmWithTdiInfo | null"
         }    ];
 
     static getAttributeTypeMap() {
         return UpdatePaymentMethodInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

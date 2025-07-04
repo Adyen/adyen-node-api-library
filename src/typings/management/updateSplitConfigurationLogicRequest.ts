@@ -7,187 +7,164 @@
  * Do not edit this class manually.
  */
 
-import { AdditionalCommission } from "./additionalCommission";
-import { Commission } from "./commission";
-
+import { AdditionalCommission } from './additionalCommission';
+import { Commission } from './commission';
 
 export class UpdateSplitConfigurationLogicRequest {
     /**
     * Deducts the acquiring fees (the aggregated amount of interchange and scheme fee) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
-    "acquiringFees"?: UpdateSplitConfigurationLogicRequest.AcquiringFeesEnum;
-    "additionalCommission"?: AdditionalCommission | null;
+    'acquiringFees'?: UpdateSplitConfigurationLogicRequest.AcquiringFeesEnum;
+    'additionalCommission'?: AdditionalCommission | null;
     /**
     * Deducts the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
-    "adyenCommission"?: UpdateSplitConfigurationLogicRequest.AdyenCommissionEnum;
+    'adyenCommission'?: UpdateSplitConfigurationLogicRequest.AdyenCommissionEnum;
     /**
     * Deducts the fees due to Adyen (markup or commission) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
-    "adyenFees"?: UpdateSplitConfigurationLogicRequest.AdyenFeesEnum;
+    'adyenFees'?: UpdateSplitConfigurationLogicRequest.AdyenFeesEnum;
     /**
     * Deducts the transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/what-is-interchange) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
-    "adyenMarkup"?: UpdateSplitConfigurationLogicRequest.AdyenMarkupEnum;
+    'adyenMarkup'?: UpdateSplitConfigurationLogicRequest.AdyenMarkupEnum;
     /**
     * Specifies how and from which balance account(s) to deduct the chargeback amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.
     */
-    "chargeback"?: UpdateSplitConfigurationLogicRequest.ChargebackEnum;
+    'chargeback'?: UpdateSplitConfigurationLogicRequest.ChargebackEnum;
     /**
     * Deducts the chargeback costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**
     */
-    "chargebackCostAllocation"?: UpdateSplitConfigurationLogicRequest.ChargebackCostAllocationEnum;
-    "commission": Commission;
+    'chargebackCostAllocation'?: UpdateSplitConfigurationLogicRequest.ChargebackCostAllocationEnum;
+    'commission': Commission;
     /**
     * Deducts the interchange fee from specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
-    "interchange"?: UpdateSplitConfigurationLogicRequest.InterchangeEnum;
+    'interchange'?: UpdateSplitConfigurationLogicRequest.InterchangeEnum;
     /**
     * Deducts all transaction fees incurred by the payment from the specified balance account. The transaction fees include the acquiring fees (interchange and scheme fee), and the fees due to Adyen (markup or commission). You can book any and all these fees to different balance account by specifying other transaction fee parameters in your split configuration profile:  - [`adyenCommission`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenCommission): The transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [`adyenMarkup`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenMarkup): The transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [`schemeFee`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-schemeFee): The fee paid to the card scheme for using their network. - [`interchange`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-interchange): The fee paid to the issuer for each payment transaction made with the card network. - [`adyenFees`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenFees): The aggregated amount of Adyen\'s commission and markup. - [`acquiringFees`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-acquiringFees): The aggregated amount of the interchange and scheme fees.  If you don\'t include at least one transaction fee type in the `splitLogic` object, Adyen updates the payment request with the `paymentFee` parameter, booking all transaction fees to your platform\'s liable balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
-    "paymentFee"?: UpdateSplitConfigurationLogicRequest.PaymentFeeEnum;
+    'paymentFee'?: UpdateSplitConfigurationLogicRequest.PaymentFeeEnum;
     /**
     * Specifies how and from which balance account(s) to deduct the refund amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**
     */
-    "refund"?: UpdateSplitConfigurationLogicRequest.RefundEnum;
+    'refund'?: UpdateSplitConfigurationLogicRequest.RefundEnum;
     /**
     * Deducts the refund costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**
     */
-    "refundCostAllocation"?: UpdateSplitConfigurationLogicRequest.RefundCostAllocationEnum;
+    'refundCostAllocation'?: UpdateSplitConfigurationLogicRequest.RefundCostAllocationEnum;
     /**
     * Books the amount left over after currency conversion to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.
     */
-    "remainder"?: UpdateSplitConfigurationLogicRequest.RemainderEnum;
+    'remainder'?: UpdateSplitConfigurationLogicRequest.RemainderEnum;
     /**
     * Deducts the scheme fee from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
-    "schemeFee"?: UpdateSplitConfigurationLogicRequest.SchemeFeeEnum;
+    'schemeFee'?: UpdateSplitConfigurationLogicRequest.SchemeFeeEnum;
     /**
     * Unique identifier of the collection of split instructions that are applied when the rule conditions are met.
     */
-    "splitLogicId"?: string;
+    'splitLogicId'?: string;
     /**
     * Books the surcharge amount to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**
     */
-    "surcharge"?: UpdateSplitConfigurationLogicRequest.SurchargeEnum;
+    'surcharge'?: UpdateSplitConfigurationLogicRequest.SurchargeEnum;
     /**
     * Books the tips (gratuity) to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.
     */
-    "tip"?: UpdateSplitConfigurationLogicRequest.TipEnum;
+    'tip'?: UpdateSplitConfigurationLogicRequest.TipEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "acquiringFees",
             "baseName": "acquiringFees",
-            "type": "UpdateSplitConfigurationLogicRequest.AcquiringFeesEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.AcquiringFeesEnum"
         },
         {
             "name": "additionalCommission",
             "baseName": "additionalCommission",
-            "type": "AdditionalCommission | null",
-            "format": ""
+            "type": "AdditionalCommission | null"
         },
         {
             "name": "adyenCommission",
             "baseName": "adyenCommission",
-            "type": "UpdateSplitConfigurationLogicRequest.AdyenCommissionEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.AdyenCommissionEnum"
         },
         {
             "name": "adyenFees",
             "baseName": "adyenFees",
-            "type": "UpdateSplitConfigurationLogicRequest.AdyenFeesEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.AdyenFeesEnum"
         },
         {
             "name": "adyenMarkup",
             "baseName": "adyenMarkup",
-            "type": "UpdateSplitConfigurationLogicRequest.AdyenMarkupEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.AdyenMarkupEnum"
         },
         {
             "name": "chargeback",
             "baseName": "chargeback",
-            "type": "UpdateSplitConfigurationLogicRequest.ChargebackEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.ChargebackEnum"
         },
         {
             "name": "chargebackCostAllocation",
             "baseName": "chargebackCostAllocation",
-            "type": "UpdateSplitConfigurationLogicRequest.ChargebackCostAllocationEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.ChargebackCostAllocationEnum"
         },
         {
             "name": "commission",
             "baseName": "commission",
-            "type": "Commission",
-            "format": ""
+            "type": "Commission"
         },
         {
             "name": "interchange",
             "baseName": "interchange",
-            "type": "UpdateSplitConfigurationLogicRequest.InterchangeEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.InterchangeEnum"
         },
         {
             "name": "paymentFee",
             "baseName": "paymentFee",
-            "type": "UpdateSplitConfigurationLogicRequest.PaymentFeeEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.PaymentFeeEnum"
         },
         {
             "name": "refund",
             "baseName": "refund",
-            "type": "UpdateSplitConfigurationLogicRequest.RefundEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.RefundEnum"
         },
         {
             "name": "refundCostAllocation",
             "baseName": "refundCostAllocation",
-            "type": "UpdateSplitConfigurationLogicRequest.RefundCostAllocationEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.RefundCostAllocationEnum"
         },
         {
             "name": "remainder",
             "baseName": "remainder",
-            "type": "UpdateSplitConfigurationLogicRequest.RemainderEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.RemainderEnum"
         },
         {
             "name": "schemeFee",
             "baseName": "schemeFee",
-            "type": "UpdateSplitConfigurationLogicRequest.SchemeFeeEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.SchemeFeeEnum"
         },
         {
             "name": "splitLogicId",
             "baseName": "splitLogicId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "surcharge",
             "baseName": "surcharge",
-            "type": "UpdateSplitConfigurationLogicRequest.SurchargeEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.SurchargeEnum"
         },
         {
             "name": "tip",
             "baseName": "tip",
-            "type": "UpdateSplitConfigurationLogicRequest.TipEnum",
-            "format": ""
+            "type": "UpdateSplitConfigurationLogicRequest.TipEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return UpdateSplitConfigurationLogicRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

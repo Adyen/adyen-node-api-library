@@ -7,49 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { Links } from "./links";
-
+import { Links } from './links';
 
 export class CreateAllowedOriginRequest {
-    "_links"?: Links | null;
+    '_links'?: Links | null;
     /**
     * Domain of the allowed origin.
     */
-    "domain": string;
+    'domain': string;
     /**
     * Unique identifier of the allowed origin.
     */
-    "id"?: string;
+    'id'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "Links | null",
-            "format": ""
+            "type": "Links | null"
         },
         {
             "name": "domain",
             "baseName": "domain",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CreateAllowedOriginRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

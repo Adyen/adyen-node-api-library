@@ -12,45 +12,37 @@ export class Counterparty {
     /**
     * The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no `balanceAccountId` is provided.
     */
-    "accountHolderId"?: string;
+    'accountHolderId'?: string;
     /**
     * The identifier of the balance account that belongs to the receiving account holder.
     */
-    "balanceAccountId"?: string;
+    'balanceAccountId'?: string;
     /**
     * The identifier of the transfer instrument that belongs to the legal entity of the account holder.
     */
-    "transferInstrumentId"?: string;
+    'transferInstrumentId'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountHolderId",
             "baseName": "accountHolderId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "balanceAccountId",
             "baseName": "balanceAccountId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transferInstrumentId",
             "baseName": "transferInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Counterparty.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

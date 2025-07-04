@@ -12,35 +12,28 @@ export class WeChatPayPosInfo {
     /**
     * The name of the contact person from merchant support.
     */
-    "contactPersonName": string;
+    'contactPersonName': string;
     /**
     * The email address of merchant support.
     */
-    "email": string;
+    'email': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "contactPersonName",
             "baseName": "contactPersonName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "email",
             "baseName": "email",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return WeChatPayPosInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

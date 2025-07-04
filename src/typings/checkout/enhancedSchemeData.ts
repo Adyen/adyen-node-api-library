@@ -7,29 +7,22 @@
  * Do not edit this class manually.
  */
 
-import { Airline } from "./airline";
-
+import { Airline } from './airline';
 
 export class EnhancedSchemeData {
-    "airline"?: Airline | null;
+    'airline'?: Airline | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "airline",
             "baseName": "airline",
-            "type": "Airline | null",
-            "format": ""
+            "type": "Airline | null"
         }    ];
 
     static getAttributeTypeMap() {
         return EnhancedSchemeData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

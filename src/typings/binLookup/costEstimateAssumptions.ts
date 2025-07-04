@@ -12,45 +12,37 @@ export class CostEstimateAssumptions {
     /**
     * If true, the cardholder is expected to successfully authorise via 3D Secure.
     */
-    "assume3DSecureAuthenticated"?: boolean;
+    'assume3DSecureAuthenticated'?: boolean;
     /**
     * If true, the transaction is expected to have valid Level 3 data.
     */
-    "assumeLevel3Data"?: boolean;
+    'assumeLevel3Data'?: boolean;
     /**
     * If not zero, the number of installments.
     */
-    "installments"?: number;
+    'installments'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "assume3DSecureAuthenticated",
             "baseName": "assume3DSecureAuthenticated",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "assumeLevel3Data",
             "baseName": "assumeLevel3Data",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "installments",
             "baseName": "installments",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return CostEstimateAssumptions.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

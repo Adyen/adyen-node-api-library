@@ -7,21 +7,19 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    PaymentInstrumentGroup,
+    PaymentInstrumentGroupInfo,
+    RestServiceError,
+    TransactionRulesResponse,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
-import { PaymentInstrumentGroup } from "../../typings/balancePlatform/models";
-import { PaymentInstrumentGroupInfo } from "../../typings/balancePlatform/models";
-import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
-
-/**
- * API handler for PaymentInstrumentGroupsApi
- */
 export class PaymentInstrumentGroupsApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -41,14 +39,12 @@ export class PaymentInstrumentGroupsApi extends Service {
     public async createPaymentInstrumentGroup(paymentInstrumentGroupInfo: PaymentInstrumentGroupInfo, requestOptions?: IRequest.Options): Promise<PaymentInstrumentGroup> {
         const endpoint = `${this.baseUrl}/paymentInstrumentGroups`;
         const resource = new Resource(this, endpoint);
-        
         const request: PaymentInstrumentGroupInfo = ObjectSerializer.serialize(paymentInstrumentGroupInfo, "PaymentInstrumentGroupInfo");
         const response = await getJsonResponse<PaymentInstrumentGroupInfo, PaymentInstrumentGroup>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentInstrumentGroup");
     }
 
@@ -62,13 +58,11 @@ export class PaymentInstrumentGroupsApi extends Service {
         const endpoint = `${this.baseUrl}/paymentInstrumentGroups/{id}/transactionRules`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, TransactionRulesResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
     }
 
@@ -82,14 +76,11 @@ export class PaymentInstrumentGroupsApi extends Service {
         const endpoint = `${this.baseUrl}/paymentInstrumentGroups/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, PaymentInstrumentGroup>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentInstrumentGroup");
     }
-
 }

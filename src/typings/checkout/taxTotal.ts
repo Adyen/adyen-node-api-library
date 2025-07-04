@@ -7,29 +7,22 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-
+import { Amount } from './amount';
 
 export class TaxTotal {
-    "amount"?: Amount | null;
+    'amount'?: Amount | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         }    ];
 
     static getAttributeTypeMap() {
         return TaxTotal.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,35 +12,28 @@ export class InstallAndroidCertificateDetails {
     /**
     * The unique identifier of the certificate to be installed.
     */
-    "certificateId"?: string;
+    'certificateId'?: string;
     /**
     * Type of terminal action: Install an Android certificate.
     */
-    "type"?: InstallAndroidCertificateDetails.TypeEnum;
+    'type'?: InstallAndroidCertificateDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "certificateId",
             "baseName": "certificateId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "InstallAndroidCertificateDetails.TypeEnum",
-            "format": ""
+            "type": "InstallAndroidCertificateDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return InstallAndroidCertificateDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

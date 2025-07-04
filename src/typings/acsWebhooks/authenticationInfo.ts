@@ -7,169 +7,148 @@
  * Do not edit this class manually.
  */
 
-import { ChallengeInfo } from "./challengeInfo";
-
+import { ChallengeInfo } from './challengeInfo';
 
 export class AuthenticationInfo {
     /**
     * Universally unique transaction identifier assigned by the Access Control Server (ACS) to identify a single transaction.
     */
-    "acsTransId": string;
-    "challenge"?: ChallengeInfo | null;
+    'acsTransId': string;
+    'challenge'?: ChallengeInfo | null;
     /**
     * Specifies a preference for receiving a challenge. Possible values:  * **01**: No preference * **02**: No challenge requested * **03**: Challenge requested (preference) * **04**: Challenge requested (mandate) * **05**: No challenge requested (transactional risk analysis is already performed) * **07**: No challenge requested (SCA is already performed) * **08**: No challenge requested (trusted beneficiaries exemption of no challenge required) * **09**: Challenge requested (trusted beneficiaries prompt requested if challenge required) * **80**: No challenge requested (secure corporate payment with Mastercard) * **82**: No challenge requested (secure corporate payment with Visa) 
     */
-    "challengeIndicator": AuthenticationInfo.ChallengeIndicatorEnum;
+    'challengeIndicator': AuthenticationInfo.ChallengeIndicatorEnum;
     /**
     * Date and time in UTC of the cardholder authentication.   [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
     */
-    "createdAt": Date;
+    'createdAt': Date;
     /**
     * Indicates the type of channel interface being used to initiate the transaction. Possible values:  * **app** * **browser** * **3DSRequestorInitiated** (initiated by a merchant when the cardholder is not available)
     */
-    "deviceChannel": AuthenticationInfo.DeviceChannelEnum;
+    'deviceChannel': AuthenticationInfo.DeviceChannelEnum;
     /**
     * Universally unique transaction identifier assigned by the DS (card scheme) to identify a single transaction.
     */
-    "dsTransID": string;
+    'dsTransID': string;
     /**
     * Indicates the exemption type that was applied to the authentication by the issuer, if exemption applied. Possible values:  * **lowValue** * **secureCorporate** * **trustedBeneficiary** * **transactionRiskAnalysis** * **acquirerExemption** * **noExemptionApplied** * **visaDAFExemption** 
     */
-    "exemptionIndicator"?: AuthenticationInfo.ExemptionIndicatorEnum;
+    'exemptionIndicator'?: AuthenticationInfo.ExemptionIndicatorEnum;
     /**
     * Indicates if the purchase was in the PSD2 scope.
     */
-    "inPSD2Scope": boolean;
+    'inPSD2Scope': boolean;
     /**
     * Identifies the category of the message for a specific use case. Possible values:  * **payment** * **nonPayment**
     */
-    "messageCategory": AuthenticationInfo.MessageCategoryEnum;
+    'messageCategory': AuthenticationInfo.MessageCategoryEnum;
     /**
     * The `messageVersion` value as defined in the 3D Secure 2 specification.
     */
-    "messageVersion": string;
+    'messageVersion': string;
     /**
     * Risk score calculated from the transaction rules.
     */
-    "riskScore"?: number;
+    'riskScore'?: number;
     /**
     * The `threeDSServerTransID` value as defined in the 3D Secure 2 specification.
     */
-    "threeDSServerTransID": string;
+    'threeDSServerTransID': string;
     /**
     * The `transStatus` value as defined in the 3D Secure 2 specification. Possible values:  * **Y**: Authentication / Account verification successful. * **N**: Not Authenticated / Account not verified. Transaction denied. * **U**: Authentication / Account verification could not be performed. * **I**: Informational Only / 3D Secure Requestor challenge preference acknowledged. * **R**: Authentication / Account verification rejected by the Issuer. 
     */
-    "transStatus": AuthenticationInfo.TransStatusEnum;
+    'transStatus': AuthenticationInfo.TransStatusEnum;
     /**
     * Provides information on why the `transStatus` field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
     */
-    "transStatusReason"?: AuthenticationInfo.TransStatusReasonEnum;
+    'transStatusReason'?: AuthenticationInfo.TransStatusReasonEnum;
     /**
     * The type of authentication performed. Possible values:  * **frictionless** * **challenge**
     */
-    "type": AuthenticationInfo.TypeEnum;
+    'type': AuthenticationInfo.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "acsTransId",
             "baseName": "acsTransId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "challenge",
             "baseName": "challenge",
-            "type": "ChallengeInfo | null",
-            "format": ""
+            "type": "ChallengeInfo | null"
         },
         {
             "name": "challengeIndicator",
             "baseName": "challengeIndicator",
-            "type": "AuthenticationInfo.ChallengeIndicatorEnum",
-            "format": ""
+            "type": "AuthenticationInfo.ChallengeIndicatorEnum"
         },
         {
             "name": "createdAt",
             "baseName": "createdAt",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "deviceChannel",
             "baseName": "deviceChannel",
-            "type": "AuthenticationInfo.DeviceChannelEnum",
-            "format": ""
+            "type": "AuthenticationInfo.DeviceChannelEnum"
         },
         {
             "name": "dsTransID",
             "baseName": "dsTransID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "exemptionIndicator",
             "baseName": "exemptionIndicator",
-            "type": "AuthenticationInfo.ExemptionIndicatorEnum",
-            "format": ""
+            "type": "AuthenticationInfo.ExemptionIndicatorEnum"
         },
         {
             "name": "inPSD2Scope",
             "baseName": "inPSD2Scope",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "messageCategory",
             "baseName": "messageCategory",
-            "type": "AuthenticationInfo.MessageCategoryEnum",
-            "format": ""
+            "type": "AuthenticationInfo.MessageCategoryEnum"
         },
         {
             "name": "messageVersion",
             "baseName": "messageVersion",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "riskScore",
             "baseName": "riskScore",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "threeDSServerTransID",
             "baseName": "threeDSServerTransID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transStatus",
             "baseName": "transStatus",
-            "type": "AuthenticationInfo.TransStatusEnum",
-            "format": ""
+            "type": "AuthenticationInfo.TransStatusEnum"
         },
         {
             "name": "transStatusReason",
             "baseName": "transStatusReason",
-            "type": "AuthenticationInfo.TransStatusReasonEnum",
-            "format": ""
+            "type": "AuthenticationInfo.TransStatusReasonEnum"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AuthenticationInfo.TypeEnum",
-            "format": ""
+            "type": "AuthenticationInfo.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return AuthenticationInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

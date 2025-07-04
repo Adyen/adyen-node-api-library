@@ -12,35 +12,28 @@ export class AndroidAppError {
     /**
     * The error code of the Android app with the `status` of either **error** or **invalid**.
     */
-    "errorCode"?: string;
+    'errorCode'?: string;
     /**
     * The list of payment terminal models to which the returned `errorCode` applies.
     */
-    "terminalModels"?: Array<string>;
+    'terminalModels'?: Array<string>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "errorCode",
             "baseName": "errorCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "terminalModels",
             "baseName": "terminalModels",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
         return AndroidAppError.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

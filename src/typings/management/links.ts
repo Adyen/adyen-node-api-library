@@ -7,29 +7,22 @@
  * Do not edit this class manually.
  */
 
-import { LinksElement } from "./linksElement";
-
+import { LinksElement } from './linksElement';
 
 export class Links {
-    "self": LinksElement;
+    'self': LinksElement;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "self",
             "baseName": "self",
-            "type": "LinksElement",
-            "format": ""
+            "type": "LinksElement"
         }    ];
 
     static getAttributeTypeMap() {
         return Links.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

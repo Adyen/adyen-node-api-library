@@ -12,35 +12,28 @@ export class PaypalUpdateOrderResponse {
     /**
     * The updated paymentData.
     */
-    "paymentData": string;
+    'paymentData': string;
     /**
     * The status of the request. This indicates whether the order was successfully updated with PayPal.
     */
-    "status": PaypalUpdateOrderResponse.StatusEnum;
+    'status': PaypalUpdateOrderResponse.StatusEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "paymentData",
             "baseName": "paymentData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "PaypalUpdateOrderResponse.StatusEnum",
-            "format": ""
+            "type": "PaypalUpdateOrderResponse.StatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return PaypalUpdateOrderResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

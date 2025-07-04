@@ -12,25 +12,19 @@ export class TapToPay {
     /**
     * The text shown on the screen during the Tap to Pay transaction.
     */
-    "merchantDisplayName"?: string;
+    'merchantDisplayName'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "merchantDisplayName",
             "baseName": "merchantDisplayName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return TapToPay.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

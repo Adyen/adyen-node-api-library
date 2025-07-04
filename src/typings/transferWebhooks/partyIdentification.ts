@@ -7,89 +7,76 @@
  * Do not edit this class manually.
  */
 
-import { Address } from "./address";
-
+import { Address } from './address';
 
 export class PartyIdentification {
-    "address"?: Address | null;
+    'address'?: Address | null;
     /**
     * The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when `type` is **individual**.
     */
-    "dateOfBirth"?: string;
+    'dateOfBirth'?: string;
     /**
     * The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
     */
-    "firstName"?: string;
+    'firstName'?: string;
     /**
     * The full name of the entity that owns the bank account or card.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" \' and space.  Required when `category` is **bank**.
     */
-    "fullName"?: string;
+    'fullName'?: string;
     /**
     * The last name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
     */
-    "lastName"?: string;
+    'lastName'?: string;
     /**
     * A unique reference to identify the party or counterparty involved in the transfer. For example, your client\'s unique wallet or payee ID.  Required when you include `cardIdentification.storedPaymentMethodId`.
     */
-    "reference"?: string;
+    'reference'?: string;
     /**
     * The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when `category` is **card**. In this case, the value must be **individual**.
     */
-    "type"?: PartyIdentification.TypeEnum;
+    'type'?: PartyIdentification.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address | null",
-            "format": ""
+            "type": "Address | null"
         },
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "string",
-            "format": "date"
+            "type": "string"
         },
         {
             "name": "firstName",
             "baseName": "firstName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fullName",
             "baseName": "fullName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "lastName",
             "baseName": "lastName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PartyIdentification.TypeEnum",
-            "format": ""
+            "type": "PartyIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return PartyIdentification.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

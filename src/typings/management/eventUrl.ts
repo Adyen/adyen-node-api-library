@@ -7,42 +7,34 @@
  * Do not edit this class manually.
  */
 
-import { Url } from "./url";
-
+import { Url } from './url';
 
 export class EventUrl {
     /**
     * One or more local URLs to send event notifications to when using Terminal API.
     */
-    "eventLocalUrls"?: Array<Url>;
+    'eventLocalUrls'?: Array<Url>;
     /**
     * One or more public URLs to send event notifications to when using Terminal API.
     */
-    "eventPublicUrls"?: Array<Url>;
+    'eventPublicUrls'?: Array<Url>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "eventLocalUrls",
             "baseName": "eventLocalUrls",
-            "type": "Array<Url>",
-            "format": ""
+            "type": "Array<Url>"
         },
         {
             "name": "eventPublicUrls",
             "baseName": "eventPublicUrls",
-            "type": "Array<Url>",
-            "format": ""
+            "type": "Array<Url>"
         }    ];
 
     static getAttributeTypeMap() {
         return EventUrl.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

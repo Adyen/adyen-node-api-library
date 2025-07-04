@@ -12,35 +12,28 @@ export class AdditionalSettings {
     /**
     * Object containing list of event codes for which the notification will be sent. 
     */
-    "includeEventCodes"?: Array<string>;
+    'includeEventCodes'?: Array<string>;
     /**
     * Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, `captureDelayHours`: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured.
     */
-    "properties"?: { [key: string]: boolean; };
+    'properties'?: { [key: string]: boolean; };
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "includeEventCodes",
             "baseName": "includeEventCodes",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "properties",
             "baseName": "properties",
-            "type": "{ [key: string]: boolean; }",
-            "format": ""
+            "type": "{ [key: string]: boolean; }"
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalSettings.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

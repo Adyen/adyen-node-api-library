@@ -7,21 +7,19 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    Company,
+    ListCompanyResponse,
+    ListMerchantResponse,
+    RestServiceError,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { Company } from "../../typings/management/models";
-import { ListCompanyResponse } from "../../typings/management/models";
-import { ListMerchantResponse } from "../../typings/management/models";
-
-/**
- * API handler for AccountCompanyLevelApi
- */
 export class AccountCompanyLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -42,13 +40,11 @@ export class AccountCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, Company>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "Company");
     }
 
@@ -62,7 +58,6 @@ export class AccountCompanyLevelApi extends Service {
     public async listCompanyAccounts(pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<ListCompanyResponse> {
         const endpoint = `${this.baseUrl}/companies`;
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = pageNumber ?? pageSize;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -75,7 +70,6 @@ export class AccountCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ListCompanyResponse");
     }
 
@@ -91,7 +85,6 @@ export class AccountCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/merchants`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = pageNumber ?? pageSize;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -104,8 +97,6 @@ export class AccountCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ListMerchantResponse");
     }
-
 }

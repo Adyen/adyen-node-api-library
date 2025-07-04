@@ -7,20 +7,18 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    RestServiceError,
+    TransferRouteRequest,
+    TransferRouteResponse,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
-import { TransferRouteRequest } from "../../typings/balancePlatform/models";
-import { TransferRouteResponse } from "../../typings/balancePlatform/models";
-
-/**
- * API handler for TransferRoutesApi
- */
 export class TransferRoutesApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -40,15 +38,12 @@ export class TransferRoutesApi extends Service {
     public async calculateTransferRoutes(transferRouteRequest: TransferRouteRequest, requestOptions?: IRequest.Options): Promise<TransferRouteResponse> {
         const endpoint = `${this.baseUrl}/transferRoutes/calculate`;
         const resource = new Resource(this, endpoint);
-        
         const request: TransferRouteRequest = ObjectSerializer.serialize(transferRouteRequest, "TransferRouteRequest");
         const response = await getJsonResponse<TransferRouteRequest, TransferRouteResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "TransferRouteResponse");
     }
-
 }

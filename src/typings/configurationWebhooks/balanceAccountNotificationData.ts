@@ -7,39 +7,31 @@
  * Do not edit this class manually.
  */
 
-import { BalanceAccount } from "./balanceAccount";
-
+import { BalanceAccount } from './balanceAccount';
 
 export class BalanceAccountNotificationData {
-    "balanceAccount"?: BalanceAccount | null;
+    'balanceAccount'?: BalanceAccount | null;
     /**
     * The unique identifier of the balance platform.
     */
-    "balancePlatform"?: string;
+    'balancePlatform'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "balanceAccount",
             "baseName": "balanceAccount",
-            "type": "BalanceAccount | null",
-            "format": ""
+            "type": "BalanceAccount | null"
         },
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return BalanceAccountNotificationData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

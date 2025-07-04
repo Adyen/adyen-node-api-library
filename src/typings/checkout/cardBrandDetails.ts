@@ -12,35 +12,28 @@ export class CardBrandDetails {
     /**
     * Indicates if you support the card brand.
     */
-    "supported"?: boolean;
+    'supported'?: boolean;
     /**
     * The name of the card brand.
     */
-    "type"?: string;
+    'type'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "supported",
             "baseName": "supported",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CardBrandDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

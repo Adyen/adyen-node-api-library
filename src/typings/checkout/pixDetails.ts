@@ -7,72 +7,61 @@
  * Do not edit this class manually.
  */
 
-import { PixRecurring } from "./pixRecurring";
-
+import { PixRecurring } from './pixRecurring';
 
 export class PixDetails {
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
-    "pixRecurring"?: PixRecurring | null;
+    'checkoutAttemptId'?: string;
+    'pixRecurring'?: PixRecurring | null;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    "recurringDetailReference"?: string;
+    'recurringDetailReference'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    "storedPaymentMethodId"?: string;
+    'storedPaymentMethodId'?: string;
     /**
     * The payment method type.
     */
-    "type"?: PixDetails.TypeEnum;
+    'type'?: PixDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "pixRecurring",
             "baseName": "pixRecurring",
-            "type": "PixRecurring | null",
-            "format": ""
+            "type": "PixRecurring | null"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PixDetails.TypeEnum",
-            "format": ""
+            "type": "PixDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return PixDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

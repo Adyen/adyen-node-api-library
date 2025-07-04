@@ -12,45 +12,37 @@ export class Settings {
     /**
     * The preferred Wi-Fi band, for use if the terminals support multiple bands. Possible values: All, 2.4GHz, 5GHz.
     */
-    "band"?: string;
+    'band'?: string;
     /**
     * Indicates whether roaming is enabled on the terminals.
     */
-    "roaming"?: boolean;
+    'roaming'?: boolean;
     /**
     * The connection time-out in seconds. Minimum value: 0.
     */
-    "timeout"?: number;
+    'timeout'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "band",
             "baseName": "band",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "roaming",
             "baseName": "roaming",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "timeout",
             "baseName": "timeout",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return Settings.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

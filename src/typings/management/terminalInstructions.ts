@@ -12,25 +12,19 @@ export class TerminalInstructions {
     /**
     * Indicates whether the Adyen app on the payment terminal restarts automatically when the configuration is updated.
     */
-    "adyenAppRestart"?: boolean;
+    'adyenAppRestart'?: boolean;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "adyenAppRestart",
             "baseName": "adyenAppRestart",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalInstructions.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

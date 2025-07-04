@@ -7,149 +7,130 @@
  * Do not edit this class manually.
  */
 
-import { AdditionalSettings } from "./additionalSettings";
-
+import { AdditionalSettings } from './additionalSettings';
 
 export class UpdateMerchantWebhookRequest {
     /**
     * Indicates if expired SSL certificates are accepted. Default value: **false**.
     */
-    "acceptsExpiredCertificate"?: boolean;
+    'acceptsExpiredCertificate'?: boolean;
     /**
     * Indicates if self-signed SSL certificates are accepted. Default value: **false**.
     */
-    "acceptsSelfSignedCertificate"?: boolean;
+    'acceptsSelfSignedCertificate'?: boolean;
     /**
     * Indicates if untrusted SSL certificates are accepted. Default value: **false**.
     */
-    "acceptsUntrustedRootCertificate"?: boolean;
+    'acceptsUntrustedRootCertificate'?: boolean;
     /**
     * Indicates if the webhook configuration is active. The field must be **true** for us to send webhooks about events related an account.
     */
-    "active"?: boolean;
-    "additionalSettings"?: AdditionalSettings | null;
+    'active'?: boolean;
+    'additionalSettings'?: AdditionalSettings | null;
     /**
     * Format or protocol for receiving webhooks. Possible values: * **soap** * **http** * **json** 
     */
-    "communicationFormat"?: UpdateMerchantWebhookRequest.CommunicationFormatEnum;
+    'communicationFormat'?: UpdateMerchantWebhookRequest.CommunicationFormatEnum;
     /**
     * Your description for this webhook configuration.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * SSL version to access the public webhook URL specified in the `url` field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use `sslVersion`: **TLSv1.2**.
     */
-    "encryptionProtocol"?: UpdateMerchantWebhookRequest.EncryptionProtocolEnum;
+    'encryptionProtocol'?: UpdateMerchantWebhookRequest.EncryptionProtocolEnum;
     /**
     * Network type for Terminal API notification webhooks. Possible values: * **public** * **local**  Default Value: **public**.
     */
-    "networkType"?: UpdateMerchantWebhookRequest.NetworkTypeEnum;
+    'networkType'?: UpdateMerchantWebhookRequest.NetworkTypeEnum;
     /**
     * Password to access the webhook URL.
     */
-    "password"?: string;
+    'password'?: string;
     /**
     * Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if `communicationFormat`: **soap**.
     */
-    "populateSoapActionHeader"?: boolean;
+    'populateSoapActionHeader'?: boolean;
     /**
     * Public URL where webhooks will be sent, for example **https://www.domain.com/webhook-endpoint**.
     */
-    "url"?: string;
+    'url'?: string;
     /**
     * Username to access the webhook URL.
     */
-    "username"?: string;
+    'username'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "acceptsExpiredCertificate",
             "baseName": "acceptsExpiredCertificate",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "acceptsSelfSignedCertificate",
             "baseName": "acceptsSelfSignedCertificate",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "acceptsUntrustedRootCertificate",
             "baseName": "acceptsUntrustedRootCertificate",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "active",
             "baseName": "active",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "additionalSettings",
             "baseName": "additionalSettings",
-            "type": "AdditionalSettings | null",
-            "format": ""
+            "type": "AdditionalSettings | null"
         },
         {
             "name": "communicationFormat",
             "baseName": "communicationFormat",
-            "type": "UpdateMerchantWebhookRequest.CommunicationFormatEnum",
-            "format": ""
+            "type": "UpdateMerchantWebhookRequest.CommunicationFormatEnum"
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "encryptionProtocol",
             "baseName": "encryptionProtocol",
-            "type": "UpdateMerchantWebhookRequest.EncryptionProtocolEnum",
-            "format": ""
+            "type": "UpdateMerchantWebhookRequest.EncryptionProtocolEnum"
         },
         {
             "name": "networkType",
             "baseName": "networkType",
-            "type": "UpdateMerchantWebhookRequest.NetworkTypeEnum",
-            "format": ""
+            "type": "UpdateMerchantWebhookRequest.NetworkTypeEnum"
         },
         {
             "name": "password",
             "baseName": "password",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "populateSoapActionHeader",
             "baseName": "populateSoapActionHeader",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "username",
             "baseName": "username",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return UpdateMerchantWebhookRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,95 +12,82 @@ export class ExternalTerminalAction {
     /**
     * The type of terminal action: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, or **UninstallAndroidCertificate**.
     */
-    "actionType"?: string;
+    'actionType'?: string;
     /**
     * Technical information about the terminal action.
     */
-    "config"?: string;
+    'config'?: string;
     /**
     * The date and time when the action was carried out.
     */
-    "confirmedAt"?: Date;
+    'confirmedAt'?: Date;
     /**
     * The unique ID of the terminal action.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The result message for the action.
     */
-    "result"?: string;
+    'result'?: string;
     /**
     * The date and time when the action was scheduled to happen.
     */
-    "scheduledAt"?: Date;
+    'scheduledAt'?: Date;
     /**
     * The status of the terminal action: **pending**, **successful**, **failed**, **cancelled**, or **tryLater**.
     */
-    "status"?: string;
+    'status'?: string;
     /**
     * The unique ID of the terminal that the action applies to.
     */
-    "terminalId"?: string;
+    'terminalId'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "actionType",
             "baseName": "actionType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "config",
             "baseName": "config",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "confirmedAt",
             "baseName": "confirmedAt",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "result",
             "baseName": "result",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "scheduledAt",
             "baseName": "scheduledAt",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "terminalId",
             "baseName": "terminalId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ExternalTerminalAction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

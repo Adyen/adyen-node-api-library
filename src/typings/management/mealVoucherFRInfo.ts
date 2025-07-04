@@ -12,45 +12,37 @@ export class MealVoucherFRInfo {
     /**
     * Meal Voucher conecsId. Format: digits only
     */
-    "conecsId": string;
+    'conecsId': string;
     /**
     * Meal Voucher siret. Format: 14 digits.
     */
-    "siret": string;
+    'siret': string;
     /**
     * The list of additional payment methods. Allowed values: **mealVoucher_FR_edenred**, **mealVoucher_FR_groupeup**, **mealVoucher_FR_natixis**, **mealVoucher_FR_sodexo**.
     */
-    "subTypes": Array<string>;
+    'subTypes': Array<string>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "conecsId",
             "baseName": "conecsId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "siret",
             "baseName": "siret",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subTypes",
             "baseName": "subTypes",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
         return MealVoucherFRInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

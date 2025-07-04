@@ -12,35 +12,28 @@ export class StoreSplitConfiguration {
     /**
     * The [unique identifier of the balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id) to which the split amount must be booked, depending on the defined [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/_merchantId_/splitConfigurations#request-rules-splitLogic).
     */
-    "balanceAccountId"?: string;
+    'balanceAccountId'?: string;
     /**
     * The unique identifier of the [split configuration profile](https://docs.adyen.com/platforms/automatic-split-configuration/create-split-configuration/).
     */
-    "splitConfigurationId"?: string;
+    'splitConfigurationId'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "balanceAccountId",
             "baseName": "balanceAccountId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "splitConfigurationId",
             "baseName": "splitConfigurationId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return StoreSplitConfiguration.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

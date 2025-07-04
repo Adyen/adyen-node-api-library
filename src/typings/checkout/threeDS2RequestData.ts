@@ -7,399 +7,354 @@
  * Do not edit this class manually.
  */
 
-import { AcctInfo } from "./acctInfo";
-import { DeviceRenderOptions } from "./deviceRenderOptions";
-import { Phone } from "./phone";
-import { SDKEphemPubKey } from "./sDKEphemPubKey";
-import { ThreeDSRequestorAuthenticationInfo } from "./threeDSRequestorAuthenticationInfo";
-import { ThreeDSRequestorPriorAuthenticationInfo } from "./threeDSRequestorPriorAuthenticationInfo";
-
+import { AcctInfo } from './acctInfo';
+import { DeviceRenderOptions } from './deviceRenderOptions';
+import { Phone } from './phone';
+import { SDKEphemPubKey } from './sDKEphemPubKey';
+import { ThreeDSRequestorAuthenticationInfo } from './threeDSRequestorAuthenticationInfo';
+import { ThreeDSRequestorPriorAuthenticationInfo } from './threeDSRequestorPriorAuthenticationInfo';
 
 export class ThreeDS2RequestData {
-    "acctInfo"?: AcctInfo | null;
+    'acctInfo'?: AcctInfo | null;
     /**
     * Indicates the type of account. For example, for a multi-account card product. Length: 2 characters. Allowed values: * **01** — Not applicable * **02** — Credit * **03** — Debit
     */
-    "acctType"?: ThreeDS2RequestData.AcctTypeEnum;
+    'acctType'?: ThreeDS2RequestData.AcctTypeEnum;
     /**
     * Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The acquiring BIN enrolled for 3D Secure 2. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.
     */
-    "acquirerBIN"?: string;
+    'acquirerBIN'?: string;
     /**
     * Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchantId that is enrolled for 3D Secure 2 by the merchant\'s acquirer. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.
     */
-    "acquirerMerchantID"?: string;
+    'acquirerMerchantID'?: string;
     /**
     * Indicates whether the Cardholder Shipping Address and Cardholder Billing Address are the same. Allowed values: * **Y** — Shipping Address matches Billing Address. * **N** — Shipping Address does not match Billing Address.
     */
-    "addrMatch"?: ThreeDS2RequestData.AddrMatchEnum;
+    'addrMatch'?: ThreeDS2RequestData.AddrMatchEnum;
     /**
     * If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
     *
 	* @deprecated since Adyen Checkout API v50
 	* Use `threeDSAuthenticationOnly` instead.
     */
-    "authenticationOnly"?: boolean;
+    'authenticationOnly'?: boolean;
     /**
     * Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate` 
     *
 	* @deprecated since Adyen Checkout API v68
 	* Use `threeDSRequestorChallengeInd` instead.
     */
-    "challengeIndicator"?: ThreeDS2RequestData.ChallengeIndicatorEnum;
+    'challengeIndicator'?: ThreeDS2RequestData.ChallengeIndicatorEnum;
     /**
     * The environment of the shopper. Allowed values: * `app` * `browser`
     */
-    "deviceChannel": string;
-    "deviceRenderOptions"?: DeviceRenderOptions | null;
-    "homePhone"?: Phone | null;
+    'deviceChannel': string;
+    'deviceRenderOptions'?: DeviceRenderOptions | null;
+    'homePhone'?: Phone | null;
     /**
     * Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The `mcc` is a four-digit code with which the previously given `acquirerMerchantID` is registered at the scheme.
     */
-    "mcc"?: string;
+    'mcc'?: string;
     /**
     * Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchant name that the issuer presents to the shopper if they get a challenge. We recommend to use the same value that you will use in the authorization. Maximum length is 40 characters. > Optional for a [full 3D Secure 2 integration](https://docs.adyen.com/online-payments/3d-secure/native-3ds2/api-integration). Use this field if you are enrolled for 3D Secure 2 with us and want to override the merchant name already configured on your account.
     */
-    "merchantName"?: string;
+    'merchantName'?: string;
     /**
     * The `messageVersion` value indicating the 3D Secure 2 protocol version.
     */
-    "messageVersion"?: string;
-    "mobilePhone"?: Phone | null;
+    'messageVersion'?: string;
+    'mobilePhone'?: Phone | null;
     /**
     * URL to where the issuer should send the `CRes`. Required if you are not using components for `channel` **Web** or if you are using classic integration `deviceChannel` **browser**.
     */
-    "notificationURL"?: string;
+    'notificationURL'?: string;
     /**
     * Value **true** indicates that the transaction was de-tokenised prior to being received by the ACS.
     */
-    "payTokenInd"?: boolean;
+    'payTokenInd'?: boolean;
     /**
     * Indicates the type of payment for which an authentication is requested (message extension)
     */
-    "paymentAuthenticationUseCase"?: string;
+    'paymentAuthenticationUseCase'?: string;
     /**
     * Indicates the maximum number of authorisations permitted for instalment payments. Length: 1–3 characters.
     */
-    "purchaseInstalData"?: string;
+    'purchaseInstalData'?: string;
     /**
     * Date after which no further authorisations shall be performed. Format: YYYYMMDD
     */
-    "recurringExpiry"?: string;
+    'recurringExpiry'?: string;
     /**
     * Indicates the minimum number of days between authorisations. Maximum length: 4 characters.
     */
-    "recurringFrequency"?: string;
+    'recurringFrequency'?: string;
     /**
     * The `sdkAppID` value as received from the 3D Secure 2 SDK. Required for `deviceChannel` set to **app**.
     */
-    "sdkAppID"?: string;
+    'sdkAppID'?: string;
     /**
     * The `sdkEncData` value as received from the 3D Secure 2 SDK. Required for `deviceChannel` set to **app**.
     */
-    "sdkEncData"?: string;
-    "sdkEphemPubKey"?: SDKEphemPubKey | null;
+    'sdkEncData'?: string;
+    'sdkEphemPubKey'?: SDKEphemPubKey | null;
     /**
     * The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for `deviceChannel` set to **app**. Defaults to **60** minutes.
     */
-    "sdkMaxTimeout"?: number;
+    'sdkMaxTimeout'?: number;
     /**
     * The `sdkReferenceNumber` value as received from the 3D Secure 2 SDK. Only for `deviceChannel` set to **app**.
     */
-    "sdkReferenceNumber"?: string;
+    'sdkReferenceNumber'?: string;
     /**
     * The `sdkTransID` value as received from the 3D Secure 2 SDK. Only for `deviceChannel` set to **app**.
     */
-    "sdkTransID"?: string;
+    'sdkTransID'?: string;
     /**
     * Version of the 3D Secure 2 mobile SDK.  Only for `deviceChannel` set to **app**.
     */
-    "sdkVersion"?: string;
+    'sdkVersion'?: string;
     /**
     * Completion indicator for the device fingerprinting.
     */
-    "threeDSCompInd"?: string;
+    'threeDSCompInd'?: string;
     /**
     * Indicates the type of Authentication request.
     */
-    "threeDSRequestorAuthenticationInd"?: string;
-    "threeDSRequestorAuthenticationInfo"?: ThreeDSRequestorAuthenticationInfo | null;
+    'threeDSRequestorAuthenticationInd'?: string;
+    'threeDSRequestorAuthenticationInfo'?: ThreeDSRequestorAuthenticationInfo | null;
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
-    "threeDSRequestorChallengeInd"?: ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
+    'threeDSRequestorChallengeInd'?: ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
     /**
     * Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor identifier assigned by the Directory Server when you enrol for 3D Secure 2.
     */
-    "threeDSRequestorID"?: string;
+    'threeDSRequestorID'?: string;
     /**
     * Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only) for Visa. Unique 3D Secure requestor name assigned by the Directory Server when you enrol for 3D Secure 2.
     */
-    "threeDSRequestorName"?: string;
-    "threeDSRequestorPriorAuthenticationInfo"?: ThreeDSRequestorPriorAuthenticationInfo | null;
+    'threeDSRequestorName'?: string;
+    'threeDSRequestorPriorAuthenticationInfo'?: ThreeDSRequestorPriorAuthenticationInfo | null;
     /**
     * URL of the (customer service) website that will be shown to the shopper in case of technical errors during the 3D Secure 2 process.
     */
-    "threeDSRequestorURL"?: string;
+    'threeDSRequestorURL'?: string;
     /**
     * Identifies the type of transaction being authenticated. Length: 2 characters. Allowed values: * **01** — Goods/Service Purchase * **03** — Check Acceptance * **10** — Account Funding * **11** — Quasi-Cash Transaction * **28** — Prepaid Activation and Load
     */
-    "transType"?: ThreeDS2RequestData.TransTypeEnum;
+    'transType'?: ThreeDS2RequestData.TransTypeEnum;
     /**
     * Identify the type of the transaction being authenticated.
     */
-    "transactionType"?: ThreeDS2RequestData.TransactionTypeEnum;
+    'transactionType'?: ThreeDS2RequestData.TransactionTypeEnum;
     /**
     * The `whiteListStatus` value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.
     */
-    "whiteListStatus"?: string;
-    "workPhone"?: Phone | null;
+    'whiteListStatus'?: string;
+    'workPhone'?: Phone | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "acctInfo",
             "baseName": "acctInfo",
-            "type": "AcctInfo | null",
-            "format": ""
+            "type": "AcctInfo | null"
         },
         {
             "name": "acctType",
             "baseName": "acctType",
-            "type": "ThreeDS2RequestData.AcctTypeEnum",
-            "format": ""
+            "type": "ThreeDS2RequestData.AcctTypeEnum"
         },
         {
             "name": "acquirerBIN",
             "baseName": "acquirerBIN",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "acquirerMerchantID",
             "baseName": "acquirerMerchantID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "addrMatch",
             "baseName": "addrMatch",
-            "type": "ThreeDS2RequestData.AddrMatchEnum",
-            "format": ""
+            "type": "ThreeDS2RequestData.AddrMatchEnum"
         },
         {
             "name": "authenticationOnly",
             "baseName": "authenticationOnly",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "challengeIndicator",
             "baseName": "challengeIndicator",
-            "type": "ThreeDS2RequestData.ChallengeIndicatorEnum",
-            "format": ""
+            "type": "ThreeDS2RequestData.ChallengeIndicatorEnum"
         },
         {
             "name": "deviceChannel",
             "baseName": "deviceChannel",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "deviceRenderOptions",
             "baseName": "deviceRenderOptions",
-            "type": "DeviceRenderOptions | null",
-            "format": ""
+            "type": "DeviceRenderOptions | null"
         },
         {
             "name": "homePhone",
             "baseName": "homePhone",
-            "type": "Phone | null",
-            "format": ""
+            "type": "Phone | null"
         },
         {
             "name": "mcc",
             "baseName": "mcc",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantName",
             "baseName": "merchantName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "messageVersion",
             "baseName": "messageVersion",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "mobilePhone",
             "baseName": "mobilePhone",
-            "type": "Phone | null",
-            "format": ""
+            "type": "Phone | null"
         },
         {
             "name": "notificationURL",
             "baseName": "notificationURL",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "payTokenInd",
             "baseName": "payTokenInd",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "paymentAuthenticationUseCase",
             "baseName": "paymentAuthenticationUseCase",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "purchaseInstalData",
             "baseName": "purchaseInstalData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringExpiry",
             "baseName": "recurringExpiry",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringFrequency",
             "baseName": "recurringFrequency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sdkAppID",
             "baseName": "sdkAppID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sdkEncData",
             "baseName": "sdkEncData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sdkEphemPubKey",
             "baseName": "sdkEphemPubKey",
-            "type": "SDKEphemPubKey | null",
-            "format": ""
+            "type": "SDKEphemPubKey | null"
         },
         {
             "name": "sdkMaxTimeout",
             "baseName": "sdkMaxTimeout",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "sdkReferenceNumber",
             "baseName": "sdkReferenceNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sdkTransID",
             "baseName": "sdkTransID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sdkVersion",
             "baseName": "sdkVersion",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDSCompInd",
             "baseName": "threeDSCompInd",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDSRequestorAuthenticationInd",
             "baseName": "threeDSRequestorAuthenticationInd",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDSRequestorAuthenticationInfo",
             "baseName": "threeDSRequestorAuthenticationInfo",
-            "type": "ThreeDSRequestorAuthenticationInfo | null",
-            "format": ""
+            "type": "ThreeDSRequestorAuthenticationInfo | null"
         },
         {
             "name": "threeDSRequestorChallengeInd",
             "baseName": "threeDSRequestorChallengeInd",
-            "type": "ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum",
-            "format": ""
+            "type": "ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum"
         },
         {
             "name": "threeDSRequestorID",
             "baseName": "threeDSRequestorID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDSRequestorName",
             "baseName": "threeDSRequestorName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDSRequestorPriorAuthenticationInfo",
             "baseName": "threeDSRequestorPriorAuthenticationInfo",
-            "type": "ThreeDSRequestorPriorAuthenticationInfo | null",
-            "format": ""
+            "type": "ThreeDSRequestorPriorAuthenticationInfo | null"
         },
         {
             "name": "threeDSRequestorURL",
             "baseName": "threeDSRequestorURL",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transType",
             "baseName": "transType",
-            "type": "ThreeDS2RequestData.TransTypeEnum",
-            "format": ""
+            "type": "ThreeDS2RequestData.TransTypeEnum"
         },
         {
             "name": "transactionType",
             "baseName": "transactionType",
-            "type": "ThreeDS2RequestData.TransactionTypeEnum",
-            "format": ""
+            "type": "ThreeDS2RequestData.TransactionTypeEnum"
         },
         {
             "name": "whiteListStatus",
             "baseName": "whiteListStatus",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "workPhone",
             "baseName": "workPhone",
-            "type": "Phone | null",
-            "format": ""
+            "type": "Phone | null"
         }    ];
 
     static getAttributeTypeMap() {
         return ThreeDS2RequestData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,35 +12,28 @@ export class TerminalProductPrice {
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
-    "currency"?: string;
+    'currency'?: string;
     /**
     * The price of the item.
     */
-    "value"?: number;
+    'value'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "number",
-            "format": "double"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalProductPrice.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

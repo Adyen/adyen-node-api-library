@@ -7,21 +7,18 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    ListStoredPaymentMethodsResponse,
+    StoredPaymentMethodRequest,
+    StoredPaymentMethodResource,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
-import { ListStoredPaymentMethodsResponse } from "../../typings/checkout/models";
-import { StoredPaymentMethodRequest } from "../../typings/checkout/models";
-import { StoredPaymentMethodResource } from "../../typings/checkout/models";
-
-/**
- * API handler for RecurringApi
- */
 export class RecurringApi extends Service {
 
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v71";
@@ -36,14 +33,13 @@ export class RecurringApi extends Service {
     * @summary Delete a token for stored payment details
     * @param storedPaymentMethodId {@link string } The unique identifier of the token.
     * @param requestOptions {@link IRequest.Options }
-    * @param shopperReference {@link string } (Required) Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
-    * @param merchantAccount {@link string } (Required) Your merchant account.
+    * @param shopperReference {@link string } Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
+    * @param merchantAccount {@link string } Your merchant account.
     */
     public async deleteTokenForStoredPaymentDetails(storedPaymentMethodId: string, shopperReference: string, merchantAccount: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/storedPaymentMethods/{storedPaymentMethodId}`
             .replace("{" + "storedPaymentMethodId" + "}", encodeURIComponent(String(storedPaymentMethodId)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = shopperReference ?? merchantAccount;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -68,7 +64,6 @@ export class RecurringApi extends Service {
     public async getTokensForStoredPaymentDetails(shopperReference?: string, merchantAccount?: string, requestOptions?: IRequest.Options): Promise<ListStoredPaymentMethodsResponse> {
         const endpoint = `${this.baseUrl}/storedPaymentMethods`;
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = shopperReference ?? merchantAccount;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -81,7 +76,6 @@ export class RecurringApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ListStoredPaymentMethodsResponse");
     }
 
@@ -94,15 +88,12 @@ export class RecurringApi extends Service {
     public async storedPaymentMethods(storedPaymentMethodRequest: StoredPaymentMethodRequest, requestOptions?: IRequest.Options): Promise<StoredPaymentMethodResource> {
         const endpoint = `${this.baseUrl}/storedPaymentMethods`;
         const resource = new Resource(this, endpoint);
-        
         const request: StoredPaymentMethodRequest = ObjectSerializer.serialize(storedPaymentMethodRequest, "StoredPaymentMethodRequest");
         const response = await getJsonResponse<StoredPaymentMethodRequest, StoredPaymentMethodResource>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "StoredPaymentMethodResource");
     }
-
 }

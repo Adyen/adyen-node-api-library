@@ -7,49 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { AssociationDelegatedAuthenticationData } from "./associationDelegatedAuthenticationData";
-
+import { AssociationDelegatedAuthenticationData } from './associationDelegatedAuthenticationData';
 
 export class AssociationFinaliseRequest {
     /**
     * The list of unique identifiers of the resources that you are associating with the SCA device.  Maximum: 5 strings.
     */
-    "ids": Array<string>;
-    "strongCustomerAuthentication": AssociationDelegatedAuthenticationData;
+    'ids': Array<string>;
+    'strongCustomerAuthentication': AssociationDelegatedAuthenticationData;
     /**
     * The type of resource that you are associating with the SCA device.  Possible value: **PaymentInstrument**
     */
-    "type": AssociationFinaliseRequest.TypeEnum;
+    'type': AssociationFinaliseRequest.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "ids",
             "baseName": "ids",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "strongCustomerAuthentication",
             "baseName": "strongCustomerAuthentication",
-            "type": "AssociationDelegatedAuthenticationData",
-            "format": ""
+            "type": "AssociationDelegatedAuthenticationData"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AssociationFinaliseRequest.TypeEnum",
-            "format": ""
+            "type": "AssociationFinaliseRequest.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return AssociationFinaliseRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

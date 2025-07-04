@@ -12,45 +12,37 @@ export class PayPalInfo {
     /**
     * Indicates if direct (immediate) capture for PayPal is enabled. If set to **true**, this setting overrides the [capture](https://docs.adyen.com/online-payments/capture) settings of your merchant account. Default value: **true**.
     */
-    "directCapture"?: boolean;
+    'directCapture'?: boolean;
     /**
     * PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.
     */
-    "payerId": string;
+    'payerId': string;
     /**
     * Your business email address.
     */
-    "subject": string;
+    'subject': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "directCapture",
             "baseName": "directCapture",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "payerId",
             "baseName": "payerId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subject",
             "baseName": "subject",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PayPalInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

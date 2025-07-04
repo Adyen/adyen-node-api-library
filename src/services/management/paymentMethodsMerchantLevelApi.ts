@@ -7,23 +7,21 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    ApplePayInfo,
+    PaymentMethod,
+    PaymentMethodResponse,
+    PaymentMethodSetupInfo,
+    RestServiceError,
+    UpdatePaymentMethodInfo,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { ApplePayInfo } from "../../typings/management/models";
-import { PaymentMethod } from "../../typings/management/models";
-import { PaymentMethodResponse } from "../../typings/management/models";
-import { PaymentMethodSetupInfo } from "../../typings/management/models";
-import { UpdatePaymentMethodInfo } from "../../typings/management/models";
-
-/**
- * API handler for PaymentMethodsMerchantLevelApi
- */
 export class PaymentMethodsMerchantLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -40,14 +38,12 @@ export class PaymentMethodsMerchantLevelApi extends Service {
     * @param paymentMethodId {@link string } The unique identifier of the payment method.
     * @param applePayInfo {@link ApplePayInfo } 
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link void }
     */
     public async addApplePayDomain(merchantId: string, paymentMethodId: string, applePayInfo: ApplePayInfo, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "paymentMethodId" + "}", encodeURIComponent(String(paymentMethodId)));
         const resource = new Resource(this, endpoint);
-        
         const request: ApplePayInfo = ObjectSerializer.serialize(applePayInfo, "ApplePayInfo");
         await getJsonResponse<ApplePayInfo, void>(
             resource,
@@ -70,7 +66,6 @@ export class PaymentMethodsMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/paymentMethodSettings`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = storeId ?? businessLineId ?? pageSize ?? pageNumber;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -85,7 +80,6 @@ export class PaymentMethodsMerchantLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentMethodResponse");
     }
 
@@ -101,13 +95,11 @@ export class PaymentMethodsMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "paymentMethodId" + "}", encodeURIComponent(String(paymentMethodId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, ApplePayInfo>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ApplePayInfo");
     }
 
@@ -123,13 +115,11 @@ export class PaymentMethodsMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "paymentMethodId" + "}", encodeURIComponent(String(paymentMethodId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, PaymentMethod>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentMethod");
     }
 
@@ -144,14 +134,12 @@ export class PaymentMethodsMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/paymentMethodSettings`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const request: PaymentMethodSetupInfo = ObjectSerializer.serialize(paymentMethodSetupInfo, "PaymentMethodSetupInfo");
         const response = await getJsonResponse<PaymentMethodSetupInfo, PaymentMethod>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentMethod");
     }
 
@@ -168,15 +156,12 @@ export class PaymentMethodsMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "paymentMethodId" + "}", encodeURIComponent(String(paymentMethodId)));
         const resource = new Resource(this, endpoint);
-        
         const request: UpdatePaymentMethodInfo = ObjectSerializer.serialize(updatePaymentMethodInfo, "UpdatePaymentMethodInfo");
         const response = await getJsonResponse<UpdatePaymentMethodInfo, PaymentMethod>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentMethod");
     }
-
 }

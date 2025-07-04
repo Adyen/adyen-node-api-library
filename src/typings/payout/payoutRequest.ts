@@ -7,149 +7,129 @@
  * Do not edit this class manually.
  */
 
-import { Address } from "./address";
-import { Amount } from "./amount";
-import { Card } from "./card";
-import { FundSource } from "./fundSource";
-import { Name } from "./name";
-import { Recurring } from "./recurring";
-
+import { Address } from './address';
+import { Amount } from './amount';
+import { Card } from './card';
+import { FundSource } from './fundSource';
+import { Name } from './name';
+import { Recurring } from './recurring';
 
 export class PayoutRequest {
-    "amount": Amount;
-    "billingAddress"?: Address | null;
-    "card"?: Card | null;
+    'amount': Amount;
+    'billingAddress'?: Address | null;
+    'card'?: Card | null;
     /**
     * An integer value that is added to the normal fraud score. The value can be either positive or negative.
     */
-    "fraudOffset"?: number;
-    "fundSource"?: FundSource | null;
+    'fraudOffset'?: number;
+    'fundSource'?: FundSource | null;
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
-    "merchantAccount": string;
-    "recurring"?: Recurring | null;
+    'merchantAccount': string;
+    'recurring'?: Recurring | null;
     /**
     * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.
     */
-    "reference": string;
+    'reference': string;
     /**
     * The `recurringDetailReference` you want to use for this payment. The value `LATEST` can be used to select the most recently stored recurring detail.
     */
-    "selectedRecurringDetailReference"?: string;
+    'selectedRecurringDetailReference'?: string;
     /**
     * The shopper\'s email address. We recommend that you provide this data, as it is used in velocity fraud checks. > For 3D Secure 2 transactions, schemes require `shopperEmail` for all browser-based and mobile implementations.
     */
-    "shopperEmail"?: string;
+    'shopperEmail'?: string;
     /**
     * Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
     */
-    "shopperInteraction"?: PayoutRequest.ShopperInteractionEnum;
-    "shopperName"?: Name | null;
+    'shopperInteraction'?: PayoutRequest.ShopperInteractionEnum;
+    'shopperName'?: Name | null;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
-    "shopperReference"?: string;
+    'shopperReference'?: string;
     /**
     * The shopper\'s telephone number.
     */
-    "telephoneNumber"?: string;
+    'telephoneNumber'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
-            "format": ""
+            "type": "Amount"
         },
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address | null",
-            "format": ""
+            "type": "Address | null"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null",
-            "format": ""
+            "type": "Card | null"
         },
         {
             "name": "fraudOffset",
             "baseName": "fraudOffset",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "fundSource",
             "baseName": "fundSource",
-            "type": "FundSource | null",
-            "format": ""
+            "type": "FundSource | null"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring | null",
-            "format": ""
+            "type": "Recurring | null"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "selectedRecurringDetailReference",
             "baseName": "selectedRecurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperInteraction",
             "baseName": "shopperInteraction",
-            "type": "PayoutRequest.ShopperInteractionEnum",
-            "format": ""
+            "type": "PayoutRequest.ShopperInteractionEnum"
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null",
-            "format": ""
+            "type": "Name | null"
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PayoutRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

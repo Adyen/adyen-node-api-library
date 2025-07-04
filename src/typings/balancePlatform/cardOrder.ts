@@ -12,95 +12,82 @@ export class CardOrder {
     /**
     * The date when the card order is created.
     */
-    "beginDate"?: Date;
+    'beginDate'?: Date;
     /**
     * The unique identifier of the card manufacturer profile.
     */
-    "cardManufacturingProfileId"?: string;
+    'cardManufacturingProfileId'?: string;
     /**
     * The date when the card order processing ends.
     */
-    "closedDate"?: Date;
+    'closedDate'?: Date;
     /**
     * The date when you manually closed the card order.  Card orders are automatically closed by the end of the day it was created. If you manually closed it beforehand, the closing date is shown as the `endDate`.
     */
-    "endDate"?: Date;
+    'endDate'?: Date;
     /**
     * The unique identifier of the card order.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The date when the card order processing begins.
     */
-    "lockDate"?: Date;
+    'lockDate'?: Date;
     /**
     * The service center.
     */
-    "serviceCenter"?: string;
+    'serviceCenter'?: string;
     /**
     * The status of the card order.  Possible values: **Open**, **Closed**.
     */
-    "status"?: CardOrder.StatusEnum;
+    'status'?: CardOrder.StatusEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "beginDate",
             "baseName": "beginDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "cardManufacturingProfileId",
             "baseName": "cardManufacturingProfileId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "closedDate",
             "baseName": "closedDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "endDate",
             "baseName": "endDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "lockDate",
             "baseName": "lockDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "serviceCenter",
             "baseName": "serviceCenter",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "CardOrder.StatusEnum",
-            "format": ""
+            "type": "CardOrder.StatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return CardOrder.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

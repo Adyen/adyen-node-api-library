@@ -12,25 +12,19 @@ export class AffirmInfo {
     /**
     * Merchant support email
     */
-    "supportEmail": string;
+    'supportEmail': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "supportEmail",
             "baseName": "supportEmail",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return AffirmInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

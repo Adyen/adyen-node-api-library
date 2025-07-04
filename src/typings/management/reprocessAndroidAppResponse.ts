@@ -12,25 +12,19 @@ export class ReprocessAndroidAppResponse {
     /**
     * The result of the reprocess.
     */
-    "Message"?: string;
+    'Message'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "Message",
             "baseName": "Message",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ReprocessAndroidAppResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

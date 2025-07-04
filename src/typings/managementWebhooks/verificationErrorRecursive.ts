@@ -7,62 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { RemediatingAction } from "./remediatingAction";
-
+import { RemediatingAction } from './remediatingAction';
 
 export class VerificationErrorRecursive {
     /**
     * The verification error code.
     */
-    "code"?: string;
+    'code'?: string;
     /**
     * The verification error message.
     */
-    "message"?: string;
+    'message'?: string;
     /**
     * The type of verification error.  Possible values: **invalidInput**, **dataMissing**, and **pendingStatus**.
     */
-    "type"?: VerificationErrorRecursive.TypeEnum;
+    'type'?: VerificationErrorRecursive.TypeEnum;
     /**
     * The actions that you can take to resolve the verification error.
     */
-    "remediatingActions"?: Array<RemediatingAction>;
+    'remediatingActions'?: Array<RemediatingAction>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "code",
             "baseName": "code",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "message",
             "baseName": "message",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "VerificationErrorRecursive.TypeEnum",
-            "format": ""
+            "type": "VerificationErrorRecursive.TypeEnum"
         },
         {
             "name": "remediatingActions",
             "baseName": "remediatingActions",
-            "type": "Array<RemediatingAction>",
-            "format": ""
+            "type": "Array<RemediatingAction>"
         }    ];
 
     static getAttributeTypeMap() {
         return VerificationErrorRecursive.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

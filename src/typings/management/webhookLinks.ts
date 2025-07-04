@@ -7,57 +7,46 @@
  * Do not edit this class manually.
  */
 
-import { LinksElement } from "./linksElement";
-
+import { LinksElement } from './linksElement';
 
 export class WebhookLinks {
-    "company"?: LinksElement | null;
-    "generateHmac": LinksElement;
-    "merchant"?: LinksElement | null;
-    "self": LinksElement;
-    "testWebhook": LinksElement;
+    'company'?: LinksElement | null;
+    'generateHmac': LinksElement;
+    'merchant'?: LinksElement | null;
+    'self': LinksElement;
+    'testWebhook': LinksElement;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "company",
             "baseName": "company",
-            "type": "LinksElement | null",
-            "format": ""
+            "type": "LinksElement | null"
         },
         {
             "name": "generateHmac",
             "baseName": "generateHmac",
-            "type": "LinksElement",
-            "format": ""
+            "type": "LinksElement"
         },
         {
             "name": "merchant",
             "baseName": "merchant",
-            "type": "LinksElement | null",
-            "format": ""
+            "type": "LinksElement | null"
         },
         {
             "name": "self",
             "baseName": "self",
-            "type": "LinksElement",
-            "format": ""
+            "type": "LinksElement"
         },
         {
             "name": "testWebhook",
             "baseName": "testWebhook",
-            "type": "LinksElement",
-            "format": ""
+            "type": "LinksElement"
         }    ];
 
     static getAttributeTypeMap() {
         return WebhookLinks.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,55 +12,46 @@ export class Passcodes {
     /**
     * The passcode for the Admin menu and the Settings menu.
     */
-    "adminMenuPin"?: string;
+    'adminMenuPin'?: string;
     /**
     * The passcode for referenced and unreferenced refunds on standalone terminals.
     */
-    "refundPin"?: string;
+    'refundPin'?: string;
     /**
     * The passcode to unlock the terminal screen after a timeout.
     */
-    "screenLockPin"?: string;
+    'screenLockPin'?: string;
     /**
     * The passcode for the Transactions menu.
     */
-    "txMenuPin"?: string;
+    'txMenuPin'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "adminMenuPin",
             "baseName": "adminMenuPin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "refundPin",
             "baseName": "refundPin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "screenLockPin",
             "baseName": "screenLockPin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "txMenuPin",
             "baseName": "txMenuPin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Passcodes.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

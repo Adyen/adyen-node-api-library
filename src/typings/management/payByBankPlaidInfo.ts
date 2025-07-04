@@ -7,109 +7,94 @@
  * Do not edit this class manually.
  */
 
-import { TransactionDescriptionInfo } from "./transactionDescriptionInfo";
-
+import { TransactionDescriptionInfo } from './transactionDescriptionInfo';
 
 export class PayByBankPlaidInfo {
     /**
     * Country Code.
     */
-    "countryCode"?: string;
+    'countryCode'?: string;
     /**
     * Merchant logo (max. size 150kB). Format: Base64-encoded string.
     */
-    "logo"?: string;
+    'logo'?: string;
     /**
     * The city the merchant is doing business in.
     */
-    "merchantCity"?: string;
+    'merchantCity'?: string;
     /**
     * Legal Business Name of the Merchant.
     */
-    "merchantLegalName"?: string;
+    'merchantLegalName'?: string;
     /**
     * Merchant shop url.
     */
-    "merchantShopUrl"?: string;
+    'merchantShopUrl'?: string;
     /**
     * The state/province of the merchant.
     */
-    "merchantStateProvince"?: string;
+    'merchantStateProvince'?: string;
     /**
     * The street address of the merchant.
     */
-    "merchantStreetAddress"?: string;
-    "transactionDescription"?: TransactionDescriptionInfo | null;
+    'merchantStreetAddress'?: string;
+    'transactionDescription'?: TransactionDescriptionInfo | null;
     /**
     * The zip code of the account.
     */
-    "zipCode"?: string;
+    'zipCode'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "countryCode",
             "baseName": "countryCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "logo",
             "baseName": "logo",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantCity",
             "baseName": "merchantCity",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantLegalName",
             "baseName": "merchantLegalName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantShopUrl",
             "baseName": "merchantShopUrl",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantStateProvince",
             "baseName": "merchantStateProvince",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantStreetAddress",
             "baseName": "merchantStreetAddress",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transactionDescription",
             "baseName": "transactionDescription",
-            "type": "TransactionDescriptionInfo | null",
-            "format": ""
+            "type": "TransactionDescriptionInfo | null"
         },
         {
             "name": "zipCode",
             "baseName": "zipCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PayByBankPlaidInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

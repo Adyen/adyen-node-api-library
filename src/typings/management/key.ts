@@ -12,45 +12,37 @@ export class Key {
     /**
     * The unique identifier of the shared key.
     */
-    "identifier"?: string;
+    'identifier'?: string;
     /**
     * The secure passphrase to protect the shared key. Must consist of:   * At least 12 characters.  * At least 1 uppercase letter: `[A-Z]`.   * At least 1 lowercase letter: `[a-z]`.   * At least 1 digit: `[0-9]`.    * At least 1 special character. Limited to the following: `~`, `@`, `$`, `%`, `^`, `&`, `*`, `(`, `)`, `_`, `+`, `=`, `}`, `{`, `]`, `[`, `;`, `:`, `?`, `.`, `,`, `>`, `<`.    
     */
-    "passphrase"?: string;
+    'passphrase'?: string;
     /**
     * The version number of the shared key.
     */
-    "version"?: number;
+    'version'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "identifier",
             "baseName": "identifier",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "passphrase",
             "baseName": "passphrase",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "version",
             "baseName": "version",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return Key.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

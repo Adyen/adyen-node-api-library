@@ -7,29 +7,22 @@
  * Do not edit this class manually.
  */
 
-import { TransactionDescriptionInfo } from "./transactionDescriptionInfo";
-
+import { TransactionDescriptionInfo } from './transactionDescriptionInfo';
 
 export class GenericPmWithTdiInfo {
-    "transactionDescription"?: TransactionDescriptionInfo | null;
+    'transactionDescription'?: TransactionDescriptionInfo | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "transactionDescription",
             "baseName": "transactionDescription",
-            "type": "TransactionDescriptionInfo | null",
-            "format": ""
+            "type": "TransactionDescriptionInfo | null"
         }    ];
 
     static getAttributeTypeMap() {
         return GenericPmWithTdiInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

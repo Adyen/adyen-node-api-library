@@ -12,45 +12,37 @@ export class Standalone {
     /**
     * The default currency of the standalone payment terminal as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
     */
-    "currencyCode"?: string;
+    'currencyCode'?: string;
     /**
     * Indicates whether the tipping options specified in `gratuities` are enabled on the standalone terminal.
     */
-    "enableGratuities"?: boolean;
+    'enableGratuities'?: boolean;
     /**
     * Enable standalone mode.
     */
-    "enableStandalone"?: boolean;
+    'enableStandalone'?: boolean;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "currencyCode",
             "baseName": "currencyCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "enableGratuities",
             "baseName": "enableGratuities",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "enableStandalone",
             "baseName": "enableStandalone",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return Standalone.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

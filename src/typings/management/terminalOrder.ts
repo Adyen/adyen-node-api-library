@@ -7,98 +7,84 @@
  * Do not edit this class manually.
  */
 
-import { BillingEntity } from "./billingEntity";
-import { OrderItem } from "./orderItem";
-import { ShippingLocation } from "./shippingLocation";
-
+import { BillingEntity } from './billingEntity';
+import { OrderItem } from './orderItem';
+import { ShippingLocation } from './shippingLocation';
 
 export class TerminalOrder {
-    "billingEntity"?: BillingEntity | null;
+    'billingEntity'?: BillingEntity | null;
     /**
     * The merchant-defined purchase order number. This will be printed on the packing list.
     */
-    "customerOrderReference"?: string;
+    'customerOrderReference'?: string;
     /**
     * The unique identifier of the order.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The products included in the order.
     */
-    "items"?: Array<OrderItem>;
+    'items'?: Array<OrderItem>;
     /**
     * The date and time that the order was placed, in UTC ISO 8601 format. For example, \"2011-12-03T10:15:30Z\".
     */
-    "orderDate"?: string;
-    "shippingLocation"?: ShippingLocation | null;
+    'orderDate'?: string;
+    'shippingLocation'?: ShippingLocation | null;
     /**
     * The processing status of the order.
     */
-    "status"?: string;
+    'status'?: string;
     /**
     * The URL, provided by the carrier company, where the shipment can be tracked.
     */
-    "trackingUrl"?: string;
+    'trackingUrl'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "billingEntity",
             "baseName": "billingEntity",
-            "type": "BillingEntity | null",
-            "format": ""
+            "type": "BillingEntity | null"
         },
         {
             "name": "customerOrderReference",
             "baseName": "customerOrderReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<OrderItem>",
-            "format": ""
+            "type": "Array<OrderItem>"
         },
         {
             "name": "orderDate",
             "baseName": "orderDate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shippingLocation",
             "baseName": "shippingLocation",
-            "type": "ShippingLocation | null",
-            "format": ""
+            "type": "ShippingLocation | null"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "trackingUrl",
             "baseName": "trackingUrl",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalOrder.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

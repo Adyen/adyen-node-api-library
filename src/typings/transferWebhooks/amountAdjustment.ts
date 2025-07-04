@@ -7,49 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-
+import { Amount } from './amount';
 
 export class AmountAdjustment {
-    "amount"?: Amount | null;
+    'amount'?: Amount | null;
     /**
     * The type of markup that is applied to an authorised payment.  Possible values: **exchange**, **forexMarkup**, **authHoldReserve**, **atmMarkup**.
     */
-    "amountAdjustmentType"?: AmountAdjustment.AmountAdjustmentTypeEnum;
+    'amountAdjustmentType'?: AmountAdjustment.AmountAdjustmentTypeEnum;
     /**
     * The basepoints associated with the applied markup.
     */
-    "basepoints"?: number;
+    'basepoints'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         },
         {
             "name": "amountAdjustmentType",
             "baseName": "amountAdjustmentType",
-            "type": "AmountAdjustment.AmountAdjustmentTypeEnum",
-            "format": ""
+            "type": "AmountAdjustment.AmountAdjustmentTypeEnum"
         },
         {
             "name": "basepoints",
             "baseName": "basepoints",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return AmountAdjustment.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

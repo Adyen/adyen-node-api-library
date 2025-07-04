@@ -7,57 +7,47 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-import { ResponsePaymentMethod } from "./responsePaymentMethod";
-
+import { Amount } from './amount';
+import { ResponsePaymentMethod } from './responsePaymentMethod';
 
 export class Payment {
-    "amount"?: Amount | null;
-    "paymentMethod"?: ResponsePaymentMethod | null;
+    'amount'?: Amount | null;
+    'paymentMethod'?: ResponsePaymentMethod | null;
     /**
     * Adyen\'s 16-character reference associated with the transaction/request. This value is globally unique. Use this reference when you communicate with us about this request.
     */
-    "pspReference"?: string;
+    'pspReference'?: string;
     /**
     * The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. 
     */
-    "resultCode"?: Payment.ResultCodeEnum;
+    'resultCode'?: Payment.ResultCodeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "ResponsePaymentMethod | null",
-            "format": ""
+            "type": "ResponsePaymentMethod | null"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "Payment.ResultCodeEnum",
-            "format": ""
+            "type": "Payment.ResultCodeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return Payment.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

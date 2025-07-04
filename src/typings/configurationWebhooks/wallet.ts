@@ -7,79 +7,70 @@
  * Do not edit this class manually.
  */
 
-import { Device } from "./device";
-
+import { Device } from './device';
 
 export class Wallet {
     /**
     * The confidence score of the wallet account, calculated by the wallet provider.  A high score means that account is considered trustworthy. A low score means that the account is considered suspicious.  Possible values: **1** to **5**.
     */
-    "accountScore"?: string;
-    "device"?: Device | null;
+    'accountScore'?: string;
+    'device'?: Device | null;
     /**
     * The confidence score of the device, calculated by the wallet provider.  A high score means that device is considered trustworthy. A low score means that the device is considered suspicious.  Possible values: **1** to **5**.
     */
-    "deviceScore"?: string;
+    'deviceScore'?: string;
     /**
     * The method used for provisioning the network token.  Possible values: **push**, **manual**.
     */
-    "provisioningMethod"?: string;
+    'provisioningMethod'?: string;
     /**
-    * A list of risk indicators triggered at the time of provisioning the network token.  Possible values:  * **accountTooNewSinceLaunch** * **accountTooNew** * **accountCardTooNew** * **accountRecentlyChanged** * **suspiciousActivity** * **inactiveAccount** * **hasSuspendedTokens** * **deviceRecentlyLost** * **tooManyRecentAttempts** * **tooManyRecentTokens** * **tooManyDifferentCardholders** * **lowDeviceScore** * **lowAccountScore** * **outSideHomeTerritory** * **unableToAssess** * **accountHighRisk** * **lowPhoneNumberScore** * **unknown**
+    * A list of risk indicators triggered at the time of provisioning the network token.  Some example values of risk indicators are:  * **accountTooNewSinceLaunch** * **tooManyRecentAttempts** * **lowDeviceScore** * **lowAccountScore** 
     */
-    "recommendationReasons"?: Array<Wallet.RecommendationReasonsEnum>;
+    'recommendationReasons'?: Array<Wallet.RecommendationReasonsEnum>;
     /**
     * The type of wallet that the network token is associated with.  Possible values: **applePay**, **googlePay**, **garminPay**.
+    *
+	* @deprecated since Configuration webhooks v2
+	* Use name of the `tokenRequestor` instead.
     */
-    "type"?: string;
+    'type'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountScore",
             "baseName": "accountScore",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "device",
             "baseName": "device",
-            "type": "Device | null",
-            "format": ""
+            "type": "Device | null"
         },
         {
             "name": "deviceScore",
             "baseName": "deviceScore",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "provisioningMethod",
             "baseName": "provisioningMethod",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recommendationReasons",
             "baseName": "recommendationReasons",
-            "type": "Wallet.RecommendationReasonsEnum",
-            "format": ""
+            "type": "Array<Wallet.RecommendationReasonsEnum>"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Wallet.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 
@@ -90,18 +81,41 @@ export namespace Wallet {
         AccountRecentlyChanged = 'accountRecentlyChanged',
         AccountTooNew = 'accountTooNew',
         AccountTooNewSinceLaunch = 'accountTooNewSinceLaunch',
+        CardholderPanAssociatedToAccountWithinThresholdDays = 'cardholderPanAssociatedToAccountWithinThresholdDays',
+        ChangesMadeToAccountDataWithinThresholdDays = 'changesMadeToAccountDataWithinThresholdDays',
+        DeviceProvisioningLocationOutsideOfCardholdersWalletAccountHomeCountry = 'deviceProvisioningLocationOutsideOfCardholdersWalletAccountHomeCountry',
         DeviceRecentlyLost = 'deviceRecentlyLost',
+        EncryptedPaymentInstrumentDataIsBeingPushedByTheIssuerToTheSameDeviceThatIssuerApplicationAuthenticatedButWithSuccessfulUpfrontAuthentication = 'encryptedPaymentInstrumentDataIsBeingPushedByTheIssuerToTheSameDeviceThatIssuerApplicationAuthenticatedButWithSuccessfulUpfrontAuthentication',
+        EncryptedPaymentInstrumentDataIsBeingPushedByTheIssuerToTheSameDeviceThatIssuerApplicationAuthenticatedButWithoutAnyUpfrontAuthentication = 'encryptedPaymentInstrumentDataIsBeingPushedByTheIssuerToTheSameDeviceThatIssuerApplicationAuthenticatedButWithoutAnyUpfrontAuthentication',
+        EncryptedPaymentInstrumentDataIsPushedToADifferentDeviceThanTheOneThatIssuerApplicationAuthenticated = 'encryptedPaymentInstrumentDataIsPushedToADifferentDeviceThanTheOneThatIssuerApplicationAuthenticated',
+        EncryptedPaymentInstrumentDataIsPushedToADifferentUserThanTheCardHolder = 'encryptedPaymentInstrumentDataIsPushedToADifferentUserThanTheCardHolder',
         HasSuspendedTokens = 'hasSuspendedTokens',
         InactiveAccount = 'inactiveAccount',
+        IssuerDeferredIdvDecision = 'issuerDeferredIDVDecision',
+        IssuerEncryptedPaymentInstrumentDataExpired = 'issuerEncryptedPaymentInstrumentDataExpired',
         LowAccountScore = 'lowAccountScore',
         LowDeviceScore = 'lowDeviceScore',
         LowPhoneNumberScore = 'lowPhoneNumberScore',
+        NumberOfActiveTokensGreaterThanThreshold = 'numberOfActiveTokensGreaterThanThreshold',
+        NumberOfActiveTokensOnAllDevicesIsGreaterThanThreshold = 'numberOfActiveTokensOnAllDevicesIsGreaterThanThreshold',
+        NumberOfDaysSinceDeviceWasLastReportedLostIsLessThanThresholdDays = 'numberOfDaysSinceDeviceWasLastReportedLostIsLessThanThresholdDays',
+        NumberOfDevicesWithSameUseridWithTokenIsGreaterThanThreshold = 'numberOfDevicesWithSameUseridWithTokenIsGreaterThanThreshold',
+        NumberOfTransactionsInLast12MonthsLessThanThresholdNumber = 'numberOfTransactionsInLast12MonthsLessThanThresholdNumber',
         OutSideHomeTerritory = 'outSideHomeTerritory',
+        SuspendedCardsInTheWalletAccountIsGreaterThanThreshold = 'suspendedCardsInTheWALLETAccountIsGreaterThanThreshold',
         SuspiciousActivity = 'suspiciousActivity',
+        TheNumberOfProvisioningAttemptsAcrossAllCardsOnThisDeviceInTheLast24HoursExceedsTheThreshold = 'theNumberOfProvisioningAttemptsAcrossAllCardsOnThisDeviceInTheLast24HoursExceedsTheThreshold',
+        TheWalletAccountIntoWhichTheCardIsBeingProvisionedContainDistinctNamesGreaterThanThreshold = 'theWALLETAccountIntoWhichTheCardIsBeingProvisionedContainDistinctNamesGreaterThanThreshold',
+        ThisAccountHasNotHadActivityWithinThresholdPeriod = 'thisAccountHasNotHadActivityWithinThresholdPeriod',
         TooManyDifferentCardholders = 'tooManyDifferentCardholders',
         TooManyRecentAttempts = 'tooManyRecentAttempts',
         TooManyRecentTokens = 'tooManyRecentTokens',
         UnableToAssess = 'unableToAssess',
-        Unknown = 'unknown'
+        Unknown = 'unknown',
+        UserAccountWasCreatedWithinThresholdDays = 'userAccountWasCreatedWithinThresholdDays',
+        UserDeviceReceivingEncryptedPaymentInstrumentDataIsDifferentThanTheOneThatIsProvisioningTheToken = 'userDeviceReceivingEncryptedPaymentInstrumentDataIsDifferentThanTheOneThatIsProvisioningTheToken',
+        UsersAccountOnDeviceLessThanThresholdDays = 'usersAccountOnDeviceLessThanThresholdDays',
+        WalletAccountCreatedWithinThresholdDays = 'walletAccountCreatedWithinThresholdDays',
+        WalletAccountHolderNameOnFileDoesNotMatchCardholderEnteredName = 'walletAccountHolderNameOnFileDoesNotMatchCardholderEnteredName'
     }
 }

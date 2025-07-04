@@ -7,137 +7,119 @@
  * Do not edit this class manually.
  */
 
-import { Address } from "./address";
-import { TaxInformation } from "./taxInformation";
-
+import { Address } from './address';
+import { TaxInformation } from './taxInformation';
 
 export class UnincorporatedPartnership {
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.
     */
-    "countryOfGoverningLaw": string;
+    'countryOfGoverningLaw': string;
     /**
     * The date when the legal arrangement was incorporated in YYYY-MM-DD format.
     */
-    "dateOfIncorporation"?: string;
+    'dateOfIncorporation'?: string;
     /**
     * Short description about the Legal Arrangement.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * The registered name, if different from the `name`.
     */
-    "doingBusinessAs"?: string;
+    'doingBusinessAs'?: string;
     /**
     * The legal name.
     */
-    "name": string;
-    "principalPlaceOfBusiness"?: Address | null;
-    "registeredAddress": Address;
+    'name': string;
+    'principalPlaceOfBusiness'?: Address | null;
+    'registeredAddress': Address;
     /**
     * The registration number.
     */
-    "registrationNumber"?: string;
+    'registrationNumber'?: string;
     /**
     * The tax information of the entity.
     */
-    "taxInformation"?: Array<TaxInformation>;
+    'taxInformation'?: Array<TaxInformation>;
     /**
     * Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership** *  **limitedLiabilityPartnership** *  **eg** *  **cooperative** *  **vos** *  **comunidadDeBienes** *  **herenciaYacente** *  **comunidadDePropietarios** *  **sep** *  **sca** *  **bt** *  **kkt** *  **scs** *  **snc**  
     */
-    "type"?: UnincorporatedPartnership.TypeEnum;
+    'type'?: UnincorporatedPartnership.TypeEnum;
     /**
     * The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
     */
-    "vatAbsenceReason"?: UnincorporatedPartnership.VatAbsenceReasonEnum;
+    'vatAbsenceReason'?: UnincorporatedPartnership.VatAbsenceReasonEnum;
     /**
     * The VAT number.
     */
-    "vatNumber"?: string;
+    'vatNumber'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "countryOfGoverningLaw",
             "baseName": "countryOfGoverningLaw",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "dateOfIncorporation",
             "baseName": "dateOfIncorporation",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "doingBusinessAs",
             "baseName": "doingBusinessAs",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "principalPlaceOfBusiness",
             "baseName": "principalPlaceOfBusiness",
-            "type": "Address | null",
-            "format": ""
+            "type": "Address | null"
         },
         {
             "name": "registeredAddress",
             "baseName": "registeredAddress",
-            "type": "Address",
-            "format": ""
+            "type": "Address"
         },
         {
             "name": "registrationNumber",
             "baseName": "registrationNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "taxInformation",
             "baseName": "taxInformation",
-            "type": "Array<TaxInformation>",
-            "format": ""
+            "type": "Array<TaxInformation>"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "UnincorporatedPartnership.TypeEnum",
-            "format": ""
+            "type": "UnincorporatedPartnership.TypeEnum"
         },
         {
             "name": "vatAbsenceReason",
             "baseName": "vatAbsenceReason",
-            "type": "UnincorporatedPartnership.VatAbsenceReasonEnum",
-            "format": ""
+            "type": "UnincorporatedPartnership.VatAbsenceReasonEnum"
         },
         {
             "name": "vatNumber",
             "baseName": "vatNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return UnincorporatedPartnership.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,45 +12,37 @@ export class Hardware {
     /**
     * The brightness of the display when the terminal is being used, expressed as a percentage.
     */
-    "displayMaximumBackLight"?: number;
+    'displayMaximumBackLight'?: number;
     /**
     * The hour of the day when the terminal is set to reset the Totals report. By default, the reset hour is at 6:00 AM in the timezone of the terminal. Minimum value: 0, maximum value: 23.
     */
-    "resetTotalsHour"?: number;
+    'resetTotalsHour'?: number;
     /**
     * The hour of the day when the terminal is set to reboot to apply the configuration and software updates. By default, the restart hour is at 6:00 AM in the timezone of the terminal. Minimum value: 0, maximum value: 23.
     */
-    "restartHour"?: number;
+    'restartHour'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "displayMaximumBackLight",
             "baseName": "displayMaximumBackLight",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "resetTotalsHour",
             "baseName": "resetTotalsHour",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "restartHour",
             "baseName": "restartHour",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return Hardware.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

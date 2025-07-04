@@ -7,165 +7,144 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-import { Name } from "./name";
-import { Recurring } from "./recurring";
-
+import { Amount } from './amount';
+import { Name } from './name';
+import { Recurring } from './recurring';
 
 export class SubmitRequest {
     /**
     * This field contains additional data, which may be required for a particular request.
     */
-    "additionalData"?: { [key: string]: string; };
-    "amount": Amount;
+    'additionalData'?: { [key: string]: string; };
+    'amount': Amount;
     /**
     * The date of birth. Format: ISO-8601; example: YYYY-MM-DD  For Paysafecard it must be the same as used when registering the Paysafecard account.  > This field is mandatory for natural persons.  > This field is required to update the existing `dateOfBirth` that is associated with this recurring contract.
     */
-    "dateOfBirth"?: string;
+    'dateOfBirth'?: string;
     /**
     * The type of the entity the payout is processed for.  Allowed values: * NaturalPerson * Company > This field is required to update the existing `entityType` that is associated with this recurring contract.
     */
-    "entityType"?: SubmitRequest.EntityTypeEnum;
+    'entityType'?: SubmitRequest.EntityTypeEnum;
     /**
     * An integer value that is added to the normal fraud score. The value can be either positive or negative.
     */
-    "fraudOffset"?: number;
+    'fraudOffset'?: number;
     /**
     * The merchant account identifier you want to process the transaction request with.
     */
-    "merchantAccount": string;
+    'merchantAccount': string;
     /**
     * The shopper\'s nationality.  A valid value is an ISO 2-character country code (e.g. \'NL\').  > This field is required to update the existing nationality that is associated with this recurring contract.
     */
-    "nationality"?: string;
-    "recurring": Recurring;
+    'nationality'?: string;
+    'recurring': Recurring;
     /**
     * The merchant reference for this payout. This reference will be used in all communication to the merchant about the status of the payout. Although it is a good idea to make sure it is unique, this is not a requirement.
     */
-    "reference": string;
+    'reference': string;
     /**
     * This is the `recurringDetailReference` you want to use for this payout.  You can use the value LATEST to select the most recently used recurring detail.
     */
-    "selectedRecurringDetailReference": string;
+    'selectedRecurringDetailReference': string;
     /**
     * The shopper\'s email address.
     */
-    "shopperEmail": string;
-    "shopperName"?: Name | null;
+    'shopperEmail': string;
+    'shopperName'?: Name | null;
     /**
     * The shopper\'s reference for the payout transaction.
     */
-    "shopperReference": string;
+    'shopperReference': string;
     /**
     * The description of this payout. This description is shown on the bank statement of the shopper (if this is supported by the chosen payment method).
     */
-    "shopperStatement"?: string;
+    'shopperStatement'?: string;
     /**
     * The shopper\'s social security number.
     */
-    "socialSecurityNumber"?: string;
+    'socialSecurityNumber'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
-            "format": ""
+            "type": "Amount"
         },
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "string",
-            "format": "date"
+            "type": "string"
         },
         {
             "name": "entityType",
             "baseName": "entityType",
-            "type": "SubmitRequest.EntityTypeEnum",
-            "format": ""
+            "type": "SubmitRequest.EntityTypeEnum"
         },
         {
             "name": "fraudOffset",
             "baseName": "fraudOffset",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "nationality",
             "baseName": "nationality",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring",
-            "format": ""
+            "type": "Recurring"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "selectedRecurringDetailReference",
             "baseName": "selectedRecurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null",
-            "format": ""
+            "type": "Name | null"
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperStatement",
             "baseName": "shopperStatement",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "socialSecurityNumber",
             "baseName": "socialSecurityNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return SubmitRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

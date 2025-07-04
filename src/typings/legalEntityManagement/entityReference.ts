@@ -12,25 +12,19 @@ export class EntityReference {
     /**
     * The unique identifier of the resource.
     */
-    "id"?: string;
+    'id'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return EntityReference.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

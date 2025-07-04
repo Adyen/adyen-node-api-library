@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { ExternalTerminalAction } from "./externalTerminalAction";
-
+import { ExternalTerminalAction } from './externalTerminalAction';
 
 export class ListExternalTerminalActionsResponse {
     /**
     * The list of terminal actions.
     */
-    "data"?: Array<ExternalTerminalAction>;
+    'data'?: Array<ExternalTerminalAction>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<ExternalTerminalAction>",
-            "format": ""
+            "type": "Array<ExternalTerminalAction>"
         }    ];
 
     static getAttributeTypeMap() {
         return ListExternalTerminalActionsResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

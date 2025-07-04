@@ -7,116 +7,100 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-
+import { Amount } from './amount';
 
 export class PixRecurring {
     /**
     * The date on which the shopper\'s payment method will be charged, in YYYY-MM-DD format.
     */
-    "billingDate"?: string;
+    'billingDate'?: string;
     /**
     * Flag used to define whether liquidation can happen only on business days
     */
-    "businessDayOnly"?: boolean;
+    'businessDayOnly'?: boolean;
     /**
     * End date of the billing plan, in YYYY-MM-DD format. The end date must align with the frequency and the start date of the billing plan. If left blank, the subscription will continue indefinitely unless it is cancelled by the shopper.
     */
-    "endsAt"?: string;
+    'endsAt'?: string;
     /**
     * The frequency at which the shopper will be charged.
     */
-    "frequency"?: PixRecurring.FrequencyEnum;
-    "minAmount"?: Amount | null;
+    'frequency'?: PixRecurring.FrequencyEnum;
+    'minAmount'?: Amount | null;
     /**
     * The pspReference for the failed recurring payment. Find this in AUTHORISATION webhook you received after the billing date.
     */
-    "originalPspReference"?: string;
-    "recurringAmount"?: Amount | null;
+    'originalPspReference'?: string;
+    'recurringAmount'?: Amount | null;
     /**
     * The text that that will be shown on the shopper\'s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.
     */
-    "recurringStatement"?: string;
+    'recurringStatement'?: string;
     /**
     * When set to true, you can retry for failed recurring payments. The default value is true.
     */
-    "retryPolicy"?: boolean;
+    'retryPolicy'?: boolean;
     /**
     * Start date of the billing plan, in YYYY-MM-DD format. The default value is the transaction date.
     */
-    "startsAt"?: string;
+    'startsAt'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "billingDate",
             "baseName": "billingDate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "businessDayOnly",
             "baseName": "businessDayOnly",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "endsAt",
             "baseName": "endsAt",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "frequency",
             "baseName": "frequency",
-            "type": "PixRecurring.FrequencyEnum",
-            "format": ""
+            "type": "PixRecurring.FrequencyEnum"
         },
         {
             "name": "minAmount",
             "baseName": "minAmount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         },
         {
             "name": "originalPspReference",
             "baseName": "originalPspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringAmount",
             "baseName": "recurringAmount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         },
         {
             "name": "recurringStatement",
             "baseName": "recurringStatement",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "retryPolicy",
             "baseName": "retryPolicy",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "startsAt",
             "baseName": "startsAt",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PixRecurring.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

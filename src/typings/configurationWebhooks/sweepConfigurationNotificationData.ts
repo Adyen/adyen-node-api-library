@@ -7,49 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { SweepConfigurationV2 } from "./sweepConfigurationV2";
-
+import { SweepConfigurationV2 } from './sweepConfigurationV2';
 
 export class SweepConfigurationNotificationData {
     /**
     * The unique identifier of the balance account for which the sweep was configured.
     */
-    "accountId"?: string;
+    'accountId'?: string;
     /**
     * The unique identifier of the balance platform.
     */
-    "balancePlatform"?: string;
-    "sweep"?: SweepConfigurationV2 | null;
+    'balancePlatform'?: string;
+    'sweep'?: SweepConfigurationV2 | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountId",
             "baseName": "accountId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sweep",
             "baseName": "sweep",
-            "type": "SweepConfigurationV2 | null",
-            "format": ""
+            "type": "SweepConfigurationV2 | null"
         }    ];
 
     static getAttributeTypeMap() {
         return SweepConfigurationNotificationData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

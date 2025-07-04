@@ -7,49 +7,81 @@
  * Do not edit this class manually.
  */
 
-import { Purchase } from "./purchase";
-
+import { Purchase } from './purchase';
 
 export class RelayedAuthenticationRequest {
     /**
+    * The environment from which the webhook originated. Possible values: **test**, **live**. 
+    */
+    'environment': string;
+    /**
     * The unique identifier of the challenge.
     */
-    "id": string;
+    'id': string;
     /**
     * The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_) used for the purchase.
     */
-    "paymentInstrumentId": string;
-    "purchase": Purchase;
+    'paymentInstrumentId': string;
+    'purchase': Purchase;
+    /**
+    * URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn\'t support auto-switching.
+    */
+    'threeDSRequestorAppURL'?: string;
+    /**
+    * When the event was queued.
+    */
+    'timestamp'?: Date;
+    /**
+    * Type of notification.
+    */
+    'type': RelayedAuthenticationRequest.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "environment",
+            "baseName": "environment",
+            "type": "string"
+        },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "purchase",
             "baseName": "purchase",
-            "type": "Purchase",
-            "format": ""
+            "type": "Purchase"
+        },
+        {
+            "name": "threeDSRequestorAppURL",
+            "baseName": "threeDSRequestorAppURL",
+            "type": "string"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "Date"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "RelayedAuthenticationRequest.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return RelayedAuthenticationRequest.attributeTypeMap;
     }
-
-    public constructor() {
-    }
 }
 
+export namespace RelayedAuthenticationRequest {
+    export enum TypeEnum {
+        BalancePlatformAuthenticationRelayed = 'balancePlatform.authentication.relayed'
+    }
+}

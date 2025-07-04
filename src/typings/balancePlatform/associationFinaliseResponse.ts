@@ -12,45 +12,37 @@ export class AssociationFinaliseResponse {
     /**
     * The unique identifier of the SCA device you associated with a resource.
     */
-    "deviceId"?: string;
+    'deviceId'?: string;
     /**
     * The list of unique identifiers of the resources that you associated with the SCA device.
     */
-    "ids"?: Array<string>;
+    'ids'?: Array<string>;
     /**
     * The type of resource that you associated with the SCA device.
     */
-    "type": AssociationFinaliseResponse.TypeEnum;
+    'type': AssociationFinaliseResponse.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "deviceId",
             "baseName": "deviceId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "ids",
             "baseName": "ids",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AssociationFinaliseResponse.TypeEnum",
-            "format": ""
+            "type": "AssociationFinaliseResponse.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return AssociationFinaliseResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

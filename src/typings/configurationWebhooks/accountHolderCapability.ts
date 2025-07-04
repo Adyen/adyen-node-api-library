@@ -7,118 +7,102 @@
  * Do not edit this class manually.
  */
 
-import { AccountSupportingEntityCapability } from "./accountSupportingEntityCapability";
-import { CapabilityProblem } from "./capabilityProblem";
-import { CapabilitySettings } from "./capabilitySettings";
-
+import { AccountSupportingEntityCapability } from './accountSupportingEntityCapability';
+import { CapabilityProblem } from './capabilityProblem';
+import { CapabilitySettings } from './capabilitySettings';
 
 export class AccountHolderCapability {
     /**
     * Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful and the account holder is permitted to use the capability.
     */
-    "allowed"?: boolean;
+    'allowed'?: boolean;
     /**
     * The capability level that is allowed for the account holder.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
-    "allowedLevel"?: AccountHolderCapability.AllowedLevelEnum;
-    "allowedSettings"?: CapabilitySettings | null;
+    'allowedLevel'?: AccountHolderCapability.AllowedLevelEnum;
+    'allowedSettings'?: CapabilitySettings | null;
     /**
     * Indicates whether the capability is enabled. If **false**, the capability is temporarily disabled for the account holder.
     */
-    "enabled"?: boolean;
+    'enabled'?: boolean;
     /**
     * Contains verification errors and the actions that you can take to resolve them.
     */
-    "problems"?: Array<CapabilityProblem>;
+    'problems'?: Array<CapabilityProblem>;
     /**
     * Indicates whether the capability is requested. To check whether the account holder is permitted to use the capability, refer to the `allowed` field.
     */
-    "requested"?: boolean;
+    'requested'?: boolean;
     /**
     * The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
-    "requestedLevel"?: AccountHolderCapability.RequestedLevelEnum;
-    "requestedSettings"?: CapabilitySettings | null;
+    'requestedLevel'?: AccountHolderCapability.RequestedLevelEnum;
+    'requestedSettings'?: CapabilitySettings | null;
     /**
     * Contains the status of the transfer instruments associated with this capability. 
     */
-    "transferInstruments"?: Array<AccountSupportingEntityCapability>;
+    'transferInstruments'?: Array<AccountSupportingEntityCapability>;
     /**
     * The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the `errors` array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
     */
-    "verificationStatus"?: AccountHolderCapability.VerificationStatusEnum;
+    'verificationStatus'?: AccountHolderCapability.VerificationStatusEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "allowed",
             "baseName": "allowed",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "allowedLevel",
             "baseName": "allowedLevel",
-            "type": "AccountHolderCapability.AllowedLevelEnum",
-            "format": ""
+            "type": "AccountHolderCapability.AllowedLevelEnum"
         },
         {
             "name": "allowedSettings",
             "baseName": "allowedSettings",
-            "type": "CapabilitySettings | null",
-            "format": ""
+            "type": "CapabilitySettings | null"
         },
         {
             "name": "enabled",
             "baseName": "enabled",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "problems",
             "baseName": "problems",
-            "type": "Array<CapabilityProblem>",
-            "format": ""
+            "type": "Array<CapabilityProblem>"
         },
         {
             "name": "requested",
             "baseName": "requested",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "requestedLevel",
             "baseName": "requestedLevel",
-            "type": "AccountHolderCapability.RequestedLevelEnum",
-            "format": ""
+            "type": "AccountHolderCapability.RequestedLevelEnum"
         },
         {
             "name": "requestedSettings",
             "baseName": "requestedSettings",
-            "type": "CapabilitySettings | null",
-            "format": ""
+            "type": "CapabilitySettings | null"
         },
         {
             "name": "transferInstruments",
             "baseName": "transferInstruments",
-            "type": "Array<AccountSupportingEntityCapability>",
-            "format": ""
+            "type": "Array<AccountSupportingEntityCapability>"
         },
         {
             "name": "verificationStatus",
             "baseName": "verificationStatus",
-            "type": "AccountHolderCapability.VerificationStatusEnum",
-            "format": ""
+            "type": "AccountHolderCapability.VerificationStatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return AccountHolderCapability.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

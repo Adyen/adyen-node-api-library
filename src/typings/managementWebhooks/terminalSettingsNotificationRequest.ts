@@ -7,59 +7,49 @@
  * Do not edit this class manually.
  */
 
-import { TerminalSettingsData } from "./terminalSettingsData";
-
+import { TerminalSettingsData } from './terminalSettingsData';
 
 export class TerminalSettingsNotificationRequest {
     /**
     * Timestamp for when the webhook was created.
     */
-    "createdAt": Date;
-    "data": TerminalSettingsData;
+    'createdAt': Date;
+    'data': TerminalSettingsData;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    "environment": string;
+    'environment': string;
     /**
     * Type of notification.
     */
-    "type": TerminalSettingsNotificationRequest.TypeEnum;
+    'type': TerminalSettingsNotificationRequest.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "createdAt",
             "baseName": "createdAt",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "data",
             "baseName": "data",
-            "type": "TerminalSettingsData",
-            "format": ""
+            "type": "TerminalSettingsData"
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TerminalSettingsNotificationRequest.TypeEnum",
-            "format": ""
+            "type": "TerminalSettingsNotificationRequest.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalSettingsNotificationRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

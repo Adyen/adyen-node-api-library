@@ -7,22 +7,20 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    BalanceWebhookSettingInfo,
+    BalanceWebhookSettingInfoUpdate,
+    DefaultErrorResponseEntity,
+    WebhookSetting,
+    WebhookSettings,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
-import { BalanceWebhookSettingInfo } from "../../typings/balancePlatform/models";
-import { BalanceWebhookSettingInfoUpdate } from "../../typings/balancePlatform/models";
-import { WebhookSetting } from "../../typings/balancePlatform/models";
-import { WebhookSettings } from "../../typings/balancePlatform/models";
-
-/**
- * API handler for BalancesApi
- */
 export class BalancesApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -46,14 +44,12 @@ export class BalancesApi extends Service {
             .replace("{" + "balancePlatformId" + "}", encodeURIComponent(String(balancePlatformId)))
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
-        
         const request: BalanceWebhookSettingInfo = ObjectSerializer.serialize(balanceWebhookSettingInfo, "BalanceWebhookSettingInfo");
         const response = await getJsonResponse<BalanceWebhookSettingInfo, WebhookSetting>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "WebhookSetting");
     }
 
@@ -63,7 +59,6 @@ export class BalancesApi extends Service {
     * @param webhookId {@link string } The unique identifier of the balance webhook.
     * @param settingId {@link string } The unique identifier of the balance webhook setting.
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link void }
     */
     public async deleteWebhookSetting(balancePlatformId: string, webhookId: string, settingId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/balancePlatforms/{balancePlatformId}/webhooks/{webhookId}/settings/{settingId}`
@@ -71,7 +66,6 @@ export class BalancesApi extends Service {
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)))
             .replace("{" + "settingId" + "}", encodeURIComponent(String(settingId)));
         const resource = new Resource(this, endpoint);
-        
         await getJsonResponse<string, void>(
             resource,
             "",
@@ -91,13 +85,11 @@ export class BalancesApi extends Service {
             .replace("{" + "balancePlatformId" + "}", encodeURIComponent(String(balancePlatformId)))
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, WebhookSettings>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "WebhookSettings");
     }
 
@@ -115,13 +107,11 @@ export class BalancesApi extends Service {
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)))
             .replace("{" + "settingId" + "}", encodeURIComponent(String(settingId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, WebhookSetting>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "WebhookSetting");
     }
 
@@ -140,15 +130,12 @@ export class BalancesApi extends Service {
             .replace("{" + "webhookId" + "}", encodeURIComponent(String(webhookId)))
             .replace("{" + "settingId" + "}", encodeURIComponent(String(settingId)));
         const resource = new Resource(this, endpoint);
-        
         const request: BalanceWebhookSettingInfoUpdate = ObjectSerializer.serialize(balanceWebhookSettingInfoUpdate, "BalanceWebhookSettingInfoUpdate");
         const response = await getJsonResponse<BalanceWebhookSettingInfoUpdate, WebhookSetting>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "WebhookSetting");
     }
-
 }

@@ -7,20 +7,18 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    AllowedOrigin,
+    AllowedOriginsResponse,
+    RestServiceError,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { AllowedOrigin } from "../../typings/management/models";
-import { AllowedOriginsResponse } from "../../typings/management/models";
-
-/**
- * API handler for AllowedOriginsCompanyLevelApi
- */
 export class AllowedOriginsCompanyLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -44,14 +42,12 @@ export class AllowedOriginsCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
-        
         const request: AllowedOrigin = ObjectSerializer.serialize(allowedOrigin, "AllowedOrigin");
         const response = await getJsonResponse<AllowedOrigin, AllowedOrigin>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "AllowedOrigin");
     }
 
@@ -61,7 +57,6 @@ export class AllowedOriginsCompanyLevelApi extends Service {
     * @param apiCredentialId {@link string } Unique identifier of the API credential.
     * @param originId {@link string } Unique identifier of the allowed origin.
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link void }
     */
     public async deleteAllowedOrigin(companyId: string, apiCredentialId: string, originId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}`
@@ -69,7 +64,6 @@ export class AllowedOriginsCompanyLevelApi extends Service {
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)))
             .replace("{" + "originId" + "}", encodeURIComponent(String(originId)));
         const resource = new Resource(this, endpoint);
-        
         await getJsonResponse<string, void>(
             resource,
             "",
@@ -91,13 +85,11 @@ export class AllowedOriginsCompanyLevelApi extends Service {
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)))
             .replace("{" + "originId" + "}", encodeURIComponent(String(originId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, AllowedOrigin>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "AllowedOrigin");
     }
 
@@ -113,14 +105,11 @@ export class AllowedOriginsCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "apiCredentialId" + "}", encodeURIComponent(String(apiCredentialId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, AllowedOriginsResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "AllowedOriginsResponse");
     }
-
 }
