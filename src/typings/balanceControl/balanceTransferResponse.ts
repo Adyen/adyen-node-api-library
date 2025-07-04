@@ -7,109 +7,94 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-
+import { Amount } from './amount';
 
 export class BalanceTransferResponse {
-    "amount": Amount;
+    'amount': Amount;
     /**
     * The date when the balance transfer was requested.
     */
-    "createdAt": Date;
+    'createdAt': Date;
     /**
     * A human-readable description for the transfer. You can use alphanumeric characters and hyphens. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * The unique identifier of the source merchant account from which funds are deducted.
     */
-    "fromMerchant": string;
+    'fromMerchant': string;
     /**
     * Adyen\'s 16-character string reference associated with the balance transfer.
     */
-    "pspReference": string;
+    'pspReference': string;
     /**
     * A reference for the balance transfer. If you don\'t provide this in the request, Adyen generates a unique reference. Maximum length: 80 characters.
     */
-    "reference"?: string;
+    'reference'?: string;
     /**
     * The status of the balance transfer. Possible values: **transferred**, **failed**, **error**, and **notEnoughBalance**.
     */
-    "status": BalanceTransferResponse.StatusEnum;
+    'status': BalanceTransferResponse.StatusEnum;
     /**
     * The unique identifier of the destination merchant account from which funds are transferred.
     */
-    "toMerchant": string;
+    'toMerchant': string;
     /**
     * The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**.
     */
-    "type": BalanceTransferResponse.TypeEnum;
+    'type': BalanceTransferResponse.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
-            "format": ""
+            "type": "Amount"
         },
         {
             "name": "createdAt",
             "baseName": "createdAt",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fromMerchant",
             "baseName": "fromMerchant",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "BalanceTransferResponse.StatusEnum",
-            "format": ""
+            "type": "BalanceTransferResponse.StatusEnum"
         },
         {
             "name": "toMerchant",
             "baseName": "toMerchant",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BalanceTransferResponse.TypeEnum",
-            "format": ""
+            "type": "BalanceTransferResponse.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return BalanceTransferResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

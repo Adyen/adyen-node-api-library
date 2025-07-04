@@ -7,149 +7,130 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-
+import { Amount } from './amount';
 
 export class CheckoutBankTransferAction {
     /**
     * The account number of the bank transfer.
     */
-    "accountNumber"?: string;
+    'accountNumber'?: string;
     /**
     * The name of the account holder.
     */
-    "beneficiary"?: string;
+    'beneficiary'?: string;
     /**
     * The BIC of the IBAN.
     */
-    "bic"?: string;
+    'bic'?: string;
     /**
     * The url to download payment details with.
     */
-    "downloadUrl"?: string;
+    'downloadUrl'?: string;
     /**
     * The IBAN of the bank transfer.
     */
-    "iban"?: string;
+    'iban'?: string;
     /**
     * Specifies the payment method.
     */
-    "paymentMethodType"?: string;
+    'paymentMethodType'?: string;
     /**
     * The transfer reference.
     */
-    "reference"?: string;
+    'reference'?: string;
     /**
     * The routing number of the bank transfer.
     */
-    "routingNumber"?: string;
+    'routingNumber'?: string;
     /**
     * The e-mail of the shopper, included if an e-mail was sent to the shopper.
     */
-    "shopperEmail"?: string;
+    'shopperEmail'?: string;
     /**
     * The sort code of the bank transfer.
     */
-    "sortCode"?: string;
-    "totalAmount"?: Amount | null;
+    'sortCode'?: string;
+    'totalAmount'?: Amount | null;
     /**
     * The type of the action.
     */
-    "type": CheckoutBankTransferAction.TypeEnum;
+    'type': CheckoutBankTransferAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    "url"?: string;
+    'url'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "beneficiary",
             "baseName": "beneficiary",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "bic",
             "baseName": "bic",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "downloadUrl",
             "baseName": "downloadUrl",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "iban",
             "baseName": "iban",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentMethodType",
             "baseName": "paymentMethodType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "routingNumber",
             "baseName": "routingNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "sortCode",
             "baseName": "sortCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "totalAmount",
             "baseName": "totalAmount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CheckoutBankTransferAction.TypeEnum",
-            "format": ""
+            "type": "CheckoutBankTransferAction.TypeEnum"
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutBankTransferAction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

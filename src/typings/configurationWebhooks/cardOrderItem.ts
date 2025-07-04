@@ -7,96 +7,82 @@
  * Do not edit this class manually.
  */
 
-import { CardOrderItemDeliveryStatus } from "./cardOrderItemDeliveryStatus";
-
+import { CardOrderItemDeliveryStatus } from './cardOrderItemDeliveryStatus';
 
 export class CardOrderItem {
     /**
     * The unique identifier of the balance platform.
     */
-    "balancePlatform"?: string;
-    "card"?: CardOrderItemDeliveryStatus | null;
+    'balancePlatform'?: string;
+    'card'?: CardOrderItemDeliveryStatus | null;
     /**
     * The unique identifier of the card order item.
     */
-    "cardOrderItemId"?: string;
+    'cardOrderItemId'?: string;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
     */
-    "creationDate"?: Date;
+    'creationDate'?: Date;
     /**
     * The ID of the resource.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The unique identifier of the payment instrument related to the card order item.
     */
-    "paymentInstrumentId"?: string;
-    "pin"?: CardOrderItemDeliveryStatus | null;
+    'paymentInstrumentId'?: string;
+    'pin'?: CardOrderItemDeliveryStatus | null;
     /**
     * The shipping method used to deliver the card or the PIN.
     */
-    "shippingMethod"?: string;
+    'shippingMethod'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "CardOrderItemDeliveryStatus | null",
-            "format": ""
+            "type": "CardOrderItemDeliveryStatus | null"
         },
         {
             "name": "cardOrderItemId",
             "baseName": "cardOrderItemId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "creationDate",
             "baseName": "creationDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "pin",
             "baseName": "pin",
-            "type": "CardOrderItemDeliveryStatus | null",
-            "format": ""
+            "type": "CardOrderItemDeliveryStatus | null"
         },
         {
             "name": "shippingMethod",
             "baseName": "shippingMethod",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CardOrderItem.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

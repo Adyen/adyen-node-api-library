@@ -12,65 +12,55 @@ export class Notification {
     /**
     * The type of event notification sent when you select the notification button.
     */
-    "category"?: Notification.CategoryEnum;
+    'category'?: Notification.CategoryEnum;
     /**
     * The text shown in the prompt which opens when you select the notification button. For example, the description of the input box for pay-at-table.
     */
-    "details"?: string;
+    'details'?: string;
     /**
     * Enables sending event notifications either by pressing the Confirm key on terminals with a keypad or by tapping the event notification button on the terminal screen.
     */
-    "enabled"?: boolean;
+    'enabled'?: boolean;
     /**
     * Shows or hides the event notification button on the screen of terminal models that have a keypad.
     */
-    "showButton"?: boolean;
+    'showButton'?: boolean;
     /**
     * The name of the notification button on the terminal screen.
     */
-    "title"?: string;
+    'title'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "category",
             "baseName": "category",
-            "type": "Notification.CategoryEnum",
-            "format": ""
+            "type": "Notification.CategoryEnum"
         },
         {
             "name": "details",
             "baseName": "details",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "enabled",
             "baseName": "enabled",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "showButton",
             "baseName": "showButton",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "title",
             "baseName": "title",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Notification.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,55 +12,46 @@ export class TransferInstrumentReference {
     /**
     * The masked IBAN or bank account number.
     */
-    "accountIdentifier": string;
+    'accountIdentifier': string;
     /**
     * The unique identifier of the resource.
     */
-    "id": string;
+    'id': string;
     /**
     * Four last digits of the bank account number. If the transfer instrument is created using [instant bank account verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote=2023-05-08-hosted-onboarding), and it is a virtual bank account, these digits may be different from the last four digits of the masked account number.
     */
-    "realLastFour"?: string;
+    'realLastFour'?: string;
     /**
     * Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote=2023-05-08-hosted-onboarding).
     */
-    "trustedSource"?: boolean;
+    'trustedSource'?: boolean;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountIdentifier",
             "baseName": "accountIdentifier",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "realLastFour",
             "baseName": "realLastFour",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "trustedSource",
             "baseName": "trustedSource",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return TransferInstrumentReference.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

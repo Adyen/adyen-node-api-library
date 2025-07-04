@@ -12,68 +12,58 @@ export class GenericIssuerPaymentMethodDetails {
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * The issuer id of the shopper\'s selected bank.
     */
-    "issuer": string;
+    'issuer': string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    "recurringDetailReference"?: string;
+    'recurringDetailReference'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    "storedPaymentMethodId"?: string;
+    'storedPaymentMethodId'?: string;
     /**
     * **genericissuer**
     */
-    "type": GenericIssuerPaymentMethodDetails.TypeEnum;
+    'type': GenericIssuerPaymentMethodDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuer",
             "baseName": "issuer",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "GenericIssuerPaymentMethodDetails.TypeEnum",
-            "format": ""
+            "type": "GenericIssuerPaymentMethodDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return GenericIssuerPaymentMethodDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

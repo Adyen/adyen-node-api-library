@@ -12,35 +12,28 @@ export class EstimationTrackingData {
     /**
     * The estimated time the beneficiary should have access to the funds.
     */
-    "estimatedArrivalTime": Date;
+    'estimatedArrivalTime': Date;
     /**
     * The type of tracking event.   Possible values:   - **estimation**: the estimated date and time of when the funds will be credited has been determined.
     */
-    "type": EstimationTrackingData.TypeEnum;
+    'type': EstimationTrackingData.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "estimatedArrivalTime",
             "baseName": "estimatedArrivalTime",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "EstimationTrackingData.TypeEnum",
-            "format": ""
+            "type": "EstimationTrackingData.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return EstimationTrackingData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

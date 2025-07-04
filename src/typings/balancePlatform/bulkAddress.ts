@@ -12,105 +12,91 @@ export class BulkAddress {
     /**
     * The name of the city.
     */
-    "city"?: string;
+    'city'?: string;
     /**
     * The name of the company.
     */
-    "company"?: string;
+    'company'?: string;
     /**
     * The two-character ISO-3166-1 alpha-2 country code. For example, **US**.
     */
-    "country": string;
+    'country': string;
     /**
     * The email address.
     */
-    "email"?: string;
+    'email'?: string;
     /**
     * The house number or name.
     */
-    "houseNumberOrName"?: string;
+    'houseNumberOrName'?: string;
     /**
     * The full telephone number.
     */
-    "mobile"?: string;
+    'mobile'?: string;
     /**
     * The postal code.  Maximum length:  * 5 digits for addresses in the US.  * 10 characters for all other countries.
     */
-    "postalCode"?: string;
+    'postalCode'?: string;
     /**
     * The two-letter ISO 3166-2 state or province code.  Maximum length: 2 characters for addresses in the US.
     */
-    "stateOrProvince"?: string;
+    'stateOrProvince'?: string;
     /**
     * The streetname of the house.
     */
-    "street"?: string;
+    'street'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "city",
             "baseName": "city",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "company",
             "baseName": "company",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "country",
             "baseName": "country",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "email",
             "baseName": "email",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "houseNumberOrName",
             "baseName": "houseNumberOrName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "mobile",
             "baseName": "mobile",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "postalCode",
             "baseName": "postalCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "stateOrProvince",
             "baseName": "stateOrProvince",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "street",
             "baseName": "street",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return BulkAddress.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

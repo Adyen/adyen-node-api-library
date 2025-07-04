@@ -7,83 +7,71 @@
  * Do not edit this class manually.
  */
 
-import { RemediatingAction } from "./remediatingAction";
-import { VerificationErrorRecursive } from "./verificationErrorRecursive";
-
+import { RemediatingAction } from './remediatingAction';
+import { VerificationErrorRecursive } from './verificationErrorRecursive';
 
 export class VerificationError {
     /**
     * Contains the capabilities that the verification error applies to.
     */
-    "capabilities"?: Array<VerificationError.CapabilitiesEnum>;
+    'capabilities'?: Array<VerificationError.CapabilitiesEnum>;
     /**
     * The verification error code.
     */
-    "code"?: string;
+    'code'?: string;
     /**
     * A description of the error.
     */
-    "message"?: string;
+    'message'?: string;
     /**
     * Contains the actions that you can take to resolve the verification error.
     */
-    "remediatingActions"?: Array<RemediatingAction>;
+    'remediatingActions'?: Array<RemediatingAction>;
     /**
     * Contains more granular information about the verification error.
     */
-    "subErrors"?: Array<VerificationErrorRecursive>;
+    'subErrors'?: Array<VerificationErrorRecursive>;
     /**
     * The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**  
     */
-    "type"?: VerificationError.TypeEnum;
+    'type'?: VerificationError.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "capabilities",
             "baseName": "capabilities",
-            "type": "VerificationError.CapabilitiesEnum",
-            "format": ""
+            "type": "Array<VerificationError.CapabilitiesEnum>"
         },
         {
             "name": "code",
             "baseName": "code",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "message",
             "baseName": "message",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "remediatingActions",
             "baseName": "remediatingActions",
-            "type": "Array<RemediatingAction>",
-            "format": ""
+            "type": "Array<RemediatingAction>"
         },
         {
             "name": "subErrors",
             "baseName": "subErrors",
-            "type": "Array<VerificationErrorRecursive>",
-            "format": ""
+            "type": "Array<VerificationErrorRecursive>"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "VerificationError.TypeEnum",
-            "format": ""
+            "type": "VerificationError.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return VerificationError.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

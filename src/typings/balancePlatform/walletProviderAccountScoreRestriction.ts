@@ -12,32 +12,25 @@ export class WalletProviderAccountScoreRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    "operation": string;
-    "value"?: number;
+    'operation': string;
+    'value'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return WalletProviderAccountScoreRestriction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

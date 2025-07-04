@@ -7,20 +7,18 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    RestServiceError,
+    ScheduleTerminalActionsRequest,
+    ScheduleTerminalActionsResponse,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { ScheduleTerminalActionsRequest } from "../../typings/management/models";
-import { ScheduleTerminalActionsResponse } from "../../typings/management/models";
-
-/**
- * API handler for TerminalActionsTerminalLevelApi
- */
 export class TerminalActionsTerminalLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -40,15 +38,12 @@ export class TerminalActionsTerminalLevelApi extends Service {
     public async createTerminalAction(scheduleTerminalActionsRequest: ScheduleTerminalActionsRequest, requestOptions?: IRequest.Options): Promise<ScheduleTerminalActionsResponse> {
         const endpoint = `${this.baseUrl}/terminals/scheduleActions`;
         const resource = new Resource(this, endpoint);
-        
         const request: ScheduleTerminalActionsRequest = ObjectSerializer.serialize(scheduleTerminalActionsRequest, "ScheduleTerminalActionsRequest");
         const response = await getJsonResponse<ScheduleTerminalActionsRequest, ScheduleTerminalActionsResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "ScheduleTerminalActionsResponse");
     }
-
 }

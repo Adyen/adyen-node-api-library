@@ -12,105 +12,91 @@ export class AdditionalDataTemporaryServices {
     /**
     * The customer code, if supplied by a customer. * Encoding: ASCII * maxLength: 25
     */
-    "enhancedSchemeData_customerReference"?: string;
+    'enhancedSchemeData_customerReference'?: string;
     /**
     * The name or ID of the person working in a temporary capacity. * maxLength: 40.   * Must not be all spaces.  *Must not be all zeros.
     */
-    "enhancedSchemeData_employeeName"?: string;
+    'enhancedSchemeData_employeeName'?: string;
     /**
     * The job description of the person working in a temporary capacity. * maxLength: 40  * Must not be all spaces.  *Must not be all zeros.
     */
-    "enhancedSchemeData_jobDescription"?: string;
+    'enhancedSchemeData_jobDescription'?: string;
     /**
     * The amount paid for regular hours worked, [minor units](https://docs.adyen.com/development-resources/currency-codes). * maxLength: 7 * Must not be empty * Can be all zeros
     */
-    "enhancedSchemeData_regularHoursRate"?: string;
+    'enhancedSchemeData_regularHoursRate'?: string;
     /**
     * The hours worked. * maxLength: 7 * Must not be empty * Can be all zeros
     */
-    "enhancedSchemeData_regularHoursWorked"?: string;
+    'enhancedSchemeData_regularHoursWorked'?: string;
     /**
     * The name of the person requesting temporary services. * maxLength: 40 * Must not be all zeros * Must not be all spaces
     */
-    "enhancedSchemeData_requestName"?: string;
+    'enhancedSchemeData_requestName'?: string;
     /**
     * The billing period start date. * Format: ddMMyy * maxLength: 6
     */
-    "enhancedSchemeData_tempStartDate"?: string;
+    'enhancedSchemeData_tempStartDate'?: string;
     /**
     * The billing period end date. * Format: ddMMyy * maxLength: 6
     */
-    "enhancedSchemeData_tempWeekEnding"?: string;
+    'enhancedSchemeData_tempWeekEnding'?: string;
     /**
     * The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). For example, 2000 means USD 20.00 * maxLength: 12
     */
-    "enhancedSchemeData_totalTaxAmount"?: string;
+    'enhancedSchemeData_totalTaxAmount'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "enhancedSchemeData_customerReference",
             "baseName": "enhancedSchemeData.customerReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "enhancedSchemeData_employeeName",
             "baseName": "enhancedSchemeData.employeeName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "enhancedSchemeData_jobDescription",
             "baseName": "enhancedSchemeData.jobDescription",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "enhancedSchemeData_regularHoursRate",
             "baseName": "enhancedSchemeData.regularHoursRate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "enhancedSchemeData_regularHoursWorked",
             "baseName": "enhancedSchemeData.regularHoursWorked",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "enhancedSchemeData_requestName",
             "baseName": "enhancedSchemeData.requestName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "enhancedSchemeData_tempStartDate",
             "baseName": "enhancedSchemeData.tempStartDate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "enhancedSchemeData_tempWeekEnding",
             "baseName": "enhancedSchemeData.tempWeekEnding",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "enhancedSchemeData_totalTaxAmount",
             "baseName": "enhancedSchemeData.totalTaxAmount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataTemporaryServices.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

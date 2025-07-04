@@ -12,75 +12,64 @@ export class PaymentInstrumentRequirement {
     /**
     * Specifies the requirements for the payment instrument that need to be included in the request for a particular route.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.
     */
-    "issuingCountryCode"?: string;
+    'issuingCountryCode'?: string;
     /**
     * The two-character ISO-3166-1 alpha-2 country code list for payment instruments.
     */
-    "issuingCountryCodes"?: Array<string>;
+    'issuingCountryCodes'?: Array<string>;
     /**
     * Specifies if the requirement only applies to transfers to another balance platform.
     */
-    "onlyForCrossBalancePlatform"?: boolean;
+    'onlyForCrossBalancePlatform'?: boolean;
     /**
     * The type of the payment instrument. For example, \"BankAccount\" or \"Card\".
     */
-    "paymentInstrumentType"?: PaymentInstrumentRequirement.PaymentInstrumentTypeEnum;
+    'paymentInstrumentType'?: PaymentInstrumentRequirement.PaymentInstrumentTypeEnum;
     /**
     * **paymentInstrumentRequirement**
     */
-    "type": PaymentInstrumentRequirement.TypeEnum;
+    'type': PaymentInstrumentRequirement.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuingCountryCode",
             "baseName": "issuingCountryCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuingCountryCodes",
             "baseName": "issuingCountryCodes",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "onlyForCrossBalancePlatform",
             "baseName": "onlyForCrossBalancePlatform",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "paymentInstrumentType",
             "baseName": "paymentInstrumentType",
-            "type": "PaymentInstrumentRequirement.PaymentInstrumentTypeEnum",
-            "format": ""
+            "type": "PaymentInstrumentRequirement.PaymentInstrumentTypeEnum"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PaymentInstrumentRequirement.TypeEnum",
-            "format": ""
+            "type": "PaymentInstrumentRequirement.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentInstrumentRequirement.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

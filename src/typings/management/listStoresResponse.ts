@@ -7,60 +7,50 @@
  * Do not edit this class manually.
  */
 
-import { PaginationLinks } from "./paginationLinks";
-import { Store } from "./store";
-
+import { PaginationLinks } from './paginationLinks';
+import { Store } from './store';
 
 export class ListStoresResponse {
-    "_links"?: PaginationLinks | null;
+    '_links'?: PaginationLinks | null;
     /**
     * List of stores
     */
-    "data"?: Array<Store>;
+    'data'?: Array<Store>;
     /**
     * Total number of items.
     */
-    "itemsTotal": number;
+    'itemsTotal': number;
     /**
     * Total number of pages.
     */
-    "pagesTotal": number;
+    'pagesTotal': number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks | null",
-            "format": ""
+            "type": "PaginationLinks | null"
         },
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<Store>",
-            "format": ""
+            "type": "Array<Store>"
         },
         {
             "name": "itemsTotal",
             "baseName": "itemsTotal",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "pagesTotal",
             "baseName": "pagesTotal",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return ListStoresResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

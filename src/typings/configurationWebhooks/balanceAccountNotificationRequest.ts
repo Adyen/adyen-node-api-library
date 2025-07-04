@@ -7,65 +7,55 @@
  * Do not edit this class manually.
  */
 
-import { BalanceAccountNotificationData } from "./balanceAccountNotificationData";
-
+import { BalanceAccountNotificationData } from './balanceAccountNotificationData';
 
 export class BalanceAccountNotificationRequest {
-    "data": BalanceAccountNotificationData;
+    'data': BalanceAccountNotificationData;
     /**
     * The environment from which the webhook originated.  Possible values: **test**, **live**.
     */
-    "environment": string;
+    'environment': string;
     /**
     * When the event was queued.
     */
-    "timestamp"?: Date;
+    'timestamp'?: Date;
     /**
     * Type of webhook.
     */
-    "type": BalanceAccountNotificationRequest.TypeEnum;
+    'type': BalanceAccountNotificationRequest.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "BalanceAccountNotificationData",
-            "format": ""
+            "type": "BalanceAccountNotificationData"
         },
         {
             "name": "environment",
             "baseName": "environment",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BalanceAccountNotificationRequest.TypeEnum",
-            "format": ""
+            "type": "BalanceAccountNotificationRequest.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return BalanceAccountNotificationRequest.attributeTypeMap;
     }
-
-    public constructor() {
-    }
 }
 
 export namespace BalanceAccountNotificationRequest {
     export enum TypeEnum {
-        BalancePlatformBalanceAccountUpdated = 'balancePlatform.balanceAccount.updated',
-        BalancePlatformBalanceAccountCreated = 'balancePlatform.balanceAccount.created'
+        Updated = 'balancePlatform.balanceAccount.updated',
+        Created = 'balancePlatform.balanceAccount.created'
     }
 }

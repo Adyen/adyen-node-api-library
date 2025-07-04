@@ -12,45 +12,37 @@ export class EBankingFinlandDetails {
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * The Ebanking Finland issuer value of the shopper\'s selected bank.
     */
-    "issuer"?: string;
+    'issuer'?: string;
     /**
     * **ebanking_FI**
     */
-    "type": EBankingFinlandDetails.TypeEnum;
+    'type': EBankingFinlandDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuer",
             "baseName": "issuer",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "EBankingFinlandDetails.TypeEnum",
-            "format": ""
+            "type": "EBankingFinlandDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return EBankingFinlandDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

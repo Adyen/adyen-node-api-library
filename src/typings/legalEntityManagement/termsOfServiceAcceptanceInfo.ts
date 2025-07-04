@@ -12,75 +12,64 @@ export class TermsOfServiceAcceptanceInfo {
     /**
     * The unique identifier of the user that accepted the Terms of Service.
     */
-    "acceptedBy"?: string;
+    'acceptedBy'?: string;
     /**
     * The unique identifier of the legal entity for which the Terms of Service are accepted.
     */
-    "acceptedFor"?: string;
+    'acceptedFor'?: string;
     /**
     * The date when the Terms of Service were accepted, in ISO 8601 extended format. For example, 2022-12-18T10:15:30+01:00.
     */
-    "createdAt"?: Date;
+    'createdAt'?: Date;
     /**
     * An Adyen-generated reference for the accepted Terms of Service.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  
     */
-    "type"?: TermsOfServiceAcceptanceInfo.TypeEnum;
+    'type'?: TermsOfServiceAcceptanceInfo.TypeEnum;
     /**
     * The expiration date for the Terms of Service acceptance, in ISO 8601 extended format. For example, 2022-12-18T00:00:00+01:00.
     */
-    "validTo"?: Date;
+    'validTo'?: Date;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "acceptedBy",
             "baseName": "acceptedBy",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "acceptedFor",
             "baseName": "acceptedFor",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "createdAt",
             "baseName": "createdAt",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TermsOfServiceAcceptanceInfo.TypeEnum",
-            "format": ""
+            "type": "TermsOfServiceAcceptanceInfo.TypeEnum"
         },
         {
             "name": "validTo",
             "baseName": "validTo",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
         return TermsOfServiceAcceptanceInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

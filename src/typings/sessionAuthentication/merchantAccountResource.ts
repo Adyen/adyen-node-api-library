@@ -7,32 +7,24 @@
  * Do not edit this class manually.
  */
 
-import { Resource } from "./resource";
-
+import { MerchantAccountResourceAllOf } from './merchantAccountResourceAllOf';
+import { Resource } from './resource';
+import { ResourceType } from './resourceType';
 
 export class MerchantAccountResource extends Resource {
-    "merchantAccountCode"?: string;
+    'merchantAccountCode'?: string;
 
-    static override readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static override readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static override readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "merchantAccountCode",
             "baseName": "merchantAccountCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
-    static override getAttributeTypeMap() {
+    static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(MerchantAccountResource.attributeTypeMap);
     }
-
-    public constructor() {
-        super();
-    }
 }
 
-export namespace MerchantAccountResource {
-}

@@ -7,23 +7,21 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    CreateMerchantUserRequest,
+    CreateUserResponse,
+    ListMerchantUsersResponse,
+    RestServiceError,
+    UpdateMerchantUserRequest,
+    User,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { CreateMerchantUserRequest } from "../../typings/management/models";
-import { CreateUserResponse } from "../../typings/management/models";
-import { ListMerchantUsersResponse } from "../../typings/management/models";
-import { UpdateMerchantUserRequest } from "../../typings/management/models";
-import { User } from "../../typings/management/models";
-
-/**
- * API handler for UsersMerchantLevelApi
- */
 export class UsersMerchantLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -45,14 +43,12 @@ export class UsersMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/users`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const request: CreateMerchantUserRequest = ObjectSerializer.serialize(createMerchantUserRequest, "CreateMerchantUserRequest");
         const response = await getJsonResponse<CreateMerchantUserRequest, CreateUserResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "CreateUserResponse");
     }
 
@@ -68,13 +64,11 @@ export class UsersMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "userId" + "}", encodeURIComponent(String(userId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, User>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "User");
     }
 
@@ -91,7 +85,6 @@ export class UsersMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/users`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = pageNumber ?? pageSize ?? username;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -105,7 +98,6 @@ export class UsersMerchantLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ListMerchantUsersResponse");
     }
 
@@ -122,15 +114,12 @@ export class UsersMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "userId" + "}", encodeURIComponent(String(userId)));
         const resource = new Resource(this, endpoint);
-        
         const request: UpdateMerchantUserRequest = ObjectSerializer.serialize(updateMerchantUserRequest, "UpdateMerchantUserRequest");
         const response = await getJsonResponse<UpdateMerchantUserRequest, User>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "User");
     }
-
 }

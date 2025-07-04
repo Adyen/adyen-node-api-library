@@ -12,55 +12,46 @@ export class StoreDetailAndSubmitResponse {
     /**
     * This field contains additional data, which may be returned in a particular response.
     */
-    "additionalData"?: { [key: string]: string; };
+    'additionalData'?: { [key: string]: string; };
     /**
     * A new reference to uniquely identify this request.
     */
-    "pspReference": string;
+    'pspReference': string;
     /**
     * In case of refusal, an informational message for the reason.
     */
-    "refusalReason"?: string;
+    'refusalReason'?: string;
     /**
     * The response:  * In case of success is payout-submit-received. * In case of an error, an informational message is returned.
     */
-    "resultCode": string;
+    'resultCode': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "refusalReason",
             "baseName": "refusalReason",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return StoreDetailAndSubmitResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

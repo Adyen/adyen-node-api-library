@@ -12,35 +12,28 @@ export class Lodging {
     /**
     * The check-in date.
     */
-    "checkInDate"?: string;
+    'checkInDate'?: string;
     /**
     * The total number of nights the room is booked for.
     */
-    "numberOfNights"?: number;
+    'numberOfNights'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkInDate",
             "baseName": "checkInDate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "numberOfNights",
             "baseName": "numberOfNights",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return Lodging.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

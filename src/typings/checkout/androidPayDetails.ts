@@ -12,35 +12,28 @@ export class AndroidPayDetails {
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * **androidpay**
     */
-    "type"?: AndroidPayDetails.TypeEnum;
+    'type'?: AndroidPayDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AndroidPayDetails.TypeEnum",
-            "format": ""
+            "type": "AndroidPayDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return AndroidPayDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

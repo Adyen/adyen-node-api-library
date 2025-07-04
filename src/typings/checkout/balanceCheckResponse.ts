@@ -7,84 +7,71 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-import { FraudResult } from "./fraudResult";
-
+import { Amount } from './amount';
+import { FraudResult } from './fraudResult';
 
 export class BalanceCheckResponse {
     /**
     * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
     */
-    "additionalData"?: { [key: string]: string; };
-    "balance": Amount;
-    "fraudResult"?: FraudResult | null;
+    'additionalData'?: { [key: string]: string; };
+    'balance': Amount;
+    'fraudResult'?: FraudResult | null;
     /**
     * Adyen\'s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
-    "pspReference"?: string;
+    'pspReference'?: string;
     /**
     * If the payment\'s authorisation is refused or an error occurs during authorisation, this field holds Adyen\'s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
     */
-    "refusalReason"?: string;
+    'refusalReason'?: string;
     /**
     * The result of the cancellation request.  Possible values:  * **Success** – Indicates that the balance check was successful. * **NotEnoughBalance** – Commonly indicates that the card did not have enough balance to pay the amount in the request, or that the currency of the balance on the card did not match the currency of the requested amount. * **Failed** – Indicates that the balance check failed.
     */
-    "resultCode": BalanceCheckResponse.ResultCodeEnum;
-    "transactionLimit"?: Amount | null;
+    'resultCode': BalanceCheckResponse.ResultCodeEnum;
+    'transactionLimit'?: Amount | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "balance",
             "baseName": "balance",
-            "type": "Amount",
-            "format": ""
+            "type": "Amount"
         },
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult | null",
-            "format": ""
+            "type": "FraudResult | null"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "refusalReason",
             "baseName": "refusalReason",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "BalanceCheckResponse.ResultCodeEnum",
-            "format": ""
+            "type": "BalanceCheckResponse.ResultCodeEnum"
         },
         {
             "name": "transactionLimit",
             "baseName": "transactionLimit",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         }    ];
 
     static getAttributeTypeMap() {
         return BalanceCheckResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

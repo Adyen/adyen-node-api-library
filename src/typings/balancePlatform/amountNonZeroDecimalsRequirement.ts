@@ -12,35 +12,28 @@ export class AmountNonZeroDecimalsRequirement {
     /**
     * Specifies for which routes the amount in a transfer request must have no non-zero decimal places, so the transfer can only be processed if the amount consists of round numbers.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * **amountNonZeroDecimalsRequirement**
     */
-    "type": AmountNonZeroDecimalsRequirement.TypeEnum;
+    'type': AmountNonZeroDecimalsRequirement.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AmountNonZeroDecimalsRequirement.TypeEnum",
-            "format": ""
+            "type": "AmountNonZeroDecimalsRequirement.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return AmountNonZeroDecimalsRequirement.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

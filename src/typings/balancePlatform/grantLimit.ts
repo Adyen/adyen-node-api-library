@@ -7,29 +7,22 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-
+import { Amount } from './amount';
 
 export class GrantLimit {
-    "amount"?: Amount;
+    'amount'?: Amount | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
-            "format": ""
+            "type": "Amount | null"
         }    ];
 
     static getAttributeTypeMap() {
         return GrantLimit.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

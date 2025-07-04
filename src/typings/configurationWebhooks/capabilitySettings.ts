@@ -7,69 +7,46 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-
+import { Amount } from './amount';
 
 export class CapabilitySettings {
-    /**
-    * 
-    */
-    "amountPerIndustry"?: { [key: string]: Amount; };
-    /**
-    * 
-    */
-    "authorizedCardUsers"?: boolean;
-    /**
-    * 
-    */
-    "fundingSource"?: Array<CapabilitySettings.FundingSourceEnum>;
-    /**
-    * 
-    */
-    "interval"?: CapabilitySettings.IntervalEnum;
-    "maxAmount"?: Amount | null;
+    'amountPerIndustry'?: { [key: string]: Amount; };
+    'authorizedCardUsers'?: boolean;
+    'fundingSource'?: Array<CapabilitySettings.FundingSourceEnum>;
+    'interval'?: CapabilitySettings.IntervalEnum;
+    'maxAmount'?: Amount | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "amountPerIndustry",
             "baseName": "amountPerIndustry",
-            "type": "{ [key: string]: Amount; }",
-            "format": ""
+            "type": "{ [key: string]: Amount; }"
         },
         {
             "name": "authorizedCardUsers",
             "baseName": "authorizedCardUsers",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "CapabilitySettings.FundingSourceEnum",
-            "format": ""
+            "type": "Array<CapabilitySettings.FundingSourceEnum>"
         },
         {
             "name": "interval",
             "baseName": "interval",
-            "type": "CapabilitySettings.IntervalEnum",
-            "format": ""
+            "type": "CapabilitySettings.IntervalEnum"
         },
         {
             "name": "maxAmount",
             "baseName": "maxAmount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         }    ];
 
     static getAttributeTypeMap() {
         return CapabilitySettings.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

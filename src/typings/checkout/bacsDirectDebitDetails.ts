@@ -12,98 +12,85 @@ export class BacsDirectDebitDetails {
     /**
     * The bank account number (without separators).
     */
-    "bankAccountNumber"?: string;
+    'bankAccountNumber'?: string;
     /**
     * The bank routing number of the account.
     */
-    "bankLocationId"?: string;
+    'bankLocationId'?: string;
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * The name of the bank account holder.
     */
-    "holderName"?: string;
+    'holderName'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    "recurringDetailReference"?: string;
+    'recurringDetailReference'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    "storedPaymentMethodId"?: string;
+    'storedPaymentMethodId'?: string;
     /**
     * The unique identifier of your user\'s verified transfer instrument, which you can use to top up their balance accounts.
     */
-    "transferInstrumentId"?: string;
+    'transferInstrumentId'?: string;
     /**
     * **directdebit_GB**
     */
-    "type"?: BacsDirectDebitDetails.TypeEnum;
+    'type'?: BacsDirectDebitDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "bankAccountNumber",
             "baseName": "bankAccountNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "bankLocationId",
             "baseName": "bankLocationId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "holderName",
             "baseName": "holderName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transferInstrumentId",
             "baseName": "transferInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BacsDirectDebitDetails.TypeEnum",
-            "format": ""
+            "type": "BacsDirectDebitDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return BacsDirectDebitDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

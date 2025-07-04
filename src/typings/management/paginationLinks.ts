@@ -7,57 +7,46 @@
  * Do not edit this class manually.
  */
 
-import { LinksElement } from "./linksElement";
-
+import { LinksElement } from './linksElement';
 
 export class PaginationLinks {
-    "first": LinksElement;
-    "last": LinksElement;
-    "next"?: LinksElement | null;
-    "prev"?: LinksElement | null;
-    "self": LinksElement;
+    'first': LinksElement;
+    'last': LinksElement;
+    'next'?: LinksElement | null;
+    'prev'?: LinksElement | null;
+    'self': LinksElement;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "first",
             "baseName": "first",
-            "type": "LinksElement",
-            "format": ""
+            "type": "LinksElement"
         },
         {
             "name": "last",
             "baseName": "last",
-            "type": "LinksElement",
-            "format": ""
+            "type": "LinksElement"
         },
         {
             "name": "next",
             "baseName": "next",
-            "type": "LinksElement | null",
-            "format": ""
+            "type": "LinksElement | null"
         },
         {
             "name": "prev",
             "baseName": "prev",
-            "type": "LinksElement | null",
-            "format": ""
+            "type": "LinksElement | null"
         },
         {
             "name": "self",
             "baseName": "self",
-            "type": "LinksElement",
-            "format": ""
+            "type": "LinksElement"
         }    ];
 
     static getAttributeTypeMap() {
         return PaginationLinks.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

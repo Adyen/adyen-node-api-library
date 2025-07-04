@@ -12,35 +12,28 @@ export class PciSigningResponse {
     /**
     * The unique identifiers of the signed PCI documents.
     */
-    "pciQuestionnaireIds"?: Array<string>;
+    'pciQuestionnaireIds'?: Array<string>;
     /**
     * The [legal entity ID](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) of the individual who signed the PCI questionnaire.
     */
-    "signedBy"?: string;
+    'signedBy'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "pciQuestionnaireIds",
             "baseName": "pciQuestionnaireIds",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "signedBy",
             "baseName": "signedBy",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PciSigningResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

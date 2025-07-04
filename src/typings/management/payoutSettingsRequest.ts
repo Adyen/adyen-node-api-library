@@ -12,45 +12,37 @@ export class PayoutSettingsRequest {
     /**
     * Indicates if payouts to this bank account are enabled. Default: **true**.  To receive payouts into this bank account, both `enabled` and `allowed` must be **true**.
     */
-    "enabled"?: boolean;
+    'enabled'?: boolean;
     /**
     * The date when Adyen starts paying out to this bank account.  Format: [ISO 8601](https://www.w3.org/TR/NOTE-datetime), for example, **2019-11-23T12:25:28Z** or **2020-05-27T20:25:28+08:00**.  If not specified, the `enabled` field indicates if payouts are enabled for this bank account.  If a date is specified and:  * `enabled`: **true**, payouts are enabled starting the specified date. * `enabled`: **false**, payouts are disabled until the specified date. On the specified date, `enabled` changes to **true** and this field is reset to **null**.
     */
-    "enabledFromDate"?: string;
+    'enabledFromDate'?: string;
     /**
     * The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the bank account.
     */
-    "transferInstrumentId": string;
+    'transferInstrumentId': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "enabled",
             "baseName": "enabled",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "enabledFromDate",
             "baseName": "enabledFromDate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transferInstrumentId",
             "baseName": "transferInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PayoutSettingsRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

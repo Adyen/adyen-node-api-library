@@ -7,85 +7,72 @@
  * Do not edit this class manually.
  */
 
-import { DeliveryAddress } from "./deliveryAddress";
-import { Name } from "./name";
-import { PhoneNumber } from "./phoneNumber";
-
+import { DeliveryAddress } from './deliveryAddress';
+import { Name } from './name';
+import { PhoneNumber } from './phoneNumber';
 
 export class DeliveryContact {
-    "address": DeliveryAddress;
+    'address': DeliveryAddress;
     /**
     * The company name of the contact.
     */
-    "company"?: string;
+    'company'?: string;
     /**
     * The email address of the contact.
     */
-    "email"?: string;
+    'email'?: string;
     /**
     * The full phone number of the contact provided as a single string. It will be handled as a landline phone. **Examples:** \"0031 6 11 22 33 44\", \"+316/1122-3344\", \"(0031) 611223344\"
     */
-    "fullPhoneNumber"?: string;
-    "name": Name;
-    "phoneNumber"?: PhoneNumber | null;
+    'fullPhoneNumber'?: string;
+    'name': Name;
+    'phoneNumber'?: PhoneNumber | null;
     /**
     * The URL of the contact\'s website.
     */
-    "webAddress"?: string;
+    'webAddress'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "address",
             "baseName": "address",
-            "type": "DeliveryAddress",
-            "format": ""
+            "type": "DeliveryAddress"
         },
         {
             "name": "company",
             "baseName": "company",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "email",
             "baseName": "email",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fullPhoneNumber",
             "baseName": "fullPhoneNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "Name",
-            "format": ""
+            "type": "Name"
         },
         {
             "name": "phoneNumber",
             "baseName": "phoneNumber",
-            "type": "PhoneNumber | null",
-            "format": ""
+            "type": "PhoneNumber | null"
         },
         {
             "name": "webAddress",
             "baseName": "webAddress",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return DeliveryContact.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

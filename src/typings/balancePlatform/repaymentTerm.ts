@@ -12,35 +12,28 @@ export class RepaymentTerm {
     /**
     * The estimated term for repaying the grant, in days.
     */
-    "estimatedDays": number;
+    'estimatedDays': number;
     /**
     * The maximum term for repaying the grant, in days. Only applies when `contractType` is **loan**.
     */
-    "maximumDays"?: number;
+    'maximumDays'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "estimatedDays",
             "baseName": "estimatedDays",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "maximumDays",
             "baseName": "maximumDays",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return RepaymentTerm.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

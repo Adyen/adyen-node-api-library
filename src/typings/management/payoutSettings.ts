@@ -12,85 +12,73 @@ export class PayoutSettings {
     /**
     * Indicates if payouts to the bank account are allowed. This value is set automatically based on the status of the verification process. The value is:  * **true** if `verificationStatus` is **valid**. * **false** for all other values.
     */
-    "allowed"?: boolean;
+    'allowed'?: boolean;
     /**
     * Indicates if payouts to this bank account are enabled. Default: **true**.  To receive payouts into this bank account, both `enabled` and `allowed` must be **true**.
     */
-    "enabled"?: boolean;
+    'enabled'?: boolean;
     /**
     * The date when Adyen starts paying out to this bank account.  Format: [ISO 8601](https://www.w3.org/TR/NOTE-datetime), for example, **2019-11-23T12:25:28Z** or **2020-05-27T20:25:28+08:00**.  If not specified, the `enabled` field indicates if payouts are enabled for this bank account.  If a date is specified and:  * `enabled`: **true**, payouts are enabled starting the specified date. * `enabled`: **false**, payouts are disabled until the specified date. On the specified date, `enabled` changes to **true** and this field is reset to **null**.
     */
-    "enabledFromDate"?: string;
+    'enabledFromDate'?: string;
     /**
     * The unique identifier of the payout setting.
     */
-    "id": string;
+    'id': string;
     /**
     * Determines how long it takes for the funds to reach the bank account. Adyen pays out based on the [payout frequency](https://docs.adyen.com/account/getting-paid#payout-frequency). Depending on the currencies and banks involved in transferring the money, it may take up to three days for the payout funds to arrive in the bank account.   Possible values: * **first**: same day. * **urgent**: the next day. * **normal**: between 1 and 3 days.
     */
-    "priority"?: PayoutSettings.PriorityEnum;
+    'priority'?: PayoutSettings.PriorityEnum;
     /**
     * The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the bank account.
     */
-    "transferInstrumentId": string;
+    'transferInstrumentId': string;
     /**
     * The status of the verification process for the bank account.  Possible values: * **valid**: the verification was successful. * **pending**: the verification is in progress. * **invalid**: the information provided is not complete. * **rejected**:  there are reasons to refuse working with this entity.
     */
-    "verificationStatus"?: PayoutSettings.VerificationStatusEnum;
+    'verificationStatus'?: PayoutSettings.VerificationStatusEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "allowed",
             "baseName": "allowed",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "enabled",
             "baseName": "enabled",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "enabledFromDate",
             "baseName": "enabledFromDate",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "priority",
             "baseName": "priority",
-            "type": "PayoutSettings.PriorityEnum",
-            "format": ""
+            "type": "PayoutSettings.PriorityEnum"
         },
         {
             "name": "transferInstrumentId",
             "baseName": "transferInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "verificationStatus",
             "baseName": "verificationStatus",
-            "type": "PayoutSettings.VerificationStatusEnum",
-            "format": ""
+            "type": "PayoutSettings.VerificationStatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return PayoutSettings.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

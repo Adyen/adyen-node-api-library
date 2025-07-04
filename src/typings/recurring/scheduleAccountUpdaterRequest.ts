@@ -7,79 +7,67 @@
  * Do not edit this class manually.
  */
 
-import { Card } from "./card";
-
+import { Card } from './card';
 
 export class ScheduleAccountUpdaterRequest {
     /**
     * This field contains additional data, which may be required for a particular request.
     */
-    "additionalData"?: { [key: string]: string; };
-    "card"?: Card | null;
+    'additionalData'?: { [key: string]: string; };
+    'card'?: Card | null;
     /**
     * Account of the merchant.
     */
-    "merchantAccount": string;
+    'merchantAccount': string;
     /**
     * A reference that merchants can apply for the call.
     */
-    "reference": string;
+    'reference': string;
     /**
     * The selected detail recurring reference.  Optional if `card` is provided.
     */
-    "selectedRecurringDetailReference"?: string;
+    'selectedRecurringDetailReference'?: string;
     /**
     * The reference of the shopper that owns the recurring contract.  Optional if `card` is provided.
     */
-    "shopperReference"?: string;
+    'shopperReference'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null",
-            "format": ""
+            "type": "Card | null"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "selectedRecurringDetailReference",
             "baseName": "selectedRecurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ScheduleAccountUpdaterRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

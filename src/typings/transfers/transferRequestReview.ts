@@ -12,35 +12,28 @@ export class TransferRequestReview {
     /**
     * Specifies the number of [approvals](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers/approve) required to process the transfer.
     */
-    "numberOfApprovalsRequired"?: number;
+    'numberOfApprovalsRequired'?: number;
     /**
     * Specifies whether you will initiate Strong Customer Authentication (SCA) in thePOST [/transfers/approve](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers/approve) request.  Only applies to transfers made with an Adyen [business account](https://docs.adyen.com/platforms/business-accounts).
     */
-    "scaOnApproval"?: boolean;
+    'scaOnApproval'?: boolean;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "numberOfApprovalsRequired",
             "baseName": "numberOfApprovalsRequired",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "scaOnApproval",
             "baseName": "scaOnApproval",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return TransferRequestReview.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

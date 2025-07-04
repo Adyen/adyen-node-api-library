@@ -12,51 +12,43 @@ export class BillDeskDetails {
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * The issuer id of the shopper\'s selected bank.
     */
-    "issuer": string;
+    'issuer': string;
     /**
     * **billdesk**
     */
-    "type": BillDeskDetails.TypeEnum;
+    'type': BillDeskDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuer",
             "baseName": "issuer",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BillDeskDetails.TypeEnum",
-            "format": ""
+            "type": "BillDeskDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return BillDeskDetails.attributeTypeMap;
     }
-
-    public constructor() {
-    }
 }
 
 export namespace BillDeskDetails {
     export enum TypeEnum {
-        BilldeskOnline = 'billdesk_online',
-        BilldeskWallet = 'billdesk_wallet'
+        Online = 'billdesk_online',
+        Wallet = 'billdesk_wallet'
     }
 }

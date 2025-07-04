@@ -7,36 +7,28 @@
  * Do not edit this class manually.
  */
 
-import { Link } from "./link";
-
+import { Link } from './link';
 
 export class Links {
-    "next"?: Link | null;
-    "prev"?: Link | null;
+    'next'?: Link | null;
+    'prev'?: Link | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "next",
             "baseName": "next",
-            "type": "Link | null",
-            "format": ""
+            "type": "Link | null"
         },
         {
             "name": "prev",
             "baseName": "prev",
-            "type": "Link | null",
-            "format": ""
+            "type": "Link | null"
         }    ];
 
     static getAttributeTypeMap() {
         return Links.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

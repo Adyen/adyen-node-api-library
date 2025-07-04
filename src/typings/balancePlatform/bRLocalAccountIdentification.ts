@@ -12,65 +12,55 @@ export class BRLocalAccountIdentification {
     /**
     * The bank account number, without separators or whitespace.
     */
-    "accountNumber": string;
+    'accountNumber': string;
     /**
     * The 3-digit bank code, with leading zeros.
     */
-    "bankCode": string;
+    'bankCode': string;
     /**
     * The bank account branch number, without separators or whitespace.
     */
-    "branchNumber": string;
+    'branchNumber': string;
     /**
     * The 8-digit ISPB, with leading zeros.
     */
-    "ispb"?: string;
+    'ispb'?: string;
     /**
     * **brLocal**
     */
-    "type": BRLocalAccountIdentification.TypeEnum;
+    'type': BRLocalAccountIdentification.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "bankCode",
             "baseName": "bankCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "branchNumber",
             "baseName": "branchNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "ispb",
             "baseName": "ispb",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BRLocalAccountIdentification.TypeEnum",
-            "format": ""
+            "type": "BRLocalAccountIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return BRLocalAccountIdentification.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

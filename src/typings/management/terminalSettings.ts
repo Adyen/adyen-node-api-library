@@ -7,200 +7,172 @@
  * Do not edit this class manually.
  */
 
-import { CardholderReceipt } from "./cardholderReceipt";
-import { Connectivity } from "./connectivity";
-import { Gratuity } from "./gratuity";
-import { Hardware } from "./hardware";
-import { Localization } from "./localization";
-import { Nexo } from "./nexo";
-import { OfflineProcessing } from "./offlineProcessing";
-import { Opi } from "./opi";
-import { Passcodes } from "./passcodes";
-import { PayAtTable } from "./payAtTable";
-import { Payment } from "./payment";
-import { ReceiptOptions } from "./receiptOptions";
-import { ReceiptPrinting } from "./receiptPrinting";
-import { Refunds } from "./refunds";
-import { Signature } from "./signature";
-import { Standalone } from "./standalone";
-import { StoreAndForward } from "./storeAndForward";
-import { Surcharge } from "./surcharge";
-import { TapToPay } from "./tapToPay";
-import { TerminalInstructions } from "./terminalInstructions";
-import { Timeouts } from "./timeouts";
-import { WifiProfiles } from "./wifiProfiles";
-
+import { CardholderReceipt } from './cardholderReceipt';
+import { Connectivity } from './connectivity';
+import { Gratuity } from './gratuity';
+import { Hardware } from './hardware';
+import { Localization } from './localization';
+import { Nexo } from './nexo';
+import { OfflineProcessing } from './offlineProcessing';
+import { Opi } from './opi';
+import { Passcodes } from './passcodes';
+import { PayAtTable } from './payAtTable';
+import { Payment } from './payment';
+import { ReceiptOptions } from './receiptOptions';
+import { ReceiptPrinting } from './receiptPrinting';
+import { Refunds } from './refunds';
+import { Signature } from './signature';
+import { Standalone } from './standalone';
+import { StoreAndForward } from './storeAndForward';
+import { Surcharge } from './surcharge';
+import { TapToPay } from './tapToPay';
+import { TerminalInstructions } from './terminalInstructions';
+import { Timeouts } from './timeouts';
+import { WifiProfiles } from './wifiProfiles';
 
 export class TerminalSettings {
-    "cardholderReceipt"?: CardholderReceipt | null;
-    "connectivity"?: Connectivity | null;
+    'cardholderReceipt'?: CardholderReceipt | null;
+    'connectivity'?: Connectivity | null;
     /**
     * Settings for tipping with or without predefined options to choose from. The maximum number of predefined options is four, or three plus the option to enter a custom tip.
     */
-    "gratuities"?: Array<Gratuity> | null;
-    "hardware"?: Hardware | null;
-    "localization"?: Localization | null;
-    "nexo"?: Nexo | null;
-    "offlineProcessing"?: OfflineProcessing | null;
-    "opi"?: Opi | null;
-    "passcodes"?: Passcodes | null;
-    "payAtTable"?: PayAtTable | null;
-    "payment"?: Payment | null;
-    "receiptOptions"?: ReceiptOptions | null;
-    "receiptPrinting"?: ReceiptPrinting | null;
-    "refunds"?: Refunds | null;
-    "signature"?: Signature | null;
-    "standalone"?: Standalone | null;
-    "storeAndForward"?: StoreAndForward | null;
-    "surcharge"?: Surcharge | null;
-    "tapToPay"?: TapToPay | null;
-    "terminalInstructions"?: TerminalInstructions | null;
-    "timeouts"?: Timeouts | null;
-    "wifiProfiles"?: WifiProfiles | null;
+    'gratuities'?: Array<Gratuity> | null;
+    'hardware'?: Hardware | null;
+    'localization'?: Localization | null;
+    'nexo'?: Nexo | null;
+    'offlineProcessing'?: OfflineProcessing | null;
+    'opi'?: Opi | null;
+    'passcodes'?: Passcodes | null;
+    'payAtTable'?: PayAtTable | null;
+    'payment'?: Payment | null;
+    'receiptOptions'?: ReceiptOptions | null;
+    'receiptPrinting'?: ReceiptPrinting | null;
+    'refunds'?: Refunds | null;
+    'signature'?: Signature | null;
+    'standalone'?: Standalone | null;
+    'storeAndForward'?: StoreAndForward | null;
+    'surcharge'?: Surcharge | null;
+    'tapToPay'?: TapToPay | null;
+    'terminalInstructions'?: TerminalInstructions | null;
+    'timeouts'?: Timeouts | null;
+    'wifiProfiles'?: WifiProfiles | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "cardholderReceipt",
             "baseName": "cardholderReceipt",
-            "type": "CardholderReceipt | null",
-            "format": ""
+            "type": "CardholderReceipt | null"
         },
         {
             "name": "connectivity",
             "baseName": "connectivity",
-            "type": "Connectivity | null",
-            "format": ""
+            "type": "Connectivity | null"
         },
         {
             "name": "gratuities",
             "baseName": "gratuities",
-            "type": "Array<Gratuity> | null",
-            "format": ""
+            "type": "Array<Gratuity> | null"
         },
         {
             "name": "hardware",
             "baseName": "hardware",
-            "type": "Hardware | null",
-            "format": ""
+            "type": "Hardware | null"
         },
         {
             "name": "localization",
             "baseName": "localization",
-            "type": "Localization | null",
-            "format": ""
+            "type": "Localization | null"
         },
         {
             "name": "nexo",
             "baseName": "nexo",
-            "type": "Nexo | null",
-            "format": ""
+            "type": "Nexo | null"
         },
         {
             "name": "offlineProcessing",
             "baseName": "offlineProcessing",
-            "type": "OfflineProcessing | null",
-            "format": ""
+            "type": "OfflineProcessing | null"
         },
         {
             "name": "opi",
             "baseName": "opi",
-            "type": "Opi | null",
-            "format": ""
+            "type": "Opi | null"
         },
         {
             "name": "passcodes",
             "baseName": "passcodes",
-            "type": "Passcodes | null",
-            "format": ""
+            "type": "Passcodes | null"
         },
         {
             "name": "payAtTable",
             "baseName": "payAtTable",
-            "type": "PayAtTable | null",
-            "format": ""
+            "type": "PayAtTable | null"
         },
         {
             "name": "payment",
             "baseName": "payment",
-            "type": "Payment | null",
-            "format": ""
+            "type": "Payment | null"
         },
         {
             "name": "receiptOptions",
             "baseName": "receiptOptions",
-            "type": "ReceiptOptions | null",
-            "format": ""
+            "type": "ReceiptOptions | null"
         },
         {
             "name": "receiptPrinting",
             "baseName": "receiptPrinting",
-            "type": "ReceiptPrinting | null",
-            "format": ""
+            "type": "ReceiptPrinting | null"
         },
         {
             "name": "refunds",
             "baseName": "refunds",
-            "type": "Refunds | null",
-            "format": ""
+            "type": "Refunds | null"
         },
         {
             "name": "signature",
             "baseName": "signature",
-            "type": "Signature | null",
-            "format": ""
+            "type": "Signature | null"
         },
         {
             "name": "standalone",
             "baseName": "standalone",
-            "type": "Standalone | null",
-            "format": ""
+            "type": "Standalone | null"
         },
         {
             "name": "storeAndForward",
             "baseName": "storeAndForward",
-            "type": "StoreAndForward | null",
-            "format": ""
+            "type": "StoreAndForward | null"
         },
         {
             "name": "surcharge",
             "baseName": "surcharge",
-            "type": "Surcharge | null",
-            "format": ""
+            "type": "Surcharge | null"
         },
         {
             "name": "tapToPay",
             "baseName": "tapToPay",
-            "type": "TapToPay | null",
-            "format": ""
+            "type": "TapToPay | null"
         },
         {
             "name": "terminalInstructions",
             "baseName": "terminalInstructions",
-            "type": "TerminalInstructions | null",
-            "format": ""
+            "type": "TerminalInstructions | null"
         },
         {
             "name": "timeouts",
             "baseName": "timeouts",
-            "type": "Timeouts | null",
-            "format": ""
+            "type": "Timeouts | null"
         },
         {
             "name": "wifiProfiles",
             "baseName": "wifiProfiles",
-            "type": "WifiProfiles | null",
-            "format": ""
+            "type": "WifiProfiles | null"
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalSettings.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

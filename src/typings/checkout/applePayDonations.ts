@@ -12,78 +12,67 @@ export class ApplePayDonations {
     /**
     * The stringified and base64 encoded `paymentData` you retrieved from the Apple framework.
     */
-    "applePayToken": string;
+    'applePayToken': string;
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    "fundingSource"?: ApplePayDonations.FundingSourceEnum;
+    'fundingSource'?: ApplePayDonations.FundingSourceEnum;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    "recurringDetailReference"?: string;
+    'recurringDetailReference'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    "storedPaymentMethodId"?: string;
+    'storedPaymentMethodId'?: string;
     /**
     * **applepay**
     */
-    "type"?: ApplePayDonations.TypeEnum;
+    'type'?: ApplePayDonations.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "applePayToken",
             "baseName": "applePayToken",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "ApplePayDonations.FundingSourceEnum",
-            "format": ""
+            "type": "ApplePayDonations.FundingSourceEnum"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "ApplePayDonations.TypeEnum",
-            "format": ""
+            "type": "ApplePayDonations.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return ApplePayDonations.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

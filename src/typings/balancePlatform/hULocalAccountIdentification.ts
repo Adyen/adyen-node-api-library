@@ -12,35 +12,28 @@ export class HULocalAccountIdentification {
     /**
     * The 24-digit bank account number, without separators or whitespace.
     */
-    "accountNumber": string;
+    'accountNumber': string;
     /**
     * **huLocal**
     */
-    "type": HULocalAccountIdentification.TypeEnum;
+    'type': HULocalAccountIdentification.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "HULocalAccountIdentification.TypeEnum",
-            "format": ""
+            "type": "HULocalAccountIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return HULocalAccountIdentification.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

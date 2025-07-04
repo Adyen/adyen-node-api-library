@@ -12,25 +12,19 @@ export class UpdatePayoutSettingsRequest {
     /**
     * Indicates if payouts to this bank account are enabled. Default: **true**.  To receive payouts into this bank account, both `enabled` and `allowed` must be **true**.
     */
-    "enabled"?: boolean;
+    'enabled'?: boolean;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "enabled",
             "baseName": "enabled",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return UpdatePayoutSettingsRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

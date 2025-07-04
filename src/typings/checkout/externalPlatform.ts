@@ -12,45 +12,37 @@ export class ExternalPlatform {
     /**
     * External platform integrator.
     */
-    "integrator"?: string;
+    'integrator'?: string;
     /**
     * Name of the field. For example, Name of External Platform.
     */
-    "name"?: string;
+    'name'?: string;
     /**
     * Version of the field. For example, Version of External Platform.
     */
-    "version"?: string;
+    'version'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "integrator",
             "baseName": "integrator",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "version",
             "baseName": "version",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ExternalPlatform.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

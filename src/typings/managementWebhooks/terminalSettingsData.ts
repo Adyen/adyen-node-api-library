@@ -12,75 +12,64 @@ export class TerminalSettingsData {
     /**
     * The unique identifier of the company account.
     */
-    "companyId"?: string;
+    'companyId'?: string;
     /**
     * The unique identifier of the merchant account.
     */
-    "merchantId"?: string;
+    'merchantId'?: string;
     /**
     * The unique identifier of the store.
     */
-    "storeId"?: string;
+    'storeId'?: string;
     /**
     * The unique identifier of the terminal.
     */
-    "terminalId"?: string;
+    'terminalId'?: string;
     /**
     * Indicates whether the terminal settings were updated using the Customer Area or the Management API.
     */
-    "updateSource": TerminalSettingsData.UpdateSourceEnum;
+    'updateSource': TerminalSettingsData.UpdateSourceEnum;
     /**
     * The user that updated the terminal settings. Can be Adyen or your API credential username.
     */
-    "user": string;
+    'user': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "companyId",
             "baseName": "companyId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantId",
             "baseName": "merchantId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storeId",
             "baseName": "storeId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "terminalId",
             "baseName": "terminalId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "updateSource",
             "baseName": "updateSource",
-            "type": "TerminalSettingsData.UpdateSourceEnum",
-            "format": ""
+            "type": "TerminalSettingsData.UpdateSourceEnum"
         },
         {
             "name": "user",
             "baseName": "user",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalSettingsData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

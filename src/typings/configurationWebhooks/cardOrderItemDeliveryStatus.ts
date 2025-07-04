@@ -12,45 +12,37 @@ export class CardOrderItemDeliveryStatus {
     /**
     * An error message.
     */
-    "errorMessage"?: string;
+    'errorMessage'?: string;
     /**
     * The status of the PIN delivery.
     */
-    "status"?: CardOrderItemDeliveryStatus.StatusEnum;
+    'status'?: CardOrderItemDeliveryStatus.StatusEnum;
     /**
     * The tracking number of the PIN delivery.
     */
-    "trackingNumber"?: string;
+    'trackingNumber'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "errorMessage",
             "baseName": "errorMessage",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "CardOrderItemDeliveryStatus.StatusEnum",
-            "format": ""
+            "type": "CardOrderItemDeliveryStatus.StatusEnum"
         },
         {
             "name": "trackingNumber",
             "baseName": "trackingNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CardOrderItemDeliveryStatus.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

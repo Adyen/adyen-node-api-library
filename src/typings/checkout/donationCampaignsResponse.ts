@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { DonationCampaign } from "./donationCampaign";
-
+import { DonationCampaign } from './donationCampaign';
 
 export class DonationCampaignsResponse {
     /**
     * List of active donation campaigns for your merchant account.
     */
-    "donationCampaigns"?: Array<DonationCampaign>;
+    'donationCampaigns'?: Array<DonationCampaign>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "donationCampaigns",
             "baseName": "donationCampaigns",
-            "type": "Array<DonationCampaign>",
-            "format": ""
+            "type": "Array<DonationCampaign>"
         }    ];
 
     static getAttributeTypeMap() {
         return DonationCampaignsResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

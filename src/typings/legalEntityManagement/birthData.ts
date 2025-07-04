@@ -12,25 +12,19 @@ export class BirthData {
     /**
     * The individual\'s date of birth, in YYYY-MM-DD format.
     */
-    "dateOfBirth"?: string;
+    'dateOfBirth'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "dateOfBirth",
             "baseName": "dateOfBirth",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return BirthData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

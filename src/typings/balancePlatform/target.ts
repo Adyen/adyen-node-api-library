@@ -12,35 +12,28 @@ export class Target {
     /**
     * The unique identifier of the `target.type`. This can be the ID of your:  * balance platform * account holder * account holder\'s balance account
     */
-    "id": string;
+    'id': string;
     /**
     * The resource for which you want to receive notifications. Possible values:  * **balancePlatform**: receive notifications about balance changes in your entire balance platform.  * **accountHolder**: receive notifications about balance changes of a specific user.  * **balanceAccount**: receive notifications about balance changes in a specific balance account.
     */
-    "type": Target.TypeEnum;
+    'type': Target.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "Target.TypeEnum",
-            "format": ""
+            "type": "Target.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return Target.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

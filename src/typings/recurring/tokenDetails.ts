@@ -9,32 +9,25 @@
 
 
 export class TokenDetails {
-    "tokenData"?: { [key: string]: string; };
-    "tokenDataType"?: string;
+    'tokenData'?: { [key: string]: string; };
+    'tokenDataType'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "tokenData",
             "baseName": "tokenData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "tokenDataType",
             "baseName": "tokenDataType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return TokenDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

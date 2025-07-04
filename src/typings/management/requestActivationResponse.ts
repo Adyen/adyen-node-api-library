@@ -12,35 +12,28 @@ export class RequestActivationResponse {
     /**
     * The unique identifier of the company account.
     */
-    "companyId"?: string;
+    'companyId'?: string;
     /**
     * The unique identifier of the merchant account you requested to activate.
     */
-    "merchantId"?: string;
+    'merchantId'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "companyId",
             "baseName": "companyId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantId",
             "baseName": "merchantId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return RequestActivationResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

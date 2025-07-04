@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { CapitalGrant } from "./capitalGrant";
-
+import { CapitalGrant } from './capitalGrant';
 
 export class CapitalGrants {
     /**
     * The unique identifier of the grant.
     */
-    "grants": Array<CapitalGrant>;
+    'grants': Array<CapitalGrant>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "grants",
             "baseName": "grants",
-            "type": "Array<CapitalGrant>",
-            "format": ""
+            "type": "Array<CapitalGrant>"
         }    ];
 
     static getAttributeTypeMap() {
         return CapitalGrants.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

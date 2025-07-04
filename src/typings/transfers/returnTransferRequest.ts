@@ -7,39 +7,31 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-
+import { Amount } from './amount';
 
 export class ReturnTransferRequest {
-    "amount": Amount;
+    'amount': Amount;
     /**
     * Your internal reference for the return. If you don\'t provide this in the request, Adyen generates a unique reference. This reference is used in all communication with you about the instruction status.  We recommend using a unique value per instruction. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). 
     */
-    "reference"?: string;
+    'reference'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
-            "format": ""
+            "type": "Amount"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ReturnTransferRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

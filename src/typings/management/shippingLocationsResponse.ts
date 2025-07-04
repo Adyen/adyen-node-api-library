@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { ShippingLocation } from "./shippingLocation";
-
+import { ShippingLocation } from './shippingLocation';
 
 export class ShippingLocationsResponse {
     /**
     * Physical locations where orders can be shipped to.
     */
-    "data"?: Array<ShippingLocation>;
+    'data'?: Array<ShippingLocation>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<ShippingLocation>",
-            "format": ""
+            "type": "Array<ShippingLocation>"
         }    ];
 
     static getAttributeTypeMap() {
         return ShippingLocationsResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

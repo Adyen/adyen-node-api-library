@@ -12,35 +12,28 @@ export class WebData {
     /**
     * The URL of the website or the app store URL.
     */
-    "webAddress"?: string;
+    'webAddress'?: string;
     /**
     * The unique identifier of the web address.
     */
-    "webAddressId"?: string;
+    'webAddressId'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "webAddress",
             "baseName": "webAddress",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "webAddressId",
             "baseName": "webAddressId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return WebData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

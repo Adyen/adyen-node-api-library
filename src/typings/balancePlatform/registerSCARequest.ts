@@ -7,49 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { DelegatedAuthenticationData } from "./delegatedAuthenticationData";
-
+import { DelegatedAuthenticationData } from './delegatedAuthenticationData';
 
 export class RegisterSCARequest {
     /**
     * The name of the SCA device that you are registering. You can use it to help your users identify the device.  If you do not specify a `name`, Adyen automatically generates one.
     */
-    "name"?: string;
+    'name'?: string;
     /**
     * The unique identifier of the payment instrument for which you are registering the SCA device.
     */
-    "paymentInstrumentId": string;
-    "strongCustomerAuthentication": DelegatedAuthenticationData;
+    'paymentInstrumentId': string;
+    'strongCustomerAuthentication': DelegatedAuthenticationData;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "strongCustomerAuthentication",
             "baseName": "strongCustomerAuthentication",
-            "type": "DelegatedAuthenticationData",
-            "format": ""
+            "type": "DelegatedAuthenticationData"
         }    ];
 
     static getAttributeTypeMap() {
         return RegisterSCARequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

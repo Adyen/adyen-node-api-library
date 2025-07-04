@@ -12,35 +12,28 @@ export class PaymentDetails {
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * The payment method type.
     */
-    "type"?: PaymentDetails.TypeEnum;
+    'type'?: PaymentDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PaymentDetails.TypeEnum",
-            "format": ""
+            "type": "PaymentDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

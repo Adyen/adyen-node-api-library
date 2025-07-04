@@ -7,52 +7,43 @@
  * Do not edit this class manually.
  */
 
-import { OnboardingTheme } from "./onboardingTheme";
-
+import { OnboardingTheme } from './onboardingTheme';
 
 export class OnboardingThemes {
     /**
     * The next page. Only present if there is a next page.
     */
-    "next"?: string;
+    'next'?: string;
     /**
     * The previous page. Only present if there is a previous page.
     */
-    "previous"?: string;
+    'previous'?: string;
     /**
     * List of onboarding themes.
     */
-    "themes": Array<OnboardingTheme>;
+    'themes': Array<OnboardingTheme>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "next",
             "baseName": "next",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "previous",
             "baseName": "previous",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "themes",
             "baseName": "themes",
-            "type": "Array<OnboardingTheme>",
-            "format": ""
+            "type": "Array<OnboardingTheme>"
         }    ];
 
     static getAttributeTypeMap() {
         return OnboardingThemes.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

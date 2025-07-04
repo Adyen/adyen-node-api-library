@@ -12,45 +12,37 @@ export class ModifyRequest {
     /**
     * This field contains additional data, which may be required for a particular payout request.
     */
-    "additionalData"?: { [key: string]: string; };
+    'additionalData'?: { [key: string]: string; };
     /**
     * The merchant account identifier, with which you want to process the transaction.
     */
-    "merchantAccount": string;
+    'merchantAccount': string;
     /**
     * The PSP reference received in the `/submitThirdParty` response.
     */
-    "originalReference": string;
+    'originalReference': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "additionalData",
             "baseName": "additionalData",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "originalReference",
             "baseName": "originalReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ModifyRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,20 +7,18 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    PayoutRequest,
+    PayoutResponse,
+    ServiceError,
+    ObjectSerializer
+} from "../../typings/payout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/payout/objectSerializer";
-import { PayoutRequest } from "../../typings/payout/models";
-import { PayoutResponse } from "../../typings/payout/models";
-
-/**
- * API handler for InstantPayoutsApi
- */
 export class InstantPayoutsApi extends Service {
 
     private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/Payout/v68";
@@ -40,15 +38,12 @@ export class InstantPayoutsApi extends Service {
     public async payout(payoutRequest: PayoutRequest, requestOptions?: IRequest.Options): Promise<PayoutResponse> {
         const endpoint = `${this.baseUrl}/payout`;
         const resource = new Resource(this, endpoint);
-        
         const request: PayoutRequest = ObjectSerializer.serialize(payoutRequest, "PayoutRequest");
         const response = await getJsonResponse<PayoutRequest, PayoutResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "PayoutResponse");
     }
-
 }

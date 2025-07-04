@@ -12,45 +12,37 @@ export class IbanAccountIdentificationRequirement {
     /**
     * Specifies the allowed prefixes for the international bank account number as defined in the ISO-13616 standard.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * Contains the list of allowed prefixes for international bank accounts. For example: NL, US, UK.
     */
-    "ibanPrefixes"?: Array<string>;
+    'ibanPrefixes'?: Array<string>;
     /**
     * **ibanAccountIdentificationRequirement**
     */
-    "type": IbanAccountIdentificationRequirement.TypeEnum;
+    'type': IbanAccountIdentificationRequirement.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "ibanPrefixes",
             "baseName": "ibanPrefixes",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "IbanAccountIdentificationRequirement.TypeEnum",
-            "format": ""
+            "type": "IbanAccountIdentificationRequirement.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return IbanAccountIdentificationRequirement.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

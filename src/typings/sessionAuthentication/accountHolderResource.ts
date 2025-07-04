@@ -7,35 +7,27 @@
  * Do not edit this class manually.
  */
 
-import { Resource } from "./resource";
-
+import { AccountHolderResourceAllOf } from './accountHolderResourceAllOf';
+import { Resource } from './resource';
+import { ResourceType } from './resourceType';
 
 export class AccountHolderResource extends Resource {
     /**
     * The unique identifier of the resource connected to the component. For [Platform Experience components](https://docs.adyen.com/platforms/build-user-dashboards), this is the account holder linked to the balance account shown in the component.
     */
-    "accountHolderId": string;
+    'accountHolderId': string;
 
-    static override readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static override readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static override readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountHolderId",
             "baseName": "accountHolderId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
-    static override getAttributeTypeMap() {
+    static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(AccountHolderResource.attributeTypeMap);
     }
-
-    public constructor() {
-        super();
-    }
 }
 
-export namespace AccountHolderResource {
-}

@@ -12,25 +12,19 @@ export class AdditionalDataModifications {
     /**
     * This is the installment option selected by the shopper. It is required only if specified by the user.
     */
-    "installmentPaymentData_selectedInstallmentOption"?: string;
+    'installmentPaymentData_selectedInstallmentOption'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "installmentPaymentData_selectedInstallmentOption",
             "baseName": "installmentPaymentData.selectedInstallmentOption",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataModifications.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

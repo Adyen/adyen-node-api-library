@@ -12,35 +12,28 @@ export class RemediatingAction {
     /**
     * The remediating action code.
     */
-    "code"?: string;
+    'code'?: string;
     /**
     * A description of how you can resolve the verification error.
     */
-    "message"?: string;
+    'message'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "code",
             "baseName": "code",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "message",
             "baseName": "message",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return RemediatingAction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

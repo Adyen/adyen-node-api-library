@@ -7,26 +7,24 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    BillingEntitiesResponse,
+    RestServiceError,
+    ShippingLocation,
+    ShippingLocationsResponse,
+    TerminalModelsResponse,
+    TerminalOrder,
+    TerminalOrderRequest,
+    TerminalOrdersResponse,
+    TerminalProductsResponse,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { BillingEntitiesResponse } from "../../typings/management/models";
-import { ShippingLocation } from "../../typings/management/models";
-import { ShippingLocationsResponse } from "../../typings/management/models";
-import { TerminalModelsResponse } from "../../typings/management/models";
-import { TerminalOrder } from "../../typings/management/models";
-import { TerminalOrderRequest } from "../../typings/management/models";
-import { TerminalOrdersResponse } from "../../typings/management/models";
-import { TerminalProductsResponse } from "../../typings/management/models";
-
-/**
- * API handler for TerminalOrdersCompanyLevelApi
- */
 export class TerminalOrdersCompanyLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -49,13 +47,11 @@ export class TerminalOrdersCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "orderId" + "}", encodeURIComponent(String(orderId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, TerminalOrder>(
             resource,
             "",
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "TerminalOrder");
     }
 
@@ -70,14 +66,12 @@ export class TerminalOrdersCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/terminalOrders`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const request: TerminalOrderRequest = ObjectSerializer.serialize(terminalOrderRequest, "TerminalOrderRequest");
         const response = await getJsonResponse<TerminalOrderRequest, TerminalOrder>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "TerminalOrder");
     }
 
@@ -92,14 +86,12 @@ export class TerminalOrdersCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/shippingLocations`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const request: ShippingLocation = ObjectSerializer.serialize(shippingLocation, "ShippingLocation");
         const response = await getJsonResponse<ShippingLocation, ShippingLocation>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "ShippingLocation");
     }
 
@@ -115,13 +107,11 @@ export class TerminalOrdersCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "orderId" + "}", encodeURIComponent(String(orderId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, TerminalOrder>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "TerminalOrder");
     }
 
@@ -136,7 +126,6 @@ export class TerminalOrdersCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/billingEntities`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = name;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -148,7 +137,6 @@ export class TerminalOrdersCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "BillingEntitiesResponse");
     }
 
@@ -166,7 +154,6 @@ export class TerminalOrdersCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/terminalOrders`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = customerOrderReference ?? status ?? offset ?? limit;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -181,7 +168,6 @@ export class TerminalOrdersCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "TerminalOrdersResponse");
     }
 
@@ -198,7 +184,6 @@ export class TerminalOrdersCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/shippingLocations`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = name ?? offset ?? limit;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -212,7 +197,6 @@ export class TerminalOrdersCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ShippingLocationsResponse");
     }
 
@@ -226,13 +210,11 @@ export class TerminalOrdersCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/terminalModels`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, TerminalModelsResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "TerminalModelsResponse");
     }
 
@@ -240,7 +222,7 @@ export class TerminalOrdersCompanyLevelApi extends Service {
     * @summary Get a list of terminal products
     * @param companyId {@link string } The unique identifier of the company account.
     * @param requestOptions {@link IRequest.Options }
-    * @param country {@link string } (Required) The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**
+    * @param country {@link string } The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**
     * @param terminalModelId {@link string } The terminal model to return products for. Use the ID returned in the [GET &#x60;/terminalModels&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) response. For example, **Verifone.M400**
     * @param offset {@link number } The number of products to skip.
     * @param limit {@link number } The number of products to return.
@@ -250,7 +232,6 @@ export class TerminalOrdersCompanyLevelApi extends Service {
         const endpoint = `${this.baseUrl}/companies/{companyId}/terminalProducts`
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = country ?? terminalModelId ?? offset ?? limit;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -265,7 +246,6 @@ export class TerminalOrdersCompanyLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "TerminalProductsResponse");
     }
 
@@ -282,15 +262,12 @@ export class TerminalOrdersCompanyLevelApi extends Service {
             .replace("{" + "companyId" + "}", encodeURIComponent(String(companyId)))
             .replace("{" + "orderId" + "}", encodeURIComponent(String(orderId)));
         const resource = new Resource(this, endpoint);
-        
         const request: TerminalOrderRequest = ObjectSerializer.serialize(terminalOrderRequest, "TerminalOrderRequest");
         const response = await getJsonResponse<TerminalOrderRequest, TerminalOrder>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "TerminalOrder");
     }
-
 }

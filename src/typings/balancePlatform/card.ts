@@ -7,143 +7,124 @@
  * Do not edit this class manually.
  */
 
-import { Authentication } from "./authentication";
-import { CardConfiguration } from "./cardConfiguration";
-import { DeliveryContact } from "./deliveryContact";
-import { Expiry } from "./expiry";
-
+import { Authentication } from './authentication';
+import { CardConfiguration } from './cardConfiguration';
+import { DeliveryContact } from './deliveryContact';
+import { Expiry } from './expiry';
 
 export class Card {
-    "authentication"?: Authentication;
+    'authentication'?: Authentication | null;
     /**
     * The bank identification number (BIN) of the card number.
     */
-    "bin"?: string;
+    'bin'?: string;
     /**
     * The brand of the physical or the virtual card. Possible values: **visa**, **mc**.
     */
-    "brand": string;
+    'brand': string;
     /**
     * The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. >Reach out to your Adyen contact to get the values relevant for your integration.
     */
-    "brandVariant": string;
+    'brandVariant': string;
     /**
     * The name of the cardholder.  Maximum length: 26 characters.
     */
-    "cardholderName": string;
-    "configuration"?: CardConfiguration;
+    'cardholderName': string;
+    'configuration'?: CardConfiguration | null;
     /**
     * The CVC2 value of the card. > The CVC2 is not sent by default. This is only returned in the `POST` response for single-use virtual cards.
     */
-    "cvc"?: string;
-    "deliveryContact"?: DeliveryContact;
-    "expiration"?: Expiry;
+    'cvc'?: string;
+    'deliveryContact'?: DeliveryContact | null;
+    'expiration'?: Expiry | null;
     /**
     * The form factor of the card. Possible values: **virtual**, **physical**.
     */
-    "formFactor": Card.FormFactorEnum;
+    'formFactor': Card.FormFactorEnum;
     /**
     * Last last four digits of the card number.
     */
-    "lastFour"?: string;
+    'lastFour'?: string;
     /**
     * The primary account number (PAN) of the card. > The PAN is masked by default and returned only for single-use virtual cards.
     */
-    "number": string;
+    'number': string;
     /**
-    * Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+    * The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. > Reach out to your Adyen contact to get the values relevant for your integration.
     */
-    "threeDSecure"?: string;
+    'threeDSecure'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "authentication",
             "baseName": "authentication",
-            "type": "Authentication",
-            "format": ""
+            "type": "Authentication | null"
         },
         {
             "name": "bin",
             "baseName": "bin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "brandVariant",
             "baseName": "brandVariant",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardholderName",
             "baseName": "cardholderName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "configuration",
             "baseName": "configuration",
-            "type": "CardConfiguration",
-            "format": ""
+            "type": "CardConfiguration | null"
         },
         {
             "name": "cvc",
             "baseName": "cvc",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "deliveryContact",
             "baseName": "deliveryContact",
-            "type": "DeliveryContact",
-            "format": ""
+            "type": "DeliveryContact | null"
         },
         {
             "name": "expiration",
             "baseName": "expiration",
-            "type": "Expiry",
-            "format": ""
+            "type": "Expiry | null"
         },
         {
             "name": "formFactor",
             "baseName": "formFactor",
-            "type": "Card.FormFactorEnum",
-            "format": ""
+            "type": "Card.FormFactorEnum"
         },
         {
             "name": "lastFour",
             "baseName": "lastFour",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "number",
             "baseName": "number",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDSecure",
             "baseName": "threeDSecure",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Card.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

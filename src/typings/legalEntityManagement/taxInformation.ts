@@ -12,45 +12,37 @@ export class TaxInformation {
     /**
     * The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
     */
-    "country"?: string;
+    'country'?: string;
     /**
     * The tax ID number (TIN) of the organization or individual.
     */
-    "number"?: string;
+    'number'?: string;
     /**
     * The TIN type depending on the country where it was issued. Only provide if the country has multiple tax IDs: Singapore, Sweden, the UK, or the US. For example, provide **SSN**, **EIN**, or **ITIN** for the US.
     */
-    "type"?: string;
+    'type'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "country",
             "baseName": "country",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "number",
             "baseName": "number",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return TaxInformation.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

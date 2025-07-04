@@ -12,25 +12,19 @@ export class BinDetail {
     /**
     * The country where the card was issued.
     */
-    "issuerCountry"?: string;
+    'issuerCountry'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "issuerCountry",
             "baseName": "issuerCountry",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return BinDetail.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

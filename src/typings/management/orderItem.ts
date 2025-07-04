@@ -12,55 +12,46 @@ export class OrderItem {
     /**
     * The unique identifier of the product.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The number of installments for the specified product `id`.
     */
-    "installments"?: number;
+    'installments'?: number;
     /**
     * The name of the product.
     */
-    "name"?: string;
+    'name'?: string;
     /**
     * The number of items with the specified product `id` included in the order.
     */
-    "quantity"?: number;
+    'quantity'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "installments",
             "baseName": "installments",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "quantity",
             "baseName": "quantity",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return OrderItem.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

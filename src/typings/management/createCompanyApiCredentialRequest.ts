@@ -12,55 +12,46 @@ export class CreateCompanyApiCredentialRequest {
     /**
     * List of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) for the new API credential.
     */
-    "allowedOrigins"?: Array<string>;
+    'allowedOrigins'?: Array<string>;
     /**
     * List of merchant accounts that the API credential has access to.
     */
-    "associatedMerchantAccounts"?: Array<string>;
+    'associatedMerchantAccounts'?: Array<string>;
     /**
     * Description of the API credential.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential. Only roles assigned to \'ws@Company.<CompanyName>\' can be assigned to other API credentials.
     */
-    "roles"?: Array<string>;
+    'roles'?: Array<string>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "allowedOrigins",
             "baseName": "allowedOrigins",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "associatedMerchantAccounts",
             "baseName": "associatedMerchantAccounts",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "roles",
             "baseName": "roles",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
         return CreateCompanyApiCredentialRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,52 +7,43 @@
  * Do not edit this class manually.
  */
 
-import { CardOrderItem } from "./cardOrderItem";
-
+import { CardOrderItem } from './cardOrderItem';
 
 export class PaginatedGetCardOrderItemResponse {
     /**
     * List of card order items in the card order batch.
     */
-    "data": Array<CardOrderItem>;
+    'data': Array<CardOrderItem>;
     /**
     * Indicates whether there are more items on the next page.
     */
-    "hasNext": boolean;
+    'hasNext': boolean;
     /**
     * Indicates whether there are more items on the previous page.
     */
-    "hasPrevious": boolean;
+    'hasPrevious': boolean;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<CardOrderItem>",
-            "format": ""
+            "type": "Array<CardOrderItem>"
         },
         {
             "name": "hasNext",
             "baseName": "hasNext",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "hasPrevious",
             "baseName": "hasPrevious",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return PaginatedGetCardOrderItemResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

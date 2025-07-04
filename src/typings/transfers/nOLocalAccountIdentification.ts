@@ -12,35 +12,28 @@ export class NOLocalAccountIdentification {
     /**
     * The 11-digit bank account number, without separators or whitespace.
     */
-    "accountNumber": string;
+    'accountNumber': string;
     /**
     * **noLocal**
     */
-    "type": NOLocalAccountIdentification.TypeEnum;
+    'type': NOLocalAccountIdentification.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "NOLocalAccountIdentification.TypeEnum",
-            "format": ""
+            "type": "NOLocalAccountIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return NOLocalAccountIdentification.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

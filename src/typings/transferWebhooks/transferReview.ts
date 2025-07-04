@@ -12,35 +12,28 @@ export class TransferReview {
     /**
     * Shows the number of [approvals](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers/approve) required to process the transfer.
     */
-    "numberOfApprovalsRequired"?: number;
+    'numberOfApprovalsRequired'?: number;
     /**
     * Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **notApplicable**.
     */
-    "scaOnApproval"?: TransferReview.ScaOnApprovalEnum;
+    'scaOnApproval'?: TransferReview.ScaOnApprovalEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "numberOfApprovalsRequired",
             "baseName": "numberOfApprovalsRequired",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "scaOnApproval",
             "baseName": "scaOnApproval",
-            "type": "TransferReview.ScaOnApprovalEnum",
-            "format": ""
+            "type": "TransferReview.ScaOnApprovalEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return TransferReview.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

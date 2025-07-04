@@ -12,35 +12,28 @@ export class CountriesRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    "operation": string;
+    'operation': string;
     /**
     * List of two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.
     */
-    "value"?: Array<string>;
+    'value'?: Array<string>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
         return CountriesRestriction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,69 +7,58 @@
  * Do not edit this class manually.
  */
 
-import { PermitRestriction } from "./permitRestriction";
-
+import { PermitRestriction } from './permitRestriction';
 
 export class Permit {
     /**
     * Partner ID (when using the permit-per-partner token sharing model).
     */
-    "partnerId"?: string;
+    'partnerId'?: string;
     /**
     * The profile to apply to this permit (when using the shared permits model).
     */
-    "profileReference"?: string;
-    "restriction"?: PermitRestriction | null;
+    'profileReference'?: string;
+    'restriction'?: PermitRestriction | null;
     /**
     * The key to link permit requests to permit results.
     */
-    "resultKey"?: string;
+    'resultKey'?: string;
     /**
     * The expiry date for this permit.
     */
-    "validTillDate"?: Date;
+    'validTillDate'?: Date;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "partnerId",
             "baseName": "partnerId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "profileReference",
             "baseName": "profileReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "restriction",
             "baseName": "restriction",
-            "type": "PermitRestriction | null",
-            "format": ""
+            "type": "PermitRestriction | null"
         },
         {
             "name": "resultKey",
             "baseName": "resultKey",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "validTillDate",
             "baseName": "validTillDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
         return Permit.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

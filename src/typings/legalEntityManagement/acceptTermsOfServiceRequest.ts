@@ -12,35 +12,28 @@ export class AcceptTermsOfServiceRequest {
     /**
     * The legal entity ID of the user accepting the Terms of Service.  For organizations, this must be the individual legal entity ID of an authorized signatory for the organization.  For sole proprietorships, this must be the individual legal entity ID of the owner.  For individuals, this must be the individual legal entity id of either the individual, parent, or guardian.  
     */
-    "acceptedBy": string;
+    'acceptedBy': string;
     /**
     * The IP address of the user accepting the Terms of Service.
     */
-    "ipAddress"?: string;
+    'ipAddress'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "acceptedBy",
             "baseName": "acceptedBy",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "ipAddress",
             "baseName": "ipAddress",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return AcceptTermsOfServiceRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

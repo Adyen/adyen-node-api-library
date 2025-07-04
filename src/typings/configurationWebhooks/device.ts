@@ -12,35 +12,28 @@ export class Device {
     /**
     * The type of the device used for provisioning the network token.  For example, **phone**, **mobile_phone**, **watch**, **mobilephone_or_tablet**, etc
     */
-    "formFactor"?: string;
+    'formFactor'?: string;
     /**
     * The operating system of the device used for provisioning the network token.
     */
-    "osName"?: string;
+    'osName'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "formFactor",
             "baseName": "formFactor",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "osName",
             "baseName": "osName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Device.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

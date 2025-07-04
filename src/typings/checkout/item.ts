@@ -12,35 +12,28 @@ export class Item {
     /**
     * The value to provide in the result.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The display name.
     */
-    "name"?: string;
+    'name'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Item.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

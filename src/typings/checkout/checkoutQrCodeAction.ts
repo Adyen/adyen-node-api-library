@@ -12,75 +12,64 @@ export class CheckoutQrCodeAction {
     /**
     * Expiry time of the QR code.
     */
-    "expiresAt"?: string;
+    'expiresAt'?: string;
     /**
     * Encoded payment data.
     */
-    "paymentData"?: string;
+    'paymentData'?: string;
     /**
     * Specifies the payment method.
     */
-    "paymentMethodType"?: string;
+    'paymentMethodType'?: string;
     /**
     * The contents of the QR code as a UTF8 string.
     */
-    "qrCodeData"?: string;
+    'qrCodeData'?: string;
     /**
     * **qrCode**
     */
-    "type": CheckoutQrCodeAction.TypeEnum;
+    'type': CheckoutQrCodeAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    "url"?: string;
+    'url'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "expiresAt",
             "baseName": "expiresAt",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentData",
             "baseName": "paymentData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentMethodType",
             "baseName": "paymentMethodType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "qrCodeData",
             "baseName": "qrCodeData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CheckoutQrCodeAction.TypeEnum",
-            "format": ""
+            "type": "CheckoutQrCodeAction.TypeEnum"
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutQrCodeAction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

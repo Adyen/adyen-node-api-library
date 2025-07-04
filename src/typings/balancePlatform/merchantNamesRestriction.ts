@@ -7,39 +7,31 @@
  * Do not edit this class manually.
  */
 
-import { StringMatch } from "./stringMatch";
-
+import { StringMatch } from './stringMatch';
 
 export class MerchantNamesRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    "operation": string;
-    "value"?: Array<StringMatch>;
+    'operation': string;
+    'value'?: Array<StringMatch>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "Array<StringMatch>",
-            "format": ""
+            "type": "Array<StringMatch>"
         }    ];
 
     static getAttributeTypeMap() {
         return MerchantNamesRestriction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

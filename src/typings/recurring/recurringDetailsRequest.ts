@@ -7,49 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { Recurring } from "./recurring";
-
+import { Recurring } from './recurring';
 
 export class RecurringDetailsRequest {
     /**
     * The merchant account identifier you want to process the (transaction) request with.
     */
-    "merchantAccount": string;
-    "recurring"?: Recurring | null;
+    'merchantAccount': string;
+    'recurring'?: Recurring | null;
     /**
     * The reference you use to uniquely identify the shopper (e.g. user ID or account ID).
     */
-    "shopperReference": string;
+    'shopperReference': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurring",
             "baseName": "recurring",
-            "type": "Recurring | null",
-            "format": ""
+            "type": "Recurring | null"
         },
         {
             "name": "shopperReference",
             "baseName": "shopperReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return RecurringDetailsRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,24 +7,22 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    BalanceCheckRequest,
+    BalanceCheckResponse,
+    CancelOrderRequest,
+    CancelOrderResponse,
+    CreateOrderRequest,
+    CreateOrderResponse,
+    ServiceError,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
-import { BalanceCheckRequest } from "../../typings/checkout/models";
-import { BalanceCheckResponse } from "../../typings/checkout/models";
-import { CancelOrderRequest } from "../../typings/checkout/models";
-import { CancelOrderResponse } from "../../typings/checkout/models";
-import { CreateOrderRequest } from "../../typings/checkout/models";
-import { CreateOrderResponse } from "../../typings/checkout/models";
-
-/**
- * API handler for OrdersApi
- */
 export class OrdersApi extends Service {
 
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v71";
@@ -44,14 +42,12 @@ export class OrdersApi extends Service {
     public async cancelOrder(cancelOrderRequest: CancelOrderRequest, requestOptions?: IRequest.Options): Promise<CancelOrderResponse> {
         const endpoint = `${this.baseUrl}/orders/cancel`;
         const resource = new Resource(this, endpoint);
-        
         const request: CancelOrderRequest = ObjectSerializer.serialize(cancelOrderRequest, "CancelOrderRequest");
         const response = await getJsonResponse<CancelOrderRequest, CancelOrderResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "CancelOrderResponse");
     }
 
@@ -64,14 +60,12 @@ export class OrdersApi extends Service {
     public async getBalanceOfGiftCard(balanceCheckRequest: BalanceCheckRequest, requestOptions?: IRequest.Options): Promise<BalanceCheckResponse> {
         const endpoint = `${this.baseUrl}/paymentMethods/balance`;
         const resource = new Resource(this, endpoint);
-        
         const request: BalanceCheckRequest = ObjectSerializer.serialize(balanceCheckRequest, "BalanceCheckRequest");
         const response = await getJsonResponse<BalanceCheckRequest, BalanceCheckResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "BalanceCheckResponse");
     }
 
@@ -84,15 +78,12 @@ export class OrdersApi extends Service {
     public async orders(createOrderRequest: CreateOrderRequest, requestOptions?: IRequest.Options): Promise<CreateOrderResponse> {
         const endpoint = `${this.baseUrl}/orders`;
         const resource = new Resource(this, endpoint);
-        
         const request: CreateOrderRequest = ObjectSerializer.serialize(createOrderRequest, "CreateOrderRequest");
         const response = await getJsonResponse<CreateOrderRequest, CreateOrderResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "CreateOrderResponse");
     }
-
 }

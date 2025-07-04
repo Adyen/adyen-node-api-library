@@ -7,109 +7,94 @@
  * Do not edit this class manually.
  */
 
-import { InvalidField } from "./invalidField";
-
+import { InvalidField } from './invalidField';
 
 export class RestServiceError {
     /**
     * A human-readable explanation specific to this occurrence of the problem.
     */
-    "detail": string;
+    'detail': string;
     /**
     * A code that identifies the problem type.
     */
-    "errorCode": string;
+    'errorCode': string;
     /**
     * A unique URI that identifies the specific occurrence of the problem.
     */
-    "instance"?: string;
+    'instance'?: string;
     /**
     * Detailed explanation of each validation error, when applicable.
     */
-    "invalidFields"?: Array<InvalidField>;
+    'invalidFields'?: Array<InvalidField>;
     /**
     * A unique reference for the request, essentially the same as `pspReference`.
     */
-    "requestId"?: string;
-    "response"?: any;
+    'requestId'?: string;
+    'response'?: object;
     /**
     * The HTTP status code.
     */
-    "status": number;
+    'status': number;
     /**
     * A short, human-readable summary of the problem type.
     */
-    "title": string;
+    'title': string;
     /**
     * A URI that identifies the problem type, pointing to human-readable documentation on this problem type.
     */
-    "type": string;
+    'type': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "detail",
             "baseName": "detail",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "errorCode",
             "baseName": "errorCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "instance",
             "baseName": "instance",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "invalidFields",
             "baseName": "invalidFields",
-            "type": "Array<InvalidField>",
-            "format": ""
+            "type": "Array<InvalidField>"
         },
         {
             "name": "requestId",
             "baseName": "requestId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "response",
             "baseName": "response",
-            "type": "any",
-            "format": ""
+            "type": "object"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "title",
             "baseName": "title",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return RestServiceError.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

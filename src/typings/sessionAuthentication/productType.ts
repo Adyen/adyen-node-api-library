@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+
 export enum ProductType {
     Onboarding = 'onboarding',
     Platform = 'platform'

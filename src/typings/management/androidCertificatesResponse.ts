@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { AndroidCertificate } from "./androidCertificate";
-
+import { AndroidCertificate } from './androidCertificate';
 
 export class AndroidCertificatesResponse {
     /**
     * Uploaded Android certificates for Android payment terminals.
     */
-    "data"?: Array<AndroidCertificate>;
+    'data'?: Array<AndroidCertificate>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<AndroidCertificate>",
-            "format": ""
+            "type": "Array<AndroidCertificate>"
         }    ];
 
     static getAttributeTypeMap() {
         return AndroidCertificatesResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

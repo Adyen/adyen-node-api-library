@@ -7,29 +7,22 @@
  * Do not edit this class manually.
  */
 
-import { AuthenticationDecision } from "./authenticationDecision";
-
+import { AuthenticationDecision } from './authenticationDecision';
 
 export class RelayedAuthenticationResponse {
-    "authenticationDecision": AuthenticationDecision;
+    'authenticationDecision': AuthenticationDecision;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "authenticationDecision",
             "baseName": "authenticationDecision",
-            "type": "AuthenticationDecision",
-            "format": ""
+            "type": "AuthenticationDecision"
         }    ];
 
     static getAttributeTypeMap() {
         return RelayedAuthenticationResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

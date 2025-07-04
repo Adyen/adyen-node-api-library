@@ -7,69 +7,58 @@
  * Do not edit this class manually.
  */
 
-import { Address } from "./address";
-
+import { Address } from './address';
 
 export class BillingEntity {
-    "address"?: Address | null;
+    'address'?: Address | null;
     /**
     * The email address of the billing entity.
     */
-    "email"?: string;
+    'email'?: string;
     /**
     * The unique identifier of the billing entity, for use as `billingEntityId` when creating an order.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The unique name of the billing entity.
     */
-    "name"?: string;
+    'name'?: string;
     /**
     * The tax number of the billing entity.
     */
-    "taxId"?: string;
+    'taxId'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address | null",
-            "format": ""
+            "type": "Address | null"
         },
         {
             "name": "email",
             "baseName": "email",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "taxId",
             "baseName": "taxId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return BillingEntity.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 
