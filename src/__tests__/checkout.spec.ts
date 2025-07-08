@@ -558,6 +558,38 @@ describe("Checkout", (): void => {
         expect(sessionsResponse.expiresAt.getFullYear()).toBeGreaterThan(0);
     });
 
+    test("should create a session instantiating an object", async (): Promise<void> => {
+
+        const expectedPayload = {
+            merchantAccount: "myMerchantAccount",
+            reference: "myReference",
+            returnUrl: "https://your-company.com/...",
+            countryCode: "NL",
+            amount: {
+                currency: "USD",
+                value: 1000,
+            },
+        };
+        scope.post("/sessions", (body) => {
+            expect(body).toEqual(expectedPayload);
+            return true; // return true to indicate that the body matches the expected payload
+        }).reply(200, sessionsSuccess);
+
+        const sessionsRequest: checkout.CreateCheckoutSessionRequest = new checkout.CreateCheckoutSessionRequest();
+        sessionsRequest.merchantAccount = "myMerchantAccount";
+        sessionsRequest.reference = "myReference";
+        sessionsRequest.returnUrl = "https://your-company.com/...";
+        sessionsRequest.countryCode = "NL";
+        sessionsRequest.amount = new checkout.Amount();
+        sessionsRequest.amount.currency = "USD";
+        sessionsRequest.amount.value = 1000;
+
+        const sessionsResponse: checkout.CreateCheckoutSessionResponse = await checkoutService.PaymentsApi.sessions(sessionsRequest);
+        expect(sessionsResponse.sessionData).toBeTruthy();
+        expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);
+        expect(sessionsResponse.expiresAt.getFullYear()).toBeGreaterThan(0);
+    });
+
     test("should create a session with installmentOptions.", async (): Promise<void> => {
         scope.post("/sessions")
             .reply(200, sessionsSuccess);
