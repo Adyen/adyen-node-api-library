@@ -7,37 +7,29 @@
  * Do not edit this class manually.
  */
 
-import { CardIdentification } from "./cardIdentification";
-import { PartyIdentification } from "./partyIdentification";
-
+import { CardIdentification } from './cardIdentification';
+import { PartyIdentification } from './partyIdentification';
 
 export class Card {
-    "cardHolder": PartyIdentification;
-    "cardIdentification": CardIdentification;
+    'cardHolder': PartyIdentification;
+    'cardIdentification': CardIdentification;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "cardHolder",
             "baseName": "cardHolder",
-            "type": "PartyIdentification",
-            "format": ""
+            "type": "PartyIdentification"
         },
         {
             "name": "cardIdentification",
             "baseName": "cardIdentification",
-            "type": "CardIdentification",
-            "format": ""
+            "type": "CardIdentification"
         }    ];
 
     static getAttributeTypeMap() {
         return Card.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,22 +7,20 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    DonationCampaignsRequest,
+    DonationCampaignsResponse,
+    DonationPaymentRequest,
+    DonationPaymentResponse,
+    ServiceError,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
-import { DonationCampaignsRequest } from "../../typings/checkout/models";
-import { DonationCampaignsResponse } from "../../typings/checkout/models";
-import { DonationPaymentRequest } from "../../typings/checkout/models";
-import { DonationPaymentResponse } from "../../typings/checkout/models";
-
-/**
- * API handler for DonationsApi
- */
 export class DonationsApi extends Service {
 
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v71";
@@ -42,14 +40,12 @@ export class DonationsApi extends Service {
     public async donationCampaigns(donationCampaignsRequest: DonationCampaignsRequest, requestOptions?: IRequest.Options): Promise<DonationCampaignsResponse> {
         const endpoint = `${this.baseUrl}/donationCampaigns`;
         const resource = new Resource(this, endpoint);
-        
         const request: DonationCampaignsRequest = ObjectSerializer.serialize(donationCampaignsRequest, "DonationCampaignsRequest");
         const response = await getJsonResponse<DonationCampaignsRequest, DonationCampaignsResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "DonationCampaignsResponse");
     }
 
@@ -62,15 +58,12 @@ export class DonationsApi extends Service {
     public async donations(donationPaymentRequest: DonationPaymentRequest, requestOptions?: IRequest.Options): Promise<DonationPaymentResponse> {
         const endpoint = `${this.baseUrl}/donations`;
         const resource = new Resource(this, endpoint);
-        
         const request: DonationPaymentRequest = ObjectSerializer.serialize(donationPaymentRequest, "DonationPaymentRequest");
         const response = await getJsonResponse<DonationPaymentRequest, DonationPaymentResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "DonationPaymentResponse");
     }
-
 }

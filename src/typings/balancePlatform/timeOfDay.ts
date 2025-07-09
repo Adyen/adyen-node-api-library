@@ -12,35 +12,28 @@ export class TimeOfDay {
     /**
     * The end time in a time-only ISO-8601 extended offset format. For example: **08:00:00+02:00**, **22:30:00-03:00**.  
     */
-    "endTime"?: string;
+    'endTime'?: string;
     /**
     * The start time in a time-only ISO-8601 extended offset format. For example: **08:00:00+02:00**, **22:30:00-03:00**.  
     */
-    "startTime"?: string;
+    'startTime'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "endTime",
             "baseName": "endTime",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "startTime",
             "baseName": "startTime",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return TimeOfDay.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

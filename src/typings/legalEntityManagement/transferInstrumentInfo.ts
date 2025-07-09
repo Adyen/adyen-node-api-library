@@ -7,49 +7,40 @@
  * Do not edit this class manually.
  */
 
-import { BankAccountInfo } from "./bankAccountInfo";
-
+import { BankAccountInfo } from './bankAccountInfo';
 
 export class TransferInstrumentInfo {
-    "bankAccount": BankAccountInfo;
+    'bankAccount': BankAccountInfo;
     /**
     * The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument.
     */
-    "legalEntityId": string;
+    'legalEntityId': string;
     /**
     * The type of transfer instrument.  Possible value: **bankAccount**.
     */
-    "type": TransferInstrumentInfo.TypeEnum;
+    'type': TransferInstrumentInfo.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccountInfo",
-            "format": ""
+            "type": "BankAccountInfo"
         },
         {
             "name": "legalEntityId",
             "baseName": "legalEntityId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TransferInstrumentInfo.TypeEnum",
-            "format": ""
+            "type": "TransferInstrumentInfo.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return TransferInstrumentInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

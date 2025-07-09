@@ -7,69 +7,58 @@
  * Do not edit this class manually.
  */
 
-import { NameLocation } from "./nameLocation";
-
+import { NameLocation } from './nameLocation';
 
 export class MerchantData {
     /**
     * The unique identifier of the merchant\'s acquirer.
     */
-    "acquirerId"?: string;
+    'acquirerId'?: string;
     /**
     * The merchant category code.
     */
-    "mcc"?: string;
+    'mcc'?: string;
     /**
     * The unique identifier of the merchant.
     */
-    "merchantId"?: string;
-    "nameLocation"?: NameLocation | null;
+    'merchantId'?: string;
+    'nameLocation'?: NameLocation | null;
     /**
     * The postal code of the merchant.
     */
-    "postalCode"?: string;
+    'postalCode'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "acquirerId",
             "baseName": "acquirerId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "mcc",
             "baseName": "mcc",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "merchantId",
             "baseName": "merchantId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "nameLocation",
             "baseName": "nameLocation",
-            "type": "NameLocation | null",
-            "format": ""
+            "type": "NameLocation | null"
         },
         {
             "name": "postalCode",
             "baseName": "postalCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return MerchantData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

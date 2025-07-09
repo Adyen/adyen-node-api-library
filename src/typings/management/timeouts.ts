@@ -12,25 +12,19 @@ export class Timeouts {
     /**
     * Indicates the number of seconds of inactivity after which the terminal display goes into sleep mode.
     */
-    "fromActiveToSleep"?: number;
+    'fromActiveToSleep'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "fromActiveToSleep",
             "baseName": "fromActiveToSleep",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return Timeouts.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { AllowedOrigin } from "./allowedOrigin";
-
+import { AllowedOrigin } from './allowedOrigin';
 
 export class AllowedOriginsResponse {
     /**
     * List of allowed origins.
     */
-    "data"?: Array<AllowedOrigin>;
+    'data'?: Array<AllowedOrigin>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<AllowedOrigin>",
-            "format": ""
+            "type": "Array<AllowedOrigin>"
         }    ];
 
     static getAttributeTypeMap() {
         return AllowedOriginsResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,53 +7,43 @@
  * Do not edit this class manually.
  */
 
-import { Phone } from "./phone";
-
+import { Phone } from './phone';
 
 export class CheckoutSessionThreeDS2RequestData {
-    "homePhone"?: Phone | null;
-    "mobilePhone"?: Phone | null;
+    'homePhone'?: Phone | null;
+    'mobilePhone'?: Phone | null;
     /**
     * Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
     */
-    "threeDSRequestorChallengeInd"?: CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
-    "workPhone"?: Phone | null;
+    'threeDSRequestorChallengeInd'?: CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum;
+    'workPhone'?: Phone | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "homePhone",
             "baseName": "homePhone",
-            "type": "Phone | null",
-            "format": ""
+            "type": "Phone | null"
         },
         {
             "name": "mobilePhone",
             "baseName": "mobilePhone",
-            "type": "Phone | null",
-            "format": ""
+            "type": "Phone | null"
         },
         {
             "name": "threeDSRequestorChallengeInd",
             "baseName": "threeDSRequestorChallengeInd",
-            "type": "CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum",
-            "format": ""
+            "type": "CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum"
         },
         {
             "name": "workPhone",
             "baseName": "workPhone",
-            "type": "Phone | null",
-            "format": ""
+            "type": "Phone | null"
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutSessionThreeDS2RequestData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

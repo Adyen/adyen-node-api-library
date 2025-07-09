@@ -7,42 +7,34 @@
  * Do not edit this class manually.
  */
 
-import { MinorUnitsMonetaryValue } from "./minorUnitsMonetaryValue";
-
+import { MinorUnitsMonetaryValue } from './minorUnitsMonetaryValue';
 
 export class OfflineProcessing {
     /**
     * The maximum offline transaction amount for chip cards, in the processing currency and specified in [minor units](https://docs.adyen.com/development-resources/currency-codes).
     */
-    "chipFloorLimit"?: number;
+    'chipFloorLimit'?: number;
     /**
     * The maximum offline transaction amount for swiped cards, in the specified currency.
     */
-    "offlineSwipeLimits"?: Array<MinorUnitsMonetaryValue>;
+    'offlineSwipeLimits'?: Array<MinorUnitsMonetaryValue>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "chipFloorLimit",
             "baseName": "chipFloorLimit",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "offlineSwipeLimits",
             "baseName": "offlineSwipeLimits",
-            "type": "Array<MinorUnitsMonetaryValue>",
-            "format": ""
+            "type": "Array<MinorUnitsMonetaryValue>"
         }    ];
 
     static getAttributeTypeMap() {
         return OfflineProcessing.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

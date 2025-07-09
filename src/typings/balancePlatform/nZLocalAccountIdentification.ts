@@ -12,35 +12,28 @@ export class NZLocalAccountIdentification {
     /**
     * The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix.
     */
-    "accountNumber": string;
+    'accountNumber': string;
     /**
     * **nzLocal**
     */
-    "type": NZLocalAccountIdentification.TypeEnum;
+    'type': NZLocalAccountIdentification.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "NZLocalAccountIdentification.TypeEnum",
-            "format": ""
+            "type": "NZLocalAccountIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return NZLocalAccountIdentification.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

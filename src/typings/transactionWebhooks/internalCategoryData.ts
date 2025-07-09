@@ -12,45 +12,37 @@ export class InternalCategoryData {
     /**
     * The capture\'s merchant reference included in the transfer.
     */
-    "modificationMerchantReference"?: string;
+    'modificationMerchantReference'?: string;
     /**
     * The capture reference included in the transfer.
     */
-    "modificationPspReference"?: string;
+    'modificationPspReference'?: string;
     /**
     * **internal**
     */
-    "type"?: InternalCategoryData.TypeEnum;
+    'type'?: InternalCategoryData.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "modificationMerchantReference",
             "baseName": "modificationMerchantReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "modificationPspReference",
             "baseName": "modificationPspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "InternalCategoryData.TypeEnum",
-            "format": ""
+            "type": "InternalCategoryData.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return InternalCategoryData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

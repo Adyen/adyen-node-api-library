@@ -12,135 +12,118 @@ export class AdditionalDataSubMerchant {
     /**
     * Required for transactions performed by registered payment facilitators. Indicates the number of sub-merchants contained in the request. For example, **3**.
     */
-    "subMerchant_numberOfSubSellers"?: string;
+    'subMerchant_numberOfSubSellers'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The city of the sub-merchant\'s address. * Format: Alphanumeric * Maximum length: 13 characters
     */
-    "subMerchant_subSeller_subSellerNr_city"?: string;
+    'subMerchant_subSeller_subSellerNr_city'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The three-letter country code of the sub-merchant\'s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters
     */
-    "subMerchant_subSeller_subSellerNr_country"?: string;
+    'subMerchant_subSeller_subSellerNr_country'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters
     */
-    "subMerchant_subSeller_subSellerNr_email"?: string;
+    'subMerchant_subSeller_subSellerNr_email'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters
     */
-    "subMerchant_subSeller_subSellerNr_id"?: string;
+    'subMerchant_subSeller_subSellerNr_id'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The sub-merchant\'s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits
     */
-    "subMerchant_subSeller_subSellerNr_mcc"?: string;
+    'subMerchant_subSeller_subSellerNr_mcc'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. Exception: for acquirers in Brazil, this value does not overwrite the shopper statement. * Format: Alphanumeric * Maximum length: 22 characters
     */
-    "subMerchant_subSeller_subSellerNr_name"?: string;
+    'subMerchant_subSeller_subSellerNr_name'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters
     */
-    "subMerchant_subSeller_subSellerNr_phoneNumber"?: string;
+    'subMerchant_subSeller_subSellerNr_phoneNumber'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant\'s address, without dashes. * Format: Numeric * Fixed length: 8 digits
     */
-    "subMerchant_subSeller_subSellerNr_postalCode"?: string;
+    'subMerchant_subSeller_subSellerNr_postalCode'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The state code of the sub-merchant\'s address, if applicable to the country. * Format: Alphanumeric * Maximum length: 2 characters
     */
-    "subMerchant_subSeller_subSellerNr_state"?: string;
+    'subMerchant_subSeller_subSellerNr_state'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The street name and house number of the sub-merchant\'s address. * Format: Alphanumeric * Maximum length: 60 characters
     */
-    "subMerchant_subSeller_subSellerNr_street"?: string;
+    'subMerchant_subSeller_subSellerNr_street'?: string;
     /**
     * Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ
     */
-    "subMerchant_subSeller_subSellerNr_taxId"?: string;
+    'subMerchant_subSeller_subSellerNr_taxId'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "subMerchant_numberOfSubSellers",
             "baseName": "subMerchant.numberOfSubSellers",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_city",
             "baseName": "subMerchant.subSeller[subSellerNr].city",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_country",
             "baseName": "subMerchant.subSeller[subSellerNr].country",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_email",
             "baseName": "subMerchant.subSeller[subSellerNr].email",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_id",
             "baseName": "subMerchant.subSeller[subSellerNr].id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_mcc",
             "baseName": "subMerchant.subSeller[subSellerNr].mcc",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_name",
             "baseName": "subMerchant.subSeller[subSellerNr].name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_phoneNumber",
             "baseName": "subMerchant.subSeller[subSellerNr].phoneNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_postalCode",
             "baseName": "subMerchant.subSeller[subSellerNr].postalCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_state",
             "baseName": "subMerchant.subSeller[subSellerNr].state",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_street",
             "baseName": "subMerchant.subSeller[subSellerNr].street",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subMerchant_subSeller_subSellerNr_taxId",
             "baseName": "subMerchant.subSeller[subSellerNr].taxId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataSubMerchant.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

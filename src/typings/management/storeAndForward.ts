@@ -7,50 +7,41 @@
  * Do not edit this class manually.
  */
 
-import { MinorUnitsMonetaryValue } from "./minorUnitsMonetaryValue";
-import { SupportedCardTypes } from "./supportedCardTypes";
-
+import { MinorUnitsMonetaryValue } from './minorUnitsMonetaryValue';
+import { SupportedCardTypes } from './supportedCardTypes';
 
 export class StoreAndForward {
     /**
     * The maximum amount that the terminal accepts for a single store-and-forward payment.
     */
-    "maxAmount"?: Array<MinorUnitsMonetaryValue>;
+    'maxAmount'?: Array<MinorUnitsMonetaryValue>;
     /**
     * The maximum number of store-and-forward transactions per terminal that you can process while offline.
     */
-    "maxPayments"?: number;
-    "supportedCardTypes"?: SupportedCardTypes | null;
+    'maxPayments'?: number;
+    'supportedCardTypes'?: SupportedCardTypes | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "maxAmount",
             "baseName": "maxAmount",
-            "type": "Array<MinorUnitsMonetaryValue>",
-            "format": ""
+            "type": "Array<MinorUnitsMonetaryValue>"
         },
         {
             "name": "maxPayments",
             "baseName": "maxPayments",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "supportedCardTypes",
             "baseName": "supportedCardTypes",
-            "type": "SupportedCardTypes | null",
-            "format": ""
+            "type": "SupportedCardTypes | null"
         }    ];
 
     static getAttributeTypeMap() {
         return StoreAndForward.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

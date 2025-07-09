@@ -7,124 +7,108 @@
  * Do not edit this class manually.
  */
 
-import { InputDetail } from "./inputDetail";
-import { PaymentMethodGroup } from "./paymentMethodGroup";
-import { PaymentMethodIssuer } from "./paymentMethodIssuer";
-import { PaymentMethodUPIApps } from "./paymentMethodUPIApps";
-
+import { InputDetail } from './inputDetail';
+import { PaymentMethodGroup } from './paymentMethodGroup';
+import { PaymentMethodIssuer } from './paymentMethodIssuer';
+import { PaymentMethodUPIApps } from './paymentMethodUPIApps';
 
 export class PaymentMethod {
     /**
     * A list of apps for this payment method.
     */
-    "apps"?: Array<PaymentMethodUPIApps>;
+    'apps'?: Array<PaymentMethodUPIApps>;
     /**
     * Brand for the selected gift card. For example: plastix, hmclub.
     */
-    "brand"?: string;
+    'brand'?: string;
     /**
     * List of possible brands. For example: visa, mc.
     */
-    "brands"?: Array<string>;
+    'brands'?: Array<string>;
     /**
     * The configuration of the payment method.
     */
-    "configuration"?: { [key: string]: string; };
+    'configuration'?: { [key: string]: string; };
     /**
     * The funding source of the payment method.
     */
-    "fundingSource"?: PaymentMethod.FundingSourceEnum;
-    "group"?: PaymentMethodGroup | null;
+    'fundingSource'?: PaymentMethod.FundingSourceEnum;
+    'group'?: PaymentMethodGroup | null;
     /**
     * All input details to be provided to complete the payment with this payment method.
     *
 	* @deprecated 
     */
-    "inputDetails"?: Array<InputDetail>;
+    'inputDetails'?: Array<InputDetail>;
     /**
     * A list of issuers for this payment method.
     */
-    "issuers"?: Array<PaymentMethodIssuer>;
+    'issuers'?: Array<PaymentMethodIssuer>;
     /**
     * The displayable name of this payment method.
     */
-    "name"?: string;
+    'name'?: string;
     /**
     * The unique payment method code.
     */
-    "type"?: string;
+    'type'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "apps",
             "baseName": "apps",
-            "type": "Array<PaymentMethodUPIApps>",
-            "format": ""
+            "type": "Array<PaymentMethodUPIApps>"
         },
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "brands",
             "baseName": "brands",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "configuration",
             "baseName": "configuration",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "PaymentMethod.FundingSourceEnum",
-            "format": ""
+            "type": "PaymentMethod.FundingSourceEnum"
         },
         {
             "name": "group",
             "baseName": "group",
-            "type": "PaymentMethodGroup | null",
-            "format": ""
+            "type": "PaymentMethodGroup | null"
         },
         {
             "name": "inputDetails",
             "baseName": "inputDetails",
-            "type": "Array<InputDetail>",
-            "format": ""
+            "type": "Array<InputDetail>"
         },
         {
             "name": "issuers",
             "baseName": "issuers",
-            "type": "Array<PaymentMethodIssuer>",
-            "format": ""
+            "type": "Array<PaymentMethodIssuer>"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentMethod.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

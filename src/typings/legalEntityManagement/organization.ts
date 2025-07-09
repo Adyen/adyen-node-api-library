@@ -7,190 +7,166 @@
  * Do not edit this class manually.
  */
 
-import { Address } from "./address";
-import { FinancialReport } from "./financialReport";
-import { PhoneNumber } from "./phoneNumber";
-import { StockData } from "./stockData";
-import { TaxInformation } from "./taxInformation";
-import { TaxReportingClassification } from "./taxReportingClassification";
-import { WebData } from "./webData";
-
+import { Address } from './address';
+import { FinancialReport } from './financialReport';
+import { PhoneNumber } from './phoneNumber';
+import { StockData } from './stockData';
+import { TaxInformation } from './taxInformation';
+import { TaxReportingClassification } from './taxReportingClassification';
+import { WebData } from './webData';
 
 export class Organization {
     /**
     * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.
     */
-    "countryOfGoverningLaw"?: string;
+    'countryOfGoverningLaw'?: string;
     /**
     * The date when the organization was incorporated in YYYY-MM-DD format.
     */
-    "dateOfIncorporation"?: string;
+    'dateOfIncorporation'?: string;
     /**
     * Your description for the organization.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * The organization\'s trading name, if different from the registered legal name.
     */
-    "doingBusinessAs"?: string;
+    'doingBusinessAs'?: string;
     /**
     * The email address of the legal entity.
     */
-    "email"?: string;
+    'email'?: string;
     /**
     * The financial report information of the organization.
     */
-    "financialReports"?: Array<FinancialReport>;
+    'financialReports'?: Array<FinancialReport>;
     /**
     * The organization\'s legal name.
     */
-    "legalName": string;
-    "phone"?: PhoneNumber | null;
-    "principalPlaceOfBusiness"?: Address | null;
-    "registeredAddress": Address;
+    'legalName': string;
+    'phone'?: PhoneNumber | null;
+    'principalPlaceOfBusiness'?: Address | null;
+    'registeredAddress': Address;
     /**
     * The organization\'s registration number.
     */
-    "registrationNumber"?: string;
-    "stockData"?: StockData | null;
+    'registrationNumber'?: string;
+    'stockData'?: StockData | null;
     /**
     * The tax information of the organization.
     */
-    "taxInformation"?: Array<TaxInformation>;
-    "taxReportingClassification"?: TaxReportingClassification | null;
+    'taxInformation'?: Array<TaxInformation>;
+    'taxReportingClassification'?: TaxReportingClassification | null;
     /**
     * Type of organization.  Possible values: **associationIncorporated**, **governmentalOrganization**, **listedPublicCompany**, **nonProfit**, **partnershipIncorporated**, **privateCompany**.
     */
-    "type"?: Organization.TypeEnum;
+    'type'?: Organization.TypeEnum;
     /**
     * The reason the organization has not provided a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
     */
-    "vatAbsenceReason"?: Organization.VatAbsenceReasonEnum;
+    'vatAbsenceReason'?: Organization.VatAbsenceReasonEnum;
     /**
     * The organization\'s VAT number.
     */
-    "vatNumber"?: string;
-    "webData"?: WebData | null;
+    'vatNumber'?: string;
+    'webData'?: WebData | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "countryOfGoverningLaw",
             "baseName": "countryOfGoverningLaw",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "dateOfIncorporation",
             "baseName": "dateOfIncorporation",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "doingBusinessAs",
             "baseName": "doingBusinessAs",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "email",
             "baseName": "email",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "financialReports",
             "baseName": "financialReports",
-            "type": "Array<FinancialReport>",
-            "format": ""
+            "type": "Array<FinancialReport>"
         },
         {
             "name": "legalName",
             "baseName": "legalName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "phone",
             "baseName": "phone",
-            "type": "PhoneNumber | null",
-            "format": ""
+            "type": "PhoneNumber | null"
         },
         {
             "name": "principalPlaceOfBusiness",
             "baseName": "principalPlaceOfBusiness",
-            "type": "Address | null",
-            "format": ""
+            "type": "Address | null"
         },
         {
             "name": "registeredAddress",
             "baseName": "registeredAddress",
-            "type": "Address",
-            "format": ""
+            "type": "Address"
         },
         {
             "name": "registrationNumber",
             "baseName": "registrationNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "stockData",
             "baseName": "stockData",
-            "type": "StockData | null",
-            "format": ""
+            "type": "StockData | null"
         },
         {
             "name": "taxInformation",
             "baseName": "taxInformation",
-            "type": "Array<TaxInformation>",
-            "format": ""
+            "type": "Array<TaxInformation>"
         },
         {
             "name": "taxReportingClassification",
             "baseName": "taxReportingClassification",
-            "type": "TaxReportingClassification | null",
-            "format": ""
+            "type": "TaxReportingClassification | null"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "Organization.TypeEnum",
-            "format": ""
+            "type": "Organization.TypeEnum"
         },
         {
             "name": "vatAbsenceReason",
             "baseName": "vatAbsenceReason",
-            "type": "Organization.VatAbsenceReasonEnum",
-            "format": ""
+            "type": "Organization.VatAbsenceReasonEnum"
         },
         {
             "name": "vatNumber",
             "baseName": "vatNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "webData",
             "baseName": "webData",
-            "type": "WebData | null",
-            "format": ""
+            "type": "WebData | null"
         }    ];
 
     static getAttributeTypeMap() {
         return Organization.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

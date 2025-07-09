@@ -7,10 +7,9 @@
  * Do not edit this class manually.
  */
 
-import { SourceOfFunds } from "./sourceOfFunds";
-import { WebData } from "./webData";
-import { WebDataExemption } from "./webDataExemption";
-
+import { SourceOfFunds } from './sourceOfFunds';
+import { WebData } from './webData';
+import { WebDataExemption } from './webDataExemption';
 
 export class BusinessLineInfo {
     /**
@@ -19,89 +18,76 @@ export class BusinessLineInfo {
 	* @deprecated since Legal Entity Management API v3
 	* Use `service` instead.
     */
-    "capability"?: BusinessLineInfo.CapabilityEnum;
+    'capability'?: BusinessLineInfo.CapabilityEnum;
     /**
     * A code that represents the industry of the legal entity for [marketplaces](https://docs.adyen.com/marketplaces/verification-requirements/reference-additional-products/#list-industry-codes) or [platforms](https://docs.adyen.com/platforms/verification-requirements/reference-additional-products/#list-industry-codes). For example, **4431A** for computer software stores.
     */
-    "industryCode": string;
+    'industryCode': string;
     /**
     * Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.
     */
-    "legalEntityId": string;
+    'legalEntityId': string;
     /**
     * A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the `service` **paymentProcessing**.
     */
-    "salesChannels"?: Array<string>;
+    'salesChannels'?: Array<string>;
     /**
     * The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  
     */
-    "service": BusinessLineInfo.ServiceEnum;
-    "sourceOfFunds"?: SourceOfFunds | null;
+    'service': BusinessLineInfo.ServiceEnum;
+    'sourceOfFunds'?: SourceOfFunds | null;
     /**
     * List of website URLs where your user\'s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the `webDataExemption` object.
     */
-    "webData"?: Array<WebData>;
-    "webDataExemption"?: WebDataExemption | null;
+    'webData'?: Array<WebData>;
+    'webDataExemption'?: WebDataExemption | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "capability",
             "baseName": "capability",
-            "type": "BusinessLineInfo.CapabilityEnum",
-            "format": ""
+            "type": "BusinessLineInfo.CapabilityEnum"
         },
         {
             "name": "industryCode",
             "baseName": "industryCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "legalEntityId",
             "baseName": "legalEntityId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "salesChannels",
             "baseName": "salesChannels",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "service",
             "baseName": "service",
-            "type": "BusinessLineInfo.ServiceEnum",
-            "format": ""
+            "type": "BusinessLineInfo.ServiceEnum"
         },
         {
             "name": "sourceOfFunds",
             "baseName": "sourceOfFunds",
-            "type": "SourceOfFunds | null",
-            "format": ""
+            "type": "SourceOfFunds | null"
         },
         {
             "name": "webData",
             "baseName": "webData",
-            "type": "Array<WebData>",
-            "format": ""
+            "type": "Array<WebData>"
         },
         {
             "name": "webDataExemption",
             "baseName": "webDataExemption",
-            "type": "WebDataExemption | null",
-            "format": ""
+            "type": "WebDataExemption | null"
         }    ];
 
     static getAttributeTypeMap() {
         return BusinessLineInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

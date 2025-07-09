@@ -7,89 +7,67 @@
  * Do not edit this class manually.
  */
 
-import { SplitConfigurationLogic } from "./splitConfigurationLogic";
-
+import { SplitConfigurationLogic } from './splitConfigurationLogic';
 
 export class SplitConfigurationRule {
     /**
     * The currency condition that defines whether the split logic applies. Its value must be a three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).
     */
-    "currency": string;
+    'currency': string;
     /**
     * The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
     */
-    "fundingSource"?: SplitConfigurationRule.FundingSourceEnum;
+    'fundingSource'?: SplitConfigurationRule.FundingSourceEnum;
     /**
     * The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods.
     */
-    "paymentMethod": string;
-    /**
-    * 
-    */
-    "regionality"?: SplitConfigurationRule.RegionalityEnum;
+    'paymentMethod': string;
     /**
     * The unique identifier of the split configuration rule.
     */
-    "ruleId"?: string;
+    'ruleId'?: string;
     /**
     * The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.
     */
-    "shopperInteraction": SplitConfigurationRule.ShopperInteractionEnum;
-    "splitLogic": SplitConfigurationLogic;
+    'shopperInteraction': SplitConfigurationRule.ShopperInteractionEnum;
+    'splitLogic': SplitConfigurationLogic;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "SplitConfigurationRule.FundingSourceEnum",
-            "format": ""
+            "type": "SplitConfigurationRule.FundingSourceEnum"
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "regionality",
-            "baseName": "regionality",
-            "type": "SplitConfigurationRule.RegionalityEnum",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "ruleId",
             "baseName": "ruleId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperInteraction",
             "baseName": "shopperInteraction",
-            "type": "SplitConfigurationRule.ShopperInteractionEnum",
-            "format": ""
+            "type": "SplitConfigurationRule.ShopperInteractionEnum"
         },
         {
             "name": "splitLogic",
             "baseName": "splitLogic",
-            "type": "SplitConfigurationLogic",
-            "format": ""
+            "type": "SplitConfigurationLogic"
         }    ];
 
     static getAttributeTypeMap() {
         return SplitConfigurationRule.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 
@@ -100,12 +78,6 @@ export namespace SplitConfigurationRule {
         Debit = 'debit',
         DeferredDebit = 'deferred_debit',
         Prepaid = 'prepaid',
-        Any = 'ANY'
-    }
-    export enum RegionalityEnum {
-        International = 'international',
-        IntraRegional = 'intraRegional',
-        InterRegional = 'interRegional',
         Any = 'ANY'
     }
     export enum ShopperInteractionEnum {

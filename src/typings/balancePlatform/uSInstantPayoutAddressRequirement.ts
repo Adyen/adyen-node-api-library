@@ -12,35 +12,28 @@ export class USInstantPayoutAddressRequirement {
     /**
     * Specifies that you must provide complete street addresses for the party and counterParty for transactions greater than USD 3000.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * **usInstantPayoutAddressRequirement**
     */
-    "type": USInstantPayoutAddressRequirement.TypeEnum;
+    'type': USInstantPayoutAddressRequirement.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "USInstantPayoutAddressRequirement.TypeEnum",
-            "format": ""
+            "type": "USInstantPayoutAddressRequirement.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return USInstantPayoutAddressRequirement.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -12,25 +12,19 @@ export class RegisterSCAFinalResponse {
     /**
     * Specifies if the registration was initiated successfully.
     */
-    "success"?: boolean;
+    'success'?: boolean;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "success",
             "baseName": "success",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return RegisterSCAFinalResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

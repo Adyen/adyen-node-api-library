@@ -7,62 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { TransactionEventViolation } from "./transactionEventViolation";
-
+import { TransactionEventViolation } from './transactionEventViolation';
 
 export class TransactionRulesResult {
     /**
     * The advice given by the Risk analysis.
     */
-    "advice"?: string;
+    'advice'?: string;
     /**
     * Indicates whether the transaction passed the evaluation for all hardblock rules
     */
-    "allHardBlockRulesPassed"?: boolean;
+    'allHardBlockRulesPassed'?: boolean;
     /**
     * The score of the Risk analysis.
     */
-    "score"?: number;
+    'score'?: number;
     /**
     * Array containing all the transaction rules that the transaction triggered.
     */
-    "triggeredTransactionRules"?: Array<TransactionEventViolation>;
+    'triggeredTransactionRules'?: Array<TransactionEventViolation>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "advice",
             "baseName": "advice",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "allHardBlockRulesPassed",
             "baseName": "allHardBlockRulesPassed",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "score",
             "baseName": "score",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "triggeredTransactionRules",
             "baseName": "triggeredTransactionRules",
-            "type": "Array<TransactionEventViolation>",
-            "format": ""
+            "type": "Array<TransactionEventViolation>"
         }    ];
 
     static getAttributeTypeMap() {
         return TransactionRulesResult.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

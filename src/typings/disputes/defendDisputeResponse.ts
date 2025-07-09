@@ -7,29 +7,22 @@
  * Do not edit this class manually.
  */
 
-import { DisputeServiceResult } from "./disputeServiceResult";
-
+import { DisputeServiceResult } from './disputeServiceResult';
 
 export class DefendDisputeResponse {
-    "disputeServiceResult": DisputeServiceResult;
+    'disputeServiceResult': DisputeServiceResult;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "disputeServiceResult",
             "baseName": "disputeServiceResult",
-            "type": "DisputeServiceResult",
-            "format": ""
+            "type": "DisputeServiceResult"
         }    ];
 
     static getAttributeTypeMap() {
         return DefendDisputeResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

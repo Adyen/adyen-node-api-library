@@ -12,75 +12,64 @@ export class AdditionalDataWallets {
     /**
     * The Android Pay token retrieved from the SDK.
     */
-    "androidpay_token"?: string;
+    'androidpay_token'?: string;
     /**
     * The Mastercard Masterpass Transaction ID retrieved from the SDK.
     */
-    "masterpass_transactionId"?: string;
+    'masterpass_transactionId'?: string;
     /**
     * The Apple Pay token retrieved from the SDK.
     */
-    "payment_token"?: string;
+    'payment_token'?: string;
     /**
     * The Google Pay token retrieved from the SDK.
     */
-    "paywithgoogle_token"?: string;
+    'paywithgoogle_token'?: string;
     /**
     * The Samsung Pay token retrieved from the SDK.
     */
-    "samsungpay_token"?: string;
+    'samsungpay_token'?: string;
     /**
     * The Visa Checkout Call ID retrieved from the SDK.
     */
-    "visacheckout_callId"?: string;
+    'visacheckout_callId'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "androidpay_token",
             "baseName": "androidpay.token",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "masterpass_transactionId",
             "baseName": "masterpass.transactionId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "payment_token",
             "baseName": "payment.token",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paywithgoogle_token",
             "baseName": "paywithgoogle.token",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "samsungpay_token",
             "baseName": "samsungpay.token",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "visacheckout_callId",
             "baseName": "visacheckout.callId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return AdditionalDataWallets.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

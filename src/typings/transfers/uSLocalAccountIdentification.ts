@@ -12,55 +12,46 @@ export class USLocalAccountIdentification {
     /**
     * The bank account number, without separators or whitespace.
     */
-    "accountNumber": string;
+    'accountNumber': string;
     /**
     * The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
     */
-    "accountType"?: USLocalAccountIdentification.AccountTypeEnum;
+    'accountType'?: USLocalAccountIdentification.AccountTypeEnum;
     /**
     * The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.
     */
-    "routingNumber": string;
+    'routingNumber': string;
     /**
     * **usLocal**
     */
-    "type": USLocalAccountIdentification.TypeEnum;
+    'type': USLocalAccountIdentification.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "accountType",
             "baseName": "accountType",
-            "type": "USLocalAccountIdentification.AccountTypeEnum",
-            "format": ""
+            "type": "USLocalAccountIdentification.AccountTypeEnum"
         },
         {
             "name": "routingNumber",
             "baseName": "routingNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "USLocalAccountIdentification.TypeEnum",
-            "format": ""
+            "type": "USLocalAccountIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return USLocalAccountIdentification.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

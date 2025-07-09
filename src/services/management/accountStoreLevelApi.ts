@@ -7,23 +7,21 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    ListStoresResponse,
+    RestServiceError,
+    Store,
+    StoreCreationRequest,
+    StoreCreationWithMerchantCodeRequest,
+    UpdateStoreRequest,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { ListStoresResponse } from "../../typings/management/models";
-import { Store } from "../../typings/management/models";
-import { StoreCreationRequest } from "../../typings/management/models";
-import { StoreCreationWithMerchantCodeRequest } from "../../typings/management/models";
-import { UpdateStoreRequest } from "../../typings/management/models";
-
-/**
- * API handler for AccountStoreLevelApi
- */
 export class AccountStoreLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -43,14 +41,12 @@ export class AccountStoreLevelApi extends Service {
     public async createStore(storeCreationWithMerchantCodeRequest: StoreCreationWithMerchantCodeRequest, requestOptions?: IRequest.Options): Promise<Store> {
         const endpoint = `${this.baseUrl}/stores`;
         const resource = new Resource(this, endpoint);
-        
         const request: StoreCreationWithMerchantCodeRequest = ObjectSerializer.serialize(storeCreationWithMerchantCodeRequest, "StoreCreationWithMerchantCodeRequest");
         const response = await getJsonResponse<StoreCreationWithMerchantCodeRequest, Store>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "Store");
     }
 
@@ -65,14 +61,12 @@ export class AccountStoreLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const request: StoreCreationRequest = ObjectSerializer.serialize(storeCreationRequest, "StoreCreationRequest");
         const response = await getJsonResponse<StoreCreationRequest, Store>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "Store");
     }
 
@@ -88,13 +82,11 @@ export class AccountStoreLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, Store>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "Store");
     }
 
@@ -108,13 +100,11 @@ export class AccountStoreLevelApi extends Service {
         const endpoint = `${this.baseUrl}/stores/{storeId}`
             .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, Store>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "Store");
     }
 
@@ -130,7 +120,6 @@ export class AccountStoreLevelApi extends Service {
     public async listStores(pageNumber?: number, pageSize?: number, reference?: string, merchantId?: string, requestOptions?: IRequest.Options): Promise<ListStoresResponse> {
         const endpoint = `${this.baseUrl}/stores`;
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = pageNumber ?? pageSize ?? reference ?? merchantId;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -145,7 +134,6 @@ export class AccountStoreLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ListStoresResponse");
     }
 
@@ -162,7 +150,6 @@ export class AccountStoreLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/stores`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = pageNumber ?? pageSize ?? reference;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -176,7 +163,6 @@ export class AccountStoreLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ListStoresResponse");
     }
 
@@ -193,14 +179,12 @@ export class AccountStoreLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);
-        
         const request: UpdateStoreRequest = ObjectSerializer.serialize(updateStoreRequest, "UpdateStoreRequest");
         const response = await getJsonResponse<UpdateStoreRequest, Store>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "Store");
     }
 
@@ -215,15 +199,12 @@ export class AccountStoreLevelApi extends Service {
         const endpoint = `${this.baseUrl}/stores/{storeId}`
             .replace("{" + "storeId" + "}", encodeURIComponent(String(storeId)));
         const resource = new Resource(this, endpoint);
-        
         const request: UpdateStoreRequest = ObjectSerializer.serialize(updateStoreRequest, "UpdateStoreRequest");
         const response = await getJsonResponse<UpdateStoreRequest, Store>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "Store");
     }
-
 }

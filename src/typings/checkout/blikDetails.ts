@@ -12,68 +12,58 @@ export class BlikDetails {
     /**
     * BLIK code consisting of 6 digits.
     */
-    "blikCode"?: string;
+    'blikCode'?: string;
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    "recurringDetailReference"?: string;
+    'recurringDetailReference'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    "storedPaymentMethodId"?: string;
+    'storedPaymentMethodId'?: string;
     /**
     * **blik**
     */
-    "type"?: BlikDetails.TypeEnum;
+    'type'?: BlikDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "blikCode",
             "baseName": "blikCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "BlikDetails.TypeEnum",
-            "format": ""
+            "type": "BlikDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return BlikDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

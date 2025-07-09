@@ -7,36 +7,29 @@
  * Do not edit this class manually.
  */
 
-import { Condition } from "./condition";
-import { WebhookSetting } from "./webhookSetting";
-
+import { BalanceWebhookSettingAllOf } from './balanceWebhookSettingAllOf';
+import { Condition } from './condition';
+import { SettingType } from './settingType';
+import { Target } from './target';
+import { WebhookSetting } from './webhookSetting';
 
 export class BalanceWebhookSetting extends WebhookSetting {
     /**
     * The list of settings and criteria for triggering the [balance webhook](https://docs.adyen.com/api-explorer/balance-webhooks/latest/post/balanceAccount.balance.updated).
     */
-    "conditions"?: Array<Condition>;
+    'conditions'?: Array<Condition>;
 
-    static override readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static override readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static override readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "conditions",
             "baseName": "conditions",
-            "type": "Array<Condition>",
-            "format": ""
+            "type": "Array<Condition>"
         }    ];
 
-    static override getAttributeTypeMap() {
+    static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(BalanceWebhookSetting.attributeTypeMap);
     }
-
-    public constructor() {
-        super();
-    }
 }
 
-export namespace BalanceWebhookSetting {
-}

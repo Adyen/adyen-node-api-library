@@ -7,39 +7,31 @@
  * Do not edit this class manually.
  */
 
-import { EncryptedOrderData } from "./encryptedOrderData";
-
+import { EncryptedOrderData } from './encryptedOrderData';
 
 export class CancelOrderRequest {
     /**
     * The merchant account identifier that orderData belongs to.
     */
-    "merchantAccount": string;
-    "order": EncryptedOrderData;
+    'merchantAccount': string;
+    'order': EncryptedOrderData;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "order",
             "baseName": "order",
-            "type": "EncryptedOrderData",
-            "format": ""
+            "type": "EncryptedOrderData"
         }    ];
 
     static getAttributeTypeMap() {
         return CancelOrderRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

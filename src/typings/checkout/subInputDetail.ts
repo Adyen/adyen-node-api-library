@@ -7,82 +7,70 @@
  * Do not edit this class manually.
  */
 
-import { Item } from "./item";
-
+import { Item } from './item';
 
 export class SubInputDetail {
     /**
     * Configuration parameters for the required input.
     */
-    "configuration"?: { [key: string]: string; };
+    'configuration'?: { [key: string]: string; };
     /**
     * In case of a select, the items to choose from.
     */
-    "items"?: Array<Item>;
+    'items'?: Array<Item>;
     /**
     * The value to provide in the result.
     */
-    "key"?: string;
+    'key'?: string;
     /**
     * True if this input is optional to provide.
     */
-    "optional"?: boolean;
+    'optional'?: boolean;
     /**
     * The type of the required input.
     */
-    "type"?: string;
+    'type'?: string;
     /**
     * The value can be pre-filled, if available.
     */
-    "value"?: string;
+    'value'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "configuration",
             "baseName": "configuration",
-            "type": "{ [key: string]: string; }",
-            "format": ""
+            "type": "{ [key: string]: string; }"
         },
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<Item>",
-            "format": ""
+            "type": "Array<Item>"
         },
         {
             "name": "key",
             "baseName": "key",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "optional",
             "baseName": "optional",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return SubInputDetail.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

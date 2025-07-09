@@ -12,45 +12,37 @@ export class CapabilityProblemEntityRecursive {
     /**
     * List of document IDs to which the verification errors related to the capabilities correspond to.
     */
-    "documents"?: Array<string>;
+    'documents'?: Array<string>;
     /**
     * The ID of the entity.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The type of entity.  Possible values: **LegalEntity**, **BankAccount**, or **Document**.
     */
-    "type"?: CapabilityProblemEntityRecursive.TypeEnum;
+    'type'?: CapabilityProblemEntityRecursive.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "documents",
             "baseName": "documents",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CapabilityProblemEntityRecursive.TypeEnum",
-            "format": ""
+            "type": "CapabilityProblemEntityRecursive.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return CapabilityProblemEntityRecursive.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

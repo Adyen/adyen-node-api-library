@@ -7,57 +7,47 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-import { CardBin } from "./cardBin";
-
+import { Amount } from './amount';
+import { CardBin } from './cardBin';
 
 export class CostEstimateResponse {
-    "cardBin"?: CardBin | null;
-    "costEstimateAmount"?: Amount | null;
+    'cardBin'?: CardBin | null;
+    'costEstimateAmount'?: Amount | null;
     /**
     * Adyen\'s 16-character reference associated with the request.
     */
-    "costEstimateReference"?: string;
+    'costEstimateReference'?: string;
     /**
     * The result of the cost estimation.
     */
-    "resultCode"?: string;
+    'resultCode'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "cardBin",
             "baseName": "cardBin",
-            "type": "CardBin | null",
-            "format": ""
+            "type": "CardBin | null"
         },
         {
             "name": "costEstimateAmount",
             "baseName": "costEstimateAmount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         },
         {
             "name": "costEstimateReference",
             "baseName": "costEstimateReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "resultCode",
             "baseName": "resultCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CostEstimateResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

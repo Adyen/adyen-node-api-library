@@ -7,32 +7,25 @@
  * Do not edit this class manually.
  */
 
-import { PciDocumentInfo } from "./pciDocumentInfo";
-
+import { PciDocumentInfo } from './pciDocumentInfo';
 
 export class GetPciQuestionnaireInfosResponse {
     /**
     * Information about the signed PCI questionnaires.
     */
-    "data"?: Array<PciDocumentInfo>;
+    'data'?: Array<PciDocumentInfo>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<PciDocumentInfo>",
-            "format": ""
+            "type": "Array<PciDocumentInfo>"
         }    ];
 
     static getAttributeTypeMap() {
         return GetPciQuestionnaireInfosResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

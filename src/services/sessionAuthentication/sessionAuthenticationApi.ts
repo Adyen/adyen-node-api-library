@@ -7,20 +7,18 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    AuthenticationSessionRequest,
+    AuthenticationSessionResponse,
+    DefaultErrorResponseEntity,
+    ObjectSerializer
+} from "../../typings/sessionAuthentication/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/sessionAuthentication/objectSerializer";
-import { AuthenticationSessionRequest } from "../../typings/sessionAuthentication/models";
-import { AuthenticationSessionResponse } from "../../typings/sessionAuthentication/models";
-
-/**
- * API handler for SessionAuthenticationApi
- */
 export class SessionAuthenticationApi extends Service {
 
     private readonly API_BASEPATH: string = "https://test.adyen.com/authe/api/v1";
@@ -40,15 +38,12 @@ export class SessionAuthenticationApi extends Service {
     public async createAuthenticationSession(authenticationSessionRequest: AuthenticationSessionRequest, requestOptions?: IRequest.Options): Promise<AuthenticationSessionResponse> {
         const endpoint = `${this.baseUrl}/sessions`;
         const resource = new Resource(this, endpoint);
-        
         const request: AuthenticationSessionRequest = ObjectSerializer.serialize(authenticationSessionRequest, "AuthenticationSessionRequest");
         const response = await getJsonResponse<AuthenticationSessionRequest, AuthenticationSessionResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "AuthenticationSessionResponse");
     }
-
 }

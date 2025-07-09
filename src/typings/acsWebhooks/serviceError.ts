@@ -12,65 +12,55 @@ export class ServiceError {
     /**
     * The error code mapped to the error message.
     */
-    "errorCode"?: string;
+    'errorCode'?: string;
     /**
     * The category of the error.
     */
-    "errorType"?: string;
+    'errorType'?: string;
     /**
     * A short explanation of the issue.
     */
-    "message"?: string;
+    'message'?: string;
     /**
     * The PSP reference of the payment.
     */
-    "pspReference"?: string;
+    'pspReference'?: string;
     /**
     * The HTTP response status.
     */
-    "status"?: number;
+    'status'?: number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "errorCode",
             "baseName": "errorCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "errorType",
             "baseName": "errorType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "message",
             "baseName": "message",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return ServiceError.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

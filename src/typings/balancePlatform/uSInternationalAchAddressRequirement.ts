@@ -12,35 +12,28 @@ export class USInternationalAchAddressRequirement {
     /**
     * Specifies that you must provide a complete street address for International ACH (IAT) transactions.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * **usInternationalAchAddressRequirement**
     */
-    "type": USInternationalAchAddressRequirement.TypeEnum;
+    'type': USInternationalAchAddressRequirement.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "USInternationalAchAddressRequirement.TypeEnum",
-            "format": ""
+            "type": "USInternationalAchAddressRequirement.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return USInternationalAchAddressRequirement.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

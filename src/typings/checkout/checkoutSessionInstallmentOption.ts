@@ -12,45 +12,37 @@ export class CheckoutSessionInstallmentOption {
     /**
     * Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving*** **bonus** * **with_interest** * **buynow_paylater** * **nointerest_bonus** * **interest_bonus** * **refund_prctg** * **nointeres_refund_prctg** * **interes_refund_prctg**
     */
-    "plans"?: Array<CheckoutSessionInstallmentOption.PlansEnum>;
+    'plans'?: Array<CheckoutSessionInstallmentOption.PlansEnum>;
     /**
     * Preselected number of installments offered for this payment method.
     */
-    "preselectedValue"?: number;
+    'preselectedValue'?: number;
     /**
     * An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with `maxValue`.
     */
-    "values"?: Array<number>;
+    'values'?: Array<number>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "plans",
             "baseName": "plans",
-            "type": "CheckoutSessionInstallmentOption.PlansEnum",
-            "format": ""
+            "type": "Array<CheckoutSessionInstallmentOption.PlansEnum>"
         },
         {
             "name": "preselectedValue",
             "baseName": "preselectedValue",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "values",
             "baseName": "values",
-            "type": "Array<number>",
-            "format": "int32"
+            "type": "Array<number>"
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutSessionInstallmentOption.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

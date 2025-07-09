@@ -12,193 +12,169 @@ export class Profile {
     /**
     * The type of Wi-Fi network. Possible values: **wpa-psk**, **wpa2-psk**, **wpa-eap**, **wpa2-eap**.
     */
-    "authType": string;
+    'authType': string;
     /**
     * Indicates whether to automatically select the best authentication method available. Does not work on older terminal models.
     */
-    "autoWifi"?: boolean;
+    'autoWifi'?: boolean;
     /**
     * Use **infra** for infrastructure-based networks. This applies to most networks. Use **adhoc** only if the communication is p2p-based between base stations.
     */
-    "bssType": string;
+    'bssType': string;
     /**
     * The channel number of the Wi-Fi network. The recommended setting is **0** for automatic channel selection.
     */
-    "channel"?: number;
+    'channel'?: number;
     /**
     * Indicates whether this is your preferred wireless network. If **true**, the terminal will try connecting to this network first.
     */
-    "defaultProfile"?: boolean;
+    'defaultProfile'?: boolean;
     /**
     * Specifies the server domain name for EAP-TLS and EAP-PEAP WiFi profiles on Android 11 and above.
     */
-    "domainSuffix"?: string;
+    'domainSuffix'?: string;
     /**
     * For `authType` **wpa-eap** or **wpa2-eap**. Possible values: **tls**, **peap**, **leap**, **fast**
     */
-    "eap"?: string;
-    "eapCaCert"?: any | null;
-    "eapClientCert"?: any | null;
-    "eapClientKey"?: any | null;
+    'eap'?: string;
+    'eapCaCert'?: any | null;
+    'eapClientCert'?: any | null;
+    'eapClientKey'?: any | null;
     /**
     * For `eap` **tls**. The password of the RSA key file, if that file is password-protected.
     */
-    "eapClientPwd"?: string;
+    'eapClientPwd'?: string;
     /**
     * For `authType` **wpa-eap** or **wpa2-eap**. The EAP-PEAP username from your MS-CHAP account. Must match the configuration of your RADIUS server.
     */
-    "eapIdentity"?: string;
-    "eapIntermediateCert"?: any | null;
+    'eapIdentity'?: string;
+    'eapIntermediateCert'?: any | null;
     /**
     * For `eap` **peap**. The EAP-PEAP password from your MS-CHAP account. Must match the configuration of your RADIUS server.
     */
-    "eapPwd"?: string;
+    'eapPwd'?: string;
     /**
     * Indicates if the network doesn\'t broadcast its SSID. Mandatory for Android terminals, because these terminals rely on this setting to be able to connect to any network.
     */
-    "hiddenSsid"?: boolean;
+    'hiddenSsid'?: boolean;
     /**
     * Your name for the Wi-Fi profile.
     */
-    "name"?: string;
+    'name'?: string;
     /**
     * For `authType` **wpa-psk or **wpa2-psk**. The password to the wireless network.
     */
-    "psk"?: string;
+    'psk'?: string;
     /**
     * The name of the wireless network.
     */
-    "ssid": string;
+    'ssid': string;
     /**
     * The type of encryption. Possible values: **auto**, **ccmp** (recommended), **tkip**
     */
-    "wsec": string;
+    'wsec': string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "authType",
             "baseName": "authType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "autoWifi",
             "baseName": "autoWifi",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "bssType",
             "baseName": "bssType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "channel",
             "baseName": "channel",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "defaultProfile",
             "baseName": "defaultProfile",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "domainSuffix",
             "baseName": "domainSuffix",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "eap",
             "baseName": "eap",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "eapCaCert",
             "baseName": "eapCaCert",
-            "type": "any | null",
-            "format": ""
+            "type": "any | null"
         },
         {
             "name": "eapClientCert",
             "baseName": "eapClientCert",
-            "type": "any | null",
-            "format": ""
+            "type": "any | null"
         },
         {
             "name": "eapClientKey",
             "baseName": "eapClientKey",
-            "type": "any | null",
-            "format": ""
+            "type": "any | null"
         },
         {
             "name": "eapClientPwd",
             "baseName": "eapClientPwd",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "eapIdentity",
             "baseName": "eapIdentity",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "eapIntermediateCert",
             "baseName": "eapIntermediateCert",
-            "type": "any | null",
-            "format": ""
+            "type": "any | null"
         },
         {
             "name": "eapPwd",
             "baseName": "eapPwd",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "hiddenSsid",
             "baseName": "hiddenSsid",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "psk",
             "baseName": "psk",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "ssid",
             "baseName": "ssid",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "wsec",
             "baseName": "wsec",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Profile.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

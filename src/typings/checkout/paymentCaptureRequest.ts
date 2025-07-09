@@ -7,106 +7,91 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-import { ApplicationInfo } from "./applicationInfo";
-import { EnhancedSchemeData } from "./enhancedSchemeData";
-import { LineItem } from "./lineItem";
-import { PlatformChargebackLogic } from "./platformChargebackLogic";
-import { Split } from "./split";
-import { SubMerchantInfo } from "./subMerchantInfo";
-
+import { Amount } from './amount';
+import { ApplicationInfo } from './applicationInfo';
+import { EnhancedSchemeData } from './enhancedSchemeData';
+import { LineItem } from './lineItem';
+import { PlatformChargebackLogic } from './platformChargebackLogic';
+import { Split } from './split';
+import { SubMerchantInfo } from './subMerchantInfo';
 
 export class PaymentCaptureRequest {
-    "amount": Amount;
-    "applicationInfo"?: ApplicationInfo | null;
-    "enhancedSchemeData"?: EnhancedSchemeData | null;
+    'amount': Amount;
+    'applicationInfo'?: ApplicationInfo | null;
+    'enhancedSchemeData'?: EnhancedSchemeData | null;
     /**
     * Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
     */
-    "lineItems"?: Array<LineItem>;
+    'lineItems'?: Array<LineItem>;
     /**
     * The merchant account that is used to process the payment.
     */
-    "merchantAccount": string;
-    "platformChargebackLogic"?: PlatformChargebackLogic | null;
+    'merchantAccount': string;
+    'platformChargebackLogic'?: PlatformChargebackLogic | null;
     /**
     * Your reference for the capture request. Maximum length: 80 characters.
     */
-    "reference"?: string;
+    'reference'?: string;
     /**
     * An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/).
     */
-    "splits"?: Array<Split>;
+    'splits'?: Array<Split>;
     /**
     * A List of sub-merchants.
     */
-    "subMerchants"?: Array<SubMerchantInfo>;
+    'subMerchants'?: Array<SubMerchantInfo>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
-            "format": ""
+            "type": "Amount"
         },
         {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
-            "type": "ApplicationInfo | null",
-            "format": ""
+            "type": "ApplicationInfo | null"
         },
         {
             "name": "enhancedSchemeData",
             "baseName": "enhancedSchemeData",
-            "type": "EnhancedSchemeData | null",
-            "format": ""
+            "type": "EnhancedSchemeData | null"
         },
         {
             "name": "lineItems",
             "baseName": "lineItems",
-            "type": "Array<LineItem>",
-            "format": ""
+            "type": "Array<LineItem>"
         },
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic | null",
-            "format": ""
+            "type": "PlatformChargebackLogic | null"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "splits",
             "baseName": "splits",
-            "type": "Array<Split>",
-            "format": ""
+            "type": "Array<Split>"
         },
         {
             "name": "subMerchants",
             "baseName": "subMerchants",
-            "type": "Array<SubMerchantInfo>",
-            "format": ""
+            "type": "Array<SubMerchantInfo>"
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentCaptureRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

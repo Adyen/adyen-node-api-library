@@ -12,55 +12,46 @@ export class InstallmentOption {
     /**
     * The maximum number of installments offered for this payment method.
     */
-    "maxValue"?: number;
+    'maxValue'?: number;
     /**
     * Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**
     */
-    "plans"?: Array<InstallmentOption.PlansEnum>;
+    'plans'?: Array<InstallmentOption.PlansEnum>;
     /**
     * Preselected number of installments offered for this payment method.
     */
-    "preselectedValue"?: number;
+    'preselectedValue'?: number;
     /**
     * An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with `maxValue`.
     */
-    "values"?: Array<number>;
+    'values'?: Array<number>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "maxValue",
             "baseName": "maxValue",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "plans",
             "baseName": "plans",
-            "type": "InstallmentOption.PlansEnum",
-            "format": ""
+            "type": "Array<InstallmentOption.PlansEnum>"
         },
         {
             "name": "preselectedValue",
             "baseName": "preselectedValue",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "values",
             "baseName": "values",
-            "type": "Array<number>",
-            "format": "int32"
+            "type": "Array<number>"
         }    ];
 
     static getAttributeTypeMap() {
         return InstallmentOption.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

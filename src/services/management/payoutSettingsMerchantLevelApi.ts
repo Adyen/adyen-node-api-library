@@ -7,22 +7,20 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    PayoutSettings,
+    PayoutSettingsRequest,
+    PayoutSettingsResponse,
+    RestServiceError,
+    UpdatePayoutSettingsRequest,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { PayoutSettings } from "../../typings/management/models";
-import { PayoutSettingsRequest } from "../../typings/management/models";
-import { PayoutSettingsResponse } from "../../typings/management/models";
-import { UpdatePayoutSettingsRequest } from "../../typings/management/models";
-
-/**
- * API handler for PayoutSettingsMerchantLevelApi
- */
 export class PayoutSettingsMerchantLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -44,14 +42,12 @@ export class PayoutSettingsMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/payoutSettings`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const request: PayoutSettingsRequest = ObjectSerializer.serialize(payoutSettingsRequest, "PayoutSettingsRequest");
         const response = await getJsonResponse<PayoutSettingsRequest, PayoutSettings>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "PayoutSettings");
     }
 
@@ -60,14 +56,12 @@ export class PayoutSettingsMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param payoutSettingsId {@link string } The unique identifier of the payout setting.
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link void }
     */
     public async deletePayoutSetting(merchantId: string, payoutSettingsId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/payoutSettings/{payoutSettingsId}`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "payoutSettingsId" + "}", encodeURIComponent(String(payoutSettingsId)));
         const resource = new Resource(this, endpoint);
-        
         await getJsonResponse<string, void>(
             resource,
             "",
@@ -87,13 +81,11 @@ export class PayoutSettingsMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "payoutSettingsId" + "}", encodeURIComponent(String(payoutSettingsId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, PayoutSettings>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "PayoutSettings");
     }
 
@@ -107,13 +99,11 @@ export class PayoutSettingsMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/payoutSettings`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, PayoutSettingsResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "PayoutSettingsResponse");
     }
 
@@ -130,15 +120,12 @@ export class PayoutSettingsMerchantLevelApi extends Service {
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "payoutSettingsId" + "}", encodeURIComponent(String(payoutSettingsId)));
         const resource = new Resource(this, endpoint);
-        
         const request: UpdatePayoutSettingsRequest = ObjectSerializer.serialize(updatePayoutSettingsRequest, "UpdatePayoutSettingsRequest");
         const response = await getJsonResponse<UpdatePayoutSettingsRequest, PayoutSettings>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "PayoutSettings");
     }
-
 }

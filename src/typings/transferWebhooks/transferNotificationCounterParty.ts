@@ -7,65 +7,54 @@
  * Do not edit this class manually.
  */
 
-import { BankAccountV3 } from "./bankAccountV3";
-import { Card } from "./card";
-import { TransferNotificationMerchantData } from "./transferNotificationMerchantData";
-
+import { BankAccountV3 } from './bankAccountV3';
+import { Card } from './card';
+import { TransferNotificationMerchantData } from './transferNotificationMerchantData';
 
 export class TransferNotificationCounterParty {
     /**
     * The unique identifier of the counterparty [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).
     */
-    "balanceAccountId"?: string;
-    "bankAccount"?: BankAccountV3 | null;
-    "card"?: Card | null;
-    "merchant"?: TransferNotificationMerchantData | null;
+    'balanceAccountId'?: string;
+    'bankAccount'?: BankAccountV3 | null;
+    'card'?: Card | null;
+    'merchant'?: TransferNotificationMerchantData | null;
     /**
     * The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).
     */
-    "transferInstrumentId"?: string;
+    'transferInstrumentId'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "balanceAccountId",
             "baseName": "balanceAccountId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "bankAccount",
             "baseName": "bankAccount",
-            "type": "BankAccountV3 | null",
-            "format": ""
+            "type": "BankAccountV3 | null"
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card | null",
-            "format": ""
+            "type": "Card | null"
         },
         {
             "name": "merchant",
             "baseName": "merchant",
-            "type": "TransferNotificationMerchantData | null",
-            "format": ""
+            "type": "TransferNotificationMerchantData | null"
         },
         {
             "name": "transferInstrumentId",
             "baseName": "transferInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return TransferNotificationCounterParty.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

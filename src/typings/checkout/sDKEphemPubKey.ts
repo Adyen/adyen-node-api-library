@@ -12,55 +12,46 @@ export class SDKEphemPubKey {
     /**
     * The `crv` value as received from the 3D Secure 2 SDK.
     */
-    "crv"?: string;
+    'crv'?: string;
     /**
     * The `kty` value as received from the 3D Secure 2 SDK.
     */
-    "kty"?: string;
+    'kty'?: string;
     /**
     * The `x` value as received from the 3D Secure 2 SDK.
     */
-    "x"?: string;
+    'x'?: string;
     /**
     * The `y` value as received from the 3D Secure 2 SDK.
     */
-    "y"?: string;
+    'y'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "crv",
             "baseName": "crv",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "kty",
             "baseName": "kty",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "x",
             "baseName": "x",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "y",
             "baseName": "y",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return SDKEphemPubKey.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

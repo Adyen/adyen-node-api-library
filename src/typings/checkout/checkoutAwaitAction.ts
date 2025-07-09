@@ -12,55 +12,46 @@ export class CheckoutAwaitAction {
     /**
     * Encoded payment data.
     */
-    "paymentData"?: string;
+    'paymentData'?: string;
     /**
     * Specifies the payment method.
     */
-    "paymentMethodType"?: string;
+    'paymentMethodType'?: string;
     /**
     * **await**
     */
-    "type": CheckoutAwaitAction.TypeEnum;
+    'type': CheckoutAwaitAction.TypeEnum;
     /**
     * Specifies the URL to redirect to.
     */
-    "url"?: string;
+    'url'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "paymentData",
             "baseName": "paymentData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentMethodType",
             "baseName": "paymentMethodType",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CheckoutAwaitAction.TypeEnum",
-            "format": ""
+            "type": "CheckoutAwaitAction.TypeEnum"
         },
         {
             "name": "url",
             "baseName": "url",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutAwaitAction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

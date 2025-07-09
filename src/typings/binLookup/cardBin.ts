@@ -12,125 +12,109 @@ export class CardBin {
     /**
     * The first 6 digit of the card number. Enable this field via merchant account settings.
     */
-    "bin"?: string;
+    'bin'?: string;
     /**
     * If true, it indicates a commercial card. Enable this field via merchant account settings.
     */
-    "commercial"?: boolean;
+    'commercial'?: boolean;
     /**
     * The card funding source. Valid values are: * CHARGE * CREDIT * DEBIT * DEFERRED_DEBIT * PREPAID * PREPAID_RELOADABLE * PREPAID_NONRELOADABLE > Enable this field via merchant account settings.
     */
-    "fundingSource"?: string;
+    'fundingSource'?: string;
     /**
     * Indicates availability of funds.  Visa: * \"I\" (fast funds are supported) * \"N\" (otherwise)  Mastercard: * \"I\" (product type is Prepaid or Debit, or issuing country is in CEE/HGEM list) * \"N\" (otherwise) > Returned when you verify a card BIN or estimate costs, and only if `payoutEligible` is different from \"N\" or \"U\".
     */
-    "fundsAvailability"?: string;
+    'fundsAvailability'?: string;
     /**
     * The first 8 digit of the card number. Enable this field via merchant account settings.
     */
-    "issuerBin"?: string;
+    'issuerBin'?: string;
     /**
     * The issuing bank of the card.
     */
-    "issuingBank"?: string;
+    'issuingBank'?: string;
     /**
     * The country where the card was issued from.
     */
-    "issuingCountry"?: string;
+    'issuingCountry'?: string;
     /**
     * The currency of the card.
     */
-    "issuingCurrency"?: string;
+    'issuingCurrency'?: string;
     /**
     * The payment method associated with the card (e.g. visa, mc, or amex).
     */
-    "paymentMethod"?: string;
+    'paymentMethod'?: string;
     /**
     * Indicates whether a payout is eligible or not for this card.  Visa: * \"Y\" * \"N\"  Mastercard: * \"Y\" (domestic and cross-border) * \"D\" (only domestic) * \"N\" (no MoneySend) * \"U\" (unknown) > Returned when you verify a card BIN or estimate costs, and only if `payoutEligible` is different from \"N\" or \"U\".
     */
-    "payoutEligible"?: string;
+    'payoutEligible'?: string;
     /**
     * The last four digits of the card number.
     */
-    "summary"?: string;
+    'summary'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "bin",
             "baseName": "bin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "commercial",
             "baseName": "commercial",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fundsAvailability",
             "baseName": "fundsAvailability",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuerBin",
             "baseName": "issuerBin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuingBank",
             "baseName": "issuingBank",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuingCountry",
             "baseName": "issuingCountry",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuingCurrency",
             "baseName": "issuingCurrency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "payoutEligible",
             "baseName": "payoutEligible",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "summary",
             "baseName": "summary",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return CardBin.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

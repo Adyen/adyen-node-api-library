@@ -7,21 +7,19 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    PaymentLinkRequest,
+    PaymentLinkResponse,
+    ServiceError,
+    UpdatePaymentLinkRequest,
+    ObjectSerializer
+} from "../../typings/checkout/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
-import { PaymentLinkRequest } from "../../typings/checkout/models";
-import { PaymentLinkResponse } from "../../typings/checkout/models";
-import { UpdatePaymentLinkRequest } from "../../typings/checkout/models";
-
-/**
- * API handler for PaymentLinksApi
- */
 export class PaymentLinksApi extends Service {
 
     private readonly API_BASEPATH: string = "https://checkout-test.adyen.com/v71";
@@ -42,13 +40,11 @@ export class PaymentLinksApi extends Service {
         const endpoint = `${this.baseUrl}/paymentLinks/{linkId}`
             .replace("{" + "linkId" + "}", encodeURIComponent(String(linkId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, PaymentLinkResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
 
@@ -61,14 +57,12 @@ export class PaymentLinksApi extends Service {
     public async paymentLinks(paymentLinkRequest: PaymentLinkRequest, requestOptions?: IRequest.Options): Promise<PaymentLinkResponse> {
         const endpoint = `${this.baseUrl}/paymentLinks`;
         const resource = new Resource(this, endpoint);
-        
         const request: PaymentLinkRequest = ObjectSerializer.serialize(paymentLinkRequest, "PaymentLinkRequest");
         const response = await getJsonResponse<PaymentLinkRequest, PaymentLinkResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
 
@@ -83,15 +77,12 @@ export class PaymentLinksApi extends Service {
         const endpoint = `${this.baseUrl}/paymentLinks/{linkId}`
             .replace("{" + "linkId" + "}", encodeURIComponent(String(linkId)));
         const resource = new Resource(this, endpoint);
-        
         const request: UpdatePaymentLinkRequest = ObjectSerializer.serialize(updatePaymentLinkRequest, "UpdatePaymentLinkRequest");
         const response = await getJsonResponse<UpdatePaymentLinkRequest, PaymentLinkResponse>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentLinkResponse");
     }
-
 }

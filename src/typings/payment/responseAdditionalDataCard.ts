@@ -12,105 +12,91 @@ export class ResponseAdditionalDataCard {
     /**
     * The first six digits of the card number.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with a six-digit BIN.  Example: 521234
     */
-    "cardBin"?: string;
+    'cardBin'?: string;
     /**
     * The cardholder name passed in the payment request.
     */
-    "cardHolderName"?: string;
+    'cardHolderName'?: string;
     /**
     * The bank or the financial institution granting lines of credit through card association branded payment cards. This information can be included when available.
     */
-    "cardIssuingBank"?: string;
+    'cardIssuingBank'?: string;
     /**
     * The country where the card was issued.  Example: US
     */
-    "cardIssuingCountry"?: string;
+    'cardIssuingCountry'?: string;
     /**
     * The currency in which the card is issued, if this information is available. Provided as the currency code or currency number from the ISO-4217 standard.   Example: USD
     */
-    "cardIssuingCurrency"?: string;
+    'cardIssuingCurrency'?: string;
     /**
     * The card payment method used for the transaction.  Example: amex
     */
-    "cardPaymentMethod"?: string;
+    'cardPaymentMethod'?: string;
     /**
     * The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit 
     */
-    "cardProductId"?: ResponseAdditionalDataCard.CardProductIdEnum;
+    'cardProductId'?: ResponseAdditionalDataCard.CardProductIdEnum;
     /**
     * The last four digits of a card number.  > Returned only in case of a card payment.
     */
-    "cardSummary"?: string;
+    'cardSummary'?: string;
     /**
     * The first eight digits of the card number. Only returned if the card number is 16 digits or more.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with an eight-digit BIN.  Example: 52123423
     */
-    "issuerBin"?: string;
+    'issuerBin'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "cardBin",
             "baseName": "cardBin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardHolderName",
             "baseName": "cardHolderName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardIssuingBank",
             "baseName": "cardIssuingBank",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardIssuingCountry",
             "baseName": "cardIssuingCountry",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardIssuingCurrency",
             "baseName": "cardIssuingCurrency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardPaymentMethod",
             "baseName": "cardPaymentMethod",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cardProductId",
             "baseName": "cardProductId",
-            "type": "ResponseAdditionalDataCard.CardProductIdEnum",
-            "format": ""
+            "type": "ResponseAdditionalDataCard.CardProductIdEnum"
         },
         {
             "name": "cardSummary",
             "baseName": "cardSummary",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "issuerBin",
             "baseName": "issuerBin",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return ResponseAdditionalDataCard.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

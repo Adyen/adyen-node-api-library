@@ -7,24 +7,22 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    BusinessLines,
+    DataReviewConfirmationResponse,
+    LegalEntity,
+    LegalEntityInfo,
+    LegalEntityInfoRequiredType,
+    ServiceError,
+    VerificationErrors,
+    ObjectSerializer
+} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSerializer";
-import { BusinessLines } from "../../typings/legalEntityManagement/models";
-import { DataReviewConfirmationResponse } from "../../typings/legalEntityManagement/models";
-import { LegalEntity } from "../../typings/legalEntityManagement/models";
-import { LegalEntityInfo } from "../../typings/legalEntityManagement/models";
-import { LegalEntityInfoRequiredType } from "../../typings/legalEntityManagement/models";
-import { VerificationErrors } from "../../typings/legalEntityManagement/models";
-
-/**
- * API handler for LegalEntitiesApi
- */
 export class LegalEntitiesApi extends Service {
 
     private readonly API_BASEPATH: string = "https://kyc-test.adyen.com/lem/v3";
@@ -45,13 +43,11 @@ export class LegalEntitiesApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/checkVerificationErrors`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, VerificationErrors>(
             resource,
             "",
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "VerificationErrors");
     }
 
@@ -65,13 +61,11 @@ export class LegalEntitiesApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/confirmDataReview`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, DataReviewConfirmationResponse>(
             resource,
             "",
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "DataReviewConfirmationResponse");
     }
 
@@ -84,14 +78,12 @@ export class LegalEntitiesApi extends Service {
     public async createLegalEntity(legalEntityInfoRequiredType: LegalEntityInfoRequiredType, requestOptions?: IRequest.Options): Promise<LegalEntity> {
         const endpoint = `${this.baseUrl}/legalEntities`;
         const resource = new Resource(this, endpoint);
-        
         const request: LegalEntityInfoRequiredType = ObjectSerializer.serialize(legalEntityInfoRequiredType, "LegalEntityInfoRequiredType");
         const response = await getJsonResponse<LegalEntityInfoRequiredType, LegalEntity>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "LegalEntity");
     }
 
@@ -105,13 +97,11 @@ export class LegalEntitiesApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}/businessLines`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, BusinessLines>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "BusinessLines");
     }
 
@@ -125,13 +115,11 @@ export class LegalEntitiesApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, LegalEntity>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "LegalEntity");
     }
 
@@ -146,15 +134,12 @@ export class LegalEntitiesApi extends Service {
         const endpoint = `${this.baseUrl}/legalEntities/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const request: LegalEntityInfo = ObjectSerializer.serialize(legalEntityInfo, "LegalEntityInfo");
         const response = await getJsonResponse<LegalEntityInfo, LegalEntity>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "LegalEntity");
     }
-
 }

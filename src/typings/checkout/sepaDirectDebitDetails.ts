@@ -12,88 +12,76 @@ export class SepaDirectDebitDetails {
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * The International Bank Account Number (IBAN).
     */
-    "iban": string;
+    'iban': string;
     /**
     * The name of the bank account holder.
     */
-    "ownerName": string;
+    'ownerName': string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    "recurringDetailReference"?: string;
+    'recurringDetailReference'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    "storedPaymentMethodId"?: string;
+    'storedPaymentMethodId'?: string;
     /**
     * The unique identifier of your user\'s verified transfer instrument, which you can use to top up their balance accounts.
     */
-    "transferInstrumentId"?: string;
+    'transferInstrumentId'?: string;
     /**
     * **sepadirectdebit**
     */
-    "type"?: SepaDirectDebitDetails.TypeEnum;
+    'type'?: SepaDirectDebitDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "iban",
             "baseName": "iban",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "ownerName",
             "baseName": "ownerName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transferInstrumentId",
             "baseName": "transferInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "SepaDirectDebitDetails.TypeEnum",
-            "format": ""
+            "type": "SepaDirectDebitDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return SepaDirectDebitDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

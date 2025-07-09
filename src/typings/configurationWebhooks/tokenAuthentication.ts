@@ -12,35 +12,28 @@ export class TokenAuthentication {
     /**
     * The method used to complete the authentication process.  Possible values: **sms_OTP**, **email_OTP**.
     */
-    "method"?: string;
+    'method'?: string;
     /**
     * The result of the authentication process.
     */
-    "result"?: string;
+    'result'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "method",
             "baseName": "method",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "result",
             "baseName": "result",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return TokenAuthentication.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

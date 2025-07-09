@@ -7,40 +7,32 @@
  * Do not edit this class manually.
  */
 
-import { Links } from "./links";
-import { TransferData } from "./transferData";
-
+import { Links } from './links';
+import { TransferData } from './transferData';
 
 export class FindTransfersResponse {
-    "_links"?: Links | null;
+    '_links'?: Links | null;
     /**
     * Contains the transfers that match the query parameters.
     */
-    "data"?: Array<TransferData>;
+    'data'?: Array<TransferData>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "Links | null",
-            "format": ""
+            "type": "Links | null"
         },
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<TransferData>",
-            "format": ""
+            "type": "Array<TransferData>"
         }    ];
 
     static getAttributeTypeMap() {
         return FindTransfersResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

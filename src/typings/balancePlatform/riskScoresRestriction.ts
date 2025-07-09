@@ -7,39 +7,31 @@
  * Do not edit this class manually.
  */
 
-import { RiskScores } from "./riskScores";
-
+import { RiskScores } from './riskScores';
 
 export class RiskScoresRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    "operation": string;
-    "value"?: RiskScores;
+    'operation': string;
+    'value'?: RiskScores | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "RiskScores",
-            "format": ""
+            "type": "RiskScores | null"
         }    ];
 
     static getAttributeTypeMap() {
         return RiskScoresRestriction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

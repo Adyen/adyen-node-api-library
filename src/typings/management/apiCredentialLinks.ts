@@ -7,64 +7,52 @@
  * Do not edit this class manually.
  */
 
-import { LinksElement } from "./linksElement";
-
+import { LinksElement } from './linksElement';
 
 export class ApiCredentialLinks {
-    "allowedOrigins"?: LinksElement | null;
-    "company"?: LinksElement | null;
-    "generateApiKey"?: LinksElement | null;
-    "generateClientKey"?: LinksElement | null;
-    "merchant"?: LinksElement | null;
-    "self": LinksElement;
+    'allowedOrigins'?: LinksElement | null;
+    'company'?: LinksElement | null;
+    'generateApiKey'?: LinksElement | null;
+    'generateClientKey'?: LinksElement | null;
+    'merchant'?: LinksElement | null;
+    'self': LinksElement;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "allowedOrigins",
             "baseName": "allowedOrigins",
-            "type": "LinksElement | null",
-            "format": ""
+            "type": "LinksElement | null"
         },
         {
             "name": "company",
             "baseName": "company",
-            "type": "LinksElement | null",
-            "format": ""
+            "type": "LinksElement | null"
         },
         {
             "name": "generateApiKey",
             "baseName": "generateApiKey",
-            "type": "LinksElement | null",
-            "format": ""
+            "type": "LinksElement | null"
         },
         {
             "name": "generateClientKey",
             "baseName": "generateClientKey",
-            "type": "LinksElement | null",
-            "format": ""
+            "type": "LinksElement | null"
         },
         {
             "name": "merchant",
             "baseName": "merchant",
-            "type": "LinksElement | null",
-            "format": ""
+            "type": "LinksElement | null"
         },
         {
             "name": "self",
             "baseName": "self",
-            "type": "LinksElement",
-            "format": ""
+            "type": "LinksElement"
         }    ];
 
     static getAttributeTypeMap() {
         return ApiCredentialLinks.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,35 +7,27 @@
  * Do not edit this class manually.
  */
 
-import { Resource } from "./resource";
-
+import { LegalEntityResourceAllOf } from './legalEntityResourceAllOf';
+import { Resource } from './resource';
+import { ResourceType } from './resourceType';
 
 export class LegalEntityResource extends Resource {
     /**
     * The unique identifier of the resource connected to the component. For [Onboarding components](https://docs.adyen.com/platforms/onboard-users/components), this is the legal entity that has a contractual relationship with your platform and owns the [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments). For sole proprietorships, this is the legal entity of the individual owner.
     */
-    "legalEntityId": string;
+    'legalEntityId': string;
 
-    static override readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static override readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static override readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "legalEntityId",
             "baseName": "legalEntityId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
-    static override getAttributeTypeMap() {
+    static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(LegalEntityResource.attributeTypeMap);
     }
-
-    public constructor() {
-        super();
-    }
 }
 
-export namespace LegalEntityResource {
-}

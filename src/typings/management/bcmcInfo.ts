@@ -12,25 +12,19 @@ export class BcmcInfo {
     /**
     * Indicates if [Bancontact mobile](https://docs.adyen.com/payment-methods/bancontact/bancontact-mobile) is enabled.
     */
-    "enableBcmcMobile"?: boolean;
+    'enableBcmcMobile'?: boolean;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "enableBcmcMobile",
             "baseName": "enableBcmcMobile",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return BcmcInfo.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

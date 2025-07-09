@@ -7,69 +7,58 @@
  * Do not edit this class manually.
  */
 
-import { TerminalProductPrice } from "./terminalProductPrice";
-
+import { TerminalProductPrice } from './terminalProductPrice';
 
 export class TerminalProduct {
     /**
     * Information about items included and integration options.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * The unique identifier of the product.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * A list of parts included in the terminal package.
     */
-    "itemsIncluded"?: Array<string>;
+    'itemsIncluded'?: Array<string>;
     /**
     * The descriptive name of the product.
     */
-    "name"?: string;
-    "price"?: TerminalProductPrice | null;
+    'name'?: string;
+    'price'?: TerminalProductPrice | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "itemsIncluded",
             "baseName": "itemsIncluded",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "price",
             "baseName": "price",
-            "type": "TerminalProductPrice | null",
-            "format": ""
+            "type": "TerminalProductPrice | null"
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalProduct.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

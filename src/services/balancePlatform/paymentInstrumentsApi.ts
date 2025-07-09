@@ -7,27 +7,27 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    ListNetworkTokensResponse,
+    NetworkTokenActivationDataRequest,
+    NetworkTokenActivationDataResponse,
+    PaymentInstrument,
+    PaymentInstrumentInfo,
+    PaymentInstrumentRevealInfo,
+    PaymentInstrumentRevealRequest,
+    PaymentInstrumentRevealResponse,
+    PaymentInstrumentUpdateRequest,
+    RestServiceError,
+    TransactionRulesResponse,
+    UpdatePaymentInstrument,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
-import { ListNetworkTokensResponse } from "../../typings/balancePlatform/models";
-import { PaymentInstrument } from "../../typings/balancePlatform/models";
-import { PaymentInstrumentInfo } from "../../typings/balancePlatform/models";
-import { PaymentInstrumentRevealInfo } from "../../typings/balancePlatform/models";
-import { PaymentInstrumentRevealRequest } from "../../typings/balancePlatform/models";
-import { PaymentInstrumentRevealResponse } from "../../typings/balancePlatform/models";
-import { PaymentInstrumentUpdateRequest } from "../../typings/balancePlatform/models";
-import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
-import { UpdatePaymentInstrument } from "../../typings/balancePlatform/models";
-
-/**
- * API handler for PaymentInstrumentsApi
- */
 export class PaymentInstrumentsApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -39,6 +39,26 @@ export class PaymentInstrumentsApi extends Service {
     }
 
     /**
+    * @summary Create network token activation data
+    * @param id {@link string } The unique identifier of the payment instrument.
+    * @param networkTokenActivationDataRequest {@link NetworkTokenActivationDataRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link NetworkTokenActivationDataResponse }
+    */
+    public async createNetworkTokenActivationData(id: string, networkTokenActivationDataRequest: NetworkTokenActivationDataRequest, requestOptions?: IRequest.Options): Promise<NetworkTokenActivationDataResponse> {
+        const endpoint = `${this.baseUrl}/paymentInstruments/{id}/networkTokenActivationData`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const request: NetworkTokenActivationDataRequest = ObjectSerializer.serialize(networkTokenActivationDataRequest, "NetworkTokenActivationDataRequest");
+        const response = await getJsonResponse<NetworkTokenActivationDataRequest, NetworkTokenActivationDataResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+        return ObjectSerializer.deserialize(response, "NetworkTokenActivationDataResponse");
+    }
+
+    /**
     * @summary Create a payment instrument
     * @param paymentInstrumentInfo {@link PaymentInstrumentInfo } 
     * @param requestOptions {@link IRequest.Options }
@@ -47,14 +67,12 @@ export class PaymentInstrumentsApi extends Service {
     public async createPaymentInstrument(paymentInstrumentInfo: PaymentInstrumentInfo, requestOptions?: IRequest.Options): Promise<PaymentInstrument> {
         const endpoint = `${this.baseUrl}/paymentInstruments`;
         const resource = new Resource(this, endpoint);
-        
         const request: PaymentInstrumentInfo = ObjectSerializer.serialize(paymentInstrumentInfo, "PaymentInstrumentInfo");
         const response = await getJsonResponse<PaymentInstrumentInfo, PaymentInstrument>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentInstrument");
     }
 
@@ -68,14 +86,30 @@ export class PaymentInstrumentsApi extends Service {
         const endpoint = `${this.baseUrl}/paymentInstruments/{id}/transactionRules`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, TransactionRulesResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
+    }
+
+    /**
+    * @summary Get network token activation data
+    * @param id {@link string } The unique identifier of the payment instrument.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link NetworkTokenActivationDataResponse }
+    */
+    public async getNetworkTokenActivationData(id: string, requestOptions?: IRequest.Options): Promise<NetworkTokenActivationDataResponse> {
+        const endpoint = `${this.baseUrl}/paymentInstruments/{id}/networkTokenActivationData`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        const response = await getJsonResponse<string, NetworkTokenActivationDataResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+        return ObjectSerializer.deserialize(response, "NetworkTokenActivationDataResponse");
     }
 
     /**
@@ -88,13 +122,11 @@ export class PaymentInstrumentsApi extends Service {
         const endpoint = `${this.baseUrl}/paymentInstruments/{id}/reveal`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, PaymentInstrumentRevealInfo>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentInstrumentRevealInfo");
     }
 
@@ -108,13 +140,11 @@ export class PaymentInstrumentsApi extends Service {
         const endpoint = `${this.baseUrl}/paymentInstruments/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, PaymentInstrument>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentInstrument");
     }
 
@@ -128,13 +158,11 @@ export class PaymentInstrumentsApi extends Service {
         const endpoint = `${this.baseUrl}/paymentInstruments/{id}/networkTokens`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, ListNetworkTokensResponse>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ListNetworkTokensResponse");
     }
 
@@ -147,14 +175,12 @@ export class PaymentInstrumentsApi extends Service {
     public async revealDataOfPaymentInstrument(paymentInstrumentRevealRequest: PaymentInstrumentRevealRequest, requestOptions?: IRequest.Options): Promise<PaymentInstrumentRevealResponse> {
         const endpoint = `${this.baseUrl}/paymentInstruments/reveal`;
         const resource = new Resource(this, endpoint);
-        
         const request: PaymentInstrumentRevealRequest = ObjectSerializer.serialize(paymentInstrumentRevealRequest, "PaymentInstrumentRevealRequest");
         const response = await getJsonResponse<PaymentInstrumentRevealRequest, PaymentInstrumentRevealResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "PaymentInstrumentRevealResponse");
     }
 
@@ -169,15 +195,12 @@ export class PaymentInstrumentsApi extends Service {
         const endpoint = `${this.baseUrl}/paymentInstruments/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const request: PaymentInstrumentUpdateRequest = ObjectSerializer.serialize(paymentInstrumentUpdateRequest, "PaymentInstrumentUpdateRequest");
         const response = await getJsonResponse<PaymentInstrumentUpdateRequest, UpdatePaymentInstrument>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "UpdatePaymentInstrument");
     }
-
 }

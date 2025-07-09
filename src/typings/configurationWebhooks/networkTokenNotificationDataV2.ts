@@ -7,128 +7,118 @@
  * Do not edit this class manually.
  */
 
-import { TokenAuthentication } from "./tokenAuthentication";
-import { ValidationFacts } from "./validationFacts";
-import { Wallet } from "./wallet";
-
+import { NetworkTokenRequestor } from './networkTokenRequestor';
+import { TokenAuthentication } from './tokenAuthentication';
+import { ValidationFacts } from './validationFacts';
+import { Wallet } from './wallet';
 
 export class NetworkTokenNotificationDataV2 {
-    "authentication"?: TokenAuthentication | null;
+    'authentication'?: TokenAuthentication | null;
     /**
     * Specifies whether the authentication process was triggered during token provisioning.
     */
-    "authenticationApplied"?: boolean;
+    'authenticationApplied'?: boolean;
     /**
     * The unique identifier of the balance platform.
     */
-    "balancePlatform"?: string;
+    'balancePlatform'?: string;
     /**
     * The decision about the network token provisioning.  Possible values: **approved**, **declined**, **requiresAuthentication**.
     */
-    "decision"?: string;
+    'decision'?: string;
     /**
     * The unique identifier of the network token.
     */
-    "id"?: string;
+    'id'?: string;
     /**
     * The unique identifier of the payment instrument to which the network token is associated.
     */
-    "paymentInstrumentId"?: string;
+    'paymentInstrumentId'?: string;
     /**
     * The status of the network token.
     */
-    "status"?: string;
+    'status'?: string;
     /**
     * The last four digits of the network token. Use this value to help your user to identify their network token.
     */
-    "tokenLastFour"?: string;
+    'tokenLastFour'?: string;
+    'tokenRequestor'?: NetworkTokenRequestor | null;
     /**
     * The type of network token.
     */
-    "type"?: string;
+    'type'?: string;
     /**
     * The rules used to validate the request for provisioning the network token.
     */
-    "validationFacts"?: Array<ValidationFacts>;
-    "wallet"?: Wallet | null;
+    'validationFacts'?: Array<ValidationFacts>;
+    'wallet'?: Wallet | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "authentication",
             "baseName": "authentication",
-            "type": "TokenAuthentication | null",
-            "format": ""
+            "type": "TokenAuthentication | null"
         },
         {
             "name": "authenticationApplied",
             "baseName": "authenticationApplied",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "decision",
             "baseName": "decision",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "tokenLastFour",
             "baseName": "tokenLastFour",
-            "type": "string",
-            "format": ""
+            "type": "string"
+        },
+        {
+            "name": "tokenRequestor",
+            "baseName": "tokenRequestor",
+            "type": "NetworkTokenRequestor | null"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "validationFacts",
             "baseName": "validationFacts",
-            "type": "Array<ValidationFacts>",
-            "format": ""
+            "type": "Array<ValidationFacts>"
         },
         {
             "name": "wallet",
             "baseName": "wallet",
-            "type": "Wallet | null",
-            "format": ""
+            "type": "Wallet | null"
         }    ];
 
     static getAttributeTypeMap() {
         return NetworkTokenNotificationDataV2.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

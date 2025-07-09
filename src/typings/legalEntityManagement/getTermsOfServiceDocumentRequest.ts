@@ -12,45 +12,37 @@ export class GetTermsOfServiceDocumentRequest {
     /**
     * The language to be used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English.
     */
-    "language": string;
+    'language': string;
     /**
     * The requested format for the Terms of Service document. Default value: JSON. Possible values: **JSON**, **PDF**, or **TXT**.
     */
-    "termsOfServiceDocumentFormat"?: string;
+    'termsOfServiceDocumentFormat'?: string;
     /**
     * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  
     */
-    "type": GetTermsOfServiceDocumentRequest.TypeEnum;
+    'type': GetTermsOfServiceDocumentRequest.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "language",
             "baseName": "language",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "termsOfServiceDocumentFormat",
             "baseName": "termsOfServiceDocumentFormat",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "GetTermsOfServiceDocumentRequest.TypeEnum",
-            "format": ""
+            "type": "GetTermsOfServiceDocumentRequest.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return GetTermsOfServiceDocumentRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

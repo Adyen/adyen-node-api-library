@@ -7,23 +7,21 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    CreateMerchantRequest,
+    CreateMerchantResponse,
+    ListMerchantResponse,
+    Merchant,
+    RequestActivationResponse,
+    RestServiceError,
+    ObjectSerializer
+} from "../../typings/management/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { CreateMerchantRequest } from "../../typings/management/models";
-import { CreateMerchantResponse } from "../../typings/management/models";
-import { ListMerchantResponse } from "../../typings/management/models";
-import { Merchant } from "../../typings/management/models";
-import { RequestActivationResponse } from "../../typings/management/models";
-
-/**
- * API handler for AccountMerchantLevelApi
- */
 export class AccountMerchantLevelApi extends Service {
 
     private readonly API_BASEPATH: string = "https://management-test.adyen.com/v3";
@@ -43,14 +41,12 @@ export class AccountMerchantLevelApi extends Service {
     public async createMerchantAccount(createMerchantRequest: CreateMerchantRequest, requestOptions?: IRequest.Options): Promise<CreateMerchantResponse> {
         const endpoint = `${this.baseUrl}/merchants`;
         const resource = new Resource(this, endpoint);
-        
         const request: CreateMerchantRequest = ObjectSerializer.serialize(createMerchantRequest, "CreateMerchantRequest");
         const response = await getJsonResponse<CreateMerchantRequest, CreateMerchantResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "CreateMerchantResponse");
     }
 
@@ -64,13 +60,11 @@ export class AccountMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, Merchant>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "Merchant");
     }
 
@@ -84,7 +78,6 @@ export class AccountMerchantLevelApi extends Service {
     public async listMerchantAccounts(pageNumber?: number, pageSize?: number, requestOptions?: IRequest.Options): Promise<ListMerchantResponse> {
         const endpoint = `${this.baseUrl}/merchants`;
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = pageNumber ?? pageSize;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -97,7 +90,6 @@ export class AccountMerchantLevelApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "ListMerchantResponse");
     }
 
@@ -111,14 +103,11 @@ export class AccountMerchantLevelApi extends Service {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/activate`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)));
         const resource = new Resource(this, endpoint);
-        
         const response = await getJsonResponse<string, RequestActivationResponse>(
             resource,
             "",
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "RequestActivationResponse");
     }
-
 }

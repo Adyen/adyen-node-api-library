@@ -12,35 +12,28 @@ export class TerminalConnectivityBluetooth {
     /**
     * The terminal\'s Bluetooth IP address.
     */
-    "ipAddress"?: string;
+    'ipAddress'?: string;
     /**
     * The terminal\'s Bluetooth MAC address.
     */
-    "macAddress"?: string;
+    'macAddress'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "ipAddress",
             "baseName": "ipAddress",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "macAddress",
             "baseName": "macAddress",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return TerminalConnectivityBluetooth.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

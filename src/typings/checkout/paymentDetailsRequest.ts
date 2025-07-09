@@ -7,60 +7,50 @@
  * Do not edit this class manually.
  */
 
-import { DetailsRequestAuthenticationData } from "./detailsRequestAuthenticationData";
-import { PaymentCompletionDetails } from "./paymentCompletionDetails";
-
+import { DetailsRequestAuthenticationData } from './detailsRequestAuthenticationData';
+import { PaymentCompletionDetails } from './paymentCompletionDetails';
 
 export class PaymentDetailsRequest {
-    "authenticationData"?: DetailsRequestAuthenticationData | null;
-    "details": PaymentCompletionDetails;
+    'authenticationData'?: DetailsRequestAuthenticationData | null;
+    'details': PaymentCompletionDetails;
     /**
     * Encoded payment data. For [authorizing a payment after using 3D Secure 2 Authentication-only](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only/#authorise-the-payment-with-adyen):  If you received `resultCode`: **AuthenticationNotRequired** in the `/payments` response, use the `threeDSPaymentData` from the same response.  If you received `resultCode`: **AuthenticationFinished** in the `/payments` response, use the `action.paymentData` from the same response.
     */
-    "paymentData"?: string;
+    'paymentData'?: string;
     /**
     * Change the `authenticationOnly` indicator originally set in the `/payments` request. Only needs to be set if you want to modify the value set previously.
     *
 	* @deprecated since Adyen Checkout API v69
 	* Use `authenticationData.authenticationOnly` instead.
     */
-    "threeDSAuthenticationOnly"?: boolean;
+    'threeDSAuthenticationOnly'?: boolean;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "authenticationData",
             "baseName": "authenticationData",
-            "type": "DetailsRequestAuthenticationData | null",
-            "format": ""
+            "type": "DetailsRequestAuthenticationData | null"
         },
         {
             "name": "details",
             "baseName": "details",
-            "type": "PaymentCompletionDetails",
-            "format": ""
+            "type": "PaymentCompletionDetails"
         },
         {
             "name": "paymentData",
             "baseName": "paymentData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDSAuthenticationOnly",
             "baseName": "threeDSAuthenticationOnly",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentDetailsRequest.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

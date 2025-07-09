@@ -12,45 +12,37 @@ export class VerificationDeadline {
     /**
     * The names of the capabilities to be disallowed.
     */
-    "capabilities": Array<VerificationDeadline.CapabilitiesEnum>;
+    'capabilities': Array<VerificationDeadline.CapabilitiesEnum>;
     /**
     * The unique identifiers of the bank account(s) that the deadline applies to
     */
-    "entityIds"?: Array<string>;
+    'entityIds'?: Array<string>;
     /**
     * The date that verification is due by before capabilities are disallowed.
     */
-    "expiresAt": Date;
+    'expiresAt': Date;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "capabilities",
             "baseName": "capabilities",
-            "type": "VerificationDeadline.CapabilitiesEnum",
-            "format": ""
+            "type": "Array<VerificationDeadline.CapabilitiesEnum>"
         },
         {
             "name": "entityIds",
             "baseName": "entityIds",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         },
         {
             "name": "expiresAt",
             "baseName": "expiresAt",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
         return VerificationDeadline.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

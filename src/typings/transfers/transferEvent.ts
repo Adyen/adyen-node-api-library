@@ -7,193 +7,176 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-import { AmountAdjustment } from "./amountAdjustment";
-import { BalanceMutation } from "./balanceMutation";
-import { ExternalReason } from "./externalReason";
-import { Modification } from "./modification";
-import { TransferEventEventsDataInner } from "./transferEventEventsDataInner";
-import { TransferEventTrackingData } from "./transferEventTrackingData";
-
+import { Amount } from './amount';
+import { AmountAdjustment } from './amountAdjustment';
+import { BalanceMutation } from './balanceMutation';
+import { ConfirmationTrackingData } from './confirmationTrackingData';
+import { EstimationTrackingData } from './estimationTrackingData';
+import { ExternalReason } from './externalReason';
+import { InternalReviewTrackingData } from './internalReviewTrackingData';
+import { IssuingTransactionData } from './issuingTransactionData';
+import { IssuingTransactionData | MerchantPurchaseData } from './issuingTransactionData | MerchantPurchaseData';
+import { MerchantPurchaseData } from './merchantPurchaseData';
+import { Modification } from './modification';
 
 export class TransferEvent {
-    "amount"?: Amount | null;
+    'amount'?: Amount | null;
     /**
     * The amount adjustments in this transfer. Only applicable for [issuing](https://docs.adyen.com/issuing/) integrations.
     */
-    "amountAdjustments"?: Array<AmountAdjustment>;
+    'amountAdjustments'?: Array<AmountAdjustment>;
     /**
     * Scheme unique arn identifier useful for tracing captures, chargebacks, refunds, etc.
     */
-    "arn"?: string;
+    'arn'?: string;
     /**
     * The date when the transfer request was sent.
     */
-    "bookingDate"?: Date;
+    'bookingDate'?: Date;
     /**
     * The estimated time when the beneficiary should have access to the funds.
     */
-    "estimatedArrivalTime"?: Date;
+    'estimatedArrivalTime'?: Date;
     /**
     * A list of event data.
     */
-    "eventsData"?: Array<TransferEventEventsDataInner>;
-    "externalReason"?: ExternalReason | null;
+    'eventsData'?: Array<IssuingTransactionData | MerchantPurchaseData>;
+    'externalReason'?: ExternalReason | null;
     /**
     * The unique identifier of the transfer event.
     */
-    "id"?: string;
-    "modification"?: Modification | null;
+    'id'?: string;
+    'modification'?: Modification | null;
     /**
     * The list of balance mutations per event.
     */
-    "mutations"?: Array<BalanceMutation>;
-    "originalAmount"?: Amount | null;
+    'mutations'?: Array<BalanceMutation>;
+    'originalAmount'?: Amount | null;
     /**
     * The reason for the transfer status.
     */
-    "reason"?: TransferEvent.ReasonEnum;
+    'reason'?: TransferEvent.ReasonEnum;
     /**
     * The status of the transfer event.
     */
-    "status"?: TransferEvent.StatusEnum;
-    "trackingData"?: TransferEventTrackingData | null;
+    'status'?: TransferEvent.StatusEnum;
+    /**
+    * Additional information for the tracking event.
+    */
+    'trackingData'?: ConfirmationTrackingData | EstimationTrackingData | InternalReviewTrackingData | null;
     /**
     * The id of the transaction that is related to this accounting event. Only sent for events of type **accounting** where the balance changes.
     */
-    "transactionId"?: string;
+    'transactionId'?: string;
     /**
     * The type of the transfer event. Possible values: **accounting**, **tracking**.
     */
-    "type"?: TransferEvent.TypeEnum;
+    'type'?: TransferEvent.TypeEnum;
     /**
     * The date when the tracking status was updated.
     */
-    "updateDate"?: Date;
+    'updateDate'?: Date;
     /**
     * The date when the funds are expected to be deducted from or credited to the balance account. This date can be in either the past or future.
     */
-    "valueDate"?: Date;
+    'valueDate'?: Date;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         },
         {
             "name": "amountAdjustments",
             "baseName": "amountAdjustments",
-            "type": "Array<AmountAdjustment>",
-            "format": ""
+            "type": "Array<AmountAdjustment>"
         },
         {
             "name": "arn",
             "baseName": "arn",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "bookingDate",
             "baseName": "bookingDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "estimatedArrivalTime",
             "baseName": "estimatedArrivalTime",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "eventsData",
             "baseName": "eventsData",
-            "type": "Array<TransferEventEventsDataInner>",
-            "format": ""
+            "type": "Array<IssuingTransactionData | MerchantPurchaseData>"
         },
         {
             "name": "externalReason",
             "baseName": "externalReason",
-            "type": "ExternalReason | null",
-            "format": ""
+            "type": "ExternalReason | null"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "modification",
             "baseName": "modification",
-            "type": "Modification | null",
-            "format": ""
+            "type": "Modification | null"
         },
         {
             "name": "mutations",
             "baseName": "mutations",
-            "type": "Array<BalanceMutation>",
-            "format": ""
+            "type": "Array<BalanceMutation>"
         },
         {
             "name": "originalAmount",
             "baseName": "originalAmount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         },
         {
             "name": "reason",
             "baseName": "reason",
-            "type": "TransferEvent.ReasonEnum",
-            "format": ""
+            "type": "TransferEvent.ReasonEnum"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "TransferEvent.StatusEnum",
-            "format": ""
+            "type": "TransferEvent.StatusEnum"
         },
         {
             "name": "trackingData",
             "baseName": "trackingData",
-            "type": "TransferEventTrackingData | null",
-            "format": ""
+            "type": "ConfirmationTrackingData | EstimationTrackingData | InternalReviewTrackingData | null"
         },
         {
             "name": "transactionId",
             "baseName": "transactionId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "TransferEvent.TypeEnum",
-            "format": ""
+            "type": "TransferEvent.TypeEnum"
         },
         {
             "name": "updateDate",
             "baseName": "updateDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "valueDate",
             "baseName": "valueDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
         return TransferEvent.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

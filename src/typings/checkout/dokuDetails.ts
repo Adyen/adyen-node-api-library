@@ -12,80 +12,70 @@ export class DokuDetails {
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * The shopper\'s first name.
     */
-    "firstName": string;
+    'firstName': string;
     /**
     * The shopper\'s last name.
     */
-    "lastName": string;
+    'lastName': string;
     /**
     * The shopper\'s email.
     */
-    "shopperEmail": string;
+    'shopperEmail': string;
     /**
     * **doku**
     */
-    "type": DokuDetails.TypeEnum;
+    'type': DokuDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "firstName",
             "baseName": "firstName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "lastName",
             "baseName": "lastName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "DokuDetails.TypeEnum",
-            "format": ""
+            "type": "DokuDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return DokuDetails.attributeTypeMap;
     }
-
-    public constructor() {
-    }
 }
 
 export namespace DokuDetails {
     export enum TypeEnum {
-        DokuMandiriVa = 'doku_mandiri_va',
-        DokuCimbVa = 'doku_cimb_va',
-        DokuDanamonVa = 'doku_danamon_va',
-        DokuBniVa = 'doku_bni_va',
-        DokuPermataLiteAtm = 'doku_permata_lite_atm',
-        DokuBriVa = 'doku_bri_va',
-        DokuBcaVa = 'doku_bca_va',
-        DokuAlfamart = 'doku_alfamart',
-        DokuIndomaret = 'doku_indomaret',
-        DokuWallet = 'doku_wallet',
-        DokuOvo = 'doku_ovo'
+        MandiriVa = 'doku_mandiri_va',
+        CimbVa = 'doku_cimb_va',
+        DanamonVa = 'doku_danamon_va',
+        BniVa = 'doku_bni_va',
+        PermataLiteAtm = 'doku_permata_lite_atm',
+        BriVa = 'doku_bri_va',
+        BcaVa = 'doku_bca_va',
+        Alfamart = 'doku_alfamart',
+        Indomaret = 'doku_indomaret',
+        Wallet = 'doku_wallet',
+        Ovo = 'doku_ovo'
     }
 }

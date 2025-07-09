@@ -7,76 +7,64 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-
+import { Amount } from './amount';
 
 export class CheckoutOrderResponse {
-    "amount"?: Amount | null;
+    'amount'?: Amount | null;
     /**
     * The expiry date for the order.
     */
-    "expiresAt"?: string;
+    'expiresAt'?: string;
     /**
     * The encrypted order data.
     */
-    "orderData"?: string;
+    'orderData'?: string;
     /**
     * The `pspReference` that belongs to the order.
     */
-    "pspReference": string;
+    'pspReference': string;
     /**
     * The merchant reference for the order.
     */
-    "reference"?: string;
-    "remainingAmount"?: Amount | null;
+    'reference'?: string;
+    'remainingAmount'?: Amount | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         },
         {
             "name": "expiresAt",
             "baseName": "expiresAt",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "orderData",
             "baseName": "orderData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "pspReference",
             "baseName": "pspReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "remainingAmount",
             "baseName": "remainingAmount",
-            "type": "Amount | null",
-            "format": ""
+            "type": "Amount | null"
         }    ];
 
     static getAttributeTypeMap() {
         return CheckoutOrderResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

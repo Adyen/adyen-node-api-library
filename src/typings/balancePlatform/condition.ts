@@ -12,45 +12,37 @@ export class Condition {
     /**
     * Define the type of balance about which you want to get notified. Possible values:  * **available**: the balance available for use.  * **balance**: the sum of transactions that have already been settled.  * **pending**: the sum of transactions that will be settled in the future.  * **reserved**: the balance currently held in reserve.
     */
-    "balanceType": Condition.BalanceTypeEnum;
+    'balanceType': Condition.BalanceTypeEnum;
     /**
     * Define when you want to get notified about a balance change. Possible values:  * **greaterThan**: the balance in the account(s) exceeds the specified `value`.  * **greaterThanOrEqual**: the balance in the account(s) reaches or exceeds the specified `value`.  * **lessThan**: the balance in the account(s) drops below the specified `value`.  * **lessThanOrEqual**: the balance in the account(s) reaches to drops below the specified `value`.
     */
-    "conditionType": Condition.ConditionTypeEnum;
+    'conditionType': Condition.ConditionTypeEnum;
     /**
     * The value limit in the specified balance type and currency, in minor units.
     */
-    "value": number;
+    'value': number;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "balanceType",
             "baseName": "balanceType",
-            "type": "Condition.BalanceTypeEnum",
-            "format": ""
+            "type": "Condition.BalanceTypeEnum"
         },
         {
             "name": "conditionType",
             "baseName": "conditionType",
-            "type": "Condition.ConditionTypeEnum",
-            "format": ""
+            "type": "Condition.ConditionTypeEnum"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "number",
-            "format": "int64"
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
         return Condition.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

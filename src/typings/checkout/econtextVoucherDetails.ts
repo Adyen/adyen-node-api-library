@@ -12,75 +12,64 @@ export class EcontextVoucherDetails {
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * The shopper\'s first name.
     */
-    "firstName": string;
+    'firstName': string;
     /**
     * The shopper\'s last name.
     */
-    "lastName": string;
+    'lastName': string;
     /**
     * The shopper\'s email.
     */
-    "shopperEmail": string;
+    'shopperEmail': string;
     /**
     * The shopper\'s contact number. It must have an international number format, for example **+31 20 779 1846**. Formats like **+31 (0)20 779 1846** or **0031 20 779 1846** are not accepted.
     */
-    "telephoneNumber": string;
+    'telephoneNumber': string;
     /**
     * **econtextvoucher**
     */
-    "type": EcontextVoucherDetails.TypeEnum;
+    'type': EcontextVoucherDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "firstName",
             "baseName": "firstName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "lastName",
             "baseName": "lastName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "EcontextVoucherDetails.TypeEnum",
-            "format": ""
+            "type": "EcontextVoucherDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return EcontextVoucherDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

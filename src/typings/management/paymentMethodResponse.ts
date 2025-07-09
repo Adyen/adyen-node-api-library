@@ -7,70 +7,59 @@
  * Do not edit this class manually.
  */
 
-import { PaginationLinks } from "./paginationLinks";
-import { PaymentMethod } from "./paymentMethod";
-
+import { PaginationLinks } from './paginationLinks';
+import { PaymentMethod } from './paymentMethod';
 
 export class PaymentMethodResponse {
-    "_links"?: PaginationLinks | null;
+    '_links'?: PaginationLinks | null;
     /**
     * The list of supported payment methods and their details.
     */
-    "data"?: Array<PaymentMethod>;
+    'data'?: Array<PaymentMethod>;
     /**
     * Total number of items.
     */
-    "itemsTotal": number;
+    'itemsTotal': number;
     /**
     * Total number of pages.
     */
-    "pagesTotal": number;
+    'pagesTotal': number;
     /**
     * Payment method types with errors.
     */
-    "typesWithErrors"?: Array<PaymentMethodResponse.TypesWithErrorsEnum>;
+    'typesWithErrors'?: Array<PaymentMethodResponse.TypesWithErrorsEnum>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "_links",
             "baseName": "_links",
-            "type": "PaginationLinks | null",
-            "format": ""
+            "type": "PaginationLinks | null"
         },
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<PaymentMethod>",
-            "format": ""
+            "type": "Array<PaymentMethod>"
         },
         {
             "name": "itemsTotal",
             "baseName": "itemsTotal",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "pagesTotal",
             "baseName": "pagesTotal",
-            "type": "number",
-            "format": "int32"
+            "type": "number"
         },
         {
             "name": "typesWithErrors",
             "baseName": "typesWithErrors",
-            "type": "PaymentMethodResponse.TypesWithErrorsEnum",
-            "format": ""
+            "type": "Array<PaymentMethodResponse.TypesWithErrorsEnum>"
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentMethodResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 
@@ -83,9 +72,13 @@ export namespace PaymentMethodResponse {
         Alelo = 'alelo',
         Alipay = 'alipay',
         AlipayHk = 'alipay_hk',
+        AlipayPlus = 'alipay_plus',
         AlipayWap = 'alipay_wap',
         Amex = 'amex',
         Applepay = 'applepay',
+        Avancard = 'avancard',
+        AvancardCredit = 'avancard_credit',
+        AvancardDebit = 'avancard_debit',
         BaneseCard = 'banese_card',
         BaneseCardCredit = 'banese_card_credit',
         BaneseCardDebit = 'banese_card_debit',
@@ -95,6 +88,14 @@ export namespace PaymentMethodResponse {
         Cartebancaire = 'cartebancaire',
         Clearpay = 'clearpay',
         Clicktopay = 'clicktopay',
+        Cooper = 'cooper',
+        CooperCredit = 'cooper_credit',
+        CooperDebit = 'cooper_debit',
+        CooperFoodDebit = 'cooper_food_debit',
+        CooperMealDebit = 'cooper_meal_debit',
+        CooperPrepaid = 'cooper_prepaid',
+        CooperPrivateCredit = 'cooper_private_credit',
+        CooperRetailCredit = 'cooper_retail_credit',
         Credtodos = 'credtodos',
         CredtodosPrivateCredit = 'credtodos_private_credit',
         CredtodosPrivateDebit = 'credtodos_private_debit',
@@ -110,6 +111,12 @@ export namespace PaymentMethodResponse {
         Elodebit = 'elodebit',
         Girocard = 'girocard',
         Googlepay = 'googlepay',
+        GreenCard = 'green_card',
+        GreenCardCredit = 'green_card_credit',
+        GreenCardDebit = 'green_card_debit',
+        GreenCardFoodPrepaid = 'green_card_food_prepaid',
+        GreenCardMealPrepaid = 'green_card_meal_prepaid',
+        GreenCardPrepaid = 'green_card_prepaid',
         Hiper = 'hiper',
         Hipercard = 'hipercard',
         Ideal = 'ideal',
@@ -118,13 +125,24 @@ export namespace PaymentMethodResponse {
         Klarna = 'klarna',
         KlarnaAccount = 'klarna_account',
         KlarnaPaynow = 'klarna_paynow',
+        LeCard = 'le_card',
+        LeCardCredit = 'le_card_credit',
+        LeCardDebit = 'le_card_debit',
         Maestro = 'maestro',
+        MaestroUsa = 'maestro_usa',
+        Maxifrota = 'maxifrota',
+        MaxifrotaPrepaid = 'maxifrota_prepaid',
         Mbway = 'mbway',
         Mc = 'mc',
         Mcdebit = 'mcdebit',
         MealVoucherFr = 'mealVoucher_FR',
+        Megaleve = 'megaleve',
+        MegaleveCredit = 'megaleve_credit',
+        MegaleveDebit = 'megaleve_debit',
         Mobilepay = 'mobilepay',
         Multibanco = 'multibanco',
+        Nutricash = 'nutricash',
+        NutricashPrepaid = 'nutricash_prepaid',
         Nyce = 'nyce',
         OnlineBankingPl = 'onlineBanking_PL',
         Paybybank = 'paybybank',
@@ -135,7 +153,12 @@ export namespace PaymentMethodResponse {
         PaynowPos = 'paynow_pos',
         Paypal = 'paypal',
         Payto = 'payto',
+        PersonalCard = 'personal_card',
+        PersonalCardCredit = 'personal_card_credit',
+        PersonalCardDebit = 'personal_card_debit',
         Pulse = 'pulse',
+        Senff = 'senff',
+        SenffCredit = 'senff_credit',
         Sodexo = 'sodexo',
         Star = 'star',
         Swish = 'swish',
@@ -144,9 +167,19 @@ export namespace PaymentMethodResponse {
         Trustly = 'trustly',
         Twint = 'twint',
         TwintPos = 'twint_pos',
+        UpBrazil = 'up_brazil',
         UpBrazilCredit = 'up_brazil_credit',
+        UpBrazilDebit = 'up_brazil_debit',
+        UpBrazilPrepaid = 'up_brazil_prepaid',
         ValeRefeicao = 'vale_refeicao',
         ValeRefeicaoPrepaid = 'vale_refeicao_prepaid',
+        VegasCard = 'vegas_card',
+        VegasCardCredit = 'vegas_card_credit',
+        VegasCardDebit = 'vegas_card_debit',
+        VeroCard = 'vero_card',
+        VeroCardCredit = 'vero_card_credit',
+        VeroCardDebit = 'vero_card_debit',
+        VeroCardPrepaid = 'vero_card_prepaid',
         Vipps = 'vipps',
         Visa = 'visa',
         Visadebit = 'visadebit',

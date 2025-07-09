@@ -12,108 +12,94 @@ export class PayPalDetails {
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
     * The unique ID associated with the order.
     */
-    "orderID"?: string;
+    'orderID'?: string;
     /**
     * IMMEDIATE_PAYMENT_REQUIRED or UNRESTRICTED
     */
-    "payeePreferred"?: string;
+    'payeePreferred'?: string;
     /**
     * The unique ID associated with the payer.
     */
-    "payerID"?: string;
+    'payerID'?: string;
     /**
     * PAYPAL or PAYPAL_CREDIT
     */
-    "payerSelected"?: string;
+    'payerSelected'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    "recurringDetailReference"?: string;
+    'recurringDetailReference'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    "storedPaymentMethodId"?: string;
+    'storedPaymentMethodId'?: string;
     /**
     * The type of flow to initiate.
     */
-    "subtype"?: PayPalDetails.SubtypeEnum;
+    'subtype'?: PayPalDetails.SubtypeEnum;
     /**
     * **paypal**
     */
-    "type": PayPalDetails.TypeEnum;
+    'type': PayPalDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "orderID",
             "baseName": "orderID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "payeePreferred",
             "baseName": "payeePreferred",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "payerID",
             "baseName": "payerID",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "payerSelected",
             "baseName": "payerSelected",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "subtype",
             "baseName": "subtype",
-            "type": "PayPalDetails.SubtypeEnum",
-            "format": ""
+            "type": "PayPalDetails.SubtypeEnum"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "PayPalDetails.TypeEnum",
-            "format": ""
+            "type": "PayPalDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return PayPalDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

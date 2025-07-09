@@ -12,268 +12,238 @@ export class CardDetails {
     /**
     * Secondary brand of the card. For example: **plastix**, **hmclub**.
     */
-    "brand"?: string;
+    'brand'?: string;
     /**
     * The checkout attempt identifier.
     */
-    "checkoutAttemptId"?: string;
+    'checkoutAttemptId'?: string;
     /**
 	* @deprecated 
     */
-    "cupsecureplus_smscode"?: string;
+    'cupsecureplus_smscode'?: string;
     /**
     * The card verification code. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
-    "cvc"?: string;
+    'cvc'?: string;
     /**
     * Only include this for JSON Web Encryption (JWE) implementations. The JWE-encrypted card details.
     */
-    "encryptedCard"?: string;
+    'encryptedCard'?: string;
     /**
     * The encrypted card number.
     */
-    "encryptedCardNumber"?: string;
+    'encryptedCardNumber'?: string;
     /**
     * The encrypted card expiry month.
     */
-    "encryptedExpiryMonth"?: string;
+    'encryptedExpiryMonth'?: string;
     /**
     * The encrypted card expiry year.
     */
-    "encryptedExpiryYear"?: string;
+    'encryptedExpiryYear'?: string;
     /**
     * The encrypted card verification code.
     */
-    "encryptedSecurityCode"?: string;
+    'encryptedSecurityCode'?: string;
     /**
     * The card expiry month. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
-    "expiryMonth"?: string;
+    'expiryMonth'?: string;
     /**
     * The card expiry year. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
-    "expiryYear"?: string;
+    'expiryYear'?: string;
     /**
     * The encoded fastlane data blob
     */
-    "fastlaneData"?: string;
+    'fastlaneData'?: string;
     /**
     * The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
     */
-    "fundingSource"?: CardDetails.FundingSourceEnum;
+    'fundingSource'?: CardDetails.FundingSourceEnum;
     /**
     * The name of the card holder.
     */
-    "holderName"?: string;
+    'holderName'?: string;
     /**
     * The transaction identifier from card schemes. This is the [`networkTxReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment.
     */
-    "networkPaymentReference"?: string;
+    'networkPaymentReference'?: string;
     /**
     * The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).
     */
-    "number"?: string;
+    'number'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
 	* @deprecated since Adyen Checkout API v49
 	* Use `storedPaymentMethodId` instead.
     */
-    "recurringDetailReference"?: string;
+    'recurringDetailReference'?: string;
     /**
     * The `shopperNotificationReference` returned in the response when you requested to notify the shopper. Used only for recurring payments in India.
     */
-    "shopperNotificationReference"?: string;
+    'shopperNotificationReference'?: string;
     /**
     * An identifier used for the Click to Pay transaction.
     */
-    "srcCorrelationId"?: string;
+    'srcCorrelationId'?: string;
     /**
     * The SRC reference for the Click to Pay token.
     */
-    "srcDigitalCardId"?: string;
+    'srcDigitalCardId'?: string;
     /**
     * The scheme that is being used for Click to Pay.
     */
-    "srcScheme"?: string;
+    'srcScheme'?: string;
     /**
     * The reference for the Click to Pay token.
     */
-    "srcTokenReference"?: string;
+    'srcTokenReference'?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
-    "storedPaymentMethodId"?: string;
+    'storedPaymentMethodId'?: string;
     /**
     * Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
     */
-    "threeDS2SdkVersion"?: string;
+    'threeDS2SdkVersion'?: string;
     /**
     * Default payment method details. Common for scheme payment methods, and for simple payment method details.
     */
-    "type"?: CardDetails.TypeEnum;
+    'type'?: CardDetails.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "brand",
             "baseName": "brand",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cupsecureplus_smscode",
             "baseName": "cupsecureplus.smscode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "cvc",
             "baseName": "cvc",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "encryptedCard",
             "baseName": "encryptedCard",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "encryptedCardNumber",
             "baseName": "encryptedCardNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "encryptedExpiryMonth",
             "baseName": "encryptedExpiryMonth",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "encryptedExpiryYear",
             "baseName": "encryptedExpiryYear",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "encryptedSecurityCode",
             "baseName": "encryptedSecurityCode",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "expiryMonth",
             "baseName": "expiryMonth",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "expiryYear",
             "baseName": "expiryYear",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fastlaneData",
             "baseName": "fastlaneData",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "fundingSource",
             "baseName": "fundingSource",
-            "type": "CardDetails.FundingSourceEnum",
-            "format": ""
+            "type": "CardDetails.FundingSourceEnum"
         },
         {
             "name": "holderName",
             "baseName": "holderName",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "networkPaymentReference",
             "baseName": "networkPaymentReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "number",
             "baseName": "number",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "shopperNotificationReference",
             "baseName": "shopperNotificationReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "srcCorrelationId",
             "baseName": "srcCorrelationId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "srcDigitalCardId",
             "baseName": "srcDigitalCardId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "srcScheme",
             "baseName": "srcScheme",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "srcTokenReference",
             "baseName": "srcTokenReference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "threeDS2SdkVersion",
             "baseName": "threeDS2SdkVersion",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CardDetails.TypeEnum",
-            "format": ""
+            "type": "CardDetails.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return CardDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

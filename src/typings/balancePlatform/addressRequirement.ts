@@ -12,45 +12,37 @@ export class AddressRequirement {
     /**
     * Specifies the required address related fields for a particular route.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * List of address fields.
     */
-    "requiredAddressFields"?: Array<AddressRequirement.RequiredAddressFieldsEnum>;
+    'requiredAddressFields'?: Array<AddressRequirement.RequiredAddressFieldsEnum>;
     /**
     * **addressRequirement**
     */
-    "type": AddressRequirement.TypeEnum;
+    'type': AddressRequirement.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "requiredAddressFields",
             "baseName": "requiredAddressFields",
-            "type": "AddressRequirement.RequiredAddressFieldsEnum",
-            "format": ""
+            "type": "Array<AddressRequirement.RequiredAddressFieldsEnum>"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "AddressRequirement.TypeEnum",
-            "format": ""
+            "type": "AddressRequirement.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return AddressRequirement.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

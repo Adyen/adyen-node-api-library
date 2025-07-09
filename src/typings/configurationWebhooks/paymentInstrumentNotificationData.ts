@@ -7,39 +7,31 @@
  * Do not edit this class manually.
  */
 
-import { PaymentInstrument } from "./paymentInstrument";
-
+import { PaymentInstrument } from './paymentInstrument';
 
 export class PaymentInstrumentNotificationData {
     /**
     * The unique identifier of the balance platform.
     */
-    "balancePlatform"?: string;
-    "paymentInstrument"?: PaymentInstrument | null;
+    'balancePlatform'?: string;
+    'paymentInstrument'?: PaymentInstrument | null;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PaymentInstrument | null",
-            "format": ""
+            "type": "PaymentInstrument | null"
         }    ];
 
     static getAttributeTypeMap() {
         return PaymentInstrumentNotificationData.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

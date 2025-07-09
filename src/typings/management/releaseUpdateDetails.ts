@@ -12,35 +12,28 @@ export class ReleaseUpdateDetails {
     /**
     * Type of terminal action: Update Release.
     */
-    "type"?: ReleaseUpdateDetails.TypeEnum;
+    'type'?: ReleaseUpdateDetails.TypeEnum;
     /**
     * Boolean flag that tells if the terminal should update at the first next maintenance call. If false, terminal will update on its configured reboot time.
     */
-    "updateAtFirstMaintenanceCall"?: boolean;
+    'updateAtFirstMaintenanceCall'?: boolean;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "type",
             "baseName": "type",
-            "type": "ReleaseUpdateDetails.TypeEnum",
-            "format": ""
+            "type": "ReleaseUpdateDetails.TypeEnum"
         },
         {
             "name": "updateAtFirstMaintenanceCall",
             "baseName": "updateAtFirstMaintenanceCall",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return ReleaseUpdateDetails.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

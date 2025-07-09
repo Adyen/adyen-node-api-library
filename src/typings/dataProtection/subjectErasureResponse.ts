@@ -12,25 +12,19 @@ export class SubjectErasureResponse {
     /**
     * The result of this operation.
     */
-    "result"?: SubjectErasureResponse.ResultEnum;
+    'result'?: SubjectErasureResponse.ResultEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "result",
             "baseName": "result",
-            "type": "SubjectErasureResponse.ResultEnum",
-            "format": ""
+            "type": "SubjectErasureResponse.ResultEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return SubjectErasureResponse.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

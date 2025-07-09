@@ -7,140 +7,121 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
-import { PaymentInstrument } from "./paymentInstrument";
-import { ResourceReference } from "./resourceReference";
-import { TransferView } from "./transferView";
-
+import { Amount } from './amount';
+import { PaymentInstrument } from './paymentInstrument';
+import { ResourceReference } from './resourceReference';
+import { TransferView } from './transferView';
 
 export class Transaction {
-    "accountHolder": ResourceReference;
-    "amount": Amount;
-    "balanceAccount": ResourceReference;
+    'accountHolder': ResourceReference;
+    'amount': Amount;
+    'balanceAccount': ResourceReference;
     /**
     * The unique identifier of the balance platform.
     */
-    "balancePlatform": string;
+    'balancePlatform': string;
     /**
     * The date the transaction was booked into the balance account.
     */
-    "bookingDate": Date;
+    'bookingDate': Date;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
     */
-    "creationDate"?: Date;
+    'creationDate'?: Date;
     /**
     * The `description` from the `/transfers` request.
     */
-    "description"?: string;
+    'description'?: string;
     /**
     * The unique identifier of the transaction.
     */
-    "id": string;
-    "paymentInstrument"?: PaymentInstrument | null;
+    'id': string;
+    'paymentInstrument'?: PaymentInstrument | null;
     /**
     * The reference sent to or received from the counterparty.  * For outgoing funds, this is the [`referenceForBeneficiary`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__resParam_referenceForBeneficiary) from the  [`/transfers`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_referenceForBeneficiary) request.   * For incoming funds, this is the reference from the sender.
     */
-    "referenceForBeneficiary"?: string;
+    'referenceForBeneficiary'?: string;
     /**
     * The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.  
     */
-    "status": Transaction.StatusEnum;
-    "transfer"?: TransferView | null;
+    'status': Transaction.StatusEnum;
+    'transfer'?: TransferView | null;
     /**
     * The date the transfer amount becomes available in the balance account.
     */
-    "valueDate": Date;
+    'valueDate': Date;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountHolder",
             "baseName": "accountHolder",
-            "type": "ResourceReference",
-            "format": ""
+            "type": "ResourceReference"
         },
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
-            "format": ""
+            "type": "Amount"
         },
         {
             "name": "balanceAccount",
             "baseName": "balanceAccount",
-            "type": "ResourceReference",
-            "format": ""
+            "type": "ResourceReference"
         },
         {
             "name": "balancePlatform",
             "baseName": "balancePlatform",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "bookingDate",
             "baseName": "bookingDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "creationDate",
             "baseName": "creationDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         },
         {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "id",
             "baseName": "id",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
-            "type": "PaymentInstrument | null",
-            "format": ""
+            "type": "PaymentInstrument | null"
         },
         {
             "name": "referenceForBeneficiary",
             "baseName": "referenceForBeneficiary",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "Transaction.StatusEnum",
-            "format": ""
+            "type": "Transaction.StatusEnum"
         },
         {
             "name": "transfer",
             "baseName": "transfer",
-            "type": "TransferView | null",
-            "format": ""
+            "type": "TransferView | null"
         },
         {
             "name": "valueDate",
             "baseName": "valueDate",
-            "type": "Date",
-            "format": "date-time"
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
         return Transaction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

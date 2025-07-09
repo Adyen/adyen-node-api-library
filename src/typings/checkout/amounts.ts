@@ -12,35 +12,28 @@ export class Amounts {
     /**
     * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/).
     */
-    "currency": string;
+    'currency': string;
     /**
     * The amounts of the donation (in [minor units](https://docs.adyen.com/development-resources/currency-codes/)).
     */
-    "values": Array<number>;
+    'values': Array<number>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "currency",
             "baseName": "currency",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "values",
             "baseName": "values",
-            "type": "Array<number>",
-            "format": "int64"
+            "type": "Array<number>"
         }    ];
 
     static getAttributeTypeMap() {
         return Amounts.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,23 +7,21 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    PinChangeRequest,
+    PinChangeResponse,
+    PublicKeyResponse,
+    RestServiceError,
+    RevealPinRequest,
+    RevealPinResponse,
+    ObjectSerializer
+} from "../../typings/balancePlatform/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
-import { PinChangeRequest } from "../../typings/balancePlatform/models";
-import { PinChangeResponse } from "../../typings/balancePlatform/models";
-import { PublicKeyResponse } from "../../typings/balancePlatform/models";
-import { RevealPinRequest } from "../../typings/balancePlatform/models";
-import { RevealPinResponse } from "../../typings/balancePlatform/models";
-
-/**
- * API handler for ManageCardPINApi
- */
 export class ManageCardPINApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/bcl/v2";
@@ -43,14 +41,12 @@ export class ManageCardPINApi extends Service {
     public async changeCardPin(pinChangeRequest: PinChangeRequest, requestOptions?: IRequest.Options): Promise<PinChangeResponse> {
         const endpoint = `${this.baseUrl}/pins/change`;
         const resource = new Resource(this, endpoint);
-        
         const request: PinChangeRequest = ObjectSerializer.serialize(pinChangeRequest, "PinChangeRequest");
         const response = await getJsonResponse<PinChangeRequest, PinChangeResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "PinChangeResponse");
     }
 
@@ -64,7 +60,6 @@ export class ManageCardPINApi extends Service {
     public async publicKey(purpose?: string, format?: string, requestOptions?: IRequest.Options): Promise<PublicKeyResponse> {
         const endpoint = `${this.baseUrl}/publicKey`;
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = purpose ?? format;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -77,7 +72,6 @@ export class ManageCardPINApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "PublicKeyResponse");
     }
 
@@ -90,15 +84,12 @@ export class ManageCardPINApi extends Service {
     public async revealCardPin(revealPinRequest: RevealPinRequest, requestOptions?: IRequest.Options): Promise<RevealPinResponse> {
         const endpoint = `${this.baseUrl}/pins/reveal`;
         const resource = new Resource(this, endpoint);
-        
         const request: RevealPinRequest = ObjectSerializer.serialize(revealPinRequest, "RevealPinRequest");
         const response = await getJsonResponse<RevealPinRequest, RevealPinResponse>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "RevealPinResponse");
     }
-
 }

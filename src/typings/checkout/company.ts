@@ -12,75 +12,64 @@ export class Company {
     /**
     * The company website\'s home page.
     */
-    "homepage"?: string;
+    'homepage'?: string;
     /**
     * The company name.
     */
-    "name"?: string;
+    'name'?: string;
     /**
     * Registration number of the company.
     */
-    "registrationNumber"?: string;
+    'registrationNumber'?: string;
     /**
     * Registry location of the company.
     */
-    "registryLocation"?: string;
+    'registryLocation'?: string;
     /**
     * Tax ID of the company.
     */
-    "taxId"?: string;
+    'taxId'?: string;
     /**
     * The company type.
     */
-    "type"?: string;
+    'type'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "homepage",
             "baseName": "homepage",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "registrationNumber",
             "baseName": "registrationNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "registryLocation",
             "baseName": "registryLocation",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "taxId",
             "baseName": "taxId",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return Company.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

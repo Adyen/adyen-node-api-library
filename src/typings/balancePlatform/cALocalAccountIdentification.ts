@@ -12,65 +12,55 @@ export class CALocalAccountIdentification {
     /**
     * The 5- to 12-digit bank account number, without separators or whitespace.
     */
-    "accountNumber": string;
+    'accountNumber': string;
     /**
     * The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.
     */
-    "accountType"?: CALocalAccountIdentification.AccountTypeEnum;
+    'accountType'?: CALocalAccountIdentification.AccountTypeEnum;
     /**
     * The 3-digit institution number, without separators or whitespace.
     */
-    "institutionNumber": string;
+    'institutionNumber': string;
     /**
     * The 5-digit transit number, without separators or whitespace.
     */
-    "transitNumber": string;
+    'transitNumber': string;
     /**
     * **caLocal**
     */
-    "type": CALocalAccountIdentification.TypeEnum;
+    'type': CALocalAccountIdentification.TypeEnum;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "accountNumber",
             "baseName": "accountNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "accountType",
             "baseName": "accountType",
-            "type": "CALocalAccountIdentification.AccountTypeEnum",
-            "format": ""
+            "type": "CALocalAccountIdentification.AccountTypeEnum"
         },
         {
             "name": "institutionNumber",
             "baseName": "institutionNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "transitNumber",
             "baseName": "transitNumber",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "CALocalAccountIdentification.TypeEnum",
-            "format": ""
+            "type": "CALocalAccountIdentification.TypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
         return CALocalAccountIdentification.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

@@ -7,19 +7,17 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import { 
+    Document,
+    ServiceError,
+    ObjectSerializer
+} from "../../typings/legalEntityManagement/models";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
-import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSerializer";
-import { Document } from "../../typings/legalEntityManagement/models";
-
-/**
- * API handler for DocumentsApi
- */
 export class DocumentsApi extends Service {
 
     private readonly API_BASEPATH: string = "https://kyc-test.adyen.com/lem/v3";
@@ -34,13 +32,11 @@ export class DocumentsApi extends Service {
     * @summary Delete a document
     * @param id {@link string } The unique identifier of the document to be deleted.
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link void }
     */
     public async deleteDocument(id: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/documents/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         await getJsonResponse<string, void>(
             resource,
             "",
@@ -59,7 +55,6 @@ export class DocumentsApi extends Service {
         const endpoint = `${this.baseUrl}/documents/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const hasDefinedQueryParams = skipContent;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
@@ -71,7 +66,6 @@ export class DocumentsApi extends Service {
             "",
             { ...requestOptions, method: "GET" }
         );
-
         return ObjectSerializer.deserialize(response, "Document");
     }
 
@@ -86,14 +80,12 @@ export class DocumentsApi extends Service {
         const endpoint = `${this.baseUrl}/documents/{id}`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
-        
         const request: Document = ObjectSerializer.serialize(document, "Document");
         const response = await getJsonResponse<Document, Document>(
             resource,
             request,
             { ...requestOptions, method: "PATCH" }
         );
-
         return ObjectSerializer.deserialize(response, "Document");
     }
 
@@ -106,15 +98,12 @@ export class DocumentsApi extends Service {
     public async uploadDocumentForVerificationChecks(document: Document, requestOptions?: IRequest.Options): Promise<Document> {
         const endpoint = `${this.baseUrl}/documents`;
         const resource = new Resource(this, endpoint);
-        
         const request: Document = ObjectSerializer.serialize(document, "Document");
         const response = await getJsonResponse<Document, Document>(
             resource,
             request,
             { ...requestOptions, method: "POST" }
         );
-
         return ObjectSerializer.deserialize(response, "Document");
     }
-
 }

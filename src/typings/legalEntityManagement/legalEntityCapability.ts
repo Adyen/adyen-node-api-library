@@ -7,97 +7,83 @@
  * Do not edit this class manually.
  */
 
-import { CapabilitySettings } from "./capabilitySettings";
-import { SupportingEntityCapability } from "./supportingEntityCapability";
-
+import { CapabilitySettings } from './capabilitySettings';
+import { SupportingEntityCapability } from './supportingEntityCapability';
 
 export class LegalEntityCapability {
     /**
     * Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful.
     */
-    "allowed"?: boolean;
+    'allowed'?: boolean;
     /**
     * The capability level that is allowed for the legal entity.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
-    "allowedLevel"?: LegalEntityCapability.AllowedLevelEnum;
-    "allowedSettings"?: CapabilitySettings | null;
+    'allowedLevel'?: LegalEntityCapability.AllowedLevelEnum;
+    'allowedSettings'?: CapabilitySettings | null;
     /**
     * Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the `allowed` field.
     */
-    "requested"?: boolean;
+    'requested'?: boolean;
     /**
     * The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.
     */
-    "requestedLevel"?: LegalEntityCapability.RequestedLevelEnum;
-    "requestedSettings"?: CapabilitySettings | null;
+    'requestedLevel'?: LegalEntityCapability.RequestedLevelEnum;
+    'requestedSettings'?: CapabilitySettings | null;
     /**
     * The capability status of transfer instruments associated with the legal entity.
     */
-    "transferInstruments"?: Array<SupportingEntityCapability>;
+    'transferInstruments'?: Array<SupportingEntityCapability>;
     /**
     * The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the `errors` array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
     */
-    "verificationStatus"?: string;
+    'verificationStatus'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "allowed",
             "baseName": "allowed",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "allowedLevel",
             "baseName": "allowedLevel",
-            "type": "LegalEntityCapability.AllowedLevelEnum",
-            "format": ""
+            "type": "LegalEntityCapability.AllowedLevelEnum"
         },
         {
             "name": "allowedSettings",
             "baseName": "allowedSettings",
-            "type": "CapabilitySettings | null",
-            "format": ""
+            "type": "CapabilitySettings | null"
         },
         {
             "name": "requested",
             "baseName": "requested",
-            "type": "boolean",
-            "format": ""
+            "type": "boolean"
         },
         {
             "name": "requestedLevel",
             "baseName": "requestedLevel",
-            "type": "LegalEntityCapability.RequestedLevelEnum",
-            "format": ""
+            "type": "LegalEntityCapability.RequestedLevelEnum"
         },
         {
             "name": "requestedSettings",
             "baseName": "requestedSettings",
-            "type": "CapabilitySettings | null",
-            "format": ""
+            "type": "CapabilitySettings | null"
         },
         {
             "name": "transferInstruments",
             "baseName": "transferInstruments",
-            "type": "Array<SupportingEntityCapability>",
-            "format": ""
+            "type": "Array<SupportingEntityCapability>"
         },
         {
             "name": "verificationStatus",
             "baseName": "verificationStatus",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return LegalEntityCapability.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

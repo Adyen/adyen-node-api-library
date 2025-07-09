@@ -12,35 +12,28 @@ export class MccsRestriction {
     /**
     * Defines how the condition must be evaluated.
     */
-    "operation": string;
+    'operation': string;
     /**
     * List of merchant category codes (MCCs).
     */
-    "value"?: Array<string>;
+    'value'?: Array<string>;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "operation",
             "baseName": "operation",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "value",
             "baseName": "value",
-            "type": "Array<string>",
-            "format": ""
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
         return MccsRestriction.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 

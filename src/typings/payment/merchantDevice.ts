@@ -12,45 +12,37 @@ export class MerchantDevice {
     /**
     * Operating system running on the merchant device.
     */
-    "os"?: string;
+    'os'?: string;
     /**
     * Version of the operating system on the merchant device.
     */
-    "osVersion"?: string;
+    'osVersion'?: string;
     /**
     * Merchant device reference.
     */
-    "reference"?: string;
+    'reference'?: string;
 
-    static readonly discriminator: string | undefined = undefined;
+    static discriminator: string | undefined = undefined;
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
-
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "os",
             "baseName": "os",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "osVersion",
             "baseName": "osVersion",
-            "type": "string",
-            "format": ""
+            "type": "string"
         },
         {
             "name": "reference",
             "baseName": "reference",
-            "type": "string",
-            "format": ""
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
         return MerchantDevice.attributeTypeMap;
-    }
-
-    public constructor() {
     }
 }
 
