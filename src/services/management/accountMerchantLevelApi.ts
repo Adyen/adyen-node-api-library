@@ -20,6 +20,7 @@ import { CreateMerchantResponse } from "../../typings/management/models";
 import { ListMerchantResponse } from "../../typings/management/models";
 import { Merchant } from "../../typings/management/models";
 import { RequestActivationResponse } from "../../typings/management/models";
+import { RestServiceError } from "../../typings/management/models";
 
 /**
  * API handler for AccountMerchantLevelApi

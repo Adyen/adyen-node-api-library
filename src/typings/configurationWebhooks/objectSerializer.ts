@@ -33,6 +33,7 @@ import { IbanAccountIdentification } from "./ibanAccountIdentification";
 import { Name } from "./name";
 import { NetworkTokenNotificationDataV2 } from "./networkTokenNotificationDataV2";
 import { NetworkTokenNotificationRequest } from "./networkTokenNotificationRequest";
+import { NetworkTokenRequestor } from "./networkTokenRequestor";
 import { PaymentInstrument } from "./paymentInstrument";
 import { PaymentInstrumentAdditionalBankAccountIdentificationsInnerClass } from "./paymentInstrumentAdditionalBankAccountIdentificationsInner";
 import { PaymentInstrumentNotificationData } from "./paymentInstrumentNotificationData";
@@ -143,6 +144,7 @@ let typeMap: {[index: string]: any} = {
     "Name": Name,
     "NetworkTokenNotificationDataV2": NetworkTokenNotificationDataV2,
     "NetworkTokenNotificationRequest": NetworkTokenNotificationRequest,
+    "NetworkTokenRequestor": NetworkTokenRequestor,
     "PaymentInstrument": PaymentInstrument,
     "PaymentInstrumentAdditionalBankAccountIdentificationsInner": PaymentInstrumentAdditionalBankAccountIdentificationsInnerClass,
     "PaymentInstrumentNotificationData": PaymentInstrumentNotificationData,

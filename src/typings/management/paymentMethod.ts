@@ -10,6 +10,7 @@
 import { AccelInfo } from "./accelInfo";
 import { AffirmInfo } from "./affirmInfo";
 import { AfterpayTouchInfo } from "./afterpayTouchInfo";
+import { AlipayPlusInfo } from "./alipayPlusInfo";
 import { AmexInfo } from "./amexInfo";
 import { ApplePayInfo } from "./applePayInfo";
 import { BcmcInfo } from "./bcmcInfo";
@@ -42,6 +43,7 @@ export class PaymentMethod {
     "accel"?: AccelInfo | null;
     "affirm"?: AffirmInfo | null;
     "afterpayTouch"?: AfterpayTouchInfo | null;
+    "alipayPlus"?: AlipayPlusInfo | null;
     /**
     * Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
     */
@@ -87,6 +89,7 @@ export class PaymentMethod {
     "jcb"?: JCBInfo | null;
     "klarna"?: KlarnaInfo | null;
     "maestro"?: GenericPmWithTdiInfo | null;
+    "maestro_usa"?: GenericPmWithTdiInfo | null;
     "mc"?: GenericPmWithTdiInfo | null;
     "mealVoucher_FR"?: MealVoucherFRInfo | null;
     "nyce"?: NyceInfo | null;
@@ -147,6 +150,12 @@ export class PaymentMethod {
             "name": "afterpayTouch",
             "baseName": "afterpayTouch",
             "type": "AfterpayTouchInfo | null",
+            "format": ""
+        },
+        {
+            "name": "alipayPlus",
+            "baseName": "alipayPlus",
+            "type": "AlipayPlusInfo | null",
             "format": ""
         },
         {
@@ -290,6 +299,12 @@ export class PaymentMethod {
         {
             "name": "maestro",
             "baseName": "maestro",
+            "type": "GenericPmWithTdiInfo | null",
+            "format": ""
+        },
+        {
+            "name": "maestro_usa",
+            "baseName": "maestro_usa",
             "type": "GenericPmWithTdiInfo | null",
             "format": ""
         },

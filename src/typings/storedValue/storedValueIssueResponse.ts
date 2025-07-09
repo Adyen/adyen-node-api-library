@@ -15,7 +15,7 @@ export class StoredValueIssueResponse {
     * Authorisation code: * When the payment is authorised, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.
     */
     "authCode"?: string;
-    "currentBalance"?: Amount;
+    "currentBalance"?: Amount | null;
     /**
     * The collection that contains the type of the payment method and its specific information if available
     */
@@ -51,7 +51,7 @@ export class StoredValueIssueResponse {
         {
             "name": "currentBalance",
             "baseName": "currentBalance",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {

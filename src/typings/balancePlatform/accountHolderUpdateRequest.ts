@@ -24,7 +24,7 @@ export class AccountHolderUpdateRequest {
     /**
 	* @deprecated 
     */
-    "contactDetails"?: ContactDetails;
+    "contactDetails"?: ContactDetails | null;
     /**
     * Your description for the account holder.
     */
@@ -78,7 +78,7 @@ export class AccountHolderUpdateRequest {
         {
             "name": "contactDetails",
             "baseName": "contactDetails",
-            "type": "ContactDetails",
+            "type": "ContactDetails | null",
             "format": ""
         },
         {

@@ -20,9 +20,11 @@ import { CancelTransfersRequest } from "../../typings/transfers/models";
 import { FindTransfersResponse } from "../../typings/transfers/models";
 import { ReturnTransferRequest } from "../../typings/transfers/models";
 import { ReturnTransferResponse } from "../../typings/transfers/models";
+import { ServiceError } from "../../typings/transfers/models";
 import { Transfer } from "../../typings/transfers/models";
 import { TransferData } from "../../typings/transfers/models";
 import { TransferInfo } from "../../typings/transfers/models";
+import { TransferServiceRestServiceError } from "../../typings/transfers/models";
 
 /**
  * API handler for TransfersApi
@@ -84,15 +86,16 @@ export class TransfersApi extends Service {
     * @param paymentInstrumentId {@link string } The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).  To use this parameter, you must also provide a &#x60;balanceAccountId&#x60;, &#x60;accountHolderId&#x60;, or &#x60;balancePlatform&#x60;.  The &#x60;paymentInstrumentId&#x60; must be related to the &#x60;balanceAccountId&#x60; or &#x60;accountHolderId&#x60; that you provide.
     * @param reference {@link string } The reference you provided in the POST [/transfers](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) request
     * @param category {@link &#39;bank&#39; | &#39;card&#39; | &#39;grants&#39; | &#39;interest&#39; | &#39;internal&#39; | &#39;issuedCard&#39; | &#39;migration&#39; | &#39;platformPayment&#39; | &#39;topUp&#39; | &#39;upgrade&#39; } The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
+    * @param sortOrder {@link &#39;asc&#39; | &#39;desc&#39; } The transfers sorting order.  Possible values:   - **asc**: Ascending order, from older to most recent.  - **desc**: Descending order, from most recent to older.
     * @param cursor {@link string } The &#x60;cursor&#x60; returned in the links of the previous response.
     * @param limit {@link number } The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.
     * @return {@link FindTransfersResponse }
     */
-    public async getAllTransfers(createdSince: Date, createdUntil: Date, balancePlatform?: string, accountHolderId?: string, balanceAccountId?: string, paymentInstrumentId?: string, reference?: string, category?: "bank" | "card" | "grants" | "interest" | "internal" | "issuedCard" | "migration" | "platformPayment" | "topUp" | "upgrade", cursor?: string, limit?: number, requestOptions?: IRequest.Options): Promise<FindTransfersResponse> {
+    public async getAllTransfers(createdSince: Date, createdUntil: Date, balancePlatform?: string, accountHolderId?: string, balanceAccountId?: string, paymentInstrumentId?: string, reference?: string, category?: 'bank' | 'card' | 'grants' | 'interest' | 'internal' | 'issuedCard' | 'migration' | 'platformPayment' | 'topUp' | 'upgrade', sortOrder?: 'asc' | 'desc', cursor?: string, limit?: number, requestOptions?: IRequest.Options): Promise<FindTransfersResponse> {
         const endpoint = `${this.baseUrl}/transfers`;
         const resource = new Resource(this, endpoint);
         
-        const hasDefinedQueryParams = balancePlatform ?? accountHolderId ?? balanceAccountId ?? paymentInstrumentId ?? reference ?? category ?? createdSince ?? createdUntil ?? cursor ?? limit;
+        const hasDefinedQueryParams = balancePlatform ?? accountHolderId ?? balanceAccountId ?? paymentInstrumentId ?? reference ?? category ?? createdSince ?? createdUntil ?? sortOrder ?? cursor ?? limit;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
             if(!requestOptions.params) requestOptions.params = {};
@@ -104,6 +107,7 @@ export class TransfersApi extends Service {
             if(category) requestOptions.params["category"] = category;
             if(createdSince) requestOptions.params["createdSince"] = createdSince.toISOString();
             if(createdUntil) requestOptions.params["createdUntil"] = createdUntil.toISOString();
+            if(sortOrder) requestOptions.params["sortOrder"] = sortOrder;
             if(cursor) requestOptions.params["cursor"] = cursor;
             if(limit) requestOptions.params["limit"] = limit;
         }

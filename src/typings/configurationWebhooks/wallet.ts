@@ -25,11 +25,14 @@ export class Wallet {
     */
     "provisioningMethod"?: string;
     /**
-    * A list of risk indicators triggered at the time of provisioning the network token.  Possible values:  * **accountTooNewSinceLaunch** * **accountTooNew** * **accountCardTooNew** * **accountRecentlyChanged** * **suspiciousActivity** * **inactiveAccount** * **hasSuspendedTokens** * **deviceRecentlyLost** * **tooManyRecentAttempts** * **tooManyRecentTokens** * **tooManyDifferentCardholders** * **lowDeviceScore** * **lowAccountScore** * **outSideHomeTerritory** * **unableToAssess** * **accountHighRisk** * **lowPhoneNumberScore** * **unknown**
+    * A list of risk indicators triggered at the time of provisioning the network token.  Some example values of risk indicators are:  * **accountTooNewSinceLaunch** * **tooManyRecentAttempts** * **lowDeviceScore** * **lowAccountScore** 
     */
     "recommendationReasons"?: Array<Wallet.RecommendationReasonsEnum>;
     /**
     * The type of wallet that the network token is associated with.  Possible values: **applePay**, **googlePay**, **garminPay**.
+    *
+	* @deprecated since Configuration webhooks v2
+	* Use name of the `tokenRequestor` instead.
     */
     "type"?: string;
 
@@ -90,18 +93,41 @@ export namespace Wallet {
         AccountRecentlyChanged = 'accountRecentlyChanged',
         AccountTooNew = 'accountTooNew',
         AccountTooNewSinceLaunch = 'accountTooNewSinceLaunch',
+        CardholderPanAssociatedToAccountWithinThresholdDays = 'cardholderPanAssociatedToAccountWithinThresholdDays',
+        ChangesMadeToAccountDataWithinThresholdDays = 'changesMadeToAccountDataWithinThresholdDays',
+        DeviceProvisioningLocationOutsideOfCardholdersWalletAccountHomeCountry = 'deviceProvisioningLocationOutsideOfCardholdersWalletAccountHomeCountry',
         DeviceRecentlyLost = 'deviceRecentlyLost',
+        EncryptedPaymentInstrumentDataIsBeingPushedByTheIssuerToTheSameDeviceThatIssuerApplicationAuthenticatedButWithSuccessfulUpfrontAuthentication = 'encryptedPaymentInstrumentDataIsBeingPushedByTheIssuerToTheSameDeviceThatIssuerApplicationAuthenticatedButWithSuccessfulUpfrontAuthentication',
+        EncryptedPaymentInstrumentDataIsBeingPushedByTheIssuerToTheSameDeviceThatIssuerApplicationAuthenticatedButWithoutAnyUpfrontAuthentication = 'encryptedPaymentInstrumentDataIsBeingPushedByTheIssuerToTheSameDeviceThatIssuerApplicationAuthenticatedButWithoutAnyUpfrontAuthentication',
+        EncryptedPaymentInstrumentDataIsPushedToADifferentDeviceThanTheOneThatIssuerApplicationAuthenticated = 'encryptedPaymentInstrumentDataIsPushedToADifferentDeviceThanTheOneThatIssuerApplicationAuthenticated',
+        EncryptedPaymentInstrumentDataIsPushedToADifferentUserThanTheCardHolder = 'encryptedPaymentInstrumentDataIsPushedToADifferentUserThanTheCardHolder',
         HasSuspendedTokens = 'hasSuspendedTokens',
         InactiveAccount = 'inactiveAccount',
+        IssuerDeferredIdvDecision = 'issuerDeferredIDVDecision',
+        IssuerEncryptedPaymentInstrumentDataExpired = 'issuerEncryptedPaymentInstrumentDataExpired',
         LowAccountScore = 'lowAccountScore',
         LowDeviceScore = 'lowDeviceScore',
         LowPhoneNumberScore = 'lowPhoneNumberScore',
+        NumberOfActiveTokensGreaterThanThreshold = 'numberOfActiveTokensGreaterThanThreshold',
+        NumberOfActiveTokensOnAllDevicesIsGreaterThanThreshold = 'numberOfActiveTokensOnAllDevicesIsGreaterThanThreshold',
+        NumberOfDaysSinceDeviceWasLastReportedLostIsLessThanThresholdDays = 'numberOfDaysSinceDeviceWasLastReportedLostIsLessThanThresholdDays',
+        NumberOfDevicesWithSameUseridWithTokenIsGreaterThanThreshold = 'numberOfDevicesWithSameUseridWithTokenIsGreaterThanThreshold',
+        NumberOfTransactionsInLast12MonthsLessThanThresholdNumber = 'numberOfTransactionsInLast12MonthsLessThanThresholdNumber',
         OutSideHomeTerritory = 'outSideHomeTerritory',
+        SuspendedCardsInTheWalletAccountIsGreaterThanThreshold = 'suspendedCardsInTheWALLETAccountIsGreaterThanThreshold',
         SuspiciousActivity = 'suspiciousActivity',
+        TheNumberOfProvisioningAttemptsAcrossAllCardsOnThisDeviceInTheLast24HoursExceedsTheThreshold = 'theNumberOfProvisioningAttemptsAcrossAllCardsOnThisDeviceInTheLast24HoursExceedsTheThreshold',
+        TheWalletAccountIntoWhichTheCardIsBeingProvisionedContainDistinctNamesGreaterThanThreshold = 'theWALLETAccountIntoWhichTheCardIsBeingProvisionedContainDistinctNamesGreaterThanThreshold',
+        ThisAccountHasNotHadActivityWithinThresholdPeriod = 'thisAccountHasNotHadActivityWithinThresholdPeriod',
         TooManyDifferentCardholders = 'tooManyDifferentCardholders',
         TooManyRecentAttempts = 'tooManyRecentAttempts',
         TooManyRecentTokens = 'tooManyRecentTokens',
         UnableToAssess = 'unableToAssess',
-        Unknown = 'unknown'
+        Unknown = 'unknown',
+        UserAccountWasCreatedWithinThresholdDays = 'userAccountWasCreatedWithinThresholdDays',
+        UserDeviceReceivingEncryptedPaymentInstrumentDataIsDifferentThanTheOneThatIsProvisioningTheToken = 'userDeviceReceivingEncryptedPaymentInstrumentDataIsDifferentThanTheOneThatIsProvisioningTheToken',
+        UsersAccountOnDeviceLessThanThresholdDays = 'usersAccountOnDeviceLessThanThresholdDays',
+        WalletAccountCreatedWithinThresholdDays = 'walletAccountCreatedWithinThresholdDays',
+        WalletAccountHolderNameOnFileDoesNotMatchCardholderEnteredName = 'walletAccountHolderNameOnFileDoesNotMatchCardholderEnteredName'
     }
 }

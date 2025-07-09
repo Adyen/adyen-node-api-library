@@ -12,6 +12,10 @@ import { Purchase } from "./purchase";
 
 export class RelayedAuthenticationRequest {
     /**
+    * The environment from which the webhook originated. Possible values: **test**, **live**. 
+    */
+    "environment": string;
+    /**
     * The unique identifier of the challenge.
     */
     "id": string;
@@ -20,12 +24,30 @@ export class RelayedAuthenticationRequest {
     */
     "paymentInstrumentId": string;
     "purchase": Purchase;
+    /**
+    * URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn\'t support auto-switching.
+    */
+    "threeDSRequestorAppURL"?: string;
+    /**
+    * When the event was queued.
+    */
+    "timestamp"?: Date;
+    /**
+    * Type of notification.
+    */
+    "type": RelayedAuthenticationRequest.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "environment",
+            "baseName": "environment",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "id",
             "baseName": "id",
@@ -43,6 +65,24 @@ export class RelayedAuthenticationRequest {
             "baseName": "purchase",
             "type": "Purchase",
             "format": ""
+        },
+        {
+            "name": "threeDSRequestorAppURL",
+            "baseName": "threeDSRequestorAppURL",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "RelayedAuthenticationRequest.TypeEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
@@ -53,3 +93,8 @@ export class RelayedAuthenticationRequest {
     }
 }
 
+export namespace RelayedAuthenticationRequest {
+    export enum TypeEnum {
+        BalancePlatformAuthenticationRelayed = 'balancePlatform.authentication.relayed'
+    }
+}

@@ -8,6 +8,7 @@
  */
 
 import { DeviceInfo } from "./deviceInfo";
+import { NetworkTokenRequestor } from "./networkTokenRequestor";
 
 
 export class NetworkToken {
@@ -19,7 +20,7 @@ export class NetworkToken {
     * Date and time when the network token was created, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) extended format. For example, **2020-12-18T10:15:30+01:00**..
     */
     "creationDate"?: Date;
-    "device"?: DeviceInfo;
+    "device"?: DeviceInfo | null;
     /**
     * The unique identifier of the network token.
     */
@@ -36,6 +37,7 @@ export class NetworkToken {
     * The last four digits of the network token `id`.
     */
     "tokenLastFour"?: string;
+    "tokenRequestor"?: NetworkTokenRequestor | null;
     /**
     * The type of network token. For example, **wallet**, **cof**.
     */
@@ -61,7 +63,7 @@ export class NetworkToken {
         {
             "name": "device",
             "baseName": "device",
-            "type": "DeviceInfo",
+            "type": "DeviceInfo | null",
             "format": ""
         },
         {
@@ -86,6 +88,12 @@ export class NetworkToken {
             "name": "tokenLastFour",
             "baseName": "tokenLastFour",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "tokenRequestor",
+            "baseName": "tokenRequestor",
+            "type": "NetworkTokenRequestor | null",
             "format": ""
         },
         {

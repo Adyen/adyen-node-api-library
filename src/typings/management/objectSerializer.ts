@@ -7,6 +7,7 @@ import { AdditionalSettingsResponse } from "./additionalSettingsResponse";
 import { Address } from "./address";
 import { AffirmInfo } from "./affirmInfo";
 import { AfterpayTouchInfo } from "./afterpayTouchInfo";
+import { AlipayPlusInfo } from "./alipayPlusInfo";
 import { AllowedOrigin } from "./allowedOrigin";
 import { AllowedOriginsResponse } from "./allowedOriginsResponse";
 import { AmexInfo } from "./amexInfo";
@@ -255,7 +256,6 @@ let enumsMap: Set<string> = new Set<string>([
     "SplitConfigurationLogic.SurchargeEnum",
     "SplitConfigurationLogic.TipEnum",
     "SplitConfigurationRule.FundingSourceEnum",
-    "SplitConfigurationRule.RegionalityEnum",
     "SplitConfigurationRule.ShopperInteractionEnum",
     "StarInfo.ProcessingTypeEnum",
     "Store.StatusEnum",
@@ -300,6 +300,7 @@ let typeMap: {[index: string]: any} = {
     "Address": Address,
     "AffirmInfo": AffirmInfo,
     "AfterpayTouchInfo": AfterpayTouchInfo,
+    "AlipayPlusInfo": AlipayPlusInfo,
     "AllowedOrigin": AllowedOrigin,
     "AllowedOriginsResponse": AllowedOriginsResponse,
     "AmexInfo": AmexInfo,

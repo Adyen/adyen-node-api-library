@@ -18,6 +18,7 @@ import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer
 import { PinChangeRequest } from "../../typings/balancePlatform/models";
 import { PinChangeResponse } from "../../typings/balancePlatform/models";
 import { PublicKeyResponse } from "../../typings/balancePlatform/models";
+import { RestServiceError } from "../../typings/balancePlatform/models";
 import { RevealPinRequest } from "../../typings/balancePlatform/models";
 import { RevealPinResponse } from "../../typings/balancePlatform/models";
 

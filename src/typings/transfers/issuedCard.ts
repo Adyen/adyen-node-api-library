@@ -8,6 +8,7 @@
  */
 
 import { RelayedAuthorisationData } from "./relayedAuthorisationData";
+import { ThreeDSecure } from "./threeDSecure";
 import { TransferNotificationValidationFact } from "./transferNotificationValidationFact";
 
 
@@ -33,6 +34,7 @@ export class IssuedCard {
     * The unique identifier created by the scheme. This ID can be alphanumeric or numeric depending on the scheme.
     */
     "schemeUniqueTransactionId"?: string;
+    "threeDSecure"?: ThreeDSecure | null;
     /**
     * **issuedCard**
     */
@@ -81,6 +83,12 @@ export class IssuedCard {
             "name": "schemeUniqueTransactionId",
             "baseName": "schemeUniqueTransactionId",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "threeDSecure",
+            "baseName": "threeDSecure",
+            "type": "ThreeDSecure | null",
             "format": ""
         },
         {

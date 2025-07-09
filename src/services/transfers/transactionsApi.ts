@@ -15,6 +15,7 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/transfers/objectSerializer";
+import { RestServiceError } from "../../typings/transfers/models";
 import { Transaction } from "../../typings/transfers/models";
 import { TransactionSearchResponse } from "../../typings/transfers/models";
 
@@ -41,14 +42,15 @@ export class TransactionsApi extends Service {
     * @param accountHolderId {@link string } The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/accountHolders/{id}__queryParam_id).  Required if you don\&#39;t provide a &#x60;balanceAccountId&#x60; or &#x60;balancePlatform&#x60;.  If you provide a &#x60;balanceAccountId&#x60;, the &#x60;accountHolderId&#x60; must be related to the &#x60;balanceAccountId&#x60;.
     * @param balanceAccountId {@link string } The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).  Required if you don\&#39;t provide an &#x60;accountHolderId&#x60; or &#x60;balancePlatform&#x60;.  If you provide an &#x60;accountHolderId&#x60;, the &#x60;balanceAccountId&#x60; must be related to the &#x60;accountHolderId&#x60;.
     * @param cursor {@link string } The &#x60;cursor&#x60; returned in the links of the previous response.
+    * @param sortOrder {@link &#39;asc&#39; | &#39;desc&#39; } The transactions sorting order.  Possible values:   - **asc**: Ascending order, from older to most recent.  - **desc**: Descending order, from most recent to older.
     * @param limit {@link number } The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.
     * @return {@link TransactionSearchResponse }
     */
-    public async getAllTransactions(createdSince: Date, createdUntil: Date, balancePlatform?: string, paymentInstrumentId?: string, accountHolderId?: string, balanceAccountId?: string, cursor?: string, limit?: number, requestOptions?: IRequest.Options): Promise<TransactionSearchResponse> {
+    public async getAllTransactions(createdSince: Date, createdUntil: Date, balancePlatform?: string, paymentInstrumentId?: string, accountHolderId?: string, balanceAccountId?: string, cursor?: string, sortOrder?: 'asc' | 'desc', limit?: number, requestOptions?: IRequest.Options): Promise<TransactionSearchResponse> {
         const endpoint = `${this.baseUrl}/transactions`;
         const resource = new Resource(this, endpoint);
         
-        const hasDefinedQueryParams = balancePlatform ?? paymentInstrumentId ?? accountHolderId ?? balanceAccountId ?? cursor ?? createdSince ?? createdUntil ?? limit;
+        const hasDefinedQueryParams = balancePlatform ?? paymentInstrumentId ?? accountHolderId ?? balanceAccountId ?? cursor ?? createdSince ?? createdUntil ?? sortOrder ?? limit;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
             if(!requestOptions.params) requestOptions.params = {};
@@ -59,6 +61,7 @@ export class TransactionsApi extends Service {
             if(cursor) requestOptions.params["cursor"] = cursor;
             if(createdSince) requestOptions.params["createdSince"] = createdSince.toISOString();
             if(createdUntil) requestOptions.params["createdUntil"] = createdUntil.toISOString();
+            if(sortOrder) requestOptions.params["sortOrder"] = sortOrder;
             if(limit) requestOptions.params["limit"] = limit;
         }
         const response = await getJsonResponse<string, TransactionSearchResponse>(

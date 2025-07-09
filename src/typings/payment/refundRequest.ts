@@ -23,7 +23,7 @@ export class RefundRequest {
     */
     "merchantAccount": string;
     "modificationAmount": Amount;
-    "mpiData"?: ThreeDSecureData;
+    "mpiData"?: ThreeDSecureData | null;
     /**
     * The original merchant reference to cancel.
     */
@@ -32,7 +32,7 @@ export class RefundRequest {
     * The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
     */
     "originalReference": string;
-    "platformChargebackLogic"?: PlatformChargebackLogic;
+    "platformChargebackLogic"?: PlatformChargebackLogic | null;
     /**
     * Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
     */
@@ -76,7 +76,7 @@ export class RefundRequest {
         {
             "name": "mpiData",
             "baseName": "mpiData",
-            "type": "ThreeDSecureData",
+            "type": "ThreeDSecureData | null",
             "format": ""
         },
         {
@@ -94,7 +94,7 @@ export class RefundRequest {
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic",
+            "type": "PlatformChargebackLogic | null",
             "format": ""
         },
         {

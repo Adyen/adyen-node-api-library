@@ -39,6 +39,7 @@ let enumsMap: Set<string> = new Set<string>([
     "AuthenticationNotificationRequest.TypeEnum",
     "ChallengeInfo.ChallengeCancelEnum",
     "ChallengeInfo.FlowEnum",
+    "RelayedAuthenticationRequest.TypeEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {

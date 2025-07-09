@@ -11,11 +11,11 @@ import { Href } from "./href";
 
 
 export class Link {
-    "first"?: Href;
-    "last"?: Href;
-    "next"?: Href;
-    "previous"?: Href;
-    "self"?: Href;
+    "first"?: Href | null;
+    "last"?: Href | null;
+    "next"?: Href | null;
+    "previous"?: Href | null;
+    "self"?: Href | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -25,31 +25,31 @@ export class Link {
         {
             "name": "first",
             "baseName": "first",
-            "type": "Href",
+            "type": "Href | null",
             "format": ""
         },
         {
             "name": "last",
             "baseName": "last",
-            "type": "Href",
+            "type": "Href | null",
             "format": ""
         },
         {
             "name": "next",
             "baseName": "next",
-            "type": "Href",
+            "type": "Href | null",
             "format": ""
         },
         {
             "name": "previous",
             "baseName": "previous",
-            "type": "Href",
+            "type": "Href | null",
             "format": ""
         },
         {
             "name": "self",
             "baseName": "self",
-            "type": "Href",
+            "type": "Href | null",
             "format": ""
         }    ];
 

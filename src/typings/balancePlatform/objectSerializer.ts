@@ -19,6 +19,7 @@ import { AssociationFinaliseResponse } from "./associationFinaliseResponse";
 import { AssociationInitiateRequest } from "./associationInitiateRequest";
 import { AssociationInitiateResponse } from "./associationInitiateResponse";
 import { Authentication } from "./authentication";
+import { AuthorisedCardUsers } from "./authorisedCardUsers";
 import { BRLocalAccountIdentification } from "./bRLocalAccountIdentification";
 import { Balance } from "./balance";
 import { BalanceAccount } from "./balanceAccount";
@@ -98,6 +99,9 @@ import { NOLocalAccountIdentification } from "./nOLocalAccountIdentification";
 import { NZLocalAccountIdentification } from "./nZLocalAccountIdentification";
 import { Name } from "./name";
 import { NetworkToken } from "./networkToken";
+import { NetworkTokenActivationDataRequest } from "./networkTokenActivationDataRequest";
+import { NetworkTokenActivationDataResponse } from "./networkTokenActivationDataResponse";
+import { NetworkTokenRequestor } from "./networkTokenRequestor";
 import { NumberAndBicAccountIdentification } from "./numberAndBicAccountIdentification";
 import { PLLocalAccountIdentification } from "./pLLocalAccountIdentification";
 import { PaginatedAccountHoldersResponse } from "./paginatedAccountHoldersResponse";
@@ -174,6 +178,7 @@ import { VerificationError } from "./verificationError";
 import { VerificationErrorRecursive } from "./verificationErrorRecursive";
 import { WalletProviderAccountScoreRestriction } from "./walletProviderAccountScoreRestriction";
 import { WalletProviderDeviceScore } from "./walletProviderDeviceScore";
+import { WalletProviderDeviceType } from "./walletProviderDeviceType";
 import { WebhookSetting } from "./webhookSetting";
 import { WebhookSettings } from "./webhookSettings";
 
@@ -324,6 +329,7 @@ let enumsMap: Set<string> = new Set<string>([
     "VerificationError.TypeEnum",
     "VerificationErrorRecursive.CapabilitiesEnum",
     "VerificationErrorRecursive.TypeEnum",
+    "WalletProviderDeviceType.ValueEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
@@ -346,6 +352,7 @@ let typeMap: {[index: string]: any} = {
     "AssociationInitiateRequest": AssociationInitiateRequest,
     "AssociationInitiateResponse": AssociationInitiateResponse,
     "Authentication": Authentication,
+    "AuthorisedCardUsers": AuthorisedCardUsers,
     "BRLocalAccountIdentification": BRLocalAccountIdentification,
     "Balance": Balance,
     "BalanceAccount": BalanceAccount,
@@ -425,6 +432,9 @@ let typeMap: {[index: string]: any} = {
     "NZLocalAccountIdentification": NZLocalAccountIdentification,
     "Name": Name,
     "NetworkToken": NetworkToken,
+    "NetworkTokenActivationDataRequest": NetworkTokenActivationDataRequest,
+    "NetworkTokenActivationDataResponse": NetworkTokenActivationDataResponse,
+    "NetworkTokenRequestor": NetworkTokenRequestor,
     "NumberAndBicAccountIdentification": NumberAndBicAccountIdentification,
     "PLLocalAccountIdentification": PLLocalAccountIdentification,
     "PaginatedAccountHoldersResponse": PaginatedAccountHoldersResponse,
@@ -500,6 +510,7 @@ let typeMap: {[index: string]: any} = {
     "VerificationErrorRecursive": VerificationErrorRecursive,
     "WalletProviderAccountScoreRestriction": WalletProviderAccountScoreRestriction,
     "WalletProviderDeviceScore": WalletProviderDeviceScore,
+    "WalletProviderDeviceType": WalletProviderDeviceType,
     "WebhookSetting": WebhookSetting,
     "WebhookSettings": WebhookSettings,
 }

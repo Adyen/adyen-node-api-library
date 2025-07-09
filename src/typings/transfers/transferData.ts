@@ -41,7 +41,14 @@ export class TransferData {
     "categoryData"?: TransferCategoryData | null;
     "counterparty"?: TransferNotificationCounterParty | null;
     /**
+    * The date and time when the transfer was created, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+    */
+    "createdAt"?: Date;
+    /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+    *
+	* @deprecated since Transfers API v3
+	* Use createdAt or updatedAt
     */
     "creationDate"?: Date;
     /**
@@ -86,7 +93,7 @@ export class TransferData {
     */
     "sequenceNumber"?: number;
     /**
-    * The result of the transfer.   For example, **authorised**, **refused**, or **error**.
+    * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
     */
     "status": TransferData.StatusEnum;
     "tracking"?: TransferDataTracking | null;
@@ -95,6 +102,10 @@ export class TransferData {
     * The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
     */
     "type"?: TransferData.TypeEnum;
+    /**
+    * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+    */
+    "updatedAt"?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -148,6 +159,12 @@ export class TransferData {
             "baseName": "counterparty",
             "type": "TransferNotificationCounterParty | null",
             "format": ""
+        },
+        {
+            "name": "createdAt",
+            "baseName": "createdAt",
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "creationDate",
@@ -262,6 +279,12 @@ export class TransferData {
             "baseName": "type",
             "type": "TransferData.TypeEnum",
             "format": ""
+        },
+        {
+            "name": "updatedAt",
+            "baseName": "updatedAt",
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {

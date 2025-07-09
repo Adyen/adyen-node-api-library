@@ -12,7 +12,7 @@ import { VerificationError } from "./verificationError";
 
 
 export class CapabilityProblem {
-    "entity"?: CapabilityProblemEntity;
+    "entity"?: CapabilityProblemEntity | null;
     /**
     * List of verification errors.
     */
@@ -26,7 +26,7 @@ export class CapabilityProblem {
         {
             "name": "entity",
             "baseName": "entity",
-            "type": "CapabilityProblemEntity",
+            "type": "CapabilityProblemEntity | null",
             "format": ""
         },
         {

@@ -20,6 +20,7 @@ import { AccountHolderInfo } from "../../typings/balancePlatform/models";
 import { AccountHolderUpdateRequest } from "../../typings/balancePlatform/models";
 import { GetTaxFormResponse } from "../../typings/balancePlatform/models";
 import { PaginatedBalanceAccountsResponse } from "../../typings/balancePlatform/models";
+import { RestServiceError } from "../../typings/balancePlatform/models";
 import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
 
 /**
@@ -130,19 +131,21 @@ export class AccountHoldersApi extends Service {
     * @param requestOptions {@link IRequest.Options }
     * @param formType {@link &#39;US1099k&#39; | &#39;US1099nec&#39; } (Required) The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**
     * @param year {@link number } (Required) The tax year in YYYY format for the tax form you want to retrieve
+    * @param legalEntityId {@link string } The legal entity reference whose tax form you want to retrieve
     * @return {@link GetTaxFormResponse }
     */
-    public async getTaxForm(id: string, formType: "US1099k" | "US1099nec", year: number, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
+    public async getTaxForm(id: string, formType: 'US1099k' | 'US1099nec', year: number, legalEntityId?: string, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
         const endpoint = `${this.baseUrl}/accountHolders/{id}/taxForms`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
         
-        const hasDefinedQueryParams = formType ?? year;
+        const hasDefinedQueryParams = formType ?? year ?? legalEntityId;
         if(hasDefinedQueryParams) {
             if(!requestOptions) requestOptions = {};
             if(!requestOptions.params) requestOptions.params = {};
             if(formType) requestOptions.params["formType"] = formType;
             if(year) requestOptions.params["year"] = year;
+            if(legalEntityId) requestOptions.params["legalEntityId"] = legalEntityId;
         }
         const response = await getJsonResponse<string, GetTaxFormResponse>(
             resource,

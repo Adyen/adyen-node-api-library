@@ -24,7 +24,7 @@ export class BalanceWebhookSettingInfoUpdate {
     * The status of the webhook setting. Possible values:  * **active**: You receive a balance webhook if any of the conditions in this setting are met. * **inactive**: You do not receive a balance webhook even if the conditions in this settings are met.
     */
     "status"?: BalanceWebhookSettingInfoUpdate.StatusEnum;
-    "target"?: TargetUpdate;
+    "target"?: TargetUpdate | null;
     /**
     * The type of the webhook you are configuring. Set to **balance**.
     */
@@ -56,7 +56,7 @@ export class BalanceWebhookSettingInfoUpdate {
         {
             "name": "target",
             "baseName": "target",
-            "type": "TargetUpdate",
+            "type": "TargetUpdate | null",
             "format": ""
         },
         {

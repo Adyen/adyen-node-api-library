@@ -33,7 +33,7 @@ export class VerificationError {
     */
     "subErrors"?: Array<VerificationErrorRecursive>;
     /**
-    * The type of error.   Possible values: **invalidInput**, **dataMissing**.
+    * The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**  
     */
     "type"?: VerificationError.TypeEnum;
 

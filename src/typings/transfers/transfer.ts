@@ -28,7 +28,14 @@ export class Transfer {
     "categoryData"?: TransferCategoryData | null;
     "counterparty": CounterpartyV3;
     /**
+    * The date and time when the transfer was created, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+    */
+    "createdAt"?: Date;
+    /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+    *
+	* @deprecated since Transfers API v3
+	* Use createdAt or updatedAt
     */
     "creationDate"?: Date;
     /**
@@ -60,7 +67,7 @@ export class Transfer {
     "referenceForBeneficiary"?: string;
     "review"?: TransferReview | null;
     /**
-    * The result of the transfer.   For example, **authorised**, **refused**, or **error**.
+    * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
     */
     "status": Transfer.StatusEnum;
     /**
@@ -108,6 +115,12 @@ export class Transfer {
             "baseName": "counterparty",
             "type": "CounterpartyV3",
             "format": ""
+        },
+        {
+            "name": "createdAt",
+            "baseName": "createdAt",
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "creationDate",

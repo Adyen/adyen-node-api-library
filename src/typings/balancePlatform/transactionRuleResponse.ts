@@ -11,7 +11,7 @@ import { TransactionRule } from "./transactionRule";
 
 
 export class TransactionRuleResponse {
-    "transactionRule"?: TransactionRule;
+    "transactionRule"?: TransactionRule | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class TransactionRuleResponse {
         {
             "name": "transactionRule",
             "baseName": "transactionRule",
-            "type": "TransactionRule",
+            "type": "TransactionRule | null",
             "format": ""
         }    ];
 
