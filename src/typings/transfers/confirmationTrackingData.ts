@@ -10,7 +10,7 @@
 
 export class ConfirmationTrackingData {
     /**
-    * The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user\'s transfer instrument or bank account.
+    * The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user\'s transfer instrument or bank account.
     */
     "status": ConfirmationTrackingData.StatusEnum;
     /**

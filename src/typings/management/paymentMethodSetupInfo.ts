@@ -10,6 +10,7 @@
 import { AccelInfo } from "./accelInfo";
 import { AffirmInfo } from "./affirmInfo";
 import { AfterpayTouchInfo } from "./afterpayTouchInfo";
+import { AlipayPlusInfo } from "./alipayPlusInfo";
 import { AmexInfo } from "./amexInfo";
 import { ApplePayInfo } from "./applePayInfo";
 import { BcmcInfo } from "./bcmcInfo";
@@ -42,6 +43,7 @@ export class PaymentMethodSetupInfo {
     "accel"?: AccelInfo | null;
     "affirm"?: AffirmInfo | null;
     "afterpayTouch"?: AfterpayTouchInfo | null;
+    "alipayPlus"?: AlipayPlusInfo | null;
     "amex"?: AmexInfo | null;
     "applePay"?: ApplePayInfo | null;
     "bcmc"?: BcmcInfo | null;
@@ -75,6 +77,7 @@ export class PaymentMethodSetupInfo {
     "jcb"?: JCBInfo | null;
     "klarna"?: KlarnaInfo | null;
     "maestro"?: GenericPmWithTdiInfo | null;
+    "maestro_usa"?: GenericPmWithTdiInfo | null;
     "mc"?: GenericPmWithTdiInfo | null;
     "mealVoucher_FR"?: MealVoucherFRInfo | null;
     "nyce"?: NyceInfo | null;
@@ -131,6 +134,12 @@ export class PaymentMethodSetupInfo {
             "name": "afterpayTouch",
             "baseName": "afterpayTouch",
             "type": "AfterpayTouchInfo | null",
+            "format": ""
+        },
+        {
+            "name": "alipayPlus",
+            "baseName": "alipayPlus",
+            "type": "AlipayPlusInfo | null",
             "format": ""
         },
         {
@@ -256,6 +265,12 @@ export class PaymentMethodSetupInfo {
         {
             "name": "maestro",
             "baseName": "maestro",
+            "type": "GenericPmWithTdiInfo | null",
+            "format": ""
+        },
+        {
+            "name": "maestro_usa",
+            "baseName": "maestro_usa",
             "type": "GenericPmWithTdiInfo | null",
             "format": ""
         },
@@ -415,9 +430,13 @@ export namespace PaymentMethodSetupInfo {
         Alelo = 'alelo',
         Alipay = 'alipay',
         AlipayHk = 'alipay_hk',
+        AlipayPlus = 'alipay_plus',
         AlipayWap = 'alipay_wap',
         Amex = 'amex',
         Applepay = 'applepay',
+        Avancard = 'avancard',
+        AvancardCredit = 'avancard_credit',
+        AvancardDebit = 'avancard_debit',
         BaneseCard = 'banese_card',
         BaneseCardCredit = 'banese_card_credit',
         BaneseCardDebit = 'banese_card_debit',
@@ -427,6 +446,14 @@ export namespace PaymentMethodSetupInfo {
         Cartebancaire = 'cartebancaire',
         Clearpay = 'clearpay',
         Clicktopay = 'clicktopay',
+        Cooper = 'cooper',
+        CooperCredit = 'cooper_credit',
+        CooperDebit = 'cooper_debit',
+        CooperFoodDebit = 'cooper_food_debit',
+        CooperMealDebit = 'cooper_meal_debit',
+        CooperPrepaid = 'cooper_prepaid',
+        CooperPrivateCredit = 'cooper_private_credit',
+        CooperRetailCredit = 'cooper_retail_credit',
         Credtodos = 'credtodos',
         CredtodosPrivateCredit = 'credtodos_private_credit',
         CredtodosPrivateDebit = 'credtodos_private_debit',
@@ -442,6 +469,12 @@ export namespace PaymentMethodSetupInfo {
         Elodebit = 'elodebit',
         Girocard = 'girocard',
         Googlepay = 'googlepay',
+        GreenCard = 'green_card',
+        GreenCardCredit = 'green_card_credit',
+        GreenCardDebit = 'green_card_debit',
+        GreenCardFoodPrepaid = 'green_card_food_prepaid',
+        GreenCardMealPrepaid = 'green_card_meal_prepaid',
+        GreenCardPrepaid = 'green_card_prepaid',
         Hiper = 'hiper',
         Hipercard = 'hipercard',
         Ideal = 'ideal',
@@ -450,13 +483,24 @@ export namespace PaymentMethodSetupInfo {
         Klarna = 'klarna',
         KlarnaAccount = 'klarna_account',
         KlarnaPaynow = 'klarna_paynow',
+        LeCard = 'le_card',
+        LeCardCredit = 'le_card_credit',
+        LeCardDebit = 'le_card_debit',
         Maestro = 'maestro',
+        MaestroUsa = 'maestro_usa',
+        Maxifrota = 'maxifrota',
+        MaxifrotaPrepaid = 'maxifrota_prepaid',
         Mbway = 'mbway',
         Mc = 'mc',
         Mcdebit = 'mcdebit',
         MealVoucherFr = 'mealVoucher_FR',
+        Megaleve = 'megaleve',
+        MegaleveCredit = 'megaleve_credit',
+        MegaleveDebit = 'megaleve_debit',
         Mobilepay = 'mobilepay',
         Multibanco = 'multibanco',
+        Nutricash = 'nutricash',
+        NutricashPrepaid = 'nutricash_prepaid',
         Nyce = 'nyce',
         OnlineBankingPl = 'onlineBanking_PL',
         Paybybank = 'paybybank',
@@ -467,7 +511,12 @@ export namespace PaymentMethodSetupInfo {
         PaynowPos = 'paynow_pos',
         Paypal = 'paypal',
         Payto = 'payto',
+        PersonalCard = 'personal_card',
+        PersonalCardCredit = 'personal_card_credit',
+        PersonalCardDebit = 'personal_card_debit',
         Pulse = 'pulse',
+        Senff = 'senff',
+        SenffCredit = 'senff_credit',
         Sodexo = 'sodexo',
         Star = 'star',
         Swish = 'swish',
@@ -476,9 +525,19 @@ export namespace PaymentMethodSetupInfo {
         Trustly = 'trustly',
         Twint = 'twint',
         TwintPos = 'twint_pos',
+        UpBrazil = 'up_brazil',
         UpBrazilCredit = 'up_brazil_credit',
+        UpBrazilDebit = 'up_brazil_debit',
+        UpBrazilPrepaid = 'up_brazil_prepaid',
         ValeRefeicao = 'vale_refeicao',
         ValeRefeicaoPrepaid = 'vale_refeicao_prepaid',
+        VegasCard = 'vegas_card',
+        VegasCardCredit = 'vegas_card_credit',
+        VegasCardDebit = 'vegas_card_debit',
+        VeroCard = 'vero_card',
+        VeroCardCredit = 'vero_card_credit',
+        VeroCardDebit = 'vero_card_debit',
+        VeroCardPrepaid = 'vero_card_prepaid',
         Vipps = 'vipps',
         Visa = 'visa',
         Visadebit = 'visadebit',

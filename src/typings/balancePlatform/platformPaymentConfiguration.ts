@@ -10,11 +10,11 @@
 
 export class PlatformPaymentConfiguration {
     /**
-    * Specifies at what time a [sales day](https://docs.adyen.com/platforms/settle-funds/sales-day-settlement#sales-day) ends for this account.  Possible values: Time in **\"HH:MM\"** format. **HH** ranges from **00** to **07**. **MM** must be **00**.  Default value: **\"00:00\"**.
+    * Specifies at what time a sales day ends for this account.  Possible values: Time in **\"HH:MM\"** format. **HH** ranges from **00** to **07**. **MM** must be **00**.  Default value: **\"00:00\"**.
     */
     "salesDayClosingTime"?: string;
     /**
-    * Specifies after how many business days the funds in a [settlement batch](https://docs.adyen.com/platforms/settle-funds/sales-day-settlement#settlement-batch) are made available in this balance account.  Possible values: **1** to **20**, or **null**. * Setting this value to an integer enables Sales day settlement in this balance account. See how Sales day settlement works in your [marketplace](https://docs.adyen.com/marketplaces/settle-funds/sales-day-settlement) or [platform](https://docs.adyen.com/platforms/settle-funds/sales-day-settlement). * Setting this value to **null** enables Pass-through settlement in this balance account. See how Pass-through settlement works in your [marketplace](https://docs.adyen.com/marketplaces/settle-funds/pass-through-settlement) or [platform](https://docs.adyen.com/platforms/settle-funds/pass-through-settlement).  Default value: **null**.
+    * Specifies after how many business days the funds in a settlement batch are made available in this balance account.  Possible values: **1** to **20**, or **null**.  Default value: **null**.
     */
     "settlementDelayDays"?: number;
 

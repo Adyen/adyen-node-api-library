@@ -21,7 +21,7 @@ export class CancelRequest {
     * The merchant account that is used to process the payment.
     */
     "merchantAccount": string;
-    "mpiData"?: ThreeDSecureData;
+    "mpiData"?: ThreeDSecureData | null;
     /**
     * The original merchant reference to cancel.
     */
@@ -30,7 +30,7 @@ export class CancelRequest {
     * The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification  
     */
     "originalReference": string;
-    "platformChargebackLogic"?: PlatformChargebackLogic;
+    "platformChargebackLogic"?: PlatformChargebackLogic | null;
     /**
     * Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.
     */
@@ -68,7 +68,7 @@ export class CancelRequest {
         {
             "name": "mpiData",
             "baseName": "mpiData",
-            "type": "ThreeDSecureData",
+            "type": "ThreeDSecureData | null",
             "format": ""
         },
         {
@@ -86,7 +86,7 @@ export class CancelRequest {
         {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
-            "type": "PlatformChargebackLogic",
+            "type": "PlatformChargebackLogic | null",
             "format": ""
         },
         {

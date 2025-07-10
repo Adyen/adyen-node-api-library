@@ -66,6 +66,7 @@ import { RoutingDetails } from "./routingDetails";
 import { SELocalAccountIdentification } from "./sELocalAccountIdentification";
 import { SGLocalAccountIdentification } from "./sGLocalAccountIdentification";
 import { ServiceError } from "./serviceError";
+import { ThreeDSecure } from "./threeDSecure";
 import { ThresholdRepayment } from "./thresholdRepayment";
 import { Transaction } from "./transaction";
 import { TransactionEventViolation } from "./transactionEventViolation";
@@ -249,6 +250,7 @@ let typeMap: {[index: string]: any} = {
     "SELocalAccountIdentification": SELocalAccountIdentification,
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
     "ServiceError": ServiceError,
+    "ThreeDSecure": ThreeDSecure,
     "ThresholdRepayment": ThresholdRepayment,
     "Transaction": Transaction,
     "TransactionEventViolation": TransactionEventViolation,

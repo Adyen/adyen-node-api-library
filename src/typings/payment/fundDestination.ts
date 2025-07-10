@@ -22,8 +22,8 @@ export class FundDestination {
     * a map of name/value pairs for passing in additional/industry-specific data
     */
     "additionalData"?: { [key: string]: string; };
-    "billingAddress"?: Address;
-    "card"?: Card;
+    "billingAddress"?: Address | null;
+    "card"?: Card | null;
     /**
     * The `recurringDetailReference` you want to use for this payment. The value `LATEST` can be used to select the most recently stored recurring detail.
     */
@@ -32,12 +32,12 @@ export class FundDestination {
     * the email address of the person
     */
     "shopperEmail"?: string;
-    "shopperName"?: Name;
+    "shopperName"?: Name | null;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
     "shopperReference"?: string;
-    "subMerchant"?: SubMerchant;
+    "subMerchant"?: SubMerchant | null;
     /**
     * the telephone number of the person
     */
@@ -67,13 +67,13 @@ export class FundDestination {
         {
             "name": "billingAddress",
             "baseName": "billingAddress",
-            "type": "Address",
+            "type": "Address | null",
             "format": ""
         },
         {
             "name": "card",
             "baseName": "card",
-            "type": "Card",
+            "type": "Card | null",
             "format": ""
         },
         {
@@ -91,7 +91,7 @@ export class FundDestination {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name",
+            "type": "Name | null",
             "format": ""
         },
         {
@@ -103,7 +103,7 @@ export class FundDestination {
         {
             "name": "subMerchant",
             "baseName": "subMerchant",
-            "type": "SubMerchant",
+            "type": "SubMerchant | null",
             "format": ""
         },
         {

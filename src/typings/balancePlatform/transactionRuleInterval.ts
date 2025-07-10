@@ -19,7 +19,7 @@ export class TransactionRuleInterval {
     * The day of week, used when the `duration.unit` is **weeks**. If not provided, by default, this is set to **monday**.  Possible values: **sunday**, **monday**, **tuesday**, **wednesday**, **thursday**, **friday**.
     */
     "dayOfWeek"?: TransactionRuleInterval.DayOfWeekEnum;
-    "duration"?: Duration;
+    "duration"?: Duration | null;
     /**
     * The time of day, in **hh:mm:ss** format, used when the `duration.unit` is **hours**. If not provided, by default, this is set to **00:00:00**.
     */
@@ -53,7 +53,7 @@ export class TransactionRuleInterval {
         {
             "name": "duration",
             "baseName": "duration",
-            "type": "Duration",
+            "type": "Duration | null",
             "format": ""
         },
         {

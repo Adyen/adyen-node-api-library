@@ -14,7 +14,7 @@ import { Expiry } from "./expiry";
 
 
 export class Card {
-    "authentication"?: Authentication;
+    "authentication"?: Authentication | null;
     /**
     * The bank identification number (BIN) of the card number.
     */
@@ -31,13 +31,13 @@ export class Card {
     * The name of the cardholder.  Maximum length: 26 characters.
     */
     "cardholderName": string;
-    "configuration"?: CardConfiguration;
+    "configuration"?: CardConfiguration | null;
     /**
     * The CVC2 value of the card. > The CVC2 is not sent by default. This is only returned in the `POST` response for single-use virtual cards.
     */
     "cvc"?: string;
-    "deliveryContact"?: DeliveryContact;
-    "expiration"?: Expiry;
+    "deliveryContact"?: DeliveryContact | null;
+    "expiration"?: Expiry | null;
     /**
     * The form factor of the card. Possible values: **virtual**, **physical**.
     */
@@ -51,7 +51,7 @@ export class Card {
     */
     "number": string;
     /**
-    * Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. >Reach out to your Adyen contact to get the values relevant for your integration.
+    * The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. > Reach out to your Adyen contact to get the values relevant for your integration.
     */
     "threeDSecure"?: string;
 
@@ -63,7 +63,7 @@ export class Card {
         {
             "name": "authentication",
             "baseName": "authentication",
-            "type": "Authentication",
+            "type": "Authentication | null",
             "format": ""
         },
         {
@@ -93,7 +93,7 @@ export class Card {
         {
             "name": "configuration",
             "baseName": "configuration",
-            "type": "CardConfiguration",
+            "type": "CardConfiguration | null",
             "format": ""
         },
         {
@@ -105,13 +105,13 @@ export class Card {
         {
             "name": "deliveryContact",
             "baseName": "deliveryContact",
-            "type": "DeliveryContact",
+            "type": "DeliveryContact | null",
             "format": ""
         },
         {
             "name": "expiration",
             "baseName": "expiration",
-            "type": "Expiry",
+            "type": "Expiry | null",
             "format": ""
         },
         {

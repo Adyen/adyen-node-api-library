@@ -30,7 +30,6 @@ export type TransferDataTracking = ConfirmationTrackingData | EstimationTracking
 */
 export class TransferDataTrackingClass {
     
-    
     static readonly discriminator: string | undefined = "type";
 
     static readonly mapping: {[index: string]: string} | undefined = {
@@ -38,4 +37,5 @@ export class TransferDataTrackingClass {
         "estimation": "EstimationTrackingData",
         "internalReview": "InternalReviewTrackingData",
     };
+
 }

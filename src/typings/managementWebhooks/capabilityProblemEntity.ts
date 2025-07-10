@@ -19,7 +19,7 @@ export class CapabilityProblemEntity {
     * The ID of the entity.
     */
     "id"?: string;
-    "owner"?: CapabilityProblemEntityRecursive;
+    "owner"?: CapabilityProblemEntityRecursive | null;
     /**
     * The type of entity.  Possible values: **LegalEntity**, **BankAccount**, or **Document**.
     */
@@ -45,7 +45,7 @@ export class CapabilityProblemEntity {
         {
             "name": "owner",
             "baseName": "owner",
-            "type": "CapabilityProblemEntityRecursive",
+            "type": "CapabilityProblemEntityRecursive | null",
             "format": ""
         },
         {

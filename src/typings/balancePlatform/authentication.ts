@@ -19,7 +19,7 @@ export class Authentication {
     * The password used for 3D Secure password-based authentication. The value must be between 1 to 30 characters and must only contain the following supported characters.  * Characters between **a-z**, **A-Z**, and **0-9**  * Special characters: **äöüßÄÖÜ+-*_/ç%()=?!~#\'\",;:$&àùòâôûáúó**
     */
     "password"?: string;
-    "phone"?: Phone;
+    "phone"?: Phone | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -41,7 +41,7 @@ export class Authentication {
         {
             "name": "phone",
             "baseName": "phone",
-            "type": "Phone",
+            "type": "Phone | null",
             "format": ""
         }    ];
 

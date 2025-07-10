@@ -44,13 +44,7 @@ export class AcsWebhooksHandler {
             return this.getAuthenticationNotificationRequest();
         }
         
-        // manually commented out: RelayedAuthenticationRequest has no TypeEnum
-        // if(Object.values(acsWebhooks.RelayedAuthenticationRequest.TypeEnum).includes(type)) {
-        //     return this.getRelayedAuthenticationRequest();
-        // }
-        if(!type && this.payload["paymentInstrumentId"]){
-            // ad-hoc fix for the relayed authentication request
-            // if type is undefined but paymentInstrumentId is present then it is a relayedAuthenticationRequest
+        if(Object.values(acsWebhooks.RelayedAuthenticationRequest.TypeEnum).includes(type)) {
             return this.getRelayedAuthenticationRequest();
         }
         

@@ -48,6 +48,7 @@ import { Resource } from "./resource";
 import { ResourceReference } from "./resourceReference";
 import { SELocalAccountIdentification } from "./sELocalAccountIdentification";
 import { SGLocalAccountIdentification } from "./sGLocalAccountIdentification";
+import { ThreeDSecure } from "./threeDSecure";
 import { TransactionEventViolation } from "./transactionEventViolation";
 import { TransactionRuleReference } from "./transactionRuleReference";
 import { TransactionRuleSource } from "./transactionRuleSource";
@@ -192,6 +193,7 @@ let typeMap: {[index: string]: any} = {
     "ResourceReference": ResourceReference,
     "SELocalAccountIdentification": SELocalAccountIdentification,
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
+    "ThreeDSecure": ThreeDSecure,
     "TransactionEventViolation": TransactionEventViolation,
     "TransactionRuleReference": TransactionRuleReference,
     "TransactionRuleSource": TransactionRuleSource,

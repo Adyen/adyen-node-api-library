@@ -17,7 +17,7 @@ export class GrantOffer {
     * The identifier of the account holder to which the grant is offered.
     */
     "accountHolderId": string;
-    "amount"?: Amount;
+    "amount"?: Amount | null;
     /**
     * The contract type of the grant offer. Possible value: **cashAdvance**, **loan**.
     */
@@ -26,12 +26,12 @@ export class GrantOffer {
     * The end date of the grant offer validity period.
     */
     "expiresAt"?: Date;
-    "fee"?: Fee;
+    "fee"?: Fee | null;
     /**
     * The unique identifier of the grant offer.
     */
     "id"?: string;
-    "repayment"?: Repayment;
+    "repayment"?: Repayment | null;
     /**
     * The starting date of the grant offer validity period.
     */
@@ -51,7 +51,7 @@ export class GrantOffer {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {
@@ -69,7 +69,7 @@ export class GrantOffer {
         {
             "name": "fee",
             "baseName": "fee",
-            "type": "Fee",
+            "type": "Fee | null",
             "format": ""
         },
         {
@@ -81,7 +81,7 @@ export class GrantOffer {
         {
             "name": "repayment",
             "baseName": "repayment",
-            "type": "Repayment",
+            "type": "Repayment | null",
             "format": ""
         },
         {

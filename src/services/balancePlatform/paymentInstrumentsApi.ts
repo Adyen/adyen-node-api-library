@@ -16,6 +16,8 @@ import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { ListNetworkTokensResponse } from "../../typings/balancePlatform/models";
+import { NetworkTokenActivationDataRequest } from "../../typings/balancePlatform/models";
+import { NetworkTokenActivationDataResponse } from "../../typings/balancePlatform/models";
 import { PaymentInstrument } from "../../typings/balancePlatform/models";
 import { PaymentInstrumentInfo } from "../../typings/balancePlatform/models";
 import { PaymentInstrumentRevealInfo } from "../../typings/balancePlatform/models";
@@ -36,6 +38,28 @@ export class PaymentInstrumentsApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
+    /**
+    * @summary Create network token activation data
+    * @param id {@link string } The unique identifier of the payment instrument.
+    * @param networkTokenActivationDataRequest {@link NetworkTokenActivationDataRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link NetworkTokenActivationDataResponse }
+    */
+    public async createNetworkTokenActivationData(id: string, networkTokenActivationDataRequest: NetworkTokenActivationDataRequest, requestOptions?: IRequest.Options): Promise<NetworkTokenActivationDataResponse> {
+        const endpoint = `${this.baseUrl}/paymentInstruments/{id}/networkTokenActivationData`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        
+        const request: NetworkTokenActivationDataRequest = ObjectSerializer.serialize(networkTokenActivationDataRequest, "NetworkTokenActivationDataRequest");
+        const response = await getJsonResponse<NetworkTokenActivationDataRequest, NetworkTokenActivationDataResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+
+        return ObjectSerializer.deserialize(response, "NetworkTokenActivationDataResponse");
     }
 
     /**
@@ -76,6 +100,26 @@ export class PaymentInstrumentsApi extends Service {
         );
 
         return ObjectSerializer.deserialize(response, "TransactionRulesResponse");
+    }
+
+    /**
+    * @summary Get network token activation data
+    * @param id {@link string } The unique identifier of the payment instrument.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link NetworkTokenActivationDataResponse }
+    */
+    public async getNetworkTokenActivationData(id: string, requestOptions?: IRequest.Options): Promise<NetworkTokenActivationDataResponse> {
+        const endpoint = `${this.baseUrl}/paymentInstruments/{id}/networkTokenActivationData`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        
+        const response = await getJsonResponse<string, NetworkTokenActivationDataResponse>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+
+        return ObjectSerializer.deserialize(response, "NetworkTokenActivationDataResponse");
     }
 
     /**

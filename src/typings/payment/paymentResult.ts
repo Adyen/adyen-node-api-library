@@ -20,12 +20,12 @@ export class PaymentResult {
     * Authorisation code: * When the payment is authorised successfully, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.
     */
     "authCode"?: string;
-    "dccAmount"?: Amount;
+    "dccAmount"?: Amount | null;
     /**
     * Cryptographic signature used to verify `dccQuote`. > This value only applies if you have implemented Dynamic Currency Conversion. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).
     */
     "dccSignature"?: string;
-    "fraudResult"?: FraudResult;
+    "fraudResult"?: FraudResult | null;
     /**
     * The URL to direct the shopper to. > In case of SecurePlus, do not redirect a shopper to this URL.
     */
@@ -71,7 +71,7 @@ export class PaymentResult {
         {
             "name": "dccAmount",
             "baseName": "dccAmount",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {
@@ -83,7 +83,7 @@ export class PaymentResult {
         {
             "name": "fraudResult",
             "baseName": "fraudResult",
-            "type": "FraudResult",
+            "type": "FraudResult | null",
             "format": ""
         },
         {

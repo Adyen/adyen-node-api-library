@@ -15,7 +15,7 @@ export class StoredValueBalanceMergeResponse {
     * Authorisation code: * When the payment is authorised, this field holds the authorisation code for the payment. * When the payment is not authorised, this field is empty.
     */
     "authCode"?: string;
-    "currentBalance"?: Amount;
+    "currentBalance"?: Amount | null;
     /**
     * Adyen\'s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
@@ -47,7 +47,7 @@ export class StoredValueBalanceMergeResponse {
         {
             "name": "currentBalance",
             "baseName": "currentBalance",
-            "type": "Amount",
+            "type": "Amount | null",
             "format": ""
         },
         {

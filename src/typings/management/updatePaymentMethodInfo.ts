@@ -47,6 +47,7 @@ export class UpdatePaymentMethodInfo {
     "interac_card"?: GenericPmWithTdiInfo | null;
     "jcb"?: GenericPmWithTdiInfo | null;
     "maestro"?: GenericPmWithTdiInfo | null;
+    "maestro_usa"?: GenericPmWithTdiInfo | null;
     "mc"?: GenericPmWithTdiInfo | null;
     "nyce"?: NyceInfo | null;
     "paybybank_plaid"?: PayByBankPlaidInfo | null;
@@ -169,6 +170,12 @@ export class UpdatePaymentMethodInfo {
         {
             "name": "maestro",
             "baseName": "maestro",
+            "type": "GenericPmWithTdiInfo | null",
+            "format": ""
+        },
+        {
+            "name": "maestro_usa",
+            "baseName": "maestro_usa",
             "type": "GenericPmWithTdiInfo | null",
             "format": ""
         },

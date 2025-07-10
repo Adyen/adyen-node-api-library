@@ -38,7 +38,7 @@ export class PayoutRequest {
     */
     "selectedRecurringDetailReference"?: string;
     /**
-    * The shopper\'s email address. We recommend that you provide this data, as it is used in velocity fraud checks. > For 3D Secure 2 transactions, schemes require `shopperEmail` for all browser-based and mobile implementations.
+    * The shopper\'s email address. We recommend that you provide this data, as it is used in velocity fraud checks. > Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the `telephoneNumber`.
     */
     "shopperEmail"?: string;
     /**
@@ -51,7 +51,7 @@ export class PayoutRequest {
     */
     "shopperReference"?: string;
     /**
-    * The shopper\'s telephone number.
+    * The shopper\'s telephone number. > Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the `shopperEmail`. The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we drop the value and do not submit it for authentication.
     */
     "telephoneNumber"?: string;
 

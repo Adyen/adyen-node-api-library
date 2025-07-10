@@ -10,6 +10,7 @@ import { PlatformPayment } from "./platformPayment";
 import { RelayedAuthorisationData } from "./relayedAuthorisationData";
 import { Resource } from "./resource";
 import { ResourceReference } from "./resourceReference";
+import { ThreeDSecure } from "./threeDSecure";
 import { Transaction } from "./transaction";
 import { TransactionNotificationRequestV4 } from "./transactionNotificationRequestV4";
 import { TransferNotificationValidationFact } from "./transferNotificationValidationFact";
@@ -57,6 +58,7 @@ let typeMap: {[index: string]: any} = {
     "RelayedAuthorisationData": RelayedAuthorisationData,
     "Resource": Resource,
     "ResourceReference": ResourceReference,
+    "ThreeDSecure": ThreeDSecure,
     "Transaction": Transaction,
     "TransactionNotificationRequestV4": TransactionNotificationRequestV4,
     "TransferNotificationValidationFact": TransferNotificationValidationFact,

@@ -15,7 +15,7 @@ export class CardOrderItem {
     * The unique identifier of the balance platform.
     */
     "balancePlatform"?: string;
-    "card"?: CardOrderItemDeliveryStatus;
+    "card"?: CardOrderItemDeliveryStatus | null;
     /**
     * The unique identifier of the card order item.
     */
@@ -32,7 +32,7 @@ export class CardOrderItem {
     * The unique identifier of the payment instrument related to the card order item.
     */
     "paymentInstrumentId"?: string;
-    "pin"?: CardOrderItemDeliveryStatus;
+    "pin"?: CardOrderItemDeliveryStatus | null;
     /**
     * The shipping method used to deliver the card or the PIN.
     */
@@ -52,7 +52,7 @@ export class CardOrderItem {
         {
             "name": "card",
             "baseName": "card",
-            "type": "CardOrderItemDeliveryStatus",
+            "type": "CardOrderItemDeliveryStatus | null",
             "format": ""
         },
         {
@@ -82,7 +82,7 @@ export class CardOrderItem {
         {
             "name": "pin",
             "baseName": "pin",
-            "type": "CardOrderItemDeliveryStatus",
+            "type": "CardOrderItemDeliveryStatus | null",
             "format": ""
         },
         {

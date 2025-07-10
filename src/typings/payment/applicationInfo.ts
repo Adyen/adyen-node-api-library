@@ -14,12 +14,12 @@ import { ShopperInteractionDevice } from "./shopperInteractionDevice";
 
 
 export class ApplicationInfo {
-    "adyenLibrary"?: CommonField;
-    "adyenPaymentSource"?: CommonField;
-    "externalPlatform"?: ExternalPlatform;
-    "merchantApplication"?: CommonField;
-    "merchantDevice"?: MerchantDevice;
-    "shopperInteractionDevice"?: ShopperInteractionDevice;
+    "adyenLibrary"?: CommonField | null;
+    "adyenPaymentSource"?: CommonField | null;
+    "externalPlatform"?: ExternalPlatform | null;
+    "merchantApplication"?: CommonField | null;
+    "merchantDevice"?: MerchantDevice | null;
+    "shopperInteractionDevice"?: ShopperInteractionDevice | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -29,37 +29,37 @@ export class ApplicationInfo {
         {
             "name": "adyenLibrary",
             "baseName": "adyenLibrary",
-            "type": "CommonField",
+            "type": "CommonField | null",
             "format": ""
         },
         {
             "name": "adyenPaymentSource",
             "baseName": "adyenPaymentSource",
-            "type": "CommonField",
+            "type": "CommonField | null",
             "format": ""
         },
         {
             "name": "externalPlatform",
             "baseName": "externalPlatform",
-            "type": "ExternalPlatform",
+            "type": "ExternalPlatform | null",
             "format": ""
         },
         {
             "name": "merchantApplication",
             "baseName": "merchantApplication",
-            "type": "CommonField",
+            "type": "CommonField | null",
             "format": ""
         },
         {
             "name": "merchantDevice",
             "baseName": "merchantDevice",
-            "type": "MerchantDevice",
+            "type": "MerchantDevice | null",
             "format": ""
         },
         {
             "name": "shopperInteractionDevice",
             "baseName": "shopperInteractionDevice",
-            "type": "ShopperInteractionDevice",
+            "type": "ShopperInteractionDevice | null",
             "format": ""
         }    ];
 

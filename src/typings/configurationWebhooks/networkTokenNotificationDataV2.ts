@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { NetworkTokenRequestor } from "./networkTokenRequestor";
 import { TokenAuthentication } from "./tokenAuthentication";
 import { ValidationFacts } from "./validationFacts";
 import { Wallet } from "./wallet";
@@ -42,6 +43,7 @@ export class NetworkTokenNotificationDataV2 {
     * The last four digits of the network token. Use this value to help your user to identify their network token.
     */
     "tokenLastFour"?: string;
+    "tokenRequestor"?: NetworkTokenRequestor | null;
     /**
     * The type of network token.
     */
@@ -103,6 +105,12 @@ export class NetworkTokenNotificationDataV2 {
             "name": "tokenLastFour",
             "baseName": "tokenLastFour",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "tokenRequestor",
+            "baseName": "tokenRequestor",
+            "type": "NetworkTokenRequestor | null",
             "format": ""
         },
         {

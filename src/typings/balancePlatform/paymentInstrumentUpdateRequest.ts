@@ -15,7 +15,7 @@ export class PaymentInstrumentUpdateRequest {
     * The unique identifier of the balance account associated with this payment instrument. >You can only change the balance account ID if the payment instrument has **inactive** status.
     */
     "balanceAccountId"?: string;
-    "card"?: CardInfo;
+    "card"?: CardInfo | null;
     /**
     * The status of the payment instrument. If a status is not specified when creating a payment instrument, it is set to **active** by default. However, there can be exceptions for cards based on the `card.formFactor` and the `issuingCountryCode`. For example, when issuing physical cards in the US, the default status is **inactive**.  Possible values:    * **active**:  The payment instrument is active and can be used to make payments.    * **inactive**: The payment instrument is inactive and cannot be used to make payments.    * **suspended**: The payment instrument is suspended, either because it was stolen or lost.    * **closed**: The payment instrument is permanently closed. This action cannot be undone.   
     */
@@ -43,7 +43,7 @@ export class PaymentInstrumentUpdateRequest {
         {
             "name": "card",
             "baseName": "card",
-            "type": "CardInfo",
+            "type": "CardInfo | null",
             "format": ""
         },
         {

@@ -24,10 +24,6 @@ export class SplitConfigurationRule {
     */
     "paymentMethod": string;
     /**
-    * 
-    */
-    "regionality"?: SplitConfigurationRule.RegionalityEnum;
-    /**
     * The unique identifier of the split configuration rule.
     */
     "ruleId"?: string;
@@ -58,12 +54,6 @@ export class SplitConfigurationRule {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "regionality",
-            "baseName": "regionality",
-            "type": "SplitConfigurationRule.RegionalityEnum",
             "format": ""
         },
         {
@@ -100,12 +90,6 @@ export namespace SplitConfigurationRule {
         Debit = 'debit',
         DeferredDebit = 'deferred_debit',
         Prepaid = 'prepaid',
-        Any = 'ANY'
-    }
-    export enum RegionalityEnum {
-        International = 'international',
-        IntraRegional = 'intraRegional',
-        InterRegional = 'interRegional',
         Any = 'ANY'
     }
     export enum ShopperInteractionEnum {

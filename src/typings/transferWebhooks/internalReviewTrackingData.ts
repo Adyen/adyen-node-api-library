@@ -14,7 +14,7 @@ export class InternalReviewTrackingData {
     */
     "reason"?: InternalReviewTrackingData.ReasonEnum;
     /**
-    * The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review.  - **failed**: the transfer failed Adyen\'s internal review. For details, see `reason`.  
+    * The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review by Adyen.  - **failed**: the transfer failed Adyen\'s internal review. For details, see `reason`.  
     */
     "status": InternalReviewTrackingData.StatusEnum;
     /**

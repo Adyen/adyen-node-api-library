@@ -22,7 +22,7 @@ export class BankAccountModel {
         {
             "name": "formFactor",
             "baseName": "formFactor",
-            "type": "BankAccountModel.FormFactorEnum",
+            "type": "BankAccountModel.FormFactorEnum | null",
             "format": ""
         }    ];
 
