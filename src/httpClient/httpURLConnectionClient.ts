@@ -39,8 +39,26 @@ class HttpURLConnectionClient implements ClientInterface {
     public proxy?: AgentOptions;
     private agentOptions!: AgentOptions;
 
+    /**
+     * Sends an HTTP request to the specified endpoint with the provided JSON payload and configuration.
+     *
+     * This method sets up request headers, including authentication (API key or basic auth), content type,
+     * and timeout. If a certificate path is provided in the config, it installs a certificate verifier.
+     * Throws an ApiException when an error occurs (invalid API key, API error response, etc.).
+     *
+     * @param endpoint - The URL to which the request will be sent.
+     * @param json - The JSON string to be sent as the request body.
+     * @param config - The configuration object containing authentication, timeout, and certificate details.
+     * @param isApiRequired - Indicates whether an API key is required for this request.
+     * @param requestOptions - Additional options for the HTTP request, such as headers and timeout.
+     * @returns A promise that resolves with the response body as a string.
+     * @throws {ApiException} when an error occurs
+     */
     public request(
-        endpoint: string, json: string, config: Config, isApiRequired: boolean,
+        endpoint: string, 
+        json: string, 
+        config: Config, 
+        isApiRequired: boolean,
         requestOptions: IRequest.Options,
     ): Promise<string> {
         requestOptions.headers ??= {};
@@ -68,13 +86,13 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.headers[ApiConstants.CONTENT_TYPE] = ApiConstants.APPLICATION_JSON_TYPE;
 
         const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
-        return this.doPostRequest(httpConnection, json);
+        return this.doRequest(httpConnection, json);
     }
 
     public post(endpoint: string, postParameters: [string, string][], config: Config): Promise<string> {
         const postQuery: string = this.getQuery(postParameters);
         const connectionRequest: ClientRequest = this.createRequest(endpoint, {}, config.applicationName);
-        return this.doPostRequest(connectionRequest, postQuery);
+        return this.doRequest(connectionRequest, postQuery);
     }
 
     private createRequest(endpoint: string, requestOptions: IRequest.Options, applicationName?: string): ClientRequest {
@@ -113,7 +131,7 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.headers[ApiConstants.ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
         // user-agent header
         const libInfo = `${LibraryConstants.LIB_NAME}/${LibraryConstants.LIB_VERSION}`;
-        requestOptions.headers[ApiConstants.USER_AGENT] = applicationName? `${applicationName} ${libInfo}`: libInfo;
+        requestOptions.headers[ApiConstants.USER_AGENT] = applicationName ? `${applicationName} ${libInfo}` : libInfo;
         // custom headers
         requestOptions.headers[ApiConstants.ADYEN_LIBRARY_NAME] = LibraryConstants.LIB_NAME;
         requestOptions.headers[ApiConstants.ADYEN_LIBRARY_VERSION] = LibraryConstants.LIB_VERSION;
@@ -133,7 +151,7 @@ class HttpURLConnectionClient implements ClientInterface {
         return params.map(([key, value]): string => `${key}=${value}`).join("&");
     }
 
-    private doPostRequest(connectionRequest: ClientRequest, json: string): Promise<string> {
+    private doRequest(connectionRequest: ClientRequest, json: string): Promise<string> {
         return new Promise((resolve, reject): void => {
             connectionRequest.flushHeaders();
 
@@ -144,6 +162,7 @@ class HttpURLConnectionClient implements ClientInterface {
                     body: ""
                 };
 
+                // define default exception (in case of error during the handling of the response)
                 const getException = (responseBody: string): HttpClientException => new HttpClientException({
                     message: `HTTP Exception: ${response.statusCode}. ${res.statusMessage}`,
                     statusCode: response.statusCode,
@@ -151,8 +170,7 @@ class HttpURLConnectionClient implements ClientInterface {
                     responseHeaders: response.headers,
                     responseBody,
                 });
-
-                let exception: HttpClientException | Error = getException(response.body.toString());
+                let exception: HttpClientException | Error = getException(response.body);
 
                 res.on("data", (chunk: string): void => {
                     response.body += chunk;
@@ -164,12 +182,14 @@ class HttpURLConnectionClient implements ClientInterface {
                     }
 
                     if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
+                        // API error handling
                         try {
-                            const formattedData: ApiError | {[key: string]: never} = JSON.parse(response.body);
+                            const formattedData: ApiError | { [key: string]: never } = JSON.parse(response.body);
                             const isApiError = "status" in formattedData;
                             const isRequestError = "errors" in formattedData;
 
                             if (isApiError) {
+                                // Adyen API has returned an error
                                 exception = new HttpClientException({
                                     message: `HTTP Exception: ${formattedData.status}. ${res.statusMessage}: ${formattedData.message}`,
                                     statusCode: formattedData.status,
@@ -213,7 +233,7 @@ class HttpURLConnectionClient implements ClientInterface {
 
     private installCertificateVerifier(terminalCertificatePath: string): void | Promise<HttpClientException> {
         try {
-            if (terminalCertificatePath == "unencrypted"){
+            if (terminalCertificatePath == "unencrypted") {
                 this.agentOptions = {
                     rejectUnauthorized: false
                 };
@@ -226,7 +246,7 @@ class HttpURLConnectionClient implements ClientInterface {
             }
 
         } catch (e) {
-            const message = e instanceof Error ? e.message: "undefined";
+            const message = e instanceof Error ? e.message : "undefined";
             return Promise.reject(new HttpClientException({ message: `Error loading certificate from path: ${message}` }));
         }
 
