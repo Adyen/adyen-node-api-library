@@ -24,7 +24,6 @@ interface ClientInterface {
     request(
         endpoint: string, json: string, config: Config, isApiKeyRequired: boolean, requestOptions?: IRequest.Options,
     ): Promise<string>;
-    post(endpoint: string, postParameters: [string, string][], config: Config): Promise<string>;
     proxy?: AgentOptions;
 }
 

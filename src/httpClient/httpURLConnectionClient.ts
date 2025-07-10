@@ -89,12 +89,6 @@ class HttpURLConnectionClient implements ClientInterface {
         return this.doRequest(httpConnection, json);
     }
 
-    public post(endpoint: string, postParameters: [string, string][], config: Config): Promise<string> {
-        const postQuery: string = this.getQuery(postParameters);
-        const connectionRequest: ClientRequest = this.createRequest(endpoint, {}, config.applicationName);
-        return this.doRequest(connectionRequest, postQuery);
-    }
-
     private createRequest(endpoint: string, requestOptions: IRequest.Options, applicationName?: string): ClientRequest {
         if (!requestOptions.headers) {
             requestOptions.headers = {};
@@ -145,10 +139,6 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
         return req;
-    }
-
-    private getQuery(params: [string, string][]): string {
-        return params.map(([key, value]): string => `${key}=${value}`).join("&");
     }
 
     private doRequest(connectionRequest: ClientRequest, json: string): Promise<string> {
