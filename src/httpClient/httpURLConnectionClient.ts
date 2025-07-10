@@ -184,10 +184,16 @@ class HttpURLConnectionClient implements ClientInterface {
                                 exception = getException(response.body);
                             }
                         } catch (e) {
-                            reject(exception);
-                        } finally {
-                            reject(exception);
+                            // parsing error
+                            exception = new HttpClientException({
+                                message: `HTTP Exception: ${response.statusCode}. Error parsing response: ${(e as Error).message}`,
+                                statusCode: response.statusCode,
+                                responseHeaders: response.headers,
+                                responseBody: response.body,
+                            });
                         }
+
+                        return reject(exception);
                     }
 
                     resolve(response.body as string);
