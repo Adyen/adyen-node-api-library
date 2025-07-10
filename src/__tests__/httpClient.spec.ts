@@ -58,7 +58,7 @@ describe("HTTP Client", function (): void {
         ${"MOCKED_API_KEY"}  | ${"TEST"}      | ${true}   | ${["some_error"]}                                                                                    | ${"ApiException"}        | ${""}          | ${"some_error"}
         ${"API_KEY"}         | ${"TEST"}      | ${false}  | ${[401, { status: 401, message: "Invalid Request", errorCode: "171", errorType: "validationError"}]} | ${"HttpClientException"} | ${""}          | ${"HTTP Exception: 401. null: Invalid Request"}
         ${"API_KEY"}         | ${"TEST"}      | ${false}  | ${[401, {}]}                                                                                         | ${"HttpClientException"} | ${""}          | ${"HTTP Exception: 401. null"}
-        ${"API_KEY"}         | ${"TEST"}      | ${false}  | ${[401, "fail"]}                                                                                     | ${"HttpClientException"} | ${""}          | ${"HTTP Exception: 401. null"}
+        ${"API_KEY"}         | ${"TEST"}      | ${false}  | ${[401, "fail"]}                                                                                     | ${"HttpClientException"} | ${""}          | ${"HTTP Exception: 401. Error parsing response: Unexpected token 'i', \"fail\" is not valid JSON"}
     `("Should return $errorType, $contains, $equals", async ({ apiKey, environment, withError, args, errorType, contains, equals }) => {
         await getResponse({ apiKey, environment }, (scope) => {
             if (withError) scope.replyWithError(args[0]);
@@ -102,8 +102,6 @@ describe("HTTP Client", function (): void {
         const requestOptions = { headers: { foo : "bar" }};
         const response = await binLookupService.BinLookupApi.get3dsAvailability(threeDSAvailabilityRequest, requestOptions);
         expect(response).toEqual< binlookup.ThreeDSAvailabilityResponse>(threeDSAvailabilitySuccessResponse);
-
-        console.log("requestOptions", requestOptions);
     });
 
      test("should add default applicationInfo to the headers", async (): Promise<void> => {
