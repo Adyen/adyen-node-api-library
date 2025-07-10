@@ -91,4 +91,52 @@ describe("Notification Tests", function (): void {
         }
     });
 
+    it("should return notification items with additional data as key-value map", function (): void {
+        const notificationRequestItem = new NotificationRequestItem();
+
+        notificationRequestItem.amount = { currency: "EUR", value: 1000 };
+        notificationRequestItem.pspReference = "123456789";
+        notificationRequestItem.eventCode = NotificationEnum.Authorisation;
+        notificationRequestItem.eventDate = "2023-10-01T12:00:00+00:00";
+        notificationRequestItem.merchantAccountCode = "TestMerchant";
+        notificationRequestItem.merchantReference = "TestReference";
+        notificationRequestItem.success = SuccessEnum.True;
+        notificationRequestItem.additionalData = {
+            orderId: "12345",
+            customerId: "67890"
+        };
+
+        expect(notificationRequestItem.amount).toBeDefined();
+        expect(notificationRequestItem.additionalData).toBeDefined();
+        expect(notificationRequestItem.additionalData!.orderId).toEqual("12345");
+        expect(notificationRequestItem.additionalData!.customerId).toEqual("67890");
+
+    });
+
+    // test additionanDalata with medata as key-value pairs prefixed with "metadata." i.e. "metadata.myKey": "myValue"
+    it("should return notification items with additional data as key-value object", function (): void {
+        const notificationRequestItem = new NotificationRequestItem();
+
+        notificationRequestItem.amount = { currency: "EUR", value: 1000 };
+        notificationRequestItem.pspReference = "123456789";
+        notificationRequestItem.eventCode = NotificationEnum.Authorisation;
+        notificationRequestItem.eventDate = "2023-10-01T12:00:00+00:00";
+        notificationRequestItem.merchantAccountCode = "TestMerchant";
+        notificationRequestItem.merchantReference = "TestReference";
+        notificationRequestItem.success = SuccessEnum.True;
+        notificationRequestItem.additionalData = {
+            orderId: "12345",
+            customerId: "67890",
+            "metadata.myKey": "myValue",
+            "metadata.anotherKey": "anotherValue"
+        };
+
+        expect(notificationRequestItem.amount).toBeDefined();
+        expect(notificationRequestItem.additionalData).toBeDefined();
+        expect(notificationRequestItem.additionalData!.orderId).toEqual("12345");
+        expect(notificationRequestItem.additionalData!.customerId).toEqual("67890");
+        expect(notificationRequestItem.additionalData!["metadata.myKey"]).toEqual("myValue");
+        expect(notificationRequestItem.additionalData!["metadata.anotherKey"]).toEqual("anotherValue");
+
+    });
 });
