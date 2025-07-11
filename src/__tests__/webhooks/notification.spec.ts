@@ -108,8 +108,8 @@ describe("Notification Tests", function (): void {
 
         expect(notificationRequestItem.amount).toBeDefined();
         expect(notificationRequestItem.additionalData).toBeDefined();
-        expect(notificationRequestItem.additionalData!.orderId).toEqual("12345");
-        expect(notificationRequestItem.additionalData!.customerId).toEqual("67890");
+        expect(notificationRequestItem.additionalData).toHaveProperty("orderId", "12345");
+        expect(notificationRequestItem.additionalData).toHaveProperty("customerId", "67890");
 
     });
 
@@ -133,10 +133,12 @@ describe("Notification Tests", function (): void {
 
         expect(notificationRequestItem.amount).toBeDefined();
         expect(notificationRequestItem.additionalData).toBeDefined();
-        expect(notificationRequestItem.additionalData!.orderId).toEqual("12345");
-        expect(notificationRequestItem.additionalData!.customerId).toEqual("67890");
-        expect(notificationRequestItem.additionalData!["metadata.myKey"]).toEqual("myValue");
-        expect(notificationRequestItem.additionalData!["metadata.anotherKey"]).toEqual("anotherValue");
+        expect(notificationRequestItem.additionalData).toHaveProperty("orderId", "12345");
+        expect(notificationRequestItem.additionalData).toHaveProperty("customerId", "67890");
+        expect(notificationRequestItem.additionalData["metadata.myKey"]).toBeDefined();
+        expect(notificationRequestItem.additionalData["metadata.anotherKey"]).toBeDefined();
+        expect(notificationRequestItem.additionalData["metadata.myKey"]).toEqual("myValue");
+        expect(notificationRequestItem.additionalData["metadata.anotherKey"]).toEqual("anotherValue");
 
     });
 });
