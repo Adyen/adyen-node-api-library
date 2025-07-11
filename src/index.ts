@@ -24,5 +24,6 @@ export { default as Config } from "./config";
 export * from "./services/";
 export { hmacValidator } from "./utils";
 export { default as HttpURLConnectionClient } from "./httpClient/httpURLConnectionClient";
+export { default as HttpClientException } from "./httpClient/httpClientException";
 export * as Types from "./typings";
 
