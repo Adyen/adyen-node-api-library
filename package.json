@@ -31,7 +31,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
-  "author": "Ricardo Ambrogi",
+  "author": "Adyen",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "27.5.2",
