@@ -21,7 +21,6 @@ import { PaymentRequest } from "../../typings/payment/models";
 import { PaymentRequest3d } from "../../typings/payment/models";
 import { PaymentRequest3ds2 } from "../../typings/payment/models";
 import { PaymentResult } from "../../typings/payment/models";
-import { ServiceError } from "../../typings/payment/models";
 import { ThreeDS2ResultRequest } from "../../typings/payment/models";
 import { ThreeDS2ResultResponse } from "../../typings/payment/models";
 

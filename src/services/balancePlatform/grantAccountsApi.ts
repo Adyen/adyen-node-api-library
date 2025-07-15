@@ -16,7 +16,6 @@ import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { CapitalGrantAccount } from "../../typings/balancePlatform/models";
-import { RestServiceError } from "../../typings/balancePlatform/models";
 
 /**
  * API handler for GrantAccountsApi
