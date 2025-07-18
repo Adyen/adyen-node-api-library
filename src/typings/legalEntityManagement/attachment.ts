@@ -30,7 +30,7 @@ export class Attachment {
     */
     "pageName"?: string;
     /**
-    * Specifies which side of the ID card is uploaded.  * When `type` is **driversLicense** or **identityCard**, set this to **front** or **back**.  * When omitted, we infer the page number based on the order of attachments.
+    * Specifies which side of the ID card is uploaded.  * If the `type` is **driversLicense** or **identityCard**, you must set this to **front** or **back**.  * For any other types, when this is omitted, we infer the page number based on the order of attachments.
     */
     "pageType"?: string;
 

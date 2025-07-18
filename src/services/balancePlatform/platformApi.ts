@@ -17,6 +17,7 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { BalancePlatform } from "../../typings/balancePlatform/models";
 import { PaginatedAccountHoldersResponse } from "../../typings/balancePlatform/models";
+import { RestServiceError } from "../../typings/balancePlatform/models";
 import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
 
 /**

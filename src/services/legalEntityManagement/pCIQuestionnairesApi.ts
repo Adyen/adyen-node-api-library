@@ -23,6 +23,7 @@ import { GetPciQuestionnaireInfosResponse } from "../../typings/legalEntityManag
 import { GetPciQuestionnaireResponse } from "../../typings/legalEntityManagement/models";
 import { PciSigningRequest } from "../../typings/legalEntityManagement/models";
 import { PciSigningResponse } from "../../typings/legalEntityManagement/models";
+import { ServiceError } from "../../typings/legalEntityManagement/models";
 
 /**
  * API handler for PCIQuestionnairesApi
