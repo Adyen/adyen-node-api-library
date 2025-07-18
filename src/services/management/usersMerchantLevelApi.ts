@@ -18,7 +18,6 @@ import { ObjectSerializer } from "../../typings/management/objectSerializer";
 import { CreateMerchantUserRequest } from "../../typings/management/models";
 import { CreateUserResponse } from "../../typings/management/models";
 import { ListMerchantUsersResponse } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 import { UpdateMerchantUserRequest } from "../../typings/management/models";
 import { User } from "../../typings/management/models";
 
