@@ -36,28 +36,34 @@ class Service {
             return url.replace("-live", "-test");
         }
 
+        if(config.environment === "LIVE") {
+            if(config.liveEndpointUrlPrefix === undefined || config.liveEndpointUrlPrefix === "") {
+                throw new Error("Live endpoint URL prefix must be provided for LIVE environment.");
+            }
+        }
+
         if (url.includes("pal-")) {
-            if (this.client.liveEndpointUrlPrefix === "")
+            if (this.client.config.liveEndpointUrlPrefix === "")
             {
                 throw new Error("Please provide your unique live url prefix on the setEnvironment() call on the Client.");
             }
             return url.replace("https://pal-test.adyen.com/pal/servlet/",
-                    `https://${this.client.liveEndpointUrlPrefix}-pal-live.adyenpayments.com/pal/servlet/`);
+                    `https://${this.client.config.liveEndpointUrlPrefix}-pal-live.adyenpayments.com/pal/servlet/`);
         }
 
         if (url.includes("checkout-")) {
-            if (this.client.liveEndpointUrlPrefix === "")
+            if (this.client.config.liveEndpointUrlPrefix === "")
             {
                 throw new Error("Please provide your unique live url prefix on the setEnvironment() call on the Client.");
             }
 
             if (url.includes("/possdk/v68")) {
                 return url.replace("https://checkout-test.adyen.com/",
-                  `https://${this.client.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/`);
+                  `https://${this.client.config.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/`);
             }
 
             return url.replace("https://checkout-test.adyen.com/",
-                    `https://${this.client.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/checkout/`);
+                    `https://${this.client.config.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/checkout/`);
         }
 
         return url.replace("-test", "-live");
