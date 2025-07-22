@@ -24,7 +24,7 @@ export const TERMINAL_API_ENDPOINTS_MAP: Record<RegionEnum, string> = {
     [RegionEnum.AU]: TERMINAL_API_ENDPOINT_AU_LIVE,
     [RegionEnum.US]: TERMINAL_API_ENDPOINT_US_LIVE,
     [RegionEnum.APSE]: TERMINAL_API_ENDPOINT_APSE_LIVE
-}
+};
 
 
 interface ConfigConstructor {
