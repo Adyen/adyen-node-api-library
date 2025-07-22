@@ -37,11 +37,12 @@ import {
 
 export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     const config: Config = new Config();
+    config.environment = "TEST";
     config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
     config.terminalApiLocalEndpoint = "https://mocked_local_endpoint.com";
     config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
     config.apiKey = apiKey == null ? "apiKey" : apiKey;
-    return new Client({ config });
+    return new Client(config);
 };
 
 export const createBasicAuthClient = (): Client => {
