@@ -1,3 +1,32 @@
+
+// Test endpoint for Terminal API
+export const TERMINAL_API_ENDPOINT_TEST = "https://terminal-api-test.adyen.com";
+
+// Live endpoints for Terminal API
+const TERMINAL_API_ENDPOINT_LIVE = "https://terminal-api-live.adyen.com";
+const TERMINAL_API_ENDPOINT_AU_LIVE = "https://terminal-api-au.adyen.com";
+const TERMINAL_API_ENDPOINT_US_LIVE = "https://terminal-api-us.adyen.com";
+const TERMINAL_API_ENDPOINT_APSE_LIVE = "https://terminal-api-apse.adyen.com";
+
+/**
+ * Supported Regions for Terminal API integration.
+ */
+export enum RegionEnum {
+    EU = "EU",
+    AU = "AU",
+    US = "US",
+    APSE = "APSE"
+}
+
+// Terminal API Endpoints Map
+export const TERMINAL_API_ENDPOINTS_MAP: Record<RegionEnum, string> = {
+    [RegionEnum.EU]: TERMINAL_API_ENDPOINT_LIVE,
+    [RegionEnum.AU]: TERMINAL_API_ENDPOINT_AU_LIVE,
+    [RegionEnum.US]: TERMINAL_API_ENDPOINT_US_LIVE,
+    [RegionEnum.APSE]: TERMINAL_API_ENDPOINT_APSE_LIVE
+}
+
+
 interface ConfigConstructor {
     username?: string;
     password?: string;
@@ -9,11 +38,14 @@ interface ConfigConstructor {
     certificatePath?: string;
     terminalApiCloudEndpoint?: string;
     terminalApiLocalEndpoint?: string;
+    liveEndpointUrlPrefix?: string; // must be provided for LIVE integration
+    region?: RegionEnum; // must be provided for Terminal API integration
 }
 
 const DEFAULT_TIMEOUT = 30000; // Default timeout value (30 sec)
 
 class Config {
+
     public username?: string;
     public password?: string;
     public environment?: Environment;
@@ -24,7 +56,8 @@ class Config {
     public certificatePath?: string;
     public terminalApiCloudEndpoint?: string;
     public terminalApiLocalEndpoint?: string;
-
+    public liveEndpointUrlPrefix?: string;
+    public region?: RegionEnum;     
 
     public constructor(options: ConfigConstructor = {}) {
         if (options.username) this.username = options.username;
@@ -38,7 +71,29 @@ class Config {
         if (options.certificatePath) this.certificatePath = options.certificatePath;
         if (options.terminalApiCloudEndpoint) this.terminalApiCloudEndpoint = options.terminalApiCloudEndpoint;
         if (options.terminalApiLocalEndpoint) this.terminalApiLocalEndpoint = options.terminalApiLocalEndpoint;
+        if (options.liveEndpointUrlPrefix) this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix;
+        if (options.region) this.region = options.region;
     }
+
+    /**
+     * Checks if the provided region is a valid supported.
+     * @param region - The region to validate.
+     * @returns true if the region exists in RegionEnum, false otherwise.
+     */
+    public static isRegionValid(region: RegionEnum): boolean {
+        return Object.values(RegionEnum).includes(region);
+    }
+
+    /**
+     * Returns the Terminal API endpoint for the given region.
+     * If the region is not valid, returns the EU endpoint.
+     * @param region - The region to get the endpoint for.
+     * @returns The Terminal API endpoint URL.
+     */
+    public static getTerminalApiEndpoint(region: RegionEnum): string {
+        return TERMINAL_API_ENDPOINTS_MAP[region] || TERMINAL_API_ENDPOINTS_MAP[RegionEnum.EU];
+    }
+
 }
 
 export default Config;
