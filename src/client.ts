@@ -80,22 +80,6 @@ class Client {
     }
 
     /**
-     * Sets the environment and updates endpoints in the config.
-     * @param environment - The environment ("TEST" or "LIVE").
-     * @param liveEndpointUrlPrefix - Optional live endpoint prefix.
-     */
-    public setEnvironment(environment: Environment, liveEndpointUrlPrefix?: string): void {
-        // ensure environment is set in config
-        this.config.environment = environment;
-
-        if (environment === "TEST") {
-            this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
-        } else if (environment === "LIVE") {
-            this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_LIVE;
-        }
-    }
-
-    /**
      * Gets the HTTP client instance, creating a default one if not set.
      */
     public get httpClient(): ClientInterface {

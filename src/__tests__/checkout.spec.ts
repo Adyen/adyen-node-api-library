@@ -384,7 +384,7 @@ describe("Checkout", (): void => {
     // });
 
     test("should have missing identifier on live", async (): Promise<void> => {
-        client.setEnvironment("LIVE");
+        client.config.environment = "LIVE";
         try {
             const liveCheckout = new CheckoutAPI(client);
             await liveCheckout.PaymentsApi.payments(createPaymentsCheckoutRequest());
