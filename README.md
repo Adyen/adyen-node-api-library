@@ -265,6 +265,8 @@ const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.
 
 By default, [Node.js https](https://nodejs.org/api/https.html) is used to make API requests. Alternatively, you can set a custom `HttpClient` for your `Client` object.
 
+**Note**: when using your custom `HttpClient`, you must define all required properties (API key, content-type, timeouts, etc..) 
+
 For example, to set `axios` as your HTTP client:
 
 ``` javascript
