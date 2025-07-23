@@ -55,20 +55,11 @@ class Service {
         }
 
         if (url.includes("pal-")) {
-            if (this.client.config.liveEndpointUrlPrefix === "")
-            {
-                throw new Error("Please provide your unique live url prefix on the setEnvironment() call on the Client.");
-            }
             return url.replace("https://pal-test.adyen.com/pal/servlet/",
                     `https://${this.client.config.liveEndpointUrlPrefix}-pal-live.adyenpayments.com/pal/servlet/`);
         }
 
         if (url.includes("checkout-")) {
-            if (this.client.config.liveEndpointUrlPrefix === "")
-            {
-                throw new Error("Please provide your unique live url prefix on the setEnvironment() call on the Client.");
-            }
-
             if (url.includes("/possdk/v68")) {
                 return url.replace("https://checkout-test.adyen.com/",
                   `https://${this.client.config.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/`);
