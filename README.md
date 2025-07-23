@@ -343,7 +343,7 @@ For In-Person Payments integrations with the[Cloud Terminal API](https://docs.ad
 ``` javascript
 // Step 1: Require the parts of the module you want to use
 const {Client, TerminalCloudAPI} from "@adyen/api-library";
-import Config, { RegionEnum } from "../config";
+const { Config, RegionEnum } = require("@adyen/api-library");
 
 // Step 2: Initialize the client object
 const config = new Config({
