@@ -20,7 +20,10 @@
 import Client from "./client";
 import Config from "./config";
 
-
+/**
+ * Base Service class for all API services.
+ * Handles the setup of the endpoint URL for the API requests.
+ */
 class Service {
     public apiKeyRequired = false;
     public client: Client;
@@ -29,6 +32,15 @@ class Service {
         this.client = client;
     }
 
+    /**
+     * Constructs the base URL for API requests based on environment and endpoint type.
+     * - For non-LIVE environments, replaces '-live' with '-test'.
+     * - For LIVE environment, requires a liveEndpointUrlPrefix.
+     * - Handles special cases for 'pal-' and 'checkout-' endpoints.
+     * @param url - The original endpoint URL.
+     * @returns The formatted endpoint URL.
+     * @throws Error if liveEndpointUrlPrefix is missing for LIVE environment.
+     */    
     protected createBaseUrl(url: string): string {
         const config: Config = this.client.config;
 
