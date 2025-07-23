@@ -54,10 +54,6 @@ class Client {
             }
         }
 
-        if(this.config.environment === "LIVE" && !this.config.liveEndpointUrlPrefix) {
-            throw new Error("Live endpoint URL prefix must be provided for LIVE environment.");
-        }
-
         // legacy support for marketPayEndpoint
         if (this.config.environment === "TEST") {
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;

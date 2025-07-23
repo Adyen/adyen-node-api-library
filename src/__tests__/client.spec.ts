@@ -103,16 +103,6 @@ describe("API Client", function (): void {
     expect(client.config.terminalApiCloudEndpoint).toBe("https://terminal-api-us.adyen.com");
   });
 
-  test("should throw error if liveEndpointUrlPrefix is missing in LIVE environment", () => {
-    const config = new Config({
-      apiKey: "ADYEN_API_KEY",
-      environment: "LIVE"
-    });
-    expect(() => {
-      new Client(config);
-    }).toThrow("Live endpoint URL prefix must be provided for LIVE environment.");
-  });
-
   test("should set and get custom http client", () => {
     const config = new Config({
       apiKey: "ADYEN_API_KEY",
