@@ -16,7 +16,6 @@ import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/management/objectSerializer";
 import { ListStoresResponse } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 import { Store } from "../../typings/management/models";
 import { StoreCreationRequest } from "../../typings/management/models";
 import { StoreCreationWithMerchantCodeRequest } from "../../typings/management/models";

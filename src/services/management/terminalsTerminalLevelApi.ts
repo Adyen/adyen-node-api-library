@@ -16,7 +16,6 @@ import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/management/objectSerializer";
 import { ListTerminalsResponse } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 import { TerminalReassignmentRequest } from "../../typings/management/models";
 
 /**
