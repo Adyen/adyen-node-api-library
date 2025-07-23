@@ -51,8 +51,6 @@ class Client {
                     throw new Error(`Invalid region provided: ${this.config.region}`);
                 }
                 this.config.terminalApiCloudEndpoint = Config.getTerminalApiEndpoint(this.config.region);  
-            } else {
-                console.info("TerminalAPI Region is not be defined: ignore this if you are not using Terminal API.");
             }
         }
 
