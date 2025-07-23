@@ -27,6 +27,7 @@ import { RecurringDetailsRequest } from "../../typings/recurring/models";
 import { RecurringDetailsResult } from "../../typings/recurring/models";
 import { ScheduleAccountUpdaterRequest } from "../../typings/recurring/models";
 import { ScheduleAccountUpdaterResult } from "../../typings/recurring/models";
+import { ServiceError } from "../../typings/recurring/models";
 
 /**
  * API handler for RecurringApi

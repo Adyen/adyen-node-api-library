@@ -19,6 +19,7 @@ import { ApplePaySessionRequest } from "../../typings/checkout/models";
 import { ApplePaySessionResponse } from "../../typings/checkout/models";
 import { PaypalUpdateOrderRequest } from "../../typings/checkout/models";
 import { PaypalUpdateOrderResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
 import { UtilityRequest } from "../../typings/checkout/models";
 import { UtilityResponse } from "../../typings/checkout/models";
 
