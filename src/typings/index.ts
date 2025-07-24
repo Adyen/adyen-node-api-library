@@ -36,3 +36,4 @@ export * as transactionWebhooks from "./transactionWebhooks/models";
 export * as negativeBalanceWarningWebhooks from "./negativeBalanceWarningWebhooks/models";
 export * as balanceWebhooks from "./balanceWebhooks/models";
 export * as disputeWebhooks from "./disputeWebhooks/models";
+export * as tokenizationWebhooks from "./tokenizationWebhooks/models";
