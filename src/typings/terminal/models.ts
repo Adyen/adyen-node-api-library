@@ -265,6 +265,8 @@ export * from "./transmitResponse";
 export * from "./uTMCoordinates";
 export * from "./unitOfMeasureType";
 export * from "./versionType";
+// helpers
+export * from "./predefinedContentHelper";
 
 import { AbortRequest } from "./abortRequest";
 import { AccountType } from "./accountType";

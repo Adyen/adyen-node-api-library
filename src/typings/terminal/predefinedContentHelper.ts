@@ -15,43 +15,17 @@ export class PredefinedContentHelper {
      *
      * @example
      * const helper = new PredefinedContentHelper("...&event=PIN_ENTERED");
-     * const event = helper.getEvent(); // "PIN_ENTERED" or null
+     * const event = helper.getEvent(); // DisplayNotificationEvent.PIN_ENTERED or null
      */
     getEvent(): DisplayNotificationEvent | null {
         const event = this.params.get("event");
 
-        switch (event) {
-            case "TENDER_CREATED":
-            case "CARD_INSERTED":
-            case "CARD_PRESENTED":
-            case "CARD_SWIPED":
-            case "WAIT_FOR_APP_SELECTION":
-            case "APPLICATION_SELECTED":
-            case "ASK_SIGNATURE":
-            case "CHECK_SIGNATURE":
-            case "SIGNATURE_CHECKED":
-            case "WAIT_FOR_PIN":
-            case "PIN_ENTERED":
-            case "PRINT_RECEIPT":
-            case "RECEIPT_PRINTED":
-            case "CARD_REMOVED":
-            case "TENDER_FINAL":
-            case "ASK_DCC":
-            case "DCC_ACCEPTED":
-            case "DCC_REJECTED":
-            case "ASK_GRATUITY":
-            case "GRATUITY_ENTERED":
-            case "BALANCE_QUERY_STARTED":
-            case "BALANCE_QUERY_COMPLETED":
-            case "LOAD_STARTED":
-            case "LOAD_COMPLETED":
-            case "PROVIDE_CARD_DETAILS":
-            case "CARD_DETAILS_PROVIDED":
-                return event as DisplayNotificationEvent;
-            default:
-                return null;
+        if (event && Object.values(DisplayNotificationEvent).includes(event as DisplayNotificationEvent)) {
+            return event as DisplayNotificationEvent;
         }
+        return null;
     }
+
     getTransactionId(): string | null {
         return this.params.get("TransactionID");
     }
@@ -65,14 +39,11 @@ export class PredefinedContentHelper {
     }
 
     toObject(): Record<string, string> {
-        const result: Record<string, string> = {};
-        for (const [key, value] of this.params.entries()) {
-            result[key] = value;
-        }
-        return result;
+        return Object.fromEntries(this.params);
     }
 }
 
+// Supported events for display notifications
 export enum DisplayNotificationEvent {
     TENDER_CREATED = "TENDER_CREATED",
     CARD_INSERTED = "CARD_INSERTED",

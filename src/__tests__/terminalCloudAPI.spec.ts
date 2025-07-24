@@ -4,7 +4,7 @@ import { asyncRes } from "../__mocks__/terminalApi/async";
 import { syncRefund, syncRes, syncResEventNotification, syncResEventNotificationWithAdditionalAttributes, syncResEventNotificationWithUnknownEnum } from "../__mocks__/terminalApi/sync";
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
-import { terminal} from "../typings";
+import { terminal } from "../typings";
 
 let client: Client;
 let terminalCloudAPI: TerminalCloudAPI;
