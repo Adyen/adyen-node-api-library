@@ -8,10 +8,12 @@
  */
 
 import { ApplicationInfo } from "./applicationInfo";
+import { EnhancedSchemeData } from "./enhancedSchemeData";
 
 
 export class PaymentCancelRequest {
     "applicationInfo"?: ApplicationInfo | null;
+    "enhancedSchemeData"?: EnhancedSchemeData | null;
     /**
     * The merchant account that is used to process the payment.
     */
@@ -30,6 +32,12 @@ export class PaymentCancelRequest {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
             "type": "ApplicationInfo | null",
+            "format": ""
+        },
+        {
+            "name": "enhancedSchemeData",
+            "baseName": "enhancedSchemeData",
+            "type": "EnhancedSchemeData | null",
             "format": ""
         },
         {

@@ -8,10 +8,12 @@
  */
 
 import { ApplicationInfo } from "./applicationInfo";
+import { EnhancedSchemeData } from "./enhancedSchemeData";
 
 
 export class PaymentReversalRequest {
     "applicationInfo"?: ApplicationInfo | null;
+    "enhancedSchemeData"?: EnhancedSchemeData | null;
     /**
     * The merchant account that is used to process the payment.
     */
@@ -30,6 +32,12 @@ export class PaymentReversalRequest {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
             "type": "ApplicationInfo | null",
+            "format": ""
+        },
+        {
+            "name": "enhancedSchemeData",
+            "baseName": "enhancedSchemeData",
+            "type": "EnhancedSchemeData | null",
             "format": ""
         },
         {

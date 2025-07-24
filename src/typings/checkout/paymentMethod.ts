@@ -50,6 +50,10 @@ export class PaymentMethod {
     */
     "name"?: string;
     /**
+    * Indicates whether this payment method should be promoted or not.
+    */
+    "promoted"?: boolean;
+    /**
     * The unique payment method code.
     */
     "type"?: string;
@@ -111,6 +115,12 @@ export class PaymentMethod {
             "name": "name",
             "baseName": "name",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "promoted",
+            "baseName": "promoted",
+            "type": "boolean",
             "format": ""
         },
         {

@@ -9,6 +9,7 @@
 
 import { Amount } from "./amount";
 import { ApplicationInfo } from "./applicationInfo";
+import { EnhancedSchemeData } from "./enhancedSchemeData";
 import { LineItem } from "./lineItem";
 import { Split } from "./split";
 
@@ -16,6 +17,7 @@ import { Split } from "./split";
 export class PaymentAmountUpdateRequest {
     "amount": Amount;
     "applicationInfo"?: ApplicationInfo | null;
+    "enhancedSchemeData"?: EnhancedSchemeData | null;
     /**
     * The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**
     */
@@ -52,6 +54,12 @@ export class PaymentAmountUpdateRequest {
             "name": "applicationInfo",
             "baseName": "applicationInfo",
             "type": "ApplicationInfo | null",
+            "format": ""
+        },
+        {
+            "name": "enhancedSchemeData",
+            "baseName": "enhancedSchemeData",
+            "type": "EnhancedSchemeData | null",
             "format": ""
         },
         {
