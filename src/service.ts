@@ -49,7 +49,7 @@ class Service {
         }
 
         if(config.environment === "LIVE") {
-            if(config.liveEndpointUrlPrefix === undefined || config.liveEndpointUrlPrefix === "") {
+            if(!config?.liveEndpointUrlPrefix) {
                 throw new Error("Live endpoint URL prefix must be provided for LIVE environment.");
             }
         }
