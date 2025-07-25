@@ -339,7 +339,7 @@ client.httpClient = httpClient;
 ```
 
 ### Using the Cloud Terminal API 
-For In-Person Payments integrations with the[Cloud Terminal API](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/), you must initialise the Client **setting the closest** [Region](https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/#cloud):
+For In-Person Payments integrations with the [Cloud Terminal API](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/), you must initialise the Client **setting the closest** [Region](https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/#cloud):
 ``` javascript
 // Step 1: Require the parts of the module you want to use
 const {Client, TerminalCloudAPI} from "@adyen/api-library";
