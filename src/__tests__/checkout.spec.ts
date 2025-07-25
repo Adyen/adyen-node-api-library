@@ -384,14 +384,14 @@ describe("Checkout", (): void => {
     // });
 
     test("should have missing identifier on live", async (): Promise<void> => {
-        client.setEnvironment("LIVE");
+        client.config.environment = "LIVE";
         try {
             const liveCheckout = new CheckoutAPI(client);
             await liveCheckout.PaymentsApi.payments(createPaymentsCheckoutRequest());
             fail();
         } catch (e) {
             if(e instanceof Error) {
-                expect(e.message).toEqual("Please provide your unique live url prefix on the setEnvironment() call on the Client.");
+                expect(e.message).toEqual("Live endpoint URL prefix must be provided for LIVE environment.");
 
             } else {
                 fail();
