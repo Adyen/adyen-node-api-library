@@ -39,10 +39,14 @@ class Service {
      * - Handles special cases for 'pal-' and 'checkout-' endpoints.
      * @param url - The original endpoint URL.
      * @returns The formatted endpoint URL.
-     * @throws Error if liveEndpointUrlPrefix is missing for LIVE environment.
+     * @throws Error if url is not provided or liveEndpointUrlPrefix is missing for LIVE environment.
      */    
     protected createBaseUrl(url: string): string {
         const config: Config = this.client.config;
+
+        if(!url) {
+            throw new Error("Endpoint URL must be provided.");
+        }
 
         if (config.environment !== "LIVE") {
             return url.replace("-live", "-test");
