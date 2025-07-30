@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { AdditionalBankIdentificationRequirement } from "./additionalBankIdentificationRequirement";
 import { AddressRequirement } from "./addressRequirement";
 import { AmountMinMaxRequirement } from "./amountMinMaxRequirement";
 import { AmountNonZeroDecimalsRequirement } from "./amountNonZeroDecimalsRequirement";
@@ -22,7 +23,7 @@ import { USInternationalAchAddressRequirement } from "./uSInternationalAchAddres
  * Type
  * @export
  */
-export type TransferRouteRequirementsInner = AddressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInstantPayoutAddressRequirement | USInternationalAchAddressRequirement;
+export type TransferRouteRequirementsInner = AdditionalBankIdentificationRequirement | AddressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInstantPayoutAddressRequirement | USInternationalAchAddressRequirement;
 
 /**
 * @type TransferRouteRequirementsInnerClass

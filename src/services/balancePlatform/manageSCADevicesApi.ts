@@ -22,6 +22,7 @@ import { AssociationInitiateResponse } from "../../typings/balancePlatform/model
 import { RegisterSCAFinalResponse } from "../../typings/balancePlatform/models";
 import { RegisterSCARequest } from "../../typings/balancePlatform/models";
 import { RegisterSCAResponse } from "../../typings/balancePlatform/models";
+import { RestServiceError } from "../../typings/balancePlatform/models";
 import { SearchRegisteredDevicesResponse } from "../../typings/balancePlatform/models";
 
 /**

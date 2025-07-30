@@ -23,6 +23,7 @@ import { DefenseReasonsRequest } from "../../typings/disputes/models";
 import { DefenseReasonsResponse } from "../../typings/disputes/models";
 import { DeleteDefenseDocumentRequest } from "../../typings/disputes/models";
 import { DeleteDefenseDocumentResponse } from "../../typings/disputes/models";
+import { ServiceError } from "../../typings/disputes/models";
 import { SupplyDefenseDocumentRequest } from "../../typings/disputes/models";
 import { SupplyDefenseDocumentResponse } from "../../typings/disputes/models";
 

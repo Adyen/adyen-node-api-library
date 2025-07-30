@@ -8,6 +8,7 @@ import { AccountHolderUpdateRequest } from "./accountHolderUpdateRequest";
 import { AccountSupportingEntityCapability } from "./accountSupportingEntityCapability";
 import { ActiveNetworkTokensRestriction } from "./activeNetworkTokensRestriction";
 import { AdditionalBankIdentification } from "./additionalBankIdentification";
+import { AdditionalBankIdentificationRequirement } from "./additionalBankIdentificationRequirement";
 import { Address } from "./address";
 import { AddressRequirement } from "./addressRequirement";
 import { Amount } from "./amount";
@@ -205,6 +206,8 @@ let enumsMap: Set<string> = new Set<string>([
     "AccountSupportingEntityCapability.RequestedLevelEnum",
     "AccountSupportingEntityCapability.VerificationStatusEnum",
     "AdditionalBankIdentification.TypeEnum",
+    "AdditionalBankIdentificationRequirement.AdditionalBankIdentificationTypeEnum",
+    "AdditionalBankIdentificationRequirement.TypeEnum",
     "AddressRequirement.RequiredAddressFieldsEnum",
     "AddressRequirement.TypeEnum",
     "AmountMinMaxRequirement.TypeEnum",
@@ -306,8 +309,9 @@ let enumsMap: Set<string> = new Set<string>([
     "TransferRoute.PriorityEnum",
     "TransferRouteRequest.CategoryEnum",
     "TransferRouteRequest.PrioritiesEnum",
-    "TransferRouteRequirementsInner.RequiredAddressFieldsEnum",
+    "TransferRouteRequirementsInner.AdditionalBankIdentificationTypeEnum",
     "TransferRouteRequirementsInner.TypeEnum",
+    "TransferRouteRequirementsInner.RequiredAddressFieldsEnum",
     "TransferRouteRequirementsInner.BankAccountIdentificationTypesEnum",
     "TransferRouteRequirementsInner.PaymentInstrumentTypeEnum",
     "UKLocalAccountIdentification.TypeEnum",
@@ -341,6 +345,7 @@ let typeMap: {[index: string]: any} = {
     "AccountSupportingEntityCapability": AccountSupportingEntityCapability,
     "ActiveNetworkTokensRestriction": ActiveNetworkTokensRestriction,
     "AdditionalBankIdentification": AdditionalBankIdentification,
+    "AdditionalBankIdentificationRequirement": AdditionalBankIdentificationRequirement,
     "Address": Address,
     "AddressRequirement": AddressRequirement,
     "Amount": Amount,
