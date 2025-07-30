@@ -22,7 +22,7 @@ export class Address {
     */
     "postalCode"?: string;
     /**
-    * The two-letter ISO 3166-2 state or province code. For example, **CA** in the US.  If you specify the state or province, you must also send `city`, `postalCode`, and `street`.
+    * The two-letter ISO 3166-2 state or province code. For example, **CA** in the US. Required for Australia and New Zealand.  If you specify the state or province, you must also send `city`, `postalCode`, and `street`.
     */
     "stateOrProvince"?: string;
     /**

@@ -18,6 +18,7 @@ import { ObjectSerializer } from "../../typings/management/objectSerializer";
 import { Company } from "../../typings/management/models";
 import { ListCompanyResponse } from "../../typings/management/models";
 import { ListMerchantResponse } from "../../typings/management/models";
+import { RestServiceError } from "../../typings/management/models";
 
 /**
  * API handler for AccountCompanyLevelApi

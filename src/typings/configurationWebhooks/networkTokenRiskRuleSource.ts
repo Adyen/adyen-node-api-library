@@ -8,15 +8,15 @@
  */
 
 
-export class NetworkTokenRequestor {
+export class NetworkTokenRiskRuleSource {
     /**
-    * The unique identifier of the network token requestor.
+    * The unique identifier of the resource to which the transaction rule applies.
     */
     "id"?: string;
     /**
-    * The name of the network token requestor.
+    * Indicates the type of resource for which the transaction rule is defined.  Possible values:   * **PaymentInstrumentGroup**  * **PaymentInstrument**  * **BalancePlatform**  * **EntityUsageConfiguration**  * **PlatformRule**: The transaction rule is a platform-wide rule imposed by Adyen.
     */
-    "name"?: string;
+    "type"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -30,14 +30,14 @@ export class NetworkTokenRequestor {
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "type",
+            "baseName": "type",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return NetworkTokenRequestor.attributeTypeMap;
+        return NetworkTokenRiskRuleSource.attributeTypeMap;
     }
 
     public constructor() {

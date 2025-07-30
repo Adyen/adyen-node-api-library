@@ -17,7 +17,7 @@ export class NetworkToken {
     */
     "brandVariant"?: string;
     /**
-    * Date and time when the network token was created, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) extended format. For example, **2020-12-18T10:15:30+01:00**..
+    * Date and time when the network token was created, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) extended format. For example, **2025-03-19T10:15:30+01:00**..
     */
     "creationDate"?: Date;
     "device"?: DeviceInfo | null;

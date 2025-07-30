@@ -225,6 +225,7 @@ export namespace Transfer {
     export enum ReasonEnum {
         AccountHierarchyNotActive = 'accountHierarchyNotActive',
         AmountLimitExceeded = 'amountLimitExceeded',
+        ApprovalExpired = 'approvalExpired',
         Approved = 'approved',
         BalanceAccountTemporarilyBlockedByTransactionRule = 'balanceAccountTemporarilyBlockedByTransactionRule',
         CounterpartyAccountBlocked = 'counterpartyAccountBlocked',
