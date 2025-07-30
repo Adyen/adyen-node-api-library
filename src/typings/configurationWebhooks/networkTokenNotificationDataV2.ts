@@ -8,6 +8,7 @@
  */
 
 import { NetworkTokenRequestor } from "./networkTokenRequestor";
+import { NetworkTokenTransactionRulesResult } from "./networkTokenTransactionRulesResult";
 import { TokenAuthentication } from "./tokenAuthentication";
 import { ValidationFacts } from "./validationFacts";
 import { Wallet } from "./wallet";
@@ -44,8 +45,9 @@ export class NetworkTokenNotificationDataV2 {
     */
     "tokenLastFour"?: string;
     "tokenRequestor"?: NetworkTokenRequestor | null;
+    "transactionRulesResult"?: NetworkTokenTransactionRulesResult | null;
     /**
-    * The type of network token.
+    * The type of network token.  Possible values: **wallet**, **cof**.
     */
     "type"?: string;
     /**
@@ -111,6 +113,12 @@ export class NetworkTokenNotificationDataV2 {
             "name": "tokenRequestor",
             "baseName": "tokenRequestor",
             "type": "NetworkTokenRequestor | null",
+            "format": ""
+        },
+        {
+            "name": "transactionRulesResult",
+            "baseName": "transactionRulesResult",
+            "type": "NetworkTokenTransactionRulesResult | null",
             "format": ""
         },
         {

@@ -35,7 +35,6 @@ export class TransferDataTrackingClass {
     static readonly mapping: {[index: string]: string} | undefined = {
         "confirmation": "ConfirmationTrackingData",
         "estimation": "EstimationTrackingData",
-        "internalReview": "InternalReviewTrackingData",
+        "internalReview": "InternalReviewTrackingData"
     };
-
 }

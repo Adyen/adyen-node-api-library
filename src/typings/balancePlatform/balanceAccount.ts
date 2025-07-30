@@ -13,7 +13,7 @@ import { PlatformPaymentConfiguration } from "./platformPaymentConfiguration";
 
 export class BalanceAccount {
     /**
-    * The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/accountHolders__resParam_id) associated with the balance account.
+    * The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/accountHolders#responses-200-id) associated with the balance account.
     */
     "accountHolderId": string;
     /**

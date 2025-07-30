@@ -17,6 +17,10 @@ export class UltimatePartyIdentification {
     */
     "dateOfBirth"?: string;
     /**
+    * The email address of the organization or individual. Maximum length: 254 characters.
+    */
+    "email"?: string;
+    /**
     * The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
     */
     "firstName"?: string;
@@ -36,6 +40,10 @@ export class UltimatePartyIdentification {
     * The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when `category` is **card**. In this case, the value must be **individual**.
     */
     "type"?: UltimatePartyIdentification.TypeEnum;
+    /**
+    * The URL of the organization or individual. Maximum length: 255 characters.
+    */
+    "url"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -53,6 +61,12 @@ export class UltimatePartyIdentification {
             "baseName": "dateOfBirth",
             "type": "string",
             "format": "date"
+        },
+        {
+            "name": "email",
+            "baseName": "email",
+            "type": "string",
+            "format": ""
         },
         {
             "name": "firstName",
@@ -82,6 +96,12 @@ export class UltimatePartyIdentification {
             "name": "type",
             "baseName": "type",
             "type": "UltimatePartyIdentification.TypeEnum",
+            "format": ""
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string",
             "format": ""
         }    ];
 

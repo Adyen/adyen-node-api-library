@@ -180,6 +180,7 @@ export namespace CreateSweepConfigurationV2 {
     export enum ReasonEnum {
         AccountHierarchyNotActive = 'accountHierarchyNotActive',
         AmountLimitExceeded = 'amountLimitExceeded',
+        ApprovalExpired = 'approvalExpired',
         Approved = 'approved',
         BalanceAccountTemporarilyBlockedByTransactionRule = 'balanceAccountTemporarilyBlockedByTransactionRule',
         CounterpartyAccountBlocked = 'counterpartyAccountBlocked',
