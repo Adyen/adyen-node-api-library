@@ -19,7 +19,6 @@ import { AndroidApp } from "../../typings/management/models";
 import { AndroidAppsResponse } from "../../typings/management/models";
 import { AndroidCertificatesResponse } from "../../typings/management/models";
 import { ReprocessAndroidAppResponse } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 import { UploadAndroidAppResponse } from "../../typings/management/models";
 import { UploadAndroidCertificateResponse } from "../../typings/management/models";
 
