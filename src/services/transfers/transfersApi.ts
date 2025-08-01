@@ -20,9 +20,11 @@ import { CancelTransfersRequest } from "../../typings/transfers/models";
 import { FindTransfersResponse } from "../../typings/transfers/models";
 import { ReturnTransferRequest } from "../../typings/transfers/models";
 import { ReturnTransferResponse } from "../../typings/transfers/models";
+import { ServiceError } from "../../typings/transfers/models";
 import { Transfer } from "../../typings/transfers/models";
 import { TransferData } from "../../typings/transfers/models";
 import { TransferInfo } from "../../typings/transfers/models";
+import { TransferServiceRestServiceError } from "../../typings/transfers/models";
 
 /**
  * API handler for TransfersApi
@@ -89,7 +91,7 @@ export class TransfersApi extends Service {
     * @param limit {@link number } The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.
     * @return {@link FindTransfersResponse }
     */
-    public async getAllTransfers(createdSince: Date, createdUntil: Date, balancePlatform?: string, accountHolderId?: string, balanceAccountId?: string, paymentInstrumentId?: string, reference?: string, category?: "bank" | "card" | "grants" | "interest" | "internal" | "issuedCard" | "migration" | "platformPayment" | "topUp" | "upgrade", sortOrder?: "asc" | "desc", cursor?: string, limit?: number, requestOptions?: IRequest.Options): Promise<FindTransfersResponse> {
+    public async getAllTransfers(createdSince: Date, createdUntil: Date, balancePlatform?: string, accountHolderId?: string, balanceAccountId?: string, paymentInstrumentId?: string, reference?: string, category?: 'bank' | 'card' | 'grants' | 'interest' | 'internal' | 'issuedCard' | 'migration' | 'platformPayment' | 'topUp' | 'upgrade', sortOrder?: 'asc' | 'desc', cursor?: string, limit?: number, requestOptions?: IRequest.Options): Promise<FindTransfersResponse> {
         const endpoint = `${this.baseUrl}/transfers`;
         const resource = new Resource(this, endpoint);
         
