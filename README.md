@@ -210,7 +210,7 @@ For APIS that require your [Live URL Prefix](https://docs.adyen.com/development-
 ``` typescript
 const { Client } = require('@adyen/api-library');
 
-const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST", liveEndpointUrlPrefix: "YOUR_LIVE_URL_PREFIX"}); 
+const client = new Client({apiKey: "YOUR_API_KEY", environment: "LIVE", liveEndpointUrlPrefix: "YOUR_LIVE_URL_PREFIX"}); 
 ```
 
 ### Usage in TypeScript
@@ -219,7 +219,7 @@ Alternatively, you can use the `Types` included in this module for Typescript an
 
 ``` typescript
   const { Client, CheckoutAPI, Types } = require('@adyen/api-library');
-  const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
+  const client = new Client({apiKey: "YOUR_API_KEY", environment: "LIVE", liveEndpointUrlPrefix: "YOUR_LIVE_URL_PREFIX"});
 
   const makePaymentsRequest = async () => {
     const paymentsRequest : Types.checkout.PaymentRequest = {
@@ -264,6 +264,8 @@ const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.
 ### Custom HTTP client configuration
 
 By default, [Node.js https](https://nodejs.org/api/https.html) is used to make API requests. Alternatively, you can set a custom `HttpClient` for your `Client` object.
+
+**Note**: when using your custom `HttpClient`, you must define all required properties (API key, content-type, timeouts, etc..) 
 
 For example, to set `axios` as your HTTP client:
 
@@ -336,14 +338,20 @@ client.httpClient = httpClient;
 // ... more code
 ```
 
-### Using the Cloud Terminal API Integration
-In order to submit In-Person requests with [Terminal API over Cloud](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/) you need to initialize the client in a similar way as the steps listed above for Ecommerce transactions, but make sure to include `TerminalCloudAPI`:
+### Using the Cloud Terminal API 
+For In-Person Payments integrations with the [Cloud Terminal API](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/), you must initialise the Client **setting the closest** [Region](https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/#cloud):
 ``` javascript
 // Step 1: Require the parts of the module you want to use
 const {Client, TerminalCloudAPI} from "@adyen/api-library";
+const { Config, RegionEnum } = require("@adyen/api-library");
 
 // Step 2: Initialize the client object
-const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
+const config = new Config({
+    apiKey: "YOUR_API_KEY",
+    environment: "LIVE",
+    region: RegionEnum.US
+});
+const client = new Client(config);
 
 // Step 3: Initialize the API object
 const terminalCloudAPI = new TerminalCloudAPI(client);
