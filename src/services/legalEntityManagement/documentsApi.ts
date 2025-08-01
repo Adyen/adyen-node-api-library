@@ -16,7 +16,6 @@ import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSerializer";
 import { Document } from "../../typings/legalEntityManagement/models";
-import { ServiceError } from "../../typings/legalEntityManagement/models";
 
 /**
  * API handler for DocumentsApi

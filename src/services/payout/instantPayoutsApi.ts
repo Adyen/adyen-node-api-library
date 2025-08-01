@@ -17,7 +17,6 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/payout/objectSerializer";
 import { PayoutRequest } from "../../typings/payout/models";
 import { PayoutResponse } from "../../typings/payout/models";
-import { ServiceError } from "../../typings/payout/models";
 
 /**
  * API handler for InstantPayoutsApi
