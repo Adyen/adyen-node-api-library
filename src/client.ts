@@ -1,4 +1,4 @@
-import Config from "./config";
+import Config, { EnvironmentEnum } from "./config";
 import { TERMINAL_API_ENDPOINT_TEST } from "./config";
 
 import HttpURLConnectionClient from "./httpClient/httpURLConnectionClient";
@@ -41,10 +41,10 @@ class Client {
         }
 
         // set Terminal API endpoints 
-        if (this.config.environment === "TEST") {
+        if (this.config.environment === EnvironmentEnum.TEST) {
             // one TEST endpoint for all regions
             this.config.terminalApiCloudEndpoint = TERMINAL_API_ENDPOINT_TEST;
-        } else if (this.config.environment === "LIVE") {
+        } else if (this.config.environment === EnvironmentEnum.LIVE) {
             // region-based LIVE endpoints
             if(this.config.region) {
                 if (!Config.isRegionValid(this.config.region)) {
@@ -55,9 +55,9 @@ class Client {
         }
 
         // legacy support for marketPayEndpoint
-        if (this.config.environment === "TEST") {
+        if (this.config.environment === EnvironmentEnum.TEST) {
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
-        } else if (this.config.environment === "LIVE") {
+        } else if (this.config.environment === EnvironmentEnum.LIVE) {
             this.config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_LIVE;
         }
 

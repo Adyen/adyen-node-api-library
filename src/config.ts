@@ -8,6 +8,15 @@ const TERMINAL_API_ENDPOINT_AU_LIVE = "https://terminal-api-au.adyen.com";
 const TERMINAL_API_ENDPOINT_US_LIVE = "https://terminal-api-us.adyen.com";
 const TERMINAL_API_ENDPOINT_APSE_LIVE = "https://terminal-api-apse.adyen.com";
 
+
+/**
+ * Supported environments for the Adyen APIs.
+ */
+export enum EnvironmentEnum {
+  LIVE = "LIVE",
+  TEST = "TEST"
+}
+
 /**
  * Supported Regions for Terminal API integration.
  */
@@ -30,7 +39,7 @@ export const TERMINAL_API_ENDPOINTS_MAP: Record<RegionEnum, string> = {
 interface ConfigConstructor {
     username?: string;
     password?: string;
-    environment?: Environment;
+    environment?: EnvironmentEnum;
     marketPayEndpoint?: string;
     applicationName?: string;
     apiKey?: string;
@@ -48,7 +57,7 @@ class Config {
 
     public username?: string;
     public password?: string;
-    public environment?: Environment;
+    public environment?: EnvironmentEnum;
     public marketPayEndpoint?: string;
     public applicationName?: string;
     public apiKey?: string;
@@ -73,6 +82,15 @@ class Config {
         if (options.terminalApiLocalEndpoint) this.terminalApiLocalEndpoint = options.terminalApiLocalEndpoint;
         if (options.liveEndpointUrlPrefix) this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix;
         if (options.region) this.region = options.region;
+    }
+
+    /**
+     * Checks if the provided environment is valid.
+     * @param environment - The environment to validate.
+     * @returns true if the environment exists in EnvironmentEnum, false otherwise.
+     */
+    public static isEnvironmentValid(environment: EnvironmentEnum): boolean {
+        return Object.values(EnvironmentEnum).includes(environment);
     }
 
     /**

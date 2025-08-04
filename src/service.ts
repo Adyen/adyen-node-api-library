@@ -18,7 +18,7 @@
  */
 
 import Client from "./client";
-import Config from "./config";
+import Config, { EnvironmentEnum } from "./config";
 
 /**
  * Base Service class for all API services.
@@ -48,11 +48,11 @@ class Service {
             throw new Error("Endpoint URL must be provided.");
         }
 
-        if (config.environment !== "LIVE") {
+        if (config.environment !== EnvironmentEnum.LIVE) {
             return url.replace("-live", "-test");
         }
 
-        if(config.environment === "LIVE") {
+        if(config.environment === EnvironmentEnum.LIVE) {
             if(!config?.liveEndpointUrlPrefix) {
                 throw new Error("Live endpoint URL prefix must be provided for LIVE environment.");
             }
