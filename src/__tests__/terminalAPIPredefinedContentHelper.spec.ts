@@ -19,7 +19,7 @@ describe("PredefinedContentHelper", () => {
         expect(helper.getTransactionId()).toBe("12345");
     });
 
-    it("should extract TimeStamp", () => {
+    it("should extract query parameter", () => {
         const helper = new PredefinedContentHelper("TimeStamp=2024-07-11T12:00:00Z");
         expect(helper.getTimeStamp()).toBe("2024-07-11T12:00:00Z");
     });
