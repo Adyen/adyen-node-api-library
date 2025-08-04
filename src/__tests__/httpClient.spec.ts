@@ -7,7 +7,7 @@ import HttpClientException from "../httpClient/httpClientException";
 import { binlookup } from "../typings";
 import { ApiConstants } from "../constants/apiConstants";
 import { paymentMethodsSuccess } from "../__mocks__/checkout/paymentMethodsSuccess";
-import Config from "../config";
+import Config, { EnvironmentEnum } from "../config";
 import LibraryConstants from "../constants/libraryConstants";
 
 
@@ -28,7 +28,7 @@ const threeDSAvailabilitySuccess = {
 type errorType = "HttpClientException" | "ApiException";
 type testOptions = { errorType: errorType; errorMessageContains?: string; errorMessageEquals?: string };
 
-const getResponse = async ({ apiKey, environment }: { apiKey: string; environment: Environment }, cb: (scope: Interceptor) => testOptions): Promise<void> => {
+const getResponse = async ({ apiKey, environment }: { apiKey: string; environment: EnvironmentEnum }, cb: (scope: Interceptor) => testOptions): Promise<void> => {
     const client = new Client({ apiKey, environment });
     const binLookup = new BinLookupAPI(client);
 
@@ -55,7 +55,7 @@ describe("HTTP Client", function (): void {
 
     test("Should return ApiException with message containing 'mocked_error_response'", async () => {
         await getResponse(
-            { apiKey: "", environment: "TEST" },
+            { apiKey: "", environment: EnvironmentEnum.TEST },
             (scope) => {
                 scope.replyWithError("mocked_error_response");
                 return {
@@ -69,7 +69,7 @@ describe("HTTP Client", function (): void {
 
     test("Should return ApiException with message equal to 'some_error'", async () => {
         await getResponse(
-            { apiKey: "MOCKED_API_KEY", environment: "TEST" },
+            { apiKey: "MOCKED_API_KEY", environment: EnvironmentEnum.TEST },
             (scope) => {
                 scope.replyWithError("some_error");
                 return {
@@ -83,7 +83,7 @@ describe("HTTP Client", function (): void {
 
     test("Should return HttpClientException with message equal to 'HTTP Exception: 401. null: Invalid Request'", async () => {
         await getResponse(
-            { apiKey: "API_KEY", environment: "TEST" },
+            { apiKey: "API_KEY", environment: EnvironmentEnum.TEST },
             (scope) => {
                 scope.reply(401, { status: 401, message: "Invalid Request", errorCode: "171", errorType: "validationError" });
                 return {
@@ -97,7 +97,7 @@ describe("HTTP Client", function (): void {
 
     test("Should return HttpClientException with message equal to 'HTTP Exception: 401. null'", async () => {
         await getResponse(
-            { apiKey: "API_KEY", environment: "TEST" },
+            { apiKey: "API_KEY", environment: EnvironmentEnum.TEST },
             (scope) => {
                 scope.reply(401, {});
                 return {
@@ -111,7 +111,7 @@ describe("HTTP Client", function (): void {
 
     test("Should return HttpClientException with message starting with 'HTTP Exception: 401'", async () => {
         await getResponse(
-            { apiKey: "API_KEY", environment: "TEST" },
+            { apiKey: "API_KEY", environment: EnvironmentEnum.TEST },
             (scope) => {
                 scope.reply(401, "fail");
                 return {

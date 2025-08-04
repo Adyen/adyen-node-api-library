@@ -18,7 +18,7 @@
  */
 
 import Client from "../client";
-import Config from "../config";
+import Config, { EnvironmentEnum } from "../config";
 import {
     AmountsReq,
     MessageCategoryType,
@@ -37,7 +37,7 @@ import {
 
 export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     const config: Config = new Config();
-    config.environment = "TEST";
+    config.environment = EnvironmentEnum.TEST;
     config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
     config.terminalApiLocalEndpoint = "https://mocked_local_endpoint.com";
     config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
@@ -49,7 +49,7 @@ export const createBasicAuthClient = (): Client => {
     return new Client({
         username: process.env.ADYEN_USER!,
         password: process.env.ADYEN_PASSWORD!,
-        environment: "TEST",
+        environment: EnvironmentEnum.TEST,
         applicationName: "adyen-node-api-library"
     });
 };

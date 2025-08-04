@@ -1,6 +1,6 @@
 import Service from "../service";
 import Client from "../client";
-import Config from "../config";
+import Config, { EnvironmentEnum } from "../config";
 
 class TestService extends Service {
     public constructor(client: Client) {
@@ -17,8 +17,7 @@ describe("Service", () => {
     beforeEach(() => {
         // Default config for each test
         client = new Client(new Config({
-            apiKey: "test_key",
-            environment: "TEST"
+            environment: EnvironmentEnum.TEST
         }));
     });
 
@@ -32,11 +31,11 @@ describe("Service", () => {
         // create Client for TEST environment without liveEndpointUrlPrefix
         const config = new Config({
             apiKey: "test_key",
-            environment: "TEST"
+            environment: EnvironmentEnum.TEST
         });
         client = new Client(config);
         // change to LIVE
-        client.config.environment = "LIVE";
+        client.config.environment = EnvironmentEnum.LIVE;
 
         const service = new TestService(client);
         expect(() => service.testCreateBaseUrl("https://pal-live.adyen.com/pal/servlet/"))
@@ -47,12 +46,12 @@ describe("Service", () => {
         // create Client for TEST environment without liveEndpointUrlPrefix
         const config = new Config({
             apiKey: "test_key",
-            environment: "TEST",
+            environment: EnvironmentEnum.TEST,
             liveEndpointUrlPrefix: ""
         });
         client = new Client(config);
         // change to LIVE
-        client.config.environment = "LIVE";
+        client.config.environment = EnvironmentEnum.LIVE;
 
         const service = new TestService(client);
         expect(() => service.testCreateBaseUrl("https://pal-live.adyen.com/pal/servlet/"))
@@ -62,7 +61,7 @@ describe("Service", () => {
     it("should replace pal-test with pal-live using liveEndpointUrlPrefix", () => {
         const config = new Config({
             apiKey: "test_key",
-            environment: "LIVE",
+            environment: EnvironmentEnum.LIVE,
             liveEndpointUrlPrefix: "mycompany"
         });
         client = new Client(config);
@@ -78,12 +77,12 @@ describe("Service", () => {
         // create Client for TEST environment without liveEndpointUrlPrefix
         const config = new Config({
             apiKey: "test_key",
-            environment: "TEST",
+            environment: EnvironmentEnum.TEST,
             liveEndpointUrlPrefix: ""
         });
         client = new Client(config);
         // change to LIVE
-        client.config.environment = "LIVE";
+        client.config.environment = EnvironmentEnum.LIVE;
 
         const service = new TestService(client);
         expect(() => service.testCreateBaseUrl("https://checkout-test.adyen.com/"))
@@ -93,7 +92,7 @@ describe("Service", () => {
     it("should replace checkout-test with checkout-live using liveEndpointUrlPrefix", () => {
         const config = new Config({
             apiKey: "test_key",
-            environment: "LIVE",
+            environment: EnvironmentEnum.LIVE,
             liveEndpointUrlPrefix: "mycompany"
         });
         client = new Client(config);
@@ -108,7 +107,7 @@ describe("Service", () => {
     it("should replace checkout-test with checkout-live for possdk/v68 using liveEndpointUrlPrefix", () => {
         const config = new Config({
             apiKey: "test_key",
-            environment: "LIVE",
+            environment: EnvironmentEnum.LIVE,
             liveEndpointUrlPrefix: "mycompany"
         });
         client = new Client(config);
@@ -123,7 +122,7 @@ describe("Service", () => {
     it("should replace -test with -live for other URLs", () => {
         const config = new Config({
             apiKey: "test_key",
-            environment: "LIVE",
+            environment: EnvironmentEnum.LIVE,
             liveEndpointUrlPrefix: "mycompany"
         });
         client = new Client(config);
