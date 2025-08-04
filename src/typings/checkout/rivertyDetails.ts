@@ -45,6 +45,10 @@ export class RivertyDetails {
     */
     "storedPaymentMethodId"?: string;
     /**
+    * The payment method subtype.
+    */
+    "subtype"?: string;
+    /**
     * **riverty**
     */
     "type": RivertyDetails.TypeEnum;
@@ -99,6 +103,12 @@ export class RivertyDetails {
         {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "subtype",
+            "baseName": "subtype",
             "type": "string",
             "format": ""
         },

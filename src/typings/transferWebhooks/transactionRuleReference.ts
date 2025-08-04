@@ -26,7 +26,7 @@ export class TransactionRuleReference {
     */
     "reference"?: string;
     /**
-    * The score of the rule in case it\'s a scoreBased rule.
+    * The transaction score determined by the rule. Returned only when `outcomeType` is **scoreBased**.
     */
     "score"?: number;
 

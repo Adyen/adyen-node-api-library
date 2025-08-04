@@ -10,7 +10,7 @@
 
 export class NetworkTokenRequestor {
     /**
-    * The id of the network token requestor.
+    * The unique identifier of the network token requestor.
     */
     "id"?: string;
     /**

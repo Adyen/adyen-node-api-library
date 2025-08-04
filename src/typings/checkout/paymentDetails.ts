@@ -87,6 +87,8 @@ export namespace PaymentDetails {
         Scalapay3x = 'scalapay_3x',
         Scalapay4x = 'scalapay_4x',
         MolpayFpx = 'molpay_fpx',
+        Payme = 'payme',
+        PaymePos = 'payme_pos',
         Konbini = 'konbini',
         DirectEbanking = 'directEbanking',
         Boletobancario = 'boletobancario',

@@ -36,6 +36,10 @@ export class CardInfo {
     * The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. > Reach out to your Adyen contact to get the values relevant for your integration.
     */
     "threeDSecure"?: string;
+    /**
+    * Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  > Reach out to your Adyen contact to determine the value relevant for your integration.
+    */
+    "usage"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -87,6 +91,12 @@ export class CardInfo {
         {
             "name": "threeDSecure",
             "baseName": "threeDSecure",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "usage",
+            "baseName": "usage",
             "type": "string",
             "format": ""
         }    ];

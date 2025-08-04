@@ -14,11 +14,11 @@ export class ThreeDSRequestData {
     */
     "challengeWindowSize"?: ThreeDSRequestData.ChallengeWindowSizeEnum;
     /**
-    * Flag for data only flow.
+    * Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible. 
     */
     "dataOnly"?: ThreeDSRequestData.DataOnlyEnum;
     /**
-    * Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Only use the redirect 3D Secure authentication flow.
+    * Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be triggered when available. Adyen can still select to fallback to the redirect flow to optimize authorization rates and improve the shopper\'s experience.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Use the redirect 3D Secure authentication flow.
     */
     "nativeThreeDS"?: ThreeDSRequestData.NativeThreeDSEnum;
     /**

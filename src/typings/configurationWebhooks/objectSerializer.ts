@@ -34,6 +34,10 @@ import { Name } from "./name";
 import { NetworkTokenNotificationDataV2 } from "./networkTokenNotificationDataV2";
 import { NetworkTokenNotificationRequest } from "./networkTokenNotificationRequest";
 import { NetworkTokenRequestor } from "./networkTokenRequestor";
+import { NetworkTokenRiskRuleData } from "./networkTokenRiskRuleData";
+import { NetworkTokenRiskRuleSource } from "./networkTokenRiskRuleSource";
+import { NetworkTokenTransactionRulesResult } from "./networkTokenTransactionRulesResult";
+import { NetworkTokenTriggeredRiskRule } from "./networkTokenTriggeredRiskRule";
 import { PaymentInstrument } from "./paymentInstrument";
 import { PaymentInstrumentAdditionalBankAccountIdentificationsInnerClass } from "./paymentInstrumentAdditionalBankAccountIdentificationsInner";
 import { PaymentInstrumentNotificationData } from "./paymentInstrumentNotificationData";
@@ -145,6 +149,10 @@ let typeMap: {[index: string]: any} = {
     "NetworkTokenNotificationDataV2": NetworkTokenNotificationDataV2,
     "NetworkTokenNotificationRequest": NetworkTokenNotificationRequest,
     "NetworkTokenRequestor": NetworkTokenRequestor,
+    "NetworkTokenRiskRuleData": NetworkTokenRiskRuleData,
+    "NetworkTokenRiskRuleSource": NetworkTokenRiskRuleSource,
+    "NetworkTokenTransactionRulesResult": NetworkTokenTransactionRulesResult,
+    "NetworkTokenTriggeredRiskRule": NetworkTokenTriggeredRiskRule,
     "PaymentInstrument": PaymentInstrument,
     "PaymentInstrumentAdditionalBankAccountIdentificationsInner": PaymentInstrumentAdditionalBankAccountIdentificationsInnerClass,
     "PaymentInstrumentNotificationData": PaymentInstrumentNotificationData,

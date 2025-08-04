@@ -41,13 +41,13 @@ export class PaymentInstrumentsApi extends Service {
     }
 
     /**
-    * @summary Create network token activation data
+    * @summary Create network token provisioning data
     * @param id {@link string } The unique identifier of the payment instrument.
     * @param networkTokenActivationDataRequest {@link NetworkTokenActivationDataRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link NetworkTokenActivationDataResponse }
     */
-    public async createNetworkTokenActivationData(id: string, networkTokenActivationDataRequest: NetworkTokenActivationDataRequest, requestOptions?: IRequest.Options): Promise<NetworkTokenActivationDataResponse> {
+    public async createNetworkTokenProvisioningData(id: string, networkTokenActivationDataRequest: NetworkTokenActivationDataRequest, requestOptions?: IRequest.Options): Promise<NetworkTokenActivationDataResponse> {
         const endpoint = `${this.baseUrl}/paymentInstruments/{id}/networkTokenActivationData`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);
