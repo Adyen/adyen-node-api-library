@@ -550,7 +550,7 @@ const paymentRequest: SaleToPOIRequest = {
         SaleData: {
             SaleTransactionID: {
                 TransactionID: transactionID,
-                TimeStamp: this.GetDate().toISOString()
+                TimeStamp: new Date().toISOString()
             },
 
             SaleToAcquirerData: {
