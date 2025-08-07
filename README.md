@@ -519,7 +519,7 @@ const terminalApiResponse: terminal.TerminalApiResponse = await terminalLocalAPI
 If you choose to integrate [Terminal API over Cloud](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/) **asynchronously**, you need to follow similar steps to initialize the client and prepare the request object. However the response will be asynchronous:
 * a successful request will return `200` status code and `ok` as response body. Make sure to setup the [event notifications](https://docs.adyen.com/point-of-sale/design-your-integration/notifications/event-notifications/)
 * a request that fails will return `200` status code and the `TerminalApiResponse` as response body
-``` javascript
+``` typescript
 // Step 1: Require the parts of the module you want to use
 const {Client, TerminalCloudAPI} from "@adyen/api-library";
 
