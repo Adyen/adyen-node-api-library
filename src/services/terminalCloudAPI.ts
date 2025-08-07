@@ -40,11 +40,11 @@ class TerminalCloudAPI extends Service {
     private static setApplicationInfo(request: TerminalApiRequest): TerminalApiRequest {
         if (request.SaleToPOIRequest.PaymentRequest) {
             const applicationInfo = new ApplicationInfo();
-            const saleToAcquirerData = {applicationInfo};
-            const saleData = {saleToAcquirerData};
-            const paymentRequest = {saleData};
-            const saleToPOIRequest = {paymentRequest};
-            const reqWithAppInfo = {saleToPOIRequest};
+            const saleToAcquirerData = { applicationInfo };
+            const saleData = { saleToAcquirerData };
+            const paymentRequest = { saleData };
+            const saleToPOIRequest = { paymentRequest };
+            const reqWithAppInfo = { saleToPOIRequest };
 
             mergeDeep(request, reqWithAppInfo);
         }
