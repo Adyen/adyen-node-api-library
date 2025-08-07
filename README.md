@@ -515,6 +515,75 @@ const paymentRequest: SaleToPOIRequest = {
 // Step 5: Make the request
 const terminalApiResponse: terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest);
 ```
+### Using the Cloud Terminal API Integration (async)
+If you choose to integrate [Terminal API over Cloud](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/) **asynchronously**, you need to follow similar steps to initialize the client and prepare the request object. However the response will be asyncronous:
+* a successful request will return `200` status code and `ok` as response body. Make sure to setup the [event notifications](https://docs.adyen.com/point-of-sale/design-your-integration/notifications/event-notifications/)
+* a request that fails will return `200` status code and the `TerminalApiResponse` as response body
+``` javascript
+// Step 1: Require the parts of the module you want to use
+const {Client, TerminalCloudAPI} from "@adyen/api-library";
+
+// Step 2: Initialize the client object
+const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
+
+// Step 3: Initialize the API object
+const terminalCloudAPI = new TerminalCloudAPI(client);
+
+// Step 4: Create the request object
+const serviceID = "123456789";
+const saleID = "POS-SystemID12345";
+const POIID = "Your Device Name(eg V400m-123456789)";
+
+// Use a unique transaction for every transaction you perform
+const transactionID = "TransactionID";
+const paymentRequest: SaleToPOIRequest = {
+    MessageHeader: {
+        MessageClass: MessageClassType.Service,
+        MessageCategory: MessageCategoryType.Payment,
+        MessageType: MessageType.Request,
+        ProtocolVersion: "3.0",
+        ServiceID: serviceID,
+        SaleID: saleID,
+        POIID: POIID
+    },
+    PaymentRequest: {
+        SaleData: {
+            SaleTransactionID: {
+                TransactionID: transactionID,
+                TimeStamp: this.GetDate().toISOString()
+            },
+
+            SaleToAcquirerData: {
+                applicationInfo: {
+                    merchantApplication: {
+                        version: "1",
+                        name: "test",
+                    }
+                }
+            }
+        },
+        PaymentTransaction: {
+            AmountsReq: {
+                Currency: "EUR",
+                RequestedAmount: 1000
+            }
+        }
+    }
+};
+
+// Step 5: Make the request
+const response = await terminalCloudAPI.async(paymentRequest);
+// handle both `string` and `TerminalApiResponse`
+if (typeof response === "string") {
+  // request was successful
+  console.log("response:", response); // should be 'ok'
+} else {
+  // request failed: see details in the EventNotification object
+  console.log("EventToNotify:", requestResponse.SaleToPOIRequest?.EventNotification?.EventToNotify);
+  console.log("EventDetails:", requestResponse.SaleToPOIRequest?.EventNotification?.EventDetails);
+}
+```
+
 ## Feedback
 We value your input! Help us enhance our API Libraries and improve the integration experience by providing your feedback. Please take a moment to fill out [our feedback form](https://forms.gle/A4EERrR6CWgKWe5r9) to share your thoughts, suggestions or ideas. 
 
