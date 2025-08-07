@@ -579,8 +579,8 @@ if (typeof response === "string") {
   console.log("response:", response); // should be 'ok'
 } else {
   // request failed: see details in the EventNotification object
-  console.log("EventToNotify:", requestResponse.SaleToPOIRequest?.EventNotification?.EventToNotify);
-  console.log("EventDetails:", requestResponse.SaleToPOIRequest?.EventNotification?.EventDetails);
+  console.log("EventToNotify:", response.SaleToPOIRequest?.EventNotification?.EventToNotify);
+  console.log("EventDetails:", response.SaleToPOIRequest?.EventNotification?.EventDetails);
 }
 ```
 
