@@ -19,8 +19,36 @@
 
 import Resource from "../services/resource";
 import { IRequest } from "../typings/requestOptions";
+import { TerminalApiResponse } from "../typings/terminal/models";
 
-async function getJsonResponse<T>(resource: Resource, jsonRequest: T | string, requestOptions?: IRequest.Options): Promise<string>;
+/**
+ * Sends a JSON request to the given resource and returns a string or a deserialized `TerminalApiResponse`.
+ * Used by Terminal API /sync method
+ * 
+ * @template T The request type (usually a model or plain object).
+ * @param {Resource} resource - The API resource to which the request is sent.
+ * @param {T | string} jsonRequest - The request payload, either as an object or raw JSON string.
+ * @param {IRequest.Options} [requestOptions] - Optional HTTP request options.
+ * @returns {Promise<string | TerminalApiResponse>} A promise resolving to either a raw response string or a `TerminalApiResponse` object.
+ *
+ * @example
+ * const response = await getJsonResponse<TerminalApiRequest>(terminalApiResource, request);
+ */
+async function getJsonResponse<T>(resource: Resource, jsonRequest: T | string, requestOptions?: IRequest.Options): Promise<string | TerminalApiResponse>;
+/**
+ * Sends a JSON request to the given resource and returns a deserialized response of the expected type.
+ * Used by all APIs and Terminal API sync method 
+ *
+ * @template T The request type.
+ * @template R The expected deserialized response type.
+ * @param {Resource} resource - The API resource to which the request is sent.
+ * @param {T | string} jsonRequest - The request payload, either as an object or raw JSON string.
+ * @param {IRequest.Options} [requestOptions] - Optional HTTP request options.
+ * @returns {Promise<R>} A promise resolving to the deserialized response object.
+ *
+ * @example
+ * const response = await getJsonResponse<MyRequestType, MyResponseType>(resource, request);
+ */
 async function getJsonResponse<T, R>(resource: Resource, jsonRequest: T | string, requestOptions?: IRequest.Options): Promise<R>;
 
 /**
