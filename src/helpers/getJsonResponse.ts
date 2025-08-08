@@ -23,7 +23,7 @@ import { TerminalApiResponse } from "../typings/terminal/models";
 
 /**
  * Sends a JSON request to the given resource and returns a string or a deserialized `TerminalApiResponse`.
- * Used by Terminal API /sync method
+ * Used by Terminal API /async method
  * 
  * @template T The request type (usually a model or plain object).
  * @param {Resource} resource - The API resource to which the request is sent.
