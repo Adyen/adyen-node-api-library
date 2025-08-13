@@ -5,6 +5,7 @@ import { syncRefund, syncRes, syncResEventNotification, syncResEventNotification
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
 import { terminal } from "../typings";
+import { EnvironmentEnum } from "../config";
 
 let client: Client;
 let terminalCloudAPI: TerminalCloudAPI;
@@ -139,7 +140,7 @@ describe("Terminal Cloud API", (): void => {
 
     const terminalApiHost = "https://terminal-api-test.adyen.com";
 
-    const client = new Client({ apiKey: "YOUR_API_KEY", environment: "TEST" });
+    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST });
     const terminalCloudAPI = new TerminalCloudAPI(client);
 
     const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
@@ -166,7 +167,7 @@ describe("Terminal Cloud API", (): void => {
   test("sync should validate 308 location header", async (): Promise<void> => {
     const terminalApiHost = "https://terminal-api-test.adyen.com";
 
-    const client = new Client({ apiKey: "YOUR_API_KEY", environment: "TEST" });
+    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST });
     const terminalCloudAPI = new TerminalCloudAPI(client);
 
     const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();

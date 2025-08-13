@@ -175,7 +175,7 @@ class HttpURLConnectionClient implements ClientInterface {
 
                     // Handle 308 redirect
                     if (res.statusCode && res.statusCode === 308) {
-                        const location = res.headers['location'];
+                        const location = res.headers["location"];
                         if (location) {
                             // follow the redirect
                             try {
@@ -189,7 +189,7 @@ class HttpURLConnectionClient implements ClientInterface {
 
                                 const newRequestOptions = {
                                     hostname: url.hostname,
-                                    port: url.port || (url.protocol === 'https:' ? 443 : 80),
+                                    port: url.port || (url.protocol === "https:" ? 443 : 80),
                                     path: url.pathname + url.search,
                                     method: connectionRequest.method,
                                     headers: connectionRequest.getHeaders(),
