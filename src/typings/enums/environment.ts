@@ -17,5 +17,8 @@
  * See the LICENSE file for more info.
  */
 
+/**
+ * @deprecated Use `EnvironmentEnum` instead.
+ */
 declare type Environment = "LIVE" | "TEST";
 
