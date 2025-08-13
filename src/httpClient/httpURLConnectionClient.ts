@@ -174,7 +174,7 @@ class HttpURLConnectionClient implements ClientInterface {
                     }
 
                     // Handle 308 redirect
-                    if (res.statusCode && res.statusCode == 308) {
+                    if (res.statusCode && res.statusCode === 308) {
                         const location = res.headers['location'];
                         if (location) {
                             // follow the redirect
