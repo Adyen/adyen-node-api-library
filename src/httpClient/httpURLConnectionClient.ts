@@ -89,6 +89,7 @@ class HttpURLConnectionClient implements ClientInterface {
         return this.doRequest(httpConnection, json);
     }
 
+    // create Request object
     private createRequest(endpoint: string, requestOptions: IRequest.Options, applicationName?: string): ClientRequest {
         if (!requestOptions.headers) {
             requestOptions.headers = {};
@@ -141,6 +142,7 @@ class HttpURLConnectionClient implements ClientInterface {
         return req;
     }
 
+    // invoke request
     private doRequest(connectionRequest: ClientRequest, json: string): Promise<string> {
         return new Promise((resolve, reject): void => {
             connectionRequest.flushHeaders();
@@ -171,7 +173,34 @@ class HttpURLConnectionClient implements ClientInterface {
                         reject(new Error("The connection was terminated while the message was still being sent"));
                     }
 
-                    if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
+                    // Handle 308 redirect
+                    if (res.statusCode && res.statusCode == 308) {
+                        const location = res.headers['location'];
+                        if (location) {
+                            // follow the redirect
+                            try {
+                                const url = new URL(location);
+
+                                const newRequestOptions = {
+                                    hostname: url.hostname,
+                                    port: url.port || (url.protocol === 'https:' ? 443 : 80),
+                                    path: url.pathname + url.search,
+                                    method: connectionRequest.method,
+                                    headers: connectionRequest.getHeaders(),
+                                    protocol: url.protocol,
+                                };
+                                const redirectedRequest = (url.protocol === 'https:' ? require('https') : require('http')).request(newRequestOptions);
+                                const redirectResponse = this.doRequest(redirectedRequest, json);
+                                return resolve(redirectResponse);
+                            } catch (err) {
+                                return reject(err);
+                            }
+                        } else {
+                            return reject(new Error(`Redirect status ${res.statusCode} but no Location header`));
+                        }
+                    }                    
+
+                    if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 400)) {
                         // API error handling
                         try {
                             const formattedData: ApiError | { [key: string]: never } = JSON.parse(response.body);
