@@ -16,6 +16,7 @@ import { checkout } from "../typings";
 import { IRequest } from "../typings/requestOptions";
 import { SessionResultResponse } from "../typings/checkout/sessionResultResponse";
 import { payments3DS2NativeAction } from "../__mocks__/checkout/payments3DS2NativeAction";
+import { EnvironmentEnum } from "../config";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
 const reference = "Your order number";
@@ -384,14 +385,14 @@ describe("Checkout", (): void => {
     // });
 
     test("should have missing identifier on live", async (): Promise<void> => {
-        client.setEnvironment("LIVE");
+        client.config.environment = EnvironmentEnum.LIVE;
         try {
             const liveCheckout = new CheckoutAPI(client);
             await liveCheckout.PaymentsApi.payments(createPaymentsCheckoutRequest());
             fail();
         } catch (e) {
             if(e instanceof Error) {
-                expect(e.message).toEqual("Please provide your unique live url prefix on the setEnvironment() call on the Client.");
+                expect(e.message).toEqual("Live endpoint URL prefix must be provided for LIVE environment.");
 
             } else {
                 fail();

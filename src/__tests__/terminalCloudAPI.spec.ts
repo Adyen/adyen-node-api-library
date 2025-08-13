@@ -1,6 +1,6 @@
 import nock from "nock";
 import { createClient, createTerminalAPIPaymentRequest, createTerminalAPIRefundRequest } from "../__mocks__/base";
-import { asyncRes } from "../__mocks__/terminalApi/async";
+import { asyncRes, asyncErrorRes } from "../__mocks__/terminalApi/async";
 import { syncRefund, syncRes, syncResEventNotification, syncResEventNotificationWithAdditionalAttributes, syncResEventNotificationWithUnknownEnum } from "../__mocks__/terminalApi/sync";
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
@@ -30,13 +30,29 @@ describe("Terminal Cloud API", (): void => {
 
     const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
-    const requestResponse: string = await terminalCloudAPI.async(terminalAPIPaymentRequest);
+        const requestResponse = await terminalCloudAPI.async(terminalAPIPaymentRequest);
 
-    expect(requestResponse).toEqual("ok");
-  });
+        expect(typeof requestResponse).toBe("string");
+        expect(requestResponse).toEqual("ok");
+    });
 
-  test("should make a sync payment request", async (): Promise<void> => {
-    scope.post("/sync").reply(200, syncRes);
+    test("should get an error after async payment request", async (): Promise<void> => {
+        scope.post("/async").reply(200, asyncErrorRes);
+
+        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+
+        const requestResponse = await terminalCloudAPI.async(terminalAPIPaymentRequest);
+
+        if (typeof requestResponse === "object") {
+          expect(requestResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
+          expect(requestResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("Reject");
+        } else {
+          throw new Error("Expected structured response, but got raw string");
+        }        
+    });
+
+    test("should make a sync payment request", async (): Promise<void> => {
+        scope.post("/sync").reply(200, syncRes);
 
     const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
     const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
@@ -517,4 +533,3 @@ export const syncTerminalPaymentResponse = {
     }
   }
 };
-

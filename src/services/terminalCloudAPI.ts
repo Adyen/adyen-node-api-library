@@ -40,11 +40,11 @@ class TerminalCloudAPI extends Service {
     private static setApplicationInfo(request: TerminalApiRequest): TerminalApiRequest {
         if (request.SaleToPOIRequest.PaymentRequest) {
             const applicationInfo = new ApplicationInfo();
-            const saleToAcquirerData = {applicationInfo};
-            const saleData = {saleToAcquirerData};
-            const paymentRequest = {saleData};
-            const saleToPOIRequest = {paymentRequest};
-            const reqWithAppInfo = {saleToPOIRequest};
+            const saleToAcquirerData = { applicationInfo };
+            const saleData = { saleToAcquirerData };
+            const paymentRequest = { saleData };
+            const saleToPOIRequest = { paymentRequest };
+            const reqWithAppInfo = { saleToPOIRequest };
 
             mergeDeep(request, reqWithAppInfo);
         }
@@ -52,11 +52,22 @@ class TerminalCloudAPI extends Service {
         return ObjectSerializer.serialize(request, "TerminalApiRequest");
     }
 
-    public async(terminalApiRequest: TerminalApiRequest): Promise<string> {
+    /**
+     * Send an asynchronous payment request to the Terminal API.
+     *
+     * @param terminalApiRequest - The request to send.
+     * @returns A promise that resolves to "ok" if the request was successful, or a TerminalApiResponse if there is an error.
+     */
+    public async(terminalApiRequest: TerminalApiRequest): Promise<string | TerminalApiResponse> {
         const request = TerminalCloudAPI.setApplicationInfo(terminalApiRequest);
         return getJsonResponse<TerminalApiRequest>(this.terminalApiAsync, request);
     }
 
+    /**
+     * Send a synchronous payment request to the Terminal API.
+     * @param terminalApiRequest - The request to send.
+     * @returns A promise that resolves to a TerminalApiResponse.
+     */
     public async sync(terminalApiRequest: TerminalApiRequest): Promise<TerminalApiResponse> {
         const request = TerminalCloudAPI.setApplicationInfo(terminalApiRequest);
         const response = await getJsonResponse<TerminalApiRequest, TerminalApiResponse>(
