@@ -181,6 +181,12 @@ class HttpURLConnectionClient implements ClientInterface {
                             try {
                                 const url = new URL(location);
 
+                                // allow-list of trusted domains (*.adyen.com)
+                                const allowedHostnameRegex = /^([a-z0-9-]+\.)*adyen\.com$/;
+                                if (!allowedHostnameRegex.test(url.hostname)) {
+                                    return reject(new Error(`Redirect to host ${url.hostname} is not allowed.`));
+                                }
+
                                 const newRequestOptions = {
                                     hostname: url.hostname,
                                     port: url.port || (url.protocol === 'https:' ? 443 : 80),
