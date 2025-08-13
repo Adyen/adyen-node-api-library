@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 
-import { ClientRequest, IncomingHttpHeaders, IncomingMessage } from "http";
+import { ClientRequest, IncomingHttpHeaders, IncomingMessage, request as httpRequest } from "http";
 import { Agent, AgentOptions, request as httpsRequest } from "https";
 import { HttpsProxyAgent } from "https-proxy-agent";
 
@@ -195,7 +195,9 @@ class HttpURLConnectionClient implements ClientInterface {
                                     headers: connectionRequest.getHeaders(),
                                     protocol: url.protocol,
                                 };
-                                const redirectedRequest = (url.protocol === 'https:' ? require('https') : require('http')).request(newRequestOptions);
+                                const clientRequestFn = url.protocol === "https:" ? httpsRequest : httpRequest;
+                                const redirectedRequest: ClientRequest = clientRequestFn(newRequestOptions);
+                                
                                 const redirectResponse = this.doRequest(redirectedRequest, json);
                                 return resolve(redirectResponse);
                             } catch (err) {
