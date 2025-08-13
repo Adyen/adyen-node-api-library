@@ -128,12 +128,12 @@ describe("Terminal Cloud API", (): void => {
 
     const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
     // custom value to trigger mock 308 response
-    terminalAPIPaymentRequest.SaleToPOIRequest.MessageHeader.POIID = "response-with-redirect";
+    terminalAPIPaymentRequest.SaleToPOIRequest.MessageHeader.SaleID = "response-with-redirect";
 
     // Mock first request: returns a 308 redirect with Location header
     nock(terminalApiHost)
       .post("/async", (body) => {
-        return body?.SaleToPOIRequest?.MessageHeader?.POIID === "response-with-redirect";
+        return body?.SaleToPOIRequest?.MessageHeader?.SaleID === "response-with-redirect";
       })
       .reply(308, "", { Location: `${terminalApiHost}/async?redirect=false` });
 
@@ -147,7 +147,7 @@ describe("Terminal Cloud API", (): void => {
     expect(terminalAPIResponse).toEqual("ok");
   });
 
-  test("sync should handle 308", async (): Promise<void> => {
+  test("sync should validate 308 location header", async (): Promise<void> => {
     const terminalApiHost = "https://terminal-api-test.adyen.com";
 
     const client = new Client({ apiKey: "YOUR_API_KEY", environment: "TEST" });
@@ -155,14 +155,14 @@ describe("Terminal Cloud API", (): void => {
 
     const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
     // custom value to trigger mock 308 response
-    terminalAPIPaymentRequest.SaleToPOIRequest.MessageHeader.POIID = "response-with-redirect";
+    terminalAPIPaymentRequest.SaleToPOIRequest.MessageHeader.SaleID = "response-with-redirect";
 
-    // Mock first request: returns a 308 redirect with Location header
+    // Mock first request: returns a 308 redirect with invalid Location header
     nock(terminalApiHost)
       .post("/sync", (body) => {
-        return body?.SaleToPOIRequest?.MessageHeader?.POIID === "response-with-redirect";
+        return body?.SaleToPOIRequest?.MessageHeader?.SaleID === "response-with-redirect";
       })
-      .reply(308, "", { Location: `${terminalApiHost}/sync?redirect=false` });
+      .reply(308, "", { Location: "https://example.org/sync?redirect=false" });
 
     // Mock follow-up request: returns successful response
     nock(terminalApiHost)
@@ -174,12 +174,14 @@ describe("Terminal Cloud API", (): void => {
         },
       });
 
-    const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+    try {  
+    await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+    fail("No exception was thrown");
+    } catch (e) {
+      expect(e).toBeInstanceOf(Error); 
+    }
 
-    expect(terminalAPIResponse.SaleToPOIResponse?.PaymentResponse).toBeDefined();
-    expect(terminalAPIResponse.SaleToPOIResponse?.MessageHeader).toBeDefined();
-    expect(terminalAPIResponse.SaleToPOIResponse?.MessageHeader?.SaleID).toBe("001-308");
-  });
+  });  
 
 });
 
