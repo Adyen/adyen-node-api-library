@@ -55,9 +55,9 @@ class HttpURLConnectionClient implements ClientInterface {
      * @throws {ApiException} when an error occurs
      */
     public request(
-        endpoint: string, 
-        json: string, 
-        config: Config, 
+        endpoint: string,
+        json: string,
+        config: Config,
         isApiRequired: boolean,
         requestOptions: IRequest.Options,
     ): Promise<string> {
@@ -181,9 +181,7 @@ class HttpURLConnectionClient implements ClientInterface {
                             try {
                                 const url = new URL(location);
 
-                                // allow-list of trusted domains (*.adyen.com)
-                                const allowedHostnameRegex = /^([a-z0-9-]+\.)*adyen\.com$/;
-                                if (!allowedHostnameRegex.test(url.hostname)) {
+                                if (!this.verifyLocation(location)) {
                                     return reject(new Error(`Redirect to host ${url.hostname} is not allowed.`));
                                 }
 
@@ -197,7 +195,6 @@ class HttpURLConnectionClient implements ClientInterface {
                                 };
                                 const clientRequestFn = url.protocol === "https:" ? httpsRequest : httpRequest;
                                 const redirectedRequest: ClientRequest = clientRequestFn(newRequestOptions);
-                                
                                 const redirectResponse = this.doRequest(redirectedRequest, json);
                                 return resolve(redirectResponse);
                             } catch (err) {
@@ -206,7 +203,7 @@ class HttpURLConnectionClient implements ClientInterface {
                         } else {
                             return reject(new Error(`Redirect status ${res.statusCode} but no Location header`));
                         }
-                    }                    
+                    }
 
                     if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
                         // API error handling
@@ -278,6 +275,18 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
     }
+
+    private verifyLocation(location: string): boolean {
+        try {
+            const url = new URL(location);
+            // allow-list of trusted domains (*.adyen.com)
+            const allowedHostnameRegex = /\.adyen\.com$/i;
+            return allowedHostnameRegex.test(url.hostname);
+        } catch (e) {
+            return false;
+        }
+    }
 }
+
 
 export default HttpURLConnectionClient;
