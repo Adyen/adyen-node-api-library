@@ -17,7 +17,6 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/binLookup/objectSerializer";
 import { CostEstimateRequest } from "../../typings/binLookup/models";
 import { CostEstimateResponse } from "../../typings/binLookup/models";
-import { ServiceError } from "../../typings/binLookup/models";
 import { ThreeDSAvailabilityRequest } from "../../typings/binLookup/models";
 import { ThreeDSAvailabilityResponse } from "../../typings/binLookup/models";
 
