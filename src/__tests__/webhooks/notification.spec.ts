@@ -141,4 +141,26 @@ describe("Notification Tests", function (): void {
         expect(notificationRequestItem.additionalData["metadata.anotherKey"]).toEqual("anotherValue");
 
     });
+    
+});
+
+describe('NotificationRequestItem.additionalData', () => {
+  it('handles undefined keys', () => {
+    const item: NotificationRequestItem = {
+        additionalData: { 
+            existingKey: "abc",
+            undefinedKey: undefined
+         },
+        amount: { currency: "EUR", value: 1000 },
+        pspReference: "",
+        eventCode: NotificationRequestItem.EventCodeEnum.Authorisation,
+        eventDate: "",
+        merchantAccountCode: "",
+        merchantReference: "",
+        success: NotificationRequestItem.SuccessEnum.True
+    };
+    expect(item.additionalData?.['existingKey']).toBeDefined();
+    expect(item.additionalData?.['undefinedKey']).toBeUndefined();
+    expect(item.additionalData?.['nonExistingKey']).toBeUndefined();
+  });
 });
