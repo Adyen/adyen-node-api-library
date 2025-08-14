@@ -144,23 +144,26 @@ describe("Notification Tests", function (): void {
     
 });
 
-describe('NotificationRequestItem.additionalData', () => {
-  it('handles undefined keys', () => {
-    const item: NotificationRequestItem = {
-        additionalData: { 
-            existingKey: "abc",
-            undefinedKey: undefined
-         },
-        amount: { currency: "EUR", value: 1000 },
-        pspReference: "",
-        eventCode: NotificationRequestItem.EventCodeEnum.Authorisation,
-        eventDate: "",
-        merchantAccountCode: "",
-        merchantReference: "",
-        success: NotificationRequestItem.SuccessEnum.True
+describe("NotificationRequestItem.additionalData", () => {
+
+  it("handles undefined keys", () => {
+    const item = new NotificationRequestItem();
+    item.additionalData = {
+        existingKey: "abc",
+        undefinedKey: undefined
     };
-    expect(item.additionalData?.['existingKey']).toBeDefined();
-    expect(item.additionalData?.['undefinedKey']).toBeUndefined();
-    expect(item.additionalData?.['nonExistingKey']).toBeUndefined();
+    item.amount = { currency: "EUR", value: 1000 };
+    item.pspReference = "";
+    item.eventCode = NotificationRequestItem.EventCodeEnum.Authorisation;
+    item.eventDate = "";
+    item.merchantAccountCode = "";
+    item.merchantReference = "";
+    item.success = NotificationRequestItem.SuccessEnum.True;
+
+    expect(item.additionalData).toBeDefined();
+    expect(item.additionalData).toHaveProperty("existingKey", "abc");
+    expect(item.additionalData).toHaveProperty("undefinedKey", undefined);
+    expect(item.additionalData).not.toHaveProperty("nonExistingKey");
   });
+  
 });
