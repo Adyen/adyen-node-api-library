@@ -9,6 +9,7 @@
 
 import { Amount } from "./amount";
 import { CheckoutOrderResponse } from "./checkoutOrderResponse";
+import { CheckoutThreeDS2Action } from "./checkoutThreeDS2Action";
 import { FraudResult } from "./fraudResult";
 import { ResponsePaymentMethod } from "./responsePaymentMethod";
 import { ThreeDS2ResponseData } from "./threeDS2ResponseData";
@@ -16,6 +17,7 @@ import { ThreeDS2Result } from "./threeDS2Result";
 
 
 export class PaymentDetailsResponse {
+    "action"?: CheckoutThreeDS2Action | null;
     /**
     * Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.
     */
@@ -64,6 +66,12 @@ export class PaymentDetailsResponse {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "action",
+            "baseName": "action",
+            "type": "CheckoutThreeDS2Action | null",
+            "format": ""
+        },
         {
             "name": "additionalData",
             "baseName": "additionalData",

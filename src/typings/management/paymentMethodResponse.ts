@@ -26,7 +26,7 @@ export class PaymentMethodResponse {
     */
     "pagesTotal": number;
     /**
-    * Payment method types with errors.
+    * The payment method types that were not successfully requested and their corresponding errors.
     */
     "typesWithErrors"?: Array<PaymentMethodResponse.TypesWithErrorsEnum>;
 
@@ -76,6 +76,10 @@ export class PaymentMethodResponse {
 
 export namespace PaymentMethodResponse {
     export enum TypesWithErrorsEnum {
+        Abrapetite = 'abrapetite',
+        AbrapetiteCredit = 'abrapetite_credit',
+        AbrapetiteDebit = 'abrapetite_debit',
+        AbrapetitePrepaid = 'abrapetite_prepaid',
         Accel = 'accel',
         Ach = 'ach',
         Affirm = 'affirm',
@@ -168,8 +172,12 @@ export namespace PaymentMethodResponse {
         PersonalCardCredit = 'personal_card_credit',
         PersonalCardDebit = 'personal_card_debit',
         Pulse = 'pulse',
+        Romcard = 'romcard',
+        RomcardCredit = 'romcard_credit',
+        RomcardDebit = 'romcard_debit',
         Senff = 'senff',
         SenffCredit = 'senff_credit',
+        Sepadirectdebit = 'sepadirectdebit',
         Sodexo = 'sodexo',
         Star = 'star',
         Swish = 'swish',

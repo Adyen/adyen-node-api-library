@@ -65,7 +65,7 @@ export class PaymentLinkRequest {
     */
     "installmentOptions"?: { [key: string]: InstallmentOption; };
     /**
-    * Price and product information about the purchased items, to be included on the invoice sent to the shopper. This parameter is required for open invoice (_buy now, pay later_) payment methods such Afterpay, Clearpay, Klarna, RatePay, Riverty, and Zip.
+    * Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.
     */
     "lineItems"?: Array<LineItem>;
     /**
@@ -152,7 +152,7 @@ export class PaymentLinkRequest {
     */
     "storePaymentMethodMode"?: PaymentLinkRequest.StorePaymentMethodModeEnum;
     /**
-    * The shopper\'s telephone number. > Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the `shopperEmail`. The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we drop the value and do not submit it for authentication.
+    * The shopper\'s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. > Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the `shopperEmail`.
     */
     "telephoneNumber"?: string;
     /**

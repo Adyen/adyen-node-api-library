@@ -38,7 +38,7 @@ export class AdditionalDataLevel23 {
     */
     "enhancedSchemeData_itemDetailLine_itemNr_commodityCode"?: string;
     /**
-    * A description of the item. * Encoding: ASCII * Max length: 26 characters * Must not be a single character. * Must not be blank. * Must not start with a space or be all spaces. * Must not be all zeros.
+    * A description of the item, that provides details about the purchase.   For Visa transactions with level 3 ESD, the description must not be the same or very similar to your merchant name, or, consist only of common words like \"product\", or \"service\". * Encoding: ASCII * Max length: 26 characters * Must not be a single character. * Must not be blank. * Must not be all special characters. * Must not be blank. * Must not start with a space or be all spaces. * Must not be all zeros.
     */
     "enhancedSchemeData_itemDetailLine_itemNr_description"?: string;
     /**

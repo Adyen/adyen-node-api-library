@@ -28,6 +28,7 @@ import { PayMeInfo } from "./payMeInfo";
 import { PayPalInfo } from "./payPalInfo";
 import { PayToInfo } from "./payToInfo";
 import { PulseInfo } from "./pulseInfo";
+import { SepaDirectDebitInfo } from "./sepaDirectDebitInfo";
 import { SodexoInfo } from "./sodexoInfo";
 import { SofortInfo } from "./sofortInfo";
 import { StarInfo } from "./starInfo";
@@ -102,6 +103,7 @@ export class PaymentMethod {
     * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
     */
     "reference"?: string;
+    "sepadirectdebit"?: SepaDirectDebitInfo | null;
     /**
     * The sales channel.
     */
@@ -360,6 +362,12 @@ export class PaymentMethod {
             "name": "reference",
             "baseName": "reference",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sepadirectdebit",
+            "baseName": "sepadirectdebit",
+            "type": "SepaDirectDebitInfo | null",
             "format": ""
         },
         {

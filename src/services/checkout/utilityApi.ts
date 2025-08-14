@@ -17,10 +17,14 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
 import { ApplePaySessionRequest } from "../../typings/checkout/models";
 import { ApplePaySessionResponse } from "../../typings/checkout/models";
+import { DefaultErrorResponseEntity } from "../../typings/checkout/models";
 import { PaypalUpdateOrderRequest } from "../../typings/checkout/models";
 import { PaypalUpdateOrderResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
 import { UtilityRequest } from "../../typings/checkout/models";
 import { UtilityResponse } from "../../typings/checkout/models";
+import { ValidateShopperIdRequest } from "../../typings/checkout/models";
+import { ValidateShopperIdResponse } from "../../typings/checkout/models";
 
 /**
  * API handler for UtilityApi
@@ -95,6 +99,26 @@ export class UtilityApi extends Service {
         );
 
         return ObjectSerializer.deserialize(response, "PaypalUpdateOrderResponse");
+    }
+
+    /**
+    * @summary Validates shopper Id
+    * @param validateShopperIdRequest {@link ValidateShopperIdRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link ValidateShopperIdResponse }
+    */
+    public async validateShopperId(validateShopperIdRequest: ValidateShopperIdRequest, requestOptions?: IRequest.Options): Promise<ValidateShopperIdResponse> {
+        const endpoint = `${this.baseUrl}/validateShopperId`;
+        const resource = new Resource(this, endpoint);
+        
+        const request: ValidateShopperIdRequest = ObjectSerializer.serialize(validateShopperIdRequest, "ValidateShopperIdRequest");
+        const response = await getJsonResponse<ValidateShopperIdRequest, ValidateShopperIdResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+
+        return ObjectSerializer.deserialize(response, "ValidateShopperIdResponse");
     }
 
 }

@@ -25,6 +25,7 @@ import { PaymentRefundRequest } from "../../typings/checkout/models";
 import { PaymentRefundResponse } from "../../typings/checkout/models";
 import { PaymentReversalRequest } from "../../typings/checkout/models";
 import { PaymentReversalResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
 import { StandalonePaymentCancelRequest } from "../../typings/checkout/models";
 import { StandalonePaymentCancelResponse } from "../../typings/checkout/models";
 
@@ -63,7 +64,7 @@ export class ModificationsApi extends Service {
 
     /**
     * @summary Cancel an authorised payment
-    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. 
+    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to cancel. 
     * @param paymentCancelRequest {@link PaymentCancelRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentCancelResponse }
@@ -85,7 +86,7 @@ export class ModificationsApi extends Service {
 
     /**
     * @summary Capture an authorised payment
-    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.
+    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to capture.
     * @param paymentCaptureRequest {@link PaymentCaptureRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentCaptureResponse }
@@ -107,7 +108,7 @@ export class ModificationsApi extends Service {
 
     /**
     * @summary Refund a captured payment
-    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to refund.
+    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to refund.
     * @param paymentRefundRequest {@link PaymentRefundRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentRefundResponse }
@@ -129,7 +130,7 @@ export class ModificationsApi extends Service {
 
     /**
     * @summary Refund or cancel a payment
-    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to reverse. 
+    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to reverse. 
     * @param paymentReversalRequest {@link PaymentReversalRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentReversalResponse }
@@ -151,7 +152,7 @@ export class ModificationsApi extends Service {
 
     /**
     * @summary Update an authorised amount
-    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.
+    * @param paymentPspReference {@link string } The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment.
     * @param paymentAmountUpdateRequest {@link PaymentAmountUpdateRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link PaymentAmountUpdateResponse }

@@ -14,6 +14,7 @@ import { GenericPmWithTdiInfo } from "./genericPmWithTdiInfo";
 import { NyceInfo } from "./nyceInfo";
 import { PayByBankPlaidInfo } from "./payByBankPlaidInfo";
 import { PulseInfo } from "./pulseInfo";
+import { SepaDirectDebitInfo } from "./sepaDirectDebitInfo";
 import { StarInfo } from "./starInfo";
 
 
@@ -52,6 +53,7 @@ export class UpdatePaymentMethodInfo {
     "nyce"?: NyceInfo | null;
     "paybybank_plaid"?: PayByBankPlaidInfo | null;
     "pulse"?: PulseInfo | null;
+    "sepadirectdebit"?: SepaDirectDebitInfo | null;
     "star"?: StarInfo | null;
     /**
     * The store for this payment method
@@ -201,6 +203,12 @@ export class UpdatePaymentMethodInfo {
             "name": "pulse",
             "baseName": "pulse",
             "type": "PulseInfo | null",
+            "format": ""
+        },
+        {
+            "name": "sepadirectdebit",
+            "baseName": "sepadirectdebit",
+            "type": "SepaDirectDebitInfo | null",
             "format": ""
         },
         {

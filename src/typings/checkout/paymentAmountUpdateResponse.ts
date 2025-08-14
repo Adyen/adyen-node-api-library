@@ -27,7 +27,7 @@ export class PaymentAmountUpdateResponse {
     */
     "merchantAccount": string;
     /**
-    * The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to update. 
+    * The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to update. 
     */
     "paymentPspReference": string;
     /**

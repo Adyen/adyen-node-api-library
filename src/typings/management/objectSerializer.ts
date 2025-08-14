@@ -123,6 +123,7 @@ import { RestServiceError } from "./restServiceError";
 import { ScheduleTerminalActionsRequest } from "./scheduleTerminalActionsRequest";
 import { ScheduleTerminalActionsRequestActionDetailsClass } from "./scheduleTerminalActionsRequestActionDetails";
 import { ScheduleTerminalActionsResponse } from "./scheduleTerminalActionsResponse";
+import { SepaDirectDebitInfo } from "./sepaDirectDebitInfo";
 import { Settings } from "./settings";
 import { ShippingLocation } from "./shippingLocation";
 import { ShippingLocationsResponse } from "./shippingLocationsResponse";
@@ -416,6 +417,7 @@ let typeMap: {[index: string]: any} = {
     "ScheduleTerminalActionsRequest": ScheduleTerminalActionsRequest,
     "ScheduleTerminalActionsRequestActionDetails": ScheduleTerminalActionsRequestActionDetailsClass,
     "ScheduleTerminalActionsResponse": ScheduleTerminalActionsResponse,
+    "SepaDirectDebitInfo": SepaDirectDebitInfo,
     "Settings": Settings,
     "ShippingLocation": ShippingLocation,
     "ShippingLocationsResponse": ShippingLocationsResponse,

@@ -16,6 +16,7 @@ import { IbanAccountIdentificationRequirement } from "./ibanAccountIdentificatio
 import { PaymentInstrumentRequirement } from "./paymentInstrumentRequirement";
 import { USInstantPayoutAddressRequirement } from "./uSInstantPayoutAddressRequirement";
 import { USInternationalAchAddressRequirement } from "./uSInternationalAchAddressRequirement";
+import { USInternationalAchPriorityRequirement } from "./uSInternationalAchPriorityRequirement";
 
 
 /**
@@ -23,7 +24,7 @@ import { USInternationalAchAddressRequirement } from "./uSInternationalAchAddres
  * Type
  * @export
  */
-export type TransferRouteRequirementsInner = AdditionalBankIdentificationRequirement | AddressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInstantPayoutAddressRequirement | USInternationalAchAddressRequirement;
+export type TransferRouteRequirementsInner = AdditionalBankIdentificationRequirement | AddressRequirement | AmountMinMaxRequirement | AmountNonZeroDecimalsRequirement | BankAccountIdentificationTypeRequirement | IbanAccountIdentificationRequirement | PaymentInstrumentRequirement | USInstantPayoutAddressRequirement | USInternationalAchAddressRequirement | USInternationalAchPriorityRequirement;
 
 /**
 * @type TransferRouteRequirementsInnerClass
