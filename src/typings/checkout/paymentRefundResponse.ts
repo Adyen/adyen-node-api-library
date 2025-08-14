@@ -15,7 +15,7 @@ import { Split } from "./split";
 export class PaymentRefundResponse {
     "amount": Amount;
     /**
-    * This is only available for PayPal refunds. The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund.
+    * This is only available for PayPal refunds. The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the specific capture to refund.
     */
     "capturePspReference"?: string;
     /**
@@ -31,7 +31,7 @@ export class PaymentRefundResponse {
     */
     "merchantRefundReason"?: PaymentRefundResponse.MerchantRefundReasonEnum | null;
     /**
-    * The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to refund. 
+    * The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to refund. 
     */
     "paymentPspReference": string;
     /**

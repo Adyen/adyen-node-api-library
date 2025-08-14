@@ -10,7 +10,7 @@
 
 export class AlipayPlusInfo {
     /**
-    * currency used for settlement. Defaults to USD
+    * The currency used for settlement. Defaults to USD.
     */
     "settlementCurrencyCode"?: string;
 

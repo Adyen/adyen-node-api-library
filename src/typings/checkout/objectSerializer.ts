@@ -69,6 +69,7 @@ import { CreateCheckoutSessionRequest } from "./createCheckoutSessionRequest";
 import { CreateCheckoutSessionResponse } from "./createCheckoutSessionResponse";
 import { CreateOrderRequest } from "./createOrderRequest";
 import { CreateOrderResponse } from "./createOrderResponse";
+import { DefaultErrorResponseEntity } from "./defaultErrorResponseEntity";
 import { DeliveryAddress } from "./deliveryAddress";
 import { DeliveryMethod } from "./deliveryMethod";
 import { DetailsRequestAuthenticationData } from "./detailsRequestAuthenticationData";
@@ -102,6 +103,7 @@ import { IdealDonations } from "./idealDonations";
 import { InputDetail } from "./inputDetail";
 import { InstallmentOption } from "./installmentOption";
 import { Installments } from "./installments";
+import { InvalidField } from "./invalidField";
 import { Item } from "./item";
 import { KlarnaDetails } from "./klarnaDetails";
 import { Leg } from "./leg";
@@ -122,6 +124,7 @@ import { PayByBankDetails } from "./payByBankDetails";
 import { PayPalDetails } from "./payPalDetails";
 import { PayPayDetails } from "./payPayDetails";
 import { PayToDetails } from "./payToDetails";
+import { PayToPaymentMethod } from "./payToPaymentMethod";
 import { PayUUpiDetails } from "./payUUpiDetails";
 import { PayWithGoogleDetails } from "./payWithGoogleDetails";
 import { PayWithGoogleDonations } from "./payWithGoogleDonations";
@@ -173,6 +176,7 @@ import { ResponseAdditionalDataNetworkTokens } from "./responseAdditionalDataNet
 import { ResponseAdditionalDataOpi } from "./responseAdditionalDataOpi";
 import { ResponseAdditionalDataSepa } from "./responseAdditionalDataSepa";
 import { ResponsePaymentMethod } from "./responsePaymentMethod";
+import { Result } from "./result";
 import { RiskData } from "./riskData";
 import { RivertyDetails } from "./rivertyDetails";
 import { SDKEphemPubKey } from "./sDKEphemPubKey";
@@ -180,6 +184,7 @@ import { SamsungPayDetails } from "./samsungPayDetails";
 import { SepaDirectDebitDetails } from "./sepaDirectDebitDetails";
 import { ServiceError } from "./serviceError";
 import { SessionResultResponse } from "./sessionResultResponse";
+import { ShopperIdPaymentMethod } from "./shopperIdPaymentMethod";
 import { ShopperInteractionDevice } from "./shopperInteractionDevice";
 import { Split } from "./split";
 import { SplitAmount } from "./splitAmount";
@@ -205,11 +210,14 @@ import { ThreeDSecureData } from "./threeDSecureData";
 import { Ticket } from "./ticket";
 import { TravelAgency } from "./travelAgency";
 import { TwintDetails } from "./twintDetails";
+import { UPIPaymentMethod } from "./uPIPaymentMethod";
 import { UpdatePaymentLinkRequest } from "./updatePaymentLinkRequest";
 import { UpiCollectDetails } from "./upiCollectDetails";
 import { UpiIntentDetails } from "./upiIntentDetails";
 import { UtilityRequest } from "./utilityRequest";
 import { UtilityResponse } from "./utilityResponse";
+import { ValidateShopperIdRequest } from "./validateShopperIdRequest";
+import { ValidateShopperIdResponse } from "./validateShopperIdResponse";
 import { VippsDetails } from "./vippsDetails";
 import { VisaCheckoutDetails } from "./visaCheckoutDetails";
 import { WeChatPayDetails } from "./weChatPayDetails";
@@ -390,6 +398,9 @@ let enumsMap: Set<string> = new Set<string>([
     "ResponseAdditionalDataCommon.FraudRiskLevelEnum",
     "ResponseAdditionalDataCommon.RecurringProcessingModelEnum",
     "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum",
+    Result.Valid,
+    Result.Invalid,
+    Result.Unknown,
     "RivertyDetails.TypeEnum",
     "SamsungPayDetails.FundingSourceEnum",
     "SamsungPayDetails.TypeEnum",
@@ -505,6 +516,7 @@ let typeMap: {[index: string]: any} = {
     "CreateCheckoutSessionResponse": CreateCheckoutSessionResponse,
     "CreateOrderRequest": CreateOrderRequest,
     "CreateOrderResponse": CreateOrderResponse,
+    "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
     "DeliveryAddress": DeliveryAddress,
     "DeliveryMethod": DeliveryMethod,
     "DetailsRequestAuthenticationData": DetailsRequestAuthenticationData,
@@ -538,6 +550,7 @@ let typeMap: {[index: string]: any} = {
     "InputDetail": InputDetail,
     "InstallmentOption": InstallmentOption,
     "Installments": Installments,
+    "InvalidField": InvalidField,
     "Item": Item,
     "KlarnaDetails": KlarnaDetails,
     "Leg": Leg,
@@ -558,6 +571,7 @@ let typeMap: {[index: string]: any} = {
     "PayPalDetails": PayPalDetails,
     "PayPayDetails": PayPayDetails,
     "PayToDetails": PayToDetails,
+    "PayToPaymentMethod": PayToPaymentMethod,
     "PayUUpiDetails": PayUUpiDetails,
     "PayWithGoogleDetails": PayWithGoogleDetails,
     "PayWithGoogleDonations": PayWithGoogleDonations,
@@ -616,6 +630,7 @@ let typeMap: {[index: string]: any} = {
     "SepaDirectDebitDetails": SepaDirectDebitDetails,
     "ServiceError": ServiceError,
     "SessionResultResponse": SessionResultResponse,
+    "ShopperIdPaymentMethod": ShopperIdPaymentMethod,
     "ShopperInteractionDevice": ShopperInteractionDevice,
     "Split": Split,
     "SplitAmount": SplitAmount,
@@ -641,11 +656,14 @@ let typeMap: {[index: string]: any} = {
     "Ticket": Ticket,
     "TravelAgency": TravelAgency,
     "TwintDetails": TwintDetails,
+    "UPIPaymentMethod": UPIPaymentMethod,
     "UpdatePaymentLinkRequest": UpdatePaymentLinkRequest,
     "UpiCollectDetails": UpiCollectDetails,
     "UpiIntentDetails": UpiIntentDetails,
     "UtilityRequest": UtilityRequest,
     "UtilityResponse": UtilityResponse,
+    "ValidateShopperIdRequest": ValidateShopperIdRequest,
+    "ValidateShopperIdResponse": ValidateShopperIdResponse,
     "VippsDetails": VippsDetails,
     "VisaCheckoutDetails": VisaCheckoutDetails,
     "WeChatPayDetails": WeChatPayDetails,

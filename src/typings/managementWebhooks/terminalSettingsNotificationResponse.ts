@@ -10,7 +10,7 @@
 
 export class TerminalSettingsNotificationResponse {
     /**
-    * Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+    * Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks).
     */
     "notificationResponse"?: string;
 

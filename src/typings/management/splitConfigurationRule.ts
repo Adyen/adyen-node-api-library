@@ -16,9 +16,9 @@ export class SplitConfigurationRule {
     */
     "currency": string;
     /**
-    * The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
+    * The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
     */
-    "fundingSource"?: SplitConfigurationRule.FundingSourceEnum;
+    "fundingSource": SplitConfigurationRule.FundingSourceEnum;
     /**
     * The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods.
     */

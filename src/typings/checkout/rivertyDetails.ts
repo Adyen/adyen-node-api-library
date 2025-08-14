@@ -131,6 +131,7 @@ export namespace RivertyDetails {
     export enum TypeEnum {
         Riverty = 'riverty',
         RivertyAccount = 'riverty_account',
+        RivertyInstallments = 'riverty_installments',
         SepadirectdebitRiverty = 'sepadirectdebit_riverty'
     }
 }
