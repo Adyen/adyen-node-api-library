@@ -7,10 +7,15 @@
  * Do not edit this class manually.
  */
 
+import { PhoneNumber } from "./phoneNumber";
 
-export class RemediatingAction {
-    "code"?: string;
-    "message"?: string;
+
+export class Support {
+    /**
+    * The email address of the legal entity.
+    */
+    "email"?: string;
+    "phone"?: PhoneNumber | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -18,20 +23,20 @@ export class RemediatingAction {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "code",
-            "baseName": "code",
+            "name": "email",
+            "baseName": "email",
             "type": "string",
             "format": ""
         },
         {
-            "name": "message",
-            "baseName": "message",
-            "type": "string",
+            "name": "phone",
+            "baseName": "phone",
+            "type": "PhoneNumber | null",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return RemediatingAction.attributeTypeMap;
+        return Support.attributeTypeMap;
     }
 
     public constructor() {
