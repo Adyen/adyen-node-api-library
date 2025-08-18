@@ -16,6 +16,7 @@ import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/management/objectSerializer";
 import { BillingEntitiesResponse } from "../../typings/management/models";
+import { RestServiceError } from "../../typings/management/models";
 import { ShippingLocation } from "../../typings/management/models";
 import { ShippingLocationsResponse } from "../../typings/management/models";
 import { TerminalModelsResponse } from "../../typings/management/models";

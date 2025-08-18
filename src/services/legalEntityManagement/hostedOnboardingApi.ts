@@ -19,6 +19,7 @@ import { OnboardingLink } from "../../typings/legalEntityManagement/models";
 import { OnboardingLinkInfo } from "../../typings/legalEntityManagement/models";
 import { OnboardingTheme } from "../../typings/legalEntityManagement/models";
 import { OnboardingThemes } from "../../typings/legalEntityManagement/models";
+import { ServiceError } from "../../typings/legalEntityManagement/models";
 
 /**
  * API handler for HostedOnboardingApi
