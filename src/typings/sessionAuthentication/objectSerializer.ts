@@ -29,6 +29,7 @@ let primitives = [
 let enumsMap: Set<string> = new Set<string>([
     ProductType.Onboarding,
     ProductType.Platform,
+    ProductType.Bank,
     ResourceType.LegalEntity,
     ResourceType.BalanceAccount,
     ResourceType.AccountHolder,

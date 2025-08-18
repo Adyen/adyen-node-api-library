@@ -9,5 +9,6 @@
 
 export enum ProductType {
     Onboarding = 'onboarding',
-    Platform = 'platform'
+    Platform = 'platform',
+    Bank = 'bank'
 }
