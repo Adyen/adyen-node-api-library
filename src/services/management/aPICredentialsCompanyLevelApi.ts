@@ -19,7 +19,6 @@ import { CompanyApiCredential } from "../../typings/management/models";
 import { CreateCompanyApiCredentialRequest } from "../../typings/management/models";
 import { CreateCompanyApiCredentialResponse } from "../../typings/management/models";
 import { ListCompanyApiCredentialsResponse } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 import { UpdateCompanyApiCredentialRequest } from "../../typings/management/models";
 
 /**
