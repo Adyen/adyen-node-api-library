@@ -37,3 +37,4 @@ export * as negativeBalanceWarningWebhooks from "./negativeBalanceWarningWebhook
 export * as balanceWebhooks from "./balanceWebhooks/models";
 export * as disputeWebhooks from "./disputeWebhooks/models";
 export * as tokenizationWebhooks from "./tokenizationWebhooks/models";
+export * as cloudDevice from "./cloudDevice/models"
