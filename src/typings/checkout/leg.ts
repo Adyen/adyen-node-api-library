@@ -34,7 +34,7 @@ export class Leg {
     */
     "destinationAirportCode"?: string;
     /**
-    * The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 6 characters * Must not start with a space or be all spaces. * Must not be all zeros.
+    * The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 15 characters * Must not start with a space or be all spaces. * Must not be all zeros.
     */
     "fareBasisCode"?: string;
     /**

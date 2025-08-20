@@ -14,6 +14,7 @@ import { BalanceAccountNotificationData } from "./balanceAccountNotificationData
 import { BalanceAccountNotificationRequest } from "./balanceAccountNotificationRequest";
 import { BalancePlatformNotificationResponse } from "./balancePlatformNotificationResponse";
 import { BankAccountDetails } from "./bankAccountDetails";
+import { BankScoreSignalTriggeredData } from "./bankScoreSignalTriggeredData";
 import { BulkAddress } from "./bulkAddress";
 import { CapabilityProblem } from "./capabilityProblem";
 import { CapabilityProblemEntity } from "./capabilityProblemEntity";
@@ -47,6 +48,8 @@ import { PhoneNumber } from "./phoneNumber";
 import { PlatformPaymentConfiguration } from "./platformPaymentConfiguration";
 import { RemediatingAction } from "./remediatingAction";
 import { Resource } from "./resource";
+import { ResourceReference } from "./resourceReference";
+import { ScoreNotificationRequest } from "./scoreNotificationRequest";
 import { SweepConfigurationNotificationData } from "./sweepConfigurationNotificationData";
 import { SweepConfigurationNotificationRequest } from "./sweepConfigurationNotificationRequest";
 import { SweepConfigurationV2 } from "./sweepConfigurationV2";
@@ -98,6 +101,7 @@ let enumsMap: Set<string> = new Set<string>([
     "PaymentNotificationRequest.TypeEnum",
     "Phone.TypeEnum",
     "PhoneNumber.PhoneTypeEnum",
+    "ScoreNotificationRequest.TypeEnum",
     "SweepConfigurationNotificationRequest.TypeEnum",
     "SweepConfigurationV2.CategoryEnum",
     "SweepConfigurationV2.PrioritiesEnum",
@@ -129,6 +133,7 @@ let typeMap: {[index: string]: any} = {
     "BalanceAccountNotificationRequest": BalanceAccountNotificationRequest,
     "BalancePlatformNotificationResponse": BalancePlatformNotificationResponse,
     "BankAccountDetails": BankAccountDetails,
+    "BankScoreSignalTriggeredData": BankScoreSignalTriggeredData,
     "BulkAddress": BulkAddress,
     "CapabilityProblem": CapabilityProblem,
     "CapabilityProblemEntity": CapabilityProblemEntity,
@@ -162,6 +167,8 @@ let typeMap: {[index: string]: any} = {
     "PlatformPaymentConfiguration": PlatformPaymentConfiguration,
     "RemediatingAction": RemediatingAction,
     "Resource": Resource,
+    "ResourceReference": ResourceReference,
+    "ScoreNotificationRequest": ScoreNotificationRequest,
     "SweepConfigurationNotificationData": SweepConfigurationNotificationData,
     "SweepConfigurationNotificationRequest": SweepConfigurationNotificationRequest,
     "SweepConfigurationV2": SweepConfigurationV2,

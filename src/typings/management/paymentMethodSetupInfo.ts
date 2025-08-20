@@ -28,6 +28,7 @@ import { PayMeInfo } from "./payMeInfo";
 import { PayPalInfo } from "./payPalInfo";
 import { PayToInfo } from "./payToInfo";
 import { PulseInfo } from "./pulseInfo";
+import { SepaDirectDebitInfo } from "./sepaDirectDebitInfo";
 import { SodexoInfo } from "./sodexoInfo";
 import { SofortInfo } from "./sofortInfo";
 import { StarInfo } from "./starInfo";
@@ -90,6 +91,7 @@ export class PaymentMethodSetupInfo {
     * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
     */
     "reference"?: string;
+    "sepadirectdebit"?: SepaDirectDebitInfo | null;
     /**
     * The sales channel. Required if the merchant account does not have a sales channel. When you provide this field, it overrides the default sales channel set on the merchant account.  Possible values: **eCommerce**, **pos**, **contAuth**, and **moto**. 
     */
@@ -329,6 +331,12 @@ export class PaymentMethodSetupInfo {
             "format": ""
         },
         {
+            "name": "sepadirectdebit",
+            "baseName": "sepadirectdebit",
+            "type": "SepaDirectDebitInfo | null",
+            "format": ""
+        },
+        {
             "name": "shopperInteraction",
             "baseName": "shopperInteraction",
             "type": "PaymentMethodSetupInfo.ShopperInteractionEnum",
@@ -423,6 +431,10 @@ export namespace PaymentMethodSetupInfo {
         ContAuth = 'contAuth'
     }
     export enum TypeEnum {
+        Abrapetite = 'abrapetite',
+        AbrapetiteCredit = 'abrapetite_credit',
+        AbrapetiteDebit = 'abrapetite_debit',
+        AbrapetitePrepaid = 'abrapetite_prepaid',
         Accel = 'accel',
         Ach = 'ach',
         Affirm = 'affirm',
@@ -515,8 +527,12 @@ export namespace PaymentMethodSetupInfo {
         PersonalCardCredit = 'personal_card_credit',
         PersonalCardDebit = 'personal_card_debit',
         Pulse = 'pulse',
+        Romcard = 'romcard',
+        RomcardCredit = 'romcard_credit',
+        RomcardDebit = 'romcard_debit',
         Senff = 'senff',
         SenffCredit = 'senff_credit',
+        Sepadirectdebit = 'sepadirectdebit',
         Sodexo = 'sodexo',
         Star = 'star',
         Swish = 'swish',

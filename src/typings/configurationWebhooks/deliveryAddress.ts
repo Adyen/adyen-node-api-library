@@ -34,7 +34,7 @@ export class DeliveryAddress {
     */
     "postalCode"?: string;
     /**
-    * The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. > Required for the US and Canada.
+    * The state or province code, maximum 3 characters. For example, **CA** for California in the US or **ON** for Ontario in Canada. > Required for the US and Canada.
     */
     "stateOrProvince"?: string;
 

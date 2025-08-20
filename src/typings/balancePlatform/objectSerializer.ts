@@ -170,6 +170,7 @@ import { TransferRouteResponse } from "./transferRouteResponse";
 import { UKLocalAccountIdentification } from "./uKLocalAccountIdentification";
 import { USInstantPayoutAddressRequirement } from "./uSInstantPayoutAddressRequirement";
 import { USInternationalAchAddressRequirement } from "./uSInternationalAchAddressRequirement";
+import { USInternationalAchPriorityRequirement } from "./uSInternationalAchPriorityRequirement";
 import { USLocalAccountIdentification } from "./uSLocalAccountIdentification";
 import { UpdateNetworkTokenRequest } from "./updateNetworkTokenRequest";
 import { UpdatePaymentInstrument } from "./updatePaymentInstrument";
@@ -317,6 +318,7 @@ let enumsMap: Set<string> = new Set<string>([
     "UKLocalAccountIdentification.TypeEnum",
     "USInstantPayoutAddressRequirement.TypeEnum",
     "USInternationalAchAddressRequirement.TypeEnum",
+    "USInternationalAchPriorityRequirement.TypeEnum",
     "USLocalAccountIdentification.AccountTypeEnum",
     "USLocalAccountIdentification.TypeEnum",
     "UpdateNetworkTokenRequest.StatusEnum",
@@ -506,6 +508,7 @@ let typeMap: {[index: string]: any} = {
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USInstantPayoutAddressRequirement": USInstantPayoutAddressRequirement,
     "USInternationalAchAddressRequirement": USInternationalAchAddressRequirement,
+    "USInternationalAchPriorityRequirement": USInternationalAchPriorityRequirement,
     "USLocalAccountIdentification": USLocalAccountIdentification,
     "UpdateNetworkTokenRequest": UpdateNetworkTokenRequest,
     "UpdatePaymentInstrument": UpdatePaymentInstrument,

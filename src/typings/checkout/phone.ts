@@ -10,11 +10,11 @@
 
 export class Phone {
     /**
-    * Country code. Length: 1–3 characters.
+    * Country code. Length: 1–3 digits.
     */
     "cc"?: string;
     /**
-    * Subscriber number. Maximum length: 15 characters.
+    * Subscriber number. Length: 4-15  digits.
     */
     "subscriber"?: string;
 

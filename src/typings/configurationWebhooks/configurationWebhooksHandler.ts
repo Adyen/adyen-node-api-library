@@ -19,6 +19,7 @@ export type GenericWebhook =
     | configurationWebhooks.CardOrderNotificationRequest
     | configurationWebhooks.NetworkTokenNotificationRequest
     | configurationWebhooks.PaymentNotificationRequest
+    | configurationWebhooks.ScoreNotificationRequest
     | configurationWebhooks.SweepConfigurationNotificationRequest;
 
 /**
@@ -62,6 +63,10 @@ export class ConfigurationWebhooksHandler {
         
         if(Object.values(configurationWebhooks.PaymentNotificationRequest.TypeEnum).includes(type)) {
             return this.getPaymentNotificationRequest();
+        }
+        
+        if(Object.values(configurationWebhooks.ScoreNotificationRequest.TypeEnum).includes(type)) {
+            return this.getScoreNotificationRequest();
         }
         
         if(Object.values(configurationWebhooks.SweepConfigurationNotificationRequest.TypeEnum).includes(type)) {
@@ -115,6 +120,15 @@ export class ConfigurationWebhooksHandler {
      */
     public getPaymentNotificationRequest(): configurationWebhooks.PaymentNotificationRequest {
         return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "PaymentNotificationRequest");
+    }
+
+    /**
+     * Deserialize the webhook payload into a ScoreNotificationRequest
+     *
+     * @returns Deserialized ScoreNotificationRequest object.
+     */
+    public getScoreNotificationRequest(): configurationWebhooks.ScoreNotificationRequest {
+        return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "ScoreNotificationRequest");
     }
 
     /**

@@ -74,7 +74,7 @@ export class AdditionalDataAirline {
     */
     "airline_leg_destination_code"?: string;
     /**
-    * The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 6 characters * Must not be all spaces * Must not be all zeros.
+    * The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 15 characters * Must not be all spaces * Must not be all zeros.
     */
     "airline_leg_fare_base_code"?: string;
     /**

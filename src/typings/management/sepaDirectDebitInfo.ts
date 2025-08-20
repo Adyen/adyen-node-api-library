@@ -7,12 +7,15 @@
  * Do not edit this class manually.
  */
 
+import { TransactionDescriptionInfo } from "./transactionDescriptionInfo";
 
-export class PaymentMethodNotificationResponse {
+
+export class SepaDirectDebitInfo {
     /**
-    * Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks).
+    * Creditor id
     */
-    "notificationResponse"?: string;
+    "creditorId"?: string;
+    "transactionDescription"?: TransactionDescriptionInfo | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -20,14 +23,20 @@ export class PaymentMethodNotificationResponse {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "notificationResponse",
-            "baseName": "notificationResponse",
+            "name": "creditorId",
+            "baseName": "creditorId",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "transactionDescription",
+            "baseName": "transactionDescription",
+            "type": "TransactionDescriptionInfo | null",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentMethodNotificationResponse.attributeTypeMap;
+        return SepaDirectDebitInfo.attributeTypeMap;
     }
 
     public constructor() {

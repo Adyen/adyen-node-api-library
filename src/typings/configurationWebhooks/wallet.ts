@@ -21,7 +21,7 @@ export class Wallet {
     */
     "deviceScore"?: string;
     /**
-    * The method used for provisioning the network token.  Possible values: **push**, **manual**.
+    * The method used for provisioning the network token.  Possible values: **push**, **manual**, **cof**, **unknown**.
     */
     "provisioningMethod"?: string;
     /**
