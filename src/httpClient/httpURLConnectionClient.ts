@@ -201,7 +201,7 @@ class HttpURLConnectionClient implements ClientInterface {
                                 return reject(err);
                             }
                         } else {
-                            return reject(new Error(`Redirect status ${res.statusCode} but no Location header`));
+                            return reject(new Error(`Redirect status ${res.statusCode} - Could not find location in response headers`));
                         }
                     }
 
