@@ -155,4 +155,27 @@ describe("API Client", function (): void {
     expect(Config.isRegionValid(null)).toBe(false);
   });
 
+   test("should set Cloud Device Api Endpoint for TEST region", () => {
+    const config = new Config({
+      apiKey: "ADYEN_API_KEY",
+      environment: EnvironmentEnum.TEST
+    });
+    const client = new Client(config);
+    expect(client.config.cloudDeviceApiEndpoint).toBeDefined();
+    expect(client.config.cloudDeviceApiEndpoint).toBe("https://device-api-test.adyen.com");
+  });
+
+  test("should set Cloud Device Api Endpoint for LIVE region", () => {
+    const config = new Config({
+      apiKey: "ADYEN_API_KEY",
+      environment: EnvironmentEnum.LIVE,
+      region: RegionEnum.US,
+      liveEndpointUrlPrefix: "prefix"
+    });
+    const client = new Client(config);
+    expect(client.config.cloudDeviceApiEndpoint).toBeDefined();
+    expect(client.config.cloudDeviceApiEndpoint).toBe("https://device-api-us.adyen.com");
+  });
+
+
 });
