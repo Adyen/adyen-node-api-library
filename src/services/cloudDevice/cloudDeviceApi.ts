@@ -121,14 +121,10 @@ class CloudDeviceAPI extends Service {
 
         const resource = new Resource(this, endpoint);
 
-        const hasDefinedQueryParams = store;
-
         let requestOptions: IRequest.Options = {};
-        if(hasDefinedQueryParams) {
-            requestOptions.params = {};
-            if(store) requestOptions.params["store"] = store;
-        }
-
+        if (store) {
+            requestOptions.params = { store };
+        }        
 
         const response = await getJsonResponse<string, ConnectedDevicesResponse>(
             resource,
