@@ -18,28 +18,14 @@
  */
 
 import Client from "../client";
-import Config, { EnvironmentEnum } from "../config";
-import {
-    AmountsReq,
-    MessageCategoryType,
-    MessageClassType,
-    MessageHeader,
-    MessageType,
-    PaymentRequest,
-    PaymentTransaction,
-    ReversalReasonType,
-    ReversalRequest,
-    SaleData,
-    SaleToPOIRequest,
-    TerminalApiRequest,
-    TransactionIdentification
-} from "../typings/terminal/models";
+import Config, { EnvironmentEnum, TERMINAL_API_ENDPOINT_TEST, CLOUD_DEVICE_API_ENDPOINT_TEST } from "../config";
 
 export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     const config: Config = new Config();
     config.environment = EnvironmentEnum.TEST;
-    config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
+    config.terminalApiCloudEndpoint = TERMINAL_API_ENDPOINT_TEST;
     config.terminalApiLocalEndpoint = "https://mocked_local_endpoint.com";
+    config.cloudDeviceApiEndpoint = CLOUD_DEVICE_API_ENDPOINT_TEST;
     config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
     config.apiKey = apiKey == null ? "apiKey" : apiKey;
     return new Client(config);
@@ -52,80 +38,4 @@ export const createBasicAuthClient = (): Client => {
         environment: EnvironmentEnum.TEST,
         applicationName: "adyen-node-api-library"
     });
-};
-
-const id = Math.floor(Math.random() * Math.floor(10000000)).toString();
-const getMessageHeader = ({ messageCategory = MessageCategoryType.Payment }: { messageCategory?: MessageCategoryType } = {}): MessageHeader => ({
-    MessageCategory: messageCategory,
-    MessageClass: MessageClassType.Service,
-    MessageType: MessageType.Request,
-    POIID: process.env.ADYEN_TERMINAL_POIID!,
-    ProtocolVersion: "3.0",
-    SaleID: id,
-    ServiceID: id,
-});
-
-const timestamp = (): string => new Date().toISOString();
-const transactionIdentification: TransactionIdentification = {
-    TimeStamp: timestamp(),
-    TransactionID: id,
-};
-
-const saleData: SaleData = {
-    SaleTransactionID: transactionIdentification,
-    SaleToAcquirerData: {
-        applicationInfo: {
-            merchantApplication: {
-                version: "1",
-                name: "test"
-            }
-        },
-        metadata: {
-            someMetaDataKey1: "YOUR_VALUE",
-            someMetaDataKey2: "YOUR_VALUE"
-        },
-    }
-};
-
-const amountsReq: AmountsReq = {
-    Currency: "EUR",
-    RequestedAmount: 1,
-};
-
-const paymentTransaction: PaymentTransaction = {
-    AmountsReq: amountsReq,
-};
-
-const paymentRequest: PaymentRequest = {
-    PaymentTransaction: paymentTransaction,
-    SaleData: saleData,
-};
-
-const getReversalRequest = (poiTransaction: TransactionIdentification): ReversalRequest => ({
-    OriginalPOITransaction: {
-        POITransactionID: {
-            TransactionID: poiTransaction.TransactionID,
-            TimeStamp: poiTransaction.TimeStamp
-        },
-    },
-    ReversalReason: ReversalReasonType.MerchantCancel,
-    SaleData: saleData
-});
-
-const getSaleToPOIRequest = (messageHeader: MessageHeader, request: Partial<SaleToPOIRequest>): SaleToPOIRequest => ({
-    MessageHeader: messageHeader,
-    ...request
-});
-
-
-export const createTerminalAPIPaymentRequest = (): TerminalApiRequest => {
-    const messageHeader = getMessageHeader();
-    const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { PaymentRequest: paymentRequest });
-    return { SaleToPOIRequest: saleToPOIRequest };
-};
-
-export const createTerminalAPIRefundRequest = (transactionIdentification: TransactionIdentification): TerminalApiRequest => {
-    const messageHeader = getMessageHeader({ messageCategory: MessageCategoryType.Reversal });
-    const saleToPOIRequest = getSaleToPOIRequest(messageHeader, { ReversalRequest: getReversalRequest(transactionIdentification) });
-    return { SaleToPOIRequest: saleToPOIRequest };
 };
