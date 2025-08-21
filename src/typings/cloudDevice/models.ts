@@ -56,6 +56,7 @@ export * from "./characterWidthType";
 export * from "./checkData";
 export * from "./checkTypeCodeType";
 export * from "./coinsOrBills";
+export * from "./connectedDevicesResponse";
 export * from "./colorType";
 export * from "./commonField";
 export * from "./contentInformation";
@@ -63,6 +64,7 @@ export * from "./contentType";
 export * from "./currencyConversion";
 export * from "./customerOrder";
 export * from "./customerOrderReqType";
+export * from "./deviceStatusResponse";
 export * from "./deviceType";
 export * from "./diagnosisRequest";
 export * from "./diagnosisResponse";
@@ -288,6 +290,7 @@ import { CharacterWidthType } from "./characterWidthType";
 import { CheckData } from "./checkData";
 import { CheckTypeCodeType } from "./checkTypeCodeType";
 import { CoinsOrBills } from "./coinsOrBills";
+import { ConnectedDevicesResponse } from "./connectedDevicesResponse";
 import { ColorType } from "./colorType";
 import { CommonField } from "./commonField";
 import { ContentInformation } from "./contentInformation";
@@ -295,6 +298,7 @@ import { ContentType } from "./contentType";
 import { CurrencyConversion } from "./currencyConversion";
 import { CustomerOrder } from "./customerOrder";
 import { CustomerOrderReqType } from "./customerOrderReqType";
+import { DeviceStatusResponse } from "./deviceStatusResponse";
 import { DeviceType } from "./deviceType";
 import { DiagnosisRequest } from "./diagnosisRequest";
 import { DiagnosisResponse } from "./diagnosisResponse";
@@ -513,6 +517,7 @@ const enumsMap: {[index: string]: any} = {
         "ContentType": ContentType,
         "CustomerOrderReqType": CustomerOrderReqType,
         "DeviceType": DeviceType,
+        "DeviceStatusResponse.StatusEnum": DeviceStatusResponse.StatusEnum,
         "DigestedData.VersionEnum": DigestedData.VersionEnum,
         "DocumentQualifierType": DocumentQualifierType,
         "EnableServiceRequest.ServicesEnabledEnum": EnableServiceRequest.ServicesEnabledEnum,
@@ -643,9 +648,11 @@ const typeMap: {[index: string]: any} = {
     "CheckData": CheckData,
     "CoinsOrBills": CoinsOrBills,
     "CommonField": CommonField,
+    "ConnectedDevicesResponse": ConnectedDevicesResponse,
     "ContentInformation": ContentInformation,
     "CurrencyConversion": CurrencyConversion,
     "CustomerOrder": CustomerOrder,
+    "DeviceStatusResponse": DeviceStatusResponse,
     "DiagnosisRequest": DiagnosisRequest,
     "DiagnosisResponse": DiagnosisResponse,
     "DigestedData": DigestedData,
