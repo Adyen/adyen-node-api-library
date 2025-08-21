@@ -8,6 +8,15 @@ const TERMINAL_API_ENDPOINT_AU_LIVE = "https://terminal-api-live-au.adyen.com";
 const TERMINAL_API_ENDPOINT_US_LIVE = "https://terminal-api-live-us.adyen.com";
 const TERMINAL_API_ENDPOINT_APSE_LIVE = "https://terminal-api-live-apse.adyen.com";
 
+// Test endpoint for Terminal API
+export const CLOUD_DEVICE_API_ENDPOINT_TEST = "https://device-api-test.adyen.com";
+
+// Live endpoints for Cloud Device API
+const CLOUD_DEVICE_API_ENDPOINT_LIVE = "https://device-api-live.adyen.com/";
+const CLOUD_DEVICE_API_ENDPOINT_AU_LIVE = "https://device-api-au.adyen.com/";
+const CLOUD_DEVICE_API_ENDPOINT_US_LIVE = "https://device-api-us.adyen.com";
+const CLOUD_DEVICE_API_ENDPOINT_APSE_LIVE = "https://device-api-apse.adyen.com";
+
 
 /**
  * Supported environments for the Adyen APIs.
@@ -18,7 +27,7 @@ export enum EnvironmentEnum {
 }
 
 /**
- * Supported Regions for Terminal API integration.
+ * Supported Regions for Terminal and Device API integration.
  */
 export enum RegionEnum {
     EU = "EU",
@@ -35,6 +44,14 @@ export const TERMINAL_API_ENDPOINTS_MAP: Record<RegionEnum, string> = {
     [RegionEnum.APSE]: TERMINAL_API_ENDPOINT_APSE_LIVE
 };
 
+// Cloud Device API Endpoints Map
+export const CLOUD_DEVICE_API_ENDPOINTS_MAP: Record<RegionEnum, string> = {
+    [RegionEnum.EU]: CLOUD_DEVICE_API_ENDPOINT_LIVE,
+    [RegionEnum.AU]: CLOUD_DEVICE_API_ENDPOINT_AU_LIVE,
+    [RegionEnum.US]: CLOUD_DEVICE_API_ENDPOINT_US_LIVE,
+    [RegionEnum.APSE]: CLOUD_DEVICE_API_ENDPOINT_APSE_LIVE
+};
+
 
 interface ConfigConstructor {
     username?: string;
@@ -47,6 +64,7 @@ interface ConfigConstructor {
     certificatePath?: string;
     terminalApiCloudEndpoint?: string;
     terminalApiLocalEndpoint?: string;
+    cloudDeviceApiEndpoint?: string;
     liveEndpointUrlPrefix?: string; // must be provided for LIVE integration
     region?: RegionEnum; // must be provided for Terminal API integration
     enable308Redirect?: boolean; // enabling redirect upon 308 response status
@@ -66,6 +84,7 @@ class Config {
     public certificatePath?: string;
     public terminalApiCloudEndpoint?: string;
     public terminalApiLocalEndpoint?: string;
+    public cloudDeviceApiEndpoint?: string;
     public liveEndpointUrlPrefix?: string;
     public region?: RegionEnum;
     public enable308Redirect?: boolean;
@@ -83,6 +102,7 @@ class Config {
         if (options.certificatePath) this.certificatePath = options.certificatePath;
         if (options.terminalApiCloudEndpoint) this.terminalApiCloudEndpoint = options.terminalApiCloudEndpoint;
         if (options.terminalApiLocalEndpoint) this.terminalApiLocalEndpoint = options.terminalApiLocalEndpoint;
+        if (options.cloudDeviceApiEndpoint) this.cloudDeviceApiEndpoint = options.cloudDeviceApiEndpoint;
         if (options.liveEndpointUrlPrefix) this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix;
         if (options.region) this.region = options.region;
         this.enable308Redirect = options.enable308Redirect ?? true; // enabled by default
@@ -115,6 +135,16 @@ class Config {
      */
     public static getTerminalApiEndpoint(region: RegionEnum): string {
         return TERMINAL_API_ENDPOINTS_MAP[region] || TERMINAL_API_ENDPOINTS_MAP[RegionEnum.EU];
+    }
+
+    /**
+     * Returns the Cloud Device API endpoint for the given region.
+     * If the region is not valid, returns the EU endpoint.
+     * @param region - The region to get the endpoint for.
+     * @returns The Cloud Device API endpoint URL.
+     */
+    public static getCloudDeviceApiEndpoint(region: RegionEnum): string {
+        return CLOUD_DEVICE_API_ENDPOINTS_MAP[region] || CLOUD_DEVICE_API_ENDPOINTS_MAP[RegionEnum.EU];
     }
 
 }
