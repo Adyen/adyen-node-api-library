@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 
-import { ClientRequest, IncomingHttpHeaders, IncomingMessage } from "http";
+import { ClientRequest, IncomingHttpHeaders, IncomingMessage, request as httpRequest } from "http";
 import { Agent, AgentOptions, request as httpsRequest } from "https";
 import { HttpsProxyAgent } from "https-proxy-agent";
 
@@ -55,9 +55,9 @@ class HttpURLConnectionClient implements ClientInterface {
      * @throws {ApiException} when an error occurs
      */
     public request(
-        endpoint: string, 
-        json: string, 
-        config: Config, 
+        endpoint: string,
+        json: string,
+        config: Config,
         isApiRequired: boolean,
         requestOptions: IRequest.Options,
     ): Promise<string> {
@@ -89,6 +89,7 @@ class HttpURLConnectionClient implements ClientInterface {
         return this.doRequest(httpConnection, json);
     }
 
+    // create Request object
     private createRequest(endpoint: string, requestOptions: IRequest.Options, applicationName?: string): ClientRequest {
         if (!requestOptions.headers) {
             requestOptions.headers = {};
@@ -141,6 +142,7 @@ class HttpURLConnectionClient implements ClientInterface {
         return req;
     }
 
+    // invoke request
     private doRequest(connectionRequest: ClientRequest, json: string): Promise<string> {
         return new Promise((resolve, reject): void => {
             connectionRequest.flushHeaders();
@@ -169,6 +171,38 @@ class HttpURLConnectionClient implements ClientInterface {
                 res.on("end", (): void => {
                     if (!res.complete) {
                         reject(new Error("The connection was terminated while the message was still being sent"));
+                    }
+
+                    // Handle 308 redirect
+                    if (res.statusCode && res.statusCode === 308) {
+                        const location = res.headers["location"];
+                        if (location) {
+                            // follow the redirect
+                            try {
+                                const url = new URL(location);
+
+                                if (!this.verifyLocation(location)) {
+                                    return reject(new Error(`Redirect to host ${url.hostname} is not allowed.`));
+                                }
+
+                                const newRequestOptions = {
+                                    hostname: url.hostname,
+                                    port: url.port || (url.protocol === "https:" ? 443 : 80),
+                                    path: url.pathname + url.search,
+                                    method: connectionRequest.method,
+                                    headers: connectionRequest.getHeaders(),
+                                    protocol: url.protocol,
+                                };
+                                const clientRequestFn = url.protocol === "https:" ? httpsRequest : httpRequest;
+                                const redirectedRequest: ClientRequest = clientRequestFn(newRequestOptions);
+                                const redirectResponse = this.doRequest(redirectedRequest, json);
+                                return resolve(redirectResponse);
+                            } catch (err) {
+                                return reject(err);
+                            }
+                        } else {
+                            return reject(new Error(`Redirect status ${res.statusCode} - Could not find location in response headers`));
+                        }
                     }
 
                     if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
@@ -241,6 +275,18 @@ class HttpURLConnectionClient implements ClientInterface {
         }
 
     }
+
+    private verifyLocation(location: string): boolean {
+        try {
+            const url = new URL(location);
+            // allow-list of trusted domains (*.adyen.com)
+            const allowedHostnameRegex = /\.adyen\.com$/i;
+            return allowedHostnameRegex.test(url.hostname);
+        } catch (e) {
+            return false;
+        }
+    }
 }
+
 
 export default HttpURLConnectionClient;
