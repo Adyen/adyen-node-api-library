@@ -26,7 +26,7 @@
 
 import { SaleToPOISecuredMessage } from './saleToPOISecuredMessage';
 
-export class TerminalApiSecuredRequest {
+export class CloudDeviceApiSecuredRequest {
     'SaleToPOIRequest'?: SaleToPOISecuredMessage;
 
     static discriminator: string | undefined = undefined;
@@ -39,7 +39,7 @@ export class TerminalApiSecuredRequest {
         }    ];
 
     static getAttributeTypeMap() {
-        return TerminalApiSecuredRequest.attributeTypeMap;
+        return CloudDeviceApiSecuredRequest.attributeTypeMap;
     }
 }
 
