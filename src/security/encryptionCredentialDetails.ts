@@ -17,18 +17,26 @@
  * See the LICENSE file for more info.
  */
  
+
 /**
- * Cloud Device API
- * Definition of Cloud Device API Schema
- *
- */
-
-
-
-export class SecurityKey {
+* Details of the encryption credential used for encrypting the request payload (nexoBlob)
+*/
+export class EncryptionCredentialDetails {
+    /**
+    * The version of the Adyen-specific crypto implementation.
+    */
     'AdyenCryptoVersion': number;
+    /**
+    * The unique identifier of the key.
+    */
     'KeyIdentifier': string;
+    /**
+    * The version of the key.
+    */
     'KeyVersion': number;
+    /**
+    * The passphrase used to derive the encryption key.
+    */
     'Passphrase': string;
 
     static discriminator: string | undefined = undefined;
@@ -56,7 +64,6 @@ export class SecurityKey {
         }    ];
 
     static getAttributeTypeMap() {
-        return SecurityKey.attributeTypeMap;
+        return EncryptionCredentialDetails.attributeTypeMap;
     }
 }
-
