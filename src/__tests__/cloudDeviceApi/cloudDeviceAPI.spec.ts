@@ -8,6 +8,7 @@ import { connectedDevicesResponse, deviceStatusResponse } from "../../__mocks__/
 import Client from "../../client";
 import CloudDeviceAPI, { CLOUD_DEVICE_API_VERSION } from "../../services/cloudDevice/cloudDeviceApi";
 import { cloudDevice } from "../../typings";
+import { EncryptionCredentialDetails } from "../../security/encryptionCredentialDetails";
 
 
 let client: Client;
@@ -181,5 +182,26 @@ describe("Cloud device API", (): void => {
         expect(response.deviceId).toEqual(deviceId);
         expect(response.status).toEqual(cloudDevice.DeviceStatusResponse.StatusEnum.ONLINE);
     });
+
+    test("should make an encrypted async request", async (): Promise<void> => {
+        scope.post("/").reply(200, "ok");
+        const merchantAccount = "TestMerchantAccount";
+        const deviceId = "AMS1-000168242800763";
+
+        const cloudDeviceApiSecuredRequest = createCloudDeviceApiRequest();
+
+        const encryptionCredentialDetails: EncryptionCredentialDetails = {
+            AdyenCryptoVersion: 0,
+            KeyIdentifier: "CryptoKeyIdentifier12345",
+            KeyVersion: 0,
+            Passphrase: "p@ssw0rd123456",
+        };
+
+        const response = await cloudDeviceAPI.asyncEncrypted(merchantAccount, deviceId, cloudDeviceApiSecuredRequest, encryptionCredentialDetails);
+
+        expect(response).toBeDefined();
+        // expect(response.SaleToPOIResponse?.PaymentResponse).toBeDefined();
+        // expect(response.SaleToPOIResponse?.MessageHeader).toBeDefined();
+    });    
 
 });
