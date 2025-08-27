@@ -199,7 +199,7 @@ Create a the request object. For example, for a request to the `/payments` endpo
 
 Use the API object's method to make the request. For example, to make a request to the `/payments` endpoint using the `CheckoutAPI` object:
 
-```
+``` javascript
 checkoutApi.PaymentsApi.payments(paymentRequest)
   .then(paymentResponse => console.log(paymentResponse.pspReference))
   .catch(error => console.log(error));
