@@ -2,13 +2,14 @@ import nock from "nock";
 import { createClient } from "../../__mocks__/base";
 import { createCloudDeviceAPIRefundRequest, createCloudDeviceApiRequest } from "../../__mocks__/cloudDeviceApi/baseCloudDeviceApi";
 import { asyncResponseError } from "../../__mocks__/cloudDeviceApi/async";
-import { syncResponse, syncResponseEventNotificationWithAdditionalAttributes, syncResponseEventNotificationWithUnknownEnum, syncResponseRefund } from "../../__mocks__/cloudDeviceApi/sync";
+import { syncEncryptedResponse, syncResponse, syncResponseEventNotificationWithAdditionalAttributes, syncResponseEventNotificationWithUnknownEnum, syncResponseRefund } from "../../__mocks__/cloudDeviceApi/sync";
 import { connectedDevicesResponse, deviceStatusResponse } from "../../__mocks__/cloudDeviceApi/devices";
 
 import Client from "../../client";
-import CloudDeviceAPI, { CLOUD_DEVICE_API_VERSION } from "../../services/cloudDevice/cloudDeviceApi";
+import CloudDeviceAPI, { CLOUD_DEVICE_API_VERSION, CloudDeviceApiError } from "../../services/cloudDevice/cloudDeviceApi";
 import { cloudDevice } from "../../typings";
 import { EncryptionCredentialDetails } from "../../security/encryptionCredentialDetails";
+import { MessageType } from "../../typings/terminal/messageType";
 
 
 let client: Client;
@@ -37,9 +38,9 @@ describe("Cloud device API", (): void => {
 
         const merchantAccount = "TestMerchantAccount";
         const deviceId = "P400Plus-123456789";
-        const response = await cloudDeviceAPI.async(merchantAccount, deviceId, cloudDeviceApiRequest);
+        const response = await cloudDeviceAPI.sendAsync(merchantAccount, deviceId, cloudDeviceApiRequest);
 
-        // verify deviceId is set
+        // verify deviceId is set on request
         expect(cloudDeviceApiRequest.SaleToPOIRequest.MessageHeader.POIID).toBe(deviceId);
         // verify response
         expect(typeof response).toBe("string");
@@ -54,9 +55,9 @@ describe("Cloud device API", (): void => {
 
         const merchantAccount = "TestMerchantAccount";
         const deviceId = "P400Plus-123456789";
-        const response = await cloudDeviceAPI.async(merchantAccount, deviceId, cloudDeviceApiRequest);
+        const response = await cloudDeviceAPI.sendAsync(merchantAccount, deviceId, cloudDeviceApiRequest);
 
-        // verify deviceId is set
+        // verify deviceId is set on request
         expect(cloudDeviceApiRequest.SaleToPOIRequest.MessageHeader.POIID).toBe(deviceId);
         // verify response
         if (typeof response === "object") {
@@ -74,9 +75,9 @@ describe("Cloud device API", (): void => {
 
         const merchantAccount = "TestMerchantAccount";
         const deviceId = "P400Plus-123456789";
-        const response = await cloudDeviceAPI.sync(merchantAccount, deviceId, cloudDeviceApiRequest);
+        const response = await cloudDeviceAPI.sendSync(merchantAccount, deviceId, cloudDeviceApiRequest);
 
-        // verify deviceId is set
+        // verify deviceId is set on request
         expect(cloudDeviceApiRequest.SaleToPOIRequest.MessageHeader.POIID).toBe(deviceId);
 
         expect(response.SaleToPOIResponse).toBeDefined();
@@ -93,9 +94,9 @@ describe("Cloud device API", (): void => {
         await expect(async () => {
             const merchantAccount = "TestMerchantAccount";
             const deviceId = "P400Plus-123456789";
-            const response = await cloudDeviceAPI.sync(merchantAccount, deviceId, cloudDeviceApiRequest);
+            const response = await cloudDeviceAPI.sendSync(merchantAccount, deviceId, cloudDeviceApiRequest);
 
-            // verify deviceId is set
+            // verify deviceId is set on request
             expect(cloudDeviceApiRequest.SaleToPOIRequest.MessageHeader.POIID).toBe(deviceId);
 
             expect(response.SaleToPOIRequest?.EventNotification).toBeDefined();
@@ -112,9 +113,9 @@ describe("Cloud device API", (): void => {
         await expect(async () => {
             const merchantAccount = "TestMerchantAccount";
             const deviceId = "P400Plus-123456789";
-            const response = await cloudDeviceAPI.sync(merchantAccount, deviceId, cloudDeviceApiRequest);
+            const response = await cloudDeviceAPI.sendSync(merchantAccount, deviceId, cloudDeviceApiRequest);
 
-            // verify deviceId is set
+            // verify deviceId is set on request
             expect(cloudDeviceApiRequest.SaleToPOIRequest.MessageHeader.POIID).toBe(deviceId);
 
             expect(response.SaleToPOIRequest?.EventNotification).toBeDefined();
@@ -142,9 +143,9 @@ describe("Cloud device API", (): void => {
 
         const merchantAccount = "TestMerchantAccount";
         const deviceId = "P400Plus-123456789";
-        const response = await cloudDeviceAPI.sync(merchantAccount, deviceId, cloudDeviceApiRequest);
+        const response = await cloudDeviceAPI.sendSync(merchantAccount, deviceId, cloudDeviceApiRequest);
 
-        // verify deviceId is set
+        // verify deviceId is set on request
         expect(cloudDeviceApiRequest.SaleToPOIRequest.MessageHeader.POIID).toBe(deviceId);
 
         expect(response.SaleToPOIResponse?.ReversalResponse?.Response.Result).toBe("Success");
@@ -184,9 +185,9 @@ describe("Cloud device API", (): void => {
     });
 
     test("should make an encrypted async request", async (): Promise<void> => {
-        scope.post("/").reply(200, "ok");
+        scope.post("/merchants/TestMerchantAccount/devices/P400Plus-123456789/async").reply(200, "ok");
         const merchantAccount = "TestMerchantAccount";
-        const deviceId = "AMS1-000168242800763";
+        const deviceId = "P400Plus-123456789";
 
         const cloudDeviceApiSecuredRequest = createCloudDeviceApiRequest();
 
@@ -197,11 +198,76 @@ describe("Cloud device API", (): void => {
             Passphrase: "p@ssw0rd123456",
         };
 
-        const response = await cloudDeviceAPI.asyncEncrypted(merchantAccount, deviceId, cloudDeviceApiSecuredRequest, encryptionCredentialDetails);
+        const response = await cloudDeviceAPI.sendEncryptedAsync(merchantAccount, deviceId, cloudDeviceApiSecuredRequest, encryptionCredentialDetails);
 
         expect(response).toBeDefined();
-        // expect(response.SaleToPOIResponse?.PaymentResponse).toBeDefined();
-        // expect(response.SaleToPOIResponse?.MessageHeader).toBeDefined();
+        expect(response).toEqual("ok");
     });    
+
+    test("should make an encrypted sync request", async (): Promise<void> => {
+        scope.post("/merchants/TestMerchantAccount/devices/MX915-284251016/sync").reply(200, syncEncryptedResponse);
+        const merchantAccount = "TestMerchantAccount";
+        const deviceId = "MX915-284251016";
+
+        const cloudDeviceApiSecuredRequest = createCloudDeviceApiRequest();
+
+        const encryptionCredentialDetails: EncryptionCredentialDetails = {
+            AdyenCryptoVersion: 0,
+            KeyIdentifier: "CryptoKeyIdentifier12345",
+            KeyVersion: 0,
+            Passphrase: "p@ssw0rd123456",
+        };
+
+        const response = await cloudDeviceAPI.sendEncryptedSync(merchantAccount, deviceId, cloudDeviceApiSecuredRequest, encryptionCredentialDetails);
+
+        expect(response).toBeDefined();
+        expect(response.SaleToPOIResponse?.MessageHeader).toBeDefined();
+        expect(response.SaleToPOIResponse?.MessageHeader.MessageType).toBe(MessageType.Response);
+        expect(response.SaleToPOIResponse?.PaymentResponse).toBeDefined();
+        expect(response.SaleToPOIResponse?.PaymentResponse?.Response.Result).toBe("Success");
+        // verify deviceId is set on request
+        expect(cloudDeviceApiSecuredRequest.SaleToPOIRequest.MessageHeader.POIID).toBe(deviceId);
+
+    });    
+
+    test("should throw CloudDeviceApiError when request fails", async (): Promise<void> => {
+        scope.post("/merchants/TestMerchantAccount/devices/P400Plus-123456789/sync").replyWithError("timeout");
+
+        const merchantAccount = "TestMerchantAccount";
+        const deviceId = "P400Plus-123456789";
+
+        const cloudDeviceApiSecuredRequest = createCloudDeviceApiRequest();
+
+        const encryptionCredentialDetails: EncryptionCredentialDetails = {
+            AdyenCryptoVersion: 0,
+            KeyIdentifier: "CryptoKeyIdentifier12345",
+            KeyVersion: 0,
+            Passphrase: "invalid passphrase",
+        };
+
+        await expect(
+            cloudDeviceAPI.sendEncryptedAsync(
+                merchantAccount,
+                deviceId,
+                cloudDeviceApiSecuredRequest,
+                encryptionCredentialDetails
+            )
+        ).rejects.toThrow(CloudDeviceApiError);
+    });
+
+});
+
+describe("should extract PaymentRequest with extractPayloadObject", () => {
+
+  it("should return the correct payload object when one is set", () => {
+    const cloudDeviceApiRequest = createCloudDeviceApiRequest();
+
+    const payload = cloudDeviceAPI.extractPayloadObject(cloudDeviceApiRequest.SaleToPOIRequest);
+
+    expect(payload).not.toBeNull();
+    expect(payload).toHaveProperty("PaymentRequest");
+    expect(payload).not.toHaveProperty("ReversalRequest");
+    expect(payload).not.toHaveProperty("MessageHeader");
+  });
 
 });
