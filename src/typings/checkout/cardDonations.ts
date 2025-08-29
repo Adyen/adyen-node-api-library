@@ -42,6 +42,10 @@ export class CardDonations {
     */
     "encryptedExpiryYear"?: string;
     /**
+    * This field contains an encrypted, one-time password or an authentication code provided by the cardholder.
+    */
+    "encryptedPassword"?: string;
+    /**
     * The encrypted card verification code.
     */
     "encryptedSecurityCode"?: string;
@@ -163,6 +167,12 @@ export class CardDonations {
         {
             "name": "encryptedExpiryYear",
             "baseName": "encryptedExpiryYear",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "encryptedPassword",
+            "baseName": "encryptedPassword",
             "type": "string",
             "format": ""
         },

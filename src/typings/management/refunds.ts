@@ -8,10 +8,12 @@
  */
 
 import { Referenced } from "./referenced";
+import { Unreferenced } from "./unreferenced";
 
 
 export class Refunds {
     "referenced"?: Referenced | null;
+    "unreferenced"?: Unreferenced | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,6 +24,12 @@ export class Refunds {
             "name": "referenced",
             "baseName": "referenced",
             "type": "Referenced | null",
+            "format": ""
+        },
+        {
+            "name": "unreferenced",
+            "baseName": "unreferenced",
+            "type": "Unreferenced | null",
             "format": ""
         }    ];
 

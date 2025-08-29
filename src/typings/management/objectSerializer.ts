@@ -176,6 +176,7 @@ import { TransactionDescriptionInfo } from "./transactionDescriptionInfo";
 import { TwintInfo } from "./twintInfo";
 import { UninstallAndroidAppDetails } from "./uninstallAndroidAppDetails";
 import { UninstallAndroidCertificateDetails } from "./uninstallAndroidCertificateDetails";
+import { Unreferenced } from "./unreferenced";
 import { UpdatableAddress } from "./updatableAddress";
 import { UpdateCompanyApiCredentialRequest } from "./updateCompanyApiCredentialRequest";
 import { UpdateCompanyUserRequest } from "./updateCompanyUserRequest";
@@ -470,6 +471,7 @@ let typeMap: {[index: string]: any} = {
     "TwintInfo": TwintInfo,
     "UninstallAndroidAppDetails": UninstallAndroidAppDetails,
     "UninstallAndroidCertificateDetails": UninstallAndroidCertificateDetails,
+    "Unreferenced": Unreferenced,
     "UpdatableAddress": UpdatableAddress,
     "UpdateCompanyApiCredentialRequest": UpdateCompanyApiCredentialRequest,
     "UpdateCompanyUserRequest": UpdateCompanyUserRequest,
