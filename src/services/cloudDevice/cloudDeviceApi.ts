@@ -79,11 +79,8 @@ class CloudDeviceAPI extends Service {
      * @returns A promise that resolves to "ok" if the request was successful, or a CloudDeviceApiResponse if there is an error.
      */
     public sendAsync(merchantAccount: string, deviceId: string, cloudDeviceApiRequest: CloudDeviceApiRequest): Promise<string | CloudDeviceApiResponse> {
-        const endpoint = this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/async"
-            .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
-            .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
 
-        const resource = new Resource(this, endpoint);
+        const resource = new Resource(this, this.getAsyncEndpoint(merchantAccount, deviceId));
 
         const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest, deviceId);
 
@@ -123,12 +120,7 @@ class CloudDeviceAPI extends Service {
 
         try {
 
-            const endpoint = this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/async"
-                .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
-                .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
-
-            const resource = new Resource(this, endpoint);
-
+            const resource = new Resource(this, this.getAsyncEndpoint(merchantAccount, deviceId));
             const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest, deviceId);
 
             // extract the payload to encrypt (i.e. PaymentRequest)
@@ -183,12 +175,8 @@ class CloudDeviceAPI extends Service {
      * @returns A promise that resolves to a CloudDeviceApiResponse.
      */
     public async sendSync(merchantAccount: string, deviceId: string, cloudDeviceApiRequest: CloudDeviceApiRequest): Promise<CloudDeviceApiResponse> {
-        const endpoint = this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/sync"
-            .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
-            .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
 
-        const resource = new Resource(this, endpoint);
-
+        const resource = new Resource(this, this.getSyncEndpoint(merchantAccount, deviceId));
         const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest, deviceId);
 
         const response = await getJsonResponse<CloudDeviceApiRequest, CloudDeviceApiResponse>(
@@ -229,12 +217,7 @@ class CloudDeviceAPI extends Service {
 
         try {
 
-            const endpoint = this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/sync"
-                .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
-                .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
-
-            const resource = new Resource(this, endpoint);
-
+            const resource = new Resource(this, this.getSyncEndpoint(merchantAccount, deviceId));
             const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest, deviceId);
 
             // extract the payload to encrypt (i.e. PaymentRequest)
@@ -282,10 +265,8 @@ class CloudDeviceAPI extends Service {
      * @returns A promise that resolves to a ConnectedDevicesResponse.
      */
     public async getConnectedDevices(merchantAccount: string, store?: string): Promise<ConnectedDevicesResponse> {
-        const endpoint = this.baseUrl + "/merchants/{merchantAccount}/connectedDevices"
-            .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)));
 
-        const resource = new Resource(this, endpoint);
+        const resource = new Resource(this, this.getConnectedDevicesEndpoint(merchantAccount));
 
         let requestOptions: IRequest.Options = {};
         if (store) {
@@ -309,11 +290,8 @@ class CloudDeviceAPI extends Service {
      * @returns A promise that resolves to a DeviceStatusResponse.
      */
     public async getDeviceStatus(merchantAccount: string, deviceId: string): Promise<DeviceStatusResponse> {
-        const endpoint = this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/status"
-            .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
-            .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
 
-        const resource = new Resource(this, endpoint);
+        const resource = new Resource(this, this.getDeviceStatusEndpoint(merchantAccount, deviceId));
 
         const response = await getJsonResponse<string, DeviceStatusResponse>(
             resource,
@@ -341,6 +319,52 @@ class CloudDeviceAPI extends Service {
             }
         }
         return null;
+    }
+
+    /**
+     * Get Device API /sync endpoint
+     * @param merchantAccount The unique identifier of the merchant account.
+     * @param deviceId The unique identifier of the payment device.
+     * @returns 
+     */
+    getSyncEndpoint(merchantAccount: string, deviceId: string) {
+        return this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/sync"
+            .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
+            .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
+    }
+
+    /**
+     * Get Device API /async endpoint
+     * @param merchantAccount The unique identifier of the merchant account.
+     * @param deviceId The unique identifier of the payment device.
+     * @returns 
+     */
+    getAsyncEndpoint(merchantAccount: string, deviceId: string) {
+        return this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/async"
+            .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
+            .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
+    }
+
+    /**
+     * Get Device API connectedDevices endpoint
+     * @param merchantAccount The unique identifier of the merchant account.
+     * @returns 
+     */
+    getConnectedDevicesEndpoint(merchantAccount: string) {
+        return this.baseUrl + "/merchants/{merchantAccount}/connectedDevices"
+            .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)));
+    }
+
+    /**
+     * Get Device API device status endpoint
+     * @param merchantAccount The unique identifier of the merchant account.
+     * @param deviceId The unique identifier of the payment device.
+     * @returns 
+     */
+    getDeviceStatusEndpoint(merchantAccount: string, deviceId: string) {
+        return this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/status"
+            .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
+            .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
     }
 
 }

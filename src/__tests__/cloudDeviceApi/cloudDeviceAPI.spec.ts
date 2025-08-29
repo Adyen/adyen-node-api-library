@@ -271,3 +271,27 @@ describe("should extract PaymentRequest with extractPayloadObject", () => {
   });
 
 });
+
+describe("should build the expected CloudDeviceAPI endpoints", () => {
+
+  it("should return the sync endpoint", () => {
+    const endpoint = cloudDeviceAPI.getSyncEndpoint("TestMerchantAccount", "P400Plus-123456789");
+    expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/devices/P400Plus-123456789/sync");
+  });
+
+  it("should return the async endpoint", () => {
+    const endpoint = cloudDeviceAPI.getAsyncEndpoint("TestMerchantAccount", "P400Plus-123456789");
+    expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/devices/P400Plus-123456789/async");
+  });
+
+  it("should return the connected devices endpoint", () => {
+    const endpoint = cloudDeviceAPI.getConnectedDevicesEndpoint("TestMerchantAccount");
+    expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/connectedDevices");
+  });
+
+  it("should return the device status endpoint", () => {
+    const endpoint = cloudDeviceAPI.getDeviceStatusEndpoint("TestMerchantAccount", "P400Plus-123456789");
+    expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/devices/P400Plus-123456789/status");
+  });
+  
+});
