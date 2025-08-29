@@ -22,7 +22,7 @@ import Client from "../../client";
 import getJsonResponse from "../../helpers/getJsonResponse";
 import mergeDeep from "../../utils/mergeDeep";
 import { ApplicationInfo } from "../../typings/applicationInfo";
-import { ObjectSerializer, CloudDeviceApiRequest, CloudDeviceApiResponse, ConnectedDevicesResponse, DeviceStatusResponse, CloudDeviceApiSecuredRequest, CloudDeviceApiSecuredResponse, SaleToPOISecuredMessage } from "../../typings/cloudDevice/models";
+import { ObjectSerializer, CloudDeviceApiRequest, CloudDeviceApiResponse, ConnectedDevicesResponse, DeviceStatusResponse, CloudDeviceApiSecuredRequest, CloudDeviceApiSecuredResponse, SaleToPOISecuredMessage, SaleToPOIRequest } from "../../typings/cloudDevice/models";
 import Resource from "../resource";
 import { IRequest } from "../../typings/requestOptions";
 import NexoSecurityManager from "../../security/nexoSecurityManager";
@@ -44,7 +44,8 @@ class CloudDeviceAPI extends Service {
         this.apiKeyRequired = true;
     }
 
-    private static setApplicationInfo(request: CloudDeviceApiRequest): CloudDeviceApiRequest {
+    // Add application information to a CloudDevice API request and sets the device POIID.
+    private static setApplicationInfo(request: CloudDeviceApiRequest, deviceId: string): CloudDeviceApiRequest {
         if (request.SaleToPOIRequest.PaymentRequest) {
             const applicationInfo = new ApplicationInfo();
             const saleToAcquirerData = { applicationInfo };
@@ -55,6 +56,16 @@ class CloudDeviceAPI extends Service {
 
             mergeDeep(request, reqWithAppInfo);
         }
+
+        if (true) {
+            request.SaleToPOIRequest = {
+                ...request.SaleToPOIRequest,
+                MessageHeader: {
+                    ...request.SaleToPOIRequest?.MessageHeader,
+                    POIID: deviceId
+                }
+            };
+        }   
 
         return ObjectSerializer.serialize(request, "CloudDeviceApiRequest");
     }
@@ -67,97 +78,200 @@ class CloudDeviceAPI extends Service {
      * @param deviceId - The unique identifier of the payment device that you send this request to (must match POIID in the MessageHeader).
      * @returns A promise that resolves to "ok" if the request was successful, or a CloudDeviceApiResponse if there is an error.
      */
-    public async(merchantAccount: string, deviceId: string, cloudDeviceApiRequest: CloudDeviceApiRequest): Promise<string | CloudDeviceApiResponse> {
+    public sendAsync(merchantAccount: string, deviceId: string, cloudDeviceApiRequest: CloudDeviceApiRequest): Promise<string | CloudDeviceApiResponse> {
         const endpoint = this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/async"
             .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
             .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
 
         const resource = new Resource(this, endpoint);
 
-        const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest);
-
-        // set deviceId
-        request.SaleToPOIRequest.MessageHeader.POIID = deviceId;
+        const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest, deviceId);
 
         return getJsonResponse<CloudDeviceApiRequest>(
-            resource, 
+            resource,
             request
         );
     }
 
-     /**
-     * Send an asynchronous payment request.
-     *
-     * @param merchantAccount - The unique identifier of the merchant account.
-     * @param deviceId - The unique identifier of the payment device that you send this request to (must match POIID in the MessageHeader).
-     * @param cloudDeviceApiRequest - The request to send.
-     * @param encryptionCredentialDetails - The details of the encryption credential used for encrypting the request payload (nexoBlob)
-     * @returns A promise that resolves to "ok" if the request was successful, or a CloudDeviceApiResponse if there is an error.
-     */
-    public asyncEncrypted(merchantAccount: string, deviceId: string, cloudDeviceApiRequest: CloudDeviceApiRequest, encryptionCredentialDetails: EncryptionCredentialDetails): Promise<string | CloudDeviceApiSecuredResponse> {
-        const endpoint = this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/async"
-            .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
-            .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
+    /**
+    * Send an asynchronous encrypted payment request.
+    *
+    * @param merchantAccount - The unique identifier of the merchant account.
+    * @param deviceId - The unique identifier of the payment device that you send this request to (must match POIID in the MessageHeader).
+    * @param cloudDeviceApiRequest - The request to send.
+    * @param encryptionCredentialDetails - The details of the encryption credential used for encrypting the request payload (nexoBlob)
+    * @returns A promise that resolves to "ok" if the request was successful, or a CloudDeviceApiResponse if there is an error.
+    * 
+    * @throws {CloudDeviceApiError} If an error occurs
+    * @example 
+    * try {
+    *   const response = await client.sendEncryptedAsync(
+    *     "TestMerchant",
+    *     "P400Plus-123456789",
+    *     cloudDeviceApiRequest,
+    *     encryptionCredentialDetails
+    *   );
+    *   console.log("Decrypted response:", response);
+    * } catch (err) {
+    *   if (err instanceof CloudDeviceApiError) {
+    *     console.error("CloudDevice API failed:", err.message);
+    *     console.error("Cause:", err.cause);
+    *   }
+    * }  
+    */
+    public async sendEncryptedAsync(merchantAccount: string, deviceId: string, cloudDeviceApiRequest: CloudDeviceApiRequest, encryptionCredentialDetails: EncryptionCredentialDetails): Promise<string | CloudDeviceApiResponse> {
 
-        const resource = new Resource(this, endpoint);
+        try {
 
-        const formattedRequest = ObjectSerializer.serialize(cloudDeviceApiRequest, "CloudDeviceApiRequest");
+            const endpoint = this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/async"
+                .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
+                .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
 
-        const saleToPoiSecuredMessage: SaleToPOISecuredMessage = NexoSecurityManager.encrypt(
-            cloudDeviceApiRequest.SaleToPOIRequest?.MessageHeader,
-            JSON.stringify(formattedRequest),
-            encryptionCredentialDetails,
-        );
+            const resource = new Resource(this, endpoint);
 
-         const securedPaymentRequest: CloudDeviceApiSecuredRequest = ObjectSerializer.serialize({
-                    SaleToPOIRequest: saleToPoiSecuredMessage,
-                }, "CloudDeviceApiSecuredRequest");
-        
+            const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest, deviceId);
 
-        //const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest);
-        // set deviceId
-        //request.SaleToPOIRequest.MessageHeader.POIID = deviceId;
+            // extract the payload to encrypt (i.e. PaymentRequest)
+            const payload = this.extractPayloadObject(request.SaleToPOIRequest);
 
-        const jsonResponse = getJsonResponse<CloudDeviceApiSecuredRequest, CloudDeviceApiSecuredResponse>(
-            resource, 
-            securedPaymentRequest
-        );
+            // encrypt the payload and create SaleToPOISecuredMessage
+            const saleToPoiSecuredMessage: SaleToPOISecuredMessage = NexoSecurityManager.encrypt(
+                request.SaleToPOIRequest?.MessageHeader,
+                JSON.stringify(payload),
+                encryptionCredentialDetails,
+            );
 
-        const cloudDeviceApiSecuredResponse: CloudDeviceApiSecuredResponse =
-            ObjectSerializer.deserialize(jsonResponse, "CloudDeviceApiSecuredResponse");
+            const securedPaymentRequest: CloudDeviceApiSecuredRequest = ObjectSerializer.serialize({
+                SaleToPOIRequest: saleToPoiSecuredMessage,
+            }, "CloudDeviceApiSecuredRequest");
 
-        const response = NexoSecurityManager.decrypt(
-            cloudDeviceApiSecuredResponse.SaleToPOIResponse,
-            encryptionCredentialDetails,
-        );
-        return ObjectSerializer.deserialize(JSON.parse(response), "CloudDeviceApiSecuredResponse");
+            const jsonResponse = await getJsonResponse<CloudDeviceApiSecuredRequest, CloudDeviceApiSecuredResponse>(
+                resource,
+                securedPaymentRequest
+            );
+
+            if (typeof jsonResponse === "string") {
+                // request was successful
+                return jsonResponse;
+            }
+
+            const cloudDeviceApiSecuredResponse: CloudDeviceApiSecuredResponse =
+                ObjectSerializer.deserialize(jsonResponse, "CloudDeviceApiSecuredResponse");
+
+            // decrypt SaleToPOISecuredMessage
+            const decryptedPayload = NexoSecurityManager.decrypt(
+                cloudDeviceApiSecuredResponse.SaleToPOIResponse,
+                encryptionCredentialDetails,
+            );
+
+            return ObjectSerializer.deserialize(JSON.parse(decryptedPayload), "CloudDeviceApiResponse");
+
+        } catch (err: any) {
+            // an error has occurred
+            console.error(err);
+            throw new CloudDeviceApiError(err?.message || "Unknown error", err);
+        }
     }
-     
+
 
     /**
      * Send a synchronous payment request.
+     * 
      * @param cloudDeviceApiRequest - The request to send.
      * @param merchantAccount - The unique identifier of the merchant account.
      * @param deviceId - The unique identifier of the payment device that you send this request to (must match POIID in the MessageHeader).
      * @returns A promise that resolves to a CloudDeviceApiResponse.
      */
-    public async sync(merchantAccount: string, deviceId: string, cloudDeviceApiRequest: CloudDeviceApiRequest): Promise<CloudDeviceApiResponse> {
+    public async sendSync(merchantAccount: string, deviceId: string, cloudDeviceApiRequest: CloudDeviceApiRequest): Promise<CloudDeviceApiResponse> {
         const endpoint = this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/sync"
             .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
             .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
 
         const resource = new Resource(this, endpoint);
 
-        const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest);
-        // set deviceId
-        request.SaleToPOIRequest.MessageHeader.POIID = deviceId;
+        const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest, deviceId);
 
         const response = await getJsonResponse<CloudDeviceApiRequest, CloudDeviceApiResponse>(
-            resource, 
+            resource,
             request
         );
 
         return ObjectSerializer.deserialize(response, "CloudDeviceApiResponse");
+    }
+
+    /**
+    * Send a synchronous encrypted payment request.
+    *
+    * @param merchantAccount - The unique identifier of the merchant account.
+    * @param deviceId - The unique identifier of the payment device that you send this request to (must match POIID in the MessageHeader).
+    * @param cloudDeviceApiRequest - The request to send.
+    * @param encryptionCredentialDetails - The details of the encryption credential used for encrypting the request payload (nexoBlob)
+    * @returns A promise that resolves to CloudDeviceApiSecuredResponse
+    * 
+    * @throws {CloudDeviceApiError} If an error occurs
+    * @example 
+    * try {
+    *   const response = await client.sendEncryptedSync(
+    *     "TestMerchant",
+    *     "P400Plus-123456789",
+    *     cloudDeviceApiRequest,
+    *     encryptionCredentialDetails
+    *   );
+    *   console.log("Decrypted response:", response);
+    * } catch (err) {
+    *   if (err instanceof CloudDeviceApiError) {
+    *     console.error("CloudDevice API failed:", err.message);
+    *     console.error("Cause:", err.cause);
+    *   }
+    * }  
+    */
+    public async sendEncryptedSync(merchantAccount: string, deviceId: string, cloudDeviceApiRequest: CloudDeviceApiRequest, encryptionCredentialDetails: EncryptionCredentialDetails): Promise<CloudDeviceApiResponse> {
+
+        try {
+
+            const endpoint = this.baseUrl + "/merchants/{merchantAccount}/devices/{deviceId}/sync"
+                .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
+                .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
+
+            const resource = new Resource(this, endpoint);
+
+            const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest, deviceId);
+
+            // extract the payload to encrypt (i.e. PaymentRequest)
+            const payload = this.extractPayloadObject(request.SaleToPOIRequest);
+
+            // encrypt the payload and create SaleToPOISecuredMessage
+            const saleToPoiSecuredMessage: SaleToPOISecuredMessage = NexoSecurityManager.encrypt(
+                request.SaleToPOIRequest?.MessageHeader,
+                JSON.stringify(payload),
+                encryptionCredentialDetails,
+            );
+
+            const securedPaymentRequest: CloudDeviceApiSecuredRequest = ObjectSerializer.serialize({
+                SaleToPOIRequest: saleToPoiSecuredMessage,
+            }, "CloudDeviceApiSecuredRequest");
+
+            const jsonResponse = await getJsonResponse<CloudDeviceApiSecuredRequest, CloudDeviceApiSecuredResponse>(
+                resource,
+                securedPaymentRequest
+            );
+
+            const cloudDeviceApiSecuredResponse: CloudDeviceApiSecuredResponse =
+                ObjectSerializer.deserialize(jsonResponse, "CloudDeviceApiSecuredResponse");
+
+            // decrypt SaleToPOISecuredMessage
+            const decryptedPayload = NexoSecurityManager.decrypt(
+                cloudDeviceApiSecuredResponse.SaleToPOIResponse,
+                encryptionCredentialDetails,
+            );
+
+            return ObjectSerializer.deserialize(JSON.parse(decryptedPayload), "CloudDeviceApiResponse");
+
+        } catch (err: any) {
+            // an error has occurred
+            console.error(err);
+            throw new CloudDeviceApiError(err?.message || "Unknown error", err);
+        }
     }
 
     /**
@@ -176,7 +290,7 @@ class CloudDeviceAPI extends Service {
         let requestOptions: IRequest.Options = {};
         if (store) {
             requestOptions.params = { store };
-        }        
+        }
 
         const response = await getJsonResponse<string, ConnectedDevicesResponse>(
             resource,
@@ -210,6 +324,40 @@ class CloudDeviceAPI extends Service {
         return ObjectSerializer.deserialize(response, "DeviceStatusResponse");
     }
 
+
+    /**
+     * Extract the payload request object
+     */
+    extractPayloadObject(saleToPOIRequest: SaleToPOIRequest): { [key: string]: any } | null {
+        for (const attr of SaleToPOIRequest.attributeTypeMap) {
+            // ignore MessageHeader or SecurityTrailer
+            if (attr.name === "MessageHeader" || attr.name === "SecurityTrailer") {
+                continue; // skip header/trailer
+            }
+
+            const value = (saleToPOIRequest as any)[attr.name];
+            if (value !== undefined && value !== null) {
+                return { [attr.name]: value };
+            }
+        }
+        return null;
+    }
+
+}
+
+
+/**
+ * CloudDeviceApiError wraps any failure during the processing of Cloud Device API requests
+ */
+export class CloudDeviceApiError extends Error {
+    /**
+     * @param {string} message - A human-readable error message.
+     * @param {unknown} [cause] - The original error that triggered this failure.
+     */
+    constructor(message: string, public cause?: unknown) {
+        super(message);
+        this.name = "CloudDeviceApiError";
+    }
 }
 
 export default CloudDeviceAPI;

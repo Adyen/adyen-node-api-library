@@ -249,6 +249,9 @@ export * from "./unitOfMeasureType";
 export * from "./versionType";
 // helpers
 export * from "./predefinedContentHelper";
+// security
+export * from "../../security/encryptionCredentialDetails";
+
 
 import { AbortRequest } from "./abortRequest";
 import { AccountType } from "./accountType";
@@ -290,6 +293,8 @@ import { CheckData } from "./checkData";
 import { CheckTypeCodeType } from "./checkTypeCodeType";
 import { CloudDeviceApiRequest } from "./cloudDeviceApiRequest";
 import { CloudDeviceApiResponse } from "./cloudDeviceApiResponse";
+import { CloudDeviceApiSecuredRequest } from "./cloudDeviceApiSecuredRequest";
+import { CloudDeviceApiSecuredResponse } from "./cloudDeviceApiSecuredResponse";
 import { CoinsOrBills } from "./coinsOrBills";
 import { ConnectedDevicesResponse } from "./connectedDevicesResponse";
 import { ColorType } from "./colorType";
@@ -435,7 +440,6 @@ import { SaleToIssuerData } from "./saleToIssuerData";
 import { SaleToPOIRequest } from "./saleToPOIRequest";
 import { SaleToPOIResponse } from "./saleToPOIResponse";
 import { SaleToPOISecuredMessage } from "./saleToPOISecuredMessage";
-import { SecurityKey } from "./encryptionCredentialDetails";
 import { SecurityTrailer } from "./securityTrailer";
 import { SensitiveCardData } from "./sensitiveCardData";
 import { SensitiveMobileData } from "./sensitiveMobileData";
@@ -460,8 +464,6 @@ import { StoredValueRequest } from "./storedValueRequest";
 import { StoredValueResponse } from "./storedValueResponse";
 import { StoredValueResult } from "./storedValueResult";
 import { StoredValueTransactionType } from "./storedValueTransactionType";
-import { TerminalApiSecuredRequest } from "./cloudDeviceApiSecuredRequest";
-import { TerminalApiSecuredResponse } from "./cloudDeviceApiSecuredResponse";
 import { TerminalEnvironmentType } from "./terminalEnvironmentType";
 import { TokenRequestedType } from "./tokenRequestedType";
 import { TotalDetailsType } from "./totalDetailsType";
@@ -481,6 +483,10 @@ import { TransmitResponse } from "./transmitResponse";
 import { UTMCoordinates } from "./uTMCoordinates";
 import { UnitOfMeasureType } from "./unitOfMeasureType";
 import { VersionType } from "./versionType";
+
+// security
+import { EncryptionCredentialDetails } from "../../security/encryptionCredentialDetails";
+
 
 /* tslint:disable:no-unused-variable */
 const primitives = [
@@ -646,6 +652,10 @@ const typeMap: {[index: string]: any} = {
     "CashHandlingDevice": CashHandlingDevice,
     "CheckData": CheckData,
     "CoinsOrBills": CoinsOrBills,
+    "CloudDeviceApiRequest": CloudDeviceApiRequest,
+    "CloudDeviceApiResponse": CloudDeviceApiResponse,
+    "CloudDeviceApiSecuredRequest": CloudDeviceApiSecuredRequest,
+    "CloudDeviceApiSecuredResponse": CloudDeviceApiSecuredResponse,
     "CommonField": CommonField,
     "ConnectedDevicesResponse": ConnectedDevicesResponse,
     "ContentInformation": ContentInformation,
@@ -662,6 +672,7 @@ const typeMap: {[index: string]: any} = {
     "EnableServiceResponse": EnableServiceResponse,
     "EncapsulatedContent": EncapsulatedContent,
     "EncryptedContent": EncryptedContent,
+    "EncryptionCredentialDetails": EncryptionCredentialDetails,
     "EnvelopedData": EnvelopedData,
     "EventNotification": EventNotification,
     "ExternalPlatform": ExternalPlatform,
@@ -754,7 +765,6 @@ const typeMap: {[index: string]: any} = {
     "SaleToPOIRequest": SaleToPOIRequest,
     "SaleToPOIResponse": SaleToPOIResponse,
     "SaleToPOISecuredMessage": SaleToPOISecuredMessage,
-    "SecurityKey": SecurityKey,
     "SecurityTrailer": SecurityTrailer,
     "SensitiveCardData": SensitiveCardData,
     "SensitiveMobileData": SensitiveMobileData,
@@ -773,10 +783,6 @@ const typeMap: {[index: string]: any} = {
     "StoredValueRequest": StoredValueRequest,
     "StoredValueResponse": StoredValueResponse,
     "StoredValueResult": StoredValueResult,
-    "TerminalApiRequest": CloudDeviceApiRequest,
-    "TerminalApiResponse": CloudDeviceApiResponse,
-    "TerminalApiSecuredRequest": TerminalApiSecuredRequest,
-    "TerminalApiSecuredResponse": TerminalApiSecuredResponse,
     "TotalFilter": TotalFilter,
     "TrackData": TrackData,
     "TransactionConditions": TransactionConditions,
