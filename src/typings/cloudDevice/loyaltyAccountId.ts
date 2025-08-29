@@ -1,0 +1,84 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2025 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+ 
+/**
+ * Cloud Device API
+ * Definition of Cloud Device API Schema
+ *
+ */
+
+
+import { IdentificationType } from './identificationType';
+
+export class LoyaltyAccountId {
+    'EntryMode': Array<LoyaltyAccountId.EntryModeEnum>;
+    'IdentificationSupport'?: LoyaltyAccountId.IdentificationSupportEnum;
+    'IdentificationType': IdentificationType;
+    'LoyaltyID'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "EntryMode",
+            "baseName": "EntryMode",
+            "type": "Array<LoyaltyAccountId.EntryModeEnum>"
+        },
+        {
+            "name": "IdentificationSupport",
+            "baseName": "IdentificationSupport",
+            "type": "LoyaltyAccountId.IdentificationSupportEnum"
+        },
+        {
+            "name": "IdentificationType",
+            "baseName": "IdentificationType",
+            "type": "IdentificationType"
+        },
+        {
+            "name": "LoyaltyID",
+            "baseName": "LoyaltyID",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return LoyaltyAccountId.attributeTypeMap;
+    }
+}
+
+export namespace LoyaltyAccountId {
+    export enum EntryModeEnum {
+        Contactless = <any> 'Contactless',
+        File = <any> 'File',
+        Icc = <any> 'ICC',
+        Keyed = <any> 'Keyed',
+        MagStripe = <any> 'MagStripe',
+        Manual = <any> 'Manual',
+        Mobile = <any> 'Mobile',
+        Rfid = <any> 'RFID',
+        Scanned = <any> 'Scanned',
+        SynchronousIcc = <any> 'SynchronousICC',
+        Tapped = <any> 'Tapped'
+    }
+    export enum IdentificationSupportEnum {
+        HybridCard = <any> 'HybridCard',
+        LinkedCard = <any> 'LinkedCard',
+        LoyaltyCard = <any> 'LoyaltyCard',
+        NoCard = <any> 'NoCard'
+    }
+}

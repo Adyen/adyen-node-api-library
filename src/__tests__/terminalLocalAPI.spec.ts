@@ -1,5 +1,6 @@
 import nock from "nock";
-import { createClient, createTerminalAPIPaymentRequest } from "../__mocks__/base";
+import { createClient } from "../__mocks__/base";
+import { createTerminalAPIPaymentRequest } from "../__mocks__/terminalApi/baseTerminalApi";
 import { localEncRes, wrongEncRes } from "../__mocks__/terminalApi/local";
 import Client from "../client";
 import TerminalLocalAPI from "../services/terminalLocalAPI";
