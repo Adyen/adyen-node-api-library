@@ -15,7 +15,6 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/transfers/objectSerializer";
-import { RestServiceError } from "../../typings/transfers/models";
 import { Transaction } from "../../typings/transfers/models";
 import { TransactionSearchResponse } from "../../typings/transfers/models";
 
@@ -46,7 +45,7 @@ export class TransactionsApi extends Service {
     * @param limit {@link number } The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.
     * @return {@link TransactionSearchResponse }
     */
-    public async getAllTransactions(createdSince: Date, createdUntil: Date, balancePlatform?: string, paymentInstrumentId?: string, accountHolderId?: string, balanceAccountId?: string, cursor?: string, sortOrder?: 'asc' | 'desc', limit?: number, requestOptions?: IRequest.Options): Promise<TransactionSearchResponse> {
+    public async getAllTransactions(createdSince: Date, createdUntil: Date, balancePlatform?: string, paymentInstrumentId?: string, accountHolderId?: string, balanceAccountId?: string, cursor?: string, sortOrder?: "asc" | "desc", limit?: number, requestOptions?: IRequest.Options): Promise<TransactionSearchResponse> {
         const endpoint = `${this.baseUrl}/transactions`;
         const resource = new Resource(this, endpoint);
         
