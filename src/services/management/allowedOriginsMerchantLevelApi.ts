@@ -17,7 +17,6 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/management/objectSerializer";
 import { AllowedOrigin } from "../../typings/management/models";
 import { AllowedOriginsResponse } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 
 /**
  * API handler for AllowedOriginsMerchantLevelApi
