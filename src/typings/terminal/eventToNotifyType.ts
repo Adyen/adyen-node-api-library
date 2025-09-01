@@ -47,6 +47,7 @@ export enum EventToNotifyType {
     Reject = <any> 'Reject',
     SaleAdmin = <any> 'SaleAdmin',
     SaleWakeUp = <any> 'SaleWakeUp',
+    ScanBarcodeResult = <any> 'ScanBarcodeResult',
     SecurityAlarm = <any> 'SecurityAlarm',
     Shutdown = <any> 'Shutdown',
     StopAssistance = <any> 'StopAssistance'
