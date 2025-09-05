@@ -13,9 +13,9 @@ export const CLOUD_DEVICE_API_ENDPOINT_TEST = "https://device-api-test.adyen.com
 
 // Live endpoints for Cloud Device API
 const CLOUD_DEVICE_API_ENDPOINT_LIVE = "https://device-api-live.adyen.com";
-const CLOUD_DEVICE_API_ENDPOINT_AU_LIVE = "https://device-api-au.adyen.com";
-const CLOUD_DEVICE_API_ENDPOINT_US_LIVE = "https://device-api-us.adyen.com";
-const CLOUD_DEVICE_API_ENDPOINT_APSE_LIVE = "https://device-api-apse.adyen.com";
+const CLOUD_DEVICE_API_ENDPOINT_AU_LIVE = "https://device-api-live-au.adyen.com";
+const CLOUD_DEVICE_API_ENDPOINT_US_LIVE = "https://device-api-live-us.adyen.com";
+const CLOUD_DEVICE_API_ENDPOINT_APSE_LIVE = "https://device-api-live-apse.adyen.com";
 
 
 /**

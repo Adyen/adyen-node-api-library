@@ -174,7 +174,7 @@ describe("API Client", function (): void {
     });
     const client = new Client(config);
     expect(client.config.cloudDeviceApiEndpoint).toBeDefined();
-    expect(client.config.cloudDeviceApiEndpoint).toBe("https://device-api-us.adyen.com");
+    expect(client.config.cloudDeviceApiEndpoint).toBe("https://device-api-live-us.adyen.com");
   });
 
 
