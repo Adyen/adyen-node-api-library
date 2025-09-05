@@ -175,6 +175,7 @@ import { ResponseAdditionalDataInstallments } from "./responseAdditionalDataInst
 import { ResponseAdditionalDataNetworkTokens } from "./responseAdditionalDataNetworkTokens";
 import { ResponseAdditionalDataOpi } from "./responseAdditionalDataOpi";
 import { ResponseAdditionalDataSepa } from "./responseAdditionalDataSepa";
+import { ResponseAdditionalDataSwish } from "./responseAdditionalDataSwish";
 import { ResponsePaymentMethod } from "./responsePaymentMethod";
 import { Result } from "./result";
 import { RiskData } from "./riskData";
@@ -622,6 +623,7 @@ let typeMap: {[index: string]: any} = {
     "ResponseAdditionalDataNetworkTokens": ResponseAdditionalDataNetworkTokens,
     "ResponseAdditionalDataOpi": ResponseAdditionalDataOpi,
     "ResponseAdditionalDataSepa": ResponseAdditionalDataSepa,
+    "ResponseAdditionalDataSwish": ResponseAdditionalDataSwish,
     "ResponsePaymentMethod": ResponsePaymentMethod,
     "RiskData": RiskData,
     "RivertyDetails": RivertyDetails,

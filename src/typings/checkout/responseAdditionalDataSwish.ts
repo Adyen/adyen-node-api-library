@@ -7,15 +7,12 @@
  * Do not edit this class manually.
  */
 
-import { Result } from "./result";
 
-
-export class ValidateShopperIdResponse {
+export class ResponseAdditionalDataSwish {
     /**
-    * Reason for the result.
+    * A Swish shopper\'s telephone number.
     */
-    "reason"?: string;
-    "result"?: Result;
+    "swish_payerAlias"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -23,25 +20,17 @@ export class ValidateShopperIdResponse {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "reason",
-            "baseName": "reason",
+            "name": "swish_payerAlias",
+            "baseName": "swish.payerAlias",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "result",
-            "baseName": "result",
-            "type": "Result",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ValidateShopperIdResponse.attributeTypeMap;
+        return ResponseAdditionalDataSwish.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace ValidateShopperIdResponse {
-}
