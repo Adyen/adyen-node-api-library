@@ -4,9 +4,9 @@ export const TERMINAL_API_ENDPOINT_TEST = "https://terminal-api-test.adyen.com";
 
 // Live endpoints for Terminal API
 const TERMINAL_API_ENDPOINT_LIVE = "https://terminal-api-live.adyen.com";
-const TERMINAL_API_ENDPOINT_AU_LIVE = "https://terminal-api-au.adyen.com";
-const TERMINAL_API_ENDPOINT_US_LIVE = "https://terminal-api-us.adyen.com";
-const TERMINAL_API_ENDPOINT_APSE_LIVE = "https://terminal-api-apse.adyen.com";
+const TERMINAL_API_ENDPOINT_AU_LIVE = "https://terminal-api-live-au.adyen.com";
+const TERMINAL_API_ENDPOINT_US_LIVE = "https://terminal-api-live-us.adyen.com";
+const TERMINAL_API_ENDPOINT_APSE_LIVE = "https://terminal-api-live-apse.adyen.com";
 
 
 /**
@@ -66,7 +66,7 @@ class Config {
     public terminalApiCloudEndpoint?: string;
     public terminalApiLocalEndpoint?: string;
     public liveEndpointUrlPrefix?: string;
-    public region?: RegionEnum;     
+    public region?: RegionEnum;
 
     public constructor(options: ConfigConstructor = {}) {
         if (options.username) this.username = options.username;
