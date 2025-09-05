@@ -7,20 +7,23 @@
  * Do not edit this class manually.
  */
 
+import { Amount } from "./amount";
 
-export class StockData {
+
+export class Financier {
+    "amount": Amount;
     /**
-    * The four-digit [Market Identifier Code](https://en.wikipedia.org/wiki/Market_Identifier_Code) of the stock market where the organization\'s stocks are traded.
+    * The financier\'s first name.
     */
-    "marketIdentifier"?: string;
+    "firstName": string;
     /**
-    * The 12-digit International Securities Identification Number (ISIN) of the company, without dashes (-).
+    * The financier\'s last name.
     */
-    "stockNumber"?: string;
+    "lastName": string;
     /**
-    * The stock ticker symbol.
+    * The location of the financier.
     */
-    "tickerSymbol"?: string;
+    "location": string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,26 +31,32 @@ export class StockData {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "marketIdentifier",
-            "baseName": "marketIdentifier",
+            "name": "amount",
+            "baseName": "amount",
+            "type": "Amount",
+            "format": ""
+        },
+        {
+            "name": "firstName",
+            "baseName": "firstName",
             "type": "string",
             "format": ""
         },
         {
-            "name": "stockNumber",
-            "baseName": "stockNumber",
+            "name": "lastName",
+            "baseName": "lastName",
             "type": "string",
             "format": ""
         },
         {
-            "name": "tickerSymbol",
-            "baseName": "tickerSymbol",
+            "name": "location",
+            "baseName": "location",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StockData.attributeTypeMap;
+        return Financier.attributeTypeMap;
     }
 
     public constructor() {
