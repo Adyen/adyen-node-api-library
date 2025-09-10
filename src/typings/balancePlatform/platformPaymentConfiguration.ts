@@ -10,6 +10,10 @@
 
 export class PlatformPaymentConfiguration {
     /**
+    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) to lock the balance account to. Once set, all transactions for this balance account must be in this currency.
+    */
+    "lockedCurrency"?: string;
+    /**
     * Specifies at what time a sales day ends for this account.  Possible values: Time in **\"HH:MM\"** format. **HH** ranges from **00** to **07**. **MM** must be **00**.  Default value: **\"00:00\"**.
     */
     "salesDayClosingTime"?: string;
@@ -23,6 +27,12 @@ export class PlatformPaymentConfiguration {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "lockedCurrency",
+            "baseName": "lockedCurrency",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "salesDayClosingTime",
             "baseName": "salesDayClosingTime",
