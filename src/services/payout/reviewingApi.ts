@@ -17,6 +17,7 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/payout/objectSerializer";
 import { ModifyRequest } from "../../typings/payout/models";
 import { ModifyResponse } from "../../typings/payout/models";
+import { ServiceError } from "../../typings/payout/models";
 
 /**
  * API handler for ReviewingApi

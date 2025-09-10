@@ -26,6 +26,10 @@ export class Organization {
     */
     "dateOfIncorporation"?: string;
     /**
+    * Required if the value of `statusOfLegalProceeding` is one of the following:  **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  The date at which a legal proceeding was initiated, in **YYYY-MM-DD** format. Example: **2000-02-12** 
+    */
+    "dateOfInitiationOfLegalProceeding"?: string;
+    /**
     * Your description for the organization.
     */
     "description"?: string;
@@ -34,6 +38,10 @@ export class Organization {
     */
     "doingBusinessAs"?: string;
     /**
+    * The sector of the economy the legal entity operates within, represented by a 2-4 digit code that may include a \".\". Example: 45.11  You can locate economic sector codes for your area by referencing codes defined by the NACE (Nomenclature of Economic Activities) used in the European Union. 
+    */
+    "economicSector"?: string;
+    /**
     * The email address of the legal entity.
     */
     "email"?: string;
@@ -41,6 +49,22 @@ export class Organization {
     * The financial report information of the organization.
     */
     "financialReports"?: Array<FinancialReport>;
+    /**
+    * The global legal entity identifier for the organization.
+    */
+    "globalLegalEntityIdentifier"?: string;
+    /**
+    * Indicates that the registered business address is also the company\'s headquarters.
+    */
+    "headOfficeIndicator"?: boolean;
+    /**
+    * The institutional sector the organization operates within.
+    */
+    "institutionalSector"?: Organization.InstitutionalSectorEnum;
+    /**
+    * The type of business entity as defined in the national legal system. Use a legal form listed within the accepted legal forms compiled by the Central Bank of Europe. 
+    */
+    "legalForm"?: string;
     /**
     * The organization\'s legal name.
     */
@@ -52,6 +76,10 @@ export class Organization {
     * The organization\'s registration number.
     */
     "registrationNumber"?: string;
+    /**
+    * The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then `dateOfInitiationOfLegalProceeding` is not required. Otherwise, it is required. 
+    */
+    "statusOfLegalProceeding"?: Organization.StatusOfLegalProceedingEnum;
     "stockData"?: StockData | null;
     /**
     * The tax information of the organization.
@@ -90,6 +118,12 @@ export class Organization {
             "format": ""
         },
         {
+            "name": "dateOfInitiationOfLegalProceeding",
+            "baseName": "dateOfInitiationOfLegalProceeding",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "description",
             "baseName": "description",
             "type": "string",
@@ -98,6 +132,12 @@ export class Organization {
         {
             "name": "doingBusinessAs",
             "baseName": "doingBusinessAs",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "economicSector",
+            "baseName": "economicSector",
             "type": "string",
             "format": ""
         },
@@ -111,6 +151,30 @@ export class Organization {
             "name": "financialReports",
             "baseName": "financialReports",
             "type": "Array<FinancialReport>",
+            "format": ""
+        },
+        {
+            "name": "globalLegalEntityIdentifier",
+            "baseName": "globalLegalEntityIdentifier",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "headOfficeIndicator",
+            "baseName": "headOfficeIndicator",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "institutionalSector",
+            "baseName": "institutionalSector",
+            "type": "Organization.InstitutionalSectorEnum",
+            "format": ""
+        },
+        {
+            "name": "legalForm",
+            "baseName": "legalForm",
+            "type": "string",
             "format": ""
         },
         {
@@ -141,6 +205,12 @@ export class Organization {
             "name": "registrationNumber",
             "baseName": "registrationNumber",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "statusOfLegalProceeding",
+            "baseName": "statusOfLegalProceeding",
+            "type": "Organization.StatusOfLegalProceedingEnum",
             "format": ""
         },
         {
@@ -195,6 +265,31 @@ export class Organization {
 }
 
 export namespace Organization {
+    export enum InstitutionalSectorEnum {
+        NonFinancialCorporation = 'nonFinancialCorporation',
+        CentralBank = 'centralBank',
+        CreditInstitutions = 'creditInstitutions',
+        DepositTakingCorporations = 'depositTakingCorporations',
+        MoneyMarketFunds = 'moneyMarketFunds',
+        NonMmfInvestmentFunds = 'nonMMFInvestmentFunds',
+        FinancialVehicleCorporation = 'financialVehicleCorporation',
+        OtherFinancialIntermediaries = 'otherFinancialIntermediaries',
+        FinancialAuxiliaries = 'financialAuxiliaries',
+        CaptiveFinancialInstitutionsAndMoneyLenders = 'captiveFinancialInstitutionsAndMoneyLenders',
+        InsuranceCorporations = 'insuranceCorporations',
+        PensionFunds = 'pensionFunds',
+        CentralGovernment = 'centralGovernment',
+        StateGovernment = 'stateGovernment',
+        LocalGovernment = 'localGovernment',
+        SocialSecurityFunds = 'socialSecurityFunds',
+        NonProfitInstitutionsServingHouseholds = 'nonProfitInstitutionsServingHouseholds'
+    }
+    export enum StatusOfLegalProceedingEnum {
+        NoLegalActionsTaken = 'noLegalActionsTaken',
+        UnderJudicialAdministration = 'underJudicialAdministration',
+        BankruptcyInsolvency = 'bankruptcyInsolvency',
+        OtherLegalMeasures = 'otherLegalMeasures'
+    }
     export enum TypeEnum {
         AssociationIncorporated = 'associationIncorporated',
         GovernmentalOrganization = 'governmentalOrganization',

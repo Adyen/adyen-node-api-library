@@ -24,7 +24,7 @@ export class VerificationErrorRecursive {
     */
     "message"?: string;
     /**
-    * The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**  
+    * The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  
     */
     "type"?: VerificationErrorRecursive.TypeEnum;
     /**
@@ -136,6 +136,7 @@ export namespace VerificationErrorRecursive {
     }
     export enum TypeEnum {
         DataMissing = 'dataMissing',
+        DataReview = 'dataReview',
         InvalidInput = 'invalidInput',
         PendingStatus = 'pendingStatus'
     }

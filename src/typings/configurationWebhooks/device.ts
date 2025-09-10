@@ -10,6 +10,10 @@
 
 export class Device {
     /**
+    * The unique identifier of the device used for provisioning the network token.
+    */
+    "deviceId"?: string;
+    /**
     * The type of the device used for provisioning the network token.  For example, **phone**, **mobile_phone**, **watch**, **mobilephone_or_tablet**, etc
     */
     "formFactor"?: string;
@@ -23,6 +27,12 @@ export class Device {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "deviceId",
+            "baseName": "deviceId",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "formFactor",
             "baseName": "formFactor",
