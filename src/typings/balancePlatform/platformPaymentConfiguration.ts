@@ -10,7 +10,11 @@
 
 export class PlatformPaymentConfiguration {
     /**
-    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) to lock the balance account to. Once set, all transactions for this balance account must be in this currency.
+    * Three-letter [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) 
+    * to lock the balance account to.  
+    * 
+    * By default, FX is not applied to the `PaymentFee` split type.  
+    * Setting this field enables FX for `PaymentFee` as well.
     */
     "lockedCurrency"?: string;
     /**
