@@ -127,7 +127,10 @@ class NexoSecurityManager {
             const receivedHmac = Buffer.from(saleToPoiSecureMessage.SecurityTrailer.Hmac, "base64");
             NexoSecurityManager.validateHmac(receivedHmac, decryptedSaleToPoiMessageByteArray, derivedKey);
 
-            return decryptedSaleToPoiMessageByteArray.toString("utf-8");
+            const decryptedPayload = decryptedSaleToPoiMessageByteArray.toString("utf-8");
+            // Re-add braces to make it a valid JSON object string, reversing the operation from `encrypt`.
+            //return `{${decryptedPayload}}`;
+            return decryptedPayload
 
         } catch (err: any) {
             // an error has occurred
