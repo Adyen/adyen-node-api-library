@@ -16,7 +16,6 @@ import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { GetNetworkTokenResponse } from "../../typings/balancePlatform/models";
-import { RestServiceError } from "../../typings/balancePlatform/models";
 import { UpdateNetworkTokenRequest } from "../../typings/balancePlatform/models";
 
 /**

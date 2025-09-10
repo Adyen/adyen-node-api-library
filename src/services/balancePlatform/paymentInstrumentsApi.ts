@@ -24,7 +24,6 @@ import { PaymentInstrumentRevealInfo } from "../../typings/balancePlatform/model
 import { PaymentInstrumentRevealRequest } from "../../typings/balancePlatform/models";
 import { PaymentInstrumentRevealResponse } from "../../typings/balancePlatform/models";
 import { PaymentInstrumentUpdateRequest } from "../../typings/balancePlatform/models";
-import { RestServiceError } from "../../typings/balancePlatform/models";
 import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
 import { UpdatePaymentInstrument } from "../../typings/balancePlatform/models";
 
