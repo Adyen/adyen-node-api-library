@@ -19,7 +19,7 @@
 
 import NexoSecurityManager from "../../security/nexoSecurityManager";
 import { EncryptionCredentialDetails } from "../../security/encryptionCredentialDetails";
-import { MessageHeader, SaleToPOISecuredMessage, MessageCategoryType, MessageClassType, MessageType } from "../../typings/cloudDevice/models";
+import { MessageHeader, SaleToPOISecuredMessage, MessageCategoryType, MessageClassType, MessageType, CloudDeviceApiRequest, PaymentRequest} from "../../typings/cloudDevice/models";
 import InvalidSecurityKeyException from "../../security/exception/invalidSecurityKeyException";
 import NexoCryptoException from "../../services/exception/nexoCryptoException";
 
@@ -41,22 +41,43 @@ describe("NexoSecurityManager", (): void => {
         ServiceID: "001",
     };
 
-    const saleToPoiMessageJson = JSON.stringify({
-        PaymentRequest: {
-            SaleData: {
-                SaleTransactionID: {
-                    TransactionID: "001",
-                    TimeStamp: "2025-01-01T00:00:00.000Z",
-                },
+    const paymentRequest: PaymentRequest = {
+        PaymentTransaction: {
+            AmountsReq: {
+                Currency: "EUR",
+                RequestedAmount: 1,
             },
         },
-    });
+        SaleData: {
+            SaleTransactionID: {
+                TimeStamp: "2025-09-11T08:51:30.698Z",
+                TransactionID: "123456789",
+            },
+            SaleToAcquirerData: {
+                applicationInfo: {
+                    merchantApplication: {
+                        version: "1",
+                        name: "test"
+                    }
+                },
+            }
+        },
+    };
+
+    const cloudDeviceApiRequest: CloudDeviceApiRequest = {
+        SaleToPOIRequest: {
+            MessageHeader: messageHeader,
+            PaymentRequest: paymentRequest,
+        },
+    };
+
+    const payload: string = JSON.stringify(cloudDeviceApiRequest)
 
     it("should encrypt and decrypt a message successfully", (): void => {
         // Encrypt
         const securedMessage: SaleToPOISecuredMessage = NexoSecurityManager.encrypt(
             messageHeader,
-            saleToPoiMessageJson,
+            payload,
             credentials,
         );
 
@@ -74,7 +95,7 @@ describe("NexoSecurityManager", (): void => {
         // Decrypt
         const decryptedJson = NexoSecurityManager.decrypt(securedMessage, credentials);
 
-        expect(decryptedJson).toBe(saleToPoiMessageJson);
+        expect(decryptedJson).toBe(payload);
     });
 
     it("should throw InvalidSecurityKeyException on decrypt with invalid credentials", (): void => {
@@ -90,7 +111,7 @@ describe("NexoSecurityManager", (): void => {
 
         const securedMessage: SaleToPOISecuredMessage = NexoSecurityManager.encrypt(
             messageHeader,
-            saleToPoiMessageJson,
+            payload,
             credentials,
         );
 
@@ -106,7 +127,7 @@ describe("NexoSecurityManager", (): void => {
     it("should throw NexoCryptoException on decrypt with wrong HMAC", (): void => {
         const securedMessage: SaleToPOISecuredMessage = NexoSecurityManager.encrypt(
             messageHeader,
-            saleToPoiMessageJson,
+            payload,
             credentials,
         );
 
@@ -126,7 +147,7 @@ describe("NexoSecurityManager", (): void => {
     it("should throw NexoCryptoException on decrypt with wrong passphrase", (): void => {
         const securedMessage: SaleToPOISecuredMessage = NexoSecurityManager.encrypt(
             messageHeader,
-            saleToPoiMessageJson,
+            payload,
             credentials,
         );
 
@@ -137,6 +158,6 @@ describe("NexoSecurityManager", (): void => {
 
         expect((): string => NexoSecurityManager.decrypt(securedMessage, wrongCredentials))
             .toThrow(NexoCryptoException);
-    
+
     });
 });
