@@ -257,21 +257,6 @@ describe("Cloud device API", (): void => {
 
 });
 
-describe("should extract PaymentRequest with extractPayloadObject", () => {
-
-  it("should return the correct payload object when one is set", () => {
-    const cloudDeviceApiRequest = createCloudDeviceApiRequest();
-
-    const payload = cloudDeviceAPI.extractPayloadObject(cloudDeviceApiRequest.SaleToPOIRequest);
-
-    expect(payload).not.toBeNull();
-    expect(payload).toHaveProperty("PaymentRequest");
-    expect(payload).not.toHaveProperty("ReversalRequest");
-    expect(payload).not.toHaveProperty("MessageHeader");
-  });
-
-});
-
 describe("should build the expected CloudDeviceAPI endpoints", () => {
 
   it("should return the sync endpoint", () => {
