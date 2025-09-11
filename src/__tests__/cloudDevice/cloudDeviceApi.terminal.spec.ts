@@ -28,7 +28,7 @@ ADYEN_TERMINAL_DEVICE_PASSPHRASE==#####
 
 */
 
-const enableTerminalTest = true; // set to true when you want to test with the Terminal
+const enableTerminalTest = false; // set to true when you want to test with the Terminal
 
 // Cloud Device API env settings
 const { ADYEN_API_KEY, ADYEN_MERCHANT_ACCOUNT, ADYEN_TERMINAL_DEVICE_ID } = process.env;
