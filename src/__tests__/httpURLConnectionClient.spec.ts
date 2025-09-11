@@ -13,6 +13,7 @@ describe("HttpURLConnectionClient", () => {
             "https://sub.adyen.com",
             "http://another.adyen.com/a/b/c?q=1",
             "https://checkout-test.adyen.com",
+            "https://custom-url.adyenpayments.com",
         ])("should return true for valid adyen.com domain: %s", (location) => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore - testing a private method

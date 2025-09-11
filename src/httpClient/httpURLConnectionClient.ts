@@ -279,8 +279,8 @@ class HttpURLConnectionClient implements ClientInterface {
     private verifyLocation(location: string): boolean {
         try {
             const url = new URL(location);
-            // allow-list of trusted domains (*.adyen.com)
-            const allowedHostnameRegex = /\.adyen\.com$/i;
+            // allow-list of trusted domains (*.adyen.com, *.adyenpayments.com)
+            const allowedHostnameRegex = /(\.adyen\.com|\.adyenpayments\.com)$/i;
             return allowedHostnameRegex.test(url.hostname);
         } catch (e) {
             return false;
