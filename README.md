@@ -338,9 +338,9 @@ client.httpClient = httpClient;
 
 // ... more code
 ```
-## In-Person Payments integration
+## In-person payments integration
 
-Build a feature-rich point-of-sale integrations that accept payments around the world, with global and local payment methods and create a unique shopping experience for your customers.
+Build a feature-rich [in-person payments](https://docs.adyen.com/point-of-sale/) integrations that accept payments around the world, with global and local payment methods and create a unique shopping experience for your customers.
 
 ### Using the Cloud Device API 
 
