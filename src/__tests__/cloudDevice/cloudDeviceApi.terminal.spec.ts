@@ -1,8 +1,7 @@
 import Client from "../../client";
 import CloudDeviceAPI from "../../services/cloudDevice/cloudDeviceApi";
-import { createCloudDeviceApiRequest } from "../../__mocks__/cloudDeviceApi/baseCloudDeviceApi";
 import { EnvironmentEnum } from "../../config";
-import { CloudDeviceApiRequest, DeviceStatusResponse, ConnectedDevicesResponse, CloudDeviceApiResponse } from "../../typings/cloudDevice/models";
+import { CloudDeviceApiRequest, DeviceStatusResponse, ConnectedDevicesResponse, CloudDeviceApiResponse, MessageHeader, MessageCategoryType, MessageClassType, PaymentRequest } from "../../typings/cloudDevice/models";
 import { EncryptionCredentialDetails } from "../../security/encryptionCredentialDetails";
 import { MessageType } from "../../typings/terminal/messageType";
 
@@ -36,7 +35,7 @@ const { ADYEN_API_KEY, ADYEN_MERCHANT_ACCOUNT, ADYEN_TERMINAL_DEVICE_ID } = proc
 const { ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER, ADYEN_TERMINAL_DEVICE_PASSPHRASE } = process.env;
 
 const hasEnv = !!(ADYEN_API_KEY && ADYEN_MERCHANT_ACCOUNT && ADYEN_TERMINAL_DEVICE_ID);
-(enableTerminalTest &&hasEnv ? describe : describe.skip)("Cloud Device API Testing with Terminal", () => {
+(enableTerminalTest && hasEnv ? describe : describe.skip)("Cloud Device API Testing with Terminal", () => {
     let client: Client;
     let cloudDeviceAPI: CloudDeviceAPI;
 
@@ -61,12 +60,10 @@ const hasEnv = !!(ADYEN_API_KEY && ADYEN_MERCHANT_ACCOUNT && ADYEN_TERMINAL_DEVI
         const merchantAccount = ADYEN_MERCHANT_ACCOUNT!;
         const deviceId = ADYEN_TERMINAL_DEVICE_ID!;
 
-        const cloudDeviceApiRequest: CloudDeviceApiRequest = createCloudDeviceApiRequest();
-
         const response = await cloudDeviceAPI.sendSync(
             merchantAccount,
             deviceId,
-            cloudDeviceApiRequest
+            testCloudDeviceApiRequest(deviceId)
         );
 
         // Log outcome
@@ -87,12 +84,10 @@ const hasEnv = !!(ADYEN_API_KEY && ADYEN_MERCHANT_ACCOUNT && ADYEN_TERMINAL_DEVI
         const merchantAccount = ADYEN_MERCHANT_ACCOUNT!;
         const deviceId = ADYEN_TERMINAL_DEVICE_ID!;
 
-        const cloudDeviceApiRequest: CloudDeviceApiRequest = createCloudDeviceApiRequest();
-
         const response = await cloudDeviceAPI.sendAsync(
             merchantAccount,
             deviceId,
-            cloudDeviceApiRequest
+            testCloudDeviceApiRequest(deviceId)
         );
 
         // Log outcome        
@@ -139,25 +134,23 @@ const hasEnv = !!(ADYEN_API_KEY && ADYEN_MERCHANT_ACCOUNT && ADYEN_TERMINAL_DEVI
         const merchantAccount = ADYEN_MERCHANT_ACCOUNT!;
         const deviceId = ADYEN_TERMINAL_DEVICE_ID!;
 
-        const cloudDeviceApiRequest = createCloudDeviceApiRequest();
-
         // IMPORTANT: Encryption credentials must match the Terminal configuration on CA
         const encryptionCredentialDetails: EncryptionCredentialDetails = {
-            AdyenCryptoVersion: 1, 
-            KeyIdentifier: ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER ?? "n/a", 
-            KeyVersion: 1, 
-            Passphrase: ADYEN_TERMINAL_DEVICE_PASSPHRASE ?? "n/a", 
+            AdyenCryptoVersion: 1,
+            KeyIdentifier: ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER ?? "n/a",
+            KeyVersion: 1,
+            Passphrase: ADYEN_TERMINAL_DEVICE_PASSPHRASE ?? "n/a",
         };
 
         const response: CloudDeviceApiResponse = await cloudDeviceAPI.sendEncryptedSync(
             merchantAccount,
             deviceId,
-            cloudDeviceApiRequest,
+            testCloudDeviceApiRequest(deviceId),
             encryptionCredentialDetails
         );
 
         // Log outcome        
-        console.log("response:", response); 
+        console.log("response:", response);
 
         expect(response).toBeDefined();
         // After decryption by the SDK, the response should be a standard CloudDeviceApiResponse
@@ -166,26 +159,24 @@ const hasEnv = !!(ADYEN_API_KEY && ADYEN_MERCHANT_ACCOUNT && ADYEN_TERMINAL_DEVI
         expect(response.SaleToPOIResponse?.MessageHeader.MessageType).toBe(MessageType.Response);
         expect(response.SaleToPOIResponse?.PaymentResponse).toBeDefined();
     });
-    
+
     // run with: npx jest cloudDeviceApi.terminal.spec.ts -t "should make an encrypted async payment request"
     test("should make an encrypted async payment request", async () => {
         const merchantAccount = ADYEN_MERCHANT_ACCOUNT!;
         const deviceId = ADYEN_TERMINAL_DEVICE_ID!;
 
-        const cloudDeviceApiRequest = createCloudDeviceApiRequest();
-
         // IMPORTANT: Encryption credentials must match the Terminal configuration on CA
         const encryptionCredentialDetails: EncryptionCredentialDetails = {
-            AdyenCryptoVersion: 1, 
-            KeyIdentifier: ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER ?? "n/a", 
-            KeyVersion: 1, 
-            Passphrase: ADYEN_TERMINAL_DEVICE_PASSPHRASE ?? "n/a", 
+            AdyenCryptoVersion: 1,
+            KeyIdentifier: ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER ?? "n/a",
+            KeyVersion: 1,
+            Passphrase: ADYEN_TERMINAL_DEVICE_PASSPHRASE ?? "n/a",
         };
 
         const response = await cloudDeviceAPI.sendEncryptedAsync(
             merchantAccount,
             deviceId,
-            cloudDeviceApiRequest,
+            testCloudDeviceApiRequest(deviceId),
             encryptionCredentialDetails
         );
 
@@ -194,4 +185,57 @@ const hasEnv = !!(ADYEN_API_KEY && ADYEN_MERCHANT_ACCOUNT && ADYEN_TERMINAL_DEVI
 
         expect(response).toBeDefined();
     });
+
+    const testCloudDeviceApiRequest = function (deviceId: string) {
+        const timestamp = (): string => new Date().toISOString();
+        const id = Math.floor(Math.random() * Math.floor(10000000)).toString();
+
+        const messageHeader: MessageHeader = {
+            MessageCategory: MessageCategoryType.Payment,
+            MessageClass: MessageClassType.Service,
+            MessageType: MessageType.Request,
+            POIID: deviceId,
+            ProtocolVersion: "3.0",
+            SaleID: id,
+            ServiceID: id,
+        };
+
+        const paymentRequest: PaymentRequest = {
+            PaymentTransaction: {
+                AmountsReq: {
+                    Currency: "EUR",
+                    RequestedAmount: 1,
+                },
+            },
+            SaleData: {
+                SaleTransactionID: {
+                    TimeStamp: timestamp(),
+                    TransactionID: id,
+                },
+                SaleToAcquirerData: {
+                    applicationInfo: {
+                        merchantApplication: {
+                            version: "1",
+                            name: "test"
+                        }
+                    },
+                    metadata: {
+                        someMetaDataKey1: "YOUR_VALUE",
+                        someMetaDataKey2: "YOUR_VALUE"
+                    },
+                }
+            },
+        };
+
+        const cloudDeviceApiRequest: CloudDeviceApiRequest = {
+            SaleToPOIRequest: {
+                MessageHeader: messageHeader,
+                PaymentRequest: paymentRequest,
+            },
+        };
+
+        return cloudDeviceApiRequest
+    }
+
 });
+
