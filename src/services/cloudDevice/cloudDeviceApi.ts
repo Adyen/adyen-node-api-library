@@ -301,6 +301,22 @@ class CloudDeviceAPI extends Service {
     }
 
     /**
+     * Decrypt event notification
+     * @param payload Event notification in JSON string format
+     * @param encryptionCredentialDetails The details of the encryption credential used for decrypting the payload (nexoBlob)
+     * @returns 
+     */
+    public decryptNotification(payload: string, encryptionCredentialDetails: EncryptionCredentialDetails) : String {
+
+        const decryptedMessage = ObjectSerializer.deserialize(JSON.parse(payload), "CloudDeviceApiSecuredResponse");
+
+        return NexoSecurityManager.decrypt(
+                decryptedMessage.SaleToPOIResponse,
+                encryptionCredentialDetails,
+            );
+    }
+
+    /**
      * Get Device API /sync endpoint
      * @param merchantAccount The unique identifier of the merchant account.
      * @param deviceId The unique identifier of the payment device.

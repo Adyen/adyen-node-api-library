@@ -139,7 +139,7 @@ describe("Cloud device API", (): void => {
         cloudDeviceApiRequest.SaleToPOIRequest.MessageHeader.ServiceID = id;
         const saleToAcquirerData: cloudDevice.SaleToAcquirerData = new cloudDevice.SaleToAcquirerData();
         saleToAcquirerData.currency = "EUR";
-        cloudDeviceApiRequest.SaleToPOIRequest.ReversalRequest!.SaleData!.SaleToAcquirerData = saleToAcquirerData;        
+        cloudDeviceApiRequest.SaleToPOIRequest.ReversalRequest!.SaleData!.SaleToAcquirerData = saleToAcquirerData;
 
         const merchantAccount = "TestMerchantAccount";
         const deviceId = "P400Plus-123456789";
@@ -202,7 +202,7 @@ describe("Cloud device API", (): void => {
 
         expect(response).toBeDefined();
         expect(response).toEqual("ok");
-    });    
+    });
 
     test("should make an encrypted sync request", async (): Promise<void> => {
         scope.post("/merchants/TestMerchantAccount/devices/MX915-284251016/sync").reply(200, syncEncryptedResponse);
@@ -228,7 +228,7 @@ describe("Cloud device API", (): void => {
         // verify deviceId is set on request
         expect(cloudDeviceApiSecuredRequest.SaleToPOIRequest.MessageHeader.POIID).toBe(deviceId);
 
-    });    
+    });
 
     test("should throw CloudDeviceApiError when request fails", async (): Promise<void> => {
         scope.post("/merchants/TestMerchantAccount/devices/P400Plus-123456789/sync").replyWithError("timeout");
@@ -259,24 +259,24 @@ describe("Cloud device API", (): void => {
 
 describe("should build the expected CloudDeviceAPI endpoints", () => {
 
-  it("should return the sync endpoint", () => {
-    const endpoint = cloudDeviceAPI.getSyncEndpoint("TestMerchantAccount", "P400Plus-123456789");
-    expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/devices/P400Plus-123456789/sync");
-  });
+    it("should return the sync endpoint", () => {
+        const endpoint = cloudDeviceAPI.getSyncEndpoint("TestMerchantAccount", "P400Plus-123456789");
+        expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/devices/P400Plus-123456789/sync");
+    });
 
-  it("should return the async endpoint", () => {
-    const endpoint = cloudDeviceAPI.getAsyncEndpoint("TestMerchantAccount", "P400Plus-123456789");
-    expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/devices/P400Plus-123456789/async");
-  });
+    it("should return the async endpoint", () => {
+        const endpoint = cloudDeviceAPI.getAsyncEndpoint("TestMerchantAccount", "P400Plus-123456789");
+        expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/devices/P400Plus-123456789/async");
+    });
 
-  it("should return the connected devices endpoint", () => {
-    const endpoint = cloudDeviceAPI.getConnectedDevicesEndpoint("TestMerchantAccount");
-    expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/connectedDevices");
-  });
+    it("should return the connected devices endpoint", () => {
+        const endpoint = cloudDeviceAPI.getConnectedDevicesEndpoint("TestMerchantAccount");
+        expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/connectedDevices");
+    });
 
-  it("should return the device status endpoint", () => {
-    const endpoint = cloudDeviceAPI.getDeviceStatusEndpoint("TestMerchantAccount", "P400Plus-123456789");
-    expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/devices/P400Plus-123456789/status");
-  });
-  
+    it("should return the device status endpoint", () => {
+        const endpoint = cloudDeviceAPI.getDeviceStatusEndpoint("TestMerchantAccount", "P400Plus-123456789");
+        expect(endpoint).toBe("https://device-api-test.adyen.com/v1/merchants/TestMerchantAccount/devices/P400Plus-123456789/status");
+    });
+
 });
