@@ -235,20 +235,14 @@ class CloudDeviceAPI extends Service {
                 securedPaymentRequest
             );
 
-            console.log(jsonResponse);
-
             const cloudDeviceApiSecuredResponse: CloudDeviceApiSecuredResponse =
                 ObjectSerializer.deserialize(jsonResponse, "CloudDeviceApiSecuredResponse");
-
-            console.log(cloudDeviceApiSecuredResponse);
 
             // decrypt SaleToPOISecuredMessage
             const decryptedPayload = NexoSecurityManager.decrypt(
                 cloudDeviceApiSecuredResponse.SaleToPOIResponse,
                 encryptionCredentialDetails,
             );
-
-            console.log(decryptedPayload);
 
             return ObjectSerializer.deserialize(JSON.parse(decryptedPayload), "CloudDeviceApiResponse");
 
