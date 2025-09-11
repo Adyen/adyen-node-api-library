@@ -185,8 +185,10 @@ console.log("response:", response);
 In case of asynchronous integration, you can decrypt the payload of the event notifications using `decryptNotification()` method.
 
 ```javascript
+// JSON with encrypted SaleToPOIResponse (for async responses) or SaleToPOIRequest (for event notifications) 
+const payload = "..."; 
 
-const response: string = await cloudDeviceAPI.decryptNotification("", encryptionCredentialDetails);
+const response: string = await cloudDeviceAPI.decryptNotification(payload, encryptionCredentialDetails);
 console.log("response:", response);
 
 ```

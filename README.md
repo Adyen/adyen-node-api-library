@@ -353,10 +353,10 @@ Check the [Cloud Device API README](CloudDeviceApi.md).
 With the [Terminal API](https://docs.adyen.com/api-explorer/terminal-api/1/overview) you can send and receive Terminal API messages in the following ways:
 
 * Local communications: using your local network, your POS system sends the request directly to the IP address of the terminal, and receives the result synchronously.
-* Cloud communications: using the internet to access the cloud `/sync` and `/async` endpoints. You should consider adopting the [Cloud Device API](CloudDeviceApi.md) instead.
+* Cloud communications: using the internet to access the cloud `/sync` and `/async` endpoints. You should consider adopting the [Cloud Device API](doc/CloudDeviceApi.md) instead.
 
 
-Check the [Terminal API README](TerminalApi.md).
+Check the [Terminal API README](doc/TerminalApi.md).
 
 
 ## Feedback
