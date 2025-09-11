@@ -50,20 +50,20 @@ class NexoSecurityManager {
      * Encrypts a SaleToPOI message.
      *
      * @param messageHeader - The Nexo message header
-     * @param saleToPoiMessageJson - The message body in JSON string format
+     * @param payload - The payload in JSON string format
      * @param credentials - The encryption credentials
      * @returns A instance of SaleToPOISecuredMessage with  MessageHeader, NexoBlob (the encrypted payload) and SecurityTrailer
      */
     public static encrypt(
         messageHeader: MessageHeader,
-        saleToPoiMessageJson: string,
+        payload: string,
         credentials: EncryptionCredentialDetails,
     ): SaleToPOISecuredMessage {
 
         try {
 
             const derivedKey: NexoDerivedKey = NexoDerivedKeyGenerator.deriveKeyMaterial(credentials.Passphrase);
-            const saleToPoiMessageByteArray = Buffer.from(saleToPoiMessageJson, "utf-8");
+            const saleToPoiMessageByteArray = Buffer.from(payload, "utf-8");
             const ivNonce = NexoSecurityManager.generateRandomIvNonce();
             const encryptedSaleToPoiMessage = NexoSecurityManager.crypt(
                 saleToPoiMessageByteArray,
@@ -127,10 +127,7 @@ class NexoSecurityManager {
             const receivedHmac = Buffer.from(saleToPoiSecureMessage.SecurityTrailer.Hmac, "base64");
             NexoSecurityManager.validateHmac(receivedHmac, decryptedSaleToPoiMessageByteArray, derivedKey);
 
-            const decryptedPayload = decryptedSaleToPoiMessageByteArray.toString("utf-8");
-            // Re-add braces to make it a valid JSON object string, reversing the operation from `encrypt`.
-            //return `{${decryptedPayload}}`;
-            return decryptedPayload
+            return decryptedSaleToPoiMessageByteArray.toString("utf-8");
 
         } catch (err: any) {
             // an error has occurred
