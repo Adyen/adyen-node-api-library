@@ -33,6 +33,10 @@ export const CLOUD_DEVICE_API_VERSION = "v1";
 
 /**
  * Cloud Device API service
+ * 
+ * With the Cloud device API you can:
+ * - send Terminal API requests to the Adyen cloud endpointd.
+ * - check the cloud connection of a payment terminal or of a device used in a Mobile solution for in-person payments.
  */
 class CloudDeviceAPI extends Service {
 
