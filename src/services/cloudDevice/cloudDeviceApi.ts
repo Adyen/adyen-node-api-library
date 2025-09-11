@@ -69,7 +69,7 @@ class CloudDeviceAPI extends Service {
                     POIID: deviceId
                 }
             };
-        }   
+        }
 
         return ObjectSerializer.serialize(request, "CloudDeviceApiRequest");
     }
@@ -236,12 +236,12 @@ class CloudDeviceAPI extends Service {
             );
 
             console.log(jsonResponse);
-        
+
             const cloudDeviceApiSecuredResponse: CloudDeviceApiSecuredResponse =
                 ObjectSerializer.deserialize(jsonResponse, "CloudDeviceApiSecuredResponse");
 
             console.log(cloudDeviceApiSecuredResponse);
-   
+
             // decrypt SaleToPOISecuredMessage
             const decryptedPayload = NexoSecurityManager.decrypt(
                 cloudDeviceApiSecuredResponse.SaleToPOIResponse,
@@ -306,19 +306,38 @@ class CloudDeviceAPI extends Service {
 
     /**
      * Decrypt event notification
-     * @param payload Event notification in JSON string format
+     * @param payload Event notification in JSON string format: it can be SaleToPOIResponse (async response) or SaleToPOIRequest (event notification)
      * @param encryptionCredentialDetails The details of the encryption credential used for decrypting the payload (nexoBlob)
      * @returns 
      */
-    public decryptNotification(payload: string, encryptionCredentialDetails: EncryptionCredentialDetails) : String {
+    public decryptNotification(
+        payload: string,
+        encryptionCredentialDetails: EncryptionCredentialDetails
+    ): string {
+        const parsed = JSON.parse(payload);
 
-        const decryptedMessage = ObjectSerializer.deserialize(JSON.parse(payload), "CloudDeviceApiSecuredResponse");
+        let decryptedMessage;
 
-        return NexoSecurityManager.decrypt(
+        if (parsed.SaleToPOIResponse) {
+            // includes SaleToPOIResponse (response after /async)
+            decryptedMessage = ObjectSerializer.deserialize(parsed, "CloudDeviceApiSecuredResponse");
+            return NexoSecurityManager.decrypt(
                 decryptedMessage.SaleToPOIResponse,
-                encryptionCredentialDetails,
+                encryptionCredentialDetails
             );
+        } else if (parsed.SaleToPOIRequest) {
+            // includes SaleToPOIRequest (event notification )
+            decryptedMessage = ObjectSerializer.deserialize(parsed, "CloudDeviceApiSecuredRequest");
+            return NexoSecurityManager.decrypt(
+                decryptedMessage.SaleToPOIRequest,
+                encryptionCredentialDetails
+            );
+        } else {
+            console.log("Invalid payload: must be CloudDeviceApiSecuredRequest or CloudDeviceApiSecuredResponse");
+            return "";
+        }
     }
+
 
     /**
      * Get Device API /sync endpoint
