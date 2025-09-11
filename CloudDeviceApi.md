@@ -1,11 +1,11 @@
 # Cloud Device API 
 
-The [Cloud Device API](https://docs.adyen.com/api-explorer/cloud-device-api/1/overview) is our solution to create best-in-class In-person Payments integrations. 
+The [Cloud Device API](https://docs.adyen.com/api-explorer/cloud-device-api/1/overview) is our solution to create best-in-class in-person payments integrations. 
 
 With the Cloud device API you can:
 
-- Send Terminal API requests to a cloud endpoint. You can use this communication method when it is not an option to send Terminal API requests over your local network directly to a payment terminal.
-- Check the cloud connection of a payment terminal or of a device used in a Mobile solution for in-person payments.
+- send Terminal API requests to a cloud endpoint. You can use this communication method when it is not an option to send Terminal API requests over your local network directly to a payment terminal.
+- check the cloud connection of a payment terminal or of a device used in a Mobile solution for in-person payments.
 
 ## Benefits of the Cloud Device API
 
@@ -38,7 +38,7 @@ const client = new Client(config);
 const cloudDeviceAPI = new CloudDeviceAPI(client);
 ```
 
-### Send a payment request
+### Send a payment SYNC request
 
 ```javascript
 
@@ -100,7 +100,7 @@ const response = await cloudDeviceAPI.sendSync(
 
 ### Send a payment ASYNC request
 
-If you choose to receive the response asynchronously, you only need to use a different method (`sendAsync()`). 
+If you choose to receive the response asynchronously, you only need to use a different method (`sendAsync`). 
 Don't forget to set up [event notifications](https://docs.adyen.com/point-of-sale/design-your-integration/notifications/event-notifications/) in the CA to be able to receive the Cloud Device API responses.
 
 ```javascript
@@ -149,7 +149,7 @@ console.log(deviceStatus.status);
 
 ### Error handling
 
-In case of error try-catch the `CloudDeviceApiError` to understand what went wrong.
+In case of error, you can try-catch the `CloudDeviceApiError` to understand what went wrong.
 
 ```javascript
 try {
@@ -177,11 +177,12 @@ const encryptionCredentialDetails: EncryptionCredentialDetails = {
     Passphrase: "myPassphrase"
 };
 
-const response: CloudDeviceApiResponse = await cloudDeviceAPI.sendEncryptedSync("YOUR_MERCHANT_ACCOUNT", "V400m-123456789", cloudDeviceApiRequest, encryptionCredentialDetails);
+const response: CloudDeviceApiResponse = await cloudDeviceAPI.sendEncryptedSync(
+    "YOUR_MERCHANT_ACCOUNT", "V400m-123456789", cloudDeviceApiRequest, encryptionCredentialDetails);
 console.log("response:", response);
 ```
 
-In case of asynchronous integration, you can decrypt the payload of the event notification using `decryptNotification()` method.
+In case of asynchronous integration, you can decrypt the payload of the event notifications using `decryptNotification()` method.
 
 ```javascript
 
