@@ -9,6 +9,8 @@ import { Target } from "../typings/balancePlatform/target";
 import { TransferRouteRequest } from "../typings/balancePlatform/transferRouteRequest";
 import { IbanAccountIdentification } from "../typings/balancePlatform/ibanAccountIdentification";
 import { Condition } from "../typings/balancePlatform/condition";
+import { Scope } from "../typings/balancePlatform/scope";
+import { TransferType } from "../typings/balancePlatform/transferType";
 
 let client: Client;
 let balancePlatformService: BalancePlatform;
@@ -33,6 +35,7 @@ describe("Balance Platform", (): void => {
     const paymentInstrumentId = "PI32272223222B5CMD3MQ3HXX";
     const paymentInstrumentGroupId = "PG3227C223222B5CMD3FJFKGZ";
     const transactionRuleId = "TR3227C223222B5FCB756DV9H";
+    const transferLimitId = "TL3227C223222B5CMD3FJFKGZ";
 
     describe("AccountHolders", (): void => {
         it("should support POST /accountHolders", async (): Promise<void> => {
@@ -1188,6 +1191,136 @@ describe("Balance Platform", (): void => {
         expect(response).toBeTruthy();
         expect(response.id).toBe("BWHS00000000000000000000000001");
         expect(response.currency).toBe("USD");
+    });
+
+    describe("TransferLimitsBalanceAccountLevelApi", (): void => {
+
+        it("should support POST /balanceAccounts/{id}/transferLimits/approve", async (): Promise<void> => {
+            scope.post(`/balanceAccounts/${balanceAccountId}/transferLimits/approve`)
+                .reply(204);
+            const request: balancePlatform.ApproveTransferLimitRequest = {
+                transferLimitIds: [transferLimitId]
+            };
+
+            await balancePlatformService.TransferLimitsBalanceAccountLevelApi.approvePendingTransferLimits(balanceAccountId, request);
+        });
+
+        it("should support POST /balanceAccounts/{id}/transferLimits", async (): Promise<void> => {
+
+            const mockResponse = {
+                "amount": {
+                    "value": 10000,
+                    "currency": "EUR"
+                },
+                "id": "TRLI00000000000000000000000001",
+                "scope": "perTransaction",
+                "reference": "Your reference for the transfer limit",
+                "scaInformation": {
+                    "status": "pending"
+                },
+                "startsAt": "2025-08-15T06:36:20+01:00",
+                "endsAt": "2026-08-13T23:00:00+01:00",
+                "limitStatus": "pendingSCA",
+                "transferType": "all"
+                };
+
+            scope.post(`/balanceAccounts/${balanceAccountId}/transferLimits`)
+                .reply(200, mockResponse);
+
+            const request: balancePlatform.CreateTransferLimitRequest = {
+                "amount": {
+                    "currency": "EUR",
+                    "value": 10000
+                },
+                "reference": "Your reference for the transfer limit",
+                "scaInformation": {
+                    "scaOnApproval": true
+                },
+                "scope": Scope.PerTransaction,
+                "startsAt": new Date("2025-08-15T06:36:20+01:00"),
+                "endsAt": new Date("2026-08-14T00:00:00+01:00"),
+                "transferType": TransferType.All
+            };
+
+            const response: balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.createTransferLimit(balanceAccountId, request);
+
+            expect(response.id).toBe("TRLI00000000000000000000000001");
+            expect(response.limitStatus).toBe("pendingSCA");
+            expect(response.amount.value).toBe(10000);
+        });
+
+        it("should support DELETE /balanceAccounts/{id}/transferLimits/{transferLimitId}", async (): Promise<void> => {
+            scope.delete(`/balanceAccounts/${balanceAccountId}/transferLimits/${transferLimitId}`).reply(204);
+
+            await balancePlatformService.TransferLimitsBalanceAccountLevelApi.deletePendingTransferLimit(transferLimitId, balanceAccountId);
+        });
+
+        it("should support GET /balanceAccounts/{id}/transferLimits/current", async (): Promise<void> => {
+
+            const mockResponse = {
+                    "transferLimits": [
+                        {
+                            "id": transferLimitId,
+                            "limit": {
+                                "currency": "EUR",
+                                "value": 10000
+                            },
+                            "type": "maxUsage",
+                            "counterparty": {
+                                "balanceAccountId": "BA3227C223222B5CMD3FJFKGZ"
+                            }
+                        }
+                    ]
+                }
+
+            scope.get(`/balanceAccounts/${balanceAccountId}/transferLimits/current?scope=perTransaction&transferType=instant`)
+                .reply(200, mockResponse);
+
+            const response: balancePlatform.TransferLimitListResponse = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.getCurrentTransferLimits(balanceAccountId, balancePlatform.Scope.PerTransaction, balancePlatform.TransferType.Instant);
+
+            expect(response.transferLimits.length).toBe(1);
+            expect(response.transferLimits[0].id).toBe(transferLimitId);
+        });
+
+        it("should support GET /balanceAccounts/{id}/transferLimits/{transferLimitId}", async (): Promise<void> => {
+
+            const mockResponse = {
+                    "id": transferLimitId,
+                    "limit": {
+                        "currency": "EUR",
+                        "value": 10000
+                    },
+                    "type": "maxUsage",
+                    "counterparty": {
+                        "balanceAccountId": "BA3227C223222B5CMD3FJFKGZ"
+                    }
+                }
+
+            scope.get(`/balanceAccounts/${balanceAccountId}/transferLimits/${transferLimitId}`)
+                .reply(200, mockResponse);
+
+            const response: balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.getSpecificTransferLimit(transferLimitId, balanceAccountId);
+
+            expect(response.id).toBe(transferLimitId);
+        });
+
+        it("should support GET /balanceAccounts/{id}/transferLimits", async (): Promise<void> => {
+
+            const mockResponse = {
+                    "transferLimits": [
+                        {
+                            "id": transferLimitId,
+                        }
+                    ]
+                }
+            scope.get(`/balanceAccounts/${balanceAccountId}/transferLimits?scope=perTransaction&transferType=instant&status=active`)
+                .reply(200, mockResponse);
+
+            const response: balancePlatform.TransferLimitListResponse = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.getTransferLimits(balanceAccountId, balancePlatform.Scope.PerTransaction, balancePlatform.TransferType.Instant, balancePlatform.LimitStatus.Active);
+
+            expect(response.transferLimits.length).toBe(1);
+            expect(response.transferLimits[0].id).toBe(transferLimitId);
+        });
     });
 
 });
