@@ -1272,7 +1272,7 @@ describe("Balance Platform", (): void => {
                         }
                     }
                 ]
-            }
+            };
 
             scope.get(`/balanceAccounts/${balanceAccountId}/transferLimits/current?scope=perTransaction&transferType=instant`)
                 .reply(200, mockResponse);
@@ -1295,7 +1295,7 @@ describe("Balance Platform", (): void => {
                 "counterparty": {
                     "balanceAccountId": "BA3227C223222B5CMD3FJFKGZ"
                 }
-            }
+            };
 
             scope.get(`/balanceAccounts/${balanceAccountId}/transferLimits/${transferLimitId}`)
                 .reply(200, mockResponse);
@@ -1313,7 +1313,7 @@ describe("Balance Platform", (): void => {
                         "id": transferLimitId,
                     }
                 ]
-            }
+            };
             scope.get(`/balanceAccounts/${balanceAccountId}/transferLimits?scope=perTransaction&transferType=instant&status=active`)
                 .reply(200, mockResponse);
 
