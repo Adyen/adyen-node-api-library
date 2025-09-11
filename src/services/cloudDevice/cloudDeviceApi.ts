@@ -22,7 +22,7 @@ import Client from "../../client";
 import getJsonResponse from "../../helpers/getJsonResponse";
 import mergeDeep from "../../utils/mergeDeep";
 import { ApplicationInfo } from "../../typings/applicationInfo";
-import { ObjectSerializer, CloudDeviceApiRequest, CloudDeviceApiResponse, ConnectedDevicesResponse, DeviceStatusResponse, CloudDeviceApiSecuredRequest, CloudDeviceApiSecuredResponse, SaleToPOISecuredMessage, SaleToPOIRequest } from "../../typings/cloudDevice/models";
+import { ObjectSerializer, CloudDeviceApiRequest, CloudDeviceApiResponse, ConnectedDevicesResponse, DeviceStatusResponse, CloudDeviceApiSecuredRequest, CloudDeviceApiSecuredResponse, SaleToPOISecuredMessage } from "../../typings/cloudDevice/models";
 import Resource from "../resource";
 import { IRequest } from "../../typings/requestOptions";
 import NexoSecurityManager from "../../security/nexoSecurityManager";
@@ -123,14 +123,10 @@ class CloudDeviceAPI extends Service {
             const resource = new Resource(this, this.getAsyncEndpoint(merchantAccount, deviceId));
             const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest, deviceId);
 
-            // extract the payload to encrypt (i.e. PaymentRequest)
-            const payload = this.extractPayloadObject(request.SaleToPOIRequest);
-
-            // encrypt the payload and create SaleToPOISecuredMessage
             const saleToPoiSecuredMessage: SaleToPOISecuredMessage = NexoSecurityManager.encrypt(
-                request.SaleToPOIRequest?.MessageHeader,
-                JSON.stringify(payload),
-                encryptionCredentialDetails,
+                request.SaleToPOIRequest?.MessageHeader,    // set MessageHeader
+                JSON.stringify(request),                    // encrypt entire CloudDeviceApiRequest
+                encryptionCredentialDetails                 // set encryption credentials
             );
 
             const securedPaymentRequest: CloudDeviceApiSecuredRequest = ObjectSerializer.serialize({
@@ -220,14 +216,10 @@ class CloudDeviceAPI extends Service {
             const resource = new Resource(this, this.getSyncEndpoint(merchantAccount, deviceId));
             const request = CloudDeviceAPI.setApplicationInfo(cloudDeviceApiRequest, deviceId);
 
-            // extract the payload to encrypt (i.e. PaymentRequest)
-            const payload = this.extractPayloadObject(request.SaleToPOIRequest);
-
-            // encrypt the payload and create SaleToPOISecuredMessage
             const saleToPoiSecuredMessage: SaleToPOISecuredMessage = NexoSecurityManager.encrypt(
-                request.SaleToPOIRequest?.MessageHeader,
-                JSON.stringify(payload),
-                encryptionCredentialDetails,
+                request.SaleToPOIRequest?.MessageHeader,    // set MessageHeader
+                JSON.stringify(request),                    // encrypt entire CloudDeviceApiRequest
+                encryptionCredentialDetails                 // set encryption credentials
             );
 
             const securedPaymentRequest: CloudDeviceApiSecuredRequest = ObjectSerializer.serialize({
@@ -239,14 +231,20 @@ class CloudDeviceAPI extends Service {
                 securedPaymentRequest
             );
 
+            console.log(jsonResponse);
+        
             const cloudDeviceApiSecuredResponse: CloudDeviceApiSecuredResponse =
                 ObjectSerializer.deserialize(jsonResponse, "CloudDeviceApiSecuredResponse");
 
+            console.log(cloudDeviceApiSecuredResponse);
+   
             // decrypt SaleToPOISecuredMessage
             const decryptedPayload = NexoSecurityManager.decrypt(
                 cloudDeviceApiSecuredResponse.SaleToPOIResponse,
                 encryptionCredentialDetails,
             );
+
+            console.log(decryptedPayload);
 
             return ObjectSerializer.deserialize(JSON.parse(decryptedPayload), "CloudDeviceApiResponse");
 
@@ -300,25 +298,6 @@ class CloudDeviceAPI extends Service {
         );
 
         return ObjectSerializer.deserialize(response, "DeviceStatusResponse");
-    }
-
-
-    /**
-     * Extract the payload request object
-     */
-    extractPayloadObject(saleToPOIRequest: SaleToPOIRequest): { [key: string]: any } | null {
-        for (const attr of SaleToPOIRequest.attributeTypeMap) {
-            // ignore MessageHeader or SecurityTrailer
-            if (attr.name === "MessageHeader" || attr.name === "SecurityTrailer") {
-                continue; // skip header/trailer
-            }
-
-            const value = (saleToPOIRequest as any)[attr.name];
-            if (value !== undefined && value !== null) {
-                return { [attr.name]: value };
-            }
-        }
-        return null;
     }
 
     /**
