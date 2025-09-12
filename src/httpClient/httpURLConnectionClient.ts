@@ -87,12 +87,7 @@ class HttpURLConnectionClient implements ClientInterface {
 
         const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
 
-        if (config.enable308Redirect === undefined) {
-            // 308 redirect enabled by default
-            config.enable308Redirect = true;
-        }
-
-        return this.doRequest(httpConnection, json, config.enable308Redirect as boolean);
+        return this.doRequest(httpConnection, json, config.enable308Redirect ?? true);
     }
 
     // create Request object
