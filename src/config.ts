@@ -49,6 +49,7 @@ interface ConfigConstructor {
     terminalApiLocalEndpoint?: string;
     liveEndpointUrlPrefix?: string; // must be provided for LIVE integration
     region?: RegionEnum; // must be provided for Terminal API integration
+    enable308Redirect?: boolean; // enabling redirect upon 308 response status
 }
 
 const DEFAULT_TIMEOUT = 30000; // Default timeout value (30 sec)
@@ -67,6 +68,8 @@ class Config {
     public terminalApiLocalEndpoint?: string;
     public liveEndpointUrlPrefix?: string;
     public region?: RegionEnum;
+    public enable308Redirect?: boolean;
+
 
     public constructor(options: ConfigConstructor = {}) {
         if (options.username) this.username = options.username;
@@ -82,6 +85,8 @@ class Config {
         if (options.terminalApiLocalEndpoint) this.terminalApiLocalEndpoint = options.terminalApiLocalEndpoint;
         if (options.liveEndpointUrlPrefix) this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix;
         if (options.region) this.region = options.region;
+        this.enable308Redirect = options.enable308Redirect ?? true;
+
     }
 
     /**
