@@ -6,6 +6,7 @@ import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
 import { terminal } from "../typings";
 import { EnvironmentEnum } from "../config";
+import HttpClientException from "../httpClient/httpClientException";
 
 let client: Client;
 let terminalCloudAPI: TerminalCloudAPI;
@@ -31,29 +32,29 @@ describe("Terminal Cloud API", (): void => {
 
     const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
-        const requestResponse = await terminalCloudAPI.async(terminalAPIPaymentRequest);
+    const requestResponse = await terminalCloudAPI.async(terminalAPIPaymentRequest);
 
-        expect(typeof requestResponse).toBe("string");
-        expect(requestResponse).toEqual("ok");
-    });
+    expect(typeof requestResponse).toBe("string");
+    expect(requestResponse).toEqual("ok");
+  });
 
-    test("should get an error after async payment request", async (): Promise<void> => {
-        scope.post("/async").reply(200, asyncErrorRes);
+  test("should get an error after async payment request", async (): Promise<void> => {
+    scope.post("/async").reply(200, asyncErrorRes);
 
-        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
-        const requestResponse = await terminalCloudAPI.async(terminalAPIPaymentRequest);
+    const requestResponse = await terminalCloudAPI.async(terminalAPIPaymentRequest);
 
-        if (typeof requestResponse === "object") {
-          expect(requestResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
-          expect(requestResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("Reject");
-        } else {
-          throw new Error("Expected structured response, but got raw string");
-        }        
-    });
+    if (typeof requestResponse === "object") {
+      expect(requestResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
+      expect(requestResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("Reject");
+    } else {
+      throw new Error("Expected structured response, but got raw string");
+    }
+  });
 
-    test("should make a sync payment request", async (): Promise<void> => {
-        scope.post("/sync").reply(200, syncRes);
+  test("should make a sync payment request", async (): Promise<void> => {
+    scope.post("/sync").reply(200, syncRes);
 
     const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
     const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
@@ -168,6 +169,7 @@ describe("Terminal Cloud API", (): void => {
     const terminalApiHost = "https://terminal-api-test.adyen.com";
 
     const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST });
+
     const terminalCloudAPI = new TerminalCloudAPI(client);
 
     const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
@@ -191,14 +193,45 @@ describe("Terminal Cloud API", (): void => {
         },
       });
 
-    try {  
-    await terminalCloudAPI.sync(terminalAPIPaymentRequest);
-    fail("No exception was thrown");
+    try {
+      await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+      fail("No exception was thrown");
     } catch (e) {
-      expect(e).toBeInstanceOf(Error); 
+      expect(e).toBeInstanceOf(Error);
     }
 
-  });  
+  });
+
+  test("async should skip 308 redirect", async (): Promise<void> => {
+    
+    const terminalApiHost = "https://terminal-api-test.adyen.com";
+
+    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST, enable308Redirect: false });
+    const terminalCloudAPI = new TerminalCloudAPI(client);
+
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    // custom value to trigger mock 308 response
+    terminalAPIPaymentRequest.SaleToPOIRequest.MessageHeader.SaleID = "response-with-redirect";
+
+    // Mock first request: returns a 308 redirect with Location header
+    nock(terminalApiHost)
+      .post("/async", (body) => {
+        return body?.SaleToPOIRequest?.MessageHeader?.SaleID === "response-with-redirect";
+      })
+      .reply(308, "", { Location: `${terminalApiHost}/async?redirect=false` });
+
+
+    // Must throw an error
+    try {
+      await terminalCloudAPI.async(terminalAPIPaymentRequest);
+      fail("No exception was thrown");
+    } catch (e: unknown) {
+      expect(e).toBeInstanceOf(HttpClientException);
+      if (e instanceof HttpClientException) {
+        expect(e.statusCode).toBe(308);
+      } 
+    }
+  });
 
 });
 
