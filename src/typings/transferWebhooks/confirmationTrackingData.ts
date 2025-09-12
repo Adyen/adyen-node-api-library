@@ -10,7 +10,7 @@
 
 export class ConfirmationTrackingData {
     /**
-    * The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user\'s transfer instrument or bank account.
+    * The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user\'s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.
     */
     "status": ConfirmationTrackingData.StatusEnum;
     /**
@@ -46,7 +46,8 @@ export class ConfirmationTrackingData {
 
 export namespace ConfirmationTrackingData {
     export enum StatusEnum {
-        Credited = 'credited'
+        Credited = 'credited',
+        Accepted = 'accepted'
     }
     export enum TypeEnum {
         Confirmation = 'confirmation'
