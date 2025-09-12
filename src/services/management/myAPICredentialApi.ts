@@ -20,7 +20,6 @@ import { AllowedOriginsResponse } from "../../typings/management/models";
 import { CreateAllowedOriginRequest } from "../../typings/management/models";
 import { GenerateClientKeyResponse } from "../../typings/management/models";
 import { MeApiCredential } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 
 /**
  * API handler for MyAPICredentialApi
