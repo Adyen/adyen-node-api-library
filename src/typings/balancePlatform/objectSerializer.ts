@@ -14,6 +14,7 @@ import { AddressRequirement } from "./addressRequirement";
 import { Amount } from "./amount";
 import { AmountMinMaxRequirement } from "./amountMinMaxRequirement";
 import { AmountNonZeroDecimalsRequirement } from "./amountNonZeroDecimalsRequirement";
+import { ApproveTransferLimitRequest } from "./approveTransferLimitRequest";
 import { AssociationDelegatedAuthenticationData } from "./associationDelegatedAuthenticationData";
 import { AssociationFinaliseRequest } from "./associationFinaliseRequest";
 import { AssociationFinaliseResponse } from "./associationFinaliseResponse";
@@ -62,7 +63,9 @@ import { Counterparty } from "./counterparty";
 import { CounterpartyBankRestriction } from "./counterpartyBankRestriction";
 import { CounterpartyTypesRestriction } from "./counterpartyTypesRestriction";
 import { CountriesRestriction } from "./countriesRestriction";
+import { CreateScaInformation } from "./createScaInformation";
 import { CreateSweepConfigurationV2 } from "./createSweepConfigurationV2";
+import { CreateTransferLimitRequest } from "./createTransferLimitRequest";
 import { DKLocalAccountIdentification } from "./dKLocalAccountIdentification";
 import { DayOfWeekRestriction } from "./dayOfWeekRestriction";
 import { DefaultErrorResponseEntity } from "./defaultErrorResponseEntity";
@@ -88,6 +91,7 @@ import { IbanAccountIdentification } from "./ibanAccountIdentification";
 import { IbanAccountIdentificationRequirement } from "./ibanAccountIdentificationRequirement";
 import { InternationalTransactionRestriction } from "./internationalTransactionRestriction";
 import { InvalidField } from "./invalidField";
+import { LimitStatus } from "./limitStatus";
 import { Link } from "./link";
 import { ListNetworkTokensResponse } from "./listNetworkTokensResponse";
 import { MatchingTransactionsRestriction } from "./matchingTransactionsRestriction";
@@ -142,6 +146,10 @@ import { SELocalAccountIdentification } from "./sELocalAccountIdentification";
 import { SGLocalAccountIdentification } from "./sGLocalAccountIdentification";
 import { SameAmountRestriction } from "./sameAmountRestriction";
 import { SameCounterpartyRestriction } from "./sameCounterpartyRestriction";
+import { ScaExemption } from "./scaExemption";
+import { ScaInformation } from "./scaInformation";
+import { ScaStatus } from "./scaStatus";
+import { Scope } from "./scope";
 import { SearchRegisteredDevicesResponse } from "./searchRegisteredDevicesResponse";
 import { SettingType } from "./settingType";
 import { SourceAccountTypesRestriction } from "./sourceAccountTypesRestriction";
@@ -163,10 +171,13 @@ import { TransactionRuleInterval } from "./transactionRuleInterval";
 import { TransactionRuleResponse } from "./transactionRuleResponse";
 import { TransactionRuleRestrictions } from "./transactionRuleRestrictions";
 import { TransactionRulesResponse } from "./transactionRulesResponse";
+import { TransferLimit } from "./transferLimit";
+import { TransferLimitListResponse } from "./transferLimitListResponse";
 import { TransferRoute } from "./transferRoute";
 import { TransferRouteRequest } from "./transferRouteRequest";
 import { TransferRouteRequirementsInnerClass } from "./transferRouteRequirementsInner";
 import { TransferRouteResponse } from "./transferRouteResponse";
+import { TransferType } from "./transferType";
 import { UKLocalAccountIdentification } from "./uKLocalAccountIdentification";
 import { USInstantPayoutAddressRequirement } from "./uSInstantPayoutAddressRequirement";
 import { USInternationalAchAddressRequirement } from "./uSInternationalAchAddressRequirement";
@@ -262,6 +273,10 @@ let enumsMap: Set<string> = new Set<string>([
     "HULocalAccountIdentification.TypeEnum",
     "IbanAccountIdentification.TypeEnum",
     "IbanAccountIdentificationRequirement.TypeEnum",
+    LimitStatus.Active,
+    LimitStatus.Inactive,
+    LimitStatus.PendingSca,
+    LimitStatus.Scheduled,
     "MatchingValuesRestriction.ValueEnum",
     "NOLocalAccountIdentification.TypeEnum",
     "NZLocalAccountIdentification.TypeEnum",
@@ -285,6 +300,16 @@ let enumsMap: Set<string> = new Set<string>([
     "ProcessingTypesRestriction.ValueEnum",
     "SELocalAccountIdentification.TypeEnum",
     "SGLocalAccountIdentification.TypeEnum",
+    ScaExemption.SetByPlatform,
+    ScaExemption.InitialLimit,
+    ScaExemption.LowerLimit,
+    ScaExemption.NotRegulated,
+    ScaExemption.AlreadyPerformed,
+    ScaStatus.NotPerformed,
+    ScaStatus.Pending,
+    ScaStatus.Performed,
+    Scope.PerDay,
+    Scope.PerTransaction,
     SettingType.Balance,
     "SourceAccountTypesRestriction.ValueEnum",
     "StringMatch.OperationEnum",
@@ -315,6 +340,8 @@ let enumsMap: Set<string> = new Set<string>([
     "TransferRouteRequirementsInner.RequiredAddressFieldsEnum",
     "TransferRouteRequirementsInner.BankAccountIdentificationTypesEnum",
     "TransferRouteRequirementsInner.PaymentInstrumentTypeEnum",
+    TransferType.Instant,
+    TransferType.All,
     "UKLocalAccountIdentification.TypeEnum",
     "USInstantPayoutAddressRequirement.TypeEnum",
     "USInternationalAchAddressRequirement.TypeEnum",
@@ -353,6 +380,7 @@ let typeMap: {[index: string]: any} = {
     "Amount": Amount,
     "AmountMinMaxRequirement": AmountMinMaxRequirement,
     "AmountNonZeroDecimalsRequirement": AmountNonZeroDecimalsRequirement,
+    "ApproveTransferLimitRequest": ApproveTransferLimitRequest,
     "AssociationDelegatedAuthenticationData": AssociationDelegatedAuthenticationData,
     "AssociationFinaliseRequest": AssociationFinaliseRequest,
     "AssociationFinaliseResponse": AssociationFinaliseResponse,
@@ -401,7 +429,9 @@ let typeMap: {[index: string]: any} = {
     "CounterpartyBankRestriction": CounterpartyBankRestriction,
     "CounterpartyTypesRestriction": CounterpartyTypesRestriction,
     "CountriesRestriction": CountriesRestriction,
+    "CreateScaInformation": CreateScaInformation,
     "CreateSweepConfigurationV2": CreateSweepConfigurationV2,
+    "CreateTransferLimitRequest": CreateTransferLimitRequest,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DayOfWeekRestriction": DayOfWeekRestriction,
     "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
@@ -481,6 +511,7 @@ let typeMap: {[index: string]: any} = {
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
     "SameAmountRestriction": SameAmountRestriction,
     "SameCounterpartyRestriction": SameCounterpartyRestriction,
+    "ScaInformation": ScaInformation,
     "SearchRegisteredDevicesResponse": SearchRegisteredDevicesResponse,
     "SourceAccountTypesRestriction": SourceAccountTypesRestriction,
     "StringMatch": StringMatch,
@@ -501,6 +532,8 @@ let typeMap: {[index: string]: any} = {
     "TransactionRuleResponse": TransactionRuleResponse,
     "TransactionRuleRestrictions": TransactionRuleRestrictions,
     "TransactionRulesResponse": TransactionRulesResponse,
+    "TransferLimit": TransferLimit,
+    "TransferLimitListResponse": TransferLimitListResponse,
     "TransferRoute": TransferRoute,
     "TransferRouteRequest": TransferRouteRequest,
     "TransferRouteRequirementsInner": TransferRouteRequirementsInnerClass,
