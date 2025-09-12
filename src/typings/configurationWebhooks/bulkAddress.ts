@@ -30,6 +30,18 @@ export class BulkAddress {
     */
     "houseNumberOrName"?: string;
     /**
+    * The name of the street and the number of the building.  For example: **Simon Carmiggeltstraat 6-50**.
+    */
+    "line1"?: string;
+    /**
+    * Additional information about the delivery address. For example, an apartment number.
+    */
+    "line2"?: string;
+    /**
+    * Additional information about the delivery address.
+    */
+    "line3"?: string;
+    /**
     * The full telephone number.
     */
     "mobile"?: string;
@@ -78,6 +90,24 @@ export class BulkAddress {
         {
             "name": "houseNumberOrName",
             "baseName": "houseNumberOrName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "line1",
+            "baseName": "line1",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "line2",
+            "baseName": "line2",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "line3",
+            "baseName": "line3",
             "type": "string",
             "format": ""
         },
