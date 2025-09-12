@@ -22,7 +22,6 @@ import { GetAcceptedTermsOfServiceDocumentResponse } from "../../typings/legalEn
 import { GetTermsOfServiceAcceptanceInfosResponse } from "../../typings/legalEntityManagement/models";
 import { GetTermsOfServiceDocumentRequest } from "../../typings/legalEntityManagement/models";
 import { GetTermsOfServiceDocumentResponse } from "../../typings/legalEntityManagement/models";
-import { ServiceError } from "../../typings/legalEntityManagement/models";
 
 /**
  * API handler for TermsOfServiceApi
