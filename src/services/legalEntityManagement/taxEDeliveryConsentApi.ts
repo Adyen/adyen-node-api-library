@@ -16,6 +16,7 @@ import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSerializer";
 import { CheckTaxElectronicDeliveryConsentResponse } from "../../typings/legalEntityManagement/models";
+import { ServiceError } from "../../typings/legalEntityManagement/models";
 import { SetTaxElectronicDeliveryConsentRequest } from "../../typings/legalEntityManagement/models";
 
 /**

@@ -20,6 +20,7 @@ import { AccountHolderInfo } from "../../typings/balancePlatform/models";
 import { AccountHolderUpdateRequest } from "../../typings/balancePlatform/models";
 import { GetTaxFormResponse } from "../../typings/balancePlatform/models";
 import { PaginatedBalanceAccountsResponse } from "../../typings/balancePlatform/models";
+import { RestServiceError } from "../../typings/balancePlatform/models";
 import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
 
 /**
@@ -133,7 +134,7 @@ export class AccountHoldersApi extends Service {
     * @param legalEntityId {@link string } The legal entity reference whose tax form you want to retrieve
     * @return {@link GetTaxFormResponse }
     */
-    public async getTaxForm(id: string, formType: "US1099k" | "US1099nec", year: number, legalEntityId?: string, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
+    public async getTaxForm(id: string, formType: 'US1099k' | 'US1099nec', year: number, legalEntityId?: string, requestOptions?: IRequest.Options): Promise<GetTaxFormResponse> {
         const endpoint = `${this.baseUrl}/accountHolders/{id}/taxForms`
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
         const resource = new Resource(this, endpoint);

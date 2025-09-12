@@ -21,6 +21,7 @@ import { BalanceAccountUpdateRequest } from "../../typings/balancePlatform/model
 import { BalanceSweepConfigurationsResponse } from "../../typings/balancePlatform/models";
 import { CreateSweepConfigurationV2 } from "../../typings/balancePlatform/models";
 import { PaginatedPaymentInstrumentsResponse } from "../../typings/balancePlatform/models";
+import { RestServiceError } from "../../typings/balancePlatform/models";
 import { SweepConfigurationV2 } from "../../typings/balancePlatform/models";
 import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
 import { UpdateSweepConfigurationV2 } from "../../typings/balancePlatform/models";

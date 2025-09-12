@@ -17,6 +17,7 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { PaginatedGetCardOrderItemResponse } from "../../typings/balancePlatform/models";
 import { PaginatedGetCardOrderResponse } from "../../typings/balancePlatform/models";
+import { RestServiceError } from "../../typings/balancePlatform/models";
 
 /**
  * API handler for CardOrdersApi
