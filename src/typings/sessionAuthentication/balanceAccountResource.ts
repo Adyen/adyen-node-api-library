@@ -8,6 +8,7 @@
  */
 
 import { Resource } from "./resource";
+import { ResourceType } from "./resourceType";
 
 
 export class BalanceAccountResource extends Resource {
