@@ -17,7 +17,6 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/management/objectSerializer";
 import { ExternalTerminalAction } from "../../typings/management/models";
 import { ListExternalTerminalActionsResponse } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 
 /**
  * API handler for TerminalActionsCompanyLevelApi

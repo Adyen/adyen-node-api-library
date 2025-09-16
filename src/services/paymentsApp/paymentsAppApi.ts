@@ -17,7 +17,6 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/paymentsApp/objectSerializer";
 import { BoardingTokenRequest } from "../../typings/paymentsApp/models";
 import { BoardingTokenResponse } from "../../typings/paymentsApp/models";
-import { DefaultErrorResponseEntity } from "../../typings/paymentsApp/models";
 import { PaymentsAppResponse } from "../../typings/paymentsApp/models";
 
 /**
