@@ -85,7 +85,7 @@ class Config {
         if (options.terminalApiLocalEndpoint) this.terminalApiLocalEndpoint = options.terminalApiLocalEndpoint;
         if (options.liveEndpointUrlPrefix) this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix;
         if (options.region) this.region = options.region;
-        this.enable308Redirect = options.enable308Redirect ?? true;
+        this.enable308Redirect = options.enable308Redirect ?? true; // enabled by default
 
     }
 
