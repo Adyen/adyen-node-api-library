@@ -99,7 +99,7 @@ describe("Open Banking", (): void => {
 
         expect(response.id).toEqual("69ee9452ef824fe092f1417f37535755");
         expect(response.country).toEqual(AccountVerificationCountry.Es);
-        expect(response.accounts.length).toBe(1)
+        expect(response.accounts.length).toBe(1);
 
     });
 });
