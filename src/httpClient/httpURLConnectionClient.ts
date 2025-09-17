@@ -86,7 +86,8 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.headers[ApiConstants.CONTENT_TYPE] = ApiConstants.APPLICATION_JSON_TYPE;
 
         const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
-        return this.doRequest(httpConnection, json);
+
+        return this.doRequest(httpConnection, json, config.enable308Redirect ?? true);
     }
 
     // create Request object
@@ -142,8 +143,15 @@ class HttpURLConnectionClient implements ClientInterface {
         return req;
     }
 
-    // invoke request
-    private doRequest(connectionRequest: ClientRequest, json: string): Promise<string> {
+    /**
+     * Invoke the request
+     * @param connectionRequest The request
+     * @param json The payload
+     * @param allowRedirect Whether to allow redirect upon 308 response status code
+     * @returns Promise with the API response
+     */
+    private doRequest(connectionRequest: ClientRequest, json: string, allowRedirect: boolean): Promise<string> {
+
         return new Promise((resolve, reject): void => {
             connectionRequest.flushHeaders();
 
@@ -173,8 +181,8 @@ class HttpURLConnectionClient implements ClientInterface {
                         reject(new Error("The connection was terminated while the message was still being sent"));
                     }
 
-                    // Handle 308 redirect
-                    if (res.statusCode && res.statusCode === 308) {
+                    // Handle 308 redirect (when enabled)
+                    if (allowRedirect && res.statusCode && res.statusCode === 308) {
                         const location = res.headers["location"];
                         if (location) {
                             // follow the redirect
@@ -195,7 +203,8 @@ class HttpURLConnectionClient implements ClientInterface {
                                 };
                                 const clientRequestFn = url.protocol === "https:" ? httpsRequest : httpRequest;
                                 const redirectedRequest: ClientRequest = clientRequestFn(newRequestOptions);
-                                const redirectResponse = this.doRequest(redirectedRequest, json);
+                                // To prevent potential redirect loops, disable further redirects for this new request.
+                                const redirectResponse = this.doRequest(redirectedRequest, json, false as boolean);
                                 return resolve(redirectResponse);
                             } catch (err) {
                                 return reject(err);
@@ -230,7 +239,7 @@ class HttpURLConnectionClient implements ClientInterface {
                         } catch (e) {
                             // parsing error
                             exception = new HttpClientException({
-                                message: `HTTP Exception: ${response.statusCode}. Error parsing response: ${(e as Error).message}`,
+                                message: `HTTP Exception: ${response.statusCode}. Error ${(e as Error).message} while parsing response: ${response.body}`,
                                 statusCode: response.statusCode,
                                 responseHeaders: response.headers,
                                 responseBody: response.body,
