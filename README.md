@@ -254,12 +254,12 @@ Alternatively, you can use the `Types` included in this module for Typescript an
 #### Deserializing JSON Strings
 In some setups you might need to deserialize JSON strings to request objects. For example, when using the libraries in combination with [Dropin/Components](https://github.com/Adyen/adyen-web). Please use the built-in deserialization functions:
 ``` typescript
-// Import the required model class
-import { checkout } from "../typings";
+// Import the models
+import { Types } from "@adyen/api-library";
 
 // Deserialize using built-in ObjectSerializer class
 const requestJson: JSON = JSON.parse(`YOUR_JSON_STRING`);
-const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.deserialize(requestJson,"PaymentRequest");
+const paymentRequest: Types.checkout.PaymentRequest = await Types.checkout.ObjectSerializer.deserialize(requestJson,"PaymentRequest");
 ```
  
 ### Custom HTTP client configuration
@@ -299,8 +299,12 @@ const client = new Client({
 ### Parsing and Authenticating Banking Webhooks
 Parse an AccountHolderNotificationRequest webhook;
 ``` typescript
+// import models
+import { Types } from "@adyen/api-library";
+const { ConfigurationWebhooksHandler } = require('@adyen/api-library/lib/src/typings/configurationWebhooks/configurationWebhooksHandler');
+
 const configurationWebhooksHandler = new ConfigurationWebhooksHandler(YOUR_BANKING_WEBHOOK);
-const accountHolderNotificationRequest: AccountHolderNotificationRequest = configurationWebhooksHandler.getAccountHolderNotificationRequest();
+const accountHolderNotificationRequest: Types.configurationWebhooks.AccountHolderNotificationRequest = configurationWebhooksHandler.getAccountHolderNotificationRequest();
 ```
 You can also parse the webhook with a generic type, in case you do not know the webhook type in advance. In this case you can check the instance of the webhook in order to parse it to the respective type (or just use it dynamically);
 ``` typescript
@@ -331,7 +335,7 @@ To configure a proxy connection, set the `proxy` property of your `HttpURLConnec
 For example:
 
 ``` javascript
-const {HttpURLConnectionClient, Client, Config} = require('@adyen/api-library');
+const {HttpURLConnectionClient, Client, Config, EnvironmentEnum} = require('@adyen/api-library');
 // ... more code
 const client = new Client({apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST}); 
 const httpClient = new HttpURLConnectionClient();
@@ -494,7 +498,7 @@ const paymentRequest: SaleToPOIRequest = {
 }
 
 // Step 6: Make the request
-const terminalApiResponse: terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest, securityKey);
+const terminalApiResponse: Types.terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest, securityKey);
 ```
 ## Using the Local Terminal API Integration without Encryption (Only on TEST)
 If you wish to develop the Local Terminal API integration parallel to your encryption implementation, you can opt for the unencrypted version. Be sure to remove any encryption details from the CA terminal config page. 
@@ -517,7 +521,7 @@ const paymentRequest: SaleToPOIRequest = {
 }
 
 // Step 5: Make the request
-const terminalApiResponse: terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest);
+const terminalApiResponse: Types.terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest);
 ```
 ### Using the Cloud Terminal API Integration (async)
 If you choose to integrate [Terminal API over Cloud](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/) **asynchronously**, you need to follow similar steps to initialize the client and prepare the request object. However the response will be asynchronous:
@@ -525,7 +529,7 @@ If you choose to integrate [Terminal API over Cloud](https://docs.adyen.com/poin
 * a request that fails will return `200` status code and the `TerminalApiResponse` as response body
 ``` typescript
 // Step 1: Require the parts of the module you want to use
-const {Client, TerminalCloudAPI} from "@adyen/api-library";
+const {Client, TerminalCloudAPI, EnvironmentEnum} from "@adyen/api-library";
 
 // Step 2: Initialize the client object
 const client = new Client({apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST}); 
