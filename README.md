@@ -299,24 +299,29 @@ const client = new Client({
 ### Parsing and Authenticating Banking Webhooks
 Parse an AccountHolderNotificationRequest webhook;
 ``` typescript
-let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
-const accountHolderNotificationRequest: AccountHolderNotificationRequest = bankingWebhookHandler.getAccountHolderNotificationRequest();
-const genericWebhook = bankingWebhookHandler.getGenericWebhook();
+const configurationWebhooksHandler = new ConfigurationWebhooksHandler(YOUR_BANKING_WEBHOOK);
+const accountHolderNotificationRequest: AccountHolderNotificationRequest = configurationWebhooksHandler.getAccountHolderNotificationRequest();
 ```
 You can also parse the webhook with a generic type, in case you do not know the webhook type in advance. In this case you can check the instance of the webhook in order to parse it to the respective type (or just use it dynamically);
 ``` typescript
-let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
-const genericWebhook = bankingWebhookHandler.getGenericWebhook();
+const configurationWebhooksHandler = new ConfigurationWebhooksHandler(YOUR_BANKING_WEBHOOK);
+const genericWebhook = configurationWebhooksHandler.getGenericWebhook();
+
+if ("accountHolderCode" in genericWebhook) {
+  console.log("This is an AccountHolderNotificationRequest");
+} else if ("balanceAccountId" in genericWebhook) {
+  console.log("This is a BalanceAccountNotificationRequest");
+}
 ```
 Verify the authenticity (where you retrieve the hmac key from the CA and the signature from the webhook header);
 ``` typescript
 const isValid = hmacValidator.validateBankingHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGNATURE", jsonString)
 ```
 ### Management Webhooks
-Management webhooks are verified the exact same way as the banking webhooks. To parse them however, instead you use:
+Management webhooks are also parsed with the same approach, using `ManagementWebhooksHandler`:
 ``` typescript
-let managementWebhookHandler = new ManagementWebhookHandler(YOUR_MANAGEMENT_WEBHOOK);
-const genericWebhook = managementWebhookHandler.getGenericWebhook();
+const managementWebhooksHandler = new ManagementWebhooksHandler(YOUR_MANAGEMENT_WEBHOOK);
+const genericWebhook = managementWebhooksHandler.getGenericWebhook();
 ```
 
 ### Proxy configuration
@@ -328,12 +333,10 @@ For example:
 ``` javascript
 const {HttpURLConnectionClient, Client, Config} = require('@adyen/api-library');
 // ... more code
-const config = new Config();
-const client = new Client({ config });
+const client = new Client({apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST}); 
 const httpClient = new HttpURLConnectionClient();
 httpClient.proxy = { host: "http://google.com", port: 8888,  };
 
-client.setEnvironment(EnvironmentEnum.TEST);
 client.httpClient = httpClient;
 
 // ... more code
@@ -525,7 +528,8 @@ If you choose to integrate [Terminal API over Cloud](https://docs.adyen.com/poin
 const {Client, TerminalCloudAPI} from "@adyen/api-library";
 
 // Step 2: Initialize the client object
-const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
+const client = new Client({apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST}); 
+
 
 // Step 3: Initialize the API object
 const terminalCloudAPI = new TerminalCloudAPI(client);
