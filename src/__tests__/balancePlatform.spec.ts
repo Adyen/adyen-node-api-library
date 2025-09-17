@@ -1,20 +1,11 @@
 import nock from "nock";
 import Client from "../client";
+import { Types } from "..";
+import { BalancePlatformAPI } from "..";
 import { createClient } from "../__mocks__/base";
-import BalancePlatform from "../services/balancePlatform";
-import { balancePlatform } from "../typings";
-import { IRequest } from "../typings/requestOptions";
-import { BalanceWebhookSettingInfo } from "../typings/balancePlatform/balanceWebhookSettingInfo";
-import { Target } from "../typings/balancePlatform/target";
-import { TransferRouteRequest } from "../typings/balancePlatform/transferRouteRequest";
-import { IbanAccountIdentification } from "../typings/balancePlatform/ibanAccountIdentification";
-import { Condition } from "../typings/balancePlatform/condition";
-import { Scope } from "../typings/balancePlatform/scope";
-import { LimitStatus } from "../typings/balancePlatform/models";
-import { TransferType } from "../typings/balancePlatform/transferType";
 
 let client: Client;
-let balancePlatformService: BalancePlatform;
+let balancePlatformService: BalancePlatformAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
@@ -23,7 +14,7 @@ beforeEach((): void => {
     }
     client = createClient();
     scope = nock("https://balanceplatform-api-test.adyen.com/bcl/v2");
-    balancePlatformService = new BalancePlatform(client);
+    balancePlatformService = new BalancePlatformAPI(client);
 });
 
 afterEach(() => {
@@ -62,7 +53,7 @@ describe("Balance Platform", (): void => {
                     "id": "AH3227C223222B5CMD2SXFKGT",
                     "status": "active"
                 });
-            const request: balancePlatform.AccountHolderInfo = {
+            const request: Types.balancePlatform.AccountHolderInfo = {
                 "balancePlatform": "YOUR_BALANCE_PLATFORM",
                 "description": "S.Hopper - Staff 123",
                 "legalEntityId": "LE322KT223222D5FJ7THR293F",
@@ -70,7 +61,7 @@ describe("Balance Platform", (): void => {
                     "email": "s.hopper@example.com",
                     "phone": {
                         "number": "+315551231234",
-                        "type": balancePlatform.Phone.TypeEnum.Mobile
+                        "type": Types.balancePlatform.Phone.TypeEnum.Mobile
                     },
                     "address": {
                         "city": "Amsterdam",
@@ -82,7 +73,7 @@ describe("Balance Platform", (): void => {
                 }
             };
 
-            const response: balancePlatform.AccountHolder = await balancePlatformService.AccountHoldersApi.createAccountHolder(request);
+            const response: Types.balancePlatform.AccountHolder = await balancePlatformService.AccountHoldersApi.createAccountHolder(request);
 
             expect(response.id).toBe("AH3227C223222B5CMD2SXFKGT");
             expect(response.legalEntityId).toBe("LE322KT223222D5FJ7THR293F");
@@ -111,7 +102,7 @@ describe("Balance Platform", (): void => {
                     "status": "Active"
                 });
 
-            const response: balancePlatform.AccountHolder = await balancePlatformService.AccountHoldersApi.getAccountHolder("AH32272223222B5CM4MWJ892H");
+            const response: Types.balancePlatform.AccountHolder = await balancePlatformService.AccountHoldersApi.getAccountHolder("AH32272223222B5CM4MWJ892H");
 
             expect(response.id).toBe("AH32272223222B5CM4MWJ892H");
             expect(response.balancePlatform).toBe("YOUR_BALANCE_PLATFORM");
@@ -139,13 +130,13 @@ describe("Balance Platform", (): void => {
                     "id": "AH32272223222B5CM4MWJ892H",
                     "status": "Suspended"
                 });
-            const request: balancePlatform.AccountHolder = {
+            const request: Types.balancePlatform.AccountHolder = {
                 id: "AH32272223222B5CM4MWJ892H",
-                status: balancePlatform.AccountHolder.StatusEnum.Suspended,
+                status: Types.balancePlatform.AccountHolder.StatusEnum.Suspended,
                 legalEntityId: "LE322KT223222D5FJ7THR293F",
             };
 
-            const response: balancePlatform.AccountHolder = await balancePlatformService.AccountHoldersApi.updateAccountHolder("AH32272223222B5CM4MWJ892H", request);
+            const response: Types.balancePlatform.AccountHolder = await balancePlatformService.AccountHoldersApi.updateAccountHolder("AH32272223222B5CM4MWJ892H", request);
 
             expect(response.status).toBe("Suspended");
         });
@@ -176,13 +167,13 @@ describe("Balance Platform", (): void => {
                     "hasNext": true,
                     "hasPrevious": false
                 });
-            const requestOptions: IRequest.Options = {
+            const requestOptions: Types.requestOptions.IRequest.Options = {
                 params: {
                     limit: "5",
                     offset: "10"
                 }
             };
-            const response: balancePlatform.PaginatedBalanceAccountsResponse = await balancePlatformService.AccountHoldersApi.getAllBalanceAccountsOfAccountHolder("AH32272223222B5CM4MWJ892H", undefined, undefined, requestOptions);
+            const response: Types.balancePlatform.PaginatedBalanceAccountsResponse = await balancePlatformService.AccountHoldersApi.getAllBalanceAccountsOfAccountHolder("AH32272223222B5CM4MWJ892H", undefined, undefined, requestOptions);
 
             expect(response.balanceAccounts[0].id).toBe("BA32272223222B59K6ZXHBFN6");
         });
@@ -206,12 +197,12 @@ describe("Balance Platform", (): void => {
                     "id": balanceAccountId,
                     "status": "active"
                 });
-            const request: balancePlatform.BalanceAccountInfo = {
+            const request: Types.balancePlatform.BalanceAccountInfo = {
                 "accountHolderId": "AH32272223222B59K6ZKBBFNQ",
                 "description": "S.Hopper - Main balance account"
             };
 
-            const response: balancePlatform.BalanceAccount = await balancePlatformService.BalanceAccountsApi.createBalanceAccount(request);
+            const response: Types.balancePlatform.BalanceAccount = await balancePlatformService.BalanceAccountsApi.createBalanceAccount(request);
 
             expect(response.id).toBe(balanceAccountId);
         });
@@ -245,7 +236,7 @@ describe("Balance Platform", (): void => {
                     ]
                 });
 
-            const response: balancePlatform.BalanceSweepConfigurationsResponse = await balancePlatformService.BalanceAccountsApi.getAllSweepsForBalanceAccount(balanceAccountId, undefined, undefined, {
+            const response: Types.balancePlatform.BalanceSweepConfigurationsResponse = await balancePlatformService.BalanceAccountsApi.getAllSweepsForBalanceAccount(balanceAccountId, undefined, undefined, {
                 params: {
                     "limit": "5",
                     "offset": "10"
@@ -274,7 +265,7 @@ describe("Balance Platform", (): void => {
                     "type": "pull",
                     "status": "active"
                 });
-            const request: balancePlatform.SweepConfigurationV2 = {
+            const request: Types.balancePlatform.SweepConfigurationV2 = {
                 "id": "SWEEP_ID",
                 "counterparty": {
                     "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
@@ -285,13 +276,13 @@ describe("Balance Platform", (): void => {
                 },
                 "currency": "EUR",
                 "schedule": {
-                    "type": balancePlatform.SweepSchedule.TypeEnum.Balance
+                    "type": Types.balancePlatform.SweepSchedule.TypeEnum.Balance
                 },
-                "type": balancePlatform.SweepConfigurationV2.TypeEnum.Pull,
-                "status": balancePlatform.SweepConfigurationV2.StatusEnum.Active
+                "type": Types.balancePlatform.SweepConfigurationV2.TypeEnum.Pull,
+                "status": Types.balancePlatform.SweepConfigurationV2.StatusEnum.Active
             };
 
-            const response: balancePlatform.SweepConfigurationV2 = await balancePlatformService.BalanceAccountsApi.createSweep(balanceAccountId, request);
+            const response: Types.balancePlatform.SweepConfigurationV2 = await balancePlatformService.BalanceAccountsApi.createSweep(balanceAccountId, request);
 
             expect(response.id).toBe(sweepId);
             expect(response.triggerAmount!.value).toBe(50000);
@@ -326,7 +317,7 @@ describe("Balance Platform", (): void => {
                     "currency": "EUR"
                 });
 
-            const response: balancePlatform.SweepConfigurationV2 = await balancePlatformService.BalanceAccountsApi.getSweep(balanceAccountId, sweepId);
+            const response: Types.balancePlatform.SweepConfigurationV2 = await balancePlatformService.BalanceAccountsApi.getSweep(balanceAccountId, sweepId);
 
             expect(response.id).toBe(sweepId);
             expect(response.status).toBe("active");
@@ -350,19 +341,19 @@ describe("Balance Platform", (): void => {
                     "type": "pull",
                     "status": "inactive"
                 });
-            const request: balancePlatform.SweepConfigurationV2 = {
+            const request: Types.balancePlatform.SweepConfigurationV2 = {
                 "id": sweepId,
                 "counterparty": {
                     "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
                 },
-                "status": balancePlatform.SweepConfigurationV2.StatusEnum.Inactive,
+                "status": Types.balancePlatform.SweepConfigurationV2.StatusEnum.Inactive,
                 "currency": "EUR",
                 "schedule": {
-                    "type": balancePlatform.SweepSchedule.TypeEnum.Cron
+                    "type": Types.balancePlatform.SweepSchedule.TypeEnum.Cron
                 }
             };
 
-            const response: balancePlatform.SweepConfigurationV2 = await balancePlatformService.BalanceAccountsApi.updateSweep(balanceAccountId, sweepId, request);
+            const response: Types.balancePlatform.SweepConfigurationV2 = await balancePlatformService.BalanceAccountsApi.updateSweep(balanceAccountId, sweepId, request);
 
             expect(response.status).toBe("inactive");
         });
@@ -384,7 +375,7 @@ describe("Balance Platform", (): void => {
                     "status": "Active"
                 });
 
-            const response: balancePlatform.BalanceAccount = await balancePlatformService.BalanceAccountsApi.getBalanceAccount(balanceAccountId);
+            const response: Types.balancePlatform.BalanceAccount = await balancePlatformService.BalanceAccountsApi.getBalanceAccount(balanceAccountId);
 
             expect(response.id).toBe(balanceAccountId);
             expect(response.status).toBe("Active");
@@ -409,13 +400,13 @@ describe("Balance Platform", (): void => {
                     "status": "active",
                     "timeZone": "Europe/Amsterdam"
                 });
-            const request: balancePlatform.BalanceAccountUpdateRequest = {
+            const request: Types.balancePlatform.BalanceAccountUpdateRequest = {
                 "description": "Testing",
-                "status": balancePlatform.BalanceAccountUpdateRequest.StatusEnum.Active,
+                "status": Types.balancePlatform.BalanceAccountUpdateRequest.StatusEnum.Active,
                 "timeZone": "Europe/Amsterdam"
             };
 
-            const response: balancePlatform.BalanceAccount = await balancePlatformService.BalanceAccountsApi.updateBalanceAccount(balanceAccountId, request);
+            const response: Types.balancePlatform.BalanceAccount = await balancePlatformService.BalanceAccountsApi.updateBalanceAccount(balanceAccountId, request);
 
             expect(response.status).toBe("active");
             expect(response.timeZone).toBe("Europe/Amsterdam");
@@ -468,7 +459,7 @@ describe("Balance Platform", (): void => {
                     ]
                 });
 
-            const response: balancePlatform.PaginatedPaymentInstrumentsResponse = await balancePlatformService.BalanceAccountsApi.getPaymentInstrumentsLinkedToBalanceAccount(balanceAccountId, undefined, undefined, undefined, {
+            const response: Types.balancePlatform.PaginatedPaymentInstrumentsResponse = await balancePlatformService.BalanceAccountsApi.getPaymentInstrumentsLinkedToBalanceAccount(balanceAccountId, undefined, undefined, undefined, {
                 params: {
                     limit: "3",
                     offset: "6",
@@ -488,7 +479,7 @@ describe("Balance Platform", (): void => {
                     "status": "Active"
                 });
 
-            const response: balancePlatform.BalancePlatform = await balancePlatformService.PlatformApi.getBalancePlatform(balanceAccountId);
+            const response: Types.balancePlatform.BalancePlatform = await balancePlatformService.PlatformApi.getBalancePlatform(balanceAccountId);
 
             expect(response.id).toBe(balanceAccountId);
             expect(response.status).toBe("Active");
@@ -531,7 +522,7 @@ describe("Balance Platform", (): void => {
                     "hasPrevious": "false"
                 });
 
-            const response: balancePlatform.PaginatedAccountHoldersResponse = await balancePlatformService.PlatformApi.getAllAccountHoldersUnderBalancePlatform(balanceAccountId);
+            const response: Types.balancePlatform.PaginatedAccountHoldersResponse = await balancePlatformService.PlatformApi.getAllAccountHoldersUnderBalancePlatform(balanceAccountId);
 
             expect(response.accountHolders.length).toBe(2);
             expect(response.accountHolders[0].id).toBe("AH32272223222B59DDWSCCMP7");
@@ -562,13 +553,13 @@ describe("Balance Platform", (): void => {
                     },
                     "id": paymentInstrumentId
                 });
-            const request: balancePlatform.PaymentInstrumentInfo = {
-                "type": balancePlatform.PaymentInstrumentInfo.TypeEnum.Card,
+            const request: Types.balancePlatform.PaymentInstrumentInfo = {
+                "type": Types.balancePlatform.PaymentInstrumentInfo.TypeEnum.Card,
                 "issuingCountryCode": "NL",
                 "balanceAccountId": balanceAccountId,
-                "status": balancePlatform.PaymentInstrumentInfo.StatusEnum.Inactive,
+                "status": Types.balancePlatform.PaymentInstrumentInfo.StatusEnum.Inactive,
                 "card": {
-                    "formFactor": balancePlatform.CardInfo.FormFactorEnum.Physical,
+                    "formFactor": Types.balancePlatform.CardInfo.FormFactorEnum.Physical,
                     "brand": "mc",
                     "brandVariant": "mcdebit",
                     "cardholderName": "Sam Hopper",
@@ -593,7 +584,7 @@ describe("Balance Platform", (): void => {
                 "description": "S.Hopper - Main card"
             };
 
-            const response: balancePlatform.PaymentInstrument = await balancePlatformService.PaymentInstrumentsApi.createPaymentInstrument(request);
+            const response: Types.balancePlatform.PaymentInstrument = await balancePlatformService.PaymentInstrumentsApi.createPaymentInstrument(request);
 
             expect(response.id).toBe(paymentInstrumentId);
             expect(response.balanceAccountId).toBe(balanceAccountId);
@@ -623,7 +614,7 @@ describe("Balance Platform", (): void => {
                     "id": paymentInstrumentId
                 });
 
-            const response: balancePlatform.PaymentInstrument = await balancePlatformService.PaymentInstrumentsApi.getPaymentInstrument(paymentInstrumentId);
+            const response: Types.balancePlatform.PaymentInstrument = await balancePlatformService.PaymentInstrumentsApi.getPaymentInstrument(paymentInstrumentId);
 
             expect(response.id).toBe(paymentInstrumentId);
             expect(response.status).toBe("active");
@@ -652,11 +643,11 @@ describe("Balance Platform", (): void => {
                     },
                     "id": paymentInstrumentId
                 });
-            const request: balancePlatform.PaymentInstrumentUpdateRequest = {
+            const request: Types.balancePlatform.PaymentInstrumentUpdateRequest = {
                 "balanceAccountId": "BA32272223222B5CM82WL892M"
             };
 
-            const response: balancePlatform.PaymentInstrument = await balancePlatformService.PaymentInstrumentsApi.updatePaymentInstrument(paymentInstrumentId, request);
+            const response: Types.balancePlatform.PaymentInstrument = await balancePlatformService.PaymentInstrumentsApi.updatePaymentInstrument(paymentInstrumentId, request);
 
             expect(response.id).toBe(paymentInstrumentId);
             expect(response.balanceAccountId).toBe("BA32272223222B5CM82WL892M");
@@ -698,7 +689,7 @@ describe("Balance Platform", (): void => {
                     ]
                 });
 
-            const response: balancePlatform.TransactionRulesResponse = await balancePlatformService.PaymentInstrumentsApi.getAllTransactionRulesForPaymentInstrument(paymentInstrumentId);
+            const response: Types.balancePlatform.TransactionRulesResponse = await balancePlatformService.PaymentInstrumentsApi.getAllTransactionRulesForPaymentInstrument(paymentInstrumentId);
 
             expect(response.transactionRules!.length).toBe(2);
             expect(response.transactionRules![0].id).toBe("TR32272223222B5CMDGMC9F4F");
@@ -713,12 +704,12 @@ describe("Balance Platform", (): void => {
                     "txVariant": "mc",
                     "id": paymentInstrumentGroupId
                 });
-            const request: balancePlatform.PaymentInstrumentGroupInfo = {
+            const request: Types.balancePlatform.PaymentInstrumentGroupInfo = {
                 "balancePlatform": "YOUR_BALANCE_PLATFORM",
                 "txVariant": "mc"
             };
 
-            const response: balancePlatform.PaymentInstrumentGroup = await balancePlatformService.PaymentInstrumentGroupsApi.createPaymentInstrumentGroup(request);
+            const response: Types.balancePlatform.PaymentInstrumentGroup = await balancePlatformService.PaymentInstrumentGroupsApi.createPaymentInstrumentGroup(request);
 
             expect(response.id).toBe(paymentInstrumentGroupId);
             expect(response.txVariant).toBe("mc");
@@ -732,7 +723,7 @@ describe("Balance Platform", (): void => {
                     "id": paymentInstrumentGroupId
                 });
 
-            const response: balancePlatform.PaymentInstrumentGroup = await balancePlatformService.PaymentInstrumentGroupsApi.getPaymentInstrumentGroup(paymentInstrumentGroupId);
+            const response: Types.balancePlatform.PaymentInstrumentGroup = await balancePlatformService.PaymentInstrumentGroupsApi.getPaymentInstrumentGroup(paymentInstrumentGroupId);
 
             expect(response.id).toBe(paymentInstrumentGroupId);
             expect(response.txVariant).toBe("mc");
@@ -774,7 +765,7 @@ describe("Balance Platform", (): void => {
                     ]
                 });
 
-            const response: balancePlatform.TransactionRulesResponse = await balancePlatformService.PaymentInstrumentGroupsApi.getAllTransactionRulesForPaymentInstrumentGroup(paymentInstrumentGroupId);
+            const response: Types.balancePlatform.TransactionRulesResponse = await balancePlatformService.PaymentInstrumentGroupsApi.getAllTransactionRulesForPaymentInstrumentGroup(paymentInstrumentGroupId);
 
             expect(response.transactionRules!.length).toBe(2);
             expect(response.transactionRules![0].id).toBe("TR32272223222B5CMDGMC9F4F");
@@ -810,29 +801,29 @@ describe("Balance Platform", (): void => {
                     "type": "blockList",
                     "id": transactionRuleId
                 });
-            const request: balancePlatform.TransactionRuleInfo = {
+            const request: Types.balancePlatform.TransactionRuleInfo = {
                 "description": "Allow only point-of-sale transactions",
                 "reference": "YOUR_REFERENCE_4F7346",
                 "entityKey": {
                     "entityType": "paymentInstrument",
                     "entityReference": "PI3227C223222B5BPCMFXD2XG"
                 },
-                "status": balancePlatform.TransactionRuleInfo.StatusEnum.Active,
+                "status": Types.balancePlatform.TransactionRuleInfo.StatusEnum.Active,
                 "interval": {
-                    "type": balancePlatform.TransactionRuleInterval.TypeEnum.PerTransaction
+                    "type": Types.balancePlatform.TransactionRuleInterval.TypeEnum.PerTransaction
                 },
                 "ruleRestrictions": {
                     "processingTypes": {
                         "operation": "noneMatch",
                         "value": [
-                            balancePlatform.ProcessingTypesRestriction.ValueEnum.Pos
+                            Types.balancePlatform.ProcessingTypesRestriction.ValueEnum.Pos
                         ]
                     }
                 },
-                "type": balancePlatform.TransactionRuleInfo.TypeEnum.BlockList
+                "type": Types.balancePlatform.TransactionRuleInfo.TypeEnum.BlockList
             };
 
-            const response: balancePlatform.TransactionRule = await balancePlatformService.TransactionRulesApi.createTransactionRule(request);
+            const response: Types.balancePlatform.TransactionRule = await balancePlatformService.TransactionRulesApi.createTransactionRule(request);
 
             expect(response.id).toBe(transactionRuleId);
             expect(response.status).toBe("active");
@@ -856,7 +847,7 @@ describe("Balance Platform", (): void => {
                     }
                 });
 
-            const response: balancePlatform.TransactionRuleResponse = await balancePlatformService.TransactionRulesApi.getTransactionRule(transactionRuleId);
+            const response: Types.balancePlatform.TransactionRuleResponse = await balancePlatformService.TransactionRulesApi.getTransactionRule(transactionRuleId);
 
             expect(response.transactionRule!.id).toBe(transactionRuleId);
             expect(response.transactionRule!.type).toBe("velocity");
@@ -875,10 +866,10 @@ describe("Balance Platform", (): void => {
                     "type": "velocity",
                     "id": transactionRuleId
                 });
-            const request: balancePlatform.TransactionRuleInfo = {
+            const request: Types.balancePlatform.TransactionRuleInfo = {
                 "description": "Allow 5 transactions per month",
                 "interval": {
-                    "type": balancePlatform.TransactionRuleInterval.TypeEnum.Monthly
+                    "type": Types.balancePlatform.TransactionRuleInterval.TypeEnum.Monthly
                 },
                 "entityKey": {
 
@@ -888,11 +879,11 @@ describe("Balance Platform", (): void => {
                 },
                 "reference": "myRule12345",
                 "startDate": "2021-01-21T12:46:35.476629Z",
-                "status": balancePlatform.TransactionRuleInfo.StatusEnum.Inactive,
-                "type": balancePlatform.TransactionRuleInfo.TypeEnum.Velocity,
+                "status": Types.balancePlatform.TransactionRuleInfo.StatusEnum.Inactive,
+                "type": Types.balancePlatform.TransactionRuleInfo.TypeEnum.Velocity,
             };
 
-            const response: balancePlatform.TransactionRule = await balancePlatformService.TransactionRulesApi.updateTransactionRule(transactionRuleId, request);
+            const response: Types.balancePlatform.TransactionRule = await balancePlatformService.TransactionRulesApi.updateTransactionRule(transactionRuleId, request);
 
             expect(response.status).toBe("inactive");
             expect(response.reference).toBe("myRule12345");
@@ -916,7 +907,7 @@ describe("Balance Platform", (): void => {
                     "id": transactionRuleId
                 });
 
-            const response: balancePlatform.TransactionRule = await balancePlatformService.TransactionRulesApi.deleteTransactionRule(transactionRuleId);
+            const response: Types.balancePlatform.TransactionRule = await balancePlatformService.TransactionRulesApi.deleteTransactionRule(transactionRuleId);
 
             expect(response.id).toBe(transactionRuleId);
         });
@@ -930,7 +921,7 @@ describe("Balance Platform", (): void => {
         const request = {
             "accountIdentification":
             {
-                "type": IbanAccountIdentification.TypeEnum.Iban,
+                "type": Types.balancePlatform.IbanAccountIdentification.TypeEnum.Iban,
                 "iban": "NL91ABNA0417164300"
             }
         };
@@ -1020,11 +1011,11 @@ describe("Balance Platform", (): void => {
         const transferRouteRequest = {
             balancePlatform: "123456789",
             currency: "USD",
-            category: TransferRouteRequest.CategoryEnum.Bank,
+            category: Types.balancePlatform.TransferRouteRequest.CategoryEnum.Bank,
             counterparty: {
                 bankAccount: {
                     accountIdentification: {
-                        type: IbanAccountIdentification.TypeEnum.Iban,
+                        type: Types.balancePlatform.IbanAccountIdentification.TypeEnum.Iban,
                         iban: "NL91ABNA0417164300"
                     }
                 }
@@ -1090,13 +1081,13 @@ describe("Balance Platform", (): void => {
 
         const mockResponse = {
             id: "BWHS00000000000000000000000001",
-            type: BalanceWebhookSettingInfo.TypeEnum.Balance,
+            type: Types.balancePlatform.BalanceWebhookSettingInfo.TypeEnum.Balance,
             target: {
-                type: Target.TypeEnum.BalanceAccount,
+                type: Types.balancePlatform.Target.TypeEnum.BalanceAccount,
                 id: "YOUR_BALANCE_PLATFORM"
             },
             currency: "USD",
-            status: BalanceWebhookSettingInfo.StatusEnum.Active
+            status: Types.balancePlatform.BalanceWebhookSettingInfo.StatusEnum.Active
         };
 
         scope.get(`/balancePlatforms/${balancePlatformId}/webhooks/${webhookId}/settings/${settingId}`)
@@ -1115,13 +1106,13 @@ describe("Balance Platform", (): void => {
 
         const mockResponse = {
             id: "BWHS00000000000000000000000001",
-            type: BalanceWebhookSettingInfo.TypeEnum.Balance,
+            type: Types.balancePlatform.BalanceWebhookSettingInfo.TypeEnum.Balance,
             target: {
-                type: Target.TypeEnum.BalanceAccount,
+                type: Types.balancePlatform.Target.TypeEnum.BalanceAccount,
                 id: "BA00000000000000000LIABLE"
             },
             currency: "USD",
-            status: BalanceWebhookSettingInfo.StatusEnum.Active,
+            status: Types.balancePlatform.BalanceWebhookSettingInfo.StatusEnum.Active,
             conditions: [
                 {
                     balanceType: "available",
@@ -1135,17 +1126,17 @@ describe("Balance Platform", (): void => {
             .reply(200, mockResponse);
 
         const request = {
-            type: BalanceWebhookSettingInfo.TypeEnum.Balance,
+            type: Types.balancePlatform.BalanceWebhookSettingInfo.TypeEnum.Balance,
             target: {
-                type: Target.TypeEnum.BalanceAccount,
+                type: Types.balancePlatform.Target.TypeEnum.BalanceAccount,
                 id: "BA00000000000000000LIABLE"
             },
             currency: "USD",
-            status: BalanceWebhookSettingInfo.StatusEnum.Active,
+            status: Types.balancePlatform.BalanceWebhookSettingInfo.StatusEnum.Active,
             conditions: [
                 {
-                    balanceType: Condition.BalanceTypeEnum.Available,
-                    conditionType: Condition.ConditionTypeEnum.LessThan,
+                    balanceType: Types.balancePlatform.Condition.BalanceTypeEnum.Available,
+                    conditionType: Types.balancePlatform.Condition.ConditionTypeEnum.LessThan,
                     value: 50000
                 }
             ]
@@ -1165,26 +1156,26 @@ describe("Balance Platform", (): void => {
 
         const mockResponse = {
             id: "BWHS00000000000000000000000001",
-            type: BalanceWebhookSettingInfo.TypeEnum.Balance,
+            type: Types.balancePlatform.BalanceWebhookSettingInfo.TypeEnum.Balance,
             target: {
-                type: Target.TypeEnum.BalanceAccount,
+                type: Types.balancePlatform.Target.TypeEnum.BalanceAccount,
                 id: "BA00000000000000000LIABLE"
             },
             currency: "USD",
-            status: BalanceWebhookSettingInfo.StatusEnum.Active
+            status: Types.balancePlatform.BalanceWebhookSettingInfo.StatusEnum.Active
         };
 
         scope.patch(`/balancePlatforms/${balancePlatformId}/webhooks/${webhookId}/settings/${settingId}`)
             .reply(200, mockResponse);
 
         const request = {
-            type: BalanceWebhookSettingInfo.TypeEnum.Balance,
+            type: Types.balancePlatform.BalanceWebhookSettingInfo.TypeEnum.Balance,
             target: {
-                type: Target.TypeEnum.BalanceAccount,
+                type: Types.balancePlatform.Target.TypeEnum.BalanceAccount,
                 id: "BA00000000000000000LIABLE"
             },
             currency: "USD",
-            status: BalanceWebhookSettingInfo.StatusEnum.Active
+            status: Types.balancePlatform.BalanceWebhookSettingInfo.StatusEnum.Active
         };
 
         const response = await balancePlatformService.BalancesApi.updateWebhookSetting(balancePlatformId, webhookId, settingId, request);
@@ -1199,7 +1190,7 @@ describe("Balance Platform", (): void => {
         it("should support POST /balanceAccounts/{id}/transferLimits/approve", async (): Promise<void> => {
             scope.post(`/balanceAccounts/${balanceAccountId}/transferLimits/approve`)
                 .reply(204);
-            const request: balancePlatform.ApproveTransferLimitRequest = {
+            const request: Types.balancePlatform.ApproveTransferLimitRequest = {
                 transferLimitIds: [transferLimitId]
             };
 
@@ -1228,7 +1219,7 @@ describe("Balance Platform", (): void => {
             scope.post(`/balanceAccounts/${balanceAccountId}/transferLimits`)
                 .reply(200, mockResponse);
 
-            const request: balancePlatform.CreateTransferLimitRequest = {
+            const request: Types.balancePlatform.CreateTransferLimitRequest = {
                 "amount": {
                     "currency": "EUR",
                     "value": 10000
@@ -1237,13 +1228,13 @@ describe("Balance Platform", (): void => {
                 "scaInformation": {
                     "scaOnApproval": true
                 },
-                "scope": Scope.PerTransaction,
+                "scope": Types.balancePlatform.Scope.PerTransaction,
                 "startsAt": new Date("2025-08-15T06:36:20+01:00"),
                 "endsAt": new Date("2026-08-14T00:00:00+01:00"),
-                "transferType": TransferType.All
+                "transferType": Types.balancePlatform.TransferType.All
             };
 
-            const response: balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.createTransferLimit(balanceAccountId, request);
+            const response: Types.balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.createTransferLimit(balanceAccountId, request);
 
             expect(response.id).toBe("TRLI00000000000000000000000001");
             expect(response.limitStatus).toBe("pendingSCA");
@@ -1277,7 +1268,7 @@ describe("Balance Platform", (): void => {
             scope.get(`/balanceAccounts/${balanceAccountId}/transferLimits/current?scope=perTransaction&transferType=instant`)
                 .reply(200, mockResponse);
 
-            const response: balancePlatform.TransferLimitListResponse = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.getCurrentTransferLimits(balanceAccountId, balancePlatform.Scope.PerTransaction, balancePlatform.TransferType.Instant);
+            const response: Types.balancePlatform.TransferLimitListResponse = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.getCurrentTransferLimits(balanceAccountId, Types.balancePlatform.Scope.PerTransaction, Types.balancePlatform.TransferType.Instant);
 
             expect(response.transferLimits.length).toBe(1);
             expect(response.transferLimits[0].id).toBe(transferLimitId);
@@ -1300,7 +1291,7 @@ describe("Balance Platform", (): void => {
             scope.get(`/balanceAccounts/${balanceAccountId}/transferLimits/${transferLimitId}`)
                 .reply(200, mockResponse);
 
-            const response: balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.getSpecificTransferLimit(transferLimitId, balanceAccountId);
+            const response: Types.balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.getSpecificTransferLimit(transferLimitId, balanceAccountId);
 
             expect(response.id).toBe(transferLimitId);
         });
@@ -1317,7 +1308,7 @@ describe("Balance Platform", (): void => {
             scope.get(`/balanceAccounts/${balanceAccountId}/transferLimits?scope=perTransaction&transferType=instant&status=active`)
                 .reply(200, mockResponse);
 
-            const response: balancePlatform.TransferLimitListResponse = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.getTransferLimits(balanceAccountId, balancePlatform.Scope.PerTransaction, balancePlatform.TransferType.Instant, balancePlatform.LimitStatus.Active);
+            const response: Types.balancePlatform.TransferLimitListResponse = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.getTransferLimits(balanceAccountId, Types.balancePlatform.Scope.PerTransaction, Types.balancePlatform.TransferType.Instant, Types.balancePlatform.LimitStatus.Active);
 
             expect(response.transferLimits.length).toBe(1);
             expect(response.transferLimits[0].id).toBe(transferLimitId);
@@ -1348,7 +1339,7 @@ describe("Balance Platform", (): void => {
             scope.post(`/balancePlatforms/${balancePlatformId}/transferLimits`)
                 .reply(200, mockResponse);
 
-            const request: balancePlatform.CreateTransferLimitRequest = {
+            const request: Types.balancePlatform.CreateTransferLimitRequest = {
                 "amount": {
                     "currency": "EUR",
                     "value": 10000
@@ -1357,13 +1348,13 @@ describe("Balance Platform", (): void => {
                 "scaInformation": {
                     "scaOnApproval": true
                 },
-                "scope": Scope.PerTransaction,
+                "scope": Types.balancePlatform.Scope.PerTransaction,
                 "startsAt": new Date("2025-08-15T06:36:20+01:00"),
                 "endsAt": new Date("2026-08-14T00:00:00+01:00"),
-                "transferType": TransferType.All
+                "transferType": Types.balancePlatform.TransferType.All
             };
 
-            const response: balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalancePlatformLevelApi.createTransferLimit(balancePlatformId, request);
+            const response: Types.balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalancePlatformLevelApi.createTransferLimit(balancePlatformId, request);
 
             expect(response.id).toBe("TRLI00000000000000000000000001");
             expect(response.limitStatus).toBe("pendingSCA");
@@ -1398,7 +1389,7 @@ describe("Balance Platform", (): void => {
             scope.get(`/balancePlatforms/${balancePlatformId}/transferLimits/${transferLimitId}`)
                 .reply(200, mockResponse);
 
-            const response: balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalancePlatformLevelApi.getSpecificTransferLimit(transferLimitId, balancePlatformId);
+            const response: Types.balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalancePlatformLevelApi.getSpecificTransferLimit(transferLimitId, balancePlatformId);
 
             expect(response.id).toBe("TRLI00000000000000000000000001");
         });
@@ -1445,7 +1436,8 @@ describe("Balance Platform", (): void => {
             scope.get(`/balancePlatforms/${balancePlatformId}/transferLimits?scope=perTransaction&transferType=instant&status=active`)
                 .reply(200, mockResponse);
 
-            const response: balancePlatform.TransferLimitListResponse = await balancePlatformService.TransferLimitsBalancePlatformLevelApi.getTransferLimits(balancePlatformId, Scope.PerTransaction, TransferType.Instant, LimitStatus.Active);
+            const response: Types.balancePlatform.TransferLimitListResponse = 
+            await balancePlatformService.TransferLimitsBalancePlatformLevelApi.getTransferLimits(balancePlatformId, Types.balancePlatform.Scope.PerTransaction, Types.balancePlatform.TransferType.Instant, Types.balancePlatform.LimitStatus.Active);
 
             expect(response.transferLimits.length).toBe(2);
             expect(response.transferLimits[0].id).toBe("TRLI00000000000000000000000001");
