@@ -59,8 +59,7 @@ describe("Open Banking", (): void => {
     });
 
     it("should get account verification report", async (): Promise<void> => {
-        const code = "some_code";
-        
+        const code = "some_code";  
         const mockResponse: AccountVerificationReportResponse = {
             id: "69ee9452ef824fe092f1417f37535755",
             country: AccountVerificationCountry.Es,
