@@ -300,8 +300,7 @@ const client = new Client({
 Parse an AccountHolderNotificationRequest webhook;
 ``` typescript
 // import models
-import { Types } from "@adyen/api-library";
-const { ConfigurationWebhooksHandler } = require('@adyen/api-library/lib/src/typings/configurationWebhooks/configurationWebhooksHandler');
+import { Types, ConfigurationWebhooksHandler } from "@adyen/api-library";
 
 const configurationWebhooksHandler = new ConfigurationWebhooksHandler(YOUR_BANKING_WEBHOOK);
 const accountHolderNotificationRequest: Types.configurationWebhooks.AccountHolderNotificationRequest = configurationWebhooksHandler.getAccountHolderNotificationRequest();
