@@ -12,14 +12,14 @@ import { DisputeNotificationRequest } from "../../typings/disputeWebhooks/models
 import { DisputeEventNotification } from "../../typings/disputeWebhooks/disputeEventNotification";
 
 // handlers
-import { AcsWebhooksHandler } from "../../typings/acsWebhooks/acsWebhooksHandler";
-import { ReportWebhooksHandler } from "../../typings/reportWebhooks/reportWebhooksHandler";
-import { ConfigurationWebhooksHandler } from "../../typings/configurationWebhooks/configurationWebhooksHandler";
-import { TransferWebhooksHandler } from "../../typings/transferWebhooks/transferWebhooksHandler";
-import { NegativeBalanceWarningWebhooksHandler } from "../../typings/negativeBalanceWarningWebhooks/negativeBalanceWarningWebhooksHandler";
-import { TransactionWebhooksHandler } from "../../typings/transactionWebhooks/transactionWebhooksHandler";
-import { BalanceWebhooksHandler } from "../../typings/balanceWebhooks/balanceWebhooksHandler";
-import { DisputeWebhooksHandler } from "../../typings/disputeWebhooks/disputeWebhooksHandler";
+import { AcsWebhooksHandler } from "../../webhooks";
+import { ReportWebhooksHandler } from "../../webhooks";
+import { ConfigurationWebhooksHandler } from "../../webhooks";
+import { TransferWebhooksHandler } from "../../webhooks";
+import { NegativeBalanceWarningWebhooksHandler } from "../../webhooks";
+import { TransactionWebhooksHandler } from "../../webhooks";
+import { BalanceWebhooksHandler } from "../../webhooks";
+import { DisputeWebhooksHandler } from "../../webhooks";
 
 
 describe("BankingWebhooks Tests", function (): void {

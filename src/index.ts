@@ -29,8 +29,11 @@ export { default as Config } from "./config";
 // Export enums for different Adyen environments and regions
 export { EnvironmentEnum, RegionEnum } from "./config";
 
-// Export all services (APIs)
-export * from "./services/";
+// Export all services
+export * from "./services";
+
+// Export all webhook handlers
+export * from "./webhooks";
 
 // Export a utility function for HMAC validation
 export { hmacValidator } from "./utils";
