@@ -17,6 +17,7 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { BalanceWebhookSettingInfo } from "../../typings/balancePlatform/models";
 import { BalanceWebhookSettingInfoUpdate } from "../../typings/balancePlatform/models";
+import { DefaultErrorResponseEntity } from "../../typings/balancePlatform/models";
 import { WebhookSetting } from "../../typings/balancePlatform/models";
 import { WebhookSettings } from "../../typings/balancePlatform/models";
 

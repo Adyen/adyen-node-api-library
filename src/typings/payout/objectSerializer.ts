@@ -23,6 +23,7 @@ import { ResponseAdditionalDataInstallments } from "./responseAdditionalDataInst
 import { ResponseAdditionalDataNetworkTokens } from "./responseAdditionalDataNetworkTokens";
 import { ResponseAdditionalDataOpi } from "./responseAdditionalDataOpi";
 import { ResponseAdditionalDataSepa } from "./responseAdditionalDataSepa";
+import { ResponseAdditionalDataSwish } from "./responseAdditionalDataSwish";
 import { ServiceError } from "./serviceError";
 import { StoreDetailAndSubmitRequest } from "./storeDetailAndSubmitRequest";
 import { StoreDetailAndSubmitResponse } from "./storeDetailAndSubmitResponse";
@@ -82,6 +83,7 @@ let typeMap: {[index: string]: any} = {
     "ResponseAdditionalDataNetworkTokens": ResponseAdditionalDataNetworkTokens,
     "ResponseAdditionalDataOpi": ResponseAdditionalDataOpi,
     "ResponseAdditionalDataSepa": ResponseAdditionalDataSepa,
+    "ResponseAdditionalDataSwish": ResponseAdditionalDataSwish,
     "ServiceError": ServiceError,
     "StoreDetailAndSubmitRequest": StoreDetailAndSubmitRequest,
     "StoreDetailAndSubmitResponse": StoreDetailAndSubmitResponse,

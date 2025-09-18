@@ -17,7 +17,7 @@ import { DeliveryAddress } from "./deliveryAddress";
 import { DonationPaymentRequestPaymentMethod } from "./donationPaymentRequestPaymentMethod";
 import { LineItem } from "./lineItem";
 import { MerchantRiskIndicator } from "./merchantRiskIndicator";
-import { Name } from "./name";
+import { ShopperName } from "./shopperName";
 import { ThreeDS2RequestFields } from "./threeDS2RequestFields";
 import { ThreeDSecureData } from "./threeDSecureData";
 
@@ -140,7 +140,7 @@ export class DonationPaymentRequest {
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
     "shopperLocale"?: string;
-    "shopperName"?: Name | null;
+    "shopperName"?: ShopperName | null;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
@@ -386,7 +386,7 @@ export class DonationPaymentRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null",
+            "type": "ShopperName | null",
             "format": ""
         },
         {
