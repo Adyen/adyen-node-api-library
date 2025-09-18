@@ -18,7 +18,6 @@ import { ObjectSerializer } from "../../typings/management/objectSerializer";
 import { CreateMerchantWebhookRequest } from "../../typings/management/models";
 import { GenerateHmacKeyResponse } from "../../typings/management/models";
 import { ListWebhooksResponse } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 import { TestWebhookRequest } from "../../typings/management/models";
 import { TestWebhookResponse } from "../../typings/management/models";
 import { UpdateMerchantWebhookRequest } from "../../typings/management/models";

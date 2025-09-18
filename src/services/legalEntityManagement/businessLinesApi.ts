@@ -18,7 +18,6 @@ import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSeri
 import { BusinessLine } from "../../typings/legalEntityManagement/models";
 import { BusinessLineInfo } from "../../typings/legalEntityManagement/models";
 import { BusinessLineInfoUpdate } from "../../typings/legalEntityManagement/models";
-import { ServiceError } from "../../typings/legalEntityManagement/models";
 
 /**
  * API handler for BusinessLinesApi

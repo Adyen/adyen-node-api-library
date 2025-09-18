@@ -19,7 +19,6 @@ import { DonationCampaignsRequest } from "../../typings/checkout/models";
 import { DonationCampaignsResponse } from "../../typings/checkout/models";
 import { DonationPaymentRequest } from "../../typings/checkout/models";
 import { DonationPaymentResponse } from "../../typings/checkout/models";
-import { ServiceError } from "../../typings/checkout/models";
 
 /**
  * API handler for DonationsApi

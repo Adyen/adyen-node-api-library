@@ -8,8 +8,6 @@
  */
 
 import { Condition } from "./condition";
-import { SettingType } from "./settingType";
-import { Target } from "./target";
 import { WebhookSetting } from "./webhookSetting";
 
 

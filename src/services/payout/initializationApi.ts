@@ -15,7 +15,6 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/payout/objectSerializer";
-import { ServiceError } from "../../typings/payout/models";
 import { StoreDetailAndSubmitRequest } from "../../typings/payout/models";
 import { StoreDetailAndSubmitResponse } from "../../typings/payout/models";
 import { StoreDetailRequest } from "../../typings/payout/models";

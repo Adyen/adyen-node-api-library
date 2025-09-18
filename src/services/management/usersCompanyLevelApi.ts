@@ -19,7 +19,6 @@ import { CompanyUser } from "../../typings/management/models";
 import { CreateCompanyUserRequest } from "../../typings/management/models";
 import { CreateCompanyUserResponse } from "../../typings/management/models";
 import { ListCompanyUsersResponse } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 import { UpdateCompanyUserRequest } from "../../typings/management/models";
 
 /**

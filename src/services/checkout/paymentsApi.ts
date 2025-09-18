@@ -25,7 +25,6 @@ import { PaymentMethodsRequest } from "../../typings/checkout/models";
 import { PaymentMethodsResponse } from "../../typings/checkout/models";
 import { PaymentRequest } from "../../typings/checkout/models";
 import { PaymentResponse } from "../../typings/checkout/models";
-import { ServiceError } from "../../typings/checkout/models";
 import { SessionResultResponse } from "../../typings/checkout/models";
 
 /**
