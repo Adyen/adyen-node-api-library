@@ -64,7 +64,7 @@ Before you begin to integrate:
 
 - [Create an Adyen test account](https://docs.adyen.com/get-started-with-adyen#test-account).
 - [Set up your API credentials](https://docs.adyen.com/development-resources/api-credentials).
-- [Install Node.js](https://nodejs.org/en/download/) version 18 or later.
+- [Install Node.js](https://nodejs.org/en/download/) version 20 or later.
 
 ## Installation
 
