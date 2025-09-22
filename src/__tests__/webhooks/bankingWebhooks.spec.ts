@@ -1,25 +1,26 @@
 // requests
-import { AccountHolderNotificationRequest } from "../../typings/configurationWebhooks/accountHolderNotificationRequest";
-import { BalanceAccountNotificationRequest } from "../../typings/configurationWebhooks/balanceAccountNotificationRequest";
-import { AuthenticationNotificationRequest } from "../../typings/acsWebhooks/authenticationNotificationRequest";
-import { TransferNotificationRequest } from "../../typings/transferWebhooks/transferNotificationRequest";
-import { PaymentMethodScheduledForRemovalNotificationRequest } from "../../typings/managementWebhooks/paymentMethodScheduledForRemovalNotificationRequest";
-import { TransactionNotificationRequestV4 } from "../../typings/transactionWebhooks/transactionNotificationRequestV4";
-import { NegativeBalanceCompensationWarningNotificationRequest } from "../../typings/negativeBalanceWarningWebhooks/negativeBalanceCompensationWarningNotificationRequest";
-import { BalanceAccountBalanceNotificationRequest } from "../../typings/balanceWebhooks/balanceAccountBalanceNotificationRequest";
+import { AccountHolderNotificationRequest } from "../../typings/configurationWebhooks/models";
+import { BalanceAccountNotificationRequest } from "../../typings/configurationWebhooks/models";
+import { AuthenticationNotificationRequest } from "../../typings/acsWebhooks/models";
+import { TransferNotificationRequest } from "../../typings/transferWebhooks/models";
+import { PaymentMethodScheduledForRemovalNotificationRequest } from "../../typings/managementWebhooks/models";
+import { TransactionNotificationRequestV4 } from "../../typings/transactionWebhooks/models";
+import { NegativeBalanceCompensationWarningNotificationRequest } from "../../typings/negativeBalanceWarningWebhooks/models";
+import { BalanceAccountBalanceNotificationRequest } from "../../typings/balanceWebhooks/models";
+import { ReportNotificationRequest } from "../../typings/reportWebhooks/models";
+import { DisputeNotificationRequest } from "../../typings/disputeWebhooks/models";
+import { DisputeEventNotification } from "../../typings/disputeWebhooks/disputeEventNotification";
 
 // handlers
-import { AcsWebhooksHandler } from "../../typings/acsWebhooks/acsWebhooksHandler";
-import { ReportWebhooksHandler } from "../../typings/reportWebhooks/reportWebhooksHandler";
-import { ConfigurationWebhooksHandler } from "../../typings/configurationWebhooks/configurationWebhooksHandler";
-import { TransferWebhooksHandler } from "../../typings/transferWebhooks/transferWebhooksHandler";
-import { NegativeBalanceWarningWebhooksHandler } from "../../typings/negativeBalanceWarningWebhooks/negativeBalanceWarningWebhooksHandler";
-import { TransactionWebhooksHandler } from "../../typings/transactionWebhooks/transactionWebhooksHandler";
-import { BalanceWebhooksHandler } from "../../typings/balanceWebhooks/balanceWebhooksHandler";
-import { ReportNotificationRequest } from "../../typings/reportWebhooks/reportNotificationRequest";
-import { DisputeWebhooksHandler } from "../../typings/disputeWebhooks/disputeWebhooksHandler";
-import { DisputeNotificationRequest } from "../../typings/disputeWebhooks/disputeNotificationRequest";
-import { DisputeEventNotification } from "../../typings/disputeWebhooks/disputeEventNotification";
+import { AcsWebhooksHandler } from "../../webhooks";
+import { ReportWebhooksHandler } from "../../webhooks";
+import { ConfigurationWebhooksHandler } from "../../webhooks";
+import { TransferWebhooksHandler } from "../../webhooks";
+import { NegativeBalanceWarningWebhooksHandler } from "../../webhooks";
+import { TransactionWebhooksHandler } from "../../webhooks";
+import { BalanceWebhooksHandler } from "../../webhooks";
+import { DisputeWebhooksHandler } from "../../webhooks";
+
 
 describe("BankingWebhooks Tests", function (): void {
 

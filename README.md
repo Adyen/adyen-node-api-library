@@ -2,11 +2,11 @@
 ![Node js](https://user-images.githubusercontent.com/62436079/207373079-9cf9377f-f530-4b02-a515-9b64ef7b06e7.png)
 
 # Adyen API library for Node.js 
+[![Version](https://img.shields.io/npm/v/@adyen/api-library.svg)](https://www.npmjs.com/package/@adyen/api-library)
 [![Build Status](https://github.com/adyen/Adyen-node-api-library/actions/workflows/npmpublish.yml/badge.svg)](https://github.com/Adyen/adyen-node-api-library/actions/workflows/npmpublish.yml)
 [![Coverage Status](https://coveralls.io/repos/github/Adyen/adyen-node-api-library/badge.svg?branch=main)](https://coveralls.io/github/Adyen/adyen-node-api-library?branch=main)
 [![Downloads](https://img.shields.io/npm/dm/@adyen/api-library.svg)](https://www.npmjs.com/package/@adyen/api-library)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@adyen/api-library.svg)
-[![Version](https://img.shields.io/npm/v/@adyen/api-library.svg)](https://www.npmjs.com/package/@adyen/api-library)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Adyen_adyen-node-api-library&metric=alert_status)](https://sonarcloud.io/dashboard?id=Adyen_adyen-node-api-library)
 
 This is the official Adyen API library for Node.js that we recommend for integrating with Adyen APIs.
@@ -24,6 +24,7 @@ This library supports the following:
 | [Legal Entity Management API](https://docs.adyen.com/api-explorer/legalentity/3/overview)                  |     v3      | Manage legal entities that contain information required for verification.                                                                                                                                                                                                                                                                | [LegalEntityManagement](/src/services/legalEntityManagement/index.ts)                                                                                                   |
 | [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference)              |      -      | Our point-of-sale integration.                                                                                                                                                                                                                                                                                                           | [TerminalLocalAPI](/src/services/terminalLocalAPI.ts) or [TerminalCloudAPI](/src/services/terminalCloudAPI.ts) |
 | [Management API](https://docs.adyen.com/api-explorer/Management/3/overview)                                |     v3      | Configure and manage your Adyen company and merchant accounts, stores, and payment terminals.                                                                                                                                                                                                                                            | [Management](/src/services/management/index.ts)                                                                                                                         |
+| [Open Banking API](https://docs.adyen.com/api-explorer/open-banking/1/overview)                                |     v1      | The Open Banking API provides secure endpoints to share financial data and services with third parties.                                                                                                                                                                                                                                          | [Open Banking](/src/services/openbanking/index.ts)                                                                                                                         |
 | [Payments API](https://docs.adyen.com/api-explorer/Payment/68/overview)                                    |     v68     | Our classic integration for online payments.                                                                                                                                                                                                                                                                                             | [ClassicIntegrationAPI](/src/services/paymentApi.ts)                                                                                                                    |
 | [Payouts API](https://docs.adyen.com/api-explorer/Payout/68/overview)                                      |     v68     | Endpoints for sending funds to your customers.                                                                                                                                                                                                                                                                                           | [Payout](/src/services/payout/index.ts)                                                                                                                                 |
 | [Platforms APIs](https://docs.adyen.com/platforms/api)                                                     |      -      | Set of APIs when using Adyen for Platforms. This API is used for the classic integration.                                                                                                                                                                                                                                                | [Platforms](/src/services/platforms.ts)                                                                                                                                 |
@@ -253,12 +254,12 @@ Alternatively, you can use the `Types` included in this module for Typescript an
 #### Deserializing JSON Strings
 In some setups you might need to deserialize JSON strings to request objects. For example, when using the libraries in combination with [Dropin/Components](https://github.com/Adyen/adyen-web). Please use the built-in deserialization functions:
 ``` typescript
-// Import the required model class
-import { checkout } from "../typings";
+// Import the models
+import { Types } from "@adyen/api-library";
 
 // Deserialize using built-in ObjectSerializer class
 const requestJson: JSON = JSON.parse(`YOUR_JSON_STRING`);
-const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.deserialize(requestJson,"PaymentRequest");
+const paymentRequest: Types.checkout.PaymentRequest = await Types.checkout.ObjectSerializer.deserialize(requestJson,"PaymentRequest");
 ```
  
 ### Custom HTTP client configuration
@@ -298,24 +299,32 @@ const client = new Client({
 ### Parsing and Authenticating Banking Webhooks
 Parse an AccountHolderNotificationRequest webhook;
 ``` typescript
-let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
-const accountHolderNotificationRequest: AccountHolderNotificationRequest = bankingWebhookHandler.getAccountHolderNotificationRequest();
-const genericWebhook = bankingWebhookHandler.getGenericWebhook();
+// import models
+import { Types, ConfigurationWebhooksHandler } from "@adyen/api-library";
+
+const configurationWebhooksHandler = new ConfigurationWebhooksHandler(YOUR_BANKING_WEBHOOK);
+const accountHolderNotificationRequest: Types.configurationWebhooks.AccountHolderNotificationRequest = configurationWebhooksHandler.getAccountHolderNotificationRequest();
 ```
 You can also parse the webhook with a generic type, in case you do not know the webhook type in advance. In this case you can check the instance of the webhook in order to parse it to the respective type (or just use it dynamically);
 ``` typescript
-let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
-const genericWebhook = bankingWebhookHandler.getGenericWebhook();
+const configurationWebhooksHandler = new ConfigurationWebhooksHandler(YOUR_BANKING_WEBHOOK);
+const genericWebhook = configurationWebhooksHandler.getGenericWebhook();
+
+if ("accountHolderCode" in genericWebhook) {
+  console.log("This is an AccountHolderNotificationRequest");
+} else if ("balanceAccountId" in genericWebhook) {
+  console.log("This is a BalanceAccountNotificationRequest");
+}
 ```
 Verify the authenticity (where you retrieve the hmac key from the CA and the signature from the webhook header);
 ``` typescript
 const isValid = hmacValidator.validateBankingHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGNATURE", jsonString)
 ```
 ### Management Webhooks
-Management webhooks are verified the exact same way as the banking webhooks. To parse them however, instead you use:
+Management webhooks are also parsed with the same approach, using `ManagementWebhooksHandler`:
 ``` typescript
-let managementWebhookHandler = new ManagementWebhookHandler(YOUR_MANAGEMENT_WEBHOOK);
-const genericWebhook = managementWebhookHandler.getGenericWebhook();
+const managementWebhooksHandler = new ManagementWebhooksHandler(YOUR_MANAGEMENT_WEBHOOK);
+const genericWebhook = managementWebhooksHandler.getGenericWebhook();
 ```
 
 ### Proxy configuration
@@ -325,14 +334,12 @@ To configure a proxy connection, set the `proxy` property of your `HttpURLConnec
 For example:
 
 ``` javascript
-const {HttpURLConnectionClient, Client, Config} = require('@adyen/api-library');
+const {HttpURLConnectionClient, Client, Config, EnvironmentEnum} = require('@adyen/api-library');
 // ... more code
-const config = new Config();
-const client = new Client({ config });
+const client = new Client({apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST}); 
 const httpClient = new HttpURLConnectionClient();
 httpClient.proxy = { host: "http://google.com", port: 8888,  };
 
-client.setEnvironment(EnvironmentEnum.TEST);
 client.httpClient = httpClient;
 
 // ... more code
@@ -490,7 +497,7 @@ const paymentRequest: SaleToPOIRequest = {
 }
 
 // Step 6: Make the request
-const terminalApiResponse: terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest, securityKey);
+const terminalApiResponse: Types.terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest, securityKey);
 ```
 ## Using the Local Terminal API Integration without Encryption (Only on TEST)
 If you wish to develop the Local Terminal API integration parallel to your encryption implementation, you can opt for the unencrypted version. Be sure to remove any encryption details from the CA terminal config page. 
@@ -513,7 +520,7 @@ const paymentRequest: SaleToPOIRequest = {
 }
 
 // Step 5: Make the request
-const terminalApiResponse: terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest);
+const terminalApiResponse: Types.terminal.TerminalApiResponse = await terminalLocalAPI.request(paymentRequest);
 ```
 ### Using the Cloud Terminal API Integration (async)
 If you choose to integrate [Terminal API over Cloud](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/) **asynchronously**, you need to follow similar steps to initialize the client and prepare the request object. However the response will be asynchronous:
@@ -521,10 +528,11 @@ If you choose to integrate [Terminal API over Cloud](https://docs.adyen.com/poin
 * a request that fails will return `200` status code and the `TerminalApiResponse` as response body
 ``` typescript
 // Step 1: Require the parts of the module you want to use
-const {Client, TerminalCloudAPI} from "@adyen/api-library";
+const {Client, TerminalCloudAPI, EnvironmentEnum} from "@adyen/api-library";
 
 // Step 2: Initialize the client object
-const client = new Client({apiKey: "YOUR_API_KEY", environment: "TEST"});
+const client = new Client({apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST}); 
+
 
 // Step 3: Initialize the API object
 const terminalCloudAPI = new TerminalCloudAPI(client);

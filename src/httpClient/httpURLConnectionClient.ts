@@ -17,18 +17,8 @@
  * See the LICENSE file for more info.
  */
 
-import {
-  ClientRequest,
-  IncomingHttpHeaders,
-  IncomingMessage,
-  request as httpRequest,
-} from "http";
-import {
-  Agent,
-  AgentOptions,
-  globalAgent,
-  request as httpsRequest,
-} from "https";
+import { ClientRequest, IncomingHttpHeaders, IncomingMessage, request as httpRequest } from "http";
+import { Agent, AgentOptions, globalAgent, request as httpsRequest } from "https";
 import { HttpsProxyAgent } from "https-proxy-agent";
 
 import * as fs from "fs";
@@ -45,326 +35,316 @@ import { IRequest } from "../typings/requestOptions";
 import checkServerIdentity from "../helpers/checkServerIdentity";
 
 class HttpURLConnectionClient implements ClientInterface {
-  private static readonly AGENT_INACTIVITY_TIMEOUT = 5000;
-  private static CHARSET = "utf-8";
-  public proxy?: AgentOptions;
-  private agents: Record<string, Agent> = {};
+    private static readonly AGENT_INACTIVITY_TIMEOUT = 5000;
+    private static CHARSET = "utf-8";
+    public proxy?: AgentOptions;
+    private agentOptions!: AgentOptions;
+    private agents: Record<string, Agent> = {};
 
-  /**
-   * Sends an HTTP request to the specified endpoint with the provided JSON payload and configuration.
-   *
-   * This method sets up request headers, including authentication (API key or basic auth), content type,
-   * and timeout. If a certificate path is provided in the config, it installs a certificate verifier.
-   * Throws an ApiException when an error occurs (invalid API key, API error response, etc.).
-   *
-   * @param endpoint - The URL to which the request will be sent.
-   * @param json - The JSON string to be sent as the request body.
-   * @param config - The configuration object containing authentication, timeout, and certificate details.
-   * @param isApiRequired - Indicates whether an API key is required for this request.
-   * @param requestOptions - Additional options for the HTTP request, such as headers and timeout.
-   * @returns A promise that resolves with the response body as a string.
-   * @throws {ApiException} when an error occurs
-   */
-  public request(
-    endpoint: string,
-    json: string,
-    config: Config,
-    isApiRequired: boolean,
-    requestOptions: IRequest.Options
-  ): Promise<string> {
-    requestOptions.headers ??= {};
-    requestOptions.timeout = config.connectionTimeoutMillis;
+    /**
+     * Sends an HTTP request to the specified endpoint with the provided JSON payload and configuration.
+     *
+     * This method sets up request headers, including authentication (API key or basic auth), content type,
+     * and timeout. If a certificate path is provided in the config, it installs a certificate verifier.
+     * Throws an ApiException when an error occurs (invalid API key, API error response, etc.).
+     *
+     * @param endpoint - The URL to which the request will be sent.
+     * @param json - The JSON string to be sent as the request body.
+     * @param config - The configuration object containing authentication, timeout, and certificate details.
+     * @param isApiRequired - Indicates whether an API key is required for this request.
+     * @param requestOptions - Additional options for the HTTP request, such as headers and timeout.
+     * @returns A promise that resolves with the response body as a string.
+     * @throws {ApiException} when an error occurs
+     */
+    public request(
+        endpoint: string,
+        json: string,
+        config: Config,
+        isApiRequired: boolean,
+        requestOptions: IRequest.Options,
+    ): Promise<string> {
+        requestOptions.headers ??= {};
+        requestOptions.timeout = config.connectionTimeoutMillis;
 
-    const agent = this.selectAgent(config.certificatePath);
+        const agent = this.selectAgent(config.certificatePath);
 
-    const apiKey = config.apiKey;
+        const apiKey = config.apiKey;
 
-    if (isApiRequired && !apiKey) {
-      return Promise.reject(
-        new ApiException("Invalid X-API-Key was used", 401)
-      );
+        if (isApiRequired && !apiKey) {
+            return Promise.reject(new ApiException("Invalid X-API-Key was used", 401));
+        }
+
+        if (apiKey) {
+            requestOptions.headers[ApiConstants.API_KEY] = apiKey;
+        } else {
+            const authString = `${config.username}:${config.password}`;
+            const authStringEnc = Buffer.from(authString, "utf8").toString("base64");
+
+            requestOptions.headers.Authorization = `Basic ${authStringEnc}`;
+        }
+
+        requestOptions.headers[ApiConstants.CONTENT_TYPE] = ApiConstants.APPLICATION_JSON_TYPE;
+
+        const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, agent, config.applicationName);
+
+        return this.doRequest(httpConnection, json, config.enable308Redirect ?? true);
     }
 
-    if (apiKey) {
-      requestOptions.headers[ApiConstants.API_KEY] = apiKey;
-    } else {
-      const authString = `${config.username}:${config.password}`;
-      const authStringEnc = Buffer.from(authString, "utf8").toString("base64");
+    // create Request object
+    private createRequest(endpoint: string, requestOptions: IRequest.Options, agent: Agent, applicationName?: string): ClientRequest {
+        if (!requestOptions.headers) {
+            requestOptions.headers = {};
+        }
 
-      requestOptions.headers.Authorization = `Basic ${authStringEnc}`;
+        const url = new URL(endpoint);
+        requestOptions.hostname = url.hostname;
+        requestOptions.protocol = url.protocol;
+        requestOptions.port = url.port;
+        requestOptions.path = url.pathname;
+
+        if (requestOptions.params) {
+            requestOptions.path += "?" + new URLSearchParams(requestOptions.params).toString();
+        }
+
+        if (requestOptions && requestOptions.idempotencyKey) {
+            requestOptions.headers[ApiConstants.IDEMPOTENCY_KEY] = requestOptions.idempotencyKey;
+            delete requestOptions.idempotencyKey;
+        }
+
+        if (this.proxy && this.proxy.host) {
+            const { host, port, ...options } = this.proxy;
+            requestOptions.agent = new HttpsProxyAgent({ host, port: port || 443, ...options });
+        } else {
+            requestOptions.agent = new Agent(this.agentOptions);
+        }
+
+        if (this.proxy && this.proxy.host) {
+            const { host, port, ...options } = this.proxy;
+            requestOptions.agent = new HttpsProxyAgent({
+                host,
+                port: port || 443,
+                ...options,
+            });
+        } else {
+            requestOptions.agent = agent;
+        }
+
+
+        requestOptions.headers["Cache-Control"] = "no-cache";
+
+        if (!requestOptions.method) {
+            requestOptions.method = ApiConstants.METHOD_POST;
+        }
+
+        requestOptions.headers[ApiConstants.ACCEPT_CHARSET] = HttpURLConnectionClient.CHARSET;
+        // user-agent header
+        const libInfo = `${LibraryConstants.LIB_NAME}/${LibraryConstants.LIB_VERSION}`;
+        requestOptions.headers[ApiConstants.USER_AGENT] = applicationName ? `${applicationName} ${libInfo}` : libInfo;
+        // custom headers
+        requestOptions.headers[ApiConstants.ADYEN_LIBRARY_NAME] = LibraryConstants.LIB_NAME;
+        requestOptions.headers[ApiConstants.ADYEN_LIBRARY_VERSION] = LibraryConstants.LIB_VERSION;
+
+        // create a new ClientRequest object
+        const req = httpsRequest(requestOptions);
+
+        // set the timeout on the ClientRequest instance
+        if (requestOptions.timeout) {
+            req.setTimeout(requestOptions.timeout);
+        }
+
+        return req;
     }
 
-    requestOptions.headers[ApiConstants.CONTENT_TYPE] =
-      ApiConstants.APPLICATION_JSON_TYPE;
+    /**
+     * Invoke the request
+     * @param connectionRequest The request
+     * @param json The payload
+     * @param allowRedirect Whether to allow redirect upon 308 response status code
+     * @returns Promise with the API response
+     */
+    private doRequest(connectionRequest: ClientRequest, json: string, allowRedirect: boolean): Promise<string> {
 
-    const httpConnection: ClientRequest = this.createRequest(
-      endpoint,
-      requestOptions,
-      agent,
-      config.applicationName
-    );
-    return this.doRequest(httpConnection, json);
-  }
+        return new Promise((resolve, reject): void => {
+            connectionRequest.flushHeaders();
 
-  // create Request object
-  private createRequest(
-    endpoint: string,
-    requestOptions: IRequest.Options,
-    agent: Agent,
-    applicationName?: string
-  ): ClientRequest {
-    if (!requestOptions.headers) {
-      requestOptions.headers = {};
+            connectionRequest.on("response", (res: IncomingMessage): void => {
+                const response: { headers: IncomingHttpHeaders; body: string; statusCode: number | undefined } = {
+                    statusCode: res.statusCode,
+                    headers: res.headers,
+                    body: ""
+                };
+
+                // define default exception (in case of error during the handling of the response)
+                const getException = (responseBody: string): HttpClientException => new HttpClientException({
+                    message: `HTTP Exception: ${response.statusCode}. ${res.statusMessage}`,
+                    statusCode: response.statusCode,
+                    errorCode: undefined,
+                    responseHeaders: response.headers,
+                    responseBody,
+                });
+                let exception: HttpClientException | Error = getException(response.body);
+
+                res.on("data", (chunk: string): void => {
+                    response.body += chunk;
+                });
+
+                res.on("end", (): void => {
+                    if (!res.complete) {
+                        reject(new Error("The connection was terminated while the message was still being sent"));
+                    }
+
+                    // Handle 308 redirect (when enabled)
+                    if (allowRedirect && res.statusCode && res.statusCode === 308) {
+                        const location = res.headers["location"];
+                        if (location) {
+                            // follow the redirect
+                            try {
+                                const url = new URL(location);
+
+                                if (!this.verifyLocation(location)) {
+                                    return reject(new Error(`Redirect to host ${url.hostname} is not allowed.`));
+                                }
+
+                                const newRequestOptions = {
+                                    hostname: url.hostname,
+                                    port: url.port || (url.protocol === "https:" ? 443 : 80),
+                                    path: url.pathname + url.search,
+                                    method: connectionRequest.method,
+                                    headers: connectionRequest.getHeaders(),
+                                    protocol: url.protocol,
+                                };
+                                const clientRequestFn = url.protocol === "https:" ? httpsRequest : httpRequest;
+                                const redirectedRequest: ClientRequest = clientRequestFn(newRequestOptions);
+                                // To prevent potential redirect loops, disable further redirects for this new request.
+                                const redirectResponse = this.doRequest(redirectedRequest, json, false as boolean);
+                                return resolve(redirectResponse);
+                            } catch (err) {
+                                return reject(err);
+                            }
+                        } else {
+                            return reject(new Error(`Redirect status ${res.statusCode} - Could not find location in response headers`));
+                        }
+                    }
+
+                    if (res.statusCode && (res.statusCode < 200 || res.statusCode >= 300)) {
+                        // API error handling
+                        try {
+                            const formattedData: ApiError | { [key: string]: never } = JSON.parse(response.body);
+                            const isApiError = "status" in formattedData;
+                            const isRequestError = "errors" in formattedData;
+
+                            if (isApiError) {
+                                // Adyen API has returned an error
+                                exception = new HttpClientException({
+                                    message: `HTTP Exception: ${formattedData.status}. ${res.statusMessage}: ${formattedData.message}`,
+                                    statusCode: formattedData.status,
+                                    errorCode: formattedData.errorCode,
+                                    responseHeaders: res.headers,
+                                    responseBody: response.body,
+                                    apiError: formattedData,
+                                });
+                            } else if (isRequestError) {
+                                exception = new Error(response.body);
+                            } else {
+                                exception = getException(response.body);
+                            }
+                        } catch (e) {
+                            // parsing error
+                            exception = new HttpClientException({
+                                message: `HTTP Exception: ${response.statusCode}. Error ${(e as Error).message} while parsing response: ${response.body}`,
+                                statusCode: response.statusCode,
+                                responseHeaders: response.headers,
+                                responseBody: response.body,
+                            });
+                        }
+
+                        return reject(exception);
+                    }
+
+                    resolve(response.body as string);
+                });
+
+                res.on("error", reject);
+            });
+
+            connectionRequest.on("timeout", (): void => {
+                connectionRequest.abort();
+            });
+            connectionRequest.on("error", (e) => reject(new ApiException(e.message)));
+            connectionRequest.write(Buffer.from(json));
+            connectionRequest.end();
+        });
     }
 
-    const url = new URL(endpoint);
-    requestOptions.hostname = url.hostname;
-    requestOptions.protocol = url.protocol;
-    requestOptions.port = url.port;
-    requestOptions.path = url.pathname;
-
-    if (requestOptions.params) {
-      requestOptions.path +=
-        "?" + new URLSearchParams(requestOptions.params).toString();
+    private verifyLocation(location: string): boolean {
+        try {
+            const url = new URL(location);
+            // allow-list of trusted domains (*.adyen.com, *.adyenpayments.com)
+            const allowedHostnameRegex = /(\.adyen\.com|\.adyenpayments\.com)$/i;
+            return allowedHostnameRegex.test(url.hostname);
+        } catch (e) {
+            return false;
+        }
     }
 
-    if (requestOptions && requestOptions.idempotencyKey) {
-      requestOptions.headers[ApiConstants.IDEMPOTENCY_KEY] =
-        requestOptions.idempotencyKey;
-      delete requestOptions.idempotencyKey;
-    }
+    /**
+     * Selects or creates an HTTPS Agent for a given terminal certificate path.
+     *
+     * - If no `terminalCertificatePath` is provided, the global HTTPS agent is returned.
+     * - If an agent for the given path already exists in the cache, it is reused.
+     * - Otherwise, a new agent is created with:
+     *   - Keep-alive enabled
+     *   - LIFO socket scheduling (to reduce stale connection reuse)
+     *   - A configurable inactivity timeout
+     *   - Either:
+     *     - Certificate validation disabled if path is `"unencrypted"`, or
+     *     - A custom CA loaded from the provided certificate file and
+     *       `checkServerIdentity` enabled for hostname verification.
+     *
+     * @param {string} [terminalCertificatePath] - Path to a terminal certificate file,
+     *   or the literal string `"unencrypted"` to disable TLS verification.
+     *   If omitted, the global agent will be returned.
+     *
+     * @returns {Agent} The HTTPS agent
+     *
+     * @throws {HttpClientException} When an error occurs
+     */
 
-    if (this.proxy && this.proxy.host) {
-      const { host, port, ...options } = this.proxy;
-      requestOptions.agent = new HttpsProxyAgent({
-        host,
-        port: port || 443,
-        ...options,
-      });
-    } else {
-      requestOptions.agent = agent;
-    }
+    private selectAgent(terminalCertificatePath?: string): Agent {
+        if (!terminalCertificatePath) {
+            return globalAgent;
+        }
 
-    requestOptions.headers["Cache-Control"] = "no-cache";
+        if (this.agents[terminalCertificatePath]) {
+            return this.agents[terminalCertificatePath];
+        }
 
-    if (!requestOptions.method) {
-      requestOptions.method = ApiConstants.METHOD_POST;
-    }
-
-    requestOptions.headers[ApiConstants.ACCEPT_CHARSET] =
-      HttpURLConnectionClient.CHARSET;
-    // user-agent header
-    const libInfo = `${LibraryConstants.LIB_NAME}/${LibraryConstants.LIB_VERSION}`;
-    requestOptions.headers[ApiConstants.USER_AGENT] = applicationName
-      ? `${applicationName} ${libInfo}`
-      : libInfo;
-    // custom headers
-    requestOptions.headers[ApiConstants.ADYEN_LIBRARY_NAME] =
-      LibraryConstants.LIB_NAME;
-    requestOptions.headers[ApiConstants.ADYEN_LIBRARY_VERSION] =
-      LibraryConstants.LIB_VERSION;
-
-    // create a new ClientRequest object
-    const req = httpsRequest(requestOptions);
-
-    // set the timeout on the ClientRequest instance
-    if (requestOptions.timeout) {
-      req.setTimeout(requestOptions.timeout);
-    }
-
-    return req;
-  }
-
-  // invoke request
-  private doRequest(
-    connectionRequest: ClientRequest,
-    json: string
-  ): Promise<string> {
-    return new Promise((resolve, reject): void => {
-      connectionRequest.flushHeaders();
-
-      connectionRequest.on("response", (res: IncomingMessage): void => {
-        const response: {
-          headers: IncomingHttpHeaders;
-          body: string;
-          statusCode: number | undefined;
-        } = {
-          statusCode: res.statusCode,
-          headers: res.headers,
-          body: "",
+        const agentOptions: AgentOptions = {
+            keepAlive: true,
+            scheduling: "lifo",                                         // re-use latest connections sockets
+            timeout: HttpURLConnectionClient.AGENT_INACTIVITY_TIMEOUT,  // inactivity timeout for connection sockets
         };
 
-        // define default exception (in case of error during the handling of the response)
-        const getException = (responseBody: string): HttpClientException =>
-          new HttpClientException({
-            message: `HTTP Exception: ${response.statusCode}. ${res.statusMessage}`,
-            statusCode: response.statusCode,
-            errorCode: undefined,
-            responseHeaders: response.headers,
-            responseBody,
-          });
-        let exception: HttpClientException | Error = getException(
-          response.body
-        );
-
-        res.on("data", (chunk: string): void => {
-          response.body += chunk;
-        });
-
-        res.on("end", (): void => {
-          if (!res.complete) {
-            reject(
-              new Error(
-                "The connection was terminated while the message was still being sent"
-              )
-            );
-          }
-
-          // Handle 308 redirect
-          if (res.statusCode && res.statusCode === 308) {
-            const location = res.headers["location"];
-            if (location) {
-              // follow the redirect
-              try {
-                const url = new URL(location);
-
-                if (!this.verifyLocation(location)) {
-                  return reject(
-                    new Error(
-                      `Redirect to host ${url.hostname} is not allowed.`
-                    )
-                  );
-                }
-
-                const newRequestOptions = {
-                  hostname: url.hostname,
-                  port: url.port || (url.protocol === "https:" ? 443 : 80),
-                  path: url.pathname + url.search,
-                  method: connectionRequest.method,
-                  headers: connectionRequest.getHeaders(),
-                  protocol: url.protocol,
-                };
-                const clientRequestFn =
-                  url.protocol === "https:" ? httpsRequest : httpRequest;
-                const redirectedRequest: ClientRequest =
-                  clientRequestFn(newRequestOptions);
-                const redirectResponse = this.doRequest(
-                  redirectedRequest,
-                  json
-                );
-                return resolve(redirectResponse);
-              } catch (err) {
-                return reject(err);
-              }
-            } else {
-              return reject(
-                new Error(
-                  `Redirect status ${res.statusCode} - Could not find location in response headers`
-                )
-              );
-            }
-          }
-
-          if (
-            res.statusCode &&
-            (res.statusCode < 200 || res.statusCode >= 300)
-          ) {
-            // API error handling
+        if (terminalCertificatePath === "unencrypted") {
+            agentOptions.rejectUnauthorized = false;
+        } else {
             try {
-              const formattedData: ApiError | { [key: string]: never } =
-                JSON.parse(response.body);
-              const isApiError = "status" in formattedData;
-              const isRequestError = "errors" in formattedData;
-
-              if (isApiError) {
-                // Adyen API has returned an error
-                exception = new HttpClientException({
-                  message: `HTTP Exception: ${formattedData.status}. ${res.statusMessage}: ${formattedData.message}`,
-                  statusCode: formattedData.status,
-                  errorCode: formattedData.errorCode,
-                  responseHeaders: res.headers,
-                  responseBody: response.body,
-                  apiError: formattedData,
-                });
-              } else if (isRequestError) {
-                exception = new Error(response.body);
-              } else {
-                exception = getException(response.body);
-              }
+                agentOptions.ca = fs.readFileSync(terminalCertificatePath);
+                agentOptions.checkServerIdentity = checkServerIdentity;
             } catch (e) {
-              // parsing error
-              exception = new HttpClientException({
-                message: `HTTP Exception: ${
-                  response.statusCode
-                }. Error parsing response: ${(e as Error).message}`,
-                statusCode: response.statusCode,
-                responseHeaders: response.headers,
-                responseBody: response.body,
-              });
+                const message = e instanceof Error ? e.message : "undefined";
+                throw new HttpClientException({
+                    message: `Error loading certificate from path: ${message}`,
+                });
             }
+        }
 
-            return reject(exception);
-          }
-
-          resolve(response.body as string);
-        });
-
-        res.on("error", reject);
-      });
-
-      connectionRequest.on("timeout", (): void => {
-        connectionRequest.abort();
-      });
-      connectionRequest.on("error", (e) => reject(new ApiException(e.message)));
-      connectionRequest.write(Buffer.from(json));
-      connectionRequest.end();
-    });
-  }
-
-  private verifyLocation(location: string): boolean {
-    try {
-      const url = new URL(location);
-      // allow-list of trusted domains (*.adyen.com)
-      const allowedHostnameRegex = /\.adyen\.com$/i;
-      return allowedHostnameRegex.test(url.hostname);
-    } catch (e) {
-      return false;
-    }
-  }
-
-  private selectAgent(terminalCertificatePath?: string): Agent {
-    if (!terminalCertificatePath) {
-      return globalAgent;
+        const newAgent = new Agent(agentOptions);
+        this.agents[terminalCertificatePath] = newAgent;
+        return newAgent;
     }
 
-    if (this.agents[terminalCertificatePath]) {
-      return this.agents[terminalCertificatePath];
-    }
-
-    const agentOptions: AgentOptions = {
-      keepAlive: true,
-      scheduling: "lifo",
-      timeout: HttpURLConnectionClient.AGENT_INACTIVITY_TIMEOUT,
-    };
-
-    if (terminalCertificatePath === "unencrypted") {
-      agentOptions.rejectUnauthorized = false;
-    } else {
-      try {
-        agentOptions.ca = fs.readFileSync(terminalCertificatePath);
-        agentOptions.checkServerIdentity = checkServerIdentity;
-      } catch (e) {
-        const message = e instanceof Error ? e.message : "undefined";
-        throw new HttpClientException({
-          message: `Error loading certificate from path: ${message}`,
-        });
-      }
-    }
-
-    const newAgent = new Agent(agentOptions);
-    this.agents[terminalCertificatePath] = newAgent;
-    return newAgent;
-  }
 }
+
 
 export default HttpURLConnectionClient;
