@@ -25,6 +25,7 @@ This library supports the following:
 | [Cloud device API](https://docs.adyen.com/api-explorer/cloud-device-api/1/overview)              |      v1      | Cloud Device point-of-sale integration.                                                                                                                                                                                                                                                                                                           | [Cloud device API](/src/services/cloudDevice/cloudDeviceApi.ts) |
 | [Local/Cloud-based Terminal API](https://docs.adyen.com/point-of-sale/terminal-api-reference)              |      -      | Terminal API point-of-sale integration.                                                                                                                                                                                                                                                                                                           | [TerminalLocalAPI](/src/services/terminalLocalAPI.ts) or [TerminalCloudAPI](/src/services/terminalCloudAPI.ts) |
 | [Management API](https://docs.adyen.com/api-explorer/Management/3/overview)                                |     v3      | Configure and manage your Adyen company and merchant accounts, stores, and payment terminals.                                                                                                                                                                                                                                            | [Management](/src/services/management/index.ts)                                                                                                                         |
+| [Open Banking API](https://docs.adyen.com/api-explorer/open-banking/1/overview)                                |     v1      | The Open Banking API provides secure endpoints to share financial data and services with third parties.                                                                                                                                                                                                                                          | [Open Banking](/src/services/openbanking/index.ts)                                                                                                                         |
 | [Payments API](https://docs.adyen.com/api-explorer/Payment/68/overview)                                    |     v68     | Our classic integration for online payments.                                                                                                                                                                                                                                                                                             | [ClassicIntegrationAPI](/src/services/paymentApi.ts)                                                                                                                    |
 | [Payouts API](https://docs.adyen.com/api-explorer/Payout/68/overview)                                      |     v68     | Endpoints for sending funds to your customers.                                                                                                                                                                                                                                                                                           | [Payout](/src/services/payout/index.ts)                                                                                                                                 |
 | [Platforms APIs](https://docs.adyen.com/platforms/api)                                                     |      -      | Set of APIs when using Adyen for Platforms. This API is used for the classic integration.                                                                                                                                                                                                                                                | [Platforms](/src/services/platforms.ts)                                                                                                                                 |
@@ -254,12 +255,12 @@ Alternatively, you can use the `Types` included in this module for Typescript an
 #### Deserializing JSON Strings
 In some setups you might need to deserialize JSON strings to request objects. For example, when using the libraries in combination with [Dropin/Components](https://github.com/Adyen/adyen-web). Please use the built-in deserialization functions:
 ``` typescript
-// Import the required model class
-import { checkout } from "../typings";
+// Import the models
+import { Types } from "@adyen/api-library";
 
 // Deserialize using built-in ObjectSerializer class
 const requestJson: JSON = JSON.parse(`YOUR_JSON_STRING`);
-const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.deserialize(requestJson,"PaymentRequest");
+const paymentRequest: Types.checkout.PaymentRequest = await Types.checkout.ObjectSerializer.deserialize(requestJson,"PaymentRequest");
 ```
  
 ### Custom HTTP client configuration
@@ -299,24 +300,32 @@ const client = new Client({
 ### Parsing and Authenticating Banking Webhooks
 Parse an AccountHolderNotificationRequest webhook;
 ``` typescript
-let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
-const accountHolderNotificationRequest: AccountHolderNotificationRequest = bankingWebhookHandler.getAccountHolderNotificationRequest();
-const genericWebhook = bankingWebhookHandler.getGenericWebhook();
+// import models
+import { Types, ConfigurationWebhooksHandler } from "@adyen/api-library";
+
+const configurationWebhooksHandler = new ConfigurationWebhooksHandler(YOUR_BANKING_WEBHOOK);
+const accountHolderNotificationRequest: Types.configurationWebhooks.AccountHolderNotificationRequest = configurationWebhooksHandler.getAccountHolderNotificationRequest();
 ```
 You can also parse the webhook with a generic type, in case you do not know the webhook type in advance. In this case you can check the instance of the webhook in order to parse it to the respective type (or just use it dynamically);
 ``` typescript
-let bankingWebhookHandler = new BankingWebhookHandler(YOUR_BANKING_WEBHOOK);
-const genericWebhook = bankingWebhookHandler.getGenericWebhook();
+const configurationWebhooksHandler = new ConfigurationWebhooksHandler(YOUR_BANKING_WEBHOOK);
+const genericWebhook = configurationWebhooksHandler.getGenericWebhook();
+
+if ("accountHolderCode" in genericWebhook) {
+  console.log("This is an AccountHolderNotificationRequest");
+} else if ("balanceAccountId" in genericWebhook) {
+  console.log("This is a BalanceAccountNotificationRequest");
+}
 ```
 Verify the authenticity (where you retrieve the hmac key from the CA and the signature from the webhook header);
 ``` typescript
 const isValid = hmacValidator.validateBankingHMAC("YOUR_HMAC_KEY", "YOUR_HMAC_SIGNATURE", jsonString)
 ```
 ### Management Webhooks
-Management webhooks are verified the exact same way as the banking webhooks. To parse them however, instead you use:
+Management webhooks are also parsed with the same approach, using `ManagementWebhooksHandler`:
 ``` typescript
-let managementWebhookHandler = new ManagementWebhookHandler(YOUR_MANAGEMENT_WEBHOOK);
-const genericWebhook = managementWebhookHandler.getGenericWebhook();
+const managementWebhooksHandler = new ManagementWebhooksHandler(YOUR_MANAGEMENT_WEBHOOK);
+const genericWebhook = managementWebhooksHandler.getGenericWebhook();
 ```
 
 ### Proxy configuration
@@ -326,14 +335,12 @@ To configure a proxy connection, set the `proxy` property of your `HttpURLConnec
 For example:
 
 ``` javascript
-const {HttpURLConnectionClient, Client, Config} = require('@adyen/api-library');
+const {HttpURLConnectionClient, Client, Config, EnvironmentEnum} = require('@adyen/api-library');
 // ... more code
-const config = new Config();
-const client = new Client({ config });
+const client = new Client({apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST}); 
 const httpClient = new HttpURLConnectionClient();
 httpClient.proxy = { host: "http://google.com", port: 8888,  };
 
-client.setEnvironment(EnvironmentEnum.TEST);
 client.httpClient = httpClient;
 
 // ... more code
@@ -354,7 +361,6 @@ With the [Terminal API](https://docs.adyen.com/api-explorer/terminal-api/1/overv
 
 * Local communications: using your local network, your POS system sends the request directly to the IP address of the terminal, and receives the result synchronously.
 * Cloud communications: using the internet to access the cloud `/sync` and `/async` endpoints. You should consider adopting the [Cloud Device API](doc/CloudDeviceApi.md) instead.
-
 
 Check the [Terminal API README](doc/TerminalApi.md).
 
