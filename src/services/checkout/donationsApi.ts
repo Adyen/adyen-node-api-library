@@ -54,7 +54,7 @@ export class DonationsApi extends Service {
     }
 
     /**
-    * @summary Start a transaction for donations
+    * @summary Make a donation
     * @param donationPaymentRequest {@link DonationPaymentRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link DonationPaymentResponse }
