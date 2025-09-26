@@ -19,6 +19,7 @@ import { DonationCampaignsRequest } from "../../typings/checkout/models";
 import { DonationCampaignsResponse } from "../../typings/checkout/models";
 import { DonationPaymentRequest } from "../../typings/checkout/models";
 import { DonationPaymentResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
 
 /**
  * API handler for DonationsApi
@@ -54,7 +55,7 @@ export class DonationsApi extends Service {
     }
 
     /**
-    * @summary Start a transaction for donations
+    * @summary Make a donation
     * @param donationPaymentRequest {@link DonationPaymentRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link DonationPaymentResponse }

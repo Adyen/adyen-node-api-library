@@ -12,7 +12,7 @@ export class CardDetailsRequest {
     /**
     * A minimum of the first six digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the `encryptedCardNumber` field.
     */
-    "cardNumber": string;
+    "cardNumber"?: string;
     /**
     * The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
     */

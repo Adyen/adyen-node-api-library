@@ -38,7 +38,7 @@ export class AdditionalDataSubMerchant {
     */
     "subMerchant_subSeller_subSellerNr_name"?: string;
     /**
-    * Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters
+    * Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant. * Format: Alphanumeric and special characters * Maximum length: 20 characters
     */
     "subMerchant_subSeller_subSellerNr_phoneNumber"?: string;
     /**

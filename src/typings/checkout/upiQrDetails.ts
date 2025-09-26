@@ -8,7 +8,7 @@
  */
 
 
-export class UpiCollectDetails {
+export class UpiQrDetails {
     /**
     * The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
     */
@@ -33,13 +33,9 @@ export class UpiCollectDetails {
     */
     "storedPaymentMethodId"?: string;
     /**
-    * **upi_collect**
+    * **upi_qr**
     */
-    "type": UpiCollectDetails.TypeEnum;
-    /**
-    * The virtual payment address for UPI.
-    */
-    "virtualPaymentAddress"?: string;
+    "type": UpiQrDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -79,26 +75,20 @@ export class UpiCollectDetails {
         {
             "name": "type",
             "baseName": "type",
-            "type": "UpiCollectDetails.TypeEnum",
-            "format": ""
-        },
-        {
-            "name": "virtualPaymentAddress",
-            "baseName": "virtualPaymentAddress",
-            "type": "string",
+            "type": "UpiQrDetails.TypeEnum",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return UpiCollectDetails.attributeTypeMap;
+        return UpiQrDetails.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace UpiCollectDetails {
+export namespace UpiQrDetails {
     export enum TypeEnum {
-        UpiCollect = 'upi_collect'
+        UpiQr = 'upi_qr'
     }
 }
