@@ -60,7 +60,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Create a split configuration
+    * @summary Create a split configuration profile
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfiguration {@link SplitConfiguration } 
     * @param requestOptions {@link IRequest.Options }
@@ -82,7 +82,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Delete a split configuration
+    * @summary Delete a split configuration profile
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
     * @param requestOptions {@link IRequest.Options }
@@ -104,7 +104,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Delete a split configuration rule
+    * @summary Delete a rule
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
     * @param ruleId {@link string } 
@@ -128,7 +128,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Get a split configuration
+    * @summary Get a split configuration profile
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
     * @param requestOptions {@link IRequest.Options }
@@ -150,7 +150,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Get a list of split configurations
+    * @summary Get a list of split configuration profiles
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param requestOptions {@link IRequest.Options }
     * @return {@link SplitConfigurationList }
@@ -170,7 +170,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Update split conditions
+    * @summary Update the split conditions
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The identifier of the split configuration.
     * @param ruleId {@link string } The unique identifier of the split configuration rule.
@@ -196,7 +196,7 @@ export class SplitConfigurationMerchantLevelApi extends Service {
     }
 
     /**
-    * @summary Update split configuration description
+    * @summary Update the description of the split configuration profile
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param splitConfigurationId {@link string } The unique identifier of the split configuration.
     * @param updateSplitConfigurationRequest {@link UpdateSplitConfigurationRequest } 

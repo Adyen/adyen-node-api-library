@@ -20,9 +20,9 @@ import { FundOrigin } from "./fundOrigin";
 import { FundRecipient } from "./fundRecipient";
 import { LineItem } from "./lineItem";
 import { Mandate } from "./mandate";
-import { Name } from "./name";
 import { PlatformChargebackLogic } from "./platformChargebackLogic";
 import { RiskData } from "./riskData";
+import { ShopperName } from "./shopperName";
 import { Split } from "./split";
 import { ThreeDSecureData } from "./threeDSecureData";
 
@@ -170,7 +170,7 @@ export class CreateCheckoutSessionResponse {
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
     "shopperLocale"?: string;
-    "shopperName"?: Name | null;
+    "shopperName"?: ShopperName | null;
     /**
     * Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
@@ -524,7 +524,7 @@ export class CreateCheckoutSessionResponse {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null",
+            "type": "ShopperName | null",
             "format": ""
         },
         {

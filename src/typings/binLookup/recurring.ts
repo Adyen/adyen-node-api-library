@@ -10,7 +10,7 @@
 
 export class Recurring {
     /**
-    * The type of recurring contract to be used. Possible values: * `ONECLICK` – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * `RECURRING` – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * `ONECLICK,RECURRING` – Payment details can be used regardless of whether the shopper is on your site or not. * `PAYOUT` – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts).
+    * The type of recurring contract to be used. Possible values: * `ONECLICK` – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * `RECURRING` – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * `ONECLICK,RECURRING` – Payment details can be used regardless of whether the shopper is on your site or not. * `PAYOUT` – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts). * `EXTERNAL` - Use this when you store payment details and send the raw card number or network token directly in your API request. 
     */
     "contract"?: Recurring.ContractEnum;
     /**
@@ -77,8 +77,10 @@ export class Recurring {
 export namespace Recurring {
     export enum ContractEnum {
         Oneclick = 'ONECLICK',
+        Oneclickrecurring = 'ONECLICK,RECURRING',
         Recurring = 'RECURRING',
-        Payout = 'PAYOUT'
+        Payout = 'PAYOUT',
+        External = 'EXTERNAL'
     }
     export enum TokenServiceEnum {
         Visatokenservice = 'VISATOKENSERVICE',
