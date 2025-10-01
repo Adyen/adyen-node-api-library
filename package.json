@@ -29,7 +29,8 @@
     "lint:fix": "eslint --fix 'src/**/*.ts'",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:terminal": "jest --config jest.config.terminal.js"
   },
   "author": "Adyen",
   "license": "MIT",

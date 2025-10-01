@@ -1,0 +1,84 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2025 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+ 
+/**
+ * Cloud Device API
+ * Definition of Cloud Device API Schema
+ *
+ */
+
+
+import { DisplayOutput } from './displayOutput';
+
+export class CardReaderInitRequest {
+    'DisplayOutput'?: DisplayOutput;
+    'ForceEntryMode'?: Array<CardReaderInitRequest.ForceEntryModeEnum>;
+    'LeaveCardFlag'?: boolean;
+    'MaxWaitingTime'?: number;
+    'WarmResetFlag'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "DisplayOutput",
+            "baseName": "DisplayOutput",
+            "type": "DisplayOutput"
+        },
+        {
+            "name": "ForceEntryMode",
+            "baseName": "ForceEntryMode",
+            "type": "Array<CardReaderInitRequest.ForceEntryModeEnum>"
+        },
+        {
+            "name": "LeaveCardFlag",
+            "baseName": "LeaveCardFlag",
+            "type": "boolean"
+        },
+        {
+            "name": "MaxWaitingTime",
+            "baseName": "MaxWaitingTime",
+            "type": "number"
+        },
+        {
+            "name": "WarmResetFlag",
+            "baseName": "WarmResetFlag",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CardReaderInitRequest.attributeTypeMap;
+    }
+}
+
+export namespace CardReaderInitRequest {
+    export enum ForceEntryModeEnum {
+        CheckReader = <any> 'CheckReader',
+        Contactless = <any> 'Contactless',
+        File = <any> 'File',
+        Icc = <any> 'ICC',
+        Keyed = <any> 'Keyed',
+        MagStripe = <any> 'MagStripe',
+        Manual = <any> 'Manual',
+        Rfid = <any> 'RFID',
+        Scanned = <any> 'Scanned',
+        SynchronousIcc = <any> 'SynchronousICC',
+        Tapped = <any> 'Tapped'
+    }
+}
