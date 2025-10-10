@@ -21,7 +21,7 @@ export class Financier {
     */
     "lastName": string;
     /**
-    * The location of the financier.
+    * The city and country/region where the financier is currently located. For example: Chicago, USA
     */
     "location": string;
 

@@ -22,35 +22,35 @@ export class SourceOfFunds {
     */
     "assetMonthsHeld"?: number;
     /**
-    * The cryptocurrency exchange where the funds were acquired. Required if `type` is **cryptocurrencyIncome**.
+    * Required if `type` is **cryptocurrencyIncome**. The cryptocurrency exchange where the funds were acquired.
     */
     "cryptocurrencyExchange"?: string;
     /**
-    * The date the funds were received, in YYYY-MM-DD format. Required if `type` is **donations** or **inheritance**.
+    * Required if `type` is **donations** or **inheritance**. The date the funds were received, in YYYY-MM-DD format.
     */
     "dateOfFundsReceived"?: string;
     /**
-    * The date the funds were received, in YYYY-MM-DD format. Required if `type` is **assetSale** or **gamblingWinnings**.  For example, if the source of funds is of type **assetSale**, the dateOfSourceEvent is the date of the sale. If the source of funds is of type **gamblingWinnings**, the dateOfSourceEvent is the date of winnings.
+    * Required if `type` is **assetSale** or **gamblingWinnings**. The date the funds were received, in YYYY-MM-DD format.  For example, if the source of funds is of type **assetSale**, the dateOfSourceEvent is the date of the sale. If the source of funds is of type **gamblingWinnings**, the dateOfSourceEvent is the date of winnings.
     */
     "dateOfSourceEvent"?: string;
     /**
-    * Text describing the source of funds. Required if `type` is **business** or **assetSale**.  For example, for `type` **business**, provide a description of where the business transactions come from, such as payments through bank transfer. For `type` **assetSale**, provide a description of the asset. For example, the address of a residential property if it is a property sale.
+    * Required if `type` is **business** or **assetSale**. A description for the source of funds.  For example, for `type` **business**, provide a description of where the business transactions come from, such as payments through bank transfer. For `type` **assetSale**, provide a description of the asset. For example, the address of a residential property if it is a property sale.
     */
     "description"?: string;
     /**
-    * Information about the financiers. Required if `type` is **thirdPartyFunding**.
+    * Required if `type` is **thirdPartyFunding**. Information about the financiers.
     */
     "financiers"?: Array<Financier>;
     /**
-    * The legal entity ID representing the originator of the source of funds. Required if `type` is **donations** or **inheritance**.  For example, if the source of funds is **inheritance**, then `originatorOfFundsReference` should be the legal entity reference of the benefactor.
+    * Required if `type` is **donations** or **inheritance**. The legal entity ID representing the originator of the source of funds.  For example, if the source of funds is **inheritance**, then `originatorOfFundsReference` should be the legal entity reference of the benefactor.
     */
     "originatorLegalEntityId"?: string;
     /**
-    * The reason for receiving the funds. Required if `type` is **donations**.
+    * Required if `type` is **donations**. The reason for receiving the funds.
     */
     "purpose"?: string;
     /**
-    * The relationship of the originator of the funds to the recipient. Required if `type` is **donations** or **inheritance**.
+    * Required if `type` is **donations** or **inheritance**. The relationship of the originator of the funds to the recipient.
     */
     "relationship"?: string;
     /**
@@ -58,7 +58,7 @@ export class SourceOfFunds {
     */
     "type"?: SourceOfFunds.TypeEnum;
     /**
-    * The location of the gambling site. Required if `type` is **gamblingWinnings**.  If the source of funds is online gambling, provide the website of the gambling company.
+    * Required if `type` is **gamblingWinnings**. The location of the gambling site for the winnings.  For example, if the source of funds is online gambling, provide the website of the gambling company.
     */
     "website"?: string;
 

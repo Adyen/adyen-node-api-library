@@ -10,7 +10,7 @@
 
 export class OnboardingLink {
     /**
-    * The URL of the hosted onboarding page where you need to redirect your user. This URL expires after 4 minutes and can only be used once.  If the link expires, you need to create a new link.
+    * The URL of the hosted onboarding page where you need to redirect your user. This URL:   - Expires after 4 minutes.  - Can only be used once.  - Can only be clicked once by the user.  If the link expires, you need to create a new link.
     */
     "url"?: string;
 
