@@ -17,6 +17,7 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { PaymentInstrumentGroup } from "../../typings/balancePlatform/models";
 import { PaymentInstrumentGroupInfo } from "../../typings/balancePlatform/models";
+import { RestServiceError } from "../../typings/balancePlatform/models";
 import { TransactionRulesResponse } from "../../typings/balancePlatform/models";
 
 /**
