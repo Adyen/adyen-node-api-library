@@ -20,7 +20,6 @@ import { DataReviewConfirmationResponse } from "../../typings/legalEntityManagem
 import { LegalEntity } from "../../typings/legalEntityManagement/models";
 import { LegalEntityInfo } from "../../typings/legalEntityManagement/models";
 import { LegalEntityInfoRequiredType } from "../../typings/legalEntityManagement/models";
-import { ServiceError } from "../../typings/legalEntityManagement/models";
 import { VerificationErrors } from "../../typings/legalEntityManagement/models";
 
 /**

@@ -16,7 +16,6 @@ import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { CreateTransferLimitRequest } from "../../typings/balancePlatform/models";
-import { DefaultErrorResponseEntity } from "../../typings/balancePlatform/models";
 import { LimitStatus } from "../../typings/balancePlatform/models";
 import { Scope } from "../../typings/balancePlatform/models";
 import { TransferLimit } from "../../typings/balancePlatform/models";
