@@ -101,7 +101,7 @@ describe("API Client", function (): void {
     });
     const client = new Client(config);
     expect(client.config.terminalApiCloudEndpoint).toBeDefined();
-    expect(client.config.terminalApiCloudEndpoint).toBe("https://terminal-api-us.adyen.com");
+    expect(client.config.terminalApiCloudEndpoint).toBe("https://terminal-api-live-us.adyen.com");
   });
 
   test("should set and get custom http client", () => {
@@ -156,4 +156,3 @@ describe("API Client", function (): void {
   });
 
 });
-

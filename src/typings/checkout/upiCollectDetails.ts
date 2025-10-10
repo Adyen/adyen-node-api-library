@@ -12,7 +12,7 @@ export class UpiCollectDetails {
     /**
     * The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
     */
-    "billingSequenceNumber": string;
+    "billingSequenceNumber"?: string;
     /**
     * The checkout attempt identifier.
     */

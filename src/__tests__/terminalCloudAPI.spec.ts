@@ -5,137 +5,235 @@ import { syncRefund, syncRes, syncResEventNotification, syncResEventNotification
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
 import { terminal } from "../typings";
+import { EnvironmentEnum } from "../config";
+import HttpClientException from "../httpClient/httpClientException";
 
 let client: Client;
 let terminalCloudAPI: TerminalCloudAPI;
 let scope: nock.Scope;
 
 beforeEach((): void => {
-    if (!nock.isActive()) {
-        nock.activate();
-    }
-    client = createClient(process.env.ADYEN_TERMINAL_APIKEY);
+  if (!nock.isActive()) {
+    nock.activate();
+  }
+  client = createClient(process.env.ADYEN_TERMINAL_APIKEY);
 
-    terminalCloudAPI = new TerminalCloudAPI(client);
-    scope = nock(`${client.config.terminalApiCloudEndpoint}`);
+  terminalCloudAPI = new TerminalCloudAPI(client);
+  scope = nock(`${client.config.terminalApiCloudEndpoint}`);
 });
 
 afterEach((): void => {
-    nock.cleanAll();
+  nock.cleanAll();
 });
 
 describe("Terminal Cloud API", (): void => {
-    test("should make an async payment request", async (): Promise<void> => {
-        scope.post("/async").reply(200, asyncRes);
+  test("should make an async payment request", async (): Promise<void> => {
+    scope.post("/async").reply(200, asyncRes);
 
-        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
-        const requestResponse = await terminalCloudAPI.async(terminalAPIPaymentRequest);
+    const requestResponse = await terminalCloudAPI.async(terminalAPIPaymentRequest);
 
-        expect(typeof requestResponse).toBe("string");
-        expect(requestResponse).toEqual("ok");
-    });
+    expect(typeof requestResponse).toBe("string");
+    expect(requestResponse).toEqual("ok");
+  });
 
-    test("should get an error after async payment request", async (): Promise<void> => {
-        scope.post("/async").reply(200, asyncErrorRes);
+  test("should get an error after async payment request", async (): Promise<void> => {
+    scope.post("/async").reply(200, asyncErrorRes);
 
-        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
-        const requestResponse = await terminalCloudAPI.async(terminalAPIPaymentRequest);
+    const requestResponse = await terminalCloudAPI.async(terminalAPIPaymentRequest);
 
-        if (typeof requestResponse === "object") {
-          expect(requestResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
-          expect(requestResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("Reject");
-        } else {
-          throw new Error("Expected structured response, but got raw string");
-        }        
-    });
+    if (typeof requestResponse === "object") {
+      expect(requestResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
+      expect(requestResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("Reject");
+    } else {
+      throw new Error("Expected structured response, but got raw string");
+    }
+  });
 
-    test("should make a sync payment request", async (): Promise<void> => {
-        scope.post("/sync").reply(200, syncRes);
+  test("should make a sync payment request", async (): Promise<void> => {
+    scope.post("/sync").reply(200, syncRes);
 
-        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
-        const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
 
-        expect(terminalAPIResponse.SaleToPOIResponse?.PaymentResponse).toBeDefined();
-        expect(terminalAPIResponse.SaleToPOIResponse?.MessageHeader).toBeDefined();
-    });
+    expect(terminalAPIResponse.SaleToPOIResponse?.PaymentResponse).toBeDefined();
+    expect(terminalAPIResponse.SaleToPOIResponse?.MessageHeader).toBeDefined();
+  });
 
-    test("should make a sync payment request with additional attributes", async (): Promise<void> => {
-        scope.post("/sync").reply(200, syncTerminalPaymentResponse);
+  test("should make a sync payment request with additional attributes", async (): Promise<void> => {
+    scope.post("/sync").reply(200, syncTerminalPaymentResponse);
 
-        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
 
-        await expect(async () => {
-            const terminalAPIResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
-            expect(terminalAPIResponse.SaleToPOIResponse?.PaymentResponse).toBeDefined();
-            expect(terminalAPIResponse.SaleToPOIResponse?.MessageHeader).toBeDefined();
-        }).not.toThrow();
+    await expect(async () => {
+      const terminalAPIResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+      expect(terminalAPIResponse.SaleToPOIResponse?.PaymentResponse).toBeDefined();
+      expect(terminalAPIResponse.SaleToPOIResponse?.MessageHeader).toBeDefined();
+    }).not.toThrow();
 
-    });
+  });
 
-    test("should return event notification Reject", async (): Promise<void> => {
+  test("should return event notification Reject", async (): Promise<void> => {
 
-        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
-        scope.post("/sync").reply(200, syncResEventNotification);
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    scope.post("/sync").reply(200, syncResEventNotification);
 
-        const terminalAPIResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+    const terminalAPIResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
 
-        expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
-        expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("Reject");
+    expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
+    expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("Reject");
 
-    });
+  });
 
-    test("should return event notification Shutdown with additional attributes", async (): Promise<void> => {
+  test("should return event notification Shutdown with additional attributes", async (): Promise<void> => {
 
-        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
-        scope.post("/sync").reply(200, syncResEventNotificationWithAdditionalAttributes);
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    scope.post("/sync").reply(200, syncResEventNotificationWithAdditionalAttributes);
 
-        await expect(async () => {
-            const terminalAPIResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
-            expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
-            expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("Shutdown");
-            expect(terminalAPIResponse.SaleToPOIRequest?.MessageHeader).toBeDefined();
-        }).not.toThrow();
-    });
+    await expect(async () => {
+      const terminalAPIResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+      expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
+      expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("Shutdown");
+      expect(terminalAPIResponse.SaleToPOIRequest?.MessageHeader).toBeDefined();
+    }).not.toThrow();
+  });
 
-    test("should return event notification with unknown enum", async (): Promise<void> => {
+  test("should return event notification with unknown enum", async (): Promise<void> => {
 
-        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
-        scope.post("/sync").reply(200, syncResEventNotificationWithUnknownEnum);
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    scope.post("/sync").reply(200, syncResEventNotificationWithUnknownEnum);
 
-        await expect(async () => {
-            const terminalAPIResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
-            expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
-            // EventToNotify is unknown, so it holds whatever value is found in the payload
-            expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("this is unknown");
+    await expect(async () => {
+      const terminalAPIResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+      expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification).toBeDefined();
+      // EventToNotify is unknown, so it holds whatever value is found in the payload
+      expect(terminalAPIResponse.SaleToPOIRequest?.EventNotification?.EventToNotify).toBe("this is unknown");
 
-        }).not.toThrow();
-    });
+    }).not.toThrow();
+  });
 
-    test("should make an async refund request", async (): Promise<void> => {
-        scope.post("/sync").reply(200, syncRes);
+  test("should make an async refund request", async (): Promise<void> => {
+    scope.post("/sync").reply(200, syncRes);
 
-        const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
-        const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(terminalAPIPaymentRequest);
 
-        const pOITransactionId = terminalAPIResponse.SaleToPOIResponse!.PaymentResponse!.POIData!.POITransactionID;
-        expect(pOITransactionId).toBeTruthy();
+    const pOITransactionId = terminalAPIResponse.SaleToPOIResponse!.PaymentResponse!.POIData!.POITransactionID;
+    expect(pOITransactionId).toBeTruthy();
 
-        scope.post("/sync").reply(200, syncRefund);
+    scope.post("/sync").reply(200, syncRefund);
 
-        const terminalAPIRefundRequest = createTerminalAPIRefundRequest(pOITransactionId);
-        const id = Math.floor(Math.random() * Math.floor(10000000)).toString();
-        terminalAPIRefundRequest.SaleToPOIRequest.MessageHeader.ServiceID = id;
-        const saleToAcquirerData: terminal.SaleToAcquirerData = new terminal.SaleToAcquirerData();
-        saleToAcquirerData.currency = "EUR";
-        terminalAPIRefundRequest.SaleToPOIRequest.ReversalRequest!.SaleData!.SaleToAcquirerData = saleToAcquirerData;
-        const terminalAPIRefundResponse = await terminalCloudAPI.sync(terminalAPIRefundRequest);
+    const terminalAPIRefundRequest = createTerminalAPIRefundRequest(pOITransactionId);
+    const id = Math.floor(Math.random() * Math.floor(10000000)).toString();
+    terminalAPIRefundRequest.SaleToPOIRequest.MessageHeader.ServiceID = id;
+    const saleToAcquirerData: terminal.SaleToAcquirerData = new terminal.SaleToAcquirerData();
+    saleToAcquirerData.currency = "EUR";
+    terminalAPIRefundRequest.SaleToPOIRequest.ReversalRequest!.SaleData!.SaleToAcquirerData = saleToAcquirerData;
+    const terminalAPIRefundResponse = await terminalCloudAPI.sync(terminalAPIRefundRequest);
 
-        expect(terminalAPIRefundResponse.SaleToPOIResponse?.ReversalResponse?.Response.Result).toBe("Success");
-    }, 20000);
+    expect(terminalAPIRefundResponse.SaleToPOIResponse?.ReversalResponse?.Response.Result).toBe("Success");
+  }, 20000);
+
+  test("async should handle 308", async (): Promise<void> => {
+
+    const terminalApiHost = "https://terminal-api-test.adyen.com";
+
+    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST });
+    const terminalCloudAPI = new TerminalCloudAPI(client);
+
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    // custom value to trigger mock 308 response
+    terminalAPIPaymentRequest.SaleToPOIRequest.MessageHeader.SaleID = "response-with-redirect";
+
+    // Mock first request: returns a 308 redirect with Location header
+    nock(terminalApiHost)
+      .post("/async", (body) => {
+        return body?.SaleToPOIRequest?.MessageHeader?.SaleID === "response-with-redirect";
+      })
+      .reply(308, "", { Location: `${terminalApiHost}/async?redirect=false` });
+
+    // Mock follow-up request: returns successful response 'ok'
+    nock(terminalApiHost)
+      .post("/async?redirect=false")
+      .reply(200, "ok");
+
+    const terminalAPIResponse = await terminalCloudAPI.async(terminalAPIPaymentRequest);
+
+    expect(terminalAPIResponse).toEqual("ok");
+  });
+
+  test("sync should validate 308 location header", async (): Promise<void> => {
+    const terminalApiHost = "https://terminal-api-test.adyen.com";
+
+    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST });
+
+    const terminalCloudAPI = new TerminalCloudAPI(client);
+
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    // custom value to trigger mock 308 response
+    terminalAPIPaymentRequest.SaleToPOIRequest.MessageHeader.SaleID = "response-with-redirect";
+
+    // Mock first request: returns a 308 redirect with invalid Location header
+    nock(terminalApiHost)
+      .post("/sync", (body) => {
+        return body?.SaleToPOIRequest?.MessageHeader?.SaleID === "response-with-redirect";
+      })
+      .reply(308, "", { Location: "https://example.org/sync?redirect=false" });
+
+    // Mock follow-up request: returns successful response
+    nock(terminalApiHost)
+      .post("/sync?redirect=false")
+      .reply(200, {
+        SaleToPOIResponse: {
+          PaymentResponse: { Response: "Authorised" },
+          MessageHeader: { SaleID: "001-308" },
+        },
+      });
+
+    try {
+      await terminalCloudAPI.sync(terminalAPIPaymentRequest);
+      fail("No exception was thrown");
+    } catch (e) {
+      expect(e).toBeInstanceOf(Error);
+    }
+
+  });
+
+  test("async should skip 308 redirect", async (): Promise<void> => {
+    
+    const terminalApiHost = "https://terminal-api-test.adyen.com";
+
+    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST, enable308Redirect: false });
+    const terminalCloudAPI = new TerminalCloudAPI(client);
+
+    const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
+    // custom value to trigger mock 308 response
+    terminalAPIPaymentRequest.SaleToPOIRequest.MessageHeader.SaleID = "response-with-redirect";
+
+    // Mock first request: returns a 308 redirect with Location header
+    nock(terminalApiHost)
+      .post("/async", (body) => {
+        return body?.SaleToPOIRequest?.MessageHeader?.SaleID === "response-with-redirect";
+      })
+      .reply(308, "", { Location: `${terminalApiHost}/async?redirect=false` });
+
+
+    // Must throw an error
+    try {
+      await terminalCloudAPI.async(terminalAPIPaymentRequest);
+      fail("No exception was thrown");
+    } catch (e: unknown) {
+      expect(e).toBeInstanceOf(HttpClientException);
+      if (e instanceof HttpClientException) {
+        expect(e.statusCode).toBe(308);
+      } 
+    }
+  });
+
 });
-
 
 export const syncTerminalPaymentResponse = {
   "SaleToPOIResponse": {

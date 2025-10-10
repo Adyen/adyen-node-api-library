@@ -14,6 +14,10 @@ export class UpiIntentDetails {
     */
     "appId"?: string;
     /**
+    * The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+    */
+    "billingSequenceNumber"?: string;
+    /**
     * The checkout attempt identifier.
     */
     "checkoutAttemptId"?: string;
@@ -45,6 +49,12 @@ export class UpiIntentDetails {
         {
             "name": "appId",
             "baseName": "appId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "billingSequenceNumber",
+            "baseName": "billingSequenceNumber",
             "type": "string",
             "format": ""
         },

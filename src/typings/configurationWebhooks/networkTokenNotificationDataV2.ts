@@ -37,6 +37,10 @@ export class NetworkTokenNotificationDataV2 {
     */
     "paymentInstrumentId"?: string;
     /**
+    * The confidence score of scheme, indicating the degree of risk associated with a token.  A high score indicates a high level of risk. A low score indicates a low level of risk.  Possible values for visa : **00** to **99**, a value of 00 signifies no score was provided by visa
+    */
+    "schemeRiskScore"?: string;
+    /**
     * The status of the network token.
     */
     "status"?: string;
@@ -94,6 +98,12 @@ export class NetworkTokenNotificationDataV2 {
         {
             "name": "paymentInstrumentId",
             "baseName": "paymentInstrumentId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "schemeRiskScore",
+            "baseName": "schemeRiskScore",
             "type": "string",
             "format": ""
         },

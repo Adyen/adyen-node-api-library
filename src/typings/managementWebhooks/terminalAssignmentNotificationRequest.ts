@@ -14,9 +14,13 @@ export class TerminalAssignmentNotificationRequest {
     */
     "assignedToAccount": string;
     /**
-    * The unique identifier of the store to which the terminal is assigned.
+    * The store that the terminal is assigned to, identified by the store reference (also known as store code).
     */
     "assignedToStore"?: string;
+    /**
+    * The unique identifier of the store to which the terminal is assigned.
+    */
+    "assignedToStoreId"?: string;
     /**
     * The date and time when an event has been completed.
     */
@@ -44,6 +48,12 @@ export class TerminalAssignmentNotificationRequest {
         {
             "name": "assignedToStore",
             "baseName": "assignedToStore",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "assignedToStoreId",
+            "baseName": "assignedToStoreId",
             "type": "string",
             "format": ""
         },

@@ -20,7 +20,7 @@ export class DisputeEventNotification {
     */
     "balancePlatform"?: string;
     /**
-    * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+    * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.
     */
     "creationDate"?: Date;
     /**
@@ -127,6 +127,7 @@ export namespace DisputeEventNotification {
     export enum TypeEnum {
         Fraud = 'fraud',
         NotDelivered = 'notDelivered',
-        Duplicate = 'duplicate'
+        Duplicate = 'duplicate',
+        Other = 'other'
     }
 }

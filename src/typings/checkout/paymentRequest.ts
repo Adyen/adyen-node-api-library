@@ -25,10 +25,10 @@ import { Installments } from "./installments";
 import { LineItem } from "./lineItem";
 import { Mandate } from "./mandate";
 import { MerchantRiskIndicator } from "./merchantRiskIndicator";
-import { Name } from "./name";
 import { PaymentRequestPaymentMethod } from "./paymentRequestPaymentMethod";
 import { PlatformChargebackLogic } from "./platformChargebackLogic";
 import { RiskData } from "./riskData";
+import { ShopperName } from "./shopperName";
 import { Split } from "./split";
 import { SubMerchantInfo } from "./subMerchantInfo";
 import { Surcharge } from "./surcharge";
@@ -190,6 +190,10 @@ export class PaymentRequest {
     "returnUrl": string;
     "riskData"?: RiskData | null;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK     to function optimally. Clients must not     add unrelated or sensitive personal information.
+    */
+    "sdkData"?: string;
+    /**
     * The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.  For example: 2020-07-18T15:42:40.428+01:00
     */
     "sessionValidity"?: string;
@@ -213,7 +217,7 @@ export class PaymentRequest {
     * The combination of a language code and a country code to specify the language to be used in the payment.
     */
     "shopperLocale"?: string;
-    "shopperName"?: Name | null;
+    "shopperName"?: ShopperName | null;
     /**
     * Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
@@ -584,6 +588,12 @@ export class PaymentRequest {
             "format": ""
         },
         {
+            "name": "sdkData",
+            "baseName": "sdkData",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "sessionValidity",
             "baseName": "sessionValidity",
             "type": "string",
@@ -622,7 +632,7 @@ export class PaymentRequest {
         {
             "name": "shopperName",
             "baseName": "shopperName",
-            "type": "Name | null",
+            "type": "ShopperName | null",
             "format": ""
         },
         {

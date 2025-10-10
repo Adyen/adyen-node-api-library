@@ -2,7 +2,7 @@ import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import {CheckoutAPI} from "../services/";
 import Client from "../client";
-import { checkout } from "../typings";
+import { Types } from "..";
 import HttpClientException from "../httpClient/httpClientException";
 
 const invalidModificationResult = {
@@ -12,7 +12,7 @@ const invalidModificationResult = {
     "errorType": "validation"
 };
 
-const createAmountUpdateRequest = (): checkout.PaymentAmountUpdateRequest => {
+const createAmountUpdateRequest = (): Types.checkout.PaymentAmountUpdateRequest => {
     return {
         reference: "863620292981235A",
         merchantAccount: process.env.ADYEN_MERCHANT!,
@@ -20,11 +20,11 @@ const createAmountUpdateRequest = (): checkout.PaymentAmountUpdateRequest => {
             currency: "EUR",
             value: 420
         },
-        industryUsage: checkout.PaymentAmountUpdateRequest.IndustryUsageEnum.DelayedCharge
+        industryUsage: Types.checkout.PaymentAmountUpdateRequest.IndustryUsageEnum.DelayedCharge
     };
 };
 
-const createAmountUpdateResponse = (): checkout.PaymentAmountUpdateResponse => {
+const createAmountUpdateResponse = (): Types.checkout.PaymentAmountUpdateResponse => {
     return {
         paymentPspReference: "863620292981235A",
         pspReference: "863620292981235B",
@@ -34,27 +34,27 @@ const createAmountUpdateResponse = (): checkout.PaymentAmountUpdateResponse => {
             currency: "EUR",
             value: 420,
         },
-        status: checkout.PaymentAmountUpdateResponse.StatusEnum.Received,
+        status: Types.checkout.PaymentAmountUpdateResponse.StatusEnum.Received,
     };
 };
 
-const createCancelsRequest = (): checkout.PaymentCancelRequest => {
+const createCancelsRequest = (): Types.checkout.PaymentCancelRequest => {
      return {
          reference: "863620292981235B",
          merchantAccount: process.env.ADYEN_MERCHANT!,
      };
 };
 
-const createCancelsResponse = (): checkout.PaymentCancelResponse =>  {
+const createCancelsResponse = (): Types.checkout.PaymentCancelResponse =>  {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
         pspReference: "863620292981235B",
         paymentPspReference: "863620292981235A",
-        status: checkout.PaymentCancelResponse.StatusEnum.Received,
+        status: Types.checkout.PaymentCancelResponse.StatusEnum.Received,
     };
 };
 
-const createStandaloneCancelsRequest = (): checkout.StandalonePaymentCancelRequest => {
+const createStandaloneCancelsRequest = (): Types.checkout.StandalonePaymentCancelRequest => {
     return {
         reference: "reference",
         merchantAccount: process.env.ADYEN_MERCHANT!,
@@ -62,17 +62,17 @@ const createStandaloneCancelsRequest = (): checkout.StandalonePaymentCancelReque
     };
 };
 
-const createStandaloneCancelsResponse = (): checkout.StandalonePaymentCancelResponse => {
+const createStandaloneCancelsResponse = (): Types.checkout.StandalonePaymentCancelResponse => {
     return {
         reference: "reference",
         merchantAccount: process.env.ADYEN_MERCHANT!,
         paymentReference: "863620292981235B",
         pspReference: "863620292981235A",
-        status: checkout.StandalonePaymentCancelResponse.StatusEnum.Received,
+        status: Types.checkout.StandalonePaymentCancelResponse.StatusEnum.Received,
     };
 };
 
-const createCapturesRequest = (): checkout.PaymentCaptureRequest => {
+const createCapturesRequest = (): Types.checkout.PaymentCaptureRequest => {
     return {
         reference: "reference",
         merchantAccount: process.env.ADYEN_MERCHANT!,
@@ -83,7 +83,7 @@ const createCapturesRequest = (): checkout.PaymentCaptureRequest => {
     };
 };
 
-function createCapturesResponse(): checkout.PaymentCaptureResponse {
+function createCapturesResponse(): Types.checkout.PaymentCaptureResponse {
     return {
         paymentPspReference: "863620292981235A",
         pspReference: "863620292981235B",
@@ -93,11 +93,11 @@ function createCapturesResponse(): checkout.PaymentCaptureResponse {
             currency: "EUR",
             value: 420,
         },
-        status: checkout.PaymentCaptureResponse.StatusEnum.Received,
+        status: Types.checkout.PaymentCaptureResponse.StatusEnum.Received,
     };
 }
 
-const createRefundsRequest = (): checkout.PaymentRefundRequest => {
+const createRefundsRequest = (): Types.checkout.PaymentRefundRequest => {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!,
         amount: {
@@ -107,7 +107,7 @@ const createRefundsRequest = (): checkout.PaymentRefundRequest => {
     };
 };
 
-const createRefundsResponse = (): checkout.PaymentRefundResponse => {
+const createRefundsResponse = (): Types.checkout.PaymentRefundResponse => {
     return {
         paymentPspReference: "863620292981235A",
         pspReference: "863620292981235B",
@@ -117,23 +117,23 @@ const createRefundsResponse = (): checkout.PaymentRefundResponse => {
             currency: "EUR",
             value: 420,
         },
-        status: checkout.PaymentRefundResponse.StatusEnum.Received,
+        status: Types.checkout.PaymentRefundResponse.StatusEnum.Received,
     };
 };
 
-const createReversalsRequest = (): checkout.PaymentReversalRequest => {
+const createReversalsRequest = (): Types.checkout.PaymentReversalRequest => {
     return {
         merchantAccount: process.env.ADYEN_MERCHANT!
     };
 };
 
-const createReversalsResponse = (): checkout.PaymentReversalResponse => {
+const createReversalsResponse = (): Types.checkout.PaymentReversalResponse => {
     return {
         paymentPspReference: "863620292981235A",
         pspReference: "863620292981235B",
         reference: "reference",
         merchantAccount: process.env.ADYEN_MERCHANT!,
-        status: checkout.PaymentReversalResponse.StatusEnum.Received,
+        status: Types.checkout.PaymentReversalResponse.StatusEnum.Received,
     };
 };
 

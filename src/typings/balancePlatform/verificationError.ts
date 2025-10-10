@@ -33,7 +33,7 @@ export class VerificationError {
     */
     "subErrors"?: Array<VerificationErrorRecursive>;
     /**
-    * The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**  
+    * The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  
     */
     "type"?: VerificationError.TypeEnum;
 
@@ -147,6 +147,7 @@ export namespace VerificationError {
     }
     export enum TypeEnum {
         DataMissing = 'dataMissing',
+        DataReview = 'dataReview',
         InvalidInput = 'invalidInput',
         PendingStatus = 'pendingStatus'
     }

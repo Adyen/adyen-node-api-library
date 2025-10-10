@@ -11,6 +11,9 @@ import { Result } from "./result";
 
 
 export class ValidateShopperIdResponse {
+    /**
+    * Reason for the result.
+    */
     "reason"?: string;
     "result"?: Result;
 

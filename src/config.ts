@@ -4,9 +4,9 @@ export const TERMINAL_API_ENDPOINT_TEST = "https://terminal-api-test.adyen.com";
 
 // Live endpoints for Terminal API
 const TERMINAL_API_ENDPOINT_LIVE = "https://terminal-api-live.adyen.com";
-const TERMINAL_API_ENDPOINT_AU_LIVE = "https://terminal-api-au.adyen.com";
-const TERMINAL_API_ENDPOINT_US_LIVE = "https://terminal-api-us.adyen.com";
-const TERMINAL_API_ENDPOINT_APSE_LIVE = "https://terminal-api-apse.adyen.com";
+const TERMINAL_API_ENDPOINT_AU_LIVE = "https://terminal-api-live-au.adyen.com";
+const TERMINAL_API_ENDPOINT_US_LIVE = "https://terminal-api-live-us.adyen.com";
+const TERMINAL_API_ENDPOINT_APSE_LIVE = "https://terminal-api-live-apse.adyen.com";
 
 
 /**
@@ -49,6 +49,7 @@ interface ConfigConstructor {
     terminalApiLocalEndpoint?: string;
     liveEndpointUrlPrefix?: string; // must be provided for LIVE integration
     region?: RegionEnum; // must be provided for Terminal API integration
+    enable308Redirect?: boolean; // enabling redirect upon 308 response status
 }
 
 const DEFAULT_TIMEOUT = 30000; // Default timeout value (30 sec)
@@ -66,7 +67,9 @@ class Config {
     public terminalApiCloudEndpoint?: string;
     public terminalApiLocalEndpoint?: string;
     public liveEndpointUrlPrefix?: string;
-    public region?: RegionEnum;     
+    public region?: RegionEnum;
+    public enable308Redirect?: boolean;
+
 
     public constructor(options: ConfigConstructor = {}) {
         if (options.username) this.username = options.username;
@@ -82,6 +85,8 @@ class Config {
         if (options.terminalApiLocalEndpoint) this.terminalApiLocalEndpoint = options.terminalApiLocalEndpoint;
         if (options.liveEndpointUrlPrefix) this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix;
         if (options.region) this.region = options.region;
+        this.enable308Redirect = options.enable308Redirect ?? true; // enabled by default
+
     }
 
     /**

@@ -175,6 +175,7 @@ import { ResponseAdditionalDataInstallments } from "./responseAdditionalDataInst
 import { ResponseAdditionalDataNetworkTokens } from "./responseAdditionalDataNetworkTokens";
 import { ResponseAdditionalDataOpi } from "./responseAdditionalDataOpi";
 import { ResponseAdditionalDataSepa } from "./responseAdditionalDataSepa";
+import { ResponseAdditionalDataSwish } from "./responseAdditionalDataSwish";
 import { ResponsePaymentMethod } from "./responsePaymentMethod";
 import { Result } from "./result";
 import { RiskData } from "./riskData";
@@ -186,6 +187,7 @@ import { ServiceError } from "./serviceError";
 import { SessionResultResponse } from "./sessionResultResponse";
 import { ShopperIdPaymentMethod } from "./shopperIdPaymentMethod";
 import { ShopperInteractionDevice } from "./shopperInteractionDevice";
+import { ShopperName } from "./shopperName";
 import { Split } from "./split";
 import { SplitAmount } from "./splitAmount";
 import { StandalonePaymentCancelRequest } from "./standalonePaymentCancelRequest";
@@ -214,6 +216,7 @@ import { UPIPaymentMethod } from "./uPIPaymentMethod";
 import { UpdatePaymentLinkRequest } from "./updatePaymentLinkRequest";
 import { UpiCollectDetails } from "./upiCollectDetails";
 import { UpiIntentDetails } from "./upiIntentDetails";
+import { UpiQrDetails } from "./upiQrDetails";
 import { UtilityRequest } from "./utilityRequest";
 import { UtilityResponse } from "./utilityResponse";
 import { ValidateShopperIdRequest } from "./validateShopperIdRequest";
@@ -438,6 +441,7 @@ let enumsMap: Set<string> = new Set<string>([
     "UpdatePaymentLinkRequest.StatusEnum",
     "UpiCollectDetails.TypeEnum",
     "UpiIntentDetails.TypeEnum",
+    "UpiQrDetails.TypeEnum",
     "VippsDetails.TypeEnum",
     "VisaCheckoutDetails.FundingSourceEnum",
     "VisaCheckoutDetails.TypeEnum",
@@ -622,6 +626,7 @@ let typeMap: {[index: string]: any} = {
     "ResponseAdditionalDataNetworkTokens": ResponseAdditionalDataNetworkTokens,
     "ResponseAdditionalDataOpi": ResponseAdditionalDataOpi,
     "ResponseAdditionalDataSepa": ResponseAdditionalDataSepa,
+    "ResponseAdditionalDataSwish": ResponseAdditionalDataSwish,
     "ResponsePaymentMethod": ResponsePaymentMethod,
     "RiskData": RiskData,
     "RivertyDetails": RivertyDetails,
@@ -632,6 +637,7 @@ let typeMap: {[index: string]: any} = {
     "SessionResultResponse": SessionResultResponse,
     "ShopperIdPaymentMethod": ShopperIdPaymentMethod,
     "ShopperInteractionDevice": ShopperInteractionDevice,
+    "ShopperName": ShopperName,
     "Split": Split,
     "SplitAmount": SplitAmount,
     "StandalonePaymentCancelRequest": StandalonePaymentCancelRequest,
@@ -660,6 +666,7 @@ let typeMap: {[index: string]: any} = {
     "UpdatePaymentLinkRequest": UpdatePaymentLinkRequest,
     "UpiCollectDetails": UpiCollectDetails,
     "UpiIntentDetails": UpiIntentDetails,
+    "UpiQrDetails": UpiQrDetails,
     "UtilityRequest": UtilityRequest,
     "UtilityResponse": UtilityResponse,
     "ValidateShopperIdRequest": ValidateShopperIdRequest,
