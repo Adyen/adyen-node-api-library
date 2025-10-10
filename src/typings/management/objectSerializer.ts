@@ -257,6 +257,7 @@ let enumsMap: Set<string> = new Set<string>([
     "SplitConfigurationLogic.SchemeFeeEnum",
     "SplitConfigurationLogic.SurchargeEnum",
     "SplitConfigurationLogic.TipEnum",
+    "SplitConfigurationRule.CardRegionEnum",
     "SplitConfigurationRule.FundingSourceEnum",
     "SplitConfigurationRule.ShopperInteractionEnum",
     "StarInfo.ProcessingTypeEnum",

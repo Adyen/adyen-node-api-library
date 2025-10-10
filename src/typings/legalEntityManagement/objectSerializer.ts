@@ -31,6 +31,7 @@ import { DocumentPage } from "./documentPage";
 import { DocumentReference } from "./documentReference";
 import { EntityReference } from "./entityReference";
 import { FinancialReport } from "./financialReport";
+import { Financier } from "./financier";
 import { GeneratePciDescriptionRequest } from "./generatePciDescriptionRequest";
 import { GeneratePciDescriptionResponse } from "./generatePciDescriptionResponse";
 import { GetAcceptedTermsOfServiceDocumentResponse } from "./getAcceptedTermsOfServiceDocumentResponse";
@@ -73,6 +74,7 @@ import { SetTaxElectronicDeliveryConsentRequest } from "./setTaxElectronicDelive
 import { SoleProprietorship } from "./soleProprietorship";
 import { SourceOfFunds } from "./sourceOfFunds";
 import { StockData } from "./stockData";
+import { Support } from "./support";
 import { SupportingEntityCapability } from "./supportingEntityCapability";
 import { TaxInformation } from "./taxInformation";
 import { TaxReportingClassification } from "./taxReportingClassification";
@@ -110,9 +112,7 @@ let enumsMap: Set<string> = new Set<string>([
     "AdditionalBankIdentification.TypeEnum",
     "BankAccountInfoAccountIdentification.TypeEnum",
     "BankAccountInfoAccountIdentification.AccountTypeEnum",
-    "BusinessLine.CapabilityEnum",
     "BusinessLine.ServiceEnum",
-    "BusinessLineInfo.CapabilityEnum",
     "BusinessLineInfo.ServiceEnum",
     "CALocalAccountIdentification.AccountTypeEnum",
     "CALocalAccountIdentification.TypeEnum",
@@ -205,6 +205,7 @@ let typeMap: {[index: string]: any} = {
     "DocumentReference": DocumentReference,
     "EntityReference": EntityReference,
     "FinancialReport": FinancialReport,
+    "Financier": Financier,
     "GeneratePciDescriptionRequest": GeneratePciDescriptionRequest,
     "GeneratePciDescriptionResponse": GeneratePciDescriptionResponse,
     "GetAcceptedTermsOfServiceDocumentResponse": GetAcceptedTermsOfServiceDocumentResponse,
@@ -247,6 +248,7 @@ let typeMap: {[index: string]: any} = {
     "SoleProprietorship": SoleProprietorship,
     "SourceOfFunds": SourceOfFunds,
     "StockData": StockData,
+    "Support": Support,
     "SupportingEntityCapability": SupportingEntityCapability,
     "TaxInformation": TaxInformation,
     "TaxReportingClassification": TaxReportingClassification,
