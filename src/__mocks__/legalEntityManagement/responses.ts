@@ -1,17 +1,19 @@
 export const businessLine = {
-    "capability": "receivePayments",
-    "id": "123456789",
-    "industryCode": "123456789",
-    "legalEntityId": "123456789",
-    "salesChannels": ["string"],
-    "sourceOfFunds": {
-        "acquiringBusinessLineId": "string",
-        "adyenProcessedFunds": false,
-        "description": "string",
-        "type": "business"
-    },
-    "webData": [{ "webAddress": "string" }],
-    "webDataExemption": { "reason": "noOnlinePresence" }
+  "service": "banking",
+  "industryCode": "4531",
+  "legalEntityId": "LE00000000000000000000001",
+  "sourceOfFunds": {
+    "adyenProcessedFunds": false,
+    "description": "Funds from my flower shop business",
+    "type": "business"
+  },
+  "webData": [
+    {
+      "webAddress": "https://www.adyen.com",
+      "webAddressId": "SE322JV223222J5H8V87B3DHN"
+    }
+  ],
+  "id": "SE322KH223222F5GV2SQ924F6"
 };
 
 export const document = {
@@ -235,21 +237,25 @@ export const legalEntityUnknownEnum = {
 };
 
 export const businessLines = {
-    "businessLines": [{
-        "capability": "receivePayments",
-        "id": "123456789",
-        "industryCode": "123456789",
-        "legalEntityId": "123456789",
-        "salesChannels": ["string"],
-        "sourceOfFunds": {
-            "acquiringBusinessLineId": "string",
-            "adyenProcessedFunds": false,
-            "description": "string",
-            "type": "business"
-        },
-        "webData": [{ "webAddress": "string" }],
-        "webDataExemption": { "reason": "noOnlinePresence" }
-    }]
+  "businessLines": [
+    businessLine,
+    {
+      "service": "paymentProcessing",
+      "industryCode": "339E",
+      "legalEntityId": "LE00000000000000000000001",
+      "salesChannels": [
+        "eCommerce",
+        "ecomMoto"
+      ],
+      "webData": [
+        {
+          "webAddress": "https://yoururl.com",
+          "webAddressId": "SE908HJ723222F5GVGPNR55YH"
+        }
+      ],
+      "id": "SE322JV223222F5GVGPNRB9GJ"
+    }
+  ]
 };
 
 export const transferInstrument = {
