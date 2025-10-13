@@ -22,6 +22,8 @@ import { PaymentInstrumentGroupsApi } from "./paymentInstrumentGroupsApi";
 import { PaymentInstrumentsApi } from "./paymentInstrumentsApi";
 import { PlatformApi } from "./platformApi";
 import { TransactionRulesApi } from "./transactionRulesApi";
+import { TransferLimitsBalanceAccountLevelApi } from "./transferLimitsBalanceAccountLevelApi";
+import { TransferLimitsBalancePlatformLevelApi } from "./transferLimitsBalancePlatformLevelApi";
 import { TransferRoutesApi } from "./transferRoutesApi";
 
 import Service from "../../service";
@@ -91,6 +93,14 @@ export default class BalancePlatformAPI extends Service {
 
     public get TransactionRulesApi() {
         return new TransactionRulesApi(this.client);
+    }
+
+    public get TransferLimitsBalanceAccountLevelApi() {
+        return new TransferLimitsBalanceAccountLevelApi(this.client);
+    }
+
+    public get TransferLimitsBalancePlatformLevelApi() {
+        return new TransferLimitsBalancePlatformLevelApi(this.client);
     }
 
     public get TransferRoutesApi() {

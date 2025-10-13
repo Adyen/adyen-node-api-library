@@ -4,30 +4,28 @@ import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess
 import {paymentsSuccess} from "../__mocks__/checkout/paymentsSuccess";
 import {paymentsRedirectAction} from "../__mocks__/checkout/paymentsRedirectAction";
 import {paymentDetailsSuccess} from "../__mocks__/checkout/paymentsDetailsSuccess";
-// import {paymentSessionSuccess} from "../__mocks__/checkout/paymentSessionSucess";
 import {originKeysSuccess} from "../__mocks__/checkout/originkeysSuccess";
 import {paymentsResultMultibancoSuccess} from "../__mocks__/checkout/paymentsResultMultibancoSuccess";
-// import {paymentsResultSuccess} from "../__mocks__/checkout/paymentsResultSucess";
 import {sessionsSuccess} from "../__mocks__/checkout/sessionsSuccess";
 import Client from "../client";
 import {CheckoutAPI} from "../services";
 import HttpClientException from "../httpClient/httpClientException";
-import { checkout } from "../typings";
 import { IRequest } from "../typings/requestOptions";
 import { SessionResultResponse } from "../typings/checkout/sessionResultResponse";
 import { payments3DS2NativeAction } from "../__mocks__/checkout/payments3DS2NativeAction";
 import { EnvironmentEnum } from "../config";
+import { Types } from "..";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
 const reference = "Your order number";
-function createAmountObject(currency: string, value: number): checkout.Amount {
+function createAmountObject(currency: string, value: number): Types.checkout.Amount {
     return {
         currency,
         value,
     };
 }
 
-function createPaymentsDetailsRequest(): checkout.PaymentDetailsRequest {
+function createPaymentsDetailsRequest(): Types.checkout.PaymentDetailsRequest {
     return {
         details: {
             MD: "mdValue",
@@ -37,9 +35,9 @@ function createPaymentsDetailsRequest(): checkout.PaymentDetailsRequest {
     };
 }
 
-export function createPaymentsCheckoutRequest(): checkout.PaymentRequest {
+export function createPaymentsCheckoutRequest(): Types.checkout.PaymentRequest {
     const paymentMethodDetails = {
-        type: checkout.CardDetails.TypeEnum.Scheme,
+        type: Types.checkout.CardDetails.TypeEnum.Scheme,
         encryptedCardNumber: "test_4111111111111111",
         encryptedExpiryMonth: "test_03",
         encryptedExpiryYear: "test_2030",
@@ -57,12 +55,12 @@ export function createPaymentsCheckoutRequest(): checkout.PaymentRequest {
     };
 }
 
-function createUpdatePaymentLinkRequest(): checkout.UpdatePaymentLinkRequest {
+function createUpdatePaymentLinkRequest(): Types.checkout.UpdatePaymentLinkRequest {
     return {
-        "status": checkout.UpdatePaymentLinkRequest.StatusEnum.Expired
+        "status": Types.checkout.UpdatePaymentLinkRequest.StatusEnum.Expired
     };
 }
-function getPaymentLinkSuccess(expiresAt: Date): checkout.PaymentLinkResponse {
+function getPaymentLinkSuccess(expiresAt: Date): Types.checkout.PaymentLinkResponse {
     return {
         amount: createAmountObject("USD", 1000),
         expiresAt,
@@ -70,14 +68,14 @@ function getPaymentLinkSuccess(expiresAt: Date): checkout.PaymentLinkResponse {
         url: "PaymentLinkResponse.url",
         id: "mocked_id",
         merchantAccount,
-        status: checkout.PaymentLinkResponse.StatusEnum.Active,
+        status: Types.checkout.PaymentLinkResponse.StatusEnum.Active,
         requiredShopperFields: [
-            checkout.PaymentLinkResponse.RequiredShopperFieldsEnum.BillingAddress,
-            checkout.PaymentLinkResponse.RequiredShopperFieldsEnum.ShopperEmail]
+            Types.checkout.PaymentLinkResponse.RequiredShopperFieldsEnum.BillingAddress,
+            Types.checkout.PaymentLinkResponse.RequiredShopperFieldsEnum.ShopperEmail]
         };
 }
 
-function createPaymentLinkRequest(): checkout.PaymentLinkRequest {
+function createPaymentLinkRequest(): Types.checkout.PaymentLinkRequest {
     return {
         allowedPaymentMethods: ["scheme", "boletobancario"],
         amount: createAmountObject("USD", 1000),
@@ -104,12 +102,12 @@ function createPaymentLinkRequest(): checkout.PaymentLinkRequest {
         },
         reference,
         requiredShopperFields: [
-            checkout.PaymentLinkRequest.RequiredShopperFieldsEnum.BillingAddress,
-            checkout.PaymentLinkRequest.RequiredShopperFieldsEnum.ShopperEmail]
+            Types.checkout.PaymentLinkRequest.RequiredShopperFieldsEnum.BillingAddress,
+            Types.checkout.PaymentLinkRequest.RequiredShopperFieldsEnum.ShopperEmail]
     };
 }
 
-function createSessionRequest(): checkout.CreateCheckoutSessionRequest {
+function createSessionRequest(): Types.checkout.CreateCheckoutSessionRequest {
     return {
         amount: createAmountObject("USD", 1000),
         countryCode: "NL",
@@ -151,27 +149,27 @@ describe("Checkout", (): void => {
             "returnUrl": "https://your-company.com/...",
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
         }`);
-        const paymentRequest: checkout.PaymentRequest = await checkout.ObjectSerializer.deserialize(requestJson, "PaymentRequest", "");
+        const paymentRequest: Types.checkout.PaymentRequest = await Types.checkout.ObjectSerializer.deserialize(requestJson, "PaymentRequest", "");
         expect(paymentRequest.returnUrl).toEqual("https://your-company.com/...");
         expect(paymentRequest.amount.value).toBe(1000);
-        const paymentMethodDetails: checkout.ApplePayDetails = paymentRequest.paymentMethod as checkout.ApplePayDetails;
+        const paymentMethodDetails: Types.checkout.ApplePayDetails = paymentRequest.paymentMethod as Types.checkout.ApplePayDetails;
         expect(paymentMethodDetails.applePayToken).toEqual("VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU...");
     });
     test("should add idempotency key to request headers", async (): Promise<void> => {
-        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsRequest: Types.checkout.PaymentRequest = createPaymentsCheckoutRequest();
         scope.post("/payments")
             .reply(200, paymentsSuccess)
             .matchHeader("Idempotency-Key", "testKey");
         await checkoutService.PaymentsApi.payments(paymentsRequest, {idempotencyKey: "testKey"});
 
-        const paymentMethodsRequest: checkout.PaymentMethodsRequest = {merchantAccount};
+        const paymentMethodsRequest: Types.checkout.PaymentMethodsRequest = {merchantAccount};
         scope.post("/paymentMethods")
             .reply(200, paymentMethodsSuccess)
             .matchHeader("Idempotency-Key", "testKey");
         await checkoutService.PaymentsApi.paymentMethods(paymentMethodsRequest, {idempotencyKey: "testKey"});
 
         const expiresAt = "2020-12-18T10:15:30+01:00";
-        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
+        const paymentLinkSuccess: Types.checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
         scope.post("/paymentLinks")
             .reply(200, paymentLinkSuccess)
             .matchHeader("Idempotency-Key", "testKey");
@@ -192,7 +190,7 @@ describe("Checkout", (): void => {
             .matchHeader("Idempotency-Key", "testKey");
         await checkoutService.PaymentsApi.paymentsDetails(createPaymentsDetailsRequest(), {idempotencyKey: "testKey"});
 
-        const orderRequest: checkout.CreateOrderRequest = {
+        const orderRequest: Types.checkout.CreateOrderRequest = {
             amount: createAmountObject("USD", 1000),
             merchantAccount,
             reference
@@ -217,7 +215,7 @@ describe("Checkout", (): void => {
             .reply(200, sessionsSuccess)
             .matchHeader("Idempotency-Key", "testKey");
 
-        const sessionsRequest: checkout.CreateCheckoutSessionRequest = createSessionRequest();
+        const sessionsRequest: Types.checkout.CreateCheckoutSessionRequest = createSessionRequest();
         await checkoutService.PaymentsApi.sessions(sessionsRequest, {idempotencyKey: "testKey"});
 
     });
@@ -226,8 +224,8 @@ describe("Checkout", (): void => {
         scope.post("/payments")
             .reply(200, paymentsSuccess);
 
-        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
-        const paymentsResponse: checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
+        const paymentsRequest: Types.checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: Types.checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
         expect(paymentsResponse.pspReference).toBeTruthy();
     });
 
@@ -242,7 +240,7 @@ describe("Checkout", (): void => {
                     "pspReference": "DMB552CV6JHKGK82",
                 });
 
-            const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
+            const paymentsRequest: Types.checkout.PaymentRequest = createPaymentsCheckoutRequest();
             await checkoutService.PaymentsApi.payments(paymentsRequest);
             fail("No exception was thrown");
         } catch (error) {
@@ -273,7 +271,7 @@ describe("Checkout", (): void => {
                     "pspReference": "H9833RR6FASAAA82"
                 });
 
-            const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
+            const paymentsRequest: Types.checkout.PaymentRequest = createPaymentsCheckoutRequest();
             await checkoutService.PaymentsApi.payments(paymentsRequest);
             fail("No exception was thrown");
         } catch (error) {
@@ -287,7 +285,7 @@ describe("Checkout", (): void => {
     });
 
     test("should have valid payment methods", async (): Promise<void> => {
-        const paymentMethodsRequest: checkout.PaymentMethodsRequest = {merchantAccount};
+        const paymentMethodsRequest: Types.checkout.PaymentMethodsRequest = {merchantAccount};
 
         scope.post("/paymentMethods")
             .reply(200, paymentMethodsSuccess);
@@ -302,7 +300,7 @@ describe("Checkout", (): void => {
 
     test("should create valid payment link", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
+        const paymentLinkSuccess: Types.checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
@@ -312,16 +310,16 @@ describe("Checkout", (): void => {
 
     test("should create valid payment link with installmentOptions", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
+        const paymentLinkSuccess: Types.checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
-        const request : checkout.PaymentLinkRequest = createPaymentLinkRequest();
+        const request : Types.checkout.PaymentLinkRequest = createPaymentLinkRequest();
         request.installmentOptions = {
             card: {
                 plans: [
-                    checkout.CheckoutSessionInstallmentOption.PlansEnum.Bonus,
-                    checkout.CheckoutSessionInstallmentOption.PlansEnum.BuynowPaylater
+                    Types.checkout.CheckoutSessionInstallmentOption.PlansEnum.Bonus,
+                    Types.checkout.CheckoutSessionInstallmentOption.PlansEnum.BuynowPaylater
                 ]
             }
         };
@@ -334,7 +332,7 @@ describe("Checkout", (): void => {
 
     test("should get payment link", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
+        const paymentLinkSuccess: Types.checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
@@ -347,7 +345,7 @@ describe("Checkout", (): void => {
 
     test("should patch payment link", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const paymentLinkSuccess: checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
+        const paymentLinkSuccess: Types.checkout.PaymentLinkResponse = getPaymentLinkSuccess(new Date(expiresAt));
 
         scope.post("/paymentLinks").reply(200, paymentLinkSuccess);
 
@@ -369,7 +367,7 @@ describe("Checkout", (): void => {
     // test("should have payment session success", async (): Promise<void> => {
     //     scope.post("/paymentSession")
     //         .reply(200, paymentSessionSuccess);
-    //     const paymentSessionRequest: checkout.PaymentSetupRequest = createPaymentSessionRequest();
+    //     const paymentSessionRequest: Types.checkout.PaymentSetupRequest = createPaymentSessionRequest();
     //     const paymentSessionResponse = await checkoutService.ClassicCheckoutSDKApi.paymentSession(paymentSessionRequest);
     //     expect(paymentSessionResponse.paymentSession).not.toBeUndefined();
     // });
@@ -377,7 +375,7 @@ describe("Checkout", (): void => {
     // test("should have payments result", async (): Promise<void> => {
     //     scope.post("/payments/result")
     //         .reply(200, paymentsResultSuccess);
-    //     const paymentResultRequest: checkout.PaymentVerificationRequest = {
+    //     const paymentResultRequest: Types.checkout.PaymentVerificationRequest = {
     //         payload: "This is a test payload",
     //     };
     //     const paymentResultResponse = await checkoutService.ClassicCheckoutSDKApi.verifyPaymentResult(paymentResultRequest);
@@ -405,8 +403,8 @@ describe("Checkout", (): void => {
         scope.post("/payments")
             .reply(200, paymentsResultMultibancoSuccess);
 
-        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
-        const paymentsResponse: checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
+        const paymentsRequest: Types.checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: Types.checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
 
         expect(paymentsResponse.pspReference).toBeTruthy();
         expect(paymentsResponse.additionalData).toBeTruthy();
@@ -416,8 +414,8 @@ describe("Checkout", (): void => {
         scope.post("/payments")
             .reply(200, paymentsRedirectAction);
 
-        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
-        const paymentsResponse: checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
+        const paymentsRequest: Types.checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: Types.checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
 
         expect(paymentsResponse.pspReference).toBeTruthy();
         expect(paymentsResponse.resultCode).toBeTruthy();
@@ -436,8 +434,8 @@ describe("Checkout", (): void => {
         scope.post("/payments")
             .reply(200, payments3DS2NativeAction);
 
-        const paymentsRequest: checkout.PaymentRequest = createPaymentsCheckoutRequest();
-        const paymentsResponse: checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
+        const paymentsRequest: Types.checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        const paymentsResponse: Types.checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
 
         expect(paymentsResponse.pspReference).toBeTruthy();
         expect(paymentsResponse.resultCode).toBeTruthy();
@@ -454,7 +452,7 @@ describe("Checkout", (): void => {
 
     test("should get origin keys", async (): Promise<void> => {
         const checkoutUtility = new CheckoutAPI(client);
-        const originKeysRequest: checkout.UtilityRequest = {
+        const originKeysRequest: Types.checkout.UtilityRequest = {
             originDomains: ["https://www.your-domain.com"],
         };
 
@@ -471,74 +469,74 @@ describe("Checkout", (): void => {
 
     // TODO: add gift card to PaymentMethod and unmock test
     test("should get payment methods balance", async (): Promise<void> => {
-        const paymentMethodsRequest: checkout.BalanceCheckRequest = {
+        const paymentMethodsRequest: Types.checkout.BalanceCheckRequest = {
             merchantAccount,
             amount: createAmountObject("USD", 1000),
             paymentMethod: { },
             reference: "mocked_reference"
         };
 
-        const paymentMethodsBalanceResponse: checkout.BalanceCheckResponse = {
+        const paymentMethodsBalanceResponse: Types.checkout.BalanceCheckResponse = {
             balance: {currency: "USD", value: 1000},
-            resultCode: <checkout.BalanceCheckResponse.ResultCodeEnum> "Success"
+            resultCode: <Types.checkout.BalanceCheckResponse.ResultCodeEnum> "Success"
         };
         scope.post("/paymentMethods/balance")
             .reply(200,  paymentMethodsBalanceResponse);
 
-        const paymentsResponse: checkout.BalanceCheckResponse = await checkoutService.OrdersApi.getBalanceOfGiftCard(paymentMethodsRequest);
+        const paymentsResponse: Types.checkout.BalanceCheckResponse = await checkoutService.OrdersApi.getBalanceOfGiftCard(paymentMethodsRequest);
         expect(paymentsResponse.balance.value).toEqual(1000);
     });
 
     test("should create order", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const orderRequest: checkout.CreateOrderRequest = {
+        const orderRequest: Types.checkout.CreateOrderRequest = {
             amount: createAmountObject("USD", 1000),
             merchantAccount,
             reference
         };
 
-        const orderResponse: checkout.CreateOrderResponse = {
+        const orderResponse: Types.checkout.CreateOrderResponse = {
             expiresAt,
             amount: createAmountObject("USD", 500),
             orderData: "mocked_order_data",
             remainingAmount: {currency: "USD", value: 500} ,
-            resultCode: checkout.CreateOrderResponse.ResultCodeEnum.Success
+            resultCode: Types.checkout.CreateOrderResponse.ResultCodeEnum.Success
         };
         scope.post("/orders")
             .reply(200,  orderResponse);
 
-        const response: checkout.CreateOrderResponse = await checkoutService.OrdersApi.orders(orderRequest);
+        const response: Types.checkout.CreateOrderResponse = await checkoutService.OrdersApi.orders(orderRequest);
         expect(response).toBeTruthy();
     });
 
     test("should cancel order", async (): Promise<void> => {
         const expiresAt = "2019-12-17T10:05:29Z";
-        const orderRequest: checkout.CreateOrderRequest = {
+        const orderRequest: Types.checkout.CreateOrderRequest = {
             amount: createAmountObject("USD", 1000),
             merchantAccount,
             reference
         };
 
-        const orderResponse: checkout.CreateOrderResponse = {
+        const orderResponse: Types.checkout.CreateOrderResponse = {
             expiresAt,
             amount: createAmountObject("USD", 500),
             orderData: "mocked_order_data",
             remainingAmount: {currency: "USD", value: 500},
-            resultCode: checkout.CreateOrderResponse.ResultCodeEnum.Success
+            resultCode: Types.checkout.CreateOrderResponse.ResultCodeEnum.Success
         };
         scope.post("/orders")
             .reply(200,  orderResponse);
 
-        const createOrderResponse: checkout.CreateOrderResponse = await checkoutService.OrdersApi.orders(orderRequest);
+        const createOrderResponse: Types.checkout.CreateOrderResponse = await checkoutService.OrdersApi.orders(orderRequest);
 
-        const orderCancelResponse: checkout.CancelOrderResponse = {
+        const orderCancelResponse: Types.checkout.CancelOrderResponse = {
             pspReference: "mocked_psp_ref",
-            resultCode: checkout.CancelOrderResponse.ResultCodeEnum.Received
+            resultCode: Types.checkout.CancelOrderResponse.ResultCodeEnum.Received
         };
         scope.post("/orders/cancel")
             .reply(200,  orderCancelResponse);
 
-        const response: checkout.CancelOrderResponse = await checkoutService.OrdersApi.cancelOrder({
+        const response: Types.checkout.CancelOrderResponse = await checkoutService.OrdersApi.cancelOrder({
             order: {
                 orderData: createOrderResponse.orderData,
                 pspReference: createOrderResponse.pspReference!
@@ -552,8 +550,8 @@ describe("Checkout", (): void => {
         scope.post("/sessions")
             .reply(200, sessionsSuccess);
 
-        const sessionsRequest: checkout.CreateCheckoutSessionRequest = createSessionRequest();
-        const sessionsResponse: checkout.CreateCheckoutSessionResponse = await checkoutService.PaymentsApi.sessions(sessionsRequest);
+        const sessionsRequest: Types.checkout.CreateCheckoutSessionRequest = createSessionRequest();
+        const sessionsResponse: Types.checkout.CreateCheckoutSessionResponse = await checkoutService.PaymentsApi.sessions(sessionsRequest);
         expect(sessionsResponse.sessionData).toBeTruthy();
         expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);
         expect(sessionsResponse.expiresAt.getFullYear()).toBeGreaterThan(0);
@@ -576,16 +574,16 @@ describe("Checkout", (): void => {
             return true; // return true to indicate that the body matches the expected payload
         }).reply(200, sessionsSuccess);
 
-        const sessionsRequest: checkout.CreateCheckoutSessionRequest = new checkout.CreateCheckoutSessionRequest();
+        const sessionsRequest: Types.checkout.CreateCheckoutSessionRequest = new Types.checkout.CreateCheckoutSessionRequest();
         sessionsRequest.merchantAccount = "myMerchantAccount";
         sessionsRequest.reference = "myReference";
         sessionsRequest.returnUrl = "https://your-company.com/...";
         sessionsRequest.countryCode = "NL";
-        sessionsRequest.amount = new checkout.Amount();
+        sessionsRequest.amount = new Types.checkout.Amount();
         sessionsRequest.amount.currency = "USD";
         sessionsRequest.amount.value = 1000;
 
-        const sessionsResponse: checkout.CreateCheckoutSessionResponse = await checkoutService.PaymentsApi.sessions(sessionsRequest);
+        const sessionsResponse: Types.checkout.CreateCheckoutSessionResponse = await checkoutService.PaymentsApi.sessions(sessionsRequest);
         expect(sessionsResponse.sessionData).toBeTruthy();
         expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);
         expect(sessionsResponse.expiresAt.getFullYear()).toBeGreaterThan(0);
@@ -595,16 +593,16 @@ describe("Checkout", (): void => {
         scope.post("/sessions")
             .reply(200, sessionsSuccess);
 
-        const sessionsRequest: checkout.CreateCheckoutSessionRequest = createSessionRequest();
+        const sessionsRequest: Types.checkout.CreateCheckoutSessionRequest = createSessionRequest();
         sessionsRequest.installmentOptions = {
             card: {
                 plans: [
-                    checkout.CheckoutSessionInstallmentOption.PlansEnum.Bonus,
-                    checkout.CheckoutSessionInstallmentOption.PlansEnum.BuynowPaylater
+                    Types.checkout.CheckoutSessionInstallmentOption.PlansEnum.Bonus,
+                    Types.checkout.CheckoutSessionInstallmentOption.PlansEnum.BuynowPaylater
                 ]
             }
         };
-        const sessionsResponse: checkout.CreateCheckoutSessionResponse = await checkoutService.PaymentsApi.sessions(sessionsRequest);
+        const sessionsResponse: Types.checkout.CreateCheckoutSessionResponse = await checkoutService.PaymentsApi.sessions(sessionsRequest);
         expect(sessionsResponse.sessionData).toBeTruthy();
         expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);
         expect(sessionsResponse.expiresAt.getFullYear()).toBeGreaterThan(0);
@@ -621,11 +619,11 @@ describe("Checkout", (): void => {
                 ]
             });
 
-        const cardDetailsRequest: checkout.CardDetailsRequest = {
+        const cardDetailsRequest: Types.checkout.CardDetailsRequest = {
             "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
             "cardNumber": "411111"
         };
-        const cardDetailsReponse: checkout.CardDetailsResponse = await checkoutService.PaymentsApi.cardDetails(cardDetailsRequest);
+        const cardDetailsReponse: Types.checkout.CardDetailsResponse = await checkoutService.PaymentsApi.cardDetails(cardDetailsRequest);
         expect(cardDetailsReponse?.brands?.length).toBe(1);
     });
     
@@ -635,7 +633,7 @@ describe("Checkout", (): void => {
             "data": "eyJ2Z...",
         });
 
-        const applePaySessionRequest: checkout.ApplePaySessionRequest = {
+        const applePaySessionRequest: Types.checkout.ApplePaySessionRequest = {
             "displayName": "YOUR_MERCHANT_NAME",
             "domainName": "YOUR_DOMAIN_NAME",
             "merchantIdentifier": "YOUR_MERCHANT_ID"

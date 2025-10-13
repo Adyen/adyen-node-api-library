@@ -143,6 +143,8 @@ let enumsMap: Set<string> = new Set<string>([
     "NOLocalAccountIdentification.TypeEnum",
     "NZLocalAccountIdentification.TypeEnum",
     "NumberAndBicAccountIdentification.TypeEnum",
+    "Organization.InstitutionalSectorEnum",
+    "Organization.StatusOfLegalProceedingEnum",
     "Organization.TypeEnum",
     "Organization.VatAbsenceReasonEnum",
     "PLLocalAccountIdentification.TypeEnum",

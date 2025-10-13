@@ -24,7 +24,7 @@ export class AccountCapabilityData {
     */
     "capability"?: string;
     /**
-    * List of entities that has problems with verification. The information includes the details of the errors and the actions that you can take to resolve them.
+    * List of entities that have problems with verification. The information includes the details of the errors and the actions that you can take to resolve them.
     */
     "problems"?: Array<CapabilityProblem>;
     /**

@@ -2,8 +2,7 @@ import nock from "nock";
 import  { createClient } from "../__mocks__/base";
 import { BalanceControlAPI } from "../services";
 import Client from "../client";
-import { BalanceTransferRequest } from "../typings/balanceControl/balanceTransferRequest";
-import { BalanceTransferResponse } from "../typings/balanceControl/balanceTransferResponse";
+import { Types } from "..";
 import HttpClientException from "../httpClient/httpClientException";
 
 let client: Client,
@@ -39,13 +38,13 @@ describe("Balance Control", (): void => {
             "pspReference": "8816080397613514",
             "status": "transferred"
         };
-        const request: BalanceTransferRequest = new BalanceTransferRequest;
+        const request = new Types.balanceControl.BalanceTransferRequest();
 
         scope.post("/balanceTransfer")
             .reply(200, expected);
 
-        const response: BalanceTransferResponse = await balanceService.BalanceControlApi.balanceTransfer(request);
-        expect(response.status).toEqual(BalanceTransferResponse.StatusEnum.Transferred);
+        const response: Types.balanceControl.BalanceTransferResponse = await balanceService.BalanceControlApi.balanceTransfer(request);
+        expect(response.status).toEqual(Types.balanceControl.BalanceTransferResponse.StatusEnum.Transferred);
     });
 
     test("Should return correct Validation error", async (): Promise<void> => {
@@ -55,7 +54,7 @@ describe("Balance Control", (): void => {
             "message": "Merchant account code is invalid or missing",
             "errorType": "validation"
         };
-        const request: BalanceTransferRequest = new BalanceTransferRequest;
+        const request = new Types.balanceControl.BalanceTransferRequest();
 
         try {
             scope.post("/balanceTransfer")

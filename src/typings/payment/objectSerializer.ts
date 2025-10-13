@@ -63,6 +63,7 @@ import { ResponseAdditionalDataInstallments } from "./responseAdditionalDataInst
 import { ResponseAdditionalDataNetworkTokens } from "./responseAdditionalDataNetworkTokens";
 import { ResponseAdditionalDataOpi } from "./responseAdditionalDataOpi";
 import { ResponseAdditionalDataSepa } from "./responseAdditionalDataSepa";
+import { ResponseAdditionalDataSwish } from "./responseAdditionalDataSwish";
 import { SDKEphemPubKey } from "./sDKEphemPubKey";
 import { SecureRemoteCommerceCheckoutData } from "./secureRemoteCommerceCheckoutData";
 import { ServiceError } from "./serviceError";
@@ -217,6 +218,7 @@ let typeMap: {[index: string]: any} = {
     "ResponseAdditionalDataNetworkTokens": ResponseAdditionalDataNetworkTokens,
     "ResponseAdditionalDataOpi": ResponseAdditionalDataOpi,
     "ResponseAdditionalDataSepa": ResponseAdditionalDataSepa,
+    "ResponseAdditionalDataSwish": ResponseAdditionalDataSwish,
     "SDKEphemPubKey": SDKEphemPubKey,
     "SecureRemoteCommerceCheckoutData": SecureRemoteCommerceCheckoutData,
     "ServiceError": ServiceError,

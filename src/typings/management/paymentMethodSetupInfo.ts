@@ -455,6 +455,7 @@ export namespace PaymentMethodSetupInfo {
         BaneseCardPrepaid = 'banese_card_prepaid',
         Bcmc = 'bcmc',
         Blik = 'blik',
+        BrSchemes = 'br_schemes',
         Cartebancaire = 'cartebancaire',
         Clearpay = 'clearpay',
         Clicktopay = 'clicktopay',
