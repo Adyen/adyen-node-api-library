@@ -22,6 +22,7 @@ import { CaptureRequest } from "../../typings/payment/models";
 import { DonationRequest } from "../../typings/payment/models";
 import { ModificationResult } from "../../typings/payment/models";
 import { RefundRequest } from "../../typings/payment/models";
+import { ServiceError } from "../../typings/payment/models";
 import { TechnicalCancelRequest } from "../../typings/payment/models";
 import { VoidPendingRefundRequest } from "../../typings/payment/models";
 

@@ -15,6 +15,7 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
+import { RestServiceError } from "../../typings/balancePlatform/models";
 import { TransferRouteRequest } from "../../typings/balancePlatform/models";
 import { TransferRouteResponse } from "../../typings/balancePlatform/models";
 
