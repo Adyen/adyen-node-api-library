@@ -17,7 +17,6 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { BeginScaDeviceRegistrationRequest } from "../../typings/balancePlatform/models";
 import { BeginScaDeviceRegistrationResponse } from "../../typings/balancePlatform/models";
-import { DefaultErrorResponseEntity } from "../../typings/balancePlatform/models";
 import { FinishScaDeviceRegistrationRequest } from "../../typings/balancePlatform/models";
 import { FinishScaDeviceRegistrationResponse } from "../../typings/balancePlatform/models";
 import { SubmitScaAssociationRequest } from "../../typings/balancePlatform/models";
