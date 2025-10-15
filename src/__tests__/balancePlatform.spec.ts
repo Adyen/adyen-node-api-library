@@ -1244,7 +1244,7 @@ describe("Balance Platform", (): void => {
         it("should support DELETE /balanceAccounts/{id}/transferLimits/{transferLimitId}", async (): Promise<void> => {
             scope.delete(`/balanceAccounts/${balanceAccountId}/transferLimits/${transferLimitId}`).reply(204);
 
-            await balancePlatformService.TransferLimitsBalanceAccountLevelApi.deletePendingTransferLimit(transferLimitId, balanceAccountId);
+            await balancePlatformService.TransferLimitsBalanceAccountLevelApi.deletePendingTransferLimit(balanceAccountId, transferLimitId);
         });
 
         it("should support GET /balanceAccounts/{id}/transferLimits/current", async (): Promise<void> => {
@@ -1291,7 +1291,7 @@ describe("Balance Platform", (): void => {
             scope.get(`/balanceAccounts/${balanceAccountId}/transferLimits/${transferLimitId}`)
                 .reply(200, mockResponse);
 
-            const response: Types.balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.getSpecificTransferLimit(transferLimitId, balanceAccountId);
+            const response: Types.balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalanceAccountLevelApi.getSpecificTransferLimit(balanceAccountId, transferLimitId);
 
             expect(response.id).toBe(transferLimitId);
         });
@@ -1364,7 +1364,7 @@ describe("Balance Platform", (): void => {
         it("should support DELETE /balancePlatforms/{id}/transferLimits/{transferLimitId}", async (): Promise<void> => {
             scope.delete(`/balancePlatforms/${balancePlatformId}/transferLimits/${transferLimitId}`).reply(204);
 
-            await balancePlatformService.TransferLimitsBalancePlatformLevelApi.deletePendingTransferLimit(transferLimitId, balancePlatformId);
+            await balancePlatformService.TransferLimitsBalancePlatformLevelApi.deletePendingTransferLimit(balancePlatformId, transferLimitId);
         });
 
         it("should support GET /balancePlatforms/{id}/transferLimits/{transferLimitId}", async (): Promise<void> => {
@@ -1389,7 +1389,7 @@ describe("Balance Platform", (): void => {
             scope.get(`/balancePlatforms/${balancePlatformId}/transferLimits/${transferLimitId}`)
                 .reply(200, mockResponse);
 
-            const response: Types.balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalancePlatformLevelApi.getSpecificTransferLimit(transferLimitId, balancePlatformId);
+            const response: Types.balancePlatform.TransferLimit = await balancePlatformService.TransferLimitsBalancePlatformLevelApi.getSpecificTransferLimit(balancePlatformId, transferLimitId);
 
             expect(response.id).toBe("TRLI00000000000000000000000001");
         });
