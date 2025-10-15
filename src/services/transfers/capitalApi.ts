@@ -18,7 +18,6 @@ import { ObjectSerializer } from "../../typings/transfers/objectSerializer";
 import { CapitalGrant } from "../../typings/transfers/models";
 import { CapitalGrantInfo } from "../../typings/transfers/models";
 import { CapitalGrants } from "../../typings/transfers/models";
-import { RestServiceError } from "../../typings/transfers/models";
 
 /**
  * API handler for CapitalApi
