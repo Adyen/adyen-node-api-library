@@ -33,7 +33,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock("https://kyc-test.adyen.com/lem/v3");
+    scope = nock("https://kyc-test.adyen.com/lem/v4");
     legalEntityManagement = new LegalEntityManagementAPI(client);
 });
 
@@ -115,21 +115,11 @@ describe("Legal Entity Management", (): void => {
 
             const response: models.BusinessLines = await legalEntityManagement.LegalEntitiesApi.getAllBusinessLinesUnderLegalEntity(id);
 
-            expect(response.businessLines).toEqual( [{
-                "capability": "receivePayments",
-                "id": "123456789",
-                "industryCode": "123456789",
-                "legalEntityId": "123456789",
-                "salesChannels": ["string"],
-                "sourceOfFunds": {
-                    "acquiringBusinessLineId": "string",
-                    "adyenProcessedFunds": false,
-                    "description": "string",
-                    "type": "business"
-                },
-                "webData": [{ "webAddress": "string" }],
-                "webDataExemption": { "reason": "noOnlinePresence" }
-            }]);
+            expect(response.businessLines.length).toBe(2);
+            expect(response.businessLines[0]).toBeTruthy;
+            expect(response.businessLines[0].id).toBe("SE322KH223222F5GV2SQ924F6");
+            expect(response.businessLines[0].industryCode).toBe("4531");
+            expect(response.businessLines[0].sourceOfFunds?.adyenProcessedFunds).toBe(false);
         });
 
     });
@@ -207,7 +197,6 @@ describe("Legal Entity Management", (): void => {
                 .reply(200, businessLine);
 
             const request: models.BusinessLineInfo = {
-                capability: models.BusinessLineInfo.CapabilityEnum.ReceivePayments,
                 industryCode: id,
                 legalEntityId: id,
                 service: models.BusinessLine.ServiceEnum.Banking 
@@ -215,10 +204,9 @@ describe("Legal Entity Management", (): void => {
 
             const response: models.BusinessLine = await legalEntityManagement.BusinessLinesApi.createBusinessLine(request);
 
-            expect(response.id).toBe(id);
-            expect(response.capability).toBe(models.BusinessLineInfo.CapabilityEnum.ReceivePayments);
-            expect(response.industryCode).toBe(id);
-            expect(response.legalEntityId).toBe(id);
+            expect(response.id).toBe("SE322KH223222F5GV2SQ924F6");
+            expect(response.industryCode).toBe("4531");
+            expect(response.legalEntityId).toBe("LE00000000000000000000001");
         });
 
         it("should support GET /businessLines/{id}", async (): Promise<void> => {
@@ -227,8 +215,8 @@ describe("Legal Entity Management", (): void => {
 
             const response: models.BusinessLine = await legalEntityManagement.BusinessLinesApi.getBusinessLine(id);
 
-            expect(response.id).toBe(id);
-            expect(response.capability).toBe("receivePayments");
+            expect(response.id).toBe("SE322KH223222F5GV2SQ924F6");
+            expect(response.service).toBe("banking");
         });
 
         it("should support PATCH /businessLines/{id}", async (): Promise<void> => {
@@ -236,7 +224,6 @@ describe("Legal Entity Management", (): void => {
                 .reply(200, businessLine);
 
             const request: models.BusinessLineInfo = {
-                capability: models.BusinessLineInfo.CapabilityEnum.ReceivePayments,
                 industryCode: id,
                 service: models.BusinessLine.ServiceEnum.Banking, 
                 legalEntityId: id
@@ -244,10 +231,9 @@ describe("Legal Entity Management", (): void => {
 
             const response: models.BusinessLine = await legalEntityManagement.BusinessLinesApi.updateBusinessLine(id, request);
 
-            expect(response.id).toBe(id);
-            expect(response.capability).toBe(models.BusinessLineInfo.CapabilityEnum.ReceivePayments);
-            expect(response.industryCode).toBe(id);
-            expect(response.legalEntityId).toBe(id);
+            expect(response.id).toBe("SE322KH223222F5GV2SQ924F6");
+            expect(response.industryCode).toBe("4531");
+            expect(response.legalEntityId).toBe("LE00000000000000000000001");
         });
     });
 
