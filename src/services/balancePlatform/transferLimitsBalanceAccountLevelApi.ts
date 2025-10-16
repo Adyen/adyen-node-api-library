@@ -80,15 +80,15 @@ export class TransferLimitsBalanceAccountLevelApi extends Service {
 
     /**
     * @summary Delete a scheduled or pending transfer limit
-    * @param transferLimitId {@link string } The unique identifier of the transfer limit.
     * @param id {@link string } The unique identifier of the balance account.
+    * @param transferLimitId {@link string } The unique identifier of the transfer limit.
     * @param requestOptions {@link IRequest.Options }
     * @return {@link void }
     */
-    public async deletePendingTransferLimit(transferLimitId: string, id: string, requestOptions?: IRequest.Options): Promise<void> {
+    public async deletePendingTransferLimit(id: string, transferLimitId: string, requestOptions?: IRequest.Options): Promise<void> {
         const endpoint = `${this.baseUrl}/balanceAccounts/{id}/transferLimits/{transferLimitId}`
-            .replace("{" + "transferLimitId" + "}", encodeURIComponent(String(transferLimitId)))
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)))
+            .replace("{" + "transferLimitId" + "}", encodeURIComponent(String(transferLimitId)));
         const resource = new Resource(this, endpoint);
         
         await getJsonResponse<string, void>(
@@ -129,15 +129,15 @@ export class TransferLimitsBalanceAccountLevelApi extends Service {
 
     /**
     * @summary Get the details of a transfer limit
-    * @param transferLimitId {@link string } The unique identifier of the transfer limit.
     * @param id {@link string } The unique identifier of the balance account.
+    * @param transferLimitId {@link string } The unique identifier of the transfer limit.
     * @param requestOptions {@link IRequest.Options }
     * @return {@link TransferLimit }
     */
-    public async getSpecificTransferLimit(transferLimitId: string, id: string, requestOptions?: IRequest.Options): Promise<TransferLimit> {
+    public async getSpecificTransferLimit(id: string, transferLimitId: string, requestOptions?: IRequest.Options): Promise<TransferLimit> {
         const endpoint = `${this.baseUrl}/balanceAccounts/{id}/transferLimits/{transferLimitId}`
-            .replace("{" + "transferLimitId" + "}", encodeURIComponent(String(transferLimitId)))
-            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)))
+            .replace("{" + "transferLimitId" + "}", encodeURIComponent(String(transferLimitId)));
         const resource = new Resource(this, endpoint);
         
         const response = await getJsonResponse<string, TransferLimit>(

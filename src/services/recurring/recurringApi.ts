@@ -68,8 +68,6 @@ export class RecurringApi extends Service {
     * @param disableRequest {@link DisableRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link DisableResult }
-    *
-	* @deprecated since Adyen Recurring API v68
     */
     public async disable(disableRequest: DisableRequest, requestOptions?: IRequest.Options): Promise<DisableResult> {
         const endpoint = `${this.baseUrl}/disable`;
@@ -112,8 +110,6 @@ export class RecurringApi extends Service {
     * @param recurringDetailsRequest {@link RecurringDetailsRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link RecurringDetailsResult }
-    *
-	* @deprecated since Adyen Recurring API v68
     */
     public async listRecurringDetails(recurringDetailsRequest: RecurringDetailsRequest, requestOptions?: IRequest.Options): Promise<RecurringDetailsResult> {
         const endpoint = `${this.baseUrl}/listRecurringDetails`;
@@ -134,8 +130,6 @@ export class RecurringApi extends Service {
     * @param notifyShopperRequest {@link NotifyShopperRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link NotifyShopperResult }
-    *
-	* @deprecated since Adyen Recurring API v68
     */
     public async notifyShopper(notifyShopperRequest: NotifyShopperRequest, requestOptions?: IRequest.Options): Promise<NotifyShopperResult> {
         const endpoint = `${this.baseUrl}/notifyShopper`;
@@ -156,8 +150,6 @@ export class RecurringApi extends Service {
     * @param scheduleAccountUpdaterRequest {@link ScheduleAccountUpdaterRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link ScheduleAccountUpdaterResult }
-    *
-	* @deprecated since Adyen Recurring API v68
     */
     public async scheduleAccountUpdater(scheduleAccountUpdaterRequest: ScheduleAccountUpdaterRequest, requestOptions?: IRequest.Options): Promise<ScheduleAccountUpdaterResult> {
         const endpoint = `${this.baseUrl}/scheduleAccountUpdater`;
