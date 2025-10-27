@@ -32,6 +32,11 @@ class TerminalCloudAPI extends Service {
 
     public constructor(client: Client) {
         super(client);
+
+        if (!client.config.region) {
+          throw new Error("Region is required for Terminal API");
+        }
+
         this.apiKeyRequired = true;
         this.terminalApiAsync = new Async(this);
         this.terminalApiSync = new Sync(this);
