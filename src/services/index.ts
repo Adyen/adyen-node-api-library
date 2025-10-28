@@ -20,3 +20,4 @@ export { default as TerminalCloudAPI } from "./terminalCloudAPI";
 export { default as TerminalLocalAPI } from "./terminalLocalAPI";
 export { default as TerminalManagementAPI } from "./terminalManagementApi";
 export { default as TransfersAPI } from "./transfers";
+export { default as SessionAuthenticationAPI } from "./sessionAuthentication";
