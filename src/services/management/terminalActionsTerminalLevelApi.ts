@@ -15,6 +15,7 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/management/objectSerializer";
+import { RestServiceError } from "../../typings/management/models";
 import { ScheduleTerminalActionsRequest } from "../../typings/management/models";
 import { ScheduleTerminalActionsResponse } from "../../typings/management/models";
 

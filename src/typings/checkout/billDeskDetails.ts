@@ -18,6 +18,10 @@ export class BillDeskDetails {
     */
     "issuer": string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * **billdesk**
     */
     "type": BillDeskDetails.TypeEnum;
@@ -36,6 +40,12 @@ export class BillDeskDetails {
         {
             "name": "issuer",
             "baseName": "issuer",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

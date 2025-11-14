@@ -32,9 +32,11 @@ import { SepaDirectDebitInfo } from "./sepaDirectDebitInfo";
 import { SodexoInfo } from "./sodexoInfo";
 import { SofortInfo } from "./sofortInfo";
 import { StarInfo } from "./starInfo";
+import { SvsInfo } from "./svsInfo";
 import { SwishInfo } from "./swishInfo";
 import { TicketInfo } from "./ticketInfo";
 import { TwintInfo } from "./twintInfo";
+import { ValueLinkInfo } from "./valueLinkInfo";
 import { VippsInfo } from "./vippsInfo";
 import { WeChatPayInfo } from "./weChatPayInfo";
 import { WeChatPayPosInfo } from "./weChatPayPosInfo";
@@ -103,6 +105,7 @@ export class PaymentMethodSetupInfo {
     * The unique identifier of the store for which to configure the payment method, if any.
     */
     "storeIds"?: Array<string>;
+    "svs"?: SvsInfo | null;
     "swish"?: SwishInfo | null;
     "ticket"?: TicketInfo | null;
     "twint"?: TwintInfo | null;
@@ -110,6 +113,7 @@ export class PaymentMethodSetupInfo {
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
     */
     "type": PaymentMethodSetupInfo.TypeEnum;
+    "valueLink"?: ValueLinkInfo | null;
     "vipps"?: VippsInfo | null;
     "visa"?: GenericPmWithTdiInfo | null;
     "wechatpay"?: WeChatPayInfo | null;
@@ -367,6 +371,12 @@ export class PaymentMethodSetupInfo {
             "format": ""
         },
         {
+            "name": "svs",
+            "baseName": "svs",
+            "type": "SvsInfo | null",
+            "format": ""
+        },
+        {
             "name": "swish",
             "baseName": "swish",
             "type": "SwishInfo | null",
@@ -388,6 +398,12 @@ export class PaymentMethodSetupInfo {
             "name": "type",
             "baseName": "type",
             "type": "PaymentMethodSetupInfo.TypeEnum",
+            "format": ""
+        },
+        {
+            "name": "valueLink",
+            "baseName": "valueLink",
+            "type": "ValueLinkInfo | null",
             "format": ""
         },
         {
@@ -495,6 +511,7 @@ export namespace PaymentMethodSetupInfo {
         Jcb = 'jcb',
         Klarna = 'klarna',
         KlarnaAccount = 'klarna_account',
+        KlarnaB2b = 'klarna_b2b',
         KlarnaPaynow = 'klarna_paynow',
         LeCard = 'le_card',
         LeCardCredit = 'le_card_credit',
@@ -536,6 +553,7 @@ export namespace PaymentMethodSetupInfo {
         Sepadirectdebit = 'sepadirectdebit',
         Sodexo = 'sodexo',
         Star = 'star',
+        Svs = 'svs',
         Swish = 'swish',
         Ticket = 'ticket',
         TodoGiftcard = 'todo_giftcard',
@@ -548,6 +566,7 @@ export namespace PaymentMethodSetupInfo {
         UpBrazilPrepaid = 'up_brazil_prepaid',
         ValeRefeicao = 'vale_refeicao',
         ValeRefeicaoPrepaid = 'vale_refeicao_prepaid',
+        ValueLink = 'valueLink',
         VegasCard = 'vegas_card',
         VegasCardCredit = 'vegas_card_credit',
         VegasCardDebit = 'vegas_card_debit',

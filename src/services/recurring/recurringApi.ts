@@ -27,13 +27,14 @@ import { RecurringDetailsRequest } from "../../typings/recurring/models";
 import { RecurringDetailsResult } from "../../typings/recurring/models";
 import { ScheduleAccountUpdaterRequest } from "../../typings/recurring/models";
 import { ScheduleAccountUpdaterResult } from "../../typings/recurring/models";
+import { ServiceError } from "../../typings/recurring/models";
 
 /**
  * API handler for RecurringApi
  */
 export class RecurringApi extends Service {
 
-    private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/Recurring/v68";
+    private readonly API_BASEPATH: string = "https://paltokenization-test.adyen.com/pal/servlet/Recurring/v68";
     private baseUrl: string;
 
     public constructor(client: Client){

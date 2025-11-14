@@ -15,6 +15,7 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/legalEntityManagement/objectSerializer";
+import { ServiceError } from "../../typings/legalEntityManagement/models";
 import { TransferInstrument } from "../../typings/legalEntityManagement/models";
 import { TransferInstrumentInfo } from "../../typings/legalEntityManagement/models";
 
