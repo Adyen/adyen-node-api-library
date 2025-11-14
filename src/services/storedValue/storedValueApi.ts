@@ -15,7 +15,6 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/storedValue/objectSerializer";
-import { ServiceError } from "../../typings/storedValue/models";
 import { StoredValueBalanceCheckRequest } from "../../typings/storedValue/models";
 import { StoredValueBalanceCheckResponse } from "../../typings/storedValue/models";
 import { StoredValueBalanceMergeRequest } from "../../typings/storedValue/models";

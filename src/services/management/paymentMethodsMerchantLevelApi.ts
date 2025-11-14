@@ -19,7 +19,6 @@ import { ApplePayInfo } from "../../typings/management/models";
 import { PaymentMethod } from "../../typings/management/models";
 import { PaymentMethodResponse } from "../../typings/management/models";
 import { PaymentMethodSetupInfo } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 import { UpdatePaymentMethodInfo } from "../../typings/management/models";
 
 /**
