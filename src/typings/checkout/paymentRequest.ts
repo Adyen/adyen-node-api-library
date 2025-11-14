@@ -26,6 +26,7 @@ import { LineItem } from "./lineItem";
 import { Mandate } from "./mandate";
 import { MerchantRiskIndicator } from "./merchantRiskIndicator";
 import { PaymentRequestPaymentMethod } from "./paymentRequestPaymentMethod";
+import { PaymentValidations } from "./paymentValidations";
 import { PlatformChargebackLogic } from "./platformChargebackLogic";
 import { RiskData } from "./riskData";
 import { ShopperName } from "./shopperName";
@@ -127,7 +128,7 @@ export class PaymentRequest {
     */
     "lineItems"?: Array<LineItem>;
     /**
-    * The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If not supplied, left empty, or for cross-border transactions, **shopperStatement** is used.  Adyen currently supports the ja-Kana character set for Visa and Mastercard payments in Japan using Japanese cards. This character set supports:  * UTF-8 based Katakana, capital letters, numbers and special characters.  * Half-width or full-width characters.
+    * The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If this parameter is left empty, not provided, or not applicable (in case of cross-border transactions), then **shopperStatement** is used.  Currently, `localizedShopperStatement` is only supported for payments with Visa, Mastercard, JCB, Diners, and Discover.  **Supported characters**: Hiragana, Katakana, Kanji, and alphanumeric.
     */
     "localizedShopperStatement"?: { [key: string]: string; };
     "mandate"?: Mandate | null;
@@ -159,6 +160,7 @@ export class PaymentRequest {
     */
     "origin"?: string;
     "paymentMethod": PaymentRequestPaymentMethod;
+    "paymentValidations"?: PaymentValidations | null;
     "platformChargebackLogic"?: PlatformChargebackLogic | null;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
@@ -531,6 +533,12 @@ export class PaymentRequest {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
             "type": "PaymentRequestPaymentMethod",
+            "format": ""
+        },
+        {
+            "name": "paymentValidations",
+            "baseName": "paymentValidations",
+            "type": "PaymentValidations | null",
             "format": ""
         },
         {

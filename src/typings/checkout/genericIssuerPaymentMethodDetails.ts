@@ -25,6 +25,10 @@ export class GenericIssuerPaymentMethodDetails {
     */
     "recurringDetailReference"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     "storedPaymentMethodId"?: string;
@@ -57,6 +61,12 @@ export class GenericIssuerPaymentMethodDetails {
             "format": ""
         },
         {
+            "name": "sdkData",
+            "baseName": "sdkData",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
             "type": "string",
@@ -82,6 +92,7 @@ export namespace GenericIssuerPaymentMethodDetails {
         OnlineBankingPl = 'onlineBanking_PL',
         Eps = 'eps',
         OnlineBankingSk = 'onlineBanking_SK',
-        OnlineBankingCz = 'onlineBanking_CZ'
+        OnlineBankingCz = 'onlineBanking_CZ',
+        OnlinebankingIn = 'onlinebanking_IN'
     }
 }

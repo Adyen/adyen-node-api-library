@@ -18,6 +18,10 @@ export class VisaCheckoutDetails {
     */
     "fundingSource"?: VisaCheckoutDetails.FundingSourceEnum;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * **visacheckout**
     */
     "type"?: VisaCheckoutDetails.TypeEnum;
@@ -41,6 +45,12 @@ export class VisaCheckoutDetails {
             "name": "fundingSource",
             "baseName": "fundingSource",
             "type": "VisaCheckoutDetails.FundingSourceEnum",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
+            "type": "string",
             "format": ""
         },
         {

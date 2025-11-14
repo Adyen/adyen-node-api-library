@@ -18,6 +18,10 @@ export class ResponseAdditionalDataSepa {
     */
     "sepadirectdebit_mandateId"?: string;
     /**
+    * The date that the the shopper\'s bank account is charged.
+    */
+    "sepadirectdebit_sepadirectdebit_dueDate"?: string;
+    /**
     * This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF
     */
     "sepadirectdebit_sequenceType"?: string;
@@ -36,6 +40,12 @@ export class ResponseAdditionalDataSepa {
         {
             "name": "sepadirectdebit_mandateId",
             "baseName": "sepadirectdebit.mandateId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sepadirectdebit_sepadirectdebit_dueDate",
+            "baseName": "sepadirectdebit.sepadirectdebit.dueDate",
             "type": "string",
             "format": ""
         },
