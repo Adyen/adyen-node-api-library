@@ -222,6 +222,7 @@ export namespace TransferEvent {
         RefusedByCustomer = 'refusedByCustomer',
         RouteNotFound = 'routeNotFound',
         ScaFailed = 'scaFailed',
+        SchemeAdvice = 'schemeAdvice',
         TransferInstrumentDoesNotExist = 'transferInstrumentDoesNotExist',
         Unknown = 'unknown'
     }

@@ -145,6 +145,7 @@ import { StoreSplitConfiguration } from "./storeSplitConfiguration";
 import { SubMerchantData } from "./subMerchantData";
 import { SupportedCardTypes } from "./supportedCardTypes";
 import { Surcharge } from "./surcharge";
+import { SvsInfo } from "./svsInfo";
 import { SwishInfo } from "./swishInfo";
 import { TapToPay } from "./tapToPay";
 import { Terminal } from "./terminal";
@@ -194,6 +195,7 @@ import { UploadAndroidAppResponse } from "./uploadAndroidAppResponse";
 import { UploadAndroidCertificateResponse } from "./uploadAndroidCertificateResponse";
 import { Url } from "./url";
 import { User } from "./user";
+import { ValueLinkInfo } from "./valueLinkInfo";
 import { VippsInfo } from "./vippsInfo";
 import { WeChatPayInfo } from "./weChatPayInfo";
 import { WeChatPayPosInfo } from "./weChatPayPosInfo";
@@ -215,6 +217,7 @@ let primitives = [
 
 let enumsMap: Set<string> = new Set<string>([
     "AccelInfo.ProcessingTypeEnum",
+    "AffirmInfo.PricePlanEnum",
     "AmexInfo.ServiceLevelEnum",
     "AndroidApp.StatusEnum",
     "Connectivity.SimcardStatusEnum",
@@ -289,6 +292,7 @@ let enumsMap: Set<string> = new Set<string>([
     "UpdateSplitConfigurationLogicRequest.SurchargeEnum",
     "UpdateSplitConfigurationLogicRequest.TipEnum",
     "UpdateStoreRequest.StatusEnum",
+    "ValueLinkInfo.PinSupportEnum",
     "Webhook.CommunicationFormatEnum",
     "Webhook.EncryptionProtocolEnum",
     "Webhook.FilterMerchantAccountTypeEnum",
@@ -441,6 +445,7 @@ let typeMap: {[index: string]: any} = {
     "SubMerchantData": SubMerchantData,
     "SupportedCardTypes": SupportedCardTypes,
     "Surcharge": Surcharge,
+    "SvsInfo": SvsInfo,
     "SwishInfo": SwishInfo,
     "TapToPay": TapToPay,
     "Terminal": Terminal,
@@ -490,6 +495,7 @@ let typeMap: {[index: string]: any} = {
     "UploadAndroidCertificateResponse": UploadAndroidCertificateResponse,
     "Url": Url,
     "User": User,
+    "ValueLinkInfo": ValueLinkInfo,
     "VippsInfo": VippsInfo,
     "WeChatPayInfo": WeChatPayInfo,
     "WeChatPayPosInfo": WeChatPayPosInfo,

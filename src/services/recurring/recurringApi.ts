@@ -33,7 +33,7 @@ import { ScheduleAccountUpdaterResult } from "../../typings/recurring/models";
  */
 export class RecurringApi extends Service {
 
-    private readonly API_BASEPATH: string = "https://pal-test.adyen.com/pal/servlet/Recurring/v68";
+    private readonly API_BASEPATH: string = "https://paltokenization-test.adyen.com/pal/servlet/Recurring/v68";
     private baseUrl: string;
 
     public constructor(client: Client){

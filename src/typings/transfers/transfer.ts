@@ -22,7 +22,7 @@ export class Transfer {
     "amount": Amount;
     "balanceAccount"?: ResourceReference | null;
     /**
-    * The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.
+    * The category of the transfer.  Possible values:   - **bank**: A transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) or a bank account.  - **card**: A transfer involving a third-party card.  - **internal**: A transfer between [balance accounts](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id) within your platform.  - **issuedCard**: A transfer initiated by an Adyen-issued card.  - **platformPayment**: Funds movements related to payments that are acquired for your users.  - **topUp**: An incoming transfer initiated by your user to top up their balance account.
     */
     "category": Transfer.CategoryEnum;
     "categoryData"?: TransferCategoryData | null;
@@ -67,7 +67,7 @@ export class Transfer {
     "referenceForBeneficiary"?: string;
     "review"?: TransferReview | null;
     /**
-    * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
+    * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
     */
     "status": Transfer.StatusEnum;
     /**
@@ -246,6 +246,7 @@ export namespace Transfer {
         RefusedByCustomer = 'refusedByCustomer',
         RouteNotFound = 'routeNotFound',
         ScaFailed = 'scaFailed',
+        SchemeAdvice = 'schemeAdvice',
         TransferInstrumentDoesNotExist = 'transferInstrumentDoesNotExist',
         Unknown = 'unknown'
     }

@@ -7,6 +7,8 @@
  * Do not edit this class manually.
  */
 
+import { TokenMandate } from "./tokenMandate";
+
 
 export class StoredPaymentMethodResource {
     /**
@@ -49,6 +51,7 @@ export class StoredPaymentMethodResource {
     * The last four digits of the PAN.
     */
     "lastFour"?: string;
+    "mandate"?: TokenMandate | null;
     /**
     * The display name of the stored payment method.
     */
@@ -141,6 +144,12 @@ export class StoredPaymentMethodResource {
             "name": "lastFour",
             "baseName": "lastFour",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "mandate",
+            "baseName": "mandate",
+            "type": "TokenMandate | null",
             "format": ""
         },
         {
