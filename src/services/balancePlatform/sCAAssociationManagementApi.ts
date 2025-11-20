@@ -17,7 +17,6 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { ApproveAssociationRequest } from "../../typings/balancePlatform/models";
 import { ApproveAssociationResponse } from "../../typings/balancePlatform/models";
-import { DefaultErrorResponseEntity } from "../../typings/balancePlatform/models";
 import { ListAssociationsResponse } from "../../typings/balancePlatform/models";
 import { RemoveAssociationRequest } from "../../typings/balancePlatform/models";
 import { ScaEntityType } from "../../typings/balancePlatform/models";

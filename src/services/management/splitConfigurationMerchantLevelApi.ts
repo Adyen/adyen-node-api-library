@@ -15,7 +15,6 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/management/objectSerializer";
-import { RestServiceError } from "../../typings/management/models";
 import { SplitConfiguration } from "../../typings/management/models";
 import { SplitConfigurationList } from "../../typings/management/models";
 import { SplitConfigurationRule } from "../../typings/management/models";

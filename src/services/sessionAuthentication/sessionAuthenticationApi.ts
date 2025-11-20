@@ -17,7 +17,6 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/sessionAuthentication/objectSerializer";
 import { AuthenticationSessionRequest } from "../../typings/sessionAuthentication/models";
 import { AuthenticationSessionResponse } from "../../typings/sessionAuthentication/models";
-import { DefaultErrorResponseEntity } from "../../typings/sessionAuthentication/models";
 
 /**
  * API handler for SessionAuthenticationApi
