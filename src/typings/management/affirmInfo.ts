@@ -10,6 +10,10 @@
 
 export class AffirmInfo {
     /**
+    * Merchant price plan
+    */
+    "pricePlan"?: AffirmInfo.PricePlanEnum;
+    /**
     * Merchant support email
     */
     "supportEmail": string;
@@ -19,6 +23,12 @@ export class AffirmInfo {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "pricePlan",
+            "baseName": "pricePlan",
+            "type": "AffirmInfo.PricePlanEnum",
+            "format": ""
+        },
         {
             "name": "supportEmail",
             "baseName": "supportEmail",
@@ -34,3 +44,10 @@ export class AffirmInfo {
     }
 }
 
+export namespace AffirmInfo {
+    export enum PricePlanEnum {
+        Bronze = 'BRONZE',
+        Silver = 'SILVER',
+        Gold = 'GOLD'
+    }
+}

@@ -32,9 +32,11 @@ import { SepaDirectDebitInfo } from "./sepaDirectDebitInfo";
 import { SodexoInfo } from "./sodexoInfo";
 import { SofortInfo } from "./sofortInfo";
 import { StarInfo } from "./starInfo";
+import { SvsInfo } from "./svsInfo";
 import { SwishInfo } from "./swishInfo";
 import { TicketInfo } from "./ticketInfo";
 import { TwintInfo } from "./twintInfo";
+import { ValueLinkInfo } from "./valueLinkInfo";
 import { VippsInfo } from "./vippsInfo";
 import { WeChatPayInfo } from "./weChatPayInfo";
 import { WeChatPayPosInfo } from "./weChatPayPosInfo";
@@ -115,6 +117,7 @@ export class PaymentMethod {
     * The unique identifier of the store for which to configure the payment method, if any.
     */
     "storeIds"?: Array<string>;
+    "svs"?: SvsInfo | null;
     "swish"?: SwishInfo | null;
     "ticket"?: TicketInfo | null;
     "twint"?: TwintInfo | null;
@@ -122,6 +125,7 @@ export class PaymentMethod {
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
     */
     "type"?: string;
+    "valueLink"?: ValueLinkInfo | null;
     /**
     * Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
     */
@@ -401,6 +405,12 @@ export class PaymentMethod {
             "format": ""
         },
         {
+            "name": "svs",
+            "baseName": "svs",
+            "type": "SvsInfo | null",
+            "format": ""
+        },
+        {
             "name": "swish",
             "baseName": "swish",
             "type": "SwishInfo | null",
@@ -422,6 +432,12 @@ export class PaymentMethod {
             "name": "type",
             "baseName": "type",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "valueLink",
+            "baseName": "valueLink",
+            "type": "ValueLinkInfo | null",
             "format": ""
         },
         {

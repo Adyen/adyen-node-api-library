@@ -156,6 +156,11 @@ import { PaymentResponse } from "./paymentResponse";
 import { PaymentResponseActionClass } from "./paymentResponseAction";
 import { PaymentReversalRequest } from "./paymentReversalRequest";
 import { PaymentReversalResponse } from "./paymentReversalResponse";
+import { PaymentValidations } from "./paymentValidations";
+import { PaymentValidationsNameResponse } from "./paymentValidationsNameResponse";
+import { PaymentValidationsNameResultRawResponse } from "./paymentValidationsNameResultRawResponse";
+import { PaymentValidationsNameResultResponse } from "./paymentValidationsNameResultResponse";
+import { PaymentValidationsResponse } from "./paymentValidationsResponse";
 import { PaypalUpdateOrderRequest } from "./paypalUpdateOrderRequest";
 import { PaypalUpdateOrderResponse } from "./paypalUpdateOrderResponse";
 import { Phone } from "./phone";
@@ -210,6 +215,7 @@ import { ThreeDSRequestorAuthenticationInfo } from "./threeDSRequestorAuthentica
 import { ThreeDSRequestorPriorAuthenticationInfo } from "./threeDSRequestorPriorAuthenticationInfo";
 import { ThreeDSecureData } from "./threeDSecureData";
 import { Ticket } from "./ticket";
+import { TokenMandate } from "./tokenMandate";
 import { TravelAgency } from "./travelAgency";
 import { TwintDetails } from "./twintDetails";
 import { UPIPaymentMethod } from "./uPIPaymentMethod";
@@ -387,6 +393,7 @@ let enumsMap: Set<string> = new Set<string>([
     "PaymentResponse.ResultCodeEnum",
     "PaymentResponseAction.TypeEnum",
     "PaymentReversalResponse.StatusEnum",
+    "PaymentValidationsNameResponse.StatusEnum",
     "PaypalUpdateOrderResponse.StatusEnum",
     "PixDetails.TypeEnum",
     "PixRecurring.FrequencyEnum",
@@ -437,6 +444,9 @@ let enumsMap: Set<string> = new Set<string>([
     "ThreeDSecureData.AuthenticationResponseEnum",
     "ThreeDSecureData.ChallengeCancelEnum",
     "ThreeDSecureData.DirectoryResponseEnum",
+    "TokenMandate.AmountRuleEnum",
+    "TokenMandate.BillingAttemptsRuleEnum",
+    "TokenMandate.FrequencyEnum",
     "TwintDetails.TypeEnum",
     "UpdatePaymentLinkRequest.StatusEnum",
     "UpiCollectDetails.TypeEnum",
@@ -607,6 +617,11 @@ let typeMap: {[index: string]: any} = {
     "PaymentResponseAction": PaymentResponseActionClass,
     "PaymentReversalRequest": PaymentReversalRequest,
     "PaymentReversalResponse": PaymentReversalResponse,
+    "PaymentValidations": PaymentValidations,
+    "PaymentValidationsNameResponse": PaymentValidationsNameResponse,
+    "PaymentValidationsNameResultRawResponse": PaymentValidationsNameResultRawResponse,
+    "PaymentValidationsNameResultResponse": PaymentValidationsNameResultResponse,
+    "PaymentValidationsResponse": PaymentValidationsResponse,
     "PaypalUpdateOrderRequest": PaypalUpdateOrderRequest,
     "PaypalUpdateOrderResponse": PaypalUpdateOrderResponse,
     "Phone": Phone,
@@ -660,6 +675,7 @@ let typeMap: {[index: string]: any} = {
     "ThreeDSRequestorPriorAuthenticationInfo": ThreeDSRequestorPriorAuthenticationInfo,
     "ThreeDSecureData": ThreeDSecureData,
     "Ticket": Ticket,
+    "TokenMandate": TokenMandate,
     "TravelAgency": TravelAgency,
     "TwintDetails": TwintDetails,
     "UPIPaymentMethod": UPIPaymentMethod,

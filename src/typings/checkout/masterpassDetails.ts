@@ -22,6 +22,10 @@ export class MasterpassDetails {
     */
     "masterpassTransactionId": string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * **masterpass**
     */
     "type"?: MasterpassDetails.TypeEnum;
@@ -46,6 +50,12 @@ export class MasterpassDetails {
         {
             "name": "masterpassTransactionId",
             "baseName": "masterpassTransactionId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

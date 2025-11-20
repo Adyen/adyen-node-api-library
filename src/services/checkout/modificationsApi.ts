@@ -25,6 +25,7 @@ import { PaymentRefundRequest } from "../../typings/checkout/models";
 import { PaymentRefundResponse } from "../../typings/checkout/models";
 import { PaymentReversalRequest } from "../../typings/checkout/models";
 import { PaymentReversalResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
 import { StandalonePaymentCancelRequest } from "../../typings/checkout/models";
 import { StandalonePaymentCancelResponse } from "../../typings/checkout/models";
 

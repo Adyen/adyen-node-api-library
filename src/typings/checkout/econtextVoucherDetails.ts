@@ -22,6 +22,10 @@ export class EcontextVoucherDetails {
     */
     "lastName": string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * The shopper\'s email.
     */
     "shopperEmail": string;
@@ -54,6 +58,12 @@ export class EcontextVoucherDetails {
         {
             "name": "lastName",
             "baseName": "lastName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

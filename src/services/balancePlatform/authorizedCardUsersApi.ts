@@ -16,6 +16,7 @@ import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { AuthorisedCardUsers } from "../../typings/balancePlatform/models";
+import { DefaultErrorResponseEntity } from "../../typings/balancePlatform/models";
 
 /**
  * API handler for AuthorizedCardUsersApi
