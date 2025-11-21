@@ -58,6 +58,10 @@ class Service {
             }
         }
 
+        if (url.includes("/authe/")) {
+            return url.replace("https://test.adyen.com/", "https://authe-live.adyen.com/");
+        }
+
         if (url.includes("pal-")) {
             return url.replace("https://pal-test.adyen.com/pal/servlet/",
                     `https://${this.client.config.liveEndpointUrlPrefix}-pal-live.adyenpayments.com/pal/servlet/`);

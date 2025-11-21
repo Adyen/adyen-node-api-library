@@ -131,4 +131,31 @@ describe("Service", () => {
         const url = "https://some-test.adyen.com/api/";
         expect(service.testCreateBaseUrl(url)).toBe("https://some-live.adyen.com/api/");
     });
-});
+
+    it("should build TEST url for SessionAuthentication", () => {
+        const config = new Config({
+            apiKey: "test_key",
+            environment: EnvironmentEnum.TEST,
+            liveEndpointUrlPrefix: "mycompany"
+        });
+        client = new Client(config);
+
+        const service = new TestService(client);
+        const url = "https://test.adyen.com/authe/api/v1";
+        expect(service.testCreateBaseUrl(url)).toBe("https://test.adyen.com/authe/api/v1");
+    });
+
+    it("should build LIVE url for SessionAuthentication", () => {
+        const config = new Config({
+            apiKey: "test_key",
+            environment: EnvironmentEnum.LIVE,
+            liveEndpointUrlPrefix: "mycompany"
+        });
+        client = new Client(config);
+
+        const service = new TestService(client);
+        const url = "https://test.adyen.com/authe/api/v1";
+        expect(service.testCreateBaseUrl(url)).toBe("https://authe-live.adyen.com/authe/api/v1");
+    });
+
+});  
