@@ -7,7 +7,7 @@ on:
 
 jobs:
   format:
-    if: ${{ github.event.commits != null && !startsWith(github.event.head_commit.message, 'style(fmt)') }}
+    if: ${{ github.event.commits != null && !startsWith(github.event.head_commit.message, 'style(fmt)') && !startsWith(github.event.head_commit.message, 'Merge pull request') }}
     permissions:
       contents: write
       pull-requests: write
@@ -33,6 +33,6 @@ jobs:
             This PR contains automated code formatting changes.
 
             Please review the changes before merging.
-          branch: automated-formatting-${{ github.sha }}
+          branch: automated-formatting-${{ github.run_id }}
           delete-branch: true
           author: AdyenAutomationBot <${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}>
