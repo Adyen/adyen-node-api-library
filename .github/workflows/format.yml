@@ -24,6 +24,8 @@ jobs:
           yarn install --frozen-lockfile
           yarn lint:fix
       - name: Create Pull Request
+        # Using ADYEN_AUTOMATION_BOT_ACCESS_TOKEN instead of GITHUB_TOKEN
+        # to allow the created PR to trigger other workflows
         uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.11
         with:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
