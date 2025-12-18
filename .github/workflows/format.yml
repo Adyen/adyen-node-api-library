@@ -7,9 +7,10 @@ on:
 
 jobs:
   format:
-    if: ${{ github.event.commits != null && !startsWith(github.event.head_commit.message, 'style(fmt)') }}  
+    if: ${{ github.event.commits != null && !startsWith(github.event.head_commit.message, 'style(fmt)') }}
     permissions:
       contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -18,12 +19,20 @@ jobs:
       - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: 20.x
-      - run: |
-          npm install 
+      - name: Install dependencies and run formatter
+        run: |
+          yarn install --frozen-lockfile
           npm run lint:fix
-      - run: |
-          git config user.name AdyenAutomationBot
-          git config user.email "${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}"
-          git add .
-          git commit -m "style(fmt): code formatted" || echo "No changes to commit"
-          git push
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.11
+        with:
+          token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
+          commit-message: "style(fmt): code formatted"
+          title: "style(fmt): Automated code formatting"
+          body: |
+            This PR contains automated code formatting changes.
+
+            Please review the changes before merging.
+          branch: automated-formatting-${{ github.sha }}
+          delete-branch: true
+          author: AdyenAutomationBot <${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}>
