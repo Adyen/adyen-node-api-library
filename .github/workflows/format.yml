@@ -12,7 +12,7 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
       - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
