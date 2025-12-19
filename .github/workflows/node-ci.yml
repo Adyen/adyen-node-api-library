@@ -32,7 +32,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
-        run: npm install
+        run: npm ci --legacy-peer-deps
       - name: Lint code
         run: npm run lint:fix && npm run lint
 
@@ -58,6 +58,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
-        run: npm install
+        run: npm ci --legacy-peer-deps
       - name: Run tests with coverage
         run: npm run test:coverage

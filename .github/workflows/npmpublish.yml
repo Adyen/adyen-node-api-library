@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '18.x'
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci --legacy-peer-deps
       - name: Build package
         run: npm run build
       - name: Run tests
@@ -51,4 +51,3 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_ADYEN_NODE_API_LIBRARY_TOKEN }}
-        
