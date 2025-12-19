@@ -14,4 +14,3 @@ coverage/
 .env
 lib/
 build/
-package-lock.json
