@@ -18,7 +18,6 @@ import { ObjectSerializer } from "../../typings/management/objectSerializer";
 import { PayoutSettings } from "../../typings/management/models";
 import { PayoutSettingsRequest } from "../../typings/management/models";
 import { PayoutSettingsResponse } from "../../typings/management/models";
-import { RestServiceError } from "../../typings/management/models";
 import { UpdatePayoutSettingsRequest } from "../../typings/management/models";
 
 /**

@@ -15,7 +15,6 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/dataProtection/objectSerializer";
-import { ServiceError } from "../../typings/dataProtection/models";
 import { SubjectErasureByPspReferenceRequest } from "../../typings/dataProtection/models";
 import { SubjectErasureResponse } from "../../typings/dataProtection/models";
 
