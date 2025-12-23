@@ -22,6 +22,10 @@ export class AmazonPayDetails {
     */
     "checkoutSessionId"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * **amazonpay**
     */
     "type"?: AmazonPayDetails.TypeEnum;
@@ -46,6 +50,12 @@ export class AmazonPayDetails {
         {
             "name": "checkoutSessionId",
             "baseName": "checkoutSessionId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

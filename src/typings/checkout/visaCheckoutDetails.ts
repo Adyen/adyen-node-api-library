@@ -18,6 +18,10 @@ export class VisaCheckoutDetails {
     */
     "fundingSource"?: VisaCheckoutDetails.FundingSourceEnum;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * **visacheckout**
     */
     "type"?: VisaCheckoutDetails.TypeEnum;
@@ -44,6 +48,12 @@ export class VisaCheckoutDetails {
             "format": ""
         },
         {
+            "name": "sdkData",
+            "baseName": "sdkData",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "type",
             "baseName": "type",
             "type": "VisaCheckoutDetails.TypeEnum",
@@ -67,7 +77,8 @@ export class VisaCheckoutDetails {
 export namespace VisaCheckoutDetails {
     export enum FundingSourceEnum {
         Credit = 'credit',
-        Debit = 'debit'
+        Debit = 'debit',
+        Prepaid = 'prepaid'
     }
     export enum TypeEnum {
         Visacheckout = 'visacheckout'

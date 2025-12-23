@@ -49,7 +49,7 @@ export class Card {
     /**
     * The primary account number (PAN) of the card. > The PAN is masked by default and returned only for single-use virtual cards.
     */
-    "number": string;
+    "number"?: string;
     /**
     * The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. > Reach out to your Adyen contact to get the values relevant for your integration.
     */

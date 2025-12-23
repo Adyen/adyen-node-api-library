@@ -14,6 +14,10 @@ import { PartyIdentification } from "./partyIdentification";
 export class BankAccountV3 {
     "accountHolder": PartyIdentification;
     "accountIdentification": BankAccountV3AccountIdentification;
+    /**
+    * The unique token that identifies the stored bank account details of the counterparty for a payout.
+    */
+    "storedPaymentMethodId"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -30,6 +34,12 @@ export class BankAccountV3 {
             "name": "accountIdentification",
             "baseName": "accountIdentification",
             "type": "BankAccountV3AccountIdentification",
+            "format": ""
+        },
+        {
+            "name": "storedPaymentMethodId",
+            "baseName": "storedPaymentMethodId",
+            "type": "string",
             "format": ""
         }    ];
 

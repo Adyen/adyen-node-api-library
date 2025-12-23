@@ -1,9 +1,13 @@
 export * from "./models";
 
+import { Amount } from "./amount";
 import { BalanceAccountBalanceNotificationRequest } from "./balanceAccountBalanceNotificationRequest";
 import { BalanceNotificationData } from "./balanceNotificationData";
 import { BalancePlatformNotificationResponse } from "./balancePlatformNotificationResponse";
 import { Balances } from "./balances";
+import { ReleaseBlockedBalanceNotificationData } from "./releaseBlockedBalanceNotificationData";
+import { ReleasedBlockedBalanceNotificationRequest } from "./releasedBlockedBalanceNotificationRequest";
+import { ResourceReference } from "./resourceReference";
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -19,13 +23,18 @@ let primitives = [
 
 let enumsMap: Set<string> = new Set<string>([
     "BalanceAccountBalanceNotificationRequest.TypeEnum",
+    "ReleasedBlockedBalanceNotificationRequest.TypeEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
+    "Amount": Amount,
     "BalanceAccountBalanceNotificationRequest": BalanceAccountBalanceNotificationRequest,
     "BalanceNotificationData": BalanceNotificationData,
     "BalancePlatformNotificationResponse": BalancePlatformNotificationResponse,
     "Balances": Balances,
+    "ReleaseBlockedBalanceNotificationData": ReleaseBlockedBalanceNotificationData,
+    "ReleasedBlockedBalanceNotificationRequest": ReleasedBlockedBalanceNotificationRequest,
+    "ResourceReference": ResourceReference,
 }
 
 type MimeTypeDescriptor = {

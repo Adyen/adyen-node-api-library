@@ -29,6 +29,10 @@ export class SamsungPayDetails {
     */
     "samsungPayToken": string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     "storedPaymentMethodId"?: string;
@@ -67,6 +71,12 @@ export class SamsungPayDetails {
             "format": ""
         },
         {
+            "name": "sdkData",
+            "baseName": "sdkData",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
             "type": "string",
@@ -90,7 +100,8 @@ export class SamsungPayDetails {
 export namespace SamsungPayDetails {
     export enum FundingSourceEnum {
         Credit = 'credit',
-        Debit = 'debit'
+        Debit = 'debit',
+        Prepaid = 'prepaid'
     }
     export enum TypeEnum {
         Samsungpay = 'samsungpay'

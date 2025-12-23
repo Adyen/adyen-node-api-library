@@ -18,6 +18,7 @@ import { CartesBancairesInfo } from "./cartesBancairesInfo";
 import { ClearpayInfo } from "./clearpayInfo";
 import { DinersInfo } from "./dinersInfo";
 import { GenericPmWithTdiInfo } from "./genericPmWithTdiInfo";
+import { GivexInfo } from "./givexInfo";
 import { GooglePayInfo } from "./googlePayInfo";
 import { JCBInfo } from "./jCBInfo";
 import { KlarnaInfo } from "./klarnaInfo";
@@ -32,9 +33,11 @@ import { SepaDirectDebitInfo } from "./sepaDirectDebitInfo";
 import { SodexoInfo } from "./sodexoInfo";
 import { SofortInfo } from "./sofortInfo";
 import { StarInfo } from "./starInfo";
+import { SvsInfo } from "./svsInfo";
 import { SwishInfo } from "./swishInfo";
 import { TicketInfo } from "./ticketInfo";
 import { TwintInfo } from "./twintInfo";
+import { ValuelinkInfo } from "./valuelinkInfo";
 import { VippsInfo } from "./vippsInfo";
 import { WeChatPayInfo } from "./weChatPayInfo";
 import { WeChatPayPosInfo } from "./weChatPayPosInfo";
@@ -80,6 +83,7 @@ export class PaymentMethod {
     */
     "enabled"?: boolean;
     "girocard"?: GenericPmWithTdiInfo | null;
+    "givex"?: GivexInfo | null;
     "googlePay"?: GooglePayInfo | null;
     /**
     * The identifier of the resource.
@@ -115,6 +119,7 @@ export class PaymentMethod {
     * The unique identifier of the store for which to configure the payment method, if any.
     */
     "storeIds"?: Array<string>;
+    "svs"?: SvsInfo | null;
     "swish"?: SwishInfo | null;
     "ticket"?: TicketInfo | null;
     "twint"?: TwintInfo | null;
@@ -122,6 +127,7 @@ export class PaymentMethod {
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
     */
     "type"?: string;
+    "valuelink"?: ValuelinkInfo | null;
     /**
     * Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
     */
@@ -263,6 +269,12 @@ export class PaymentMethod {
             "format": ""
         },
         {
+            "name": "givex",
+            "baseName": "givex",
+            "type": "GivexInfo | null",
+            "format": ""
+        },
+        {
             "name": "googlePay",
             "baseName": "googlePay",
             "type": "GooglePayInfo | null",
@@ -401,6 +413,12 @@ export class PaymentMethod {
             "format": ""
         },
         {
+            "name": "svs",
+            "baseName": "svs",
+            "type": "SvsInfo | null",
+            "format": ""
+        },
+        {
             "name": "swish",
             "baseName": "swish",
             "type": "SwishInfo | null",
@@ -422,6 +440,12 @@ export class PaymentMethod {
             "name": "type",
             "baseName": "type",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "valuelink",
+            "baseName": "valuelink",
+            "type": "ValuelinkInfo | null",
             "format": ""
         },
         {
