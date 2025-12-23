@@ -19,6 +19,7 @@ import { ApiCredential } from "../../typings/management/models";
 import { CreateApiCredentialResponse } from "../../typings/management/models";
 import { CreateMerchantApiCredentialRequest } from "../../typings/management/models";
 import { ListMerchantApiCredentialsResponse } from "../../typings/management/models";
+import { RestServiceError } from "../../typings/management/models";
 import { UpdateMerchantApiCredentialRequest } from "../../typings/management/models";
 
 /**

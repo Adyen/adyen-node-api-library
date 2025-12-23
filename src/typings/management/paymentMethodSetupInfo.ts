@@ -18,6 +18,7 @@ import { CartesBancairesInfo } from "./cartesBancairesInfo";
 import { ClearpayInfo } from "./clearpayInfo";
 import { DinersInfo } from "./dinersInfo";
 import { GenericPmWithTdiInfo } from "./genericPmWithTdiInfo";
+import { GivexInfo } from "./givexInfo";
 import { GooglePayInfo } from "./googlePayInfo";
 import { JCBInfo } from "./jCBInfo";
 import { KlarnaInfo } from "./klarnaInfo";
@@ -32,9 +33,11 @@ import { SepaDirectDebitInfo } from "./sepaDirectDebitInfo";
 import { SodexoInfo } from "./sodexoInfo";
 import { SofortInfo } from "./sofortInfo";
 import { StarInfo } from "./starInfo";
+import { SvsInfo } from "./svsInfo";
 import { SwishInfo } from "./swishInfo";
 import { TicketInfo } from "./ticketInfo";
 import { TwintInfo } from "./twintInfo";
+import { ValuelinkInfo } from "./valuelinkInfo";
 import { VippsInfo } from "./vippsInfo";
 import { WeChatPayInfo } from "./weChatPayInfo";
 import { WeChatPayPosInfo } from "./weChatPayPosInfo";
@@ -72,6 +75,7 @@ export class PaymentMethodSetupInfo {
     "eft_directdebit_CA"?: GenericPmWithTdiInfo | null;
     "eftpos_australia"?: GenericPmWithTdiInfo | null;
     "girocard"?: GenericPmWithTdiInfo | null;
+    "givex"?: GivexInfo | null;
     "googlePay"?: GooglePayInfo | null;
     "ideal"?: GenericPmWithTdiInfo | null;
     "interac_card"?: GenericPmWithTdiInfo | null;
@@ -103,6 +107,7 @@ export class PaymentMethodSetupInfo {
     * The unique identifier of the store for which to configure the payment method, if any.
     */
     "storeIds"?: Array<string>;
+    "svs"?: SvsInfo | null;
     "swish"?: SwishInfo | null;
     "ticket"?: TicketInfo | null;
     "twint"?: TwintInfo | null;
@@ -110,6 +115,7 @@ export class PaymentMethodSetupInfo {
     * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
     */
     "type": PaymentMethodSetupInfo.TypeEnum;
+    "valuelink"?: ValuelinkInfo | null;
     "vipps"?: VippsInfo | null;
     "visa"?: GenericPmWithTdiInfo | null;
     "wechatpay"?: WeChatPayInfo | null;
@@ -232,6 +238,12 @@ export class PaymentMethodSetupInfo {
             "name": "girocard",
             "baseName": "girocard",
             "type": "GenericPmWithTdiInfo | null",
+            "format": ""
+        },
+        {
+            "name": "givex",
+            "baseName": "givex",
+            "type": "GivexInfo | null",
             "format": ""
         },
         {
@@ -367,6 +379,12 @@ export class PaymentMethodSetupInfo {
             "format": ""
         },
         {
+            "name": "svs",
+            "baseName": "svs",
+            "type": "SvsInfo | null",
+            "format": ""
+        },
+        {
             "name": "swish",
             "baseName": "swish",
             "type": "SwishInfo | null",
@@ -388,6 +406,12 @@ export class PaymentMethodSetupInfo {
             "name": "type",
             "baseName": "type",
             "type": "PaymentMethodSetupInfo.TypeEnum",
+            "format": ""
+        },
+        {
+            "name": "valuelink",
+            "baseName": "valuelink",
+            "type": "ValuelinkInfo | null",
             "format": ""
         },
         {
@@ -455,6 +479,7 @@ export namespace PaymentMethodSetupInfo {
         BaneseCardPrepaid = 'banese_card_prepaid',
         Bcmc = 'bcmc',
         Blik = 'blik',
+        BlikPos = 'blik_pos',
         BrSchemes = 'br_schemes',
         Cartebancaire = 'cartebancaire',
         Clearpay = 'clearpay',
@@ -481,6 +506,7 @@ export namespace PaymentMethodSetupInfo {
         Elocredit = 'elocredit',
         Elodebit = 'elodebit',
         Girocard = 'girocard',
+        Givex = 'givex',
         Googlepay = 'googlepay',
         GreenCard = 'green_card',
         GreenCardCredit = 'green_card_credit',
@@ -495,6 +521,7 @@ export namespace PaymentMethodSetupInfo {
         Jcb = 'jcb',
         Klarna = 'klarna',
         KlarnaAccount = 'klarna_account',
+        KlarnaB2b = 'klarna_b2b',
         KlarnaPaynow = 'klarna_paynow',
         LeCard = 'le_card',
         LeCardCredit = 'le_card_credit',
@@ -536,6 +563,7 @@ export namespace PaymentMethodSetupInfo {
         Sepadirectdebit = 'sepadirectdebit',
         Sodexo = 'sodexo',
         Star = 'star',
+        Svs = 'svs',
         Swish = 'swish',
         Ticket = 'ticket',
         TodoGiftcard = 'todo_giftcard',
@@ -548,6 +576,7 @@ export namespace PaymentMethodSetupInfo {
         UpBrazilPrepaid = 'up_brazil_prepaid',
         ValeRefeicao = 'vale_refeicao',
         ValeRefeicaoPrepaid = 'vale_refeicao_prepaid',
+        Valuelink = 'valuelink',
         VegasCard = 'vegas_card',
         VegasCardCredit = 'vegas_card_credit',
         VegasCardDebit = 'vegas_card_debit',

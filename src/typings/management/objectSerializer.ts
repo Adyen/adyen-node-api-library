@@ -53,10 +53,12 @@ import { DataCenter } from "./dataCenter";
 import { DinersInfo } from "./dinersInfo";
 import { EventUrl } from "./eventUrl";
 import { ExternalTerminalAction } from "./externalTerminalAction";
+import { ForceRebootDetails } from "./forceRebootDetails";
 import { GenerateApiKeyResponse } from "./generateApiKeyResponse";
 import { GenerateClientKeyResponse } from "./generateClientKeyResponse";
 import { GenerateHmacKeyResponse } from "./generateHmacKeyResponse";
 import { GenericPmWithTdiInfo } from "./genericPmWithTdiInfo";
+import { GivexInfo } from "./givexInfo";
 import { GooglePayInfo } from "./googlePayInfo";
 import { Gratuity } from "./gratuity";
 import { Hardware } from "./hardware";
@@ -87,6 +89,7 @@ import { Merchant } from "./merchant";
 import { MerchantLinks } from "./merchantLinks";
 import { MinorUnitsMonetaryValue } from "./minorUnitsMonetaryValue";
 import { ModelFile } from "./modelFile";
+import { Moto } from "./moto";
 import { Name } from "./name";
 import { Name2 } from "./name2";
 import { Nexo } from "./nexo";
@@ -145,6 +148,7 @@ import { StoreSplitConfiguration } from "./storeSplitConfiguration";
 import { SubMerchantData } from "./subMerchantData";
 import { SupportedCardTypes } from "./supportedCardTypes";
 import { Surcharge } from "./surcharge";
+import { SvsInfo } from "./svsInfo";
 import { SwishInfo } from "./swishInfo";
 import { TapToPay } from "./tapToPay";
 import { Terminal } from "./terminal";
@@ -194,6 +198,7 @@ import { UploadAndroidAppResponse } from "./uploadAndroidAppResponse";
 import { UploadAndroidCertificateResponse } from "./uploadAndroidCertificateResponse";
 import { Url } from "./url";
 import { User } from "./user";
+import { ValuelinkInfo } from "./valuelinkInfo";
 import { VippsInfo } from "./vippsInfo";
 import { WeChatPayInfo } from "./weChatPayInfo";
 import { WeChatPayPosInfo } from "./weChatPayPosInfo";
@@ -215,6 +220,7 @@ let primitives = [
 
 let enumsMap: Set<string> = new Set<string>([
     "AccelInfo.ProcessingTypeEnum",
+    "AffirmInfo.PricePlanEnum",
     "AmexInfo.ServiceLevelEnum",
     "AndroidApp.StatusEnum",
     "Connectivity.SimcardStatusEnum",
@@ -226,6 +232,8 @@ let enumsMap: Set<string> = new Set<string>([
     "CreateMerchantWebhookRequest.EncryptionProtocolEnum",
     "CreateMerchantWebhookRequest.NetworkTypeEnum",
     "DinersInfo.ServiceLevelEnum",
+    "ForceRebootDetails.TypeEnum",
+    "GivexInfo.PaymentFlowEnum",
     "InstallAndroidAppDetails.TypeEnum",
     "InstallAndroidCertificateDetails.TypeEnum",
     "JCBInfo.ServiceLevelEnum",
@@ -289,6 +297,7 @@ let enumsMap: Set<string> = new Set<string>([
     "UpdateSplitConfigurationLogicRequest.SurchargeEnum",
     "UpdateSplitConfigurationLogicRequest.TipEnum",
     "UpdateStoreRequest.StatusEnum",
+    "ValuelinkInfo.PinSupportEnum",
     "Webhook.CommunicationFormatEnum",
     "Webhook.EncryptionProtocolEnum",
     "Webhook.FilterMerchantAccountTypeEnum",
@@ -349,10 +358,12 @@ let typeMap: {[index: string]: any} = {
     "DinersInfo": DinersInfo,
     "EventUrl": EventUrl,
     "ExternalTerminalAction": ExternalTerminalAction,
+    "ForceRebootDetails": ForceRebootDetails,
     "GenerateApiKeyResponse": GenerateApiKeyResponse,
     "GenerateClientKeyResponse": GenerateClientKeyResponse,
     "GenerateHmacKeyResponse": GenerateHmacKeyResponse,
     "GenericPmWithTdiInfo": GenericPmWithTdiInfo,
+    "GivexInfo": GivexInfo,
     "GooglePayInfo": GooglePayInfo,
     "Gratuity": Gratuity,
     "Hardware": Hardware,
@@ -383,6 +394,7 @@ let typeMap: {[index: string]: any} = {
     "MerchantLinks": MerchantLinks,
     "MinorUnitsMonetaryValue": MinorUnitsMonetaryValue,
     "ModelFile": ModelFile,
+    "Moto": Moto,
     "Name": Name,
     "Name2": Name2,
     "Nexo": Nexo,
@@ -441,6 +453,7 @@ let typeMap: {[index: string]: any} = {
     "SubMerchantData": SubMerchantData,
     "SupportedCardTypes": SupportedCardTypes,
     "Surcharge": Surcharge,
+    "SvsInfo": SvsInfo,
     "SwishInfo": SwishInfo,
     "TapToPay": TapToPay,
     "Terminal": Terminal,
@@ -490,6 +503,7 @@ let typeMap: {[index: string]: any} = {
     "UploadAndroidCertificateResponse": UploadAndroidCertificateResponse,
     "Url": Url,
     "User": User,
+    "ValuelinkInfo": ValuelinkInfo,
     "VippsInfo": VippsInfo,
     "WeChatPayInfo": WeChatPayInfo,
     "WeChatPayPosInfo": WeChatPayPosInfo,

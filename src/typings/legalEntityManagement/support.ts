@@ -12,7 +12,7 @@ import { PhoneNumber } from "./phoneNumber";
 
 export class Support {
     /**
-    * The support email address of the legal entity.
+    * The support email address of the legal entity. Required if you have a platform setup.
     */
     "email"?: string;
     "phone"?: PhoneNumber | null;

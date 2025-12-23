@@ -8,6 +8,7 @@
  */
 
 import { Address } from "./address";
+import { FundingInstrument } from "./fundingInstrument";
 
 
 export class UltimatePartyIdentification {
@@ -28,6 +29,7 @@ export class UltimatePartyIdentification {
     * The full name of the entity that owns the bank account or card.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" \' and space.  Required when `category` is **bank**.
     */
     "fullName"?: string;
+    "fundingInstrument"?: FundingInstrument | null;
     /**
     * The last name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when `type` is **individual**. - Required when `category` is **card**.
     */
@@ -78,6 +80,12 @@ export class UltimatePartyIdentification {
             "name": "fullName",
             "baseName": "fullName",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "fundingInstrument",
+            "baseName": "fundingInstrument",
+            "type": "FundingInstrument | null",
             "format": ""
         },
         {
