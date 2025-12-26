@@ -18,7 +18,7 @@
  */
 
 import { ClientRequest, IncomingHttpHeaders, IncomingMessage, request as httpRequest } from "http";
-import { Agent, AgentOptions, request as httpsRequest } from "https";
+import { Agent, AgentOptions, globalAgent, request as httpsRequest } from "https";
 import { HttpsProxyAgent } from "https-proxy-agent";
 
 import * as fs from "fs";
@@ -35,9 +35,11 @@ import { IRequest } from "../typings/requestOptions";
 import checkServerIdentity from "../helpers/checkServerIdentity";
 
 class HttpURLConnectionClient implements ClientInterface {
+    private static readonly AGENT_INACTIVITY_TIMEOUT = 5000;
     private static CHARSET = "utf-8";
     public proxy?: AgentOptions;
     private agentOptions!: AgentOptions;
+    private agents: Record<string, Agent> = {};
 
     /**
      * Sends an HTTP request to the specified endpoint with the provided JSON payload and configuration.
@@ -64,9 +66,7 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.headers ??= {};
         requestOptions.timeout = config.connectionTimeoutMillis;
 
-        if (config.certificatePath) {
-            this.installCertificateVerifier(config.certificatePath);
-        }
+        const agent = this.selectAgent(config.certificatePath);
 
         const apiKey = config.apiKey;
 
@@ -85,13 +85,13 @@ class HttpURLConnectionClient implements ClientInterface {
 
         requestOptions.headers[ApiConstants.CONTENT_TYPE] = ApiConstants.APPLICATION_JSON_TYPE;
 
-        const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
+        const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, agent, config.applicationName);
 
         return this.doRequest(httpConnection, json, config.enable308Redirect ?? true);
     }
 
     // create Request object
-    private createRequest(endpoint: string, requestOptions: IRequest.Options, applicationName?: string): ClientRequest {
+    private createRequest(endpoint: string, requestOptions: IRequest.Options, agent: Agent, applicationName?: string): ClientRequest {
         if (!requestOptions.headers) {
             requestOptions.headers = {};
         }
@@ -117,6 +117,18 @@ class HttpURLConnectionClient implements ClientInterface {
         } else {
             requestOptions.agent = new Agent(this.agentOptions);
         }
+
+        if (this.proxy && this.proxy.host) {
+            const { host, port, ...options } = this.proxy;
+            requestOptions.agent = new HttpsProxyAgent({
+                host,
+                port: port || 443,
+                ...options,
+            });
+        } else {
+            requestOptions.agent = agent;
+        }
+
 
         requestOptions.headers["Cache-Control"] = "no-cache";
 
@@ -264,27 +276,6 @@ class HttpURLConnectionClient implements ClientInterface {
         });
     }
 
-    private installCertificateVerifier(terminalCertificatePath: string): void | Promise<HttpClientException> {
-        try {
-            if (terminalCertificatePath == "unencrypted") {
-                this.agentOptions = {
-                    rejectUnauthorized: false
-                };
-            } else {
-                const certificateInput = fs.readFileSync(terminalCertificatePath);
-                this.agentOptions = {
-                    ca: certificateInput,
-                    checkServerIdentity,
-                };
-            }
-
-        } catch (e) {
-            const message = e instanceof Error ? e.message : "undefined";
-            return Promise.reject(new HttpClientException({ message: `Error loading certificate from path: ${message}` }));
-        }
-
-    }
-
     private verifyLocation(location: string): boolean {
         try {
             const url = new URL(location);
@@ -295,6 +286,64 @@ class HttpURLConnectionClient implements ClientInterface {
             return false;
         }
     }
+
+    /**
+     * Selects or creates an HTTPS Agent for a given terminal certificate path.
+     *
+     * - If no `terminalCertificatePath` is provided, the global HTTPS agent is returned.
+     * - If an agent for the given path already exists in the cache, it is reused.
+     * - Otherwise, a new agent is created with:
+     *   - Keep-alive enabled
+     *   - LIFO socket scheduling (to reduce stale connection reuse)
+     *   - A configurable inactivity timeout
+     *   - Either:
+     *     - Certificate validation disabled if path is `"unencrypted"`, or
+     *     - A custom CA loaded from the provided certificate file and
+     *       `checkServerIdentity` enabled for hostname verification.
+     *
+     * @param {string} [terminalCertificatePath] - Path to a terminal certificate file,
+     *   or the literal string `"unencrypted"` to disable TLS verification.
+     *   If omitted, the global agent will be returned.
+     *
+     * @returns {Agent} The HTTPS agent
+     *
+     * @throws {HttpClientException} When an error occurs
+     */
+
+    private selectAgent(terminalCertificatePath?: string): Agent {
+        if (!terminalCertificatePath) {
+            return globalAgent;
+        }
+
+        if (this.agents[terminalCertificatePath]) {
+            return this.agents[terminalCertificatePath];
+        }
+
+        const agentOptions: AgentOptions = {
+            keepAlive: true,
+            scheduling: "lifo",                                         // re-use latest connections sockets
+            timeout: HttpURLConnectionClient.AGENT_INACTIVITY_TIMEOUT,  // inactivity timeout for connection sockets
+        };
+
+        if (terminalCertificatePath === "unencrypted") {
+            agentOptions.rejectUnauthorized = false;
+        } else {
+            try {
+                agentOptions.ca = fs.readFileSync(terminalCertificatePath);
+                agentOptions.checkServerIdentity = checkServerIdentity;
+            } catch (e) {
+                const message = e instanceof Error ? e.message : "undefined";
+                throw new HttpClientException({
+                    message: `Error loading certificate from path: ${message}`,
+                });
+            }
+        }
+
+        const newAgent = new Agent(agentOptions);
+        this.agents[terminalCertificatePath] = newAgent;
+        return newAgent;
+    }
+
 }
 
 
