@@ -47,6 +47,7 @@ To test new features or changes to the templates, you must run the generation pr
 - **`src/service.ts`**: The base class for all API services, containing the generic HTTP client logic.
 - **`src/services/`**: This package contains the generated service classes (e.g., `CheckoutAPI`, `Management`) that expose methods for specific API endpoints.
 - **`src/typings/`**: This package contains the generated TypeScript types (models) used for API requests and responses.
+  - `src/typings/index.ts`: Exposes all models, so when new services are added this file must also be updated.
 
 ## Development Workflow
 
