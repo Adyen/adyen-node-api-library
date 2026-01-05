@@ -130,7 +130,7 @@ The method descriptions contain an example of the possible values you can send t
 
 You can also include custom HTTP headers in your request by using the `headers` property within `IRequest.Options`. This can be useful for sending additional metadata or authentication details that are not part of the standard API request body or query parameters.
 
-```javascript
+```typescript
 const requestOptions: IRequest.Options = {
     headers: {
         "X-Custom-Header": "MyValue",
