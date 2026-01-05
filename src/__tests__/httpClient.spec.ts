@@ -159,6 +159,32 @@ describe("HTTP Client", function (): void {
         expect(response).toEqual<binlookup.ThreeDSAvailabilityResponse>(threeDSAvailabilitySuccessResponse);
     });
 
+    test("should make a request with custom headers", async function (): Promise<void> {
+        const client = createClient();
+        const checkout = new CheckoutAPI(client);
+
+        const customHeaderKey = "X-Custom-Header";
+        const customHeaderValue = "my-custom-value";
+
+        const scope = nock("https://checkout-test.adyen.com/v71", {
+            reqheaders: {
+                [customHeaderKey]: (headerValue) => {
+                    expect(headerValue).toBeTruthy();
+                    expect(headerValue).toEqual(customHeaderValue);
+                    return true;
+                },
+            },
+        });
+
+        scope.post("/paymentMethods").reply(200, paymentMethodsSuccess);
+        const requestOptions = { headers: { [customHeaderKey]: customHeaderValue } };
+
+        const response = await checkout.PaymentsApi.paymentMethods({ "merchantAccount": "testMerchantAccount" }, requestOptions);
+
+        expect(response.paymentMethods).toBeTruthy();
+        expect(scope.isDone()).toBe(true);
+    });
+
     test("should add default applicationInfo to the headers", async (): Promise<void> => {
         const client = createClient();
         const checkout = new CheckoutAPI(client);
