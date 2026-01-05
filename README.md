@@ -137,7 +137,9 @@ const requestOptions: IRequest.Options = {
         "Another-Custom-Header": "AnotherValue"
     }
 };
-await checkoutApi.PaymentsApi.payments(paymentRequest, requestOptions);
+checkoutApi.PaymentsApi.payments(paymentRequest, requestOptions)
+  .then(response => console.log("Payment successful:", response))
+  .catch(error => console.error("Payment failed:", error));
 ```
 ```javascript
 const requestOptions: IRequest.Options = {
