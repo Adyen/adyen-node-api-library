@@ -125,8 +125,20 @@ checkoutApi.PaymentsApi.payments(paymentRequest)
   .then(paymentResponse => console.log(paymentResponse.pspReference))
   .catch(error => console.log(error));
 ```
-If you want to pass query string parameters, you can use the `params` field from [IRequest](/src/typings/requestOptions.ts) (also used for idempotency-key and other header fields). 
+If you want to pass query string parameters, you can use the `params` field from [IRequest](/src/typings/requestOptions.ts) (also used for idempotency-key and other header fields). The `IRequest.Options` interface also allows you to add custom HTTP headers using the `headers` property.
 The method descriptions contain an example of the possible values you can send to the API for the query parameters, just as stated in the API explorer.
+
+You can also include custom HTTP headers in your request by using the `headers` property within `IRequest.Options`. This can be useful for sending additional metadata or authentication details that are not part of the standard API request body or query parameters.
+
+```javascript
+const requestOptions: IRequest.Options = {
+    headers: {
+        "X-Custom-Header": "MyValue",
+        "Another-Custom-Header": "AnotherValue"
+    }
+};
+await checkoutApi.PaymentsApi.payments(paymentRequest, requestOptions);
+```
 ```javascript
 const requestOptions: IRequest.Options = {
     params: {
