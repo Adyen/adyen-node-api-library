@@ -159,7 +159,7 @@ describe("HTTP Client", function (): void {
         expect(response).toEqual<binlookup.ThreeDSAvailabilityResponse>(threeDSAvailabilitySuccessResponse);
     });
 
-    test("should make a request with custom headers", async function (): Promise<void> {
+    test("should make a request with custom headers", async (): Promise<void> => {
         const client = createClient();
         const checkout = new CheckoutAPI(client);
 
