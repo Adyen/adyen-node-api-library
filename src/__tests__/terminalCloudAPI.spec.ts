@@ -5,7 +5,7 @@ import { syncRefund, syncRes, syncResEventNotification, syncResEventNotification
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
 import { terminal } from "../typings";
-import { EnvironmentEnum } from "../config";
+import { EnvironmentEnum, RegionEnum } from "../config";
 import HttpClientException from "../httpClient/httpClientException";
 
 let client: Client;
@@ -27,6 +27,26 @@ afterEach((): void => {
 });
 
 describe("Terminal Cloud API", (): void => {
+  test("should throw error when region is not specified", (): void => {
+    const clientWithoutRegion = new Client({
+      apiKey: "YOUR_API_KEY",
+      environment: EnvironmentEnum.TEST
+    });
+
+    expect(() => new TerminalCloudAPI(clientWithoutRegion))
+      .toThrow("Region is required for Terminal API");
+  });
+
+  test("should initialize successfully with region", (): void => {
+    const clientWithRegion = new Client({
+      apiKey: "YOUR_API_KEY",
+      environment: EnvironmentEnum.TEST,
+      region: RegionEnum.EU
+    });
+
+    expect(() => new TerminalCloudAPI(clientWithRegion)).not.toThrow();
+  });
+
   test("should make an async payment request", async (): Promise<void> => {
     scope.post("/async").reply(200, asyncRes);
 
@@ -141,7 +161,7 @@ describe("Terminal Cloud API", (): void => {
 
     const terminalApiHost = "https://terminal-api-test.adyen.com";
 
-    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST });
+    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST, region: RegionEnum.EU });
     const terminalCloudAPI = new TerminalCloudAPI(client);
 
     const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
@@ -168,7 +188,7 @@ describe("Terminal Cloud API", (): void => {
   test("sync should validate 308 location header", async (): Promise<void> => {
     const terminalApiHost = "https://terminal-api-test.adyen.com";
 
-    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST });
+    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST, region: RegionEnum.EU });
 
     const terminalCloudAPI = new TerminalCloudAPI(client);
 
@@ -203,10 +223,9 @@ describe("Terminal Cloud API", (): void => {
   });
 
   test("async should skip 308 redirect", async (): Promise<void> => {
-    
     const terminalApiHost = "https://terminal-api-test.adyen.com";
 
-    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST, enable308Redirect: false });
+    const client = new Client({ apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST, region: RegionEnum.EU, enable308Redirect: false });
     const terminalCloudAPI = new TerminalCloudAPI(client);
 
     const terminalAPIPaymentRequest = createTerminalAPIPaymentRequest();
