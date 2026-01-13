@@ -12,6 +12,7 @@ import { Connectivity } from "./connectivity";
 import { Gratuity } from "./gratuity";
 import { Hardware } from "./hardware";
 import { Localization } from "./localization";
+import { Moto } from "./moto";
 import { Nexo } from "./nexo";
 import { OfflineProcessing } from "./offlineProcessing";
 import { Opi } from "./opi";
@@ -40,6 +41,7 @@ export class TerminalSettings {
     "gratuities"?: Array<Gratuity> | null;
     "hardware"?: Hardware | null;
     "localization"?: Localization | null;
+    "moto"?: Moto | null;
     "nexo"?: Nexo | null;
     "offlineProcessing"?: OfflineProcessing | null;
     "opi"?: Opi | null;
@@ -91,6 +93,12 @@ export class TerminalSettings {
             "name": "localization",
             "baseName": "localization",
             "type": "Localization | null",
+            "format": ""
+        },
+        {
+            "name": "moto",
+            "baseName": "moto",
+            "type": "Moto | null",
             "format": ""
         },
         {

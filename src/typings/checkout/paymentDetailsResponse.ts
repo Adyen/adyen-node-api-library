@@ -11,6 +11,7 @@ import { Amount } from "./amount";
 import { CheckoutOrderResponse } from "./checkoutOrderResponse";
 import { CheckoutThreeDS2Action } from "./checkoutThreeDS2Action";
 import { FraudResult } from "./fraudResult";
+import { PaymentValidationsResponse } from "./paymentValidationsResponse";
 import { ResponsePaymentMethod } from "./responsePaymentMethod";
 import { ThreeDS2ResponseData } from "./threeDS2ResponseData";
 import { ThreeDS2Result } from "./threeDS2Result";
@@ -34,6 +35,7 @@ export class PaymentDetailsResponse {
     "merchantReference"?: string;
     "order"?: CheckoutOrderResponse | null;
     "paymentMethod"?: ResponsePaymentMethod | null;
+    "paymentValidations"?: PaymentValidationsResponse | null;
     /**
     * Adyen\'s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
     */
@@ -112,6 +114,12 @@ export class PaymentDetailsResponse {
             "name": "paymentMethod",
             "baseName": "paymentMethod",
             "type": "ResponsePaymentMethod | null",
+            "format": ""
+        },
+        {
+            "name": "paymentValidations",
+            "baseName": "paymentValidations",
+            "type": "PaymentValidationsResponse | null",
             "format": ""
         },
         {

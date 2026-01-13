@@ -18,6 +18,10 @@ export class EBankingFinlandDetails {
     */
     "issuer"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * **ebanking_FI**
     */
     "type": EBankingFinlandDetails.TypeEnum;
@@ -36,6 +40,12 @@ export class EBankingFinlandDetails {
         {
             "name": "issuer",
             "baseName": "issuer",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

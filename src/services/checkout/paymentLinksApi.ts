@@ -17,6 +17,7 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
 import { PaymentLinkRequest } from "../../typings/checkout/models";
 import { PaymentLinkResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
 import { UpdatePaymentLinkRequest } from "../../typings/checkout/models";
 
 /**

@@ -10,49 +10,13 @@
 
 export class DeviceInfo {
     /**
-    * The technology used to capture the card details.
-    */
-    "cardCaptureTechnology"?: string;
-    /**
-    * The name of the device.
-    */
-    "deviceName"?: string;
-    /**
-    * The form factor of the device to be provisioned.
+    * The type of device used to provision the network token.
     */
     "formFactor"?: string;
     /**
-    * The IMEI number of the device being provisioned.
-    */
-    "imei"?: string;
-    /**
-    * The 2-digit device type provided on the ISO messages that the token is being provisioned to.
-    */
-    "isoDeviceType"?: string;
-    /**
-    * The MSISDN of the device being provisioned.
-    */
-    "msisdn"?: string;
-    /**
-    * The name of the device operating system.
+    * The operating system of the device used to provision the network token.
     */
     "osName"?: string;
-    /**
-    * The version of the device operating system.
-    */
-    "osVersion"?: string;
-    /**
-    * Different types of payments supported for the network token.
-    */
-    "paymentTypes"?: Array<string>;
-    /**
-    * The serial number of the device.
-    */
-    "serialNumber"?: string;
-    /**
-    * The architecture or technology used for network token storage.
-    */
-    "storageTechnology"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -60,68 +24,14 @@ export class DeviceInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "cardCaptureTechnology",
-            "baseName": "cardCaptureTechnology",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "deviceName",
-            "baseName": "deviceName",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "formFactor",
             "baseName": "formFactor",
             "type": "string",
             "format": ""
         },
         {
-            "name": "imei",
-            "baseName": "imei",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "isoDeviceType",
-            "baseName": "isoDeviceType",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "msisdn",
-            "baseName": "msisdn",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "osName",
             "baseName": "osName",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "osVersion",
-            "baseName": "osVersion",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "paymentTypes",
-            "baseName": "paymentTypes",
-            "type": "Array<string>",
-            "format": ""
-        },
-        {
-            "name": "serialNumber",
-            "baseName": "serialNumber",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "storageTechnology",
-            "baseName": "storageTechnology",
             "type": "string",
             "format": ""
         }    ];

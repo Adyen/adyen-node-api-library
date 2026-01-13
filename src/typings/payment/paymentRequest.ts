@@ -76,7 +76,7 @@ export class PaymentRequest {
     "fundingSource"?: PaymentRequest.FundingSourceEnum;
     "installments"?: Installments | null;
     /**
-    * The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If not supplied, left empty, or for cross-border transactions, **shopperStatement** is used.  Adyen currently supports the ja-Kana and ja-Hani character set for Visa, Mastercard and JCB payments in Japan using Japanese cards. This character set supports:  * UTF-8 based Katakana, Kanji, capital letters, numbers and special characters.  * Half-width or full-width characters.
+    * The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If this parameter is left empty, not provided, or not applicable (in case of cross-border transactions), then **shopperStatement** is used.  Currently, `localizedShopperStatement` is only supported for payments with Visa, Mastercard, JCB, Diners, and Discover.  **Supported characters**: Hiragana, Katakana, Kanji, and alphanumeric.
     */
     "localizedShopperStatement"?: { [key: string]: string; };
     "mandate"?: Mandate | null;
@@ -529,7 +529,8 @@ export namespace PaymentRequest {
     }
     export enum FundingSourceEnum {
         Credit = 'credit',
-        Debit = 'debit'
+        Debit = 'debit',
+        Prepaid = 'prepaid'
     }
     export enum RecurringProcessingModelEnum {
         CardOnFile = 'CardOnFile',

@@ -18,6 +18,10 @@ export class CellulantDetails {
     */
     "issuer"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * **Cellulant**
     */
     "type"?: CellulantDetails.TypeEnum;
@@ -36,6 +40,12 @@ export class CellulantDetails {
         {
             "name": "issuer",
             "baseName": "issuer",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

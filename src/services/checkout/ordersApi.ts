@@ -21,6 +21,7 @@ import { CancelOrderRequest } from "../../typings/checkout/models";
 import { CancelOrderResponse } from "../../typings/checkout/models";
 import { CreateOrderRequest } from "../../typings/checkout/models";
 import { CreateOrderResponse } from "../../typings/checkout/models";
+import { ServiceError } from "../../typings/checkout/models";
 
 /**
  * API handler for OrdersApi

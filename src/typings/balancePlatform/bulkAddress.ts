@@ -46,6 +46,10 @@ export class BulkAddress {
     */
     "mobile"?: string;
     /**
+    * The recipient’s name (person or contact), for example ‘John Doe’.
+    */
+    "name"?: string;
+    /**
     * The postal code.  Maximum length:  * 5 digits for addresses in the US.  * 10 characters for all other countries.
     */
     "postalCode"?: string;
@@ -114,6 +118,12 @@ export class BulkAddress {
         {
             "name": "mobile",
             "baseName": "mobile",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         },

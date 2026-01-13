@@ -16,6 +16,10 @@ export class CheckoutBankTransferAction {
     */
     "accountNumber"?: string;
     /**
+    * The bank code of the bank transfer.
+    */
+    "bankCode"?: string;
+    /**
     * The name of the account holder.
     */
     "beneficiary"?: string;
@@ -23,6 +27,10 @@ export class CheckoutBankTransferAction {
     * The BIC of the IBAN.
     */
     "bic"?: string;
+    /**
+    * The branch code of the bank transfer.
+    */
+    "branchCode"?: string;
     /**
     * The url to download payment details with.
     */
@@ -73,6 +81,12 @@ export class CheckoutBankTransferAction {
             "format": ""
         },
         {
+            "name": "bankCode",
+            "baseName": "bankCode",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "beneficiary",
             "baseName": "beneficiary",
             "type": "string",
@@ -81,6 +95,12 @@ export class CheckoutBankTransferAction {
         {
             "name": "bic",
             "baseName": "bic",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "branchCode",
+            "baseName": "branchCode",
             "type": "string",
             "format": ""
         },

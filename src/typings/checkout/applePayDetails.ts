@@ -29,6 +29,10 @@ export class ApplePayDetails {
     */
     "recurringDetailReference"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     "storedPaymentMethodId"?: string;
@@ -67,6 +71,12 @@ export class ApplePayDetails {
             "format": ""
         },
         {
+            "name": "sdkData",
+            "baseName": "sdkData",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
             "type": "string",
@@ -90,7 +100,8 @@ export class ApplePayDetails {
 export namespace ApplePayDetails {
     export enum FundingSourceEnum {
         Credit = 'credit',
-        Debit = 'debit'
+        Debit = 'debit',
+        Prepaid = 'prepaid'
     }
     export enum TypeEnum {
         Applepay = 'applepay'

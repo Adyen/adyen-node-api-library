@@ -98,11 +98,11 @@ export class ResponseAdditionalDataCommon {
     */
     "fraudManualReview"?: string;
     /**
-    * The fraud result properties of the payment.
+    * The fraud result properties of the payment. Possible values: * AMBER * GREEN * RED  
     */
     "fraudResultType"?: ResponseAdditionalDataCommon.FraudResultTypeEnum;
     /**
-    * The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are: * veryLow * low * medium * high * veryHigh 
+    * The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. Possible values: * veryLow * low * medium * high * veryHigh  
     */
     "fraudRiskLevel"?: ResponseAdditionalDataCommon.FraudRiskLevelEnum;
     /**
@@ -662,8 +662,9 @@ export class ResponseAdditionalDataCommon {
 
 export namespace ResponseAdditionalDataCommon {
     export enum FraudResultTypeEnum {
+        Amber = 'AMBER',
         Green = 'GREEN',
-        Fraud = 'FRAUD'
+        Red = 'RED'
     }
     export enum FraudRiskLevelEnum {
         VeryLow = 'veryLow',

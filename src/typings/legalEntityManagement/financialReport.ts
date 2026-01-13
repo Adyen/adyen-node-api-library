@@ -24,7 +24,7 @@ export class FinancialReport {
     /**
     * The date the financial data were provided, in YYYY-MM-DD format.
     */
-    "dateOfFinancialData": string;
+    "dateOfFinancialData"?: string;
     /**
     * The number of employees of the business.
     */

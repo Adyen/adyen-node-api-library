@@ -30,6 +30,10 @@ export class PseDetails {
     */
     "identificationType": string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * The payment method type.
     */
     "type"?: PseDetails.TypeEnum;
@@ -66,6 +70,12 @@ export class PseDetails {
         {
             "name": "identificationType",
             "baseName": "identificationType",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

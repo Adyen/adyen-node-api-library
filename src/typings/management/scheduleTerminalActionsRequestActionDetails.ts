@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { ForceRebootDetails } from "./forceRebootDetails";
 import { InstallAndroidAppDetails } from "./installAndroidAppDetails";
 import { InstallAndroidCertificateDetails } from "./installAndroidCertificateDetails";
 import { ReleaseUpdateDetails } from "./releaseUpdateDetails";
@@ -23,7 +24,7 @@ import { UninstallAndroidCertificateDetails } from "./uninstallAndroidCertificat
  * Type
  * @export
  */
-export type ScheduleTerminalActionsRequestActionDetails = InstallAndroidAppDetails | InstallAndroidCertificateDetails | ReleaseUpdateDetails | UninstallAndroidAppDetails | UninstallAndroidCertificateDetails;
+export type ScheduleTerminalActionsRequestActionDetails = ForceRebootDetails | InstallAndroidAppDetails | InstallAndroidCertificateDetails | ReleaseUpdateDetails | UninstallAndroidAppDetails | UninstallAndroidCertificateDetails;
 
 /**
 * @type ScheduleTerminalActionsRequestActionDetailsClass

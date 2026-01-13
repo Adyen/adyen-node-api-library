@@ -32,6 +32,7 @@ import { ExecutionDate } from "./executionDate";
 import { ExternalReason } from "./externalReason";
 import { Fee } from "./fee";
 import { FindTransfersResponse } from "./findTransfersResponse";
+import { FundingInstrument } from "./fundingInstrument";
 import { HKLocalAccountIdentification } from "./hKLocalAccountIdentification";
 import { HULocalAccountIdentification } from "./hULocalAccountIdentification";
 import { IbanAccountIdentification } from "./ibanAccountIdentification";
@@ -122,6 +123,7 @@ let enumsMap: Set<string> = new Set<string>([
     "ConfirmationTrackingData.TypeEnum",
     "DKLocalAccountIdentification.TypeEnum",
     "EstimationTrackingData.TypeEnum",
+    "FundingInstrument.SourceOfFundsEnum",
     "HKLocalAccountIdentification.TypeEnum",
     "HULocalAccountIdentification.TypeEnum",
     "IbanAccountIdentification.TypeEnum",
@@ -216,6 +218,7 @@ let typeMap: {[index: string]: any} = {
     "ExternalReason": ExternalReason,
     "Fee": Fee,
     "FindTransfersResponse": FindTransfersResponse,
+    "FundingInstrument": FundingInstrument,
     "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
