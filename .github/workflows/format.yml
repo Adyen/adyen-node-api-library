@@ -24,5 +24,9 @@ jobs:
           git config user.name AdyenAutomationBot
           git config user.email "${{ secrets.ADYEN_AUTOMATION_BOT_EMAIL }}"
           git add .
-          git commit -m "style(fmt): code formatted" || echo "No changes to commit"
-          git push
+          if ! git diff --staged --quiet; then
+            git commit -m "style(fmt): code formatted"
+            git push
+          else
+            echo "No changes to commit"
+          fi
