@@ -3,7 +3,6 @@ description: 'Runs npm run lint:fix'
 inputs:
   path:
     description: 'Path to the node repository'
-    required: true
     default: '.'
 runs:
   using: 'composite'
