@@ -8,15 +8,15 @@
  */
 
 
-export class DeviceInfo {
+export class BeginScaDeviceRegistrationRequest {
     /**
-    * The type of device used to provision the network token.
+    * The name of the SCA device that you are registering. You can use it to help your users identify the device.
     */
-    "formFactor"?: string;
+    "name": string;
     /**
-    * The operating system of the device used to provision the network token.
+    * A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen\'s authentication SDK.
     */
-    "osName"?: string;
+    "sdkOutput": string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,20 +24,20 @@ export class DeviceInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "formFactor",
-            "baseName": "formFactor",
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         },
         {
-            "name": "osName",
-            "baseName": "osName",
+            "name": "sdkOutput",
+            "baseName": "sdkOutput",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return DeviceInfo.attributeTypeMap;
+        return BeginScaDeviceRegistrationRequest.attributeTypeMap;
     }
 
     public constructor() {

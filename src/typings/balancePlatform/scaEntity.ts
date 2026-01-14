@@ -7,16 +7,15 @@
  * Do not edit this class manually.
  */
 
+import { ScaEntityType } from "./scaEntityType";
 
-export class DeviceInfo {
+
+export class ScaEntity {
     /**
-    * The type of device used to provision the network token.
+    * The unique identifier of the entity.
     */
-    "formFactor"?: string;
-    /**
-    * The operating system of the device used to provision the network token.
-    */
-    "osName"?: string;
+    "id": string;
+    "type": ScaEntityType;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,23 +23,25 @@ export class DeviceInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "formFactor",
-            "baseName": "formFactor",
+            "name": "id",
+            "baseName": "id",
             "type": "string",
             "format": ""
         },
         {
-            "name": "osName",
-            "baseName": "osName",
-            "type": "string",
+            "name": "type",
+            "baseName": "type",
+            "type": "ScaEntityType",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return DeviceInfo.attributeTypeMap;
+        return ScaEntity.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
+export namespace ScaEntity {
+}

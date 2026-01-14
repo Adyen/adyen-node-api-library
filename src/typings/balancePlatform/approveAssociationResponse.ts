@@ -7,16 +7,14 @@
  * Do not edit this class manually.
  */
 
+import { Association } from "./association";
 
-export class DeviceInfo {
+
+export class ApproveAssociationResponse {
     /**
-    * The type of device used to provision the network token.
+    * The list of associations.
     */
-    "formFactor"?: string;
-    /**
-    * The operating system of the device used to provision the network token.
-    */
-    "osName"?: string;
+    "scaAssociations": Array<Association>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,20 +22,14 @@ export class DeviceInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "formFactor",
-            "baseName": "formFactor",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "osName",
-            "baseName": "osName",
-            "type": "string",
+            "name": "scaAssociations",
+            "baseName": "scaAssociations",
+            "type": "Array<Association>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return DeviceInfo.attributeTypeMap;
+        return ApproveAssociationResponse.attributeTypeMap;
     }
 
     public constructor() {

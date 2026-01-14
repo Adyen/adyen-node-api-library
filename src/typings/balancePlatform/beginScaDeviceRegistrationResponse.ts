@@ -7,16 +7,15 @@
  * Do not edit this class manually.
  */
 
+import { ScaDevice } from "./scaDevice";
 
-export class DeviceInfo {
+
+export class BeginScaDeviceRegistrationResponse {
+    "scaDevice"?: ScaDevice | null;
     /**
-    * The type of device used to provision the network token.
+    * A string that you must pass to the authentication SDK to continue with the registration process.
     */
-    "formFactor"?: string;
-    /**
-    * The operating system of the device used to provision the network token.
-    */
-    "osName"?: string;
+    "sdkInput"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,20 +23,20 @@ export class DeviceInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "formFactor",
-            "baseName": "formFactor",
-            "type": "string",
+            "name": "scaDevice",
+            "baseName": "scaDevice",
+            "type": "ScaDevice | null",
             "format": ""
         },
         {
-            "name": "osName",
-            "baseName": "osName",
+            "name": "sdkInput",
+            "baseName": "sdkInput",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return DeviceInfo.attributeTypeMap;
+        return BeginScaDeviceRegistrationResponse.attributeTypeMap;
     }
 
     public constructor() {
