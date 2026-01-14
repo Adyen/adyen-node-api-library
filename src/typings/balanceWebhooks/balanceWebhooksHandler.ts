@@ -14,7 +14,8 @@ import { balanceWebhooks } from "..";
  * Allows generic handling of configuration-related webhook events.
  */
 export type GenericWebhook = 
-    | balanceWebhooks.BalanceAccountBalanceNotificationRequest;
+    | balanceWebhooks.BalanceAccountBalanceNotificationRequest
+    | balanceWebhooks.ReleasedBlockedBalanceNotificationRequest;
 
 /**
  * Handler for processing BalanceWebhooks.
@@ -43,6 +44,10 @@ export class BalanceWebhooksHandler {
             return this.getBalanceAccountBalanceNotificationRequest();
         }
         
+        if(Object.values(balanceWebhooks.ReleasedBlockedBalanceNotificationRequest.TypeEnum).includes(type)) {
+            return this.getReleasedBlockedBalanceNotificationRequest();
+        }
+        
         throw new Error("Could not parse the json payload: " + this.payload);
 
     }
@@ -54,6 +59,15 @@ export class BalanceWebhooksHandler {
      */
     public getBalanceAccountBalanceNotificationRequest(): balanceWebhooks.BalanceAccountBalanceNotificationRequest {
         return balanceWebhooks.ObjectSerializer.deserialize(this.payload, "BalanceAccountBalanceNotificationRequest");
+    }
+
+    /**
+     * Deserialize the webhook payload into a ReleasedBlockedBalanceNotificationRequest
+     *
+     * @returns Deserialized ReleasedBlockedBalanceNotificationRequest object.
+     */
+    public getReleasedBlockedBalanceNotificationRequest(): balanceWebhooks.ReleasedBlockedBalanceNotificationRequest {
+        return balanceWebhooks.ObjectSerializer.deserialize(this.payload, "ReleasedBlockedBalanceNotificationRequest");
     }
 
 }
