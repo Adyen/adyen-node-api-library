@@ -7,16 +7,14 @@
  * Do not edit this class manually.
  */
 
+import { ScaEntity } from "./scaEntity";
 
-export class DeviceInfo {
+
+export class SubmitScaAssociationRequest {
     /**
-    * The type of device used to provision the network token.
+    * The list of entities to be associated.
     */
-    "formFactor"?: string;
-    /**
-    * The operating system of the device used to provision the network token.
-    */
-    "osName"?: string;
+    "entities": Array<ScaEntity>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,20 +22,14 @@ export class DeviceInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "formFactor",
-            "baseName": "formFactor",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "osName",
-            "baseName": "osName",
-            "type": "string",
+            "name": "entities",
+            "baseName": "entities",
+            "type": "Array<ScaEntity>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return DeviceInfo.attributeTypeMap;
+        return SubmitScaAssociationRequest.attributeTypeMap;
     }
 
     public constructor() {
