@@ -10,6 +10,10 @@
 
 export class CardDetails {
     /**
+    * The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+    */
+    "billingSequenceNumber"?: string;
+    /**
     * Secondary brand of the card. For example: **plastix**, **hmclub**.
     */
     "brand"?: string;
@@ -85,6 +89,10 @@ export class CardDetails {
     */
     "recurringDetailReference"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * The `shopperNotificationReference` returned in the response when you requested to notify the shopper. Used only for recurring payments in India.
     */
     "shopperNotificationReference"?: string;
@@ -122,6 +130,12 @@ export class CardDetails {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "billingSequenceNumber",
+            "baseName": "billingSequenceNumber",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "brand",
             "baseName": "brand",
@@ -231,6 +245,12 @@ export class CardDetails {
             "format": ""
         },
         {
+            "name": "sdkData",
+            "baseName": "sdkData",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "shopperNotificationReference",
             "baseName": "shopperNotificationReference",
             "type": "string",
@@ -290,7 +310,8 @@ export class CardDetails {
 export namespace CardDetails {
     export enum FundingSourceEnum {
         Credit = 'credit',
-        Debit = 'debit'
+        Debit = 'debit',
+        Prepaid = 'prepaid'
     }
     export enum TypeEnum {
         Bcmc = 'bcmc',

@@ -18,6 +18,10 @@ export class PayByBankDetails {
     */
     "issuer"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * **paybybank**
     */
     "type": PayByBankDetails.TypeEnum;
@@ -36,6 +40,12 @@ export class PayByBankDetails {
         {
             "name": "issuer",
             "baseName": "issuer",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

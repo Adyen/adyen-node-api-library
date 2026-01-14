@@ -21,6 +21,10 @@ export class StoredPaymentMethodDetails {
     */
     "recurringDetailReference"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     "storedPaymentMethodId"?: string;
@@ -47,6 +51,12 @@ export class StoredPaymentMethodDetails {
             "format": ""
         },
         {
+            "name": "sdkData",
+            "baseName": "sdkData",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
             "type": "string",
@@ -69,6 +79,18 @@ export class StoredPaymentMethodDetails {
 
 export namespace StoredPaymentMethodDetails {
     export enum TypeEnum {
+        AlipayPlus = 'alipay_plus',
+        AlipayPlusAlipayCn = 'alipay_plus_alipay_cn',
+        AlipayPlusAlipayHk = 'alipay_plus_alipay_hk',
+        AlipayPlusDana = 'alipay_plus_dana',
+        AlipayPlusGcash = 'alipay_plus_gcash',
+        AlipayPlusKakaopay = 'alipay_plus_kakaopay',
+        AlipayPlusKplus = 'alipay_plus_kplus',
+        AlipayPlusNaverpay = 'alipay_plus_naverpay',
+        AlipayPlusRabbitlinepay = 'alipay_plus_rabbitlinepay',
+        AlipayPlusTosspay = 'alipay_plus_tosspay',
+        AlipayPlusTouchngo = 'alipay_plus_touchngo',
+        AlipayPlusTruemoney = 'alipay_plus_truemoney',
         BcmcMobile = 'bcmc_mobile',
         BcmcMobileQr = 'bcmc_mobile_QR',
         BcmcMobileApp = 'bcmc_mobile_app',

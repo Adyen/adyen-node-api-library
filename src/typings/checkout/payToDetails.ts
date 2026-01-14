@@ -21,6 +21,10 @@ export class PayToDetails {
     */
     "recurringDetailReference"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * The shopper\'s banking details or payId reference, used to complete payment.
     */
     "shopperAccountIdentifier"?: string;
@@ -47,6 +51,12 @@ export class PayToDetails {
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

@@ -69,7 +69,7 @@ export class PaymentMethodsRequest {
     */
     "store"?: string;
     /**
-    * Specifies how payment methods should be filtered based on the \'store\' parameter:   - \'exclusive\': Only payment methods belonging to the specified \'store\' are returned.   - \'inclusive\': Payment methods from the \'store\' and those not associated with any other store are returned.
+    * Specifies how payment methods should be filtered based on the `store` parameter:   - **exclusive**: Only payment methods belonging to the specified `store` are returned.   - **inclusive**: Payment methods from the `store` and those not associated with any other store are returned.
     */
     "storeFiltrationMode"?: PaymentMethodsRequest.StoreFiltrationModeEnum;
     /**
