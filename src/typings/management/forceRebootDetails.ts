@@ -8,15 +8,11 @@
  */
 
 
-export class AffirmInfo {
+export class ForceRebootDetails {
     /**
-    * Merchant price plan
+    * Type of terminal action: Force Reboot.
     */
-    "pricePlan"?: AffirmInfo.PricePlanEnum;
-    /**
-    * Merchant support email
-    */
-    "supportEmail": string;
+    "type"?: ForceRebootDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,30 +20,22 @@ export class AffirmInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "pricePlan",
-            "baseName": "pricePlan",
-            "type": "AffirmInfo.PricePlanEnum",
-            "format": ""
-        },
-        {
-            "name": "supportEmail",
-            "baseName": "supportEmail",
-            "type": "string",
+            "name": "type",
+            "baseName": "type",
+            "type": "ForceRebootDetails.TypeEnum",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return AffirmInfo.attributeTypeMap;
+        return ForceRebootDetails.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace AffirmInfo {
-    export enum PricePlanEnum {
-        Bronze = 'BRONZE',
-        Silver = 'SILVER',
-        Gold = 'GOLD'
+export namespace ForceRebootDetails {
+    export enum TypeEnum {
+        ForceReboot = 'ForceReboot'
     }
 }

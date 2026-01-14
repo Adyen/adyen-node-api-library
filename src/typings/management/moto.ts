@@ -8,15 +8,15 @@
  */
 
 
-export class Amount {
+export class Moto {
     /**
-    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+    * Enable MOTO transactions.
     */
-    "currency": string;
+    "enableMoto"?: boolean;
     /**
-    * The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+    * The maximum amount for MOTO transactions. You need to set the currency for this amount using the [`standalone.currencyCode`](https://docs.adyen.com/api-explorer/Management/1/patch/companies/(companyId)/terminalSettings#request-standalone-currencyCode) parameter. Do not enable standalone, unless you are using a standalone solution.
     */
-    "value": number;
+    "maxAmount"?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,20 +24,20 @@ export class Amount {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "currency",
-            "baseName": "currency",
-            "type": "string",
+            "name": "enableMoto",
+            "baseName": "enableMoto",
+            "type": "boolean",
             "format": ""
         },
         {
-            "name": "value",
-            "baseName": "value",
+            "name": "maxAmount",
+            "baseName": "maxAmount",
             "type": "number",
-            "format": "int64"
+            "format": "int32"
         }    ];
 
     static getAttributeTypeMap() {
-        return Amount.attributeTypeMap;
+        return Moto.attributeTypeMap;
     }
 
     public constructor() {
