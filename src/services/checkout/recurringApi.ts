@@ -15,6 +15,8 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
+import { CheckoutForwardRequest } from "../../typings/checkout/models";
+import { CheckoutForwardResponse } from "../../typings/checkout/models";
 import { ListStoredPaymentMethodsResponse } from "../../typings/checkout/models";
 import { StoredPaymentMethodRequest } from "../../typings/checkout/models";
 import { StoredPaymentMethodResource } from "../../typings/checkout/models";
@@ -56,6 +58,26 @@ export class RecurringApi extends Service {
             "",
             { ...requestOptions, method: "DELETE" }
         );
+    }
+
+    /**
+    * @summary Forward stored payment details
+    * @param checkoutForwardRequest {@link CheckoutForwardRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CheckoutForwardResponse }
+    */
+    public async forward(checkoutForwardRequest: CheckoutForwardRequest, requestOptions?: IRequest.Options): Promise<CheckoutForwardResponse> {
+        const endpoint = `${this.baseUrl}/forward`;
+        const resource = new Resource(this, endpoint);
+        
+        const request: CheckoutForwardRequest = ObjectSerializer.serialize(checkoutForwardRequest, "CheckoutForwardRequest");
+        const response = await getJsonResponse<CheckoutForwardRequest, CheckoutForwardResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+
+        return ObjectSerializer.deserialize(response, "CheckoutForwardResponse");
     }
 
     /**

@@ -10,11 +10,11 @@
 
 export class LineItem {
     /**
-    * Item amount excluding the tax, in minor units.
+    * Item amount excluding the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).
     */
     "amountExcludingTax"?: number;
     /**
-    * Item amount including the tax, in minor units.
+    * Item amount including the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).
     */
     "amountIncludingTax"?: number;
     /**
@@ -70,11 +70,11 @@ export class LineItem {
     */
     "sku"?: string;
     /**
-    * Tax amount, in minor units.
+    * Tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).
     */
     "taxAmount"?: number;
     /**
-    * Tax percentage, in minor units.
+    * Tax percentage, represented as a [basis point](https://en.wikipedia.org/wiki/Basis_point) integer. For example:  - **530** for 5.3% (five point three percent)   - **2100** for 21% (twenty-one percent)
     */
     "taxPercentage"?: number;
     /**

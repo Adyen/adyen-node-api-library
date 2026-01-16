@@ -29,6 +29,10 @@ export class PayWithGoogleDonations {
     */
     "recurringDetailReference"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     "storedPaymentMethodId"?: string;
@@ -71,6 +75,12 @@ export class PayWithGoogleDonations {
             "format": ""
         },
         {
+            "name": "sdkData",
+            "baseName": "sdkData",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "storedPaymentMethodId",
             "baseName": "storedPaymentMethodId",
             "type": "string",
@@ -100,7 +110,8 @@ export class PayWithGoogleDonations {
 export namespace PayWithGoogleDonations {
     export enum FundingSourceEnum {
         Credit = 'credit',
-        Debit = 'debit'
+        Debit = 'debit',
+        Prepaid = 'prepaid'
     }
     export enum TypeEnum {
         Paywithgoogle = 'paywithgoogle'
