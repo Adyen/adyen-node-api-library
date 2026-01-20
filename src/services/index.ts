@@ -3,6 +3,7 @@
 
 export { default as BalanceControlAPI } from "./balanceControl";
 export { default as BalancePlatformAPI } from "./balancePlatform";
+export { default as CapitalAPI } from "./capital";
 export { default as BinLookupAPI } from "./binLookup";
 export { default as CheckoutAPI } from "./checkout";
 export { default as DataProtectionAPI } from "./dataProtection";

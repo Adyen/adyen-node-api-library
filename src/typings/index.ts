@@ -12,6 +12,7 @@
 export * as balanceControl from "./balanceControl/models";
 export * as balancePlatform from "./balancePlatform/models";
 export * as binlookup from "./binLookup/models";
+export * as capital from "./capital/models";
 export * as checkout from "./checkout/models";
 export * as dataProtection from "./dataProtection/models";
 export * as legalEntityManagement from "./legalEntityManagement/models";
