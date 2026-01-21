@@ -18,7 +18,7 @@
  */
 
 import Client from "../client";
-import Config, { EnvironmentEnum } from "../config";
+import Config, { EnvironmentEnum, RegionEnum } from "../config";
 import {
     AmountsReq,
     MessageCategoryType,
@@ -38,6 +38,7 @@ import {
 export const createClient = (apiKey = process.env.ADYEN_API_KEY): Client => {
     const config: Config = new Config();
     config.environment = EnvironmentEnum.TEST;
+    config.region = RegionEnum.EU;
     config.terminalApiCloudEndpoint = Client.TERMINAL_API_ENDPOINT_TEST;
     config.terminalApiLocalEndpoint = "https://mocked_local_endpoint.com";
     config.marketPayEndpoint = Client.MARKETPAY_ENDPOINT_TEST;
