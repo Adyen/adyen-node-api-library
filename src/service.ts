@@ -48,17 +48,19 @@ class Service {
             throw new Error("Endpoint URL must be provided.");
         }
 
+        // handle TEST urls
         if (config.environment !== EnvironmentEnum.LIVE) {
             return url.replace("-live", "-test");
         }
 
+        // handle LIVE urls
         if (url.includes("/authe/")) {
             return url.replace("https://test.adyen.com/", "https://authe-live.adyen.com/");
         }
 
         if (url.includes("pal-")) {
             // LIVE pal URL must provide prefix
-            if(config.environment === EnvironmentEnum.LIVE && !config.liveEndpointUrlPrefix) {
+            if(!config.liveEndpointUrlPrefix) {
                 throw new Error("Live endpoint URL prefix must be provided for LIVE environment.");
             }
             return url.replace("https://pal-test.adyen.com/pal/servlet/",
@@ -67,7 +69,7 @@ class Service {
 
         if (url.includes("checkout-")) {
             // LIVE checkout URL must provide prefix
-            if(config.environment === EnvironmentEnum.LIVE && !config.liveEndpointUrlPrefix) {
+            if(!config.liveEndpointUrlPrefix) {
                 throw new Error("Live endpoint URL prefix must be provided for LIVE environment.");
             }
             if (url.includes("/possdk/v68")) {

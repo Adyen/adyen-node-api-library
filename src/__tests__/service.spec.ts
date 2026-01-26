@@ -299,7 +299,7 @@ describe("Service", () => {
         expect(service.testCreateBaseUrl(url)).toBe("https://mycompany-pal-live.adyenpayments.com/pal/servlet/BinLookup/v54");
     });
 
-    it("should throw error if liveEndpointUrlPrefix is empty for Payout", () => {
+    it("should throw error if liveEndpointUrlPrefix is empty for BinLookup", () => {
         // create Client for TEST environment without liveEndpointUrlPrefix
         const config = new Config({
             apiKey: "test_key",
