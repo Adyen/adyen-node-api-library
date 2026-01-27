@@ -122,6 +122,28 @@ describe("Legal Entity Management", (): void => {
             expect(response.businessLines[0].sourceOfFunds?.adyenProcessedFunds).toBe(false);
         });
 
+        it("should support POST /legalEntities/{id}/requestPeriodicReview", async (): Promise<void> => {
+            scope.post(`/legalEntities/${id}/requestPeriodicReview`)
+                .reply(200);
+
+            await expect(legalEntityManagement.LegalEntitiesApi.requestPeriodicReview(id)).resolves.not.toThrow();
+        });
+
+        it("should support POST /legalEntities/{id}/confirmDataReview", async (): Promise<void> => {
+            const dataReviewResponse: models.DataReviewConfirmationResponse = {
+                dataReviewedAt: "2023-11-13T15:19:02Z"
+            };
+
+            scope.post(`/legalEntities/${id}/confirmDataReview`)
+                .reply(200, dataReviewResponse);
+
+            const response: models.DataReviewConfirmationResponse = await legalEntityManagement.LegalEntitiesApi.confirmDataReview(id);
+
+            expect(response.dataReviewedAt).toBe("2023-11-13T15:19:02Z");
+        });
+
+
+
     });
 
     describe("Transfer Instruments", (): void => {
