@@ -8,15 +8,15 @@
  */
 
 
-export class AffirmInfo {
+export class SvsInfo {
     /**
-    * Merchant price plan
+    * The merchant ID (MID) that the acquirer recognizes you by.
     */
-    "pricePlan"?: AffirmInfo.PricePlanEnum;
+    "authorisationMid": string;
     /**
-    * Merchant support email
+    * The three-character ISO currency code, example **USD**
     */
-    "supportEmail": string;
+    "currencyCode": string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,30 +24,23 @@ export class AffirmInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "pricePlan",
-            "baseName": "pricePlan",
-            "type": "AffirmInfo.PricePlanEnum",
+            "name": "authorisationMid",
+            "baseName": "authorisationMid",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "supportEmail",
-            "baseName": "supportEmail",
+            "name": "currencyCode",
+            "baseName": "currencyCode",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return AffirmInfo.attributeTypeMap;
+        return SvsInfo.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace AffirmInfo {
-    export enum PricePlanEnum {
-        Bronze = 'BRONZE',
-        Silver = 'SILVER',
-        Gold = 'GOLD'
-    }
-}
