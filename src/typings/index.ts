@@ -38,6 +38,7 @@ export * as managementWebhooks from "./managementWebhooks/models";
 export * as negativeBalanceWarningWebhooks from "./negativeBalanceWarningWebhooks/models";
 export * as notification from "./notification/models";
 export * as platformsNotifications from "./platformsNotifications/models";
+export * as relayedAuthorizationWebhooks from "./relayedAuthorizationWebhooks/models"
 export * as reportWebhooks from "./reportWebhooks/models";
 export * as tokenizationWebhooks from "./tokenizationWebhooks/models";
 export * as transactionWebhooks from "./transactionWebhooks/models";
