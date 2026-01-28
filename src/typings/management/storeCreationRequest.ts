@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { LocalizedInformation } from "./localizedInformation";
 import { StoreLocation } from "./storeLocation";
 import { StoreSplitConfiguration } from "./storeSplitConfiguration";
 import { SubMerchantData } from "./subMerchantData";
@@ -26,6 +27,7 @@ export class StoreCreationRequest {
     * The unique identifier of the store, used by certain payment methods and tax authorities.  Required for CNPJ in Brazil, in the format 00.000.000/0000-00 separated by dots, slashes, hyphens, or without separators.  Optional for SIRET in France, up to 14 digits.  Optional for Zip in Australia, up to 50 digits.  
     */
     "externalReferenceId"?: string;
+    "localizedInformation"?: LocalizedInformation | null;
     /**
     * The phone number of the store, including \'+\' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
     */
@@ -68,6 +70,12 @@ export class StoreCreationRequest {
             "name": "externalReferenceId",
             "baseName": "externalReferenceId",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "localizedInformation",
+            "baseName": "localizedInformation",
+            "type": "LocalizedInformation | null",
             "format": ""
         },
         {

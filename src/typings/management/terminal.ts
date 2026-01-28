@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { InstalledAPKs } from "./installedAPKs";
 import { TerminalAssignment } from "./terminalAssignment";
 import { TerminalConnectivity } from "./terminalConnectivity";
 
@@ -22,6 +23,10 @@ export class Terminal {
     * The unique identifier of the terminal.
     */
     "id"?: string;
+    /**
+    * A list of Android apps installed on the terminal.
+    */
+    "installedAPKs"?: Array<InstalledAPKs>;
     /**
     * Date and time of the last activity on the terminal. Not included when the last activity was more than 14 days ago.
     */
@@ -70,6 +75,12 @@ export class Terminal {
             "name": "id",
             "baseName": "id",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "installedAPKs",
+            "baseName": "installedAPKs",
+            "type": "Array<InstalledAPKs>",
             "format": ""
         },
         {

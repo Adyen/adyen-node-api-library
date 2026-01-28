@@ -7,12 +7,14 @@
  * Do not edit this class manually.
  */
 
+import { LocalShopperStatement } from "./localShopperStatement";
 
-export class ForceRebootDetails {
+
+export class LocalizedInformation {
     /**
-    * The type of terminal action. The value **ForceReboot** triggers an immediate reboot of the specified terminal(s).
+    * An array of local shopper statements. Card schemes use this in the bank statement.  For Japan local shopper statements in both ja-Hani and ja-Kana are required.
     */
-    "type"?: ForceRebootDetails.TypeEnum;
+    "localShopperStatement": Array<LocalShopperStatement>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -20,22 +22,17 @@ export class ForceRebootDetails {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "ForceRebootDetails.TypeEnum",
+            "name": "localShopperStatement",
+            "baseName": "localShopperStatement",
+            "type": "Array<LocalShopperStatement>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ForceRebootDetails.attributeTypeMap;
+        return LocalizedInformation.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace ForceRebootDetails {
-    export enum TypeEnum {
-        ForceReboot = 'ForceReboot'
-    }
-}
