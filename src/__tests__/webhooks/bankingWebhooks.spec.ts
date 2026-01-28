@@ -10,6 +10,8 @@ import { BalanceAccountBalanceNotificationRequest } from "../../typings/balanceW
 import { ReportNotificationRequest } from "../../typings/reportWebhooks/models";
 import { DisputeNotificationRequest } from "../../typings/disputeWebhooks/models";
 import { DisputeEventNotification } from "../../typings/disputeWebhooks/disputeEventNotification";
+import { RelayedAuthorisationRequest } from "../../typings/relayedAuthorizationWebhooks/models";
+
 
 // handlers
 import { AcsWebhooksHandler } from "../../webhooks";
@@ -20,6 +22,7 @@ import { NegativeBalanceWarningWebhooksHandler } from "../../webhooks";
 import { TransactionWebhooksHandler } from "../../webhooks";
 import { BalanceWebhooksHandler } from "../../webhooks";
 import { DisputeWebhooksHandler } from "../../webhooks";
+import { RelayedAuthorizationWebhooksHandler } from "../../webhooks";
 
 
 describe("BankingWebhooks Tests", function (): void {
@@ -598,6 +601,180 @@ describe("BankingWebhooks Tests", function (): void {
         const genericWebhook = disputeWebhooksHandler.getGenericWebhook();
         expect(genericWebhook instanceof DisputeNotificationRequest).toBe(true);
         expect(genericWebhook.type).toEqual("balancePlatform.dispute.created");
+    });
+
+    it("should deserialize RelayedAuthorisationRequest webhook", function (): void {
+        const json = {
+            "accountHolder": {
+                "description": "Account holder description",
+                "id": "AH123ABCDEFGHIJKLMN456789"
+            },
+            "amount": {
+                "currency": "EUR",
+                "value": -2700
+            },
+            "authCode": "123456",
+            "authorisationDecision": {
+                "reasonCode": "APPROVED",
+                "status": "Authorised",
+                "statusCode": "APPROVED"
+            },
+            "authorisationType": "finalAuthorisation",
+            "balanceAccount": {
+                "description": "Balance Account Description",
+                "id": "BA123ABCDEFGHIJKLMN456789"
+            },
+            "balanceMutations": [
+                {
+                    "balanceAfter": {
+                        "currency": "EUR",
+                        "value": 221163
+                    },
+                    "balanceBefore": {
+                        "currency": "EUR",
+                        "value": 221190
+                    },
+                    "currency": "EUR",
+                    "mutationAmount": {
+                        "currency": "EUR",
+                        "value": -2700
+                    },
+                    "type": "AuthorisedOutgoing"
+                }
+            ],
+            "balancePlatform": "TestBalancePlatform",
+            "entryMode": "contactless",
+            "id": "2ABCBA13456ABCDE",
+            "merchantData": {
+                "acquirerId": "012345",
+                "mcc": "5813",
+                "merchantId": "000123450000123",
+                "nameLocation": {
+                    "city": "Amsterdam",
+                    "country": "NLD",
+                    "name": "Tea Shop NLD",
+                    "rawData": "TeaShop_NLD"
+                },
+                "postalCode": "3333AB"
+            },
+            "originalAmount": {
+                "currency": "EUR",
+                "value": -2700
+            },
+            "paymentInstrument": {
+                "balanceAccountId": "BA123ABCDEFGHIJKLMN456789",
+                "description": "PaymentInstrument Description",
+                "issuingCountryCode": "NL",
+                "paymentInstrumentGroupId": "PG3123ABCDEFGHIJKLMN456789",
+                "reference": "123456789",
+                "status": "active",
+                "type": "card",
+                "card": {
+                    "authentication": {
+                        "email": "john.doe @provider.com"
+                    },
+                    "brand": "mc",
+                    "brandVariant": "mc_debit_bpd",
+                    "cardholderName": "John Doe",
+                    "formFactor": "virtual",
+                    "bin": "555555",
+                    "expiration": {
+                        "month": "09",
+                        "year": "2027"
+                    },
+                    "lastFour": "0000",
+                    "number": "12345ABCDE"
+                },
+                "id": "PI123ABCDEFGHIJKLMN456789"
+            },
+            "processingType": "token",
+            "reference": "ABCDEFGHIJ",
+            "schemeUniqueTransactionId": "ABCDEFU2B1305",
+            "transactionRulesResult": {
+                "allHardBlockRulesPassed": true,
+                "score": 80
+            },
+            "validationResult": [
+                {
+                    "result": "valid",
+                    "type": "TransactionValidation"
+                },
+                {
+                    "result": "valid",
+                    "type": "PaymentInstrumentExpirationCheck"
+                },
+                {
+                    "result": "valid",
+                    "type": "BalanceCheck"
+                },
+                {
+                    "result": "valid",
+                    "type": "Screening"
+                },
+                {
+                    "result": "valid",
+                    "type": "RealBalanceAvailable"
+                },
+                {
+                    "result": "notValidated",
+                    "type": "MITAllowedMerchant"
+                },
+                {
+                    "result": "valid",
+                    "type": "PaymentInstrumentFound"
+                },
+                {
+                    "result": "valid",
+                    "type": "TransactionRules"
+                },
+                {
+                    "result": "valid",
+                    "type": "AccountLookup"
+                },
+                {
+                    "result": "valid",
+                    "type": "PaymentInstrumentActive"
+                },
+                {
+                    "result": "valid",
+                    "type": "CardholderAuthentication"
+                },
+                {
+                    "result": "valid",
+                    "type": "PaymentInstrument"
+                },
+                {
+                    "result": "valid",
+                    "type": "CardAuthentication"
+                },
+                {
+                    "result": "valid",
+                    "type": "PartyScreening"
+                },
+                {
+                    "result": "valid",
+                    "type": "InputExpiryDateCheck"
+                }
+            ],
+            "environment": "test",
+            "type": "balancePlatform.authorisation.relayed"
+        };
+        const jsonString = JSON.stringify(json);
+        const relayedAuthorizationWebhooksHandler = new RelayedAuthorizationWebhooksHandler(jsonString);
+        const relayedAuthorisationRequest = relayedAuthorizationWebhooksHandler.getRelayedAuthorisationRequest();
+        expect(relayedAuthorisationRequest).toBeTruthy();
+        expect(relayedAuthorisationRequest.environment).toBe("test");
+        expect(relayedAuthorisationRequest.type).toBe(RelayedAuthorisationRequest.TypeEnum.BalancePlatformAuthorisationRelayed);
+        expect(relayedAuthorisationRequest.id).toBe("2ABCBA13456ABCDE");
+        expect(relayedAuthorisationRequest.amount?.value).toBe(-2700);
+        expect(relayedAuthorisationRequest.authorisationDecision?.status).toBe("Authorised");
+        expect(relayedAuthorisationRequest.paymentInstrument?.card?.brand).toBe("mc");
+        expect(relayedAuthorisationRequest.balanceMutations?.length).toBe(1);
+        expect(relayedAuthorisationRequest.validationResult?.length).toBe(15);
+        
+        const genericWebhook = relayedAuthorizationWebhooksHandler.getGenericWebhook();
+        expect(genericWebhook instanceof RelayedAuthorisationRequest).toBe(true);
+        expect(genericWebhook.type).toEqual("balancePlatform.authorisation.relayed");
     });
 
     it("should throw SyntaxError when JSON is invalid", function (): void {

@@ -7,6 +7,7 @@ export { ConfigurationWebhooksHandler } from "./typings/configurationWebhooks/co
 export { DisputeWebhooksHandler } from "./typings/disputeWebhooks/disputeWebhooksHandler";
 export { ManagementWebhooksHandler } from "./typings/managementWebhooks/managementWebhooksHandler";
 export { NegativeBalanceWarningWebhooksHandler } from "./typings/negativeBalanceWarningWebhooks/negativeBalanceWarningWebhooksHandler";
+export { RelayedAuthorizationWebhooksHandler } from "./typings/relayedAuthorizationWebhooks/relayedAuthorizationWebhooksHandler";
 export { ReportWebhooksHandler } from "./typings/reportWebhooks/reportWebhooksHandler";
 export { TokenizationWebhooksHandler } from "./typings/tokenizationWebhooks/tokenizationWebhooksHandler";
 export { TransactionWebhooksHandler } from "./typings/transactionWebhooks/transactionWebhooksHandler";
