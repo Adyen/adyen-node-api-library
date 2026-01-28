@@ -136,6 +136,24 @@ export class LegalEntitiesApi extends Service {
     }
 
     /**
+    * @summary Request periodic data review.
+    * @param id {@link string } The unique identifier of the legal entity.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link void }
+    */
+    public async requestPeriodicReview(id: string, requestOptions?: IRequest.Options): Promise<void> {
+        const endpoint = `${this.baseUrl}/legalEntities/{id}/requestPeriodicReview`
+            .replace("{" + "id" + "}", encodeURIComponent(String(id)));
+        const resource = new Resource(this, endpoint);
+        
+        await getJsonResponse<string, void>(
+            resource,
+            "",
+            { ...requestOptions, method: "POST" }
+        );
+    }
+
+    /**
     * @summary Update a legal entity
     * @param id {@link string } The unique identifier of the legal entity.
     * @param legalEntityInfo {@link LegalEntityInfo } 
