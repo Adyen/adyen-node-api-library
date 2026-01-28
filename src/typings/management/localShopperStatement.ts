@@ -8,11 +8,15 @@
  */
 
 
-export class ForceRebootDetails {
+export class LocalShopperStatement {
     /**
-    * The type of terminal action. The value **ForceReboot** triggers an immediate reboot of the specified terminal(s).
+    * The character set of the local shopper statement.  Possible values: **ja-Hani**, **ja-Kana**.
     */
-    "type"?: ForceRebootDetails.TypeEnum;
+    "script": string;
+    /**
+    * The text of the local shopper statement in the specified character set.
+    */
+    "value": string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -20,22 +24,23 @@ export class ForceRebootDetails {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "ForceRebootDetails.TypeEnum",
+            "name": "script",
+            "baseName": "script",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "value",
+            "baseName": "value",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ForceRebootDetails.attributeTypeMap;
+        return LocalShopperStatement.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace ForceRebootDetails {
-    export enum TypeEnum {
-        ForceReboot = 'ForceReboot'
-    }
-}

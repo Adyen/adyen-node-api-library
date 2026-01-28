@@ -65,6 +65,7 @@ import { Hardware } from "./hardware";
 import { IdName } from "./idName";
 import { InstallAndroidAppDetails } from "./installAndroidAppDetails";
 import { InstallAndroidCertificateDetails } from "./installAndroidCertificateDetails";
+import { InstalledAPKs } from "./installedAPKs";
 import { InvalidField } from "./invalidField";
 import { JCBInfo } from "./jCBInfo";
 import { Key } from "./key";
@@ -81,7 +82,9 @@ import { ListMerchantUsersResponse } from "./listMerchantUsersResponse";
 import { ListStoresResponse } from "./listStoresResponse";
 import { ListTerminalsResponse } from "./listTerminalsResponse";
 import { ListWebhooksResponse } from "./listWebhooksResponse";
+import { LocalShopperStatement } from "./localShopperStatement";
 import { Localization } from "./localization";
+import { LocalizedInformation } from "./localizedInformation";
 import { Logo } from "./logo";
 import { MeApiCredential } from "./meApiCredential";
 import { MealVoucherFRInfo } from "./mealVoucherFRInfo";
@@ -370,6 +373,7 @@ let typeMap: {[index: string]: any} = {
     "IdName": IdName,
     "InstallAndroidAppDetails": InstallAndroidAppDetails,
     "InstallAndroidCertificateDetails": InstallAndroidCertificateDetails,
+    "InstalledAPKs": InstalledAPKs,
     "InvalidField": InvalidField,
     "JCBInfo": JCBInfo,
     "Key": Key,
@@ -386,7 +390,9 @@ let typeMap: {[index: string]: any} = {
     "ListStoresResponse": ListStoresResponse,
     "ListTerminalsResponse": ListTerminalsResponse,
     "ListWebhooksResponse": ListWebhooksResponse,
+    "LocalShopperStatement": LocalShopperStatement,
     "Localization": Localization,
+    "LocalizedInformation": LocalizedInformation,
     "Logo": Logo,
     "MeApiCredential": MeApiCredential,
     "MealVoucherFRInfo": MealVoucherFRInfo,
