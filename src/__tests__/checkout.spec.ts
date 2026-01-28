@@ -15,6 +15,7 @@ import { SessionResultResponse } from "../typings/checkout/sessionResultResponse
 import { payments3DS2NativeAction } from "../__mocks__/checkout/payments3DS2NativeAction";
 import { EnvironmentEnum } from "../config";
 import { Types } from "..";
+import forwardResponse from "../__mocks__/checkout/forwardResponse.json";
 
 const merchantAccount = process.env.ADYEN_MERCHANT!;
 const reference = "Your order number";
@@ -682,5 +683,49 @@ describe("Checkout", (): void => {
         const resultOfPaymentSessionResponse = await checkoutService.PaymentsApi.getResultOfPaymentSession("mySessionIdMock", "sessionResult");
         expect(resultOfPaymentSessionResponse.id).toEqual("CS12345678");
         expect(resultOfPaymentSessionResponse.status).toEqual(SessionResultResponse.StatusEnum.Completed);
+    });
+
+    test("Should forward token", async (): Promise<void> => {
+        scope.post("/forward")
+            .reply(200, forwardResponse);
+
+        const body = {
+            amount: {
+                value: 100,
+                currency: "USD"
+            },
+            paymentMethod: {
+                creditCard: {
+                    holderName: "{{holderName}}",
+                    number: "{{number}}",
+                    expiryMonth: "{{expiryMonth}}",
+                    expiryYear: "{{expiryYear}}"
+                }
+            }
+        };
+
+        const checkoutForwardRequest: Types.checkout.CheckoutForwardRequest = {
+            merchantAccount: "YOUR_MERCHANT_ACCOUNT",
+            shopperReference: "YOUR_SHOPPER_REFERENCE",
+            storedPaymentMethodId: "M12345677890",
+            baseUrl: "http://thirdparty.example.com",
+            request: {
+                httpMethod: Types.checkout.CheckoutOutgoingForwardRequest.HttpMethodEnum.Post,
+                urlSuffix: "/payments",
+                credentials: "YOUR_CREDENTIALS_FOR_THE_THIRD_PARTY",
+                headers: {
+                    "Authorization": "Basic {{credentials}}",
+                },
+                body: JSON.stringify(body),
+            }
+        };
+
+        const response: Types.checkout.CheckoutForwardResponse = await checkoutService.RecurringApi.forward(checkoutForwardRequest);
+
+        expect(response.pspReference).toEqual("PSP123456789");
+        expect(response.storedPaymentMethodId).toEqual("PAYMENT_METHOD_ID");
+        expect(response.response).toBeDefined();
+        expect(response.response.status).toEqual(200);
+        expect(response.response.body).toContain("PAYMENT_METHOD_ID");
     });
 });

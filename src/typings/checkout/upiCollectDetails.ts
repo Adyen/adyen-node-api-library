@@ -25,6 +25,10 @@ export class UpiCollectDetails {
     */
     "recurringDetailReference"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * The `shopperNotificationReference` returned in the response when you requested to notify the shopper. Used for recurring payment only.
     */
     "shopperNotificationReference"?: string;
@@ -61,6 +65,12 @@ export class UpiCollectDetails {
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

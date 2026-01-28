@@ -14,6 +14,10 @@ export class SepaDirectDebitDetails {
     */
     "checkoutAttemptId"?: string;
     /**
+    * The date that the the shopper\'s bank account is charged.
+    */
+    "dueDate"?: string;
+    /**
     * The International Bank Account Number (IBAN).
     */
     "iban": string;
@@ -28,6 +32,10 @@ export class SepaDirectDebitDetails {
 	* Use `storedPaymentMethodId` instead.
     */
     "recurringDetailReference"?: string;
+    /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
@@ -53,6 +61,12 @@ export class SepaDirectDebitDetails {
             "format": ""
         },
         {
+            "name": "dueDate",
+            "baseName": "dueDate",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "iban",
             "baseName": "iban",
             "type": "string",
@@ -67,6 +81,12 @@ export class SepaDirectDebitDetails {
         {
             "name": "recurringDetailReference",
             "baseName": "recurringDetailReference",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

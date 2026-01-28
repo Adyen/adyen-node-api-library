@@ -14,6 +14,10 @@ export class MbwayDetails {
     */
     "checkoutAttemptId"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * 
     */
     "shopperEmail": string;
@@ -34,6 +38,12 @@ export class MbwayDetails {
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

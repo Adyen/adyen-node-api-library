@@ -54,8 +54,15 @@ import { CheckoutAwaitAction } from "./checkoutAwaitAction";
 import { CheckoutBankAccount } from "./checkoutBankAccount";
 import { CheckoutBankTransferAction } from "./checkoutBankTransferAction";
 import { CheckoutDelegatedAuthenticationAction } from "./checkoutDelegatedAuthenticationAction";
+import { CheckoutForwardRequest } from "./checkoutForwardRequest";
+import { CheckoutForwardRequestCard } from "./checkoutForwardRequestCard";
+import { CheckoutForwardRequestOptions } from "./checkoutForwardRequestOptions";
+import { CheckoutForwardResponse } from "./checkoutForwardResponse";
+import { CheckoutForwardResponseFromUrl } from "./checkoutForwardResponseFromUrl";
 import { CheckoutNativeRedirectAction } from "./checkoutNativeRedirectAction";
+import { CheckoutNetworkTokenOption } from "./checkoutNetworkTokenOption";
 import { CheckoutOrderResponse } from "./checkoutOrderResponse";
+import { CheckoutOutgoingForwardRequest } from "./checkoutOutgoingForwardRequest";
 import { CheckoutQrCodeAction } from "./checkoutQrCodeAction";
 import { CheckoutRedirectAction } from "./checkoutRedirectAction";
 import { CheckoutSDKAction } from "./checkoutSDKAction";
@@ -72,6 +79,7 @@ import { CreateOrderResponse } from "./createOrderResponse";
 import { DefaultErrorResponseEntity } from "./defaultErrorResponseEntity";
 import { DeliveryAddress } from "./deliveryAddress";
 import { DeliveryMethod } from "./deliveryMethod";
+import { Destination } from "./destination";
 import { DetailsRequestAuthenticationData } from "./detailsRequestAuthenticationData";
 import { DeviceRenderOptions } from "./deviceRenderOptions";
 import { DokuDetails } from "./dokuDetails";
@@ -89,6 +97,7 @@ import { EftDetails } from "./eftDetails";
 import { EncryptedOrderData } from "./encryptedOrderData";
 import { EnhancedSchemeData } from "./enhancedSchemeData";
 import { ExternalPlatform } from "./externalPlatform";
+import { ExternalTokenDetails } from "./externalTokenDetails";
 import { FastlaneDetails } from "./fastlaneDetails";
 import { ForexQuote } from "./forexQuote";
 import { FraudCheckResult } from "./fraudCheckResult";
@@ -105,8 +114,10 @@ import { InstallmentOption } from "./installmentOption";
 import { Installments } from "./installments";
 import { InvalidField } from "./invalidField";
 import { Item } from "./item";
+import { ItemDetailLine } from "./itemDetailLine";
 import { KlarnaDetails } from "./klarnaDetails";
 import { Leg } from "./leg";
+import { LevelTwoThree } from "./levelTwoThree";
 import { LineItem } from "./lineItem";
 import { ListStoredPaymentMethodsResponse } from "./listStoredPaymentMethodsResponse";
 import { Mandate } from "./mandate";
@@ -156,6 +167,12 @@ import { PaymentResponse } from "./paymentResponse";
 import { PaymentResponseActionClass } from "./paymentResponseAction";
 import { PaymentReversalRequest } from "./paymentReversalRequest";
 import { PaymentReversalResponse } from "./paymentReversalResponse";
+import { PaymentValidations } from "./paymentValidations";
+import { PaymentValidationsNameRequest } from "./paymentValidationsNameRequest";
+import { PaymentValidationsNameResponse } from "./paymentValidationsNameResponse";
+import { PaymentValidationsNameResultRawResponse } from "./paymentValidationsNameResultRawResponse";
+import { PaymentValidationsNameResultResponse } from "./paymentValidationsNameResultResponse";
+import { PaymentValidationsResponse } from "./paymentValidationsResponse";
 import { PaypalUpdateOrderRequest } from "./paypalUpdateOrderRequest";
 import { PaypalUpdateOrderResponse } from "./paypalUpdateOrderResponse";
 import { Phone } from "./phone";
@@ -188,6 +205,7 @@ import { SessionResultResponse } from "./sessionResultResponse";
 import { ShopperIdPaymentMethod } from "./shopperIdPaymentMethod";
 import { ShopperInteractionDevice } from "./shopperInteractionDevice";
 import { ShopperName } from "./shopperName";
+import { ShopperTaxInfo } from "./shopperTaxInfo";
 import { Split } from "./split";
 import { SplitAmount } from "./splitAmount";
 import { StandalonePaymentCancelRequest } from "./standalonePaymentCancelRequest";
@@ -210,6 +228,7 @@ import { ThreeDSRequestorAuthenticationInfo } from "./threeDSRequestorAuthentica
 import { ThreeDSRequestorPriorAuthenticationInfo } from "./threeDSRequestorPriorAuthenticationInfo";
 import { ThreeDSecureData } from "./threeDSecureData";
 import { Ticket } from "./ticket";
+import { TokenMandate } from "./tokenMandate";
 import { TravelAgency } from "./travelAgency";
 import { TwintDetails } from "./twintDetails";
 import { UPIPaymentMethod } from "./uPIPaymentMethod";
@@ -285,7 +304,9 @@ let enumsMap: Set<string> = new Set<string>([
     "CheckoutBankAccount.AccountTypeEnum",
     "CheckoutBankTransferAction.TypeEnum",
     "CheckoutDelegatedAuthenticationAction.TypeEnum",
+    "CheckoutForwardRequestCard.TypeEnum",
     "CheckoutNativeRedirectAction.TypeEnum",
+    "CheckoutOutgoingForwardRequest.HttpMethodEnum",
     "CheckoutQrCodeAction.TypeEnum",
     "CheckoutRedirectAction.TypeEnum",
     "CheckoutSDKAction.TypeEnum",
@@ -320,6 +341,8 @@ let enumsMap: Set<string> = new Set<string>([
     "EBankingFinlandDetails.TypeEnum",
     "EcontextVoucherDetails.TypeEnum",
     "EftDetails.TypeEnum",
+    "ExternalTokenDetails.SubtypeEnum",
+    "ExternalTokenDetails.TypeEnum",
     "FastlaneDetails.TypeEnum",
     "FundRecipient.WalletPurposeEnum",
     "GenericIssuerPaymentMethodDetails.TypeEnum",
@@ -387,6 +410,7 @@ let enumsMap: Set<string> = new Set<string>([
     "PaymentResponse.ResultCodeEnum",
     "PaymentResponseAction.TypeEnum",
     "PaymentReversalResponse.StatusEnum",
+    "PaymentValidationsNameResponse.StatusEnum",
     "PaypalUpdateOrderResponse.StatusEnum",
     "PixDetails.TypeEnum",
     "PixRecurring.FrequencyEnum",
@@ -437,6 +461,9 @@ let enumsMap: Set<string> = new Set<string>([
     "ThreeDSecureData.AuthenticationResponseEnum",
     "ThreeDSecureData.ChallengeCancelEnum",
     "ThreeDSecureData.DirectoryResponseEnum",
+    "TokenMandate.AmountRuleEnum",
+    "TokenMandate.BillingAttemptsRuleEnum",
+    "TokenMandate.FrequencyEnum",
     "TwintDetails.TypeEnum",
     "UpdatePaymentLinkRequest.StatusEnum",
     "UpiCollectDetails.TypeEnum",
@@ -505,8 +532,15 @@ let typeMap: {[index: string]: any} = {
     "CheckoutBankAccount": CheckoutBankAccount,
     "CheckoutBankTransferAction": CheckoutBankTransferAction,
     "CheckoutDelegatedAuthenticationAction": CheckoutDelegatedAuthenticationAction,
+    "CheckoutForwardRequest": CheckoutForwardRequest,
+    "CheckoutForwardRequestCard": CheckoutForwardRequestCard,
+    "CheckoutForwardRequestOptions": CheckoutForwardRequestOptions,
+    "CheckoutForwardResponse": CheckoutForwardResponse,
+    "CheckoutForwardResponseFromUrl": CheckoutForwardResponseFromUrl,
     "CheckoutNativeRedirectAction": CheckoutNativeRedirectAction,
+    "CheckoutNetworkTokenOption": CheckoutNetworkTokenOption,
     "CheckoutOrderResponse": CheckoutOrderResponse,
+    "CheckoutOutgoingForwardRequest": CheckoutOutgoingForwardRequest,
     "CheckoutQrCodeAction": CheckoutQrCodeAction,
     "CheckoutRedirectAction": CheckoutRedirectAction,
     "CheckoutSDKAction": CheckoutSDKAction,
@@ -523,6 +557,7 @@ let typeMap: {[index: string]: any} = {
     "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
     "DeliveryAddress": DeliveryAddress,
     "DeliveryMethod": DeliveryMethod,
+    "Destination": Destination,
     "DetailsRequestAuthenticationData": DetailsRequestAuthenticationData,
     "DeviceRenderOptions": DeviceRenderOptions,
     "DokuDetails": DokuDetails,
@@ -540,6 +575,7 @@ let typeMap: {[index: string]: any} = {
     "EncryptedOrderData": EncryptedOrderData,
     "EnhancedSchemeData": EnhancedSchemeData,
     "ExternalPlatform": ExternalPlatform,
+    "ExternalTokenDetails": ExternalTokenDetails,
     "FastlaneDetails": FastlaneDetails,
     "ForexQuote": ForexQuote,
     "FraudCheckResult": FraudCheckResult,
@@ -556,8 +592,10 @@ let typeMap: {[index: string]: any} = {
     "Installments": Installments,
     "InvalidField": InvalidField,
     "Item": Item,
+    "ItemDetailLine": ItemDetailLine,
     "KlarnaDetails": KlarnaDetails,
     "Leg": Leg,
+    "LevelTwoThree": LevelTwoThree,
     "LineItem": LineItem,
     "ListStoredPaymentMethodsResponse": ListStoredPaymentMethodsResponse,
     "Mandate": Mandate,
@@ -607,6 +645,12 @@ let typeMap: {[index: string]: any} = {
     "PaymentResponseAction": PaymentResponseActionClass,
     "PaymentReversalRequest": PaymentReversalRequest,
     "PaymentReversalResponse": PaymentReversalResponse,
+    "PaymentValidations": PaymentValidations,
+    "PaymentValidationsNameRequest": PaymentValidationsNameRequest,
+    "PaymentValidationsNameResponse": PaymentValidationsNameResponse,
+    "PaymentValidationsNameResultRawResponse": PaymentValidationsNameResultRawResponse,
+    "PaymentValidationsNameResultResponse": PaymentValidationsNameResultResponse,
+    "PaymentValidationsResponse": PaymentValidationsResponse,
     "PaypalUpdateOrderRequest": PaypalUpdateOrderRequest,
     "PaypalUpdateOrderResponse": PaypalUpdateOrderResponse,
     "Phone": Phone,
@@ -638,6 +682,7 @@ let typeMap: {[index: string]: any} = {
     "ShopperIdPaymentMethod": ShopperIdPaymentMethod,
     "ShopperInteractionDevice": ShopperInteractionDevice,
     "ShopperName": ShopperName,
+    "ShopperTaxInfo": ShopperTaxInfo,
     "Split": Split,
     "SplitAmount": SplitAmount,
     "StandalonePaymentCancelRequest": StandalonePaymentCancelRequest,
@@ -660,6 +705,7 @@ let typeMap: {[index: string]: any} = {
     "ThreeDSRequestorPriorAuthenticationInfo": ThreeDSRequestorPriorAuthenticationInfo,
     "ThreeDSecureData": ThreeDSecureData,
     "Ticket": Ticket,
+    "TokenMandate": TokenMandate,
     "TravelAgency": TravelAgency,
     "TwintDetails": TwintDetails,
     "UPIPaymentMethod": UPIPaymentMethod,

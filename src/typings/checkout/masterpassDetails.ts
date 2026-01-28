@@ -22,6 +22,10 @@ export class MasterpassDetails {
     */
     "masterpassTransactionId": string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * **masterpass**
     */
     "type"?: MasterpassDetails.TypeEnum;
@@ -50,6 +54,12 @@ export class MasterpassDetails {
             "format": ""
         },
         {
+            "name": "sdkData",
+            "baseName": "sdkData",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "type",
             "baseName": "type",
             "type": "MasterpassDetails.TypeEnum",
@@ -67,7 +77,8 @@ export class MasterpassDetails {
 export namespace MasterpassDetails {
     export enum FundingSourceEnum {
         Credit = 'credit',
-        Debit = 'debit'
+        Debit = 'debit',
+        Prepaid = 'prepaid'
     }
     export enum TypeEnum {
         Masterpass = 'masterpass'

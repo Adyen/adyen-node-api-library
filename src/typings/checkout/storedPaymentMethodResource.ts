@@ -7,12 +7,18 @@
  * Do not edit this class manually.
  */
 
+import { TokenMandate } from "./tokenMandate";
+
 
 export class StoredPaymentMethodResource {
     /**
     * The brand of the card.
     */
     "brand"?: string;
+    /**
+    * The bank identification number (BIN) of the card.
+    */
+    "cardBin"?: string;
     /**
     * The month the card expires.
     */
@@ -49,6 +55,7 @@ export class StoredPaymentMethodResource {
     * The last four digits of the PAN.
     */
     "lastFour"?: string;
+    "mandate"?: TokenMandate | null;
     /**
     * The display name of the stored payment method.
     */
@@ -86,6 +93,12 @@ export class StoredPaymentMethodResource {
         {
             "name": "brand",
             "baseName": "brand",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "cardBin",
+            "baseName": "cardBin",
             "type": "string",
             "format": ""
         },
@@ -141,6 +154,12 @@ export class StoredPaymentMethodResource {
             "name": "lastFour",
             "baseName": "lastFour",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "mandate",
+            "baseName": "mandate",
+            "type": "TokenMandate | null",
             "format": ""
         },
         {
