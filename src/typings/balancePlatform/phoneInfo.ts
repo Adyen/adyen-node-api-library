@@ -7,19 +7,20 @@
  * Do not edit this class manually.
  */
 
-import { PhoneInfo } from "./phoneInfo";
 
-
-export class DeviceInfo {
+export class PhoneInfo {
     /**
-    * The type of device used to provision the network token.
+    * The hashed value of the phone number used to provision the network token.
     */
-    "formFactor"?: string;
+    "hashedNumber"?: string;
     /**
-    * The operating system of the device used to provision the network token.
+    * The last four digits of the phone number used to provision the network token.
     */
-    "osName"?: string;
-    "phone"?: PhoneInfo | null;
+    "lastFourDigits"?: string;
+    /**
+    * The full phone number of the device used to provision the network token.
+    */
+    "number"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,26 +28,26 @@ export class DeviceInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "formFactor",
-            "baseName": "formFactor",
+            "name": "hashedNumber",
+            "baseName": "hashedNumber",
             "type": "string",
             "format": ""
         },
         {
-            "name": "osName",
-            "baseName": "osName",
+            "name": "lastFourDigits",
+            "baseName": "lastFourDigits",
             "type": "string",
             "format": ""
         },
         {
-            "name": "phone",
-            "baseName": "phone",
-            "type": "PhoneInfo | null",
+            "name": "number",
+            "baseName": "number",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return DeviceInfo.attributeTypeMap;
+        return PhoneInfo.attributeTypeMap;
     }
 
     public constructor() {

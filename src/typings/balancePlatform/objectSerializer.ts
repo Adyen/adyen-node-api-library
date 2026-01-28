@@ -14,12 +14,17 @@ import { AddressRequirement } from "./addressRequirement";
 import { Amount } from "./amount";
 import { AmountMinMaxRequirement } from "./amountMinMaxRequirement";
 import { AmountNonZeroDecimalsRequirement } from "./amountNonZeroDecimalsRequirement";
+import { ApproveAssociationRequest } from "./approveAssociationRequest";
+import { ApproveAssociationResponse } from "./approveAssociationResponse";
 import { ApproveTransferLimitRequest } from "./approveTransferLimitRequest";
+import { Association } from "./association";
 import { AssociationDelegatedAuthenticationData } from "./associationDelegatedAuthenticationData";
 import { AssociationFinaliseRequest } from "./associationFinaliseRequest";
 import { AssociationFinaliseResponse } from "./associationFinaliseResponse";
 import { AssociationInitiateRequest } from "./associationInitiateRequest";
 import { AssociationInitiateResponse } from "./associationInitiateResponse";
+import { AssociationListing } from "./associationListing";
+import { AssociationStatus } from "./associationStatus";
 import { Authentication } from "./authentication";
 import { AuthorisedCardUsers } from "./authorisedCardUsers";
 import { BRLocalAccountIdentification } from "./bRLocalAccountIdentification";
@@ -41,6 +46,8 @@ import { BankAccountIdentificationValidationRequest } from "./bankAccountIdentif
 import { BankAccountIdentificationValidationRequestAccountIdentificationClass } from "./bankAccountIdentificationValidationRequestAccountIdentification";
 import { BankAccountModel } from "./bankAccountModel";
 import { BankIdentification } from "./bankIdentification";
+import { BeginScaDeviceRegistrationRequest } from "./beginScaDeviceRegistrationRequest";
+import { BeginScaDeviceRegistrationResponse } from "./beginScaDeviceRegistrationResponse";
 import { BrandVariantsRestriction } from "./brandVariantsRestriction";
 import { BulkAddress } from "./bulkAddress";
 import { CALocalAccountIdentification } from "./cALocalAccountIdentification";
@@ -79,6 +86,8 @@ import { Duration } from "./duration";
 import { EntryModesRestriction } from "./entryModesRestriction";
 import { Expiry } from "./expiry";
 import { Fee } from "./fee";
+import { FinishScaDeviceRegistrationRequest } from "./finishScaDeviceRegistrationRequest";
+import { FinishScaDeviceRegistrationResponse } from "./finishScaDeviceRegistrationResponse";
 import { GetNetworkTokenResponse } from "./getNetworkTokenResponse";
 import { GetTaxFormResponse } from "./getTaxFormResponse";
 import { GrantLimit } from "./grantLimit";
@@ -93,6 +102,7 @@ import { InternationalTransactionRestriction } from "./internationalTransactionR
 import { InvalidField } from "./invalidField";
 import { LimitStatus } from "./limitStatus";
 import { Link } from "./link";
+import { ListAssociationsResponse } from "./listAssociationsResponse";
 import { ListNetworkTokensResponse } from "./listNetworkTokensResponse";
 import { MatchingTransactionsRestriction } from "./matchingTransactionsRestriction";
 import { MatchingValuesRestriction } from "./matchingValuesRestriction";
@@ -125,6 +135,7 @@ import { PaymentInstrumentRevealRequest } from "./paymentInstrumentRevealRequest
 import { PaymentInstrumentRevealResponse } from "./paymentInstrumentRevealResponse";
 import { PaymentInstrumentUpdateRequest } from "./paymentInstrumentUpdateRequest";
 import { Phone } from "./phone";
+import { PhoneInfo } from "./phoneInfo";
 import { PhoneNumber } from "./phoneNumber";
 import { PinChangeRequest } from "./pinChangeRequest";
 import { PinChangeResponse } from "./pinChangeResponse";
@@ -135,6 +146,7 @@ import { RegisterSCAFinalResponse } from "./registerSCAFinalResponse";
 import { RegisterSCARequest } from "./registerSCARequest";
 import { RegisterSCAResponse } from "./registerSCAResponse";
 import { RemediatingAction } from "./remediatingAction";
+import { RemoveAssociationRequest } from "./removeAssociationRequest";
 import { Repayment } from "./repayment";
 import { RepaymentTerm } from "./repaymentTerm";
 import { RestServiceError } from "./restServiceError";
@@ -146,6 +158,10 @@ import { SELocalAccountIdentification } from "./sELocalAccountIdentification";
 import { SGLocalAccountIdentification } from "./sGLocalAccountIdentification";
 import { SameAmountRestriction } from "./sameAmountRestriction";
 import { SameCounterpartyRestriction } from "./sameCounterpartyRestriction";
+import { ScaDevice } from "./scaDevice";
+import { ScaDeviceType } from "./scaDeviceType";
+import { ScaEntity } from "./scaEntity";
+import { ScaEntityType } from "./scaEntityType";
 import { ScaExemption } from "./scaExemption";
 import { ScaInformation } from "./scaInformation";
 import { ScaStatus } from "./scaStatus";
@@ -154,6 +170,8 @@ import { SearchRegisteredDevicesResponse } from "./searchRegisteredDevicesRespon
 import { SettingType } from "./settingType";
 import { SourceAccountTypesRestriction } from "./sourceAccountTypesRestriction";
 import { StringMatch } from "./stringMatch";
+import { SubmitScaAssociationRequest } from "./submitScaAssociationRequest";
+import { SubmitScaAssociationResponse } from "./submitScaAssociationResponse";
 import { SweepConfigurationV2 } from "./sweepConfigurationV2";
 import { SweepCounterparty } from "./sweepCounterparty";
 import { SweepSchedule } from "./sweepSchedule";
@@ -227,6 +245,8 @@ let enumsMap: Set<string> = new Set<string>([
     "AssociationFinaliseRequest.TypeEnum",
     "AssociationFinaliseResponse.TypeEnum",
     "AssociationInitiateRequest.TypeEnum",
+    AssociationStatus.PendingApproval,
+    AssociationStatus.Active,
     "BRLocalAccountIdentification.TypeEnum",
     "BalanceAccount.StatusEnum",
     "BalanceAccountBase.StatusEnum",
@@ -300,6 +320,11 @@ let enumsMap: Set<string> = new Set<string>([
     "ProcessingTypesRestriction.ValueEnum",
     "SELocalAccountIdentification.TypeEnum",
     "SGLocalAccountIdentification.TypeEnum",
+    ScaDeviceType.Browser,
+    ScaDeviceType.Ios,
+    ScaDeviceType.Android,
+    ScaEntityType.AccountHolder,
+    ScaEntityType.PaymentInstrument,
     ScaExemption.SetByPlatform,
     ScaExemption.InitialLimit,
     ScaExemption.LowerLimit,
@@ -380,12 +405,16 @@ let typeMap: {[index: string]: any} = {
     "Amount": Amount,
     "AmountMinMaxRequirement": AmountMinMaxRequirement,
     "AmountNonZeroDecimalsRequirement": AmountNonZeroDecimalsRequirement,
+    "ApproveAssociationRequest": ApproveAssociationRequest,
+    "ApproveAssociationResponse": ApproveAssociationResponse,
     "ApproveTransferLimitRequest": ApproveTransferLimitRequest,
+    "Association": Association,
     "AssociationDelegatedAuthenticationData": AssociationDelegatedAuthenticationData,
     "AssociationFinaliseRequest": AssociationFinaliseRequest,
     "AssociationFinaliseResponse": AssociationFinaliseResponse,
     "AssociationInitiateRequest": AssociationInitiateRequest,
     "AssociationInitiateResponse": AssociationInitiateResponse,
+    "AssociationListing": AssociationListing,
     "Authentication": Authentication,
     "AuthorisedCardUsers": AuthorisedCardUsers,
     "BRLocalAccountIdentification": BRLocalAccountIdentification,
@@ -407,6 +436,8 @@ let typeMap: {[index: string]: any} = {
     "BankAccountIdentificationValidationRequestAccountIdentification": BankAccountIdentificationValidationRequestAccountIdentificationClass,
     "BankAccountModel": BankAccountModel,
     "BankIdentification": BankIdentification,
+    "BeginScaDeviceRegistrationRequest": BeginScaDeviceRegistrationRequest,
+    "BeginScaDeviceRegistrationResponse": BeginScaDeviceRegistrationResponse,
     "BrandVariantsRestriction": BrandVariantsRestriction,
     "BulkAddress": BulkAddress,
     "CALocalAccountIdentification": CALocalAccountIdentification,
@@ -445,6 +476,8 @@ let typeMap: {[index: string]: any} = {
     "EntryModesRestriction": EntryModesRestriction,
     "Expiry": Expiry,
     "Fee": Fee,
+    "FinishScaDeviceRegistrationRequest": FinishScaDeviceRegistrationRequest,
+    "FinishScaDeviceRegistrationResponse": FinishScaDeviceRegistrationResponse,
     "GetNetworkTokenResponse": GetNetworkTokenResponse,
     "GetTaxFormResponse": GetTaxFormResponse,
     "GrantLimit": GrantLimit,
@@ -458,6 +491,7 @@ let typeMap: {[index: string]: any} = {
     "InternationalTransactionRestriction": InternationalTransactionRestriction,
     "InvalidField": InvalidField,
     "Link": Link,
+    "ListAssociationsResponse": ListAssociationsResponse,
     "ListNetworkTokensResponse": ListNetworkTokensResponse,
     "MatchingTransactionsRestriction": MatchingTransactionsRestriction,
     "MatchingValuesRestriction": MatchingValuesRestriction,
@@ -490,6 +524,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentInstrumentRevealResponse": PaymentInstrumentRevealResponse,
     "PaymentInstrumentUpdateRequest": PaymentInstrumentUpdateRequest,
     "Phone": Phone,
+    "PhoneInfo": PhoneInfo,
     "PhoneNumber": PhoneNumber,
     "PinChangeRequest": PinChangeRequest,
     "PinChangeResponse": PinChangeResponse,
@@ -500,6 +535,7 @@ let typeMap: {[index: string]: any} = {
     "RegisterSCARequest": RegisterSCARequest,
     "RegisterSCAResponse": RegisterSCAResponse,
     "RemediatingAction": RemediatingAction,
+    "RemoveAssociationRequest": RemoveAssociationRequest,
     "Repayment": Repayment,
     "RepaymentTerm": RepaymentTerm,
     "RestServiceError": RestServiceError,
@@ -511,10 +547,14 @@ let typeMap: {[index: string]: any} = {
     "SGLocalAccountIdentification": SGLocalAccountIdentification,
     "SameAmountRestriction": SameAmountRestriction,
     "SameCounterpartyRestriction": SameCounterpartyRestriction,
+    "ScaDevice": ScaDevice,
+    "ScaEntity": ScaEntity,
     "ScaInformation": ScaInformation,
     "SearchRegisteredDevicesResponse": SearchRegisteredDevicesResponse,
     "SourceAccountTypesRestriction": SourceAccountTypesRestriction,
     "StringMatch": StringMatch,
+    "SubmitScaAssociationRequest": SubmitScaAssociationRequest,
+    "SubmitScaAssociationResponse": SubmitScaAssociationResponse,
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,
     "SweepSchedule": SweepSchedule,
