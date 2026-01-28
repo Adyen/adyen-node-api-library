@@ -14,6 +14,10 @@ export class PaymentDetails {
     */
     "checkoutAttemptId"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * The payment method type.
     */
     "type"?: PaymentDetails.TypeEnum;
@@ -26,6 +30,12 @@ export class PaymentDetails {
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },
@@ -93,7 +103,6 @@ export namespace PaymentDetails {
         Konbini = 'konbini',
         DirectEbanking = 'directEbanking',
         Boletobancario = 'boletobancario',
-        Neteller = 'neteller',
         Cashticket = 'cashticket',
         Ikano = 'ikano',
         Karenmillen = 'karenmillen',
@@ -106,10 +115,8 @@ export namespace PaymentDetails {
         Omannet = 'omannet',
         GopayWallet = 'gopay_wallet',
         KcpNaverpay = 'kcp_naverpay',
-        OnlinebankingIn = 'onlinebanking_IN',
         Fawry = 'fawry',
         Atome = 'atome',
-        Moneybookers = 'moneybookers',
         Naps = 'naps',
         Nordea = 'nordea',
         BoletobancarioBradesco = 'boletobancario_bradesco',

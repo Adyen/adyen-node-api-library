@@ -26,9 +26,11 @@ import { LineItem } from "./lineItem";
 import { Mandate } from "./mandate";
 import { MerchantRiskIndicator } from "./merchantRiskIndicator";
 import { PaymentRequestPaymentMethod } from "./paymentRequestPaymentMethod";
+import { PaymentValidations } from "./paymentValidations";
 import { PlatformChargebackLogic } from "./platformChargebackLogic";
 import { RiskData } from "./riskData";
 import { ShopperName } from "./shopperName";
+import { ShopperTaxInfo } from "./shopperTaxInfo";
 import { Split } from "./split";
 import { SubMerchantInfo } from "./subMerchantInfo";
 import { Surcharge } from "./surcharge";
@@ -127,7 +129,7 @@ export class PaymentRequest {
     */
     "lineItems"?: Array<LineItem>;
     /**
-    * The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If not supplied, left empty, or for cross-border transactions, **shopperStatement** is used.  Adyen currently supports the ja-Kana character set for Visa and Mastercard payments in Japan using Japanese cards. This character set supports:  * UTF-8 based Katakana, capital letters, numbers and special characters.  * Half-width or full-width characters.
+    * The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If this parameter is left empty, not provided, or not applicable (in case of cross-border transactions), then **shopperStatement** is used.  Currently, `localizedShopperStatement` is only supported for payments with Visa, Mastercard, JCB, Diners, and Discover.  **Supported characters**: Hiragana, Katakana, Kanji, and alphanumeric.
     */
     "localizedShopperStatement"?: { [key: string]: string; };
     "mandate"?: Mandate | null;
@@ -159,6 +161,7 @@ export class PaymentRequest {
     */
     "origin"?: string;
     "paymentMethod": PaymentRequestPaymentMethod;
+    "paymentValidations"?: PaymentValidations | null;
     "platformChargebackLogic"?: PlatformChargebackLogic | null;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
@@ -189,10 +192,6 @@ export class PaymentRequest {
     */
     "returnUrl": string;
     "riskData"?: RiskData | null;
-    /**
-    * Base64-encoded JSON object containing SDK related parameters required by the SDK     to function optimally. Clients must not     add unrelated or sensitive personal information.
-    */
-    "sdkData"?: string;
     /**
     * The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.  For example: 2020-07-18T15:42:40.428+01:00
     */
@@ -226,6 +225,7 @@ export class PaymentRequest {
     * The text to be shown on the shopper\'s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , \' _ - ? + * /_**.
     */
     "shopperStatement"?: string;
+    "shopperTaxInfo"?: ShopperTaxInfo | null;
     /**
     * The shopper\'s social security number.
     */
@@ -534,6 +534,12 @@ export class PaymentRequest {
             "format": ""
         },
         {
+            "name": "paymentValidations",
+            "baseName": "paymentValidations",
+            "type": "PaymentValidations | null",
+            "format": ""
+        },
+        {
             "name": "platformChargebackLogic",
             "baseName": "platformChargebackLogic",
             "type": "PlatformChargebackLogic | null",
@@ -588,12 +594,6 @@ export class PaymentRequest {
             "format": ""
         },
         {
-            "name": "sdkData",
-            "baseName": "sdkData",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "sessionValidity",
             "baseName": "sessionValidity",
             "type": "string",
@@ -645,6 +645,12 @@ export class PaymentRequest {
             "name": "shopperStatement",
             "baseName": "shopperStatement",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "shopperTaxInfo",
+            "baseName": "shopperTaxInfo",
+            "type": "ShopperTaxInfo | null",
             "format": ""
         },
         {

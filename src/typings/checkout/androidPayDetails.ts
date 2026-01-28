@@ -14,6 +14,10 @@ export class AndroidPayDetails {
     */
     "checkoutAttemptId"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * **androidpay**
     */
     "type"?: AndroidPayDetails.TypeEnum;
@@ -26,6 +30,12 @@ export class AndroidPayDetails {
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

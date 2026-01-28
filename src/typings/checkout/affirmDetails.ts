@@ -14,6 +14,10 @@ export class AffirmDetails {
     */
     "checkoutAttemptId"?: string;
     /**
+    * Base64-encoded JSON object containing SDK related parameters required by the SDK
+    */
+    "sdkData"?: string;
+    /**
     * **affirm**
     */
     "type"?: AffirmDetails.TypeEnum;
@@ -26,6 +30,12 @@ export class AffirmDetails {
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "sdkData",
+            "baseName": "sdkData",
             "type": "string",
             "format": ""
         },

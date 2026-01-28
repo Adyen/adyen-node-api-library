@@ -25,6 +25,7 @@ import { DragonpayDetails } from "./dragonpayDetails";
 import { EBankingFinlandDetails } from "./eBankingFinlandDetails";
 import { EcontextVoucherDetails } from "./econtextVoucherDetails";
 import { EftDetails } from "./eftDetails";
+import { ExternalTokenDetails } from "./externalTokenDetails";
 import { FastlaneDetails } from "./fastlaneDetails";
 import { GenericIssuerPaymentMethodDetails } from "./genericIssuerPaymentMethodDetails";
 import { GooglePayDetails } from "./googlePayDetails";
@@ -71,7 +72,7 @@ import { ZipDetails } from "./zipDetails";
  * Type
  * @export
  */
-export type PaymentRequestPaymentMethod = AchDetails | AffirmDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | FastlaneDetails | GenericIssuerPaymentMethodDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayPayDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PixDetails | PseDetails | RakutenPayDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | UpiQrDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
+export type PaymentRequestPaymentMethod = AchDetails | AffirmDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | ExternalTokenDetails | FastlaneDetails | GenericIssuerPaymentMethodDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayPayDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PixDetails | PseDetails | RakutenPayDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | UpiQrDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
 
 /**
 * @type PaymentRequestPaymentMethodClass

@@ -8,10 +8,12 @@
  */
 
 import { Airline } from "./airline";
+import { LevelTwoThree } from "./levelTwoThree";
 
 
 export class EnhancedSchemeData {
     "airline"?: Airline | null;
+    "levelTwoThree"?: LevelTwoThree | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,6 +24,12 @@ export class EnhancedSchemeData {
             "name": "airline",
             "baseName": "airline",
             "type": "Airline | null",
+            "format": ""
+        },
+        {
+            "name": "levelTwoThree",
+            "baseName": "levelTwoThree",
+            "type": "LevelTwoThree | null",
             "format": ""
         }    ];
 
