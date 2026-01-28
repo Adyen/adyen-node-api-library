@@ -7,19 +7,19 @@
  * Do not edit this class manually.
  */
 
-import { PhoneInfo } from "./phoneInfo";
+import { ScaEntityType } from "./scaEntityType";
 
 
-export class DeviceInfo {
+export class RemoveAssociationRequest {
     /**
-    * The type of device used to provision the network token.
+    * The unique identifier of the entity.
     */
-    "formFactor"?: string;
+    "entityId": string;
+    "entityType": ScaEntityType;
     /**
-    * The operating system of the device used to provision the network token.
+    * A list of device ids associated with the entity that should be removed.
     */
-    "osName"?: string;
-    "phone"?: PhoneInfo | null;
+    "scaDeviceIds": Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,29 +27,31 @@ export class DeviceInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "formFactor",
-            "baseName": "formFactor",
+            "name": "entityId",
+            "baseName": "entityId",
             "type": "string",
             "format": ""
         },
         {
-            "name": "osName",
-            "baseName": "osName",
-            "type": "string",
+            "name": "entityType",
+            "baseName": "entityType",
+            "type": "ScaEntityType",
             "format": ""
         },
         {
-            "name": "phone",
-            "baseName": "phone",
-            "type": "PhoneInfo | null",
+            "name": "scaDeviceIds",
+            "baseName": "scaDeviceIds",
+            "type": "Array<string>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return DeviceInfo.attributeTypeMap;
+        return RemoveAssociationRequest.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
+export namespace RemoveAssociationRequest {
+}

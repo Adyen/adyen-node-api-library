@@ -8,15 +8,11 @@
  */
 
 
-export class Amount {
+export class FinishScaDeviceRegistrationRequest {
     /**
-    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+    * A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen\'s authentication SDK.
     */
-    "currency": string;
-    /**
-    * The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
-    */
-    "value": number;
+    "sdkOutput": string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,20 +20,14 @@ export class Amount {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "currency",
-            "baseName": "currency",
+            "name": "sdkOutput",
+            "baseName": "sdkOutput",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "number",
-            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
-        return Amount.attributeTypeMap;
+        return FinishScaDeviceRegistrationRequest.attributeTypeMap;
     }
 
     public constructor() {
