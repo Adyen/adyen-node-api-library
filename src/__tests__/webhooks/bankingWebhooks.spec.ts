@@ -11,6 +11,7 @@ import { ReportNotificationRequest } from "../../typings/reportWebhooks/models";
 import { DisputeNotificationRequest } from "../../typings/disputeWebhooks/models";
 import { DisputeEventNotification } from "../../typings/disputeWebhooks/disputeEventNotification";
 import { RelayedAuthorisationRequest } from "../../typings/relayedAuthorizationWebhooks/models";
+import { ReleasedBlockedBalanceNotificationRequest } from "../../typings/balanceWebhooks/models";
 
 
 // handlers
@@ -336,6 +337,59 @@ describe("BankingWebhooks Tests", function (): void {
         const genericWebhook = balanceWebhooksHandler.getGenericWebhook();
         expect(genericWebhook instanceof BalanceAccountBalanceNotificationRequest).toBe(true);
         expect(genericWebhook.type).toEqual("balancePlatform.balanceAccount.balance.updated");
+    });
+
+    it("should deserialize BalanceWebhooks ReleasedBlockedBalanceNotificationRequest", function (): void {
+        const json = {
+            "data": {
+                "accountHolder": {
+                    "description": "Account holder for retail operations",
+                    "id": "AH0000000000000000000001",
+                    "reference": "Store_001"
+                },
+                "amount": {
+                    "currency": "EUR",
+                    "value": 25000
+                },
+                "balanceAccount": {
+                    "description": "Main operating account",
+                    "id": "BA0000000000000000000001",
+                    "reference": "OP_ACCT_MAIN"
+                },
+                "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                "batchReference": "BATCH_REF_20250925",
+                "blockedBalanceAfter": {
+                    "currency": "EUR",
+                    "value": -75000
+                },
+                "blockedBalanceBefore": {
+                    "currency": "EUR",
+                    "value": -100000
+                },
+                "creationDate": "2025-09-25T14:30:00Z",
+                "valueDate": "2025-09-25T14:35:00Z"
+            },
+            "environment": "test",
+            "timestamp": "2025-09-25T14:35:00Z",
+            "type": "balancePlatform.balanceAccount.balance.block.released"
+        };
+        const jsonString = JSON.stringify(json);
+        const balanceWebhooksHandler = new BalanceWebhooksHandler(jsonString);
+        const releasedBlockedBalanceNotificationRequest = balanceWebhooksHandler.getReleasedBlockedBalanceNotificationRequest();
+        expect(releasedBlockedBalanceNotificationRequest).toBeTruthy();
+        expect(releasedBlockedBalanceNotificationRequest.type).toBe(ReleasedBlockedBalanceNotificationRequest
+            .TypeEnum.BalancePlatformBalanceAccountBalanceBlockReleased
+        );
+        expect(releasedBlockedBalanceNotificationRequest.environment).toBe("test");
+        expect(releasedBlockedBalanceNotificationRequest.data).toBeDefined();
+        expect(releasedBlockedBalanceNotificationRequest.data.balancePlatform).toBe("YOUR_BALANCE_PLATFORM");
+        expect(releasedBlockedBalanceNotificationRequest.data.blockedBalanceAfter?.value).toBe(-75000);
+        expect(releasedBlockedBalanceNotificationRequest.data.blockedBalanceBefore?.value).toBe(-100000);
+
+        // test getGenericWebhook
+        const genericWebhook = balanceWebhooksHandler.getGenericWebhook();
+        expect(genericWebhook instanceof ReleasedBlockedBalanceNotificationRequest).toBe(true);
+        expect(genericWebhook.type).toEqual("balancePlatform.balanceAccount.balance.block.released");
     });
 
     it("should deserialize ReportWebhooks ReportNotificationRequest", function (): void {
