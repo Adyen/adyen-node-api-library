@@ -8,9 +8,9 @@
  */
 
 
-export class Counterparty {
+export class GrantCounterparty {
     /**
-    * The unique identifier of the account holder that receives the grant. If no `balanceAccountId` is provided, the grant funds are disbursed to the primary balance account of this account holder.
+    * The unique identifier of the account holder that receives the grant.
     */
     "accountHolderId"?: string;
     /**
@@ -47,7 +47,7 @@ export class Counterparty {
         }    ];
 
     static getAttributeTypeMap() {
-        return Counterparty.attributeTypeMap;
+        return GrantCounterparty.attributeTypeMap;
     }
 
     public constructor() {
