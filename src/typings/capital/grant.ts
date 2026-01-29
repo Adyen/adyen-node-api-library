@@ -7,16 +7,14 @@
  * Do not edit this class manually.
  */
 
-import { Amount } from "./amount";
 import { Balance } from "./balance";
-import { Counterparty } from "./counterparty";
+import { GrantCounterparty } from "./grantCounterparty";
 import { Status } from "./status";
 
 
 export class Grant {
-    "amount"?: Amount | null;
     "balances": Balance;
-    "counterparty"?: Counterparty | null;
+    "counterparty"?: GrantCounterparty | null;
     /**
     * The unique identifier of the grant account that tracks this grant.
     */
@@ -37,12 +35,6 @@ export class Grant {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "amount",
-            "baseName": "amount",
-            "type": "Amount | null",
-            "format": ""
-        },
-        {
             "name": "balances",
             "baseName": "balances",
             "type": "Balance",
@@ -51,7 +43,7 @@ export class Grant {
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "Counterparty | null",
+            "type": "GrantCounterparty | null",
             "format": ""
         },
         {

@@ -11,7 +11,6 @@ import { BankAccountIdentification } from "./bankAccountIdentification";
 import { CALocalAccountIdentification } from "./cALocalAccountIdentification";
 import { CALocalBankAccountType } from "./cALocalBankAccountType";
 import { CZLocalAccountIdentification } from "./cZLocalAccountIdentification";
-import { Counterparty } from "./counterparty";
 import { DKLocalAccountIdentification } from "./dKLocalAccountIdentification";
 import { DefaultErrorResponseEntity } from "./defaultErrorResponseEntity";
 import { Disbursement } from "./disbursement";
@@ -24,7 +23,9 @@ import { FundsCollection } from "./fundsCollection";
 import { FundsCollectionType } from "./fundsCollectionType";
 import { Grant } from "./grant";
 import { GrantAccount } from "./grantAccount";
+import { GrantCounterparty } from "./grantCounterparty";
 import { GrantInfo } from "./grantInfo";
+import { GrantInfoCounterparty } from "./grantInfoCounterparty";
 import { GrantLimit } from "./grantLimit";
 import { GrantOffer } from "./grantOffer";
 import { GrantOfferFee } from "./grantOfferFee";
@@ -88,7 +89,6 @@ let typeMap: {[index: string]: any} = {
     "BankAccountIdentification": BankAccountIdentification,
     "CALocalAccountIdentification": CALocalAccountIdentification,
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
-    "Counterparty": Counterparty,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
     "Disbursement": Disbursement,
@@ -100,7 +100,9 @@ let typeMap: {[index: string]: any} = {
     "FundsCollection": FundsCollection,
     "Grant": Grant,
     "GrantAccount": GrantAccount,
+    "GrantCounterparty": GrantCounterparty,
     "GrantInfo": GrantInfo,
+    "GrantInfoCounterparty": GrantInfoCounterparty,
     "GrantLimit": GrantLimit,
     "GrantOffer": GrantOffer,
     "GrantOfferFee": GrantOfferFee,

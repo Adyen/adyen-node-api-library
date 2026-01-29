@@ -16,7 +16,7 @@ export class Status {
     */
     "actions"?: Array<Action>;
     /**
-    * The code for the status of the grant. Possible values: - **Pending** - **Active** - **Repaid** - **WrittenOff** - **Failed** - **Revoked** - **Requested** - **Underwriting** - **Reviewing** - **Assessed** - **Approved** - **Rejected** - **Cancelled**
+    * The code for the status of the grant. Possible values: - **Pending** - **Active** - **Repaid** - **WrittenOff** - **Failed** - **Revoked** - **Requested** - **Reviewing** - **Approved** - **Rejected** - **Cancelled**
     */
     "code": Status.CodeEnum;
 
@@ -55,9 +55,7 @@ export namespace Status {
         Failed = 'Failed',
         Revoked = 'Revoked',
         Requested = 'Requested',
-        Underwriting = 'Underwriting',
         Reviewing = 'Reviewing',
-        Assessed = 'Assessed',
         Approved = 'Approved',
         Rejected = 'Rejected',
         Cancelled = 'Cancelled'
