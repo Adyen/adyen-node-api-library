@@ -7,19 +7,23 @@
  * Do not edit this class manually.
  */
 
-import { PhoneInfo } from "./phoneInfo";
+import { ScaDeviceType } from "./scaDeviceType";
+
+/**
+* A resource that contains information about a device, including its unique ID, name, and type.
+*/
 
 
-export class DeviceInfo {
+export class ScaDevice {
     /**
-    * The type of device used to provision the network token.
+    * The unique identifier of the SCA device you are registering.
     */
-    "formFactor"?: string;
+    "id": string;
     /**
-    * The operating system of the device used to provision the network token.
+    * The name of the SCA device that you are registering. You can use it to help your users identify the device.
     */
-    "osName"?: string;
-    "phone"?: PhoneInfo | null;
+    "name": string;
+    "type": ScaDeviceType;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,29 +31,31 @@ export class DeviceInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "formFactor",
-            "baseName": "formFactor",
+            "name": "id",
+            "baseName": "id",
             "type": "string",
             "format": ""
         },
         {
-            "name": "osName",
-            "baseName": "osName",
+            "name": "name",
+            "baseName": "name",
             "type": "string",
             "format": ""
         },
         {
-            "name": "phone",
-            "baseName": "phone",
-            "type": "PhoneInfo | null",
+            "name": "type",
+            "baseName": "type",
+            "type": "ScaDeviceType",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return DeviceInfo.attributeTypeMap;
+        return ScaDevice.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
+export namespace ScaDevice {
+}

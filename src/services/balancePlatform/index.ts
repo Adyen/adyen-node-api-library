@@ -21,6 +21,8 @@ import { NetworkTokensApi } from "./networkTokensApi";
 import { PaymentInstrumentGroupsApi } from "./paymentInstrumentGroupsApi";
 import { PaymentInstrumentsApi } from "./paymentInstrumentsApi";
 import { PlatformApi } from "./platformApi";
+import { SCAAssociationManagementApi } from "./sCAAssociationManagementApi";
+import { SCADeviceManagementApi } from "./sCADeviceManagementApi";
 import { TransactionRulesApi } from "./transactionRulesApi";
 import { TransferLimitsBalanceAccountLevelApi } from "./transferLimitsBalanceAccountLevelApi";
 import { TransferLimitsBalancePlatformLevelApi } from "./transferLimitsBalancePlatformLevelApi";
@@ -89,6 +91,14 @@ export default class BalancePlatformAPI extends Service {
 
     public get PlatformApi() {
         return new PlatformApi(this.client);
+    }
+
+    public get SCAAssociationManagementApi() {
+        return new SCAAssociationManagementApi(this.client);
+    }
+
+    public get SCADeviceManagementApi() {
+        return new SCADeviceManagementApi(this.client);
     }
 
     public get TransactionRulesApi() {

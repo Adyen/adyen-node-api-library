@@ -1444,5 +1444,190 @@ describe("Balance Platform", (): void => {
         });
     });
 
+    describe("SCAAssociationManagementApi", (): void => {
+        it("should support PATCH /scaAssociations", async (): Promise<void> => {
+            scope.patch("/scaAssociations")
+                .reply(200, {
+                    "scaAssociations": [
+                        {
+                            "scaDeviceId": "BSDR42XV3223223S5N6CDQDGH53M8H",
+                            "entityType": "accountHolder",
+                            "entityId": "AH00000000000000000000001",
+                            "status": "active"
+                        }
+                    ]
+                });
+
+            const request: Types.balancePlatform.ApproveAssociationRequest = {
+                "status": Types.balancePlatform.AssociationStatus.Active,
+                "entityType": Types.balancePlatform.ScaEntityType.AccountHolder,
+                "entityId": "AH00000000000000000000001",
+                "scaDeviceIds": [
+                    "BSDR42XV3223223S5N6CDQDGH53M8H"
+                ]
+            };
+
+            const response: Types.balancePlatform.ApproveAssociationResponse = await balancePlatformService.SCAAssociationManagementApi.approveAssociation(request);
+
+            expect(response.scaAssociations).toBeTruthy();
+            expect(response.scaAssociations?.length).toBe(1);
+            expect(response.scaAssociations![0].scaDeviceId).toBe("BSDR42XV3223223S5N6CDQDGH53M8H");
+            expect(response.scaAssociations![0].entityType).toBe("accountHolder");
+            expect(response.scaAssociations![0].entityId).toBe("AH00000000000000000000001");
+            expect(response.scaAssociations![0].status).toBe("active");
+        });
+
+        it("should support GET /scaAssociations", async (): Promise<void> => {
+            const entityType = Types.balancePlatform.ScaEntityType.AccountHolder;
+            const entityId = "AH3227J223222D5HHM4779X6X";
+            const pageSize = 10;
+            const pageNumber = 0;
+
+            scope.get(`/scaAssociations?entityType=${entityType}&entityId=${entityId}&pageSize=${pageSize}`)
+                .reply(200, {
+                    "_links": {
+                        "self": {
+                            "href": `https://exampledomain.com/bcl/api/v2/scaAssociations?pageNumber=${pageNumber}&entityType=${entityType}&pageSize=${pageSize}&entityId=${entityId}`
+                        }
+                    },
+                    "itemsTotal": 2,
+                    "pagesTotal": 1,
+                    "data": [
+                        {
+                            "scaDeviceId": "BSDR11111111111A1AAA1AAAAA1AA1",
+                            "scaDeviceName": "Device 1",
+                            "scaDeviceType": "ios",
+                            "entityType": "accountHolder",
+                            "entityId": "AH00000000000000000000001",
+                            "status": "active",
+                            "createdAt": "2025-09-02T14:39:17.232Z"
+                        },
+                        {
+                            "scaDeviceId": "BSDR22222222222B2BBB2BBBBB2BB2",
+                            "scaDeviceName": "Device 2",
+                            "scaDeviceType": "ios",
+                            "entityType": "accountHolder",
+                            "entityId": "AH00000000000000000000001",
+                            "status": "pendingApproval",
+                            "createdAt": "2025-09-02T14:39:17.232Z"
+                        }
+                    ]
+                });
+
+            const response: Types.balancePlatform.ListAssociationsResponse = await balancePlatformService.SCAAssociationManagementApi.listAssociations(entityType, entityId, pageSize, pageNumber);
+
+            expect(response).toBeTruthy();
+            expect(response.itemsTotal).toBe(2);
+            expect(response.pagesTotal).toBe(1);
+            expect(response.data).toBeTruthy();
+            expect(response.data?.length).toBe(2);
+            expect(response.data![0].scaDeviceId).toBe("BSDR11111111111A1AAA1AAAAA1AA1");
+            expect(response.data![0].scaDeviceName).toBe("Device 1");
+            expect(response.data![0].status).toBe("active");
+            expect(response.data![1].scaDeviceId).toBe("BSDR22222222222B2BBB2BBBBB2BB2");
+            expect(response.data![1].status).toBe("pendingApproval");
+        });
+
+        it("should support DELETE /scaAssociations", async (): Promise<void> => {
+            scope.delete("/scaAssociations")
+                .reply(204);
+
+            const request: Types.balancePlatform.RemoveAssociationRequest = {
+                "entityType": Types.balancePlatform.ScaEntityType.AccountHolder,
+                "entityId": "AH00000000000000000000001",
+                "scaDeviceIds": ["BSDR11111111111A1AAA1AAAAA1AA1"]
+            };
+
+            await balancePlatformService.SCAAssociationManagementApi.removeAssociation(request);
+
+            expect(scope.isDone()).toBeTruthy();
+        });
+    });
+
+    describe("SCADeviceManagementApi", (): void => {
+        it("should support POST /scaDevices", async (): Promise<void> => {
+            scope.post("/scaDevices")
+                .reply(200, {
+                    "scaDevice": {
+                        "id": "BSDR42XV3223223S5N6CDQDGH53M8H",
+                        "name": "My Device",
+                        "type": "ios"
+                    },
+                    "sdkInput": "eyJjaGFsbGVuZ2UiOiJVWEZaTURONGNXWjZUVFExUlhWV2JuaEJPVzVzTm05cVVEUktUbFZtZGtrPSJ9"
+                });
+
+            const request: Types.balancePlatform.BeginScaDeviceRegistrationRequest = {
+                "name": "My Device",
+                "sdkOutput": "eyJjaGFsbGVuZ2UiOiJVWEZaTURONGNXWjZUVFExUlhWV2JuaEJPVzVzTm05cVVEUktUbFZtZGtrPSJ9"
+            };
+
+            const response: Types.balancePlatform.BeginScaDeviceRegistrationResponse = await balancePlatformService.SCADeviceManagementApi.beginScaDeviceRegistration(request);
+
+            expect(response).toBeTruthy();
+            expect(response.scaDevice).toBeTruthy();
+            expect(response.scaDevice?.id).toBe("BSDR42XV3223223S5N6CDQDGH53M8H");
+            expect(response.scaDevice?.name).toBe("My Device");
+            expect(response.scaDevice?.type).toBe("ios");
+            expect(response.sdkInput).toBe("eyJjaGFsbGVuZ2UiOiJVWEZaTURONGNXWjZUVFExUlhWV2JuaEJPVzVzTm05cVVEUktUbFZtZGtrPSJ9");
+        });
+
+        it("should support PATCH /scaDevices/{deviceId}", async (): Promise<void> => {
+            const deviceId = "BSDR42XV3223223S5N6CDQDGH53M8H";
+            scope.patch(`/scaDevices/${deviceId}`)
+                .reply(200, {
+                    "scaDevice": {
+                        "id": "BSDR42XV3223223S5N6CDQDGH53M8H",
+                        "name": "Device",
+                        "type": "ios"
+                    }
+                });
+
+            const request: Types.balancePlatform.FinishScaDeviceRegistrationRequest = {
+                "sdkOutput": "eyJjaGFsbGVuZ2UiOiJVWEZaTURONGNXWjZUVFExUlhWV2JuaEJPVzVzTm05cVVEUktUbFZtZGtrPSJ9"
+            };
+
+            const response: Types.balancePlatform.FinishScaDeviceRegistrationResponse = await balancePlatformService.SCADeviceManagementApi.finishScaDeviceRegistration(deviceId, request);
+
+            expect(response).toBeTruthy();
+            expect(response.scaDevice).toBeTruthy();
+            expect(response.scaDevice?.id).toBe("BSDR42XV3223223S5N6CDQDGH53M8H");
+            expect(response.scaDevice?.name).toBe("Device");
+            expect(response.scaDevice?.type).toBe("ios");
+        });
+
+        it("should support POST /scaDevices/{deviceId}/scaAssociations", async (): Promise<void> => {
+            const deviceId = "BSDR42XV3223223S5N6CDQDGH53M8H";
+            scope.post(`/scaDevices/${deviceId}/scaAssociations`)
+                .reply(200, {
+                    "scaAssociations": [
+                        {
+                            "scaDeviceId": "BSDR11111111111A1AAA1AAAAA1AA1",
+                            "entityType": "accountHolder",
+                            "entityId": "AH00000000000000000000001",
+                            "status": "pendingApproval"
+                        }
+                    ]
+                });
+
+            const request: Types.balancePlatform.SubmitScaAssociationRequest = {
+                "entities": [
+                    {
+                        "type": Types.balancePlatform.ScaEntityType.AccountHolder,
+                        "id": "AH00000000000000000000001"
+                    }
+                ]
+            };
+
+            const response: Types.balancePlatform.SubmitScaAssociationResponse = await balancePlatformService.SCADeviceManagementApi.submitScaAssociation(deviceId, request);
+
+            expect(response).toBeTruthy();
+            expect(response.scaAssociations).toBeTruthy();
+            expect(response.scaAssociations?.length).toBe(1);
+            expect(response.scaAssociations![0].scaDeviceId).toBe("BSDR11111111111A1AAA1AAAAA1AA1");
+            expect(response.scaAssociations![0].entityType).toBe("accountHolder");
+            expect(response.scaAssociations![0].entityId).toBe("AH00000000000000000000001");
+            expect(response.scaAssociations![0].status).toBe("pendingApproval");
+        });
+    });
 
 });
