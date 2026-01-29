@@ -5,148 +5,15 @@ import { createClient } from "../__mocks__/base";
 import { CapitalAPI } from "../services";
 import { Types } from "..";
 
-// Mock responses from src/__mocks__/capital/
-const getGrantSuccess = {
-    "id": "GR00000000000000000000001",
-    "grantAccountId": "CG00000000000000000000001",
-    "grantOfferId": "GO00000000000000000000001",
-    "counterparty": {
-      "accountHolderId": "AH00000000000000000000001",
-      "balanceAccountId": "BA00000000000000000000001"
-    },
-    "amount": {
-      "currency": "EUR",
-      "value": 10000
-    },
-    "balances": {
-      "currency": "EUR",
-      "principal": 10000,
-      "fee": 1000,
-      "total": 11000
-    },
-    "status": {
-      "code": "Active"
-    }
-  };
+import getGrantSuccess from "../__mocks__/capital/get-grant-success.json";
+import grantsSuccess from "../__mocks__/capital/grants-success.json";
+import requestGrantSuccess from "../__mocks__/capital/request-grant.json";
+import getGrantDisbursementSuccess from "../__mocks__/capital/get-grant-disbursement-success.json";
+import getGrantDisbursementsSuccess from "../__mocks__/capital/get-grant-disbursements-success.json";
 
-const grantsSuccess = {
-    "grants": [
-      {
-        "id": "GR00000000000000000000001",
-        "grantAccountId": "CG00000000000000000000001",
-        "grantOfferId": "GO00000000000000000000001",
-        "counterparty": {
-          "accountHolderId": "AH00000000000000000000001",
-          "balanceAccountId": "BA00000000000000000000001"
-        },
-        "amount": {
-          "currency": "EUR",
-          "value": 10000
-        },
-        "balances": {
-          "currency": "EUR",
-          "principal": 10000,
-          "fee": 1000,
-          "total": 11000
-        },
-        "status": {
-          "code": "Active"
-        }
-      }
-    ]
-  };
-
-const requestGrantSuccess = {
-    "id": "GR00000000000000000000001",
-    "grantAccountId": "CG00000000000000000000001",
-    "grantOfferId": "0000000000000001",
-    "counterparty": {
-      "accountHolderId": "AH00000000000000000000001",
-      "balanceAccountId": "BA00000000000000000000001"
-    },
-    "amount": {
-      "currency": "EUR",
-      "value": 1000000
-    },
-    "fee": {
-      "amount": {
-        "value": 120000,
-        "currency": "EUR"
-      }
-    },
-    "balances":
-      {
-        "currency": "EUR",
-        "fee": 120000,
-        "principal": 1000000,
-        "total": 1120000
-      }
-    ,
-    "repayment": {
-      "basisPoints": 1400
-    },
-    "status": {
-      "code": "Pending"
-    }
-  };
-
-const getGrantDisbursementSuccess = {
-    "id": "DI00000000000000000000001",
-    "grantId": "GR00000000000000000000001",
-    "accountHolderId": "AH00000000000000000000001",
-    "balanceAccountId": "BA00000000000000000000001",
-    "amount": {
-      "currency": "EUR",
-      "value": 10000
-    },
-    "fee": {
-      "amount": {
-        "currency": "EUR",
-        "value": 1000
-      }
-    },
-    "balances": {
-      "currency": "EUR",
-      "principal": 10000,
-      "fee": 1000,
-      "total": 11000
-    },
-    "repayment": {
-      "basisPoints": 1000,
-      "updateDescription": "string"
-    }
-  };
-
-const getGrantDisbursementsSuccess = {
-    "disbursements": [
-      {
-        "id": "DI00000000000000000000001",
-        "grantId": "GR00000000000000000000001",
-        "accountHolderId": "AH00000000000000000000001",
-        "balanceAccountId": "BA00000000000000000000001",
-        "amount": {
-          "currency": "EUR",
-          "value": 10000
-        },
-        "fee": {
-          "amount": {
-            "currency": "EUR",
-            "value": 1000
-          }
-        },
-        "balances": {
-          "currency": "EUR",
-          "principal": 10000,
-          "fee": 1000,
-          "total": 11000
-        },
-        "repayment": {
-          "basisPoints": 1000,
-          "updateDescription": "string"
-        }
-      }
-    ]
-  };
+import getGrantAccountSuccess from "../__mocks__/capital/get-grant-account-success.json";
+import grantOffersSuccess from "../__mocks__/capital/grant-offers-success.json";
+import getGrantOfferSuccess from "../__mocks__/capital/get-grant-offer-success.json";
 
 let client: Client;
 let capitalApi: CapitalAPI;
@@ -271,26 +138,6 @@ describe("Capital", () => {
     describe("GrantAccountsApi", () => {
         it("should get grant account information", async () => {
             const grantAccountId = "CG00000000000000000000001";
-            const getGrantAccountSuccess = {
-                "id": "CG00000000000000000000001",
-                "fundingBalanceAccountId": "BA00000000000000000000001",
-                "limits": [
-                  {
-                    "amount": {
-                      "currency": "EUR",
-                      "value": 100000
-                    }
-                  }
-                ],
-                "balances": [
-                  {
-                    "currency": "EUR",
-                    "principal": 10000,
-                    "fee": 1000,
-                    "total": 11000
-                  }
-                ]
-              };
 
             scope.get(`/grantAccounts/${grantAccountId}`)
                 .reply(200, getGrantAccountSuccess);
@@ -310,59 +157,6 @@ describe("Capital", () => {
     });
 
     describe("GrantOffersApi", () => {
-        const grantOffersSuccess = {
-            "grantOffers": [
-                {
-                    "id": "GO00000000000000000000001",
-                    "amount": {
-                        "currency": "EUR",
-                        "value": 10000
-                    },
-                    "fee": {
-                        "currency": "EUR",
-                        "value": 100
-                    },
-                    "repayment": {
-                        "currency": "EUR",
-                        "value": 10100
-                    }
-                }
-            ]
-        };
-
-        const getGrantOfferSuccess = {
-            "id": "GO00000000000000000000001",
-            "accountHolderId": "AH00000000000000000000001",
-            "contractType": "cashAdvance",
-            "amount": {
-                "currency": "EUR",
-                "value": 10000
-            },
-            "fee": {
-                "amount": {
-                    "currency": "EUR",
-                    "value": 1000
-                },
-                "aprBasisPoints": 1200
-            },
-            "repayment": {
-                "basisPoints": 1000,
-                "term": {
-                    "estimatedDays": 180,
-                    "maximumDays": 365
-                },
-                "threshold": {
-                    "amount": {
-                        "currency": "EUR",
-                        "value": 1000
-                    }
-                }
-            },
-            "startsAt": "2024-01-01T00:00:00Z",
-            "expiresAt": "2024-01-31T23:59:59Z"
-        };
-
-
         it("should get all grant offers with query param", async () => {
             const accountHolderId = "AH00000000000000000000001";
             scope.get("/grantOffers")
@@ -393,4 +187,3 @@ describe("Capital", () => {
         });
     });
 });
-
