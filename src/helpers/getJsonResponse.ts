@@ -18,6 +18,7 @@
  */
 
 import Resource from "../services/resource";
+import { CloudDeviceApiResponse } from "../typings/cloudDevice/cloudDeviceApiResponse";
 import { IRequest } from "../typings/requestOptions";
 import { TerminalApiResponse } from "../typings/terminal/models";
 
@@ -35,6 +36,19 @@ import { TerminalApiResponse } from "../typings/terminal/models";
  * const response = await getJsonResponse<TerminalApiRequest>(terminalApiResource, request);
  */
 async function getJsonResponse<T>(resource: Resource, jsonRequest: T | string, requestOptions?: IRequest.Options): Promise<string | TerminalApiResponse>;
+
+/**
+ * Sends a JSON request and returns a deserialized CloudDeviceApiResponse.
+ *
+ * @template T The request type
+ * @param resource - The API resource.
+ * @param jsonRequest - The request payload.
+ * @param requestOptions - Optional HTTP request options.
+ * @returns A promise resolving to a CloudDeviceApiResponse.
+ */
+async function getJsonResponse<T>(resource: Resource, jsonRequest: T | string, requestOptions?: IRequest.Options,): Promise<string | CloudDeviceApiResponse>;
+
+
 /**
  * Sends a JSON request to the given resource and returns a deserialized response of the expected type.
  * Used by all APIs and Terminal API sync method 
