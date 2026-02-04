@@ -4,7 +4,6 @@ on:
   schedule:
     # Every day at midnight
     - cron: '0 0 * * *'
-  merge_group:
   workflow_dispatch: {}
 
 permissions:
