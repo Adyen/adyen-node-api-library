@@ -9,6 +9,7 @@ on:
       - main
       - sdk-automation/models
       - promote/main
+  merge_group:
   workflow_dispatch: {}
 
 permissions:
