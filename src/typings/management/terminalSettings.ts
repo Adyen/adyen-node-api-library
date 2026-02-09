@@ -11,6 +11,8 @@ import { CardholderReceipt } from "./cardholderReceipt";
 import { Connectivity } from "./connectivity";
 import { Gratuity } from "./gratuity";
 import { Hardware } from "./hardware";
+import { HomeScreenSettings } from "./homeScreenSettings";
+import { KioskModeSettings } from "./kioskModeSettings";
 import { Localization } from "./localization";
 import { Moto } from "./moto";
 import { Nexo } from "./nexo";
@@ -40,6 +42,8 @@ export class TerminalSettings {
     */
     "gratuities"?: Array<Gratuity> | null;
     "hardware"?: Hardware | null;
+    "homeScreen"?: HomeScreenSettings | null;
+    "kioskMode"?: KioskModeSettings | null;
     "localization"?: Localization | null;
     "moto"?: Moto | null;
     "nexo"?: Nexo | null;
@@ -87,6 +91,18 @@ export class TerminalSettings {
             "name": "hardware",
             "baseName": "hardware",
             "type": "Hardware | null",
+            "format": ""
+        },
+        {
+            "name": "homeScreen",
+            "baseName": "homeScreen",
+            "type": "HomeScreenSettings | null",
+            "format": ""
+        },
+        {
+            "name": "kioskMode",
+            "baseName": "kioskMode",
+            "type": "KioskModeSettings | null",
             "format": ""
         },
         {

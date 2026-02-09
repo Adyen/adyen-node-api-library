@@ -62,6 +62,7 @@ import { GivexInfo } from "./givexInfo";
 import { GooglePayInfo } from "./googlePayInfo";
 import { Gratuity } from "./gratuity";
 import { Hardware } from "./hardware";
+import { HomeScreenSettings } from "./homeScreenSettings";
 import { IdName } from "./idName";
 import { InstallAndroidAppDetails } from "./installAndroidAppDetails";
 import { InstallAndroidCertificateDetails } from "./installAndroidCertificateDetails";
@@ -69,6 +70,7 @@ import { InstalledAPKs } from "./installedAPKs";
 import { InvalidField } from "./invalidField";
 import { JCBInfo } from "./jCBInfo";
 import { Key } from "./key";
+import { KioskModeSettings } from "./kioskModeSettings";
 import { KlarnaInfo } from "./klarnaInfo";
 import { Links } from "./links";
 import { LinksElement } from "./linksElement";
@@ -370,6 +372,7 @@ let typeMap: {[index: string]: any} = {
     "GooglePayInfo": GooglePayInfo,
     "Gratuity": Gratuity,
     "Hardware": Hardware,
+    "HomeScreenSettings": HomeScreenSettings,
     "IdName": IdName,
     "InstallAndroidAppDetails": InstallAndroidAppDetails,
     "InstallAndroidCertificateDetails": InstallAndroidCertificateDetails,
@@ -377,6 +380,7 @@ let typeMap: {[index: string]: any} = {
     "InvalidField": InvalidField,
     "JCBInfo": JCBInfo,
     "Key": Key,
+    "KioskModeSettings": KioskModeSettings,
     "KlarnaInfo": KlarnaInfo,
     "Links": Links,
     "LinksElement": LinksElement,
