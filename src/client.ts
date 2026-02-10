@@ -1,4 +1,4 @@
-import Config, { EnvironmentEnum } from "./config";
+import Config, { CLOUD_DEVICE_API_ENDPOINT_TEST, EnvironmentEnum } from "./config";
 import { TERMINAL_API_ENDPOINT_TEST } from "./config";
 
 import HttpURLConnectionClient from "./httpClient/httpURLConnectionClient";
@@ -51,6 +51,20 @@ class Client {
                     throw new Error(`Invalid region provided: ${this.config.region}`);
                 }
                 this.config.terminalApiCloudEndpoint = Config.getTerminalApiEndpoint(this.config.region);  
+            }
+        }
+
+        // set Cloud Device API endpoints 
+        if (this.config.environment === EnvironmentEnum.TEST) {
+            // one TEST endpoint for all regions
+            this.config.cloudDeviceApiEndpoint = CLOUD_DEVICE_API_ENDPOINT_TEST;
+        } else if (this.config.environment === EnvironmentEnum.LIVE) {
+            // region-based LIVE endpoints
+            if(this.config.region) {
+                if (!Config.isRegionValid(this.config.region)) {
+                    throw new Error(`Invalid region provided: ${this.config.region}`);
+                }
+                this.config.cloudDeviceApiEndpoint = Config.getCloudDeviceApiEndpoint(this.config.region);  
             }
         }
 
