@@ -345,6 +345,7 @@ export namespace Transfer {
         Failed = 'failed',
         Fee = 'fee',
         FeePending = 'feePending',
+        InterchangeAdjusted = 'interchangeAdjusted',
         InternalTransfer = 'internalTransfer',
         InternalTransferPending = 'internalTransferPending',
         InvoiceDeduction = 'invoiceDeduction',
