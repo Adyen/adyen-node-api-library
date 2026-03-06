@@ -26,6 +26,7 @@ import { ExternalReason } from "./externalReason";
 import { HKLocalAccountIdentification } from "./hKLocalAccountIdentification";
 import { HULocalAccountIdentification } from "./hULocalAccountIdentification";
 import { IbanAccountIdentification } from "./ibanAccountIdentification";
+import { InterchangeData } from "./interchangeData";
 import { InternalCategoryData } from "./internalCategoryData";
 import { InternalReviewTrackingData } from "./internalReviewTrackingData";
 import { IssuedCard } from "./issuedCard";
@@ -98,6 +99,7 @@ let enumsMap: Set<string> = new Set<string>([
     "HKLocalAccountIdentification.TypeEnum",
     "HULocalAccountIdentification.TypeEnum",
     "IbanAccountIdentification.TypeEnum",
+    "InterchangeData.TypeEnum",
     "InternalCategoryData.TypeEnum",
     "InternalReviewTrackingData.ReasonEnum",
     "InternalReviewTrackingData.StatusEnum",
@@ -171,6 +173,7 @@ let typeMap: {[index: string]: any} = {
     "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
+    "InterchangeData": InterchangeData,
     "InternalCategoryData": InternalCategoryData,
     "InternalReviewTrackingData": InternalReviewTrackingData,
     "IssuedCard": IssuedCard,

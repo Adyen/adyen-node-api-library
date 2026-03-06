@@ -321,6 +321,7 @@ export namespace TransferEvent {
         Failed = 'failed',
         Fee = 'fee',
         FeePending = 'feePending',
+        InterchangeAdjusted = 'interchangeAdjusted',
         InternalTransfer = 'internalTransfer',
         InternalTransferPending = 'internalTransferPending',
         InvoiceDeduction = 'invoiceDeduction',
@@ -356,6 +357,7 @@ export namespace TransferEvent {
     }
     export enum TypeEnum {
         Accounting = 'accounting',
+        Tracing = 'tracing',
         Tracking = 'tracking'
     }
 }
