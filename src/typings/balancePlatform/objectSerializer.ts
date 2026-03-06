@@ -172,11 +172,13 @@ import { SourceAccountTypesRestriction } from "./sourceAccountTypesRestriction";
 import { StringMatch } from "./stringMatch";
 import { SubmitScaAssociationRequest } from "./submitScaAssociationRequest";
 import { SubmitScaAssociationResponse } from "./submitScaAssociationResponse";
+import { Summary } from "./summary";
 import { SweepConfigurationV2 } from "./sweepConfigurationV2";
 import { SweepCounterparty } from "./sweepCounterparty";
 import { SweepSchedule } from "./sweepSchedule";
 import { Target } from "./target";
 import { TargetUpdate } from "./targetUpdate";
+import { TaxFormSummaryResponse } from "./taxFormSummaryResponse";
 import { ThresholdRepayment } from "./thresholdRepayment";
 import { TimeOfDay } from "./timeOfDay";
 import { TimeOfDayRestriction } from "./timeOfDayRestriction";
@@ -555,11 +557,13 @@ let typeMap: {[index: string]: any} = {
     "StringMatch": StringMatch,
     "SubmitScaAssociationRequest": SubmitScaAssociationRequest,
     "SubmitScaAssociationResponse": SubmitScaAssociationResponse,
+    "Summary": Summary,
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,
     "SweepSchedule": SweepSchedule,
     "Target": Target,
     "TargetUpdate": TargetUpdate,
+    "TaxFormSummaryResponse": TaxFormSummaryResponse,
     "ThresholdRepayment": ThresholdRepayment,
     "TimeOfDay": TimeOfDay,
     "TimeOfDayRestriction": TimeOfDayRestriction,
