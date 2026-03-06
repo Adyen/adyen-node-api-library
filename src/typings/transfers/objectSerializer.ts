@@ -22,7 +22,6 @@ import { CapitalGrants } from "./capitalGrants";
 import { Card } from "./card";
 import { CardIdentification } from "./cardIdentification";
 import { ConfirmationTrackingData } from "./confirmationTrackingData";
-import { Counterparty } from "./counterparty";
 import { CounterpartyInfoV3 } from "./counterpartyInfoV3";
 import { CounterpartyV3 } from "./counterpartyV3";
 import { DKLocalAccountIdentification } from "./dKLocalAccountIdentification";
@@ -33,9 +32,12 @@ import { ExternalReason } from "./externalReason";
 import { Fee } from "./fee";
 import { FindTransfersResponse } from "./findTransfersResponse";
 import { FundingInstrument } from "./fundingInstrument";
+import { GrantCounterparty } from "./grantCounterparty";
+import { GrantInfoCounterparty } from "./grantInfoCounterparty";
 import { HKLocalAccountIdentification } from "./hKLocalAccountIdentification";
 import { HULocalAccountIdentification } from "./hULocalAccountIdentification";
 import { IbanAccountIdentification } from "./ibanAccountIdentification";
+import { InterchangeData } from "./interchangeData";
 import { InternalCategoryData } from "./internalCategoryData";
 import { InternalReviewTrackingData } from "./internalReviewTrackingData";
 import { InvalidField } from "./invalidField";
@@ -127,6 +129,7 @@ let enumsMap: Set<string> = new Set<string>([
     "HKLocalAccountIdentification.TypeEnum",
     "HULocalAccountIdentification.TypeEnum",
     "IbanAccountIdentification.TypeEnum",
+    "InterchangeData.TypeEnum",
     "InternalCategoryData.TypeEnum",
     "InternalReviewTrackingData.ReasonEnum",
     "InternalReviewTrackingData.StatusEnum",
@@ -208,7 +211,6 @@ let typeMap: {[index: string]: any} = {
     "Card": Card,
     "CardIdentification": CardIdentification,
     "ConfirmationTrackingData": ConfirmationTrackingData,
-    "Counterparty": Counterparty,
     "CounterpartyInfoV3": CounterpartyInfoV3,
     "CounterpartyV3": CounterpartyV3,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
@@ -219,9 +221,12 @@ let typeMap: {[index: string]: any} = {
     "Fee": Fee,
     "FindTransfersResponse": FindTransfersResponse,
     "FundingInstrument": FundingInstrument,
+    "GrantCounterparty": GrantCounterparty,
+    "GrantInfoCounterparty": GrantInfoCounterparty,
     "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
+    "InterchangeData": InterchangeData,
     "InternalCategoryData": InternalCategoryData,
     "InternalReviewTrackingData": InternalReviewTrackingData,
     "InvalidField": InvalidField,

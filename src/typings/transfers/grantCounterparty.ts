@@ -7,19 +7,20 @@
  * Do not edit this class manually.
  */
 
-import { GrantInfoCounterparty } from "./grantInfoCounterparty";
 
-
-export class CapitalGrantInfo {
-    "counterparty"?: GrantInfoCounterparty | null;
+export class GrantCounterparty {
     /**
-    * The identifier of the grant account used for the grant.
+    * The identifier of the receiving account holder.
     */
-    "grantAccountId": string;
+    "accountHolderId"?: string;
     /**
-    * The identifier of the grant offer that has been selected and from which the grant details will be used.
+    * The identifier of the balance account that belongs to the receiving account holder.
     */
-    "grantOfferId": string;
+    "balanceAccountId"?: string;
+    /**
+    * The identifier of the transfer instrument that belongs to the legal entity of the account holder.
+    */
+    "transferInstrumentId"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,26 +28,26 @@ export class CapitalGrantInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "counterparty",
-            "baseName": "counterparty",
-            "type": "GrantInfoCounterparty | null",
-            "format": ""
-        },
-        {
-            "name": "grantAccountId",
-            "baseName": "grantAccountId",
+            "name": "accountHolderId",
+            "baseName": "accountHolderId",
             "type": "string",
             "format": ""
         },
         {
-            "name": "grantOfferId",
-            "baseName": "grantOfferId",
+            "name": "balanceAccountId",
+            "baseName": "balanceAccountId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "transferInstrumentId",
+            "baseName": "transferInstrumentId",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return CapitalGrantInfo.attributeTypeMap;
+        return GrantCounterparty.attributeTypeMap;
     }
 
     public constructor() {
