@@ -7,15 +7,16 @@
  * Do not edit this class manually.
  */
 
-import { AdditionalBankIdentificationTypes } from "./additionalBankIdentificationTypes";
-
 
 export class AdditionalBankIdentification {
     /**
     * The value of the additional bank identification.
     */
     "code"?: string;
-    "type"?: AdditionalBankIdentificationTypes;
+    /**
+    * The type of additional bank identification, depending on the country.  Possible values:   * **auBsbCode**: The 6-digit [Australian Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or spaces.  * **caRoutingNumber**: The 9-digit [Canadian routing number](https://en.wikipedia.org/wiki/Routing_number_(Canada)), in EFT format, without separators or spaces.  * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.
+    */
+    "type"?: AdditionalBankIdentification.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -31,7 +32,7 @@ export class AdditionalBankIdentification {
         {
             "name": "type",
             "baseName": "type",
-            "type": "AdditionalBankIdentificationTypes",
+            "type": "AdditionalBankIdentification.TypeEnum",
             "format": ""
         }    ];
 
@@ -44,4 +45,10 @@ export class AdditionalBankIdentification {
 }
 
 export namespace AdditionalBankIdentification {
+    export enum TypeEnum {
+        AuBsbCode = 'auBsbCode',
+        CaRoutingNumber = 'caRoutingNumber',
+        GbSortCode = 'gbSortCode',
+        UsRoutingNumber = 'usRoutingNumber'
+    }
 }

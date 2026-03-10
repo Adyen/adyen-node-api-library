@@ -17,7 +17,7 @@ export class GrantInfo {
     */
     "grantAccountId": string;
     /**
-    * The unique identifier of the selected grant offer. Adyen uses the details of the selected grant offer to create a grant.
+    * The unique identifier of the selected offer. Adyen uses the details of the selected offer to create a grant.
     */
     "grantOfferId": string;
 

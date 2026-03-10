@@ -7,14 +7,14 @@
  * Do not edit this class manually.
  */
 
-import { GrantOffer } from "./grantOffer";
+import { DynamicOffer } from "./dynamicOffer";
 
 
-export class GrantOffers {
+export class GetDynamicOffersResponse {
     /**
-    * Contains a list of available offers for the specified account holder.
+    * Contains a list of available dynamic offers for the specified account holder.
     */
-    "grantOffers": Array<GrantOffer>;
+    "dynamicOffers": Array<DynamicOffer>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,14 +22,14 @@ export class GrantOffers {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "grantOffers",
-            "baseName": "grantOffers",
-            "type": "Array<GrantOffer>",
+            "name": "dynamicOffers",
+            "baseName": "dynamicOffers",
+            "type": "Array<DynamicOffer>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return GrantOffers.attributeTypeMap;
+        return GetDynamicOffersResponse.attributeTypeMap;
     }
 
     public constructor() {
