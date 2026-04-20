@@ -58,5 +58,8 @@
   },
   "optionalDependencies": {
     "@types/node": "18.19.69"
+  },
+  "overrides": {
+    "lodash": "^4.18.0"
   }
 }
