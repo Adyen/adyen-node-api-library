@@ -1,0 +1,124 @@
+/*
+ *                       ######
+ *                       ######
+ * ############    ####( ######  #####. ######  ############   ############
+ * #############  #####( ######  #####. ######  #############  #############
+ *        ######  #####( ######  #####. ######  #####  ######  #####  ######
+ * ###### ######  #####( ######  #####. ######  #####  #####   #####  ######
+ * ###### ######  #####( ######  #####. ######  #####          #####  ######
+ * #############  #############  #############  #############  #####  ######
+ *  ############   ############  #############   ############  #####  ######
+ *                                      ######
+ *                               #############
+ *                               ############
+ * Adyen NodeJS API Library
+ * Copyright (c) 2025 Adyen B.V.
+ * This file is open source and available under the MIT license.
+ * See the LICENSE file for more info.
+ */
+ 
+/**
+ * Cloud Device API
+ * Definition of Cloud Device API Schema
+ *
+ */
+
+
+import { AllowedProduct } from './allowedProduct';
+import { ContentInformation } from './contentInformation';
+import { CustomerOrder } from './customerOrder';
+import { PaymentToken } from './paymentToken';
+import { SensitiveCardData } from './sensitiveCardData';
+
+export class CardData {
+    'AllowedProduct'?: Array<AllowedProduct>;
+    'AllowedProductCode'?: Array<string>;
+    'CardCountryCode'?: string;
+    'CustomerOrder'?: Array<CustomerOrder>;
+    'EntryMode'?: Array<CardData.EntryModeEnum>;
+    'MaskedPan'?: string;
+    'PaymentAccountRef'?: string;
+    'PaymentBrand'?: string;
+    'PaymentToken'?: PaymentToken;
+    'ProtectedCardData'?: ContentInformation;
+    'SensitiveCardData'?: SensitiveCardData;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "AllowedProduct",
+            "baseName": "AllowedProduct",
+            "type": "Array<AllowedProduct>"
+        },
+        {
+            "name": "AllowedProductCode",
+            "baseName": "AllowedProductCode",
+            "type": "Array<string>"
+        },
+        {
+            "name": "CardCountryCode",
+            "baseName": "CardCountryCode",
+            "type": "string"
+        },
+        {
+            "name": "CustomerOrder",
+            "baseName": "CustomerOrder",
+            "type": "Array<CustomerOrder>"
+        },
+        {
+            "name": "EntryMode",
+            "baseName": "EntryMode",
+            "type": "Array<CardData.EntryModeEnum>"
+        },
+        {
+            "name": "MaskedPan",
+            "baseName": "MaskedPan",
+            "type": "string"
+        },
+        {
+            "name": "PaymentAccountRef",
+            "baseName": "PaymentAccountRef",
+            "type": "string"
+        },
+        {
+            "name": "PaymentBrand",
+            "baseName": "PaymentBrand",
+            "type": "string"
+        },
+        {
+            "name": "PaymentToken",
+            "baseName": "PaymentToken",
+            "type": "PaymentToken"
+        },
+        {
+            "name": "ProtectedCardData",
+            "baseName": "ProtectedCardData",
+            "type": "ContentInformation"
+        },
+        {
+            "name": "SensitiveCardData",
+            "baseName": "SensitiveCardData",
+            "type": "SensitiveCardData"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CardData.attributeTypeMap;
+    }
+}
+
+export namespace CardData {
+    export enum EntryModeEnum {
+        Contactless = <any> 'Contactless',
+        File = <any> 'File',
+        Icc = <any> 'ICC',
+        Keyed = <any> 'Keyed',
+        MagStripe = <any> 'MagStripe',
+        Manual = <any> 'Manual',
+        Mobile = <any> 'Mobile',
+        Rfid = <any> 'RFID',
+        Scanned = <any> 'Scanned',
+        SynchronousIcc = <any> 'SynchronousICC',
+        Tapped = <any> 'Tapped'
+    }
+}
