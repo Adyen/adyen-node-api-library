@@ -52,7 +52,7 @@ export class PaymentRequest {
     "billingAddress"?: BillingAddress | null;
     "browserInfo"?: BrowserInfo | null;
     /**
-    * The delay between the authorisation and scheduled auto-capture, specified in hours.
+    * The [delay between the authorization and automatic capture](https://docs.adyen.com/online-payments/capture?tab=delayed-individual_2#delayed-automatic-capture) of the payment, specified in hours.  Maximum value: **672** (28 days).
     */
     "captureDelayHours"?: number;
     /**
@@ -72,7 +72,7 @@ export class PaymentRequest {
     */
     "conversionId"?: string;
     /**
-    * The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
+    * The shopper country code.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
     */
     "countryCode"?: string;
     /**
@@ -142,7 +142,7 @@ export class PaymentRequest {
     */
     "merchantAccount": string;
     /**
-    * This reference allows linking multiple transactions to each other for reporting purposes (i.e. order auth-rate). The reference should be unique per billing cycle. The same merchant order reference should never be reused after the first authorised attempt. If used, this field should be supplied for all incoming authorisations. > We strongly recommend you send the `merchantOrderReference` value to benefit from linking payment requests when authorisation retries take place. In addition, we recommend you provide `retry.orderAttemptNumber`, `retry.chainAttemptNumber`, and `retry.skipRetry` values in `PaymentRequest.additionalData`.
+    * You can use this reference to link multiple transactions to one another (for example, to track order authorization rate).For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the `additionalData` object: [`retry.orderAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [`retry.chainAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [`retry.skipRetry`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)
     */
     "merchantOrderReference"?: string;
     "merchantRiskIndicator"?: MerchantRiskIndicator | null;
@@ -184,7 +184,7 @@ export class PaymentRequest {
     */
     "redirectToIssuerMethod"?: string;
     /**
-    * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.
+    * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (`-`) character.We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.
     */
     "reference": string;
     /**
@@ -197,7 +197,7 @@ export class PaymentRequest {
     */
     "sessionValidity"?: string;
     /**
-    * A unique ID that can be used to associate `/paymentMethods` and `/payments` requests with the same shopper transaction, offering insights into conversion rates.
+    * A unique ID to [connect the shopper to a single checkout session](https://docs.adyen.com/online-payments/checkout-settings#checkout-shopper-conversion-id) that uses multiple API requests. You can use this to get insights into conversion rates.
     */
     "shopperConversionId"?: string;
     /**
@@ -213,7 +213,7 @@ export class PaymentRequest {
     */
     "shopperInteraction"?: PaymentRequest.ShopperInteractionEnum;
     /**
-    * The combination of a language code and a country code to specify the language to be used in the payment.
+    * The language for the payment. The value combines the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) language code with the [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) country code. For example, **nl-NL**.  When using Drop-in/Components, the specified language appears if your front-end global configuration does not set the `locale`.
     */
     "shopperLocale"?: string;
     "shopperName"?: ShopperName | null;

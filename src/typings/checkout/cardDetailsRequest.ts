@@ -14,7 +14,7 @@ export class CardDetailsRequest {
     */
     "cardNumber"?: string;
     /**
-    * The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
+    * The shopper country code.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
     */
     "countryCode"?: string;
     /**

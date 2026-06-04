@@ -21,6 +21,10 @@ export class DonationCampaignsRequest {
     * Your merchant account identifier.
     */
     "merchantAccount": string;
+    /**
+    * Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.
+    */
+    "store"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -42,6 +46,12 @@ export class DonationCampaignsRequest {
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "store",
+            "baseName": "store",
             "type": "string",
             "format": ""
         }    ];

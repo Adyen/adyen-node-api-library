@@ -167,7 +167,7 @@ export class CreateCheckoutSessionResponse {
     */
     "shopperInteraction"?: CreateCheckoutSessionResponse.ShopperInteractionEnum;
     /**
-    * The combination of a language code and a country code to specify the language to be used in the payment.
+    * The language for the payment. The value combines the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) language code with the [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) country code. For example, **nl-NL**.  When using Drop-in/Components, the specified language appears if your front-end global configuration does not set the `locale`.
     */
     "shopperLocale"?: string;
     "shopperName"?: ShopperName | null;

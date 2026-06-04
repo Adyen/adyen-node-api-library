@@ -10,6 +10,7 @@
 import { AchDetails } from "./achDetails";
 import { AffirmDetails } from "./affirmDetails";
 import { AfterpayDetails } from "./afterpayDetails";
+import { AlmaDetails } from "./almaDetails";
 import { AmazonPayDetails } from "./amazonPayDetails";
 import { AncvDetails } from "./ancvDetails";
 import { AndroidPayDetails } from "./androidPayDetails";
@@ -20,6 +21,7 @@ import { BlikDetails } from "./blikDetails";
 import { CardDetails } from "./cardDetails";
 import { CashAppDetails } from "./cashAppDetails";
 import { CellulantDetails } from "./cellulantDetails";
+import { DirectDebitAuDetails } from "./directDebitAuDetails";
 import { DokuDetails } from "./dokuDetails";
 import { DragonpayDetails } from "./dragonpayDetails";
 import { EBankingFinlandDetails } from "./eBankingFinlandDetails";
@@ -31,6 +33,7 @@ import { GenericIssuerPaymentMethodDetails } from "./genericIssuerPaymentMethodD
 import { GooglePayDetails } from "./googlePayDetails";
 import { IdealDetails } from "./idealDetails";
 import { KlarnaDetails } from "./klarnaDetails";
+import { KlarnaNetworkDetails } from "./klarnaNetworkDetails";
 import { MasterpassDetails } from "./masterpassDetails";
 import { MbwayDetails } from "./mbwayDetails";
 import { MobilePayDetails } from "./mobilePayDetails";
@@ -45,6 +48,7 @@ import { PayUUpiDetails } from "./payUUpiDetails";
 import { PayWithGoogleDetails } from "./payWithGoogleDetails";
 import { PaymentDetails } from "./paymentDetails";
 import { PixDetails } from "./pixDetails";
+import { PixPayByBankDetails } from "./pixPayByBankDetails";
 import { PseDetails } from "./pseDetails";
 import { RakutenPayDetails } from "./rakutenPayDetails";
 import { RatepayDetails } from "./ratepayDetails";
@@ -72,7 +76,7 @@ import { ZipDetails } from "./zipDetails";
  * Type
  * @export
  */
-export type PaymentRequestPaymentMethod = AchDetails | AffirmDetails | AfterpayDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DokuDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | ExternalTokenDetails | FastlaneDetails | GenericIssuerPaymentMethodDetails | GooglePayDetails | IdealDetails | KlarnaDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayPayDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PixDetails | PseDetails | RakutenPayDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | UpiQrDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
+export type PaymentRequestPaymentMethod = AchDetails | AffirmDetails | AfterpayDetails | AlmaDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DirectDebitAuDetails | DokuDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | ExternalTokenDetails | FastlaneDetails | GenericIssuerPaymentMethodDetails | GooglePayDetails | IdealDetails | KlarnaDetails | KlarnaNetworkDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayPayDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PixDetails | PixPayByBankDetails | PseDetails | RakutenPayDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | UpiQrDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
 
 /**
 * @type PaymentRequestPaymentMethodClass

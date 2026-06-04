@@ -10,6 +10,10 @@
 
 export class ResponseAdditionalDataCard {
     /**
+    * This is an ALT ID (alternate ID) mapped to the Card PAN.  > Returned only in case of Ecommerce Card Payment in India
+    */
+    "cardAltID"?: string;
+    /**
     * The first six digits of the card number.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with a six-digit BIN.  Example: 521234
     */
     "cardBin"?: string;
@@ -34,9 +38,9 @@ export class ResponseAdditionalDataCard {
     */
     "cardPaymentMethod"?: string;
     /**
-    * The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit 
+    * The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Example values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Example values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit 
     */
-    "cardProductId"?: ResponseAdditionalDataCard.CardProductIdEnum;
+    "cardProductId"?: string;
     /**
     * The last four digits of a card number.  > Returned only in case of a card payment.
     */
@@ -51,6 +55,12 @@ export class ResponseAdditionalDataCard {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "cardAltID",
+            "baseName": "cardAltID",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "cardBin",
             "baseName": "cardBin",
@@ -90,7 +100,7 @@ export class ResponseAdditionalDataCard {
         {
             "name": "cardProductId",
             "baseName": "cardProductId",
-            "type": "ResponseAdditionalDataCard.CardProductIdEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -114,18 +124,3 @@ export class ResponseAdditionalDataCard {
     }
 }
 
-export namespace ResponseAdditionalDataCard {
-    export enum CardProductIdEnum {
-        A = 'A',
-        B = 'B',
-        C = 'C',
-        D = 'D',
-        F = 'F',
-        Mcc = 'MCC',
-        Mce = 'MCE',
-        Mcf = 'MCF',
-        Mcg = 'MCG',
-        Mch = 'MCH',
-        Mci = 'MCI'
-    }
-}
