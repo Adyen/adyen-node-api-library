@@ -7,12 +7,14 @@
  * Do not edit this class manually.
  */
 
+import { Amount } from "./amount";
 import { CheckoutForwardRequestCard } from "./checkoutForwardRequestCard";
 import { CheckoutForwardRequestOptions } from "./checkoutForwardRequestOptions";
 import { CheckoutOutgoingForwardRequest } from "./checkoutOutgoingForwardRequest";
 
 
 export class CheckoutForwardRequest {
+    "amount"?: Amount | null;
     /**
     * The base URL of the third party API, where Adyen will send the request to forward the payment details.
     */
@@ -42,6 +44,12 @@ export class CheckoutForwardRequest {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "amount",
+            "baseName": "amount",
+            "type": "Amount | null",
+            "format": ""
+        },
         {
             "name": "baseUrl",
             "baseName": "baseUrl",

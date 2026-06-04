@@ -10,5 +10,6 @@
 export enum Result {
     Valid = 'VALID',
     Invalid = 'INVALID',
-    Unknown = 'UNKNOWN'
+    Unknown = 'UNKNOWN',
+    NotRequired = 'NOT_REQUIRED'
 }

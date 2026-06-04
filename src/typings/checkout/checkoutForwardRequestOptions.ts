@@ -28,6 +28,10 @@ export class CheckoutForwardRequestOptions {
     * Set to **true**, the payment details are [tokenized](https://docs.adyen.com/online-payments/tokenization).
     */
     "tokenize"?: boolean;
+    /**
+    * Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of transactionLinkId in the incoming 3rd party response
+    */
+    "transactionLinkIdPaths"?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -62,6 +66,12 @@ export class CheckoutForwardRequestOptions {
             "name": "tokenize",
             "baseName": "tokenize",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "transactionLinkIdPaths",
+            "baseName": "transactionLinkIdPaths",
+            "type": "Array<string>",
             "format": ""
         }    ];
 

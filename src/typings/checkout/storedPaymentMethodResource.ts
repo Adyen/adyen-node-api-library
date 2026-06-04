@@ -12,6 +12,14 @@ import { TokenMandate } from "./tokenMandate";
 
 export class StoredPaymentMethodResource {
     /**
+    * The alias of the credit card number.  Applies only to recurring contracts storing credit card details
+    */
+    "alias"?: string;
+    /**
+    * The alias type of the credit card number.  Applies only to recurring contracts storing credit card details.
+    */
+    "aliasType"?: string;
+    /**
     * The brand of the card.
     */
     "brand"?: string;
@@ -90,6 +98,18 @@ export class StoredPaymentMethodResource {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "alias",
+            "baseName": "alias",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "aliasType",
+            "baseName": "aliasType",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "brand",
             "baseName": "brand",

@@ -142,6 +142,10 @@ export class ResponseAdditionalDataCommon {
     */
     "merchantReference"?: string;
     /**
+    * Indicates the processing flow.  Possible values: * **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction.  * **auth**: If you have not [configured automatic capture for the transaction](https://docs.adyen.com/online-payments/capture#types-of-capture), you must manually capture the funds.
+    */
+    "networkProcessingMode"?: string;
+    /**
     * Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.
     */
     "networkTxReference"?: string;
@@ -259,6 +263,10 @@ export class ResponseAdditionalDataCommon {
     * The reference that uniquely identifies tokenized payment details.
     */
     "tokenization_storedPaymentMethodId"?: string;
+    /**
+    * Returned in the response for Mastercard payments.  This contains the Mastercard Transaction Link Identifier (TLID).
+    */
+    "transactionLinkId"?: string;
     /**
     * The `visaTransactionId`, has a fixed length of 15 numeric characters.  > Contact Support Team to enable this field.
     */
@@ -472,6 +480,12 @@ export class ResponseAdditionalDataCommon {
             "format": ""
         },
         {
+            "name": "networkProcessingMode",
+            "baseName": "networkProcessingMode",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "networkTxReference",
             "baseName": "networkTxReference",
             "type": "string",
@@ -636,6 +650,12 @@ export class ResponseAdditionalDataCommon {
         {
             "name": "tokenization_storedPaymentMethodId",
             "baseName": "tokenization.storedPaymentMethodId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "transactionLinkId",
+            "baseName": "transactionLinkId",
             "type": "string",
             "format": ""
         },

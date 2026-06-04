@@ -8,15 +8,15 @@
  */
 
 
-export class ShopperTaxInfo {
+export class AppIdentifierInfo {
     /**
-    * The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable.
+    * The Android package identifier for this app.
     */
-    "taxCountryCode": string;
+    "androidPackageId"?: string;
     /**
-    * The shopper’s tax identification number.
+    * The iOS URL scheme for this app.
     */
-    "taxIdentificationNumber": string;
+    "iosScheme"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,20 +24,20 @@ export class ShopperTaxInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "taxCountryCode",
-            "baseName": "taxCountryCode",
+            "name": "androidPackageId",
+            "baseName": "androidPackageId",
             "type": "string",
             "format": ""
         },
         {
-            "name": "taxIdentificationNumber",
-            "baseName": "taxIdentificationNumber",
+            "name": "iosScheme",
+            "baseName": "iosScheme",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ShopperTaxInfo.attributeTypeMap;
+        return AppIdentifierInfo.attributeTypeMap;
     }
 
     public constructor() {

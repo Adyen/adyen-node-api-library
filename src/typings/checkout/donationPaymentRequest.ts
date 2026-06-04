@@ -49,7 +49,7 @@ export class DonationPaymentRequest {
     */
     "conversionId"?: string;
     /**
-    * The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
+    * The shopper country code.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE
     */
     "countryCode"?: string;
     /**
@@ -137,7 +137,7 @@ export class DonationPaymentRequest {
     */
     "shopperInteraction"?: DonationPaymentRequest.ShopperInteractionEnum;
     /**
-    * The combination of a language code and a country code to specify the language to be used in the payment.
+    * The language for the payment. The value combines the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) language code with the [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) country code. For example, **nl-NL**.  When using Drop-in/Components, the specified language appears if your front-end global configuration does not set the `locale`.
     */
     "shopperLocale"?: string;
     "shopperName"?: ShopperName | null;
@@ -149,6 +149,10 @@ export class DonationPaymentRequest {
     * The shopper\'s social security number.
     */
     "socialSecurityNumber"?: string;
+    /**
+    * Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.
+    */
+    "store"?: string;
     /**
     * The shopper\'s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. > Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the `shopperEmail`.
     */
@@ -398,6 +402,12 @@ export class DonationPaymentRequest {
         {
             "name": "socialSecurityNumber",
             "baseName": "socialSecurityNumber",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "store",
+            "baseName": "store",
             "type": "string",
             "format": ""
         },

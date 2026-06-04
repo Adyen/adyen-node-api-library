@@ -23,11 +23,13 @@ import { AffirmDetails } from "./affirmDetails";
 import { AfterpayDetails } from "./afterpayDetails";
 import { Agency } from "./agency";
 import { Airline } from "./airline";
+import { AlmaDetails } from "./almaDetails";
 import { AmazonPayDetails } from "./amazonPayDetails";
 import { Amount } from "./amount";
 import { Amounts } from "./amounts";
 import { AncvDetails } from "./ancvDetails";
 import { AndroidPayDetails } from "./androidPayDetails";
+import { AppIdentifierInfo } from "./appIdentifierInfo";
 import { ApplePayDetails } from "./applePayDetails";
 import { ApplePayDonations } from "./applePayDonations";
 import { ApplePaySessionRequest } from "./applePaySessionRequest";
@@ -72,6 +74,7 @@ import { CheckoutThreeDS2Action } from "./checkoutThreeDS2Action";
 import { CheckoutVoucherAction } from "./checkoutVoucherAction";
 import { CommonField } from "./commonField";
 import { Company } from "./company";
+import { ConfidenceScore } from "./confidenceScore";
 import { CreateCheckoutSessionRequest } from "./createCheckoutSessionRequest";
 import { CreateCheckoutSessionResponse } from "./createCheckoutSessionResponse";
 import { CreateOrderRequest } from "./createOrderRequest";
@@ -82,6 +85,7 @@ import { DeliveryMethod } from "./deliveryMethod";
 import { Destination } from "./destination";
 import { DetailsRequestAuthenticationData } from "./detailsRequestAuthenticationData";
 import { DeviceRenderOptions } from "./deviceRenderOptions";
+import { DirectDebitAuDetails } from "./directDebitAuDetails";
 import { DokuDetails } from "./dokuDetails";
 import { Donation } from "./donation";
 import { DonationCampaign } from "./donationCampaign";
@@ -116,6 +120,7 @@ import { InvalidField } from "./invalidField";
 import { Item } from "./item";
 import { ItemDetailLine } from "./itemDetailLine";
 import { KlarnaDetails } from "./klarnaDetails";
+import { KlarnaNetworkDetails } from "./klarnaNetworkDetails";
 import { Leg } from "./leg";
 import { LevelTwoThree } from "./levelTwoThree";
 import { LineItem } from "./lineItem";
@@ -177,6 +182,8 @@ import { PaypalUpdateOrderRequest } from "./paypalUpdateOrderRequest";
 import { PaypalUpdateOrderResponse } from "./paypalUpdateOrderResponse";
 import { Phone } from "./phone";
 import { PixDetails } from "./pixDetails";
+import { PixPayByBankDetails } from "./pixPayByBankDetails";
+import { PixPayByBankRiskSignals } from "./pixPayByBankRiskSignals";
 import { PixRecurring } from "./pixRecurring";
 import { PlatformChargebackLogic } from "./platformChargebackLogic";
 import { PseDetails } from "./pseDetails";
@@ -198,6 +205,7 @@ import { RiskData } from "./riskData";
 import { RivertyDetails } from "./rivertyDetails";
 import { SDKEphemPubKey } from "./sDKEphemPubKey";
 import { SamsungPayDetails } from "./samsungPayDetails";
+import { ScreenDimensions } from "./screenDimensions";
 import { SepaDirectDebitDetails } from "./sepaDirectDebitDetails";
 import { ServiceError } from "./serviceError";
 import { SessionResultResponse } from "./sessionResultResponse";
@@ -278,6 +286,8 @@ let enumsMap: Set<string> = new Set<string>([
     "AdditionalDataCommon.IndustryUsageEnum",
     "AffirmDetails.TypeEnum",
     "AfterpayDetails.TypeEnum",
+    "AlmaDetails.FeeTypeEnum",
+    "AlmaDetails.TypeEnum",
     "AmazonPayDetails.TypeEnum",
     "AncvDetails.TypeEnum",
     "AndroidPayDetails.TypeEnum",
@@ -329,6 +339,7 @@ let enumsMap: Set<string> = new Set<string>([
     "DeliveryMethod.TypeEnum",
     "DeviceRenderOptions.SdkInterfaceEnum",
     "DeviceRenderOptions.SdkUiTypeEnum",
+    "DirectDebitAuDetails.TypeEnum",
     "DokuDetails.TypeEnum",
     "DonationPaymentRequest.ChannelEnum",
     "DonationPaymentRequest.RecurringProcessingModelEnum",
@@ -354,6 +365,7 @@ let enumsMap: Set<string> = new Set<string>([
     "InstallmentOption.PlansEnum",
     "Installments.PlanEnum",
     "KlarnaDetails.TypeEnum",
+    "KlarnaNetworkDetails.TypeEnum",
     "Mandate.AmountRuleEnum",
     "Mandate.BillingAttemptsRuleEnum",
     "Mandate.FrequencyEnum",
@@ -405,6 +417,7 @@ let enumsMap: Set<string> = new Set<string>([
     "PaymentRequestPaymentMethod.AccountHolderTypeEnum",
     "PaymentRequestPaymentMethod.BankAccountTypeEnum",
     "PaymentRequestPaymentMethod.TypeEnum",
+    "PaymentRequestPaymentMethod.FeeTypeEnum",
     "PaymentRequestPaymentMethod.FundingSourceEnum",
     "PaymentResponse.ResultCodeEnum",
     "PaymentResponseAction.TypeEnum",
@@ -412,6 +425,7 @@ let enumsMap: Set<string> = new Set<string>([
     "PaymentValidationsNameResponse.StatusEnum",
     "PaypalUpdateOrderResponse.StatusEnum",
     "PixDetails.TypeEnum",
+    "PixPayByBankDetails.TypeEnum",
     "PixRecurring.FrequencyEnum",
     "PlatformChargebackLogic.BehaviorEnum",
     "PseDetails.TypeEnum",
@@ -419,7 +433,6 @@ let enumsMap: Set<string> = new Set<string>([
     "RatepayDetails.TypeEnum",
     "Recurring.ContractEnum",
     "Recurring.TokenServiceEnum",
-    "ResponseAdditionalDataCard.CardProductIdEnum",
     "ResponseAdditionalDataCommon.FraudResultTypeEnum",
     "ResponseAdditionalDataCommon.FraudRiskLevelEnum",
     "ResponseAdditionalDataCommon.RecurringProcessingModelEnum",
@@ -461,6 +474,7 @@ let enumsMap: Set<string> = new Set<string>([
     "TokenMandate.AmountRuleEnum",
     "TokenMandate.BillingAttemptsRuleEnum",
     "TokenMandate.FrequencyEnum",
+    "TokenMandate.RetryPolicyEnum",
     "TwintDetails.TypeEnum",
     "UpdatePaymentLinkRequest.StatusEnum",
     "UpiCollectDetails.TypeEnum",
@@ -498,11 +512,13 @@ let typeMap: {[index: string]: any} = {
     "AfterpayDetails": AfterpayDetails,
     "Agency": Agency,
     "Airline": Airline,
+    "AlmaDetails": AlmaDetails,
     "AmazonPayDetails": AmazonPayDetails,
     "Amount": Amount,
     "Amounts": Amounts,
     "AncvDetails": AncvDetails,
     "AndroidPayDetails": AndroidPayDetails,
+    "AppIdentifierInfo": AppIdentifierInfo,
     "ApplePayDetails": ApplePayDetails,
     "ApplePayDonations": ApplePayDonations,
     "ApplePaySessionRequest": ApplePaySessionRequest,
@@ -547,6 +563,7 @@ let typeMap: {[index: string]: any} = {
     "CheckoutVoucherAction": CheckoutVoucherAction,
     "CommonField": CommonField,
     "Company": Company,
+    "ConfidenceScore": ConfidenceScore,
     "CreateCheckoutSessionRequest": CreateCheckoutSessionRequest,
     "CreateCheckoutSessionResponse": CreateCheckoutSessionResponse,
     "CreateOrderRequest": CreateOrderRequest,
@@ -557,6 +574,7 @@ let typeMap: {[index: string]: any} = {
     "Destination": Destination,
     "DetailsRequestAuthenticationData": DetailsRequestAuthenticationData,
     "DeviceRenderOptions": DeviceRenderOptions,
+    "DirectDebitAuDetails": DirectDebitAuDetails,
     "DokuDetails": DokuDetails,
     "Donation": Donation,
     "DonationCampaign": DonationCampaign,
@@ -591,6 +609,7 @@ let typeMap: {[index: string]: any} = {
     "Item": Item,
     "ItemDetailLine": ItemDetailLine,
     "KlarnaDetails": KlarnaDetails,
+    "KlarnaNetworkDetails": KlarnaNetworkDetails,
     "Leg": Leg,
     "LevelTwoThree": LevelTwoThree,
     "LineItem": LineItem,
@@ -652,6 +671,8 @@ let typeMap: {[index: string]: any} = {
     "PaypalUpdateOrderResponse": PaypalUpdateOrderResponse,
     "Phone": Phone,
     "PixDetails": PixDetails,
+    "PixPayByBankDetails": PixPayByBankDetails,
+    "PixPayByBankRiskSignals": PixPayByBankRiskSignals,
     "PixRecurring": PixRecurring,
     "PlatformChargebackLogic": PlatformChargebackLogic,
     "PseDetails": PseDetails,
@@ -673,6 +694,7 @@ let typeMap: {[index: string]: any} = {
     "RivertyDetails": RivertyDetails,
     "SDKEphemPubKey": SDKEphemPubKey,
     "SamsungPayDetails": SamsungPayDetails,
+    "ScreenDimensions": ScreenDimensions,
     "SepaDirectDebitDetails": SepaDirectDebitDetails,
     "ServiceError": ServiceError,
     "SessionResultResponse": SessionResultResponse,

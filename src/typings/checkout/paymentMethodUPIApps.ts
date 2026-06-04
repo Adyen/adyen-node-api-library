@@ -7,8 +7,11 @@
  * Do not edit this class manually.
  */
 
+import { AppIdentifierInfo } from "./appIdentifierInfo";
+
 
 export class PaymentMethodUPIApps {
+    "appIdentifierInfo"?: AppIdentifierInfo | null;
     /**
     * The unique identifier of this app, to submit in requests to /payments.
     */
@@ -23,6 +26,12 @@ export class PaymentMethodUPIApps {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "appIdentifierInfo",
+            "baseName": "appIdentifierInfo",
+            "type": "AppIdentifierInfo | null",
+            "format": ""
+        },
         {
             "name": "id",
             "baseName": "id",

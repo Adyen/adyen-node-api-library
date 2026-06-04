@@ -56,8 +56,8 @@ export class PlatformChargebackLogic {
 
 export namespace PlatformChargebackLogic {
     export enum BehaviorEnum {
+        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount',
         DeductAccordingToSplitRatio = 'deductAccordingToSplitRatio',
-        DeductFromLiableAccount = 'deductFromLiableAccount',
-        DeductFromOneBalanceAccount = 'deductFromOneBalanceAccount'
+        DeductFromLiableAccount = 'deductFromLiableAccount'
     }
 }

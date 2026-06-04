@@ -54,13 +54,29 @@ export class TokenMandate {
     */
     "maskedAccountId"?: string;
     /**
+    * For a billing plan where the payment amounts are variable, the minimum amount to charge the shopper for each recurring payment. When a shopper approves the billing plan, they can also specify a maximum amount in their banking app.
+    */
+    "minAmount"?: string;
+    /**
     * The provider-specific identifier for this mandate.
     */
     "providerId": string;
     /**
+    * For a billing plan where the payment amount is fixed, the amount the shopper will be charged for each recurring payment.
+    */
+    "recurringAmount"?: string;
+    /**
+    * The text that will be shown on the shopper\'s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.
+    */
+    "recurringStatement"?: string;
+    /**
     * Additional remarks or notes about the mandate.
     */
     "remarks"?: string;
+    /**
+    * When set to true, you can retry for failed recurring payments. The default value is true.
+    */
+    "retryPolicy"?: TokenMandate.RetryPolicyEnum;
     /**
     * Start date of the billing plan, in YYYY-MM-DD format. By default, the transaction date.
     */
@@ -146,8 +162,26 @@ export class TokenMandate {
             "format": ""
         },
         {
+            "name": "minAmount",
+            "baseName": "minAmount",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "providerId",
             "baseName": "providerId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "recurringAmount",
+            "baseName": "recurringAmount",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "recurringStatement",
+            "baseName": "recurringStatement",
             "type": "string",
             "format": ""
         },
@@ -155,6 +189,12 @@ export class TokenMandate {
             "name": "remarks",
             "baseName": "remarks",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "retryPolicy",
+            "baseName": "retryPolicy",
+            "type": "TokenMandate.RetryPolicyEnum",
             "format": ""
         },
         {
@@ -203,5 +243,9 @@ export namespace TokenMandate {
         Quarterly = 'quarterly',
         HalfYearly = 'halfYearly',
         Yearly = 'yearly'
+    }
+    export enum RetryPolicyEnum {
+        True = 'true',
+        False = 'false'
     }
 }

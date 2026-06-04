@@ -22,6 +22,10 @@ export class StoredPaymentMethod {
     */
     "brand"?: string;
     /**
+    * The shopper’s Cash App Pay Cashtag.
+    */
+    "cashtag"?: string;
+    /**
     * The two-digit month when the card expires
     */
     "expiryMonth"?: string;
@@ -30,7 +34,7 @@ export class StoredPaymentMethod {
     */
     "expiryYear"?: string;
     /**
-    * The unique payment method code.
+    * The name of the payment method holder.
     */
     "holderName"?: string;
     /**
@@ -98,6 +102,12 @@ export class StoredPaymentMethod {
         {
             "name": "brand",
             "baseName": "brand",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "cashtag",
+            "baseName": "cashtag",
             "type": "string",
             "format": ""
         },
