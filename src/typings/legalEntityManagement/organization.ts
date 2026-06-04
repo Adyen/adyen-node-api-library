@@ -55,7 +55,7 @@ export class Organization {
     */
     "financialReports"?: Array<FinancialReport>;
     /**
-    * The global legal entity identifier for the organization.
+    * The global legal entity identifier for the organization.  This field is not required if the `registrationNumber` for the organization has been provided.
     */
     "globalLegalEntityIdentifier"?: string;
     /**
