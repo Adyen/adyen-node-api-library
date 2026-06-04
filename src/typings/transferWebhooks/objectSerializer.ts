@@ -23,9 +23,11 @@ import { DirectDebitInformation } from "./directDebitInformation";
 import { EstimationTrackingData } from "./estimationTrackingData";
 import { ExecutionDate } from "./executionDate";
 import { ExternalReason } from "./externalReason";
+import { FundingInstrument } from "./fundingInstrument";
 import { HKLocalAccountIdentification } from "./hKLocalAccountIdentification";
 import { HULocalAccountIdentification } from "./hULocalAccountIdentification";
 import { IbanAccountIdentification } from "./ibanAccountIdentification";
+import { InterchangeData } from "./interchangeData";
 import { InternalCategoryData } from "./internalCategoryData";
 import { InternalReviewTrackingData } from "./internalReviewTrackingData";
 import { IssuedCard } from "./issuedCard";
@@ -66,6 +68,7 @@ import { TransferNotificationValidationFact } from "./transferNotificationValida
 import { TransferReview } from "./transferReview";
 import { UKLocalAccountIdentification } from "./uKLocalAccountIdentification";
 import { USLocalAccountIdentification } from "./uSLocalAccountIdentification";
+import { UltimatePartyIdentification } from "./ultimatePartyIdentification";
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -95,9 +98,11 @@ let enumsMap: Set<string> = new Set<string>([
     "ConfirmationTrackingData.TypeEnum",
     "DKLocalAccountIdentification.TypeEnum",
     "EstimationTrackingData.TypeEnum",
+    "FundingInstrument.SourceOfFundsEnum",
     "HKLocalAccountIdentification.TypeEnum",
     "HULocalAccountIdentification.TypeEnum",
     "IbanAccountIdentification.TypeEnum",
+    "InterchangeData.TypeEnum",
     "InternalCategoryData.TypeEnum",
     "InternalReviewTrackingData.ReasonEnum",
     "InternalReviewTrackingData.StatusEnum",
@@ -142,6 +147,7 @@ let enumsMap: Set<string> = new Set<string>([
     "UKLocalAccountIdentification.TypeEnum",
     "USLocalAccountIdentification.AccountTypeEnum",
     "USLocalAccountIdentification.TypeEnum",
+    "UltimatePartyIdentification.TypeEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
@@ -168,9 +174,11 @@ let typeMap: {[index: string]: any} = {
     "EstimationTrackingData": EstimationTrackingData,
     "ExecutionDate": ExecutionDate,
     "ExternalReason": ExternalReason,
+    "FundingInstrument": FundingInstrument,
     "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
+    "InterchangeData": InterchangeData,
     "InternalCategoryData": InternalCategoryData,
     "InternalReviewTrackingData": InternalReviewTrackingData,
     "IssuedCard": IssuedCard,
@@ -211,6 +219,7 @@ let typeMap: {[index: string]: any} = {
     "TransferReview": TransferReview,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "USLocalAccountIdentification": USLocalAccountIdentification,
+    "UltimatePartyIdentification": UltimatePartyIdentification,
 }
 
 type MimeTypeDescriptor = {

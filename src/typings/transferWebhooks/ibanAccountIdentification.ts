@@ -10,6 +10,10 @@
 
 export class IbanAccountIdentification {
     /**
+    * The bank\'s 8- or 11-character BIC or SWIFT code.
+    */
+    "bic"?: string;
+    /**
     * The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
     */
     "iban": string;
@@ -23,6 +27,12 @@ export class IbanAccountIdentification {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "bic",
+            "baseName": "bic",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "iban",
             "baseName": "iban",

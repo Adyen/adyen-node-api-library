@@ -286,6 +286,8 @@ export namespace TransferEvent {
         WithdrawalCountExceeded = 'withdrawalCountExceeded'
     }
     export enum StatusEnum {
+        AdviceAuthorised = 'adviceAuthorised',
+        AdviceRefused = 'adviceRefused',
         ApprovalPending = 'approvalPending',
         AtmWithdrawal = 'atmWithdrawal',
         AtmWithdrawalReversalPending = 'atmWithdrawalReversalPending',
@@ -321,6 +323,7 @@ export namespace TransferEvent {
         Failed = 'failed',
         Fee = 'fee',
         FeePending = 'feePending',
+        InterchangeAdjusted = 'interchangeAdjusted',
         InternalTransfer = 'internalTransfer',
         InternalTransferPending = 'internalTransferPending',
         InvoiceDeduction = 'invoiceDeduction',
@@ -337,6 +340,7 @@ export namespace TransferEvent {
         MiscCostPending = 'miscCostPending',
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
+        Pending = 'pending',
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         Received = 'received',
@@ -350,12 +354,14 @@ export namespace TransferEvent {
         ReserveAdjustment = 'reserveAdjustment',
         ReserveAdjustmentPending = 'reserveAdjustmentPending',
         Returned = 'returned',
+        Reversed = 'reversed',
         SecondChargeback = 'secondChargeback',
         SecondChargebackPending = 'secondChargebackPending',
         Undefined = 'undefined'
     }
     export enum TypeEnum {
         Accounting = 'accounting',
+        Tracing = 'tracing',
         Tracking = 'tracking'
     }
 }
