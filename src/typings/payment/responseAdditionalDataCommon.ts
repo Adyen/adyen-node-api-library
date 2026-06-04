@@ -98,11 +98,11 @@ export class ResponseAdditionalDataCommon {
     */
     "fraudManualReview"?: string;
     /**
-    * The fraud result properties of the payment.
+    * The fraud result properties of the payment. Possible values: * AMBER * GREEN * RED  
     */
     "fraudResultType"?: ResponseAdditionalDataCommon.FraudResultTypeEnum;
     /**
-    * The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are: * veryLow * low * medium * high * veryHigh 
+    * The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. Possible values: * veryLow * low * medium * high * veryHigh  
     */
     "fraudRiskLevel"?: ResponseAdditionalDataCommon.FraudRiskLevelEnum;
     /**
@@ -141,6 +141,10 @@ export class ResponseAdditionalDataCommon {
     * The reference provided for the transaction.
     */
     "merchantReference"?: string;
+    /**
+    * Indicates the processing flow.  Possible values: * **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction.  * **auth**: If you have not [configured automatic capture for the transaction](https://docs.adyen.com/online-payments/capture#types-of-capture), you must manually capture the funds.
+    */
+    "networkProcessingMode"?: string;
     /**
     * Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.
     */
@@ -472,6 +476,12 @@ export class ResponseAdditionalDataCommon {
             "format": ""
         },
         {
+            "name": "networkProcessingMode",
+            "baseName": "networkProcessingMode",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "networkTxReference",
             "baseName": "networkTxReference",
             "type": "string",
@@ -662,8 +672,9 @@ export class ResponseAdditionalDataCommon {
 
 export namespace ResponseAdditionalDataCommon {
     export enum FraudResultTypeEnum {
+        Amber = 'AMBER',
         Green = 'GREEN',
-        Fraud = 'FRAUD'
+        Red = 'RED'
     }
     export enum FraudRiskLevelEnum {
         VeryLow = 'veryLow',

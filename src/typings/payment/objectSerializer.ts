@@ -131,7 +131,6 @@ let enumsMap: Set<string> = new Set<string>([
     "PlatformChargebackLogic.BehaviorEnum",
     "Recurring.ContractEnum",
     "Recurring.TokenServiceEnum",
-    "ResponseAdditionalDataCard.CardProductIdEnum",
     "ResponseAdditionalDataCommon.FraudResultTypeEnum",
     "ResponseAdditionalDataCommon.FraudRiskLevelEnum",
     "ResponseAdditionalDataCommon.RecurringProcessingModelEnum",
