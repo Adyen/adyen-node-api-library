@@ -15,10 +15,15 @@ import { configurationWebhooks } from "..";
  */
 export type GenericWebhook = 
     | configurationWebhooks.AccountHolderNotificationRequest
+    | configurationWebhooks.AccountPayoutAutoApplicationNotificationRequest
     | configurationWebhooks.BalanceAccountNotificationRequest
     | configurationWebhooks.CardOrderNotificationRequest
+    | configurationWebhooks.MandateNotificationRequest
     | configurationWebhooks.NetworkTokenNotificationRequest
     | configurationWebhooks.PaymentNotificationRequest
+    | configurationWebhooks.PayoutScheduleBANotificationRequest
+    | configurationWebhooks.PayoutScheduleBPNotificationRequest
+    | configurationWebhooks.PayoutScheduleStateNotificationRequest
     | configurationWebhooks.ScoreNotificationRequest
     | configurationWebhooks.SweepConfigurationNotificationRequest;
 
@@ -49,6 +54,10 @@ export class ConfigurationWebhooksHandler {
             return this.getAccountHolderNotificationRequest();
         }
         
+        if(Object.values(configurationWebhooks.AccountPayoutAutoApplicationNotificationRequest.TypeEnum).includes(type)) {
+            return this.getAccountPayoutAutoApplicationNotificationRequest();
+        }
+        
         if(Object.values(configurationWebhooks.BalanceAccountNotificationRequest.TypeEnum).includes(type)) {
             return this.getBalanceAccountNotificationRequest();
         }
@@ -57,12 +66,28 @@ export class ConfigurationWebhooksHandler {
             return this.getCardOrderNotificationRequest();
         }
         
+        if(Object.values(configurationWebhooks.MandateNotificationRequest.TypeEnum).includes(type)) {
+            return this.getMandateNotificationRequest();
+        }
+        
         if(Object.values(configurationWebhooks.NetworkTokenNotificationRequest.TypeEnum).includes(type)) {
             return this.getNetworkTokenNotificationRequest();
         }
         
         if(Object.values(configurationWebhooks.PaymentNotificationRequest.TypeEnum).includes(type)) {
             return this.getPaymentNotificationRequest();
+        }
+        
+        if(Object.values(configurationWebhooks.PayoutScheduleBANotificationRequest.TypeEnum).includes(type)) {
+            return this.getPayoutScheduleBANotificationRequest();
+        }
+        
+        if(Object.values(configurationWebhooks.PayoutScheduleBPNotificationRequest.TypeEnum).includes(type)) {
+            return this.getPayoutScheduleBPNotificationRequest();
+        }
+        
+        if(Object.values(configurationWebhooks.PayoutScheduleStateNotificationRequest.TypeEnum).includes(type)) {
+            return this.getPayoutScheduleStateNotificationRequest();
         }
         
         if(Object.values(configurationWebhooks.ScoreNotificationRequest.TypeEnum).includes(type)) {
@@ -87,6 +112,15 @@ export class ConfigurationWebhooksHandler {
     }
 
     /**
+     * Deserialize the webhook payload into a AccountPayoutAutoApplicationNotificationRequest
+     *
+     * @returns Deserialized AccountPayoutAutoApplicationNotificationRequest object.
+     */
+    public getAccountPayoutAutoApplicationNotificationRequest(): configurationWebhooks.AccountPayoutAutoApplicationNotificationRequest {
+        return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "AccountPayoutAutoApplicationNotificationRequest");
+    }
+
+    /**
      * Deserialize the webhook payload into a BalanceAccountNotificationRequest
      *
      * @returns Deserialized BalanceAccountNotificationRequest object.
@@ -105,6 +139,15 @@ export class ConfigurationWebhooksHandler {
     }
 
     /**
+     * Deserialize the webhook payload into a MandateNotificationRequest
+     *
+     * @returns Deserialized MandateNotificationRequest object.
+     */
+    public getMandateNotificationRequest(): configurationWebhooks.MandateNotificationRequest {
+        return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "MandateNotificationRequest");
+    }
+
+    /**
      * Deserialize the webhook payload into a NetworkTokenNotificationRequest
      *
      * @returns Deserialized NetworkTokenNotificationRequest object.
@@ -120,6 +163,33 @@ export class ConfigurationWebhooksHandler {
      */
     public getPaymentNotificationRequest(): configurationWebhooks.PaymentNotificationRequest {
         return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "PaymentNotificationRequest");
+    }
+
+    /**
+     * Deserialize the webhook payload into a PayoutScheduleBANotificationRequest
+     *
+     * @returns Deserialized PayoutScheduleBANotificationRequest object.
+     */
+    public getPayoutScheduleBANotificationRequest(): configurationWebhooks.PayoutScheduleBANotificationRequest {
+        return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "PayoutScheduleBANotificationRequest");
+    }
+
+    /**
+     * Deserialize the webhook payload into a PayoutScheduleBPNotificationRequest
+     *
+     * @returns Deserialized PayoutScheduleBPNotificationRequest object.
+     */
+    public getPayoutScheduleBPNotificationRequest(): configurationWebhooks.PayoutScheduleBPNotificationRequest {
+        return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "PayoutScheduleBPNotificationRequest");
+    }
+
+    /**
+     * Deserialize the webhook payload into a PayoutScheduleStateNotificationRequest
+     *
+     * @returns Deserialized PayoutScheduleStateNotificationRequest object.
+     */
+    public getPayoutScheduleStateNotificationRequest(): configurationWebhooks.PayoutScheduleStateNotificationRequest {
+        return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "PayoutScheduleStateNotificationRequest");
     }
 
     /**
