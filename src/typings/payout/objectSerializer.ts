@@ -49,7 +49,6 @@ let enumsMap: Set<string> = new Set<string>([
     "PayoutResponse.ResultCodeEnum",
     "Recurring.ContractEnum",
     "Recurring.TokenServiceEnum",
-    "ResponseAdditionalDataCard.CardProductIdEnum",
     "ResponseAdditionalDataCommon.FraudResultTypeEnum",
     "ResponseAdditionalDataCommon.FraudRiskLevelEnum",
     "ResponseAdditionalDataCommon.RecurringProcessingModelEnum",
