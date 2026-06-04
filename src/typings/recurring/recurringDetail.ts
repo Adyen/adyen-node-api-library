@@ -65,6 +65,10 @@ export class RecurringDetail {
     "socialSecurityNumber"?: string;
     "tokenDetails"?: TokenDetails | null;
     /**
+    * The unique identifier for the transaction link, used for Mastercard recurring transactions.
+    */
+    "transactionLinkId"?: string;
+    /**
     * The payment method, such as “mc\", \"visa\", \"ideal\", \"paypal\".
     */
     "variant": string;
@@ -168,6 +172,12 @@ export class RecurringDetail {
             "name": "tokenDetails",
             "baseName": "tokenDetails",
             "type": "TokenDetails | null",
+            "format": ""
+        },
+        {
+            "name": "transactionLinkId",
+            "baseName": "transactionLinkId",
+            "type": "string",
             "format": ""
         },
         {
