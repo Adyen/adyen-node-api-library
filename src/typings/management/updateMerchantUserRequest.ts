@@ -24,7 +24,7 @@ export class UpdateMerchantUserRequest {
     */
     "email"?: string;
     /**
-    * The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username & account**, **Email**, or **SSO** 
+    * The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Email** or **SSO** 
     */
     "loginMethod"?: string;
     "name"?: Name2 | null;

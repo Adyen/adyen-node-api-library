@@ -46,6 +46,10 @@ export class CompanyApiCredential {
     */
     "roles": Array<string>;
     /**
+    * The subject DN of the certificate issued by Adyen.
+    */
+    "subjectDN"?: string;
+    /**
     * The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**.
     */
     "username": string;
@@ -107,6 +111,12 @@ export class CompanyApiCredential {
             "name": "roles",
             "baseName": "roles",
             "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "subjectDN",
+            "baseName": "subjectDN",
+            "type": "string",
             "format": ""
         },
         {

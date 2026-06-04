@@ -10,11 +10,11 @@
 
 export class AffirmInfo {
     /**
-    * Merchant price plan
+    * Selected Affirm financing package. Choose from **core**, **standard**, or **signature**. Defaults to **core** if no selection made.
     */
-    "pricePlan"?: AffirmInfo.PricePlanEnum;
+    "pricePlan"?: string;
     /**
-    * Merchant support email
+    * Merchant support email used to manage disputes.
     */
     "supportEmail": string;
 
@@ -26,7 +26,7 @@ export class AffirmInfo {
         {
             "name": "pricePlan",
             "baseName": "pricePlan",
-            "type": "AffirmInfo.PricePlanEnum",
+            "type": "string",
             "format": ""
         },
         {
@@ -44,10 +44,3 @@ export class AffirmInfo {
     }
 }
 
-export namespace AffirmInfo {
-    export enum PricePlanEnum {
-        Bronze = 'BRONZE',
-        Silver = 'SILVER',
-        Gold = 'GOLD'
-    }
-}
