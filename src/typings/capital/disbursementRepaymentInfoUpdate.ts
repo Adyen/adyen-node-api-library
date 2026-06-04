@@ -13,6 +13,9 @@ export class DisbursementRepaymentInfoUpdate {
     * The percentage of your user\'s incoming net volume that is deducted for repaying the grant. The percentage expressed in [basis points](https://www.investopedia.com/terms/b/basispoint.asp).
     */
     "basisPoints"?: number;
+    /**
+	* @deprecated 
+    */
     "updateDescription"?: string;
 
     static readonly discriminator: string | undefined = undefined;

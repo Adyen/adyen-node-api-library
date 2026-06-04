@@ -8,34 +8,35 @@
  */
 
 import { Amount } from "./amount";
-import { GrantOfferFee } from "./grantOfferFee";
-import { Repayment } from "./repayment";
+import { DynamicOfferRepayment } from "./dynamicOfferRepayment";
+import { FinancingType } from "./financingType";
 
 
-export class GrantOffer {
+export class DynamicOffer {
     /**
-    * The unique identifier of the account holder to which the grant is offered.
+    * The unique identifier of the account holder that the dynamic offer is for.
     */
     "accountHolderId": string;
-    "amount"?: Amount | null;
     /**
     * The contract type of the offer.  Possible values: * **loan** * **cashAdvance**
     */
-    "contractType"?: GrantOffer.ContractTypeEnum;
+    "contractType": DynamicOffer.ContractTypeEnum;
     /**
     * The expiration date and time of the offer validity period.
     */
-    "expiresAt"?: Date;
-    "fee"?: GrantOfferFee | null;
+    "expiresAt": Date;
+    "financingType": FinancingType;
     /**
-    * The unique identifier of the offer.
+    * The unique identifier of the dynamic offer.
     */
-    "id"?: string;
-    "repayment"?: Repayment | null;
+    "id": string;
+    "maximumAmount": Amount;
+    "minimumAmount": Amount;
+    "repayment": DynamicOfferRepayment;
     /**
     * The starting date and time of the offer validity period.
     */
-    "startsAt"?: Date;
+    "startsAt": Date;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -49,15 +50,9 @@ export class GrantOffer {
             "format": ""
         },
         {
-            "name": "amount",
-            "baseName": "amount",
-            "type": "Amount | null",
-            "format": ""
-        },
-        {
             "name": "contractType",
             "baseName": "contractType",
-            "type": "GrantOffer.ContractTypeEnum",
+            "type": "DynamicOffer.ContractTypeEnum",
             "format": ""
         },
         {
@@ -67,9 +62,9 @@ export class GrantOffer {
             "format": "date-time"
         },
         {
-            "name": "fee",
-            "baseName": "fee",
-            "type": "GrantOfferFee | null",
+            "name": "financingType",
+            "baseName": "financingType",
+            "type": "FinancingType",
             "format": ""
         },
         {
@@ -79,9 +74,21 @@ export class GrantOffer {
             "format": ""
         },
         {
+            "name": "maximumAmount",
+            "baseName": "maximumAmount",
+            "type": "Amount",
+            "format": ""
+        },
+        {
+            "name": "minimumAmount",
+            "baseName": "minimumAmount",
+            "type": "Amount",
+            "format": ""
+        },
+        {
             "name": "repayment",
             "baseName": "repayment",
-            "type": "Repayment | null",
+            "type": "DynamicOfferRepayment",
             "format": ""
         },
         {
@@ -92,14 +99,14 @@ export class GrantOffer {
         }    ];
 
     static getAttributeTypeMap() {
-        return GrantOffer.attributeTypeMap;
+        return DynamicOffer.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace GrantOffer {
+export namespace DynamicOffer {
     export enum ContractTypeEnum {
         CashAdvance = 'cashAdvance',
         Loan = 'loan'

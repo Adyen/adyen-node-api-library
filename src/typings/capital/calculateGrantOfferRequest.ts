@@ -7,14 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { GrantOffer } from "./grantOffer";
+import { Amount } from "./amount";
 
 
-export class GrantOffers {
-    /**
-    * Contains a list of available offers for the specified account holder.
-    */
-    "grantOffers": Array<GrantOffer>;
+export class CalculateGrantOfferRequest {
+    "amount": Amount;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,14 +19,14 @@ export class GrantOffers {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "grantOffers",
-            "baseName": "grantOffers",
-            "type": "Array<GrantOffer>",
+            "name": "amount",
+            "baseName": "amount",
+            "type": "Amount",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return GrantOffers.attributeTypeMap;
+        return CalculateGrantOfferRequest.attributeTypeMap;
     }
 
     public constructor() {

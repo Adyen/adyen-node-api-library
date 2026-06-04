@@ -3,7 +3,6 @@ export * from "./models";
 import { AULocalAccountIdentification } from "./aULocalAccountIdentification";
 import { Action } from "./action";
 import { AdditionalBankIdentification } from "./additionalBankIdentification";
-import { AdditionalBankIdentificationTypes } from "./additionalBankIdentificationTypes";
 import { Amount } from "./amount";
 import { BRLocalAccountIdentification } from "./bRLocalAccountIdentification";
 import { Balance } from "./balance";
@@ -11,6 +10,9 @@ import { BankAccountIdentification } from "./bankAccountIdentification";
 import { CALocalAccountIdentification } from "./cALocalAccountIdentification";
 import { CALocalBankAccountType } from "./cALocalBankAccountType";
 import { CZLocalAccountIdentification } from "./cZLocalAccountIdentification";
+import { CalculateGrantOfferRequest } from "./calculateGrantOfferRequest";
+import { CalculatedGrantOffer } from "./calculatedGrantOffer";
+import { CreateGrantOfferRequest } from "./createGrantOfferRequest";
 import { DKLocalAccountIdentification } from "./dKLocalAccountIdentification";
 import { DefaultErrorResponseEntity } from "./defaultErrorResponseEntity";
 import { Disbursement } from "./disbursement";
@@ -18,9 +20,13 @@ import { DisbursementInfoUpdate } from "./disbursementInfoUpdate";
 import { DisbursementRepayment } from "./disbursementRepayment";
 import { DisbursementRepaymentInfoUpdate } from "./disbursementRepaymentInfoUpdate";
 import { Disbursements } from "./disbursements";
+import { DynamicOffer } from "./dynamicOffer";
+import { DynamicOfferRepayment } from "./dynamicOfferRepayment";
 import { Fee } from "./fee";
+import { FinancingType } from "./financingType";
 import { FundsCollection } from "./fundsCollection";
 import { FundsCollectionType } from "./fundsCollectionType";
+import { GetDynamicOffersResponse } from "./getDynamicOffersResponse";
 import { Grant } from "./grant";
 import { GrantAccount } from "./grantAccount";
 import { GrantCounterparty } from "./grantCounterparty";
@@ -62,15 +68,13 @@ let primitives = [
                  ];
 
 let enumsMap: Set<string> = new Set<string>([
-    AdditionalBankIdentificationTypes.AuBsbCode,
-    AdditionalBankIdentificationTypes.CaRoutingNumber,
-    AdditionalBankIdentificationTypes.GbSortCode,
-    AdditionalBankIdentificationTypes.HkBankCode,
-    AdditionalBankIdentificationTypes.JpZenginCode,
-    AdditionalBankIdentificationTypes.NzBankBranchCode,
-    AdditionalBankIdentificationTypes.UsRoutingNumber,
+    "AdditionalBankIdentification.TypeEnum",
     CALocalBankAccountType.Checking,
     CALocalBankAccountType.Savings,
+    "CalculatedGrantOffer.ContractTypeEnum",
+    "DynamicOffer.ContractTypeEnum",
+    FinancingType.HardwareFinancing,
+    FinancingType.BusinessFinancing,
     FundsCollectionType.UnscheduledRepayment,
     FundsCollectionType.Revocation,
     "GrantOffer.ContractTypeEnum",
@@ -89,6 +93,9 @@ let typeMap: {[index: string]: any} = {
     "BankAccountIdentification": BankAccountIdentification,
     "CALocalAccountIdentification": CALocalAccountIdentification,
     "CZLocalAccountIdentification": CZLocalAccountIdentification,
+    "CalculateGrantOfferRequest": CalculateGrantOfferRequest,
+    "CalculatedGrantOffer": CalculatedGrantOffer,
+    "CreateGrantOfferRequest": CreateGrantOfferRequest,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
     "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
     "Disbursement": Disbursement,
@@ -96,8 +103,11 @@ let typeMap: {[index: string]: any} = {
     "DisbursementRepayment": DisbursementRepayment,
     "DisbursementRepaymentInfoUpdate": DisbursementRepaymentInfoUpdate,
     "Disbursements": Disbursements,
+    "DynamicOffer": DynamicOffer,
+    "DynamicOfferRepayment": DynamicOfferRepayment,
     "Fee": Fee,
     "FundsCollection": FundsCollection,
+    "GetDynamicOffersResponse": GetDynamicOffersResponse,
     "Grant": Grant,
     "GrantAccount": GrantAccount,
     "GrantCounterparty": GrantCounterparty,

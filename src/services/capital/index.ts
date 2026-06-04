@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { DynamicOffersApi } from "./dynamicOffersApi";
 import { GrantAccountsApi } from "./grantAccountsApi";
 import { GrantOffersApi } from "./grantOffersApi";
 import { GrantsApi } from "./grantsApi";
@@ -18,6 +19,10 @@ export default class CapitalAPI extends Service {
     
     public constructor(client: Client) {
         super(client);
+    }
+
+    public get DynamicOffersApi() {
+        return new DynamicOffersApi(this.client);
     }
 
     public get GrantAccountsApi() {
