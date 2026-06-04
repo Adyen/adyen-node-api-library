@@ -18,6 +18,10 @@ export class BusinessLineInfoUpdate {
     */
     "industryCode"?: string;
     /**
+    * The description of the industry code.
+    */
+    "industryCodeDescription"?: string;
+    /**
     * A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the `service` **paymentProcessing**.
     */
     "salesChannels"?: Array<string>;
@@ -36,6 +40,12 @@ export class BusinessLineInfoUpdate {
         {
             "name": "industryCode",
             "baseName": "industryCode",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "industryCodeDescription",
+            "baseName": "industryCodeDescription",
             "type": "string",
             "format": ""
         },

@@ -18,6 +18,10 @@ export class BusinessLineInfo {
     */
     "industryCode": string;
     /**
+    * The description of the industry code.
+    */
+    "industryCodeDescription"?: string;
+    /**
     * Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line.
     */
     "legalEntityId": string;
@@ -44,6 +48,12 @@ export class BusinessLineInfo {
         {
             "name": "industryCode",
             "baseName": "industryCode",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "industryCodeDescription",
+            "baseName": "industryCodeDescription",
             "type": "string",
             "format": ""
         },
