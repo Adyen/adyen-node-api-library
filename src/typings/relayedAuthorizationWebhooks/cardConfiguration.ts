@@ -61,6 +61,10 @@ export class CardConfiguration {
     */
     "pinMailer"?: string;
     /**
+    * Print Line.  Text printed on the physical card below the cardholder name. You provide the value, which can be up to 26 characters.
+    */
+    "printLine"?: string;
+    /**
     * The logistics company that ships the card.  This field overrides the logistics company defined in the card configuration profile.
     */
     "shipmentMethod"?: string;
@@ -145,6 +149,12 @@ export class CardConfiguration {
         {
             "name": "pinMailer",
             "baseName": "pinMailer",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "printLine",
+            "baseName": "printLine",
             "type": "string",
             "format": ""
         },
