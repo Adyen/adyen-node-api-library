@@ -57,7 +57,7 @@ export class SCAAssociationManagementApi extends Service {
     /**
     * @summary Get a list of devices associated with an entity
     * @param requestOptions {@link IRequest.Options }
-    * @param entityType {@link ScaEntityType } (Required) The type of entity you want to retrieve a list of associations for.   Possible values: **accountHolder** or **paymentInstrument**.
+    * @param entityType {@link ScaEntityType } (Required) The type of entity you want to retrieve a list of associations for.   Possible values: **accountHolder**, **legalEntity** or **paymentInstrument**.
     * @param entityId {@link string } (Required) The unique identifier of the entity.
     * @param pageSize {@link number } (Required) The number of items to have on a page.   Default: **5**.
     * @param pageNumber {@link number } (Required) The index of the page to retrieve. The index of the first page is **0** (zero).   Default:  **0**.

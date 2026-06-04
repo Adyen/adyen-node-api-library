@@ -8,19 +8,15 @@
  */
 
 
-export class InvalidField {
+export class Summary {
     /**
-    * Description of the validation error.
+    * The unique identifier of the legal entity.
     */
-    "message": string;
+    "legalEntityId": string;
     /**
-    * The field that has an invalid value.
+    * The tax years for which the legal entity has a tax form.
     */
-    "name": string;
-    /**
-    * The invalid value.
-    */
-    "value": string;
+    "taxYears": Array<number>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,26 +24,20 @@ export class InvalidField {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "message",
-            "baseName": "message",
+            "name": "legalEntityId",
+            "baseName": "legalEntityId",
             "type": "string",
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
-            "format": ""
+            "name": "taxYears",
+            "baseName": "taxYears",
+            "type": "Array<number>",
+            "format": "int32"
         }    ];
 
     static getAttributeTypeMap() {
-        return InvalidField.attributeTypeMap;
+        return Summary.attributeTypeMap;
     }
 
     public constructor() {

@@ -13,10 +13,13 @@ import { BalanceAccountsApi } from "./balanceAccountsApi";
 import { BalancesApi } from "./balancesApi";
 import { BankAccountValidationApi } from "./bankAccountValidationApi";
 import { CardOrdersApi } from "./cardOrdersApi";
+import { CustomPayoutSchedulesSweepsApi } from "./customPayoutSchedulesSweepsApi";
+import { DirectDebitMandatesApi } from "./directDebitMandatesApi";
 import { GrantAccountsApi } from "./grantAccountsApi";
 import { GrantOffersApi } from "./grantOffersApi";
 import { ManageCardPINApi } from "./manageCardPINApi";
 import { ManageSCADevicesApi } from "./manageSCADevicesApi";
+import { ManagedPayoutSchedulesApi } from "./managedPayoutSchedulesApi";
 import { NetworkTokensApi } from "./networkTokensApi";
 import { PaymentInstrumentGroupsApi } from "./paymentInstrumentGroupsApi";
 import { PaymentInstrumentsApi } from "./paymentInstrumentsApi";
@@ -61,6 +64,14 @@ export default class BalancePlatformAPI extends Service {
         return new CardOrdersApi(this.client);
     }
 
+    public get CustomPayoutSchedulesSweepsApi() {
+        return new CustomPayoutSchedulesSweepsApi(this.client);
+    }
+
+    public get DirectDebitMandatesApi() {
+        return new DirectDebitMandatesApi(this.client);
+    }
+
     public get GrantAccountsApi() {
         return new GrantAccountsApi(this.client);
     }
@@ -75,6 +86,10 @@ export default class BalancePlatformAPI extends Service {
 
     public get ManageSCADevicesApi() {
         return new ManageSCADevicesApi(this.client);
+    }
+
+    public get ManagedPayoutSchedulesApi() {
+        return new ManagedPayoutSchedulesApi(this.client);
     }
 
     public get NetworkTokensApi() {

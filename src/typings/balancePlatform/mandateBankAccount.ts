@@ -7,20 +7,13 @@
  * Do not edit this class manually.
  */
 
+import { MandateAccountIdentification } from "./mandateAccountIdentification";
+import { MandatePartyIdentification } from "./mandatePartyIdentification";
 
-export class InvalidField {
-    /**
-    * Description of the validation error.
-    */
-    "message": string;
-    /**
-    * The field that has an invalid value.
-    */
-    "name": string;
-    /**
-    * The invalid value.
-    */
-    "value": string;
+
+export class MandateBankAccount {
+    "accountHolder": MandatePartyIdentification;
+    "accountIdentification": MandateAccountIdentification;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,26 +21,20 @@ export class InvalidField {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "message",
-            "baseName": "message",
-            "type": "string",
+            "name": "accountHolder",
+            "baseName": "accountHolder",
+            "type": "MandatePartyIdentification",
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
+            "name": "accountIdentification",
+            "baseName": "accountIdentification",
+            "type": "MandateAccountIdentification",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return InvalidField.attributeTypeMap;
+        return MandateBankAccount.attributeTypeMap;
     }
 
     public constructor() {
