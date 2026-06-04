@@ -14,7 +14,15 @@ import { TerminalConnectivity } from "./terminalConnectivity";
 
 export class Terminal {
     "assignment"?: TerminalAssignment | null;
+    /**
+    * The [regional base URL](https://docs.adyen.com/api-explorer/terminal-api/1/overview#endpoints-for-cloud-communications) to use for sending Terminal API requests when using cloud communications.
+    */
+    "cloudDeviceApiEndpoint"?: string;
     "connectivity"?: TerminalConnectivity | null;
+    /**
+    * The country code of the country where the terminal is located.
+    */
+    "countryCode"?: string;
     /**
     * The software release currently in use on the terminal.
     */
@@ -60,9 +68,21 @@ export class Terminal {
             "format": ""
         },
         {
+            "name": "cloudDeviceApiEndpoint",
+            "baseName": "cloudDeviceApiEndpoint",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "connectivity",
             "baseName": "connectivity",
             "type": "TerminalConnectivity | null",
+            "format": ""
+        },
+        {
+            "name": "countryCode",
+            "baseName": "countryCode",
+            "type": "string",
             "format": ""
         },
         {

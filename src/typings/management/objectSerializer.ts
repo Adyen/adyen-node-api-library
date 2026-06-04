@@ -1,16 +1,23 @@
 export * from "./models";
 
 import { AccelInfo } from "./accelInfo";
+import { AccelResponseInfo } from "./accelResponseInfo";
+import { AccelUpdateInfo } from "./accelUpdateInfo";
 import { AdditionalCommission } from "./additionalCommission";
 import { AdditionalSettings } from "./additionalSettings";
 import { AdditionalSettingsResponse } from "./additionalSettingsResponse";
 import { Address } from "./address";
 import { AffirmInfo } from "./affirmInfo";
+import { AffirmResponseInfo } from "./affirmResponseInfo";
+import { AffirmUpdateInfo } from "./affirmUpdateInfo";
 import { AfterpayTouchInfo } from "./afterpayTouchInfo";
+import { AfterpayTouchResponseInfo } from "./afterpayTouchResponseInfo";
 import { AlipayPlusInfo } from "./alipayPlusInfo";
+import { AlipayPlusResponseInfo } from "./alipayPlusResponseInfo";
 import { AllowedOrigin } from "./allowedOrigin";
 import { AllowedOriginsResponse } from "./allowedOriginsResponse";
 import { AmexInfo } from "./amexInfo";
+import { AmexResponseInfo } from "./amexResponseInfo";
 import { Amount } from "./amount";
 import { AndroidApp } from "./androidApp";
 import { AndroidAppError } from "./androidAppError";
@@ -20,12 +27,19 @@ import { AndroidCertificatesResponse } from "./androidCertificatesResponse";
 import { ApiCredential } from "./apiCredential";
 import { ApiCredentialLinks } from "./apiCredentialLinks";
 import { ApplePayInfo } from "./applePayInfo";
+import { ApplePayResponseInfo } from "./applePayResponseInfo";
 import { BcmcInfo } from "./bcmcInfo";
+import { BcmcResponseInfo } from "./bcmcResponseInfo";
+import { BcmcUpdateInfo } from "./bcmcUpdateInfo";
 import { BillingEntitiesResponse } from "./billingEntitiesResponse";
 import { BillingEntity } from "./billingEntity";
 import { CardholderReceipt } from "./cardholderReceipt";
+import { CarnetResponseInfo } from "./carnetResponseInfo";
 import { CartesBancairesInfo } from "./cartesBancairesInfo";
+import { CartesBancairesResponseInfo } from "./cartesBancairesResponseInfo";
+import { CartesBancairesUpdateInfo } from "./cartesBancairesUpdateInfo";
 import { ClearpayInfo } from "./clearpayInfo";
+import { ClearpayResponseInfo } from "./clearpayResponseInfo";
 import { Commission } from "./commission";
 import { Company } from "./company";
 import { CompanyApiCredential } from "./companyApiCredential";
@@ -47,10 +61,16 @@ import { CreateMerchantResponse } from "./createMerchantResponse";
 import { CreateMerchantUserRequest } from "./createMerchantUserRequest";
 import { CreateMerchantWebhookRequest } from "./createMerchantWebhookRequest";
 import { CreateUserResponse } from "./createUserResponse";
+import { CupResponseInfo } from "./cupResponseInfo";
 import { Currency } from "./currency";
 import { CustomNotification } from "./customNotification";
 import { DataCenter } from "./dataCenter";
+import { Dcc } from "./dcc";
 import { DinersInfo } from "./dinersInfo";
+import { DinersResponseInfo } from "./dinersResponseInfo";
+import { DiscoverResponseInfo } from "./discoverResponseInfo";
+import { EFTDirectDebitCAResponseInfo } from "./eFTDirectDebitCAResponseInfo";
+import { EftPosAustraliaResponseInfo } from "./eftPosAustraliaResponseInfo";
 import { EventUrl } from "./eventUrl";
 import { ExternalTerminalAction } from "./externalTerminalAction";
 import { ForceRebootDetails } from "./forceRebootDetails";
@@ -58,18 +78,28 @@ import { GenerateApiKeyResponse } from "./generateApiKeyResponse";
 import { GenerateClientKeyResponse } from "./generateClientKeyResponse";
 import { GenerateHmacKeyResponse } from "./generateHmacKeyResponse";
 import { GenericPmWithTdiInfo } from "./genericPmWithTdiInfo";
+import { GenericPmWithTdiUpdateInfo } from "./genericPmWithTdiUpdateInfo";
+import { GirocardResponseInfo } from "./girocardResponseInfo";
 import { GivexInfo } from "./givexInfo";
+import { GivexResponseInfo } from "./givexResponseInfo";
 import { GooglePayInfo } from "./googlePayInfo";
+import { GooglePayResponseInfo } from "./googlePayResponseInfo";
 import { Gratuity } from "./gratuity";
 import { Hardware } from "./hardware";
+import { HomeScreenSettings } from "./homeScreenSettings";
 import { IdName } from "./idName";
+import { IdealResponseInfo } from "./idealResponseInfo";
 import { InstallAndroidAppDetails } from "./installAndroidAppDetails";
 import { InstallAndroidCertificateDetails } from "./installAndroidCertificateDetails";
 import { InstalledAPKs } from "./installedAPKs";
+import { InteracCardResponseInfo } from "./interacCardResponseInfo";
 import { InvalidField } from "./invalidField";
 import { JCBInfo } from "./jCBInfo";
+import { JCBResponseInfo } from "./jCBResponseInfo";
 import { Key } from "./key";
+import { KioskModeSettings } from "./kioskModeSettings";
 import { KlarnaInfo } from "./klarnaInfo";
+import { KlarnaResponseInfo } from "./klarnaResponseInfo";
 import { Links } from "./links";
 import { LinksElement } from "./linksElement";
 import { ListCompanyApiCredentialsResponse } from "./listCompanyApiCredentialsResponse";
@@ -86,8 +116,12 @@ import { LocalShopperStatement } from "./localShopperStatement";
 import { Localization } from "./localization";
 import { LocalizedInformation } from "./localizedInformation";
 import { Logo } from "./logo";
+import { MCResponseInfo } from "./mCResponseInfo";
+import { MaestroResponseInfo } from "./maestroResponseInfo";
+import { MaestroUSAResponseInfo } from "./maestroUSAResponseInfo";
 import { MeApiCredential } from "./meApiCredential";
 import { MealVoucherFRInfo } from "./mealVoucherFRInfo";
+import { MealVoucherFRResponseInfo } from "./mealVoucherFRResponseInfo";
 import { Merchant } from "./merchant";
 import { MerchantLinks } from "./merchantLinks";
 import { MinorUnitsMonetaryValue } from "./minorUnitsMonetaryValue";
@@ -99,6 +133,8 @@ import { Nexo } from "./nexo";
 import { Notification } from "./notification";
 import { NotificationUrl } from "./notificationUrl";
 import { NyceInfo } from "./nyceInfo";
+import { NyceResponseInfo } from "./nyceResponseInfo";
+import { NyceUpdateInfo } from "./nyceUpdateInfo";
 import { OfflineProcessing } from "./offlineProcessing";
 import { Opi } from "./opi";
 import { OrderItem } from "./orderItem";
@@ -106,9 +142,14 @@ import { PaginationLinks } from "./paginationLinks";
 import { Passcodes } from "./passcodes";
 import { PayAtTable } from "./payAtTable";
 import { PayByBankPlaidInfo } from "./payByBankPlaidInfo";
+import { PayByBankPlaidResponseInfo } from "./payByBankPlaidResponseInfo";
+import { PayByBankPlaidUpdateInfo } from "./payByBankPlaidUpdateInfo";
 import { PayMeInfo } from "./payMeInfo";
+import { PayMeResponseInfo } from "./payMeResponseInfo";
 import { PayPalInfo } from "./payPalInfo";
+import { PayPalResponseInfo } from "./payPalResponseInfo";
 import { PayToInfo } from "./payToInfo";
+import { PayToResponseInfo } from "./payToResponseInfo";
 import { Payment } from "./payment";
 import { PaymentMethod } from "./paymentMethod";
 import { PaymentMethodResponse } from "./paymentMethodResponse";
@@ -118,6 +159,8 @@ import { PayoutSettingsRequest } from "./payoutSettingsRequest";
 import { PayoutSettingsResponse } from "./payoutSettingsResponse";
 import { Profile } from "./profile";
 import { PulseInfo } from "./pulseInfo";
+import { PulseResponseInfo } from "./pulseResponseInfo";
+import { PulseUpdateInfo } from "./pulseUpdateInfo";
 import { ReceiptOptions } from "./receiptOptions";
 import { ReceiptPrinting } from "./receiptPrinting";
 import { Referenced } from "./referenced";
@@ -130,18 +173,24 @@ import { ScheduleTerminalActionsRequest } from "./scheduleTerminalActionsRequest
 import { ScheduleTerminalActionsRequestActionDetailsClass } from "./scheduleTerminalActionsRequestActionDetails";
 import { ScheduleTerminalActionsResponse } from "./scheduleTerminalActionsResponse";
 import { SepaDirectDebitInfo } from "./sepaDirectDebitInfo";
+import { SepaDirectDebitResponseInfo } from "./sepaDirectDebitResponseInfo";
+import { SepaDirectDebitUpdateInfo } from "./sepaDirectDebitUpdateInfo";
 import { Settings } from "./settings";
 import { ShippingLocation } from "./shippingLocation";
 import { ShippingLocationsResponse } from "./shippingLocationsResponse";
 import { Signature } from "./signature";
 import { SodexoInfo } from "./sodexoInfo";
+import { SodexoResponseInfo } from "./sodexoResponseInfo";
 import { SofortInfo } from "./sofortInfo";
+import { SofortResponseInfo } from "./sofortResponseInfo";
 import { SplitConfiguration } from "./splitConfiguration";
 import { SplitConfigurationList } from "./splitConfigurationList";
 import { SplitConfigurationLogic } from "./splitConfigurationLogic";
 import { SplitConfigurationRule } from "./splitConfigurationRule";
 import { Standalone } from "./standalone";
 import { StarInfo } from "./starInfo";
+import { StarResponseInfo } from "./starResponseInfo";
+import { StarUpdateInfo } from "./starUpdateInfo";
 import { Store } from "./store";
 import { StoreAndForward } from "./storeAndForward";
 import { StoreCreationRequest } from "./storeCreationRequest";
@@ -152,7 +201,9 @@ import { SubMerchantData } from "./subMerchantData";
 import { SupportedCardTypes } from "./supportedCardTypes";
 import { Surcharge } from "./surcharge";
 import { SvsInfo } from "./svsInfo";
+import { SvsResponseInfo } from "./svsResponseInfo";
 import { SwishInfo } from "./swishInfo";
+import { SwishResponseInfo } from "./swishResponseInfo";
 import { TapToPay } from "./tapToPay";
 import { Terminal } from "./terminal";
 import { TerminalActionScheduleDetail } from "./terminalActionScheduleDetail";
@@ -178,9 +229,12 @@ import { TestOutput } from "./testOutput";
 import { TestWebhookRequest } from "./testWebhookRequest";
 import { TestWebhookResponse } from "./testWebhookResponse";
 import { TicketInfo } from "./ticketInfo";
+import { TicketResponseInfo } from "./ticketResponseInfo";
 import { Timeouts } from "./timeouts";
 import { TransactionDescriptionInfo } from "./transactionDescriptionInfo";
+import { TransactionDescriptionResponseInfo } from "./transactionDescriptionResponseInfo";
 import { TwintInfo } from "./twintInfo";
+import { TwintResponseInfo } from "./twintResponseInfo";
 import { UninstallAndroidAppDetails } from "./uninstallAndroidAppDetails";
 import { UninstallAndroidCertificateDetails } from "./uninstallAndroidCertificateDetails";
 import { Unreferenced } from "./unreferenced";
@@ -202,9 +256,14 @@ import { UploadAndroidCertificateResponse } from "./uploadAndroidCertificateResp
 import { Url } from "./url";
 import { User } from "./user";
 import { ValuelinkInfo } from "./valuelinkInfo";
+import { ValuelinkResponseInfo } from "./valuelinkResponseInfo";
 import { VippsInfo } from "./vippsInfo";
+import { VippsResponseInfo } from "./vippsResponseInfo";
+import { VisaResponseInfo } from "./visaResponseInfo";
 import { WeChatPayInfo } from "./weChatPayInfo";
 import { WeChatPayPosInfo } from "./weChatPayPosInfo";
+import { WeChatPayPosResponseInfo } from "./weChatPayPosResponseInfo";
+import { WeChatPayResponseInfo } from "./weChatPayResponseInfo";
 import { Webhook } from "./webhook";
 import { WebhookLinks } from "./webhookLinks";
 import { WifiProfiles } from "./wifiProfiles";
@@ -223,7 +282,7 @@ let primitives = [
 
 let enumsMap: Set<string> = new Set<string>([
     "AccelInfo.ProcessingTypeEnum",
-    "AffirmInfo.PricePlanEnum",
+    "AccelResponseInfo.ProcessingTypeEnum",
     "AmexInfo.ServiceLevelEnum",
     "AndroidApp.StatusEnum",
     "Connectivity.SimcardStatusEnum",
@@ -241,8 +300,10 @@ let enumsMap: Set<string> = new Set<string>([
     "InstallAndroidCertificateDetails.TypeEnum",
     "JCBInfo.ServiceLevelEnum",
     "KlarnaInfo.RegionEnum",
+    "KlarnaResponseInfo.RegionEnum",
     "Notification.CategoryEnum",
     "NyceInfo.ProcessingTypeEnum",
+    "NyceResponseInfo.ProcessingTypeEnum",
     "PayAtTable.AuthenticationMethodEnum",
     "PayAtTable.PaymentInstrumentEnum",
     "PaymentMethod.VerificationStatusEnum",
@@ -252,6 +313,7 @@ let enumsMap: Set<string> = new Set<string>([
     "PayoutSettings.PriorityEnum",
     "PayoutSettings.VerificationStatusEnum",
     "PulseInfo.ProcessingTypeEnum",
+    "PulseResponseInfo.ProcessingTypeEnum",
     "ReleaseUpdateDetails.TypeEnum",
     "ScheduleTerminalActionsRequestActionDetails.TypeEnum",
     "SplitConfigurationLogic.AcquiringFeesEnum",
@@ -272,10 +334,12 @@ let enumsMap: Set<string> = new Set<string>([
     "SplitConfigurationRule.FundingSourceEnum",
     "SplitConfigurationRule.ShopperInteractionEnum",
     "StarInfo.ProcessingTypeEnum",
+    "StarResponseInfo.ProcessingTypeEnum",
     "Store.StatusEnum",
     "TerminalAssignment.StatusEnum",
     "TerminalConnectivityCellular.StatusEnum",
     "TransactionDescriptionInfo.TypeEnum",
+    "TransactionDescriptionResponseInfo.TypeEnum",
     "UninstallAndroidAppDetails.TypeEnum",
     "UninstallAndroidCertificateDetails.TypeEnum",
     "UpdateCompanyWebhookRequest.CommunicationFormatEnum",
@@ -301,6 +365,7 @@ let enumsMap: Set<string> = new Set<string>([
     "UpdateSplitConfigurationLogicRequest.TipEnum",
     "UpdateStoreRequest.StatusEnum",
     "ValuelinkInfo.PinSupportEnum",
+    "ValuelinkResponseInfo.PinSupportEnum",
     "Webhook.CommunicationFormatEnum",
     "Webhook.EncryptionProtocolEnum",
     "Webhook.FilterMerchantAccountTypeEnum",
@@ -309,16 +374,23 @@ let enumsMap: Set<string> = new Set<string>([
 
 let typeMap: {[index: string]: any} = {
     "AccelInfo": AccelInfo,
+    "AccelResponseInfo": AccelResponseInfo,
+    "AccelUpdateInfo": AccelUpdateInfo,
     "AdditionalCommission": AdditionalCommission,
     "AdditionalSettings": AdditionalSettings,
     "AdditionalSettingsResponse": AdditionalSettingsResponse,
     "Address": Address,
     "AffirmInfo": AffirmInfo,
+    "AffirmResponseInfo": AffirmResponseInfo,
+    "AffirmUpdateInfo": AffirmUpdateInfo,
     "AfterpayTouchInfo": AfterpayTouchInfo,
+    "AfterpayTouchResponseInfo": AfterpayTouchResponseInfo,
     "AlipayPlusInfo": AlipayPlusInfo,
+    "AlipayPlusResponseInfo": AlipayPlusResponseInfo,
     "AllowedOrigin": AllowedOrigin,
     "AllowedOriginsResponse": AllowedOriginsResponse,
     "AmexInfo": AmexInfo,
+    "AmexResponseInfo": AmexResponseInfo,
     "Amount": Amount,
     "AndroidApp": AndroidApp,
     "AndroidAppError": AndroidAppError,
@@ -328,12 +400,19 @@ let typeMap: {[index: string]: any} = {
     "ApiCredential": ApiCredential,
     "ApiCredentialLinks": ApiCredentialLinks,
     "ApplePayInfo": ApplePayInfo,
+    "ApplePayResponseInfo": ApplePayResponseInfo,
     "BcmcInfo": BcmcInfo,
+    "BcmcResponseInfo": BcmcResponseInfo,
+    "BcmcUpdateInfo": BcmcUpdateInfo,
     "BillingEntitiesResponse": BillingEntitiesResponse,
     "BillingEntity": BillingEntity,
     "CardholderReceipt": CardholderReceipt,
+    "CarnetResponseInfo": CarnetResponseInfo,
     "CartesBancairesInfo": CartesBancairesInfo,
+    "CartesBancairesResponseInfo": CartesBancairesResponseInfo,
+    "CartesBancairesUpdateInfo": CartesBancairesUpdateInfo,
     "ClearpayInfo": ClearpayInfo,
+    "ClearpayResponseInfo": ClearpayResponseInfo,
     "Commission": Commission,
     "Company": Company,
     "CompanyApiCredential": CompanyApiCredential,
@@ -355,10 +434,16 @@ let typeMap: {[index: string]: any} = {
     "CreateMerchantUserRequest": CreateMerchantUserRequest,
     "CreateMerchantWebhookRequest": CreateMerchantWebhookRequest,
     "CreateUserResponse": CreateUserResponse,
+    "CupResponseInfo": CupResponseInfo,
     "Currency": Currency,
     "CustomNotification": CustomNotification,
     "DataCenter": DataCenter,
+    "Dcc": Dcc,
     "DinersInfo": DinersInfo,
+    "DinersResponseInfo": DinersResponseInfo,
+    "DiscoverResponseInfo": DiscoverResponseInfo,
+    "EFTDirectDebitCAResponseInfo": EFTDirectDebitCAResponseInfo,
+    "EftPosAustraliaResponseInfo": EftPosAustraliaResponseInfo,
     "EventUrl": EventUrl,
     "ExternalTerminalAction": ExternalTerminalAction,
     "ForceRebootDetails": ForceRebootDetails,
@@ -366,18 +451,28 @@ let typeMap: {[index: string]: any} = {
     "GenerateClientKeyResponse": GenerateClientKeyResponse,
     "GenerateHmacKeyResponse": GenerateHmacKeyResponse,
     "GenericPmWithTdiInfo": GenericPmWithTdiInfo,
+    "GenericPmWithTdiUpdateInfo": GenericPmWithTdiUpdateInfo,
+    "GirocardResponseInfo": GirocardResponseInfo,
     "GivexInfo": GivexInfo,
+    "GivexResponseInfo": GivexResponseInfo,
     "GooglePayInfo": GooglePayInfo,
+    "GooglePayResponseInfo": GooglePayResponseInfo,
     "Gratuity": Gratuity,
     "Hardware": Hardware,
+    "HomeScreenSettings": HomeScreenSettings,
     "IdName": IdName,
+    "IdealResponseInfo": IdealResponseInfo,
     "InstallAndroidAppDetails": InstallAndroidAppDetails,
     "InstallAndroidCertificateDetails": InstallAndroidCertificateDetails,
     "InstalledAPKs": InstalledAPKs,
+    "InteracCardResponseInfo": InteracCardResponseInfo,
     "InvalidField": InvalidField,
     "JCBInfo": JCBInfo,
+    "JCBResponseInfo": JCBResponseInfo,
     "Key": Key,
+    "KioskModeSettings": KioskModeSettings,
     "KlarnaInfo": KlarnaInfo,
+    "KlarnaResponseInfo": KlarnaResponseInfo,
     "Links": Links,
     "LinksElement": LinksElement,
     "ListCompanyApiCredentialsResponse": ListCompanyApiCredentialsResponse,
@@ -394,8 +489,12 @@ let typeMap: {[index: string]: any} = {
     "Localization": Localization,
     "LocalizedInformation": LocalizedInformation,
     "Logo": Logo,
+    "MCResponseInfo": MCResponseInfo,
+    "MaestroResponseInfo": MaestroResponseInfo,
+    "MaestroUSAResponseInfo": MaestroUSAResponseInfo,
     "MeApiCredential": MeApiCredential,
     "MealVoucherFRInfo": MealVoucherFRInfo,
+    "MealVoucherFRResponseInfo": MealVoucherFRResponseInfo,
     "Merchant": Merchant,
     "MerchantLinks": MerchantLinks,
     "MinorUnitsMonetaryValue": MinorUnitsMonetaryValue,
@@ -407,6 +506,8 @@ let typeMap: {[index: string]: any} = {
     "Notification": Notification,
     "NotificationUrl": NotificationUrl,
     "NyceInfo": NyceInfo,
+    "NyceResponseInfo": NyceResponseInfo,
+    "NyceUpdateInfo": NyceUpdateInfo,
     "OfflineProcessing": OfflineProcessing,
     "Opi": Opi,
     "OrderItem": OrderItem,
@@ -414,9 +515,14 @@ let typeMap: {[index: string]: any} = {
     "Passcodes": Passcodes,
     "PayAtTable": PayAtTable,
     "PayByBankPlaidInfo": PayByBankPlaidInfo,
+    "PayByBankPlaidResponseInfo": PayByBankPlaidResponseInfo,
+    "PayByBankPlaidUpdateInfo": PayByBankPlaidUpdateInfo,
     "PayMeInfo": PayMeInfo,
+    "PayMeResponseInfo": PayMeResponseInfo,
     "PayPalInfo": PayPalInfo,
+    "PayPalResponseInfo": PayPalResponseInfo,
     "PayToInfo": PayToInfo,
+    "PayToResponseInfo": PayToResponseInfo,
     "Payment": Payment,
     "PaymentMethod": PaymentMethod,
     "PaymentMethodResponse": PaymentMethodResponse,
@@ -426,6 +532,8 @@ let typeMap: {[index: string]: any} = {
     "PayoutSettingsResponse": PayoutSettingsResponse,
     "Profile": Profile,
     "PulseInfo": PulseInfo,
+    "PulseResponseInfo": PulseResponseInfo,
+    "PulseUpdateInfo": PulseUpdateInfo,
     "ReceiptOptions": ReceiptOptions,
     "ReceiptPrinting": ReceiptPrinting,
     "Referenced": Referenced,
@@ -438,18 +546,24 @@ let typeMap: {[index: string]: any} = {
     "ScheduleTerminalActionsRequestActionDetails": ScheduleTerminalActionsRequestActionDetailsClass,
     "ScheduleTerminalActionsResponse": ScheduleTerminalActionsResponse,
     "SepaDirectDebitInfo": SepaDirectDebitInfo,
+    "SepaDirectDebitResponseInfo": SepaDirectDebitResponseInfo,
+    "SepaDirectDebitUpdateInfo": SepaDirectDebitUpdateInfo,
     "Settings": Settings,
     "ShippingLocation": ShippingLocation,
     "ShippingLocationsResponse": ShippingLocationsResponse,
     "Signature": Signature,
     "SodexoInfo": SodexoInfo,
+    "SodexoResponseInfo": SodexoResponseInfo,
     "SofortInfo": SofortInfo,
+    "SofortResponseInfo": SofortResponseInfo,
     "SplitConfiguration": SplitConfiguration,
     "SplitConfigurationList": SplitConfigurationList,
     "SplitConfigurationLogic": SplitConfigurationLogic,
     "SplitConfigurationRule": SplitConfigurationRule,
     "Standalone": Standalone,
     "StarInfo": StarInfo,
+    "StarResponseInfo": StarResponseInfo,
+    "StarUpdateInfo": StarUpdateInfo,
     "Store": Store,
     "StoreAndForward": StoreAndForward,
     "StoreCreationRequest": StoreCreationRequest,
@@ -460,7 +574,9 @@ let typeMap: {[index: string]: any} = {
     "SupportedCardTypes": SupportedCardTypes,
     "Surcharge": Surcharge,
     "SvsInfo": SvsInfo,
+    "SvsResponseInfo": SvsResponseInfo,
     "SwishInfo": SwishInfo,
+    "SwishResponseInfo": SwishResponseInfo,
     "TapToPay": TapToPay,
     "Terminal": Terminal,
     "TerminalActionScheduleDetail": TerminalActionScheduleDetail,
@@ -486,9 +602,12 @@ let typeMap: {[index: string]: any} = {
     "TestWebhookRequest": TestWebhookRequest,
     "TestWebhookResponse": TestWebhookResponse,
     "TicketInfo": TicketInfo,
+    "TicketResponseInfo": TicketResponseInfo,
     "Timeouts": Timeouts,
     "TransactionDescriptionInfo": TransactionDescriptionInfo,
+    "TransactionDescriptionResponseInfo": TransactionDescriptionResponseInfo,
     "TwintInfo": TwintInfo,
+    "TwintResponseInfo": TwintResponseInfo,
     "UninstallAndroidAppDetails": UninstallAndroidAppDetails,
     "UninstallAndroidCertificateDetails": UninstallAndroidCertificateDetails,
     "Unreferenced": Unreferenced,
@@ -510,9 +629,14 @@ let typeMap: {[index: string]: any} = {
     "Url": Url,
     "User": User,
     "ValuelinkInfo": ValuelinkInfo,
+    "ValuelinkResponseInfo": ValuelinkResponseInfo,
     "VippsInfo": VippsInfo,
+    "VippsResponseInfo": VippsResponseInfo,
+    "VisaResponseInfo": VisaResponseInfo,
     "WeChatPayInfo": WeChatPayInfo,
     "WeChatPayPosInfo": WeChatPayPosInfo,
+    "WeChatPayPosResponseInfo": WeChatPayPosResponseInfo,
+    "WeChatPayResponseInfo": WeChatPayResponseInfo,
     "Webhook": Webhook,
     "WebhookLinks": WebhookLinks,
     "WifiProfiles": WifiProfiles,

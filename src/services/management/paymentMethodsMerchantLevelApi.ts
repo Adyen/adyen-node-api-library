@@ -16,6 +16,7 @@ import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/management/objectSerializer";
 import { ApplePayInfo } from "../../typings/management/models";
+import { ApplePayResponseInfo } from "../../typings/management/models";
 import { PaymentMethod } from "../../typings/management/models";
 import { PaymentMethodResponse } from "../../typings/management/models";
 import { PaymentMethodSetupInfo } from "../../typings/management/models";
@@ -94,21 +95,21 @@ export class PaymentMethodsMerchantLevelApi extends Service {
     * @param merchantId {@link string } The unique identifier of the merchant account.
     * @param paymentMethodId {@link string } The unique identifier of the payment method.
     * @param requestOptions {@link IRequest.Options }
-    * @return {@link ApplePayInfo }
+    * @return {@link ApplePayResponseInfo }
     */
-    public async getApplePayDomains(merchantId: string, paymentMethodId: string, requestOptions?: IRequest.Options): Promise<ApplePayInfo> {
+    public async getApplePayDomains(merchantId: string, paymentMethodId: string, requestOptions?: IRequest.Options): Promise<ApplePayResponseInfo> {
         const endpoint = `${this.baseUrl}/merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains`
             .replace("{" + "merchantId" + "}", encodeURIComponent(String(merchantId)))
             .replace("{" + "paymentMethodId" + "}", encodeURIComponent(String(paymentMethodId)));
         const resource = new Resource(this, endpoint);
         
-        const response = await getJsonResponse<string, ApplePayInfo>(
+        const response = await getJsonResponse<string, ApplePayResponseInfo>(
             resource,
             "",
             { ...requestOptions, method: "GET" }
         );
 
-        return ObjectSerializer.deserialize(response, "ApplePayInfo");
+        return ObjectSerializer.deserialize(response, "ApplePayResponseInfo");
     }
 
     /**

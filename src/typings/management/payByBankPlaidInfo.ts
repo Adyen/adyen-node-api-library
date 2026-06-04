@@ -13,6 +13,8 @@ import { TransactionDescriptionInfo } from "./transactionDescriptionInfo";
 export class PayByBankPlaidInfo {
     /**
     * Merchant logo (max. size 150kB). Format: Base64-encoded string.
+    *
+	* @deprecated 
     */
     "logo"?: string;
     "transactionDescription"?: TransactionDescriptionInfo | null;

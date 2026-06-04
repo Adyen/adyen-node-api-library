@@ -10,6 +10,14 @@
 
 export class ReceiptOptions {
     /**
+    * The text of the first header line to be shown on the receipt.
+    */
+    "headerLine1"?: string;
+    /**
+    * The text of the second header line to be shown on the receipt.
+    */
+    "headerLine2"?: string;
+    /**
     * The receipt logo converted to a Base64-encoded string. The image must be a .bmp file of < 256 KB, dimensions 240 (H) x 384 (W) px.
     */
     "logo"?: string;
@@ -27,6 +35,18 @@ export class ReceiptOptions {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "headerLine1",
+            "baseName": "headerLine1",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "headerLine2",
+            "baseName": "headerLine2",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "logo",
             "baseName": "logo",

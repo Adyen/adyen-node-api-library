@@ -55,6 +55,7 @@ export class PaymentMethodSetupInfo {
     * The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms).
     */
     "businessLineId"?: string;
+    "carnet"?: GenericPmWithTdiInfo | null;
     "cartesBancaires"?: CartesBancairesInfo | null;
     "clearpay"?: ClearpayInfo | null;
     /**
@@ -97,7 +98,7 @@ export class PaymentMethodSetupInfo {
     "reference"?: string;
     "sepadirectdebit"?: SepaDirectDebitInfo | null;
     /**
-    * The sales channel. Required if the merchant account does not have a sales channel. When you provide this field, it overrides the default sales channel set on the merchant account.  Possible values: **eCommerce**, **pos**, **contAuth**, and **moto**. 
+    * The sales channel. Required if: - The merchant account does not have a sales channel. - `type` is **alipay**.  When you provide this field, it overrides the default sales channel set on the merchant account.  Possible values: **eCommerce**, **pos**, **contAuth**, and **moto**. 
     */
     "shopperInteraction"?: PaymentMethodSetupInfo.ShopperInteractionEnum;
     "sodexo"?: SodexoInfo | null;
@@ -172,6 +173,12 @@ export class PaymentMethodSetupInfo {
             "name": "businessLineId",
             "baseName": "businessLineId",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "carnet",
+            "baseName": "carnet",
+            "type": "GenericPmWithTdiInfo | null",
             "format": ""
         },
         {
@@ -467,6 +474,17 @@ export namespace PaymentMethodSetupInfo {
         Alipay = 'alipay',
         AlipayHk = 'alipay_hk',
         AlipayPlus = 'alipay_plus',
+        AlipayPlusAlipayCn = 'alipay_plus_alipay_cn',
+        AlipayPlusAlipayHk = 'alipay_plus_alipay_hk',
+        AlipayPlusDana = 'alipay_plus_dana',
+        AlipayPlusGcash = 'alipay_plus_gcash',
+        AlipayPlusKakaopay = 'alipay_plus_kakaopay',
+        AlipayPlusKplus = 'alipay_plus_kplus',
+        AlipayPlusNaverpay = 'alipay_plus_naverpay',
+        AlipayPlusRabbitlinepay = 'alipay_plus_rabbitlinepay',
+        AlipayPlusTosspay = 'alipay_plus_tosspay',
+        AlipayPlusTouchngo = 'alipay_plus_touchngo',
+        AlipayPlusTruemoney = 'alipay_plus_truemoney',
         AlipayWap = 'alipay_wap',
         Amex = 'amex',
         Applepay = 'applepay',
@@ -481,6 +499,7 @@ export namespace PaymentMethodSetupInfo {
         Blik = 'blik',
         BlikPos = 'blik_pos',
         BrSchemes = 'br_schemes',
+        Carnet = 'carnet',
         Cartebancaire = 'cartebancaire',
         Clearpay = 'clearpay',
         Clicktopay = 'clicktopay',
