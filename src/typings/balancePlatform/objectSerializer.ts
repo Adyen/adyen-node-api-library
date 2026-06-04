@@ -31,9 +31,15 @@ import { BRLocalAccountIdentification } from "./bRLocalAccountIdentification";
 import { Balance } from "./balance";
 import { BalanceAccount } from "./balanceAccount";
 import { BalanceAccountBase } from "./balanceAccountBase";
+import { BalanceAccountConfiguration } from "./balanceAccountConfiguration";
+import { BalanceAccountConfigurationRequest } from "./balanceAccountConfigurationRequest";
+import { BalanceAccountConfigurationUpdate } from "./balanceAccountConfigurationUpdate";
+import { BalanceAccountConfigurations } from "./balanceAccountConfigurations";
 import { BalanceAccountInfo } from "./balanceAccountInfo";
 import { BalanceAccountUpdateRequest } from "./balanceAccountUpdateRequest";
 import { BalancePlatform } from "./balancePlatform";
+import { BalancePlatformConfiguration } from "./balancePlatformConfiguration";
+import { BalancePlatformConfigurations } from "./balancePlatformConfigurations";
 import { BalanceSweepConfigurationsResponse } from "./balanceSweepConfigurationsResponse";
 import { BalanceWebhookSetting } from "./balanceWebhookSetting";
 import { BalanceWebhookSettingInfo } from "./balanceWebhookSettingInfo";
@@ -84,6 +90,7 @@ import { DeviceInfo } from "./deviceInfo";
 import { DifferentCurrenciesRestriction } from "./differentCurrenciesRestriction";
 import { Duration } from "./duration";
 import { EntryModesRestriction } from "./entryModesRestriction";
+import { ExecutionResult } from "./executionResult";
 import { Expiry } from "./expiry";
 import { Fee } from "./fee";
 import { FinishScaDeviceRegistrationRequest } from "./finishScaDeviceRegistrationRequest";
@@ -103,7 +110,16 @@ import { InvalidField } from "./invalidField";
 import { LimitStatus } from "./limitStatus";
 import { Link } from "./link";
 import { ListAssociationsResponse } from "./listAssociationsResponse";
+import { ListMandatesResponse } from "./listMandatesResponse";
 import { ListNetworkTokensResponse } from "./listNetworkTokensResponse";
+import { LocalTime } from "./localTime";
+import { Mandate } from "./mandate";
+import { MandateAccountIdentification } from "./mandateAccountIdentification";
+import { MandateBankAccount } from "./mandateBankAccount";
+import { MandatePartyIdentification } from "./mandatePartyIdentification";
+import { MandateStatus } from "./mandateStatus";
+import { MandateType } from "./mandateType";
+import { MandateUpdate } from "./mandateUpdate";
 import { MatchingTransactionsRestriction } from "./matchingTransactionsRestriction";
 import { MatchingValuesRestriction } from "./matchingValuesRestriction";
 import { MccsRestriction } from "./mccsRestriction";
@@ -134,6 +150,9 @@ import { PaymentInstrumentRevealInfo } from "./paymentInstrumentRevealInfo";
 import { PaymentInstrumentRevealRequest } from "./paymentInstrumentRevealRequest";
 import { PaymentInstrumentRevealResponse } from "./paymentInstrumentRevealResponse";
 import { PaymentInstrumentUpdateRequest } from "./paymentInstrumentUpdateRequest";
+import { PayoutScheduleExecution } from "./payoutScheduleExecution";
+import { PayoutScheduleExecutionDetails } from "./payoutScheduleExecutionDetails";
+import { PayoutScheduleExecutions } from "./payoutScheduleExecutions";
 import { Phone } from "./phone";
 import { PhoneInfo } from "./phoneInfo";
 import { PhoneNumber } from "./phoneNumber";
@@ -172,11 +191,13 @@ import { SourceAccountTypesRestriction } from "./sourceAccountTypesRestriction";
 import { StringMatch } from "./stringMatch";
 import { SubmitScaAssociationRequest } from "./submitScaAssociationRequest";
 import { SubmitScaAssociationResponse } from "./submitScaAssociationResponse";
+import { Summary } from "./summary";
 import { SweepConfigurationV2 } from "./sweepConfigurationV2";
 import { SweepCounterparty } from "./sweepCounterparty";
 import { SweepSchedule } from "./sweepSchedule";
 import { Target } from "./target";
 import { TargetUpdate } from "./targetUpdate";
+import { TaxFormSummaryResponse } from "./taxFormSummaryResponse";
 import { ThresholdRepayment } from "./thresholdRepayment";
 import { TimeOfDay } from "./timeOfDay";
 import { TimeOfDayRestriction } from "./timeOfDayRestriction";
@@ -197,6 +218,7 @@ import { TransferRouteRequirementsInnerClass } from "./transferRouteRequirements
 import { TransferRouteResponse } from "./transferRouteResponse";
 import { TransferType } from "./transferType";
 import { UKLocalAccountIdentification } from "./uKLocalAccountIdentification";
+import { UKLocalMandateAccountIdentification } from "./uKLocalMandateAccountIdentification";
 import { USInstantPayoutAddressRequirement } from "./uSInstantPayoutAddressRequirement";
 import { USInternationalAchAddressRequirement } from "./uSInternationalAchAddressRequirement";
 import { USInternationalAchPriorityRequirement } from "./uSInternationalAchPriorityRequirement";
@@ -250,6 +272,8 @@ let enumsMap: Set<string> = new Set<string>([
     "BRLocalAccountIdentification.TypeEnum",
     "BalanceAccount.StatusEnum",
     "BalanceAccountBase.StatusEnum",
+    "BalanceAccountConfigurationRequest.FrequencyEnum",
+    "BalanceAccountConfigurationUpdate.FrequencyEnum",
     "BalanceAccountUpdateRequest.StatusEnum",
     "BalanceWebhookSettingInfo.StatusEnum",
     "BalanceWebhookSettingInfo.TypeEnum",
@@ -287,6 +311,9 @@ let enumsMap: Set<string> = new Set<string>([
     "Device.TypeEnum",
     "Duration.UnitEnum",
     "EntryModesRestriction.ValueEnum",
+    ExecutionResult.Failed,
+    ExecutionResult.Succeeded,
+    ExecutionResult.Skipped,
     "GetTaxFormResponse.ContentTypeEnum",
     "GrantOffer.ContractTypeEnum",
     "HKLocalAccountIdentification.TypeEnum",
@@ -297,6 +324,10 @@ let enumsMap: Set<string> = new Set<string>([
     LimitStatus.Inactive,
     LimitStatus.PendingSca,
     LimitStatus.Scheduled,
+    MandateStatus.Pending,
+    MandateStatus.Approved,
+    MandateStatus.Cancelled,
+    MandateType.Bacs,
     "MatchingValuesRestriction.ValueEnum",
     "NOLocalAccountIdentification.TypeEnum",
     "NZLocalAccountIdentification.TypeEnum",
@@ -324,6 +355,7 @@ let enumsMap: Set<string> = new Set<string>([
     ScaDeviceType.Ios,
     ScaDeviceType.Android,
     ScaEntityType.AccountHolder,
+    ScaEntityType.LegalEntity,
     ScaEntityType.PaymentInstrument,
     ScaExemption.SetByPlatform,
     ScaExemption.InitialLimit,
@@ -347,10 +379,12 @@ let enumsMap: Set<string> = new Set<string>([
     "Target.TypeEnum",
     "TargetUpdate.TypeEnum",
     "TransactionRule.OutcomeTypeEnum",
+    "TransactionRule.PurposeEnum",
     "TransactionRule.RequestTypeEnum",
     "TransactionRule.StatusEnum",
     "TransactionRule.TypeEnum",
     "TransactionRuleInfo.OutcomeTypeEnum",
+    "TransactionRuleInfo.PurposeEnum",
     "TransactionRuleInfo.RequestTypeEnum",
     "TransactionRuleInfo.StatusEnum",
     "TransactionRuleInfo.TypeEnum",
@@ -421,9 +455,15 @@ let typeMap: {[index: string]: any} = {
     "Balance": Balance,
     "BalanceAccount": BalanceAccount,
     "BalanceAccountBase": BalanceAccountBase,
+    "BalanceAccountConfiguration": BalanceAccountConfiguration,
+    "BalanceAccountConfigurationRequest": BalanceAccountConfigurationRequest,
+    "BalanceAccountConfigurationUpdate": BalanceAccountConfigurationUpdate,
+    "BalanceAccountConfigurations": BalanceAccountConfigurations,
     "BalanceAccountInfo": BalanceAccountInfo,
     "BalanceAccountUpdateRequest": BalanceAccountUpdateRequest,
     "BalancePlatform": BalancePlatform,
+    "BalancePlatformConfiguration": BalancePlatformConfiguration,
+    "BalancePlatformConfigurations": BalancePlatformConfigurations,
     "BalanceSweepConfigurationsResponse": BalanceSweepConfigurationsResponse,
     "BalanceWebhookSetting": BalanceWebhookSetting,
     "BalanceWebhookSettingInfo": BalanceWebhookSettingInfo,
@@ -492,7 +532,14 @@ let typeMap: {[index: string]: any} = {
     "InvalidField": InvalidField,
     "Link": Link,
     "ListAssociationsResponse": ListAssociationsResponse,
+    "ListMandatesResponse": ListMandatesResponse,
     "ListNetworkTokensResponse": ListNetworkTokensResponse,
+    "LocalTime": LocalTime,
+    "Mandate": Mandate,
+    "MandateAccountIdentification": MandateAccountIdentification,
+    "MandateBankAccount": MandateBankAccount,
+    "MandatePartyIdentification": MandatePartyIdentification,
+    "MandateUpdate": MandateUpdate,
     "MatchingTransactionsRestriction": MatchingTransactionsRestriction,
     "MatchingValuesRestriction": MatchingValuesRestriction,
     "MccsRestriction": MccsRestriction,
@@ -523,6 +570,9 @@ let typeMap: {[index: string]: any} = {
     "PaymentInstrumentRevealRequest": PaymentInstrumentRevealRequest,
     "PaymentInstrumentRevealResponse": PaymentInstrumentRevealResponse,
     "PaymentInstrumentUpdateRequest": PaymentInstrumentUpdateRequest,
+    "PayoutScheduleExecution": PayoutScheduleExecution,
+    "PayoutScheduleExecutionDetails": PayoutScheduleExecutionDetails,
+    "PayoutScheduleExecutions": PayoutScheduleExecutions,
     "Phone": Phone,
     "PhoneInfo": PhoneInfo,
     "PhoneNumber": PhoneNumber,
@@ -555,11 +605,13 @@ let typeMap: {[index: string]: any} = {
     "StringMatch": StringMatch,
     "SubmitScaAssociationRequest": SubmitScaAssociationRequest,
     "SubmitScaAssociationResponse": SubmitScaAssociationResponse,
+    "Summary": Summary,
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,
     "SweepSchedule": SweepSchedule,
     "Target": Target,
     "TargetUpdate": TargetUpdate,
+    "TaxFormSummaryResponse": TaxFormSummaryResponse,
     "ThresholdRepayment": ThresholdRepayment,
     "TimeOfDay": TimeOfDay,
     "TimeOfDayRestriction": TimeOfDayRestriction,
@@ -579,6 +631,7 @@ let typeMap: {[index: string]: any} = {
     "TransferRouteRequirementsInner": TransferRouteRequirementsInnerClass,
     "TransferRouteResponse": TransferRouteResponse,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
+    "UKLocalMandateAccountIdentification": UKLocalMandateAccountIdentification,
     "USInstantPayoutAddressRequirement": USInstantPayoutAddressRequirement,
     "USInternationalAchAddressRequirement": USInternationalAchAddressRequirement,
     "USInternationalAchPriorityRequirement": USInternationalAchPriorityRequirement,

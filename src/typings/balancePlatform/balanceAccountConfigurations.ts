@@ -7,20 +7,16 @@
  * Do not edit this class manually.
  */
 
+import { BalanceAccountConfiguration } from "./balanceAccountConfiguration";
+import { Link } from "./link";
 
-export class InvalidField {
+
+export class BalanceAccountConfigurations {
     /**
-    * Description of the validation error.
+    * Contains a list of the Balance Account payout schedules.
     */
-    "message": string;
-    /**
-    * The field that has an invalid value.
-    */
-    "name": string;
-    /**
-    * The invalid value.
-    */
-    "value": string;
+    "balanceAccountPayoutSchedules": Array<BalanceAccountConfiguration>;
+    "link": Link;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,26 +24,20 @@ export class InvalidField {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "message",
-            "baseName": "message",
-            "type": "string",
+            "name": "balanceAccountPayoutSchedules",
+            "baseName": "balanceAccountPayoutSchedules",
+            "type": "Array<BalanceAccountConfiguration>",
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
+            "name": "link",
+            "baseName": "link",
+            "type": "Link",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return InvalidField.attributeTypeMap;
+        return BalanceAccountConfigurations.attributeTypeMap;
     }
 
     public constructor() {

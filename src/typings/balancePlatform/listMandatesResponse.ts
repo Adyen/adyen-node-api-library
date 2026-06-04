@@ -7,20 +7,16 @@
  * Do not edit this class manually.
  */
 
+import { Link } from "./link";
+import { Mandate } from "./mandate";
 
-export class InvalidField {
+
+export class ListMandatesResponse {
+    "link": Link;
     /**
-    * Description of the validation error.
+    * Contains a list of the mandates.
     */
-    "message": string;
-    /**
-    * The field that has an invalid value.
-    */
-    "name": string;
-    /**
-    * The invalid value.
-    */
-    "value": string;
+    "mandates": Array<Mandate>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,26 +24,20 @@ export class InvalidField {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "message",
-            "baseName": "message",
-            "type": "string",
+            "name": "link",
+            "baseName": "link",
+            "type": "Link",
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
+            "name": "mandates",
+            "baseName": "mandates",
+            "type": "Array<Mandate>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return InvalidField.attributeTypeMap;
+        return ListMandatesResponse.attributeTypeMap;
     }
 
     public constructor() {

@@ -8,19 +8,11 @@
  */
 
 
-export class InvalidField {
+export class MandatePartyIdentification {
     /**
-    * Description of the validation error.
+    * The full name of the entity that owns the bank account.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + & ! ? @ ( ) \" \' and space.
     */
-    "message": string;
-    /**
-    * The field that has an invalid value.
-    */
-    "name": string;
-    /**
-    * The invalid value.
-    */
-    "value": string;
+    "fullName"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,26 +20,14 @@ export class InvalidField {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "message",
-            "baseName": "message",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "value",
-            "baseName": "value",
+            "name": "fullName",
+            "baseName": "fullName",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return InvalidField.attributeTypeMap;
+        return MandatePartyIdentification.attributeTypeMap;
     }
 
     public constructor() {

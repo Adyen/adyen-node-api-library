@@ -8,19 +8,19 @@
  */
 
 
-export class IbanAccountIdentification {
+export class PayoutScheduleExecutionDetails {
     /**
-    * The bank\'s 8- or 11-character BIC or SWIFT code.
+    * Human readable reason for why execution was not successful if applicable.
     */
-    "bic"?: string;
+    "reason"?: string;
     /**
-    * The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+    * Reason Code for why execution was not successful if applicable.
     */
-    "iban": string;
+    "reasonCode"?: string;
     /**
-    * **iban**
+    * The id of the transfer from executing the payout.
     */
-    "type": IbanAccountIdentification.TypeEnum;
+    "transferId"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,34 +28,29 @@ export class IbanAccountIdentification {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "bic",
-            "baseName": "bic",
+            "name": "reason",
+            "baseName": "reason",
             "type": "string",
             "format": ""
         },
         {
-            "name": "iban",
-            "baseName": "iban",
+            "name": "reasonCode",
+            "baseName": "reasonCode",
             "type": "string",
             "format": ""
         },
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "IbanAccountIdentification.TypeEnum",
+            "name": "transferId",
+            "baseName": "transferId",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return IbanAccountIdentification.attributeTypeMap;
+        return PayoutScheduleExecutionDetails.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace IbanAccountIdentification {
-    export enum TypeEnum {
-        Iban = 'iban'
-    }
-}

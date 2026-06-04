@@ -7,8 +7,8 @@
  * Do not edit this class manually.
  */
 
-export enum ScaEntityType {
-    AccountHolder = 'accountHolder',
-    LegalEntity = 'legalEntity',
-    PaymentInstrument = 'paymentInstrument'
+export enum MandateStatus {
+    Pending = 'pending',
+    Approved = 'approved',
+    Cancelled = 'cancelled'
 }
