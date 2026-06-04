@@ -32,12 +32,12 @@ export class GrantOffersApi extends Service {
     }
 
     /**
-    * @summary Get all available grant offers
+    * @summary Get all available static offers
     * @param requestOptions {@link IRequest.Options }
-    * @param accountHolderId {@link string } The unique identifier of the account holder for which you want to get the available grant offers.
+    * @param accountHolderId {@link string } (Required) The unique identifier of the account holder for which you want to get the available static offers.
     * @return {@link GrantOffers }
     */
-    public async getAllGrantOffers(accountHolderId?: string, requestOptions?: IRequest.Options): Promise<GrantOffers> {
+    public async getAllGrantOffers(accountHolderId: string, requestOptions?: IRequest.Options): Promise<GrantOffers> {
         const endpoint = `${this.baseUrl}/grantOffers`;
         const resource = new Resource(this, endpoint);
         
@@ -57,8 +57,8 @@ export class GrantOffersApi extends Service {
     }
 
     /**
-    * @summary Get the details of a grant offer
-    * @param id {@link string } The unique identifier of the grant offer.
+    * @summary Get the details of a static offer
+    * @param id {@link string } The unique identifier of the static offer.
     * @param requestOptions {@link IRequest.Options }
     * @return {@link GrantOffer }
     */
