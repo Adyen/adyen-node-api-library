@@ -17,9 +17,7 @@ export class Resource {
 
     static readonly mapping: {[index: string]: string} | undefined = {
         "accountHolder": "AccountHolderResource",
-        "balanceAccount": "BalanceAccountResource",
         "legalEntity": "LegalEntityResource",
-        "merchantAccount": "MerchantAccountResource",
         "paymentInstrument": "PaymentInstrumentResource",
     };
 
