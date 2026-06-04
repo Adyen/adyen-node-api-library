@@ -26,6 +26,10 @@ export class Balance {
     */
     "pending"?: number;
     /**
+    * The balance that will become the available balance after the pending balance is settled.  The pending available balance is equal to the lower of the following: - The `pending` balance - The `pending` balance plus the `available` balance.
+    */
+    "pendingAvailable"?: number;
+    /**
     * The balance currently held in reserve.
     */
     "reserved": number;
@@ -56,6 +60,12 @@ export class Balance {
         {
             "name": "pending",
             "baseName": "pending",
+            "type": "number",
+            "format": "int64"
+        },
+        {
+            "name": "pendingAvailable",
+            "baseName": "pendingAvailable",
             "type": "number",
             "format": "int64"
         },

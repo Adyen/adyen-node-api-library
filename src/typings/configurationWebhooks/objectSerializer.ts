@@ -4,6 +4,9 @@ import { AccountHolder } from "./accountHolder";
 import { AccountHolderCapability } from "./accountHolderCapability";
 import { AccountHolderNotificationData } from "./accountHolderNotificationData";
 import { AccountHolderNotificationRequest } from "./accountHolderNotificationRequest";
+import { AccountPayoutAutoApplicationNotificationRequest } from "./accountPayoutAutoApplicationNotificationRequest";
+import { AccountPayoutAutoApplicationWebhookData } from "./accountPayoutAutoApplicationWebhookData";
+import { AccountPayoutConfigWebhookData } from "./accountPayoutConfigWebhookData";
 import { AccountSupportingEntityCapability } from "./accountSupportingEntityCapability";
 import { Address } from "./address";
 import { Amount } from "./amount";
@@ -31,6 +34,11 @@ import { DeliveryContact } from "./deliveryContact";
 import { Device } from "./device";
 import { Expiry } from "./expiry";
 import { IbanAccountIdentification } from "./ibanAccountIdentification";
+import { Mandate } from "./mandate";
+import { MandateBankAccount } from "./mandateBankAccount";
+import { MandateNotificationData } from "./mandateNotificationData";
+import { MandateNotificationRequest } from "./mandateNotificationRequest";
+import { MandatePartyIdentification } from "./mandatePartyIdentification";
 import { Name } from "./name";
 import { NetworkTokenNotificationDataV2 } from "./networkTokenNotificationDataV2";
 import { NetworkTokenNotificationRequest } from "./networkTokenNotificationRequest";
@@ -43,12 +51,18 @@ import { PaymentInstrument } from "./paymentInstrument";
 import { PaymentInstrumentAdditionalBankAccountIdentificationsInnerClass } from "./paymentInstrumentAdditionalBankAccountIdentificationsInner";
 import { PaymentInstrumentNotificationData } from "./paymentInstrumentNotificationData";
 import { PaymentNotificationRequest } from "./paymentNotificationRequest";
+import { PayoutScheduleBANotificationRequest } from "./payoutScheduleBANotificationRequest";
+import { PayoutScheduleBPNotificationRequest } from "./payoutScheduleBPNotificationRequest";
+import { PayoutScheduleStateNotificationRequest } from "./payoutScheduleStateNotificationRequest";
+import { PayoutStateWebhookData } from "./payoutStateWebhookData";
 import { Phone } from "./phone";
 import { PhoneNumber } from "./phoneNumber";
 import { PlatformPaymentConfiguration } from "./platformPaymentConfiguration";
+import { PlatformPayoutConfigWebhookData } from "./platformPayoutConfigWebhookData";
 import { RemediatingAction } from "./remediatingAction";
 import { Resource } from "./resource";
 import { ResourceReference } from "./resourceReference";
+import { ResultDetails } from "./resultDetails";
 import { ScoreNotificationRequest } from "./scoreNotificationRequest";
 import { SweepConfigurationNotificationData } from "./sweepConfigurationNotificationData";
 import { SweepConfigurationNotificationRequest } from "./sweepConfigurationNotificationRequest";
@@ -56,6 +70,7 @@ import { SweepConfigurationV2 } from "./sweepConfigurationV2";
 import { SweepCounterparty } from "./sweepCounterparty";
 import { SweepSchedule } from "./sweepSchedule";
 import { TokenAuthentication } from "./tokenAuthentication";
+import { UKLocalMandateAccountIdentification } from "./uKLocalMandateAccountIdentification";
 import { ValidationFacts } from "./validationFacts";
 import { VerificationDeadline } from "./verificationDeadline";
 import { VerificationError } from "./verificationError";
@@ -80,6 +95,7 @@ let enumsMap: Set<string> = new Set<string>([
     "AccountHolderCapability.RequestedLevelEnum",
     "AccountHolderCapability.VerificationStatusEnum",
     "AccountHolderNotificationRequest.TypeEnum",
+    "AccountPayoutAutoApplicationNotificationRequest.TypeEnum",
     "AccountSupportingEntityCapability.AllowedLevelEnum",
     "AccountSupportingEntityCapability.RequestedLevelEnum",
     "AccountSupportingEntityCapability.VerificationStatusEnum",
@@ -93,12 +109,19 @@ let enumsMap: Set<string> = new Set<string>([
     "CardOrderItemDeliveryStatus.StatusEnum",
     "CardOrderNotificationRequest.TypeEnum",
     "IbanAccountIdentification.TypeEnum",
+    "Mandate.StatusEnum",
+    "Mandate.TypeEnum",
+    "MandateNotificationRequest.TypeEnum",
     "NetworkTokenNotificationRequest.TypeEnum",
     "PaymentInstrument.StatusEnum",
     "PaymentInstrument.StatusReasonEnum",
     "PaymentInstrument.TypeEnum",
     "PaymentInstrumentAdditionalBankAccountIdentificationsInner.TypeEnum",
     "PaymentNotificationRequest.TypeEnum",
+    "PayoutScheduleBANotificationRequest.TypeEnum",
+    "PayoutScheduleBPNotificationRequest.TypeEnum",
+    "PayoutScheduleStateNotificationRequest.TypeEnum",
+    "PayoutStateWebhookData.ResultEnum",
     "Phone.TypeEnum",
     "PhoneNumber.PhoneTypeEnum",
     "ScoreNotificationRequest.TypeEnum",
@@ -109,6 +132,7 @@ let enumsMap: Set<string> = new Set<string>([
     "SweepConfigurationV2.StatusEnum",
     "SweepConfigurationV2.TypeEnum",
     "SweepSchedule.TypeEnum",
+    "UKLocalMandateAccountIdentification.TypeEnum",
     "ValidationFacts.ResultEnum",
     "VerificationDeadline.CapabilitiesEnum",
     "VerificationError.CapabilitiesEnum",
@@ -123,6 +147,9 @@ let typeMap: {[index: string]: any} = {
     "AccountHolderCapability": AccountHolderCapability,
     "AccountHolderNotificationData": AccountHolderNotificationData,
     "AccountHolderNotificationRequest": AccountHolderNotificationRequest,
+    "AccountPayoutAutoApplicationNotificationRequest": AccountPayoutAutoApplicationNotificationRequest,
+    "AccountPayoutAutoApplicationWebhookData": AccountPayoutAutoApplicationWebhookData,
+    "AccountPayoutConfigWebhookData": AccountPayoutConfigWebhookData,
     "AccountSupportingEntityCapability": AccountSupportingEntityCapability,
     "Address": Address,
     "Amount": Amount,
@@ -150,6 +177,11 @@ let typeMap: {[index: string]: any} = {
     "Device": Device,
     "Expiry": Expiry,
     "IbanAccountIdentification": IbanAccountIdentification,
+    "Mandate": Mandate,
+    "MandateBankAccount": MandateBankAccount,
+    "MandateNotificationData": MandateNotificationData,
+    "MandateNotificationRequest": MandateNotificationRequest,
+    "MandatePartyIdentification": MandatePartyIdentification,
     "Name": Name,
     "NetworkTokenNotificationDataV2": NetworkTokenNotificationDataV2,
     "NetworkTokenNotificationRequest": NetworkTokenNotificationRequest,
@@ -162,12 +194,18 @@ let typeMap: {[index: string]: any} = {
     "PaymentInstrumentAdditionalBankAccountIdentificationsInner": PaymentInstrumentAdditionalBankAccountIdentificationsInnerClass,
     "PaymentInstrumentNotificationData": PaymentInstrumentNotificationData,
     "PaymentNotificationRequest": PaymentNotificationRequest,
+    "PayoutScheduleBANotificationRequest": PayoutScheduleBANotificationRequest,
+    "PayoutScheduleBPNotificationRequest": PayoutScheduleBPNotificationRequest,
+    "PayoutScheduleStateNotificationRequest": PayoutScheduleStateNotificationRequest,
+    "PayoutStateWebhookData": PayoutStateWebhookData,
     "Phone": Phone,
     "PhoneNumber": PhoneNumber,
     "PlatformPaymentConfiguration": PlatformPaymentConfiguration,
+    "PlatformPayoutConfigWebhookData": PlatformPayoutConfigWebhookData,
     "RemediatingAction": RemediatingAction,
     "Resource": Resource,
     "ResourceReference": ResourceReference,
+    "ResultDetails": ResultDetails,
     "ScoreNotificationRequest": ScoreNotificationRequest,
     "SweepConfigurationNotificationData": SweepConfigurationNotificationData,
     "SweepConfigurationNotificationRequest": SweepConfigurationNotificationRequest,
@@ -175,6 +213,7 @@ let typeMap: {[index: string]: any} = {
     "SweepCounterparty": SweepCounterparty,
     "SweepSchedule": SweepSchedule,
     "TokenAuthentication": TokenAuthentication,
+    "UKLocalMandateAccountIdentification": UKLocalMandateAccountIdentification,
     "ValidationFacts": ValidationFacts,
     "VerificationDeadline": VerificationDeadline,
     "VerificationError": VerificationError,
