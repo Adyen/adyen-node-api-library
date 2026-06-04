@@ -24,9 +24,6 @@ export class VerificationError {
     * The actions that you can take to resolve the verification error.
     */
     "remediatingActions"?: Array<RemediatingAction>;
-    /**
-    * More granular information about the verification error.
-    */
     "subErrors"?: Array<VerificationErrorRecursive>;
     /**
     * The type of verification error.  Possible values: **invalidInput**, **dataMissing**, and **pendingStatus**.
