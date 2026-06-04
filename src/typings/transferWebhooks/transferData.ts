@@ -20,6 +20,7 @@ import { TransferDataTracking } from "./transferDataTracking";
 import { TransferEvent } from "./transferEvent";
 import { TransferNotificationCounterParty } from "./transferNotificationCounterParty";
 import { TransferReview } from "./transferReview";
+import { UltimatePartyIdentification } from "./ultimatePartyIdentification";
 
 
 export class TransferData {
@@ -93,7 +94,7 @@ export class TransferData {
     */
     "sequenceNumber"?: number;
     /**
-    * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
+    * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
     */
     "status": TransferData.StatusEnum;
     "tracking"?: TransferDataTracking | null;
@@ -102,6 +103,7 @@ export class TransferData {
     * The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
     */
     "type"?: TransferData.TypeEnum;
+    "ultimateParty"?: UltimatePartyIdentification | null;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
     */
@@ -281,6 +283,12 @@ export class TransferData {
             "format": ""
         },
         {
+            "name": "ultimateParty",
+            "baseName": "ultimateParty",
+            "type": "UltimatePartyIdentification | null",
+            "format": ""
+        },
+        {
             "name": "updatedAt",
             "baseName": "updatedAt",
             "type": "Date",
@@ -396,6 +404,8 @@ export namespace TransferData {
         WithdrawalCountExceeded = 'withdrawalCountExceeded'
     }
     export enum StatusEnum {
+        AdviceAuthorised = 'adviceAuthorised',
+        AdviceRefused = 'adviceRefused',
         ApprovalPending = 'approvalPending',
         AtmWithdrawal = 'atmWithdrawal',
         AtmWithdrawalReversalPending = 'atmWithdrawalReversalPending',
@@ -431,6 +441,7 @@ export namespace TransferData {
         Failed = 'failed',
         Fee = 'fee',
         FeePending = 'feePending',
+        InterchangeAdjusted = 'interchangeAdjusted',
         InternalTransfer = 'internalTransfer',
         InternalTransferPending = 'internalTransferPending',
         InvoiceDeduction = 'invoiceDeduction',
@@ -447,6 +458,7 @@ export namespace TransferData {
         MiscCostPending = 'miscCostPending',
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
+        Pending = 'pending',
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         Received = 'received',
@@ -460,6 +472,7 @@ export namespace TransferData {
         ReserveAdjustment = 'reserveAdjustment',
         ReserveAdjustmentPending = 'reserveAdjustmentPending',
         Returned = 'returned',
+        Reversed = 'reversed',
         SecondChargeback = 'secondChargeback',
         SecondChargebackPending = 'secondChargebackPending',
         Undefined = 'undefined'
