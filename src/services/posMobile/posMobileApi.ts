@@ -36,6 +36,9 @@ export class PosMobileApi extends Service {
     * @param createSessionRequest {@link CreateSessionRequest } 
     * @param requestOptions {@link IRequest.Options }
     * @return {@link CreateSessionResponse }
+    *
+	* @deprecated since POS Mobile API v68
+	* Use POST [/auth/certificate](https://docs.adyen.com/api-explorer/softpos-configuration-api/latest/post/auth/certificate) to establish secure communications.
     */
     public async createCommunicationSession(createSessionRequest: CreateSessionRequest, requestOptions?: IRequest.Options): Promise<CreateSessionResponse> {
         const endpoint = `${this.baseUrl}/sessions`;
