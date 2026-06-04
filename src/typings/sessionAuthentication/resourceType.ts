@@ -9,8 +9,6 @@
 
 export enum ResourceType {
     LegalEntity = 'legalEntity',
-    BalanceAccount = 'balanceAccount',
     AccountHolder = 'accountHolder',
-    MerchantAccount = 'merchantAccount',
     PaymentInstrument = 'paymentInstrument'
 }

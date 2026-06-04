@@ -3,11 +3,9 @@ export * from "./models";
 import { AccountHolderResource } from "./accountHolderResource";
 import { AuthenticationSessionRequest } from "./authenticationSessionRequest";
 import { AuthenticationSessionResponse } from "./authenticationSessionResponse";
-import { BalanceAccountResource } from "./balanceAccountResource";
 import { DefaultErrorResponseEntity } from "./defaultErrorResponseEntity";
 import { InvalidField } from "./invalidField";
 import { LegalEntityResource } from "./legalEntityResource";
-import { MerchantAccountResource } from "./merchantAccountResource";
 import { PaymentInstrumentResource } from "./paymentInstrumentResource";
 import { Policy } from "./policy";
 import { ProductType } from "./productType";
@@ -31,9 +29,7 @@ let enumsMap: Set<string> = new Set<string>([
     ProductType.Platform,
     ProductType.Bank,
     ResourceType.LegalEntity,
-    ResourceType.BalanceAccount,
     ResourceType.AccountHolder,
-    ResourceType.MerchantAccount,
     ResourceType.PaymentInstrument,
 ]);
 
@@ -41,11 +37,9 @@ let typeMap: {[index: string]: any} = {
     "AccountHolderResource": AccountHolderResource,
     "AuthenticationSessionRequest": AuthenticationSessionRequest,
     "AuthenticationSessionResponse": AuthenticationSessionResponse,
-    "BalanceAccountResource": BalanceAccountResource,
     "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
     "InvalidField": InvalidField,
     "LegalEntityResource": LegalEntityResource,
-    "MerchantAccountResource": MerchantAccountResource,
     "PaymentInstrumentResource": PaymentInstrumentResource,
     "Policy": Policy,
     "Resource": Resource,
