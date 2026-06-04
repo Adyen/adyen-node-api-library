@@ -22,6 +22,10 @@ export class TransferNotificationMerchantData {
     */
     "country"?: string;
     /**
+    * The two-character country code of the merchant\'s location, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+    */
+    "countryCode"?: string;
+    /**
     * The merchant category code.
     */
     "mcc"?: string;
@@ -58,6 +62,12 @@ export class TransferNotificationMerchantData {
         {
             "name": "country",
             "baseName": "country",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "countryCode",
+            "baseName": "countryCode",
             "type": "string",
             "format": ""
         },

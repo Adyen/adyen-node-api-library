@@ -20,9 +20,9 @@ import { CapitalGrantInfo } from "../../typings/transfers/models";
 import { CapitalGrants } from "../../typings/transfers/models";
 
 /**
- * API handler for CapitalApi
+ * API handler for CapitalDeprecatedApi
  */
-export class CapitalApi extends Service {
+export class CapitalDeprecatedApi extends Service {
 
     private readonly API_BASEPATH: string = "https://balanceplatform-api-test.adyen.com/btl/v4";
     private baseUrl: string;
