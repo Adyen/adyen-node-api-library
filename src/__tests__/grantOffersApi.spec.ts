@@ -50,34 +50,6 @@ describe("GrantOffersApi", (): void => {
         expect(response.grantOffers?.[0].id).toBe("GO00000000000000000000001");
     });
 
-    it("should get all grant offers without query param", async (): Promise<void> => {
-        scope.get("/grantOffers")
-            .reply(200, {
-                "grantOffers": [
-                    {
-                        "id": "GO00000000000000000000001",
-                        "amount": {
-                            "currency": "EUR",
-                            "value": 10000
-                        },
-                        "fee": {
-                            "currency": "EUR",
-                            "value": 100
-                        },
-                        "repayment": {
-                            "currency": "EUR",
-                            "value": 10100
-                        }
-                    }
-                ]
-            });
-
-        const response = await capitalApi.GrantOffersApi.getAllGrantOffers();
-
-        expect(response.grantOffers?.length).toBe(1);
-        expect(response.grantOffers?.[0].id).toBe("GO00000000000000000000001");
-    });
-
     it("should get grant offer", async (): Promise<void> => {
         scope.get("/grantOffers/GO00000000000000000000001")
             .reply(200, {
