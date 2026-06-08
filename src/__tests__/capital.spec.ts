@@ -14,6 +14,9 @@ import getGrantDisbursementsSuccess from "../__mocks__/capital/get-grant-disburs
 import getGrantAccountSuccess from "../__mocks__/capital/get-grant-account-success.json";
 import grantOffersSuccess from "../__mocks__/capital/grant-offers-success.json";
 import getGrantOfferSuccess from "../__mocks__/capital/get-grant-offer-success.json";
+import getDynamicOffersSuccess from "../__mocks__/capital/get-dynamic-offers-success.json";
+import calculatePreliminaryOfferSuccess from "../__mocks__/capital/calculate-preliminary-offer-success.json";
+import createStaticOfferSuccess from "../__mocks__/capital/create-static-offer-success.json";
 
 let client: Client;
 let capitalApi: CapitalAPI;
@@ -184,6 +187,94 @@ describe("Capital", () => {
 
         it("should throw an error if grantOfferId is not provided to getGrantOffer", async () => {
             await expect(capitalApi.GrantOffersApi.getGrantOffer(undefined as any)).rejects.toThrow();
+        });
+    });
+
+    describe("DynamicOffersApi", () => {
+        it("should get all dynamic offers", async () => {
+            const accountHolderId = "AH00000000000000000000001";
+            scope.get("/dynamicOffers")
+                .query({ accountHolderId })
+                .reply(200, getDynamicOffersSuccess);
+
+            const response = await capitalApi.DynamicOffersApi.getAllDynamicOffers(accountHolderId);
+
+            expect(response).toBeDefined();
+            expect(response.dynamicOffers?.length).toBe(1);
+            expect(response.dynamicOffers?.[0].id).toBe("DO00000000000000000000001");
+            expect(response.dynamicOffers?.[0].accountHolderId).toBe("AH00000000000000000000001");
+            expect(response.dynamicOffers?.[0].financingType).toBe("businessFinancing");
+            expect(response.dynamicOffers?.[0].minimumAmount).toEqual({ currency: "EUR", value: 5000 });
+            expect(response.dynamicOffers?.[0].maximumAmount).toEqual({ currency: "EUR", value: 50000 });
+        });
+
+        it("should get all dynamic offers filtered by financingType", async () => {
+            const accountHolderId = "AH00000000000000000000001";
+            const financingType = Types.capital.FinancingType.BusinessFinancing;
+            scope.get("/dynamicOffers")
+                .query({ accountHolderId, financingType })
+                .reply(200, getDynamicOffersSuccess);
+
+            const response = await capitalApi.DynamicOffersApi.getAllDynamicOffers(accountHolderId, financingType);
+
+            expect(response).toBeDefined();
+            expect(response.dynamicOffers?.length).toBe(1);
+        });
+
+        it("should calculate a preliminary offer from a dynamic offer", async () => {
+            const id = "DO00000000000000000000001";
+            scope.post(`/dynamicOffers/${id}/calculate`)
+                .reply(200, calculatePreliminaryOfferSuccess);
+
+            const request: Types.capital.CalculateGrantOfferRequest = {
+                amount: { currency: "EUR", value: 10000 }
+            };
+            const response = await capitalApi.DynamicOffersApi.calculatePreliminaryOfferFromDynamicOffer(id, request);
+
+            expect(response).toBeDefined();
+            expect(response.accountHolderId).toBe("AH00000000000000000000001");
+            expect(response.contractType).toBe("cashAdvance");
+            expect(response.amount).toEqual({ currency: "EUR", value: 10000 });
+            expect(response.fee?.amount).toEqual({ currency: "EUR", value: 1000 });
+            expect(response.fee?.aprBasisPoints).toBe(1200);
+            expect(response.repayment?.basisPoints).toBe(1000);
+        });
+
+        it("should throw an error if id is not provided to calculatePreliminaryOfferFromDynamicOffer", async () => {
+            const request: Types.capital.CalculateGrantOfferRequest = {
+                amount: { currency: "EUR", value: 10000 }
+            };
+            await expect(
+                capitalApi.DynamicOffersApi.calculatePreliminaryOfferFromDynamicOffer(undefined as any, request)
+            ).rejects.toThrow();
+        });
+
+        it("should create a static offer from a dynamic offer", async () => {
+            const id = "DO00000000000000000000001";
+            scope.post(`/dynamicOffers/${id}/grantOffer`)
+                .reply(200, createStaticOfferSuccess);
+
+            const request: Types.capital.CreateGrantOfferRequest = {
+                amount: { currency: "EUR", value: 10000 }
+            };
+            const response = await capitalApi.DynamicOffersApi.createStaticOfferFromDynamicOffer(id, request);
+
+            expect(response).toBeDefined();
+            expect(response.id).toBe("GO00000000000000000000002");
+            expect(response.accountHolderId).toBe("AH00000000000000000000001");
+            expect(response.contractType).toBe("cashAdvance");
+            expect(response.amount).toEqual({ currency: "EUR", value: 10000 });
+            expect(response.fee?.amount).toEqual({ currency: "EUR", value: 1000 });
+            expect(response.repayment?.term?.estimatedDays).toBe(180);
+        });
+
+        it("should throw an error if id is not provided to createStaticOfferFromDynamicOffer", async () => {
+            const request: Types.capital.CreateGrantOfferRequest = {
+                amount: { currency: "EUR", value: 10000 }
+            };
+            await expect(
+                capitalApi.DynamicOffersApi.createStaticOfferFromDynamicOffer(undefined as any, request)
+            ).rejects.toThrow();
         });
     });
 });
