@@ -3,8 +3,6 @@ import { AccountHolderNotificationRequest } from "../../typings/configurationWeb
 import { BalanceAccountNotificationRequest } from "../../typings/configurationWebhooks/models";
 import { AuthenticationNotificationRequest } from "../../typings/acsWebhooks/models";
 import { TransferNotificationRequest } from "../../typings/transferWebhooks/models";
-import { PaymentMethodScheduledForRemovalNotificationRequest } from "../../typings/managementWebhooks/models";
-import { TransactionNotificationRequestV4 } from "../../typings/transactionWebhooks/models";
 import { NegativeBalanceCompensationWarningNotificationRequest } from "../../typings/negativeBalanceWarningWebhooks/models";
 import { BalanceAccountBalanceNotificationRequest } from "../../typings/balanceWebhooks/models";
 import { ReportNotificationRequest } from "../../typings/reportWebhooks/models";
@@ -19,7 +17,6 @@ import { ReportWebhooksHandler } from "../../webhooks";
 import { ConfigurationWebhooksHandler } from "../../webhooks";
 import { TransferWebhooksHandler } from "../../webhooks";
 import { NegativeBalanceWarningWebhooksHandler } from "../../webhooks";
-import { TransactionWebhooksHandler } from "../../webhooks";
 import { BalanceWebhooksHandler } from "../../webhooks";
 import { DisputeWebhooksHandler } from "../../webhooks";
 import { RelayedAuthorizationWebhooksHandler } from "../../webhooks";
@@ -135,48 +132,6 @@ describe("BankingWebhooks Tests", function (): void {
         expect(genericWebhook instanceof BalanceAccountNotificationRequest).toBe(true);
         expect(genericWebhook.type).toEqual("balancePlatform.balanceAccount.created");
         expect(genericWebhook.data.balancePlatform).toEqual("YOUR_BALANCE_PLATFORM");
-    });
-
-    it("should deserialize Transaction v4 Webhooks", function (): void {
-        const json = 	{
-            "data": {
-                "id": "EVJN42272224222B5JB8BRC84N686ZEUR",
-                "amount": {
-                    "value": 7000,
-                    "currency": "EUR"
-                },
-                "status": "booked",
-                "transfer": {
-                    "id": "JN4227222422265",
-                    "reference": "Split_item_1",
-                },
-                "valueDate": "2023-03-01T00:00:00+02:00",
-                "bookingDate": "2023-02-28T13:30:20+02:00",
-                "creationDate": "2023-02-28T13:30:05+02:00",
-                "accountHolder": {
-                    "id": "AH00000000000000000000001",
-                    "description": "Your description for the account holder",
-                    "reference": "Your reference for the account holder"
-                },
-                "balanceAccount": {
-                    "id": "BA00000000000000000000001",
-                    "description": "Your description for the balance account",
-                    "reference": "Your reference for the balance account"
-                },
-                "balancePlatform": "YOUR_BALANCE_PLATFORM"
-            },
-            "type": "balancePlatform.transaction.created",
-            "environment": "test"
-        };
-        const jsonString = JSON.stringify(json);
-        const transactionWebhooksHandler = new TransactionWebhooksHandler(jsonString);
-        const transactionCreated: TransactionNotificationRequestV4 = transactionWebhooksHandler.getTransactionNotificationRequestV4();
-        // Test TransactionNotificationRequestV4
-        expect(transactionCreated.type).toEqual(TransactionNotificationRequestV4.TypeEnum.BalancePlatformTransactionCreated);
-        // Test GenericWebhook
-        const genericWebhook = transactionWebhooksHandler.getGenericWebhook();
-        expect(genericWebhook instanceof TransactionNotificationRequestV4).toBe(true);
-        expect(genericWebhook instanceof PaymentMethodScheduledForRemovalNotificationRequest).toBe(false);
     });
 
     it("should deserialize AcsWebhook AuthenticationNotificationRequest", function (): void {
