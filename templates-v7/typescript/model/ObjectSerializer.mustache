@@ -6,7 +6,9 @@ export * from "./models";
 
 {{#models}}
 {{#model}}
+{{^isEnum}}
 import { {{classname}}{{#oneOf}}{{#-first}}Class{{/-first}}{{/oneOf}} } from "./{{#lambda.camelcase}}{{ classname }}{{/lambda.camelcase}}{{importFileExtension}}";
+{{/isEnum}}
 {{/model}}
 {{/models}}
 
@@ -26,11 +28,7 @@ let enumsMap: Set<string> = new Set<string>([
     {{#models}}
         {{#model}}
             {{#isEnum}}
-                {{#allowableValues}}
-                    {{#enumVars}}
-    {{classname}}.{{name}},
-                    {{/enumVars}}
-                {{/allowableValues}}
+    "{{classname}}",
             {{/isEnum}}
             {{#hasEnums}}
                 {{#vars}}
