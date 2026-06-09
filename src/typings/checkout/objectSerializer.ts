@@ -194,7 +194,6 @@ import { ResponseAdditionalDataOpi } from "./responseAdditionalDataOpi";
 import { ResponseAdditionalDataSepa } from "./responseAdditionalDataSepa";
 import { ResponseAdditionalDataSwish } from "./responseAdditionalDataSwish";
 import { ResponsePaymentMethod } from "./responsePaymentMethod";
-import { Result } from "./result";
 import { RiskData } from "./riskData";
 import { RivertyDetails } from "./rivertyDetails";
 import { SDKEphemPubKey } from "./sDKEphemPubKey";
@@ -425,9 +424,7 @@ let enumsMap: Set<string> = new Set<string>([
     "ResponseAdditionalDataCommon.FraudRiskLevelEnum",
     "ResponseAdditionalDataCommon.RecurringProcessingModelEnum",
     "ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum",
-    Result.Valid,
-    Result.Invalid,
-    Result.Unknown,
+    "Result",
     "RivertyDetails.TypeEnum",
     "SamsungPayDetails.FundingSourceEnum",
     "SamsungPayDetails.TypeEnum",
