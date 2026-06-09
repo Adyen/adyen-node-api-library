@@ -32,12 +32,9 @@ module.exports = {
     ],
     roots: ['<rootDir>/src'],
     transform: {
-        ".ts": "ts-jest"
+        ".ts": ["ts-jest", {
+            compiler: "ttypescript"
+        }]
     },
-    globals: {
-        "ts-jest": {
-            compiler: "ttypescript",
-            transformIgnorePatterns: ['^.+\\\\.js$']
-        }
-    },
+    transformIgnorePatterns: ['^.+\\.js$'],
 };
