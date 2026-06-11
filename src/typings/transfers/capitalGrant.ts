@@ -9,15 +9,15 @@
 
 import { Amount } from "./amount";
 import { CapitalBalance } from "./capitalBalance";
-import { Counterparty } from "./counterparty";
 import { Fee } from "./fee";
+import { GrantCounterparty } from "./grantCounterparty";
 import { Repayment } from "./repayment";
 
 
 export class CapitalGrant {
     "amount"?: Amount | null;
     "balances": CapitalBalance;
-    "counterparty"?: Counterparty | null;
+    "counterparty"?: GrantCounterparty | null;
     "fee"?: Fee | null;
     /**
     * The identifier of the grant account used for the grant.
@@ -57,7 +57,7 @@ export class CapitalGrant {
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "Counterparty | null",
+            "type": "GrantCounterparty | null",
             "format": ""
         },
         {

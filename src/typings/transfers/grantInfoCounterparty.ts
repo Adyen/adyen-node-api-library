@@ -8,11 +8,7 @@
  */
 
 
-export class Counterparty {
-    /**
-    * The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no `balanceAccountId` is provided.
-    */
-    "accountHolderId"?: string;
+export class GrantInfoCounterparty {
     /**
     * The identifier of the balance account that belongs to the receiving account holder.
     */
@@ -28,12 +24,6 @@ export class Counterparty {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "accountHolderId",
-            "baseName": "accountHolderId",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "balanceAccountId",
             "baseName": "balanceAccountId",
             "type": "string",
@@ -47,7 +37,7 @@ export class Counterparty {
         }    ];
 
     static getAttributeTypeMap() {
-        return Counterparty.attributeTypeMap;
+        return GrantInfoCounterparty.attributeTypeMap;
     }
 
     public constructor() {

@@ -15,6 +15,7 @@ import { PaymentInstrument } from "./paymentInstrument";
 import { ResourceReference } from "./resourceReference";
 import { TransferCategoryData } from "./transferCategoryData";
 import { TransferReview } from "./transferReview";
+import { UltimatePartyIdentification } from "./ultimatePartyIdentification";
 
 
 export class Transfer {
@@ -67,13 +68,14 @@ export class Transfer {
     "referenceForBeneficiary"?: string;
     "review"?: TransferReview | null;
     /**
-    * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
+    * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
     */
     "status": Transfer.StatusEnum;
     /**
     * The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
     */
     "type"?: Transfer.TypeEnum;
+    "ultimateParty"?: UltimatePartyIdentification | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -199,6 +201,12 @@ export class Transfer {
             "baseName": "type",
             "type": "Transfer.TypeEnum",
             "format": ""
+        },
+        {
+            "name": "ultimateParty",
+            "baseName": "ultimateParty",
+            "type": "UltimatePartyIdentification | null",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
@@ -310,6 +318,8 @@ export namespace Transfer {
         WithdrawalCountExceeded = 'withdrawalCountExceeded'
     }
     export enum StatusEnum {
+        AdviceAuthorised = 'adviceAuthorised',
+        AdviceRefused = 'adviceRefused',
         ApprovalPending = 'approvalPending',
         AtmWithdrawal = 'atmWithdrawal',
         AtmWithdrawalReversalPending = 'atmWithdrawalReversalPending',
@@ -345,6 +355,7 @@ export namespace Transfer {
         Failed = 'failed',
         Fee = 'fee',
         FeePending = 'feePending',
+        InterchangeAdjusted = 'interchangeAdjusted',
         InternalTransfer = 'internalTransfer',
         InternalTransferPending = 'internalTransferPending',
         InvoiceDeduction = 'invoiceDeduction',
@@ -361,6 +372,7 @@ export namespace Transfer {
         MiscCostPending = 'miscCostPending',
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
+        Pending = 'pending',
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         Received = 'received',
@@ -374,6 +386,7 @@ export namespace Transfer {
         ReserveAdjustment = 'reserveAdjustment',
         ReserveAdjustmentPending = 'reserveAdjustmentPending',
         Returned = 'returned',
+        Reversed = 'reversed',
         SecondChargeback = 'secondChargeback',
         SecondChargebackPending = 'secondChargebackPending',
         Undefined = 'undefined'

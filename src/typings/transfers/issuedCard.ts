@@ -22,7 +22,7 @@ export class IssuedCard {
     */
     "panEntryMode"?: IssuedCard.PanEntryModeEnum;
     /**
-    * Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.
+    * Contains information about how the payment was processed.  Possible values: **atmWithdraw**, **balanceInquiry**, **ecommerce**, **moto**, **pos**, **purchaseWithCashback**, **recurring**, **token**.
     */
     "processingType"?: IssuedCard.ProcessingTypeEnum;
     "relayedAuthorisationData"?: RelayedAuthorisationData | null;
