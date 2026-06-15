@@ -1,0 +1,8 @@
+{
+  "service": "balancecontrol",
+  "project": "node",
+  "generatedAt": "2026-06-15T16:42:49Z",
+  "openapiCommitSha": "fe790646de44602c0531c3ebd57c966876c7a1c7",
+  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
+  "libraryCommitSha": "f6a0015d5e5165d611fa7f39bc2e34dc36dbee9c"
+}
