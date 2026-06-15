@@ -84,6 +84,7 @@ const nullableSuffix = " | null";
 const optionalSuffix = " | undefined";
 const arrayPrefix = "Array<";
 const arraySuffix = ">";
+const setPrefix = "Set<";
 const mapPrefix = "{ [key: string]: ";
 const mapSuffix = "; }";
 
@@ -153,6 +154,13 @@ export class ObjectSerializer {
             let transformedData: any[] = [];
             for (let date of data) {
                 transformedData.push(ObjectSerializer.serialize(date, subType, format));
+            }
+            return transformedData;
+        } else if (type.startsWith(setPrefix)) {
+            let subType: string = type.slice(setPrefix.length, -arraySuffix.length); // Set<Type> => Type
+            let transformedData: any[] = [];
+            for (let item of data) {
+                transformedData.push(ObjectSerializer.serialize(item, subType, format));
             }
             return transformedData;
         } else if (type.startsWith(mapPrefix)) {
@@ -235,6 +243,13 @@ export class ObjectSerializer {
             let transformedData: any[] = [];
             for (let date of data) {
                 transformedData.push(ObjectSerializer.deserialize(date, subType, format));
+            }
+            return transformedData;
+        } else if (type.startsWith(setPrefix)) {
+            let subType: string = type.slice(setPrefix.length, -arraySuffix.length); // Set<Type> => Type
+            let transformedData = new Set<any>();
+            for (let item of data) {
+                transformedData.add(ObjectSerializer.deserialize(item, subType, format));
             }
             return transformedData;
         } else if (type.startsWith(mapPrefix)) {
