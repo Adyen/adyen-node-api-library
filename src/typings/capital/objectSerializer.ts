@@ -8,7 +8,6 @@ import { BRLocalAccountIdentification } from "./bRLocalAccountIdentification";
 import { Balance } from "./balance";
 import { BankAccountIdentification } from "./bankAccountIdentification";
 import { CALocalAccountIdentification } from "./cALocalAccountIdentification";
-import { CALocalBankAccountType } from "./cALocalBankAccountType";
 import { CZLocalAccountIdentification } from "./cZLocalAccountIdentification";
 import { CalculateGrantOfferRequest } from "./calculateGrantOfferRequest";
 import { CalculatedGrantOffer } from "./calculatedGrantOffer";
@@ -23,9 +22,7 @@ import { Disbursements } from "./disbursements";
 import { DynamicOffer } from "./dynamicOffer";
 import { DynamicOfferRepayment } from "./dynamicOfferRepayment";
 import { Fee } from "./fee";
-import { FinancingType } from "./financingType";
 import { FundsCollection } from "./fundsCollection";
-import { FundsCollectionType } from "./fundsCollectionType";
 import { GetDynamicOffersResponse } from "./getDynamicOffersResponse";
 import { Grant } from "./grant";
 import { GrantAccount } from "./grantAccount";
@@ -53,7 +50,6 @@ import { Status } from "./status";
 import { ThresholdRepayment } from "./thresholdRepayment";
 import { UKLocalAccountIdentification } from "./uKLocalAccountIdentification";
 import { USLocalAccountIdentification } from "./uSLocalAccountIdentification";
-import { USLocalBankAccountType } from "./uSLocalBankAccountType";
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -69,18 +65,14 @@ let primitives = [
 
 let enumsMap: Set<string> = new Set<string>([
     "AdditionalBankIdentification.TypeEnum",
-    CALocalBankAccountType.Checking,
-    CALocalBankAccountType.Savings,
+    "CALocalBankAccountType",
     "CalculatedGrantOffer.ContractTypeEnum",
     "DynamicOffer.ContractTypeEnum",
-    FinancingType.HardwareFinancing,
-    FinancingType.BusinessFinancing,
-    FundsCollectionType.UnscheduledRepayment,
-    FundsCollectionType.Revocation,
+    "FinancingType",
+    "FundsCollectionType",
     "GrantOffer.ContractTypeEnum",
     "Status.CodeEnum",
-    USLocalBankAccountType.Checking,
-    USLocalBankAccountType.Savings,
+    "USLocalBankAccountType",
 ]);
 
 let typeMap: {[index: string]: any} = {
@@ -192,6 +184,7 @@ const nullableSuffix = " | null";
 const optionalSuffix = " | undefined";
 const arrayPrefix = "Array<";
 const arraySuffix = ">";
+const setPrefix = "Set<";
 const mapPrefix = "{ [key: string]: ";
 const mapSuffix = "; }";
 
@@ -261,6 +254,13 @@ export class ObjectSerializer {
             let transformedData: any[] = [];
             for (let date of data) {
                 transformedData.push(ObjectSerializer.serialize(date, subType, format));
+            }
+            return transformedData;
+        } else if (type.startsWith(setPrefix)) {
+            let subType: string = type.slice(setPrefix.length, -arraySuffix.length); // Set<Type> => Type
+            let transformedData: any[] = [];
+            for (let item of data) {
+                transformedData.push(ObjectSerializer.serialize(item, subType, format));
             }
             return transformedData;
         } else if (type.startsWith(mapPrefix)) {
@@ -343,6 +343,13 @@ export class ObjectSerializer {
             let transformedData: any[] = [];
             for (let date of data) {
                 transformedData.push(ObjectSerializer.deserialize(date, subType, format));
+            }
+            return transformedData;
+        } else if (type.startsWith(setPrefix)) {
+            let subType: string = type.slice(setPrefix.length, -arraySuffix.length); // Set<Type> => Type
+            let transformedData = new Set<any>();
+            for (let item of data) {
+                transformedData.add(ObjectSerializer.deserialize(item, subType, format));
             }
             return transformedData;
         } else if (type.startsWith(mapPrefix)) {
