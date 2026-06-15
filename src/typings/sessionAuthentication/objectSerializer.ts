@@ -8,9 +8,7 @@ import { InvalidField } from "./invalidField";
 import { LegalEntityResource } from "./legalEntityResource";
 import { PaymentInstrumentResource } from "./paymentInstrumentResource";
 import { Policy } from "./policy";
-import { ProductType } from "./productType";
 import { Resource } from "./resource";
-import { ResourceType } from "./resourceType";
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -25,12 +23,8 @@ let primitives = [
                  ];
 
 let enumsMap: Set<string> = new Set<string>([
-    ProductType.Onboarding,
-    ProductType.Platform,
-    ProductType.Bank,
-    ResourceType.LegalEntity,
-    ResourceType.AccountHolder,
-    ResourceType.PaymentInstrument,
+    "ProductType",
+    "ResourceType",
 ]);
 
 let typeMap: {[index: string]: any} = {
