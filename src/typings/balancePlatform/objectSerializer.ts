@@ -24,7 +24,6 @@ import { AssociationFinaliseResponse } from "./associationFinaliseResponse";
 import { AssociationInitiateRequest } from "./associationInitiateRequest";
 import { AssociationInitiateResponse } from "./associationInitiateResponse";
 import { AssociationListing } from "./associationListing";
-import { AssociationStatus } from "./associationStatus";
 import { Authentication } from "./authentication";
 import { AuthorisedCardUsers } from "./authorisedCardUsers";
 import { BRLocalAccountIdentification } from "./bRLocalAccountIdentification";
@@ -90,7 +89,6 @@ import { DeviceInfo } from "./deviceInfo";
 import { DifferentCurrenciesRestriction } from "./differentCurrenciesRestriction";
 import { Duration } from "./duration";
 import { EntryModesRestriction } from "./entryModesRestriction";
-import { ExecutionResult } from "./executionResult";
 import { Expiry } from "./expiry";
 import { Fee } from "./fee";
 import { FinishScaDeviceRegistrationRequest } from "./finishScaDeviceRegistrationRequest";
@@ -107,7 +105,6 @@ import { IbanAccountIdentification } from "./ibanAccountIdentification";
 import { IbanAccountIdentificationRequirement } from "./ibanAccountIdentificationRequirement";
 import { InternationalTransactionRestriction } from "./internationalTransactionRestriction";
 import { InvalidField } from "./invalidField";
-import { LimitStatus } from "./limitStatus";
 import { Link } from "./link";
 import { ListAssociationsResponse } from "./listAssociationsResponse";
 import { ListMandatesResponse } from "./listMandatesResponse";
@@ -117,8 +114,6 @@ import { Mandate } from "./mandate";
 import { MandateAccountIdentification } from "./mandateAccountIdentification";
 import { MandateBankAccount } from "./mandateBankAccount";
 import { MandatePartyIdentification } from "./mandatePartyIdentification";
-import { MandateStatus } from "./mandateStatus";
-import { MandateType } from "./mandateType";
 import { MandateUpdate } from "./mandateUpdate";
 import { MatchingTransactionsRestriction } from "./matchingTransactionsRestriction";
 import { MatchingValuesRestriction } from "./matchingValuesRestriction";
@@ -178,15 +173,9 @@ import { SGLocalAccountIdentification } from "./sGLocalAccountIdentification";
 import { SameAmountRestriction } from "./sameAmountRestriction";
 import { SameCounterpartyRestriction } from "./sameCounterpartyRestriction";
 import { ScaDevice } from "./scaDevice";
-import { ScaDeviceType } from "./scaDeviceType";
 import { ScaEntity } from "./scaEntity";
-import { ScaEntityType } from "./scaEntityType";
-import { ScaExemption } from "./scaExemption";
 import { ScaInformation } from "./scaInformation";
-import { ScaStatus } from "./scaStatus";
-import { Scope } from "./scope";
 import { SearchRegisteredDevicesResponse } from "./searchRegisteredDevicesResponse";
-import { SettingType } from "./settingType";
 import { SourceAccountTypesRestriction } from "./sourceAccountTypesRestriction";
 import { StringMatch } from "./stringMatch";
 import { SubmitScaAssociationRequest } from "./submitScaAssociationRequest";
@@ -216,7 +205,6 @@ import { TransferRoute } from "./transferRoute";
 import { TransferRouteRequest } from "./transferRouteRequest";
 import { TransferRouteRequirementsInnerClass } from "./transferRouteRequirementsInner";
 import { TransferRouteResponse } from "./transferRouteResponse";
-import { TransferType } from "./transferType";
 import { UKLocalAccountIdentification } from "./uKLocalAccountIdentification";
 import { UKLocalMandateAccountIdentification } from "./uKLocalMandateAccountIdentification";
 import { USInstantPayoutAddressRequirement } from "./uSInstantPayoutAddressRequirement";
@@ -267,8 +255,7 @@ let enumsMap: Set<string> = new Set<string>([
     "AssociationFinaliseRequest.TypeEnum",
     "AssociationFinaliseResponse.TypeEnum",
     "AssociationInitiateRequest.TypeEnum",
-    AssociationStatus.PendingApproval,
-    AssociationStatus.Active,
+    "AssociationStatus",
     "BRLocalAccountIdentification.TypeEnum",
     "BalanceAccount.StatusEnum",
     "BalanceAccountBase.StatusEnum",
@@ -311,23 +298,16 @@ let enumsMap: Set<string> = new Set<string>([
     "Device.TypeEnum",
     "Duration.UnitEnum",
     "EntryModesRestriction.ValueEnum",
-    ExecutionResult.Failed,
-    ExecutionResult.Succeeded,
-    ExecutionResult.Skipped,
+    "ExecutionResult",
     "GetTaxFormResponse.ContentTypeEnum",
     "GrantOffer.ContractTypeEnum",
     "HKLocalAccountIdentification.TypeEnum",
     "HULocalAccountIdentification.TypeEnum",
     "IbanAccountIdentification.TypeEnum",
     "IbanAccountIdentificationRequirement.TypeEnum",
-    LimitStatus.Active,
-    LimitStatus.Inactive,
-    LimitStatus.PendingSca,
-    LimitStatus.Scheduled,
-    MandateStatus.Pending,
-    MandateStatus.Approved,
-    MandateStatus.Cancelled,
-    MandateType.Bacs,
+    "LimitStatus",
+    "MandateStatus",
+    "MandateType",
     "MatchingValuesRestriction.ValueEnum",
     "NOLocalAccountIdentification.TypeEnum",
     "NZLocalAccountIdentification.TypeEnum",
@@ -351,23 +331,12 @@ let enumsMap: Set<string> = new Set<string>([
     "ProcessingTypesRestriction.ValueEnum",
     "SELocalAccountIdentification.TypeEnum",
     "SGLocalAccountIdentification.TypeEnum",
-    ScaDeviceType.Browser,
-    ScaDeviceType.Ios,
-    ScaDeviceType.Android,
-    ScaEntityType.AccountHolder,
-    ScaEntityType.LegalEntity,
-    ScaEntityType.PaymentInstrument,
-    ScaExemption.SetByPlatform,
-    ScaExemption.InitialLimit,
-    ScaExemption.LowerLimit,
-    ScaExemption.NotRegulated,
-    ScaExemption.AlreadyPerformed,
-    ScaStatus.NotPerformed,
-    ScaStatus.Pending,
-    ScaStatus.Performed,
-    Scope.PerDay,
-    Scope.PerTransaction,
-    SettingType.Balance,
+    "ScaDeviceType",
+    "ScaEntityType",
+    "ScaExemption",
+    "ScaStatus",
+    "Scope",
+    "SettingType",
     "SourceAccountTypesRestriction.ValueEnum",
     "StringMatch.OperationEnum",
     "SweepConfigurationV2.CategoryEnum",
@@ -399,8 +368,7 @@ let enumsMap: Set<string> = new Set<string>([
     "TransferRouteRequirementsInner.RequiredAddressFieldsEnum",
     "TransferRouteRequirementsInner.BankAccountIdentificationTypesEnum",
     "TransferRouteRequirementsInner.PaymentInstrumentTypeEnum",
-    TransferType.Instant,
-    TransferType.All,
+    "TransferType",
     "UKLocalAccountIdentification.TypeEnum",
     "USInstantPayoutAddressRequirement.TypeEnum",
     "USInternationalAchAddressRequirement.TypeEnum",
@@ -705,6 +673,7 @@ const nullableSuffix = " | null";
 const optionalSuffix = " | undefined";
 const arrayPrefix = "Array<";
 const arraySuffix = ">";
+const setPrefix = "Set<";
 const mapPrefix = "{ [key: string]: ";
 const mapSuffix = "; }";
 
@@ -774,6 +743,13 @@ export class ObjectSerializer {
             let transformedData: any[] = [];
             for (let date of data) {
                 transformedData.push(ObjectSerializer.serialize(date, subType, format));
+            }
+            return transformedData;
+        } else if (type.startsWith(setPrefix)) {
+            let subType: string = type.slice(setPrefix.length, -arraySuffix.length); // Set<Type> => Type
+            let transformedData: any[] = [];
+            for (let item of data) {
+                transformedData.push(ObjectSerializer.serialize(item, subType, format));
             }
             return transformedData;
         } else if (type.startsWith(mapPrefix)) {
@@ -856,6 +832,13 @@ export class ObjectSerializer {
             let transformedData: any[] = [];
             for (let date of data) {
                 transformedData.push(ObjectSerializer.deserialize(date, subType, format));
+            }
+            return transformedData;
+        } else if (type.startsWith(setPrefix)) {
+            let subType: string = type.slice(setPrefix.length, -arraySuffix.length); // Set<Type> => Type
+            let transformedData = new Set<any>();
+            for (let item of data) {
+                transformedData.add(ObjectSerializer.deserialize(item, subType, format));
             }
             return transformedData;
         } else if (type.startsWith(mapPrefix)) {
