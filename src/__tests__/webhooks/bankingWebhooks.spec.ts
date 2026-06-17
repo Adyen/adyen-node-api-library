@@ -1,6 +1,8 @@
 // requests
 import { AccountHolderNotificationRequest } from "../../typings/configurationWebhooks/models";
 import { BalanceAccountNotificationRequest } from "../../typings/configurationWebhooks/models";
+import { PaymentNotificationRequest } from "../../typings/configurationWebhooks/models";
+import { IbanAccountIdentification } from "../../typings/configurationWebhooks/models";
 import { AuthenticationNotificationRequest } from "../../typings/acsWebhooks/models";
 import { TransferNotificationRequest } from "../../typings/transferWebhooks/models";
 import { NegativeBalanceCompensationWarningNotificationRequest } from "../../typings/negativeBalanceWarningWebhooks/models";
@@ -730,6 +732,48 @@ describe("BankingWebhooks Tests", function (): void {
         const genericWebhook = relayedAuthorizationWebhooksHandler.getGenericWebhook();
         expect(genericWebhook instanceof RelayedAuthorisationRequest).toBe(true);
         expect(genericWebhook.type).toEqual("balancePlatform.authorisation.relayed");
+    });
+
+    it("should deserialize PaymentNotificationRequest webhook with IBAN additionalBankAccountIdentifications", function (): void {
+        const json = {
+            "data": {
+                "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                "paymentInstrument": {
+                    "balanceAccountId": "BA00000000000000000001",
+                    "issuingCountryCode": "NL",
+                    "status": "active",
+                    "type": "bankAccount",
+                    "additionalBankAccountIdentifications": [
+                        {
+                            "type": "iban",
+                            "iban": "NL11ADYB00000000",
+                            "bic": "ADYBNL2A"
+                        }
+                    ],
+                    "id": "PI00000000000000000001"
+                }
+            },
+            "environment": "test",
+            "timestamp": "2026-03-24T09:30:12+01:00",
+            "type": "balancePlatform.paymentInstrument.created"
+        };
+        const jsonString = JSON.stringify(json);
+        const configurationWebhooksHandler = new ConfigurationWebhooksHandler(jsonString);
+        const paymentNotificationRequest = configurationWebhooksHandler.getPaymentNotificationRequest();
+        expect(paymentNotificationRequest instanceof PaymentNotificationRequest).toBe(true);
+        expect(paymentNotificationRequest.environment).toEqual("test");
+        expect(paymentNotificationRequest.type).toEqual("balancePlatform.paymentInstrument.created");
+        const identifications = paymentNotificationRequest.data.paymentInstrument?.additionalBankAccountIdentifications;
+        expect(identifications).toBeDefined();
+        expect(identifications!.length).toBe(1);
+        const ibanId = identifications![0] as IbanAccountIdentification;
+        expect(ibanId instanceof IbanAccountIdentification).toBe(true);
+        expect(ibanId.type).toEqual(IbanAccountIdentification.TypeEnum.Iban);
+        expect(ibanId.iban).toEqual("NL11ADYB00000000");
+        expect(ibanId.bic).toEqual("ADYBNL2A");
+        // test getGenericWebhook
+        const genericWebhook = configurationWebhooksHandler.getGenericWebhook();
+        expect(genericWebhook instanceof PaymentNotificationRequest).toBe(true);
     });
 
     it("should throw SyntaxError when JSON is invalid", function (): void {
