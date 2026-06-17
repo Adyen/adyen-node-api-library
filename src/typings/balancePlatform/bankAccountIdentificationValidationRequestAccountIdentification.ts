@@ -43,7 +43,25 @@ export type BankAccountIdentificationValidationRequestAccountIdentification = AU
 */
 export class BankAccountIdentificationValidationRequestAccountIdentificationClass {
     
-    static readonly discriminator: string = "type";
+    
+    static readonly discriminator: string | undefined = "type";
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
+    static readonly mapping: {[index: string]: string} | undefined = {
+        "auLocal": "AULocalAccountIdentification",
+        "brLocal": "BRLocalAccountIdentification",
+        "caLocal": "CALocalAccountIdentification",
+        "czLocal": "CZLocalAccountIdentification",
+        "dkLocal": "DKLocalAccountIdentification",
+        "hkLocal": "HKLocalAccountIdentification",
+        "huLocal": "HULocalAccountIdentification",
+        "iban": "IbanAccountIdentification",
+        "noLocal": "NOLocalAccountIdentification",
+        "numberAndBic": "NumberAndBicAccountIdentification",
+        "nzLocal": "NZLocalAccountIdentification",
+        "plLocal": "PLLocalAccountIdentification",
+        "seLocal": "SELocalAccountIdentification",
+        "sgLocal": "SGLocalAccountIdentification",
+        "ukLocal": "UKLocalAccountIdentification",
+        "usLocal": "USLocalAccountIdentification",
+    };
 }
