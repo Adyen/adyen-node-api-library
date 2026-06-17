@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       dry-run:
-        description: 'Skip publishing to NPM (runs npm whoami instead)'
+        description: 'Run npm publish --dry-run instead of publishing to NPM'
         type: boolean
         default: false
   release:
@@ -48,15 +48,14 @@ jobs:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
           always-auth: true
-          package-manager-cache: false  # never use caching in release builds
       - name: Download build artifact
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
           name: build-output
           path: lib/
       - name: Publish to NPM
-        if: ${{ inputs.dry-run != 'true' }}
+        if: ${{ !fromJSON(inputs.dry-run || 'false') }}
         run: npm publish
       - name: Dry run (verify publish without uploading)
-        if: ${{ inputs.dry-run == 'true' }}
+        if: ${{ fromJSON(inputs.dry-run || 'false') }}
         run: npm publish --dry-run
