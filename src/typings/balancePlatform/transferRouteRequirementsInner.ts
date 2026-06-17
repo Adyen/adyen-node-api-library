@@ -32,7 +32,19 @@ export type TransferRouteRequirementsInner = AdditionalBankIdentificationRequire
 */
 export class TransferRouteRequirementsInnerClass {
     
-    static readonly discriminator: string = "type";
+    
+    static readonly discriminator: string | undefined = "type";
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
+    static readonly mapping: {[index: string]: string} | undefined = {
+        "additionalBankIdentificationRequirement": "AdditionalBankIdentificationRequirement",
+        "addressRequirement": "AddressRequirement",
+        "amountMinMaxRequirement": "AmountMinMaxRequirement",
+        "amountNonZeroDecimalsRequirement": "AmountNonZeroDecimalsRequirement",
+        "bankAccountIdentificationTypeRequirement": "BankAccountIdentificationTypeRequirement",
+        "ibanAccountIdentificationRequirement": "IbanAccountIdentificationRequirement",
+        "paymentInstrumentRequirement": "PaymentInstrumentRequirement",
+        "usInstantPayoutAddressRequirement": "USInstantPayoutAddressRequirement",
+        "usInternationalAchAddressRequirement": "USInternationalAchAddressRequirement",
+        "usInternationalAchPriorityRequirement": "USInternationalAchPriorityRequirement",
+    };
 }
