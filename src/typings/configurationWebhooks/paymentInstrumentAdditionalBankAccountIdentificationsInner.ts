@@ -23,7 +23,10 @@ export type PaymentInstrumentAdditionalBankAccountIdentificationsInner = IbanAcc
 */
 export class PaymentInstrumentAdditionalBankAccountIdentificationsInnerClass {
     
-    static readonly discriminator: string = "type";
+    
+    static readonly discriminator: string | undefined = "type";
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
+    static readonly mapping: {[index: string]: string} | undefined = {
+        "iban": "IbanAccountIdentification",
+    };
 }
