@@ -16,7 +16,10 @@ export class Mandate {
     */
     "balanceAccountId"?: string;
     "counterparty"?: MandateBankAccount | null;
-    "createdAt"?: any;
+    /**
+    * The date when the mandate was created.
+    */
+    "createdAt"?: Date;
     /**
     * The unique identifier of the mandate.
     */
@@ -33,7 +36,10 @@ export class Mandate {
     * The type of mandate. Possible value: **bacs**.
     */
     "type"?: Mandate.TypeEnum;
-    "updatedAt"?: any;
+    /**
+    * The date when the mandate was updated.
+    */
+    "updatedAt"?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,8 +61,8 @@ export class Mandate {
         {
             "name": "createdAt",
             "baseName": "createdAt",
-            "type": "any",
-            "format": ""
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "id",
@@ -85,8 +91,8 @@ export class Mandate {
         {
             "name": "updatedAt",
             "baseName": "updatedAt",
-            "type": "any",
-            "format": ""
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
