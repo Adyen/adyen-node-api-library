@@ -1,6 +1,8 @@
 // requests
 import { AccountHolderNotificationRequest } from "../../typings/configurationWebhooks/models";
 import { BalanceAccountNotificationRequest } from "../../typings/configurationWebhooks/models";
+import { MandateNotificationRequest } from "../../typings/configurationWebhooks/models";
+import { Mandate } from "../../typings/configurationWebhooks/models";
 import { PaymentNotificationRequest } from "../../typings/configurationWebhooks/models";
 import { IbanAccountIdentification } from "../../typings/configurationWebhooks/models";
 import { AuthenticationNotificationRequest } from "../../typings/acsWebhooks/models";
@@ -774,6 +776,69 @@ describe("BankingWebhooks Tests", function (): void {
         // test getGenericWebhook
         const genericWebhook = configurationWebhooksHandler.getGenericWebhook();
         expect(genericWebhook instanceof PaymentNotificationRequest).toBe(true);
+    });
+
+    it("should deserialize MandateNotificationRequest webhook", function (): void {
+        const json = {
+            "data": {
+                "balancePlatform": "AdyenPspService",
+                "creationDate": "2025-09-16T09:33:50+02:00",
+                "id": "MNDT6NB67H39C22252CRV22337R8",
+                "mandate": {
+                    "balanceAccountId": "AdyenBank-GBP-00001",
+                    "counterparty": {
+                        "accountHolder": {
+                            "fullName": "Creditor Name"
+                        },
+                        "accountIdentification": {
+                            "accountNumber": "10809699",
+                            "sortCode": "405081",
+                            "type": "ukLocal"
+                        }
+                    },
+                    "createdAt": "2025-09-16T07:33:50.076Z",
+                    "id": "MNDT6NB67H39C22252CRV22337R8",
+                    "paymentInstrumentId": "PI323FR223MHK85MKTGKDDJCZ",
+                    "status": "approved",
+                    "type": "bacs",
+                    "updatedAt": "2025-09-16T07:33:50.076Z"
+                }
+            },
+            "environment": "test",
+            "timestamp": "2025-09-16T07:33:51.833Z",
+            "type": "balancePlatform.mandate.created"
+        };
+        const jsonString = JSON.stringify(json);
+        const configurationWebhooksHandler = new ConfigurationWebhooksHandler(jsonString);
+        const mandateNotificationRequest = configurationWebhooksHandler.getMandateNotificationRequest();
+
+        expect(mandateNotificationRequest instanceof MandateNotificationRequest).toBe(true);
+        expect(mandateNotificationRequest.environment).toEqual("test");
+        expect(mandateNotificationRequest.type).toEqual(MandateNotificationRequest.TypeEnum.BalancePlatformMandateCreated);
+        expect(mandateNotificationRequest.timestamp?.toISOString()).toBe(new Date("2025-09-16T07:33:51.833Z").toISOString());
+        expect(mandateNotificationRequest.data.balancePlatform).toEqual("AdyenPspService");
+
+        const mandate = mandateNotificationRequest.data.mandate;
+        expect(mandate).toBeDefined();
+        expect(mandate!.id).toEqual("MNDT6NB67H39C22252CRV22337R8");
+        expect(mandate!.balanceAccountId).toEqual("AdyenBank-GBP-00001");
+        expect(mandate!.paymentInstrumentId).toEqual("PI323FR223MHK85MKTGKDDJCZ");
+        expect(mandate!.status).toEqual(Mandate.StatusEnum.Approved);
+        expect(mandate!.type).toEqual(Mandate.TypeEnum.Bacs);
+        expect(mandate!.createdAt?.toISOString()).toBe(new Date("2025-09-16T07:33:50.076Z").toISOString());
+        expect(mandate!.updatedAt?.toISOString()).toBe(new Date("2025-09-16T07:33:50.076Z").toISOString());
+
+        const counterparty = mandate!.counterparty;
+        expect(counterparty).toBeDefined();
+        expect(counterparty!.accountHolder.fullName).toEqual("Creditor Name");
+        expect(counterparty!.accountIdentification.accountNumber).toEqual("10809699");
+        expect(counterparty!.accountIdentification.sortCode).toEqual("405081");
+        expect(counterparty!.accountIdentification.type).toEqual("ukLocal");
+
+        // test getGenericWebhook
+        const genericWebhook = configurationWebhooksHandler.getGenericWebhook();
+        expect(genericWebhook instanceof MandateNotificationRequest).toBe(true);
+        expect(genericWebhook.type).toEqual("balancePlatform.mandate.created");
     });
 
     it("should throw SyntaxError when JSON is invalid", function (): void {
