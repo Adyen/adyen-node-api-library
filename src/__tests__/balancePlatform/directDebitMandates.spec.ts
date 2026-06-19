@@ -57,6 +57,16 @@ describe("DirectDebitMandates", (): void => {
         expect(response.balanceAccountId).toBe(balanceAccountId);
         expect(response.paymentInstrumentId).toBe(paymentInstrumentId);
         expect(response.status).toBe("approved");
+        expect(response.createdAt?.toISOString()).toBe(new Date("2026-02-23T13:04:15.683Z").toISOString());
+        expect(response.updatedAt?.toISOString()).toBe(new Date("2026-02-23T13:04:15.683Z").toISOString());
+
+        const counterparty = response.counterparty;
+        expect(counterparty).toBeDefined();
+        expect(counterparty!.accountHolder.fullName).toBe("Example Merchant Ltd");
+        const accountIdentification = counterparty!.accountIdentification as Types.balancePlatform.UKLocalMandateAccountIdentification;
+        expect(accountIdentification.type).toBe("ukLocal");
+        expect(accountIdentification.accountNumber).toBe("12345678");
+        expect(accountIdentification.sortCode).toBe("123456");
     });
 
     it("should support GET /mandates", async (): Promise<void> => {
