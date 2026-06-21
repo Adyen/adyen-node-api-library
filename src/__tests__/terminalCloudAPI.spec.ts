@@ -1,5 +1,6 @@
 import nock from "nock";
-import { createClient, createTerminalAPIPaymentRequest, createTerminalAPIRefundRequest } from "../__mocks__/base";
+import { createClient } from "../__mocks__/base";
+import { createTerminalAPIPaymentRequest, createTerminalAPIRefundRequest } from "../__mocks__/terminalApi/baseTerminalApi";
 import { asyncRes, asyncErrorRes } from "../__mocks__/terminalApi/async";
 import { syncRefund, syncRes, syncResEventNotification, syncResEventNotificationWithAdditionalAttributes, syncResEventNotificationWithUnknownEnum } from "../__mocks__/terminalApi/sync";
 import Client from "../client";
