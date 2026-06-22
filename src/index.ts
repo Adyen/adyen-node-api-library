@@ -44,6 +44,10 @@ export { default as HttpURLConnectionClient } from "./httpClient/httpURLConnecti
 // Export a custom exception for HTTP client errors
 export { default as HttpClientException } from "./httpClient/httpClientException";
 
+// Export NexoCrypto for local terminal API security
+export { default as NexoCrypto } from "./security/nexoCrypto";
+
 // Export all the typings under the `Types` namespace
 export * as Types from "./typings";
+
 
