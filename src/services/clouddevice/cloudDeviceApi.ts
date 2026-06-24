@@ -82,9 +82,11 @@ export class CloudDeviceApi extends Service {
         );
         const result = new CloudDeviceApiAsyncResponse();
         if (typeof response === "string" && response.toLowerCase().trim() === "ok") {
+            // successful response
             result.Result = response.trim();
         } else {
-            const parsed: CloudDeviceApiAsyncResponse = typeof response === "string" ? JSON.parse(response) : response;
+            // error returned by the terminal
+            const parsed = response as unknown as CloudDeviceApiAsyncResponse;
             result.SaleToPOIRequest = parsed.SaleToPOIRequest;
         }
         return result;
