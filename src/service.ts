@@ -81,7 +81,7 @@ class Service {
                     `https://${this.client.config.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/checkout/`);
         }
 
-        if (url.includes("device-api-")) {
+        if (url.includes("https://device-api-test.adyen.com")) {
             if (!config.region || config.region === RegionEnum.EU) {
                 return url.replace("https://device-api-test.adyen.com", "https://device-api-live.adyen.com");
             }

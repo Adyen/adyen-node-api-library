@@ -501,5 +501,18 @@ describe("Service", () => {
         expect(service.testCreateBaseUrl(url)).toBe("https://device-api-live-apse.adyen.com/v1");
     });
 
+    it("should fall back to generic replacement for custom device-api domains", () => {
+        const config = new Config({
+            apiKey: "test_key",
+            environment: EnvironmentEnum.LIVE,
+            region: RegionEnum.US
+        });
+        client = new Client(config);
+
+        const service = new TestService(client);
+        const url = "https://my-proxy-test.example.com/device-api-v1/path";
+        expect(service.testCreateBaseUrl(url)).toBe("https://my-proxy-live.example.com/device-api-v1/path");
+    });
+
 
 });  
