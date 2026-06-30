@@ -18,7 +18,7 @@
  */
 
 import Client from "./client";
-import Config, { EnvironmentEnum } from "./config";
+import Config, { EnvironmentEnum, RegionEnum } from "./config";
 
 /**
  * Base Service class for all API services.
@@ -79,6 +79,14 @@ class Service {
 
             return url.replace("https://checkout-test.adyen.com/",
                     `https://${this.client.config.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/checkout/`);
+        }
+
+        if (url.includes("device-api-")) {
+            if (!config.region || config.region === RegionEnum.EU) {
+                return url.replace("https://device-api-test.adyen.com", "https://device-api-live.adyen.com");
+            }
+            return url.replace("https://device-api-test.adyen.com",
+                    `https://device-api-live-${config.region.toLowerCase()}.adyen.com`);
         }
 
         return url.replace("-test", "-live");

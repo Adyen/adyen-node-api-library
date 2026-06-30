@@ -1,6 +1,6 @@
 import Service from "../service";
 import Client from "../client";
-import Config, { EnvironmentEnum } from "../config";
+import Config, { EnvironmentEnum, RegionEnum } from "../config";
 
 class TestService extends Service {
     public constructor(client: Client) {
@@ -422,6 +422,83 @@ describe("Service", () => {
         const service = new TestService(client);
         const url = "https://obgateway-test.adyen.com/obgateway/v1";
         expect(service.testCreateBaseUrl(url)).toBe("https://obgateway-live.adyen.com/obgateway/v1");
+    });
+
+    // Cloud Device API
+    it("should keep TEST url for Cloud Device API", () => {
+        const config = new Config({
+            apiKey: "test_key",
+            environment: EnvironmentEnum.TEST
+        });
+        client = new Client(config);
+
+        const service = new TestService(client);
+        const url = "https://device-api-test.adyen.com/v1";
+        expect(service.testCreateBaseUrl(url)).toBe("https://device-api-test.adyen.com/v1");
+    });
+
+    it("should build LIVE url for Cloud Device API without region", () => {
+        const config = new Config({
+            apiKey: "test_key",
+            environment: EnvironmentEnum.LIVE
+        });
+        client = new Client(config);
+
+        const service = new TestService(client);
+        const url = "https://device-api-test.adyen.com/v1";
+        expect(service.testCreateBaseUrl(url)).toBe("https://device-api-live.adyen.com/v1");
+    });
+
+    it("should build LIVE url for Cloud Device API with EU region", () => {
+        const config = new Config({
+            apiKey: "test_key",
+            environment: EnvironmentEnum.LIVE,
+            region: RegionEnum.EU
+        });
+        client = new Client(config);
+
+        const service = new TestService(client);
+        const url = "https://device-api-test.adyen.com/v1";
+        expect(service.testCreateBaseUrl(url)).toBe("https://device-api-live.adyen.com/v1");
+    });
+
+    it("should build LIVE url for Cloud Device API with AU region", () => {
+        const config = new Config({
+            apiKey: "test_key",
+            environment: EnvironmentEnum.LIVE,
+            region: RegionEnum.AU
+        });
+        client = new Client(config);
+
+        const service = new TestService(client);
+        const url = "https://device-api-test.adyen.com/v1";
+        expect(service.testCreateBaseUrl(url)).toBe("https://device-api-live-au.adyen.com/v1");
+    });
+
+    it("should build LIVE url for Cloud Device API with US region", () => {
+        const config = new Config({
+            apiKey: "test_key",
+            environment: EnvironmentEnum.LIVE,
+            region: RegionEnum.US
+        });
+        client = new Client(config);
+
+        const service = new TestService(client);
+        const url = "https://device-api-test.adyen.com/v1";
+        expect(service.testCreateBaseUrl(url)).toBe("https://device-api-live-us.adyen.com/v1");
+    });
+
+    it("should build LIVE url for Cloud Device API with APSE region", () => {
+        const config = new Config({
+            apiKey: "test_key",
+            environment: EnvironmentEnum.LIVE,
+            region: RegionEnum.APSE
+        });
+        client = new Client(config);
+
+        const service = new TestService(client);
+        const url = "https://device-api-test.adyen.com/v1";
+        expect(service.testCreateBaseUrl(url)).toBe("https://device-api-live-apse.adyen.com/v1");
     });
 
 

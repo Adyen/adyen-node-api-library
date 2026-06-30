@@ -20,6 +20,8 @@
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
 import Client from "../client";
+import Config, { EnvironmentEnum, RegionEnum } from "../config";
+import { CloudDeviceApi } from "../services/clouddevice/cloudDeviceApi";
 import { CloudDeviceAPI } from "../services";
 import { CloudDeviceApiRequest } from "../typings/clouddevice/models";
 import { DeviceStatus } from "../typings/clouddevice/models";
@@ -83,6 +85,34 @@ beforeEach((): void => {
 
 afterEach(() => {
     nock.cleanAll();
+});
+
+describe("CloudDeviceApi baseUrl", (): void => {
+    const getBaseUrl = (api: CloudDeviceApi): string => (api as unknown as { baseUrl: string }).baseUrl;
+
+    test("should build TEST baseUrl", (): void => {
+        const testClient = new Client(new Config({ apiKey: "test", environment: EnvironmentEnum.TEST }));
+        const api = new CloudDeviceApi(testClient);
+        expect(getBaseUrl(api)).toBe("https://device-api-test.adyen.com/v1");
+    });
+
+    test("should build LIVE baseUrl without region", (): void => {
+        const liveClient = new Client(new Config({ apiKey: "test", environment: EnvironmentEnum.LIVE }));
+        const api = new CloudDeviceApi(liveClient);
+        expect(getBaseUrl(api)).toBe("https://device-api-live.adyen.com/v1");
+    });
+
+    test("should build LIVE baseUrl with EU region", (): void => {
+        const liveClient = new Client(new Config({ apiKey: "test", environment: EnvironmentEnum.LIVE, region: RegionEnum.EU }));
+        const api = new CloudDeviceApi(liveClient);
+        expect(getBaseUrl(api)).toBe("https://device-api-live.adyen.com/v1");
+    });
+
+    test("should build LIVE baseUrl with US region", (): void => {
+        const liveClient = new Client(new Config({ apiKey: "test", environment: EnvironmentEnum.LIVE, region: RegionEnum.US }));
+        const api = new CloudDeviceApi(liveClient);
+        expect(getBaseUrl(api)).toBe("https://device-api-live-us.adyen.com/v1");
+    });
 });
 
 describe("CloudDeviceApi", (): void => {
