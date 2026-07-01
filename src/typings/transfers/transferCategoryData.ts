@@ -31,7 +31,13 @@ export type TransferCategoryData = BankCategoryData | InternalCategoryData | Iss
 */
 export class TransferCategoryDataClass {
     
-    static readonly discriminator: string = "type";
+    
+    static readonly discriminator: string | undefined = "type";
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
+    static readonly mapping: {[index: string]: string} | undefined = {
+        "bank": "BankCategoryData",
+        "internal": "InternalCategoryData",
+        "issuedCard": "IssuedCard",
+        "platformPayment": "PlatformPayment",
+    };
 }

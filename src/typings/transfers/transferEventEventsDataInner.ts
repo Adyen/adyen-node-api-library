@@ -7,6 +7,7 @@
  * Do not edit this class manually.
  */
 
+import { InterchangeData } from "./interchangeData";
 import { IssuingTransactionData } from "./issuingTransactionData";
 import { MerchantPurchaseData } from "./merchantPurchaseData";
 
@@ -16,7 +17,7 @@ import { MerchantPurchaseData } from "./merchantPurchaseData";
  * Type
  * @export
  */
-export type TransferEventEventsDataInner = IssuingTransactionData | MerchantPurchaseData;
+export type TransferEventEventsDataInner = InterchangeData | IssuingTransactionData | MerchantPurchaseData;
 
 /**
 * @type TransferEventEventsDataInnerClass
@@ -24,7 +25,12 @@ export type TransferEventEventsDataInner = IssuingTransactionData | MerchantPurc
 */
 export class TransferEventEventsDataInnerClass {
     
-    static readonly discriminator: string = "type";
+    
+    static readonly discriminator: string | undefined = "type";
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
+    static readonly mapping: {[index: string]: string} | undefined = {
+        "interchangeData": "InterchangeData",
+        "issuingTransactionData": "IssuingTransactionData",
+        "merchantPurchaseData": "MerchantPurchaseData",
+    };
 }
