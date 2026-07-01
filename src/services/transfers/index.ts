@@ -7,7 +7,8 @@
  * Do not edit this class manually.
  */
 
-import { CapitalApi } from "./capitalApi";
+import { CapitalDeprecatedApi } from "./capitalDeprecatedApi";
+import { CashOutApi } from "./cashOutApi";
 import { TransactionsApi } from "./transactionsApi";
 import { TransfersApi } from "./transfersApi";
 
@@ -20,8 +21,12 @@ export default class TransfersAPI extends Service {
         super(client);
     }
 
-    public get CapitalApi() {
-        return new CapitalApi(this.client);
+    public get CapitalDeprecatedApi() {
+        return new CapitalDeprecatedApi(this.client);
+    }
+
+    public get CashOutApi() {
+        return new CashOutApi(this.client);
     }
 
     public get TransactionsApi() {

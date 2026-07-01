@@ -7,11 +7,11 @@
  * Do not edit this class manually.
  */
 
-import { Counterparty } from "./counterparty";
+import { GrantInfoCounterparty } from "./grantInfoCounterparty";
 
 
 export class CapitalGrantInfo {
-    "counterparty"?: Counterparty | null;
+    "counterparty"?: GrantInfoCounterparty | null;
     /**
     * The identifier of the grant account used for the grant.
     */
@@ -29,7 +29,7 @@ export class CapitalGrantInfo {
         {
             "name": "counterparty",
             "baseName": "counterparty",
-            "type": "Counterparty | null",
+            "type": "GrantInfoCounterparty | null",
             "format": ""
         },
         {

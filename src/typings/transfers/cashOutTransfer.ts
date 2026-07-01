@@ -7,20 +7,19 @@
  * Do not edit this class manually.
  */
 
+import { Amount } from "./amount";
 
-export class IbanAccountIdentification {
+
+export class CashOutTransfer {
+    "amount": Amount;
     /**
-    * The bank\'s 8- or 11-character BIC or SWIFT code.
+    * The reference of the cashout transfer.
     */
-    "bic"?: string;
+    "id": string;
     /**
-    * The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+    * The type of the cashout transfer.  Possible values:  - **cashoutRepayment**: Corresponds to the transfer created to deduct the cashout amount after settlement. - **cashoutFee**: Corresponds to the transfer created to debit the cashout fee form the user\'s balance account.
     */
-    "iban": string;
-    /**
-    * **iban**
-    */
-    "type": IbanAccountIdentification.TypeEnum;
+    "type": CashOutTransfer.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,34 +27,35 @@ export class IbanAccountIdentification {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "bic",
-            "baseName": "bic",
-            "type": "string",
+            "name": "amount",
+            "baseName": "amount",
+            "type": "Amount",
             "format": ""
         },
         {
-            "name": "iban",
-            "baseName": "iban",
+            "name": "id",
+            "baseName": "id",
             "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "IbanAccountIdentification.TypeEnum",
+            "type": "CashOutTransfer.TypeEnum",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return IbanAccountIdentification.attributeTypeMap;
+        return CashOutTransfer.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace IbanAccountIdentification {
+export namespace CashOutTransfer {
     export enum TypeEnum {
-        Iban = 'iban'
+        CashoutRepayment = 'cashoutRepayment',
+        CashoutFee = 'cashoutFee'
     }
 }
