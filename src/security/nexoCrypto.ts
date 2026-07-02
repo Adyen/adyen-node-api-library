@@ -115,7 +115,10 @@ class NexoCrypto {
     private validateHmac(receivedHmac: Buffer, decryptedMessage: Buffer, derivedKey: NexoDerivedKey): void {
         const hmac = NexoCrypto.hmac(decryptedMessage, derivedKey);
 
-        if (!timingSafeEqual(hmac, receivedHmac)) {
+        // timingSafeEqual throws a raw TypeError when the buffers differ in
+        // length, so guard on length first: a length mismatch is simply an
+        // invalid HMAC and must raise NexoCryptoException like any other failure.
+        if (hmac.length !== receivedHmac.length || !timingSafeEqual(hmac, receivedHmac)) {
             throw new NexoCryptoException("Hmac validation failed");
         }
     }

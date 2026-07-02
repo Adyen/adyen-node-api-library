@@ -73,6 +73,24 @@ describe("NexoCrypto", (): void => {
         expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow("Hmac validation failed");
     });
 
+    test("decrypt throws NexoCryptoException on a different-length HMAC", (): void => {
+        const nexoCrypto = new NexoCrypto();
+        const payload = JSON.stringify({ test: "data" });
+
+        const encrypted = NexoCrypto.encrypt(messageHeader, payload, securityKey);
+        // Truncate the HMAC so its length differs from the computed one. Without a
+        // length guard, crypto.timingSafeEqual throws a raw TypeError instead of the
+        // expected NexoCryptoException. See #1703.
+        const truncatedHmac = Buffer.from(encrypted.SecurityTrailer.Hmac, "base64").subarray(0, 16);
+        const tampered: SaleToPOISecuredMessage = {
+            ...encrypted,
+            SecurityTrailer: { ...encrypted.SecurityTrailer, Hmac: truncatedHmac.toString("base64") },
+        };
+
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow("Hmac validation failed");
+    });
+
     test("decrypt throws InvalidSecurityKeyException when Passphrase is missing", (): void => {
         const nexoCrypto = new NexoCrypto();
         const payload = JSON.stringify({ test: "data" });
