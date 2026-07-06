@@ -216,13 +216,21 @@ describe("EncryptedCloudDeviceApi", () => {
     test("decryptNotificationInvalidPayload - throws NexoSecurityException", () => {
         const api = new EncryptedCloudDeviceApi(client, {
             adyenCryptoVersion: 1,
-            keyIdentifier: "Key123456789crypt",
+            keyIdentifier: "*****************",
             keyVersion: 1,
             passphrase: "P@ssw0rd123456",
         });
 
         expect(() => api.decryptNotification("{...}")).toThrow(NexoSecurityException);
     });
+
+    test.each(["null", "123", "true", '"string"'])(
+        "decryptNotification throws NexoSecurityException for non-object JSON payload: %s",
+        (payload) => {
+            const api = new EncryptedCloudDeviceApi(client, DEFAULT_CREDENTIALS);
+            expect(() => api.decryptNotification(payload)).toThrow(NexoSecurityException);
+        },
+    );
 
     test("decryptNotificationSaleToPOIRequest - decrypts SaleToPOIRequest envelope", () => {
         const creds: EncryptionCredentialDetails = {

@@ -22,7 +22,9 @@ import { createClient } from "../../__mocks__/base";
 import Client from "../../client";
 import Config, { EnvironmentEnum, RegionEnum } from "../../config";
 import { CloudDeviceApi } from "../../services/clouddevice/cloudDeviceApi";
+import { EncryptedCloudDeviceApi } from "../../services/clouddevice/encryptedCloudDeviceApi";
 import { CloudDeviceAPI } from "../../services";
+import { NexoSecurityException } from "../../security/clouddevice/nexoSecurityException";
 import { CloudDeviceApiRequest } from "../../typings/clouddevice/models";
 import { DeviceStatus } from "../../typings/clouddevice/models";
 import {
@@ -85,6 +87,29 @@ beforeEach((): void => {
 
 afterEach(() => {
     nock.cleanAll();
+});
+
+describe("CloudDeviceAPI.getEncryptedCloudDeviceApi", (): void => {
+    test("returns an EncryptedCloudDeviceApi instance for valid credentials", (): void => {
+        const api = cloudDeviceAPI.getEncryptedCloudDeviceApi({
+            adyenCryptoVersion: 1,
+            keyIdentifier: "key-id",
+            keyVersion: 1,
+            passphrase: "p@ssw0rd123456",
+        });
+        expect(api).toBeInstanceOf(EncryptedCloudDeviceApi);
+    });
+
+    test("throws NexoSecurityException for invalid credentials", (): void => {
+        expect(() =>
+            cloudDeviceAPI.getEncryptedCloudDeviceApi({
+                adyenCryptoVersion: 1,
+                keyIdentifier: "key-id",
+                keyVersion: 1,
+                passphrase: "",
+            }),
+        ).toThrow(NexoSecurityException);
+    });
 });
 
 describe("CloudDeviceApi baseUrl", (): void => {

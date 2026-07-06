@@ -179,6 +179,10 @@ export class EncryptedCloudDeviceApi extends Service {
             throw new NexoSecurityException("Invalid payload");
         }
 
+        if (!parsed || typeof parsed !== "object") {
+            throw new NexoSecurityException("Unexpected payload: must be a JSON object");
+        }
+
         if ("SaleToPOIResponse" in parsed) {
             const securedResponse = parsed as unknown as CloudDeviceApiSecuredResponse;
             if (!securedResponse.SaleToPOIResponse) {
