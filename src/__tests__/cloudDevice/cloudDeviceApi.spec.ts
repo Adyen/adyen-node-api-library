@@ -18,24 +18,24 @@
  */
 
 import nock from "nock";
-import { createClient } from "../__mocks__/base";
-import Client from "../client";
-import Config, { EnvironmentEnum, RegionEnum } from "../config";
-import { CloudDeviceApi } from "../services/clouddevice/cloudDeviceApi";
-import { CloudDeviceAPI } from "../services";
-import { CloudDeviceApiRequest } from "../typings/clouddevice/models";
-import { DeviceStatus } from "../typings/clouddevice/models";
+import { createClient } from "../../__mocks__/base";
+import Client from "../../client";
+import Config, { EnvironmentEnum, RegionEnum } from "../../config";
+import { CloudDeviceApi } from "../../services/clouddevice/cloudDeviceApi";
+import { CloudDeviceAPI } from "../../services";
+import { CloudDeviceApiRequest } from "../../typings/clouddevice/models";
+import { DeviceStatus } from "../../typings/clouddevice/models";
 import {
     MessageCategory,
     MessageClass,
     MessageType,
     SaleToPOIRequest,
-} from "../typings/tapi/models";
+} from "../../typings/tapi/models";
 
-import paymentSyncSuccess from "../__mocks__/clouddevice/payment-sync-success.json";
-import paymentAsyncError from "../__mocks__/clouddevice/payment-async-error.json";
-import connectedDevices from "../__mocks__/clouddevice/connected-devices.json";
-import statusDevice from "../__mocks__/clouddevice/status-device.json";
+import paymentSyncSuccess from "../../__mocks__/clouddevice/payment-sync-success.json";
+import paymentAsyncError from "../../__mocks__/clouddevice/payment-async-error.json";
+import connectedDevices from "../../__mocks__/clouddevice/connected-devices.json";
+import statusDevice from "../../__mocks__/clouddevice/status-device.json";
 
 const BASE_URL = "https://device-api-test.adyen.com/v1";
 const merchantAccount = "myMerchant";
