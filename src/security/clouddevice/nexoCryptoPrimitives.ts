@@ -29,6 +29,9 @@ import { NexoSecurityException } from "./nexoSecurityException";
 
 /** Performs AES-256-CBC encryption or decryption using the derived key and provided IV nonce. */
 export function crypt(bytes: Buffer, dk: NexoDerivedKey, ivNonce: Buffer, mode: "encrypt" | "decrypt"): Buffer {
+    if (ivNonce.length !== NEXO_IV_LENGTH) {
+        throw new NexoSecurityException("Invalid IV nonce length: expected " + NEXO_IV_LENGTH + ", got " + ivNonce.length);
+    }
     const actualIV = Buffer.alloc(NEXO_IV_LENGTH);
     for (let i = 0; i < NEXO_IV_LENGTH; i++) {
         actualIV[i] = dk.iv[i] ^ ivNonce[i];

@@ -97,8 +97,8 @@ function validateCredentials(credentials: EncryptionCredentialDetails): void {
         !credentials ||
         !credentials.passphrase ||
         !credentials.keyIdentifier ||
-        credentials.keyVersion == null ||
-        credentials.adyenCryptoVersion == null
+        !Number.isFinite(credentials.keyVersion) ||
+        !Number.isFinite(credentials.adyenCryptoVersion)
     ) {
         throw new NexoSecurityException("Invalid Security Key");
     }

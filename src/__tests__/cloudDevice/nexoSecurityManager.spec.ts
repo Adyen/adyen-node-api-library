@@ -54,6 +54,8 @@ describe("NexoSecurityManager", () => {
         { passphrase: "p", keyIdentifier: null as unknown as string, keyVersion: 1, adyenCryptoVersion: 1 },
         { passphrase: "p", keyIdentifier: "k", keyVersion: null as unknown as number, adyenCryptoVersion: 1 },
         { passphrase: "p", keyIdentifier: "k", keyVersion: 1, adyenCryptoVersion: null as unknown as number },
+        { passphrase: "p", keyIdentifier: "k", keyVersion: NaN, adyenCryptoVersion: 1 },
+        { passphrase: "p", keyIdentifier: "k", keyVersion: 1, adyenCryptoVersion: NaN },
     ];
 
     test.each(invalidCredentials)(
@@ -78,6 +80,25 @@ describe("NexoSecurityManager", () => {
         const decrypted = manager.decrypt(encrypted);
 
         expect(decrypted).toBe(plaintext);
+    });
+
+    test("decrypt with short nonce must throw NexoSecurityException", () => {
+        const manager = new NexoSecurityManager(credentials);
+        const encrypted: SaleToPOISecuredMessage = manager.encrypt(plaintext, messageHeader);
+
+        // Replace nonce with a base64-encoded buffer shorter than NEXO_IV_LENGTH (16 bytes)
+        encrypted.SecurityTrailer.Nonce = Buffer.alloc(8).toString("base64");
+
+        expect(() => manager.decrypt(encrypted)).toThrow(NexoSecurityException);
+    });
+
+    test("decrypt with long nonce must throw NexoSecurityException", () => {
+        const manager = new NexoSecurityManager(credentials);
+        const encrypted: SaleToPOISecuredMessage = manager.encrypt(plaintext, messageHeader);
+
+        encrypted.SecurityTrailer.Nonce = Buffer.alloc(32).toString("base64");
+
+        expect(() => manager.decrypt(encrypted)).toThrow(NexoSecurityException);
     });
 
     test("encrypt then decrypt round-trips correctly via JSON serialization", () => {
