@@ -18,9 +18,13 @@
  */
 
 import { CloudDeviceApi } from "./cloudDeviceApi";
+import { EncryptedCloudDeviceApi } from "./encryptedCloudDeviceApi";
+import { EncryptionCredentialDetails } from "../../security/clouddevice/encryptionCredentialDetails";
 
 import Service from "../../service";
 import Client from "../../client";
+
+export { EncryptedCloudDeviceApi } from "./encryptedCloudDeviceApi";
 
 export default class CloudDeviceAPI extends Service {
 
@@ -30,5 +34,9 @@ export default class CloudDeviceAPI extends Service {
 
     public get CloudDeviceApi() {
         return new CloudDeviceApi(this.client);
+    }
+
+    public getEncryptedCloudDeviceApi(encryptionCredentialDetails: EncryptionCredentialDetails) {
+        return new EncryptedCloudDeviceApi(this.client, encryptionCredentialDetails);
     }
 }
