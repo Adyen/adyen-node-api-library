@@ -35,6 +35,8 @@ import {
     PaymentRequest,
     SaleToPOIRequest,
 } from "../../typings/tapi/models";
+import { EncryptedCloudDeviceApi } from "../../services/clouddevice/encryptedCloudDeviceApi";
+import { EncryptionCredentialDetails } from "../../security/clouddevice/encryptionCredentialDetails";
 
 /*
 Verify Terminal integration: tests to send API requests to the Cloud Device API and confirm the Terminal responds as expected.
@@ -42,12 +44,15 @@ Verify Terminal integration: tests to send API requests to the Cloud Device API 
 Don't forget to:
 - Enable the terminal
 - Set 'enableTerminalTest' to true
-- Set required variables (ADYEN_API_KEY, ADYEN_MERCHANT_ACCOUNT, ADYEN_TERMINAL_DEVICE_ID) by creating the .env file in root of the repository:
+- Set required variables by creating the .env file in root of the repository:
 
 # Adyen Test Credentials
 ADYEN_API_KEY=#####
 ADYEN_MERCHANT_ACCOUNT=MyMerchantAccount
 ADYEN_TERMINAL_DEVICE_ID=V400m-1234567890
+# Required for encrypted tests only:
+ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER=
+ADYEN_TERMINAL_DEVICE_PASSPHRASE=
 
 - Run one test at a time with: npx jest cloudDeviceApi.terminal.spec.ts -t "should make a sync payment request"
 - Restore 'enableTerminalTest' value to false
@@ -55,9 +60,16 @@ ADYEN_TERMINAL_DEVICE_ID=V400m-1234567890
 
 const enableTerminalTest = false; // set to true when you want to test with the Terminal
 
-const { ADYEN_API_KEY, ADYEN_MERCHANT_ACCOUNT, ADYEN_TERMINAL_DEVICE_ID } = process.env;
+const {
+    ADYEN_API_KEY,
+    ADYEN_MERCHANT_ACCOUNT,
+    ADYEN_TERMINAL_DEVICE_ID,
+    ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER,
+    ADYEN_TERMINAL_DEVICE_PASSPHRASE,
+} = process.env;
 
 const hasEnv = !!(ADYEN_API_KEY && ADYEN_MERCHANT_ACCOUNT && ADYEN_TERMINAL_DEVICE_ID);
+const hasEncryptedEnv = !!(hasEnv && ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER && ADYEN_TERMINAL_DEVICE_PASSPHRASE);
 (enableTerminalTest && hasEnv ? describe : describe.skip)("Cloud Device API Testing with Terminal", (): void => {
     let client: Client;
     let cloudDeviceAPI: CloudDeviceAPI;
@@ -124,6 +136,57 @@ const hasEnv = !!(ADYEN_API_KEY && ADYEN_MERCHANT_ACCOUNT && ADYEN_TERMINAL_DEVI
 
         expect(response).toBeDefined();
         expect(response.deviceId).toEqual(deviceId);
+    });
+
+    // run with: npx jest cloudDeviceApi.terminal.spec.ts -t "should make an encrypted sync payment request"
+    (enableTerminalTest && hasEncryptedEnv ? test : test.skip)("should make an encrypted sync payment request", async (): Promise<void> => {
+        const merchantAccount = ADYEN_MERCHANT_ACCOUNT!;
+        const deviceId = ADYEN_TERMINAL_DEVICE_ID!;
+
+        const encryptionCredentialDetails: EncryptionCredentialDetails = {
+            adyenCryptoVersion: 1,
+            keyIdentifier: ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER!,
+            keyVersion: 1,
+            passphrase: ADYEN_TERMINAL_DEVICE_PASSPHRASE!,
+        };
+
+        const encryptedApi = new EncryptedCloudDeviceApi(client, encryptionCredentialDetails);
+        const response: CloudDeviceApiResponse = await encryptedApi.sync(
+            merchantAccount,
+            deviceId,
+            createCloudDeviceApiPaymentRequest(deviceId),
+        );
+
+        console.log("Encrypted sync response:", JSON.stringify(response, null, 2));
+
+        expect(response).toBeDefined();
+        expect(response.SaleToPOIResponse).toBeDefined();
+        expect(response.SaleToPOIResponse?.MessageHeader?.POIID).toBe(deviceId);
+    });
+
+    // run with: npx jest cloudDeviceApi.terminal.spec.ts -t "should make an encrypted async payment request"
+    (enableTerminalTest && hasEncryptedEnv ? test : test.skip)("should make an encrypted async payment request", async (): Promise<void> => {
+        const merchantAccount = ADYEN_MERCHANT_ACCOUNT!;
+        const deviceId = ADYEN_TERMINAL_DEVICE_ID!;
+
+        const encryptionCredentialDetails: EncryptionCredentialDetails = {
+            adyenCryptoVersion: 1,
+            keyIdentifier: ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER!,
+            keyVersion: 1,
+            passphrase: ADYEN_TERMINAL_DEVICE_PASSPHRASE!,
+        };
+
+        const encryptedApi = new EncryptedCloudDeviceApi(client, encryptionCredentialDetails);
+        const response: CloudDeviceApiAsyncResponse = await encryptedApi.async(
+            merchantAccount,
+            deviceId,
+            createCloudDeviceApiPaymentRequest(deviceId),
+        );
+
+        console.log("Encrypted async response:", response);
+
+        expect(response).toBeDefined();
+        expect(response.Result).toBe("ok");
     });
 
     // run with: npx jest cloudDeviceApi.terminal.spec.ts -t "should get connected devices"
