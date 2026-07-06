@@ -73,9 +73,6 @@ const hasEnv = !!(ADYEN_API_KEY && ADYEN_MERCHANT_ACCOUNT && ADYEN_TERMINAL_DEVI
         jest.setTimeout(25000);
     });
 
-    afterAll((done): void => {
-        done();
-    });
 
     // run with: npx jest cloudDeviceApi.terminal.spec.ts -t "should make a sync payment request"
     test("should make a sync payment request", async (): Promise<void> => {
@@ -94,7 +91,7 @@ const hasEnv = !!(ADYEN_API_KEY && ADYEN_MERCHANT_ACCOUNT && ADYEN_TERMINAL_DEVI
             console.log("Received unexpected response structure:", JSON.stringify(response, null, 2));
         }
 
-        expect(response).toBeDefined();
+        expect(response.SaleToPOIResponse).toBeDefined();
     });
 
     // run with: npx jest cloudDeviceApi.terminal.spec.ts -t "should make an async payment request"
@@ -110,7 +107,7 @@ const hasEnv = !!(ADYEN_API_KEY && ADYEN_MERCHANT_ACCOUNT && ADYEN_TERMINAL_DEVI
 
         console.log("Async response:", response);
 
-        expect(response).toBeDefined();
+        expect(response.Result).toBe("ok");
     });
 
     // run with: npx jest cloudDeviceApi.terminal.spec.ts -t "should get device status"
