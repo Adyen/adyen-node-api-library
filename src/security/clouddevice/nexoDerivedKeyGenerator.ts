@@ -29,6 +29,7 @@ export function deriveKeyMaterial(passphrase: string): NexoDerivedKey {
     const pass = Buffer.from(passphrase, "binary");
     const salt = Buffer.from("AdyenNexoV1Salt", "binary");
     // Iteration count fixed at 4000 as mandated by the Nexo protocol specification (AdyenNexoV1)
+    // Reference https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/local/protect
     const iterations = 4000;
     const keylen = NEXO_HMAC_KEY_LENGTH + NEXO_CIPHER_KEY_LENGTH + NEXO_IV_LENGTH;
     const key = pbkdf2Sync(pass, salt, iterations, keylen, "sha1");
