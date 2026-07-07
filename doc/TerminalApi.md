@@ -8,11 +8,10 @@ With the [Terminal API](https://docs.adyen.com/api-explorer/terminal-api/1/overv
 > **Note**: For In-Person Payments cloud integrations, the recommended solution is the [Cloud device API](CloudDeviceApi.md). Consider [migrating to the Cloud device API](MigratingToCloudDeviceApi.md) to benefit from API logs in the Customer Area, versioned endpoints, and improved security.
 
 ## Using the Cloud Terminal API
-For In-Person Payments integrations with the [Cloud Terminal API](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/), you must initialise the Client **setting the closest** [Region](https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/#cloud):
+For In-Person Payments integrations with the [Cloud Terminal API](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/cloud/), you must initialize the Client **setting the closest** [Region](https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/#cloud):
 ``` javascript
 // Step 1: Require the parts of the module you want to use
-const {Client, TerminalCloudAPI} from "@adyen/api-library";
-const { Config, EnvironmentEnum, RegionEnum } = require("@adyen/api-library");
+import { Client, TerminalCloudAPI, Config, EnvironmentEnum, RegionEnum, Types } from "@adyen/api-library";
 
 // Step 2: Initialize the client object
 const config = new Config({
@@ -32,11 +31,11 @@ const POIID = "Your Device Name(eg V400m-123456789)";
 
 // Use a unique transaction for every transaction you perform
 const transactionID = "TransactionID";
-const paymentRequest: SaleToPOIRequest = {
+const paymentRequest: Types.terminal.SaleToPOIRequest = {
     MessageHeader: {
-        MessageClass: MessageClassType.Service,
-        MessageCategory: MessageCategoryType.Payment,
-        MessageType: MessageType.Request,
+        MessageClass: Types.terminal.MessageClassType.Service,
+        MessageCategory: Types.terminal.MessageCategoryType.Payment,
+        MessageType: Types.terminal.MessageType.Request,
         ProtocolVersion: "3.0",
         ServiceID: serviceID,
         SaleID: saleID,
@@ -46,7 +45,7 @@ const paymentRequest: SaleToPOIRequest = {
         SaleData: {
             SaleTransactionID: {
                 TransactionID: transactionID,
-                TimeStamp: this.GetDate().toISOString()
+                TimeStamp: new Date().toISOString()
             },
 
             SaleToAcquirerData: {
@@ -68,18 +67,18 @@ const paymentRequest: SaleToPOIRequest = {
 };
 
 // Step 5: Make the request
-const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(paymentRequest);
+const terminalAPIResponse: Types.terminal.TerminalApiResponse = await terminalCloudAPI.sync(paymentRequest);
 ```
 
 ### Optional: perform an abort request
 
 To perform an [abort request](https://docs.adyen.com/point-of-sale/basic-tapi-integration/cancel-a-transaction/) you can use the following example:
 ``` javascript
-const abortRequest: SaleToPOIRequest = {
+const abortRequest: Types.terminal.SaleToPOIRequest = {
     MessageHeader: {
-        MessageClass: MessageClassType.Service,
-        MessageCategory: MessageCategoryType.Abort,
-        MessageType: MessageType.Request,
+        MessageClass: Types.terminal.MessageClassType.Service,
+        MessageCategory: Types.terminal.MessageCategoryType.Abort,
+        MessageType: Types.terminal.MessageType.Request,
         ProtocolVersion: "3.0",
         // Different serviceID than the one you're aborting
         ServiceID: "Different service ID",
@@ -89,7 +88,7 @@ const abortRequest: SaleToPOIRequest = {
     AbortRequest: {
         AbortReason: "MerchantAbort",
         MessageReference: {
-            MessageCategory: MessageCategoryEnum.Payment,
+            MessageCategory: Types.terminal.MessageReference.MessageCategoryEnum.Payment,
             SaleID: saleID,
             // Service ID of the payment you're aborting
             ServiceID: serviceID,
@@ -98,18 +97,18 @@ const abortRequest: SaleToPOIRequest = {
 
     }
 };
-const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(abortRequest);
+const terminalAPIResponse: Types.terminal.TerminalApiResponse = await terminalCloudAPI.sync(abortRequest);
 ```
 
 ### Optional: perform a status request
 
 To perform a [status request](https://docs.adyen.com/point-of-sale/basic-tapi-integration/verify-transaction-status/) you can use the following example:
 ``` javascript
-const statusRequest: SaleToPOIRequest = {
+const statusRequest: Types.terminal.SaleToPOIRequest = {
     MessageHeader: {
-        MessageClass: MessageClassType.Service,
-        MessageCategory: MessageCategoryType.TransactionStatus,
-        MessageType: MessageType.Request,
+        MessageClass: Types.terminal.MessageClassType.Service,
+        MessageCategory: Types.terminal.MessageCategoryType.TransactionStatus,
+        MessageType: Types.terminal.MessageType.Request,
         ProtocolVersion: "3.0",
         ServiceID: "Different service ID",
         SaleID: saleID,
@@ -117,16 +116,16 @@ const statusRequest: SaleToPOIRequest = {
     },
     TransactionStatusRequest: {
         ReceiptReprintFlag: true,
-        DocumentQualifier: [DocumentQualifierEnum.CashierReceipt, DocumentQualifierEnum.CustomerReceipt],
+        DocumentQualifier: [Types.terminal.TransactionStatusRequest.DocumentQualifierEnum.CashierReceipt, Types.terminal.TransactionStatusRequest.DocumentQualifierEnum.CustomerReceipt],
         MessageReference: {
             SaleID: saleID,
             // serviceID of the transaction you want the status update for
             ServiceID: serviceID,
-            MessageCategory: MessageCategoryEnum.Payment
+            MessageCategory: Types.terminal.MessageReference.MessageCategoryEnum.Payment
         }
     }
 };
-const terminalAPIResponse: terminal.TerminalApiResponse = await terminalCloudAPI.sync(statusRequest);
+const terminalAPIResponse: Types.terminal.TerminalApiResponse = await terminalCloudAPI.sync(statusRequest);
 ```
 
 ## Using the Cloud Terminal API Integration (async)
@@ -135,7 +134,7 @@ If you choose to integrate [Terminal API over Cloud](https://docs.adyen.com/poin
 * a request that fails will return `200` status code and the `TerminalApiResponse` as response body
 ``` typescript
 // Step 1: Require the parts of the module you want to use
-const {Client, TerminalCloudAPI, EnvironmentEnum} from "@adyen/api-library";
+import { Client, TerminalCloudAPI, EnvironmentEnum, Types } from "@adyen/api-library";
 
 // Step 2: Initialize the client object
 const client = new Client({apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.TEST}); 
@@ -151,11 +150,11 @@ const POIID = "Your Device Name(eg V400m-123456789)";
 
 // Use a unique transaction for every transaction you perform
 const transactionID = "TransactionID";
-const paymentRequest: SaleToPOIRequest = {
+const paymentRequest: Types.terminal.SaleToPOIRequest = {
     MessageHeader: {
-        MessageClass: MessageClassType.Service,
-        MessageCategory: MessageCategoryType.Payment,
-        MessageType: MessageType.Request,
+        MessageClass: Types.terminal.MessageClassType.Service,
+        MessageCategory: Types.terminal.MessageCategoryType.Payment,
+        MessageType: Types.terminal.MessageType.Request,
         ProtocolVersion: "3.0",
         ServiceID: serviceID,
         SaleID: saleID,
@@ -214,7 +213,7 @@ const event = helper.getEvent();
 The procedure to send In-Person requests using [Terminal API over Local Connection](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/local/) is similar to the Cloud Terminal API one, however, additional encryption details are required to perform the requests. Make sure to [install the certificate as described here](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/local/#protect-communications)
 ```javascript
 // Step 1: Require the parts of the module you want to use
-const {Client, TerminalLocalAPI} from "@adyen/api-library";
+import { Client, TerminalLocalAPI, Config, Types } from "@adyen/api-library";
 
 // Step 2: Add your Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer"
 const config: Config = new Config();
@@ -231,11 +230,11 @@ const securityKey: SecurityKey = {
 };
 
 // Step 4 Initialize the client and the API objects
-client = new Client({ config });
+const client = new Client({ config });
 const terminalLocalAPI = new TerminalLocalAPI(client);
 
 // Step 5: Create the request object
-const paymentRequest: SaleToPOIRequest = {
+const paymentRequest: Types.terminal.SaleToPOIRequest = {
 // Similar to the saleToPOIRequest used for Cloud API
 }
 
@@ -246,7 +245,7 @@ const terminalApiResponse: Types.terminal.TerminalApiResponse = await terminalLo
 If you wish to develop the Local Terminal API integration parallel to your encryption implementation, you can opt for the unencrypted version. Be sure to remove any encryption details from the CA terminal config page. 
 ```javascript
 // Step 1: Require the parts of the module you want to use
-const {Client, TerminalLocalAPIUnencrypted} from "@adyen/api-library";
+import { Client, TerminalLocalAPIUnencrypted, Config, Types } from "@adyen/api-library";
 
 // Step 2: Add your Certificate Path and Local Endpoint to the config path. Install the certificate and save it in your project folder as "cert.cer"
 const config: Config = new Config();
@@ -254,11 +253,11 @@ config.terminalApiLocalEndpoint = "The IP of your terminal (eg https://192.168.4
 config.apiKey = "YOUR_API_KEY_HERE";
 
 // Step 3 Initialize the client and the API objects
-client = new Client({ config });
+const client = new Client({ config });
 const terminalLocalAPI = new TerminalLocalAPIUnencrypted(client);
 
 // Step 4: Create the request object
-const paymentRequest: SaleToPOIRequest = {
+const paymentRequest: Types.terminal.SaleToPOIRequest = {
 // Similar to the saleToPOIRequest used for Cloud API
 }
 
