@@ -76,8 +76,6 @@ export class Modification {
 
 export namespace Modification {
     export enum StatusEnum {
-        AdviceAuthorised = 'adviceAuthorised',
-        AdviceRefused = 'adviceRefused',
         ApprovalPending = 'approvalPending',
         AtmWithdrawal = 'atmWithdrawal',
         AtmWithdrawalReversalPending = 'atmWithdrawalReversalPending',

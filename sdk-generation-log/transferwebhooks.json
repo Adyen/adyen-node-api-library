@@ -1,8 +1,8 @@
 {
   "service": "transferwebhooks",
   "project": "node",
-  "generatedAt": "2026-06-15T16:42:46Z",
-  "openapiCommitSha": "fe790646de44602c0531c3ebd57c966876c7a1c7",
-  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "f6a0015d5e5165d611fa7f39bc2e34dc36dbee9c"
+  "generatedAt": "2026-07-07T09:20:40Z",
+  "openapiCommitSha": "751b9cf57e10be73983157a912fc9aeb95920192",
+  "automationCommitSha": "5f1d5ab9643886ef722a2626e23afef8db5d52a6",
+  "libraryCommitSha": "9a6f62fec04ad6e9f2baa8937b565ceac7484d1c"
 }
