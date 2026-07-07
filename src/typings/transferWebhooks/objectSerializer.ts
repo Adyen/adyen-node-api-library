@@ -40,6 +40,7 @@ import { Modification } from "./modification";
 import { NOLocalAccountIdentification } from "./nOLocalAccountIdentification";
 import { NZLocalAccountIdentification } from "./nZLocalAccountIdentification";
 import { NameLocation } from "./nameLocation";
+import { NetworkReason } from "./networkReason";
 import { NumberAndBicAccountIdentification } from "./numberAndBicAccountIdentification";
 import { PLLocalAccountIdentification } from "./pLLocalAccountIdentification";
 import { PartyIdentification } from "./partyIdentification";
@@ -57,16 +58,20 @@ import { TransactionRuleSource } from "./transactionRuleSource";
 import { TransactionRulesResult } from "./transactionRulesResult";
 import { TransferData } from "./transferData";
 import { TransferDataCategoryDataClass } from "./transferDataCategoryData";
+import { TransferDataTracingClass } from "./transferDataTracing";
 import { TransferDataTrackingClass } from "./transferDataTracking";
 import { TransferEvent } from "./transferEvent";
 import { TransferEventEventsDataInnerClass } from "./transferEventEventsDataInner";
+import { TransferEventTracingDataClass } from "./transferEventTracingData";
 import { TransferEventTrackingDataClass } from "./transferEventTrackingData";
 import { TransferNotificationCounterParty } from "./transferNotificationCounterParty";
 import { TransferNotificationMerchantData } from "./transferNotificationMerchantData";
 import { TransferNotificationRequest } from "./transferNotificationRequest";
 import { TransferNotificationValidationFact } from "./transferNotificationValidationFact";
 import { TransferReview } from "./transferReview";
+import { UKFpsTracingData } from "./uKFpsTracingData";
 import { UKLocalAccountIdentification } from "./uKLocalAccountIdentification";
+import { USAchTracingData } from "./uSAchTracingData";
 import { USLocalAccountIdentification } from "./uSLocalAccountIdentification";
 import { UltimatePartyIdentification } from "./ultimatePartyIdentification";
 
@@ -115,6 +120,7 @@ let enumsMap: Set<string> = new Set<string>([
     "Modification.StatusEnum",
     "NOLocalAccountIdentification.TypeEnum",
     "NZLocalAccountIdentification.TypeEnum",
+    "NetworkReason.NamespaceEnum",
     "NumberAndBicAccountIdentification.TypeEnum",
     "PLLocalAccountIdentification.TypeEnum",
     "PartyIdentification.TypeEnum",
@@ -132,6 +138,7 @@ let enumsMap: Set<string> = new Set<string>([
     "TransferDataCategoryData.PanEntryModeEnum",
     "TransferDataCategoryData.ProcessingTypeEnum",
     "TransferDataCategoryData.PlatformPaymentTypeEnum",
+    "TransferDataTracing.TypeEnum",
     "TransferDataTracking.StatusEnum",
     "TransferDataTracking.TypeEnum",
     "TransferDataTracking.ReasonEnum",
@@ -139,12 +146,15 @@ let enumsMap: Set<string> = new Set<string>([
     "TransferEvent.StatusEnum",
     "TransferEvent.TypeEnum",
     "TransferEventEventsDataInner.TypeEnum",
+    "TransferEventTracingData.TypeEnum",
     "TransferEventTrackingData.StatusEnum",
     "TransferEventTrackingData.TypeEnum",
     "TransferEventTrackingData.ReasonEnum",
     "TransferNotificationRequest.TypeEnum",
     "TransferReview.ScaOnApprovalEnum",
+    "UKFpsTracingData.TypeEnum",
     "UKLocalAccountIdentification.TypeEnum",
+    "USAchTracingData.TypeEnum",
     "USLocalAccountIdentification.AccountTypeEnum",
     "USLocalAccountIdentification.TypeEnum",
     "UltimatePartyIdentification.TypeEnum",
@@ -191,6 +201,7 @@ let typeMap: {[index: string]: any} = {
     "NOLocalAccountIdentification": NOLocalAccountIdentification,
     "NZLocalAccountIdentification": NZLocalAccountIdentification,
     "NameLocation": NameLocation,
+    "NetworkReason": NetworkReason,
     "NumberAndBicAccountIdentification": NumberAndBicAccountIdentification,
     "PLLocalAccountIdentification": PLLocalAccountIdentification,
     "PartyIdentification": PartyIdentification,
@@ -208,16 +219,20 @@ let typeMap: {[index: string]: any} = {
     "TransactionRulesResult": TransactionRulesResult,
     "TransferData": TransferData,
     "TransferDataCategoryData": TransferDataCategoryDataClass,
+    "TransferDataTracing": TransferDataTracingClass,
     "TransferDataTracking": TransferDataTrackingClass,
     "TransferEvent": TransferEvent,
     "TransferEventEventsDataInner": TransferEventEventsDataInnerClass,
+    "TransferEventTracingData": TransferEventTracingDataClass,
     "TransferEventTrackingData": TransferEventTrackingDataClass,
     "TransferNotificationCounterParty": TransferNotificationCounterParty,
     "TransferNotificationMerchantData": TransferNotificationMerchantData,
     "TransferNotificationRequest": TransferNotificationRequest,
     "TransferNotificationValidationFact": TransferNotificationValidationFact,
     "TransferReview": TransferReview,
+    "UKFpsTracingData": UKFpsTracingData,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
+    "USAchTracingData": USAchTracingData,
     "USLocalAccountIdentification": USLocalAccountIdentification,
     "UltimatePartyIdentification": UltimatePartyIdentification,
 }

@@ -12,10 +12,12 @@ import { BalanceMutation } from "./balanceMutation";
 import { DirectDebitInformation } from "./directDebitInformation";
 import { ExecutionDate } from "./executionDate";
 import { ExternalReason } from "./externalReason";
+import { NetworkReason } from "./networkReason";
 import { PaymentInstrument } from "./paymentInstrument";
 import { ResourceReference } from "./resourceReference";
 import { TransactionRulesResult } from "./transactionRulesResult";
 import { TransferDataCategoryData } from "./transferDataCategoryData";
+import { TransferDataTracing } from "./transferDataTracing";
 import { TransferDataTracking } from "./transferDataTracking";
 import { TransferEvent } from "./transferEvent";
 import { TransferNotificationCounterParty } from "./transferNotificationCounterParty";
@@ -75,6 +77,7 @@ export class TransferData {
     * The ID of the resource.
     */
     "id"?: string;
+    "networkReason"?: NetworkReason | null;
     "paymentInstrument"?: PaymentInstrument | null;
     /**
     * Additional information about the status of the transfer.
@@ -97,6 +100,7 @@ export class TransferData {
     * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
     */
     "status": TransferData.StatusEnum;
+    "tracing"?: TransferDataTracing | null;
     "tracking"?: TransferDataTracking | null;
     "transactionRulesResult"?: TransactionRulesResult | null;
     /**
@@ -223,6 +227,12 @@ export class TransferData {
             "format": ""
         },
         {
+            "name": "networkReason",
+            "baseName": "networkReason",
+            "type": "NetworkReason | null",
+            "format": ""
+        },
+        {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
             "type": "PaymentInstrument | null",
@@ -262,6 +272,12 @@ export class TransferData {
             "name": "status",
             "baseName": "status",
             "type": "TransferData.StatusEnum",
+            "format": ""
+        },
+        {
+            "name": "tracing",
+            "baseName": "tracing",
+            "type": "TransferDataTracing | null",
             "format": ""
         },
         {
@@ -404,8 +420,6 @@ export namespace TransferData {
         WithdrawalCountExceeded = 'withdrawalCountExceeded'
     }
     export enum StatusEnum {
-        AdviceAuthorised = 'adviceAuthorised',
-        AdviceRefused = 'adviceRefused',
         ApprovalPending = 'approvalPending',
         AtmWithdrawal = 'atmWithdrawal',
         AtmWithdrawalReversalPending = 'atmWithdrawalReversalPending',

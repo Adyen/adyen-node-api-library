@@ -13,6 +13,7 @@ import { BalanceMutation } from "./balanceMutation";
 import { ExternalReason } from "./externalReason";
 import { Modification } from "./modification";
 import { TransferEventEventsDataInner } from "./transferEventEventsDataInner";
+import { TransferEventTracingData } from "./transferEventTracingData";
 import { TransferEventTrackingData } from "./transferEventTrackingData";
 
 
@@ -57,6 +58,7 @@ export class TransferEvent {
     * The status of the transfer event.
     */
     "status"?: TransferEvent.StatusEnum;
+    "tracingData"?: TransferEventTracingData | null;
     "trackingData"?: TransferEventTrackingData | null;
     /**
     * The id of the transaction that is related to this accounting event. Only sent for events of type **accounting** where the balance changes.
@@ -156,6 +158,12 @@ export class TransferEvent {
             "name": "status",
             "baseName": "status",
             "type": "TransferEvent.StatusEnum",
+            "format": ""
+        },
+        {
+            "name": "tracingData",
+            "baseName": "tracingData",
+            "type": "TransferEventTracingData | null",
             "format": ""
         },
         {
@@ -286,8 +294,6 @@ export namespace TransferEvent {
         WithdrawalCountExceeded = 'withdrawalCountExceeded'
     }
     export enum StatusEnum {
-        AdviceAuthorised = 'adviceAuthorised',
-        AdviceRefused = 'adviceRefused',
         ApprovalPending = 'approvalPending',
         AtmWithdrawal = 'atmWithdrawal',
         AtmWithdrawalReversalPending = 'atmWithdrawalReversalPending',
