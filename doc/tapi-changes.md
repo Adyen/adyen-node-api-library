@@ -75,7 +75,7 @@ The dominant pattern is dropping the `Type` suffix from enum names.
 | `TerminalApiRequest` | `TerminalAPIRequest` | `Api` → `API` |
 | `TerminalApiResponse` | `TerminalAPIResponse` | `Api` → `API` |
 | `TransactionIdentification` | `TransactionIDType` | Major rename |
-| `CardholderPIN` | `CardHolderPIN` | `H` capitalised |
+| `CardholderPIN` | `CardHolderPIN` | `H` capitalized |
 | `SignaturePoint` | `Point` | Renamed |
 
 ---

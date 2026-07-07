@@ -20,7 +20,7 @@ New features and products will be released exclusively on the Cloud device API.
 
 ### Setup
 
-First you must initialise the Client (see an example on TEST):
+First you must initialize the Client (see an example on TEST):
 ``` typescript
 // Import the required classes
 import { Client, Config, EnvironmentEnum, CloudDeviceAPI } from "@adyen/api-library";
@@ -146,7 +146,6 @@ const encryptionCredentialDetails: EncryptionCredentialDetails = {
 
 // Use EncryptedCloudDeviceApi instead of CloudDeviceApi
 const encryptedCloudDeviceApi = new EncryptedCloudDeviceApi(client, encryptionCredentialDetails);
-// or: const encryptedCloudDeviceApi = cloudDeviceAPI.getEncryptedCloudDeviceApi(encryptionCredentialDetails);
 
 const response = await encryptedCloudDeviceApi.sync("TestMerchantAccount", "V400m-123456789", request);
 console.log(response);
