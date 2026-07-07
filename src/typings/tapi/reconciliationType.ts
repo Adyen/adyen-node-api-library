@@ -7,9 +7,13 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **SaleReconciliation** * **AcquirerSynchronisation** * **AcquirerReconciliation** * **PreviousReconciliation**
+*/
+
 export enum ReconciliationType {
-    AcquirerReconciliation = 'AcquirerReconciliation',
+    SaleReconciliation = 'SaleReconciliation',
     AcquirerSynchronisation = 'AcquirerSynchronisation',
-    PreviousReconciliation = 'PreviousReconciliation',
-    SaleReconciliation = 'SaleReconciliation'
+    AcquirerReconciliation = 'AcquirerReconciliation',
+    PreviousReconciliation = 'PreviousReconciliation'
 }

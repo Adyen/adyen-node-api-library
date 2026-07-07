@@ -8,12 +8,12 @@
  */
 
 /**
-* Type of instalment transaction. Possible values: * **Annual** * **Daily** * **Monthly** * **Weekly**
+* Type of instalment transaction. Possible values: * **Daily** * **Weekly** * **Monthly** * **Annual**
 */
 
 export enum PeriodUnit {
-    Annual = 'Annual',
     Daily = 'Daily',
+    Weekly = 'Weekly',
     Monthly = 'Monthly',
-    Weekly = 'Weekly'
+    Annual = 'Annual'
 }

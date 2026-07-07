@@ -7,9 +7,13 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Normal** * **Bold** * **Italic** * **Underline**
+*/
+
 export enum CharacterStyle {
+    Normal = 'Normal',
     Bold = 'Bold',
     Italic = 'Italic',
-    Normal = 'Normal',
     Underline = 'Underline'
 }

@@ -8,12 +8,12 @@
  */
 
 /**
-* Characteristics related to the selection of a menu entry. Possible values: * **NonSelectable** * **NonSelectableSubMenu** * **Selectable** * **SubMenu**
+* Characteristics related to the selection of a menu entry. Possible values: * **Selectable** * **NonSelectable** * **SubMenu** * **NonSelectableSubMenu**
 */
 
 export enum MenuEntryTag {
-    NonSelectable = 'NonSelectable',
-    NonSelectableSubMenu = 'NonSelectableSubMenu',
     Selectable = 'Selectable',
-    SubMenu = 'SubMenu'
+    NonSelectable = 'NonSelectable',
+    SubMenu = 'SubMenu',
+    NonSelectableSubMenu = 'NonSelectableSubMenu'
 }

@@ -7,8 +7,12 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **SoundRef** * **MessageRef** * **Text**
+*/
+
 export enum SoundFormat {
-    MessageRef = 'MessageRef',
     SoundRef = 'SoundRef',
+    MessageRef = 'MessageRef',
     Text = 'Text'
 }

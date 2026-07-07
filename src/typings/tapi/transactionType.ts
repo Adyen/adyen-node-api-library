@@ -7,24 +7,28 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Debit** * **Credit** * **ReverseDebit** * **ReverseCredit** * **OneTimeReservation** * **CompletedDeffered** * **FirstReservation** * **UpdateReservation** * **CompletedReservation** * **CashAdvance** * **IssuerInstalment** * **Declined** * **Failed** * **Award** * **ReverseAward** * **Redemption** * **ReverseRedemption** * **Rebate** * **ReverseRebate**
+*/
+
 export enum TransactionType {
-    Award = 'Award',
-    CashAdvance = 'CashAdvance',
-    CompletedDeffered = 'CompletedDeffered',
-    CompletedReservation = 'CompletedReservation',
-    Credit = 'Credit',
     Debit = 'Debit',
+    Credit = 'Credit',
+    ReverseDebit = 'ReverseDebit',
+    ReverseCredit = 'ReverseCredit',
+    OneTimeReservation = 'OneTimeReservation',
+    CompletedDeffered = 'CompletedDeffered',
+    FirstReservation = 'FirstReservation',
+    UpdateReservation = 'UpdateReservation',
+    CompletedReservation = 'CompletedReservation',
+    CashAdvance = 'CashAdvance',
+    IssuerInstalment = 'IssuerInstalment',
     Declined = 'Declined',
     Failed = 'Failed',
-    FirstReservation = 'FirstReservation',
-    IssuerInstalment = 'IssuerInstalment',
-    OneTimeReservation = 'OneTimeReservation',
-    Rebate = 'Rebate',
-    Redemption = 'Redemption',
+    Award = 'Award',
     ReverseAward = 'ReverseAward',
-    ReverseCredit = 'ReverseCredit',
-    ReverseDebit = 'ReverseDebit',
-    ReverseRebate = 'ReverseRebate',
+    Redemption = 'Redemption',
     ReverseRedemption = 'ReverseRedemption',
-    UpdateReservation = 'UpdateReservation'
+    Rebate = 'Rebate',
+    ReverseRebate = 'ReverseRebate'
 }

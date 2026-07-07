@@ -8,11 +8,11 @@
  */
 
 /**
-* Type of PIN Service. Possible values: * **PINEnter** * **PINVerify** * **PINVerifyOnly**
+* Type of PIN Service. Possible values: * **PINVerify** * **PINVerifyOnly** * **PINEnter**
 */
 
 export enum PINRequestType {
-    PinEnter = 'PINEnter',
     PinVerify = 'PINVerify',
-    PinVerifyOnly = 'PINVerifyOnly'
+    PinVerifyOnly = 'PINVerifyOnly',
+    PinEnter = 'PINEnter'
 }

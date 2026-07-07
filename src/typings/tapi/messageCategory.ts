@@ -7,6 +7,10 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Abort** * **Admin** * **BalanceInquiry** * **CardAcquisition** * **Diagnosis** * **Display** * **EnableService** * **Event** * **GetTotals** * **Input** * **InputUpdate** * **Login** * **Logout** * **Loyalty** * **Payment** * **Print** * **Reconciliation** * **Reversal** * **StoredValue** * **TransactionStatus** * **None**
+*/
+
 export enum MessageCategory {
     Abort = 'Abort',
     Admin = 'Admin',
@@ -22,11 +26,11 @@ export enum MessageCategory {
     Login = 'Login',
     Logout = 'Logout',
     Loyalty = 'Loyalty',
-    None = 'None',
     Payment = 'Payment',
     Print = 'Print',
     Reconciliation = 'Reconciliation',
     Reversal = 'Reversal',
     StoredValue = 'StoredValue',
-    TransactionStatus = 'TransactionStatus'
+    TransactionStatus = 'TransactionStatus',
+    None = 'None'
 }

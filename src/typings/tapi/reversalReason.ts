@@ -8,12 +8,12 @@
  */
 
 /**
-* Reason of the payment or loyalty reversal. Possible values: * **CustCancel** * **Malfunction** * **MerchantCancel** * **Unable2Compl**
+* Reason of the payment or loyalty reversal. Possible values: * **CustCancel** * **MerchantCancel** * **Malfunction** * **Unable2Compl**
 */
 
 export enum ReversalReason {
     CustCancel = 'CustCancel',
-    Malfunction = 'Malfunction',
     MerchantCancel = 'MerchantCancel',
+    Malfunction = 'Malfunction',
     Unable2Compl = 'Unable2Compl'
 }

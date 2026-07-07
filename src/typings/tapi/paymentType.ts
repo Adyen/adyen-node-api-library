@@ -7,17 +7,21 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Normal** * **Refund** * **OneTimeReservation** * **FirstReservation** * **UpdateReservation** * **Completion** * **CashAdvance** * **CashDeposit** * **Recurring** * **Instalment** * **IssuerInstalment** * **PaidOut**
+*/
+
 export enum PaymentType {
+    Normal = 'Normal',
+    Refund = 'Refund',
+    OneTimeReservation = 'OneTimeReservation',
+    FirstReservation = 'FirstReservation',
+    UpdateReservation = 'UpdateReservation',
+    Completion = 'Completion',
     CashAdvance = 'CashAdvance',
     CashDeposit = 'CashDeposit',
-    Completion = 'Completion',
-    FirstReservation = 'FirstReservation',
+    Recurring = 'Recurring',
     Instalment = 'Instalment',
     IssuerInstalment = 'IssuerInstalment',
-    Normal = 'Normal',
-    OneTimeReservation = 'OneTimeReservation',
-    PaidOut = 'PaidOut',
-    Recurring = 'Recurring',
-    Refund = 'Refund',
-    UpdateReservation = 'UpdateReservation'
+    PaidOut = 'PaidOut'
 }

@@ -58,7 +58,7 @@ export class EnableServiceRequest {
 export namespace EnableServiceRequest {
     export enum ServicesEnabledEnum {
         CardAcquisition = 'CardAcquisition',
-        Loyalty = 'Loyalty',
-        Payment = 'Payment'
+        Payment = 'Payment',
+        Loyalty = 'Loyalty'
     }
 }

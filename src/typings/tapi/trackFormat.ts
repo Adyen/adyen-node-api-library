@@ -8,10 +8,14 @@
  */
 
 /**
-* Magnetic track or magnetic ink characters line. Possible values: * **AAMVA** * **ISO**
+* Magnetic track or magnetic ink characters line. Possible values: * **ISO** * **JIS-I** * **JIS-II** * **AAMVA** * **CMC-7** * **E-13B**
 */
 
 export enum TrackFormat {
+    Iso = 'ISO',
+    JisI = 'JIS-I',
+    JisIi = 'JIS-II',
     Aamva = 'AAMVA',
-    Iso = 'ISO'
+    Cmc7 = 'CMC-7',
+    E13B = 'E-13B'
 }

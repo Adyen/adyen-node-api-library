@@ -7,9 +7,13 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **OK** * **Busy** * **Maintenance** * **Unreachable**
+*/
+
 export enum GlobalStatus {
+    Ok = 'OK',
     Busy = 'Busy',
     Maintenance = 'Maintenance',
-    Ok = 'OK',
     Unreachable = 'Unreachable'
 }

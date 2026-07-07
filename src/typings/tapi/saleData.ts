@@ -143,8 +143,8 @@ export class SaleData {
 
 export namespace SaleData {
     export enum CustomerOrderReqEnum {
-        Both = 'Both',
+        Open = 'Open',
         Closed = 'Closed',
-        Open = 'Open'
+        Both = 'Both'
     }
 }

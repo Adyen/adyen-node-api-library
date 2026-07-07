@@ -7,8 +7,12 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **GiftCard** * **PhoneCard** * **Other**
+*/
+
 export enum StoredValueAccountType {
     GiftCard = 'GiftCard',
-    Other = 'Other',
-    PhoneCard = 'PhoneCard'
+    PhoneCard = 'PhoneCard',
+    Other = 'Other'
 }

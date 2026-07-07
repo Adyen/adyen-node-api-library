@@ -7,11 +7,15 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **SaleReceipt** * **CashierReceipt** * **CustomerReceipt** * **Document** * **Voucher** * **Journal**
+*/
+
 export enum DocumentQualifier {
+    SaleReceipt = 'SaleReceipt',
     CashierReceipt = 'CashierReceipt',
     CustomerReceipt = 'CustomerReceipt',
     Document = 'Document',
-    Journal = 'Journal',
-    SaleReceipt = 'SaleReceipt',
-    Voucher = 'Voucher'
+    Voucher = 'Voucher',
+    Journal = 'Journal'
 }

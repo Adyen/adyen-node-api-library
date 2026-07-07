@@ -49,9 +49,9 @@ export class GetTotalsRequest {
 
 export namespace GetTotalsRequest {
     export enum TotalDetailsEnum {
-        OperatorId = 'OperatorID',
         Poiid = 'POIID',
         SaleId = 'SaleID',
+        OperatorId = 'OperatorID',
         ShiftNumber = 'ShiftNumber',
         TotalsGroupId = 'TotalsGroupID'
     }

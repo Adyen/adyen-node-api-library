@@ -7,7 +7,11 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Personal** * **Company**
+*/
+
 export enum TypeCode {
-    Company = 'Company',
-    Personal = 'Personal'
+    Personal = 'Personal',
+    Company = 'Company'
 }

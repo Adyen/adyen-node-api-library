@@ -8,12 +8,12 @@
  */
 
 /**
-* Format of the content to display or print. Display or print device function. Possible values: * **BarCode** * **MessageRef** * **Text** * **XHTML**
+* Format of the content to display or print. Display or print device function. Possible values: * **MessageRef** * **Text** * **XHTML** * **BarCode**
 */
 
 export enum OutputFormat {
-    BarCode = 'BarCode',
     MessageRef = 'MessageRef',
     Text = 'Text',
-    Xhtml = 'XHTML'
+    Xhtml = 'XHTML',
+    BarCode = 'BarCode'
 }

@@ -7,9 +7,13 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **CashierDisplay** * **CustomerDisplay** * **CashierInput** * **CustomerInput**
+*/
+
 export enum Device {
     CashierDisplay = 'CashierDisplay',
-    CashierInput = 'CashierInput',
     CustomerDisplay = 'CustomerDisplay',
+    CashierInput = 'CashierInput',
     CustomerInput = 'CustomerInput'
 }
